@@ -5,6 +5,7 @@ import * as simpleGit from 'simple-git/promise';
 import * as fs from 'fs-extra';
 import * as crypto from 'crypto';
 import * as schemaGenerator from 'json-schema-to-typescript';
+import * as semver from 'semver';
 const logdown = require('logdown');
 
 interface SchemaHashes {
@@ -85,6 +86,7 @@ class SchemaGenerator {
   }
 
   private async generatePackageJson(schemaName: string, schemaHash: {hash: string, version: string}): Promise<string> {
+    const newVersion = semver.minor(schemaHash.version);
     return `{
   "author": "Florian Keller <github@floriankeller.de>",
   "dependencies": {},
@@ -96,7 +98,7 @@ class SchemaGenerator {
   "scripts": {},
   "typesPublisherContentHash": "${schemaHash.hash}",
   "typings": "index.d.ts",
-  "version": "${schemaHash.version}"
+  "version": "${newVersion}"
 }
 `
   }
