@@ -1,0 +1,24 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {
+    "@types/rimraf": "2.0.2",
+    "json-schema-to-typescript": "5.5.0",
+    "program": "1.0.0",
+    "simple-git": "1.96.0",
+    "typescript": "2.9.2"
+  },
+  "devDependencies": {
+    "rimraf": "2.6.2"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "name": "schemastore-updater",
+  "repository": "git@github.com:ffflorian/schemastore-updater.git",
+  "scripts": {
+    "build": "tsc",
+    "clear": "rimraf dist",
+    "dist": "yarn clear && yarn build",
+    "start": "node dist/index.js"
+  },
+  "version": "1.0.0"
+}
