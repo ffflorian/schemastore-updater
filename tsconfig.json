@@ -17,4 +17,10 @@
     "strict": true,
     "target": "ES5"
   },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "schemas",
+    "temp"
+  ]
 }

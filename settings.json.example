@@ -1,5 +1,0 @@
-{
-  "tempDir": "./temp",
-  "schemaStoreDir": "./temp/schemastore",
-  "schemastoreRepo": "https://github.com/SchemaStore/schemastore"
-}
