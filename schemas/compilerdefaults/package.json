@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for compilerdefaults.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/compilerdefaults",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "b400c5764e21695d23dea02f2ae0033d7f7f2b754bc4b24e6c1c65f359f2be9f",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

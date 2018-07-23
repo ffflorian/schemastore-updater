@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for sarif-2.0.0.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/sarif-2.0.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "cd1a636e7d8bedca54a48f6b4c3215f4509fccd7b4dbe11229864f106d3f4537",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

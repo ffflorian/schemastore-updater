@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for project-1.0.0-beta3.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/project-1.0.0-beta3",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "a23a61bb548ab86b9ee0b8f894cf42b90403e798e491fab68b65a2774673d2e2",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

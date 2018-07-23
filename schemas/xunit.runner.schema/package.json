@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for xunit.runner.schema.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/xunit.runner.schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "45a531de2248d20309cb355c689f26e6a3e96e79f8c85dc06452ef60ae25f99b",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

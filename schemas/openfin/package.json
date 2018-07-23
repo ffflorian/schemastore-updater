@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for openfin.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/openfin",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "f9781c1ee738f718d8244c2c13f04abb924eaea9b36450d15d360fecf555606b",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

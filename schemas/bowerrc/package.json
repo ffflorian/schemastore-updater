@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for bowerrc.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/bowerrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "2f7d10495534462e0dd85886d6aec88183dac0b71ecf5d7a9a5cab2adca4711a",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

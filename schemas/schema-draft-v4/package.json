@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for schema-draft-v4.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/schema-draft-v4",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "4ac3fdcf0206cb602f566289543696bd37655c6596b07677d139d9475583a8d5",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for bower.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/bower",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "b4135f9f8dee2354b01e18cf5bd41f642dd497f13757278691a8787ea8178687",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

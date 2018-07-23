@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for component.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/component",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "51a6892f81a36f145f385bf6e589324976ba80a77eb7ff175334719f80bd0e39",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

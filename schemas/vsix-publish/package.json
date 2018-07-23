@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for vsix-publish.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/vsix-publish",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "b8758bc2f2f1ec00967c2ee284f33b1ef30688767f6b7a6fe9cc989ce27ce824",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

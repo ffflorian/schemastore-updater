@@ -13,6 +13,10 @@ program
     'Specify a settings file',
     path.resolve(__dirname, '..', 'settings.json')
   )
+  .option(
+    '-f, --force',
+    'Force re-generating all schemas'
+  )
   .parse(process.argv);
 
 const settingsFile = path.resolve(program.settings);
@@ -27,7 +31,8 @@ const {
 
 const generator = new SchemaGenerator(
   disabledSchemas,
-  schemaStoreRepo
+  schemaStoreRepo,
+  program.force
 );
 
 generator

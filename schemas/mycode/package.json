@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for mycode.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/mycode",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "5b0590053500046ce46c1ab6ddb300e5c38a934024b177c2222d737dea304c9d",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

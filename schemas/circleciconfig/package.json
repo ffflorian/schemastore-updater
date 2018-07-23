@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for circleciconfig.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/circleciconfig",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "47e439dcb2ac50f57a8e6b0ea627581e66c5a93f6671e43b88b86fd76208228f",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

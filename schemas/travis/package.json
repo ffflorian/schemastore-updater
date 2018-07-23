@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for travis.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/travis",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "70fcefb4308f7f0ce6e448ad8aab5e2f2468c4ddfe4c233d784ea4e8be09770b",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

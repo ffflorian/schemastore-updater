@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for grunt-watch-task.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/grunt-watch-task",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "7153813cb4386ebe95c2318f2f4eed402e6682ecf8f7e4e758bc35625354e42e",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

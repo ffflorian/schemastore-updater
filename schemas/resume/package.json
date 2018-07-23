@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for resume.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/resume",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "eb8a83b073f722118788c1f631d82e0adb5207268475582c340469be71e5e395",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for asmdef.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/asmdef",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "be3b413b9eefc1238b171cf4edfd007788cda38e9505cce9d48128a828f5eb05",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

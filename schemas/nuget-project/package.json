@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for nuget-project.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/nuget-project",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "1703b54f4f54c3266457191842ad77b3b126cc6b38eae3e7b5e502fff6a409ce",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

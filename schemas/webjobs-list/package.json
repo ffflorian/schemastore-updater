@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for webjobs-list.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/webjobs-list",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "f898c9e3de948ebbde435dbf8d3d2971f680c3fd234e5046bb0ea215cc909d8a",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

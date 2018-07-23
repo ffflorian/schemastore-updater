@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for host-meta.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/host-meta",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "716762792e3a5e3f3d68f50eb7829b06979582e262c3a34617f5c9422d95315f",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

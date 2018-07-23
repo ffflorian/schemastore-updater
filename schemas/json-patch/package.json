@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for json-patch.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/json-patch",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "4abe3f9e2f5d3484e95fc2655fe1726ccc2bcc9cfc49e9dd686e76831c917b9a",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

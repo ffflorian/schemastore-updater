@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for cryproj.52.schema.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/cryproj.52.schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "7d67a2b09aca4bd931a756e26d7403ca45738a2c2944e4c0a2b70be1a9453180",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

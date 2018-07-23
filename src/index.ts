@@ -18,10 +18,12 @@ class SchemaGenerator {
   private lockFile: string;
   private schemaStoreDirResolved: string;
   private logger: any;
+  private schemaHashes: SchemaHashes;
 
   constructor(
     private disabledSchemas: string[],
-    private schemaStoreRepo: string
+    private schemaStoreRepo: string,
+    private force: boolean
   ) {
     this.git = simpleGit('.');
     this.schemaStoreDirResolved = path.join('temp', 'schemastore');
@@ -31,11 +33,17 @@ class SchemaGenerator {
       logger: console,
       markdown: false,
     });
-    this.logger.info(`Using lockfile "${this.lockFile}".`)
+
+    if (fs.existsSync(this.lockFile)) {
+      this.logger.info(`Using lockfile "${this.lockFile}".`);
+    } else {
+      this.logger.info(`No lockfile exists yet. Will write lockfile to "${this.lockFile}".`);
+    }
+    this.schemaHashes = {};
   }
 
-  private generateLockFile(fileName: string, data: SchemaHashes) {
-    return fs.writeFile(path.resolve(fileName), JSON.stringify(data, null, 2), {
+  private async generateLockFile(fileName: string, data: SchemaHashes): Promise<void> {
+    await fs.writeFile(path.resolve(fileName), JSON.stringify(data, null, 2), {
       encoding: 'utf8'
     });
   }
@@ -43,21 +51,22 @@ class SchemaGenerator {
   private async generateSchemas(jsonData: SchemaHashes): Promise<string[]> {
     const disabledSchemas = [];
     for (const fileName in jsonData) {
+      const schemaName = fileName.replace('.json', '');
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
-      this.logger.info(`Processing "${fileName}" ...`);
+      this.logger.info(`Processing "${schemaName}" ...`);
       let newSchema = '';
       try {
         newSchema = await schemaGenerator.compileFromFile(
           fileNameResolved
         );
       } catch (error) {
-        this.logger.error(`Can't process "${fileName}". Adding to the list of disabled schemas.`)
+        this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`)
         disabledSchemas.push(fileName);
         continue;
       }
       const schemaDirResolved = path.resolve(
         'schemas',
-        fileName.replace('.json', '')
+        schemaName
       );
       await fs.mkdirp(schemaDirResolved);
       await fs.writeFile(
@@ -65,19 +74,38 @@ class SchemaGenerator {
         newSchema,
         { encoding: 'utf8' }
       );
+      const packageJson = await this.generatePackageJson(schemaName, this.schemaHashes[fileName]);
+      await fs.writeFile(path.resolve(schemaDirResolved, 'package.json'), packageJson, {encoding: 'utf8'})
     }
 
     return disabledSchemas;
   }
 
-  private async removeAndClone() {
+  private async generatePackageJson(schemaName: string, schemaHash: string): Promise<string> {
+    return `{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for ${schemaName}.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/${schemaName}",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "${schemaHash}",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}
+`
+  }
+
+  private async removeAndClone(): Promise<void> {
     await promisify(rimraf)(this.schemaStoreDirResolved);
     await this.git.clone(this.schemaStoreRepo, this.schemaStoreDirResolved, [
       '--depth=1'
     ]);
   }
 
-  async start() {
+  async start(): Promise<void> {
     await this.removeAndClone();
 
     const jsonFiles = (await fs.readdir(this.jsonSchemasDir)).filter(
@@ -87,7 +115,7 @@ class SchemaGenerator {
       }
     );
 
-    this.logger.info(`Loaded ${jsonFiles.length} schemas and ${this.disabledSchemas.length} disabled schemas.`);
+    this.logger.info(`Loaded ${jsonFiles.length} enabled schemas and ${this.disabledSchemas.length} disabled schemas.`);
 
     const jsonData: SchemaHashes = {};
     for (const fileName of jsonFiles) {
@@ -104,10 +132,12 @@ class SchemaGenerator {
     }
 
     let disabledSchemas = [];
-    if (!fs.existsSync(this.lockFile)) {
-      this.logger.info(`No lockfile exists yet. Writing lockfile to "${this.lockFile}" ..`)
-
+    if (this.force) {
+      this.logger.info(`Force is set. Will re-generate all schemas.`)
+    }
+    if (!fs.existsSync(this.lockFile) || this.force) {
       await this.generateLockFile(this.lockFile, jsonData);
+      this.schemaHashes = jsonData;
       disabledSchemas = await this.generateSchemas(jsonData);
     } else {
       const lockFileData = await fs.readFile(this.lockFile, { encoding: 'utf8' });
@@ -122,6 +152,7 @@ class SchemaGenerator {
           updatedHashes[fileName] = jsonData[fileName];
         }
       }
+      this.schemaHashes = updatedHashes;
       disabledSchemas = await this.generateSchemas(updatedHashes);
     }
 

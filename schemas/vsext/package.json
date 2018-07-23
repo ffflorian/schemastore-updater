@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for vsext.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/vsext",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "a061f0e1a0c621885e2873f09d3b3ff39ea9221d6aa492f93e188ef388e0e040",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

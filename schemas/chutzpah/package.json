@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for chutzpah.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/chutzpah",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "a4b9a3a1a52c22b903911a950a3fdb7b34ba54190c3415e369b1e73448e2862f",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

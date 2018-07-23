@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for bundleconfig.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/bundleconfig",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "ffcb7b8e2b5767e4e0c24549ddfd95387739d1d0ed6c4fc1f4d9ff54833fa7d4",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

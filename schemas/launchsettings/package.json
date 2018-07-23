@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for launchsettings.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/launchsettings",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "e5417eb29559164a9a6233b761efc3d97ee370d11fd80fa519bad5dac201e82b",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

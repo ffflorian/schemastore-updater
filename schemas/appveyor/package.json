@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for appveyor.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/appveyor",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "b2c6292f225b8f188775275e3763536dfd8cc8368327a97c4f9d37be93db9826",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

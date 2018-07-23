@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for epr-manifest.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/epr-manifest",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "65a5fa96b9f2165f3b094f2affc7f7b7102df40ed09a1cb66c64eb0563c0b064",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

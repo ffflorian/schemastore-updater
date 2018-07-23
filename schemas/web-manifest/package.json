@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for web-manifest.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/web-manifest",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "3e4bc091b889574b5ba8224de5dcaab1ac1ab5b25064b659cb0f36185896ce2e",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

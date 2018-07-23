@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for solidaritySchema.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/solidaritySchema",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

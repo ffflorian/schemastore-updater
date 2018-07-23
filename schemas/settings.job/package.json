@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for settings.job.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/settings.job",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "df461dc130e39b4d20cde2db0a279966afa6820e7d05eb855acfb6d53de8e6d2",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}

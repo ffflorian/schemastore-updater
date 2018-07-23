@@ -1,0 +1,13 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for vsix-manifestinjection.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/vsix-manifestinjection",
+  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "scripts": {},
+  "typesPublisherContentHash": "0997e027cf3b0296d3514a09d2b7010604057fe42dfd8abb5e46ac9fd5e2166f",
+  "typings": "index.d.ts",
+  "version": "0.0.1"
+}
