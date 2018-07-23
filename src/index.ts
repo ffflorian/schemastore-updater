@@ -78,14 +78,43 @@ class SchemaGenerator {
         newSchema,
         { encoding: 'utf8' }
       );
-      const packageJson = await this.generatePackageJson(schemaName, jsonData[fileName]);
+      const packageJson = this.generatePackageJson(schemaName, jsonData[fileName]);
       await fs.writeFile(path.resolve(schemaDirResolved, 'package.json'), packageJson, {encoding: 'utf8'})
+      const readMe = this.generateReadme(schemaName, jsonData[fileName].version);
+      await fs.writeFile(path.resolve(schemaDirResolved, 'README.md'), readMe, {encoding: 'utf8'});
+      const license = this.generateLicense();
+      await fs.writeFile(path.resolve(schemaDirResolved, 'LICENSE'), license, {encoding: 'utf8'});
     }
 
     return disabledSchemas;
   }
 
-  private async generatePackageJson(schemaName: string, schemaHash: {hash: string, version: string}): Promise<string> {
+  private generateLicense(): string {
+    return `MIT License
+
+Copyright (c) Florian Keller. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE
+`
+  }
+
+  private generatePackageJson(schemaName: string, schemaData: {hash: string, version: string}): string {
     return `{
   "author": "Florian Keller <github@floriankeller.de>",
   "dependencies": {},
@@ -95,10 +124,37 @@ class SchemaGenerator {
   "name": "@schemastore/${schemaName}",
   "repository": "https://github.com/ffflorian/schemastore-updater",
   "scripts": {},
-  "typesPublisherContentHash": "${schemaHash.hash}",
+  "typesPublisherContentHash": "${schemaData.hash}",
   "typings": "index.d.ts",
-  "version": "${schemaHash.version}"
+  "version": "${schemaData.version}"
 }
+`
+  }
+
+  private generateReadme(schemaName: string, schemaVersion: string) {
+    const timeStamp = new Date().toLocaleDateString('en-US', {
+      day: '2-digit',
+      hour: '2-digit',
+      hour12: false,
+      minute: '2-digit',
+      month: 'short',
+      second: '2-digit',
+      timeZone: 'GMT',
+      weekday: 'short',
+      year: 'numeric',
+    });
+    return `# Installation
+> \`npm install --save @schemastore/${schemaName}\`
+
+# Summary
+This package contains type definitions for ${schemaName}.
+
+## Details
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/${schemaName}.
+
+## Additional Details
+* Last updated: ${timeStamp} GMT
+* Dependencies: none
 `
   }
 

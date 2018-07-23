@@ -5,7 +5,7 @@
   },
   "appsettings.json": {
     "hash": "6c8f46ced6ba7bbe1b409ce0820d1efa07ac470cda85e0499e3d91731b718295",
-    "version": "0.0.1"
+    "version": "0.0.2"
   },
   "appveyor.json": {
     "hash": "b2c6292f225b8f188775275e3763536dfd8cc8368327a97c4f9d37be93db9826",
@@ -57,7 +57,7 @@
   },
   "component.json": {
     "hash": "51a6892f81a36f145f385bf6e589324976ba80a77eb7ff175334719f80bd0e39",
-    "version": "0.0.1"
+    "version": "0.0.2"
   },
   "composer.json": {
     "hash": "4f8837738853f9815f378e90bdb272d52b955aec43180c58576f446ae241b96f",

@@ -3,3 +3,5 @@ temp
 package-lock.json
 dist
 node_modules
+schemas/**/LICENSE
+schemas/**/README.md
