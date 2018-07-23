@@ -8,7 +8,10 @@ import * as schemaGenerator from 'json-schema-to-typescript';
 const logdown = require('logdown');
 
 interface SchemaHashes {
-  [fileName: string]: string;
+  [fileName: string]: {
+    hash: string;
+    version: string
+  };
 }
 
 
@@ -81,7 +84,7 @@ class SchemaGenerator {
     return disabledSchemas;
   }
 
-  private async generatePackageJson(schemaName: string, schemaHash: string): Promise<string> {
+  private async generatePackageJson(schemaName: string, schemaHash: {hash: string, version: string}): Promise<string> {
     return `{
   "author": "Florian Keller <github@floriankeller.de>",
   "dependencies": {},
@@ -91,9 +94,9 @@ class SchemaGenerator {
   "name": "@schemastore/${schemaName}",
   "repository": "https://github.com/ffflorian/schemastore-updater",
   "scripts": {},
-  "typesPublisherContentHash": "${schemaHash}",
+  "typesPublisherContentHash": "${schemaHash.hash}",
   "typings": "index.d.ts",
-  "version": "0.0.1"
+  "version": "${schemaHash.version}"
 }
 `
   }
@@ -128,7 +131,10 @@ class SchemaGenerator {
         .update(fileContent)
         .digest('hex');
 
-      jsonData[fileName] = sha256;
+      jsonData[fileName] = {
+        hash: sha256,
+        version: '0.0.1',
+      };
     }
 
     let disabledSchemas = [];
