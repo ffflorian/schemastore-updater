@@ -121,7 +121,7 @@ class SchemaGenerator {
 
     this.logger.info(`Loaded ${jsonFiles.length} enabled schemas and ${this.disabledSchemas.length} disabled schemas.`);
 
-    const jsonData: SchemaHashes = {};
+    const fileHashes: {[fileName: string]: string} = {};
     for (const fileName of jsonFiles) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       const fileContent = await fs.readFile(fileNameResolved, {
@@ -132,29 +132,33 @@ class SchemaGenerator {
         .update(fileContent)
         .digest('hex');
 
-      jsonData[fileName] = {
-        hash: sha256,
-        version: '',
-      };
+      fileHashes[fileName] = sha256;
     }
 
     const lockFileData = await fs.readFile(this.lockFile, { encoding: 'utf8' });
     const lockFileParsed: SchemaHashes = JSON.parse(lockFileData);
     const updatedHashes: SchemaHashes = {};
-    for (const fileName in jsonData) {
+
+    for (const fileName in fileHashes) {
       if (
         !lockFileParsed[fileName] ||
-        jsonData[fileName] !== lockFileParsed[fileName] || this.force
+        fileHashes[fileName] !== lockFileParsed[fileName].hash || this.force
       ) {
         this.logger.info(`Hash from "${fileName}" is outdated. Updating.`);
 
-        jsonData[fileName].version = String(semver.inc(lockFileParsed[fileName].version, 'patch'));
-        updatedHashes[fileName] = jsonData[fileName];
+        const newVersion = semver.inc(lockFileParsed[fileName].version, 'patch');
+
+        lockFileParsed[fileName] = {
+          hash: fileHashes[fileName],
+          version: String(newVersion),
+        };
+        updatedHashes[fileName] = lockFileParsed[fileName];
       }
     }
 
     const disabledSchemas = await this.generateSchemas(updatedHashes);
-    await this.generateLockFile(this.lockFile, updatedHashes);
+
+    await this.generateLockFile(this.lockFile, lockFileParsed);
 
     if (disabledSchemas.length) {
       this.logger.info(`You should consider disabling these schemas: ${disabledSchemas.join(', ')}`)
