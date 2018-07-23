@@ -15,14 +15,12 @@ interface SchemaHashes {
   };
 }
 
-
 class SchemaGenerator {
   private git: simpleGit.SimpleGit;
   private jsonSchemasDir: string;
   private lockFile: string;
   private schemaStoreDirResolved: string;
   private logger: any;
-  private schemaHashes: SchemaHashes;
 
   constructor(
     private disabledSchemas: string[],
@@ -41,9 +39,11 @@ class SchemaGenerator {
     if (fs.existsSync(this.lockFile)) {
       this.logger.info(`Using lockfile "${this.lockFile}".`);
     } else {
-      this.logger.info(`No lockfile exists yet. Will write lockfile to "${this.lockFile}".`);
+      throw new Error(`Lockfile "${this.lockFile}" not found.`);
     }
-    this.schemaHashes = {};
+    if (this.force) {
+      this.logger.info(`Force is set. Will re-generate all schemas.`);
+    }
   }
 
   private async generateLockFile(fileName: string, data: SchemaHashes): Promise<void> {
@@ -78,7 +78,7 @@ class SchemaGenerator {
         newSchema,
         { encoding: 'utf8' }
       );
-      const packageJson = await this.generatePackageJson(schemaName, this.schemaHashes[fileName]);
+      const packageJson = await this.generatePackageJson(schemaName, jsonData[fileName]);
       await fs.writeFile(path.resolve(schemaDirResolved, 'package.json'), packageJson, {encoding: 'utf8'})
     }
 
@@ -86,7 +86,6 @@ class SchemaGenerator {
   }
 
   private async generatePackageJson(schemaName: string, schemaHash: {hash: string, version: string}): Promise<string> {
-    const newVersion = semver.minor(schemaHash.version);
     return `{
   "author": "Florian Keller <github@floriankeller.de>",
   "dependencies": {},
@@ -98,7 +97,7 @@ class SchemaGenerator {
   "scripts": {},
   "typesPublisherContentHash": "${schemaHash.hash}",
   "typings": "index.d.ts",
-  "version": "${newVersion}"
+  "version": "${schemaHash.version}"
 }
 `
   }
@@ -135,34 +134,27 @@ class SchemaGenerator {
 
       jsonData[fileName] = {
         hash: sha256,
-        version: '0.0.1',
+        version: '',
       };
     }
 
-    let disabledSchemas = [];
-    if (this.force) {
-      this.logger.info(`Force is set. Will re-generate all schemas.`)
-    }
-    if (!fs.existsSync(this.lockFile) || this.force) {
-      await this.generateLockFile(this.lockFile, jsonData);
-      this.schemaHashes = jsonData;
-      disabledSchemas = await this.generateSchemas(jsonData);
-    } else {
-      const lockFileData = await fs.readFile(this.lockFile, { encoding: 'utf8' });
-      const lockFileParsed = JSON.parse(lockFileData);
-      const updatedHashes: SchemaHashes = {};
-      for (const fileName in jsonData) {
-        if (
-          !lockFileParsed[fileName] ||
-          jsonData[fileName] !== lockFileParsed[fileName]
-        ) {
-          this.logger.info(`Hash from "${fileName}" is outdated. Updating.`)
-          updatedHashes[fileName] = jsonData[fileName];
-        }
+    const lockFileData = await fs.readFile(this.lockFile, { encoding: 'utf8' });
+    const lockFileParsed: SchemaHashes = JSON.parse(lockFileData);
+    const updatedHashes: SchemaHashes = {};
+    for (const fileName in jsonData) {
+      if (
+        !lockFileParsed[fileName] ||
+        jsonData[fileName] !== lockFileParsed[fileName] || this.force
+      ) {
+        this.logger.info(`Hash from "${fileName}" is outdated. Updating.`);
+
+        jsonData[fileName].version = String(semver.inc(lockFileParsed[fileName].version, 'patch'));
+        updatedHashes[fileName] = jsonData[fileName];
       }
-      this.schemaHashes = updatedHashes;
-      disabledSchemas = await this.generateSchemas(updatedHashes);
     }
+
+    const disabledSchemas = await this.generateSchemas(updatedHashes);
+    await this.generateLockFile(this.lockFile, updatedHashes);
 
     if (disabledSchemas.length) {
       this.logger.info(`You should consider disabling these schemas: ${disabledSchemas.join(', ')}`)
