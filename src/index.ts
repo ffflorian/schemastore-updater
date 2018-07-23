@@ -40,7 +40,7 @@ class SchemaGenerator {
     });
   }
 
-  private async generateSchemas(jsonData: SchemaHashes) {
+  private async generateSchemas(jsonData: SchemaHashes): Promise<string[]> {
     const disabledSchemas = [];
     for (const fileName in jsonData) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
@@ -53,7 +53,7 @@ class SchemaGenerator {
       } catch (error) {
         this.logger.error(`Can't process "${fileName}". Adding to the list of disabled schemas.`)
         disabledSchemas.push(fileName);
-        break;
+        continue;
       }
       const schemaDirResolved = path.resolve(
         'schemas',
@@ -66,20 +66,29 @@ class SchemaGenerator {
         { encoding: 'utf8' }
       );
     }
-    return { disabledSchemas };
+
+    return disabledSchemas;
   }
 
-  async start() {
+  private async removeAndClone() {
     await promisify(rimraf)(this.schemaStoreDirResolved);
     await this.git.clone(this.schemaStoreRepo, this.schemaStoreDirResolved, [
       '--depth=1'
     ]);
+  }
+
+  async start() {
+    await this.removeAndClone();
 
     const jsonFiles = (await fs.readdir(this.jsonSchemasDir)).filter(
-      fileName =>
-        fileName.endsWith('.json') && !this.disabledSchemas.includes(fileName)
+      fileName => {
+        const schemaIsDisabled = this.disabledSchemas ? this.disabledSchemas.includes(fileName) : false;
+        return fileName.endsWith('.json') && !schemaIsDisabled;
+      }
     );
-    this.logger.info(`Loaded ${jsonFiles.length} schemas.`);
+
+    this.logger.info(`Loaded ${jsonFiles.length} schemas and ${this.disabledSchemas.length} disabled schemas.`);
+
     const jsonData: SchemaHashes = {};
     for (const fileName of jsonFiles) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
@@ -94,10 +103,12 @@ class SchemaGenerator {
       jsonData[fileName] = sha256;
     }
 
+    let disabledSchemas = [];
     if (!fs.existsSync(this.lockFile)) {
       this.logger.info(`No lockfile exists yet. Writing lockfile to "${this.lockFile}" ..`)
-      await this.generateSchemas(jsonData);
+
       await this.generateLockFile(this.lockFile, jsonData);
+      disabledSchemas = await this.generateSchemas(jsonData);
     } else {
       const lockFileData = await fs.readFile(this.lockFile, { encoding: 'utf8' });
       const lockFileParsed = JSON.parse(lockFileData);
@@ -111,7 +122,11 @@ class SchemaGenerator {
           updatedHashes[fileName] = jsonData[fileName];
         }
       }
-      await this.generateSchemas(updatedHashes);
+      disabledSchemas = await this.generateSchemas(updatedHashes);
+    }
+
+    if (disabledSchemas.length) {
+      this.logger.info(`You should consider disabling these schemas: ${disabledSchemas.join(', ')}`)
     }
   }
 }
