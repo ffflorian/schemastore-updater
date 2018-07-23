@@ -39,8 +39,6 @@
     "vega-lite.json",
     "vega.json"
   ],
-  "lockFile": "json-schemas.lock.json",
-  "schemaStoreDir": "./temp/schemastore",
-  "schemaStoreRepo": "https://github.com/SchemaStore/schemastore",
-  "tempDir": "./temp"
+  "lockFile": "schemas/json-schemas.lock",
+  "schemaStoreRepo": "https://github.com/SchemaStore/schemastore"
 }

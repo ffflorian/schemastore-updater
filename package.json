@@ -1,18 +1,27 @@
 {
   "author": "Florian Keller <github@floriankeller.de>",
+  "bin": {
+    "schemastore-updater": "dist/cli.js"
+  },
   "dependencies": {
     "@types/fs-extra": "5.0.4",
     "@types/rimraf": "2.0.2",
+    "commander": "2.16.0",
     "fs-extra": "7.0.0",
     "json-schema-to-typescript": "5.5.0",
-    "program": "1.0.0",
     "rimraf": "2.6.2",
     "simple-git": "1.96.0",
     "typescript": "2.9.2"
   },
   "devDependencies": {
+    "cross-env": "5.2.0",
+    "logdown": "3.2.3",
     "prettier": "1.13.7"
   },
+  "files": [
+    "src",
+    "settings.json"
+  ],
   "license": "MIT",
   "main": "index.js",
   "name": "schemastore-updater",
@@ -22,7 +31,7 @@
     "clear": "rimraf dist",
     "dist": "yarn clear && yarn build",
     "prettier": "prettier --single-quote --write src/*.ts",
-    "start": "node dist/index.js"
+    "start": "cross-env NODE_DEBUG='schemastore-updater/*' node dist/cli.js"
   },
   "version": "1.0.0"
 }
