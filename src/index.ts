@@ -51,6 +51,7 @@ class SchemaGenerator {
           fileNameResolved
         );
       } catch (error) {
+        this.logger.error(`Can't process "${fileName}". Adding to the list of disabled schemas.`)
         disabledSchemas.push(fileName);
         break;
       }
