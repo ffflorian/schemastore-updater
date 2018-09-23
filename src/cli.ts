@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as program from 'commander';
 import { FileSettings } from './interfaces';
 import { SchemaGenerator } from './';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 const { getYesNo } = require('cli-interact');
 
 const {
@@ -53,9 +55,22 @@ generator!
     if (generatedSchemas.length) {
       console.log('Generated schemas:', generatedSchemas);
       const answer = getYesNo(
-        'Would you like to publish the generated schemes on npm?'
+        'Would you like to publish the generated schemes on npm?',
+        true
       );
-      // TODO: publish on npm
+      if (answer !== false) {
+        generatedSchemas.forEach(async schemaName => {
+          const { stderr, stdout } = await promisify(exec)(
+            `npm publish ./schemas/${schemaName} --access=public`
+          );
+          if (stderr) {
+            console.error(stderr);
+          }
+          if (stdout) {
+            console.log(stdout);
+          }
+        });
+      }
     } else {
       console.log('No schemas generated.');
     }
