@@ -5,7 +5,7 @@
  */
 
 /**
- * Static Analysis Results Format (SARIF) Version 2.0.0 JSON Schema: a standard format for the output of static analysis and other tools.
+ * Static Analysis Results Format (SARIF) Version 2.0.0 JSON Schema: a standard format for the output of static analysis tools.
  */
 export interface StaticAnalysisResultsFormatSarifVersion200JsonSchema {
   /**
@@ -132,10 +132,6 @@ export interface Run {
      */
     invocation?: {
       /**
-       * A set of files relevant to the invocation of the tool.
-       */
-      attachments?: Attachment[];
-      /**
        * The command line used to invoke the tool.
        */
       commandLine?: string;
@@ -148,11 +144,15 @@ export interface Run {
        */
       responseFiles?: FileLocation[];
       /**
+       * A set of files relevant to the invocation of the tool.
+       */
+      attachments?: Attachment[];
+      /**
        * The date and time at which the run started. See "Date/time properties" in the SARIF spec for the required format.
        */
       startTime?: string;
       /**
-       * The date and time at which the run ended. See "Date/time properties" in the  SARIF spec for the required format.
+       * The date and time at which the run ended. See "Date/time properties" in the SARIF spec for the required format.
        */
       endTime?: string;
       /**
@@ -160,7 +160,7 @@ export interface Run {
        */
       exitCode?: number;
       /**
-       * A list of runtime conditions detected by the tool in the course of the analysis.
+       * A list of runtime conditions detected by the tool during the analysis.
        */
       toolNotifications?: Notification[];
       /**
@@ -213,9 +213,18 @@ export interface Run {
         uriBaseId?: string;
       };
       /**
-       * The working directory for the analysis rool run.
+       * The working directory for the analysis tool run.
        */
-      workingDirectory?: string;
+      workingDirectory?: {
+        /**
+         * A string containing a valid relative or absolute URI.
+         */
+        uri: string;
+        /**
+         * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
+         */
+        uriBaseId?: string;
+      };
       /**
        * The environment variables associated with the analysis tool process, expressed as key/value pairs.
        */
@@ -275,7 +284,7 @@ export interface Run {
         uriBaseId?: string;
       };
       /**
-       * Key/value pairs that provide additional information about the run.
+       * Key/value pairs that provide additional information about the invocation.
        */
       properties?: {
         /**
@@ -301,7 +310,7 @@ export interface Run {
     [k: string]: string;
   };
   /**
-   * A dictionary each of whose keys is a URI and each of whose values is a file object.
+   * A dictionary, each of whose keys is a URI and each of whose values is a file object.
    */
   files?: {
     [k: string]: File;
@@ -317,7 +326,7 @@ export interface Run {
    */
   graphs?: Graph[];
   /**
-   * The set of results contained in an SARIF log. The results array can be omitted when a run is solely exporting rules metadata. It must be present (but may be empty) in the event that a log file represents an actual scan.
+   * The set of results contained in an SARIF log. The results array can be omitted when a run is solely exporting rules metadata. It must be present (but may be empty) if a log file represents an actual scan.
    */
   results?: Result[];
   /**
@@ -343,7 +352,11 @@ export interface Run {
    */
   instanceGuid?: string;
   /**
-   * A logical identifier for a run, for example, 'nightly Clang analyzer run'. Multiple runs of the same type can have the same stableId.
+   * A stable, unique identifier for the class of related runs to which this run belongs, in the form of a GUID.
+   */
+  correlationGuid?: string;
+  /**
+   * A logical identifier for a run, for example, 'nightly Clang analyzer run'. Multiple runs of the same type can have the same logical id.
    */
   logicalId?: string;
   /**
@@ -415,10 +428,6 @@ export interface Run {
  */
 export interface Invocation {
   /**
-   * A set of files relevant to the invocation of the tool.
-   */
-  attachments?: Attachment[];
-  /**
    * The command line used to invoke the tool.
    */
   commandLine?: string;
@@ -431,11 +440,15 @@ export interface Invocation {
    */
   responseFiles?: FileLocation[];
   /**
+   * A set of files relevant to the invocation of the tool.
+   */
+  attachments?: Attachment[];
+  /**
    * The date and time at which the run started. See "Date/time properties" in the SARIF spec for the required format.
    */
   startTime?: string;
   /**
-   * The date and time at which the run ended. See "Date/time properties" in the  SARIF spec for the required format.
+   * The date and time at which the run ended. See "Date/time properties" in the SARIF spec for the required format.
    */
   endTime?: string;
   /**
@@ -443,7 +456,7 @@ export interface Invocation {
    */
   exitCode?: number;
   /**
-   * A list of runtime conditions detected by the tool in the course of the analysis.
+   * A list of runtime conditions detected by the tool during the analysis.
    */
   toolNotifications?: Notification[];
   /**
@@ -496,9 +509,18 @@ export interface Invocation {
     uriBaseId?: string;
   };
   /**
-   * The working directory for the analysis rool run.
+   * The working directory for the analysis tool run.
    */
-  workingDirectory?: string;
+  workingDirectory?: {
+    /**
+     * A string containing a valid relative or absolute URI.
+     */
+    uri: string;
+    /**
+     * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
+     */
+    uriBaseId?: string;
+  };
   /**
    * The environment variables associated with the analysis tool process, expressed as key/value pairs.
    */
@@ -558,7 +580,7 @@ export interface Invocation {
     uriBaseId?: string;
   };
   /**
-   * Key/value pairs that provide additional information about the run.
+   * Key/value pairs that provide additional information about the invocation.
    */
   properties?: {
     /**
@@ -567,6 +589,19 @@ export interface Invocation {
     tags?: string[];
     [k: string]: any;
   };
+}
+/**
+ * Specifies the location of a file.
+ */
+export interface FileLocation {
+  /**
+   * A string containing a valid relative or absolute URI.
+   */
+  uri: string;
+  /**
+   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
+   */
+  uriBaseId?: string;
 }
 /**
  * A file relevant to a tool invocation or to a result.
@@ -618,7 +653,6 @@ export interface Attachment {
    * An array of rectangles specifying areas of interest within the image.
    */
   rectangles?: Rectangle[];
-  [k: string]: any;
 }
 /**
  * A region within a file where a result was detected.
@@ -637,7 +671,7 @@ export interface Region {
    */
   endLine?: number;
   /**
-   * The column number of the last character in the region.
+   * The column number of the character following the end of the region.
    */
   endColumn?: number;
   /**
@@ -742,19 +776,6 @@ export interface Rectangle {
   };
 }
 /**
- * Specifies the location of a file.
- */
-export interface FileLocation {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-}
-/**
  * Describes a condition relevant to the tool itself, as opposed to being relevant to a target being analyzed by the tool.
  */
 export interface Notification {
@@ -763,7 +784,7 @@ export interface Notification {
    */
   id?: string;
   /**
-   * The stable, unique identifier of the rule (if any) to which this notification is relevant. If 'ruleKey' is not specified, this member can be used to retrieve rule metadata from the rules dictionary, if it exists.
+   * The stable, unique identifier of the rule (if any) to which this notification is relevant. This member can be used to retrieve rule metadata from the rules dictionary, if it exists.
    */
   ruleId?: string;
   /**
@@ -788,7 +809,7 @@ export interface Notification {
       uriBaseId?: string;
     };
     /**
-     * The region within the file where the result was detected.
+     * Specifies a portion of the file.
      */
     region?: {
       /**
@@ -804,7 +825,7 @@ export interface Notification {
        */
       endLine?: number;
       /**
-       * The column number of the last character in the region.
+       * The column number of the character following the end of the region.
        */
       endColumn?: number;
       /**
@@ -879,7 +900,7 @@ export interface Notification {
        */
       endLine?: number;
       /**
-       * The column number of the last character in the region.
+       * The column number of the character following the end of the region.
        */
       endColumn?: number;
       /**
@@ -1057,7 +1078,7 @@ export interface StackFrame {
    */
   location?: {
     /**
-     * Identifies the file where the analysis tool produced the result.
+     * Identifies the file and region.
      */
     physicalLocation?: {
       /**
@@ -1078,7 +1099,7 @@ export interface StackFrame {
         uriBaseId?: string;
       };
       /**
-       * The region within the file where the result was detected.
+       * Specifies a portion of the file.
        */
       region?: {
         /**
@@ -1094,7 +1115,7 @@ export interface StackFrame {
          */
         endLine?: number;
         /**
-         * The column number of the last character in the region.
+         * The column number of the character following the end of the region.
          */
         endColumn?: number;
         /**
@@ -1169,7 +1190,7 @@ export interface StackFrame {
          */
         endLine?: number;
         /**
-         * The column number of the last character in the region.
+         * The column number of the character following the end of the region.
          */
         endColumn?: number;
         /**
@@ -1229,7 +1250,7 @@ export interface StackFrame {
       };
     };
     /**
-     * The human-readable fully qualified name of the logical location where the analysis tool produced the result.
+     * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
      */
     fullyQualifiedLogicalName?: string;
     /**
@@ -1444,7 +1465,7 @@ export interface File {
    */
   mimeType?: string;
   /**
-   * The contents of the file, expressed as a MIME Base64-encoded byte sequence.
+   * The contents of the file.
    */
   contents?: {
     /**
@@ -1607,7 +1628,7 @@ export interface Node {
    */
   location?: {
     /**
-     * Identifies the file where the analysis tool produced the result.
+     * Identifies the file and region.
      */
     physicalLocation?: {
       /**
@@ -1628,7 +1649,7 @@ export interface Node {
         uriBaseId?: string;
       };
       /**
-       * The region within the file where the result was detected.
+       * Specifies a portion of the file.
        */
       region?: {
         /**
@@ -1644,7 +1665,7 @@ export interface Node {
          */
         endLine?: number;
         /**
-         * The column number of the last character in the region.
+         * The column number of the character following the end of the region.
          */
         endColumn?: number;
         /**
@@ -1719,7 +1740,7 @@ export interface Node {
          */
         endLine?: number;
         /**
-         * The column number of the last character in the region.
+         * The column number of the character following the end of the region.
          */
         endColumn?: number;
         /**
@@ -1779,7 +1800,7 @@ export interface Node {
       };
     };
     /**
-     * The human-readable fully qualified name of the logical location where the analysis tool produced the result.
+     * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
      */
     fullyQualifiedLogicalName?: string;
     /**
@@ -1894,7 +1915,7 @@ export interface Edge {
  */
 export interface Result {
   /**
-   * The stable, unique identifier of the rule (if any) to which this notification is relevant. If 'ruleKey' is not specified, this member can be used to retrieve rule metadata from the rules dictionary, if it exists.
+   * The stable, unique identifier of the rule (if any) to which this notification is relevant. This member can be used to retrieve rule metadata from the rules dictionary, if it exists.
    */
   ruleId?: string;
   /**
@@ -1926,10 +1947,6 @@ export interface Result {
      */
     arguments?: string[];
   };
-  /**
-   * A string that identifies the message within the metadata for the rule used in this result.
-   */
-  ruleMessageId?: string;
   /**
    * Identifies the file that the analysis tool was instructed to scan. This need not be the same as the file where the result actually occurred.
    */
@@ -1987,6 +2004,9 @@ export interface Result {
    * A set of locations relevant to this result.
    */
   relatedLocations?: Location[];
+  /**
+   * A set of flags indicating one or more suppression conditions.
+   */
   suppressionStates?: ("suppressedInSource" | "suppressedExternally")[];
   /**
    * The state of a result relative to a baseline of a previous run.
@@ -1997,11 +2017,11 @@ export interface Result {
    */
   attachments?: Attachment[];
   /**
-   * The URI of the work item associated with this result
+   * The URIs of the work items associated with this result
    */
-  workItemUri?: string;
+  workItemUris?: string[];
   /**
-   * An array of analysisToolLogFileContents objects which specify the portions of an analysis tool's output that a converter transformed into the result object.
+   * An array of physicalLocation objects which specify the portions of an analysis tool's output that a converter transformed into the result object.
    */
   conversionProvenance?: PhysicalLocation[];
   /**
@@ -2020,11 +2040,11 @@ export interface Result {
   };
 }
 /**
- * The location where an analysis tool produced a result.
+ * A location within a programming artifact.
  */
 export interface Location {
   /**
-   * Identifies the file where the analysis tool produced the result.
+   * Identifies the file and region.
    */
   physicalLocation?: {
     /**
@@ -2045,7 +2065,7 @@ export interface Location {
       uriBaseId?: string;
     };
     /**
-     * The region within the file where the result was detected.
+     * Specifies a portion of the file.
      */
     region?: {
       /**
@@ -2061,7 +2081,7 @@ export interface Location {
        */
       endLine?: number;
       /**
-       * The column number of the last character in the region.
+       * The column number of the character following the end of the region.
        */
       endColumn?: number;
       /**
@@ -2136,7 +2156,7 @@ export interface Location {
        */
       endLine?: number;
       /**
-       * The column number of the last character in the region.
+       * The column number of the character following the end of the region.
        */
       endColumn?: number;
       /**
@@ -2196,7 +2216,7 @@ export interface Location {
     };
   };
   /**
-   * The human-readable fully qualified name of the logical location where the analysis tool produced the result.
+   * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
    */
   fullyQualifiedLogicalName?: string;
   /**
@@ -2333,7 +2353,7 @@ export interface ThreadFlow {
    */
   id?: string;
   /**
-   * A message relevant to the code flow.
+   * A message relevant to the thread flow.
    */
   message?: {
     /**
@@ -2358,11 +2378,11 @@ export interface ThreadFlow {
     arguments?: string[];
   };
   /**
-   * An array of 'threadFlowLocation' objects, each of which describes a single location visited by the tool in the course of producing the result.
+   * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
    */
   locations: ThreadFlowLocation[];
   /**
-   * Key/value pairs that provide additional information about the code flow.
+   * Key/value pairs that provide additional information about the thread flow.
    */
   properties?: {
     /**
@@ -2374,7 +2394,7 @@ export interface ThreadFlow {
   [k: string]: any;
 }
 /**
- * A location visited by an analysis tool in the course of simulating or monitoring the execution of a program.
+ * A location visited by an analysis tool while simulating or monitoring the execution of a program.
  */
 export interface ThreadFlowLocation {
   /**
@@ -2386,7 +2406,7 @@ export interface ThreadFlowLocation {
    */
   location?: {
     /**
-     * Identifies the file where the analysis tool produced the result.
+     * Identifies the file and region.
      */
     physicalLocation?: {
       /**
@@ -2407,7 +2427,7 @@ export interface ThreadFlowLocation {
         uriBaseId?: string;
       };
       /**
-       * The region within the file where the result was detected.
+       * Specifies a portion of the file.
        */
       region?: {
         /**
@@ -2423,7 +2443,7 @@ export interface ThreadFlowLocation {
          */
         endLine?: number;
         /**
-         * The column number of the last character in the region.
+         * The column number of the character following the end of the region.
          */
         endColumn?: number;
         /**
@@ -2498,7 +2518,7 @@ export interface ThreadFlowLocation {
          */
         endLine?: number;
         /**
-         * The column number of the last character in the region.
+         * The column number of the character following the end of the region.
          */
         endColumn?: number;
         /**
@@ -2558,7 +2578,7 @@ export interface ThreadFlowLocation {
       };
     };
     /**
-     * The human-readable fully qualified name of the logical location where the analysis tool produced the result.
+     * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
      */
     fullyQualifiedLogicalName?: string;
     /**
@@ -2741,7 +2761,7 @@ export interface GraphTraversal {
   };
 }
 /**
- * Represents the traversal of a single edge in the course of a graph traversal.
+ * Represents the traversal of a single edge during a graph traversal.
  */
 export interface EdgeTraversal {
   /**
@@ -2816,7 +2836,7 @@ export interface PhysicalLocation {
     uriBaseId?: string;
   };
   /**
-   * The region within the file where the result was detected.
+   * Specifies a portion of the file.
    */
   region?: {
     /**
@@ -2832,7 +2852,7 @@ export interface PhysicalLocation {
      */
     endLine?: number;
     /**
-     * The column number of the last character in the region.
+     * The column number of the character following the end of the region.
      */
     endColumn?: number;
     /**
@@ -2907,7 +2927,7 @@ export interface PhysicalLocation {
      */
     endLine?: number;
     /**
-     * The column number of the last character in the region.
+     * The column number of the character following the end of the region.
      */
     endColumn?: number;
     /**
@@ -3007,7 +3027,7 @@ export interface FileChange {
   /**
    * The location of the file to change.
    */
-  fileLocation?: {
+  fileLocation: {
     /**
      * A string containing a valid relative or absolute URI.
      */
@@ -3018,12 +3038,12 @@ export interface FileChange {
     uriBaseId?: string;
   };
   /**
-   * An array of replacement objects, each of which represents the replacement of a single range of bytes in a single file specified by 'fileLocation'.
+   * An array of replacement objects, each of which represents the replacement of a single region in a single file specified by 'fileLocation'.
    */
   replacements: Replacement[];
 }
 /**
- * The replacement of a single range of bytes in a file. Specifies the location within the file where the replacement is to be made, the number of bytes to remove at that location, and a sequence of bytes to insert at that location.
+ * The replacement of a single region of a file.
  */
 export interface Replacement {
   /**
@@ -3043,7 +3063,7 @@ export interface Replacement {
      */
     endLine?: number;
     /**
-     * The column number of the last character in the region.
+     * The column number of the character following the end of the region.
      */
     endColumn?: number;
     /**

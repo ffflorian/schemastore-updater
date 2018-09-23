@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/appveyor",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appveyor",
   "scripts": {},
-  "typesPublisherContentHash": "b2c6292f225b8f188775275e3763536dfd8cc8368327a97c4f9d37be93db9826",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "e060df45f3843a2d858fbc9caecc0bef4c8a0d119193f775a6a5a255a7a31d3d",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

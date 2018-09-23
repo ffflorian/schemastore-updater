@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/npm-link-up",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/npm-link-up",
   "scripts": {},
-  "typesPublisherContentHash": "b4c7f5fdc3919556efe9ac45ae0d2d2cf2d1eb98c4d509e46c23d76367cdad59",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "8a5c13e2f04ae7f519580b6f9ff9bc062cd66b544014c72d4a3e651d5cd43c29",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

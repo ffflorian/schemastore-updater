@@ -35,7 +35,26 @@ export interface OptionsDefinition {
   /**
    * Which parser to use.
    */
-  parser?: "flow" | "babylon" | "typescript" | "css" | "less" | "scss" | "json" | "graphql" | "markdown" | "vue";
+  parser?:
+    | "flow"
+    | "babylon"
+    | "typescript"
+    | "css"
+    | "less"
+    | "scss"
+    | "json"
+    | "json5"
+    | "json-stringify"
+    | "graphql"
+    | "markdown"
+    | "vue"
+    | "yaml";
+  /**
+   * Custom directory that contains prettier plugins in node_modules subdirectory.
+   * Overrides default behavior when plugins are searched relatively to the location of Prettier.
+   * Multiple values are accepted.
+   */
+  pluginSearchDirs?: string[];
   /**
    * Add a plugin. Multiple plugins can be passed as separate `--plugin`s.
    */
@@ -45,7 +64,7 @@ export interface OptionsDefinition {
    */
   printWidth?: number;
   /**
-   * How to wrap prose. (markdown)
+   * How to wrap prose.
    */
   proseWrap?: "always" | "never" | "preserve";
   /**
@@ -132,7 +151,26 @@ export interface OverridesDefinition {
       /**
        * Which parser to use.
        */
-      parser?: "flow" | "babylon" | "typescript" | "css" | "less" | "scss" | "json" | "graphql" | "markdown" | "vue";
+      parser?:
+        | "flow"
+        | "babylon"
+        | "typescript"
+        | "css"
+        | "less"
+        | "scss"
+        | "json"
+        | "json5"
+        | "json-stringify"
+        | "graphql"
+        | "markdown"
+        | "vue"
+        | "yaml";
+      /**
+       * Custom directory that contains prettier plugins in node_modules subdirectory.
+       * Overrides default behavior when plugins are searched relatively to the location of Prettier.
+       * Multiple values are accepted.
+       */
+      pluginSearchDirs?: string[];
       /**
        * Add a plugin. Multiple plugins can be passed as separate `--plugin`s.
        */
@@ -142,7 +180,7 @@ export interface OverridesDefinition {
        */
       printWidth?: number;
       /**
-       * How to wrap prose. (markdown)
+       * How to wrap prose.
        */
       proseWrap?: "always" | "never" | "preserve";
       /**

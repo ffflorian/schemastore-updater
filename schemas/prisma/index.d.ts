@@ -6,13 +6,9 @@
 
 export interface JsonSchemaForPrismaPrismaYmlFiles {
   /**
-   * Name of the Service
-   */
-  service?: string[];
-  /**
    * Type definitions for database models, relations, enums and other types
    */
-  datamodel: (string | any[])[];
+  datamodel?: (string | any[])[];
   /**
    * Secret for securing the API Endpoint
    */
@@ -21,18 +17,11 @@ export interface JsonSchemaForPrismaPrismaYmlFiles {
    * Disable authentication for the endpoint
    */
   disableAuth?: boolean[];
-  /**
-   * Path to schema.graphql for usage in the Gateway
-   */
-  schema?: string[];
-  /**
-   * Stage to deploy to. Read more here https://goo.gl/J5k76y
-   */
-  stage?: string[];
-  /**
-   * Cluster used for deployment. Read more here https://goo.gl/J5k76y
-   */
-  cluster?: string[];
+  generate?: {
+    generator?: string;
+    output?: string;
+    [k: string]: any;
+  }[];
   /**
    * Database seed
    */

@@ -63,6 +63,7 @@ export type JsonSchemaForTravisCiConfigurationFiles = Job & {
       stage?: string;
       [k: string]: any;
     })[];
+    allow_failures?: Job[];
   };
   /**
    * Specifies the order of build stages
@@ -318,19 +319,19 @@ export interface Job {
   osx_image?:
     | "xcode6.4"
     | "xcode7.3"
-    | "xcode8.1"
-    | "xcode8.2"
-    | "xcode8.3"
     | "xcode8"
-    | "xcode9.1"
+    | "xcode8.3"
     | "xcode9"
+    | "xcode9.1"
     | "xcode9.2"
-    | "xcode9.3beta";
+    | "xcode9.3"
+    | "xcode9.4"
+    | "xcode10";
   /**
    * The Ubuntu distribution to use
    */
-  dist?: "trusty" | "precise";
-  sudo?: "required" | false;
+  dist?: "precise" | "trusty" | "xenial";
+  sudo?: true | false | "" | "required" | "enabled";
   addons?: {
     /**
      * To install packages not included in the default container-based-infrastructure you need to use the APT addon, as sudo apt-get is not available

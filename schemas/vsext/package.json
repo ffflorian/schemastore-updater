@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/vsext",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsext",
   "scripts": {},
-  "typesPublisherContentHash": "a061f0e1a0c621885e2873f09d3b3ff39ea9221d6aa492f93e188ef388e0e040",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "c1af3c581ba975e9c25ee91fbd7da64a67947833100d387828da79ffdc93273a",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

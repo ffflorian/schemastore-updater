@@ -90,6 +90,10 @@ export interface JsonSchemaForTheTsLintConfigurationFiles {
      */
     "file-header"?: Rule & [boolean];
     /**
+     * Enforces a consistent file naming convention.
+     */
+    "file-name-casing"?: Rule & [boolean, ("camel-case" | "pascal-case" | "kebab-case")];
+    /**
      * Requires a `for ... in` statement to be filtered with an `if` statement.
      */
     forin?: Rule & [boolean];
@@ -386,6 +390,10 @@ export interface JsonSchemaForTheTsLintConfigurationFiles {
      * Prefer a template expression over string literal concatenation.
      */
     "prefer-template"?: Rule & [boolean];
+    /**
+     * Prefer while loops instead of for loops without an initializer and incrementor.
+     */
+    "prefer-while"?: Rule & [boolean];
     /**
      * Requires any function or method that returns a promise to be marked async.
      */
@@ -719,6 +727,10 @@ export interface Rules {
    */
   "file-header"?: Rule & [boolean];
   /**
+   * Enforces a consistent file naming convention.
+   */
+  "file-name-casing"?: Rule & [boolean, ("camel-case" | "pascal-case" | "kebab-case")];
+  /**
    * Requires a `for ... in` statement to be filtered with an `if` statement.
    */
   forin?: Rule & [boolean];
@@ -1015,6 +1027,10 @@ export interface Rules {
    * Prefer a template expression over string literal concatenation.
    */
   "prefer-template"?: Rule & [boolean];
+  /**
+   * Prefer while loops instead of for loops without an initializer and incrementor.
+   */
+  "prefer-while"?: Rule & [boolean];
   /**
    * Requires any function or method that returns a promise to be marked async.
    */

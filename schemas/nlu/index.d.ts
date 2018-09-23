@@ -4,14 +4,9 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type Composer =
-  | {
-      type: "library";
-      [k: string]: any;
-    }
-  | {
-      type?: {
-        [k: string]: any;
-      };
-      [k: string]: any;
-    };
+/**
+ * Schema for NPM-Link-Up
+ */
+export interface Nlu {
+  [k: string]: any;
+}

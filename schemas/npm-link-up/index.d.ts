@@ -4,16 +4,22 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type TheLinktoitselfSchema = boolean;
-export type The0thSchema = string;
-export type The0thSchema1 = string;
-export type The0thSchema2 = string;
-
 export interface JsonSchemaForNluNpmLinkUpLibrary {
-  comments?: any[];
-  linkToItself?: TheLinktoitselfSchema;
-  searchRoots?: The0thSchema[];
-  ignore?: The0thSchema1[];
-  list: The0thSchema2[];
+  $schema?: string;
+  alwaysReinstall?: boolean;
+  comments?: string[];
+  deps: string[];
+  ignore?: string[];
+  linkToItself?: boolean;
+  linkable?: true;
+  list: string[];
+  localSettings?: {
+    [k: string]: any;
+  };
+  "npm-link-up"?: boolean;
+  packages: PackagesMap;
+  searchRoots?: string[];
+}
+export interface PackagesMap {
   [k: string]: any;
 }

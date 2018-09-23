@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for bungee-plugin.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/bungee-plugin",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bungee-plugin",
+  "scripts": {},
+  "typesPublisherContentHash": "782ee73bfded5335de76d2e77cd0a6e8b0477467b3a19cf7ff458e292062c363",
+  "types": "index.d.ts",
+  "version": "1.0.1",
+  "typeScriptVersion": "2.2"
+}

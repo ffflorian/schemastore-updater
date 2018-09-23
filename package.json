@@ -26,7 +26,7 @@
     "settings.json"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "name": "schemastore-updater",
   "repository": "https://github.com/ffflorian/schemastore-updater",
   "scripts": {

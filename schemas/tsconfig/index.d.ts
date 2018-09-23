@@ -319,15 +319,17 @@ export interface CompilerOptionsDefinition {
       | "es2015.symbol.wellknown"
       | "es2016.array.include"
       | "es2017.object"
+      | "es2017.intl"
       | "es2017.sharedmemory"
       | "es2017.string"
       | "es2017.typedarrays"
-      | "es2017.intl"
+      | "es2018.intl"
       | "es2018.promise"
       | "es2018.regexp"
-      | "es2018.intl"
+      | "esnext.asynciterable"
       | "esnext.array"
-      | "esnext.asynciterable")[];
+      | "esnext.intl"
+      | "esnext.symbol")[];
     /**
      * Enable strict null checks. Requires TypeScript version 2.0 or later.
      */

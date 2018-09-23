@@ -59,6 +59,7 @@ class SchemaGenerator {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       this.logger.info(`Processing "${schemaName}" ...`);
       let newSchema = '';
+
       try {
         newSchema = await schemaGenerator.compileFromFile(fileNameResolved);
       } catch (error) {
@@ -225,7 +226,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
         );
         lockFileData[fileName] = {
           hash: fileHashes[fileName],
-          version: '1.0.0'
+          version: '0.0.1'
         };
       } else if (
         lockFileData[fileName] &&

@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for bozr.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/bozr",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bozr",
+  "scripts": {},
+  "typesPublisherContentHash": "1df26248def39755c4bd1665ef5a0fe89861ec7f74c0f890d081801c1c7d0e90",
+  "types": "index.d.ts",
+  "version": "1.0.1",
+  "typeScriptVersion": "2.2"
+}

@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for gitlab-ci.",
+  "license": "MIT",
+  "main": "",
+  "name": "@schemastore/gitlab-ci",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/gitlab-ci",
+  "scripts": {},
+  "typesPublisherContentHash": "00ffc235209fdac3fc80edeb03c0de02171b3050a2f060226213b762d1e3a83b",
+  "types": "index.d.ts",
+  "version": "1.0.1",
+  "typeScriptVersion": "2.2"
+}

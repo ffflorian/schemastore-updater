@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/prettierrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prettierrc",
   "scripts": {},
-  "typesPublisherContentHash": "7bd47b4dd95754ecf3b26986c1e020714cdf783816478ebc2b810f1ccf9b9191",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "90415a8c85e55182233fe19941e217d193e0851debd7d2f1cb71e0298b07c404",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

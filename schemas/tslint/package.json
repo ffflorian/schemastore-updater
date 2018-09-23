@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/tslint",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tslint",
   "scripts": {},
-  "typesPublisherContentHash": "47681a35cd504955afbe712ff1c910b4c3c70d585d1495f18053e95a7349159f",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "2ac9807e2ad0788bfabd1c1a2d264a1662016ab0691a595719ae46cf6b93fc4b",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

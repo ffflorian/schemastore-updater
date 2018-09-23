@@ -8,7 +8,7 @@ export interface JsonSchemaForCircleCiConfigurationFiles {
   /**
    * The version field is intended to be used in order to issue warnings for deprecation or breaking changes.
    */
-  version: 2;
+  version: 2 | 2.1;
   jobs?: {
     [k: string]:
       | {

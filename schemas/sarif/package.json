@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/sarif",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sarif",
   "scripts": {},
-  "typesPublisherContentHash": "cd1a636e7d8bedca54a48f6b4c3215f4509fccd7b4dbe11229864f106d3f4537",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "13eb0d8415d856c062c8ac0bd2e30f312cdeed4e669bf9996cdbcff8fde670ef",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

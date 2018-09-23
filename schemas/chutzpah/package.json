@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/chutzpah",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/chutzpah",
   "scripts": {},
-  "typesPublisherContentHash": "a4b9a3a1a52c22b903911a950a3fdb7b34ba54190c3415e369b1e73448e2862f",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "b0740a0b315f1553e3ca972b383070cb06f48ec03dceddee4ac9fb367ada4041",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

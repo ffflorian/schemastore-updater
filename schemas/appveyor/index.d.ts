@@ -4,7 +4,39 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type JsonSchemaForAppVeyorCiConfigurationFiles = {
+export type JsonSchemaForAppVeyorCiConfigurationFiles = Job;
+export type Command =
+  | string
+  | {
+      /**
+       * Run a PowerShell command
+       */
+      ps?: string;
+    }
+  | {
+      cmd?: string;
+    };
+export type PossiblySecretString =
+  | string
+  | {
+      /**
+       * This should have been encrypted by the same user account to which the project belongs
+       */
+      secure?: string;
+    };
+export type JobScalars = {
+  [k: string]: any;
+} & {
+  [k: string]: any;
+} & {
+  [k: string]: any;
+} & {
+  [k: string]: any;
+};
+export type Platform = "x86" | "x64" | "Any CPU";
+export type Configuration = "Debug" | "Release";
+
+export interface Job {
   /**
    * Version format
    */
@@ -75,35 +107,26 @@ export type JsonSchemaForAppVeyorCiConfigurationFiles = {
   notifications?: {
     [k: string]: any;
   }[];
-  [k: string]: any;
-} & Job;
-export type Command =
-  | string
-  | {
-      ps?: string;
-    }
-  | {
-      cmd?: string;
-    };
-export type PossiblySecretString =
-  | string
-  | {
-      secure?: string;
-    };
-export type Platform = "x86" | "x64" | "Any CPU";
-export type Configuration = "Debug" | "Release";
-
-export interface Job {
   /**
-   * Build worker image (VM template)
+   * Build worker image (VM template) -DEV_VERSION
    */
   image?:
-    | "Visual Studio 2013"
-    | "Visual Studio 2015"
-    | "Visual Studio 2017"
-    | "Previous Visual Studio 2013"
-    | "Previous Visual Studio 2015"
-    | "Previous Visual Studio 2017";
+    | (
+        | "Ubuntu"
+        | "Visual Studio 2013"
+        | "Visual Studio 2015"
+        | "Visual Studio 2017"
+        | "Previous Visual Studio 2013"
+        | "Previous Visual Studio 2015"
+        | "Previous Visual Studio 2017")[]
+    | (
+        | "Ubuntu"
+        | "Visual Studio 2013"
+        | "Visual Studio 2015"
+        | "Visual Studio 2017"
+        | "Previous Visual Studio 2013"
+        | "Previous Visual Studio 2015"
+        | "Previous Visual Studio 2017");
   /**
    * Scripts that are called at very beginning, before repo cloning
    */
@@ -131,11 +154,21 @@ export interface Job {
   /**
    * Environment variables
    */
-  environment?: {
-    global?: EnvVarHash;
-    matrix?: EnvVarHash[];
-    [k: string]: any;
-  } & EnvVarHash;
+  environment?:
+    | {
+        /**
+         * variables defined here are no different than those defined at top level of 'environment' node
+         */
+        global?: {
+          [k: string]: PossiblySecretString;
+        };
+        /**
+         * an array of environment variables, each member of which is one dimension in the build matrix calculation
+         */
+        matrix?: EnvVarHash[];
+        [k: string]: any;
+      }
+    | EnvVarHash;
   matrix?: {
     /**
      * Set this flag to immediately finish build once one of the jobs fails
@@ -144,7 +177,7 @@ export interface Job {
     /**
      * This is how to allow failing jobs in the matrix
      */
-    allow_failures?: Job[];
+    allow_failures?: JobScalars[];
     /**
      * Exclude configuration from the matrix. Works similarly to 'allow_failures' but build not even being started for excluded combination.
      */

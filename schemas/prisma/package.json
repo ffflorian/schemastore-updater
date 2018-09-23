@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/prisma",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prisma",
   "scripts": {},
-  "typesPublisherContentHash": "46ab941fd4b110604e905b38bcae9dfff48aaed5437fe091f8641aa5018b3fa0",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "d9ef9e2453c3160a2e1fbc302bbe9509e1d4435f96e1e959f9b3e2939709ad23",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

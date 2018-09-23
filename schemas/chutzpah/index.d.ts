@@ -21,6 +21,11 @@ export interface JsonSchemaForChutzpahTestRunnerSettingsFiles {
    * The references setting allows you to specify which files/folders to use/scan to find references. This is useful since it replaces the need to the ///<reference comments.
    */
   Tests?: TestSettings[];
+  /**
+   * The browser engine to use to run the tests. Default is Phantom but JSDOM and Chrome are available. If you choose Chrome you must have an instance of Chrome or Chromium on the machine that Chutzpah can find.
+   */
+  Engine?: "Phantom" | "JSDom" | "Chrome";
+  EngineOptions?: EngineOptions;
   Server?: ServerSettings;
   /**
    * List of transformers to run after testing to generate output files
@@ -172,6 +177,16 @@ export interface TestSettings {
    * This is an optional array of exclude glob patterns.  Only files not matching the Exclude patterns will be added.
    */
   Excludes?: string[];
+  [k: string]: any;
+}
+/**
+ * The options to configure the chosen browser engine for Chutzpah to use.
+ */
+export interface EngineOptions {
+  /**
+   * The path to the chrome/chromium executable on the machine
+   */
+  ChromeBrowserPath?: string;
   [k: string]: any;
 }
 /**

@@ -5,9 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/travis",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/travis",
   "scripts": {},
-  "typesPublisherContentHash": "70fcefb4308f7f0ce6e448ad8aab5e2f2468c4ddfe4c233d784ea4e8be09770b",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "df47415c5bda3f1b854da83212a6569d08c0eb1d3a47fb499f14eab209590cb1",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }
