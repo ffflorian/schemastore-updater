@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as schemaGenerator from 'json-schema-to-typescript';
 import * as semver from 'semver';
 import * as simpleGit from 'simple-git/promise';
-import { SchemaData, SchemaHashes } from './interfaces';
+import { BuildResult, SchemaData, SchemaHashes } from './interfaces';
 
 class SchemaGenerator {
   private git: simpleGit.SimpleGit;
@@ -33,13 +33,25 @@ class SchemaGenerator {
       markdown: false
     });
 
-    if (fs.existsSync(this.lockFile)) {
-      this.logger.info(`Using lockfile "${this.lockFile}".`);
-    } else {
+    try {
+      fs.accessSync(this.lockFile, fs.constants.R_OK | fs.constants.F_OK);
+    } catch (error) {
       throw new Error(`Lockfile "${this.lockFile}" not found.`);
     }
+
+    this.logger.info(`Using lockfile "${this.lockFile}".`);
+
     if (this.force) {
       this.logger.info(`Force is set. Will re-generate all schemas.`);
+    }
+  }
+
+  private async fileIsReadable(filePath: string): Promise<boolean> {
+    try {
+      await fs.access(filePath, fs.constants.F_OK | fs.constants.R_OK);
+      return true;
+    } catch (error) {
+      return false;
     }
   }
 
@@ -52,8 +64,10 @@ class SchemaGenerator {
     });
   }
 
-  private async generateSchemas(jsonData: SchemaHashes): Promise<string[]> {
-    const disabledSchemas = [];
+  private async generateSchemas(jsonData: SchemaHashes): Promise<BuildResult> {
+    const disabledSchemas: string[] = [];
+    const generatedSchemas: string[] = [];
+
     for (const fileName in jsonData) {
       const schemaName = fileName.replace('.json', '');
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
@@ -96,9 +110,13 @@ class SchemaGenerator {
       await fs.writeFile(path.resolve(schemaDirResolved, 'LICENSE'), license, {
         encoding: 'utf8'
       });
+      generatedSchemas.push(schemaName);
     }
 
-    return disabledSchemas;
+    return {
+      disabledSchemas,
+      generatedSchemas
+    };
   }
 
   private generateLicense(): string {
@@ -186,7 +204,9 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     ]);
   }
 
-  public async start(): Promise<void> {
+  public async start(): Promise<BuildResult> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+
     await this.removeAndClone();
     const allFiles = await fs.readdir(this.jsonSchemasDir);
 
@@ -205,18 +225,23 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 
     for (const fileName of jsonFiles) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
-      const fileContent = await fs.readFile(fileNameResolved, {
-        encoding: 'utf8'
-      });
-      const sha256 = crypto
-        .createHash('sha256')
-        .update(fileContent)
-        .digest('hex');
+      const fileIsReadable = await this.fileIsReadable(fileNameResolved);
 
-      fileHashes[fileName] = sha256;
+      if (fileIsReadable) {
+        const fileContent = await fs.readFile(fileNameResolved, {
+          encoding: 'utf8'
+        });
+        const sha256 = crypto
+          .createHash('sha256')
+          .update(fileContent)
+          .digest('hex');
+
+        fileHashes[fileName] = sha256;
+      } else {
+        this.logger.error(`File "${fileNameResolved}" is not readable.`);
+      }
     }
 
-    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
     const updatedHashes: SchemaHashes = {};
 
     for (const fileName in fileHashes) {
@@ -228,6 +253,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
           hash: fileHashes[fileName],
           version: '0.0.1'
         };
+        updatedHashes[fileName] = lockFileData[fileName];
       } else if (
         lockFileData[fileName] &&
         (fileHashes[fileName] !== lockFileData[fileName].hash || this.force)
@@ -244,17 +270,16 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       }
     }
 
-    const disabledSchemas = await this.generateSchemas(updatedHashes);
+    const { disabledSchemas, generatedSchemas } = await this.generateSchemas(
+      updatedHashes
+    );
 
     await this.generateLockFile(this.lockFile, lockFileData);
 
-    if (disabledSchemas.length) {
-      this.logger.info(
-        `You should consider disabling these schemas: ${disabledSchemas.join(
-          ', '
-        )}`
-      );
-    }
+    return {
+      disabledSchemas,
+      generatedSchemas
+    };
   }
 }
 

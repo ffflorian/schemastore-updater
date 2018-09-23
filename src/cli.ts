@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as program from 'commander';
 import { FileSettings } from './interfaces';
 import { SchemaGenerator } from './';
+const { getYesNo } = require('cli-interact');
 
 const {
   description,
@@ -33,16 +34,38 @@ const {
   lockFile
 }: FileSettings = fs.readJSONSync(settingsFile);
 
-const generator = new SchemaGenerator(
-  disabledSchemas,
-  schemaStoreRepo,
-  lockFile,
-  program.force
-);
+let generator: SchemaGenerator;
+try {
+  generator = new SchemaGenerator(
+    disabledSchemas,
+    schemaStoreRepo,
+    lockFile,
+    program.force
+  );
+} catch (error) {
+  console.error(`Error: ${error.message}`);
+  process.exit(1);
+}
 
-generator
+generator!
   .start()
-  .then(() => console.log('Done.'))
+  .then(({ disabledSchemas, generatedSchemas }) => {
+    if (generatedSchemas.length) {
+      console.log('Generated schemas:', generatedSchemas);
+      const answer = getYesNo(
+        'Would you like to publish the generated schemes on npm?'
+      );
+      // TODO: publish on npm
+    } else {
+      console.log('No schemas generated.');
+    }
+
+    if (disabledSchemas.length) {
+      console.log(
+        `You should consider disabling these schemas: ${disabledSchemas}`
+      );
+    }
+  })
   .catch(error => {
     console.error(`Error: ${error.message}`);
     process.exit(1);

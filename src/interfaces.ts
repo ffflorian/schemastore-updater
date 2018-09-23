@@ -1,3 +1,8 @@
+interface BuildResult {
+  disabledSchemas: string[];
+  generatedSchemas: string[];
+}
+
 interface FileSettings {
   disabledSchemas: string[];
   lockFile: string;
@@ -13,4 +18,4 @@ interface SchemaData {
   version: string;
 }
 
-export { FileSettings, SchemaData, SchemaHashes };
+export { FileSettings, BuildResult, SchemaData, SchemaHashes };
