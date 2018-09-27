@@ -5,7 +5,7 @@ import { FileSettings } from './interfaces';
 import { SchemaGenerator } from './';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-const { getYesNo } = require('cli-interact');
+import { getYesNo } from 'cli-interact';
 
 const {
   description,
