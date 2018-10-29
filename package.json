@@ -10,7 +10,7 @@
     "fs-extra": "7.0.0",
     "json-schema-to-typescript": "6.0.1",
     "semver": "5.6.0",
-    "simple-git": "1.105.0"
+    "simple-git": "1.106.0"
   },
   "devDependencies": {
     "@types/fs-extra": "5.0.4",
