@@ -384,10 +384,10 @@ json-schema-ref-parser@^6.0.2:
     js-yaml "^3.12.0"
     ono "^4.0.10"
 
-json-schema-to-typescript@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-6.0.2.tgz#5fe0ff98b21980691ec0b126fda889971e6cd1d9"
-  integrity sha512-U3YMmqx/txjsYkWfuVecr+FMhlwM36PhW70Juo8bJZWzUaXke0MrLR3Ke3aAuP+I6Apkaatix4f21qvvEjIhCA==
+json-schema-to-typescript@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-6.1.0.tgz#9478a347e6e9a7e7611af4043010dcef72902908"
+  integrity sha512-tm38r+dliwHwSaxiprTRoq2+6ZIEgIPx6oC+sSaBhqRigKl8OuFdqL2lgB5TV9HivLFiQ89yERp7V+43nwFZdQ==
   dependencies:
     "@types/cli-color" "^0.3.29"
     "@types/json-schema" "^7.0.1"
