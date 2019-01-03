@@ -19,7 +19,7 @@
     "cross-env": "5.2.0",
     "logdown": "3.2.7",
     "prettier": "1.15.3",
-    "rimraf": "2.6.2",
+    "rimraf": "2.6.3",
     "ts-node": "7.0.1",
     "typescript": "3.2.2"
   },
