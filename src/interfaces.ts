@@ -18,4 +18,4 @@ interface SchemaData {
   version: string;
 }
 
-export { FileSettings, BuildResult, SchemaData, SchemaHashes };
+export {FileSettings, BuildResult, SchemaData, SchemaHashes};
