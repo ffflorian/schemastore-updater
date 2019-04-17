@@ -12,6 +12,7 @@
     "simple-git": "1.110.0"
   },
   "devDependencies": {
+    "@ffflorian/prettier-config": "0.0.3",
     "@types/cli-interact": "0.1.0",
     "@types/fs-extra": "5.0.5",
     "@types/rimraf": "2.0.2",
@@ -34,17 +35,18 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "src/**/*.ts": [
-      "tslint --project tsconfig.json --fix",
-      "git add"
-    ],
     "*.{json,md}": [
       "prettier --write",
+      "git add"
+    ],
+    "src/**/*.ts": [
+      "tslint --project tsconfig.json --fix",
       "git add"
     ]
   },
   "main": "dist/index.js",
   "name": "schemastore-updater",
+  "prettier": "@ffflorian/prettier-config",
   "repository": "https://github.com/ffflorian/schemastore-updater.git",
   "scripts": {
     "build": "tsc",

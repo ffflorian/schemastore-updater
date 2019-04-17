@@ -25,6 +25,11 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@ffflorian/prettier-config@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.0.3.tgz#87be879c8d1d47ca698e9ce7d2be9af6b85ec917"
+  integrity sha512-EhlT3il2bb3GfTEDKxbmOjUpqzAJTc8ncRR4zJ2D2WtXyQiKqw/mINTVZFLh0MfAfFcc3TbLhfY2aHPnnxnvDw==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
