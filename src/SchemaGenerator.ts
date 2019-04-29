@@ -1,10 +1,12 @@
 import * as crypto from 'crypto';
 import * as fs from 'fs-extra';
 import * as schemaGenerator from 'json-schema-to-typescript';
+import * as jsonAbc from 'jsonabc';
 import * as logdown from 'logdown';
 import * as path from 'path';
 import * as semver from 'semver';
 import * as simpleGit from 'simple-git/promise';
+
 import {BuildResult, FileSettings, SchemaData, SchemaHashes} from './interfaces';
 
 interface SchemaGeneratorOptions extends Partial<FileSettings> {
@@ -63,7 +65,8 @@ class SchemaGenerator {
   }
 
   private async generateLockFile(fileName: string, data: SchemaHashes): Promise<void> {
-    await fs.writeJson(path.resolve(fileName), data, {spaces: 2});
+    const sortedData = jsonAbc.sortObj(data, true);
+    await fs.writeJson(path.resolve(fileName), sortedData, {spaces: 2});
   }
 
   private async generateSchemas(jsonData: SchemaHashes): Promise<BuildResult> {
