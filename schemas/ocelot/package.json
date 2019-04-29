@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for ocelot.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/ocelot",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ocelot",
+  "scripts": {},
+  "typesPublisherContentHash": "73929cf5c2a955b231204f5075374182403f14e8476c1eeb149b7f058a65455e",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

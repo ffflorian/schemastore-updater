@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for jsconfig.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/jsconfig",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsconfig",
   "scripts": {},
-  "typesPublisherContentHash": "6d0caf76aa69eb3403e0e5544a4b785b0ac3293697c507e672702adba194ba5d",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "f15ed0e25a8c5b61d509e7b2c108660d479ce066af785789d38d37ecbe101bdc",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

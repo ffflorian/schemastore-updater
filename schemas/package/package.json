@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for package.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/package",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/package",
   "scripts": {},
-  "typesPublisherContentHash": "9afdf5b83e66833d7bc082b271d5acf55408482a47a09bc829d88e424bab96f8",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "38ad59421753c65010f4cdc2fa61a30abfe53e39d70c6ffd1c894bafdcf27122",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

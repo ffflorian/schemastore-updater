@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for xunit.runner.schema.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/xunit.runner.schema",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/xunit.runner.schema",
   "scripts": {},
-  "typesPublisherContentHash": "45a531de2248d20309cb355c689f26e6a3e96e79f8c85dc06452ef60ae25f99b",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "12843c4ec86f699ee0b54049ecf2a3e6206bd6ff624f3b4546f7f5e7be758ee3",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

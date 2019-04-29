@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for vsix-publish.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/vsix-publish",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsix-publish",
   "scripts": {},
-  "typesPublisherContentHash": "b8758bc2f2f1ec00967c2ee284f33b1ef30688767f6b7a6fe9cc989ce27ce824",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "b728905d848a830d5aec8be257869f91b3aeca2386391fa536a302a6a2ae82c2",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

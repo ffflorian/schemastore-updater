@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for tslint.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/tslint",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tslint",
   "scripts": {},
-  "typesPublisherContentHash": "2ac9807e2ad0788bfabd1c1a2d264a1662016ab0691a595719ae46cf6b93fc4b",
+  "typesPublisherContentHash": "87cf0f8d7fd70fdd99af9f411e57999e97a2c42cc1eed6a981f6d139b80a2f9b",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

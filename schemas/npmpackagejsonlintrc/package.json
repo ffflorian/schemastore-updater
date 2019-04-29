@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for npmpackagejsonlintrc.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/npmpackagejsonlintrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/npmpackagejsonlintrc",
+  "scripts": {},
+  "typesPublisherContentHash": "76e597df3783561b9bb2d2a7a8723257d90a8588b07abdcc4bcbba73881de2f6",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

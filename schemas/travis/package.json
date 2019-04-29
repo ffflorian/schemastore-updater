@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for travis.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/travis",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/travis",
   "scripts": {},
-  "typesPublisherContentHash": "df47415c5bda3f1b854da83212a6569d08c0eb1d3a47fb499f14eab209590cb1",
+  "typesPublisherContentHash": "bf994f93c01551a33a7926fc98f8147a46eab08dea150e3bd7939d27bbbbd5c2",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

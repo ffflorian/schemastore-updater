@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for renovate.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/renovate",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/renovate",
   "scripts": {},
-  "typesPublisherContentHash": "0d101a938bfe5b02a182d77d982aada0f848e61164b77166b5b312f9f1db581f",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "7c42db2789bc7fc7cc01e1ff285891355b3bc4a26e7a8fa9f3d582be3e901473",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

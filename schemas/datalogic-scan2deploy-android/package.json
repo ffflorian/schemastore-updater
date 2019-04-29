@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for datalogic-scan2deploy-android.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/datalogic-scan2deploy-android",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/datalogic-scan2deploy-android",
+  "scripts": {},
+  "typesPublisherContentHash": "8cfbb23f857651d6970dd4d317d1521171aaf37afbb4e9dcc936194c28690127",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

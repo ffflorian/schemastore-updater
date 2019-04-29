@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for package.manifest.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/package.manifest",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/package.manifest",
   "scripts": {},
-  "typesPublisherContentHash": "891fc499ee35e047cf264a989515ad1024cafa48e65a6dbda2c68ec37728daae",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "15ae5c55a14d2498d604b228fa92e8c71842891bd7404a770a38ed44493bd8b5",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

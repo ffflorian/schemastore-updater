@@ -7,6 +7,7 @@ import {promisify} from 'util';
 
 import {SchemaGenerator} from './';
 import {FileSettings} from './interfaces';
+const execAsync = promisify(exec);
 
 const {
   description,
@@ -68,7 +69,7 @@ async function update(force?: boolean): Promise<void> {
     const answer = getYesNo('Would you like to publish the generated schemes on npm?', true);
     if (answer !== false) {
       generatedSchemas.forEach(async schemaName => {
-        const {stderr, stdout} = await promisify(exec)(`npm publish ./schemas/${schemaName} --access=public`);
+        const {stderr, stdout} = await execAsync(`npm publish ./schemas/${schemaName} --access=public`);
         if (stderr) {
           console.error(stderr);
         }

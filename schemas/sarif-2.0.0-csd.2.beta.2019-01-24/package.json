@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for sarif-2.0.0-csd.2.beta.2019-01-24.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/sarif-2.0.0-csd.2.beta.2019-01-24",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sarif-2.0.0-csd.2.beta.2019-01-24",
+  "scripts": {},
+  "typesPublisherContentHash": "b56b08ff6d8487a0621546c59457908784d8212a783aeeabc5eb3482ac57f769",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

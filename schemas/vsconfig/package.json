@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for vsconfig.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/vsconfig",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsconfig",
+  "scripts": {},
+  "typesPublisherContentHash": "2b655fe27c1edb62e8208eff57e7c83d0e43294b8418437612ed2bdcf3e2bba9",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

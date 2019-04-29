@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for appsscript.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/appsscript",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appsscript",
   "scripts": {},
-  "typesPublisherContentHash": "379d95dc88cc7f9423397861fae2979d5bb2e7fb3a5381d7b865c3df38c862b8",
+  "typesPublisherContentHash": "fbda3d5759ccc38fc9f29065be9af185f3fbcbe286ff79fb3c6956fe1e0781bb",
   "types": "index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "typeScriptVersion": "2.2"
 }

@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for gitlab-ci.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/gitlab-ci",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/gitlab-ci",
   "scripts": {},
-  "typesPublisherContentHash": "00ffc235209fdac3fc80edeb03c0de02171b3050a2f060226213b762d1e3a83b",
+  "typesPublisherContentHash": "28a812ca1ffb9ba257a7679a485784d9b77d09c74a14b1441fcb9f974d70e780",
   "types": "index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "typeScriptVersion": "2.2"
 }

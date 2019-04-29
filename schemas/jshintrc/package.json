@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for jshintrc.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/jshintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jshintrc",
   "scripts": {},
-  "typesPublisherContentHash": "f05726025676857cd2ac17ca26a1d20eb227c96152b5baf6ea85ba6f1b3cb965",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "2524aa8334e0c62648b83d95fc5089d0505857f7c44c5925621dc01a670bcbeb",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

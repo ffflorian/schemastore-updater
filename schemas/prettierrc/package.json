@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for prettierrc.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/prettierrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prettierrc",
   "scripts": {},
-  "typesPublisherContentHash": "90415a8c85e55182233fe19941e217d193e0851debd7d2f1cb71e0298b07c404",
+  "typesPublisherContentHash": "74dfd7e230ae27d923f634b369ff19d052a3ed6e038db3367119e2bca79acd80",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

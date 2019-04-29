@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for vs-nesting.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/vs-nesting",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vs-nesting",
   "scripts": {},
-  "typesPublisherContentHash": "508fceb7731ee7da7a10ef603a3134406bbf181c542a43440b052baab1bc2180",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "c1ad0f66084f4ff6631ee887ab07c0ee8d7bd4112d5555c62c948a6b7ac2bc56",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

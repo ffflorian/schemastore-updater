@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for circleciconfig.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/circleciconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/circleciconfig",
   "scripts": {},
-  "typesPublisherContentHash": "4035d7d8b18e7974b3466bf9e593ad45b765e28ae8610734a9760a88e7bcbe3b",
+  "typesPublisherContentHash": "2ab2e273831ec7a0f48bf2277aee7825ea519fd583dcded4cf3ebb34f576c111",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

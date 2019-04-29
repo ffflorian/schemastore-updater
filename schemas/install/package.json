@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for install.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/install",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/install",
   "scripts": {},
-  "typesPublisherContentHash": "864cefa378c32665fc7ab92fd6810a27e7b5d5f5fefeb960856ee75e0bbcaea3",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "d87c11bdd3b3e257e57853d4800aa789334b541aa89665e92cb5852c3342c026",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

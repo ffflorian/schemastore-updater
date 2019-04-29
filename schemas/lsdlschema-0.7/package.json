@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for lsdlschema-0.7.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/lsdlschema-0.7",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lsdlschema-0.7",
+  "scripts": {},
+  "typesPublisherContentHash": "1b515c9a885280ac8f0044dab7197d442c23cdb3a3cebb82a006ea6caad14c9e",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

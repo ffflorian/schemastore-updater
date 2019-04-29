@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for tsconfig.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/tsconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tsconfig",
   "scripts": {},
-  "typesPublisherContentHash": "930dffc27bd76440bd0168f803183c23a79cb7058460ab44f837c3a730e36007",
+  "typesPublisherContentHash": "8ea833ff3fa55c25e8be5069bf94022ae569b8f06873623d386ff081ca72c24d",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }
