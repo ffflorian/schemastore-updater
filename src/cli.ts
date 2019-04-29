@@ -51,6 +51,11 @@ program.command('version-check').action(() => {
 
 program.parse(process.argv);
 
+if (!program.args.length) {
+  program.outputHelp();
+  process.exit();
+}
+
 async function update(force?: boolean): Promise<void> {
   const fileSettings: FileSettings = await fs.readJSON(settingsFile);
 
