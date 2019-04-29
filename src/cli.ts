@@ -29,8 +29,8 @@ const settingsFile = program.settings ? path.resolve(program.settings) : path.jo
 program
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
-  .action(force => {
-    return update(force).catch(error => {
+  .action(parent => {
+    return update(parent.force).catch(error => {
       console.error(`Error: ${error.message}`);
       process.exit(1);
     });
