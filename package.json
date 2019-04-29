@@ -59,7 +59,7 @@
     "lint:other": "yarn prettier --list-different",
     "lint:ts": "tslint --project tsconfig.json",
     "prettier": "prettier --ignore-path .gitignore \"*.{json,md}\"",
-    "start": "cross-env NODE_DEBUG='schemastore-updater/*' ts-node src/cli.ts",
+    "start": "rimraf temp && cross-env NODE_DEBUG='schemastore-updater/*' ts-node src/cli.ts",
     "test": "exit 0"
   },
   "version": "1.1.0"

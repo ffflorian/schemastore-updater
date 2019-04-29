@@ -5,25 +5,37 @@ import * as logdown from 'logdown';
 import * as path from 'path';
 import * as semver from 'semver';
 import * as simpleGit from 'simple-git/promise';
-import {BuildResult, SchemaData, SchemaHashes} from './interfaces';
+import {BuildResult, FileSettings, SchemaData, SchemaHashes} from './interfaces';
+
+interface SchemaGeneratorOptions extends Partial<FileSettings> {
+  force?: boolean;
+}
+
+const defaultOptions: Required<SchemaGeneratorOptions> = {
+  disabledSchemas: [],
+  force: false,
+  lockFile: 'schemas/json-schemas.lock',
+  schemaStoreRepo: 'https://github.com/SchemaStore/schemastore',
+};
 
 class SchemaGenerator {
   private readonly git: simpleGit.SimpleGit;
   private readonly jsonSchemasDir: string;
   private readonly logger: logdown.Logger;
   private readonly schemaStoreDirResolved: string;
+  private readonly options: Required<SchemaGeneratorOptions>;
+  private readonly lockFile: string;
 
-  constructor(
-    private readonly disabledSchemas: string[],
-    private readonly schemaStoreRepo: string,
-    private readonly lockFile = 'schemas/json-schemas.lock',
-    private readonly force = false
-  ) {
+  constructor(options?: SchemaGeneratorOptions) {
+    this.options = {
+      ...defaultOptions,
+      ...options,
+    };
     this.git = simpleGit('.');
-    this.schemaStoreDirResolved = path.join('temp', 'schemastore');
-    this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src', 'schemas', 'json');
-    this.lockFile = path.resolve(this.lockFile);
-    this.logger = logdown('schemastore-updater/index', {
+    this.schemaStoreDirResolved = path.join('temp/schemastore');
+    this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
+    this.lockFile = path.resolve(this.options.lockFile);
+    this.logger = logdown('schemastore-updater/SchemaGenerator', {
       logger: console,
       markdown: false,
     });
@@ -36,7 +48,7 @@ class SchemaGenerator {
 
     this.logger.info(`Using lockfile "${this.lockFile}".`);
 
-    if (this.force) {
+    if (this.options.force) {
       this.logger.info(`Force is set. Will re-generate all schemas.`);
     }
   }
@@ -51,9 +63,7 @@ class SchemaGenerator {
   }
 
   private async generateLockFile(fileName: string, data: SchemaHashes): Promise<void> {
-    await fs.writeFile(path.resolve(fileName), JSON.stringify(data, null, 2), {
-      encoding: 'utf8',
-    });
+    await fs.writeJson(path.resolve(fileName), data, {spaces: 2});
   }
 
   private async generateSchemas(jsonData: SchemaHashes): Promise<BuildResult> {
@@ -64,6 +74,7 @@ class SchemaGenerator {
       const schemaName = fileName.replace('.json', '');
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       this.logger.info(`Processing "${schemaName}" ...`);
+
       let newSchema = '';
 
       try {
@@ -73,19 +84,21 @@ class SchemaGenerator {
         disabledSchemas.push(fileName);
         continue;
       }
+
       const schemaDirResolved = path.resolve('schemas', schemaName);
+
       await fs.ensureDir(schemaDirResolved);
-      await fs.writeFile(path.resolve(schemaDirResolved, 'index.d.ts'), newSchema, {encoding: 'utf8'});
+      await fs.writeFile(path.join(schemaDirResolved, 'index.d.ts'), newSchema, 'utf8');
+
       const packageJson = this.generatePackageJson(schemaName, jsonData[fileName]);
-      await fs.writeFile(path.resolve(schemaDirResolved, 'package.json'), packageJson, {encoding: 'utf8'});
-      const readMe = this.generateReadme(schemaName, jsonData[fileName].version);
-      await fs.writeFile(path.resolve(schemaDirResolved, 'README.md'), readMe, {
-        encoding: 'utf8',
-      });
+      await fs.writeFile(path.join(schemaDirResolved, 'package.json'), packageJson, 'utf8');
+
+      const readMe = this.generateReadme(schemaName);
+      await fs.writeFile(path.join(schemaDirResolved, 'README.md'), readMe, 'utf8');
+
       const license = this.generateLicense();
-      await fs.writeFile(path.resolve(schemaDirResolved, 'LICENSE'), license, {
-        encoding: 'utf8',
-      });
+      await fs.writeFile(path.join(schemaDirResolved, 'LICENSE'), license, 'utf8');
+
       generatedSchemas.push(schemaName);
     }
 
@@ -126,7 +139,7 @@ SOFTWARE
   "dependencies": {},
   "description": "TypeScript definitions for ${schemaName}.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/${schemaName}",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/${schemaName}",
   "scripts": {},
@@ -138,7 +151,7 @@ SOFTWARE
 `;
   }
 
-  private generateReadme(schemaName: string, schemaVersion: string) {
+  private generateReadme(schemaName: string): string {
     const timeStamp = new Date().toLocaleDateString('en-US', {
       day: '2-digit',
       hour: '2-digit',
@@ -167,33 +180,51 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 
   private async removeAndClone(): Promise<void> {
     await fs.remove(this.schemaStoreDirResolved);
-    this.logger.info(`Cloning "${this.schemaStoreRepo}" to "${this.schemaStoreDirResolved}" ...`);
-    await this.git.clone(this.schemaStoreRepo, this.schemaStoreDirResolved, ['--depth=1']);
+    this.logger.info(`Cloning "${this.options.schemaStoreRepo}" to "${this.schemaStoreDirResolved}" ...`);
+    await this.git.clone(this.options.schemaStoreRepo, this.schemaStoreDirResolved, ['--depth=1']);
   }
 
-  public async start(): Promise<BuildResult> {
+  public async checkVersions(): Promise<void> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    const invalidEntries = [];
+
+    for (const entry of Object.keys(lockFileData)) {
+      const name = entry.replace('.json', '');
+      const packageJson = fs.readJsonSync(`./schemas/${name}/package.json`);
+      const lockFileVersion = lockFileData[entry].version;
+      if (lockFileVersion !== packageJson.version) {
+        invalidEntries.push(entry);
+      }
+    }
+
+    if (invalidEntries.length) {
+      throw new Error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
+    }
+  }
+
+  public async generate(): Promise<BuildResult> {
     const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
 
     await this.removeAndClone();
     const allFiles = await fs.readdir(this.jsonSchemasDir);
 
     const jsonFiles = allFiles.filter(fileName => {
-      const schemaIsDisabled = this.disabledSchemas.includes(fileName);
+      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
       return fileName.endsWith('.json') && !schemaIsDisabled;
     });
 
-    this.logger.info(`Loaded ${jsonFiles.length} enabled schemas and ${this.disabledSchemas.length} disabled schemas.`);
+    this.logger.info(
+      `Loaded ${jsonFiles.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
+    );
 
-    const fileHashes: {[fileName: string]: string} = {};
+    const fileHashes: Record<string, string> = {};
 
     for (const fileName of jsonFiles) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       const fileIsReadable = await this.fileIsReadable(fileNameResolved);
 
       if (fileIsReadable) {
-        const fileContent = await fs.readFile(fileNameResolved, {
-          encoding: 'utf8',
-        });
+        const fileContent = await fs.readFile(fileNameResolved, 'utf8');
         const sha256 = crypto
           .createHash('sha256')
           .update(fileContent)
@@ -215,7 +246,10 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
           version: '0.0.1',
         };
         updatedHashes[fileName] = lockFileData[fileName];
-      } else if (lockFileData[fileName] && (fileHashes[fileName] !== lockFileData[fileName].hash || this.force)) {
+      } else if (
+        lockFileData[fileName] &&
+        (fileHashes[fileName] !== lockFileData[fileName].hash || this.options.force)
+      ) {
         this.logger.info(`Hash from "${fileName}" is outdated. Updating.`);
 
         const newVersion = semver.inc(lockFileData[fileName].version, 'patch');
