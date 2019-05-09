@@ -32,9 +32,14 @@
     "typescript": "3.4.5"
   },
   "files": [
-    "src",
+    "dist",
     "settings.json"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "license": "MIT",
   "lint-staged": {
     "*.{json,md}": [
