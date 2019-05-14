@@ -16,7 +16,7 @@
     "@ffflorian/prettier-config": "0.0.3",
     "@ffflorian/tslint-config": "0.1.0",
     "@types/cli-interact": "0.1.0",
-    "@types/fs-extra": "5.1.0",
+    "@types/fs-extra": "7.0.0",
     "@types/jsonabc": "2.3.1",
     "@types/rimraf": "2.0.2",
     "@types/semver": "6.0.0",
