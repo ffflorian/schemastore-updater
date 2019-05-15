@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@ffflorian/prettier-config": "0.0.3",
-    "@ffflorian/tslint-config": "0.1.0",
+    "@ffflorian/tslint-config": "0.2.1",
     "@types/cli-interact": "0.1.0",
     "@types/fs-extra": "7.0.0",
     "@types/jsonabc": "2.3.1",
