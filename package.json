@@ -13,7 +13,7 @@
     "simple-git": "1.113.0"
   },
   "devDependencies": {
-    "@ffflorian/prettier-config": "0.0.3",
+    "@ffflorian/prettier-config": "0.0.4",
     "@ffflorian/tslint-config": "0.2.1",
     "@types/cli-interact": "0.1.0",
     "@types/fs-extra": "7.0.0",
