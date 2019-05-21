@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for debugsettings.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/debugsettings",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/debugsettings",
   "scripts": {},
   "typesPublisherContentHash": "78cd337254d9dc8505c2369cef53df23312013d20721b5d940c382318f7d0ea3",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

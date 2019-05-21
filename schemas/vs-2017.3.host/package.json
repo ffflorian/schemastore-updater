@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for vs-2017.3.host.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/vs-2017.3.host",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vs-2017.3.host",
   "scripts": {},
   "typesPublisherContentHash": "e46bdf556074586d3b0a39871f3456e24a29805709c60805739d7f5a3a4a411b",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

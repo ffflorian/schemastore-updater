@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for stylelintrc.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/stylelintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/stylelintrc",
   "scripts": {},
   "typesPublisherContentHash": "cfb6f6e7f3d99b37c9f4fb9b0e498b9166ebda4a59ffb21d91a8dfd417369458",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for openfin.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/openfin",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/openfin",
   "scripts": {},
   "typesPublisherContentHash": "f9781c1ee738f718d8244c2c13f04abb924eaea9b36450d15d360fecf555606b",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

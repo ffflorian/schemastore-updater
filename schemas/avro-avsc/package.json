@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for avro-avsc.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/avro-avsc",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/avro-avsc",
   "scripts": {},
   "typesPublisherContentHash": "8984e4500c2b709e7613b56905214782b4ed8bc21909646560422e219aa1df03",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

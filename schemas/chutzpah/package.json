@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for chutzpah.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/chutzpah",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/chutzpah",
   "scripts": {},
   "typesPublisherContentHash": "b0740a0b315f1553e3ca972b383070cb06f48ec03dceddee4ac9fb367ada4041",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

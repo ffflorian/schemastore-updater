@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for vsls.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/vsls",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsls",
   "scripts": {},
   "typesPublisherContentHash": "959a45e7276a7f1c1cd777a679b75d9096a79e7268a22a4aa248f922338f4d50",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

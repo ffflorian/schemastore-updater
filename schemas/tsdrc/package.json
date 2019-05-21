@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for tsdrc.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/tsdrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tsdrc",
   "scripts": {},
   "typesPublisherContentHash": "e7fb85d7bceeeaf481f3fad0c950fda6cc54ad007391c6c9f776e846ff910765",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

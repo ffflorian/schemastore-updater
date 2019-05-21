@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for ansible-stable-2.7.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/ansible-stable-2.7",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ansible-stable-2.7",
+  "scripts": {},
+  "typesPublisherContentHash": "c8beecf49e29543246fd934a3844f0a10132849c1436c50611331086359d33dd",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

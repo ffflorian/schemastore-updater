@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for jsbeautifyrc-nested.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/jsbeautifyrc-nested",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsbeautifyrc-nested",
   "scripts": {},
   "typesPublisherContentHash": "6f666ec1e506bbaad432254284cbad7f3c887ff0d4064fc802048246712eea86",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

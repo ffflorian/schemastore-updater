@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for babelrc.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/babelrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/babelrc",
+  "scripts": {},
+  "typesPublisherContentHash": "99df9a6e41f1f8bcaf3d1f0257e7622d699c32e60c7f08ef17c28eed1c8e363f",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

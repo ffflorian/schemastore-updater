@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for composer.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/composer",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/composer",
   "scripts": {},
   "typesPublisherContentHash": "3f3c0079f16cccdbfab07b15a0c11afa6c1847d67102db6bafbe1a0e6292b524",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

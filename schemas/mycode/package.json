@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for mycode.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/mycode",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mycode",
   "scripts": {},
   "typesPublisherContentHash": "5b0590053500046ce46c1ab6ddb300e5c38a934024b177c2222d737dea304c9d",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

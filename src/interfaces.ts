@@ -1,21 +1,29 @@
-interface BuildResult {
+export interface BuildResult {
   disabledSchemas: string[];
   generatedSchemas: string[];
 }
 
-interface FileSettings {
+export interface FileSettings {
   disabledSchemas: string[];
   lockFile: string;
   schemaStoreRepo: string;
 }
 
-interface SchemaHashes {
+export interface CheckResult {
+  disabledSchemas: string[];
+  enabledSchemas: string[];
+}
+
+export interface SchemaHashes {
   [fileName: string]: SchemaData;
 }
 
-interface SchemaData {
+export interface SchemaData {
   hash: string;
   version: string;
 }
 
-export {FileSettings, BuildResult, SchemaData, SchemaHashes};
+export interface SchemaGeneratorOptions extends Partial<FileSettings> {
+  force?: boolean;
+  source?: string;
+}

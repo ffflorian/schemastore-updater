@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for npm-link-up.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/npm-link-up",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/npm-link-up",
   "scripts": {},
   "typesPublisherContentHash": "8a5c13e2f04ae7f519580b6f9ff9bc062cd66b544014c72d4a3e651d5cd43c29",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

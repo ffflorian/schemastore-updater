@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for eslintrc.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/eslintrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/eslintrc",
+  "scripts": {},
+  "typesPublisherContentHash": "96334ccd6953b500114b673d486e8d8125b459b7d9c293a901d1fdfee4c6ad7a",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

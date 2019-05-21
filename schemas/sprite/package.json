@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for sprite.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/sprite",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sprite",
   "scripts": {},
   "typesPublisherContentHash": "a22ebebea849e00852bfec870d79208d0399ccbf94c13f44557e9aff04217f0a",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }
