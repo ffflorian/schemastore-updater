@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for webjob-publish-settings.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/webjob-publish-settings",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/webjob-publish-settings",
   "scripts": {},
   "typesPublisherContentHash": "b1a803ddfc598699588f9b03f40be08d8949989164e7b6879d83b32baa9c8c02",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

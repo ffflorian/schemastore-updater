@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for grunt-clean-task.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/grunt-clean-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-clean-task",
   "scripts": {},
   "typesPublisherContentHash": "37afe5dcf7a3ca70e0eb22105711ea27eed4ef95de49e26d0faa1896edaee70a",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

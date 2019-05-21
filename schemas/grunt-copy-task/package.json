@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for grunt-copy-task.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/grunt-copy-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-copy-task",
   "scripts": {},
   "typesPublisherContentHash": "356171b6258327a59e7637f27108dc40267e9d312c3a93d05dbdbf8d76fbbcb1",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for vsext.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/vsext",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsext",
   "scripts": {},
   "typesPublisherContentHash": "c1af3c581ba975e9c25ee91fbd7da64a67947833100d387828da79ffdc93273a",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

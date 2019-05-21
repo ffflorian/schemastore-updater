@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for pattern.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/pattern",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/pattern",
   "scripts": {},
   "typesPublisherContentHash": "e88d724a4c9eb90d4d5a9d5a4cdb613841f045f3f1b83f46124a64c5beeed502",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

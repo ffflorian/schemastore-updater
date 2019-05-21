@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for bukkit-plugin.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/bukkit-plugin",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bukkit-plugin",
   "scripts": {},
   "typesPublisherContentHash": "5ef6e55e702d20431df4e88059bc3ba5edeb6902881174417c11fa16e501a3f0",
   "types": "index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "typeScriptVersion": "2.2"
 }

@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for clasp.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/clasp",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/clasp",
   "scripts": {},
   "typesPublisherContentHash": "e54d46c347f1a6e2150e8a07806e02feb88d34a634a26a48fa7a481eaa85e111",
   "types": "index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "typeScriptVersion": "2.2"
 }

@@ -3,12 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for prisma.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/prisma",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prisma",
   "scripts": {},
   "typesPublisherContentHash": "d9ef9e2453c3160a2e1fbc302bbe9509e1d4435f96e1e959f9b3e2939709ad23",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

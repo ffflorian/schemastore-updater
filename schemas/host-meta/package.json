@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for host-meta.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/host-meta",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/host-meta",
   "scripts": {},
   "typesPublisherContentHash": "716762792e3a5e3f3d68f50eb7829b06979582e262c3a34617f5c9422d95315f",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

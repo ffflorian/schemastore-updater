@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for nuget-project-3.3.0.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/nuget-project-3.3.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/nuget-project-3.3.0",
   "scripts": {},
   "typesPublisherContentHash": "2900e400cac9f005a760bab30049043a351b8cc7755e916cfad629b69e5df621",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

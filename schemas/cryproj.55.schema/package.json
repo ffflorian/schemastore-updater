@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for cryproj.55.schema.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/cryproj.55.schema",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cryproj.55.schema",
   "scripts": {},
   "typesPublisherContentHash": "e175f04803886ed55313556dd49606bb4d76e31d8e115b56747bb966e699e700",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

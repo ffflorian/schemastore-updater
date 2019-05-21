@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for ui5-manifest.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/ui5-manifest",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ui5-manifest",
   "scripts": {},
   "typesPublisherContentHash": "137540bae419736bacffb02510de34525fc841411105576a99d405633578a169",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

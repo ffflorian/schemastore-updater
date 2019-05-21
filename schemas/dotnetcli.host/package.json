@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for dotnetcli.host.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/dotnetcli.host",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/dotnetcli.host",
   "scripts": {},
   "typesPublisherContentHash": "7ebbaaebfde9e9e6248e7384a74aba84407cdace898693d0118f21788f721300",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

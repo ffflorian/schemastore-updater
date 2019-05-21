@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for ninjs.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/ninjs",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ninjs",
   "scripts": {},
   "typesPublisherContentHash": "15d10200cce962a8b7db907d80c016a4da3f353790ee3dbc94bad9ae411bebb1",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for web-manifest.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/web-manifest",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-manifest",
   "scripts": {},
   "typesPublisherContentHash": "3e4bc091b889574b5ba8224de5dcaab1ac1ab5b25064b659cb0f36185896ce2e",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

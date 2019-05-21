@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for haxelib.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/haxelib",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/haxelib",
   "scripts": {},
   "typesPublisherContentHash": "f9b41c3e5055c523de781de41c3487c3f653853dbcb4b9a0ada759c1f04309af",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

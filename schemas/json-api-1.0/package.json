@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for json-api-1.0.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/json-api-1.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/json-api-1.0",
   "scripts": {},
   "typesPublisherContentHash": "f0e55377dde5efc3c236c9c79d72ea4f59d120096ac4b5f0aeceda5a069d596c",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

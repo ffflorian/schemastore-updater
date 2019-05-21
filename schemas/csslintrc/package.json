@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for csslintrc.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/csslintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/csslintrc",
   "scripts": {},
   "typesPublisherContentHash": "11d1c8b64294a22c7da23b7fa83880d313f70e19624b01f9c01ad3c2915985fc",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

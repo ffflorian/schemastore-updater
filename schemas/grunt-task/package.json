@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for grunt-task.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/grunt-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-task",
   "scripts": {},
   "typesPublisherContentHash": "1f7b2aa1b5efd6d393a6aba27e1081fdf9eb47644e2239b8e23538bd69537ab6",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

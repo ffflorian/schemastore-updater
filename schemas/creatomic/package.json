@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for creatomic.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/creatomic",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/creatomic",
   "scripts": {},
   "typesPublisherContentHash": "80ce6ad83e9f2816eaaaa3cd55c619484c0af9ff75f61b7734067ef65767ae0d",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

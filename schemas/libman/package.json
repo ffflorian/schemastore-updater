@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for libman.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/libman",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/libman",
   "scripts": {},
   "typesPublisherContentHash": "1230675101f80184c044c162eecfa6af1e83517cc80c03b53fcb6f92afaf90c8",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

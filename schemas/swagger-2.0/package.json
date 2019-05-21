@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for swagger-2.0.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/swagger-2.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/swagger-2.0",
   "scripts": {},
   "typesPublisherContentHash": "b36871c8016292c5e66dd3b203e69aeff98bfef97e0b3c67c1909036095586a5",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

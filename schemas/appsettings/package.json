@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for appsettings.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/appsettings",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appsettings",
   "scripts": {},
   "typesPublisherContentHash": "6c8f46ced6ba7bbe1b409ce0820d1efa07ac470cda85e0499e3d91731b718295",
-  "typings": "index.d.ts",
-  "version": "0.0.2"
+  "types": "index.d.ts",
+  "version": "0.0.3",
+  "typeScriptVersion": "2.2"
 }

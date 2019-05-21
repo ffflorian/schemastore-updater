@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for grunt-watch-task.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/grunt-watch-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-watch-task",
   "scripts": {},
   "typesPublisherContentHash": "7153813cb4386ebe95c2318f2f4eed402e6682ecf8f7e4e758bc35625354e42e",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }
