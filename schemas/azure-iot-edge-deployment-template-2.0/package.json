@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for azure-iot-edge-deployment-template-2.0.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/azure-iot-edge-deployment-template-2.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/azure-iot-edge-deployment-template-2.0",
+  "scripts": {},
+  "typesPublisherContentHash": "790b2b020aaa9d2b6ad9dd12e4b0870e8de75b5dcce6c944973f485b9114d07a",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

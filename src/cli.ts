@@ -1,13 +1,9 @@
-import {exec} from 'child_process';
-import {getYesNo} from 'cli-interact';
 import * as program from 'commander';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import {promisify} from 'util';
 
 import {SchemaGenerator} from './';
 import {FileSettings} from './interfaces';
-const execAsync = promisify(exec);
 
 const {
   description,
@@ -58,29 +54,21 @@ if (!program.args.length) {
 }
 
 async function update(force?: boolean): Promise<void> {
-  const fileSettings: FileSettings = await fs.readJSON(settingsFile);
+  const settings: FileSettings = await fs.readJSON(settingsFile);
+  const settingsDir = path.resolve(path.dirname(settingsFile));
 
-  const generator = new SchemaGenerator({...fileSettings, force});
+  const generator = new SchemaGenerator({...settings, force});
   await generator.checkVersions();
 
   const {disabledSchemas: newDisabledSchemas, generatedSchemas} = await generator.generate();
+
   if (generatedSchemas.length) {
     console.log('Generated schemas:', generatedSchemas);
-    const answer = getYesNo('Would you like to publish the generated schemes on npm?', true);
-    if (answer !== false) {
-      generatedSchemas.forEach(async schemaName => {
-        const {stderr, stdout} = await execAsync(`npm publish ./schemas/${schemaName} --access=public`);
-        if (stderr) {
-          console.error(stderr);
-        }
-        if (stdout) {
-          console.log(stdout);
-        }
-      });
-    }
   } else {
     console.log('No schemas generated.');
   }
+
+  await fs.writeFile(path.join(settingsDir, 'updated_files'), generatedSchemas.join('\n'));
 
   if (newDisabledSchemas.length) {
     console.log(`You should consider disabling these schemas: "${newDisabledSchemas.join(', ')}"`);

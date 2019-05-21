@@ -47,13 +47,6 @@
   resolved "https://registry.yarnpkg.com/@types/cli-color/-/cli-color-0.3.29.tgz#c83a71fe02c8c7e1ccec048dd6a2458d1f6c96ea"
   integrity sha1-yDpx/gLIx+HM7ASN1qJFjR9sluo=
 
-"@types/cli-interact@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@types/cli-interact/-/cli-interact-0.1.0.tgz#63379a2009727dd3d893d098bc183700c28ee711"
-  integrity sha512-Xq/ucHBj2GLoW0bWEm4KnzUy+joweC1A/ce4W4qxie84c0OFyZ2Q2Uli+2q6nkDBNQfm+wccJp8NGvExg+xj1g==
-  dependencies:
-    "@types/readline-sync" "*"
-
 "@types/events@*":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
@@ -126,11 +119,6 @@
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.16.1.tgz#328d1c9b54402e44119398bcb6a31b7bbd606d59"
   integrity sha512-db6pZL5QY3JrlCHBhYQzYDci0xnoDuxfseUuguLRr3JNk+bnCfpkK6p8quiUDyO8A0vbpBKkk59Fw125etrNeA==
-
-"@types/readline-sync@*":
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/@types/readline-sync/-/readline-sync-1.4.3.tgz#eac55a39d5a349912062c9e5216cd550c07fd9c8"
-  integrity sha512-YP9NVli96E+qQLAF2db+VjnAUEeZcFVg4YnMgr8kpDUFwQBnj31rPLOVHmazbKQhaIkJ9cMHsZhpKdzUeL0KTg==
 
 "@types/rimraf@2.0.2":
   version "2.0.2"
@@ -385,13 +373,6 @@ cli-cursor@^2.0.0, cli-cursor@^2.1.0:
   integrity sha1-s12sN2R5+sw+lHR9QdDQ9SOP/LU=
   dependencies:
     restore-cursor "^2.0.0"
-
-cli-interact@0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/cli-interact/-/cli-interact-0.1.9.tgz#e58ae8505bbf7ed2e12671057cd559b12fdce28f"
-  integrity sha1-5YroUFu/ftLhJnEFfNVZsS/c4o8=
-  dependencies:
-    readline-sync "~0.4.9"
 
 cli-truncate@^0.2.1:
   version "0.2.1"
@@ -1716,11 +1697,6 @@ read-pkg@^5.1.1:
     normalize-package-data "^2.5.0"
     parse-json "^4.0.0"
     type-fest "^0.4.1"
-
-readline-sync@~0.4.9:
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/readline-sync/-/readline-sync-0.4.10.tgz#bef03d993eca3585fd064f5d56d7276765dfc121"
-  integrity sha1-vvA9mT7KNYX9Bk9dVtcnZ2XfwSE=
 
 regenerator-runtime@^0.13.2:
   version "0.13.2"

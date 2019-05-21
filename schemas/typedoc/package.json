@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for typedoc.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/typedoc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/typedoc",
+  "scripts": {},
+  "typesPublisherContentHash": "bfb07019b96b3b85c98ad0c05ce34e401eca8b3375aac83b994b139ac2978168",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for schema-catalog.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/schema-catalog",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/schema-catalog",
   "scripts": {},
-  "typesPublisherContentHash": "b7ba9aea97d38e0dbf9a52153627d4339c73efd1e8865749fadf4eb236c9c321",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "7bbeef14515177f2b22c15f76c8ce097260f34c3f6725e95da5c667dafff954a",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }
