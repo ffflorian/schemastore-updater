@@ -3,11 +3,12 @@
   "dependencies": {},
   "description": "TypeScript definitions for coffeelint.",
   "license": "MIT",
-  "main": "",
+  "main": "index.d.ts",
   "name": "@schemastore/coffeelint",
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/coffeelint",
   "scripts": {},
-  "typesPublisherContentHash": "d5e5e50d25bf207a8f6e4496868a5439312b8636f4882342de72421b70d7e8e6",
-  "typings": "index.d.ts",
-  "version": "0.0.1"
+  "typesPublisherContentHash": "48ad0f2ab5b57fd08f22cfe8b0c2297d0ce0650bba618702c85edc7fa1021b6b",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
 }

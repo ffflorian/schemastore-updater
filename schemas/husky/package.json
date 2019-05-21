@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for husky.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/husky",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/husky",
+  "scripts": {},
+  "typesPublisherContentHash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

@@ -27,8 +27,16 @@
     "hash": "e25644dfdf4b8267cbd5e312d237abc4542eb1a1467d8c7fe2a0369bc4b1f284",
     "version": "0.0.1"
   },
+  "azure-iot-edge-deployment-2.0.json": {
+    "hash": "0470fece2144520043a259102c1303e9e4ac7a3d4b675710087887762640d1a3",
+    "version": "0.0.1"
+  },
   "azure-iot-edge-deployment-template-1.0.json": {
     "hash": "45ea7c1da24505be2c6e4c9625bd68c210037524b81022cbecc982958985d667",
+    "version": "0.0.1"
+  },
+  "azure-iot-edge-deployment-template-2.0.json": {
+    "hash": "790b2b020aaa9d2b6ad9dd12e4b0870e8de75b5dcce6c944973f485b9114d07a",
     "version": "0.0.1"
   },
   "backportrc.json": {
@@ -76,8 +84,8 @@
     "version": "1.0.1"
   },
   "coffeelint.json": {
-    "hash": "d5e5e50d25bf207a8f6e4496868a5439312b8636f4882342de72421b70d7e8e6",
-    "version": "0.0.1"
+    "hash": "48ad0f2ab5b57fd08f22cfe8b0c2297d0ce0650bba618702c85edc7fa1021b6b",
+    "version": "0.0.2"
   },
   "commands.json": {
     "hash": "2eb3effcf1c8f0f27457e000053688580cedd7519f9c01a37348b8585fc9a369",
@@ -209,6 +217,10 @@
   },
   "host-meta.json": {
     "hash": "716762792e3a5e3f3d68f50eb7829b06979582e262c3a34617f5c9422d95315f",
+    "version": "0.0.1"
+  },
+  "husky.json": {
+    "hash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
     "version": "0.0.1"
   },
   "imageoptimizer.json": {
@@ -428,8 +440,8 @@
     "version": "0.0.3"
   },
   "schema-catalog.json": {
-    "hash": "b7ba9aea97d38e0dbf9a52153627d4339c73efd1e8865749fadf4eb236c9c321",
-    "version": "0.0.1"
+    "hash": "7bbeef14515177f2b22c15f76c8ce097260f34c3f6725e95da5c667dafff954a",
+    "version": "0.0.2"
   },
   "schema-draft-v4.json": {
     "hash": "4ac3fdcf0206cb602f566289543696bd37655c6596b07677d139d9475583a8d5",
@@ -486,6 +498,10 @@
   "tslint.json": {
     "hash": "87cf0f8d7fd70fdd99af9f411e57999e97a2c42cc1eed6a981f6d139b80a2f9b",
     "version": "0.0.3"
+  },
+  "typedoc.json": {
+    "hash": "bfb07019b96b3b85c98ad0c05ce34e401eca8b3375aac83b994b139ac2978168",
+    "version": "0.0.1"
   },
   "typewiz.json": {
     "hash": "747458f24c4d9146c57de79f971705164b22eaeefc3642ba364b3c6c770492e1",
