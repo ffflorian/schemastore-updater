@@ -8,12 +8,14 @@ A tool to load schema files from [@SchemaStore/schemastore](https://github.com/S
 Usage: schemastore-updater [options] [command]
 
 Options:
-  -V, --version          output the version number
-  -s, --settings <file>  Specify a settings file
-  -h, --help             output usage information
+  -V, --version           output the version number
+  -s, --settings <file>   Specify a settings file (default: "settings.json")
+  -d, --source-dir <dir>  Specify a source dir (will disable cloning)
+  -h, --help              output usage information
 
 Commands:
   update [options]
+  check-disabled
   version-check
 ```
 

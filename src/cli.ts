@@ -20,7 +20,7 @@ program
   .version(version)
   .description(description)
   .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
-  .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning');
+  .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)');
 
 const settingsFile = program.settings ? path.resolve(program.settings) : path.join(__dirname, '../settings.json');
 
