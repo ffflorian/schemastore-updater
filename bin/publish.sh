@@ -2,8 +2,6 @@
 
 UPDATE_FILE="updated_files"
 
-set -e
-
 cd "${0%/*}/../" || exit 1
 
 if ! command -v "npm" > /dev/null; then
