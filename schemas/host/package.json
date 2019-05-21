@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for host.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/host",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/host",
+  "scripts": {},
+  "typesPublisherContentHash": "237ebff48e6532c8a94bab421a871a7eb117320c0a60a893def5601a47cd597d",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

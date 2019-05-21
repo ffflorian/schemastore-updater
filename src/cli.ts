@@ -3,7 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import {SchemaGenerator} from './';
-import {FileSettings} from './interfaces';
+import {FileSettings, SchemaGeneratorOptions} from './interfaces';
 
 const {
   description,
@@ -19,19 +19,34 @@ program
   .name(name)
   .version(version)
   .description(description)
-  .option('-s, --settings <file>', 'Specify a settings file', 'settings.json');
+  .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
+  .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning');
 
 const settingsFile = program.settings ? path.resolve(program.settings) : path.join(__dirname, '../settings.json');
 
 program
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
-  .action(parent => {
-    return update(parent.force).catch(error => {
+  .action(async parent => {
+    try {
+      const settings = await fs.readJSON(settingsFile);
+      await update({...settings, force: parent.force, source: parent.source});
+      await checkDisabled(settings);
+    } catch (error) {
       console.error(`Error: ${error.message}`);
       process.exit(1);
-    });
+    }
   });
+
+program.command('check-disabled').action(async parent => {
+  try {
+    const settings = await fs.readJSON(settingsFile);
+    await checkDisabled({...settings, force: parent.force});
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+});
 
 program.command('version-check').action(() => {
   return fs
@@ -53,14 +68,13 @@ if (!program.args.length) {
   process.exit();
 }
 
-async function update(force?: boolean): Promise<void> {
-  const settings: FileSettings = await fs.readJSON(settingsFile);
+async function update(settings: Required<SchemaGeneratorOptions>): Promise<void> {
   const settingsDir = path.resolve(path.dirname(settingsFile));
 
-  const generator = new SchemaGenerator({...settings, force});
+  const generator = new SchemaGenerator(settings);
   await generator.checkVersions();
 
-  const {disabledSchemas: newDisabledSchemas, generatedSchemas} = await generator.generate();
+  const {disabledSchemas: newDisabledSchemas, generatedSchemas} = await generator.generateAll();
 
   if (generatedSchemas.length) {
     console.log('Generated schemas:', generatedSchemas);
@@ -71,6 +85,26 @@ async function update(force?: boolean): Promise<void> {
   await fs.writeFile(path.join(settingsDir, 'updated_files'), generatedSchemas.join('\n'));
 
   if (newDisabledSchemas.length) {
-    console.log(`You should consider disabling these schemas: "${newDisabledSchemas.join(', ')}"`);
+    console.log(`These schemas will be disabled: "${newDisabledSchemas.join(', ')}"`);
+
+    settings.disabledSchemas = settings.disabledSchemas.concat(newDisabledSchemas).sort();
+    await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
+  }
+}
+
+async function checkDisabled(settings: FileSettings): Promise<void> {
+  const generator = new SchemaGenerator(settings);
+  await generator.checkVersions();
+
+  const {enabledSchemas} = await generator.checkDisabled();
+
+  if (enabledSchemas.length) {
+    console.log('Enabled schemas:', enabledSchemas);
+    const enabledSchemaFiles = enabledSchemas.map(schema => `${schema}.json`);
+    settings.disabledSchemas = settings.disabledSchemas.filter(schema => !enabledSchemaFiles.includes(schema)).sort();
+
+    await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
+  } else {
+    console.log('No schemas generated.');
   }
 }

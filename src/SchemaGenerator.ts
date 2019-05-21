@@ -7,20 +7,17 @@ import * as path from 'path';
 import * as semver from 'semver';
 import * as simpleGit from 'simple-git/promise';
 
-import {BuildResult, FileSettings, SchemaData, SchemaHashes} from './interfaces';
-
-interface SchemaGeneratorOptions extends Partial<FileSettings> {
-  force?: boolean;
-}
+import {BuildResult, CheckResult, SchemaData, SchemaGeneratorOptions, SchemaHashes} from './interfaces';
 
 const defaultOptions: Required<SchemaGeneratorOptions> = {
   disabledSchemas: [],
   force: false,
   lockFile: 'schemas/json-schemas.lock',
   schemaStoreRepo: 'https://github.com/SchemaStore/schemastore',
+  source: '',
 };
 
-class SchemaGenerator {
+export class SchemaGenerator {
   private readonly git: simpleGit.SimpleGit;
   private readonly jsonSchemasDir: string;
   private readonly logger: logdown.Logger;
@@ -34,7 +31,9 @@ class SchemaGenerator {
       ...options,
     };
     this.git = simpleGit('.');
-    this.schemaStoreDirResolved = path.join('temp/schemastore');
+    this.schemaStoreDirResolved = this.options.source
+      ? path.resolve(this.options.source)
+      : path.join('temp/schemastore');
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
     this.logger = logdown('schemastore-updater/SchemaGenerator', {
@@ -205,24 +204,19 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     }
   }
 
-  public async generate(): Promise<BuildResult> {
-    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+  public async checkDisabled(): Promise<CheckResult> {
+    if (!this.options.source) {
+      await this.removeAndClone();
+    }
 
-    await this.removeAndClone();
-    const allFiles = await fs.readdir(this.jsonSchemasDir);
+    const {disabledSchemas, generatedSchemas} = await this.generate(this.options.disabledSchemas);
+    return {disabledSchemas, enabledSchemas: generatedSchemas};
+  }
 
-    const jsonFiles = allFiles.filter(fileName => {
-      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
-      return fileName.endsWith('.json') && !schemaIsDisabled;
-    });
-
-    this.logger.info(
-      `Loaded ${jsonFiles.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
-    );
-
+  private async generateHashes(schemas: string[]): Promise<Record<string, string>> {
     const fileHashes: Record<string, string> = {};
 
-    for (const fileName of jsonFiles) {
+    for (const fileName of schemas) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       const fileIsReadable = await this.fileIsReadable(fileNameResolved);
 
@@ -239,6 +233,10 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       }
     }
 
+    return fileHashes;
+  }
+
+  private async bumpVersions(fileHashes: Record<string, string>, lockFileData: SchemaHashes): Promise<SchemaHashes> {
     const updatedHashes: SchemaHashes = {};
 
     for (const fileName in fileHashes) {
@@ -265,6 +263,32 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       }
     }
 
+    return updatedHashes;
+  }
+
+  public async generateAll(): Promise<BuildResult> {
+    if (!this.options.source) {
+      await this.removeAndClone();
+    }
+    const allFiles = await fs.readdir(this.jsonSchemasDir);
+
+    const enabledSchemas = allFiles.filter(fileName => {
+      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
+      return fileName.endsWith('.json') && !schemaIsDisabled;
+    });
+
+    this.logger.info(
+      `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
+    );
+
+    return this.generate(enabledSchemas);
+  }
+
+  public async generate(enabledSchemas: string[]): Promise<BuildResult> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    const fileHashes = await this.generateHashes(enabledSchemas);
+    const updatedHashes = await this.bumpVersions(fileHashes, lockFileData);
+
     const {disabledSchemas, generatedSchemas} = await this.generateSchemas(updatedHashes);
 
     await this.generateLockFile(this.lockFile, lockFileData);
@@ -275,5 +299,3 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     };
   }
 }
-
-export {SchemaGenerator};

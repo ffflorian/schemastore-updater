@@ -1,4 +1,36 @@
 {
+  "ansible-stable-2.0.json": {
+    "hash": "b33b8221edb665580d7c20c0ee202c5cca03de76a340ad6e9b37669ec02161bf",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.1.json": {
+    "hash": "c772b4d950a2bc3b499b9a93b4055438d0aa88052fe09067b8ada3f23d36ed83",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.2.json": {
+    "hash": "7eac33b48495425b4f36522b9201cbc8e383285a6498bc6bc0fcc7b703bcc321",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.3.json": {
+    "hash": "4bab8bc733c9f17b676374c04fe5a0686030fcc198254e8ebf47664b9b0ee991",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.4.json": {
+    "hash": "e55d772e959b710b6c1755f666d470243ca65e7ce9714febdadcc1c514817015",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.5.json": {
+    "hash": "b997a549bcae4b4dfcaec26ca823169ccf4a054412563d2326fef2cdb5d9bfa6",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.6.json": {
+    "hash": "dabd2782f49c40e2ae8509b0d0a5d065480bafa0d0ce4e78d96aff122a0be134",
+    "version": "0.0.1"
+  },
+  "ansible-stable-2.7.json": {
+    "hash": "c8beecf49e29543246fd934a3844f0a10132849c1436c50611331086359d33dd",
+    "version": "0.0.1"
+  },
   "apple-app-site-association.json": {
     "hash": "d1da9db0aee3fe4654cea271ab950d2de3d46b0d9e6fb6866738abfefc7fc601",
     "version": "0.0.2"
@@ -39,6 +71,10 @@
     "hash": "790b2b020aaa9d2b6ad9dd12e4b0870e8de75b5dcce6c944973f485b9114d07a",
     "version": "0.0.2"
   },
+  "babelrc.json": {
+    "hash": "99df9a6e41f1f8bcaf3d1f0257e7622d699c32e60c7f08ef17c28eed1c8e363f",
+    "version": "0.0.1"
+  },
   "backportrc.json": {
     "hash": "30d6ad5ce816f384a92ab1c1981b212606f08fede3696fa0b4c3736882ed9117",
     "version": "0.0.2"
@@ -46,6 +82,10 @@
   "band-manifest.json": {
     "hash": "8bf40d13d08df73a4961cdcada0adb356af4ef43d3a8368d829ab262379e0b77",
     "version": "0.0.2"
+  },
+  "bootstraprc.json": {
+    "hash": "bb109d6051629d0351b97a20cf9f5856a8788ab6597a3ba6fa9d8b1f5129c62e",
+    "version": "0.0.1"
   },
   "bower.json": {
     "hash": "b4135f9f8dee2354b01e18cf5bd41f642dd497f13757278691a8787ea8178687",
@@ -71,6 +111,10 @@
     "hash": "782ee73bfded5335de76d2e77cd0a6e8b0477467b3a19cf7ff458e292062c363",
     "version": "1.0.2"
   },
+  "chrome-manifest.json": {
+    "hash": "60260edd452575cb9984e1cc6d65968f84523a6c86f1b1326b5fddb46297f2eb",
+    "version": "0.0.1"
+  },
   "chutzpah.json": {
     "hash": "b0740a0b315f1553e3ca972b383070cb06f48ec03dceddee4ac9fb367ada4041",
     "version": "0.0.3"
@@ -78,6 +122,10 @@
   "circleciconfig.json": {
     "hash": "2ab2e273831ec7a0f48bf2277aee7825ea519fd583dcded4cf3ebb34f576c111",
     "version": "0.0.4"
+  },
+  "cirrus.json": {
+    "hash": "e5dc2d051dab582fa61655f16d75dd1ba9a9a9ca2e00cc1019a111fc4e96a43c",
+    "version": "0.0.1"
   },
   "clasp.json": {
     "hash": "e54d46c347f1a6e2150e8a07806e02feb88d34a634a26a48fa7a481eaa85e111",
@@ -90,6 +138,10 @@
   "commands.json": {
     "hash": "2eb3effcf1c8f0f27457e000053688580cedd7519f9c01a37348b8585fc9a369",
     "version": "0.0.2"
+  },
+  "compilerconfig.json": {
+    "hash": "53b03e57efcf43f9571de2a2d43d98a4ad21651ec0cc4444ef1d34afd3b6a98e",
+    "version": "0.0.1"
   },
   "compilerdefaults.json": {
     "hash": "b400c5764e21695d23dea02f2ae0033d7f7f2b754bc4b24e6c1c65f359f2be9f",
@@ -106,6 +158,10 @@
   "config.json": {
     "hash": "4f1355753e0437db08baca6a00ffbc9dac70fd59e6b6e1ea3a071504d03112bc",
     "version": "0.0.2"
+  },
+  "content-security-policy-report-2.json": {
+    "hash": "f0a2450f31d215e50ed36a6b609fd13ebc81e172585eab3ce2a93918d7341881",
+    "version": "0.0.1"
   },
   "contribute.json": {
     "hash": "a6b38c35b223e3477ce2616e5864f6b20a586ef1560ef4d7110d2eb72779c50f",
@@ -159,6 +215,10 @@
     "hash": "78cd337254d9dc8505c2369cef53df23312013d20721b5d940c382318f7d0ea3",
     "version": "0.0.2"
   },
+  "docfx.json": {
+    "hash": "e15deea54af1687064b3eb429c52ae1368c8f77c34c01b7bc515c5b19d28af7e",
+    "version": "0.0.1"
+  },
   "dotnetcli.host.json": {
     "hash": "7ebbaaebfde9e9e6248e7384a74aba84407cdace898693d0118f21788f721300",
     "version": "0.0.2"
@@ -167,6 +227,10 @@
     "hash": "65a5fa96b9f2165f3b094f2affc7f7b7102df40ed09a1cb66c64eb0563c0b064",
     "version": "0.0.2"
   },
+  "eslintrc.json": {
+    "hash": "96334ccd6953b500114b673d486e8d8125b459b7d9c293a901d1fdfee4c6ad7a",
+    "version": "0.0.1"
+  },
   "feed.json": {
     "hash": "a389782e8583e8d91e99848441b3febb930716b851c0b157f8dcb1095de0122f",
     "version": "0.0.2"
@@ -174,6 +238,10 @@
   "foxx-manifest.json": {
     "hash": "2ae59f64f7b5d8563a8f010a3722d2d6507985847ff2a2f6cad47a00820bad61",
     "version": "0.0.2"
+  },
+  "function.json": {
+    "hash": "fc7403ded84c3417fcf3c12dd2542b0435232edd07ab9289b226a799ddfef7e6",
+    "version": "0.0.1"
   },
   "geojson.json": {
     "hash": "f3dda50f235e2dcde73f3c165c0001f17a52d26d63b27eb8f86e10152ea0dbb9",
@@ -219,6 +287,14 @@
     "hash": "716762792e3a5e3f3d68f50eb7829b06979582e262c3a34617f5c9422d95315f",
     "version": "0.0.2"
   },
+  "host.json": {
+    "hash": "237ebff48e6532c8a94bab421a871a7eb117320c0a60a893def5601a47cd597d",
+    "version": "0.0.1"
+  },
+  "htmlhint.json": {
+    "hash": "82ac4bf61b8ff463fec534fc35df0f0bde2f6bf1adcd297452a70b28655b04dd",
+    "version": "0.0.1"
+  },
   "husky.json": {
     "hash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
     "version": "0.0.2"
@@ -250,6 +326,10 @@
   "jsconfig.json": {
     "hash": "f15ed0e25a8c5b61d509e7b2c108660d479ce066af785789d38d37ecbe101bdc",
     "version": "0.0.3"
+  },
+  "jscsrc.json": {
+    "hash": "587855da664fed0ce8d52087da3f42a815911575edfe31c5b711856929042d07",
+    "version": "0.0.1"
   },
   "jshintrc.json": {
     "hash": "2524aa8334e0c62648b83d95fc5089d0505857f7c44c5925621dc01a670bcbeb",
@@ -295,13 +375,21 @@
     "hash": "1b515c9a885280ac8f0044dab7197d442c23cdb3a3cebb82a006ea6caad14c9e",
     "version": "0.0.2"
   },
-  "lsdlschema.json": {
-    "hash": "d960698f0f3df95b61adbe2e9302001cdf81df42b1fbb26059eb3735f1a29a96",
+  "lsdlschema-1.0.json": {
+    "hash": "a08dd3aa85facd9099b0ba3d2b7d6cb874b7091c7004fd9671631b0e3b56e279",
     "version": "0.0.1"
+  },
+  "lsdlschema.json": {
+    "hash": "6773fcc8c5f90510957c24bbf4f86551936fb376984f3868eff093932a25dc4a",
+    "version": "0.0.2"
   },
   "mimetypes.json": {
     "hash": "9c382b6b856eb1410a7be9fd9f7ec54b9ecb61656c6e8f5a9b6f7e1c1013c368",
     "version": "0.0.2"
+  },
+  "modernizrrc.json": {
+    "hash": "9b21068b376810d4c09d05e66e7d0fa27e9a62e9ba13d965956bc7c2ddcbb7cf",
+    "version": "0.0.1"
   },
   "mycode.json": {
     "hash": "5b0590053500046ce46c1ab6ddb300e5c38a934024b177c2222d737dea304c9d",
@@ -375,6 +463,10 @@
     "hash": "ee4bd185e2e73e999d992bcb89c3a1344f8db20af5cb6d4948784966c531fd7e",
     "version": "0.0.2"
   },
+  "pocketmine-plugin.json": {
+    "hash": "ba4cdaf53d6f28eed6ea2498a2bd71ad02c52aebe92dad5947fa14543be9fd5c",
+    "version": "0.0.1"
+  },
   "prettierrc-1.8.2.json": {
     "hash": "3752212c2514117b36737748b21e7210538acd3adf7623b7500db1b968648432",
     "version": "0.0.2"
@@ -391,6 +483,10 @@
     "hash": "a23a61bb548ab86b9ee0b8f894cf42b90403e798e491fab68b65a2774673d2e2",
     "version": "0.0.2"
   },
+  "project-1.0.0-beta4.json": {
+    "hash": "64285c3df73272047bf6d7386cf4d87ad671aacff305fa89ae1ae5663b14f123",
+    "version": "0.0.1"
+  },
   "project-1.0.0-beta5.json": {
     "hash": "8f5180caf21f275428c6dedacc37262110470305e26ff6f25c88d48ab4490261",
     "version": "0.0.2"
@@ -398,6 +494,26 @@
   "project-1.0.0-beta6.json": {
     "hash": "b3f289799d54cb31db1f32183b7c2be92e109c00109cf5ff71ff562334ebb0cf",
     "version": "0.0.2"
+  },
+  "project-1.0.0-beta8.json": {
+    "hash": "dbf565576df0608e68e2d0838401802b5d62a9ee5fdda597c07bb3b1dfd584b3",
+    "version": "0.0.1"
+  },
+  "project-1.0.0-rc1.json": {
+    "hash": "d6bfe69cc18fca2a9f74c0b20d18ea7f4232ad4248417cc94e8aceed02a3ffb6",
+    "version": "0.0.1"
+  },
+  "project-1.0.0-rc2.json": {
+    "hash": "6f2585e6f8303bafd90f6c93bed9c2b35ea142dac408761830e24e0a06f8367d",
+    "version": "0.0.1"
+  },
+  "project.json": {
+    "hash": "a7e5136894f6a3f352aad341d332c82f30beb31d9de04b94bc92980fec8be079",
+    "version": "0.0.1"
+  },
+  "proxies.json": {
+    "hash": "be3fd3279da487008e3f36a90dc7acbc181bb9ea364e4a5689f8fe19d8282190",
+    "version": "0.0.1"
   },
   "pyrseas-0.8.json": {
     "hash": "f72a2f6148f313520f86b15c7537c25b4e7c1b85cb8f7bc423f57220bb308f86",
@@ -447,6 +563,22 @@
     "hash": "4ac3fdcf0206cb602f566289543696bd37655c6596b07677d139d9475583a8d5",
     "version": "0.0.2"
   },
+  "schema-org-action.json": {
+    "hash": "3d724ac446abd13c22804d9fa3d00725ce3f7464309a1527423f917c3e7e6e47",
+    "version": "0.0.1"
+  },
+  "schema-org-contact-point.json": {
+    "hash": "4b75c0056f94a760fc181cdc783bd482bbe4c1d641ddc48ce820f1cc9d0a18c1",
+    "version": "0.0.1"
+  },
+  "schema-org-place.json": {
+    "hash": "fc8eee9c99a70e88830545cdf98dccc45f443d06d6495ab64348771f00327dde",
+    "version": "0.0.1"
+  },
+  "schema-org-thing.json": {
+    "hash": "67a1a7c5349feac1e8e1bb6853b2b93914c4ea6eb7d1aa9de8343fc2bc8eac98",
+    "version": "0.0.1"
+  },
   "settings.job.json": {
     "hash": "df461dc130e39b4d20cde2db0a279966afa6820e7d05eb855acfb6d53de8e6d2",
     "version": "0.0.2"
@@ -467,6 +599,10 @@
     "hash": "cfb6f6e7f3d99b37c9f4fb9b0e498b9166ebda4a59ffb21d91a8dfd417369458",
     "version": "0.0.2"
   },
+  "stylintrc.json": {
+    "hash": "e5459f17ae0adb3e72dfd542c199b01e8a90acb2dde678399e5f7278839f0bd1",
+    "version": "0.0.1"
+  },
   "swagger-2.0.json": {
     "hash": "b36871c8016292c5e66dd3b203e69aeff98bfef97e0b3c67c1909036095586a5",
     "version": "0.0.2"
@@ -474,6 +610,14 @@
   "template.json": {
     "hash": "ab60804fb68e7e1c9d2120dd82e21c6d7ff3ed9aec73df6efeb9dc617912a9ed",
     "version": "0.0.2"
+  },
+  "templatesources.json": {
+    "hash": "67d9444da899b52138b8491f871ee5f513eede337a3aaf964d2fac3ad68a5e22",
+    "version": "0.0.1"
+  },
+  "toolinfo.1.1.0.json": {
+    "hash": "2ac8092b86a5a4a11b00b04fad8df9e037d8e077a6a5a8be9494574085bfe55a",
+    "version": "0.0.1"
   },
   "travis.json": {
     "hash": "bf994f93c01551a33a7926fc98f8147a46eab08dea150e3bd7939d27bbbbd5c2",
@@ -507,6 +651,14 @@
     "hash": "747458f24c4d9146c57de79f971705164b22eaeefc3642ba364b3c6c770492e1",
     "version": "0.0.2"
   },
+  "typings.json": {
+    "hash": "0f32f8d1be86efb73afa8ee5bb936884bcabe9f2411a06a87aa26995b25c4143",
+    "version": "0.0.1"
+  },
+  "typingsrc.json": {
+    "hash": "776174b3533248323c84af0df8b2b3a951d1c8a01a204eeea3b5470ab3db3175",
+    "version": "0.0.1"
+  },
   "ui5-manifest.json": {
     "hash": "137540bae419736bacffb02510de34525fc841411105576a99d405633578a169",
     "version": "0.0.2"
@@ -514,6 +666,14 @@
   "up.json": {
     "hash": "36c215b32cba171aa92736ac6dbd23125e7b67709b19fb22dfa575ad1499c4f7",
     "version": "0.0.2"
+  },
+  "vega-lite.json": {
+    "hash": "0bd3b729358da93d8a6849612cf8c9e97dce453039ef53d2a0f96f2518bc3c4c",
+    "version": "0.0.1"
+  },
+  "vega.json": {
+    "hash": "802f5f75daf5b97e7d517c80b5f5239b1cdc766fe4edb30509257d134a7e8318",
+    "version": "0.0.1"
   },
   "vs-2017.3.host.json": {
     "hash": "e46bdf556074586d3b0a39871f3456e24a29805709c60805739d7f5a3a4a411b",
