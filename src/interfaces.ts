@@ -19,6 +19,7 @@ export interface SchemaHashes {
 }
 
 export interface SchemaData {
+  disabled: boolean;
   hash: string;
   version: string;
 }

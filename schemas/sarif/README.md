@@ -8,5 +8,5 @@ This package contains type definitions for sarif.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sarif.
 
 ## Additional Details
-* Last updated: Tue, May 21, 2019, 11:24:55 GMT
+* Last updated: Thu, May 23, 2019, 11:10:48 GMT
 * Dependencies: none

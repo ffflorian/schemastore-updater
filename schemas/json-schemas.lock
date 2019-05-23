@@ -1,725 +1,916 @@
 {
   "ansible-stable-2.0.json": {
+    "disabled": false,
     "hash": "b33b8221edb665580d7c20c0ee202c5cca03de76a340ad6e9b37669ec02161bf",
     "version": "0.0.1"
   },
   "ansible-stable-2.1.json": {
+    "disabled": false,
     "hash": "c772b4d950a2bc3b499b9a93b4055438d0aa88052fe09067b8ada3f23d36ed83",
     "version": "0.0.1"
   },
   "ansible-stable-2.2.json": {
+    "disabled": false,
     "hash": "7eac33b48495425b4f36522b9201cbc8e383285a6498bc6bc0fcc7b703bcc321",
     "version": "0.0.1"
   },
   "ansible-stable-2.3.json": {
+    "disabled": false,
     "hash": "4bab8bc733c9f17b676374c04fe5a0686030fcc198254e8ebf47664b9b0ee991",
     "version": "0.0.1"
   },
   "ansible-stable-2.4.json": {
+    "disabled": false,
     "hash": "e55d772e959b710b6c1755f666d470243ca65e7ce9714febdadcc1c514817015",
     "version": "0.0.1"
   },
   "ansible-stable-2.5.json": {
+    "disabled": false,
     "hash": "b997a549bcae4b4dfcaec26ca823169ccf4a054412563d2326fef2cdb5d9bfa6",
     "version": "0.0.1"
   },
   "ansible-stable-2.6.json": {
+    "disabled": false,
     "hash": "dabd2782f49c40e2ae8509b0d0a5d065480bafa0d0ce4e78d96aff122a0be134",
     "version": "0.0.1"
   },
   "ansible-stable-2.7.json": {
+    "disabled": false,
     "hash": "c8beecf49e29543246fd934a3844f0a10132849c1436c50611331086359d33dd",
     "version": "0.0.1"
   },
   "apple-app-site-association.json": {
+    "disabled": false,
     "hash": "d1da9db0aee3fe4654cea271ab950d2de3d46b0d9e6fb6866738abfefc7fc601",
     "version": "0.0.2"
   },
   "appsettings.json": {
+    "disabled": false,
     "hash": "6c8f46ced6ba7bbe1b409ce0820d1efa07ac470cda85e0499e3d91731b718295",
     "version": "0.0.3"
   },
   "appsscript.json": {
+    "disabled": false,
     "hash": "fbda3d5759ccc38fc9f29065be9af185f3fbcbe286ff79fb3c6956fe1e0781bb",
     "version": "1.0.3"
   },
   "appveyor.json": {
+    "disabled": false,
     "hash": "0fb82917d98d5fe7e8cbff29063d88f1eb5157174766a9ed280cc18afa5fbf86",
     "version": "0.0.4"
   },
   "asmdef.json": {
+    "disabled": false,
     "hash": "be3b413b9eefc1238b171cf4edfd007788cda38e9505cce9d48128a828f5eb05",
     "version": "0.0.2"
   },
   "avro-avsc.json": {
+    "disabled": false,
     "hash": "8984e4500c2b709e7613b56905214782b4ed8bc21909646560422e219aa1df03",
     "version": "0.0.2"
   },
   "azure-iot-edge-deployment-1.0.json": {
+    "disabled": false,
     "hash": "e25644dfdf4b8267cbd5e312d237abc4542eb1a1467d8c7fe2a0369bc4b1f284",
     "version": "0.0.2"
   },
   "azure-iot-edge-deployment-2.0.json": {
+    "disabled": false,
     "hash": "0470fece2144520043a259102c1303e9e4ac7a3d4b675710087887762640d1a3",
     "version": "0.0.2"
   },
   "azure-iot-edge-deployment-template-1.0.json": {
+    "disabled": false,
     "hash": "45ea7c1da24505be2c6e4c9625bd68c210037524b81022cbecc982958985d667",
     "version": "0.0.2"
   },
   "azure-iot-edge-deployment-template-2.0.json": {
+    "disabled": false,
     "hash": "790b2b020aaa9d2b6ad9dd12e4b0870e8de75b5dcce6c944973f485b9114d07a",
     "version": "0.0.2"
   },
   "babelrc.json": {
+    "disabled": false,
     "hash": "99df9a6e41f1f8bcaf3d1f0257e7622d699c32e60c7f08ef17c28eed1c8e363f",
     "version": "0.0.1"
   },
   "backportrc.json": {
+    "disabled": false,
     "hash": "30d6ad5ce816f384a92ab1c1981b212606f08fede3696fa0b4c3736882ed9117",
     "version": "0.0.2"
   },
   "band-manifest.json": {
+    "disabled": false,
     "hash": "8bf40d13d08df73a4961cdcada0adb356af4ef43d3a8368d829ab262379e0b77",
     "version": "0.0.2"
   },
   "bootstraprc.json": {
+    "disabled": false,
     "hash": "bb109d6051629d0351b97a20cf9f5856a8788ab6597a3ba6fa9d8b1f5129c62e",
     "version": "0.0.1"
   },
   "bower.json": {
+    "disabled": false,
     "hash": "b4135f9f8dee2354b01e18cf5bd41f642dd497f13757278691a8787ea8178687",
     "version": "0.0.2"
   },
   "bowerrc.json": {
+    "disabled": false,
     "hash": "2f7d10495534462e0dd85886d6aec88183dac0b71ecf5d7a9a5cab2adca4711a",
     "version": "0.0.2"
   },
   "bozr.json": {
+    "disabled": false,
     "hash": "1df26248def39755c4bd1665ef5a0fe89861ec7f74c0f890d081801c1c7d0e90",
     "version": "1.0.2"
   },
   "bukkit-plugin.json": {
+    "disabled": false,
     "hash": "5ef6e55e702d20431df4e88059bc3ba5edeb6902881174417c11fa16e501a3f0",
     "version": "1.0.2"
   },
   "bundleconfig.json": {
+    "disabled": false,
     "hash": "ffcb7b8e2b5767e4e0c24549ddfd95387739d1d0ed6c4fc1f4d9ff54833fa7d4",
     "version": "0.0.2"
   },
   "bungee-plugin.json": {
+    "disabled": false,
     "hash": "782ee73bfded5335de76d2e77cd0a6e8b0477467b3a19cf7ff458e292062c363",
     "version": "1.0.2"
   },
   "chrome-manifest.json": {
+    "disabled": false,
     "hash": "60260edd452575cb9984e1cc6d65968f84523a6c86f1b1326b5fddb46297f2eb",
     "version": "0.0.1"
   },
   "chutzpah.json": {
+    "disabled": false,
     "hash": "b0740a0b315f1553e3ca972b383070cb06f48ec03dceddee4ac9fb367ada4041",
     "version": "0.0.3"
   },
   "circleciconfig.json": {
+    "disabled": false,
     "hash": "2ab2e273831ec7a0f48bf2277aee7825ea519fd583dcded4cf3ebb34f576c111",
     "version": "0.0.4"
   },
   "cirrus.json": {
+    "disabled": false,
     "hash": "e5dc2d051dab582fa61655f16d75dd1ba9a9a9ca2e00cc1019a111fc4e96a43c",
     "version": "0.0.1"
   },
   "clasp.json": {
+    "disabled": false,
     "hash": "e54d46c347f1a6e2150e8a07806e02feb88d34a634a26a48fa7a481eaa85e111",
     "version": "1.0.2"
   },
   "coffeelint.json": {
+    "disabled": false,
     "hash": "48ad0f2ab5b57fd08f22cfe8b0c2297d0ce0650bba618702c85edc7fa1021b6b",
     "version": "0.0.3"
   },
   "commands.json": {
+    "disabled": false,
     "hash": "2eb3effcf1c8f0f27457e000053688580cedd7519f9c01a37348b8585fc9a369",
     "version": "0.0.2"
   },
   "compilerconfig.json": {
+    "disabled": false,
     "hash": "53b03e57efcf43f9571de2a2d43d98a4ad21651ec0cc4444ef1d34afd3b6a98e",
     "version": "0.0.1"
   },
   "compilerdefaults.json": {
+    "disabled": false,
     "hash": "b400c5764e21695d23dea02f2ae0033d7f7f2b754bc4b24e6c1c65f359f2be9f",
     "version": "0.0.2"
   },
   "component.json": {
+    "disabled": false,
     "hash": "51a6892f81a36f145f385bf6e589324976ba80a77eb7ff175334719f80bd0e39",
     "version": "0.0.3"
   },
   "composer.json": {
+    "disabled": false,
     "hash": "3f3c0079f16cccdbfab07b15a0c11afa6c1847d67102db6bafbe1a0e6292b524",
     "version": "0.0.3"
   },
   "config.json": {
+    "disabled": false,
     "hash": "4f1355753e0437db08baca6a00ffbc9dac70fd59e6b6e1ea3a071504d03112bc",
     "version": "0.0.2"
   },
   "content-security-policy-report-2.json": {
+    "disabled": false,
     "hash": "f0a2450f31d215e50ed36a6b609fd13ebc81e172585eab3ce2a93918d7341881",
     "version": "0.0.1"
   },
   "contribute.json": {
+    "disabled": false,
     "hash": "a6b38c35b223e3477ce2616e5864f6b20a586ef1560ef4d7110d2eb72779c50f",
     "version": "0.0.2"
   },
   "creatomic.json": {
+    "disabled": false,
     "hash": "80ce6ad83e9f2816eaaaa3cd55c619484c0af9ff75f61b7734067ef65767ae0d",
     "version": "0.0.2"
   },
   "cryproj.52.schema.json": {
+    "disabled": false,
     "hash": "7d67a2b09aca4bd931a756e26d7403ca45738a2c2944e4c0a2b70be1a9453180",
     "version": "0.0.2"
   },
   "cryproj.53.schema.json": {
+    "disabled": false,
     "hash": "3eb4a08caba9cd73dfda91e6c737d50690b1b0c6c827a8bcf8c857c45bbd22d3",
     "version": "0.0.2"
   },
   "cryproj.54.schema.json": {
+    "disabled": false,
     "hash": "a14d11a77b99448c3436e124f60cda54d805ae8ac4580caaab15c2da64bfbd5e",
     "version": "0.0.2"
   },
   "cryproj.55.schema.json": {
+    "disabled": false,
     "hash": "e175f04803886ed55313556dd49606bb4d76e31d8e115b56747bb966e699e700",
     "version": "0.0.2"
   },
   "cryproj.dev.schema.json": {
+    "disabled": false,
     "hash": "df369f19917345c422b6ce14d49b662ccaa8afd439a2c87972fcf7e73d0ce16e",
     "version": "0.0.2"
   },
   "cryproj.json": {
+    "disabled": false,
     "hash": "a9ddd43cf59b4a50fcbf5445754cccbe4f5210b289fad8c9139e55dd504147ae",
     "version": "0.0.2"
   },
   "csscomb.json": {
+    "disabled": false,
     "hash": "0bbd4d8c761c47a1e2047c18e36db88d911d62f73a628561682b991700e57408",
     "version": "0.0.2"
   },
   "csslintrc.json": {
+    "disabled": false,
     "hash": "11d1c8b64294a22c7da23b7fa83880d313f70e19624b01f9c01ad3c2915985fc",
     "version": "0.0.2"
   },
   "datalogic-scan2deploy-android.json": {
+    "disabled": false,
     "hash": "8cfbb23f857651d6970dd4d317d1521171aaf37afbb4e9dcc936194c28690127",
     "version": "0.0.2"
   },
   "datalogic-scan2deploy-ce.json": {
+    "disabled": false,
     "hash": "c431acb4646f01afced4ef72fbd0d57036e61276d7337752c2bc558943acd53c",
     "version": "0.0.2"
   },
   "debugsettings.json": {
+    "disabled": false,
     "hash": "78cd337254d9dc8505c2369cef53df23312013d20721b5d940c382318f7d0ea3",
     "version": "0.0.2"
   },
   "docfx.json": {
+    "disabled": false,
     "hash": "e15deea54af1687064b3eb429c52ae1368c8f77c34c01b7bc515c5b19d28af7e",
     "version": "0.0.1"
   },
   "dotnetcli.host.json": {
+    "disabled": false,
     "hash": "7ebbaaebfde9e9e6248e7384a74aba84407cdace898693d0118f21788f721300",
     "version": "0.0.2"
   },
   "epr-manifest.json": {
+    "disabled": false,
     "hash": "65a5fa96b9f2165f3b094f2affc7f7b7102df40ed09a1cb66c64eb0563c0b064",
     "version": "0.0.2"
   },
   "eslintrc.json": {
+    "disabled": false,
     "hash": "96334ccd6953b500114b673d486e8d8125b459b7d9c293a901d1fdfee4c6ad7a",
     "version": "0.0.1"
   },
   "feed.json": {
+    "disabled": false,
     "hash": "a389782e8583e8d91e99848441b3febb930716b851c0b157f8dcb1095de0122f",
     "version": "0.0.2"
   },
   "foxx-manifest.json": {
+    "disabled": false,
     "hash": "2ae59f64f7b5d8563a8f010a3722d2d6507985847ff2a2f6cad47a00820bad61",
     "version": "0.0.2"
   },
   "function.json": {
+    "disabled": false,
     "hash": "fc7403ded84c3417fcf3c12dd2542b0435232edd07ab9289b226a799ddfef7e6",
     "version": "0.0.1"
   },
   "geojson.json": {
+    "disabled": false,
     "hash": "f3dda50f235e2dcde73f3c165c0001f17a52d26d63b27eb8f86e10152ea0dbb9",
     "version": "0.0.2"
   },
   "gitlab-ci.json": {
+    "disabled": false,
     "hash": "28a812ca1ffb9ba257a7679a485784d9b77d09c74a14b1441fcb9f974d70e780",
     "version": "1.0.3"
   },
   "global.json": {
+    "disabled": false,
     "hash": "64cf7c6371614299da78997dc013cb399a45ea3ac54a9170ecb8cf421db9bc24",
     "version": "0.0.2"
   },
   "grunt-clean-task.json": {
+    "disabled": false,
     "hash": "37afe5dcf7a3ca70e0eb22105711ea27eed4ef95de49e26d0faa1896edaee70a",
     "version": "0.0.2"
   },
   "grunt-copy-task.json": {
+    "disabled": false,
     "hash": "356171b6258327a59e7637f27108dc40267e9d312c3a93d05dbdbf8d76fbbcb1",
     "version": "0.0.2"
   },
   "grunt-cssmin-task.json": {
+    "disabled": false,
     "hash": "384ff3a803ee681c607ff7473c9eed0a3d84fb35c7749fb8420d25f23060dd63",
     "version": "0.0.2"
   },
   "grunt-jshint-task.json": {
+    "disabled": false,
     "hash": "fec7f4acff2b231f230b95c5cb9def5f88491301f2b61134b2758a8d4fe7be11",
     "version": "0.0.2"
   },
   "grunt-task.json": {
+    "disabled": false,
     "hash": "1f7b2aa1b5efd6d393a6aba27e1081fdf9eb47644e2239b8e23538bd69537ab6",
     "version": "0.0.2"
   },
   "grunt-watch-task.json": {
+    "disabled": false,
     "hash": "7153813cb4386ebe95c2318f2f4eed402e6682ecf8f7e4e758bc35625354e42e",
     "version": "0.0.2"
   },
   "haxelib.json": {
+    "disabled": false,
     "hash": "f9b41c3e5055c523de781de41c3487c3f653853dbcb4b9a0ada759c1f04309af",
     "version": "0.0.2"
   },
   "host-meta.json": {
+    "disabled": false,
     "hash": "716762792e3a5e3f3d68f50eb7829b06979582e262c3a34617f5c9422d95315f",
     "version": "0.0.2"
   },
   "host.json": {
+    "disabled": false,
     "hash": "237ebff48e6532c8a94bab421a871a7eb117320c0a60a893def5601a47cd597d",
     "version": "0.0.1"
   },
   "htmlhint.json": {
+    "disabled": false,
     "hash": "82ac4bf61b8ff463fec534fc35df0f0bde2f6bf1adcd297452a70b28655b04dd",
     "version": "0.0.1"
   },
   "husky.json": {
+    "disabled": false,
     "hash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
     "version": "0.0.2"
   },
   "imageoptimizer.json": {
+    "disabled": false,
     "hash": "3d41f3e503b9567585d38ee28cfaf0c61f94299c3006fe381dcfc2712a43e27a",
     "version": "0.0.2"
   },
   "install.json": {
+    "disabled": false,
     "hash": "d87c11bdd3b3e257e57853d4800aa789334b541aa89665e92cb5852c3342c026",
     "version": "0.0.3"
   },
   "jasonette.json": {
+    "disabled": false,
     "hash": "c341e4a5c10a9e56b66cb4538bae085b3450cb7c0d3d4475b1e98a7debccbf63",
     "version": "0.0.2"
   },
   "jdt.json": {
+    "disabled": false,
     "hash": "814d7459bcda4346e1f8e2804f2297d20bf4278414e1a363b2c40a16b14e0351",
     "version": "0.0.2"
   },
   "jsbeautifyrc-nested.json": {
+    "disabled": false,
     "hash": "6f666ec1e506bbaad432254284cbad7f3c887ff0d4064fc802048246712eea86",
     "version": "0.0.2"
   },
   "jsbeautifyrc.json": {
+    "disabled": false,
     "hash": "aaec6f96a21849f226e40c28ca30ae69084e1ef1b2e874d253ac75494160ea99",
     "version": "0.0.2"
   },
   "jsconfig.json": {
+    "disabled": false,
     "hash": "f15ed0e25a8c5b61d509e7b2c108660d479ce066af785789d38d37ecbe101bdc",
     "version": "0.0.3"
   },
   "jscsrc.json": {
+    "disabled": false,
     "hash": "587855da664fed0ce8d52087da3f42a815911575edfe31c5b711856929042d07",
     "version": "0.0.1"
   },
   "jshintrc.json": {
+    "disabled": false,
     "hash": "2524aa8334e0c62648b83d95fc5089d0505857f7c44c5925621dc01a670bcbeb",
     "version": "0.0.3"
   },
   "jsinspectrc.json": {
+    "disabled": false,
     "hash": "7f5e226b76b71a3f11cd1bee1b92f7cd9d9e354ffa700aab7cd942d7ca7f6bd7",
     "version": "0.0.2"
   },
   "json-api-1.0.json": {
+    "disabled": false,
     "hash": "f0e55377dde5efc3c236c9c79d72ea4f59d120096ac4b5f0aeceda5a069d596c",
     "version": "0.0.2"
   },
   "json-patch.json": {
+    "disabled": false,
     "hash": "4abe3f9e2f5d3484e95fc2655fe1726ccc2bcc9cfc49e9dd686e76831c917b9a",
     "version": "0.0.2"
   },
   "jsonld.json": {
+    "disabled": false,
     "hash": "08460786d5403df9f125de2fdf41feeb7c3836ce5462e940e6b76d7d9c5b37e0",
     "version": "0.0.2"
   },
   "ksp-ckan-1.16.json": {
+    "disabled": false,
     "hash": "0ab843c8712c665792162532c0e687e6ada9abd8cf8025da4c27acfa45f4c177",
     "version": "0.0.2"
   },
   "ksp-ckan.json": {
+    "disabled": false,
     "hash": "edf5322ccdd63972d05bb0e589f7ab96bfcee1530c85cecc285d1b9ad070e4af",
     "version": "0.0.2"
   },
   "launchsettings.json": {
+    "disabled": false,
     "hash": "e5417eb29559164a9a6233b761efc3d97ee370d11fd80fa519bad5dac201e82b",
     "version": "0.0.2"
   },
   "libman.json": {
+    "disabled": false,
     "hash": "1230675101f80184c044c162eecfa6af1e83517cc80c03b53fcb6f92afaf90c8",
     "version": "0.0.2"
   },
   "licenses.1.json": {
+    "disabled": false,
     "hash": "0a0652cea53b76df324f0b916c9b57770b312e90d3b338785e654ed9bddcaa14",
     "version": "0.0.2"
   },
   "lsdlschema-0.7.json": {
+    "disabled": false,
     "hash": "1b515c9a885280ac8f0044dab7197d442c23cdb3a3cebb82a006ea6caad14c9e",
     "version": "0.0.2"
   },
   "lsdlschema-1.0.json": {
+    "disabled": false,
     "hash": "a08dd3aa85facd9099b0ba3d2b7d6cb874b7091c7004fd9671631b0e3b56e279",
     "version": "0.0.1"
   },
   "lsdlschema.json": {
+    "disabled": false,
     "hash": "6773fcc8c5f90510957c24bbf4f86551936fb376984f3868eff093932a25dc4a",
-    "version": "0.0.2"
+    "version": "0.0.1"
   },
   "mimetypes.json": {
+    "disabled": false,
     "hash": "9c382b6b856eb1410a7be9fd9f7ec54b9ecb61656c6e8f5a9b6f7e1c1013c368",
     "version": "0.0.2"
   },
   "modernizrrc.json": {
+    "disabled": false,
     "hash": "9b21068b376810d4c09d05e66e7d0fa27e9a62e9ba13d965956bc7c2ddcbb7cf",
     "version": "0.0.1"
   },
   "mycode.json": {
+    "disabled": false,
     "hash": "5b0590053500046ce46c1ab6ddb300e5c38a934024b177c2222d737dea304c9d",
     "version": "0.0.2"
   },
   "ninjs.json": {
+    "disabled": false,
     "hash": "15d10200cce962a8b7db907d80c016a4da3f353790ee3dbc94bad9ae411bebb1",
     "version": "0.0.2"
   },
   "nlu.json": {
+    "disabled": false,
     "hash": "4085ae872de074f028a24e0c57e097a129f55ec4ae09852096b9a001c99480ab",
     "version": "1.0.3"
   },
   "nodemon.json": {
+    "disabled": false,
     "hash": "4896ad84dceca2ed63f75343d3d919626c9935971c683f790e82ed432a80b368",
     "version": "0.0.2"
   },
   "npm-link-up.json": {
+    "disabled": false,
     "hash": "8a5c13e2f04ae7f519580b6f9ff9bc062cd66b544014c72d4a3e651d5cd43c29",
     "version": "0.0.3"
   },
   "npmpackagejsonlintrc.json": {
+    "disabled": false,
     "hash": "76e597df3783561b9bb2d2a7a8723257d90a8588b07abdcc4bcbba73881de2f6",
     "version": "0.0.2"
   },
   "nswag.json": {
+    "disabled": false,
     "hash": "e3a1321fd4e0294747bfaace9780a9ee507b1333184589ad3d2e0d6df14d4c10",
     "version": "0.0.2"
   },
   "nuget-project-3.3.0.json": {
+    "disabled": false,
     "hash": "2900e400cac9f005a760bab30049043a351b8cc7755e916cfad629b69e5df621",
     "version": "0.0.2"
   },
   "nuget-project.json": {
+    "disabled": false,
     "hash": "1703b54f4f54c3266457191842ad77b3b126cc6b38eae3e7b5e502fff6a409ce",
     "version": "0.0.2"
   },
   "ocelot.json": {
+    "disabled": false,
     "hash": "73929cf5c2a955b231204f5075374182403f14e8476c1eeb149b7f058a65455e",
     "version": "0.0.2"
   },
   "omnisharp.json": {
+    "disabled": false,
     "hash": "3dca75b20347a784f9e1d67aab73449ddf4bd9ea5a0a9a36d13a8d0b36cc867e",
     "version": "0.0.2"
   },
   "openfin.json": {
+    "disabled": false,
     "hash": "f9781c1ee738f718d8244c2c13f04abb924eaea9b36450d15d360fecf555606b",
     "version": "0.0.2"
   },
   "package.json": {
+    "disabled": false,
     "hash": "38ad59421753c65010f4cdc2fa61a30abfe53e39d70c6ffd1c894bafdcf27122",
     "version": "0.0.3"
   },
   "package.manifest-7.0.0.json": {
+    "disabled": false,
     "hash": "146942337290d037a7fbbfac1a3f13fba411594e2fccd56aa78ef3c176740c81",
     "version": "0.0.2"
   },
   "package.manifest-8.0.0.json": {
+    "disabled": false,
     "hash": "15ae5c55a14d2498d604b228fa92e8c71842891bd7404a770a38ed44493bd8b5",
     "version": "0.0.2"
   },
   "package.manifest.json": {
+    "disabled": false,
     "hash": "15ae5c55a14d2498d604b228fa92e8c71842891bd7404a770a38ed44493bd8b5",
     "version": "0.0.3"
   },
   "pattern.json": {
+    "disabled": false,
     "hash": "e88d724a4c9eb90d4d5a9d5a4cdb613841f045f3f1b83f46124a64c5beeed502",
     "version": "0.0.2"
   },
   "phraseapp.json": {
+    "disabled": false,
     "hash": "ee4bd185e2e73e999d992bcb89c3a1344f8db20af5cb6d4948784966c531fd7e",
     "version": "0.0.2"
   },
   "pocketmine-plugin.json": {
+    "disabled": false,
     "hash": "ba4cdaf53d6f28eed6ea2498a2bd71ad02c52aebe92dad5947fa14543be9fd5c",
     "version": "0.0.1"
   },
   "prettierrc-1.8.2.json": {
+    "disabled": false,
     "hash": "3752212c2514117b36737748b21e7210538acd3adf7623b7500db1b968648432",
     "version": "0.0.2"
   },
   "prettierrc.json": {
+    "disabled": false,
     "hash": "74dfd7e230ae27d923f634b369ff19d052a3ed6e038db3367119e2bca79acd80",
     "version": "0.0.4"
   },
   "prisma.json": {
+    "disabled": false,
     "hash": "d9ef9e2453c3160a2e1fbc302bbe9509e1d4435f96e1e959f9b3e2939709ad23",
     "version": "0.0.3"
   },
   "project-1.0.0-beta3.json": {
+    "disabled": false,
     "hash": "a23a61bb548ab86b9ee0b8f894cf42b90403e798e491fab68b65a2774673d2e2",
     "version": "0.0.2"
   },
   "project-1.0.0-beta4.json": {
+    "disabled": false,
     "hash": "64285c3df73272047bf6d7386cf4d87ad671aacff305fa89ae1ae5663b14f123",
     "version": "0.0.1"
   },
   "project-1.0.0-beta5.json": {
+    "disabled": false,
     "hash": "8f5180caf21f275428c6dedacc37262110470305e26ff6f25c88d48ab4490261",
     "version": "0.0.2"
   },
   "project-1.0.0-beta6.json": {
+    "disabled": false,
     "hash": "b3f289799d54cb31db1f32183b7c2be92e109c00109cf5ff71ff562334ebb0cf",
     "version": "0.0.2"
   },
   "project-1.0.0-beta8.json": {
+    "disabled": false,
     "hash": "dbf565576df0608e68e2d0838401802b5d62a9ee5fdda597c07bb3b1dfd584b3",
     "version": "0.0.1"
   },
   "project-1.0.0-rc1.json": {
+    "disabled": false,
     "hash": "d6bfe69cc18fca2a9f74c0b20d18ea7f4232ad4248417cc94e8aceed02a3ffb6",
     "version": "0.0.1"
   },
   "project-1.0.0-rc2.json": {
+    "disabled": false,
     "hash": "6f2585e6f8303bafd90f6c93bed9c2b35ea142dac408761830e24e0a06f8367d",
     "version": "0.0.1"
   },
   "project.json": {
+    "disabled": false,
     "hash": "a7e5136894f6a3f352aad341d332c82f30beb31d9de04b94bc92980fec8be079",
     "version": "0.0.1"
   },
   "proxies.json": {
+    "disabled": false,
     "hash": "be3fd3279da487008e3f36a90dc7acbc181bb9ea364e4a5689f8fe19d8282190",
     "version": "0.0.1"
   },
   "pyrseas-0.8.json": {
+    "disabled": false,
     "hash": "f72a2f6148f313520f86b15c7537c25b4e7c1b85cb8f7bc423f57220bb308f86",
     "version": "0.0.2"
   },
   "renovate.json": {
+    "disabled": false,
     "hash": "7c42db2789bc7fc7cc01e1ff285891355b3bc4a26e7a8fa9f3d582be3e901473",
     "version": "0.0.3"
   },
   "resjson.json": {
+    "disabled": false,
     "hash": "f268c7820133f09c68c0599a1adce555255aa93e27f0ddb8c54c69da1e254f3f",
     "version": "0.0.2"
   },
   "resume.json": {
+    "disabled": false,
     "hash": "eb8a83b073f722118788c1f631d82e0adb5207268475582c340469be71e5e395",
     "version": "0.0.2"
   },
   "sarif-1.0.0.json": {
+    "disabled": false,
     "hash": "3d381606211e14da54498868bce849356d45f52b3fbb2495e49c24477d8f735c",
     "version": "0.0.2"
   },
   "sarif-2.0.0-csd.2.beta.2018-10-10.json": {
+    "disabled": false,
     "hash": "42a8241a7114e696e7413099815dce2f740855fe23c4123c57e21666dd91a639",
     "version": "0.0.2"
   },
   "sarif-2.0.0-csd.2.beta.2019-01-09.json": {
+    "disabled": false,
     "hash": "03689a2bfc8b48b310525febf58d1d948c5bcab1ed429a101c75526e84e34827",
     "version": "0.0.2"
   },
   "sarif-2.0.0-csd.2.beta.2019-01-24.json": {
+    "disabled": false,
     "hash": "b56b08ff6d8487a0621546c59457908784d8212a783aeeabc5eb3482ac57f769",
     "version": "0.0.2"
   },
   "sarif-2.0.0.json": {
+    "disabled": false,
     "hash": "13eb0d8415d856c062c8ac0bd2e30f312cdeed4e669bf9996cdbcff8fde670ef",
     "version": "0.0.3"
   },
+  "sarif-2.1.0-rtm.0.json": {
+    "disabled": false,
+    "hash": "e764ec55ef06b7fdc6dd92077692542d2e8c625ac823f48cd0e3bf096c49cf98",
+    "version": "0.0.1"
+  },
+  "sarif-external-property-file-2.1.0-rtm.0.json": {
+    "disabled": true,
+    "hash": "693b4197e926ec20f44e1a25093fcc486c7790a696b9e0f99ecb45f31284b96b",
+    "version": "0.0.1"
+  },
   "sarif.json": {
-    "hash": "b56b08ff6d8487a0621546c59457908784d8212a783aeeabc5eb3482ac57f769",
-    "version": "0.0.4"
+    "disabled": false,
+    "hash": "e764ec55ef06b7fdc6dd92077692542d2e8c625ac823f48cd0e3bf096c49cf98",
+    "version": "0.0.5"
   },
   "schema-catalog.json": {
+    "disabled": false,
     "hash": "7bbeef14515177f2b22c15f76c8ce097260f34c3f6725e95da5c667dafff954a",
     "version": "0.0.3"
   },
   "schema-draft-v4.json": {
+    "disabled": false,
     "hash": "4ac3fdcf0206cb602f566289543696bd37655c6596b07677d139d9475583a8d5",
     "version": "0.0.2"
   },
   "schema-org-action.json": {
+    "disabled": false,
     "hash": "3d724ac446abd13c22804d9fa3d00725ce3f7464309a1527423f917c3e7e6e47",
     "version": "0.0.1"
   },
   "schema-org-contact-point.json": {
+    "disabled": false,
     "hash": "4b75c0056f94a760fc181cdc783bd482bbe4c1d641ddc48ce820f1cc9d0a18c1",
     "version": "0.0.1"
   },
   "schema-org-place.json": {
+    "disabled": false,
     "hash": "fc8eee9c99a70e88830545cdf98dccc45f443d06d6495ab64348771f00327dde",
     "version": "0.0.1"
   },
   "schema-org-thing.json": {
+    "disabled": false,
     "hash": "67a1a7c5349feac1e8e1bb6853b2b93914c4ea6eb7d1aa9de8343fc2bc8eac98",
     "version": "0.0.1"
   },
   "settings.job.json": {
+    "disabled": false,
     "hash": "df461dc130e39b4d20cde2db0a279966afa6820e7d05eb855acfb6d53de8e6d2",
     "version": "0.0.2"
   },
   "solidaritySchema.json": {
+    "disabled": false,
     "hash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
     "version": "0.0.2"
   },
   "sourcemap-v3.json": {
+    "disabled": false,
     "hash": "8ae4ec4563d4677ac65e41995c96230d2adafe88c766da72cf3861ee892581e5",
     "version": "0.0.2"
   },
   "sprite.json": {
+    "disabled": false,
     "hash": "a22ebebea849e00852bfec870d79208d0399ccbf94c13f44557e9aff04217f0a",
     "version": "0.0.2"
   },
   "stylelintrc.json": {
+    "disabled": false,
     "hash": "cfb6f6e7f3d99b37c9f4fb9b0e498b9166ebda4a59ffb21d91a8dfd417369458",
     "version": "0.0.2"
   },
   "stylintrc.json": {
+    "disabled": false,
     "hash": "e5459f17ae0adb3e72dfd542c199b01e8a90acb2dde678399e5f7278839f0bd1",
     "version": "0.0.1"
   },
   "swagger-2.0.json": {
+    "disabled": false,
     "hash": "b36871c8016292c5e66dd3b203e69aeff98bfef97e0b3c67c1909036095586a5",
     "version": "0.0.2"
   },
   "template.json": {
+    "disabled": false,
     "hash": "ab60804fb68e7e1c9d2120dd82e21c6d7ff3ed9aec73df6efeb9dc617912a9ed",
     "version": "0.0.2"
   },
   "templatesources.json": {
+    "disabled": false,
     "hash": "67d9444da899b52138b8491f871ee5f513eede337a3aaf964d2fac3ad68a5e22",
     "version": "0.0.1"
   },
   "toolinfo.1.1.0.json": {
+    "disabled": false,
     "hash": "2ac8092b86a5a4a11b00b04fad8df9e037d8e077a6a5a8be9494574085bfe55a",
     "version": "0.0.1"
   },
   "travis.json": {
+    "disabled": false,
     "hash": "bf994f93c01551a33a7926fc98f8147a46eab08dea150e3bd7939d27bbbbd5c2",
     "version": "0.0.4"
   },
   "ts-force-config.json": {
+    "disabled": false,
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
     "version": "0.0.2"
   },
   "tsconfig.json": {
+    "disabled": false,
     "hash": "8ea833ff3fa55c25e8be5069bf94022ae569b8f06873623d386ff081ca72c24d",
     "version": "0.0.4"
   },
   "tsd.json": {
+    "disabled": false,
     "hash": "c34d6febcf996c2462470c24aa7279637c3f9f3280ebf6e6791aff1e04732540",
     "version": "0.0.2"
   },
   "tsdrc.json": {
+    "disabled": false,
     "hash": "e7fb85d7bceeeaf481f3fad0c950fda6cc54ad007391c6c9f776e846ff910765",
     "version": "0.0.2"
   },
   "tslint.json": {
+    "disabled": false,
     "hash": "87cf0f8d7fd70fdd99af9f411e57999e97a2c42cc1eed6a981f6d139b80a2f9b",
     "version": "0.0.4"
   },
   "typedoc.json": {
+    "disabled": false,
     "hash": "bfb07019b96b3b85c98ad0c05ce34e401eca8b3375aac83b994b139ac2978168",
     "version": "0.0.2"
   },
   "typewiz.json": {
+    "disabled": false,
     "hash": "747458f24c4d9146c57de79f971705164b22eaeefc3642ba364b3c6c770492e1",
     "version": "0.0.2"
   },
   "typings.json": {
+    "disabled": false,
     "hash": "0f32f8d1be86efb73afa8ee5bb936884bcabe9f2411a06a87aa26995b25c4143",
     "version": "0.0.1"
   },
   "typingsrc.json": {
+    "disabled": false,
     "hash": "776174b3533248323c84af0df8b2b3a951d1c8a01a204eeea3b5470ab3db3175",
     "version": "0.0.1"
   },
   "ui5-manifest.json": {
+    "disabled": false,
     "hash": "137540bae419736bacffb02510de34525fc841411105576a99d405633578a169",
     "version": "0.0.2"
   },
   "up.json": {
+    "disabled": false,
     "hash": "36c215b32cba171aa92736ac6dbd23125e7b67709b19fb22dfa575ad1499c4f7",
     "version": "0.0.2"
   },
   "vega-lite.json": {
+    "disabled": false,
     "hash": "0bd3b729358da93d8a6849612cf8c9e97dce453039ef53d2a0f96f2518bc3c4c",
     "version": "0.0.1"
   },
   "vega.json": {
+    "disabled": false,
     "hash": "802f5f75daf5b97e7d517c80b5f5239b1cdc766fe4edb30509257d134a7e8318",
     "version": "0.0.1"
   },
   "vs-2017.3.host.json": {
+    "disabled": false,
     "hash": "e46bdf556074586d3b0a39871f3456e24a29805709c60805739d7f5a3a4a411b",
     "version": "0.0.2"
   },
   "vs-nesting.json": {
+    "disabled": false,
     "hash": "c1ad0f66084f4ff6631ee887ab07c0ee8d7bd4112d5555c62c948a6b7ac2bc56",
     "version": "0.0.3"
   },
   "vsconfig.json": {
+    "disabled": false,
     "hash": "2b655fe27c1edb62e8208eff57e7c83d0e43294b8418437612ed2bdcf3e2bba9",
     "version": "0.0.2"
   },
   "vsext.json": {
+    "disabled": false,
     "hash": "c1af3c581ba975e9c25ee91fbd7da64a67947833100d387828da79ffdc93273a",
     "version": "0.0.3"
   },
   "vsix-manifestinjection.json": {
+    "disabled": false,
     "hash": "0997e027cf3b0296d3514a09d2b7010604057fe42dfd8abb5e46ac9fd5e2166f",
     "version": "0.0.2"
   },
   "vsix-publish.json": {
+    "disabled": false,
     "hash": "b728905d848a830d5aec8be257869f91b3aeca2386391fa536a302a6a2ae82c2",
     "version": "0.0.3"
   },
   "vsls.json": {
+    "disabled": false,
     "hash": "959a45e7276a7f1c1cd777a679b75d9096a79e7268a22a4aa248f922338f4d50",
     "version": "0.0.2"
   },
   "web-manifest.json": {
+    "disabled": false,
     "hash": "3e4bc091b889574b5ba8224de5dcaab1ac1ab5b25064b659cb0f36185896ce2e",
     "version": "0.0.2"
   },
   "webextension.json": {
+    "disabled": false,
     "hash": "8e72346d0416eb3073fb11a751c5ac906971db89e1bf65292852d609c751d0ae",
     "version": "0.0.2"
   },
   "webjob-publish-settings.json": {
+    "disabled": false,
     "hash": "b1a803ddfc598699588f9b03f40be08d8949989164e7b6879d83b32baa9c8c02",
     "version": "0.0.2"
   },
   "webjobs-list.json": {
+    "disabled": false,
     "hash": "f898c9e3de948ebbde435dbf8d3d2971f680c3fd234e5046bb0ea215cc909d8a",
     "version": "0.0.2"
   },
   "xunit.runner.schema.json": {
+    "disabled": false,
     "hash": "12843c4ec86f699ee0b54049ecf2a3e6206bd6ff624f3b4546f7f5e7be758ee3",
     "version": "0.0.3"
   }
