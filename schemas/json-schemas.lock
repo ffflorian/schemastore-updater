@@ -695,7 +695,7 @@
     "version": "0.0.1"
   },
   "sarif-external-property-file-2.1.0-rtm.0.json": {
-    "disabled": true,
+    "disabled": false,
     "hash": "693b4197e926ec20f44e1a25093fcc486c7790a696b9e0f99ecb45f31284b96b",
     "version": "0.0.1"
   },

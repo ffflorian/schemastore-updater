@@ -33,7 +33,7 @@ export class SchemaGenerator {
     this.git = simpleGit('.');
     this.schemaStoreDirResolved = this.options.source
       ? path.resolve(this.options.source)
-      : path.join('temp/schemastore');
+      : path.join(__dirname, '../temp/schemastore');
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
     this.logger = logdown('schemastore-updater/SchemaGenerator', {
@@ -283,6 +283,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     if (!this.options.source) {
       await this.removeAndClone();
     }
+
     const allFiles = await fs.readdir(this.jsonSchemasDir);
 
     const enabledSchemas = allFiles.filter(fileName => {

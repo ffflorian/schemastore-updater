@@ -27,26 +27,35 @@ const settingsFile = program.settings ? path.resolve(program.settings) : path.jo
 program
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
+  .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)')
   .action(async parent => {
+    const force = parent.force || program.force;
+    const source = parent.sourceDir || program.sourceDir;
     try {
       const settings = await fs.readJSON(settingsFile);
-      await update({...settings, force: parent.force, source: parent.source});
-      await checkDisabled(settings);
+      await update({...settings, force, source});
+      await checkDisabled({...settings, force, source});
     } catch (error) {
       console.error(`Error: ${error.message}`);
       process.exit(1);
     }
   });
 
-program.command('check-disabled').action(async parent => {
-  try {
-    const settings = await fs.readJSON(settingsFile);
-    await checkDisabled({...settings, force: parent.force});
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
-  }
-});
+program
+  .command('check-disabled')
+  .option('-f, --force', 'Force re-generating all schemas', false)
+  .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)')
+  .action(async parent => {
+    const force = parent.force || program.force;
+    const source = parent.sourceDir || program.sourceDir;
+    try {
+      const settings = await fs.readJSON(settingsFile);
+      await checkDisabled({...settings, force, source});
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+      process.exit(1);
+    }
+  });
 
 program.command('version-check').action(() => {
   return fs
