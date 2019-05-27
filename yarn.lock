@@ -25,10 +25,10 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@ffflorian/prettier-config@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@ffflorian/prettier-config/-/prettier-config-0.0.4.tgz#73574ec81a7117e73ab270412c2851b1f573b53d"
-  integrity sha512-frF7kRIKIHXULZLe/BVIDUTCqdDBTctkOs3XSpvXTRNHQv8iEvxg09cJP98V9v/r48pDCCF++NRZvF6nGMVmtA==
+"@ffflorian/prettier-config@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@ffflorian/prettier-config/-/prettier-config-0.0.5.tgz#5a6872fa650ac3b1312d5c5bc4d8281c7ca7b0ab"
+  integrity sha512-GA3LYDYsLB23x85qIY6LaDkzSsxkguKPm8F1XSP7YEjpyFvpbwLj8G3owFJGEyImOwZZWH0WQRPFczCv6uSqrg==
 
 "@ffflorian/tslint-config@0.2.1":
   version "0.2.1"
