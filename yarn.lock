@@ -30,10 +30,10 @@
   resolved "https://registry.yarnpkg.com/@ffflorian/prettier-config/-/prettier-config-0.0.5.tgz#5a6872fa650ac3b1312d5c5bc4d8281c7ca7b0ab"
   integrity sha512-GA3LYDYsLB23x85qIY6LaDkzSsxkguKPm8F1XSP7YEjpyFvpbwLj8G3owFJGEyImOwZZWH0WQRPFczCv6uSqrg==
 
-"@ffflorian/tslint-config@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@ffflorian/tslint-config/-/tslint-config-0.2.2.tgz#5c3d26d14497654fda5235657709df6edd765986"
-  integrity sha512-LeESB6Pp/dYHErmPURUT+yLBC2KDG6FHrSTNxlGrvImoScZIx+ZZX0WrfPND2I2PGSmG3d6luPH66XMG3FcS2Q==
+"@ffflorian/tslint-config@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@ffflorian/tslint-config/-/tslint-config-0.3.1.tgz#39ce1a65399abc6172d98b2c030ba0bb02768ffc"
+  integrity sha512-h1OY53cpV5XS4y5hOkELJRLh/t2tatOlqcU3XfUmiAi8C+9VpvgXxn/WHSSEwnS8gSsxZuGT2f3niLTVL4+VIw==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
