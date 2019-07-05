@@ -25,6 +25,7 @@ export class SchemaGenerator {
   private readonly options: Required<SchemaGeneratorOptions>;
   private readonly lockFile: string;
   private readonly logFile: string;
+  private readonly updatedFilesFile: string;
 
   constructor(options?: SchemaGeneratorOptions) {
     this.options = {
@@ -38,6 +39,7 @@ export class SchemaGenerator {
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
     this.logFile = path.join(__dirname, '../schemastore.log');
+    this.updatedFilesFile = path.join(__dirname, '../updated_files');
     this.logger = logdown('schemastore-updater/SchemaGenerator', {
       logger: console,
       markdown: false,
@@ -103,6 +105,8 @@ export class SchemaGenerator {
 
       const license = this.generateLicense();
       await fs.writeFile(path.join(schemaDirResolved, 'LICENSE'), license, 'utf8');
+
+      await fs.appendFile(this.updatedFilesFile, schemaName, {encoding: 'utf-8'});
 
       generatedSchemas.push(schemaName);
     }

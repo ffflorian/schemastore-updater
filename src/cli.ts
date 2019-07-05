@@ -69,8 +69,6 @@ if (!program.args.length) {
 }
 
 async function update(settings: Required<SchemaGeneratorOptions>): Promise<void> {
-  const settingsDir = path.resolve(path.dirname(settingsFile));
-
   const generator = new SchemaGenerator(settings);
   await generator.checkVersions();
 
@@ -81,8 +79,6 @@ async function update(settings: Required<SchemaGeneratorOptions>): Promise<void>
   } else {
     console.log('No schemas generated.');
   }
-
-  await fs.writeFile(path.join(settingsDir, 'updated_files'), generatedSchemas.join('\n'));
 
   if (newDisabledSchemas.length) {
     console.log(`These schemas will be disabled: "${newDisabledSchemas.join(', ')}"`);
