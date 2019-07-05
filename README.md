@@ -16,7 +16,7 @@ Options:
 Commands:
   update [options]
   check-disabled
-  version-check
+  check-versions
 ```
 
 ```

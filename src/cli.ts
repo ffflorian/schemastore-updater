@@ -48,17 +48,15 @@ program.command('check-disabled').action(async parent => {
   }
 });
 
-program.command('version-check').action(() => {
-  return fs
-    .readJSON(settingsFile)
-    .then((fileSettings: FileSettings) => {
-      const generator = new SchemaGenerator({...fileSettings});
-      return generator.checkVersions();
-    })
-    .catch(error => {
-      console.error(`Error: ${error.message}`);
-      process.exit(1);
-    });
+program.command('check-versions').action(async () => {
+  try {
+    const fileSettings = await fs.readJSON(settingsFile);
+    const generator = new SchemaGenerator({...fileSettings});
+    return generator.checkVersions();
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
 });
 
 program.parse(process.argv);
