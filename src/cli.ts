@@ -31,7 +31,7 @@ program
     try {
       const settings = await fs.readJSON(settingsFile);
       await update({...settings, force: parent.force, source: parent.source});
-      await checkDisabled(settings);
+      await checkDisabled(settings, false);
     } catch (error) {
       console.error(`Error: ${error.message}`);
       process.exit(1);
@@ -81,16 +81,19 @@ async function update(settings: Required<SchemaGeneratorOptions>): Promise<void>
   }
 
   if (newDisabledSchemas.length) {
-    console.log(`These schemas will be disabled: "${newDisabledSchemas.join(', ')}"`);
+    console.log('These schemas will be disabled:', newDisabledSchemas);
 
     settings.disabledSchemas = settings.disabledSchemas.concat(newDisabledSchemas).sort();
     await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
   }
 }
 
-async function checkDisabled(settings: FileSettings): Promise<void> {
+async function checkDisabled(settings: FileSettings, versionCheck = true): Promise<void> {
   const generator = new SchemaGenerator(settings);
-  await generator.checkVersions();
+
+  if (versionCheck) {
+    await generator.checkVersions();
+  }
 
   const {enabledSchemas} = await generator.checkDisabled();
 

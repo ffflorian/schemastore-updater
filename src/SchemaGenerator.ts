@@ -38,8 +38,8 @@ export class SchemaGenerator {
       : path.join('temp/schemastore');
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
-    this.logFile = path.join(__dirname, '../schemastore.log');
-    this.updatedFilesFile = path.join(__dirname, '../updated_files');
+    this.logFile = path.resolve('schemagenerator.log');
+    this.updatedFilesFile = path.resolve('updated_files');
     this.logger = logdown('schemastore-updater/SchemaGenerator', {
       logger: console,
       markdown: false,
@@ -67,7 +67,8 @@ export class SchemaGenerator {
     }
   }
 
-  private async generateLockFile(fileName: string, data: SchemaHashes): Promise<void> {
+  private async writeLockFile(fileName: string, data: SchemaHashes): Promise<void> {
+    this.logger.info(`Writing lockfile "${fileName}" ...`);
     const sortedData = jsonAbc.sortObj(data, true);
     await fs.writeJson(path.resolve(fileName), sortedData, {spaces: 2});
   }
@@ -216,7 +217,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     }
 
     if (invalidEntries.length) {
-      throw new Error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
+      this.logger.error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
     }
   }
 
@@ -313,7 +314,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       }
     }
 
-    await this.generateLockFile(this.lockFile, lockFileData);
+    await this.writeLockFile(this.lockFile, updatedHashes);
 
     return {
       disabledSchemas,
