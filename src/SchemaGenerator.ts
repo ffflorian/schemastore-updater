@@ -24,6 +24,7 @@ export class SchemaGenerator {
   private readonly schemaStoreDirResolved: string;
   private readonly options: Required<SchemaGeneratorOptions>;
   private readonly lockFile: string;
+  private readonly logFile: string;
 
   constructor(options?: SchemaGeneratorOptions) {
     this.options = {
@@ -36,6 +37,7 @@ export class SchemaGenerator {
       : path.join('temp/schemastore');
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
+    this.logFile = path.join(__dirname, '../schemastore.log');
     this.logger = logdown('schemastore-updater/SchemaGenerator', {
       logger: console,
       markdown: false,
@@ -84,6 +86,7 @@ export class SchemaGenerator {
       } catch (error) {
         this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
         disabledSchemas.push(fileName);
+        await fs.appendFile(this.logFile, error.message, {encoding: 'utf-8'});
         continue;
       }
 
@@ -246,11 +249,10 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     for (const fileName in fileHashes) {
       if (!lockFileData[fileName]) {
         this.logger.info(`Hash from "${fileName}" does not exist yet. Creating.`);
-        lockFileData[fileName] = {
+        updatedHashes[fileName] = {
           hash: fileHashes[fileName],
           version: '0.0.1',
         };
-        updatedHashes[fileName] = lockFileData[fileName];
       } else if (
         lockFileData[fileName] &&
         (fileHashes[fileName] !== lockFileData[fileName].hash || this.options.force)
@@ -259,10 +261,11 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 
         const newVersion = semver.inc(lockFileData[fileName].version, 'patch');
 
-        lockFileData[fileName] = {
+        updatedHashes[fileName] = {
           hash: fileHashes[fileName],
           version: String(newVersion),
         };
+      } else {
         updatedHashes[fileName] = lockFileData[fileName];
       }
     }
@@ -294,6 +297,12 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     const updatedHashes = await this.bumpVersions(fileHashes, lockFileData);
 
     const {disabledSchemas, generatedSchemas} = await this.generateSchemas(updatedHashes);
+
+    for (const disabledSchema of disabledSchemas) {
+      if (lockFileData[disabledSchema]) {
+        updatedHashes[disabledSchema] = lockFileData[disabledSchema];
+      }
+    }
 
     await this.generateLockFile(this.lockFile, lockFileData);
 
