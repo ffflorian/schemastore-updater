@@ -85,7 +85,9 @@ export class SchemaGenerator {
       let newSchema = '';
 
       try {
-        newSchema = await schemaGenerator.compileFromFile(fileNameResolved);
+        newSchema = await schemaGenerator.compileFromFile(fileNameResolved, {
+          cwd: this.jsonSchemasDir,
+        });
       } catch (error) {
         this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
         disabledSchemas.push(fileName);
