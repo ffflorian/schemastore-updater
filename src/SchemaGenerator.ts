@@ -226,6 +226,8 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
   }
 
   public async checkDisabled(): Promise<CheckResult> {
+    this.logger.info('Checking disabled ...');
+
     if (!this.options.source) {
       await this.removeAndClone();
     }
@@ -235,6 +237,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
   }
 
   private async generateHashes(schemas: string[]): Promise<Record<string, string>> {
+    this.logger.info(`Generating hashes for ${schemas.length} schemas.`);
     const fileHashes: Record<string, string> = {};
 
     for (const fileName of schemas) {
@@ -318,7 +321,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       }
     }
 
-    await this.writeLockFile(this.lockFile, updatedHashes);
+    await this.writeLockFile(this.lockFile, {...lockFileData, ...updatedHashes});
 
     return {
       disabledSchemas,

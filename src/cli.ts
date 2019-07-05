@@ -96,7 +96,6 @@ async function checkDisabled(settings: FileSettings, versionCheck = true): Promi
   const {enabledSchemas} = await generator.checkDisabled();
 
   if (enabledSchemas.length) {
-    console.log('Enabled schemas:', enabledSchemas);
     const enabledSchemaFiles = enabledSchemas.map(schema => `${schema}.json`);
     settings.disabledSchemas = settings.disabledSchemas.filter(schema => !enabledSchemaFiles.includes(schema)).sort();
 
