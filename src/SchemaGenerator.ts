@@ -76,7 +76,7 @@ export class SchemaGenerator {
     const disabledSchemas: string[] = [];
     const generatedSchemas: string[] = [];
 
-    for (const fileName in jsonData) {
+    const promises = Object.keys(jsonData).map(async fileName => {
       const schemaName = fileName.replace('.json', '');
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       this.logger.info(`Processing "${schemaName}" ...`);
@@ -89,27 +89,32 @@ export class SchemaGenerator {
         this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
         disabledSchemas.push(fileName);
         await fs.appendFile(this.logFile, error.message, {encoding: 'utf-8'});
-        continue;
+        return;
       }
 
       const schemaDirResolved = path.resolve('schemas', schemaName);
+      const saveToSchemaDir = (fileName: string, content: string) => {
+        return fs.writeFile(path.join(schemaDirResolved, fileName), content, 'utf-8');
+      };
 
       await fs.ensureDir(schemaDirResolved);
-      await fs.writeFile(path.join(schemaDirResolved, 'index.d.ts'), newSchema, 'utf8');
+      await saveToSchemaDir('index.d.ts', newSchema);
 
       const packageJson = this.generatePackageJson(schemaName, jsonData[fileName]);
-      await fs.writeFile(path.join(schemaDirResolved, 'package.json'), packageJson, 'utf8');
+      await saveToSchemaDir('package.json', packageJson);
 
       const readMe = this.generateReadme(schemaName);
-      await fs.writeFile(path.join(schemaDirResolved, 'README.md'), readMe, 'utf8');
+      await saveToSchemaDir('README.md', readMe);
 
       const license = this.generateLicense();
-      await fs.writeFile(path.join(schemaDirResolved, 'LICENSE'), license, 'utf8');
+      await saveToSchemaDir('LICENSE', license);
 
       await fs.appendFile(this.updatedFilesFile, schemaName, {encoding: 'utf-8'});
 
       generatedSchemas.push(schemaName);
-    }
+    });
+
+    await Promise.all(promises);
 
     return {
       disabledSchemas,
