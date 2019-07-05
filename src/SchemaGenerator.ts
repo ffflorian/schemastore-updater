@@ -112,6 +112,8 @@ export class SchemaGenerator {
 
       await fs.appendFile(this.updatedFilesFile, schemaName, {encoding: 'utf-8'});
 
+      this.logger.info(`Finished processing "${schemaName}".`);
+
       generatedSchemas.push(schemaName);
     });
 
