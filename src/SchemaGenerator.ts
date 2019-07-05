@@ -56,6 +56,8 @@ export class SchemaGenerator {
     if (this.options.force) {
       this.logger.info(`Force is set. Will re-generate all schemas.`);
     }
+
+    fs.removeSync(this.updatedFilesFile);
   }
 
   private async fileIsReadable(filePath: string): Promise<boolean> {

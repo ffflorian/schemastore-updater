@@ -8,5 +8,5 @@ This package contains type definitions for lsdlschema.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lsdlschema.
 
 ## Additional Details
-* Last updated: Mon, Jul 23, 2018, 22:57:07 GMT
+* Last updated: Fri, Jul 05, 2019, 13:00:09 GMT
 * Dependencies: none
