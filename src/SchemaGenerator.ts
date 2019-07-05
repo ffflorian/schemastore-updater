@@ -192,10 +192,14 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 
     for (const entry of Object.keys(lockFileData)) {
       const name = entry.replace('.json', '');
-      const packageJson = fs.readJsonSync(`./schemas/${name}/package.json`);
-      const lockFileVersion = lockFileData[entry].version;
-      if (lockFileVersion !== packageJson.version) {
-        invalidEntries.push(entry);
+      const fileName = `./schemas/${name}/package.json`;
+      const fileIsReadable = await this.fileIsReadable(fileName);
+      if (fileIsReadable) {
+        const packageJson = await fs.readJson(fileName);
+        const lockFileVersion = lockFileData[entry].version;
+        if (lockFileVersion !== packageJson.version) {
+          invalidEntries.push(entry);
+        }
       }
     }
 
