@@ -21,7 +21,7 @@
     "@types/semver": "6.0.1",
     "cross-env": "5.2.0",
     "husky": "3.0.0",
-    "lint-staged": "9.0.2",
+    "lint-staged": "9.1.0",
     "logdown": "3.2.8",
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
