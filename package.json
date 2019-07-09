@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@ffflorian/prettier-config": "0.0.5",
-    "@ffflorian/tslint-config": "0.3.1",
+    "@ffflorian/tslint-config": "0.4.0",
     "@types/fs-extra": "8.0.0",
     "@types/jsonabc": "2.3.1",
     "@types/node": "~12",
