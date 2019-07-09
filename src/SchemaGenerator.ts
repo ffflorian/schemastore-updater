@@ -60,6 +60,78 @@ export class SchemaGenerator {
     fs.removeSync(this.updatedFilesFile);
   }
 
+  public async checkVersions(): Promise<void> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    const invalidEntries = [];
+
+    for (const entry of Object.keys(lockFileData)) {
+      const name = entry.replace('.json', '');
+      const fileName = `./schemas/${name}/package.json`;
+      const fileIsReadable = await this.fileIsReadable(fileName);
+      if (fileIsReadable) {
+        const packageJson = await fs.readJson(fileName);
+        const lockFileVersion = lockFileData[entry].version;
+        if (lockFileVersion !== packageJson.version) {
+          invalidEntries.push(entry);
+        }
+      }
+    }
+
+    if (invalidEntries.length) {
+      this.logger.error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
+    }
+  }
+
+  public async checkDisabled(): Promise<CheckResult> {
+    this.logger.info('Checking disabled ...');
+
+    if (!this.options.source) {
+      await this.removeAndClone();
+    }
+
+    const {disabledSchemas, generatedSchemas} = await this.generate(this.options.disabledSchemas);
+    return {disabledSchemas, enabledSchemas: generatedSchemas};
+  }
+
+  public async generateAll(): Promise<BuildResult> {
+    if (!this.options.source) {
+      await this.removeAndClone();
+    }
+    const allFiles = await fs.readdir(this.jsonSchemasDir);
+
+    const enabledSchemas = allFiles.filter(fileName => {
+      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
+      return fileName.endsWith('.json') && !schemaIsDisabled;
+    });
+
+    this.logger.info(
+      `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
+    );
+
+    return this.generate(enabledSchemas);
+  }
+
+  public async generate(enabledSchemas: string[]): Promise<BuildResult> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    const fileHashes = await this.generateHashes(enabledSchemas);
+    const updatedHashes = await this.bumpVersions(fileHashes, lockFileData);
+
+    const {disabledSchemas, generatedSchemas} = await this.generateSchemas(updatedHashes);
+
+    for (const disabledSchema of disabledSchemas) {
+      if (lockFileData[disabledSchema]) {
+        updatedHashes[disabledSchema] = lockFileData[disabledSchema];
+      }
+    }
+
+    await this.writeLockFile(this.lockFile, {...lockFileData, ...updatedHashes});
+
+    return {
+      disabledSchemas,
+      generatedSchemas,
+    };
+  }
+
   private async fileIsReadable(filePath: string): Promise<boolean> {
     try {
       await fs.access(filePath, fs.constants.F_OK | fs.constants.R_OK);
@@ -205,39 +277,6 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     await this.git.clone(this.options.schemaStoreRepo, this.schemaStoreDirResolved, ['--depth=1']);
   }
 
-  public async checkVersions(): Promise<void> {
-    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
-    const invalidEntries = [];
-
-    for (const entry of Object.keys(lockFileData)) {
-      const name = entry.replace('.json', '');
-      const fileName = `./schemas/${name}/package.json`;
-      const fileIsReadable = await this.fileIsReadable(fileName);
-      if (fileIsReadable) {
-        const packageJson = await fs.readJson(fileName);
-        const lockFileVersion = lockFileData[entry].version;
-        if (lockFileVersion !== packageJson.version) {
-          invalidEntries.push(entry);
-        }
-      }
-    }
-
-    if (invalidEntries.length) {
-      this.logger.error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
-    }
-  }
-
-  public async checkDisabled(): Promise<CheckResult> {
-    this.logger.info('Checking disabled ...');
-
-    if (!this.options.source) {
-      await this.removeAndClone();
-    }
-
-    const {disabledSchemas, generatedSchemas} = await this.generate(this.options.disabledSchemas);
-    return {disabledSchemas, enabledSchemas: generatedSchemas};
-  }
-
   private async generateHashes(schemas: string[]): Promise<Record<string, string>> {
     this.logger.info(`Generating hashes for ${schemas.length} schemas.`);
     const fileHashes: Record<string, string> = {};
@@ -290,44 +329,5 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     }
 
     return updatedHashes;
-  }
-
-  public async generateAll(): Promise<BuildResult> {
-    if (!this.options.source) {
-      await this.removeAndClone();
-    }
-    const allFiles = await fs.readdir(this.jsonSchemasDir);
-
-    const enabledSchemas = allFiles.filter(fileName => {
-      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
-      return fileName.endsWith('.json') && !schemaIsDisabled;
-    });
-
-    this.logger.info(
-      `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
-    );
-
-    return this.generate(enabledSchemas);
-  }
-
-  public async generate(enabledSchemas: string[]): Promise<BuildResult> {
-    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
-    const fileHashes = await this.generateHashes(enabledSchemas);
-    const updatedHashes = await this.bumpVersions(fileHashes, lockFileData);
-
-    const {disabledSchemas, generatedSchemas} = await this.generateSchemas(updatedHashes);
-
-    for (const disabledSchema of disabledSchemas) {
-      if (lockFileData[disabledSchema]) {
-        updatedHashes[disabledSchema] = lockFileData[disabledSchema];
-      }
-    }
-
-    await this.writeLockFile(this.lockFile, {...lockFileData, ...updatedHashes});
-
-    return {
-      disabledSchemas,
-      generatedSchemas,
-    };
   }
 }
