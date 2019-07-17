@@ -32,8 +32,7 @@
     "typescript": "3.5.3"
   },
   "engines": {
-    "node": ">= 10.9",
-    "yarn": ">= 1"
+    "node": ">= 10.9"
   },
   "files": [
     "dist",
