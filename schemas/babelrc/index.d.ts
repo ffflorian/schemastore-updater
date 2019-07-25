@@ -57,11 +57,13 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
    */
   ignore?: string[];
   /**
-   * A source map object that the output source map will be based on.
+   * If true, attempt to load an input sourcemap from the file itself. If an object is provided, it will be treated as the source map object itself.
    */
-  inputSourceMap?: {
-    [k: string]: any;
-  };
+  inputSourceMap?:
+    | boolean
+    | {
+        [k: string]: any;
+      };
   /**
    * Keep extensions in module ids
    */

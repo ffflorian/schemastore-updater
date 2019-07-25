@@ -43,7 +43,6 @@ export type Bozr = {
             [k: string]: any;
           };
       bodyFile?: string;
-      [k: string]: any;
     };
     expect: {
       statusCode?:
@@ -113,19 +112,24 @@ export type Bozr = {
       body?: {
         [k: string]: any;
       };
+      exactBody?: {
+        [k: string]: any;
+      };
+      bodyPath?: {
+        [k: string]: any;
+      };
       bodySchemaFile?: string;
+      bodySchema?: string;
       bodySchemaURI?: string;
       absent?: any[];
     };
     remember?: {
-      body?: {
+      bodyPath?: {
         [k: string]: any;
       };
       headers?: {
         [k: string]: any;
       };
     };
-    [k: string]: any;
   }[];
-  [k: string]: any;
 }[];

@@ -5,24 +5,68 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type SwaggerToTypeScriptClient = ClientGenerator;
+export type SwaggerToCSharpClient = ClientGenerator;
+export type SwaggerToCSharpController = any;
+
 export interface Nswag {
   swaggerGenerator?: SwaggerGenerator;
   codeGenerators?: CodeGenerators;
   [k: string]: any;
 }
 export interface SwaggerGenerator {
-  webApiToSwagger?: any;
+  webApiToSwagger?: WebApiToSwagger;
+  [k: string]: any;
+}
+export interface WebApiToSwagger {
+  assemblyPaths?: string[];
+  referencePaths?: string[];
+  useNuGetCache?: boolean;
+  isAspNetCore?: boolean;
+  controllerNames?: string[];
+  defaultUrlTemplate?: string;
+  defaultPropertyNameHandling?: "Default" | "CamelCase" | "SnakeCase";
+  defaultEnumHandling?: "Integer" | "String" | "CamelCaseString";
+  flattenInheritanceHierarchy?: boolean;
+  generateKnownTypes?: boolean;
+  generateXmlObjects?: boolean;
+  addMissingPathParameters?: boolean;
+  infoTitle?: string;
+  infoVersion?: string;
+  output?: null;
   [k: string]: any;
 }
 export interface CodeGenerators {
-  swaggerToTypeScriptClient?: {
-    [k: string]: any;
-  };
-  swaggerToCSharpClient?: {
-    [k: string]: any;
-  };
-  swaggerToCSharpController?: {
-    [k: string]: any;
-  };
+  swaggerToTypeScriptClient?: SwaggerToTypeScriptClient;
+  swaggerToCSharpClient?: SwaggerToCSharpClient;
+  swaggerToCSharpController?: SwaggerToCSharpController;
+  [k: string]: any;
+}
+export interface ClientGenerator {
+  namespace?: string;
+  dateTimeType?: string;
+  wrapDtoExceptions?: boolean;
+  operationGenerationMode?:
+    | "MultipleClientsFromOperationId"
+    | "MultipleClientsFromPathSegments"
+    | "SingleClientFromOperationId"
+    | "SingleClientFromPathSegments";
+  generateCloneMethod?: boolean;
+  generateDefaultValues?: boolean;
+  excludedTypeNames?: string[];
+  handleReferences?: boolean;
+  generateConstructorInterface?: boolean;
+  importRequiredTypes?: string;
+  baseUrlTokenName?: string;
+  output?: any;
+  className?: string;
+  generateDtoTypes?: boolean;
+  generateClientInterfaces?: boolean;
+  generateClientClasses?: boolean;
+  generateOptionalParameters?: boolean;
+  wrapResponses?: boolean;
+  wrapResponseMethods?: string[];
+  generateResponseClasses?: boolean;
+  responseClass?: string;
   [k: string]: any;
 }

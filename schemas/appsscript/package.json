@@ -7,8 +7,8 @@
   "name": "@schemastore/appsscript",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appsscript",
   "scripts": {},
-  "typesPublisherContentHash": "fbda3d5759ccc38fc9f29065be9af185f3fbcbe286ff79fb3c6956fe1e0781bb",
+  "typesPublisherContentHash": "ff8230dd83806e76a42d0c3d3469c5ea5a14d8dd0163be77aeb8ec25ceb940d5",
   "types": "index.d.ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "typeScriptVersion": "2.2"
 }

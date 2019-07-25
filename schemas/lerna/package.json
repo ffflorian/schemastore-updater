@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for lerna.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/lerna",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lerna",
+  "scripts": {},
+  "typesPublisherContentHash": "1ce6858b0bdb3288c411018a853c42f7729c0ffad86b5ae0c30340fb36e99041",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

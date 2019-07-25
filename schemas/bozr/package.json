@@ -7,8 +7,8 @@
   "name": "@schemastore/bozr",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bozr",
   "scripts": {},
-  "typesPublisherContentHash": "1df26248def39755c4bd1665ef5a0fe89861ec7f74c0f890d081801c1c7d0e90",
+  "typesPublisherContentHash": "4c87fccfeb6cc604cf07d3d90ae73dac9f86e60adce623bcdb829b5704e016d4",
   "types": "index.d.ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "typeScriptVersion": "2.2"
 }

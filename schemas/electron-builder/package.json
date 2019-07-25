@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for electron-builder.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/electron-builder",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/electron-builder",
+  "scripts": {},
+  "typesPublisherContentHash": "17889ac480ea01f6bfec8c2dd430a487d2a7b73e61da7560598ae8c0d2b2a1ac",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

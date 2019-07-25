@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for mta.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/mta",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mta",
+  "scripts": {},
+  "typesPublisherContentHash": "600956107ba77b4ad2cb7d46f973a8f7b8e064a52fdd1d5a8d873caddcafa651",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

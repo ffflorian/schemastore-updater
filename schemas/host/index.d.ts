@@ -206,6 +206,31 @@ export interface HttpExtension {
    * Indicates whether dynamic host counter checks should be enabled.
    */
   dynamicThrottlesEnabled?: boolean;
+  /**
+   * Configuration settings for Strict-Transport-Security
+   */
+  hsts?: {
+    /**
+     * Indicates whether the hsts configuration should be applied
+     */
+    isEnabled?: boolean;
+    /**
+     * Defines the list of host names that will not add the HSTS header.
+     */
+    excludedHosts?: string[];
+    /**
+     * Indicates whether the includeSubDomain parameter of the Strict-Transport-Security header should be enabled.
+     */
+    includeSubDomains?: boolean;
+    /**
+     * Defines the max-age parameter of the Strict-Transport-Security header.
+     */
+    maxAge?: string;
+    /**
+     * Indicates whether the preload parameter of the Strict-Transport-Security header should be enabled.
+     */
+    preload?: boolean;
+  };
 }
 /**
  * Configuration settings for 'queue' triggers.

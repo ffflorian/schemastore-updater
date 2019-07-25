@@ -7,8 +7,8 @@
   "name": "@schemastore/xunit.runner.schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/xunit.runner.schema",
   "scripts": {},
-  "typesPublisherContentHash": "12843c4ec86f699ee0b54049ecf2a3e6206bd6ff624f3b4546f7f5e7be758ee3",
+  "typesPublisherContentHash": "371ee9b2cd9b1975acc5df5bd140c06f338abdc99ac0cf9e82b7ea83c80c6228",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

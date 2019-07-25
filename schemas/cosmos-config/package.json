@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for cosmos-config.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/cosmos-config",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cosmos-config",
+  "scripts": {},
+  "typesPublisherContentHash": "3937057d85e534b5c69ba567fd28bc7854236436c8899322dee41f84949f6fc7",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

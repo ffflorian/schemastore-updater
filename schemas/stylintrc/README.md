@@ -8,5 +8,5 @@ This package contains type definitions for stylintrc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/stylintrc.
 
 ## Additional Details
-* Last updated: Tue, May 21, 2019, 14:12:23 GMT
+* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
 * Dependencies: none

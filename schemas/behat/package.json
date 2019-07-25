@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for behat.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/behat",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/behat",
+  "scripts": {},
+  "typesPublisherContentHash": "c2ee0b1bb0450aa7adfbc29c97ad11d87871bc38eeced86e9185f051491f1e59",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

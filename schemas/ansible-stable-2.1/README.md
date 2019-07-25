@@ -8,5 +8,5 @@ This package contains type definitions for ansible-stable-2.1.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ansible-stable-2.1.
 
 ## Additional Details
-* Last updated: Tue, May 21, 2019, 12:39:37 GMT
+* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
 * Dependencies: none

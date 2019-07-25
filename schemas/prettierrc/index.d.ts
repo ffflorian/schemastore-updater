@@ -85,6 +85,10 @@ export interface OptionsDefinition {
    */
   proseWrap?: "always" | "never" | "preserve";
   /**
+   * Change when properties in objects are quoted.
+   */
+  quoteProps?: "as-needed" | "consistent" | "preserve";
+  /**
    * Format code ending at a given character offset (exclusive).
    * The range will extend forwards to the end of the selected statement.
    * This option cannot be used with --cursor-offset.
@@ -216,6 +220,10 @@ export interface OverridesDefinition {
        * How to wrap prose.
        */
       proseWrap?: "always" | "never" | "preserve";
+      /**
+       * Change when properties in objects are quoted.
+       */
+      quoteProps?: "as-needed" | "consistent" | "preserve";
       /**
        * Format code ending at a given character offset (exclusive).
        * The range will extend forwards to the end of the selected statement.

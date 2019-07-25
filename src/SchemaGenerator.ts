@@ -54,7 +54,7 @@ export class SchemaGenerator {
     this.logger.info(`Using lockfile "${this.lockFile}".`);
 
     if (this.options.force) {
-      this.logger.info(`Force is set. Will re-generate all schemas.`);
+      this.logger.info('Force is set. Will re-generate all schemas.');
     }
 
     fs.removeSync(this.updatedFilesFile);
@@ -83,7 +83,7 @@ export class SchemaGenerator {
   }
 
   public async checkDisabled(): Promise<CheckResult> {
-    this.logger.info('Checking disabled ...');
+    this.logger.info('Checking disabled.');
 
     if (!this.options.source) {
       await this.removeAndClone();
@@ -99,10 +99,12 @@ export class SchemaGenerator {
     }
     const allFiles = await fs.readdir(this.jsonSchemasDir);
 
-    const enabledSchemas = allFiles.filter(fileName => {
-      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
-      return fileName.endsWith('.json') && !schemaIsDisabled;
-    });
+    const enabledSchemas = allFiles
+      .filter(fileName => {
+        const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
+        return fileName.endsWith('.json') && !schemaIsDisabled;
+      })
+      .map(fileName => fileName.toLowerCase());
 
     this.logger.info(
       `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`

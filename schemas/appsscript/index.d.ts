@@ -174,5 +174,159 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
     termsOfServiceUrl?: string;
     [k: string]: any;
   };
+  /**
+   * G Suite Add-ons
+   */
+  addOns?: {
+    /**
+     * Common properties between all G Suite add-on types.
+     */
+    common?: {
+      /**
+       * The add-on name.
+       */
+      name: string;
+      /**
+       * The logo URL.
+       */
+      logoUrl: string;
+      /**
+       * Layout properties.
+       */
+      layoutProperties?: {
+        /**
+         * The color of toolbar. Defaults to grey (#424242).
+         */
+        primaryColor?: string;
+        /**
+         * The default color of buttons. Defaults to the primary color (if it is set); otherwise defaults to blue (#2196F3).
+         */
+        secondaryColor?: string;
+        [k: string]: any;
+      };
+      /**
+       * Homepage trigger data
+       */
+      homepageTrigger?: {
+        /**
+         * Whether or not homepage (non-contextual) cards are enabled. Defaults to true.
+         */
+        enabled?: boolean;
+        /**
+         * The name of the function to run
+         */
+        runFunctions?: string;
+        [k: string]: any;
+      };
+      /**
+       * Universal add-on actions
+       */
+      universalActions?: {
+        /**
+         * The action label.
+         */
+        label?: string;
+        /**
+         * The link's URL
+         */
+        openLink?: string;
+        /**
+         * Required for each defined universal action if openLink is not present. If provided, the name of the Apps Script function that executes when the user selects this action.
+         */
+        runFunction?: string;
+        [k: string]: any;
+      }[];
+      /**
+       * Link prefixes.
+       */
+      openLinkUrlPrefixes?: string[];
+      /**
+       * Use the locale from the host application?
+       */
+      useLocaleFromApp?: boolean;
+      [k: string]: any;
+    };
+    /**
+     * Gmail add-on metadata.
+     */
+    gmail?: {
+      /**
+       * Contextual triggers.
+       */
+      contextualTriggers?: {
+        /**
+         * The name of the Apps Script function that executes when this contextual trigger fires (that is, when a message is opened in Gmail). The function specified here must build and return an array of Card objects.
+         */
+        onTriggerFunction?: string;
+        /**
+         * Used to specify that the contextual trigger is fired for all Gmail messages. This is currently the only option, so this should always be an empty object.
+         */
+        unconditional?: {
+          [k: string]: any;
+        };
+        [k: string]: any;
+      }[];
+      /**
+       * The trigger function specification for creating the add-on homepage in the Gmail host.
+       */
+      homepageTrigger?: {
+        /**
+         * Whether or not homepage (non-contextual) cards are enabled in Gmail. Defaults to true.
+         */
+        enabled?: boolean;
+        /**
+         * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects.
+         */
+        runFunction?: string;
+        [k: string]: any;
+      };
+      [k: string]: any;
+    };
+    /**
+     * Calendar add-on metadata.
+     */
+    calendar?: {
+      /**
+       * The trigger function specification for creating the add-on homepage in the Calendar host.
+       */
+      homepageTrigger?: {
+        /**
+         * Whether or not homepage (non-contextual) cards are enabled in Calendar. Defaults to true.
+         */
+        enabled?: boolean;
+        /**
+         * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects.
+         */
+        runFunction?: string;
+        [k: string]: any;
+      };
+      /**
+       * When a Calendar event is opened
+       */
+      eventOpenTrigger?: {
+        /**
+         * Event hander function
+         */
+        runFunction?: string;
+        [k: string]: any;
+      };
+      /**
+       * When a Calendar event is updated
+       */
+      eventUpdateTrigger?: {
+        /**
+         * Event hander function
+         */
+        runFunction?: string;
+        [k: string]: any;
+      };
+      /**
+       * Handler access to Calendar event
+       */
+      eventAccess?: "METADATA" | "READ" | "WRITE" | "READ_WRITE";
+      [k: string]: any;
+    };
+    [k: string]: any;
+  };
   [k: string]: any;
 }

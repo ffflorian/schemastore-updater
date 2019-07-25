@@ -296,6 +296,10 @@ export interface CompilerOptionsDefinition {
      */
     esModuleInterop?: boolean;
     /**
+     * Allow accessing UMD globals from modules.
+     */
+    allowUmdGlobalAccess?: boolean;
+    /**
      * Resolve 'keyof' to string valued property names only (no numbers or symbols). Requires TypeScript version 2.9 or later.
      */
     keyofStringsOnly?: boolean;

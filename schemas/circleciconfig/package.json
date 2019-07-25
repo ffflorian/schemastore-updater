@@ -7,8 +7,8 @@
   "name": "@schemastore/circleciconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/circleciconfig",
   "scripts": {},
-  "typesPublisherContentHash": "2ab2e273831ec7a0f48bf2277aee7825ea519fd583dcded4cf3ebb34f576c111",
+  "typesPublisherContentHash": "b78717d1c345efbf999d6ca04ee9a7e47698d442e18b94b8320018e3df3073fb",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

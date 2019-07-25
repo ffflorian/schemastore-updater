@@ -7,8 +7,8 @@
   "name": "@schemastore/tsconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tsconfig",
   "scripts": {},
-  "typesPublisherContentHash": "8ea833ff3fa55c25e8be5069bf94022ae569b8f06873623d386ff081ca72c24d",
+  "typesPublisherContentHash": "6abbd8dd9db933ef46e8dc0835cea118a731c15dbf22bb8563cd085c8ca8626d",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

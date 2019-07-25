@@ -265,9 +265,18 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
      */
     opacity?: number;
     /**
-     * Support of WebRTC Video and Audio.
+     * Enable secured APIs
      */
-    permissions?: ("audioCapture" | "videoCapture")[][];
+    permissions?: {
+      System?: {
+        downloadAsset?: boolean;
+        launchExternalProcess?: boolean;
+        readRegistryValue?: boolean;
+        terminateExternalProcess?: boolean;
+        [k: string]: any;
+      };
+      [k: string]: any;
+    };
     /**
      * A flag to drop to allow the user to resize the window.
      */

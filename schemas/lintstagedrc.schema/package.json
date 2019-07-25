@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for lintstagedrc.schema.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/lintstagedrc.schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lintstagedrc.schema",
+  "scripts": {},
+  "typesPublisherContentHash": "ad3fe7a8466247a4eaf5b5f5b1f3af8956fd23386cd12ce87e32ae03634d1652",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

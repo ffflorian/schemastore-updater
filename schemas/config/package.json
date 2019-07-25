@@ -9,6 +9,6 @@
   "scripts": {},
   "typesPublisherContentHash": "4f1355753e0437db08baca6a00ffbc9dac70fd59e6b6e1ea3a071504d03112bc",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

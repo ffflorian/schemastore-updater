@@ -8,42 +8,122 @@
 export type JSONSchemaForTravisCIConfigurationFiles = Job & {
   notifications?: {
     webhooks?:
-      | string[]
+      | ArrayOfNonEmptyStrings
+      | boolean
       | {
+          disabled?: boolean;
+          enabled?: boolean;
           urls?: string | string[];
           [k: string]: any;
         };
     slack?:
       | SlackRoom
+      | boolean
       | {
+          disabled?: boolean;
+          enabled?: boolean;
           rooms?: SlackRoom[];
           on_pull_requests?: boolean;
-          template?: string[];
+          template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: NotificationFrequency;
           on_failure?: NotificationFrequency;
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
         };
     email?:
-      | string[]
-      | false
+      | ArrayOfNonEmptyStrings
+      | boolean
       | {
-          recipients?: string[];
+          disabled?: boolean;
+          enabled?: boolean;
+          recipients?: NonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: "always" | "never" | "change";
           on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
           [k: string]: any;
         };
     irc?:
-      | string
-      | string[]
+      | NonEmptyStringOrArrayOfNonEmptyStrings
+      | boolean
       | {
-          channels?: string[];
-          channel_key?: string;
-          nick?: string;
-          password?: string;
-          template?: string[];
+          disabled?: boolean;
+          enabled?: boolean;
+          channels?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          channel_key?: NonEmptyString;
+          nick?: NonEmptyString;
+          password?: NonEmptyString;
+          template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: "always" | "never" | "change";
           on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
           skip_join?: boolean;
           use_notice?: boolean;
+          [k: string]: any;
+        };
+    pushover?:
+      | NonEmptyStringOrArrayOfNonEmptyStrings
+      | boolean
+      | {
+          disabled?: boolean;
+          enabled?: boolean;
+          api_key?: NonEmptyString;
+          users?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+          on_success?: "always" | "never" | "change";
+          on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
+          [k: string]: any;
+        };
+    campfire?:
+      | NonEmptyStringOrArrayOfNonEmptyStrings
+      | boolean
+      | {
+          disabled?: boolean;
+          enabled?: boolean;
+          rooms?: ArrayOfNonEmptyStrings;
+          template?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          on_success?: "always" | "never" | "change";
+          on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
+          [k: string]: any;
+        };
+    flowdock?:
+      | NonEmptyString
+      | boolean
+      | {
+          disabled?: boolean;
+          enabled?: boolean;
+          api_token?: NonEmptyString;
+          on_success?: "always" | "never" | "change";
+          on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
+          [k: string]: any;
+        };
+    hipchat?:
+      | ArrayOfNonEmptyStrings
+      | boolean
+      | {
+          disabled?: boolean;
+          enabled?: boolean;
+          rooms?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          format?: "html" | "text";
+          template?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          on_success?: "always" | "never" | "change";
+          on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
           [k: string]: any;
         };
   };
@@ -119,7 +199,8 @@ export type Service =
   | "rabbitmq"
   | "redis-server"
   | "rethinkdb"
-  | "riak";
+  | "riak"
+  | "xvfb";
 export type EnvVars = EnvVar | EnvVar[];
 export type EnvVar =
   | string
@@ -235,10 +316,13 @@ export type Deployment = {
       provider: string;
       [k: string]: any;
     });
+export type ArrayOfNonEmptyStrings = NonEmptyString[];
 /**
  * Your account name, token and optional channel
  */
 export type SlackRoom = string;
+export type NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings = NonEmptyStringOrArrayOfNonEmptyStrings | null;
+export type NonEmptyStringOrArrayOfNonEmptyStrings = NonEmptyString | ArrayOfNonEmptyStrings;
 export type NotificationFrequency = "always" | "never" | "change";
 
 export interface Job {
@@ -372,7 +456,7 @@ export interface Job {
   /**
    * The Ubuntu distribution to use
    */
-  dist?: "precise" | "trusty" | "xenial";
+  dist?: "precise" | "trusty" | "xenial" | "bionic";
   sudo?: true | false | "" | "required" | "enabled";
   addons?: {
     /**

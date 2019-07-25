@@ -6,6 +6,28 @@
  */
 
 export type JSONSchemaForAppVeyorCIConfigurationFiles = Job;
+/**
+ * Build worker image (VM template) -DEV_VERSION
+ */
+export type Image = ImageName[] | ImageName;
+export type ImageName =
+  | "Ubuntu"
+  | "Ubuntu1604"
+  | "Ubuntu1804"
+  | "Previous Ubuntu"
+  | "Previous Ubuntu1604"
+  | "Previous Ubuntu1804"
+  | "Visual Studio 2013"
+  | "Visual Studio 2015"
+  | "Visual Studio 2017"
+  | "Visual Studio 2019"
+  | "Visual Studio 2017 Preview"
+  | "Visual Studio 2019 Preview"
+  | "Previous Visual Studio 2013"
+  | "Previous Visual Studio 2015"
+  | "Previous Visual Studio 2017"
+  | "zhaw18"
+  | "WMF 5";
 export type Command =
   | string
   | {
@@ -34,8 +56,8 @@ export type JobScalars = {
 } & {
   [k: string]: any;
 };
-export type Platform = "x86" | "x64" | "Any CPU";
-export type Configuration = "Debug" | "Release";
+export type Platform = "x86" | "x64" | "ARM" | "Any CPU";
+export type Configuration = string;
 
 export interface Job {
   /**
@@ -108,30 +130,7 @@ export interface Job {
   notifications?: {
     [k: string]: any;
   }[];
-  /**
-   * Build worker image (VM template) -DEV_VERSION
-   */
-  image?:
-    | (
-        | "Ubuntu"
-        | "Ubuntu1604"
-        | "Ubuntu1804"
-        | "Visual Studio 2013"
-        | "Visual Studio 2015"
-        | "Visual Studio 2017"
-        | "Previous Visual Studio 2013"
-        | "Previous Visual Studio 2015"
-        | "Previous Visual Studio 2017")[]
-    | (
-        | "Ubuntu"
-        | "Ubuntu1604"
-        | "Ubuntu1804"
-        | "Visual Studio 2013"
-        | "Visual Studio 2015"
-        | "Visual Studio 2017"
-        | "Previous Visual Studio 2013"
-        | "Previous Visual Studio 2015"
-        | "Previous Visual Studio 2017");
+  image?: Image;
   /**
    * Scripts that are called at very beginning, before repo cloning
    */
@@ -247,7 +246,7 @@ export interface Job {
    */
   configuration?: Configuration | Configuration[];
   build?:
-    | "off"
+    | false
     | {
         /**
          * Enable MSBuild parallel builds
@@ -297,7 +296,7 @@ export interface Job {
   /**
    * Scripts to run after build
    */
-  before_after?: Command[];
+  after_build?: Command[];
   /**
    * To run your custom scripts instead of automatic MSBuild
    */
@@ -307,7 +306,7 @@ export interface Job {
    */
   before_test?: Command[];
   test?:
-    | "off"
+    | false
     | {
         assemblies?: {
           only?: string[];
@@ -337,7 +336,7 @@ export interface Job {
    */
   before_deploy?: Command[];
   deploy?:
-    | "off"
+    | false
     | {
         [k: string]: any;
       }[];

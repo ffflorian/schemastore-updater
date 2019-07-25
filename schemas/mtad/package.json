@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for mtad.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/mtad",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mtad",
+  "scripts": {},
+  "typesPublisherContentHash": "b1ecdbda7f2f1ef496f389bb181dd70d714d652e2be3b191396eeee0a66f47c5",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}
