@@ -64,7 +64,7 @@ export class SchemaGenerator {
     const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
     const invalidEntries = [];
 
-    for (const entry of Object.keys(lockFileData)) {
+    for (const entry in lockFileData) {
       const name = entry.replace('.json', '');
       const fileName = `./schemas/${name}/package.json`;
       const fileIsReadable = await this.fileIsReadable(fileName);
