@@ -20,11 +20,11 @@ const defaultOptions: Required<SchemaGeneratorOptions> = {
 export class SchemaGenerator {
   private readonly git: simpleGit.SimpleGit;
   private readonly jsonSchemasDir: string;
-  private readonly logger: logdown.Logger;
-  private readonly schemaStoreDirResolved: string;
-  private readonly options: Required<SchemaGeneratorOptions>;
   private readonly lockFile: string;
   private readonly logFile: string;
+  private readonly logger: logdown.Logger;
+  private readonly options: Required<SchemaGeneratorOptions>;
+  private readonly schemaStoreDirResolved: string;
   private readonly updatedFilesFile: string;
 
   constructor(options?: SchemaGeneratorOptions) {
@@ -60,6 +60,17 @@ export class SchemaGenerator {
     fs.removeSync(this.updatedFilesFile);
   }
 
+  public async checkDisabled(): Promise<CheckResult> {
+    this.logger.info('Checking disabled.');
+
+    if (!this.options.source) {
+      await this.removeAndClone();
+    }
+
+    const {disabledSchemas, generatedSchemas} = await this.generate(this.options.disabledSchemas);
+    return {disabledSchemas, enabledSchemas: generatedSchemas};
+  }
+
   public async checkVersions(): Promise<void> {
     const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
     const invalidEntries = [];
@@ -80,37 +91,6 @@ export class SchemaGenerator {
     if (invalidEntries.length) {
       this.logger.error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
     }
-  }
-
-  public async checkDisabled(): Promise<CheckResult> {
-    this.logger.info('Checking disabled.');
-
-    if (!this.options.source) {
-      await this.removeAndClone();
-    }
-
-    const {disabledSchemas, generatedSchemas} = await this.generate(this.options.disabledSchemas);
-    return {disabledSchemas, enabledSchemas: generatedSchemas};
-  }
-
-  public async generateAll(): Promise<BuildResult> {
-    if (!this.options.source) {
-      await this.removeAndClone();
-    }
-    const allFiles = await fs.readdir(this.jsonSchemasDir);
-
-    const enabledSchemas = allFiles
-      .filter(fileName => {
-        const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
-        return fileName.endsWith('.json') && !schemaIsDisabled;
-      })
-      .map(fileName => fileName.toLowerCase());
-
-    this.logger.info(
-      `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
-    );
-
-    return this.generate(enabledSchemas);
   }
 
   public async generate(enabledSchemas: string[]): Promise<BuildResult> {
@@ -134,6 +114,56 @@ export class SchemaGenerator {
     };
   }
 
+  public async generateAll(): Promise<BuildResult> {
+    if (!this.options.source) {
+      await this.removeAndClone();
+    }
+    const allFiles = await fs.readdir(this.jsonSchemasDir);
+
+    const enabledSchemas = allFiles
+      .filter(fileName => {
+        const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
+        return fileName.endsWith('.json') && !schemaIsDisabled;
+      })
+      .map(fileName => fileName.toLowerCase());
+
+    this.logger.info(
+      `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
+    );
+
+    return this.generate(enabledSchemas);
+  }
+
+  private async bumpVersions(fileHashes: Record<string, string>, lockFileData: SchemaHashes): Promise<SchemaHashes> {
+    const updatedHashes: SchemaHashes = {};
+
+    for (const fileName in fileHashes) {
+      if (!lockFileData[fileName]) {
+        this.logger.info(`Hash from "${fileName}" does not exist yet. Creating.`);
+        updatedHashes[fileName] = {
+          hash: fileHashes[fileName],
+          version: '0.0.1',
+        };
+      } else if (
+        lockFileData[fileName] &&
+        (fileHashes[fileName] !== lockFileData[fileName].hash || this.options.force)
+      ) {
+        this.logger.info(`Hash from "${fileName}" is outdated. Updating.`);
+
+        const newVersion = semver.inc(lockFileData[fileName].version, 'patch');
+
+        updatedHashes[fileName] = {
+          hash: fileHashes[fileName],
+          version: String(newVersion),
+        };
+      } else {
+        updatedHashes[fileName] = lockFileData[fileName];
+      }
+    }
+
+    return updatedHashes;
+  }
+
   private async fileIsReadable(filePath: string): Promise<boolean> {
     try {
       await fs.access(filePath, fs.constants.F_OK | fs.constants.R_OK);
@@ -143,64 +173,28 @@ export class SchemaGenerator {
     }
   }
 
-  private async writeLockFile(fileName: string, data: SchemaHashes): Promise<void> {
-    this.logger.info(`Writing lockfile "${fileName}" ...`);
-    const sortedData = jsonAbc.sortObj(data, true);
-    await fs.writeJson(path.resolve(fileName), sortedData, {spaces: 2});
-  }
+  private async generateHashes(schemas: string[]): Promise<Record<string, string>> {
+    this.logger.info(`Generating hashes for ${schemas.length} schemas.`);
+    const fileHashes: Record<string, string> = {};
 
-  private async generateSchemas(jsonData: SchemaHashes): Promise<BuildResult> {
-    const disabledSchemas: string[] = [];
-    const generatedSchemas: string[] = [];
-
-    const promises = Object.keys(jsonData).map(async fileName => {
-      const schemaName = fileName.replace('.json', '');
+    for (const fileName of schemas) {
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
-      this.logger.info(`Processing "${schemaName}" ...`);
+      const fileIsReadable = await this.fileIsReadable(fileNameResolved);
 
-      let newSchema = '';
+      if (fileIsReadable) {
+        const fileContent = await fs.readFile(fileNameResolved, 'utf8');
+        const sha256 = crypto
+          .createHash('sha256')
+          .update(fileContent)
+          .digest('hex');
 
-      try {
-        newSchema = await schemaGenerator.compileFromFile(fileNameResolved, {
-          cwd: this.jsonSchemasDir,
-        });
-      } catch (error) {
-        this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
-        disabledSchemas.push(fileName);
-        await fs.appendFile(this.logFile, error.message, {encoding: 'utf-8'});
-        return;
+        fileHashes[fileName] = sha256;
+      } else {
+        this.logger.error(`File "${fileNameResolved}" is not readable.`);
       }
+    }
 
-      const schemaDirResolved = path.resolve('schemas', schemaName);
-      const saveToSchemaDir = (fileName: string, content: string) => {
-        return fs.writeFile(path.join(schemaDirResolved, fileName), content, 'utf-8');
-      };
-
-      await fs.ensureDir(schemaDirResolved);
-      await saveToSchemaDir('index.d.ts', newSchema);
-
-      const packageJson = this.generatePackageJson(schemaName, jsonData[fileName]);
-      await saveToSchemaDir('package.json', packageJson);
-
-      const readMe = this.generateReadme(schemaName);
-      await saveToSchemaDir('README.md', readMe);
-
-      const license = this.generateLicense();
-      await saveToSchemaDir('LICENSE', license);
-
-      await fs.appendFile(this.updatedFilesFile, schemaName, {encoding: 'utf-8'});
-
-      this.logger.info(`Finished processing "${schemaName}".`);
-
-      generatedSchemas.push(schemaName);
-    });
-
-    await Promise.all(promises);
-
-    return {
-      disabledSchemas,
-      generatedSchemas,
-    };
+    return fileHashes;
   }
 
   private generateLicense(): string {
@@ -273,63 +267,69 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 `;
   }
 
+  private async generateSchemas(jsonData: SchemaHashes): Promise<BuildResult> {
+    const disabledSchemas: string[] = [];
+    const generatedSchemas: string[] = [];
+
+    const promises = Object.keys(jsonData).map(async fileName => {
+      const schemaName = fileName.replace('.json', '');
+      const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
+      this.logger.info(`Processing "${schemaName}" ...`);
+
+      let newSchema = '';
+
+      try {
+        newSchema = await schemaGenerator.compileFromFile(fileNameResolved, {
+          cwd: this.jsonSchemasDir,
+        });
+      } catch (error) {
+        this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
+        disabledSchemas.push(fileName);
+        await fs.appendFile(this.logFile, error.message, {encoding: 'utf-8'});
+        return;
+      }
+
+      const schemaDirResolved = path.resolve('schemas', schemaName);
+      const saveToSchemaDir = (fileName: string, content: string) => {
+        return fs.writeFile(path.join(schemaDirResolved, fileName), content, 'utf-8');
+      };
+
+      await fs.ensureDir(schemaDirResolved);
+      await saveToSchemaDir('index.d.ts', newSchema);
+
+      const packageJson = this.generatePackageJson(schemaName, jsonData[fileName]);
+      await saveToSchemaDir('package.json', packageJson);
+
+      const readMe = this.generateReadme(schemaName);
+      await saveToSchemaDir('README.md', readMe);
+
+      const license = this.generateLicense();
+      await saveToSchemaDir('LICENSE', license);
+
+      await fs.appendFile(this.updatedFilesFile, schemaName, {encoding: 'utf-8'});
+
+      this.logger.info(`Finished processing "${schemaName}".`);
+
+      generatedSchemas.push(schemaName);
+    });
+
+    await Promise.all(promises);
+
+    return {
+      disabledSchemas,
+      generatedSchemas,
+    };
+  }
+
   private async removeAndClone(): Promise<void> {
     await fs.remove(this.schemaStoreDirResolved);
     this.logger.info(`Cloning "${this.options.schemaStoreRepo}" to "${this.schemaStoreDirResolved}" ...`);
     await this.git.clone(this.options.schemaStoreRepo, this.schemaStoreDirResolved, ['--depth=1']);
   }
 
-  private async generateHashes(schemas: string[]): Promise<Record<string, string>> {
-    this.logger.info(`Generating hashes for ${schemas.length} schemas.`);
-    const fileHashes: Record<string, string> = {};
-
-    for (const fileName of schemas) {
-      const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
-      const fileIsReadable = await this.fileIsReadable(fileNameResolved);
-
-      if (fileIsReadable) {
-        const fileContent = await fs.readFile(fileNameResolved, 'utf8');
-        const sha256 = crypto
-          .createHash('sha256')
-          .update(fileContent)
-          .digest('hex');
-
-        fileHashes[fileName] = sha256;
-      } else {
-        this.logger.error(`File "${fileNameResolved}" is not readable.`);
-      }
-    }
-
-    return fileHashes;
-  }
-
-  private async bumpVersions(fileHashes: Record<string, string>, lockFileData: SchemaHashes): Promise<SchemaHashes> {
-    const updatedHashes: SchemaHashes = {};
-
-    for (const fileName in fileHashes) {
-      if (!lockFileData[fileName]) {
-        this.logger.info(`Hash from "${fileName}" does not exist yet. Creating.`);
-        updatedHashes[fileName] = {
-          hash: fileHashes[fileName],
-          version: '0.0.1',
-        };
-      } else if (
-        lockFileData[fileName] &&
-        (fileHashes[fileName] !== lockFileData[fileName].hash || this.options.force)
-      ) {
-        this.logger.info(`Hash from "${fileName}" is outdated. Updating.`);
-
-        const newVersion = semver.inc(lockFileData[fileName].version, 'patch');
-
-        updatedHashes[fileName] = {
-          hash: fileHashes[fileName],
-          version: String(newVersion),
-        };
-      } else {
-        updatedHashes[fileName] = lockFileData[fileName];
-      }
-    }
-
-    return updatedHashes;
+  private async writeLockFile(fileName: string, data: SchemaHashes): Promise<void> {
+    this.logger.info(`Writing lockfile "${fileName}" ...`);
+    const sortedData = jsonAbc.sortObj(data, true);
+    await fs.writeJson(path.resolve(fileName), sortedData, {spaces: 2});
   }
 }
