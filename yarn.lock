@@ -56,11 +56,6 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@types/cli-color@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.npmjs.org/@types/cli-color/-/cli-color-0.3.29.tgz#c83a71fe02c8c7e1ccec048dd6a2458d1f6c96ea"
-  integrity sha1-yDpx/gLIx+HM7ASN1qJFjR9sluo=
-
 "@types/events@*":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
@@ -101,47 +96,25 @@
   resolved "https://registry.npmjs.org/@types/jsonabc/-/jsonabc-2.3.1.tgz#3aa5d3f938331ef2472d3ea56c6b4c805bef6198"
   integrity sha512-SOR8DMQQVUmk3JnNp7FU75U+vp/VcFcghvS68mUQEuq4FKDANIQ9dxDA5qEQMDahBCd5Vyhk81ywn0JbcLpZZw==
 
-"@types/lodash@^4.14.121":
-  version "4.14.121"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.121.tgz#9327e20d49b95fc2bf983fc2f045b2c6effc80b9"
-  integrity sha512-ORj7IBWj13iYufXt/VXrCNMbUuCTJfhzme5kx9U/UtcIPdJYuvPDUAlHlbNhz/8lKCLy9XGIZnGrqXOtQbPGoQ==
-
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/minimist@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
-  integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
-
-"@types/mz@0.0.32":
-  version "0.0.32"
-  resolved "https://registry.npmjs.org/@types/mz/-/mz-0.0.32.tgz#e8248b4e41424c052edc1725dd33650c313a3659"
-  integrity sha512-cy3yebKhrHuOcrJGkfwNHhpTXQLgmXSv1BX+4p32j+VUQ6aP2eJ5cL7OvGcAQx75fCTFaAIIAKewvqL+iwSd4g==
-  dependencies:
-    "@types/node" "*"
-
-"@types/node@*", "@types/node@~12":
+"@types/node@*", "@types/node@>=4.5.0", "@types/node@~12":
   version "12.6.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
   integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
-
-"@types/node@^11.10.4":
-  version "11.10.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-11.10.4.tgz#3f5fc4f0f322805f009e00ab35a2ff3d6b778e42"
-  integrity sha512-wa09itaLE8L705aXd8F80jnFpxz3Y1/KRHfKsYL2bPc0XF+wEWu8sR9n5bmeu8Ba1N9z2GRNzm/YdHcghLkLKg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
-"@types/prettier@^1.16.1":
-  version "1.16.1"
-  resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.16.1.tgz#328d1c9b54402e44119398bcb6a31b7bbd606d59"
-  integrity sha512-db6pZL5QY3JrlCHBhYQzYDci0xnoDuxfseUuguLRr3JNk+bnCfpkK6p8quiUDyO8A0vbpBKkk59Fw125etrNeA==
+"@types/prettier@^1.18.0":
+  version "1.18.0"
+  resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.18.0.tgz#d2dbe4d5f76b455138f13a2d881278e2c06a733d"
+  integrity sha512-5N6WK/XXs9PLPpge2KOmOSaIym2vIo32GsrxM5YOFs7uZ8R9L/acg+hQzWsfwoHEpasqQkH0+3LzLTbiF1GFLQ==
 
 "@types/rimraf@2.0.2":
   version "2.0.2"
@@ -601,11 +574,6 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-format-util@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/format-util/-/format-util-1.0.3.tgz#032dca4a116262a12c43f4c3ec8566416c5b2d95"
-  integrity sha1-Ay3KShFiYqEsQ/TD7IVmQWxbLZU=
-
 fs-extra@8.1.0:
   version "8.1.0"
   resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
@@ -864,7 +832,7 @@ js-tokens@^4.0.0:
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@^3.12.1, js-yaml@^3.13.1:
+js-yaml@^3.13.1:
   version "3.13.1"
   resolved "https://registry.npmjs.org/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
   integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
@@ -877,34 +845,30 @@ json-parse-better-errors@^1.0.1:
   resolved "https://registry.npmjs.org/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
-json-schema-ref-parser@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.npmjs.org/json-schema-ref-parser/-/json-schema-ref-parser-6.1.0.tgz#30af34aeab5bee0431da805dac0eb21b574bf63d"
-  integrity sha512-pXe9H1m6IgIpXmE5JSb8epilNTGsmTb2iPohAXpOdhqGFbQjNeHHsZxU+C8w6T81GZxSPFLeUoqDJmzxx5IGuw==
+json-schema-ref-parser@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/json-schema-ref-parser/-/json-schema-ref-parser-7.1.0.tgz#987582b19fa06a37db4797d4e825879a7aea127c"
+  integrity sha512-eP9+39HimQUpmqEUHRpV+oh8hiVMRU2tD6H+8uDc0raCQxX6jARN4nSJe5OpAtPt7eObuIUIsW7AwvGBzCHavQ==
   dependencies:
     call-me-maybe "^1.0.1"
-    js-yaml "^3.12.1"
-    ono "^4.0.11"
+    js-yaml "^3.13.1"
+    ono "^5.0.1"
 
-json-schema-to-typescript@6.1.3:
-  version "6.1.3"
-  resolved "https://registry.npmjs.org/json-schema-to-typescript/-/json-schema-to-typescript-6.1.3.tgz#245364e8564263e53738320b46227f304491cc77"
-  integrity sha512-6nG2EPSyu3Po0FYsMEw/RpJDd6dqBr8DYIbqPZsxrRFE8g0Mxzbt6L6vlKJYrcPe9707INivn4NPJfemlXSLKw==
+json-schema-to-typescript@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/json-schema-to-typescript/-/json-schema-to-typescript-7.0.0.tgz#d39df40e82009df06720c1a1df3da48466cf564c"
+  integrity sha512-MWQNZf/nT5DDOydysGqFi3J5x8gAFvHKOft0gVHLrbqvddKgkGiFOgCd0Y4z+tMYLdZyeFk5qhN3i7l5hXP2/Q==
   dependencies:
-    "@types/cli-color" "^0.3.29"
     "@types/json-schema" "^7.0.3"
-    "@types/lodash" "^4.14.121"
-    "@types/minimist" "^1.2.0"
-    "@types/mz" "0.0.32"
-    "@types/node" "^11.10.4"
-    "@types/prettier" "^1.16.1"
+    "@types/node" ">=4.5.0"
+    "@types/prettier" "^1.18.0"
     cli-color "^1.4.0"
-    json-schema-ref-parser "^6.1.0"
+    json-schema-ref-parser "^7.1.0"
     json-stringify-safe "^5.0.1"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     minimist "^1.2.0"
     mz "^2.7.0"
-    prettier "^1.16.4"
+    prettier "^1.18.2"
     stdin "0.0.1"
 
 json-stringify-safe@^5.0.1:
@@ -999,10 +963,10 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash@^4.17.11:
-  version "4.17.14"
-  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
-  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -1191,12 +1155,10 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
-ono@^4.0.11:
-  version "4.0.11"
-  resolved "https://registry.npmjs.org/ono/-/ono-4.0.11.tgz#c7f4209b3e396e8a44ef43b9cedc7f5d791d221d"
-  integrity sha512-jQ31cORBFE6td25deYeD80wxKBMj+zBmHTrVxnc6CKhx8gho6ipmWM5zj/oeoqioZ99yqBls9Z/9Nss7J26G2g==
-  dependencies:
-    format-util "^1.0.3"
+ono@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/ono/-/ono-5.0.1.tgz#a39e0af7ab2c2a143a06f08ad9d187e61f9da0c8"
+  integrity sha512-4/4BPGHX8OuDDNx1SrOqTOI7zajPjvBvrG1jDG3hDq4qBpoKlzG2d83Vdz26hvv0FFWYsLdHf+1Vu/k2d8Ww9w==
 
 opencollective-postinstall@^2.0.2:
   version "2.0.2"
@@ -1299,7 +1261,7 @@ please-upgrade-node@^3.1.1:
   dependencies:
     semver-compare "^1.0.0"
 
-prettier@1.18.2, prettier@^1.16.4:
+prettier@1.18.2, prettier@^1.18.2:
   version "1.18.2"
   resolved "https://registry.npmjs.org/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
   integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
