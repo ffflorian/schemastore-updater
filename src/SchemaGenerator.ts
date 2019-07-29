@@ -56,8 +56,6 @@ export class SchemaGenerator {
     if (this.options.force) {
       this.logger.info('Force is set. Will re-generate all schemas.');
     }
-
-    fs.removeSync(this.updatedFilesFile);
   }
 
   public async checkDisabled(): Promise<CheckResult> {
@@ -98,6 +96,7 @@ export class SchemaGenerator {
     const fileHashes = await this.generateHashes(enabledSchemas);
     const updatedHashes = await this.bumpVersions(fileHashes, lockFileData);
 
+    await fs.remove(this.updatedFilesFile);
     const {disabledSchemas, generatedSchemas} = await this.generateSchemas(updatedHashes);
 
     for (const disabledSchema of disabledSchemas) {
