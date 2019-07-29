@@ -162,10 +162,10 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
 };
 export type StringOrStringArrayUnique = NonEmptyString | StringArrayUnique;
 export type NonEmptyString = string;
-export type StringArrayUnique = NonEmptyString[];
+export type StringArrayUnique = [NonEmptyString, ...(NonEmptyString)[]];
 export type StringOrNumberOrAcceptBothTypeAsArrayUnique = StringOrNumber | StringOrNumberAndBothAreTypeArrayUnique;
 export type StringOrNumber = NonEmptyString | number;
-export type StringOrNumberAndBothAreTypeArrayUnique = StringOrNumber[];
+export type StringOrNumberAndBothAreTypeArrayUnique = [StringOrNumber, ...(StringOrNumber)[]];
 export type XcodeVersions =
   | "xcode6.4"
   | "xcode7.3"
@@ -178,7 +178,8 @@ export type XcodeVersions =
   | "xcode9.4"
   | "xcode10"
   | "xcode10.1"
-  | "xcode10.2";
+  | "xcode10.2"
+  | "xcode11";
 export type PossiblySecretString =
   | string
   | {
@@ -595,13 +596,22 @@ export interface Job {
      */
     snaps?:
       | NonEmptyString
-      | (
-          | NonEmptyString
-          | {
-              name: NonEmptyString;
-              channel?: NonEmptyString;
-              classic?: boolean;
-            })[];
+      | [
+          (
+            | NonEmptyString
+            | {
+                name: NonEmptyString;
+                channel?: NonEmptyString;
+                classic?: boolean;
+              }),
+          ...(
+            | NonEmptyString
+            | {
+                name: NonEmptyString;
+                channel?: NonEmptyString;
+                classic?: boolean;
+              })[]
+        ];
     /**
      * BrowserStack addon
      */

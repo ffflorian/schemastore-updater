@@ -65,7 +65,8 @@ export interface OptionsDefinition {
     | "vue"
     | "yaml"
     | "html"
-    | "angular";
+    | "angular"
+    | "lwc";
   /**
    * Custom directory that contains prettier plugins in node_modules subdirectory.
    * Overrides default behavior when plugins are searched relatively to the location of Prettier.
@@ -201,7 +202,8 @@ export interface OverridesDefinition {
         | "vue"
         | "yaml"
         | "html"
-        | "angular";
+        | "angular"
+        | "lwc";
       /**
        * Custom directory that contains prettier plugins in node_modules subdirectory.
        * Overrides default behavior when plugins are searched relatively to the location of Prettier.

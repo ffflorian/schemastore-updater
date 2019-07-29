@@ -52,111 +52,214 @@ export interface JSONSchemaForPhraseAppConfigurationFiles {
       /**
        * Source files that will be uploaded on push
        */
-      sources?: {
-        /**
-         * Translation file which will be uploaded
-         */
-        file?: string;
-        /**
-         * Locale upload parameter
-         */
-        params?: {
+      sources?: [
+        {
           /**
-           * Branch name
+           * Translation file which will be uploaded
            */
-          branch?: string;
-          file_format?: FileFormat;
-          locale_id?: LocaleId;
+          file?: string;
           /**
-           * List of tags separated by comma to be associated with the new keys contained in the upload
+           * Locale upload parameter
            */
-          tags?: string;
-          /**
-           * Indicates whether existing translations should be updated with the file content
-           */
-          update_translations?: boolean;
-          /**
-           * Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions
-           */
-          update_descriptions?: boolean;
-          /**
-           * Indicates whether the file contains Emoji symbols that should be converted
-           */
-          convert_emoji?: boolean;
-          /**
-           * Indicates whether the upload should not create upload tags
-           */
-          skip_upload_tags?: boolean;
-          /**
-           * Indicates whether the upload should unverify updated translations
-           */
-          skip_unverification?: boolean;
-          file_encoding?: Encoding;
-          /**
-           * Additional options available for specific formats. See our format guide for complete list
-           */
-          format_options?: {
+          params?: {
             /**
-             * Colum separator character
+             * Branch name
              */
-            column_separator?: string;
+            branch?: string;
+            file_format?: FileFormat;
+            locale_id?: LocaleId;
+            /**
+             * List of tags separated by comma to be associated with the new keys contained in the upload
+             */
+            tags?: string;
+            /**
+             * Indicates whether existing translations should be updated with the file content
+             */
+            update_translations?: boolean;
+            /**
+             * Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions
+             */
+            update_descriptions?: boolean;
+            /**
+             * Indicates whether the file contains Emoji symbols that should be converted
+             */
+            convert_emoji?: boolean;
+            /**
+             * Indicates whether the upload should not create upload tags
+             */
+            skip_upload_tags?: boolean;
+            /**
+             * Indicates whether the upload should unverify updated translations
+             */
+            skip_unverification?: boolean;
+            file_encoding?: Encoding;
+            /**
+             * Additional options available for specific formats. See our format guide for complete list
+             */
+            format_options?: {
+              /**
+               * Colum separator character
+               */
+              column_separator?: string;
+              [k: string]: any;
+            };
             [k: string]: any;
           };
           [k: string]: any;
-        };
-        [k: string]: any;
-      }[];
+        },
+        ...({
+          /**
+           * Translation file which will be uploaded
+           */
+          file?: string;
+          /**
+           * Locale upload parameter
+           */
+          params?: {
+            /**
+             * Branch name
+             */
+            branch?: string;
+            file_format?: FileFormat;
+            locale_id?: LocaleId;
+            /**
+             * List of tags separated by comma to be associated with the new keys contained in the upload
+             */
+            tags?: string;
+            /**
+             * Indicates whether existing translations should be updated with the file content
+             */
+            update_translations?: boolean;
+            /**
+             * Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions
+             */
+            update_descriptions?: boolean;
+            /**
+             * Indicates whether the file contains Emoji symbols that should be converted
+             */
+            convert_emoji?: boolean;
+            /**
+             * Indicates whether the upload should not create upload tags
+             */
+            skip_upload_tags?: boolean;
+            /**
+             * Indicates whether the upload should unverify updated translations
+             */
+            skip_unverification?: boolean;
+            file_encoding?: Encoding;
+            /**
+             * Additional options available for specific formats. See our format guide for complete list
+             */
+            format_options?: {
+              /**
+               * Colum separator character
+               */
+              column_separator?: string;
+              [k: string]: any;
+            };
+            [k: string]: any;
+          };
+          [k: string]: any;
+        })[]
+      ];
       [k: string]: any;
     };
     pull?: {
       /**
        * List of files that will be downloaded on pull
        */
-      targets?: {
-        /**
-         * Translation file which will be downloaded
-         */
-        file?: string;
-        project_id?: ProjectId;
-        /**
-         * Locale download parameter
-         */
-        params?: {
+      targets?: [
+        {
           /**
-           * Branch name
+           * Translation file which will be downloaded
            */
-          branch?: string;
-          file_format?: FileFormat;
+          file?: string;
+          project_id?: ProjectId;
           /**
-           * Limit result to keys tagged with the given tag (identified by its name)
+           * Locale download parameter
            */
-          tag?: string;
-          locale_id?: LocaleId;
-          /**
-           * Indicates whether keys without translations should be included in the output as well
-           */
-          include_empty_translations?: boolean;
-          /**
-           * Indicates whether [NOTRANSLATE] tags should be kept
-           */
-          keep_notranslate_tags?: boolean;
-          /**
-           * Indicates whether Emoji symbols should be converted to actual Emojis
-           */
-          convert_emoji?: boolean;
-          encoding?: Encoding;
-          /**
-           * Indicates whether the locale file should skip all unverified translations
-           */
-          skip_unverified_translations?: boolean;
-          /**
-           * If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to true
-           */
-          fallback_locale_id?: string;
+          params?: {
+            /**
+             * Branch name
+             */
+            branch?: string;
+            file_format?: FileFormat;
+            /**
+             * Limit result to keys tagged with the given tag (identified by its name)
+             */
+            tag?: string;
+            locale_id?: LocaleId;
+            /**
+             * Indicates whether keys without translations should be included in the output as well
+             */
+            include_empty_translations?: boolean;
+            /**
+             * Indicates whether [NOTRANSLATE] tags should be kept
+             */
+            keep_notranslate_tags?: boolean;
+            /**
+             * Indicates whether Emoji symbols should be converted to actual Emojis
+             */
+            convert_emoji?: boolean;
+            encoding?: Encoding;
+            /**
+             * Indicates whether the locale file should skip all unverified translations
+             */
+            skip_unverified_translations?: boolean;
+            /**
+             * If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to true
+             */
+            fallback_locale_id?: string;
+            [k: string]: any;
+          };
           [k: string]: any;
-        };
-        [k: string]: any;
-      }[];
+        },
+        ...({
+          /**
+           * Translation file which will be downloaded
+           */
+          file?: string;
+          project_id?: ProjectId;
+          /**
+           * Locale download parameter
+           */
+          params?: {
+            /**
+             * Branch name
+             */
+            branch?: string;
+            file_format?: FileFormat;
+            /**
+             * Limit result to keys tagged with the given tag (identified by its name)
+             */
+            tag?: string;
+            locale_id?: LocaleId;
+            /**
+             * Indicates whether keys without translations should be included in the output as well
+             */
+            include_empty_translations?: boolean;
+            /**
+             * Indicates whether [NOTRANSLATE] tags should be kept
+             */
+            keep_notranslate_tags?: boolean;
+            /**
+             * Indicates whether Emoji symbols should be converted to actual Emojis
+             */
+            convert_emoji?: boolean;
+            encoding?: Encoding;
+            /**
+             * Indicates whether the locale file should skip all unverified translations
+             */
+            skip_unverified_translations?: boolean;
+            /**
+             * If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to true
+             */
+            fallback_locale_id?: string;
+            [k: string]: any;
+          };
+          [k: string]: any;
+        })[]
+      ];
       [k: string]: any;
     };
     [k: string]: any;

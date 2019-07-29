@@ -8,7 +8,6 @@
     "docfx.json",
     "function.json",
     "htmlhint.json",
-    "jscsrc.json",
     "kustomization.json",
     "lsdlschema-1.0.json",
     "modernizrrc.json",

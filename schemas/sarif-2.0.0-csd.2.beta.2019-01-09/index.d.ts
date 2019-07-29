@@ -547,7 +547,7 @@ export interface Run {
   /**
    * An ordered list of character sequences that were treated as line breaks when computing region information for the run.
    */
-  newlineSequences?: string[];
+  newlineSequences?: [string, ...(string)[]];
   /**
    * Specifies the unit in which the tool measures columns.
    */
@@ -763,19 +763,19 @@ export interface Run {
     /**
      * An array of external property files containing run.files arrays to be merged with the root log file.
      */
-    files?: ExternalPropertyFile[];
+    files?: [ExternalPropertyFile, ...(ExternalPropertyFile)[]];
     /**
      * An array of external property files containing run.invocations arrays to be merged with the root log file.
      */
-    invocations?: ExternalPropertyFile[];
+    invocations?: [ExternalPropertyFile, ...(ExternalPropertyFile)[]];
     /**
      * An array of external property files containing run.logicalLocations arrays to be merged with the root log file.
      */
-    logicalLocations?: ExternalPropertyFile[];
+    logicalLocations?: [ExternalPropertyFile, ...(ExternalPropertyFile)[]];
     /**
      * An array of external property files containing run.results arrays to be merged with the root log file.
      */
-    results?: ExternalPropertyFile[];
+    results?: [ExternalPropertyFile, ...(ExternalPropertyFile)[]];
   };
   /**
    * Key/value pairs that provide additional information about the run.
@@ -3091,7 +3091,7 @@ export interface Result {
   /**
    * An array of one or more unique 'graphTraversal' objects.
    */
-  graphTraversals?: GraphTraversal[];
+  graphTraversals?: [GraphTraversal, ...(GraphTraversal)[]];
   /**
    * A set of locations relevant to this result.
    */
@@ -3596,7 +3596,7 @@ export interface CodeFlow {
   /**
    * An array of one or more unique threadFlow objects, each of which describes the progress of a program through a thread of execution.
    */
-  threadFlows: ThreadFlow[];
+  threadFlows: [ThreadFlow, ...(ThreadFlow)[]];
   /**
    * Key/value pairs that provide additional information about the code flow.
    */
@@ -3651,7 +3651,7 @@ export interface ThreadFlow {
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
    */
-  locations: ThreadFlowLocation[];
+  locations: [ThreadFlowLocation, ...(ThreadFlowLocation)[]];
   /**
    * Key/value pairs that provide additional information about the thread flow.
    */
@@ -4523,7 +4523,7 @@ export interface Fix {
   /**
    * One or more file changes that comprise a fix for a result.
    */
-  fileChanges: FileChange[];
+  fileChanges: [FileChange, ...(FileChange)[]];
   /**
    * Key/value pairs that provide additional information about the fix.
    */
@@ -4569,7 +4569,7 @@ export interface FileChange {
   /**
    * An array of replacement objects, each of which represents the replacement of a single region in a single file specified by 'fileLocation'.
    */
-  replacements: Replacement[];
+  replacements: [Replacement, ...(Replacement)[]];
   /**
    * Key/value pairs that provide additional information about the file change.
    */

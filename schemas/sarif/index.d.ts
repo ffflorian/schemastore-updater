@@ -38,6 +38,9 @@ export type PhysicalLocation =
   | {
       [k: string]: any;
     };
+/**
+ * Contains information that enables a SARIF consumer to locate the external property file that contains the value of an externalized property associated with the run.
+ */
 export type ExternalPropertyFileReference =
   | {
       [k: string]: any;
@@ -47,9 +50,9 @@ export type ExternalPropertyFileReference =
     };
 
 /**
- * Static Analysis Results Format (SARIF) Version 2.1.0-rtm.3 JSON Schema: a standard format for the output of static analysis tools.
+ * Static Analysis Results Format (SARIF) Version 2.1.0-rtm.4 JSON Schema: a standard format for the output of static analysis tools.
  */
-export interface StaticAnalysisResultsFormatSARIFVersion210Rtm3JSONSchema {
+export interface StaticAnalysisResultsFormatSARIFVersion210Rtm4JSONSchema {
   /**
    * The URI of the JSON schema corresponding to the version.
    */
@@ -251,7 +254,6 @@ export interface Run {
           tags?: string[];
           [k: string]: any;
         };
-        [k: string]: any;
       };
       /**
        * Translation metadata, required for a translation, not populated by other component types.
@@ -329,7 +331,6 @@ export interface Run {
           tags?: string[];
           [k: string]: any;
         };
-        [k: string]: any;
       };
       /**
        * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
@@ -539,7 +540,6 @@ export interface Run {
             tags?: string[];
             [k: string]: any;
           };
-          [k: string]: any;
         };
         /**
          * Translation metadata, required for a translation, not populated by other component types.
@@ -617,7 +617,6 @@ export interface Run {
             tags?: string[];
             [k: string]: any;
           };
-          [k: string]: any;
         };
         /**
          * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
@@ -1069,7 +1068,7 @@ export interface Run {
   /**
    * An ordered list of character sequences that were treated as line breaks when computing region information for the run.
    */
-  newlineSequences?: string[];
+  newlineSequences?: [string, ...(string)[]];
   /**
    * Specifies the unit in which the tool measures columns.
    */
@@ -1250,7 +1249,6 @@ export interface Run {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * Key/value pairs that provide additional information about the run.
@@ -1524,6 +1522,9 @@ export interface ArtifactLocation {
     [k: string]: any;
   };
 }
+/**
+ * Identifies a particular toolComponent object, either the driver or an extension.
+ */
 export interface ToolComponentReference {
   /**
    * The 'name' property of the referenced toolComponent.
@@ -1547,7 +1548,6 @@ export interface ToolComponentReference {
     tags?: string[];
     [k: string]: any;
   };
-  [k: string]: any;
 }
 /**
  * A component, such as a plug-in or the driver, of the analysis tool that was run.
@@ -1715,7 +1715,6 @@ export interface ToolComponent {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * Translation metadata, required for a translation, not populated by other component types.
@@ -1793,7 +1792,6 @@ export interface ToolComponent {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
@@ -2275,7 +2273,6 @@ export interface Notification {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * A reference used to locate the descriptor relevant to this notification.
@@ -2622,6 +2619,9 @@ export interface StackFrame {
     [k: string]: any;
   };
 }
+/**
+ * Describes a runtime exception encountered during the execution of an analysis tool.
+ */
 export interface Exception {
   /**
    * A string that identifies the kind of exception, for example, the fully qualified type name of an object that was thrown, or the symbolic name of a signal.
@@ -2674,7 +2674,6 @@ export interface Exception {
     tags?: string[];
     [k: string]: any;
   };
-  [k: string]: any;
 }
 /**
  * Specifies the information necessary to retrieve a desired revision from a version control system.
@@ -3362,7 +3361,6 @@ export interface Result {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * A web response associated with this result.
@@ -3454,7 +3452,6 @@ export interface Result {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * Key/value pairs that provide additional information about the result.
@@ -3513,7 +3510,7 @@ export interface CodeFlow {
   /**
    * An array of one or more unique threadFlow objects, each of which describes the progress of a program through a thread of execution.
    */
-  threadFlows: ThreadFlow[];
+  threadFlows: [ThreadFlow, ...(ThreadFlow)[]];
   /**
    * Key/value pairs that provide additional information about the code flow.
    */
@@ -3525,6 +3522,9 @@ export interface CodeFlow {
     [k: string]: any;
   };
 }
+/**
+ * Describes a sequence of code locations that specify a path through a single thread of execution such as an operating system or fiber.
+ */
 export interface ThreadFlow {
   /**
    * An string that uniquely identifies the threadFlow within the codeFlow in which it occurs.
@@ -3555,7 +3555,7 @@ export interface ThreadFlow {
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
    */
-  locations: ThreadFlowLocation[];
+  locations: [ThreadFlowLocation, ...(ThreadFlowLocation)[]];
   /**
    * Key/value pairs that provide additional information about the thread flow.
    */
@@ -3566,7 +3566,6 @@ export interface ThreadFlow {
     tags?: string[];
     [k: string]: any;
   };
-  [k: string]: any;
 }
 /**
  * A location visited by an analysis tool while simulating or monitoring the execution of a program.
@@ -3782,7 +3781,6 @@ export interface ThreadFlowLocation {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * A web response associated with this thread flow location.
@@ -3874,7 +3872,6 @@ export interface ThreadFlowLocation {
       tags?: string[];
       [k: string]: any;
     };
-    [k: string]: any;
   };
   /**
    * Key/value pairs that provide additional information about the threadflow location.
@@ -4097,7 +4094,7 @@ export interface Fix {
   /**
    * One or more artifact changes that comprise a fix for a result.
    */
-  artifactChanges: ArtifactChange[];
+  artifactChanges: [ArtifactChange, ...(ArtifactChange)[]];
   /**
    * Key/value pairs that provide additional information about the fix.
    */
@@ -4153,7 +4150,7 @@ export interface ArtifactChange {
   /**
    * An array of replacement objects, each of which represents the replacement of a single region in a single artifact specified by 'artifactLocation'.
    */
-  replacements: Replacement[];
+  replacements: [Replacement, ...(Replacement)[]];
   /**
    * Key/value pairs that provide additional information about the change.
    */
@@ -4422,7 +4419,7 @@ export interface Address {
   };
 }
 /**
- * A web request object.
+ * Describes an HTTP request.
  */
 export interface WebRequest {
   /**
@@ -4513,10 +4510,9 @@ export interface WebRequest {
     tags?: string[];
     [k: string]: any;
   };
-  [k: string]: any;
 }
 /**
- * A web response object.
+ * Describes the response to an HTTP request.
  */
 export interface WebResponse {
   /**
@@ -4605,8 +4601,10 @@ export interface WebResponse {
     tags?: string[];
     [k: string]: any;
   };
-  [k: string]: any;
 }
+/**
+ * The top-level element of an external property file.
+ */
 export interface ExternalProperties {
   /**
    * The URI of the JSON schema corresponding to the version of the external property file format.
@@ -4798,7 +4796,6 @@ export interface ExternalProperties {
             tags?: string[];
             [k: string]: any;
           };
-          [k: string]: any;
         };
         /**
          * Translation metadata, required for a translation, not populated by other component types.
@@ -4876,7 +4873,6 @@ export interface ExternalProperties {
             tags?: string[];
             [k: string]: any;
           };
-          [k: string]: any;
         };
         /**
          * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
@@ -5442,7 +5438,6 @@ export interface ExternalProperties {
         tags?: string[];
         [k: string]: any;
       };
-      [k: string]: any;
     };
     /**
      * Translation metadata, required for a translation, not populated by other component types.
@@ -5520,7 +5515,6 @@ export interface ExternalProperties {
         tags?: string[];
         [k: string]: any;
       };
-      [k: string]: any;
     };
     /**
      * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
@@ -5571,5 +5565,4 @@ export interface ExternalProperties {
     tags?: string[];
     [k: string]: any;
   };
-  [k: string]: any;
 }

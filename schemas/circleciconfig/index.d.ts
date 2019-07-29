@@ -245,7 +245,7 @@ export interface Commands {
           }
         | {
             type: "enum";
-            enum: string[];
+            enum: [string, ...(string)[]];
             description?: string;
             default?: string;
             [k: string]: any;

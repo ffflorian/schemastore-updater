@@ -5,6 +5,10 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+/**
+ * <head> resources block the page from rendering while your code executes.
+ */
+export type JavaScriptAndCSSFilesIncludedInTheHeadOfASite = [Resource, ...(Resource)[]];
 export type WhichHTMLElementYourResourceShouldBeInsertedAs = "script" | "style";
 /**
  * This should be relative to the root of the project e.g. "./source/app.js"
@@ -16,19 +20,20 @@ export type NixStylePathToYourResource = string;
  */
 export type ConditionallyIncludeResource = string;
 /**
- * <head> resources block the page from rendering while your code executes.
- */
-export type JavaScriptAndCSSFilesIncludedInTheHeadOfASite = Resource[];
-/**
  * <body> resources load and execute asynchronously. This is useful if your code should allow the page to render first.
  */
-export type JavaScriptAndCSSFilesIncludedInTheBodyOfTheSite = Resource[];
+export type JavaScriptAndCSSFilesIncludedInTheBodyOfTheSite = [Resource, ...(Resource)[]];
 /**
  * Preview resources can be used for local hook events, allowing your app to modify the install record e.g. fetching an API key with an OAuth token, then storing the key on an option.
  */
-export type AlphaJavaScriptFilesExecutedInTheInstallPreview = {
-  src?: NixStylePathToYourResource;
-}[];
+export type AlphaJavaScriptFilesExecutedInTheInstallPreview = [
+  {
+    src?: NixStylePathToYourResource;
+  },
+  ...({
+    src?: NixStylePathToYourResource;
+  })[]
+];
 export type TheOptionsSectionIsAnArrayOfPropertyKeysWhichThisHandlerShouldApplyToWhenAnyOfThoseOptionsAreChangedDuringAPreviewThisHandlerWillBeTriggeredAGivenPropertyMayHaveMultipleHandlersOptionsCanAlsoBeHandledUsingSpecialKeysDefaultTriggerWhenAnyPropertyThatHasnTYetBeenHandledByAMoreSpecificEntryChangesAnyTriggerWhenAnyPropertyChangesRegardlessOfAnyOtherEntryProductTriggerWhenTheCustomerChangesTheirChosenProduct = string[];
 export type AFunctionToExecuteWhenAMatchingOptionHasChangedThisFunctionShouldBeDefinedInYourAppSJavaScriptEGWindowINSTALL_SCOPEUpdateOptionsNextOptions = string;
 export type DeclarationsForEachGroupOfMatchingOptionsAndTheirExecutingFunctionMultipleUpdateHandlersAreUsefulWhenAnAppHasOptionsThatHaveDifferentUpdatingProcedures = {

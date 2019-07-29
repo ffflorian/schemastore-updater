@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for jscsrc.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/jscsrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jscsrc",
+  "scripts": {},
+  "typesPublisherContentHash": "587855da664fed0ce8d52087da3f42a815911575edfe31c5b711856929042d07",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

@@ -52,7 +52,7 @@ export interface Haxelib {
   /**
    * List of project contributors that are allowed to upload to haxelib
    */
-  contributors: UserName[];
+  contributors: [UserName, ...(UserName)[]];
   /**
    * List of tags for easier finding the project on haxelib
    */

@@ -282,6 +282,7 @@ export interface CoreProperties {
     | {
         [k: string]: any;
       };
+  workspaces?: string[];
   /**
    * Any property starting with _ is valid.
    *

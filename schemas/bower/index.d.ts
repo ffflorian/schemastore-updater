@@ -88,5 +88,13 @@ export interface JSONSchemaForBowerConfigurationFiles {
    * The types of modules this package exposes
    */
   moduleType?: ("amd" | "es6" | "globals" | "node" | "yui")[];
-  [k: string]: any;
+  /**
+   * Any property starting with _ is valid.
+   *
+   * This interface was referenced by `JSONSchemaForBowerConfigurationFiles`'s JSON-Schema definition
+   * via the `patternProperty` "^_".
+   */
+  [k: string]: {
+    [k: string]: any;
+  };
 }

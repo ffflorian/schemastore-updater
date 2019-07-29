@@ -303,6 +303,10 @@
     "hash": "f9b41c3e5055c523de781de41c3487c3f653853dbcb4b9a0ada759c1f04309af",
     "version": "0.0.3"
   },
+  "hemtt-0.6.2.json": {
+    "hash": "bc40b54c38a69c7eda682232af5593bc9311bb08e97c3c77ba0748cb31c3c004",
+    "version": "0.0.1"
+  },
   "host-meta.json": {
     "hash": "716762792e3a5e3f3d68f50eb7829b06979582e262c3a34617f5c9422d95315f",
     "version": "0.0.3"
@@ -432,8 +436,8 @@
     "version": "0.0.1"
   },
   "mtad.json": {
-    "hash": "b1ecdbda7f2f1ef496f389bb181dd70d714d652e2be3b191396eeee0a66f47c5",
-    "version": "0.0.1"
+    "hash": "e8b711a3e245c260ff236707a0439546fc08f6336191809ceb56dfa3e4481136",
+    "version": "0.0.2"
   },
   "mtaext.json": {
     "hash": "20b6312e97f8092693af5549d5a0199f2d1dc66ea3ddd96dcbacbff50e5f06e6",

@@ -30,7 +30,7 @@ export type Namespace = string;
 /**
  * A Union of types
  */
-export type Union = AvroSchema[];
+export type Union = AvroSchema, ...(AvroSchema)[]];
 
 /**
  * A Record

@@ -134,11 +134,11 @@ export interface Page {
   /**
    * Similar to textBindings, but used to select one of the web tile icons in icons list for each icon in the page. If there are no icon elements on the page, this member may be omitted.
    */
-  iconBindings?: IconBinding[];
+  iconBindings?: [IconBinding, ...(IconBinding)[]];;
   /**
    * An array of objects corresponding to each page element that contains string content. Each binding object provides the numeric id of the page element based on the predefined layout selected, and the string value that it should contain.
    */
-  textBindings?: TextBinding[];
+  textBindings?: [TextBinding, ...(TextBinding)[]];;
   [k: string]: any;
 }
 export interface IconBinding {

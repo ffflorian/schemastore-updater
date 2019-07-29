@@ -121,7 +121,7 @@ export type Bozr = {
       bodySchemaFile?: string;
       bodySchema?: string;
       bodySchemaURI?: string;
-      absent?: any[];
+      absent?: [any, ...(any)[]];
     };
     remember?: {
       bodyPath?: {

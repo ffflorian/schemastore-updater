@@ -25,7 +25,7 @@ export interface PatternManifest {
   /**
    * Available semantic versions of the pattern
    */
-  versions?: string[];
+  versions?: [string, ...(string)[]];
   /**
    * Stability flag of the pattern
    */
@@ -33,7 +33,7 @@ export interface PatternManifest {
   /**
    * Array of tags describing the pattern
    */
-  tags?: string[];
+  tags?: [string, ...(string)[]];
   /**
    * Custom data object supplied by user
    */

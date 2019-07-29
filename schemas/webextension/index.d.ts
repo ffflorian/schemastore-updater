@@ -124,44 +124,84 @@ export interface JSONSchemaForWebExtensionsManifestFiles {
   /**
    * Content scripts are JavaScript files that run in the context of web pages.
    */
-  content_scripts?: {
-    /**
-     * Specifies which pages this content script will be injected into.
-     */
-    matches: MatchPattern[];
-    /**
-     * Excludes pages that this content script would otherwise be injected into.
-     */
-    exclude_matches?: MatchPattern[];
-    /**
-     * The list of CSS files to be injected into matching pages. These are injected in the order they appear in this array, before any DOM is constructed or displayed for the page.
-     */
-    css?: string[];
-    /**
-     * The list of JavaScript files to be injected into matching pages. These are injected in the order they appear in this array.
-     */
-    js?: string[];
-    /**
-     * Controls when the files in js are injected.
-     */
-    run_at?: "document_start" | "document_end" | "document_idle";
-    /**
-     * Controls whether the content script runs in all frames of the matching page, or only the top frame.
-     */
-    all_frames?: boolean;
-    /**
-     * Applied after matches to include only those URLs that also match this glob. Intended to emulate the @include Greasemonkey keyword.
-     */
-    include_globs?: GlobPattern[];
-    /**
-     * Applied after matches to exclude URLs that match this glob. Intended to emulate the @exclude Greasemonkey keyword.
-     */
-    exclude_globs?: GlobPattern[];
-    /**
-     * Whether to insert the content script on about:blank and about:srcdoc.
-     */
-    match_about_blank?: boolean;
-  }[];
+  content_scripts?: [
+    {
+      /**
+       * Specifies which pages this content script will be injected into.
+       */
+      matches: [MatchPattern, ...(MatchPattern)[]];
+      /**
+       * Excludes pages that this content script would otherwise be injected into.
+       */
+      exclude_matches?: MatchPattern[];
+      /**
+       * The list of CSS files to be injected into matching pages. These are injected in the order they appear in this array, before any DOM is constructed or displayed for the page.
+       */
+      css?: string[];
+      /**
+       * The list of JavaScript files to be injected into matching pages. These are injected in the order they appear in this array.
+       */
+      js?: string[];
+      /**
+       * Controls when the files in js are injected.
+       */
+      run_at?: "document_start" | "document_end" | "document_idle";
+      /**
+       * Controls whether the content script runs in all frames of the matching page, or only the top frame.
+       */
+      all_frames?: boolean;
+      /**
+       * Applied after matches to include only those URLs that also match this glob. Intended to emulate the @include Greasemonkey keyword.
+       */
+      include_globs?: GlobPattern[];
+      /**
+       * Applied after matches to exclude URLs that match this glob. Intended to emulate the @exclude Greasemonkey keyword.
+       */
+      exclude_globs?: GlobPattern[];
+      /**
+       * Whether to insert the content script on about:blank and about:srcdoc.
+       */
+      match_about_blank?: boolean;
+    },
+    ...({
+      /**
+       * Specifies which pages this content script will be injected into.
+       */
+      matches: [MatchPattern, ...(MatchPattern)[]];
+      /**
+       * Excludes pages that this content script would otherwise be injected into.
+       */
+      exclude_matches?: MatchPattern[];
+      /**
+       * The list of CSS files to be injected into matching pages. These are injected in the order they appear in this array, before any DOM is constructed or displayed for the page.
+       */
+      css?: string[];
+      /**
+       * The list of JavaScript files to be injected into matching pages. These are injected in the order they appear in this array.
+       */
+      js?: string[];
+      /**
+       * Controls when the files in js are injected.
+       */
+      run_at?: "document_start" | "document_end" | "document_idle";
+      /**
+       * Controls whether the content script runs in all frames of the matching page, or only the top frame.
+       */
+      all_frames?: boolean;
+      /**
+       * Applied after matches to include only those URLs that also match this glob. Intended to emulate the @include Greasemonkey keyword.
+       */
+      include_globs?: GlobPattern[];
+      /**
+       * Applied after matches to exclude URLs that match this glob. Intended to emulate the @exclude Greasemonkey keyword.
+       */
+      exclude_globs?: GlobPattern[];
+      /**
+       * Whether to insert the content script on about:blank and about:srcdoc.
+       */
+      match_about_blank?: boolean;
+    })[]
+  ];
   content_security_policy?: ContentSecurityPolicy;
   /**
    * Specifies the subdirectory of _locales that contains the default strings for this extension.

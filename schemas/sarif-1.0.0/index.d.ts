@@ -20,7 +20,7 @@ export interface StaticAnalysisResultsFormatSARIFVersion100JSONSchema {
   /**
    * The set of runs contained in this log file.
    */
-  runs: Run[];
+  runs: [Run, ...(Run)[]];
 }
 /**
  * Describes a single run of an analysis tool, and contains the output of that run.
@@ -214,7 +214,7 @@ export interface File {
   /**
    * An array of hash objects, each of which specifies a hashed value for the file, along with the name of the algorithm used to compute the hash.
    */
-  hashes?: Hash[];
+  hashes?: [Hash, ...(Hash)[]];
   /**
    * Key/value pairs that provide additional information about the file.
    */
@@ -326,7 +326,7 @@ export interface Result {
   /**
    * One or more locations where the result occurred. Specify only one location unless the problem indicated by the result can only be corrected by making a change at every specified location.
    */
-  locations?: Location[];
+  locations?: [Location, ...(Location)[]];
   /**
    * A source code or other file fragment that illustrates the result.
    */
@@ -342,15 +342,15 @@ export interface Result {
   /**
    * An array of 'stack' objects relevant to the result.
    */
-  stacks?: Stack[];
+  stacks?: [Stack, ...(Stack)[]];
   /**
    * An array of 'codeFlow' objects relevant to the result.
    */
-  codeFlows?: CodeFlow[];
+  codeFlows?: [CodeFlow, ...(CodeFlow)[]];
   /**
    * A grouped set of locations and messages, if available, that represent code areas that are related to this result.
    */
-  relatedLocations?: AnnotatedCodeLocation[];
+  relatedLocations?: [AnnotatedCodeLocation, ...(AnnotatedCodeLocation)[]];
   suppressionStates?: ("suppressedInSource" | "suppressedExternally")[];
   /**
    * The state of a result relative to a baseline of a previous run.
@@ -359,7 +359,7 @@ export interface Result {
   /**
    * An array of 'fix' objects, each of which represents a proposed fix to the problem indicated by the result.
    */
-  fixes?: Fix[];
+  fixes?: [Fix, ...(Fix)[]];
   /**
    * Key/value pairs that provide additional information about the result.
    */
@@ -493,7 +493,7 @@ export interface Stack {
   /**
    * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
    */
-  frames: StackFrame[];
+  frames: [StackFrame, ...(StackFrame)[]];
   /**
    * Key/value pairs that provide additional information about the stack.
    */
@@ -576,7 +576,7 @@ export interface CodeFlow {
   /**
    * An array of 'annotatedCodeLocation' objects, each of which describes a single location visited by the tool in the course of producing the result.
    */
-  locations: AnnotatedCodeLocation[];
+  locations: [AnnotatedCodeLocation, ...(AnnotatedCodeLocation)[]];
   /**
    * Key/value pairs that provide additional information about the code flow.
    */
@@ -715,7 +715,7 @@ export interface AnnotatedCodeLocation {
   /**
    * A set of messages relevant to the current annotated code location.
    */
-  annotations?: Annotation[];
+  annotations?: [Annotation, ...(Annotation)[]];
   /**
    * Key/value pairs that provide additional information about the code location.
    */
@@ -735,7 +735,7 @@ export interface Annotation {
   /**
    * An array of 'physicalLocation' objects associated with the annotation.
    */
-  locations: PhysicalLocation[];
+  locations: [PhysicalLocation, ...(PhysicalLocation)[]];
   [k: string]: any;
 }
 /**
@@ -808,7 +808,7 @@ export interface FileChange {
   /**
    * An array of replacement objects, each of which represents the replacement of a single range of bytes in a single file specified by 'uri'.
    */
-  replacements: Replacement[];
+  replacements: [Replacement, ...(Replacement)[]];
 }
 /**
  * The replacement of a single range of bytes in a file. Specifies the location within the file where the replacement is to be made, the number of bytes to remove at that location, and a sequence of bytes to insert at that location.
@@ -924,7 +924,7 @@ export interface Notification {
       /**
        * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
        */
-      frames: StackFrame[];
+      frames: [StackFrame, ...(StackFrame)[]];
       /**
        * Key/value pairs that provide additional information about the stack.
        */
@@ -973,7 +973,7 @@ export interface Exception {
     /**
      * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
      */
-    frames: StackFrame[];
+    frames: [StackFrame, ...(StackFrame)[]];
     /**
      * Key/value pairs that provide additional information about the stack.
      */

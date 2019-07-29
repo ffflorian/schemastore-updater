@@ -8,29 +8,54 @@
 /**
  * This is the collection of prevalue fields
  */
-export type Fields = {
-  /**
-   * A unique key for the prevalue field
-   */
-  key?: string;
-  /**
-   * The user friendly label for the prevalue
-   */
-  label?: string;
-  /**
-   * A more detailed description for the user
-   */
-  description?: string;
-  /**
-   * The type of editor to use for this prevalue field
-   */
-  view?: string;
-  validation?: {
-    type?: string;
+export type Fields = [
+  {
+    /**
+     * A unique key for the prevalue field
+     */
+    key?: string;
+    /**
+     * The user friendly label for the prevalue
+     */
+    label?: string;
+    /**
+     * A more detailed description for the user
+     */
+    description?: string;
+    /**
+     * The type of editor to use for this prevalue field
+     */
+    view?: string;
+    validation?: {
+      type?: string;
+      [k: string]: any;
+    }[];
     [k: string]: any;
-  }[];
-  [k: string]: any;
-}[];
+  },
+  ...({
+    /**
+     * A unique key for the prevalue field
+     */
+    key?: string;
+    /**
+     * The user friendly label for the prevalue
+     */
+    label?: string;
+    /**
+     * A more detailed description for the user
+     */
+    description?: string;
+    /**
+     * The type of editor to use for this prevalue field
+     */
+    view?: string;
+    validation?: {
+      type?: string;
+      [k: string]: any;
+    }[];
+    [k: string]: any;
+  })[]
+];
 
 export interface ASchemaForUmbracoSPackageManifestFiles {
   /**
@@ -44,23 +69,23 @@ export interface ASchemaForUmbracoSPackageManifestFiles {
   /**
    * Returns an array of editor objects, each object specifies an editor to make available to data types as an editor component. These editors are primarily property editors for content, media and members, but can also be made available as a macro parameter editor.
    */
-  propertyEditors?: (Editors & PreValues)[];
+  propertyEditors?: [(Editors & PreValues), ...(Editors & PreValues)[]];
   /**
    * Returns an array of editor objects, each object specifies an editor to make available to macro parameters as an editor component. These editors work solely as parameter editors, and will not show up on the property editors list.
    */
-  parameterEditors?: Editors[];
+  parameterEditors?: [Editors, ...(Editors)[]];
   /**
    * Returns an array of grid editor objects, each object specifies a grid editor to make available in the Grid Layout property editor.
    */
-  gridEditors?: GridEditor[];
+  gridEditors?: [GridEditor, ...(GridEditor)[]];
   /**
    * V8: Returns an array of dashboards, each object sepcifies a dashboard to make available in the backoffice.
    */
-  dashboards?: Dashboard[];
+  dashboards?: [Dashboard, ...(Dashboard)[]];
   /**
    * V8: Returns an array of sections/applications to add to the Umbraco backoffice.
    */
-  sections?: Section[];
+  sections?: [Section, ...(Section)[]];
   [k: string]: any;
 }
 export interface Editors {
@@ -196,7 +221,7 @@ export interface Dashboard {
   /**
    * A list of section/application aliases that the dashboard should be visible in
    */
-  sections: string[];
+  sections: [string, ...(string)[]];
   /**
    * The weight (sort order) of the dashboard. Defaults to 100 if not specified.
    */
@@ -204,13 +229,22 @@ export interface Dashboard {
   /**
    * A list of what user groups aliases are granted or denied permission to see the dashboard. This is optional. If not specifed all users will have grant access
    */
-  access?: (
-    | {
-        [k: string]: any;
-      }
-    | {
-        [k: string]: any;
-      })[];
+  access?: [
+    (
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }),
+    ...(
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        })[]
+  ];
 }
 /**
  * An Umbraco section/application to extend the backoffice

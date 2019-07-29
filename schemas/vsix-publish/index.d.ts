@@ -18,6 +18,10 @@ export type DisplayName = string;
  */
 export type Icon = string;
 /**
+ * A list of install targets for the extension. At least one is required if the extension is not a VSIX.
+ */
+export type InstallTargets = [InstallTarget, ...(InstallTarget)[]];
+/**
  * The SKU name of the installation target.
  */
 export type InstallTargetSKU =
@@ -41,10 +45,6 @@ export type InstallTargetSKU =
  * The version range of the install target that the extension can be installed to.
  */
 export type InstallTargetVersionRange = string;
-/**
- * A list of install targets for the extension. At least one is required if the extension is not a VSIX.
- */
-export type InstallTargets = InstallTarget[];
 /**
  * The internal name of the extension. A marketplace extension is identified as 'publisherName'.'internalName'. Cannot contain spaces.
  */
@@ -86,56 +86,283 @@ export type AssetFiles = {
   [k: string]: any;
 }[];
 /**
+ * A list of categories that the extension applies to.
+ */
+export type Categories =
+  | [
+      (
+        | Category
+        | (
+            | "ajax"
+            | "build"
+            | "coding"
+            | "connected services"
+            | "data"
+            | "database"
+            | "documentation"
+            | "extension sdk"
+            | "framework and libraries"
+            | "lightswitch"
+            | "lightswitch controls"
+            | "lightswitch templates"
+            | "modelling"
+            | "office"
+            | "other"
+            | "other templates"
+            | "performance"
+            | "process templates"
+            | "programming languages"
+            | "reporting"
+            | "scaffolding"
+            | "security"
+            | "services"
+            | "setup and deployment"
+            | "sharepoint"
+            | "sharepoint controls"
+            | "sharepoint templates"
+            | "silverlight controls"
+            | "source control"
+            | "start pages"
+            | "team development"
+            | "testing"
+            | "visual studio extensions"
+            | "wcf"
+            | "web"
+            | "windows forms templates"
+            | "windows forms controls"
+            | "workflow"
+            | "wpf templates"
+            | "wpf controls"
+            | "xna"))
+    ]
+  | [
+      (
+        | Category
+        | (
+            | "ajax"
+            | "build"
+            | "coding"
+            | "connected services"
+            | "data"
+            | "database"
+            | "documentation"
+            | "extension sdk"
+            | "framework and libraries"
+            | "lightswitch"
+            | "lightswitch controls"
+            | "lightswitch templates"
+            | "modelling"
+            | "office"
+            | "other"
+            | "other templates"
+            | "performance"
+            | "process templates"
+            | "programming languages"
+            | "reporting"
+            | "scaffolding"
+            | "security"
+            | "services"
+            | "setup and deployment"
+            | "sharepoint"
+            | "sharepoint controls"
+            | "sharepoint templates"
+            | "silverlight controls"
+            | "source control"
+            | "start pages"
+            | "team development"
+            | "testing"
+            | "visual studio extensions"
+            | "wcf"
+            | "web"
+            | "windows forms templates"
+            | "windows forms controls"
+            | "workflow"
+            | "wpf templates"
+            | "wpf controls"
+            | "xna")),
+      (
+        | Category
+        | (
+            | "ajax"
+            | "build"
+            | "coding"
+            | "connected services"
+            | "data"
+            | "database"
+            | "documentation"
+            | "extension sdk"
+            | "framework and libraries"
+            | "lightswitch"
+            | "lightswitch controls"
+            | "lightswitch templates"
+            | "modelling"
+            | "office"
+            | "other"
+            | "other templates"
+            | "performance"
+            | "process templates"
+            | "programming languages"
+            | "reporting"
+            | "scaffolding"
+            | "security"
+            | "services"
+            | "setup and deployment"
+            | "sharepoint"
+            | "sharepoint controls"
+            | "sharepoint templates"
+            | "silverlight controls"
+            | "source control"
+            | "start pages"
+            | "team development"
+            | "testing"
+            | "visual studio extensions"
+            | "wcf"
+            | "web"
+            | "windows forms templates"
+            | "windows forms controls"
+            | "workflow"
+            | "wpf templates"
+            | "wpf controls"
+            | "xna"))
+    ]
+  | [
+      (
+        | Category
+        | (
+            | "ajax"
+            | "build"
+            | "coding"
+            | "connected services"
+            | "data"
+            | "database"
+            | "documentation"
+            | "extension sdk"
+            | "framework and libraries"
+            | "lightswitch"
+            | "lightswitch controls"
+            | "lightswitch templates"
+            | "modelling"
+            | "office"
+            | "other"
+            | "other templates"
+            | "performance"
+            | "process templates"
+            | "programming languages"
+            | "reporting"
+            | "scaffolding"
+            | "security"
+            | "services"
+            | "setup and deployment"
+            | "sharepoint"
+            | "sharepoint controls"
+            | "sharepoint templates"
+            | "silverlight controls"
+            | "source control"
+            | "start pages"
+            | "team development"
+            | "testing"
+            | "visual studio extensions"
+            | "wcf"
+            | "web"
+            | "windows forms templates"
+            | "windows forms controls"
+            | "workflow"
+            | "wpf templates"
+            | "wpf controls"
+            | "xna")),
+      (
+        | Category
+        | (
+            | "ajax"
+            | "build"
+            | "coding"
+            | "connected services"
+            | "data"
+            | "database"
+            | "documentation"
+            | "extension sdk"
+            | "framework and libraries"
+            | "lightswitch"
+            | "lightswitch controls"
+            | "lightswitch templates"
+            | "modelling"
+            | "office"
+            | "other"
+            | "other templates"
+            | "performance"
+            | "process templates"
+            | "programming languages"
+            | "reporting"
+            | "scaffolding"
+            | "security"
+            | "services"
+            | "setup and deployment"
+            | "sharepoint"
+            | "sharepoint controls"
+            | "sharepoint templates"
+            | "silverlight controls"
+            | "source control"
+            | "start pages"
+            | "team development"
+            | "testing"
+            | "visual studio extensions"
+            | "wcf"
+            | "web"
+            | "windows forms templates"
+            | "windows forms controls"
+            | "workflow"
+            | "wpf templates"
+            | "wpf controls"
+            | "xna")),
+      (
+        | Category
+        | (
+            | "ajax"
+            | "build"
+            | "coding"
+            | "connected services"
+            | "data"
+            | "database"
+            | "documentation"
+            | "extension sdk"
+            | "framework and libraries"
+            | "lightswitch"
+            | "lightswitch controls"
+            | "lightswitch templates"
+            | "modelling"
+            | "office"
+            | "other"
+            | "other templates"
+            | "performance"
+            | "process templates"
+            | "programming languages"
+            | "reporting"
+            | "scaffolding"
+            | "security"
+            | "services"
+            | "setup and deployment"
+            | "sharepoint"
+            | "sharepoint controls"
+            | "sharepoint templates"
+            | "silverlight controls"
+            | "source control"
+            | "start pages"
+            | "team development"
+            | "testing"
+            | "visual studio extensions"
+            | "wcf"
+            | "web"
+            | "windows forms templates"
+            | "windows forms controls"
+            | "workflow"
+            | "wpf templates"
+            | "wpf controls"
+            | "xna"))
+    ];
+/**
  * A valid category on the marketplace that the extension applies to.
  */
 export type Category = string;
-/**
- * A list of categories that the extension applies to.
- */
-export type Categories = (
-  | Category
-  | (
-      | "ajax"
-      | "build"
-      | "coding"
-      | "connected services"
-      | "data"
-      | "database"
-      | "documentation"
-      | "extension sdk"
-      | "framework and libraries"
-      | "lightswitch"
-      | "lightswitch controls"
-      | "lightswitch templates"
-      | "modelling"
-      | "office"
-      | "other"
-      | "other templates"
-      | "performance"
-      | "process templates"
-      | "programming languages"
-      | "reporting"
-      | "scaffolding"
-      | "security"
-      | "services"
-      | "setup and deployment"
-      | "sharepoint"
-      | "sharepoint controls"
-      | "sharepoint templates"
-      | "silverlight controls"
-      | "source control"
-      | "start pages"
-      | "team development"
-      | "testing"
-      | "visual studio extensions"
-      | "wcf"
-      | "web"
-      | "windows forms templates"
-      | "windows forms controls"
-      | "workflow"
-      | "wpf templates"
-      | "wpf controls"
-      | "xna"))[];
 /**
  * A path to a markdown file that will be displayed on the extension's page in the marketplace. The path can be relative to the current json file's path.
  */

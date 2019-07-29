@@ -20,7 +20,7 @@ export interface StaticAnalysisResultsFormatSARIFVersion200JSONSchema {
   /**
    * The set of runs contained in this log file.
    */
-  runs: Run[];
+  runs: [Run, ...(Run)[]];
 }
 /**
  * Describes a single run of an analysis tool, and contains the output of that run.
@@ -76,7 +76,7 @@ export interface Run {
   /**
    * Describes the invocation of the analysis tool.
    */
-  invocations?: Invocation[];
+  invocations?: [Invocation, ...(Invocation)[]];
   /**
    * A conversion object that describes how a converter transformed an analysis tool's native output format into the SARIF format.
    */
@@ -147,7 +147,7 @@ export interface Run {
       /**
        * A set of files relevant to the invocation of the tool.
        */
-      attachments?: Attachment[];
+      attachments?: [Attachment, ...(Attachment)[]];
       /**
        * The date and time at which the run started. See "Date/time properties" in the SARIF spec for the required format.
        */
@@ -298,12 +298,12 @@ export interface Run {
     /**
      * The locations of the analysis tool's per-run log files.
      */
-    analysisToolLogFiles?: FileLocation[];
+    analysisToolLogFiles?: [FileLocation, ...(FileLocation)[]];
   };
   /**
    * Specifies the revision in version control of the files that were scanned.
    */
-  versionControlProvenance?: VersionControlDetails[];
+  versionControlProvenance?: [VersionControlDetails, ...(VersionControlDetails)[]];
   /**
    * The absolute URI specified by each uriBaseId symbol on the machine where the tool originally ran.
    */
@@ -325,7 +325,7 @@ export interface Run {
   /**
    * An array of one or more unique 'graph' objects.
    */
-  graphs?: Graph[];
+  graphs?: [Graph, ...(Graph)[]];
   /**
    * The set of results contained in an SARIF log. The results array can be omitted when a run is solely exporting rules metadata. It must be present (but may be empty) if a log file represents an actual scan.
    */
@@ -443,7 +443,7 @@ export interface Invocation {
   /**
    * A set of files relevant to the invocation of the tool.
    */
-  attachments?: Attachment[];
+  attachments?: [Attachment, ...(Attachment)[]];
   /**
    * The date and time at which the run started. See "Date/time properties" in the SARIF spec for the required format.
    */
@@ -649,11 +649,11 @@ export interface Attachment {
   /**
    * An array of regions of interest within the attachment.
    */
-  regions?: Region[];
+  regions?: [Region, ...(Region)[]];
   /**
    * An array of rectangles specifying areas of interest within the image.
    */
-  rectangles?: Rectangle[];
+  rectangles?: [Rectangle, ...(Rectangle)[]];
 }
 /**
  * A region within a file where a result was detected.
@@ -1041,7 +1041,7 @@ export interface Notification {
       /**
        * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
        */
-      frames: StackFrame[];
+      frames: [StackFrame, ...(StackFrame)[]];
       /**
        * Key/value pairs that provide additional information about the stack.
        */
@@ -1282,7 +1282,7 @@ export interface StackFrame {
     /**
      * A set of regions relevant to the location.
      */
-    annotations?: Region[];
+    annotations?: [Region, ...(Region)[]];
     /**
      * Key/value pairs that provide additional information about the location.
      */
@@ -1366,7 +1366,7 @@ export interface Exception {
     /**
      * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
      */
-    frames: StackFrame[];
+    frames: [StackFrame, ...(StackFrame)[]];
     /**
      * Key/value pairs that provide additional information about the stack.
      */
@@ -1448,19 +1448,34 @@ export interface File {
   /**
    * The role or roles played by the file in the analysis.
    */
-  roles?: (
-    | "analysisTarget"
-    | "attachment"
-    | "responseFile"
-    | "resultFile"
-    | "standardStream"
-    | "traceFile"
-    | "unmodifiedFile"
-    | "modifiedFile"
-    | "addedFile"
-    | "deletedFile"
-    | "renamedFile"
-    | "uncontrolledFile")[];
+  roles?: [
+    (
+      | "analysisTarget"
+      | "attachment"
+      | "responseFile"
+      | "resultFile"
+      | "standardStream"
+      | "traceFile"
+      | "unmodifiedFile"
+      | "modifiedFile"
+      | "addedFile"
+      | "deletedFile"
+      | "renamedFile"
+      | "uncontrolledFile"),
+    ...(
+      | "analysisTarget"
+      | "attachment"
+      | "responseFile"
+      | "resultFile"
+      | "standardStream"
+      | "traceFile"
+      | "unmodifiedFile"
+      | "modifiedFile"
+      | "addedFile"
+      | "deletedFile"
+      | "renamedFile"
+      | "uncontrolledFile")[]
+  ];
   /**
    * The MIME type (RFC 2045) of the file.
    */
@@ -1485,7 +1500,7 @@ export interface File {
   /**
    * An array of hash objects, each of which specifies a hashed value for the file, along with the name of the hash function used to compute the hash.
    */
-  hashes?: Hash[];
+  hashes?: [Hash, ...(Hash)[]];
   /**
    * The date and time at which the file was most recently modified. See "Date/time properties" in the SARIF spec for the required format.
    */
@@ -1832,7 +1847,7 @@ export interface Node {
     /**
      * A set of regions relevant to the location.
      */
-    annotations?: Region[];
+    annotations?: [Region, ...(Region)[]];
     /**
      * Key/value pairs that provide additional information about the location.
      */
@@ -1964,7 +1979,7 @@ export interface Result {
   /**
    * One or more locations where the result occurred. Specify only one location unless the problem indicated by the result can only be corrected by making a change at every specified location.
    */
-  locations?: Location[];
+  locations?: [Location, ...(Location)[]];
   /**
    * A stable, unique identifer for the result in the form of a GUID.
    */
@@ -1988,23 +2003,23 @@ export interface Result {
   /**
    * An array of 'stack' objects relevant to the result.
    */
-  stacks?: Stack[];
+  stacks?: [Stack, ...(Stack)[]];
   /**
    * An array of 'codeFlow' objects relevant to the result.
    */
-  codeFlows?: CodeFlow[];
+  codeFlows?: [CodeFlow, ...(CodeFlow)[]];
   /**
    * An array of one or more unique 'graph' objects.
    */
-  graphs?: Graph[];
+  graphs?: [Graph, ...(Graph)[]];
   /**
    * An array of one or more unique 'graphTraversal' objects.
    */
-  graphTraversals?: GraphTraversal[];
+  graphTraversals?: [GraphTraversal, ...(GraphTraversal)[]];
   /**
    * A set of locations relevant to this result.
    */
-  relatedLocations?: Location[];
+  relatedLocations?: [Location, ...(Location)[]];
   /**
    * A set of flags indicating one or more suppression conditions.
    */
@@ -2016,19 +2031,19 @@ export interface Result {
   /**
    * A set of files relevant to the result.
    */
-  attachments?: Attachment[];
+  attachments?: [Attachment, ...(Attachment)[]];
   /**
    * The URIs of the work items associated with this result
    */
-  workItemUris?: string[];
+  workItemUris?: [string, ...(string)[]];
   /**
    * An array of physicalLocation objects which specify the portions of an analysis tool's output that a converter transformed into the result object.
    */
-  conversionProvenance?: PhysicalLocation[];
+  conversionProvenance?: [PhysicalLocation, ...(PhysicalLocation)[]];
   /**
    * An array of 'fix' objects, each of which represents a proposed fix to the problem indicated by the result.
    */
-  fixes?: Fix[];
+  fixes?: [Fix, ...(Fix)[]];
   /**
    * Key/value pairs that provide additional information about the result.
    */
@@ -2248,7 +2263,7 @@ export interface Location {
   /**
    * A set of regions relevant to the location.
    */
-  annotations?: Region[];
+  annotations?: [Region, ...(Region)[]];
   /**
    * Key/value pairs that provide additional information about the location.
    */
@@ -2292,7 +2307,7 @@ export interface Stack {
   /**
    * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
    */
-  frames: StackFrame[];
+  frames: [StackFrame, ...(StackFrame)[]];
   /**
    * Key/value pairs that provide additional information about the stack.
    */
@@ -2336,7 +2351,7 @@ export interface CodeFlow {
   /**
    * An array of one or more unique threadFlow objects, each of which describes the progress of a program through a thread of execution.
    */
-  threadFlows: ThreadFlow[];
+  threadFlows: [ThreadFlow, ...(ThreadFlow)[]];
   /**
    * Key/value pairs that provide additional information about the code flow.
    */
@@ -2381,7 +2396,7 @@ export interface ThreadFlow {
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
    */
-  locations: ThreadFlowLocation[];
+  locations: [ThreadFlowLocation, ...(ThreadFlowLocation)[]];
   /**
    * Key/value pairs that provide additional information about the thread flow.
    */
@@ -2610,7 +2625,7 @@ export interface ThreadFlowLocation {
     /**
      * A set of regions relevant to the location.
      */
-    annotations?: Region[];
+    annotations?: [Region, ...(Region)[]];
     /**
      * Key/value pairs that provide additional information about the location.
      */
@@ -2654,7 +2669,7 @@ export interface ThreadFlowLocation {
     /**
      * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
      */
-    frames: StackFrame[];
+    frames: [StackFrame, ...(StackFrame)[]];
     /**
      * Key/value pairs that provide additional information about the stack.
      */
@@ -3041,7 +3056,7 @@ export interface FileChange {
   /**
    * An array of replacement objects, each of which represents the replacement of a single region in a single file specified by 'fileLocation'.
    */
-  replacements: Replacement[];
+  replacements: [Replacement, ...(Replacement)[]];
 }
 /**
  * The replacement of a single region of a file.

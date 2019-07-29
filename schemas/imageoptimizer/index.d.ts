@@ -12,20 +12,37 @@ export interface Imageoptimizer {
   /**
    * An array of optimization rules
    */
-  optimizations?: {
-    /**
-     * An array of globbing patterns of files/folders to include in the optimization
-     */
-    includes: string[];
-    /**
-     * An array of globbing patterns of files/folders to exclude in the optimization
-     */
-    excludes?: string[];
-    /**
-     * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
-     */
-    lossy?: boolean;
-    [k: string]: any;
-  }[];
+  optimizations?: [
+    {
+      /**
+       * An array of globbing patterns of files/folders to include in the optimization
+       */
+      includes: string[];
+      /**
+       * An array of globbing patterns of files/folders to exclude in the optimization
+       */
+      excludes?: string[];
+      /**
+       * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
+       */
+      lossy?: boolean;
+      [k: string]: any;
+    },
+    ...({
+      /**
+       * An array of globbing patterns of files/folders to include in the optimization
+       */
+      includes: string[];
+      /**
+       * An array of globbing patterns of files/folders to exclude in the optimization
+       */
+      excludes?: string[];
+      /**
+       * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
+       */
+      lossy?: boolean;
+      [k: string]: any;
+    })[]
+  ];
   [k: string]: any;
 }

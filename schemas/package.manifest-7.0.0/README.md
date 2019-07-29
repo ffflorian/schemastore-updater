@@ -8,5 +8,5 @@ This package contains type definitions for package.manifest-7.0.0.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/package.manifest-7.0.0.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
 * Dependencies: none

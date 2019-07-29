@@ -6,7 +6,7 @@
  */
 
 /**
- * MTA deployment descriptor schema v3.3
+ * MTA deployment descriptor schema v3.3. Contains Cloud Foundry specific types and parameters.
  */
 export interface MtadYamlV33 {
   /**
@@ -66,15 +66,35 @@ export interface MtadYamlV33 {
     /**
      * Defines the type of action that should be executed by the deployer.
      */
-    type?: string;
+    type?: "task";
     /**
      * A list of strings that define the points at which the hook must be executed.
      */
-    phases?: string[];
+    phases?: (
+      | "application.before-stop.live"
+      | "application.before-stop.idle"
+      | "application.after-stop.live"
+      | "application.after-stop.idle")[];
     /**
      * Configuration parameters that are used when executing the hook to the target runtime environment.
      */
     parameters?: {
+      /**
+       * Defines the name of the Cloud Foundry task that should be executed.
+       */
+      name?: string;
+      /**
+       * Defines the actual command that is executed as a Cloud Foundry task.
+       */
+      command?: string;
+      /**
+       * Defines the memory that is available to the Cloud Foundry task.
+       */
+      memory?: string;
+      /**
+       * Defines the disk space that is available to the Cloud Foundry task.
+       */
+      "disk-quota"?: string;
       [k: string]: any;
     };
     /**
@@ -138,7 +158,29 @@ export interface MtadYamlV33 {
     /**
      * The module type that defines the design-time tools for the module.
      */
-    type: string;
+    type:
+      | (
+          | "application"
+          | "binary"
+          | "business-logging"
+          | "com.sap.application.content"
+          | "com.sap.html5.application-content"
+          | "com.sap.portal.site-content"
+          | "com.sap.xs.hdi"
+          | "com.sap.xs.hdi-dynamic"
+          | "custom"
+          | "dotnet_core"
+          | "go"
+          | "java"
+          | "java.tomcat"
+          | "java.tomee"
+          | "javascript.nodejs"
+          | "nodejs"
+          | "php"
+          | "python"
+          | "ruby"
+          | "staticfile")
+      | string;
     /**
      * A free text describing this module.
      */
@@ -177,6 +219,193 @@ export interface MtadYamlV33 {
      * Configuration parameters that are used when deploying the module to the target runtime environment.
      */
     parameters?: {
+      /**
+       * The name of the application in the Cloud Foundry environment to be deployed for this module, based on the module name.
+       */
+      "app-name"?: string;
+      /**
+       * Binary runtime.
+       */
+      buildpack?: string;
+      /**
+       * A custom command required to start the application.
+       */
+      command?: string;
+      /**
+       * Specifies whether [true|false] a service broker should be registered for the application module; default value is: false.
+       */
+      "create-service-broker"?: boolean;
+      /**
+       * Defines the memory allocated to the application.
+       */
+      "dependency-type"?: "hard" | "soft";
+      /**
+       * The disk space that will be available to the application. This parameter requires a unit of measurement M, MB, G, or GB in upper or lower case.
+       */
+      "disk-quota"?: string;
+      /**
+       * Creates a module from a docker image. When using a docker image parameter, we do not need to specify the module in the MANIFEST.mf file.When uploading a docker image, the content of a module is not needed.
+       */
+      docker?: {
+        /**
+         * An image parameter is a docker image from the Docker Hub or somewhere else. eg. cloudfoundry/test-app
+         */
+        image?: string;
+        /**
+         * The username is optional, but if a Docker image from a private repository is uploaded, then it is mandatory.
+         */
+        username?: string;
+        /**
+         * The password is optional, but if a Docker image from a private repository is uploaded, then it is mandatory.
+         */
+        password?: string;
+        [k: string]: any;
+      };
+      /**
+       * The domain on which the application will be available later.
+       */
+      domain?: string;
+      /**
+       * The domains on which the application will be available later. The resulting application routes will be the Cartesian product of the domains and hosts. That is, a separate route for each host is constructed on each domain.
+       */
+      domains?: string[];
+      /**
+       * Enables use of SSH within an application. Supported for the Diego container runtime environment only.
+       */
+      "enable-ssh"?: boolean;
+      /**
+       * Defines how the module will be monitored for availability.
+       */
+      "health-check-type"?: "port" | "process" | "http";
+      /**
+       * The timeout is the amount of time (in seconds) allowed to elapse between starting up an app and the first healthy response.
+       */
+      "health-check-timeout"?: number;
+      /**
+       * A http health check defaults to using '/' as its endpoint, but you can specify a custom endpoint.
+       */
+      "health-check-http-endpoint"?: string;
+      /**
+       * The hostname or subdomain where an application is available later.
+       */
+      host?: string;
+      /**
+       * The hostnames or subdomain where an application is available later.
+       */
+      hosts?: string[];
+      /**
+       * The number of application instances that will be started during the deployment.
+       */
+      instances?: number;
+      /**
+       * Defines the application attributes which will be kept after the deployment or blue-green deployment has finished. The supported attributes which could be kept are application environment, application bindings and application routes. If not specified, the default values are false, which indicates that each application attribute will be updated with the new values presented in the deployment descriptor.
+       */
+      "keep-existing"?: {
+        /**
+         * Keep the existing environment
+         */
+        env?: boolean;
+        /**
+         * Keep the existing Service bindings
+         */
+        "service-bindings"?: boolean;
+        /**
+         * Keep the existing routes
+         */
+        routes?: boolean;
+        [k: string]: any;
+      };
+      /**
+       * When specified on module level, it indicates if the existing routes of the module's corresponding application should be kept even if they are not defined within the deployment and/or extension descriptors.When specified on global level, under the parameters section of the descriptor, it indicates if the existing routes of all applications within that MTA should be kept.The module-level variant of the parameter has priority over the global parameter.This parameter is typically used when users want to keep the routes they have mapped manually by using the cf map-route command. We discourage this approach, as manual operations could lead to inconsistent deployment results and difficult troubleshooting. We recommend you to define all routes in the deployment and/or extension descriptors, which allows for their automatic management.
+       */
+      "keep-existing-routes"?: boolean;
+      /**
+       * Defines the memory allocated to the application.
+       */
+      memory?: string;
+      /**
+       * Defines if a route should be assigned to the application.
+       */
+      "no-route"?: boolean;
+      /**
+       * Start/do not start the application during deployment. This parameter setting overrides the command-line option --no-start. If you explicitly set the no-start to false for the module foo in the example provided, then the module foo is started on deployment, even if you also specify the command-line option --no-start with the cf deploy command.
+       */
+      "no-start"?: boolean;
+      /**
+       * Specifies whether an application should be restarted if an environment variable has been changed in one of the following categories: vcap-application, vcap-services, user-provided. If you set these parameters to false, the changes in environment are not consumable by a running instances of the application. If your application depends on the latest environment, it might become outdated.
+       */
+      "restart-on-env-change"?: {
+        /**
+         * Restart on vcap-application env change
+         */
+        "vcap-application"?: boolean;
+        /**
+         * Restart on vcap-services env change
+         */
+        "vcap-services"?: boolean;
+        /**
+         * Restart on user-provided env change
+         */
+        "user-provided"?: boolean;
+        [k: string]: any;
+      }[];
+      /**
+       * A parameter that lists multiple HTTP routes. It is a combination of the old parameters host, domain, port and route-path, which encompasses the full addresses to which to bind a module. In case the new routes parameter and the old ones are available, the routes value is used and the values of the old parameters are ignored. Each route for the application is created if it does not already exist. A routes parameter consists of one or many HTTP routes following the pattern myhost.my.domain/path
+       */
+      routes?: {
+        route: string;
+        [k: string]: any;
+      }[];
+      /**
+       * The name of the service broker in the Cloud Foundry environment to be created and registered for the specified application module.
+       */
+      "service-broker-name"?: string;
+      /**
+       * The password used for authentication by the XS controller at the service broker when performing service-related requests. The parameter is mandatory if create-service-broker: true.
+       */
+      "service-broker-password"?: string;
+      /**
+       * Makes the service plans of the broker visible only within the targeted space.
+       */
+      "service-broker-space-scoped"?: boolean;
+      /**
+       * Specifies the value of the service broker universal resource locator (URL) to register; service requests are sent to this URL. The parameter is mandatory if create-service-broker: true.
+       */
+      "service-broker-url"?: string;
+      /**
+       * The name of the user required for authentication by the XS controller at the service broker when performing service-related requests. The parameter is mandatory if create-service-broker: true.
+       */
+      "service-broker-user"?: string;
+      /**
+       * Use this parameter to define which prebuilt root file system (rootfs) you want to use.
+       */
+      stack?: string;
+      /**
+       * Specify tasks, which are available for execution in the current droplet of the application. Also provide use of environment variables which are specified with the env scope.
+       */
+      tasks?: {
+        /**
+         * The task name.
+         */
+        name: string;
+        /**
+         * The command to be executed.
+         */
+        command: string;
+        /**
+         * Defines the memory that is available to the Cloud Foundry task.
+         */
+        memory?: string;
+        /**
+         * Defines the disk space that is available to the Cloud Foundry task.
+         */
+        "disk-quota"?: string;
+        [k: string]: any;
+      }[];
+      /**
+       * The application upload timeout in seconds.
+       */
+      "upload-timeout"?: number;
       [k: string]: any;
     };
     /**
@@ -206,15 +435,35 @@ export interface MtadYamlV33 {
       /**
        * Defines the type of action that should be executed by the deployer.
        */
-      type?: string;
+      type?: "task";
       /**
        * A list of strings that define the points at which the hook must be executed.
        */
-      phases?: string[];
+      phases?: (
+        | "application.before-stop.live"
+        | "application.before-stop.idle"
+        | "application.after-stop.live"
+        | "application.after-stop.idle")[];
       /**
        * Configuration parameters that are used when executing the hook to the target runtime environment.
        */
       parameters?: {
+        /**
+         * Defines the name of the Cloud Foundry task that should be executed.
+         */
+        name?: string;
+        /**
+         * Defines the actual command that is executed as a Cloud Foundry task.
+         */
+        command?: string;
+        /**
+         * Defines the memory that is available to the Cloud Foundry task.
+         */
+        memory?: string;
+        /**
+         * Defines the disk space that is available to the Cloud Foundry task.
+         */
+        "disk-quota"?: string;
         [k: string]: any;
       };
       /**
@@ -305,6 +554,10 @@ export interface MtadYamlV33 {
        * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
        */
       parameters?: {
+        /**
+         * Specify that the resource would be used as a target for the module content deployment.
+         */
+        "content-target"?: boolean;
         [k: string]: any;
       };
       /**
@@ -363,6 +616,7 @@ export interface MtadYamlV33 {
        * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
        */
       parameters?: {
+        visibility?: ResourceConfigurationTarget[];
         [k: string]: any;
       };
       /**
@@ -396,7 +650,14 @@ export interface MtadYamlV33 {
     /**
      * The resource type that defines the design-time tools for the resource.
      */
-    type: string;
+    type?:
+      | (
+          | "org.cloudfoundry.managed-service"
+          | "org.cloudfoundry.existing-service"
+          | "org.cloudfoundry.existing-service-key"
+          | "org.cloudfoundry.user-provided-service"
+          | "configuration")
+      | string;
     /**
      * If a resource is declared to be active, it is allocated and bound according to declared requirements. Default value is true.
      */
@@ -435,6 +696,85 @@ export interface MtadYamlV33 {
      * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to requiring modules at runtime. Untyped resources cannot have parameters.
      */
     parameters?: {
+      /**
+       * Name of the service to create.
+       */
+      service?:
+        | (
+            | "application-logs"
+            | "auditlog"
+            | "rabbitmq"
+            | "autoscaler"
+            | "portal-services"
+            | "fs-storage"
+            | "hana"
+            | "jobscheduler"
+            | "xsuaa"
+            | "connectivity"
+            | "destination"
+            | "feature-flags"
+            | "redis"
+            | "ml-foundation-services"
+            | "mongodb"
+            | "objectstore"
+            | "postgresql")
+        | string;
+      /**
+       * List of alternatives of a default service offering, defined in the deploy service configuration. If a default service offering does not exist for the current org/space or creating a service to it fails (with a specific error), service alternatives are used. The order of service alternatives is considered.
+       */
+      "service-alternatives"?: string[];
+      /**
+       * Used when consuming an existing service key. Specifies the name of the service key. See Consumption of existing service keys for more information.
+       */
+      "service-key-name"?: string;
+      /**
+       * Service instance name. Default value is the resource name.
+       */
+      "service-name"?: string;
+      /**
+       * Name of the service plan to be used.
+       */
+      "service-plan"?: string;
+      /**
+       * Some services employ a list of custom tags, which provide an easier way for applications to parse <VCA_PSERVICES> for credentials. You can provide custom tags when creating a service instance. For more information, see Service Tags.
+       */
+      "service-tags"?: string[];
+      /**
+       * A globally unique ID (GUID) for your Fiori LaunchPad site.
+       */
+      siteId?: string;
+      /**
+       * Map value, containing the service creation configuration, for example, url and user credentials (user and password).
+       */
+      config?: {
+        [k: string]: any;
+      };
+      /**
+       * When used for cross-MTA dependency resolution the provider-nid is always 'mta'.
+       */
+      "provider-nid"?: "mta";
+      /**
+       * The resource from the provider MTA <mta-id>:<mta-provides-dependency-name>.
+       */
+      "provider-id"?: string;
+      /**
+       * The version of the provider MTA.
+       */
+      version?: string;
+      /**
+       * The name of the organization and space in which the provider MTA is deployed.
+       */
+      target?: {
+        /**
+         * The org in which the configuration will be looked for
+         */
+        org?: string;
+        /**
+         * The space in which the configuration will be looked for
+         */
+        space?: string;
+        [k: string]: any;
+      };
       [k: string]: any;
     };
     /**
@@ -464,15 +804,35 @@ export interface MtadYamlV33 {
       /**
        * Defines the type of action that should be executed by the deployer.
        */
-      type?: string;
+      type?: "task";
       /**
        * A list of strings that define the points at which the hook must be executed.
        */
-      phases?: string[];
+      phases?: (
+        | "application.before-stop.live"
+        | "application.before-stop.idle"
+        | "application.after-stop.live"
+        | "application.after-stop.idle")[];
       /**
        * Configuration parameters that are used when executing the hook to the target runtime environment.
        */
       parameters?: {
+        /**
+         * Defines the name of the Cloud Foundry task that should be executed.
+         */
+        name?: string;
+        /**
+         * Defines the actual command that is executed as a Cloud Foundry task.
+         */
+        command?: string;
+        /**
+         * Defines the memory that is available to the Cloud Foundry task.
+         */
+        memory?: string;
+        /**
+         * Defines the disk space that is available to the Cloud Foundry task.
+         */
+        "disk-quota"?: string;
         [k: string]: any;
       };
       /**
@@ -697,5 +1057,16 @@ export interface MtadYamlV33 {
     };
     [k: string]: any;
   }[];
+  [k: string]: any;
+}
+export interface ResourceConfigurationTarget {
+  /**
+   * The org in which the configuration will be looked for
+   */
+  org?: string;
+  /**
+   * The space in which the configuration will be looked for
+   */
+  space?: string;
   [k: string]: any;
 }

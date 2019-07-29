@@ -295,7 +295,7 @@ export interface JSONSchemaForApexUpConfigurationFiles {
   /**
    * List of target AWS regions for deployment.
    */
-  regions?: AWSRegion[];
+  regions?: [AWSRegion, ...(AWSRegion)[]];
   lambda?: {
     accelerate?: EnablesS3Acceleration;
     warm?: EnablesActiveWarming;

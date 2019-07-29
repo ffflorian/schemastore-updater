@@ -34,6 +34,14 @@ export interface JSONSchemaForTheSourceMapsV3 {
    * A string with the encoded mapping data.
    */
   mappings?: string;
-  sections?: any[];
-  [k: string]: any;
+  sections?: [any, ...(any)[]];
+  /**
+   * Any property starting with 'x_' is valid.
+   *
+   * This interface was referenced by `JSONSchemaForTheSourceMapsV3`'s JSON-Schema definition
+   * via the `patternProperty` "^x_".
+   */
+  [k: string]: {
+    [k: string]: any;
+  };
 }

@@ -27,7 +27,7 @@ export type MaxLength = number;
 export type MinLength = MaxLength;
 export type Pattern = string;
 export type UniqueItems = boolean;
-export type Enum = any[];
+export type Enum = [any, ...(any)[]];
 export type NonBodyParameter =
   | HeaderParameterSubSchema
   | FormDataParameterSubSchema
@@ -325,8 +325,8 @@ export interface Schema {
   type?:
     | ("array" | "boolean" | "integer" | "null" | "number" | "object" | "string")
     | ("array" | "boolean" | "integer" | "null" | "number" | "object" | "string")[];
-  items?: Schema | Schema[];
-  allOf?: Schema[];
+  items?: Schema | [Schema, ...(Schema)[]];
+  allOf?: [Schema, ...(Schema)[]];
   properties?: {
     [k: string]: Schema;
   };

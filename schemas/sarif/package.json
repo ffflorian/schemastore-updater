@@ -7,8 +7,8 @@
   "name": "@schemastore/sarif",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sarif",
   "scripts": {},
-  "typesPublisherContentHash": "915e2b093af9d549bd07518ea9eec683b1cce1d8bfe8bbdcada36144d99e402a",
+  "typesPublisherContentHash": "40832cb008371c6c055cb5f0b11472615d59aac40f9456a5f0f0276d87904909",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

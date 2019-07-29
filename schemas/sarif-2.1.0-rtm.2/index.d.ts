@@ -1069,7 +1069,7 @@ export interface Run {
   /**
    * An ordered list of character sequences that were treated as line breaks when computing region information for the run.
    */
-  newlineSequences?: string[];
+  newlineSequences?: [string, ...(string)[]];
   /**
    * Specifies the unit in which the tool measures columns.
    */
@@ -3513,7 +3513,7 @@ export interface CodeFlow {
   /**
    * An array of one or more unique threadFlow objects, each of which describes the progress of a program through a thread of execution.
    */
-  threadFlows: ThreadFlow[];
+  threadFlows: [ThreadFlow, ...(ThreadFlow)[]];
   /**
    * Key/value pairs that provide additional information about the code flow.
    */
@@ -3555,7 +3555,7 @@ export interface ThreadFlow {
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
    */
-  locations: ThreadFlowLocation[];
+  locations: [ThreadFlowLocation, ...(ThreadFlowLocation)[]];
   /**
    * Key/value pairs that provide additional information about the thread flow.
    */
@@ -4097,7 +4097,7 @@ export interface Fix {
   /**
    * One or more artifact changes that comprise a fix for a result.
    */
-  artifactChanges: ArtifactChange[];
+  artifactChanges: [ArtifactChange, ...(ArtifactChange)[]];
   /**
    * Key/value pairs that provide additional information about the fix.
    */
@@ -4153,7 +4153,7 @@ export interface ArtifactChange {
   /**
    * An array of replacement objects, each of which represents the replacement of a single region in a single artifact specified by 'artifactLocation'.
    */
-  replacements: Replacement[];
+  replacements: [Replacement, ...(Replacement)[]];
   /**
    * Key/value pairs that provide additional information about the change.
    */

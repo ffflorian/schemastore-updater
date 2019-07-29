@@ -7,8 +7,8 @@
 
 export type PositiveInteger = number;
 export type PositiveIntegerDefault0 = PositiveInteger;
-export type SchemaArray = SchemaDraftV4[];
-export type StringArray = string[];
+export type SchemaArray = [SchemaDraftV4, ...(SchemaDraftV4)[]];
+export type StringArray = [string, ...(string)[]];
 export type SimpleTypes = "array" | "boolean" | "integer" | "null" | "number" | "object" | "string";
 
 /**
@@ -51,8 +51,8 @@ export interface SchemaDraftV4 {
   dependencies?: {
     [k: string]: SchemaDraftV4 | StringArray;
   };
-  enum?: any[];
-  type?: SimpleTypes | SimpleTypes[];
+  enum?: [any, ...(any)[]];
+  type?: SimpleTypes | [SimpleTypes, ...(SimpleTypes)[]];
   allOf?: SchemaArray;
   anyOf?: SchemaArray;
   oneOf?: SchemaArray;
