@@ -1,6 +1,6 @@
 # schemastore-updater [![Build Status](https://action-badges.now.sh/ffflorian/schemastore-updater)](https://github.com/ffflorian/schemastore-updater/actions/) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ffflorian/schemastore-updater)](https://dependabot.com)
 
-Load schema files from [@SchemaStore/schemastore](https://github.com/SchemaStore/schemastore) and publish them as TypeScript definitions [on npm](https://www.npmjs.com/search?q=@schemastore/).
+Load schema files from [@SchemaStore/schemastore](https://github.com/SchemaStore/schemastore), convert them to TypeScript definitions with [json-schema-to-typescript](https://www.npmjs.com/package/json-schema-to-typescript) and publish them [on npm](https://www.npmjs.com/search?q=@schemastore/).
 
 ## Usage
 
