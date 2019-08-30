@@ -1,16 +1,19 @@
-name: Push
+name: Build and lint
 
-on: push
+on: [push, pull_request]
 
 jobs:
-  build:
+  build_lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - run: |
+      - name: Build and lint
+        run: |
           yarn
           yarn lint
           yarn dist
