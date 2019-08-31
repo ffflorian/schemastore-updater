@@ -206,8 +206,6 @@ export class SchemaGenerator {
           hash: fileHashes[fileName],
           version: String(newVersion),
         };
-      } else {
-        updatedHashes[fileName] = lockFileData[fileName];
       }
     }
 
