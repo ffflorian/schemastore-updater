@@ -48,6 +48,12 @@ export interface JSONSchemaForReactCosmosConfigs {
    */
   port?: number;
   /**
+   * Proxy some URLs to a different HTTP server (eg. an API backend dev server). Similar to devServer.proxy in webpack config.
+   */
+  httpProxy?: {
+    [k: string]: any;
+  };
+  /**
    * Modules to be imported before loading components. Stuff like reset.css, polyfills, etc.
    */
   globalImports?: string[];

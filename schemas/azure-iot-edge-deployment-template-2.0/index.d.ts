@@ -11,6 +11,7 @@ export type CreateOptions =
       [k: string]: any;
     }
   | string;
+export type ImagePullPolicy = "never" | "on-create";
 export type Status = "running" | "stopped";
 export type RestartPolicy = "never" | "on-failure" | "on-unhealthy" | "always";
 
@@ -43,13 +44,12 @@ export interface ConfigurationForTheEdgeAgentModule {
         registryCredentials?: {
           /**
            * This interface was referenced by `undefined`'s JSON-Schema definition
-           * via the `patternProperty` "^.+$".
+           * via the `patternProperty` "^[^\.\# ]+$".
            */
           [k: string]: {
             username: string;
             password: string;
             address: string;
-            [k: string]: any;
           };
         };
         /**
@@ -85,6 +85,7 @@ export interface ConfigurationForTheEdgeAgentModule {
         type: ModuleType;
         settings: ModuleSettings;
         env?: Env;
+        imagePullPolicy?: ImagePullPolicy;
         /**
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^[^\.\$# ]+$".
@@ -113,6 +114,7 @@ export interface ConfigurationForTheEdgeAgentModule {
         restartPolicy: RestartPolicy;
         env?: Env;
         settings: ModuleSettings;
+        imagePullPolicy?: ImagePullPolicy;
         /**
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^[^\.\$# ]+$".
@@ -175,6 +177,7 @@ export interface TheEdgehubSchema {
   env?: Env;
   status: Status;
   restartPolicy: RestartPolicy;
+  imagePullPolicy?: ImagePullPolicy;
   /**
    * This interface was referenced by `TheEdgehubSchema`'s JSON-Schema definition
    * via the `patternProperty` "^[^\.\$# ]+$".

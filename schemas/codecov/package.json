@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for codecov.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/codecov",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/codecov",
+  "scripts": {},
+  "typesPublisherContentHash": "aa1631120ca4751f6bad4bfcbad2410f2bd08cb3bc601174982d69d4ea915f26",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

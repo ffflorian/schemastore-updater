@@ -7,8 +7,8 @@
   "name": "@schemastore/eslintrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/eslintrc",
   "scripts": {},
-  "typesPublisherContentHash": "902081f7c02102ca6034bba5bf05eb501a6d73ff0c8d36720870c9d0eb6da553",
+  "typesPublisherContentHash": "2165f61e58f9297f3dee6447acb64b4736e9ae329528700fa0734fa1f272bd05",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

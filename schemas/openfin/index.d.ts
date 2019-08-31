@@ -268,8 +268,13 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
      * Enable secured APIs
      */
     permissions?: {
+      ExternalWindow?: {
+        wrap?: boolean;
+        [k: string]: any;
+      };
       System?: {
         downloadAsset?: boolean;
+        getAllExternalWindows?: boolean;
         launchExternalProcess?: boolean;
         readRegistryValue?: boolean;
         terminateExternalProcess?: boolean;

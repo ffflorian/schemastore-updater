@@ -38,7 +38,7 @@ export interface JSONSchemaForWebApplicationManifestFiles {
   /**
    * The icons member is an array of icon objects that can serve as iconic representations of the web application in various contexts.
    */
-  icons?: Image[];
+  icons: Image[];
   /**
    * The primary language for the values of the manifest.
    */
@@ -46,7 +46,7 @@ export interface JSONSchemaForWebApplicationManifestFiles {
   /**
    * The name of the web application.
    */
-  name?: string;
+  name: string;
   /**
    * The orientation member is a string that serves as the default orientation for all  top-level browsing contexts of the web application.
    */
@@ -124,7 +124,7 @@ export interface Image {
    * The type member of an image is a hint as to the media type of the image.
    */
   type?: string;
-  purpose?: string;
+  purpose?: "badge" | "maskable" | "any";
   platform?: Platform;
   [k: string]: any;
 }

@@ -161,9 +161,13 @@ export interface CompilerOptionsDefinition {
      */
     stripInternal?: boolean;
     /**
-     * Specifies which default library (lib.d.ts) to use. When down-level compiling, specifies the code being generated. Permitted values are 'es3', 'es5', 'es2015', 'es2016', 'es2017', 'es2018' or 'esnext'.
+     * Specify ECMAScript target version. Permitted values are 'es3', 'es5', 'es6', 'es2015', 'es2016', 'es2017', 'es2018', 'es2019', 'es2020' or 'esnext'.
      */
-    target?: string;
+    target?:
+      | ("es3" | "es5" | "es6" | "es2015" | "es2016" | "es2017" | "es2018" | "es2019" | "es2020" | "esnext")
+      | {
+          [k: string]: any;
+        };
     /**
      * When down-level compiling, watch input files.
      */

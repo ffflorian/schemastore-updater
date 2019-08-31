@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for drone.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/drone",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/drone",
+  "scripts": {},
+  "typesPublisherContentHash": "424798ee4fa93530a04dc51e2e26c740bb81a85ae84b77d27e4dc9061ba7c1b2",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

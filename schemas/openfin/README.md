@@ -8,5 +8,5 @@ This package contains type definitions for openfin.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/openfin.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Sat, Aug 31, 2019, 06:46:12 GMT
 * Dependencies: none
