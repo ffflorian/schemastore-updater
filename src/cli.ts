@@ -27,10 +27,10 @@ const settingsFile = program.settings ? path.resolve(program.settings) : path.jo
 program
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
-  .action(async parent => {
+  .action(async ({parent}) => {
     try {
       const settings = await fs.readJSON(settingsFile);
-      await update({...settings, force: parent.force, source: parent.source});
+      await update({...settings, force: parent.force, source: parent.sourceDir});
       await checkDisabled(settings, false);
     } catch (error) {
       console.error(`Error: ${error.message}`);
@@ -38,7 +38,7 @@ program
     }
   });
 
-program.command('check-disabled').action(async parent => {
+program.command('check-disabled').action(async ({parent}) => {
   try {
     const settings = await fs.readJSON(settingsFile);
     await checkDisabled({...settings, force: parent.force});

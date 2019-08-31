@@ -59,7 +59,7 @@ export class SchemaGenerator {
   }
 
   public async checkDisabled(): Promise<CheckResult> {
-    this.logger.info('Checking disabled.');
+    this.logger.info('Checking disabled packages.');
 
     if (!this.options.source) {
       await this.removeAndClone();
