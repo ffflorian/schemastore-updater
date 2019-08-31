@@ -52,7 +52,20 @@ program.command('check-versions').action(async () => {
   try {
     const fileSettings = await fs.readJSON(settingsFile);
     const generator = new SchemaGenerator({...fileSettings});
-    return generator.checkVersions();
+    await generator.checkHashsums();
+    await generator.checkVersions();
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+});
+
+program.command('fix-lockfile').action(async () => {
+  try {
+    const fileSettings = await fs.readJSON(settingsFile);
+    const generator = new SchemaGenerator({...fileSettings});
+    await generator.checkHashsums();
+    await generator.fixLockfile();
   } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);
@@ -69,6 +82,7 @@ if (!program.args.length) {
 async function update(settings: Required<SchemaGeneratorOptions>): Promise<void> {
   const generator = new SchemaGenerator(settings);
   await generator.checkVersions();
+  await generator.checkHashsums();
 
   const {disabledSchemas: newDisabledSchemas, generatedSchemas} = await generator.generateAll();
 
@@ -91,6 +105,7 @@ async function checkDisabled(settings: FileSettings, versionCheck = true): Promi
 
   if (versionCheck) {
     await generator.checkVersions();
+    await generator.checkHashsums();
   }
 
   const {enabledSchemas} = await generator.checkDisabled();

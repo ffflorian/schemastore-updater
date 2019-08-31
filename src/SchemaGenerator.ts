@@ -69,6 +69,28 @@ export class SchemaGenerator {
     return {disabledSchemas, enabledSchemas: generatedSchemas};
   }
 
+  public async checkHashsums(): Promise<void> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    const invalidEntries = [];
+
+    for (const entry in lockFileData) {
+      const name = entry.replace('.json', '');
+      const fileName = `./schemas/${name}/package.json`;
+      const fileIsReadable = await this.fileIsReadable(fileName);
+      if (fileIsReadable) {
+        const packageJson = await fs.readJson(fileName);
+        const lockFileHash = lockFileData[entry].hash;
+        if (lockFileHash !== packageJson.typesPublisherContentHash) {
+          invalidEntries.push(entry);
+        }
+      }
+    }
+
+    if (invalidEntries.length) {
+      this.logger.error(`Invalid hash entries: "${invalidEntries.join('", "')}".`);
+    }
+  }
+
   public async checkVersions(): Promise<void> {
     const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
     const invalidEntries = [];
@@ -89,6 +111,37 @@ export class SchemaGenerator {
     if (invalidEntries.length) {
       this.logger.error(`Invalid version entries: "${invalidEntries.join('", "')}".`);
     }
+  }
+
+  public async fixLockfile(): Promise<void> {
+    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+
+    for (const entry in lockFileData) {
+      const name = entry.replace('.json', '');
+      const fileName = `./schemas/${name}/package.json`;
+      const fileIsReadable = await this.fileIsReadable(fileName);
+      if (fileIsReadable) {
+        const packageJson = await fs.readJson(fileName);
+
+        const lockFileHash = lockFileData[entry].hash;
+        const packageJsonHash = packageJson.typesPublisherContentHash;
+
+        if (lockFileHash !== packageJsonHash) {
+          this.logger.info(`${entry}: Expected "${packageJsonHash}", got "${lockFileHash}".`);
+          lockFileData[entry].hash = packageJsonHash;
+        }
+
+        const lockFileVersion = lockFileData[entry].version;
+        const packageJsonVersion = packageJson.version;
+
+        if (lockFileVersion !== packageJsonVersion) {
+          this.logger.info(`${entry}: Expected "${packageJsonVersion}", got "${lockFileVersion}".`);
+          lockFileData[entry].version = packageJsonVersion;
+        }
+      }
+    }
+
+    await fs.writeJson(this.lockFile, lockFileData, {spaces: 2});
   }
 
   public async generate(enabledSchemas: string[]): Promise<BuildResult> {
