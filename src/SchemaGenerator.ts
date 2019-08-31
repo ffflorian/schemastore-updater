@@ -172,12 +172,10 @@ export class SchemaGenerator {
     }
     const allFiles = await fs.readdir(this.jsonSchemasDir);
 
-    const enabledSchemas = allFiles
-      .filter(fileName => {
-        const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
-        return fileName.endsWith('.json') && !schemaIsDisabled;
-      })
-      .map(fileName => fileName.toLowerCase());
+    const enabledSchemas = allFiles.filter(fileName => {
+      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
+      return fileName.endsWith('.json') && !schemaIsDisabled;
+    });
 
     this.logger.info(
       `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
