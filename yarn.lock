@@ -23,10 +23,10 @@
   resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.0.5.tgz#5a6872fa650ac3b1312d5c5bc4d8281c7ca7b0ab"
   integrity sha512-GA3LYDYsLB23x85qIY6LaDkzSsxkguKPm8F1XSP7YEjpyFvpbwLj8G3owFJGEyImOwZZWH0WQRPFczCv6uSqrg==
 
-"@ffflorian/tslint-config@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/@ffflorian/tslint-config/-/tslint-config-0.5.0.tgz#c1e59418c0bc76064ac7fdadc7e0075891126f9f"
-  integrity sha512-3wHzfIEw9B5gb2GVkfxhzhRkiIYWVpPzZIobcGMxya6XTmvsYfUSAeADKxhKgF9cv9nd5l41QMXrZQ/bd0IQWQ==
+"@ffflorian/tslint-config@0.7.0":
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/@ffflorian/tslint-config/-/tslint-config-0.7.0.tgz#1db6da16e17382e6b27e346dc4c699ba01112c2a"
+  integrity sha512-mMeU+i7EHh+d8JvvpSIxEA2Tl/l/6ylfpYBoCCFnQ09mrMIQCIlbLcvWgut/I9Nz0/MsiHd2gxC4xDAJLOwskw==
 
 "@nodelib/fs.scandir@2.1.1":
   version "2.1.1"
