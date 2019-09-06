@@ -403,7 +403,7 @@ export interface Job {
   };
   node_js?: string[] | string;
   compiler?: ("clang" | "gcc")[] | ("clang" | "gcc");
-  php?: string[] | string;
+  php?: StringOrNumberOrAcceptBothTypeAsArrayUnique;
   go?: string[] | string;
   jdk?: string | string[];
   /**

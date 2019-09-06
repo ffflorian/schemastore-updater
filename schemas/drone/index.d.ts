@@ -61,6 +61,12 @@ export type DroneCIConfigurationFile =
             [k: string]: any;
           })[];
       depends_on?: string[];
+      workspace?: {
+        base?: string;
+        path?: string;
+        [k: string]: any;
+      };
+      image_pull_secrets?: string[];
       [k: string]: any;
     }
   | {

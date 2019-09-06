@@ -240,8 +240,8 @@
     "version": "0.0.3"
   },
   "drone.json": {
-    "hash": "424798ee4fa93530a04dc51e2e26c740bb81a85ae84b77d27e4dc9061ba7c1b2",
-    "version": "0.0.1"
+    "hash": "abe159cfae7544c570ef40202864e5061b51674ad0f1d70adfba658b18a1bb0c",
+    "version": "0.0.2"
   },
   "drush.site.yml.json": {
     "hash": "575f3e72e8959cead2c54f8d60e4822acc9ed190722d02d2d92fe045acb72f3e",
@@ -258,6 +258,10 @@
   "eslintrc.json": {
     "hash": "2165f61e58f9297f3dee6447acb64b4736e9ae329528700fa0734fa1f272bd05",
     "version": "0.0.3"
+  },
+  "fabric.mod.json": {
+    "hash": "0a31f6cb7fe2b8eb73fa66f7313ec9dca421804089e500a503474392d3ef5eca",
+    "version": "0.0.1"
   },
   "feed.json": {
     "hash": "a389782e8583e8d91e99848441b3febb930716b851c0b157f8dcb1095de0122f",
@@ -693,7 +697,7 @@
   },
   "solidarityschema.json": {
     "hash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
-    "version": "0.0.3"
+    "version": "0.0.4"
   },
   "sourcehut-build.json": {
     "hash": "1e38d55fba04ea8a60895578953e9864a1b3437b619b42ce5a5372eb30afae97",
@@ -732,8 +736,8 @@
     "version": "0.0.1"
   },
   "travis.json": {
-    "hash": "dc58e87d5ffca2ccfc3dcde7b0ecc1a40525d9a552ee03846af72813b70ec8a0",
-    "version": "0.0.6"
+    "hash": "f1d57de5b906db16ce7f1f4ca3ab1554c440f7c4d53a1efd21d41b7e8ba6b5f6",
+    "version": "0.0.7"
   },
   "ts-force-config.json": {
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
