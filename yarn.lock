@@ -111,10 +111,10 @@
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
-"@types/prettier@^1.18.0":
-  version "1.18.0"
-  resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.18.0.tgz#d2dbe4d5f76b455138f13a2d881278e2c06a733d"
-  integrity sha512-5N6WK/XXs9PLPpge2KOmOSaIym2vIo32GsrxM5YOFs7uZ8R9L/acg+hQzWsfwoHEpasqQkH0+3LzLTbiF1GFLQ==
+"@types/prettier@^1.16.1":
+  version "1.18.2"
+  resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.18.2.tgz#069e7d132024d436fd1f5771f6932426a695f230"
+  integrity sha512-2JBasa5Qaj81Qsp/dxX2Njy+MdKC767WytHUDsRM7TYEfQvKPxsnGpnCBlBS1i2Aiv1YwCpmKSbQ6O6v8TpiKg==
 
 "@types/rimraf@2.0.2":
   version "2.0.2"
@@ -578,6 +578,11 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
+format-util@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/format-util/-/format-util-1.0.3.tgz#032dca4a116262a12c43f4c3ec8566416c5b2d95"
+  integrity sha1-Ay3KShFiYqEsQ/TD7IVmQWxbLZU=
+
 fs-extra@8.1.0:
   version "8.1.0"
   resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
@@ -831,7 +836,7 @@ js-tokens@^4.0.0:
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@^3.13.1:
+js-yaml@^3.12.1, js-yaml@^3.13.1:
   version "3.13.1"
   resolved "https://registry.npmjs.org/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
   integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
@@ -844,27 +849,27 @@ json-parse-better-errors@^1.0.1:
   resolved "https://registry.npmjs.org/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
-json-schema-ref-parser@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.npmjs.org/json-schema-ref-parser/-/json-schema-ref-parser-7.1.0.tgz#987582b19fa06a37db4797d4e825879a7aea127c"
-  integrity sha512-eP9+39HimQUpmqEUHRpV+oh8hiVMRU2tD6H+8uDc0raCQxX6jARN4nSJe5OpAtPt7eObuIUIsW7AwvGBzCHavQ==
+json-schema-ref-parser@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/json-schema-ref-parser/-/json-schema-ref-parser-6.1.0.tgz#30af34aeab5bee0431da805dac0eb21b574bf63d"
+  integrity sha512-pXe9H1m6IgIpXmE5JSb8epilNTGsmTb2iPohAXpOdhqGFbQjNeHHsZxU+C8w6T81GZxSPFLeUoqDJmzxx5IGuw==
   dependencies:
     call-me-maybe "^1.0.1"
-    js-yaml "^3.13.1"
-    ono "^5.0.1"
+    js-yaml "^3.12.1"
+    ono "^4.0.11"
 
-json-schema-to-typescript@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/json-schema-to-typescript/-/json-schema-to-typescript-7.0.0.tgz#d39df40e82009df06720c1a1df3da48466cf564c"
-  integrity sha512-MWQNZf/nT5DDOydysGqFi3J5x8gAFvHKOft0gVHLrbqvddKgkGiFOgCd0Y4z+tMYLdZyeFk5qhN3i7l5hXP2/Q==
+json-schema-to-typescript@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/json-schema-to-typescript/-/json-schema-to-typescript-7.1.0.tgz#c98a8647718551a40f324448f53508d73c087911"
+  integrity sha512-7tQyQzR+0NyI2iPjkqLLe4ncaxov1oIAFRM+BI8DDs7wxVIXsd0GWoZJIPsNQePIDr7N/LCkYtkEEDvY7dhGzA==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/node" ">=4.5.0"
-    "@types/prettier" "^1.18.0"
+    "@types/prettier" "^1.16.1"
     cli-color "^1.4.0"
-    json-schema-ref-parser "^7.1.0"
+    json-schema-ref-parser "^6.1.0"
     json-stringify-safe "^5.0.1"
-    lodash "^4.17.15"
+    lodash "^4.17.11"
     minimist "^1.2.0"
     mz "^2.7.0"
     prettier "^1.18.2"
@@ -963,7 +968,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash@^4.17.15:
+lodash@^4.17.11:
   version "4.17.15"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -1160,10 +1165,12 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
-ono@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.npmjs.org/ono/-/ono-5.0.1.tgz#a39e0af7ab2c2a143a06f08ad9d187e61f9da0c8"
-  integrity sha512-4/4BPGHX8OuDDNx1SrOqTOI7zajPjvBvrG1jDG3hDq4qBpoKlzG2d83Vdz26hvv0FFWYsLdHf+1Vu/k2d8Ww9w==
+ono@^4.0.11:
+  version "4.0.11"
+  resolved "https://registry.npmjs.org/ono/-/ono-4.0.11.tgz#c7f4209b3e396e8a44ef43b9cedc7f5d791d221d"
+  integrity sha512-jQ31cORBFE6td25deYeD80wxKBMj+zBmHTrVxnc6CKhx8gho6ipmWM5zj/oeoqioZ99yqBls9Z/9Nss7J26G2g==
+  dependencies:
+    format-util "^1.0.3"
 
 opencollective-postinstall@^2.0.2:
   version "2.0.2"
