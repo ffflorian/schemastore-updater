@@ -247,6 +247,10 @@
     "hash": "575f3e72e8959cead2c54f8d60e4822acc9ed190722d02d2d92fe045acb72f3e",
     "version": "0.0.1"
   },
+  "dss-2.0.0.json": {
+    "hash": "a7b76b506030544832bf69006cbb0b047cfda76871633598a03a988805e81f4c",
+    "version": "0.0.1"
+  },
   "electron-builder.json": {
     "hash": "17889ac480ea01f6bfec8c2dd430a487d2a7b73e61da7560598ae8c0d2b2a1ac",
     "version": "0.0.1"
@@ -280,8 +284,8 @@
     "version": "0.0.3"
   },
   "gitlab-ci.json": {
-    "hash": "bffe0f63f621ae77867ed6bf6066fb9f1069c798d693b635d11435e855cafe26",
-    "version": "1.0.6"
+    "hash": "be6c2c02c606f841bddb4f1204a13c6c68a9a953364b86d90a52894e87e97506",
+    "version": "1.0.7"
   },
   "global.json": {
     "hash": "64cf7c6371614299da78997dc013cb399a45ea3ac54a9170ecb8cf421db9bc24",
@@ -596,8 +600,8 @@
     "version": "0.0.3"
   },
   "resume.json": {
-    "hash": "eb8a83b073f722118788c1f631d82e0adb5207268475582c340469be71e5e395",
-    "version": "0.0.3"
+    "hash": "996c0b0ce941c5d79c88a0156a52f8f3771d47e281576d4fe9b8da7ff4e8582c",
+    "version": "0.0.4"
   },
   "sarif-1.0.0.json": {
     "hash": "3d381606211e14da54498868bce849356d45f52b3fbb2495e49c24477d8f735c",
@@ -698,6 +702,10 @@
   "solidarityschema.json": {
     "hash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
     "version": "0.0.4"
+  },
+  "solidaritySchema.json": {
+    "hash": "4213df9d072ed9a900885aab04712319136c40bc3408f6ee14f4f6ec8db12df9",
+    "version": "0.0.1"
   },
   "sourcehut-build.json": {
     "hash": "1e38d55fba04ea8a60895578953e9864a1b3437b619b42ce5a5372eb30afae97",

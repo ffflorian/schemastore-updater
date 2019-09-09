@@ -115,6 +115,9 @@ export interface GitlabCIConfiguration {
   after_script?: AfterScript;
   variables?: Variables;
   cache?: Cache;
+  default?: {
+    [k: string]: any;
+  };
   /**
    * Groups jobs into stages. All jobs in one stage must complete before next stage is executed. Defaults to ['build', 'test', 'deploy'].
    */
