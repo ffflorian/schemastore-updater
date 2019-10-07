@@ -96,6 +96,8 @@ async function update(settings: Required<SchemaGeneratorOptions>): Promise<void>
     console.log('These schemas will be disabled:', newDisabledSchemas);
 
     settings.disabledSchemas = settings.disabledSchemas.concat(newDisabledSchemas).sort();
+    delete settings.force;
+    delete settings.source;
     await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
   }
 }
