@@ -116,6 +116,11 @@ export interface GitlabCIConfiguration {
   variables?: Variables;
   cache?: Cache;
   default?: {
+    image?: Image;
+    services?: Services;
+    before_script?: BeforeScript;
+    after_script?: AfterScript;
+    cache?: Cache;
     [k: string]: any;
   };
   /**

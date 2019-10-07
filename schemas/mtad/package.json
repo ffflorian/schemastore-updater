@@ -7,8 +7,8 @@
   "name": "@schemastore/mtad",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mtad",
   "scripts": {},
-  "typesPublisherContentHash": "e8b711a3e245c260ff236707a0439546fc08f6336191809ceb56dfa3e4481136",
+  "typesPublisherContentHash": "0bb95348efb74e51199c18dd2770ae228303e9f253a38338a70030ee35d16999",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

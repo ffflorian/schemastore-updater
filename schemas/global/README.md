@@ -8,5 +8,5 @@ This package contains type definitions for global.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/global.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Mon, Oct 07, 2019, 07:39:35 GMT
 * Dependencies: none

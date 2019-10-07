@@ -8,5 +8,5 @@ This package contains type definitions for mtad.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mtad.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Mon, Oct 07, 2019, 07:39:35 GMT
 * Dependencies: none

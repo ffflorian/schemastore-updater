@@ -10,10 +10,6 @@
  */
 export interface XUnitNetRunnerConfiguration {
   /**
-   * The document schema
-   */
-  $schema?: string;
-  /**
    * Determines whether the runner will use an app domain to discover and run tests. If you choose 'required', app domains will be required (only desktop tests can be run); if you choose 'denied', then tests will not use app domains; if you choose 'ifAvailable', then app domains use is left to the discretion of the runner. Defaults to 'ifAvailable'. Note that not all runners support app domains, so the 'required' value may not always be valid.
    */
   appDomain?: "required" | "ifAvailable" | "denied";
@@ -37,10 +33,6 @@ export interface XUnitNetRunnerConfiguration {
    * Configures the default display name for test cases. If you choose 'method', the display name will be just the method (without the class name); if you choose 'classAndMethod', the default display name will be the fully qualified class name and method name.
    */
   methodDisplay?: "method" | "classAndMethod";
-  /**
-   * Configures one or more automatic transformations of test names. Flag names should be combined with a comma (i.e., flag1,flag2). Valid flags are: 'replaceUnderscoreWithSpace', 'useOperatorMonikers', 'useEscapeSequences', 'replacePeriodWithComma'. There are special flags named 'all' and 'none'.
-   */
-  methodDisplayOptions?: string;
   /**
    * Instructs the test runner that this assembly is willing to run in parallel with other assemblies.
    */

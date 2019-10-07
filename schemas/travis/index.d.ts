@@ -179,6 +179,7 @@ export type XcodeVersions =
   | "xcode10"
   | "xcode10.1"
   | "xcode10.2"
+  | "xcode10.3"
   | "xcode11";
 export type PossiblySecretString =
   | string
@@ -419,11 +420,11 @@ export interface Job {
    * By default, Travis CI will assume that your Podfile is in the root of the repository. If this is not the case, you can specify where the Podfile is
    */
   podfile?: string;
-  python?: string[] | string | number;
+  python?: StringOrNumberOrAcceptBothTypeAsArrayUnique;
   elixir?: string[] | string;
   rust?: string[] | string | number;
   erlang?: string[] | string;
-  julia?: string[] | string;
+  julia?: StringOrNumberOrAcceptBothTypeAsArrayUnique;
   opt_release?: string[] | string;
   rvm?: StringOrNumberOrAcceptBothTypeAsArrayUnique;
   gemfile?: string | string[];
@@ -602,14 +603,22 @@ export interface Job {
             | {
                 name: NonEmptyString;
                 channel?: NonEmptyString;
+                /**
+                 * 'classic:' is deprecated, use 'confinement:'
+                 */
                 classic?: boolean;
+                confinement?: "classic" | "devmode";
               }),
           ...(
             | NonEmptyString
             | {
                 name: NonEmptyString;
                 channel?: NonEmptyString;
+                /**
+                 * 'classic:' is deprecated, use 'confinement:'
+                 */
                 classic?: boolean;
+                confinement?: "classic" | "devmode";
               })[]
         ];
     /**
@@ -666,6 +675,14 @@ export interface Job {
      * Skip fetching the git-lfs files during the initial git clone (equivalent to git lfs smudge --skip),
      */
     lfs_skip_smudge?: boolean;
+    /**
+     * In some work flows, like build stages, it might be beneficial to skip the automatic git clone step.
+     */
+    clone?: boolean;
+    /**
+     * Is a path to the existing file in the current repository with data you’d like to put into $GIT_DIR/info/sparse-checkout file of format described in Git documentation.
+     */
+    sparse_checkout?: string;
   };
   /**
    * Specify which branches to build

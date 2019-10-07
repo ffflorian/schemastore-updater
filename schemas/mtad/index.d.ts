@@ -66,7 +66,7 @@ export interface MtadYamlV33 {
     /**
      * Defines the type of action that should be executed by the deployer.
      */
-    type?: "task";
+    type: "task";
     /**
      * A list of strings that define the points at which the hook must be executed.
      */
@@ -224,9 +224,13 @@ export interface MtadYamlV33 {
        */
       "app-name"?: string;
       /**
-       * Binary runtime.
+       * The name or the URL of a custom buildpack required by the application.
        */
       buildpack?: string;
+      /**
+       * An array of buildpacks. If a buildpack parameter already exists, it will be overwritten by the buildpacks listed in the buildpacks parameter, so that you have to include it in the array.
+       */
+      buildpacks?: string[];
       /**
        * A custom command required to start the application.
        */
@@ -293,6 +297,22 @@ export interface MtadYamlV33 {
        * The hostnames or subdomain where an application is available later.
        */
       hosts?: string[];
+      /**
+       * The idle domain on which the idle application will be available during blue-green deploy.
+       */
+      "idle-domain"?: string;
+      /**
+       * The domains on which the idle application will be available during blue-green deploy. The resulting application routes will be the Cartesian product of the domains and hosts. That is, a separate route for each host is constructed on each domain.
+       */
+      "idle-domains"?: string[];
+      /**
+       * The hostname or subdomain where the idle application will be available during blue-green deploy.
+       */
+      "idle-host"?: string;
+      /**
+       * The hostnames or subdomain where the idle application will be available during blue-green deploy.
+       */
+      "idle-hosts"?: string[];
       /**
        * The number of application instances that will be started during the deployment.
        */
@@ -435,7 +455,7 @@ export interface MtadYamlV33 {
       /**
        * Defines the type of action that should be executed by the deployer.
        */
-      type?: "task";
+      type: "task";
       /**
        * A list of strings that define the points at which the hook must be executed.
        */
@@ -804,7 +824,7 @@ export interface MtadYamlV33 {
       /**
        * Defines the type of action that should be executed by the deployer.
        */
-      type?: "task";
+      type: "task";
       /**
        * A list of strings that define the points at which the hook must be executed.
        */

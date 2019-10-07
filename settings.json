@@ -11,6 +11,7 @@
     "kustomization.json",
     "lsdlschema-1.0.json",
     "modernizrrc.json",
+    "mta.json",
     "pocketmine-plugin.json",
     "project-1.0.0-rc1.json",
     "project-1.0.0-rc2.json",
@@ -30,7 +31,8 @@
     "typings.json",
     "typingsrc.json",
     "vega-lite.json",
-    "vega.json"
+    "vega.json",
+    "vss-extension.json"
   ],
   "lockFile": "schemas/json-schemas.lock",
   "schemaStoreRepo": "https://github.com/SchemaStore/schemastore"

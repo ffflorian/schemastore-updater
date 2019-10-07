@@ -284,12 +284,12 @@
     "version": "0.0.3"
   },
   "gitlab-ci.json": {
-    "hash": "be6c2c02c606f841bddb4f1204a13c6c68a9a953364b86d90a52894e87e97506",
-    "version": "1.0.7"
+    "hash": "6dfe1514a242e6f6460d86cd5e33c82806105d6b2786b12833dd7dab13a221be",
+    "version": "1.0.8"
   },
   "global.json": {
-    "hash": "64cf7c6371614299da78997dc013cb399a45ea3ac54a9170ecb8cf421db9bc24",
-    "version": "0.0.3"
+    "hash": "d83883fc1ce8fbd26ef653b91361a2c0398f09a5665cb210d246736307959240",
+    "version": "0.0.4"
   },
   "grunt-clean-task.json": {
     "hash": "37afe5dcf7a3ca70e0eb22105711ea27eed4ef95de49e26d0faa1896edaee70a",
@@ -452,8 +452,8 @@
     "version": "0.0.1"
   },
   "mtad.json": {
-    "hash": "e8b711a3e245c260ff236707a0439546fc08f6336191809ceb56dfa3e4481136",
-    "version": "0.0.2"
+    "hash": "0bb95348efb74e51199c18dd2770ae228303e9f253a38338a70030ee35d16999",
+    "version": "0.0.3"
   },
   "mtaext.json": {
     "hash": "20b6312e97f8092693af5549d5a0199f2d1dc66ea3ddd96dcbacbff50e5f06e6",
@@ -600,8 +600,8 @@
     "version": "0.0.3"
   },
   "resume.json": {
-    "hash": "996c0b0ce941c5d79c88a0156a52f8f3771d47e281576d4fe9b8da7ff4e8582c",
-    "version": "0.0.4"
+    "hash": "eb8a83b073f722118788c1f631d82e0adb5207268475582c340469be71e5e395",
+    "version": "0.0.5"
   },
   "sarif-1.0.0.json": {
     "hash": "3d381606211e14da54498868bce849356d45f52b3fbb2495e49c24477d8f735c",
@@ -744,8 +744,8 @@
     "version": "0.0.1"
   },
   "travis.json": {
-    "hash": "f1d57de5b906db16ce7f1f4ca3ab1554c440f7c4d53a1efd21d41b7e8ba6b5f6",
-    "version": "0.0.7"
+    "hash": "e0729a96cce3afa067d3e5810b7d2621edd17a2d6208f002c78c787325d8b00a",
+    "version": "0.0.8"
   },
   "ts-force-config.json": {
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
@@ -764,8 +764,8 @@
     "version": "0.0.3"
   },
   "tslint.json": {
-    "hash": "c8eeaf9fed009a164546b483ea2bed00cf0ba5aedede0709a685fbda0558603a",
-    "version": "0.0.7"
+    "hash": "5002756ecc843d9b27b7c51b3f4c6b670bb3af4ea17a2d1e404614dd1de051f1",
+    "version": "0.0.8"
   },
   "typedoc.json": {
     "hash": "bfb07019b96b3b85c98ad0c05ce34e401eca8b3375aac83b994b139ac2978168",
@@ -844,7 +844,7 @@
     "version": "0.0.3"
   },
   "xunit.runner.schema.json": {
-    "hash": "371ee9b2cd9b1975acc5df5bd140c06f338abdc99ac0cf9e82b7ea83c80c6228",
-    "version": "0.0.4"
+    "hash": "bafcfb07fb1e7d161a5109c8329b0a47e36b836f3e7a67f3a235045593f9615a",
+    "version": "0.0.5"
   }
 }

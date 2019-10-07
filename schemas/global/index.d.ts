@@ -7,14 +7,6 @@
 
 export interface JSONSchemaForTheASPNETGlobalConfigurationFiles {
   /**
-   * A list of project folders relative to this file.
-   */
-  projects?: string[];
-  /**
-   * The location to store packages
-   */
-  packages?: string;
-  /**
    * Specify information about the SDK.
    */
   sdk?: {
@@ -22,14 +14,20 @@ export interface JSONSchemaForTheASPNETGlobalConfigurationFiles {
      * The version of the SDK to use.
      */
     version?: string;
+    allowPrerelease?: boolean;
     /**
-     * Specify which processor architecture to target.
+     * The roll-forward policy when selecting an SDK version, either as a fallback to accommodate missing a specific SDK version or as a directive to use a later version.
      */
-    architecture?: "x64" | "x86";
-    /**
-     * Chose which runtime to target.
-     */
-    runtime?: "clr" | "coreclr";
+    rollForward?:
+      | "patch"
+      | "feature"
+      | "minor"
+      | "major"
+      | "latestPatch"
+      | "latestFeature"
+      | "latestMinor"
+      | "latestMajor"
+      | "disable";
     [k: string]: any;
   };
   [k: string]: any;
