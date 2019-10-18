@@ -8,12 +8,1776 @@
 /**
  * Linguistic Schema Definition Language schema
  */
-export type LSDLSchema2 = LSDLSchema | LSDLSchema1;
+export type LSDLSchema3 = LSDLSchema | LSDLSchema1 | LSDLSchema2;
 
 /**
  * Linguistic Schema Definition Language schema
  */
 export interface LSDLSchema {
+  /**
+   * Version of LSDL
+   */
+  Version: "1.2.0";
+  /**
+   * Target language for the linguistic schema
+   */
+  Language: string;
+  /**
+   * Indicates which heuristics should be run to automatically improve the linguistic schema.
+   */
+  DynamicImprovement?: "Default" | "Full" | "HighConfidence" | "None";
+  /**
+   * Indicates the confidence score required for an interpretation of an utterance to be returned.
+   */
+  MinResultConfidence?: "Default" | "VeryHigh" | "High" | "Medium" | "Low";
+  /**
+   * Additional linguistic schemas referenced by objects within this linguistic schema
+   */
+  Namespaces?: {
+    /**
+     * A reference to an additional linguistic schema.
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^.+$".
+     */
+    [k: string]: {};
+  };
+  /**
+   * The entities in the linguistic schema.
+   */
+  Entities?: {
+    /**
+     * An entity in the linguistic schema
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^.+$".
+     */
+    [k: string]: {
+      /**
+       * The conceptual model object which represents the entity
+       */
+      Binding:
+        | (
+            | {
+                /**
+                 * The name of the table.
+                 */
+                Table: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity (e.g. table or pod)
+                 */
+                ConceptualEntity: string;
+              })
+        | (
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the column
+                 */
+                Column: string;
+              }
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the measure
+                 */
+                Measure: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity containing the property
+                 */
+                ConceptualEntity: string;
+                /**
+                 * The name of the property containing the variation set that contains the property
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the property
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the property
+                 */
+                ConceptualProperty: string;
+              })
+        | (
+            | {
+                /**
+                 * The name of the table containing the hierarchy
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the hierarchy
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the hierarchy
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the hierarchy
+                 */
+                Hierarchy: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity containing the hierarchy
+                 */
+                ConceptualEntity: string;
+                /**
+                 * The name of the property containing the variation set that contains the hierarchy
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the hierarchy
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the hierarchy
+                 */
+                Hierarchy: string;
+              })
+        | (
+            | {
+                /**
+                 * The name of the table containing the hierarchy
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the hierarchy
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the hierarchy
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the hierarchy
+                 */
+                Hierarchy: string;
+                /**
+                 * The name of the hierarchy level
+                 */
+                HierarchyLevel: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity containing the hierarchy
+                 */
+                ConceptualEntity: string;
+                /**
+                 * The name of the property containing the variation set that contains the hierarchy
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the hierarchy
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the hierarchy
+                 */
+                Hierarchy: string;
+                /**
+                 * The name of the hierarchy level
+                 */
+                HierarchyLevel: string;
+              });
+      /**
+       * The state of the entity
+       */
+      State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+      /**
+       * Indicates the entity is hidden. Hidden entities are ignored for all purposes other than being available nodes along paths between other related entities.
+       */
+      Hidden?: boolean;
+      /**
+       * The weight to apply to this entity
+       */
+      Weight?: number;
+      /**
+       * Identifies the shared template schema from which this entity is derived
+       */
+      TemplateSchema?: string;
+      /**
+       * Terms which can be used to refer to this entity
+       */
+      Terms?: (
+        | string
+        | {
+            /**
+             * Properties of the term
+             *
+             * This interface was referenced by `undefined`'s JSON-Schema definition
+             * via the `patternProperty` "^.+$".
+             */
+            [k: string]: {
+              /**
+               * The part of speech of the term
+               */
+              Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+              /**
+               * The state of the term
+               */
+              State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+              /**
+               * The weight to apply to the term
+               */
+              Weight?: number;
+              /**
+               * Identifies the shared template schema from which the term is derived
+               */
+              TemplateSchema?: string;
+              /**
+               * Indicates the last date and time (in UTC) that this term was modified.
+               */
+              LastModified?: string;
+            };
+          })[];
+      /**
+       * The overall semantic category of the entity
+       */
+      SemanticType?: "Person" | "Animate" | "Inanimate" | "Location" | "Time" | "Duration";
+      /**
+       * Nouns which indicate the units represented in this numeric property entity.
+       */
+      Units?: (
+        | string
+        | {
+            /**
+             * Properties of the term
+             *
+             * This interface was referenced by `undefined`'s JSON-Schema definition
+             * via the `patternProperty` "^.+$".
+             */
+            [k: string]: {
+              /**
+               * The part of speech of the term
+               */
+              Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+              /**
+               * The state of the term
+               */
+              State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+              /**
+               * The weight to apply to the term
+               */
+              Weight?: number;
+              /**
+               * Identifies the shared template schema from which the term is derived
+               */
+              TemplateSchema?: string;
+              /**
+               * Indicates the last date and time (in UTC) that this term was modified.
+               */
+              LastModified?: string;
+            };
+          })[];
+      /**
+       * Defines how instance values from the model are recognized
+       */
+      Instances?: {
+        /**
+         * Indicates whether the values of this entity should be available in the term index, enabling recognition, completion, and suggestions.
+         */
+        Index?: "Default" | "None";
+        /**
+         * Indicates whether values that appear to be plural should match singular words in the utterance.
+         */
+        PluralNormalization?: "Default" | "Normalized" | "None";
+        /**
+         * Defines a set of values which are synonyms of instances of this entity.
+         */
+        Synonyms?: {
+          /**
+           * The conceptual model object which contains terms that can be used to refer to values of the entity
+           */
+          SynonymBinding:
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the column
+                 */
+                Column: string;
+              }
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the measure
+                 */
+                Measure: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity containing the property
+                 */
+                ConceptualEntity: string;
+                /**
+                 * The name of the property containing the variation set that contains the property
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the property
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the property
+                 */
+                ConceptualProperty: string;
+              };
+          /**
+           * The conceptual model object which contains the corresponding values of the entity
+           */
+          ValueBinding:
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the column
+                 */
+                Column: string;
+              }
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the measure
+                 */
+                Measure: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity containing the property
+                 */
+                ConceptualEntity: string;
+                /**
+                 * The name of the property containing the variation set that contains the property
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the property
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the property
+                 */
+                ConceptualProperty: string;
+              };
+          /**
+           * The state of the instance synonyms
+           */
+          State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+        };
+        /**
+         * Reference to property in the model which contains the weight to apply to instances of this entity.
+         */
+        Weights?: {
+          /**
+           * The conceptual model object which contains the instance weights corresponding to instances of the entity
+           */
+          Binding:
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the column
+                 */
+                Column: string;
+              }
+            | {
+                /**
+                 * The name of the table containing the column or measure
+                 */
+                Table: string;
+                /**
+                 * The name of the property containing the variation set that contains the column or measure
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the column or measure
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the measure
+                 */
+                Measure: string;
+              }
+            | {
+                /**
+                 * The name of the conceptual entity containing the property
+                 */
+                ConceptualEntity: string;
+                /**
+                 * The name of the property containing the variation set that contains the property
+                 */
+                VariationSource?: string;
+                /**
+                 * The name of the variation set that contains the property
+                 */
+                VariationSet?: string;
+                /**
+                 * The name of the property
+                 */
+                ConceptualProperty: string;
+              };
+        };
+      };
+    };
+  };
+  /**
+   * The relationships in the linguistic schema.
+   */
+  Relationships?: {
+    /**
+     * A relationship in the linguistic schema
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^.+$".
+     */
+    [k: string]: {
+      /**
+       * The conceptual model object which embodies the relationship
+       */
+      Binding?:
+        | {
+            /**
+             * The name of the table.
+             */
+            Table: string;
+          }
+        | {
+            /**
+             * The name of the conceptual entity (e.g. table or pod)
+             */
+            ConceptualEntity: string;
+          };
+      /**
+       * The state of the relationship
+       */
+      State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+      /**
+       * The weight to apply to this relationship
+       */
+      Weight?: number;
+      /**
+       * Identifies the shared template schema from which this relationship is derived
+       */
+      TemplateSchema?: string;
+      /**
+       * References to linguistic entities which participate in the relationship
+       */
+      Roles?: {
+        /**
+         * A role in a linguistic relationship.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^.+$".
+         */
+        [k: string]:
+          | string
+          | {
+              /**
+               * The linguistic entity which is the target of the role
+               */
+              Target:
+                | string
+                | {
+                    /**
+                     * The name of the entity
+                     */
+                    Entity: string;
+                    /**
+                     * The name of the namespace of the linguistic schema that contains the entity
+                     */
+                    Namespace?: string;
+                  };
+              /**
+               * Nouns which can be used to refer to the entity which is the target of the role, when used in the context of the relationship
+               */
+              Nouns?: (
+                | string
+                | {
+                    /**
+                     * Properties of the term
+                     *
+                     * This interface was referenced by `undefined`'s JSON-Schema definition
+                     * via the `patternProperty` "^.+$".
+                     */
+                    [k: string]: {
+                      /**
+                       * The part of speech of the term
+                       */
+                      Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                      /**
+                       * The state of the term
+                       */
+                      State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                      /**
+                       * The weight to apply to the term
+                       */
+                      Weight?: number;
+                      /**
+                       * Identifies the shared template schema from which the term is derived
+                       */
+                      TemplateSchema?: string;
+                      /**
+                       * Indicates the last date and time (in UTC) that this term was modified.
+                       */
+                      LastModified?: string;
+                    };
+                  })[];
+              /**
+               * A role which indicates the quantity of this role's entity which participates in the relationship
+               */
+              Quantity?:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * A role which indicates the amount of this role's entity which participates in the relationship
+               */
+              Amount?:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+            };
+      };
+      /**
+       * Defines how roles fill common semantic slots in the relationship
+       */
+      SemanticSlots?: {
+        /**
+         * A role which indicates where the relationship takes place
+         */
+        Where?:
+          | string
+          | {
+              /**
+               * Identifier for a linguistic schema object
+               */
+              Role: string;
+            };
+        /**
+         * A role which indicates when the relationship takes place
+         */
+        When?:
+          | string
+          | {
+              /**
+               * Identifier for a linguistic schema object
+               */
+              Role: string;
+            };
+        /**
+         * A role which indicates how long the relationship occurred
+         */
+        Duration?:
+          | string
+          | {
+              /**
+               * Identifier for a linguistic schema object
+               */
+              Role: string;
+            };
+        /**
+         * A role which indicates the number of times the relationship occurred
+         */
+        Occurrences?:
+          | string
+          | {
+              /**
+               * Identifier for a linguistic schema object
+               */
+              Role: string;
+            };
+      };
+      /**
+       * A set of conditions which are required to be true for instances of the relationship represented in the semantic model
+       */
+      Conditions?: {
+        /**
+         * A role in the relationship to compare to the value
+         */
+        Target:
+          | string
+          | {
+              /**
+               * Identifier for a linguistic schema object
+               */
+              Role: string;
+            };
+        /**
+         * The operator with which to compare the value and the role
+         */
+        Operator:
+          | "Equals"
+          | "NotEquals"
+          | "GreaterThan"
+          | "LessThan"
+          | "GreaterThanOrEquals"
+          | "LessThanOrEquals"
+          | "Contains"
+          | "NotContains"
+          | "StartsWith"
+          | "NotStartsWith";
+        /**
+         * The value to which the role is compared
+         */
+        Value:
+          | {
+              /**
+               * A text value to use in a condition
+               */
+              Text: (string | null) | (string | null)[];
+            }
+          | {
+              /**
+               * A number value to use in a condition
+               */
+              Number: (number | null) | (number | null)[];
+            }
+          | {
+              /**
+               * A Boolean value to use in a condition
+               */
+              Boolean: (boolean | null) | (boolean | null)[];
+            }
+          | ((string | null) | (string | null)[])
+          | ((number | null) | (number | null)[])
+          | ((boolean | null) | (boolean | null)[])
+          | null;
+      }[];
+      /**
+       * A set of syntactic frames which define the types of language used to describe the relationship
+       */
+      Phrasings?: (
+        | ({
+            /**
+             * Properties of an attribute phrasing
+             */
+            Attribute: {
+              /**
+               * The entity which is the subject of the phrasing
+               */
+              Subject:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * The entity which is the object of the phrasing
+               */
+              Object:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Additional prepositional phrases which apply to the phrasing
+               */
+              PrepositionalPhrases?: {
+                /**
+                 * Prepositions used in the prepositional phrase
+                 */
+                Prepositions: (
+                  | string
+                  | {
+                      /**
+                       * Properties of the term
+                       *
+                       * This interface was referenced by `undefined`'s JSON-Schema definition
+                       * via the `patternProperty` "^.+$".
+                       */
+                      [k: string]: {
+                        /**
+                         * The part of speech of the term
+                         */
+                        Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                        /**
+                         * The state of the term
+                         */
+                        State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                        /**
+                         * The weight to apply to the term
+                         */
+                        Weight?: number;
+                        /**
+                         * Identifies the shared template schema from which the term is derived
+                         */
+                        TemplateSchema?: string;
+                        /**
+                         * Indicates the last date and time (in UTC) that this term was modified.
+                         */
+                        LastModified?: string;
+                      };
+                    })[];
+                /**
+                 * The entity which is the object of the prepositional phrase
+                 */
+                Object:
+                  | string
+                  | {
+                      /**
+                       * Identifier for a linguistic schema object
+                       */
+                      Role: string;
+                    };
+              }[];
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of a name phrasing
+             */
+            Name: {
+              /**
+               * The entity which is the subject of the phrasing
+               */
+              Subject:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * The entity which is the name of the Subject
+               */
+              Name:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of an adjective phrasing
+             */
+            Adjective:
+              | {
+                  /**
+                   * The entity which is described via an adjective
+                   */
+                  Subject:
+                    | string
+                    | {
+                        /**
+                         * Identifier for a linguistic schema object
+                         */
+                        Role: string;
+                      };
+                  /**
+                   * Adjectives used to describe the Subject (with a high measurement)
+                   */
+                  Adjectives: (
+                    | string
+                    | {
+                        /**
+                         * Properties of the term
+                         *
+                         * This interface was referenced by `undefined`'s JSON-Schema definition
+                         * via the `patternProperty` "^.+$".
+                         */
+                        [k: string]: {
+                          /**
+                           * The part of speech of the term
+                           */
+                          Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                          /**
+                           * The state of the term
+                           */
+                          State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                          /**
+                           * The weight to apply to the term
+                           */
+                          Weight?: number;
+                          /**
+                           * Identifies the shared template schema from which the term is derived
+                           */
+                          TemplateSchema?: string;
+                          /**
+                           * Indicates the last date and time (in UTC) that this term was modified.
+                           */
+                          LastModified?: string;
+                        };
+                      })[];
+                  /**
+                   * Adjectives used to describe the Subject (with a low measurement)
+                   */
+                  Antonyms?: (
+                    | string
+                    | {
+                        /**
+                         * Properties of the term
+                         *
+                         * This interface was referenced by `undefined`'s JSON-Schema definition
+                         * via the `patternProperty` "^.+$".
+                         */
+                        [k: string]: {
+                          /**
+                           * The part of speech of the term
+                           */
+                          Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                          /**
+                           * The state of the term
+                           */
+                          State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                          /**
+                           * The weight to apply to the term
+                           */
+                          Weight?: number;
+                          /**
+                           * Identifies the shared template schema from which the term is derived
+                           */
+                          TemplateSchema?: string;
+                          /**
+                           * Indicates the last date and time (in UTC) that this term was modified.
+                           */
+                          LastModified?: string;
+                        };
+                      })[];
+                  /**
+                   * The entity which measures the extent to which the Adjectives apply
+                   */
+                  Measurement?:
+                    | string
+                    | {
+                        /**
+                         * Identifier for a linguistic schema object
+                         */
+                        Role: string;
+                      };
+                  /**
+                   * Additional prepositional phrases which apply to the phrasing
+                   */
+                  PrepositionalPhrases?: {
+                    /**
+                     * Prepositions used in the prepositional phrase
+                     */
+                    Prepositions: (
+                      | string
+                      | {
+                          /**
+                           * Properties of the term
+                           *
+                           * This interface was referenced by `undefined`'s JSON-Schema definition
+                           * via the `patternProperty` "^.+$".
+                           */
+                          [k: string]: {
+                            /**
+                             * The part of speech of the term
+                             */
+                            Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                            /**
+                             * The state of the term
+                             */
+                            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                            /**
+                             * The weight to apply to the term
+                             */
+                            Weight?: number;
+                            /**
+                             * Identifies the shared template schema from which the term is derived
+                             */
+                            TemplateSchema?: string;
+                            /**
+                             * Indicates the last date and time (in UTC) that this term was modified.
+                             */
+                            LastModified?: string;
+                          };
+                        })[];
+                    /**
+                     * The entity which is the object of the prepositional phrase
+                     */
+                    Object:
+                      | string
+                      | {
+                          /**
+                           * Identifier for a linguistic schema object
+                           */
+                          Role: string;
+                        };
+                  }[];
+                }
+              | {
+                  /**
+                   * The entity which is described via an adjective
+                   */
+                  Subject:
+                    | string
+                    | {
+                        /**
+                         * Identifier for a linguistic schema object
+                         */
+                        Role: string;
+                      };
+                  /**
+                   * Adjectives used to describe the Subject (with a low measurement)
+                   */
+                  Antonyms: (
+                    | string
+                    | {
+                        /**
+                         * Properties of the term
+                         *
+                         * This interface was referenced by `undefined`'s JSON-Schema definition
+                         * via the `patternProperty` "^.+$".
+                         */
+                        [k: string]: {
+                          /**
+                           * The part of speech of the term
+                           */
+                          Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                          /**
+                           * The state of the term
+                           */
+                          State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                          /**
+                           * The weight to apply to the term
+                           */
+                          Weight?: number;
+                          /**
+                           * Identifies the shared template schema from which the term is derived
+                           */
+                          TemplateSchema?: string;
+                          /**
+                           * Indicates the last date and time (in UTC) that this term was modified.
+                           */
+                          LastModified?: string;
+                        };
+                      })[];
+                  /**
+                   * The entity which measures the extent to which the Adjectives apply
+                   */
+                  Measurement?:
+                    | string
+                    | {
+                        /**
+                         * Identifier for a linguistic schema object
+                         */
+                        Role: string;
+                      };
+                  /**
+                   * Additional prepositional phrases which apply to the phrasing
+                   */
+                  PrepositionalPhrases?: {
+                    /**
+                     * Prepositions used in the prepositional phrase
+                     */
+                    Prepositions: (
+                      | string
+                      | {
+                          /**
+                           * Properties of the term
+                           *
+                           * This interface was referenced by `undefined`'s JSON-Schema definition
+                           * via the `patternProperty` "^.+$".
+                           */
+                          [k: string]: {
+                            /**
+                             * The part of speech of the term
+                             */
+                            Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                            /**
+                             * The state of the term
+                             */
+                            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                            /**
+                             * The weight to apply to the term
+                             */
+                            Weight?: number;
+                            /**
+                             * Identifies the shared template schema from which the term is derived
+                             */
+                            TemplateSchema?: string;
+                            /**
+                             * Indicates the last date and time (in UTC) that this term was modified.
+                             */
+                            LastModified?: string;
+                          };
+                        })[];
+                    /**
+                     * The entity which is the object of the prepositional phrase
+                     */
+                    Object:
+                      | string
+                      | {
+                          /**
+                           * Identifier for a linguistic schema object
+                           */
+                          Role: string;
+                        };
+                  }[];
+                };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of a dynamic adjective phrasing
+             */
+            DynamicAdjective: {
+              /**
+               * The entity which is described via an adjective
+               */
+              Subject:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * The column entity (or table entity with a name phrasing) which is used to describe the Subject
+               */
+              Adjective:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Additional prepositional phrases which apply to the phrasing
+               */
+              PrepositionalPhrases?: {
+                /**
+                 * Prepositions used in the prepositional phrase
+                 */
+                Prepositions: (
+                  | string
+                  | {
+                      /**
+                       * Properties of the term
+                       *
+                       * This interface was referenced by `undefined`'s JSON-Schema definition
+                       * via the `patternProperty` "^.+$".
+                       */
+                      [k: string]: {
+                        /**
+                         * The part of speech of the term
+                         */
+                        Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                        /**
+                         * The state of the term
+                         */
+                        State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                        /**
+                         * The weight to apply to the term
+                         */
+                        Weight?: number;
+                        /**
+                         * Identifies the shared template schema from which the term is derived
+                         */
+                        TemplateSchema?: string;
+                        /**
+                         * Indicates the last date and time (in UTC) that this term was modified.
+                         */
+                        LastModified?: string;
+                      };
+                    })[];
+                /**
+                 * The entity which is the object of the prepositional phrase
+                 */
+                Object:
+                  | string
+                  | {
+                      /**
+                       * Identifier for a linguistic schema object
+                       */
+                      Role: string;
+                    };
+              }[];
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of a noun phrasing
+             */
+            Noun: {
+              /**
+               * The entity which is described via a noun
+               */
+              Subject:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Nouns used to describe the Subject
+               */
+              Nouns: (
+                | string
+                | {
+                    /**
+                     * Properties of the term
+                     *
+                     * This interface was referenced by `undefined`'s JSON-Schema definition
+                     * via the `patternProperty` "^.+$".
+                     */
+                    [k: string]: {
+                      /**
+                       * The part of speech of the term
+                       */
+                      Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                      /**
+                       * The state of the term
+                       */
+                      State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                      /**
+                       * The weight to apply to the term
+                       */
+                      Weight?: number;
+                      /**
+                       * Identifies the shared template schema from which the term is derived
+                       */
+                      TemplateSchema?: string;
+                      /**
+                       * Indicates the last date and time (in UTC) that this term was modified.
+                       */
+                      LastModified?: string;
+                    };
+                  })[];
+              /**
+               * Additional prepositional phrases which apply to the phrasing
+               */
+              PrepositionalPhrases?: {
+                /**
+                 * Prepositions used in the prepositional phrase
+                 */
+                Prepositions: (
+                  | string
+                  | {
+                      /**
+                       * Properties of the term
+                       *
+                       * This interface was referenced by `undefined`'s JSON-Schema definition
+                       * via the `patternProperty` "^.+$".
+                       */
+                      [k: string]: {
+                        /**
+                         * The part of speech of the term
+                         */
+                        Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                        /**
+                         * The state of the term
+                         */
+                        State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                        /**
+                         * The weight to apply to the term
+                         */
+                        Weight?: number;
+                        /**
+                         * Identifies the shared template schema from which the term is derived
+                         */
+                        TemplateSchema?: string;
+                        /**
+                         * Indicates the last date and time (in UTC) that this term was modified.
+                         */
+                        LastModified?: string;
+                      };
+                    })[];
+                /**
+                 * The entity which is the object of the prepositional phrase
+                 */
+                Object:
+                  | string
+                  | {
+                      /**
+                       * Identifier for a linguistic schema object
+                       */
+                      Role: string;
+                    };
+              }[];
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of a dynamic noun phrasing
+             */
+            DynamicNoun: {
+              /**
+               * The entity which is described via a noun
+               */
+              Subject:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * The column entity (or table entity with a name phrasing) which is the used to describe the Subject
+               */
+              Noun:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Additional prepositional phrases which apply to the phrasing
+               */
+              PrepositionalPhrases?: {
+                /**
+                 * Prepositions used in the prepositional phrase
+                 */
+                Prepositions: (
+                  | string
+                  | {
+                      /**
+                       * Properties of the term
+                       *
+                       * This interface was referenced by `undefined`'s JSON-Schema definition
+                       * via the `patternProperty` "^.+$".
+                       */
+                      [k: string]: {
+                        /**
+                         * The part of speech of the term
+                         */
+                        Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                        /**
+                         * The state of the term
+                         */
+                        State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                        /**
+                         * The weight to apply to the term
+                         */
+                        Weight?: number;
+                        /**
+                         * Identifies the shared template schema from which the term is derived
+                         */
+                        TemplateSchema?: string;
+                        /**
+                         * Indicates the last date and time (in UTC) that this term was modified.
+                         */
+                        LastModified?: string;
+                      };
+                    })[];
+                /**
+                 * The entity which is the object of the prepositional phrase
+                 */
+                Object:
+                  | string
+                  | {
+                      /**
+                       * Identifier for a linguistic schema object
+                       */
+                      Role: string;
+                    };
+              }[];
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of a preposition phrasing
+             */
+            Preposition: {
+              /**
+               * The entity which is the subject of the prepositional phrase
+               */
+              Subject:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Prepositions used in the prepositional phrase
+               */
+              Prepositions: (
+                | string
+                | {
+                    /**
+                     * Properties of the term
+                     *
+                     * This interface was referenced by `undefined`'s JSON-Schema definition
+                     * via the `patternProperty` "^.+$".
+                     */
+                    [k: string]: {
+                      /**
+                       * The part of speech of the term
+                       */
+                      Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                      /**
+                       * The state of the term
+                       */
+                      State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                      /**
+                       * The weight to apply to the term
+                       */
+                      Weight?: number;
+                      /**
+                       * Identifies the shared template schema from which the term is derived
+                       */
+                      TemplateSchema?: string;
+                      /**
+                       * Indicates the last date and time (in UTC) that this term was modified.
+                       */
+                      LastModified?: string;
+                    };
+                  })[];
+              /**
+               * The entity which is the object of the prepositional phrase
+               */
+              Object:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Additional prepositional phrases which apply to the phrasing
+               */
+              PrepositionalPhrases?: {
+                /**
+                 * Prepositions used in the prepositional phrase
+                 */
+                Prepositions: (
+                  | string
+                  | {
+                      /**
+                       * Properties of the term
+                       *
+                       * This interface was referenced by `undefined`'s JSON-Schema definition
+                       * via the `patternProperty` "^.+$".
+                       */
+                      [k: string]: {
+                        /**
+                         * The part of speech of the term
+                         */
+                        Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                        /**
+                         * The state of the term
+                         */
+                        State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                        /**
+                         * The weight to apply to the term
+                         */
+                        Weight?: number;
+                        /**
+                         * Identifies the shared template schema from which the term is derived
+                         */
+                        TemplateSchema?: string;
+                        /**
+                         * Indicates the last date and time (in UTC) that this term was modified.
+                         */
+                        LastModified?: string;
+                      };
+                    })[];
+                /**
+                 * The entity which is the object of the prepositional phrase
+                 */
+                Object:
+                  | string
+                  | {
+                      /**
+                       * Identifier for a linguistic schema object
+                       */
+                      Role: string;
+                    };
+              }[];
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          })
+        | ({
+            /**
+             * Properties of a verb phrasing
+             */
+            Verb: {
+              /**
+               * The entity which is the subject of the verb
+               */
+              Subject?:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Verbs used to describe the relationship
+               */
+              Verbs: (
+                | string
+                | {
+                    /**
+                     * Properties of the term
+                     *
+                     * This interface was referenced by `undefined`'s JSON-Schema definition
+                     * via the `patternProperty` "^.+$".
+                     */
+                    [k: string]: {
+                      /**
+                       * The part of speech of the term
+                       */
+                      Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                      /**
+                       * The state of the term
+                       */
+                      State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                      /**
+                       * The weight to apply to the term
+                       */
+                      Weight?: number;
+                      /**
+                       * Identifies the shared template schema from which the term is derived
+                       */
+                      TemplateSchema?: string;
+                      /**
+                       * Indicates the last date and time (in UTC) that this term was modified.
+                       */
+                      LastModified?: string;
+                    };
+                  })[];
+              /**
+               * The entity which is the indirect object of the verb
+               */
+              IndirectObject?:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * The entity which is the direct object of the verb
+               */
+              Object?:
+                | string
+                | {
+                    /**
+                     * Identifier for a linguistic schema object
+                     */
+                    Role: string;
+                  };
+              /**
+               * Additional prepositional phrases which apply to the phrasing
+               */
+              PrepositionalPhrases?: {
+                /**
+                 * Prepositions used in the prepositional phrase
+                 */
+                Prepositions: (
+                  | string
+                  | {
+                      /**
+                       * Properties of the term
+                       *
+                       * This interface was referenced by `undefined`'s JSON-Schema definition
+                       * via the `patternProperty` "^.+$".
+                       */
+                      [k: string]: {
+                        /**
+                         * The part of speech of the term
+                         */
+                        Type?: "Noun" | "Verb" | "Adjective" | "Preposition";
+                        /**
+                         * The state of the term
+                         */
+                        State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+                        /**
+                         * The weight to apply to the term
+                         */
+                        Weight?: number;
+                        /**
+                         * Identifies the shared template schema from which the term is derived
+                         */
+                        TemplateSchema?: string;
+                        /**
+                         * Indicates the last date and time (in UTC) that this term was modified.
+                         */
+                        LastModified?: string;
+                      };
+                    })[];
+                /**
+                 * The entity which is the object of the prepositional phrase
+                 */
+                Object:
+                  | string
+                  | {
+                      /**
+                       * Identifier for a linguistic schema object
+                       */
+                      Role: string;
+                    };
+              }[];
+            };
+            State?: any;
+            Weight?: any;
+            TemplateSchema?: any;
+          } & {
+            /**
+             * The state of the phrasing
+             */
+            State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+            /**
+             * The weight to apply to the phrasing
+             */
+            Weight?: number;
+            /**
+             * Identifies the shared template schema from which the phrasing is derived
+             */
+            TemplateSchema?: string;
+            [k: string]: any;
+          }))[];
+    };
+  };
+  /**
+   * The global text substitutions in the linguistic schema.
+   */
+  GlobalSubstitutions?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^.+$".
+     */
+    [k: string]:
+      | string
+      | {
+          /**
+           * The sequence of words to substitute into the utterance.
+           */
+          Substitute: string;
+          /**
+           * The state of the global substitution
+           */
+          State?: "Authored" | "Generated" | "Suggested" | "Deleted";
+          /**
+           * Identifies the shared template schema from which this global substitution is derived
+           */
+          TemplateSchema?: string;
+        };
+  }[];
+}
+/**
+ * Linguistic Schema Definition Language schema
+ */
+export interface LSDLSchema1 {
   /**
    * Version of LSDL
    */
@@ -1695,7 +3459,7 @@ export interface LSDLSchema {
 /**
  * Linguistic Schema Definition Language schema
  */
-export interface LSDLSchema1 {
+export interface LSDLSchema2 {
   /**
    * Version of LSDL
    */

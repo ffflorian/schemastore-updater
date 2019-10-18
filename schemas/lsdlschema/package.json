@@ -7,8 +7,8 @@
   "name": "@schemastore/lsdlschema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lsdlschema",
   "scripts": {},
-  "typesPublisherContentHash": "6773fcc8c5f90510957c24bbf4f86551936fb376984f3868eff093932a25dc4a",
+  "typesPublisherContentHash": "26f1fdf59b8f4d2fced5a6d5d6f6a0ed35047557d6f4ed8724a92c6eeb341d72",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

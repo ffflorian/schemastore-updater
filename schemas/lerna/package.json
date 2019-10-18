@@ -7,8 +7,8 @@
   "name": "@schemastore/lerna",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lerna",
   "scripts": {},
-  "typesPublisherContentHash": "1ce6858b0bdb3288c411018a853c42f7729c0ffad86b5ae0c30340fb36e99041",
+  "typesPublisherContentHash": "adb3b167beaba5ff226588528508db3b2aadf87139603ed38ee602d13df99eb2",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

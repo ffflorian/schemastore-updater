@@ -8,5 +8,5 @@ This package contains type definitions for haxelib.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/haxelib.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Fri, Oct 18, 2019, 09:07:04 GMT
 * Dependencies: none

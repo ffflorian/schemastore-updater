@@ -6,69 +6,69 @@
  */
 
 export type DroneCIConfigurationFile =
-  | {
-      kind?: {
-        [k: string]: any;
-      };
-      name?: NonEmptyString;
-      clone?: {
-        depth?: number;
-        disable?: {
-          [k: string]: any;
-        };
-        [k: string]: any;
-      };
-      platform?: Platform;
-      steps?: {
-        name: NonEmptyString;
-        image: NonEmptyString;
-        when?: AllConditions;
-        platform?: Platform;
-        commands?: Commands;
-        detach?: boolean;
-        environment?: Environment;
-        privileged?: boolean;
-        pull?: {
-          [k: string]: any;
-        };
-        volumes?: Volumes;
-        [k: string]: any;
-      }[];
-      trigger?: AllConditions;
-      node?: {
-        instance?: string;
-        [k: string]: any;
-      };
-      services?: {
-        name: NonEmptyString;
-        image: NonEmptyString;
-        command?: Commands;
-        entrypoint?: Commands;
-        environment?: Environment;
-        privileged?: boolean;
-        pull?: {
-          [k: string]: any;
-        };
-        volumes?: Volumes;
-        working_dir?: NonEmptyString;
-        [k: string]: any;
-      }[];
-      volumes?: (
-        | {
+  | (
+      | {
+          type?: {
             [k: string]: any;
-          }
-        | {
+          };
+          steps?: StepDocker[];
+          volumes?: (
+            | {
+                [k: string]: any;
+              }
+            | {
+                [k: string]: any;
+              })[];
+          services?: {
+            name: NonEmptyString;
+            image: NonEmptyString;
+            command?: Commands;
+            entrypoint?: Commands;
+            environment?: Environment;
+            privileged?: boolean;
+            pull?: {
+              [k: string]: any;
+            };
+            volumes?: Volumes;
+            working_dir?: NonEmptyString;
             [k: string]: any;
-          })[];
-      depends_on?: string[];
-      workspace?: {
-        base?: string;
-        path?: string;
-        [k: string]: any;
-      };
-      image_pull_secrets?: string[];
-      [k: string]: any;
-    }
+          }[];
+          image_pull_secrets?: string[];
+          node?: {
+            instance?: string;
+            [k: string]: any;
+          };
+          [k: string]: any;
+        }
+      | {
+          type?: {
+            [k: string]: any;
+          };
+          steps?: Step[];
+          [k: string]: any;
+        }
+      | {
+          type?: {
+            [k: string]: any;
+          };
+          steps?: Step[];
+          server: {
+            host: StringOrSecret;
+            user: StringOrSecret;
+            password?: StringOrSecret;
+            ssh_key?: StringOrSecret;
+            [k: string]: any;
+          };
+          [k: string]: any;
+        }
+      | {
+          type?: {
+            [k: string]: any;
+          };
+          token: StringOrSecret;
+          steps?: Step[];
+          [k: string]: any;
+        })
   | {
       kind?: {
         [k: string]: any;
@@ -89,6 +89,12 @@ export type DroneCIConfigurationFile =
       [k: string]: any;
     };
 export type NonEmptyString = string;
+export type Commands = NonEmptyString[];
+export type Volumes = {
+  name: NonEmptyString;
+  path: NonEmptyString;
+  [k: string]: any;
+}[];
 export type Conditions =
   | Condition
   | {
@@ -100,17 +106,34 @@ export type Conditions =
       [k: string]: any;
     };
 export type Condition = string[];
-export type Commands = NonEmptyString[];
-export type Volumes = {
-  name: NonEmptyString;
-  path: NonEmptyString;
-  [k: string]: any;
-}[];
+export type StringOrSecret = NonEmptyString | Secret;
 
-export interface Platform {
-  os?: "linux" | "windows";
-  arсh?: "arm" | "arm64" | "amd64";
+export interface StepDocker {
+  command?: NonEmptyString;
+  entrypoint?: Commands;
+  image: NonEmptyString;
+  network_mode?: string;
+  privileged?: boolean;
+  pull?: "always" | "never" | "if-not-exists";
+  user?: string;
+  volumes?: Volumes;
   [k: string]: any;
+}
+export interface Environment {
+  [k: string]: string | Secret;
+}
+export interface Secret {
+  from_secret: string;
+  [k: string]: any;
+}
+export interface Step {
+  name: NonEmptyString;
+  failure?: "always" | "ignore";
+  commands: Commands;
+  detach?: boolean;
+  environment?: Environment;
+  when?: AllConditions;
+  depends_on?: NonEmptyString[];
 }
 export interface AllConditions {
   branch?: Conditions;
@@ -120,12 +143,4 @@ export interface AllConditions {
   status?: Condition;
   target?: Condition;
   [k: string]: any;
-}
-export interface Environment {
-  [k: string]:
-    | string
-    | {
-        from_secret: string;
-        [k: string]: any;
-      };
 }

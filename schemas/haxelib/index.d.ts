@@ -50,6 +50,12 @@ export interface Haxelib {
    */
   classPath?: string;
   /**
+   * A class to run on `haxelib run libraryname` command.
+   * Relative to library root. E.g. to run `tools/Main.hx` the value should be `tools.Main`.
+   * Default value since Haxe 4: Run
+   */
+  main?: string;
+  /**
    * List of project contributors that are allowed to upload to haxelib
    */
   contributors: [UserName, ...(UserName)[]];

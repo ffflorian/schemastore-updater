@@ -21,7 +21,7 @@ export interface AJSONSchemaForLernaJsonFiles {
   /**
    * Array of strings that will be passed as arguments to the npmClient.
    */
-  npmClientArgs?: string;
+  npmClientArgs?: string[];
   /**
    * Enable workspaces integration when using Yarn.
    */

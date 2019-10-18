@@ -7,8 +7,8 @@
   "name": "@schemastore/drone",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/drone",
   "scripts": {},
-  "typesPublisherContentHash": "abe159cfae7544c570ef40202864e5061b51674ad0f1d70adfba658b18a1bb0c",
+  "typesPublisherContentHash": "bbc709d14e4e9f85721abdf5f805c4ec70686594d65db01602a347227b8efe6f",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

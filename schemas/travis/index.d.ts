@@ -8,14 +8,40 @@
 export type JSONSchemaForTravisCIConfigurationFiles = Job & {
   notifications?: {
     webhooks?:
-      | ArrayOfNonEmptyStrings
+      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
       | boolean
       | {
           disabled?: boolean;
           enabled?: boolean;
-          urls?: string | string[];
-          [k: string]: any;
-        };
+          urls?: string | SecretString | (string | SecretString)[];
+          on_success?: "always" | "never" | "change";
+          on_failure?: "always" | "never" | "change";
+          on_start?: "always" | "never" | "change";
+          on_cancel?: "always" | "never" | "change";
+          on_error?: "always" | "never" | "change";
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            urls?: string | SecretString | (string | SecretString)[];
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            urls?: string | SecretString | (string | SecretString)[];
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
     slack?:
       | SlackRoom
       | boolean
@@ -30,31 +56,78 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
           on_start?: "always" | "never" | "change";
           on_cancel?: "always" | "never" | "change";
           on_error?: "always" | "never" | "change";
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            rooms?: SlackRoom[];
+            on_pull_requests?: boolean;
+            template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: NotificationFrequency;
+            on_failure?: NotificationFrequency;
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            rooms?: SlackRoom[];
+            on_pull_requests?: boolean;
+            template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: NotificationFrequency;
+            on_failure?: NotificationFrequency;
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
     email?:
-      | ArrayOfNonEmptyStrings
+      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
       | boolean
       | {
           disabled?: boolean;
           enabled?: boolean;
-          recipients?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          recipients?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
           on_success?: "always" | "never" | "change";
           on_failure?: "always" | "never" | "change";
           on_start?: "always" | "never" | "change";
           on_cancel?: "always" | "never" | "change";
           on_error?: "always" | "never" | "change";
-          [k: string]: any;
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            recipients?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            recipients?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
     irc?:
-      | NonEmptyStringOrArrayOfNonEmptyStrings
+      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
       | boolean
       | {
           disabled?: boolean;
           enabled?: boolean;
-          channels?: NonEmptyStringOrArrayOfNonEmptyStrings;
-          channel_key?: NonEmptyString;
+          channels?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+          channel_key?: PossiblySecretString;
           nick?: NonEmptyString;
-          password?: NonEmptyString;
+          password?: PossiblySecretString;
           template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: "always" | "never" | "change";
           on_failure?: "always" | "never" | "change";
@@ -63,41 +136,122 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
           on_error?: "always" | "never" | "change";
           skip_join?: boolean;
           use_notice?: boolean;
-          [k: string]: any;
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            channels?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            channel_key?: PossiblySecretString;
+            nick?: NonEmptyString;
+            password?: PossiblySecretString;
+            template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+            skip_join?: boolean;
+            use_notice?: boolean;
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            channels?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            channel_key?: PossiblySecretString;
+            nick?: NonEmptyString;
+            password?: PossiblySecretString;
+            template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+            skip_join?: boolean;
+            use_notice?: boolean;
+          })[]
+        ];
     pushover?:
       | NonEmptyStringOrArrayOfNonEmptyStrings
       | boolean
       | {
           disabled?: boolean;
           enabled?: boolean;
-          api_key?: NonEmptyString;
-          users?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          api_key?: PossiblySecretString;
+          users?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
           template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: "always" | "never" | "change";
           on_failure?: "always" | "never" | "change";
           on_start?: "always" | "never" | "change";
           on_cancel?: "always" | "never" | "change";
           on_error?: "always" | "never" | "change";
-          [k: string]: any;
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            api_key?: PossiblySecretString;
+            users?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            api_key?: PossiblySecretString;
+            users?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            template?: NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
     campfire?:
-      | NonEmptyStringOrArrayOfNonEmptyStrings
+      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
       | boolean
       | {
           disabled?: boolean;
           enabled?: boolean;
-          rooms?: ArrayOfNonEmptyStrings;
+          rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
           template?: NonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: "always" | "never" | "change";
           on_failure?: "always" | "never" | "change";
           on_start?: "always" | "never" | "change";
           on_cancel?: "always" | "never" | "change";
           on_error?: "always" | "never" | "change";
-          [k: string]: any;
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            template?: NonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            template?: NonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
     flowdock?:
-      | NonEmptyString
+      | PossiblySecretString
       | boolean
       | {
           disabled?: boolean;
@@ -108,15 +262,38 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
           on_start?: "always" | "never" | "change";
           on_cancel?: "always" | "never" | "change";
           on_error?: "always" | "never" | "change";
-          [k: string]: any;
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            api_token?: NonEmptyString;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            api_token?: NonEmptyString;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
     hipchat?:
-      | ArrayOfNonEmptyStrings
+      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
       | boolean
       | {
           disabled?: boolean;
           enabled?: boolean;
-          rooms?: NonEmptyStringOrArrayOfNonEmptyStrings;
+          notify?: boolean;
+          on_pull_requests?: boolean;
+          rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
           format?: "html" | "text";
           template?: NonEmptyStringOrArrayOfNonEmptyStrings;
           on_success?: "always" | "never" | "change";
@@ -124,8 +301,37 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
           on_start?: "always" | "never" | "change";
           on_cancel?: "always" | "never" | "change";
           on_error?: "always" | "never" | "change";
-          [k: string]: any;
-        };
+        }
+      | [
+          {
+            disabled?: boolean;
+            enabled?: boolean;
+            notify?: boolean;
+            on_pull_requests?: boolean;
+            rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            format?: "html" | "text";
+            template?: NonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          },
+          ...({
+            disabled?: boolean;
+            enabled?: boolean;
+            notify?: boolean;
+            on_pull_requests?: boolean;
+            rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
+            format?: "html" | "text";
+            template?: NonEmptyStringOrArrayOfNonEmptyStrings;
+            on_success?: "always" | "never" | "change";
+            on_failure?: "always" | "never" | "change";
+            on_start?: "always" | "never" | "change";
+            on_cancel?: "always" | "never" | "change";
+            on_error?: "always" | "never" | "change";
+          })[]
+        ];
   };
   matrix?: {
     exclude?: Job[];
@@ -180,7 +386,9 @@ export type XcodeVersions =
   | "xcode10.1"
   | "xcode10.2"
   | "xcode10.3"
-  | "xcode11";
+  | "xcode11"
+  | "xcode11.1"
+  | "xcode11.2";
 export type PossiblySecretString =
   | string
   | {
@@ -318,13 +526,16 @@ export type Deployment = {
       provider: string;
       [k: string]: any;
     });
-export type ArrayOfNonEmptyStrings = NonEmptyString[];
+export type PossiblySecretStringOrPossiblySecretStringTypeArrayUnique =
+  | PossiblySecretString
+  | [PossiblySecretString, ...(PossiblySecretString)[]];
 /**
  * Your account name, token and optional channel
  */
-export type SlackRoom = string;
+export type SlackRoom = string | SecretString;
 export type NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings = NonEmptyStringOrArrayOfNonEmptyStrings | null;
 export type NonEmptyStringOrArrayOfNonEmptyStrings = NonEmptyString | ArrayOfNonEmptyStrings;
+export type ArrayOfNonEmptyStrings = NonEmptyString[];
 export type NotificationFrequency = "always" | "never" | "change";
 
 export interface Job {
@@ -451,10 +662,14 @@ export interface Job {
     [k: string]: string;
   };
   /**
+   * The CPU Architecture to run the job on
+   */
+  arch?: ("amd64" | "arm64") | [("amd64" | "arm64"), ...("amd64" | "arm64")[]];
+  /**
    * The operating system to run the job on
    */
-  os?: ("osx" | "linux" | "windows") | ("osx" | "linux" | "windows")[];
-  osx_image?: XcodeVersions | XcodeVersions[];
+  os?: ("osx" | "linux" | "windows") | [("osx" | "linux" | "windows"), ...("osx" | "linux" | "windows")[]];
+  osx_image?: XcodeVersions | [XcodeVersions, ...(XcodeVersions)[]];
   /**
    * The Ubuntu distribution to use
    */

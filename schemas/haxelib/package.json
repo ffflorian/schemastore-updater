@@ -7,8 +7,8 @@
   "name": "@schemastore/haxelib",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/haxelib",
   "scripts": {},
-  "typesPublisherContentHash": "f9b41c3e5055c523de781de41c3487c3f653853dbcb4b9a0ada759c1f04309af",
+  "typesPublisherContentHash": "5663bf0783d4956cf2fc6bd00e1f5e7cedbea722e9aa0d8a71d7c7c27f9f9712",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

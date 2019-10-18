@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for web-types.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/web-types",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-types",
+  "scripts": {},
+  "typesPublisherContentHash": "1219a24d36efa5abf6e2083c056fe18166b2c8e27270509cffb8e1344e26bc78",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

@@ -231,6 +231,10 @@
     "hash": "78cd337254d9dc8505c2369cef53df23312013d20721b5d940c382318f7d0ea3",
     "version": "0.0.3"
   },
+  "dependabot.json": {
+    "hash": "fbaea69235635605feb4598db3742b545b28d5d582a30236b8bbe8357b8a24c7",
+    "version": "0.0.1"
+  },
   "docfx.json": {
     "hash": "e15deea54af1687064b3eb429c52ae1368c8f77c34c01b7bc515c5b19d28af7e",
     "version": "0.0.1"
@@ -240,8 +244,8 @@
     "version": "0.0.3"
   },
   "drone.json": {
-    "hash": "abe159cfae7544c570ef40202864e5061b51674ad0f1d70adfba658b18a1bb0c",
-    "version": "0.0.2"
+    "hash": "bbc709d14e4e9f85721abdf5f805c4ec70686594d65db01602a347227b8efe6f",
+    "version": "0.0.3"
   },
   "drush.site.yml.json": {
     "hash": "575f3e72e8959cead2c54f8d60e4822acc9ed190722d02d2d92fe045acb72f3e",
@@ -284,8 +288,8 @@
     "version": "0.0.3"
   },
   "gitlab-ci.json": {
-    "hash": "6dfe1514a242e6f6460d86cd5e33c82806105d6b2786b12833dd7dab13a221be",
-    "version": "1.0.8"
+    "hash": "63e210234712667b09b1cecc60fbdd72257c150a206e15854c9a1a50a70e80d3",
+    "version": "1.0.9"
   },
   "global.json": {
     "hash": "d83883fc1ce8fbd26ef653b91361a2c0398f09a5665cb210d246736307959240",
@@ -316,8 +320,8 @@
     "version": "0.0.3"
   },
   "haxelib.json": {
-    "hash": "f9b41c3e5055c523de781de41c3487c3f653853dbcb4b9a0ada759c1f04309af",
-    "version": "0.0.4"
+    "hash": "5663bf0783d4956cf2fc6bd00e1f5e7cedbea722e9aa0d8a71d7c7c27f9f9712",
+    "version": "0.0.5"
   },
   "hemtt-0.6.2.json": {
     "hash": "bc40b54c38a69c7eda682232af5593bc9311bb08e97c3c77ba0748cb31c3c004",
@@ -412,8 +416,8 @@
     "version": "0.0.3"
   },
   "lerna.json": {
-    "hash": "1ce6858b0bdb3288c411018a853c42f7729c0ffad86b5ae0c30340fb36e99041",
-    "version": "0.0.1"
+    "hash": "adb3b167beaba5ff226588528508db3b2aadf87139603ed38ee602d13df99eb2",
+    "version": "0.0.2"
   },
   "libman.json": {
     "hash": "1230675101f80184c044c162eecfa6af1e83517cc80c03b53fcb6f92afaf90c8",
@@ -432,12 +436,12 @@
     "version": "0.0.4"
   },
   "lsdlschema-1.0.json": {
-    "hash": "a08dd3aa85facd9099b0ba3d2b7d6cb874b7091c7004fd9671631b0e3b56e279",
-    "version": "0.0.1"
+    "hash": "2b674a345e934d3140c392be862365f887ebca448290ca52788985f7a093c36a",
+    "version": "0.0.2"
   },
   "lsdlschema.json": {
-    "hash": "6773fcc8c5f90510957c24bbf4f86551936fb376984f3868eff093932a25dc4a",
-    "version": "0.0.3"
+    "hash": "26f1fdf59b8f4d2fced5a6d5d6f6a0ed35047557d6f4ed8724a92c6eeb341d72",
+    "version": "0.0.4"
   },
   "mimetypes.json": {
     "hash": "9c382b6b856eb1410a7be9fd9f7ec54b9ecb61656c6e8f5a9b6f7e1c1013c368",
@@ -582,6 +586,14 @@
   "project.json": {
     "hash": "a7e5136894f6a3f352aad341d332c82f30beb31d9de04b94bc92980fec8be079",
     "version": "0.0.2"
+  },
+  "prometheus.json": {
+    "hash": "5d6edbb6dc75e041b09ddabac31535d95c32b7f83fc378adddf954d827aa72d0",
+    "version": "0.0.1"
+  },
+  "prometheus.rules.json": {
+    "hash": "be0e0fc27abffc50ae5d088b47be1265546a50f4069a6915bebd0e6551339886",
+    "version": "0.0.1"
   },
   "proxies.json": {
     "hash": "be3fd3279da487008e3f36a90dc7acbc181bb9ea364e4a5689f8fe19d8282190",
@@ -744,8 +756,8 @@
     "version": "0.0.1"
   },
   "travis.json": {
-    "hash": "e0729a96cce3afa067d3e5810b7d2621edd17a2d6208f002c78c787325d8b00a",
-    "version": "0.0.8"
+    "hash": "5b071dbd7bbb81a8fba3d9be4af406f59fc854c6c524d192cba7cbc5f617927a",
+    "version": "0.0.9"
   },
   "ts-force-config.json": {
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
@@ -827,9 +839,17 @@
     "hash": "959a45e7276a7f1c1cd777a679b75d9096a79e7268a22a4aa248f922338f4d50",
     "version": "0.0.3"
   },
+  "vss-extension.json": {
+    "hash": "c8868d08295b2f17dee6c35e3e18c716c22b2a16e84dce5d20be820d98fda1c1",
+    "version": "0.0.1"
+  },
   "web-manifest.json": {
     "hash": "d298692aa60bf289097ac6139f40d0071ee65aa02dcb0cb247d4792cf57a4128",
     "version": "0.0.4"
+  },
+  "web-types.json": {
+    "hash": "1219a24d36efa5abf6e2083c056fe18166b2c8e27270509cffb8e1344e26bc78",
+    "version": "0.0.1"
   },
   "webextension.json": {
     "hash": "8e72346d0416eb3073fb11a751c5ac906971db89e1bf65292852d609c751d0ae",

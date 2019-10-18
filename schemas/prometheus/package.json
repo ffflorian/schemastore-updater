@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for prometheus.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/prometheus",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prometheus",
+  "scripts": {},
+  "typesPublisherContentHash": "5d6edbb6dc75e041b09ddabac31535d95c32b7f83fc378adddf954d827aa72d0",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}
