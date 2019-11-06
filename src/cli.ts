@@ -74,7 +74,7 @@ program.command('fix-lockfile').action(async () => {
 
 program.parse(process.argv);
 
-if (!program.args.length) {
+if (!program.rawArgs.length) {
   program.outputHelp();
   process.exit();
 }
