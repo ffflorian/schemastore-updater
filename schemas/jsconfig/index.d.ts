@@ -21,6 +21,14 @@ export interface CompilerOptionsDefinition {
      */
     charset?: string;
     /**
+     * Generates corresponding d.ts files.
+     */
+    declaration?: boolean;
+    /**
+     * Specify output directory for generated declaration files. Requires TypeScript version 2.0 or later.
+     */
+    declarationDir?: string;
+    /**
      * When down-level compiling, show diagnostic information.
      */
     diagnostics?: boolean;
@@ -28,6 +36,10 @@ export interface CompilerOptionsDefinition {
      * When down-level compiling, emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
      */
     emitBOM?: boolean;
+    /**
+     * Only emit '.d.ts' declaration files.
+     */
+    emitDeclarationOnly?: boolean;
     /**
      * When down-level compiling, emit a single file with source maps instead of having a separate file.
      */
@@ -262,7 +274,8 @@ export interface CompilerOptionsDefinition {
       | "es2018.promise"
       | "esnext.regexp"
       | "esnext.array"
-      | "esnext.asynciterable")[];
+      | "esnext.asynciterable"
+    )[];
     /**
      * Enable strict null checks. Requires TypeScript version 2.0 or later.
      */
@@ -307,6 +320,10 @@ export interface CompilerOptionsDefinition {
      * Resolve 'keyof' to string valued property names only (no numbers or symbols). Requires TypeScript version 2.9 or later.
      */
     keyofStringsOnly?: boolean;
+    /**
+     * Emit ECMAScript standard class fields. Requires TypeScript version 3.7 or later.
+     */
+    useDefineForClassFields?: boolean;
     /**
      * Include modules imported with '.json' extension. Requires TypeScript version 2.9 or later.
      */

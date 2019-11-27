@@ -7,8 +7,8 @@
   "name": "@schemastore/prettierrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prettierrc",
   "scripts": {},
-  "typesPublisherContentHash": "da02dceb3dcabaffc20f2bf8b07f551b77eee795084023e86b61c54524c05795",
+  "typesPublisherContentHash": "325e2065242be89b2502244ec226a0f298d19d5643e79d3735816dbc009b41a5",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

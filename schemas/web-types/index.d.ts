@@ -7,7 +7,7 @@
 
 export type Name = string;
 /**
- * Short description to be rendered in documentation popup. May contain HTML tags.
+ * Short description to be rendered in documentation popup. It will be rendered according to description-markup setting.
  */
 export type Description = string;
 /**
@@ -17,6 +17,9 @@ export type DocUrl = string;
 export type HtmlAttributeDefault = string;
 export type HtmlAttributeRequired = boolean;
 export type HtmlAttributeValue =
+  | {
+      kind: string;
+    }
   | {
       kind: string;
     }
@@ -94,6 +97,10 @@ export interface Html {
    * Language in which types as specified.
    */
   "types-syntax"?: "typescript";
+  /**
+   * Markup language in which descriptions are formatted
+   */
+  "description-markup"?: "html" | "markdown" | "none";
   tags?: HtmlTag[];
   attributes?: HtmlAttribute[];
   "vue-filters"?: HtmlVueFilter[];
@@ -170,10 +177,17 @@ export interface HtmlAttribute {
   "vue-argument"?: HtmlAttributeVueArgument;
   "vue-modifiers"?: HtmlAttributeVueModifier[];
 }
+/**
+ * Provide information about directive argument
+ */
 export interface HtmlAttributeVueArgument {
   pattern?: Pattern;
   description?: Description;
   "doc-url"?: DocUrl;
+  /**
+   * Whether directive requires an argument
+   */
+  required?: boolean;
 }
 export interface HtmlAttributeVueModifier {
   name: Name;

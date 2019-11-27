@@ -31,7 +31,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             urls?: string | SecretString | (string | SecretString)[];
@@ -40,7 +40,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
     slack?:
       | SlackRoom
@@ -70,7 +70,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             rooms?: SlackRoom[];
@@ -81,7 +81,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
     email?:
       | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
@@ -107,7 +107,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             recipients?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
@@ -116,7 +116,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
     irc?:
       | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
@@ -154,7 +154,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             skip_join?: boolean;
             use_notice?: boolean;
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             channels?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
@@ -169,7 +169,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_error?: "always" | "never" | "change";
             skip_join?: boolean;
             use_notice?: boolean;
-          })[]
+          }[]
         ];
     pushover?:
       | NonEmptyStringOrArrayOfNonEmptyStrings
@@ -199,7 +199,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             api_key?: PossiblySecretString;
@@ -210,7 +210,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
     campfire?:
       | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
@@ -238,7 +238,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             rooms?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique;
@@ -248,7 +248,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
     flowdock?:
       | PossiblySecretString
@@ -274,7 +274,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             api_token?: NonEmptyString;
@@ -283,7 +283,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
     hipchat?:
       | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
@@ -317,7 +317,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
           },
-          ...({
+          ...{
             disabled?: boolean;
             enabled?: boolean;
             notify?: boolean;
@@ -330,7 +330,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
             on_start?: "always" | "never" | "change";
             on_cancel?: "always" | "never" | "change";
             on_error?: "always" | "never" | "change";
-          })[]
+          }[]
         ];
   };
   matrix?: {
@@ -363,15 +363,21 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
          * Specifies a condition for the stage
          */
         if?: string;
-      })[];
+      }
+  )[];
+  version?: string;
+  /**
+   * Import YAML config snippets that can be shared across repositories.
+   */
+  import?: Import[] | Import;
   [k: string]: any;
 };
 export type StringOrStringArrayUnique = NonEmptyString | StringArrayUnique;
 export type NonEmptyString = string;
-export type StringArrayUnique = [NonEmptyString, ...(NonEmptyString)[]];
+export type StringArrayUnique = [NonEmptyString, ...NonEmptyString[]];
 export type StringOrNumberOrAcceptBothTypeAsArrayUnique = StringOrNumber | StringOrNumberAndBothAreTypeArrayUnique;
 export type StringOrNumber = NonEmptyString | number;
-export type StringOrNumberAndBothAreTypeArrayUnique = [StringOrNumber, ...(StringOrNumber)[]];
+export type StringOrNumberAndBothAreTypeArrayUnique = [StringOrNumber, ...StringOrNumber[]];
 export type XcodeVersions =
   | "xcode6.4"
   | "xcode7.3"
@@ -525,10 +531,11 @@ export type Deployment = {
   | {
       provider: string;
       [k: string]: any;
-    });
+    }
+);
 export type PossiblySecretStringOrPossiblySecretStringTypeArrayUnique =
   | PossiblySecretString
-  | [PossiblySecretString, ...(PossiblySecretString)[]];
+  | [PossiblySecretString, ...PossiblySecretString[]];
 /**
  * Your account name, token and optional channel
  */
@@ -537,6 +544,22 @@ export type NotRequiredNonEmptyStringOrArrayOfNonEmptyStrings = NonEmptyStringOr
 export type NonEmptyStringOrArrayOfNonEmptyStrings = NonEmptyString | ArrayOfNonEmptyStrings;
 export type ArrayOfNonEmptyStrings = NonEmptyString[];
 export type NotificationFrequency = "always" | "never" | "change";
+export type Import =
+  | {
+      /**
+       * The source to import build config from
+       */
+      source: string;
+      /**
+       * How to merge the imported config into the target config (defaults to deep_merge_append)
+       */
+      mode?: "merge" | "deep_merge" | "deep_merge_append" | "deep_merge_prepend";
+      /**
+       * Specifies a condition for the import
+       */
+      if?: string;
+    }
+  | NonEmptyString;
 
 export interface Job {
   language?:
@@ -613,7 +636,7 @@ export interface Job {
     components?: string[];
     licenses?: string[];
   };
-  node_js?: string[] | string;
+  node_js?: StringOrNumberOrAcceptBothTypeAsArrayUnique;
   compiler?: ("clang" | "gcc")[] | ("clang" | "gcc");
   php?: StringOrNumberOrAcceptBothTypeAsArrayUnique;
   go?: string[] | string;
@@ -664,16 +687,21 @@ export interface Job {
   /**
    * The CPU Architecture to run the job on
    */
-  arch?: ("amd64" | "arm64") | [("amd64" | "arm64"), ...("amd64" | "arm64")[]];
+  arch?:
+    | ("amd64" | "arm64" | "ppc64le" | "s390x")
+    | ["amd64" | "arm64" | "ppc64le" | "s390x", ...("amd64" | "arm64" | "ppc64le" | "s390x")[]];
   /**
    * The operating system to run the job on
    */
-  os?: ("osx" | "linux" | "windows") | [("osx" | "linux" | "windows"), ...("osx" | "linux" | "windows")[]];
-  osx_image?: XcodeVersions | [XcodeVersions, ...(XcodeVersions)[]];
+  os?: ("osx" | "linux" | "windows") | ["osx" | "linux" | "windows", ...("osx" | "linux" | "windows")[]];
+  osx_image?: XcodeVersions | [XcodeVersions, ...XcodeVersions[]];
   /**
    * The Ubuntu distribution to use
    */
   dist?: "precise" | "trusty" | "xenial" | "bionic";
+  /**
+   * sudo is deprecated
+   */
   sudo?: true | false | "" | "required" | "enabled";
   addons?: {
     /**
@@ -695,7 +723,8 @@ export interface Job {
              */
             key_url?: string;
           }
-        | string)[];
+        | string
+      )[];
       /**
        * To install packages from the package whitelist before your custom build steps
        */
@@ -823,7 +852,8 @@ export interface Job {
                  */
                 classic?: boolean;
                 confinement?: "classic" | "devmode";
-              }),
+              }
+          ),
           ...(
             | NonEmptyString
             | {
@@ -834,7 +864,8 @@ export interface Job {
                  */
                 classic?: boolean;
                 confinement?: "classic" | "devmode";
-              })[]
+              }
+          )[]
         ];
     /**
      * BrowserStack addon
@@ -859,7 +890,8 @@ export interface Job {
         | ("bundler" | "cargo" | "ccache" | "cocoapods" | "packages" | "pip" | "yarn" | "npm")
         | {
             directories?: string[];
-          })[]
+          }
+      )[]
     | {
         directories?: string[];
         /**
@@ -898,6 +930,7 @@ export interface Job {
      * Is a path to the existing file in the current repository with data you’d like to put into $GIT_DIR/info/sparse-checkout file of format described in Git documentation.
      */
     sparse_checkout?: string;
+    autocrlf?: boolean | "input";
   };
   /**
    * Specify which branches to build

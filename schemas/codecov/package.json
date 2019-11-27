@@ -7,8 +7,8 @@
   "name": "@schemastore/codecov",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/codecov",
   "scripts": {},
-  "typesPublisherContentHash": "aa1631120ca4751f6bad4bfcbad2410f2bd08cb3bc601174982d69d4ea915f26",
+  "typesPublisherContentHash": "c96e692b6742fa6d2a65bf18684057d84fa6f15b9296307a1034ac0974a40fb6",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

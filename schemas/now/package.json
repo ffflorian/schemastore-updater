@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for now.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/now",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/now",
+  "scripts": {},
+  "typesPublisherContentHash": "cacd4d095cc495e735b61128b3952225769cb40d7e35bf87bfeba2d36f4495da",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

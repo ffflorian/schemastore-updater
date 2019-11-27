@@ -7,8 +7,8 @@
   "name": "@schemastore/web-types",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-types",
   "scripts": {},
-  "typesPublisherContentHash": "1219a24d36efa5abf6e2083c056fe18166b2c8e27270509cffb8e1344e26bc78",
+  "typesPublisherContentHash": "28d788be2872a3f09d4fd076c144a0f7fd88a99d37b41ce44ead80606f37d8f0",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

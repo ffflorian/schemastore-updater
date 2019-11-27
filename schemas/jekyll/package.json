@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for jekyll.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/jekyll",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jekyll",
+  "scripts": {},
+  "typesPublisherContentHash": "fb08f586c12fb9ebd79bb7a25061014c75bb00a37eefa23ac9783b931a0a49a2",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

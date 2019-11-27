@@ -53,6 +53,10 @@ export interface JSONSchemaForPrismaPrismaYmlFiles {
    * Endpoint the service will be reachable at. This also determines the cluster the service will deployed to.
    */
   endpoint?: string[];
+  /**
+   * Specifies either a relational or document database.
+   */
+  databaseType?: "relational" | "document";
 }
 /**
  * A piece of code that you should run.

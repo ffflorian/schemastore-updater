@@ -7,8 +7,8 @@
   "name": "@schemastore/cosmos-config",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cosmos-config",
   "scripts": {},
-  "typesPublisherContentHash": "1113b917a295b6c229a5f2767a4b34696f2d3c6b25f988968a1fb76ece87a7ac",
+  "typesPublisherContentHash": "52918f7b0a300f9800fc3cd5346535e8a3b68e1d3c53eb33aff99700a6fed731",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

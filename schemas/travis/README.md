@@ -8,5 +8,5 @@ This package contains type definitions for travis.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/travis.
 
 ## Additional Details
-* Last updated: Fri, Oct 18, 2019, 09:07:04 GMT
+* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
 * Dependencies: none

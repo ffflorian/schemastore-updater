@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for esquio.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/esquio",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/esquio",
+  "scripts": {},
+  "typesPublisherContentHash": "4aa0d14ed80c15e2ddd1ef5ea12638c907c372eb7b2cbc878803dfe30b305020",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

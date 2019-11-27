@@ -107,6 +107,10 @@ export interface JSONSchemaForTypedocJson {
    */
   src?: string | string[];
   /**
+   * Remove reflections annotated with @internal
+   */
+  stripInternal?: boolean;
+  /**
    * Specify the path to the theme that should be used.
    */
   theme?: ("default" | "minimal") | string;

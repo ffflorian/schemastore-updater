@@ -7,8 +7,8 @@
   "name": "@schemastore/mta",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mta",
   "scripts": {},
-  "typesPublisherContentHash": "600956107ba77b4ad2cb7d46f973a8f7b8e064a52fdd1d5a8d873caddcafa651",
+  "typesPublisherContentHash": "6b644854caf6fc8c4121e2da1ef32b6ebd6952c40036aec8fbf04c3a584276df",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

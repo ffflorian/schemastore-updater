@@ -18,7 +18,7 @@ export type Image =
       /**
        * Command or script that should be executed as the container's entrypoint. It will be translated to Docker's --entrypoint option while creating the container. The syntax is similar to Dockerfile's ENTRYPOINT directive, where each shell token is a separate string in the array.
        */
-      entrypoint?: [any, ...(any)[]];
+      entrypoint?: [any, ...any[]];
     };
 /**
  * Similar to `image` property, but will link the specified services to the `image` container.
@@ -33,16 +33,17 @@ export type Services = (
       /**
        * Command or script that should be executed as the container's entrypoint. It will be translated to Docker's --entrypoint option while creating the container. The syntax is similar to Dockerfile's ENTRYPOINT directive, where each shell token is a separate string in the array.
        */
-      entrypoint?: [string, ...(string)[]];
+      entrypoint?: [string, ...string[]];
       /**
        * Command or script that should be used as the container's command. It will be translated to arguments passed to Docker after the image's name. The syntax is similar to Dockerfile's CMD directive, where each shell token is a separate string in the array.
        */
-      command?: [string, ...(string)[]];
+      command?: [string, ...string[]];
       /**
        * Additional alias that can be used to access the service from the job's container. Read Accessing the services for more information.
        */
       alias?: string;
-    })[];
+    }
+)[];
 /**
  * Defines scripts that should run *before* the job. Can be set globally or per job.
  */
@@ -85,10 +86,6 @@ export type IncludeItem =
        */
       remote: string;
     };
-/**
- * This interface was referenced by `GitlabCIConfiguration`'s JSON-Schema definition
- * via the `patternProperty` "^[.]".
- */
 export type JobTemplate =
   | {
       when: "delayed";
@@ -126,7 +123,7 @@ export interface GitlabCIConfiguration {
   /**
    * Groups jobs into stages. All jobs in one stage must complete before next stage is executed. Defaults to ['build', 'test', 'deploy'].
    */
-  stages?: [string, ...(string)[]];
+  stages?: [string, ...string[]];
   /**
    * Can be `IncludeItem` or `IncludeItem[]`. Each `IncludeItem` will be a string, or an object with properties for the method if including external YAML file. The external content will be fetched, included and evaluated along the `.gitlab-ci.yml`.
    */

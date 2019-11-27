@@ -8,5 +8,5 @@ This package contains type definitions for tsconfig.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tsconfig.
 
 ## Additional Details
-* Last updated: Fri, Jul 05, 2019, 15:12:46 GMT
+* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
 * Dependencies: none

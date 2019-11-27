@@ -7,8 +7,8 @@
   "name": "@schemastore/typedoc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/typedoc",
   "scripts": {},
-  "typesPublisherContentHash": "bfb07019b96b3b85c98ad0c05ce34e401eca8b3375aac83b994b139ac2978168",
+  "typesPublisherContentHash": "4c54ac845b955de440446cd2d29fef32b6a94fcc0b2b1f27a38bed257c28c9c2",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -488,6 +488,10 @@ export interface JSONSchemaForESLintConfigurationFiles {
      */
     plugins?: string[];
     /**
+     * To specify a processor, specify the plugin name and processor name joined by a forward slash
+     */
+    processor?: string;
+    /**
      * ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.
      */
     rules?: PossibleErrors &

@@ -349,7 +349,8 @@ export interface CompilerOptionsDefinition {
       | "esnext.array"
       | "esnext.bigint"
       | "esnext.intl"
-      | "esnext.symbol")[];
+      | "esnext.symbol"
+    )[];
     /**
      * Enable strict null checks. Requires TypeScript version 2.0 or later.
      */
@@ -406,6 +407,10 @@ export interface CompilerOptionsDefinition {
      * Resolve 'keyof' to string valued property names only (no numbers or symbols). Requires TypeScript version 2.9 or later.
      */
     keyofStringsOnly?: boolean;
+    /**
+     * Emit ECMAScript standard class fields. Requires TypeScript version 3.7 or later.
+     */
+    useDefineForClassFields?: boolean;
     /**
      * Generates a sourcemap for each corresponding '.d.ts' file. Requires TypeScript version 2.9 or later.
      */

@@ -181,7 +181,11 @@ export interface JSONSchemaForCodecovConfigurationFiles {
   /**
    * Flags. See https://docs.codecov.io/docs/flags for details.
    */
-  flags?: Flag[];
+  flags?:
+    | Flag[]
+    | {
+        [k: string]: Flag;
+      };
   /**
    * Pull request comments. See https://docs.codecov.io/docs/pull-request-comments for details.
    */

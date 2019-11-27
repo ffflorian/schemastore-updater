@@ -7,8 +7,8 @@
   "name": "@schemastore/ansible-stable-2.7",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ansible-stable-2.7",
   "scripts": {},
-  "typesPublisherContentHash": "c8beecf49e29543246fd934a3844f0a10132849c1436c50611331086359d33dd",
+  "typesPublisherContentHash": "9a0630424f5b6dc4a5e9df8ce0e08f72a940545e78de207c95680cea153e2da6",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

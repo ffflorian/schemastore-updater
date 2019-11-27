@@ -7,8 +7,8 @@
   "name": "@schemastore/prisma",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prisma",
   "scripts": {},
-  "typesPublisherContentHash": "d9ef9e2453c3160a2e1fbc302bbe9509e1d4435f96e1e959f9b3e2939709ad23",
+  "typesPublisherContentHash": "4159c5ed7b88f081c6de2b72af370096174a420989e1724831e4bf62dc411064",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for ninjs-1.2.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/ninjs-1.2",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ninjs-1.2",
+  "scripts": {},
+  "typesPublisherContentHash": "bdd5f5946f9d055cdb853a707e959aa47598d3e4198390d8670c472d904947a9",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

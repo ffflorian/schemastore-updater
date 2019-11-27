@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for github-action.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/github-action",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/github-action",
+  "scripts": {},
+  "typesPublisherContentHash": "28252811df604eb3d0211aea5c7b35e47d64401b8518e4b813afa59a6b7ce66f",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

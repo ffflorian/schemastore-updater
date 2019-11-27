@@ -8,5 +8,5 @@ This package contains type definitions for prettierrc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prettierrc.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
 * Dependencies: none

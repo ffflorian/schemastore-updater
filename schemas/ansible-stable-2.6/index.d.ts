@@ -105,7 +105,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       command: string;
@@ -175,7 +176,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       name?: string;
@@ -310,7 +312,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cert_validation_mode?: "validate" | "ignore";
         /**
          * Master profile suboptions.
@@ -343,7 +346,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Specifies the Container Orchestration Platform to use. Currently can be either DCOS, Kubernetes or Swarm.
@@ -558,7 +562,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -581,7 +586,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -604,7 +610,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -634,7 +641,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -659,7 +667,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -702,7 +711,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the system (or combined) image file on flash.
          */
@@ -749,7 +759,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -773,7 +784,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -940,7 +952,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -963,7 +976,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -986,7 +1000,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -1016,7 +1031,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -1041,7 +1057,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -1342,7 +1359,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -1366,7 +1384,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -1686,7 +1705,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         state?: "present" | "absent";
         /**
          * Name of the load balancing virtual server to which the content is switched.
@@ -1718,7 +1738,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_timeout?: number;
         /**
          * Information about this content switching action.
@@ -1799,7 +1820,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Creates or destroy Google instance templates of Compute Engine of Google Cloud Platform.
        */
@@ -1914,7 +1936,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_kind?: "machineaccount" | "serviceaccount" | "application";
         /**
          * A fingerprint for this request, which is essentially a hash of the metadata's contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.
@@ -1939,7 +1962,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * AireOS does not use a block indent file syntax, so there are no sections or parents. This module provides an implementation for working with AireOS configurations in a deterministic way.
        */
@@ -1995,7 +2019,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Retrieve facts about one or more oVirt/RHV disks.
        */
@@ -2130,7 +2155,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Provides support for deploying resources with Terraform and pulling resource information back into Ansible.
        */
@@ -2168,7 +2194,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A group of key-values to override template variables or those in variables files.
          */
@@ -2219,7 +2246,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The path of a terraform binary to use, relative to the 'service_path' unless you supply an absolute path.
          */
@@ -2316,7 +2344,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -2339,7 +2368,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -2362,7 +2392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -2392,7 +2423,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -2417,7 +2449,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -2711,7 +2744,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -2751,7 +2785,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -2895,7 +2930,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -2931,7 +2967,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -2955,7 +2992,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -3102,7 +3140,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         vdom?: string;
         file_mode?:
           | boolean
@@ -3126,7 +3165,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -3261,7 +3301,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module ensures a particular line is in a file, or replace an existing line using a back-referenced regular expression.
        * This is primarily useful when you want to change a single line in a file only. See the M(replace) module if you want to change multiple, similar lines or check M(blockinfile) if you want to insert/update/remove a block of lines in a file. For other cases, see the M(copy) or M(template) modules.
@@ -3295,7 +3336,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module can be used to gather facts about disks belonging to given virtual machine.
        * All parameters and VMware object names are case sensitive.
@@ -3354,7 +3396,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sideband configuration to be used for this virtualservice.it can be used for sending traffic to sideband vips for external inspection etc.
          */
@@ -3420,7 +3463,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Error page profile to be used for this virtualservice.this profile is used to send the custom error page to the client generated by the proxy.
          * It is a reference to an object of type errorpageprofile.
@@ -3472,7 +3516,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Ip address of the virtual service.
@@ -3517,7 +3562,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * It is a reference to an object of type tenant.
          */
@@ -3578,7 +3624,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Remove listening port if virtualservice is down.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -3605,7 +3652,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Server network or list of servers for cloning traffic.
          * It is a reference to an object of type trafficcloneprofile.
@@ -3674,7 +3722,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -3728,7 +3777,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Rate limit the incoming connections to this virtual service.
          */
@@ -3766,7 +3816,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
         /**
          * Auto-allocate vip from the provided subnet.
@@ -3795,7 +3846,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Dns resolvable, fully qualified domain name of the virtualservice.
          * Only one of 'fqdn' and 'dns_info' configuration is allowed.
@@ -3834,7 +3886,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Http authentication configuration for protected resources.
          */
@@ -3875,7 +3928,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of virtual service ips.
          * While creating a 'shared vs',please use vsvip_ref to point to the shared entities.
@@ -3923,7 +3977,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies settings related to analytics.
          * It is a reference to an object of type analyticsprofile.
@@ -4007,7 +4062,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Select pool based on destination port.
          */
@@ -4044,7 +4100,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify if this is a normal virtual service, or if it is the parent or child of an sni-enabled virtual hosted virtual service.
          * Enum options - VS_TYPE_NORMAL, VS_TYPE_VH_PARENT, VS_TYPE_VH_CHILD.
@@ -4148,7 +4205,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp,
          * cloud_rancher, cloud_oshift_k8s, cloud_azure.
@@ -4184,7 +4242,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Patch operation to use when using avi_api_update_method as patch.
          */
@@ -4229,7 +4288,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Translate the host name sent to the servers to this value.
          * Translate the host name sent from servers back to the value used by the client.
@@ -4291,7 +4351,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Avi controller URL of the object.
          */
@@ -4428,7 +4489,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum size of transmit packet.
          */
@@ -4506,7 +4568,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -4536,7 +4599,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * This option is used to retain vlan information of incoming packet when macmode is enabled.
          */
@@ -4663,7 +4727,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -4686,7 +4751,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum number of members expected to be present when vserver is used in Autoscale.
          * Minimum value = C(0)
@@ -4743,7 +4809,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         state?: "present" | "absent";
         /**
          * Name of an authentication virtual server with which to authenticate users.
@@ -4783,7 +4850,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Load balancing method. The available settings function as follows:
          * * C(ROUNDROBIN) - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution.
@@ -5020,7 +5088,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If this option is enabled while resolving DNS64 query AAAA queries are not sent to back end dns server.
          */
@@ -5046,7 +5115,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use this parameter to specify the cookie name for C(COOKIE) peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
          */
@@ -5097,7 +5167,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails.
          */
@@ -5133,7 +5204,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up.
          * Minimum value = C(0)
@@ -5176,7 +5248,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of bits to consider in an IPv6 destination or source IP address, for creating the hash that is required by the C(DESTINATIONIPHASH) and C(SOURCEIPHASH) load balancing methods.
          * Minimum value = C(1)
@@ -5342,7 +5415,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the zone.
          */
@@ -5387,7 +5461,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: basic
          *
@@ -5426,7 +5501,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -5449,7 +5525,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -5472,7 +5549,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -5502,7 +5580,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -5527,7 +5606,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -5667,7 +5747,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -5690,7 +5771,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -5713,7 +5795,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -5743,7 +5826,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -5768,7 +5852,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -5853,7 +5938,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -5876,7 +5962,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -5899,7 +5986,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -5929,7 +6017,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -5954,7 +6043,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -6111,7 +6201,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -6216,7 +6307,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sequence number of the entry (ACE).
          */
@@ -6251,7 +6343,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -6408,7 +6501,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -6467,7 +6561,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -6495,7 +6590,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: line
          *
@@ -6649,7 +6745,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the MAC pool to manage.
          */
@@ -6677,7 +6774,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
           | any[]
@@ -6726,7 +6824,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Description of the MAC pool.
          */
@@ -6773,7 +6872,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -6880,7 +6980,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -6908,7 +7009,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -6953,7 +7055,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         auth_pass?: string;
@@ -7107,7 +7210,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -7135,7 +7239,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The handler type
          */
@@ -7334,7 +7439,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -7357,7 +7463,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -7380,7 +7487,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -7410,7 +7518,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -7435,7 +7544,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -7482,7 +7592,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -7505,7 +7616,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -7528,7 +7640,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -7558,7 +7671,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -7583,7 +7697,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 80
          *
@@ -7605,7 +7720,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage service configuration in Netscaler.
        * This module allows the creation, deletion and modification of Netscaler services.
@@ -7642,7 +7758,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Cache type supported by the cache server.
          */
@@ -7680,7 +7797,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When set to C(yes) the service state will be set to DISABLED.
          * When set to C(no) the service state will be set to ENABLED.
@@ -7708,7 +7826,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         /**
          * Maximum number of requests that can be sent on a persistent connection to the service.
@@ -7742,7 +7861,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum bandwidth, in Kbps, allocated to the service.
          * Minimum value = 0
@@ -7850,7 +7970,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_user: string;
         /**
          * Network profile to use for the service.
@@ -7883,7 +8004,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_timeout?: number;
         /**
          * IP to assign to the service.
@@ -7925,7 +8047,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A list of load balancing monitors to bind to this service.
          * Each monitor entry is a dictionary which may contain the following options.
@@ -7971,7 +8094,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name for the service. Must begin with an ASCII alphabetic or underscore C(_) character, and must contain only ASCII alphanumeric, underscore C(_), hash C(#), period C(.), space C( ), colon C(:), at C(@), equals C(=), and hyphen C(-) characters. Cannot be changed after the service has been created.
          * Minimum length = 1
@@ -8008,7 +8132,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Flush all active transactions associated with a service whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.
          */
@@ -8056,7 +8181,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use the proxy port as the source port when initiating connections with the server. With the NO setting, the client-side connection port is used as the source port for the server-side connection.
          * Note: This parameter is available only when the Use Source IP (USIP) parameter is set to YES.
@@ -8083,7 +8209,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable client keep-alive for the service.
          */
@@ -8109,7 +8236,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_pass: string;
         /**
          * Enable compression for the service.
@@ -8136,7 +8264,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -8159,7 +8288,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
          * Minimum length = 1
@@ -8260,7 +8390,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -8299,7 +8430,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 3
          *
@@ -8441,7 +8573,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -8469,7 +8602,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -8519,7 +8653,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -8542,7 +8677,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -8565,7 +8701,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -8600,7 +8737,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -8625,7 +8763,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -8642,7 +8781,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages BGP Address-family configurations on HUAWEI CloudEngine switches.
        */
@@ -8713,7 +8853,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set the Local-Preference attribute. The value is an integer. The value is an integer ranging from 0 to 4294967295.
          */
@@ -8978,7 +9119,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -9195,7 +9337,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the network interface to manage.
          */
@@ -9253,7 +9396,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the template to manage.
          * You must provide either C(vm) parameter or C(template) parameter.
@@ -9427,7 +9571,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * If enabled, you can use the registry name as username and admin user access key as password to docker login to your container registry.
@@ -9454,7 +9599,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         secret?: string;
         /**
          * Default: present
@@ -9519,7 +9665,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Image used to create the server.
          */
@@ -9575,7 +9722,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: running
          *
@@ -9609,7 +9757,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Flavor of the server.
          */
@@ -9713,7 +9862,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 10000
          *
@@ -9742,7 +9892,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_password?: string;
         /**
          * Default: True
@@ -9771,7 +9922,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -9794,7 +9946,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_host?: string;
         [k: string]: any;
       };
@@ -9941,7 +10094,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a value for external BGP to accept or attempt BGP connections to external peers, not directly connected, on the network. This is a value between 1 and 255.
          */
@@ -9971,7 +10125,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify BGP neighbor keepalive interval in seconds.
          */
@@ -10021,7 +10176,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify inbound route map for neighbor.
          */
@@ -10051,7 +10207,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the prefix list to filter traffic inbound.
          */
@@ -10089,7 +10246,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provide login username if user is not root.
          */
@@ -10132,7 +10290,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify BGP neighbor holdtime in seconds.
          */
@@ -10162,7 +10321,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -10488,7 +10648,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create/delete an SSH key in Packet host.
        * API is documented at U(https://www.packet.net/help/api/#page:ssh-keys,header:ssh-keys-ssh-keys-post).
@@ -10637,7 +10798,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: conn_name
          *
@@ -10716,7 +10878,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A list of DNS search domains.
          */
@@ -10872,7 +11035,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provider details if type is openstack.
          */
@@ -10929,7 +11093,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -10957,7 +11122,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -10985,7 +11151,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The oauth key provided by GitLab. One of access_token or private_token is required. See https://docs.gitlab.com/ee/api/oauth2.html
          */
@@ -11017,7 +11184,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -11055,7 +11223,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Secret token to validate hook messages at the receiver.
          * If this is present it will always result in a change as it cannot be retrieved from GitLab.
@@ -11089,7 +11258,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Personal access token to use. One of private_token or access_token is required. See https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
          */
@@ -11121,7 +11291,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -11149,7 +11320,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -11177,7 +11349,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * GitLab API url, e.g. https://gitlab.example.com/api
          */
@@ -11322,7 +11495,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         aggregate?:
           | string
           | any[]
@@ -11381,7 +11555,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -11444,7 +11619,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: number | string;
         /**
          * Specifies a password for MD5, HMAC-MD5, or HMAC-SHA256 authentication. The value is a string of 1 to 255 case-sensitive characters, spaces not supported.
@@ -11472,7 +11648,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -11524,7 +11701,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of interfaces PFC should be configured on.
          */
@@ -11927,7 +12105,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -11973,7 +12152,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -11996,7 +12176,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -12019,7 +12200,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -12049,7 +12231,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -12074,7 +12257,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -12210,7 +12394,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * IPv6 address of configured server. The total length is 128 bits.
          */
@@ -12317,7 +12502,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -12345,7 +12531,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -12373,7 +12560,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -12388,7 +12576,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage limits of resources for domains, accounts and projects.
        */
@@ -12430,7 +12619,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * VPC domain
          */
@@ -12467,7 +12657,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -12495,7 +12686,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_pass?: string;
         /**
          * Manages desired state of the resource
@@ -12538,7 +12730,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         password?: string;
         ssh_keyfile?: string;
@@ -12573,7 +12766,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -12652,7 +12846,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The path where the zone will be created. This is required when the zone is created, but not used otherwise.
          */
@@ -12705,7 +12900,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -12728,7 +12924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -12751,7 +12948,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -12781,7 +12979,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -12806,7 +13005,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -13195,7 +13395,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: https
          *
@@ -13267,7 +13468,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         secret?: string;
@@ -13333,7 +13535,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the module to enable/disable as given to C(a2enmod/a2dismod).
          */
@@ -13363,7 +13566,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -13417,7 +13621,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -13445,7 +13650,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: started
          *
@@ -13521,7 +13727,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a container.
          */
@@ -13601,7 +13808,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -13624,7 +13832,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -13647,7 +13856,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -13677,7 +13887,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -13702,7 +13913,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -13779,7 +13991,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -13803,7 +14016,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -13850,7 +14064,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -13873,7 +14088,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -13896,7 +14112,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -13926,7 +14143,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -13951,7 +14169,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -14028,7 +14247,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Setting the Timestamp Format of Logs. Configuring the Device to Output Logs to the Log Buffer.
        */
@@ -14118,7 +14338,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -14142,7 +14363,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -14183,7 +14405,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nsip: string;
         /**
          * Input format of the certificate and the private-key files. The three formats supported by the appliance are:
@@ -14243,7 +14466,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -14266,7 +14490,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_timeout?: number;
         [k: string]: any;
       };
@@ -14299,7 +14524,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -14322,7 +14548,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -14345,7 +14572,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -14375,7 +14603,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -14400,7 +14629,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -14435,7 +14665,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -14458,7 +14689,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -14481,7 +14713,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -14511,7 +14744,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -14536,7 +14770,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 7
          *
@@ -14574,7 +14809,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -14613,7 +14849,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -14637,7 +14874,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -14734,7 +14972,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -14757,7 +14996,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -14829,7 +15069,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -14853,7 +15094,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -14907,7 +15149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: ROOT
          *
@@ -14946,7 +15189,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -15040,7 +15284,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -15130,7 +15375,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant_uuid?: string;
         api_version?: string;
         /**
@@ -15311,7 +15557,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /var/service
          *
@@ -15498,7 +15745,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -15522,7 +15770,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -15612,7 +15861,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The protocol of the rule or of the packet to check.
          * The specified protocol can be one of tcp, udp, udplite, icmp, esp, ah, sctp or the special keyword "all", or it can be a numeric value, representing one of these protocols or a different one. A protocol name from /etc/protocols is also allowed. A "!" argument before the protocol inverts the test.  The number zero is equivalent to all. "all" will match with all protocols and is taken as default when this option is omitted.
@@ -15928,7 +16178,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name you wish to give the snapshot volume
          */
@@ -16214,7 +16465,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -16287,7 +16539,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -16310,7 +16563,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -16333,7 +16587,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -16363,7 +16618,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -16388,7 +16644,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -16497,7 +16754,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -16520,7 +16778,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -16543,7 +16802,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -16573,7 +16833,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -16598,7 +16859,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -16616,7 +16878,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages VPN instance of HUAWEI CloudEngine switches.
        */
@@ -16664,7 +16927,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -16688,7 +16952,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -16779,7 +17044,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -16803,7 +17069,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -16843,7 +17110,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Flag indicating whether to save the configuration.
          */
@@ -16869,7 +17137,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         timeout?: number | string;
         provider?: {
@@ -16897,7 +17166,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -16921,7 +17191,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -17324,7 +17595,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -17369,7 +17641,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the queue to create
          */
@@ -17457,7 +17730,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: enable
          *
@@ -17486,7 +17760,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -17641,7 +17916,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         timeout?: number | string;
         /**
@@ -17680,7 +17956,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * VPC group/id that will be configured on associated portchannel.
@@ -17711,7 +17988,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -17735,7 +18013,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -17893,7 +18172,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         port?: number | string;
         transport?: string;
@@ -18027,7 +18307,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -18060,7 +18341,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -18083,7 +18365,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -18106,7 +18389,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -18136,7 +18420,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -18161,7 +18446,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -18227,7 +18513,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -18281,7 +18568,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the name of a BFD session. The value is a string of 1 to 15 case-sensitive characters without spaces.
          */
@@ -18309,7 +18597,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -18518,7 +18807,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The identifier of the key.
          * Including this allows check mode to correctly report the changed state.
@@ -18612,7 +18902,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage TCP profiles on a BIG-IP. There are a variety of TCP profiles, each with their own adjustments to the standard C(tcp) profile. Users of this module should be aware that many of the adjustable knobs have no module default. Instead, the default is assigned by the BIG-IP system itself which, in most cases, is acceptable.
        */
@@ -18679,7 +18970,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When set to C(yes) the GSLB Vserver state will be set to C(disabled).
          * When set to C(no) the GSLB Vserver state will be set to C(enabled).
@@ -18707,7 +18999,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         /**
          * Protocol used by services bound to the virtual server.
@@ -18916,7 +19209,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -18961,7 +19255,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Select avi site member belonging to this gslb.
          */
@@ -19084,7 +19379,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Max retries after which the remote site is treated as a fresh start.
          * In fresh start all the configs are downloaded.
@@ -19196,7 +19492,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -19228,7 +19525,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -19313,7 +19611,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * SSH key name
          */
@@ -19424,7 +19723,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -19452,7 +19752,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: .
          *
@@ -19499,7 +19800,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -19579,7 +19881,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * To configure notify type as trap or inform.
          */
@@ -19597,7 +19900,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module is used to configure SSLKeyAndCertificate object
        * more examples at U(https://github.com/avinetworks/devops)
@@ -19776,7 +20080,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password: string;
         ip_address: string;
         /**
@@ -19834,7 +20139,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Fully qualified domain name of the gslb service.
          */
@@ -19871,7 +20177,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Ttl value (in seconds) for records served for this gslb service by the dns service.
          * Allowed values are 1-86400.
@@ -19936,7 +20243,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_version?: string;
         username?: string;
         /**
@@ -19978,7 +20286,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -20013,7 +20322,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Select list of pools belonging to this gslb service.
          */
@@ -20062,7 +20372,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name for the gslb service.
          */
@@ -20375,7 +20686,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -20492,7 +20804,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -20522,7 +20835,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -20566,7 +20880,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -20590,7 +20905,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -20634,7 +20950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * timeout for commit job
          */
@@ -20702,7 +21019,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The webfaction password to use
          */
@@ -20728,7 +21046,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * PanOS module that allows changes to the user account passwords by doing API calls to the Firewall using pan-api as the protocol.
        */
@@ -20775,7 +21094,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         ip_address?: string;
         [k: string]: any;
@@ -20927,7 +21247,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -20955,7 +21276,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -21012,7 +21334,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Revert a pending change.
          */
@@ -21069,7 +21392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -21099,7 +21423,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets the keyboard layout for VNC server.
          */
@@ -21130,7 +21455,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Creates a virtual hardware watchdog device.
          */
@@ -21166,7 +21492,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -21215,7 +21542,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the BIOS implementation.
          */
@@ -21321,7 +21649,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 512
          *
@@ -21376,7 +21705,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Proxmox VE node, where the new VM will be created.
          * Only required for C(state=present).
@@ -21408,7 +21738,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash/dictionary of volume used as VIRTIO hard disk. C(virtio='{"key":"value", "key":"value"}').
          * Keys allowed are - C(virto[n]) where 0 ≤ n ≤ 15.
@@ -21447,7 +21778,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1000
          *
@@ -21500,7 +21832,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -21528,7 +21861,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash/dictionary of volume used as sata hard disk or CD-ROM. C(sata='{"key":"value", "key":"value"}').
          * Keys allowed are - C(sata[n]) where 0 ≤ n ≤ 5.
@@ -21565,7 +21899,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Allow reboot. If set to C(yes), the VM exit on reboot.
          */
@@ -21591,7 +21926,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Selectively enable hotplug features.
          * This is a comma separated list of hotplug features C('network', 'disk', 'cpu', 'memory' and 'usb').
@@ -21661,7 +21997,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the VM ID. Instead use I(name) parameter.
          * If vmid is not set, the next available VM ID will be fetched from ProxmoxAPI.
@@ -21702,7 +22039,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets number of hotplugged vcpus.
          */
@@ -21784,7 +22122,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -21812,7 +22151,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a list of settings you want to delete.
          */
@@ -21845,7 +22185,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create or delete a Rackspace Cloud Monitoring notification that specifies a channel that can be used to communicate alarms, such as email, webhooks, or PagerDuty. Rackspace monitoring module flow | rax_mon_entity -> rax_mon_check -> *rax_mon_notification* -> rax_mon_notification_plan -> rax_mon_alarm
        */
@@ -21966,7 +22307,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set of versions accepted by the server.
          */
@@ -22018,7 +22360,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Patch operation to use when using avi_api_update_method as patch.
          */
@@ -22052,7 +22395,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
         /**
          * Dh parameters used in ssl.
@@ -22371,7 +22715,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * This is a intent option and checks the operational state of the for given vlan C(name) for associated interfaces. If the value in the C(associated_interfaces) does not match with the operational state of vlan interfaces on device it will result in failure.
          */
@@ -22403,7 +22748,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         /**
          * Single VLAN ID.
@@ -22499,7 +22845,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set VLAN mode to classical ethernet or fabricpath. This is a valid option for Nexus 5000 and 7000 series.
          */
@@ -22527,7 +22874,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -22557,7 +22905,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -22601,7 +22950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -22625,7 +22975,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -22657,7 +23008,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Name of the ospf instance.
@@ -22697,7 +23049,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -22721,7 +23074,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -22783,7 +23137,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When to disable handling of check failures
          */
@@ -22839,7 +23194,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash/dictionary of custom parameters for mixing to the configuration.
          * You can't rewrite others module parameters using this
@@ -22888,7 +23244,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Other checks this check depends on, if dependencies fail,
          * handling of this check will be disabled
@@ -22937,7 +23294,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /etc/sensu/conf.d/checks.json
          *
@@ -22979,7 +23337,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Check interval in seconds
          */
@@ -23030,7 +23389,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -23067,7 +23427,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module controls the VDO dedupe and compression device. VDO, or Virtual Data Optimizer, is a device-mapper target that provides inline block-level deduplication, compression, and thin provisioning capabilities to primary storage.
        */
@@ -23101,7 +23462,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the amount of index memory in gigabytes.  The default is 0.25.  The special decimal values 0.25, 0.5, and 0.75 can be used, as can any positive integer. This option is only available when creating a new volume, and cannot be changed for an existing volume.
          */
@@ -23195,7 +23557,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The size of the increment by which the physical size of a VDO volume is grown, in megabytes (or may be issued with an LVM-style suffix of K, M, G, or T).  Must be a power of two between 128M and 32G.  The default is 2G, which supports volumes having a physical size up to 16T. The maximum, 32G, supports a physical size of up to 256T. This option is only available when creating a new volume, and cannot be changed for an existing volume.
          */
@@ -23327,7 +23690,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: https://api.ipify.org
          *
@@ -23418,7 +23782,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 4096
          *
@@ -23438,7 +23803,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages NetStream template configuration on HUAWEI CloudEngine switches.
        */
@@ -23502,7 +23868,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -23526,7 +23893,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -23708,7 +24076,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the already defined data_filtering profile.
          */
@@ -23883,7 +24252,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -23911,7 +24281,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -24052,7 +24423,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module is able to configure a FortiGate or FortiOS by allowing the user to configure webfilter feature. For now it is able to handle url and content filtering capabilities. The module uses FortiGate REST API internally to configure the device.
        */
@@ -24140,7 +24512,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         secret?: string;
@@ -24322,7 +24695,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The password with which to authenticate to the Netscaler node.
          */
@@ -24362,7 +24736,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Description of Interface.
          */
@@ -24392,7 +24767,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum size of transmit packet.
          */
@@ -24472,7 +24848,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -24495,7 +24872,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -24518,7 +24896,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -24548,7 +24927,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -24573,7 +24953,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -24590,7 +24971,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Creates or terminates azure instances. When created optionally waits for it to be 'running'.
        */
@@ -24714,7 +25096,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -24773,7 +25156,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the azure storage account in which to store the data disks.
          */
@@ -24819,7 +25203,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -24845,7 +25230,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Allows creating and removing managed IAM policies
        */
@@ -24953,7 +25339,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 10
          *
@@ -25026,7 +25413,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * path to the JSON file associated with the service account email
          */
@@ -25134,7 +25522,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Toggles SELinux booleans.
        */
@@ -25164,7 +25553,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -25192,7 +25582,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the boolean to configure.
          */
@@ -25307,7 +25698,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url: string;
         /**
          * Default: no
@@ -25336,7 +25728,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -25364,7 +25757,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         log_path?: string;
         api_password: string;
         /**
@@ -25418,7 +25812,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the volume to manage
          */
@@ -25555,7 +25950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -25578,7 +25974,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -25601,7 +25998,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -25631,7 +26029,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -25656,7 +26055,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -25692,7 +26092,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -25715,7 +26116,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -25738,7 +26140,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -25768,7 +26171,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -25793,7 +26197,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -25991,7 +26396,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * User ID or e-mail
          */
@@ -26089,7 +26495,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         bind_dn?: string;
         /**
          * Default: present
@@ -26127,7 +26534,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -26193,7 +26601,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The source/network you would like to add/remove to/from firewalld
          */
@@ -26229,7 +26638,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The amount of time the rule should be in effect for when non-permanent.
          */
@@ -26260,7 +26670,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a port or port range to add/remove to/from firewalld. Must be in the form PORT/PROTOCOL or PORT-PORT/PROTOCOL for port ranges.
          */
@@ -26417,7 +26828,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Adds or removes a user from a MongoDB database.
        */
@@ -26538,7 +26950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -26616,7 +27029,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Run policy until delivery_packet_count packets are delivered.
          */
@@ -26968,7 +27382,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: gz
          *
@@ -27042,7 +27457,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of interfaces LLDP should be configured on.
          */
@@ -27096,7 +27512,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies various security related controls for virtual service.
          */
@@ -27130,7 +27547,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the tcp application proxy profile parameters.
          */
@@ -27236,7 +27654,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -27259,7 +27678,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -27282,7 +27702,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -27312,7 +27733,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -27337,7 +27759,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -27384,7 +27807,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Address-Family Identifier (AFI).
@@ -27428,7 +27852,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the VRF.
          */
@@ -27459,7 +27884,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -27483,7 +27909,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -27683,7 +28110,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -27706,7 +28134,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -27729,7 +28158,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -27759,7 +28189,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -27784,7 +28215,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -27830,7 +28262,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: us-east-1
          *
@@ -27917,7 +28350,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -27940,7 +28374,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -27963,7 +28398,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -27993,7 +28429,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -28018,7 +28455,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -28051,7 +28489,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * If value of C(dest) is I(file) it indicates file-name, for I(user) it indicates username and for I(host) indicates the host name to be notified.
@@ -28128,7 +28567,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         aggregate?:
           | string
           | any[]
@@ -28172,7 +28612,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Provides one or more source interfaces to use for performing DNS lookups.  The interface provided in C(lookup_source) must be a valid interface configured on the device.
@@ -28248,7 +28689,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -28280,7 +28722,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -28303,7 +28746,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -28326,7 +28770,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -28356,7 +28801,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -28381,7 +28827,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -28431,7 +28878,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -28526,7 +28974,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Server name. The value is a string of 1 to 255 case-sensitive characters.
@@ -28583,7 +29032,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -28630,7 +29080,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Description of the affinity group.
          */
@@ -28681,7 +29132,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the hosts names, which should have assigned this affinity group.
          * This parameter is support since oVirt/RHV 4.1 version.
@@ -28731,7 +29183,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the VMs names, which should have assigned this affinity group.
          */
@@ -28763,7 +29216,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -28792,7 +29246,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         aggregate?:
           | string
           | any[]
@@ -28935,7 +29390,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of vs_se_bootup_fail.
          * Default value when not specified in API or module is interpreted by Avi Controller as 480.
@@ -29021,7 +29477,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Patch operation to use when using avi_api_update_method as patch.
          */
@@ -29079,7 +29536,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Time to wait before marking attach ip operation on an se as failed.
          * Field introduced in 17.2.2.
@@ -29121,7 +29579,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Allow unauthenticated access for special apis.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -29148,7 +29607,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         controller?: string;
         /**
          * Number of vs_awaiting_se_timeout.
@@ -29267,7 +29727,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Version of the safenet package installed on the controller.
          * Field introduced in 16.5.2,17.2.3.
@@ -29351,7 +29812,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -29375,7 +29837,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -29630,7 +30093,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 8500
          *
@@ -29772,7 +30236,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Local source address from which NTP messages are sent or keyword 'default'
@@ -29836,7 +30301,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -29860,7 +30326,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -29919,7 +30386,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -29947,7 +30415,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the async mirror group you wish to target
          */
@@ -30076,7 +30545,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * List of VRFs definitions
@@ -30142,7 +30612,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         timeout?: number | string;
         provider?: {
@@ -30179,7 +30650,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -30203,7 +30675,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -30519,7 +30992,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -30542,7 +31016,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -30565,7 +31040,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -30595,7 +31071,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -30620,7 +31097,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -30774,7 +31252,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -30798,7 +31277,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -30893,7 +31373,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 60
          *
@@ -30928,7 +31409,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Primary vDirect server IP address, may be set as C(VDIRECT_IP) environment variable.
          */
@@ -30978,7 +31460,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * vDirect server password, may be set as C(VDIRECT_PASSWORD) environment variable.
          */
@@ -31035,7 +31518,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * List of VLANs definitions.
@@ -31097,7 +31581,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * ID of the VLAN.
@@ -31138,7 +31623,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -31162,7 +31648,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -31322,7 +31809,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -31350,7 +31838,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The list addresses for the out-of-band management adapter or the agent host. Mutually exclusive of array_wwn parameter.
          */
@@ -31448,7 +31937,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Channel to send the message to. If absent, the message goes to the channel selected for the I(token) specified during the creation of webhook.
          */
@@ -31553,7 +32043,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -31577,7 +32068,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -31672,8 +32164,8 @@ export type Ansible26 = (
         /**
          * Location to render the template to on the remote machine.
          */
-        dest?: string;
-        path:
+        dest: string;
+        path?:
           | string
           | any[]
           | {
@@ -31707,7 +32199,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         format?: "bz2" | "gz" | "tar" | "xz" | "zip";
         [k: string]: any;
       };
@@ -31749,7 +32242,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID.
          */
@@ -31792,7 +32286,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         secret?: string;
         /**
          * Resource location. If not set, location from the resource group will be used as default.
@@ -31840,7 +32335,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Property to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys.
          */
@@ -31866,7 +32362,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_source?: "auto" | "cli" | "env" | "credential_file" | "msi";
         /**
          * Property to specify whether the soft delete functionality is enabled for this key vault.
@@ -31893,7 +32390,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -32021,7 +32519,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
           | any[]
@@ -32070,7 +32569,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the VMs names, which should have assigned this tag.
          */
@@ -32247,7 +32747,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -32271,7 +32772,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -32384,7 +32886,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * slug of the dashboard. It's the friendly url name of the dashboard.
          * When C(state) is C(present), this parameter can override the slug in the meta section of the json file.
@@ -32418,7 +32921,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -32629,7 +33133,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -32652,7 +33157,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -32675,7 +33181,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         /**
          * The host header to bind to / use for the new site.
@@ -32708,7 +33215,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -32733,7 +33241,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The port to bind to / use for the new site.
          */
@@ -32774,7 +33283,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -32797,7 +33307,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -32820,7 +33331,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -32850,7 +33362,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -32875,7 +33388,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -32916,7 +33430,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * IP interface name.
          */
@@ -32960,7 +33475,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Key that will be modified. Can be a url, a file, or a keyid if the key already exists in the database.
          */
@@ -32998,7 +33514,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Synchronizes the contents of two directories on the remote machine.
        * Under the hood this just calls out to RoboCopy, since that should be available on most modern Windows Systems.
@@ -33029,7 +33546,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -33052,7 +33570,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -33075,7 +33594,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -33105,7 +33625,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -33130,7 +33651,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -33358,7 +33880,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         service_account_email?: string;
         /**
          * A reference to Region resource.
@@ -33436,7 +33959,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Filters routes rejected by the route-map and does not download them to the RIB.
          */
@@ -33462,7 +33986,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify max suppress time for route-flap dampening stable route. Valid values are integer and keyword 'default'.
          */
@@ -33492,7 +34017,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Install a backup path into the forwarding table and provide prefix independent convergence (PIC) in case of a PE-CE link failure.
          */
@@ -33518,7 +34044,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/disable route-flap dampening.
          */
@@ -33544,7 +34071,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enables the receive capability of additional paths for all of the neighbors under this address family for which the capability has not been disabled.
          */
@@ -33570,7 +34098,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Advertises only active routes to peers.
          */
@@ -33596,7 +34125,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         use_ssl?:
           | boolean
           | (0 | 1)
@@ -33619,7 +34149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify route-map for route-flap dampening. Valid values are a string defining the name of the route-map.
          */
@@ -33655,7 +34186,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Address Family Identifier.
          */
@@ -33686,7 +34218,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Networks to configure. Valid value is a list of network prefixes to advertise. The list must be in the form of an array. Each entry in the array must include a prefix address and an optional route-map. For example [['10.0.0.0/16', 'routemap_LA'], ['192.168.1.1', 'Chicago'], ['192.168.2.0/24'], ['192.168.3.0/24', 'routemap_NYC']].
          */
@@ -33747,7 +34280,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify dampen value for IGP metric-related changes, in seconds. Valid values are integer and keyword 'default'.
          */
@@ -33836,7 +34370,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -33929,7 +34464,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         /**
@@ -33965,7 +34501,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Creates, updates or removes a Scaling Policy
        */
@@ -34329,7 +34866,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * VRRP group number.
@@ -34362,7 +34900,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * VRRP virtual IP address or 'default' keyword
          */
@@ -34428,7 +34967,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -34452,7 +34992,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -34515,7 +35056,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -34600,7 +35142,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Rancherconfiguration settings for cloud.
          */
@@ -34683,7 +35226,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Dns profile for the cloud.
          * It is a reference to an object of type ipamdnsproviderprofile.
@@ -34729,7 +35273,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         controller?: string;
         /**
          * Dns profile for east-west services.
@@ -34779,7 +35324,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Field introduced in 17.2.1.
          */
@@ -34860,7 +35406,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If no license type is specified then default license enforcement for the cloud type is chosen.
          * The default mappings are container cloud is max ses, openstack and vmware is cores and linux it is sockets.
@@ -34940,7 +35487,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: number | string;
         provider?: {
           [k: string]: any;
@@ -34995,7 +35543,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Eth-Trunk interface number. The value is an integer. The value range depends on the assign forward eth-trunk mode command. When 256 is specified, the value ranges from 0 to 255. When 512 is specified, the value ranges from 0 to 511. When 1024 is specified, the value ranges from 0 to 1023.
          */
@@ -35023,7 +35572,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -35178,7 +35728,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A revision number (e.g., git commit SHA)
          */
@@ -35224,7 +35775,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * URL of the OpenNebula OneFlow API server.
          * It is recommended to use HTTPS so that the username/password are not transferred over the network unencrypted.
@@ -35306,7 +35858,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * ID of the group which will be set as the group of the service
          */
@@ -35336,7 +35889,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -35404,7 +35958,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -35428,7 +35983,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -35614,7 +36170,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Default: True
@@ -35643,7 +36200,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: string;
         /**
@@ -35801,7 +36359,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Activate the default-originate feature.
          */
@@ -35827,7 +36386,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Router reflector client.
          */
@@ -35853,7 +36413,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Weight value. Valid values are an integer value or 'default'.
          */
@@ -35887,7 +36448,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * suppress-inactive feature.
          */
@@ -35913,7 +36475,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * unsuppress-map. Valid values are a string defining a route-map name or 'default'.
          */
@@ -35947,7 +36510,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -35984,7 +36548,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Optional warning-only keyword. Requires max_prefix_limit. May not be combined with max_prefix_interval.
          */
@@ -36010,7 +36575,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * BGP autonomous system number. Valid values are String, Integer in ASPLAIN or ASDOT notation.
          */
@@ -36087,7 +36653,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * maximum-prefix limit value. Valid values are an integer value or 'default'.
          */
@@ -36147,7 +36714,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         use_ssl?:
           | boolean
           | (0 | 1)
@@ -36170,7 +36738,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Valid values are enable for basic command enablement; disable for disabling the command at the neighbor af level (it adds the disable keyword to the basic command); and inherit to remove the command at this level (the command value is inherited from a higher BGP layer).
          */
@@ -36206,7 +36775,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Max-occurrences value for allowas_in. Valid values are an integer value or 'default'. This is mutually exclusive with allowas_in.
          */
@@ -36282,7 +36852,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -36306,7 +36877,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -36371,7 +36943,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The object type to which the alert config is associated with.
          * Valid object types are - virtual service, pool, service engine.
@@ -36494,7 +37067,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         controller?: string;
         /**
          * Uuid of the resource for which alert was raised.
@@ -36589,7 +37163,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the HTTP profile containing HTTP configuration settings for the virtual server. The service type of the virtual server should be either C(HTTP) or C(SSL).
          * Minimum length = 1
@@ -36629,7 +37204,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         /**
          * The protocol version returned by the mysql vserver.
@@ -36764,7 +37340,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of virtual server IP and port header, for use with the VServer IP Port Insertion parameter.
          * Minimum length = 1
@@ -36815,7 +37392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
          * Minimum value = 0
@@ -36859,7 +37437,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the authentication profile to be used when authentication is turned on.
          */
@@ -36901,7 +37480,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the DB profile.
          * Minimum length = 1
@@ -36933,7 +37513,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Depending on the spillover method, the maximum number of connections or the maximum total bandwidth (Kbps) that a virtual server can handle before spillover occurs.
          * Minimum value = C(1)
@@ -36965,7 +37546,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         policybindings?:
           | string
           | any[]
@@ -37039,7 +37621,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of consecutive IP addresses, starting with the address specified by the IP Address parameter, to include in a range of addresses assigned to this virtual server.
          * Minimum value = C(1)
@@ -37077,7 +37660,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the DNS profile to be associated with the VServer. DNS profile properties will applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
          * Minimum length = 1
@@ -37119,7 +37703,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The url to the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -37163,7 +37748,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Whether to avoid synchronization prior to role reversal
          */
@@ -37189,7 +37775,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         name: string;
         [k: string]: any;
       };
@@ -37224,7 +37811,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the location to install the package from. Required when C(state=present).
          * Can be any path acceptable to the C(pkgadd) command's C(-d) option. e.g.: C(somefile.pkg), C(/dir/with/pkgs), C(http:/server/mypkgs.pkg).
@@ -37390,7 +37978,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Array of processes that will be monitoring.
          */
@@ -37480,7 +38069,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -37508,7 +38098,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the group to manage.
          */
@@ -37545,7 +38136,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -37729,7 +38321,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         secret?: string;
@@ -37820,7 +38413,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a description for the VLAN.
          */
@@ -37968,7 +38562,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Receiver rate in bits per second (bps) for the interface given in C(name) option.
          * This is state check parameter only.
@@ -37997,7 +38592,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * This option configures autoneg and speed/duplex/flowcontrol for the interface given in C(name) option.
          */
@@ -38074,7 +38670,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set maximum transmission unit size in bytes of transmit packet for the interface given in C(name) option.
          */
@@ -38102,7 +38699,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       name: string;
@@ -38230,7 +38828,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The Datacenter to create servers in.
          */
@@ -38275,7 +38874,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only required for bare metal servers. Specifies the identifier for the specific configuration type of bare metal server to deploy.
          */
@@ -38334,7 +38934,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -38445,7 +39046,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -38551,7 +39153,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant_uuid?: string;
         api_version?: string;
         /**
@@ -38572,7 +39175,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create or delete volumes and filesystem snapshots on Pure Storage FlashBlades.
        */
@@ -38632,7 +39236,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -38660,7 +39265,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Channel-group number for the port-channel Link aggregation group.
@@ -38712,7 +39318,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Default: on
@@ -38756,7 +39363,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -38780,7 +39388,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -38824,7 +39433,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: postgres
          *
@@ -38869,7 +39479,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -38907,7 +39518,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -38936,7 +39548,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 5432
          *
@@ -39303,7 +39916,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -39326,7 +39940,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -39349,7 +39964,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -39379,7 +39995,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -39404,7 +40021,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -39437,7 +40055,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Default: present
@@ -39507,7 +40126,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -39596,7 +40216,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Encryption protocol.
          */
@@ -39624,7 +40245,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -39664,7 +40286,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * VTP domain name.
          */
@@ -39698,7 +40321,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -39722,7 +40346,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -39754,7 +40379,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Safeguard boolean. Set to true if you're sure you want to reboot.
@@ -39781,7 +40407,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_pass?: string;
         host?: string;
         timeout?: number | string;
@@ -39810,7 +40437,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -39834,7 +40462,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -39857,7 +40486,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manipulate Rackspace Cloud Autoscale Scaling Policy
        */
@@ -39935,7 +40565,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The controller IP address.
          */
@@ -39957,7 +40588,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Add or remove licenses on NetApp ONTAP.
        */
@@ -40030,7 +40662,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -40077,7 +40710,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -40100,7 +40734,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -40123,7 +40758,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -40153,7 +40789,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -40178,7 +40815,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -40263,7 +40901,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -40292,7 +40931,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum size of transmit packet.
          */
@@ -40489,7 +41129,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * The banner text that should be present in the remote device running configuration.  This argument accepts a multiline string, with no empty lines. Requires I(state=present).
@@ -40583,7 +41224,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         /**
@@ -40709,7 +41351,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Priority of a DFS group. The value is an integer that ranges from 1 to 254. The default value is 100.
          */
@@ -40766,7 +41409,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * IP address bound to the DFS group. The value is in dotted decimal notation.
@@ -40843,7 +41487,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -40871,7 +41516,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -40919,7 +41565,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Sets whether NTP logging is enabled on the device.
@@ -40946,7 +41593,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If C(master=true), an optional stratum can be supplied (1-15). The device default is 8.
          */
@@ -40984,7 +41632,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: number | string;
         provider?: {
           [k: string]: any;
@@ -41011,7 +41660,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -41035,7 +41685,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -41101,7 +41752,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -41130,7 +41782,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the XML content to send to the device
          */
@@ -41167,7 +41820,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -41196,7 +41850,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: auto
          *
@@ -41259,7 +41914,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A username, @groupname, wildcard, uid/gid range.
          */
@@ -41301,7 +41957,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The limit to be set
          */
@@ -41356,7 +42013,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -41617,7 +42275,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Network the IP address is related to.
          */
@@ -41736,7 +42395,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The identifier (id or name) of the load balancer used with update state.
          */
@@ -41795,7 +42455,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: US
          *
@@ -41869,7 +42530,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -42068,7 +42730,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Case sensitive group.
@@ -42138,7 +42801,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -42162,7 +42826,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -42196,7 +42861,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -42219,7 +42885,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -42242,7 +42909,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -42272,7 +42940,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -42297,7 +42966,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -42429,7 +43099,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -42453,7 +43124,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -42618,7 +43290,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Fabric role of the switch.
          */
@@ -42732,7 +43405,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -42746,7 +43420,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Represents a Network resource.
        * Your Cloud Platform Console project can contain multiple networks, and each network can have multiple instances attached to it. A network allows you to define a gateway IP and the network range for the instances attached to that network. Every project is provided with a default network with preset configurations and firewall rules. You can choose to customize the default network by adding or removing rules, or you can create new networks in that project. Generally, most users only need one network, although you can have up to five networks per project by default.
@@ -42790,7 +43465,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         project?: string;
         /**
          * Default: present
@@ -42951,7 +43627,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         pem_file?: string;
         /**
          * Define named ports that backend services can forward data to.  Format is a a list of name:port dictionaries.
@@ -43025,7 +43702,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Value of a (key, value) pair identifying a label for a set of nodes usually in container clouds.
          * Needs to be specified together with host_attribute_key.
@@ -43057,7 +43735,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Instance/flavor type for se instance.
          */
@@ -43089,7 +43768,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Unique object identifier of the object.
          */
@@ -43198,7 +43878,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable memory pool for waf.
          * Field introduced in 17.2.3.
@@ -43226,7 +43907,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Per-app se mode is designed for deploying dedicated load balancers per app (vs).
          * In this mode, each se is limited to a max of 2 vss.
@@ -43255,7 +43937,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Boolean flag to set vcenter_datastores_include.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -43282,7 +43965,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Name of the object.
@@ -43371,7 +44055,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable or disable real time se metrics.
          */
@@ -43452,7 +44137,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Capacities of se for auto rebalance for each criteria.
          * Field introduced in 17.2.4.
@@ -43517,7 +44203,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
         /**
          * When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
@@ -43584,7 +44271,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set of criteria for se auto rebalance.
          * Enum options - SE_AUTO_REBALANCE_CPU, SE_AUTO_REBALANCE_PPS, SE_AUTO_REBALANCE_MBPS, SE_AUTO_REBALANCE_OPEN_CONNS, SE_AUTO_REBALANCE_CPS.
@@ -43622,7 +44310,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Allow ses to be created using burst license.
          * Field introduced in 17.2.5.
@@ -43649,7 +44338,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * This setting limits the number of significant logs generated per second per core on this se.
          * Default is 100 logs per second.
@@ -43699,7 +44389,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If set, virtual services will be automatically migrated when load on an se is less than minimum or more than maximum thresholds.
          * Only alerts are generated when the auto_rebalance is not set.
@@ -43727,7 +44418,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Determines if dsr from secondary se is active or not  0  automatically determine based on hypervisor type.
          * 1  disable dsr unconditionally.
@@ -43775,7 +44467,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Time to wait for the scaled out se to become ready before marking the scaleout done.
          * Default value when not specified in API or module is interpreted by Avi Controller as 30.
@@ -43866,7 +44559,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Key of a (key, value) pair identifying a label for a set of nodes usually in container clouds.
          * Needs to be specified together with host_attribute_value.
@@ -43908,7 +44602,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Boolean flag to set cpu_reserve.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -43935,7 +44630,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use virtual mac address for interfaces on which floating interface ips are placed.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -43962,7 +44658,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Amount of se memory in gb until which shared memory is collected in core archive.
          * Field introduced in 17.1.3.
@@ -44000,7 +44697,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Amount of disk space for each of the service engine virtual machines.
          * Default value when not specified in API or module is interpreted by Avi Controller as 10.
@@ -44079,7 +44777,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Ignore rtt samples if it is above threshold.
          * Field introduced in 17.1.6,17.2.2.
@@ -44123,7 +44822,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of changes in num flow cores sum to ignore.
          * Default value when not specified in API or module is interpreted by Avi Controller as 8.
@@ -44211,7 +44911,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Prefix to use for virtual machine name of service engines.
          * Default value when not specified in API or module is interpreted by Avi Controller as Avi.
@@ -44249,7 +44950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
          * Enum options - PLACEMENT_ALGO_PACKED, PLACEMENT_ALGO_DISTRIBUTED.
@@ -44290,7 +44992,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Ensure primary and secondary service engines are deployed on different physical hosts.
          * Default value when not specified in API or module is interpreted by Avi Controller as True.
@@ -44317,7 +45020,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -44454,7 +45158,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -44477,7 +45182,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -44500,7 +45206,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -44530,7 +45237,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -44555,7 +45263,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -44588,7 +45297,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * This attribute is used to identify and separate processing VNIs that are associated with a VRF and used for routing. The VRF and VNI specified with this command must match the configuration of the VNI under the VRF.
          */
@@ -44614,7 +45324,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set the ingress-replication static peer list. Valid values are an array, a space-separated string of ip addresses, or the keyword 'default'.
          */
@@ -44649,7 +45360,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_pass?: string;
         /**
          * Default: present
@@ -44698,7 +45410,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -44722,7 +45435,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies mechanism for host reachability advertisement.
          */
@@ -44757,7 +45471,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -44797,7 +45512,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -44821,7 +45537,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -44875,7 +45592,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The set of username objects to be configured on the remote network device. The list entries can either be the username or a hash of username and properties. This argument is mutually exclusive with the C(name) argument.
          */
@@ -44951,7 +45669,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The type of the extension handler.
          */
@@ -45015,7 +45734,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -45045,7 +45765,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Anycast gateway mac of the switch.
          */
@@ -45073,7 +45794,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -45109,7 +45831,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Minimum extra capacity as percentage of load used by the intelligent scheme.
          * Scaleout is triggered when available capacity is less than this margin.
@@ -45188,7 +45911,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * User defined description for the object.
          */
@@ -45568,7 +46292,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -45591,7 +46316,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -45614,7 +46340,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -45644,7 +46371,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -45669,7 +46397,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -45831,7 +46560,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -45854,7 +46584,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -45877,7 +46608,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -45907,7 +46639,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -45932,7 +46665,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -45967,7 +46701,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Domain to work with. Can be the domain name (e.g. "mydomain.com") or the numeric ID of the domain in DNSimple. If omitted, a list of domains will be returned.
          * If domain is present but the domain doesn't exist, it will be created.
@@ -46065,7 +46800,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -46088,7 +46824,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -46111,7 +46848,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -46141,7 +46879,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -46166,7 +46905,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -46248,7 +46988,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * Configure whether or not to negotiate capability with this neighbor.
@@ -46275,7 +47016,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the encryption type the password will use. Valid values are '3des' or 'cisco_type_7' encryption or keyword 'default'.
          */
@@ -46305,7 +47047,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Configure to administratively shutdown this neighbor.
          */
@@ -46331,7 +47074,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify whether or not to shut down this neighbor under memory pressure.
          */
@@ -46357,7 +47101,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         use_ssl?:
           | boolean
           | (0 | 1)
@@ -46380,7 +47125,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the config to remove private AS number from outbound updates. Valid values are 'enable' to enable this config, 'disable' to disable this config, 'all' to remove all private AS number, or 'replace-as', to replace the private AS number.
          */
@@ -46410,7 +47156,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         transport?: "cli" | "nxapi";
         /**
          * Configure whether or not to check for directly connected peer.
@@ -46437,7 +47184,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify Autonomous System Number of the neighbor. Valid values are String or Integer in ASPLAIN or ASDOT notation, or 'default', which means not to configure it.
          */
@@ -46527,7 +47275,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: number | string;
         /**
          * Neighbor Identifier. Valid values are string. Neighbors may use IPv4 or IPv6 notation, with or without prefix length.
@@ -46555,7 +47304,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -46747,7 +47497,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -46775,7 +47526,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -46841,7 +47593,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -46879,7 +47632,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the virtual machine.
          */
@@ -46925,7 +47679,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         state: "absent" | "present";
         api_username: string;
         /**
@@ -46954,7 +47709,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * a list of of dictionaries of host ports you wish to associate with the newly created host
          */
@@ -47008,7 +47764,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Lists S3 buckets in AWS
        */
@@ -47032,7 +47789,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Apstra AOS External Router module let you manage your External Router easily. You can create create and delete External Router by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
        */
@@ -47094,7 +47852,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage the state of a virtual host in RabbitMQ
        */
@@ -47157,7 +47916,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Domain the VPN connection is related to.
          */
@@ -47189,7 +47949,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -47240,7 +48001,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         zone?: string;
         [k: string]: any;
       };
@@ -47387,7 +48149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         fetch_nested?:
           | boolean
           | (0 | 1)
@@ -47410,7 +48173,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Option which will be passed when mounting storage.
          */
@@ -47492,7 +48256,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The target IQN for the storage device.
          */
@@ -47588,7 +48353,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -47612,7 +48378,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -47687,7 +48454,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -47715,7 +48483,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Will run the process as an interactive process that shows a process Window of the Windows session specified by I(interactive_session).
          * The I(stdout) and I(stderr) return values will be null when this is set to C(yes).
@@ -47743,7 +48512,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The Windows session ID to use when displaying the interactive process on the remote Windows host.
          * This is only valid when I(interactive) is C(yes).
@@ -47817,7 +48587,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The password for I(process_username).
          * Required if I(process_username) is defined and not C(System).
@@ -47858,7 +48629,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 445
          *
@@ -48013,7 +48785,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -48120,7 +48893,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Specifies which banner that should be configured on the remote device. Value C(login) indicates system login message prior to authenticating, C(motd) is login announcement after successful authentication.
@@ -48205,7 +48979,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Provides an interface to manage Fibre Channel Network resources. Can create, update, and delete.
        */
@@ -48236,7 +49011,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Indicates the desired state for the Fibre Channel Network resource. C(present) will ensure data properties are compliant with OneView. C(absent) will remove the resource from OneView, if it exists.
          */
@@ -48378,7 +49154,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -48464,7 +49241,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -48622,7 +49400,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enables the global Bidirectional Forwarding Detection (BFD) function.
          */
@@ -48672,7 +49451,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         ssh_keyfile?: string;
         port?: number | string;
@@ -48958,7 +49738,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * User's public SSH key (contents, not path).
          */
@@ -49000,7 +49781,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -49088,7 +49870,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -49112,7 +49895,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -49469,7 +50253,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable an action - close connection, http redirect, or local http response - when a pool group failure happens.
          * By default, a connection will be closed, in case the pool group experiences a failure.
@@ -49604,7 +50389,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Default: present
@@ -49709,7 +50495,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * snat interface address
          */
@@ -49847,7 +50634,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -49920,7 +50708,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * Default: no
@@ -49949,7 +50738,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The C(zeroize) argument is used to completely sanitize the remote device configuration back to initial defaults.  This argument will effectively remove all current configuration statements on the remote device.
          */
@@ -49975,7 +50765,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: number | string;
         provider?: {
           [k: string]: any;
@@ -50009,7 +50800,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: string;
         [k: string]: any;
@@ -50096,7 +50888,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Channel to send the message to. If absent, the message goes to the channel selected for the I(api_key).
          */
@@ -50130,7 +50923,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -50198,7 +50992,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -50222,7 +51017,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -50410,7 +51206,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -50448,7 +51245,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -50472,7 +51270,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -50546,7 +51345,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the data center to manage.
          */
@@ -50582,7 +51382,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         poll_interval?: number | string;
         fetch_nested?:
           | boolean
@@ -50606,7 +51407,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
           | any[]
@@ -50645,7 +51447,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Quota mode of the data center. One of I(disabled), I(audit) or I(enabled)
          */
@@ -50689,7 +51492,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -50867,7 +51671,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable or disable the service, independently of C(*.preset) file preference or running state. Mutually exclusive with I(preset). Will take effect prior to I(state=reset).
          */
@@ -50893,7 +51698,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -50921,7 +51727,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the service to manage.
          */
@@ -51000,7 +51807,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Interface type.
          */
@@ -51116,7 +51924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Alarm trap name.
@@ -51166,7 +51975,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         /**
          * Name for the GSLB service. Must begin with an ASCII alphanumeric or underscore C(_) character, and must contain only ASCII alphanumeric, underscore C(_), hash C(#), period C(.), space, colon C(:), at C(@), equals C(=), and hyphen C(-) characters. Can be changed after the GSLB service is created.
@@ -51316,7 +52126,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_pass: string;
         validate_certs?:
           | boolean
@@ -51340,7 +52151,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -51389,7 +52201,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -51525,7 +52338,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Define a list of attachments. For more information, see https://github.com/bearyinnovative/bearychat-tutorial/blob/master/robots/incoming.md#attachments
          */
@@ -51735,7 +52549,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no_use
          *
@@ -51765,7 +52580,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -51891,7 +52707,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module creates, removes or resizes logical volumes.
        */
@@ -51927,7 +52744,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The volume group this logical volume is part of.
          */
@@ -51963,7 +52781,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -52005,7 +52824,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -52033,7 +52853,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Free-form options to be passed to the lvcreate command.
          */
@@ -52071,7 +52892,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -52107,7 +52929,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -52131,7 +52954,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -52183,7 +53007,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * An already existing directory full of source files.
          */
@@ -52215,7 +53040,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A file to create using the concatenation of all of the source files.
          */
@@ -52259,7 +53085,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -52291,7 +53118,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -52314,7 +53142,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -52337,7 +53166,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -52367,7 +53197,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -52392,7 +53223,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -52447,7 +53279,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * When the project does not exist in Gitlab, it will be created.
        * When the project does exists and state=absent, the project will be deleted.
@@ -52532,7 +53365,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         /**
@@ -52673,7 +53507,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A list of rule ids that will be removed from an existing firewall policy. Used in combination with update state.
          */
@@ -52747,7 +53582,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -52903,7 +53739,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages log destinations on a BIG-IP.
        */
@@ -53062,7 +53899,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Group to which the user will belong to. If state = present, and the user is existing, the group is added to the user. If the user is not existing, user entry is created with this group argument. If state = absent, only the group is removed from the user entry. However, to maintain backward compatibility, if the existing user belongs to only one group, and if group argument is same as the existing user's group, then the user entry also is deleted.
@@ -53103,7 +53941,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Authentication password when using md5 or sha. This is not idempotent
          */
@@ -53144,7 +53983,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -53168,7 +54008,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -53408,7 +54249,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The new password of the user. This parameter is optional, and enables you to change a password.
          */
@@ -53456,7 +54298,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -53484,7 +54327,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A string containing the base URL of the server hosting CyberArk's Privileged Account Security Web Services SDK.
          */
@@ -53592,7 +54436,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the ospf instance.
          */
@@ -53631,7 +54476,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -53674,7 +54520,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -53703,7 +54550,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * Specifies the message_digest password. Valid value is a string.
@@ -53747,7 +54595,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -53784,7 +54633,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Cache type supported by the cache server.
          */
@@ -53811,7 +54661,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When set to C(yes) the service group state will be set to DISABLED.
          * When set to C(no) the service group state will be set to ENABLED.
@@ -53839,7 +54690,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         /**
          * Maximum number of requests that can be sent on a persistent connection to the service group.
@@ -53873,7 +54725,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum bandwidth, in Kbps, allocated for all the services in the service group.
          * Minimum value = C(0)
@@ -53959,7 +54812,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Auto scale option for a servicegroup.
          */
@@ -54011,7 +54865,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_user: string;
         /**
          * Network profile for the service group.
@@ -54044,7 +54899,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_timeout?: number;
         /**
          * Individual Path monitoring decisions.
@@ -54071,7 +54927,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Path monitoring for clustering.
          */
@@ -54097,7 +54954,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable logging of AppFlow information for the specified service group.
          */
@@ -54146,7 +55004,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the TCP profile that contains TCP configuration settings for the service group.
          * Minimum length = 1
@@ -54178,7 +55037,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Flush all active transactions associated with all the services in the service group whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.
          */
@@ -54226,7 +55086,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use the proxy port as the source port when initiating connections with the server. With the NO setting, the client-side connection port is used as the source port for the server-side connection.
          * Note: This parameter is available only when the Use Source IP C(usip) parameter is set to C(yes).
@@ -54253,7 +55114,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_pass: string;
         validate_certs?:
           | boolean
@@ -54277,7 +55139,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable compression for the specified service.
          */
@@ -54303,7 +55166,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -54325,7 +55189,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages interface DLDP configuration on HUAWEI CloudEngine switches.
        */
@@ -54381,7 +55246,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set DLDP compatible-mode enable state.
          */
@@ -54409,7 +55275,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -54448,7 +55315,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Community string or v3 username.
          */
@@ -54475,7 +55343,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         auth_pass?: string;
@@ -54549,7 +55418,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -54608,7 +55478,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A filename, when it already exists, this step will B(not) be run.
          */
@@ -54656,7 +55527,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -54679,7 +55551,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -54702,7 +55575,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -54732,7 +55606,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -54757,7 +55632,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -54911,7 +55787,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * An existing script file to be executed in the future.
          */
@@ -54933,7 +55810,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Returns information about a Windows file.
        * For non-Windows targets, use the M(stat) module instead.
@@ -54964,7 +55842,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -54987,7 +55866,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -55010,7 +55890,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -55040,7 +55921,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -55065,7 +55947,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -55097,7 +55980,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Type of policy mapped to C(jp_policy_in).
          */
@@ -55128,7 +56012,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -55156,7 +56041,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -55209,7 +56095,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Configures a neighbor policy for filtering adjacencies.
@@ -55252,7 +56139,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Type of policy mapped to C(jp_policy_out).
          */
@@ -55347,7 +56235,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Direction ACL to be applied in on the interface.
          */
@@ -55395,7 +56284,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -55419,7 +56309,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -55453,7 +56344,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -55476,7 +56368,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -55499,7 +56392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -55529,7 +56423,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -55554,7 +56449,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -55596,7 +56492,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -55624,7 +56521,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the zone for the interface. If the zone does not exist it is created but if the zone exists and it is not of the layer3 type the operation will fail.
          *
@@ -55645,7 +56543,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage the hostname of a BIG-IP.
        */
@@ -55688,7 +56587,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: string;
         /**
          * Path to NSO data.
@@ -55792,7 +56692,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Enables direct authentication requests to AAA server or keyword 'default' Device default is disabled.
@@ -55852,7 +56753,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -55876,7 +56778,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -55980,7 +56883,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_source?: "auto" | "cli" | "env" | "credential_file" | "msi";
         /**
          * Default: linux
@@ -56034,7 +56938,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Enables or disables the enforce router alert option check for IGMPv2 and IGMPv3 packets.
@@ -56061,7 +56966,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Removes routes when the IGMP process is restarted. By default, routes are not flushed.
          */
@@ -56087,7 +56993,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_pass?: string;
         /**
          * Default: present
@@ -56123,7 +57030,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -56147,7 +57055,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         /**
          * Restarts the igmp process (using an exec config command).
@@ -56174,7 +57083,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -56453,7 +57363,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of commands to be included into the profile.
          */
@@ -56502,7 +57413,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -56526,7 +57438,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -56646,7 +57559,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         auth_pass?: string;
@@ -56837,7 +57751,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Add or Remove a floating IP to an instance
        */
@@ -56927,7 +57842,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -56950,7 +57866,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -56973,7 +57890,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -57003,7 +57921,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -57028,7 +57947,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -57081,7 +58001,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Filtering criteria matching schemaname. If I(schemaname) is non-NULL, a query will match only if the connection uses schemaname as its default schema.
          */
@@ -57127,7 +58048,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of milliseconds to delay the execution of the query. This is essentially a throttling mechanism and QoS, and allows a way to give priority to queries over others. This value is added to the mysql-default_query_delay global variable that applies to all queries.
          */
@@ -57180,7 +58102,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -57203,7 +58126,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A rule with I(active) set to C(False) will be tracked in the database, but will be never loaded in the in-memory data structures.
          */
@@ -57229,7 +58153,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The number of milliseconds for which to cache the result of the query. Note in ProxySQL 1.1 I(cache_ttl) was in seconds.
          */
@@ -57267,7 +58192,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * By default we avoid deleting more than one schedule in a single batch, however if you need this behaviour and you're not concerned about the schedules deleted, you can set I(force_delete) to C(True).
          */
@@ -57293,7 +58219,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Match traffic from a specific source.
          */
@@ -57362,7 +58289,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -57385,7 +58313,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -57408,7 +58337,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -57438,7 +58368,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -57463,7 +58394,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -57615,7 +58547,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -57638,7 +58571,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -57661,7 +58595,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -57691,7 +58626,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -57716,7 +58652,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -57989,7 +58926,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * maintains ec2 security groups. This module has a dependency on python-boto >= 2.5
        */
@@ -58055,7 +58993,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * IPv4 of the L3 interface.
@@ -58210,7 +59149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -58309,7 +59249,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -58333,7 +59274,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -58369,7 +59311,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -58392,7 +59335,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -58415,7 +59359,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -58445,7 +59390,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -58470,7 +59416,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -58572,7 +59519,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash, number, tag, or other identifier showing what revision was deployed
          */
@@ -58618,7 +59566,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Username to use for proxy.
          */
@@ -58682,7 +59631,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -58710,7 +59660,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -58738,7 +59689,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: roundrobin
          *
@@ -58817,7 +59769,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Include external configuration file. Both, local path and URL is supported. Configuration file will be inserted at the position of the I(include=) line. Included files may contain further include lines. Yum will abort with an error if an inclusion loop is detected.
          */
@@ -58895,7 +59848,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of packages you want to only use from a repository. This should be a space separated list. Shell globs using wildcards (eg. C(*) and C(?)) are allowed. Substitution variables (e.g. C($releasever)) are honored here.
          * The list can also be a regular YAML array.
@@ -58933,7 +59887,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password to use with the username for basic authentication.
          */
@@ -58971,7 +59926,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -59000,7 +59956,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable bandwidth throttling for downloads.
          * This option can be expressed as a absolute data rate in bytes/sec. An SI prefix (k, M or G) may be appended to the bandwidth value.
@@ -59059,7 +60016,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -59103,7 +60061,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: read-only:present
          *
@@ -59259,7 +60218,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: PEM
          *
@@ -59347,7 +60307,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -59375,7 +60336,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The socket definition scope, used to configure the Sensu client socket.
          */
@@ -59459,7 +60421,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The registration definition scope, used to configure Sensu registration event handlers.
          */
@@ -59860,7 +60823,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: add
          *
@@ -60046,7 +61010,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -60074,7 +61039,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -60115,7 +61081,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -60183,7 +61150,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Default: _public_
@@ -60218,7 +61186,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Specifies the start interval of arrive LSA when use the intelligent timer. Valid value is an integer, in millisecond, from 0 to 10000, the default value is 500.
@@ -60278,7 +61247,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -60380,7 +61350,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: Now
          *
@@ -60459,7 +61430,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Snapshot name, to be used when C(action=create) or C(action=delete).
          */
@@ -60486,7 +61458,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -60562,7 +61535,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the file where snapshots comparison will be stored when C(action=compare).
          */
@@ -60598,7 +61572,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -60648,7 +61623,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -60672,7 +61648,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -60706,7 +61683,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Modify a ONTAP broadcast domain.
        */
@@ -60758,7 +61736,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module provides declarative management of VLANs on network devices.
        */
@@ -60819,7 +61798,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the server.
          */
@@ -60895,7 +61875,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         profile?: string;
         /**
          * Required if I(create_mode) is C(point_in_time_restore), this value is required. If I(create_mode) is C(restore), this value is optional. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. Must be greater than or equal to the source database's earliestRestoreDate value.
@@ -60943,7 +61924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_profile?: string;
         /**
          * The max size of the database expressed in bytes. If I(create_mode) is not C(default), this value is ignored. To see possible values, query the capabilities API (/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationID}/capabilities) referred to by operationId: 'Capabilities_ListByLocation.'
@@ -61021,7 +62003,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * The banner text that should be present in the remote device running configuration.  This argument accepts a multiline string. Requires I(state=present).
@@ -61065,7 +62048,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -61089,7 +62073,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -61130,7 +62115,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -61208,7 +62194,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         auth_pass?: string;
@@ -61377,7 +62364,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage OpenStack Quotas. Quotas can be created, updated or deleted using this module. A quota will be updated if matches an existing project and is present.
        */
@@ -61565,7 +62553,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         use_ssl?:
           | boolean
           | (0 | 1)
@@ -61588,7 +62577,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Preemption delay. The value is an integer ranging from 0 to 3600. The default value is 0.
          */
@@ -61678,7 +62668,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * mVRRP's fast resume mode.
          */
@@ -61710,7 +62701,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The configured holdMultiplier.The value is an integer ranging from 3 to 10. The default value is 3.
          */
@@ -61737,7 +62729,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Tracked mVRRP ID. The value is an integer ranging from 1 to 255.
          */
@@ -61773,7 +62766,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of logging definitions.
          */
@@ -61976,7 +62970,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify action to perform. Use 'present' to create cluster and 'absent' to delete cluster.
          */
@@ -62187,7 +63182,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * Global IGMPv1/IGMPv2 Report Suppression.
@@ -62214,7 +63210,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Enables/disables IGMP snooping on the switch.
@@ -62241,7 +63238,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Global IGMPv3 Report Suppression and Proxy Reporting.
          */
@@ -62267,7 +63265,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Group membership timeout value for all VLANs on the device. Accepted values are integer in range 1-10080, I(never) and I(default).
          */
@@ -62301,7 +63300,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         timeout?: number | string;
         provider?: {
@@ -62329,7 +63329,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -62353,7 +63354,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -62612,7 +63614,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -62635,7 +63638,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -62658,7 +63662,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -62688,7 +63693,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -62713,7 +63719,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -62730,7 +63737,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages members in a device group. Members in a device group can only be added or removed, never updated. This is because the members are identified by unique name values and changing that name would invalidate the uniqueness.
        */
@@ -62801,7 +63809,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -62835,7 +63844,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -62858,7 +63868,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -62881,7 +63892,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -62911,7 +63923,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -62936,7 +63949,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -62973,7 +63987,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Release name to manage
          */
@@ -63260,7 +64275,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * GCP spanner instance name.
          */
@@ -63448,7 +64464,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -63471,7 +64488,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If I(use_ssl) is set to C(True), connections to this server will be made using SSL connections. If omitted the proxysql database default for I(use_ssl) is C(False).
          */
@@ -63497,7 +64515,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If greater than 0, ProxySQL will reguarly monitor replication lag. If replication lag goes above I(max_replication_lag), proxysql will temporarily shun the server until replication catches up. If omitted the proxysql database default for I(max_replication_lag) is 0.
          */
@@ -63561,7 +64580,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /opt/kibana/bin/kibana
          *
@@ -63765,7 +64785,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -63788,7 +64809,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -63811,7 +64833,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -63841,7 +64864,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -63866,7 +64890,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -63899,7 +64924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -63933,7 +64959,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -63957,7 +64984,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -64015,7 +65043,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -64075,7 +65104,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         secret?: string;
         /**
@@ -64170,7 +65200,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A policy name, like C(foo), or multiple policies, like C(foo, bar).
          */
@@ -64213,7 +65244,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Unique object identifier of the object.
          */
@@ -64426,7 +65458,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -64644,7 +65677,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         priority_id?: string;
         peer_link_id?: string;
         vpn_instance_name?: string;
@@ -64681,7 +65715,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         ip_address?: string;
         port?: number | string;
@@ -64835,7 +65870,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -64858,7 +65894,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -64881,7 +65918,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -64911,7 +65949,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -64936,7 +65975,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -65025,7 +66065,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -65048,7 +66089,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -65071,7 +66113,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -65101,7 +66144,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -65126,7 +66170,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -65201,7 +66246,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -65225,7 +66271,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -65282,7 +66329,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -65305,7 +66353,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -65328,7 +66377,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -65358,7 +66408,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -65383,7 +66434,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -65594,7 +66646,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Specify the number of seconds that LLDP information is held before it is discarded. The multiplier value is used in combination with the C(interval) value.
@@ -65654,7 +66707,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * HSRP priority or keyword 'default'.
          */
@@ -65701,7 +66755,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -65725,7 +66780,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -65815,7 +66871,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 310
          *
@@ -65902,7 +66959,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -65925,7 +66983,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -65948,7 +67007,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -65978,7 +67038,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -66003,7 +67064,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -66097,7 +67159,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The version to be installed
          */
@@ -66137,7 +67200,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -66208,7 +67272,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -66273,7 +67338,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Remote absolute path where the archive should be unpacked.
          */
@@ -66305,7 +67371,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -66333,7 +67400,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If the specified absolute path (file or directory) already exists, this step will B(not) be run.
          */
@@ -66385,7 +67453,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -66449,7 +67518,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -66561,7 +67631,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Unit at which custom scheduler will run.
          * Enum options - SCHEDULER_FREQUENCY_UNIT_MIN, SCHEDULER_FREQUENCY_UNIT_HOUR, SCHEDULER_FREQUENCY_UNIT_DAY, SCHEDULER_FREQUENCY_UNIT_WEEK,
@@ -66584,7 +67655,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages BGP configurations on HUAWEI CloudEngine switches.
        */
@@ -66634,7 +67706,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -66770,7 +67843,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -66792,7 +67866,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create, update, or destroy Ansible Tower organizations. See U(https://www.ansible.com/tower) for an overview.
        */
@@ -66937,7 +68012,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -67078,7 +68154,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -67119,7 +68196,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * Virtual routing context that the virtual service is bound to.
@@ -67263,7 +68341,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of nodes that have to be probed into the pool.
          */
@@ -67305,7 +68384,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Name of the VLAN.
@@ -67394,7 +68474,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -67434,7 +68515,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -67458,7 +68540,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -67492,7 +68575,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -67515,7 +68599,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -67538,7 +68623,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -67568,7 +68654,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -67593,7 +68680,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -67880,7 +68968,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Frequency, in seconds, that monitors are sent to a server.
          * Allowed values are 1-3600.
@@ -68007,7 +69096,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The type of the datasource.
          */
@@ -68056,7 +69146,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The Grafana URL.
          */
@@ -68088,7 +69179,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The TLS CA certificate for self signed certificates.
          * Only used when C(tls_client_cert) and C(tls_client_key) are set.
@@ -68150,7 +69242,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * SSL mode for C(postgres) datasoure type.
          */
@@ -68249,7 +69342,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The client TLS private key
          * Starts with ----- BEGIN RSA PRIVATE KEY -----
@@ -68296,7 +69390,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: Current value of I(serverURL) from C(/etc/sysconfig/rhn/up2date) is the default
          *
@@ -68361,7 +69456,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -68402,7 +69498,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Parameters associated to the entity resource to set or edit in dictionary format (e.g. name, description).
          */
@@ -68449,7 +69546,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create the ip address to tag associations. Tags will in turn be used to create DAG's
        */
@@ -68501,7 +69599,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The action to be taken. Supported values are I(add)/I(update)/I(find)/I(delete).
          */
@@ -68624,7 +69723,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Personal access token to use. One of private_token or access_token is required. See https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
          */
@@ -68666,7 +69766,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The password to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -69016,7 +70117,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a time range in which an ACL rule takes effect. The value is a string of 1 to 32 characters. The value is case-insensitive, and cannot contain spaces. The name must start with an uppercase or lowercase letter. In addition, the word "all" cannot be specified as a time range name.
          */
@@ -69051,7 +70153,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Mask of a source IP address. The value is an integer ranging from 1 to 32.
          */
@@ -69122,7 +70225,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * ID of a basic ACL rule in configuration mode. The value is an integer ranging from 0 to 4294967294.
          */
@@ -69204,7 +70308,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Accounting scheme name. The value is a string of 1 to 32 characters.
          */
@@ -69232,7 +70337,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -69454,7 +70560,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         bind_dn?: string;
         /**
          * The (plaintext) password to be set for I(dn).
@@ -69483,7 +70590,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -69676,7 +70784,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
         api_context?: {
           [k: string]: any;
@@ -69743,7 +70852,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A boolean flag indicating if Kerberos authentication should be used instead of the default basic authentication.
          */
@@ -69769,7 +70879,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A boolean flag indicating if the SDK should ask the server to send compressed responses. The default is I(True). Note that this is a hint for the server, and that it may return uncompressed data even when this parameter is set to I(True).
          */
@@ -69795,7 +70906,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -69943,7 +71055,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the value we want to set for the property.
          */
@@ -69991,7 +71104,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Default: present
@@ -70090,7 +71204,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Uuid of the pool group deployment policy.
          */
@@ -70262,7 +71377,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create/Delete SNMP community
        */
@@ -70377,7 +71493,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The SKU (pricing tier) of the server.
          */
@@ -70467,7 +71584,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: put
          *
@@ -70553,7 +71671,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * When C(system_mode_maintenance_dont_generate_profile=true) it prevents the dynamic searching of enabled protocols and executes commands configured in a maintenance-mode profile. Use this option if you want the system to use a maintenance-mode profile that you have created. When C(system_mode_maintenance_dont_generate_profile=false) it prevents the dynamic searching of enabled protocols and executes commands configured in a normal-mode profile. Use this option if you want the system to use a normal-mode profile that you have created.
@@ -70580,7 +71699,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Shuts down all protocols, vPC domains, and interfaces except the management interface (using the shutdown command). This option is disruptive while C(system_mode_maintenance) (which uses the isolate command) is not.
          */
@@ -70606,7 +71726,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_pass?: string;
         /**
          * Default: present
@@ -70660,7 +71781,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         use_ssl?:
           | boolean
           | (0 | 1)
@@ -70683,7 +71805,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -70707,7 +71830,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -70780,7 +71904,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -70840,7 +71965,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Name of the L3 interface.
@@ -70897,7 +72023,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -70921,7 +72048,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -71104,7 +72232,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the target VLAN.
          * Required if C(state) is C(present).
@@ -71149,7 +72278,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -71179,7 +72309,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         wait_poll_interval?: number | string;
         [k: string]: any;
       };
@@ -71217,7 +72348,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Unique object identifier of the object.
          */
@@ -71280,7 +72412,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Select the email notification configuration to use when sending alerts via email.
          * It is a reference to an object of type alertemailconfig.
@@ -71427,7 +72560,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Edit PAM service's type, control, module path and module arguments. In order for a PAM rule to be modified, the type, control and module_path must match an existing rule.  See man(5) pam.d for details.
        */
@@ -71504,7 +72638,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name generally refers to the PAM service file to change, for example system-auth.
          */
@@ -71624,7 +72759,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_username: string;
         /**
          * Default: 10
@@ -71654,7 +72790,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the async array you wish to target, or create.
          * If C(state) is present and the name isn't found, it will attempt to create.
@@ -71765,7 +72902,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Default: present
@@ -71843,7 +72981,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -71867,7 +73006,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -72028,7 +73168,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: latest
          *
@@ -72122,7 +73263,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Configures the NXAPI feature on devices running Cisco NXOS.  The NXAPI feature is absent from the configuration by default.  Since this module manages the NXAPI feature it only supports the use of the C(Cli) transport.
        */
@@ -72175,7 +73317,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -72198,7 +73341,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -72221,7 +73365,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -72251,7 +73396,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -72276,7 +73422,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -72312,7 +73459,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -72335,7 +73483,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -72358,7 +73507,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -72388,7 +73538,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -72413,7 +73564,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -72479,7 +73631,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Image UUID. Can either be a full UUID or C(*) for all images.
          */
@@ -72561,7 +73714,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -72585,7 +73739,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -72621,7 +73776,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         bind_dn?: string;
         server_uri?: string;
         /**
@@ -72665,7 +73821,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -72739,7 +73896,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -72763,7 +73921,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -72793,7 +73952,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -72877,7 +74037,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         service_account_file?: string;
         auth_kind?: "machineaccount" | "serviceaccount" | "application";
         /**
@@ -73090,7 +74251,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant_uuid?: string;
         [k: string]: any;
       };
@@ -73132,7 +74294,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Default: present
@@ -73186,7 +74349,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -73210,7 +74374,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -73309,7 +74474,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -73369,7 +74535,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -73460,7 +74627,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * sendgrid API key to use instead of username/password
          */
@@ -73540,7 +74708,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -73591,7 +74760,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Configure a routemap for static outgoing interface (OIF) or keyword 'default'.
          */
@@ -73618,7 +74788,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets the number of times that the software sends an IGMP query in response to a host leave message. Values can range from 1 to 5 or keyword 'default'. The default is 2.
          */
@@ -73650,7 +74821,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets the query interval waited after sending membership reports before the software deletes the group state. Values can range from 1 to 25 seconds or keyword 'default'. The default is 1 second.
          */
@@ -73694,7 +74866,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -73752,7 +74925,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Sets the robustness variable. Values can range from 1 to 7 or keyword 'default'. The default is 2.
@@ -73789,7 +74963,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets the response time advertised in IGMP queries. Values can range from 1 to 25 seconds or keyword 'default'. The default is 10 seconds.
          */
@@ -73882,7 +75057,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of server identifiers (name or id) to be removed from the private network.
          */
@@ -73958,7 +75134,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -73981,7 +75158,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -74004,7 +75182,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         /**
          * The desired hostname for the Windows host.
@@ -74037,7 +75216,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -74062,7 +75242,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -74114,7 +75295,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provide login password if user is not root.
          */
@@ -74144,7 +75326,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the type of NIC. Used for vrouter-interface remove/modify.
          */
@@ -74518,7 +75701,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -74593,7 +75777,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -74631,7 +75816,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Etherstub name.
          */
@@ -74713,7 +75899,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -74737,7 +75924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -74880,7 +76068,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Boolean value on whether to update the admin password. If set to false then the RO account is updated.
          */
@@ -74906,7 +76095,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the storage array. Note that if more than one storage array with this name is detected, the task will fail and you'll have to use the ID instead.
          */
@@ -75157,7 +76347,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: show
          *
@@ -75185,7 +76376,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage tenants on Cisco ACI fabrics.
        */
@@ -75248,7 +76440,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If specified, this free-form string is used to provide context or rationale for the reason this silence entry was created.
          */
@@ -75316,7 +76509,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -75363,7 +76557,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * VTP password
          */
@@ -75403,7 +76598,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -75427,7 +76623,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -75502,7 +76699,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         backup_path?: string;
         /**
          * Only for partial backup, you can restrict by giving expected configuration path (ex. firewall address).
@@ -75534,7 +76732,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         vdom?: string;
         [k: string]: any;
       };
@@ -75643,7 +76842,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -75686,7 +76886,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Send a message to typetalk using typetalk API ( http://developers.typetalk.in/ )
        */
@@ -75720,7 +76921,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages Layer 3 attributes for IPv4 and IPv6 interfaces on HUAWEI CloudEngine switches.
        */
@@ -75784,7 +76986,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -75808,7 +77011,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -75905,7 +77109,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -75928,7 +77133,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -75951,7 +77157,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -75981,7 +77188,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -76006,7 +77214,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -76132,7 +77341,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         /**
          * Name of the zone in which the network should be deployed.
@@ -76188,7 +77398,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_key?: string;
         /**
          * The ID or VID of the network.
@@ -76222,7 +77433,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The netmask of the network.
          * Required for shared networks and isolated networks when it belongs to a VPC.
@@ -76506,7 +77718,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -76571,7 +77784,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password: string;
         ip_address: string;
         [k: string]: any;
@@ -76637,7 +77851,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The operation to perform Supported values are I(add)/I(list)/I(delete).
          */
@@ -76839,7 +78054,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage BIG-IP system database variables
        */
@@ -76901,7 +78117,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -76932,7 +78149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         msg_time?: string;
         host?: string;
         timeout?: number | string;
@@ -76961,7 +78179,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         aggressive?: "enabled" | "disabled";
         password?: string;
         validate_certs?:
@@ -76986,7 +78205,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -77113,7 +78333,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -77137,7 +78358,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -77180,7 +78402,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Parameters associated to the entity resource to set or edit in dictionary format (e.g. name, description).
          */
@@ -77246,7 +78469,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Exchange persistent session entries with other GSLB sites every five seconds.
          */
@@ -77301,7 +78525,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_timeout?: number;
         /**
          * Exchange metrics with other sites. Metrics are exchanged by using Metric Exchange Protocol (MEP). The appliances in the GSLB setup exchange health information once every second.
@@ -77402,7 +78627,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Rotate log frequency in minutes, this is applicable if value of I(dest) is C(file). The acceptable value is in range of 1 to 59. This controls the frequency after which log file is rotated.
          */
@@ -77493,7 +78719,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Provide one or more image names, and the module will inspect each, returning an array of inspection results.
        */
@@ -77620,7 +78847,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -77649,7 +78877,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         auth_pass?: string;
@@ -77683,7 +78912,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Module to manage logical networks in oVirt/RHV
        */
@@ -77737,7 +78967,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
           | any[]
@@ -77770,7 +79001,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Datacenter name where network reside.
          */
@@ -77820,7 +79052,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -77901,7 +79134,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Timezone of the user to be created if account did not exist.
          */
@@ -77964,7 +79198,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * vDirect runnable file name to be uploaded.
          * May be velocity configuration template (.vm) or workflow template zip file (.zip).
@@ -78004,7 +79239,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Primary vDirect server IP address, may be set as VDIRECT_IP environment variable.
          */
@@ -78045,7 +79281,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * vDirect server password, may be set as VDIRECT_PASSWORD environment variable.
          */
@@ -78097,7 +79334,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Firmware-Revision value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
          */
@@ -78213,7 +79451,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of retries that must fail, out of the number specified for the Retries parameter, for a service to be marked as DOWN. For example, if the Retries parameter is set to 10 and the Failure Retries parameter is set to 6, out of the ten probes sent, at least six probes must fail if the service is to be marked as DOWN. The default value of 0 means that all the retries must fail if the service is to be marked as DOWN.
          * Minimum value = C(0)
@@ -78366,7 +79605,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Store Name. For monitors of type C(STOREFRONT), C(storename) is an optional argument defining storefront service store name. Applicable to C(STOREFRONT) monitors.
          * Minimum length = 1
@@ -78394,7 +79634,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Calculate the least response times for bound services. If this parameter is not enabled, the appliance does not learn the response times of the bound services. Also used for LRTM load balancing.
          */
@@ -78438,7 +79679,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Network Access Server (NAS) IP address to use as the source IP address when monitoring a RADIUS server. Applicable to monitors of type C(RADIUS) and C(RADIUS_ACCOUNTING).
          */
@@ -78491,7 +79733,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Probe the service by encoding the destination IP address in the IP TOS (6) bits.
          */
@@ -78517,7 +79760,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of consecutive successful probes required to transition a service's state from DOWN to UP.
          * Minimum value = C(1)
@@ -78549,7 +79793,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Type of monitor that you want to create.
          */
@@ -78651,7 +79896,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of Acct-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message.
          * Minimum value = C(0)
@@ -78705,7 +79951,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         /**
          * Community name for C(SNMP) monitors.
@@ -79065,7 +80312,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -79088,7 +80336,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -79111,7 +80360,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -79141,7 +80391,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -79166,7 +80417,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -79260,7 +80512,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable handle BGP neighbor down event, due to various reasons.
          */
@@ -79286,7 +80539,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * AS confederation parameters.
          */
@@ -79344,7 +80598,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set BGP hold timer.
          */
@@ -79371,7 +80626,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable load sharing across the providers with different (but equal-length) AS paths.
          */
@@ -79397,7 +80653,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -79438,7 +80695,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set BGP keepalive timer.
          */
@@ -79468,7 +80726,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable immediately reset the session if the link to a directly connected BGP peer goes down.  Only supported in the global BGP context.
          */
@@ -79494,7 +80753,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -79526,7 +80786,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable the batching evaluation of prefix advertisements to all peers with prefix list.
          */
@@ -79556,7 +80817,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable assigns the value of infinity to received routes that do not carry the MED attribute, making these routes the least desirable.
          */
@@ -79582,7 +80844,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Router Identifier (ID) of the BGP router VRF instance.
          */
@@ -79616,7 +80879,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -79649,7 +80913,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Enable/Disable the batching evaluation of prefix advertisements to all peers with prefix list.
@@ -79684,7 +80949,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable message logging for neighbor up/down event.
          */
@@ -79710,7 +80976,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * BGP autonomous system number. Valid values are String, Integer in ASPLAIN or ASDOT notation.
@@ -79764,7 +81031,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable flush routes in RIB upon controlled restart. On NX-OS, this property is only supported in the global BGP context.
          */
@@ -79790,7 +81058,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable enforces the neighbor autonomous system to be the first AS number listed in the AS path attribute for eBGP. On NX-OS, this property is only supported in the global BGP context.
          */
@@ -79816,7 +81085,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable deterministic selection of the best MED pat from among the paths from the same autonomous system.
          */
@@ -79842,7 +81112,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * The BGP reconnection interval for dropped sessions. Valid values are between 1 and 60.
@@ -79874,7 +81145,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -79897,7 +81169,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable/Disable comparison of router IDs for identical eBGP paths.
          */
@@ -79923,7 +81196,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -79953,7 +81227,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Adds an export and import list of extended route target communities to the VRF.
@@ -80026,7 +81301,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Default: 10
@@ -80100,7 +81376,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -80123,7 +81400,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -80146,7 +81424,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -80176,7 +81455,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -80201,7 +81481,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -80255,7 +81536,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 60
          *
@@ -80290,7 +81572,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -80318,7 +81601,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of Radware Alteon device names for commit operations.
          */
@@ -80363,7 +81647,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Secondary vDirect server IP address, may be set as C(VDIRECT_SECONDARY_IP) environment variable.
          */
@@ -80395,7 +81680,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -80424,7 +81710,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * vDirect server password, may be set as C(VDIRECT_PASSWORD) environment variable.
          */
@@ -80442,7 +81729,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create or remove a Distributed vSwitch portgroup.
        */
@@ -80647,7 +81935,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -80877,7 +82166,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password: string;
         ip_address: string;
         /**
@@ -81002,7 +82292,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Register and remove ISO images.
        */
@@ -81055,7 +82346,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Turns NTP authentication on or off.
          */
@@ -81096,7 +82388,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -81120,7 +82413,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -81166,7 +82460,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password of the user to login into OpenNebula RPC server. If not set
          * then the value of the C(ONE_PASSWORD) environment variable is used.
@@ -81275,7 +82570,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Wheater the service is enabled or not, if disabled it also implies stopped. Make note that a service can be enabled and downed (no auto restart).
          */
@@ -81301,7 +82597,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /service
          *
@@ -81345,7 +82642,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -81415,7 +82713,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: Medium
          *
@@ -81468,7 +82767,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The string in the httpFile that the monitor queries for HTTP or HTTPS.
          */
@@ -81548,7 +82848,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -81589,7 +82890,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -81727,7 +83029,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -81757,7 +83060,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -81793,7 +83097,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Message time in seconds for UDLD packets or keyword 'default'.
          */
@@ -81825,7 +83130,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Toggles aggressive mode.
          */
@@ -81853,7 +83159,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -81983,7 +83290,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         state?: "present" | "absent";
         /**
          * Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
@@ -82021,7 +83329,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_timeout?: number;
         [k: string]: any;
       };
@@ -82078,7 +83387,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Gather facts about AWS KMS keys including tags and grants
        */
@@ -82131,7 +83441,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Associates a specified VPN instance with the IPv4 address family. The value is a string of 1 to 31 case-sensitive characters, spaces not supported.
          */
@@ -82181,7 +83492,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Specifies the IPv4 address of a BGP EVPN peer. The value is in dotted decimal notation.
@@ -82239,7 +83551,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         port?: number | string;
         transport?: string;
@@ -82284,7 +83597,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the setting. If no value is supplied, the value will be read from the config if it has been set.
          */
@@ -82322,7 +83636,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         timeout?: number | string;
         ssh_keyfile?: string;
         /**
@@ -82365,7 +83680,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Suppresses advertisement of the NVE loopback address until the overlay has converged.
          */
@@ -82396,7 +83712,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -82426,7 +83743,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -82450,7 +83768,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -82502,7 +83821,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manage taboo contracts on Cisco ACI fabrics.
        */
@@ -82585,7 +83905,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         priority_id?: string;
         peer_link_id?: string;
         vpn_instance_name?: string;
@@ -82622,7 +83943,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         ip_address?: string;
         port?: number | string;
@@ -82684,7 +84006,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -82708,7 +84031,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -82940,7 +84264,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * If value of C(dest) is I(host) C(name) should be specified, which indicates hostname or IP address.
@@ -83009,7 +84334,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -83033,7 +84359,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         /**
@@ -83111,7 +84438,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Proxyconfiguration settings for systemconfiguration.
          */
@@ -83283,7 +84611,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -83367,7 +84696,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -83552,7 +84882,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * ID of the VLAN. Range 1-4094.
@@ -83607,7 +84938,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Group to which the community belongs.
@@ -83659,7 +84991,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -83683,7 +85016,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -83736,7 +85070,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Count of cpus to be assigned to new virtual instance.
          */
@@ -83768,7 +85103,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Domain name to be provided to a virtual instance.
          */
@@ -83804,7 +85140,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of ssh keys by their Id to be assigned to a virtual instance.
          */
@@ -83888,7 +85225,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Datacenter for the virtual instance to be deployed.
          */
@@ -83963,7 +85301,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -84089,7 +85428,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         port?: number | string;
         transport?: string;
@@ -84110,7 +85450,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * List details of EC2 Placement Group(s).
        */
@@ -84150,7 +85491,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Default: present
@@ -84206,7 +85548,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Configure the device hostname parameter. This option takes an ASCII string value or keyword 'default'
@@ -84247,7 +85590,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -84271,7 +85615,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -84319,7 +85664,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * List of VLANs definitions.
@@ -84381,7 +85727,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         timeout?: number | string;
         provider?: {
@@ -84416,7 +85763,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This module works like M(copy), but in reverse. It is used for fetching files from remote machines and storing them locally in a file tree, organized by hostname.
        * This module is also supported for Windows targets.
@@ -84454,7 +85802,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Used when acquiring a lock with a session. If the C(cas) is C(0), then Consul will only put the key if it does not already exist. If the C(cas) value is non-zero, then the key is only set if the index matches the ModifyIndex of that key.
          */
@@ -84486,7 +85835,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -84552,7 +85902,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 8500
          *
@@ -84599,7 +85950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -84622,7 +85974,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -84650,7 +86003,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -84680,7 +86034,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -84705,7 +86060,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -84754,7 +86110,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the ejabberd host associated with this username
          */
@@ -84829,7 +86186,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: network
          *
@@ -84997,7 +86355,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: put
          *
@@ -85053,7 +86412,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -85086,7 +86446,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         use_ssl?:
           | boolean
           | (0 | 1)
@@ -85109,7 +86470,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -85133,7 +86495,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -85183,7 +86546,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -85211,7 +86575,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A package name, like C(foo), or multiple packages, like C(foo, bar).
          */
@@ -85266,7 +86631,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -85298,7 +86664,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -85321,7 +86688,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -85344,7 +86712,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -85374,7 +86743,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -85399,7 +86769,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -85477,7 +86848,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * In case if single play use blocks management module few times it is preferred to enabled 'caching' by making previous module to share gathered artifacts and pass them to this parameter.
          *
@@ -85698,7 +87070,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -85721,7 +87094,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -85744,7 +87118,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -85774,7 +87149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -85799,7 +87175,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -85992,7 +87369,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Header name for custom header persistence.
          */
@@ -86024,7 +87402,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Degree of non-affinity for core afffinity based server selection.
          * Allowed values are 1-65535.
@@ -86059,7 +87438,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If sni server name is specified, rewrite incoming host header to the sni server name.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -86086,7 +87466,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Inline estimation of capacity of servers.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -86113,7 +87494,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Rate limit connections to each server.
          */
@@ -86164,7 +87546,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Manually select the networks and subnets used to provide reachability to the pool's servers.
          * Specify the subnet using the following syntax  10-1-1-0/24.
@@ -86201,7 +87584,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The maximum time-to-first-byte of a server.
          * Allowed values are 1-5000.
@@ -86250,7 +87634,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (internal-use) networks designated as containing servers for this pool.
          * The servers may be further narrowed down by a filter.
@@ -86322,7 +87707,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Reference to server autoscale policy.
          * It is a reference to an object of type serverautoscalepolicy.
@@ -86422,7 +87808,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Traffic sent to servers will use this destination server port unless overridden by the server's specific port attribute.
          * The ssl checkbox enables avi to server encryption.
@@ -86502,7 +87889,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Priority of this pool in a a-b pool pair.
          * Internally used.
@@ -86534,7 +87922,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the pool.
          */
@@ -86635,7 +88024,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -86717,7 +88107,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the database.
          */
@@ -86881,7 +88272,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -86905,7 +88297,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -86943,7 +88336,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -86966,7 +88360,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -86989,7 +88384,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -87019,7 +88415,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -87044,7 +88441,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -87104,7 +88502,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -87197,7 +88596,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * The banner text that should be present in the remote device running configuration. This argument accepts a multiline string, with no empty lines. Requires I(state=present).
@@ -87241,7 +88641,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -87265,7 +88666,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -87321,7 +88723,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The GitHub account that owns the repository
          */
@@ -87357,7 +88760,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The GitHub account password for the user
          */
@@ -87417,7 +88821,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Searches for all valid potential target and source volumes that could be used in a copy_pair
          * Mutually exclusive with volume_copy_pair_id, destination_volume_id and source_volume_id
@@ -87473,7 +88878,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The username to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -87512,7 +88918,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssid: string;
         [k: string]: any;
       };
@@ -87573,7 +88980,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The architecture for the container (e.g. "x86_64" or "i686"). See U(https://github.com/lxc/lxd/blob/master/doc/rest-api.md#post-1)
          */
@@ -87609,7 +89017,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: started
          *
@@ -87666,7 +89075,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a container.
          */
@@ -87710,7 +89120,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -87734,7 +89145,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -87792,7 +89204,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The minimum size of the storage pool (in size_unit). The pool will be expanded if this value exceeds itscurrent size.
          */
@@ -87830,7 +89243,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_password: string;
         /**
          * Only required when the requested state is 'present'.  The RAID level of the storage pool to be created.
@@ -87874,7 +89288,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The type of disk (hdd or ssd) to use when searching for candidates to use.
          */
@@ -87909,7 +89324,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The interface type to use when selecting drives for the storage pool (no value means all interface types will be considered)
          */
@@ -87936,7 +89352,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set the number of drives reserved by the storage pool for reconstruction operations. Only valide on raid disk pools.
          */
@@ -88023,7 +89440,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use the C(--ignore-scripts) flag when installing.
          */
@@ -88049,7 +89467,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -88081,7 +89500,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The registry to install modules from.
          */
@@ -88167,7 +89587,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -88190,7 +89611,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -88213,7 +89635,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -88243,7 +89666,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -88268,7 +89692,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -88340,7 +89765,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the resource group.
          */
@@ -88371,7 +89797,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         secret?: string;
@@ -88421,7 +89848,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -88486,7 +89914,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -88510,7 +89939,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -88580,7 +90010,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         avi_credentials?: {
           [k: string]: any;
         };
@@ -88626,7 +90057,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -88730,7 +90162,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         secret?: string;
@@ -88893,7 +90326,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -89040,7 +90474,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -89082,7 +90517,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create, update and remove hosts.
        */
@@ -89173,7 +90609,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         disk_refs?:
           | string
           | any[]
@@ -89232,7 +90669,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The machine name to use (optional for accounts with only one machine)
          */
@@ -89270,7 +90708,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The webfaction password to use
          */
@@ -89322,7 +90761,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         priority_id?: string;
         peer_link_id?: string;
         vpn_instance_name?: string;
@@ -89359,7 +90799,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         ip_address?: string;
         port?: number | string;
@@ -89431,7 +90872,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password for C(username) to authenticate against the broker.
          */
@@ -89516,7 +90958,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the number of configuration rollback points. The value is an integer that ranges from 1 to 80.
          */
@@ -89543,7 +90986,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -89607,7 +91051,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of pre-started VMs defines the number of VMs in run state, that are waiting to be attached to Users.
          * Default value is set by engine.
@@ -89654,7 +91099,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -89763,7 +91209,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (String) The instance profile iamRole name
          * Only use iam_role_arn, or iam_role_name
@@ -89867,7 +91314,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (String) The instance profile iamRole arn
          * Only use iam_role_arn, or iam_role_name
@@ -90060,7 +91508,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (Object) The Chef integration configuration.; Expects the following keys - chef_server (String), organization (String), user (String), pem_key (String), chef_version (String)
          */
@@ -90110,7 +91559,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (Boolean) Whether or not the elastigroup creation / update actions should wait for the instances to spin
          */
@@ -90136,7 +91586,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (List of Strings) Spot instance type that will be provisioned.
          */
@@ -90202,7 +91653,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -90251,7 +91703,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Channel-group number for the port-channel Link aggregation group. Range 1-255.
@@ -90298,7 +91751,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Mode of the link aggregation group.
@@ -90375,7 +91829,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -90403,7 +91858,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -90431,7 +91887,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /usr/ports
          *
@@ -90568,7 +92025,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Gathers facts by reading the status.json and result.json of cloud-init.
        */
@@ -90631,7 +92089,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -90654,7 +92113,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -90677,7 +92137,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -90707,7 +92168,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -90732,7 +92194,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -90838,7 +92301,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -90867,7 +92331,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Default: present
@@ -90939,7 +92404,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_source?: "auto" | "cli" | "env" | "credential_file" | "msi";
         [k: string]: any;
       };
@@ -91003,7 +92469,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         auth_pass?: string;
@@ -91095,7 +92562,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enabling or disabling the VXLAN service extension function.
          */
@@ -91123,7 +92591,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -91176,7 +92645,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the host of the Proxmox VE cluster
          */
@@ -91242,7 +92712,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the template name
          * required only for states C(absent), C(info)
@@ -91294,7 +92765,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         use_ssl?:
           | boolean
@@ -91318,7 +92790,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         /**
@@ -91365,7 +92838,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -91433,7 +92907,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -91570,7 +93045,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -91641,7 +93117,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -91665,7 +93142,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -91726,7 +93204,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -91817,7 +93296,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use the --ignore-scripts flag when installing.
          */
@@ -91843,7 +93323,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -91877,7 +93358,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The registry to install modules from.
          */
@@ -91924,7 +93406,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -91947,7 +93430,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -91970,7 +93454,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -92000,7 +93485,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -92025,7 +93511,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -92210,7 +93697,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -92233,7 +93721,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -92256,7 +93745,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -92286,7 +93776,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -92311,7 +93802,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -92432,7 +93924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -92455,7 +93948,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_config?:
           | boolean
           | (0 | 1)
@@ -92478,7 +93972,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 5
          *
@@ -92516,7 +94011,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nitro_protocol?: "http" | "https";
         nsip: string;
         /**
@@ -92555,7 +94051,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
          * Minimum value = C(0)
@@ -92688,7 +94185,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -92711,7 +94209,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -92734,7 +94233,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -92764,7 +94264,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         /**
@@ -92794,7 +94295,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -92836,7 +94338,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -92859,7 +94362,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Defines which variable should be returned, or if I(value) is specified which variable should be updated.
          */
@@ -92935,7 +94439,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * MAC Address for the primary PXE boot network interface.
          */
@@ -92994,7 +94499,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -93071,7 +94577,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_version?: string;
         /**
          * Certificate revocation lists.
@@ -93115,7 +94622,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         controller?: string;
         api_context?: {
           [k: string]: any;
@@ -93163,7 +94671,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of certificate authorities (root and intermediate) trusted that is used for certificate validation.
          */
@@ -93199,7 +94708,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant_uuid?: string;
         [k: string]: any;
       };
@@ -93292,7 +94802,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 80
          *
@@ -93387,7 +94898,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -93438,7 +94950,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The source IP Address.
          */
@@ -93537,7 +95050,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -93578,7 +95092,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -93602,7 +95117,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -93702,7 +95218,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Channel to send the message to. If absent, the message goes to the channel selected for the I(token).
          */
@@ -93817,7 +95334,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The virtual server name you wish to manage.
          */
@@ -93874,7 +95392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Username to connect to vcenter as.
          */
@@ -93922,7 +95441,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A key, value pair of any extra values you want set or changed in the vmx file of the VM. Useful to set advanced options on the VM.
          */
@@ -93956,7 +95476,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password of the user to connect to vcenter as.
          */
@@ -93988,7 +95509,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the source template to deploy from
          */
@@ -94019,7 +95541,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Apstra AOS Device module let you manage your devices in AOS easily. You can approve devices and define in which state the device should be. Currently only the state I(normal) is supported but the goal is to extend this module with additional state. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
        */
@@ -94071,7 +95594,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The AOS internal id for a device; i.e. uniquely identifies the device in the AOS system. Only one of I(name) or I(id) can be set.
          */
@@ -94217,7 +95741,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * VPN instance route distinguisher,the RD used to distinguish same route prefix from different vpn. The RD must be setted before setting vpn_target_value.
@@ -94253,7 +95778,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -94277,7 +95803,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -94409,7 +95936,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages MySQL server replication, slave, master status get and change master host.
        */
@@ -94440,7 +95968,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * same as mysql variable
          */
@@ -94505,7 +96034,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_host?: string;
         /**
          * same as mysql variable
@@ -94694,7 +96224,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Create or delete VLAN interfaces on Solaris/illumos systems.
        */
@@ -94813,7 +96344,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The schema to which the connection should change to by default.
          */
@@ -94843,7 +96375,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_port?: number | string;
         login_user?: string;
         login_host?: string;
@@ -94873,7 +96406,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -94901,7 +96435,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_unix_socket?: string;
         /**
          * Default: present
@@ -94934,7 +96469,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_to_runtime?:
           | boolean
           | (0 | 1)
@@ -94957,7 +96493,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -94980,7 +96517,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A user with I(active) set to C(False) will be tracked in the database, but will be never loaded in the in-memory data structures. If omitted the proxysql database default for I(active) is C(True).
          */
@@ -95006,7 +96544,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         config_file?: string;
         /**
          * Password of the user connecting to the mysqld or ProxySQL instance.
@@ -95060,7 +96599,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The C(config) argument specifies the base configuration to use to compare against the desired configuration.  If this value is not specified, the module will automatically retrieve the current active configuration from the remote device.
          */
@@ -95108,7 +96648,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         /**
          * Default: line
@@ -95145,7 +96686,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -95281,7 +96823,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Snapshot from which to create a clone.
          */
@@ -95358,7 +96901,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -95382,7 +96926,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -95464,7 +97009,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Indicates the weight of the next hop. The smaller the value is, the higher the preference of the route is. It is an integer that ranges from 1 to 254.
          */
@@ -95539,7 +97085,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -95571,7 +97118,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -95594,7 +97142,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -95617,7 +97166,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -95647,7 +97197,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -95672,7 +97223,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -95747,7 +97299,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Imported certificate alias.
          */
@@ -95944,7 +97497,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Name of the L3 interface to be configured eg. ethernet1
@@ -96001,7 +97555,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -96025,7 +97580,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -96165,7 +97721,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * authcode to be applied
          */
@@ -96254,7 +97811,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -96278,7 +97836,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -96310,7 +97869,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Group range is treated in PIM bidirectional mode.
@@ -96337,7 +97897,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Route map policy for static RP. Valid values are route-map policy names.
          */
@@ -96388,7 +97949,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -96412,7 +97974,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -96518,7 +98081,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Configure the TC BPDU protection function for an MSTP process.
          */
@@ -96601,7 +98165,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -96657,7 +98222,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Send a SMS message via nexmo
        */
@@ -96713,7 +98279,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -96736,7 +98303,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Additional description of the network domain.
          */
@@ -96824,7 +98392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password: string;
         ip_address: string;
         [k: string]: any;
@@ -97029,7 +98598,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -97052,7 +98622,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -97075,7 +98646,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -97105,7 +98677,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -97130,7 +98703,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The port number to poll on C(host).
          */
@@ -97221,7 +98795,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -97245,7 +98820,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -97288,7 +98864,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -97311,7 +98888,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -97334,7 +98912,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -97364,7 +98943,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -97389,7 +98969,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -97495,7 +99076,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -97543,7 +99125,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -97566,7 +99149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -97589,7 +99173,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -97619,7 +99204,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -97644,7 +99230,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -97683,7 +99270,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -97745,7 +99333,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -97768,7 +99357,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -97791,7 +99381,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -97821,7 +99412,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -97846,7 +99438,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -97907,7 +99500,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Manages Homebrew packages
        */
@@ -98212,7 +99806,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no_use
          *
@@ -98466,7 +100061,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no_use
          *
@@ -98542,7 +100138,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -98566,7 +100163,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -98582,7 +100180,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * The M(proxysql_global_variables) module writes the proxysql configuration settings between layers. Currently this module will always report a changed state, so should typically be used with WHEN however this will change in a future version when the CHECKSUM table commands are available for all tables in proxysql.
        */
@@ -98667,7 +100266,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies a priority for BFD control packets. The value is an integer ranging from 0 to 7. The default value is 7, which is the highest priority.
          */
@@ -98718,7 +100318,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the name of a BFD session. The value is a string of 1 to 15 case-sensitive characters without spaces.
          */
@@ -98746,7 +100347,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         [k: string]: any;
@@ -98779,7 +100381,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * Retrieve facts about ports from OpenStack.
        */
@@ -98840,7 +100443,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the channel
          */
@@ -99180,7 +100784,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -99250,7 +100855,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         /**
          * Interface link speed.
@@ -99321,7 +100927,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (ipv4|ipv6|fqdn):port of the Apache httpd 2.4 mod_proxy balancer pool.
          */
@@ -99367,7 +100974,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -99413,7 +101021,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A connection between avi and server is considered lossy when more than this percentage of packets are retransmitted due to timeout.
          * Allowed values are 1-100.
@@ -99467,7 +101076,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Dos connection rate below which the dos security assessment will not kick in.
          * Default value when not specified in API or module is interpreted by Avi Controller as 1000.
@@ -99499,7 +101109,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Exclude invalid dns queries from the list of errors.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -99526,7 +101137,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum penalty that may be deducted from health score for high resource utilization.
          * Allowed values are 0-100.
@@ -99584,7 +101196,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A server http response is considered satisfied if latency is less than the satisfactory latency threshold.
          * The response is considered tolerated when it is greater than satisfied but less than the tolerated latency factor * s_latency.
@@ -99647,7 +101260,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of http status codes to be excluded from being classified as an error.
          * Error connections or responses impacts health score, are included as significant logs, and may be classified as part of a dos attack.
@@ -99702,7 +101316,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Patch operation to use when using avi_api_update_method as patch.
          */
@@ -99744,7 +101359,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Exclude persistence server changed while load balancing' from the list of errors.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -99771,7 +101387,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Exclude client closed connection before an http request could be completed from being classified as an error.
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
@@ -99798,7 +101415,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Penalty for allowing non-pfs handshakes.
          * Allowed values are 0-5.
@@ -99905,7 +101523,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of http status code ranges to be excluded from being classified as an error.
          */
@@ -99942,7 +101561,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         controller?: string;
         /**
          * Satisfactory client to avi round trip time(rtt).
@@ -99980,7 +101600,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Score assigned when the certificate expires in less than or equal to 7 days.
          * Allowed values are 0-5.
@@ -100076,7 +101697,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Maximum penalty that may be deducted from health score based on security assessment.
          * Allowed values are 0-100.
@@ -100158,7 +101780,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -100239,7 +101862,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -100279,7 +101903,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A string of ssh key options to be prepended to the key in the authorized_keys file
          */
@@ -100326,7 +101951,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -100356,7 +101982,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -100384,7 +102011,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -100468,7 +102096,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Content of the message
          */
@@ -100568,7 +102197,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -100591,7 +102221,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -100614,7 +102245,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -100644,7 +102276,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -100669,7 +102302,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -100710,7 +102344,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -100733,7 +102368,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -100756,7 +102392,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -100786,7 +102423,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -100811,7 +102449,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -100877,7 +102516,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The explicit executable or a pathname to the executable to be used to run pip for a specific version of Python installed in the system. For example C(pip-3.3), if there are both Python 2.7 and 3.3 installations in the system and you want to run pip for the Python 3.3 installation. It cannot be specified together with the 'virtualenv' parameter (added in 2.1). By default, it will take the appropriate version for the python interpreter use by ansible, e.g. pip3 on python 3, and pip2 or pip on python 2.
          */
@@ -100935,7 +102575,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: virtualenv
          *
@@ -100964,7 +102605,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Extra arguments passed to pip.
          */
@@ -101146,7 +102788,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: str
          *
@@ -101224,7 +102867,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Revision number/sha being deployed.
          */
@@ -101317,7 +102961,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When true, equivalent to both I(commit) and I(abort) being true. Mutually exclusive with I(commit) and I(atomic).
          */
@@ -101343,7 +102988,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A single, multi-line string with jinja2 formatting. This string will be broken by lines, and each line will be run through net. Mutually exclusive with I(commands).
          */
@@ -101373,7 +103019,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -101654,7 +103301,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "netconf";
         /**
@@ -101804,7 +103452,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -101964,7 +103613,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of subnet.
          */
@@ -102025,7 +103675,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         controller?: string;
         api_context?: {
           [k: string]: any;
@@ -102079,7 +103730,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Select the ip address management scheme for this network.
          * Default value when not specified in API or module is interpreted by Avi Controller as True.
@@ -102106,7 +103758,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant_uuid?: string;
         [k: string]: any;
       };
@@ -102192,7 +103845,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -102227,7 +103881,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Default: present
@@ -102511,7 +104166,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The system image ID for the volume, e.g. a3eae284-a2fe-11e4-b187-5f1f641608c8. This can also be a snapshot image ID.
          */
@@ -102578,7 +104234,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: HDD
          *
@@ -102625,7 +104282,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Preference keys typically have simple values such as strings, integers, or lists of strings and integers. This is ignored if the state is "get". See man gconftool-2(1)
          */
@@ -102710,7 +104368,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -102741,7 +104400,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * IPv4 or IPv6 Address.
          */
@@ -102800,7 +104460,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -102824,7 +104485,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -102880,7 +104542,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -102903,7 +104566,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -102926,7 +104590,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -102956,7 +104621,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -102981,7 +104647,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -103018,7 +104685,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Backup name
          */
@@ -103050,7 +104718,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -103078,7 +104747,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -103106,7 +104776,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -103134,7 +104805,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -103162,7 +104834,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -103190,7 +104863,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -103218,7 +104892,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -103246,7 +104921,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Storage path where the mksysb will stored.
          */
@@ -103264,7 +104940,8 @@ export type Ansible26 = (
           }
         | {
             [k: string]: any;
-          });
+          }
+      );
       /**
        * This command module allows running one or more commands on a remote device running EdgeOS, such as the Ubiquiti EdgeRouter.
        * This module does not support running commands in configuration mode.
@@ -103338,7 +105015,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         /**
@@ -103378,7 +105056,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -103402,7 +105081,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -103460,7 +105140,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash, number, tag, or other identifier showing what revision was deployed
          */
@@ -103689,7 +105370,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the database.
          */
@@ -103859,7 +105541,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -103969,7 +105652,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -103992,7 +105676,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -104015,7 +105700,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -104045,7 +105731,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -104070,7 +105757,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -104107,7 +105795,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * add a destination to hard link against during the rsync.
          */
@@ -104144,7 +105833,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -104172,7 +105862,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -104200,7 +105891,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -104228,7 +105920,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -104256,7 +105949,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: Value of ansible_ssh_port for this host, remote_port config setting, or the value from ssh client configuration if none of those are set
          *
@@ -104291,7 +105985,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -104319,7 +106014,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the rsync command to run on the remote host. See C(--rsync-path) on the rsync man page.
          */
@@ -104355,7 +106051,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -104383,7 +106080,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the private key to use for SSH-based rsync connections (e.g. C(~/.ssh/id_rsa))
          */
@@ -104410,7 +106108,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -104438,7 +106137,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a --timeout for the rsync command in seconds.
          */
@@ -104479,7 +106179,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -104507,7 +106208,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Path on the source host that will be synchronized to the destination; The path can be absolute or relative.
          */
@@ -104539,7 +106241,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -104567,7 +106270,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: push
          *
@@ -104602,7 +106306,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -104659,7 +106364,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Prefix of the exported configuration file.
          * Field introduced in 17.1.1.
@@ -104691,7 +106397,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         /**
          * Default: present
@@ -104904,7 +106611,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the hosts names, which should have assigned this affinity label.
          */
@@ -104949,7 +106657,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -104992,7 +106701,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -105081,7 +106791,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         /**
          * Path to local file. Local directory must exist.
@@ -105126,7 +106837,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -105150,7 +106862,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The remote file system of the device. If omitted, devices that support a I(file_system) parameter will use their default values.
          */
@@ -105245,7 +106958,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /var/run/haproxy.sock
          *
@@ -105310,7 +107024,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -105338,7 +107053,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -105366,7 +107082,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -105406,7 +107123,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         timeout?: number | string;
         provider?: {
@@ -105434,7 +107152,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -105458,7 +107177,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -105563,7 +107283,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Service account email
          */
@@ -105650,7 +107371,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -105673,7 +107395,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -105696,7 +107419,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -105726,7 +107450,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -105751,7 +107476,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -105850,7 +107576,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a time range in which an ACL rule takes effect.
          */
@@ -105902,7 +107629,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * ICMP type. This parameter is available only when the packet protocol is ICMP. The value is an integer ranging from 0 to 255.
          */
@@ -105963,7 +107691,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Internet Group Management Protocol.
          */
@@ -106095,7 +107824,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Range type of the destination port.
          */
@@ -106122,7 +107852,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * ID of a basic ACL rule in configuration mode. The value is an integer ranging from 0 to 4294967294.
          */
@@ -106339,7 +108070,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -106362,7 +108094,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -106385,7 +108118,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -106415,7 +108149,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -106440,7 +108175,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -106481,7 +108217,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -106522,7 +108259,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -106546,7 +108284,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "nxapi";
         [k: string]: any;
@@ -106591,7 +108330,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -106614,7 +108354,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -106637,7 +108378,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -106667,7 +108409,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -106692,7 +108435,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -106781,7 +108525,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Character used to split the database values into lists/arrays such as ':' or '	', otherwise  it will try to pick one depending on the database.
          */
@@ -106864,7 +108609,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         provider?: {
           [k: string]: any;
         };
@@ -106906,7 +108652,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         /**
          * Mode of the link aggregation group.
@@ -106956,7 +108703,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password?: string;
         validate_certs?:
           | boolean
@@ -106980,7 +108728,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "cli" | "eapi";
         [k: string]: any;
@@ -107016,7 +108765,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -107039,7 +108789,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -107062,7 +108813,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -107097,7 +108849,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -107122,7 +108875,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -107244,7 +108998,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the volume group.
          */
@@ -107345,7 +109100,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_profile?:
           | boolean
           | (0 | 1)
@@ -107368,7 +109124,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive?:
           | boolean
           | (0 | 1)
@@ -107391,7 +109148,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         interactive_session?: number | string;
         hostname: string;
         integrity_level?: "default" | "elevated" | "limited";
@@ -107421,7 +109179,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         process_password?: string;
         connection_timeout?: number | string;
         encrypt?:
@@ -107446,7 +109205,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         stdin?: string;
         process_timeout?: number | string;
@@ -107479,7 +109239,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssh_keyfile?: string;
         auth_pass?: string;
         host?: string;
@@ -107541,7 +109302,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The SKU (pricing tier) of the server.
          */
@@ -107687,7 +109449,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host?: string;
         timeout?: number | string;
         provider?: {
@@ -107754,7 +109517,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of VLANs definitions.
          */
@@ -107879,7 +109643,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         [k: string]: any;
       };
       /**
@@ -108015,7 +109780,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the MAC address of the port.
          */
@@ -108049,7 +109815,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify if the configuration receives mirrored traffic.
          */
@@ -108075,7 +109842,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify an egress port data rate limit for the configuration.
          */
@@ -108125,7 +109893,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the port speed or disable the port.
          */
@@ -108155,7 +109924,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify if the port can receive jumbo frames.
          */
@@ -108181,7 +109951,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provide login password if user is not root.
          */
@@ -108232,7 +110003,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a description for the trunk configuration.
          */
@@ -108278,7 +110050,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cert_validation_mode?: "validate" | "ignore";
         secret?: string;
@@ -108400,7 +110173,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The LUN number you wish to give the mapping
          * If the supplied I(volume_name) is associated with a different LUN, it will be updated to what is supplied here.
@@ -108441,7 +110215,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -108469,7 +110244,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state.
          */
@@ -108530,7 +110306,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -108558,7 +110335,8 @@ export type Ansible26 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The number of minutes after the last notification before a monitor will re-notify on the current status. It will only re-notify if it's not resolved.
          */
@@ -108618,4 +110396,5 @@ export type Ansible26 = (
         [k: string]: any;
       };
       [k: string]: any;
-    })[];
+    }
+)[];

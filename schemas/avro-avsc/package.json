@@ -7,8 +7,8 @@
   "name": "@schemastore/avro-avsc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/avro-avsc",
   "scripts": {},
-  "typesPublisherContentHash": "8984e4500c2b709e7613b56905214782b4ed8bc21909646560422e219aa1df03",
+  "typesPublisherContentHash": "4b065f923ae66a8041bb654564dfb01eaa5fc6b5fc987dcbda5f5deb614e4322",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

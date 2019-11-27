@@ -8,7 +8,7 @@
 /**
  * MTA DESCRIPTOR SCHEMA
  */
-export interface ComSapMtaMtaSchema_320 {
+export interface ComSapMtaMtaSchema_33 {
   /**
    * The schema version that is being used for authoring a descriptor. The schema version should comply with the semantic versioning standard.
    */
@@ -86,6 +86,85 @@ export interface ComSapMtaMtaSchema_320 {
       optional?: boolean;
       [k: string]: any;
     };
+    /**
+     * A list of hooks that will be executed for the module.
+     */
+    hooks?: {
+      /**
+       * An internal name which can be used for documentation purposes and shown by the deployer.
+       */
+      name: string;
+      /**
+       * Defines the type of action that should be executed by the deployer.
+       */
+      type?: "task";
+      /**
+       * A list of strings that define the points at which the hook must be executed.
+       */
+      phases?: (
+        | "application.before-stop.live"
+        | "application.before-stop.idle"
+        | "application.after-stop.live"
+        | "application.after-stop.idle"
+      )[];
+      /**
+       * Configuration parameters that are used when executing the hook to the target runtime environment.
+       */
+      parameters?: {
+        /**
+         * Defines the name of the Cloud Foundry task that should be executed.
+         */
+        name?: string;
+        /**
+         * Defines the actual command that is executed as a Cloud Foundry task.
+         */
+        command?: string;
+        /**
+         * Defines the memory that is available to the Cloud Foundry task.
+         */
+        memory?: string;
+        /**
+         * Defines the disk space that is available to the Cloud Foundry task.
+         */
+        "disk-quota"?: string;
+        [k: string]: any;
+      };
+      /**
+       * Additional information about the hook's parameters.
+       */
+      "parameters-metadata"?: {
+        overwritable?: boolean;
+        optional?: boolean;
+        datatype?: "str" | "int" | "float" | "bool";
+        [k: string]: any;
+      };
+      /**
+       * List of names either matching a resource name or a provided dependency name provided within the same MTA that are required by this hook.
+       */
+      requires?: {
+        /**
+         * An MTA internal name which must match either a provided name, or a resource name within the same MTA.
+         */
+        name: string;
+        /**
+         * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the hook at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
+         */
+        parameters?: {
+          [k: string]: any;
+        };
+        /**
+         * Additional information about the hook's parameters.
+         */
+        "parameters-metadata"?: {
+          overwritable?: boolean;
+          optional?: boolean;
+          datatype?: "str" | "int" | "float" | "bool";
+          [k: string]: any;
+        };
+        [k: string]: any;
+      }[];
+      [k: string]: any;
+    }[];
     /**
      * The build parameters define how the module is built by the corresponding tool.
      */

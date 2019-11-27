@@ -5,7 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type SchemaForPrettierrc = string | (OptionsDefinition & OverridesDefinition);
+export type SchemaForPrettierrc = (OptionsDefinition & OverridesDefinition) | string;
 
 export interface OptionsDefinition {
   /**
@@ -126,6 +126,10 @@ export interface OptionsDefinition {
    * Indent with tabs instead of spaces.
    */
   useTabs?: boolean;
+  /**
+   * Indent script and style tags in Vue files.
+   */
+  vueIndentScriptAndStyle?: boolean;
   [k: string]: any;
 }
 export interface OverridesDefinition {
@@ -263,6 +267,10 @@ export interface OverridesDefinition {
        * Indent with tabs instead of spaces.
        */
       useTabs?: boolean;
+      /**
+       * Indent script and style tags in Vue files.
+       */
+      vueIndentScriptAndStyle?: boolean;
       [k: string]: any;
     };
   }[];

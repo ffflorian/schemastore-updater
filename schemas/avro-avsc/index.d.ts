@@ -16,7 +16,16 @@ export type AvroSchema = AvroTypes;
 /**
  * Allowed Avro types
  */
-export type AvroTypes = PrimitiveType | CustomType | Record | Enum | Array | Map | Fixed | Union;
+export type AvroTypes =
+  | PrimitiveType
+  | PrimitiveTypeWithMetadata
+  | CustomType
+  | Record
+  | Enum
+  | Array
+  | Map
+  | Fixed
+  | Union;
 /**
  * Basic type primitives.
  */
@@ -30,8 +39,15 @@ export type Namespace = string;
 /**
  * A Union of types
  */
-export type Union = AvroSchema, ...(AvroSchema)[]];
+export type Union = [AvroSchema, ...AvroSchema[]];
 
+/**
+ * A primitive type with metadata attached.
+ */
+export interface PrimitiveTypeWithMetadata {
+  type: PrimitiveType;
+  [k: string]: any;
+}
 /**
  * A Record
  */
