@@ -8,5 +8,5 @@ This package contains type definitions for behat.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/behat.
 
 ## Additional Details
-* Last updated: Fri, Jul 05, 2019, 15:12:46 GMT
+* Last updated: Fri, Jan 03, 2020, 10:45:39 GMT
 * Dependencies: none

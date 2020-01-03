@@ -8,5 +8,5 @@ This package contains type definitions for resume.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/resume.
 
 ## Additional Details
-* Last updated: Mon, Oct 07, 2019, 07:39:35 GMT
+* Last updated: Fri, Jan 03, 2020, 10:45:39 GMT
 * Dependencies: none

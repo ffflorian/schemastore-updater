@@ -65,10 +65,10 @@ export interface CompilerOptionsDefinition {
      */
     mapRoot?: string;
     /**
-     * When down-level compiling, specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext'.
+     * When down-level compiling, specify module code generation: 'none', 'commonJS', 'amd', 'system', 'umd', 'es2015' or 'esnext'.
      */
     module?:
-      | ("commonjs" | "amd" | "umd" | "system" | "es6" | "es2015" | "esnext" | "none")
+      | ("commonJS" | "amd" | "umd" | "system" | "es6" | "es2015" | "esnext" | "none")
       | {
           [k: string]: any;
         };
@@ -81,9 +81,13 @@ export interface CompilerOptionsDefinition {
           [k: string]: any;
         };
     /**
-     * When down-level compiling, specifies the end of line sequence to be used when emitting files: 'CRLF' (dos) or 'LF' (unix).
+     * When down-level compiling, specifies the end of line sequence to be used when emitting files: 'crlf' (Windows) or 'lf' (Unix).
      */
-    newLine?: "CRLF" | "LF";
+    newLine?:
+      | ("crlf" | "lf")
+      | {
+          [k: string]: any;
+        };
     /**
      * When down-level compiling, do not emit output.
      */
@@ -246,35 +250,86 @@ export interface CompilerOptionsDefinition {
      * Specify library file to be included in the compilation. Requires TypeScript version 2.0 or later.
      */
     lib?: (
-      | "es5"
-      | "es6"
-      | "es2015"
-      | "es7"
-      | "es2016"
-      | "es2017"
-      | "es2018"
-      | "esnext"
-      | "dom"
-      | "dom.iterable"
-      | "webworker"
-      | "scripthost"
-      | "es2015.core"
-      | "es2015.collection"
-      | "es2015.generator"
-      | "es2015.iterable"
-      | "es2015.promise"
-      | "es2015.proxy"
-      | "es2015.reflect"
-      | "es2015.symbol"
-      | "es2015.symbol.wellknown"
-      | "es2016.array.include"
-      | "es2017.object"
-      | "es2017.sharedmemory"
-      | "es2017.typedarrays"
-      | "es2018.promise"
-      | "esnext.regexp"
-      | "esnext.array"
-      | "esnext.asynciterable"
+      | (
+          | "es5"
+          | "es6"
+          | "es7"
+          | "es2015"
+          | "es2015.collection"
+          | "es2015.core"
+          | "es2015.generator"
+          | "es2015.iterable"
+          | "es2015.promise"
+          | "es2015.proxy"
+          | "es2015.reflect"
+          | "es2015.symbol.wellknown"
+          | "es2015.symbol"
+          | "es2016"
+          | "es2016.array.include"
+          | "es2017"
+          | "es2017.intl"
+          | "es2017.object"
+          | "es2017.sharedmemory"
+          | "es2017.string"
+          | "es2017.typedarrays"
+          | "es2018"
+          | "es2018.asynciterable"
+          | "es2018.intl"
+          | "es2018.promise"
+          | "es2018.regexp"
+          | "es2019"
+          | "es2019.array"
+          | "es2019.object"
+          | "es2019.string"
+          | "es2019.symbol"
+          | "es2020"
+          | "es2020.string"
+          | "es2020.symbol.wellknown"
+          | "esnext"
+          | "esnext.array"
+          | "esnext.asynciterable"
+          | "esnext.bigint"
+          | "esnext.intl"
+          | "esnext.symbol"
+          | "dom"
+          | "dom.iterable"
+          | "scripthost"
+          | "webworker"
+          | "webworker.importscripts"
+        )
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
+      | {
+          [k: string]: any;
+        }
     )[];
     /**
      * Enable strict null checks. Requires TypeScript version 2.0 or later.

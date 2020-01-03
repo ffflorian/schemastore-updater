@@ -34,15 +34,17 @@ export interface GithubAction {
        */
       description: string;
       /**
+       * A string shown to users using the deprecated input.
+       */
+      deprecationMessage?: string;
+      /**
        * A boolean to indicate whether the action requires the input parameter. Set to true when the parameter is required.
        */
-      required?: boolean;
+      required: boolean;
       /**
        * A string representing the default value. The default value is used when an input parameter isn't specified in a workflow file.
        */
-      default?: {
-        [k: string]: any;
-      };
+      default?: string;
     };
   };
   /**
@@ -94,7 +96,13 @@ export interface GithubAction {
    * You can use a color and Feather icon to create a badge to personalize and distinguish your action in GitHub Marketplace. For more information, see "GitHub Actions in the GitHub Marketplace" in the GitHub Developer documentation.
    */
   branding?: {
+    /**
+     * The background color of the badge.
+     */
     color?: "white" | "yellow" | "blue" | "green" | "orange" | "red" | "purple" | "gray-dark";
+    /**
+     * The name of the Feather icon to use.
+     */
     icon?:
       | "activity"
       | "airplay"
@@ -150,7 +158,6 @@ export interface GithubAction {
       | "chevrons-left"
       | "chevrons-right"
       | "chevrons-up"
-      | "chrome"
       | "circle"
       | "clipboard"
       | "clock"
@@ -161,10 +168,6 @@ export interface GithubAction {
       | "cloud-snow"
       | "cloud"
       | "code"
-      | "codepen"
-      | "codesandbox"
-      | "coffee"
-      | "columns"
       | "command"
       | "compass"
       | "copy"
@@ -196,7 +199,6 @@ export interface GithubAction {
       | "facebook"
       | "fast-forward"
       | "feather"
-      | "figma"
       | "file-minus"
       | "file-plus"
       | "file-text"
@@ -207,15 +209,11 @@ export interface GithubAction {
       | "folder-minus"
       | "folder-plus"
       | "folder"
-      | "framer"
-      | "frown"
       | "gift"
       | "git-branch"
       | "git-commit"
       | "git-merge"
       | "git-pull-request"
-      | "github"
-      | "gitlab"
       | "globe"
       | "grid"
       | "hard-drive"
@@ -223,20 +221,16 @@ export interface GithubAction {
       | "headphones"
       | "heart"
       | "help-circle"
-      | "hexagon"
       | "home"
       | "image"
       | "inbox"
       | "info"
-      | "instagram"
       | "italic"
-      | "key"
       | "layers"
       | "layout"
       | "life-buoy"
       | "link-2"
       | "link"
-      | "linkedin"
       | "list"
       | "loader"
       | "lock"
@@ -247,7 +241,6 @@ export interface GithubAction {
       | "map"
       | "maximize-2"
       | "maximize"
-      | "meh"
       | "menu"
       | "message-circle"
       | "message-square"
@@ -262,7 +255,6 @@ export interface GithubAction {
       | "moon"
       | "more-horizontal"
       | "more-vertical"
-      | "mouse-pointer"
       | "move"
       | "music"
       | "navigation-2"
@@ -272,7 +264,6 @@ export interface GithubAction {
       | "paperclip"
       | "pause-circle"
       | "pause"
-      | "pen-tool"
       | "percent"
       | "phone-call"
       | "phone-forwarded"
@@ -314,11 +305,9 @@ export interface GithubAction {
       | "sidebar"
       | "skip-back"
       | "skip-forward"
-      | "slack"
       | "slash"
       | "sliders"
       | "smartphone"
-      | "smile"
       | "speaker"
       | "square"
       | "star"
@@ -335,17 +324,13 @@ export interface GithubAction {
       | "thumbs-up"
       | "toggle-left"
       | "toggle-right"
-      | "tool"
       | "trash-2"
       | "trash"
-      | "trello"
       | "trending-down"
       | "trending-up"
       | "triangle"
       | "truck"
       | "tv"
-      | "twitch"
-      | "twitter"
       | "type"
       | "umbrella"
       | "underline"
@@ -370,10 +355,8 @@ export interface GithubAction {
       | "wifi"
       | "wind"
       | "x-circle"
-      | "x-octagon"
       | "x-square"
       | "x"
-      | "youtube"
       | "zap-off"
       | "zap"
       | "zoom-in"

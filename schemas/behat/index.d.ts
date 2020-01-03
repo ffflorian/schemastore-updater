@@ -7,7 +7,12 @@
 
 export type HowToFormatTestsOutput = string;
 export type PathsToExecute = string[];
-export type SuiteContexts = string[];
+export type SuiteContexts = (
+  | string
+  | {
+      [k: string]: any;
+    }
+)[];
 
 export interface JSONSchemaForBehatConfigurationFiles {
   default?: DefaultProfile;

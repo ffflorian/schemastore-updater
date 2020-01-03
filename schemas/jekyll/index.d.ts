@@ -92,6 +92,9 @@ export type LocalServerPort = number;
 export type LocalServerHostname = string;
 /**
  * Serve the website from the given base URL.
+ *
+ * For a site designed to be mounted at URL `https://example.com/`, the recommended values are nil, '' or '/'.
+ * For a site designed to be mounted at URL `https://example.com/blog/`, the recommended values are just 'blog', '/blog', or '/blog/'
  */
 export type BaseURL = string;
 /**
@@ -126,7 +129,7 @@ export type SyntaxHighlighter = string;
 /**
  * Used for liquid filter `excerpt`.
  */
-export type PostsExcerptSeparater = string;
+export type PostsExcerptSeparator = string;
 /**
  * Only works locally. GitHub ignores it.
  */
@@ -185,7 +188,15 @@ export type DefinesTheHTMLEntityNamesOrCodePointsForSmartQuoteOutput = string;
 /**
  * Specifies the syntax highlighter that should be used for highlighting code blocks and spans. If this option is set to `nil`, no syntax highlighting is done.
  */
-export type SetTheSyntaxHighlighter = string | null;
+export type SetTheSyntaxHighlighter2 = SetTheSyntaxHighlighter | SetTheSyntaxHighlighter1;
+/**
+ * Specifies the syntax highlighter that should be used for highlighting code blocks and spans. If this option is set to `nil`, no syntax highlighting is done.
+ */
+export type SetTheSyntaxHighlighter = string;
+/**
+ * Specifies the syntax highlighter that should be used for highlighting code blocks and spans. If this option is set to `nil`, no syntax highlighting is done.
+ */
+export type SetTheSyntaxHighlighter1 = null;
 /**
  * The individual levels can be specified by separating them with commas (e.g. 1,2,3) or by using the range syntax (e.g. 1..3). Only the specified levels are used for the table of contents.
  */
@@ -226,17 +237,20 @@ export interface JekyllStaticSiteGeneratorConfigFileSchema {
   plugins?: ListOfPluginsToUse;
   markdown?: MarkdownProcessor;
   highlighter?: SyntaxHighlighter;
-  excerpt_separator?: PostsExcerptSeparater;
+  excerpt_separator?: PostsExcerptSeparator;
   show_dir_listing?: AllowDirectoryListing;
   permalink?: PermalinkFormat;
   paginate_path?: string;
   quiet?: boolean;
   verbose?: boolean;
-  liquid?: {
-    error_mode?: "lax" | "warn" | "strict";
-    strict_filters?: StrictFilters;
-    strict_variables?: StrictVariables;
-  };
+  liquid?:
+    | {
+        error_mode: "lax" | "warn" | "strict";
+      }
+    | {
+        strict_filters?: StrictFilters;
+        strict_variables?: StrictVariables;
+      };
   rdiscount?: {
     extensions?: StringArray;
     [k: string]: any;
@@ -273,7 +287,7 @@ export interface JekyllStaticSiteGeneratorConfigFileSchema {
     parse_block_html?: ProcessKramdownSyntaxInBlockHTMLTags;
     parse_span_html?: ProcessKramdownSyntaxInSpanHTMLTags;
     smart_quotes?: DefinesTheHTMLEntityNamesOrCodePointsForSmartQuoteOutput;
-    syntax_highlighter?: SetTheSyntaxHighlighter;
+    syntax_highlighter?: SetTheSyntaxHighlighter2;
     syntax_highlighter_opts?: SetTheSyntaxHighlighterOptions;
     toc_levels?: DefinesTheLevelsThatAreUsedForTheTableOfContents;
     transliterated_header_ids?: TransliterateTheHeaderTextBeforeGeneratingTheID;
@@ -282,6 +296,7 @@ export interface JekyllStaticSiteGeneratorConfigFileSchema {
     [k: string]: any;
   };
   webrick?: WEBrickOptions;
+  [k: string]: any;
 }
 export interface FrontMatterDefault {
   scope?: Scope;
@@ -293,7 +308,7 @@ export interface Scope {
   type?: "pages" | "posts" | "drafts";
 }
 /**
- * Values that are set for the given scope. Can be overriden in the files front matter.
+ * Values that are set for the given scope. Can be overridden in the files front matter.
  */
 export interface FrontMatterDefaultValues {
   layout?: TheLayoutToUse;

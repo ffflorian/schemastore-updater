@@ -13,9 +13,9 @@ export interface ResumeSchema {
      */
     label?: string;
     /**
-     * URL (as per RFC 3986) to a picture in JPEG or PNG format
+     * URL (as per RFC 3986) to a image in JPEG or PNG format
      */
-    picture?: string;
+    image?: string;
     /**
      * e.g. thomas@gmail.com
      */
@@ -64,7 +64,7 @@ export interface ResumeSchema {
        */
       username?: string;
       /**
-       * e.g. http://twitter.com/neutralthoughts
+       * e.g. http://twitter.example.com/neutralthoughts
        */
       url?: string;
       [k: string]: any;
@@ -75,13 +75,21 @@ export interface ResumeSchema {
     /**
      * e.g. Facebook
      */
-    company?: string;
+    name?: string;
+    /**
+     * e.g. Menlo Park, CA
+     */
+    location?: string;
+    /**
+     * e.g. Social Media Company
+     */
+    description?: string;
     /**
      * e.g. Software Engineer
      */
     position?: string;
     /**
-     * e.g. http://facebook.com
+     * e.g. http://facebook.example.com
      */
     url?: string;
     /**
@@ -112,7 +120,7 @@ export interface ResumeSchema {
      */
     position?: string;
     /**
-     * e.g. http://facebook.com
+     * e.g. http://facebook.example.com
      */
     url?: string;
     /**
@@ -128,7 +136,7 @@ export interface ResumeSchema {
      */
     summary?: string;
     /**
-     * Specify multiple accomplishments
+     * Specify accomplishments and achievements
      */
     highlights?: string[];
     [k: string]: any;
@@ -203,7 +211,7 @@ export interface ResumeSchema {
      */
     releaseDate?: string;
     /**
-     * e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html
+     * e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html
      */
     url?: string;
     /**
@@ -237,11 +245,11 @@ export interface ResumeSchema {
     /**
      * e.g. English, Spanish
      */
-    name?: string;
+    language?: string;
     /**
      * e.g. Fluent, Beginner
      */
-    level?: string;
+    fluency?: string;
     [k: string]: any;
   }[];
   interests?: {
@@ -266,4 +274,68 @@ export interface ResumeSchema {
     reference?: string;
     [k: string]: any;
   }[];
+  /**
+   * Specify career projects
+   */
+  projects?: {
+    /**
+     * e.g. The World Wide Web
+     */
+    name?: string;
+    /**
+     * Short summary of project. e.g. Collated works of 2017.
+     */
+    description?: string;
+    /**
+     * Specify multiple features
+     */
+    highlights?: string[];
+    /**
+     * Specify special elements involved
+     */
+    keywords?: string[];
+    /**
+     * resume.json uses the ISO 8601 date standard e.g. 2014-06-29
+     */
+    startDate?: string;
+    /**
+     * e.g. 2012-06-29
+     */
+    endDate?: string;
+    /**
+     * e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html
+     */
+    url?: string;
+    /**
+     * Specify your role on this project or in company
+     */
+    roles?: string[];
+    /**
+     * Specify the relevant company/entity affiliations e.g. 'greenpeace', 'corporationXYZ'
+     */
+    entity?: string;
+    /**
+     *  e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'
+     */
+    type?: string;
+    [k: string]: any;
+  }[];
+  /**
+   * The schema version and any other tooling configuration lives here
+   */
+  meta?: {
+    /**
+     * URL (as per RFC 3986) to latest version of this document
+     */
+    canonical?: string;
+    /**
+     * A version field which follows semver - e.g. v1.0.0
+     */
+    version?: string;
+    /**
+     * Using ISO 8601 with YYYY-MM-DDThh:mm:ss
+     */
+    lastModified?: string;
+    [k: string]: any;
+  };
 }

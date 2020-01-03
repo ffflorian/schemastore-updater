@@ -35,7 +35,13 @@ export type Event =
 export type Name = string;
 export type Machine = "linux" | "macos" | "windows";
 export type Architecture = "ARM32" | "x64" | "x86";
-export type Configuration = string | number;
+export type Configuration =
+  | string
+  | number
+  | {
+      [k: string]: Configuration;
+    }
+  | Configuration[];
 
 export interface GithubWorkflow {
   /**
@@ -237,7 +243,7 @@ export interface GithubWorkflow {
    * A map of environment variables that are available to all jobs and steps in the workflow.
    */
   env?: {
-    [k: string]: string | number;
+    [k: string]: string | number | boolean;
   };
   /**
    * A workflow run is made up of one or more jobs. Jobs run in parallel by default. To run jobs sequentially, you can define dependencies on other jobs using the jobs.<job_id>.needs keyword.
@@ -347,7 +353,7 @@ export interface GithubWorkflow {
        * A map of environment variables that are available to all steps in the job.
        */
       env?: {
-        [k: string]: string | number;
+        [k: string]: string | number | boolean;
       };
       /**
        * You can use the if conditional to prevent a job from running unless a condition is met. You can use any supported context and expression to create a conditional.
@@ -413,7 +419,7 @@ export interface GithubWorkflow {
            * Sets environment variables for steps to use in the virtual environment. You can also set environment variables for the entire workflow or a job.
            */
           env?: {
-            [k: string]: string | number;
+            [k: string]: string | number | boolean;
           };
           /**
            * Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
@@ -478,7 +484,7 @@ export interface GithubWorkflow {
            * Sets environment variables for steps to use in the virtual environment. You can also set environment variables for the entire workflow or a job.
            */
           env?: {
-            [k: string]: string | number;
+            [k: string]: string | number | boolean;
           };
           /**
            * Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
@@ -543,7 +549,7 @@ export interface Container {
    * Sets an array of environment variables in the container.
    */
   env?: {
-    [k: string]: string | number;
+    [k: string]: string | number | boolean;
   };
   /**
    * Sets an array of ports to expose on the container.

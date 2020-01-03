@@ -2,6 +2,7 @@
   "disabledSchemas": [
     "bootstraprc.json",
     "chrome-manifest.json",
+    "cirrus.json",
     "compilerconfig.json",
     "content-security-policy-report-2.json",
     "docfx.json",
@@ -9,6 +10,7 @@
     "htmlhint.json",
     "kustomization.json",
     "modernizrrc.json",
+    "package.json",
     "pocketmine-plugin.json",
     "project-1.0.0-rc1.json",
     "project-1.0.0-rc2.json",

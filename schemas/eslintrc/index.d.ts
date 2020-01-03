@@ -238,6 +238,10 @@ export interface JSONSchemaForESLintConfigurationFiles {
    */
   root?: boolean;
   /**
+   * Tell ESLint to ignore specific files and directories. Each value uses the same pattern as the `.eslintignore` file.
+   */
+  ignorePatterns?: string[];
+  /**
    * ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.
    */
   rules?: PossibleErrors &
@@ -265,7 +269,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
     /**
      * If you want to extend a specific configuration file, you can use the extends property and specify the path to the file. The path can be either relative or absolute.
      */
-    extends?: string[];
+    extends?: string[] | string[];
     /**
      * If a file matches any of the 'excludedFiles' glob patterns, the 'overrides' configuration won’t apply
      */

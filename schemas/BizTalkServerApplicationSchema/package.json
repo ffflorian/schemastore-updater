@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for BizTalkServerApplicationSchema.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/BizTalkServerApplicationSchema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/BizTalkServerApplicationSchema",
+  "scripts": {},
+  "typesPublisherContentHash": "903c66852cd9e6273edadcedea11c465abb7c608ba848b97af77a24013cb6c68",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

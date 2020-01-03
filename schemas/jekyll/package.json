@@ -7,8 +7,8 @@
   "name": "@schemastore/jekyll",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jekyll",
   "scripts": {},
-  "typesPublisherContentHash": "fb08f586c12fb9ebd79bb7a25061014c75bb00a37eefa23ac9783b931a0a49a2",
+  "typesPublisherContentHash": "04731d5c1065af1c03b15762e9263a5a24ff50dd4dcd6549dc9732b067c21833",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

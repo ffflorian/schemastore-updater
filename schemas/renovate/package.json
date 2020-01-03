@@ -7,8 +7,8 @@
   "name": "@schemastore/renovate",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/renovate",
   "scripts": {},
-  "typesPublisherContentHash": "7c42db2789bc7fc7cc01e1ff285891355b3bc4a26e7a8fa9f3d582be3e901473",
+  "typesPublisherContentHash": "380ac7e3d9f583e7cf68141253a6940d8d9b88d83acf041dd66ee29ed11d9388",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

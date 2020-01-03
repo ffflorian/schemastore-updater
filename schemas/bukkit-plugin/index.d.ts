@@ -82,7 +82,7 @@ export interface JSONSchemaForBukkitPluginYAML {
       /**
        * The default state for the permission.
        */
-      default?: true | false | "op" | "notop";
+      default?: true | false | "op" | "not op";
       /**
        * Allows other permissions to be set as a relation to the parent permission.
        */
@@ -93,7 +93,7 @@ export interface JSONSchemaForBukkitPluginYAML {
   /**
    * Gives the default default state of permissions registered for the plugin.
    */
-  "default-permission"?: true | false | "op" | "notop";
+  "default-permission"?: true | false | "op" | "not op";
   /**
    * The concepts that the plugin acknowledges.
    */
