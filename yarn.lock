@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@ffflorian/prettier-config@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.0.5.tgz#5a6872fa650ac3b1312d5c5bc4d8281c7ca7b0ab"
-  integrity sha512-GA3LYDYsLB23x85qIY6LaDkzSsxkguKPm8F1XSP7YEjpyFvpbwLj8G3owFJGEyImOwZZWH0WQRPFczCv6uSqrg==
+"@ffflorian/prettier-config@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.0.6.tgz#2417939d5c5c658e3f13783eb923fbdef3c78ff2"
+  integrity sha512-+CgETIi1bQ5SHmQ+aGABf1AUJwoEePTiYhYoFMEXz41c09z6ENymNnUdA9Hy6vrOxGs0sa2rLMCfir+6bufjKw==
 
 "@ffflorian/tslint-config@0.7.0":
   version "0.7.0"
