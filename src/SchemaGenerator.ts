@@ -1,3 +1,4 @@
+import {execSync} from 'child_process';
 import * as crypto from 'crypto';
 import * as fs from 'fs-extra';
 import * as schemaGenerator from 'json-schema-to-typescript';
@@ -5,7 +6,6 @@ import * as jsonAbc from 'jsonabc';
 import * as logdown from 'logdown';
 import * as path from 'path';
 import * as semver from 'semver';
-import * as simpleGit from 'simple-git/promise';
 
 import {BuildResult, CheckResult, SchemaData, SchemaGeneratorOptions, SchemaHashes} from './interfaces';
 
@@ -18,7 +18,6 @@ const defaultOptions: Required<SchemaGeneratorOptions> = {
 };
 
 export class SchemaGenerator {
-  private readonly git: simpleGit.SimpleGit;
   private readonly jsonSchemasDir: string;
   private readonly lockFile: string;
   private readonly logFile: string;
@@ -32,7 +31,6 @@ export class SchemaGenerator {
       ...defaultOptions,
       ...options,
     };
-    this.git = simpleGit('.');
     this.schemaStoreDirResolved = this.options.source
       ? path.resolve(this.options.source)
       : path.join('temp/schemastore');
@@ -372,7 +370,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
   private async removeAndClone(): Promise<void> {
     await fs.remove(this.schemaStoreDirResolved);
     this.logger.info(`Cloning "${this.options.schemaStoreRepo}" to "${this.schemaStoreDirResolved}" ...`);
-    await this.git.clone(this.options.schemaStoreRepo, this.schemaStoreDirResolved, ['--depth=1']);
+    execSync(`git clone --depth 1 "${this.options.schemaStoreRepo}" "${this.schemaStoreDirResolved}"`);
   }
 
   private async writeLockFile(fileName: string, data: SchemaHashes): Promise<void> {

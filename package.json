@@ -8,8 +8,7 @@
     "fs-extra": "8.1.0",
     "json-schema-to-typescript": "8.0.1",
     "jsonabc": "2.3.1",
-    "semver": "7.1.2",
-    "simple-git": "1.130.0"
+    "semver": "7.1.2"
   },
   "devDependencies": {
     "@ffflorian/prettier-config": "0.0.6",
