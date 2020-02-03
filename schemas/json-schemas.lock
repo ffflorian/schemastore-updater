@@ -44,8 +44,8 @@
     "version": "1.0.4"
   },
   "appveyor.json": {
-    "hash": "327406ca94d7cbfb876e8b18ba9d866df389192d6b172d0c42d96d2f10797b58",
-    "version": "0.0.5"
+    "hash": "194bd4e200583379891561e044ef4a2bc6126482eb20f63ea93ba0f690cfdce3",
+    "version": "0.0.6"
   },
   "asmdef.json": {
     "hash": "be3b413b9eefc1238b171cf4edfd007788cda38e9505cce9d48128a828f5eb05",
@@ -148,8 +148,8 @@
     "version": "0.0.1"
   },
   "codecov.json": {
-    "hash": "c96e692b6742fa6d2a65bf18684057d84fa6f15b9296307a1034ac0974a40fb6",
-    "version": "0.0.2"
+    "hash": "2b3ad1e138d30addc19062fff8aa6260394dd698fd7a35acf4ae1e1f159c5650",
+    "version": "0.0.3"
   },
   "coffeelint.json": {
     "hash": "48ad0f2ab5b57fd08f22cfe8b0c2297d0ce0650bba618702c85edc7fa1021b6b",
@@ -240,8 +240,8 @@
     "version": "0.0.3"
   },
   "dependabot.json": {
-    "hash": "fbaea69235635605feb4598db3742b545b28d5d582a30236b8bbe8357b8a24c7",
-    "version": "0.0.1"
+    "hash": "acd5ae96c0640e5dc3ae6f4df306ecf15cea8a7c45459ce578330dc77dd57cee",
+    "version": "0.0.2"
   },
   "docfx.json": {
     "hash": "e15deea54af1687064b3eb429c52ae1368c8f77c34c01b7bc515c5b19d28af7e",
@@ -308,12 +308,12 @@
     "version": "0.0.2"
   },
   "github-workflow.json": {
-    "hash": "8967725b738e182d735894e11dbb0f5bc303d0ed761767f82a50416ee27082ec",
-    "version": "0.0.2"
+    "hash": "d94fa7449f25a2577b886f049a1503ff63fed05c763852edca78a27d8a2781ec",
+    "version": "0.0.3"
   },
   "gitlab-ci.json": {
-    "hash": "6285ad3484b8fe2787eb6d77fa5031f8c0f2c884caea64f8cf0874cfc4bef416",
-    "version": "1.0.11"
+    "hash": "a7d71cea35bccf203444a384bcde3f4d70a4ad0f2c2b43fc1cb280487f5a437f",
+    "version": "1.0.12"
   },
   "global.json": {
     "hash": "d83883fc1ce8fbd26ef653b91361a2c0398f09a5665cb210d246736307959240",
@@ -356,24 +356,24 @@
     "version": "0.0.3"
   },
   "host.json": {
-    "hash": "075ed37317b46b2638f0d224698f6b4ea114efaabd8f0f24b3d732400d21defd",
-    "version": "0.0.3"
+    "hash": "2ce51b582287884a338b5d96da6156d63e3003a7db4ae795ffd5454cfd6bb872",
+    "version": "0.0.4"
   },
   "htmlhint.json": {
     "hash": "82ac4bf61b8ff463fec534fc35df0f0bde2f6bf1adcd297452a70b28655b04dd",
     "version": "0.0.1"
   },
   "httpmockrc.json": {
-    "hash": "9daa61ed452cdf970e7d6ecf066881abc2d7c79a846b478082075e2a6d95dbaf",
-    "version": "0.0.1"
+    "hash": "923312bab23bde9930d1ea6f9899b94717bfa0af997c5656f255ea9233a712d6",
+    "version": "0.0.2"
   },
   "husky.json": {
     "hash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
     "version": "0.0.2"
   },
   "huskyrc.json": {
-    "hash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
-    "version": "0.0.1"
+    "hash": "1d71a4b1c895d2eac42e7a1e6752721228fb9fc288786c3800a742a6f888a9e5",
+    "version": "0.0.2"
   },
   "imageoptimizer.json": {
     "hash": "3d41f3e503b9567585d38ee28cfaf0c61f94299c3006fe381dcfc2712a43e27a",
@@ -672,8 +672,8 @@
     "version": "0.0.3"
   },
   "resume.json": {
-    "hash": "996c0b0ce941c5d79c88a0156a52f8f3771d47e281576d4fe9b8da7ff4e8582c",
-    "version": "0.0.6"
+    "hash": "54c51d0a041ce2fbcff44675d4d70eff801e7c881341d68dc75011592eb4bb95",
+    "version": "0.0.7"
   },
   "sarif-1.0.0.json": {
     "hash": "3d381606211e14da54498868bce849356d45f52b3fbb2495e49c24477d8f735c",
@@ -816,8 +816,8 @@
     "version": "0.0.1"
   },
   "travis.json": {
-    "hash": "c660a43431a7190551c9506481413e5c38158ba2a21c25a6fcec4ae06b67df6f",
-    "version": "0.0.10"
+    "hash": "7bd56a2d485accdf85539d4bebdb76c6a52acef0adc95e183ed5dcaea710aa4e",
+    "version": "0.0.11"
   },
   "ts-force-config.json": {
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
@@ -840,8 +840,8 @@
     "version": "0.0.9"
   },
   "typedoc.json": {
-    "hash": "4c54ac845b955de440446cd2d29fef32b6a94fcc0b2b1f27a38bed257c28c9c2",
-    "version": "0.0.4"
+    "hash": "abdfa5f1fabd8045df1ad0d278def2cfab5b2e6ae4bd174e5cd17f046a2b387e",
+    "version": "0.0.5"
   },
   "typewiz.json": {
     "hash": "747458f24c4d9146c57de79f971705164b22eaeefc3642ba364b3c6c770492e1",

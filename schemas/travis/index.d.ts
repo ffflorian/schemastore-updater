@@ -350,7 +350,18 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
       stage?: string;
       [k: string]: any;
     })[];
+    exclude?: (Job & {
+      /**
+       * The name of the build stage
+       */
+      stage?: string;
+      [k: string]: any;
+    })[];
     allow_failures?: Job[];
+    /**
+     * If some rows in the build matrix are allowed to fail, the build won’t be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
+     */
+    fast_finish?: boolean;
   };
   /**
    * Specifies the order of build stages

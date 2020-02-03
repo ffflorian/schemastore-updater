@@ -7,8 +7,8 @@
   "name": "@schemastore/github-workflow",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/github-workflow",
   "scripts": {},
-  "typesPublisherContentHash": "8967725b738e182d735894e11dbb0f5bc303d0ed761767f82a50416ee27082ec",
+  "typesPublisherContentHash": "d94fa7449f25a2577b886f049a1503ff63fed05c763852edca78a27d8a2781ec",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

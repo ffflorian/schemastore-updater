@@ -7,8 +7,8 @@
   "name": "@schemastore/huskyrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/huskyrc",
   "scripts": {},
-  "typesPublisherContentHash": "79d92cae72b95f64a6c1847a50948063298ed3ac1872e08618e9635b30aaa3b2",
+  "typesPublisherContentHash": "1d71a4b1c895d2eac42e7a1e6752721228fb9fc288786c3800a742a6f888a9e5",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

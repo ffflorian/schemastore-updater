@@ -7,8 +7,8 @@
   "name": "@schemastore/appveyor",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appveyor",
   "scripts": {},
-  "typesPublisherContentHash": "327406ca94d7cbfb876e8b18ba9d866df389192d6b172d0c42d96d2f10797b58",
+  "typesPublisherContentHash": "194bd4e200583379891561e044ef4a2bc6126482eb20f63ea93ba0f690cfdce3",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

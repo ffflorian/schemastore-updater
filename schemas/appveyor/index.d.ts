@@ -37,6 +37,12 @@ export type Command =
       ps?: string;
     }
   | {
+      /**
+       * Run a PowerShell Core command
+       */
+      pwsh?: string;
+    }
+  | {
       cmd?: string;
     };
 export type PossiblySecretString =
@@ -56,7 +62,7 @@ export type JobScalars = {
 } & {
   [k: string]: any;
 };
-export type Platform = "x86" | "x64" | "ARM" | "Any CPU";
+export type Platform = "x86" | "x64" | "ARM" | "ARM64" | "Win32" | "Any CPU";
 export type Configuration = string;
 
 export interface Job {
@@ -210,7 +216,8 @@ export interface Job {
     | "postgresql94"
     | "postgresql95"
     | "postgresql96"
-    | "postgresql10")[];
+    | "postgresql10"
+  )[];
   /**
    * Scripts that run after cloning repository
    */

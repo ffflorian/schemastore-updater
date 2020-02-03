@@ -7,8 +7,8 @@
   "name": "@schemastore/httpmockrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/httpmockrc",
   "scripts": {},
-  "typesPublisherContentHash": "9daa61ed452cdf970e7d6ecf066881abc2d7c79a846b478082075e2a6d95dbaf",
+  "typesPublisherContentHash": "923312bab23bde9930d1ea6f9899b94717bfa0af997c5656f255ea9233a712d6",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

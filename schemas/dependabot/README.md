@@ -8,5 +8,5 @@ This package contains type definitions for dependabot.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/dependabot.
 
 ## Additional Details
-* Last updated: Fri, Oct 18, 2019, 09:07:04 GMT
+* Last updated: Mon, Feb 03, 2020, 18:14:51 GMT
 * Dependencies: none

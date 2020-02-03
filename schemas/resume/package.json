@@ -7,8 +7,8 @@
   "name": "@schemastore/resume",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/resume",
   "scripts": {},
-  "typesPublisherContentHash": "996c0b0ce941c5d79c88a0156a52f8f3771d47e281576d4fe9b8da7ff4e8582c",
+  "typesPublisherContentHash": "54c51d0a041ce2fbcff44675d4d70eff801e7c881341d68dc75011592eb4bb95",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

@@ -67,6 +67,10 @@ export interface JSONSchemaForTypedocJson {
    */
   includes?: string;
   /**
+   * The sources files from which to build documentation.
+   */
+  inputFiles?: string[];
+  /**
    * Specifies the location to output a JSON file containing all of the reflection data.
    */
   json?: string;
@@ -104,6 +108,7 @@ export interface JSONSchemaForTypedocJson {
   readme?: "none" | string;
   /**
    * The sources files from which to build documentation.
+   * DEPRECATED: Use inputFiles instead.
    */
   src?: string | string[];
   /**

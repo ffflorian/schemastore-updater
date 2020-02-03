@@ -6,16 +6,8 @@
  */
 
 export type Layout =
-  | "header"
-  | "footer"
-  | "diff"
-  | "file"
-  | "files"
-  | "flag"
-  | "flags"
-  | "reach"
-  | "sunburst"
-  | "uncovered";
+  | any
+  | ("header" | "footer" | "diff" | "file" | "files" | "flag" | "flags" | "reach" | "sunburst" | "uncovered");
 
 /**
  * Schema for codecov.yml files.
@@ -101,7 +93,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         base?: "parent" | "pr" | "auto";
         only_pulls?: boolean;
         paths?: string[];
-        attachments?: Layout;
+        attachments?: any;
         [k: string]: any;
       };
       /**
@@ -166,6 +158,11 @@ export interface JSONSchemaForCodecovConfigurationFiles {
     status?:
       | boolean
       | {
+          project?:
+            | boolean
+            | {
+                [k: string]: any;
+              };
           [k: string]: any;
         };
     [k: string]: any;
@@ -189,17 +186,21 @@ export interface JSONSchemaForCodecovConfigurationFiles {
   /**
    * Pull request comments. See https://docs.codecov.io/docs/pull-request-comments for details.
    */
-  comment?: {
-    layout?: Layout;
-    require_changes?: boolean;
-    require_base?: boolean;
-    require_head?: boolean;
-    branches?: string[];
-    behavior?: "default" | "once" | "new" | "spammy";
-    flags?: Flag[];
-    paths?: string[];
-    [k: string]: any;
-  };
+  comment?:
+    | {
+        layout?: Layout;
+        require_changes?: boolean;
+        require_base?: boolean;
+        require_head?: boolean;
+        branches?: string[];
+        behavior?: "default" | "once" | "new" | "spammy";
+        flags?: Flag[];
+        paths?: string[];
+        [k: string]: any;
+      }
+    | {
+        [k: string]: any;
+      };
   [k: string]: any;
 }
 export interface Flag {

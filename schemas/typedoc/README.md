@@ -8,5 +8,5 @@ This package contains type definitions for typedoc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/typedoc.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Mon, Feb 03, 2020, 18:14:51 GMT
 * Dependencies: none

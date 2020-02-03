@@ -14,6 +14,12 @@ export interface HttpMockerConfiguration {
    */
   mockFileName: string;
   /**
+   * Custom request header
+   */
+  requestHeaders?: {
+    [k: string]: any;
+  };
+  /**
    * Custom response header
    */
   responseHeaders?: {
@@ -23,7 +29,27 @@ export interface HttpMockerConfiguration {
    * Rules for proxy and mock
    */
   routes: {
-    [k: string]: any;
+    /**
+     * Rule of Matching route
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^.*$".
+     */
+    [k: string]: {
+      /**
+       * Where Mock result file located
+       */
+      path: string;
+      /**
+       * Whether to ignore this rule, generally used for remote interfaces instead of mock in the local
+       */
+      ignore?: boolean;
+      /**
+       * How many milliseconds are delayed to return a request, general used for control the request sequence
+       */
+      delay?: number;
+      [k: string]: any;
+    };
   };
   [k: string]: any;
 }

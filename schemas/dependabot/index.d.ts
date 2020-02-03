@@ -26,7 +26,8 @@ export interface DependabotConfigurationFile {
       | "docker"
       | "terraform"
       | "submodules"
-      | "elm";
+      | "elm"
+      | "github_actions";
     /**
      * Where to look for package manifests
      */
