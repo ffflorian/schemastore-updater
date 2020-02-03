@@ -17,7 +17,7 @@
     "@types/jsonabc": "2.3.1",
     "@types/node": "~12",
     "@types/rimraf": "2.0.3",
-    "@types/semver": "6.2.0",
+    "@types/semver": "7.1.0",
     "cross-env": "7.0.0",
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
