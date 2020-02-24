@@ -424,7 +424,7 @@ export type Service =
   | "neo4j"
   | "postgresql"
   | "rabbitmq"
-  | "redis-server"
+  | "redis"
   | "rethinkdb"
   | "riak"
   | "xvfb";
@@ -462,10 +462,6 @@ export type Deployment = {
       [k: string]: any;
     }
   | {
-      provider: "npm";
-      email: PossiblySecretString;
-      api_key: PossiblySecretString;
-      tag?: string;
       [k: string]: any;
     }
   | {

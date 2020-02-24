@@ -7,8 +7,8 @@
   "name": "@schemastore/behat",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/behat",
   "scripts": {},
-  "typesPublisherContentHash": "9d842603db3c1228c422ddb0680df90762e006858703b19655ec637367490bbf",
+  "typesPublisherContentHash": "44d49fbc2ad42c8e3d37589df435ceb0a86ab509133ea4be1dddeb89a98c0454",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

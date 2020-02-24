@@ -40,8 +40,8 @@
     "version": "0.0.4"
   },
   "appsscript.json": {
-    "hash": "ff8230dd83806e76a42d0c3d3469c5ea5a14d8dd0163be77aeb8ec25ceb940d5",
-    "version": "1.0.4"
+    "hash": "27403506d6807be66a022abeec74351792ad74ac3da75fe030929480cce1ed8e",
+    "version": "1.0.5"
   },
   "appveyor.json": {
     "hash": "194bd4e200583379891561e044ef4a2bc6126482eb20f63ea93ba0f690cfdce3",
@@ -84,8 +84,8 @@
     "version": "0.0.4"
   },
   "behat.json": {
-    "hash": "9d842603db3c1228c422ddb0680df90762e006858703b19655ec637367490bbf",
-    "version": "0.0.2"
+    "hash": "44d49fbc2ad42c8e3d37589df435ceb0a86ab509133ea4be1dddeb89a98c0454",
+    "version": "0.0.3"
   },
   "BizTalkServerApplicationSchema.json": {
     "hash": "903c66852cd9e6273edadcedea11c465abb7c608ba848b97af77a24013cb6c68",
@@ -140,8 +140,8 @@
     "version": "1.0.3"
   },
   "cloud-sdk-pipeline-config-schema.json": {
-    "hash": "6d7258da65604048451904f029f544a0fdf9c9df18b41f2658c269764322fbb1",
-    "version": "0.0.1"
+    "hash": "acec937c1f3a58d0558fb0e7e3c0a3391da1e8b8f05744b651e68b4c33c4a1c8",
+    "version": "0.0.2"
   },
   "cloudbuild.json": {
     "hash": "f34346452b14c907f71fcc3f926aa1b4eedb0daada291e319151d3fe2891d337",
@@ -159,6 +159,10 @@
     "hash": "2eb3effcf1c8f0f27457e000053688580cedd7519f9c01a37348b8585fc9a369",
     "version": "0.0.3"
   },
+  "compile-commands.json": {
+    "hash": "9a81285732f1032ab51103eea22d24f14ba2717abf2fc7c7eb942df755cecfce",
+    "version": "0.0.1"
+  },
   "compilerconfig.json": {
     "hash": "53b03e57efcf43f9571de2a2d43d98a4ad21651ec0cc4444ef1d34afd3b6a98e",
     "version": "0.0.1"
@@ -172,8 +176,8 @@
     "version": "0.0.4"
   },
   "composer.json": {
-    "hash": "3f3c0079f16cccdbfab07b15a0c11afa6c1847d67102db6bafbe1a0e6292b524",
-    "version": "0.0.4"
+    "hash": "088ec7e225c42a01a16b969b9f0171d485cacc63ca30964f74693f3198aea9c2",
+    "version": "0.0.5"
   },
   "config.json": {
     "hash": "4f1355753e0437db08baca6a00ffbc9dac70fd59e6b6e1ea3a071504d03112bc",
@@ -308,12 +312,12 @@
     "version": "0.0.2"
   },
   "github-workflow.json": {
-    "hash": "d94fa7449f25a2577b886f049a1503ff63fed05c763852edca78a27d8a2781ec",
-    "version": "0.0.3"
+    "hash": "32739eeff282af1595ce4013d23458cce4f658c1c9715f8c77b1dba5da418e25",
+    "version": "0.0.4"
   },
   "gitlab-ci.json": {
-    "hash": "a7d71cea35bccf203444a384bcde3f4d70a4ad0f2c2b43fc1cb280487f5a437f",
-    "version": "1.0.12"
+    "hash": "fa9ab5a6e27b7ef46ec503db8c2be761c101f9696e640e68e5c2f79947353c5f",
+    "version": "1.0.13"
   },
   "global.json": {
     "hash": "d83883fc1ce8fbd26ef653b91361a2c0398f09a5665cb210d246736307959240",
@@ -404,8 +408,8 @@
     "version": "0.0.3"
   },
   "jsconfig.json": {
-    "hash": "023c3cac7fd7d4dcbeebcde6707aa0d5d65d2e674504fcc4d09741686f13a776",
-    "version": "0.0.7"
+    "hash": "77088c15b23035e86333b2e690431ff1cd2e3e4337accecfbe69ca987eedcc7b",
+    "version": "0.0.8"
   },
   "jscsrc.json": {
     "hash": "587855da664fed0ce8d52087da3f42a815911575edfe31c5b711856929042d07",
@@ -526,6 +530,10 @@
   "nlu.json": {
     "hash": "4085ae872de074f028a24e0c57e097a129f55ec4ae09852096b9a001c99480ab",
     "version": "1.0.4"
+  },
+  "nodehawkrc.json": {
+    "hash": "5bac28bc780047539e9effb298d1ce489479dfe7a598a2f36d884b9e835b55fc",
+    "version": "0.0.1"
   },
   "nodemon.json": {
     "hash": "4896ad84dceca2ed63f75343d3d919626c9935971c683f790e82ed432a80b368",
@@ -816,16 +824,16 @@
     "version": "0.0.1"
   },
   "travis.json": {
-    "hash": "7bd56a2d485accdf85539d4bebdb76c6a52acef0adc95e183ed5dcaea710aa4e",
-    "version": "0.0.11"
+    "hash": "b10bfdccac9c4bca8e00765108e6adc000b282f0b3f8d4ca2c2cf3473a1cc266",
+    "version": "0.0.12"
   },
   "ts-force-config.json": {
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
     "version": "0.0.3"
   },
   "tsconfig.json": {
-    "hash": "0d661918a828c83c333582bd89dcca149daa26e169fc2e9ba3b3a69fa2072212",
-    "version": "0.0.7"
+    "hash": "449eda4bdf20d07926410ec7959c0ec2f7c2c55cd80bbe2c84440b8779e885d3",
+    "version": "0.0.8"
   },
   "tsd.json": {
     "hash": "c34d6febcf996c2462470c24aa7279637c3f9f3280ebf6e6791aff1e04732540",
@@ -840,8 +848,8 @@
     "version": "0.0.9"
   },
   "typedoc.json": {
-    "hash": "abdfa5f1fabd8045df1ad0d278def2cfab5b2e6ae4bd174e5cd17f046a2b387e",
-    "version": "0.0.5"
+    "hash": "39b495886377870d16a60643fddeb6ab425332a02389f24356e74e7cea5609d8",
+    "version": "0.0.6"
   },
   "typewiz.json": {
     "hash": "747458f24c4d9146c57de79f971705164b22eaeefc3642ba364b3c6c770492e1",

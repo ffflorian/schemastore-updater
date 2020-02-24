@@ -65,10 +65,10 @@ export interface CompilerOptionsDefinition {
      */
     mapRoot?: string;
     /**
-     * When down-level compiling, specify module code generation: 'none', 'commonJS', 'amd', 'system', 'umd', 'es2015' or 'esnext'.
+     * When down-level compiling, specify module code generation: 'none', 'commonJS', 'amd', 'system', 'umd', 'es2015', 'es2020' or 'esnext'.
      */
     module?:
-      | ("commonJS" | "amd" | "umd" | "system" | "es6" | "es2015" | "esnext" | "none")
+      | ("commonJS" | "amd" | "umd" | "system" | "es6" | "es2015" | "es2020" | "esnext" | "none")
       | {
           [k: string]: any;
         };
@@ -283,6 +283,8 @@ export interface CompilerOptionsDefinition {
           | "es2019.string"
           | "es2019.symbol"
           | "es2020"
+          | "es2020.bigint"
+          | "es2020.promise"
           | "es2020.string"
           | "es2020.symbol.wellknown"
           | "esnext"
@@ -393,6 +395,10 @@ export interface CompilerOptionsDefinition {
       name?: string;
       [k: string]: any;
     }[];
+    /**
+     * Have recompiles in '--incremental' and '--watch' assume that changes within a file will only affect files directly depending on it.
+     */
+    assumeChangesOnlyAffectDirectDependencies?: boolean;
   };
   [k: string]: any;
 }

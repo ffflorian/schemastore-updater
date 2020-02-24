@@ -273,11 +273,13 @@ export interface GithubWorkflow {
         | (
             | "${{ matrix.os }}"
             | "macos-latest"
+            | "macos-10.15"
             | "self-hosted"
             | "ubuntu-16.04"
             | "ubuntu-18.04"
             | "ubuntu-latest"
             | "windows-latest"
+            | "windows-2019"
           )
         | (
             | []

@@ -7,8 +7,8 @@
   "name": "@schemastore/jsconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsconfig",
   "scripts": {},
-  "typesPublisherContentHash": "023c3cac7fd7d4dcbeebcde6707aa0d5d65d2e674504fcc4d09741686f13a776",
+  "typesPublisherContentHash": "77088c15b23035e86333b2e690431ff1cd2e3e4337accecfbe69ca987eedcc7b",
   "types": "index.d.ts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "typeScriptVersion": "2.2"
 }

@@ -103,6 +103,14 @@ export interface JSONSchemaForTypedocJson {
    */
   plugin?: string[];
   /**
+   * Add the package version according to package.json to the projects name.
+   */
+  includeVersion?: boolean;
+  /**
+   * Specify tags that should be removed from doc comments when parsing.
+   */
+  excludeTags?: string[];
+  /**
    * Path to the readme file that should be displayed on the index page. Pass none to disable the index page and start the documentation on the globals page.
    */
   readme?: "none" | string;

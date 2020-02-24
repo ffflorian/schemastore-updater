@@ -150,10 +150,12 @@ export interface Cache {
    * List of files or paths to cache.
    */
   paths?: string[];
-  /**
-   * Unique cache ID, to allow e.g. specific branch or job cache. Environment variables can be used to set up unique keys (e.g. "$CI_COMMIT_REF_SLUG" for per branch cache).
-   */
-  key?: string;
+  key?:
+    | string
+    | {
+        files?: [string] | [string, string];
+        [k: string]: any;
+      };
   /**
    * Set to `true` to cache untracked files.
    */

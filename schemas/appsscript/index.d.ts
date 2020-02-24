@@ -9,7 +9,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
   /**
    * Version of the server to use when executing this project.
    */
-  runtimeVersion?: "stable" | "v8" | "depreacted_es5";
+  runtimeVersion?: "STABLE" | "V8" | "DEPRECATED_ES5";
   /**
    * The script time zone in one of the available ZoneId values such as "America/Denver".
    */

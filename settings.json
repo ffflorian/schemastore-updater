@@ -1,5 +1,6 @@
 {
   "disabledSchemas": [
+    "ansible-stable-2.9.json",
     "bootstraprc.json",
     "chrome-manifest.json",
     "cirrus.json",
