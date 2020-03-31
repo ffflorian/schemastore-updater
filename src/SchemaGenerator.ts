@@ -229,10 +229,7 @@ export class SchemaGenerator {
 
       if (fileIsReadable) {
         const fileContent = await fs.readFile(fileNameResolved, 'utf8');
-        const sha256 = crypto
-          .createHash('sha256')
-          .update(fileContent)
-          .digest('hex');
+        const sha256 = crypto.createHash('sha256').update(fileContent).digest('hex');
 
         fileHashes[fileName] = sha256;
       } else {
