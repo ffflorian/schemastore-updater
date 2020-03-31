@@ -20,7 +20,7 @@
     "@types/semver": "7.1.0",
     "cross-env": "7.0.2",
     "husky": "4.2.3",
-    "lint-staged": "10.0.9",
+    "lint-staged": "10.1.0",
     "logdown": "3.3.1",
     "prettier": "1.19.1",
     "rimraf": "3.0.2",
