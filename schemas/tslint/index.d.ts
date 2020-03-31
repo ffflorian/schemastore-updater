@@ -8,9 +8,13 @@
 export type Rule =
   | boolean
   | {
+      /**
+       * Severity level. Level "error" will cause exit code 2.
+       */
+      severity?: "default" | "error" | "warning" | "warn" | "off" | "none";
       [k: string]: any;
     }
-  | any[];
+  | [any, ...any[]];
 
 export interface JSONSchemaForTheTSLintConfigurationFiles {
   /**

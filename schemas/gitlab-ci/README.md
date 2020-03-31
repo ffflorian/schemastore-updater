@@ -8,5 +8,5 @@ This package contains type definitions for gitlab-ci.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/gitlab-ci.
 
 ## Additional Details
-* Last updated: Mon, Feb 24, 2020, 11:37:51 GMT
+* Last updated: Tue, Mar 31, 2020, 08:28:20 GMT
 * Dependencies: none

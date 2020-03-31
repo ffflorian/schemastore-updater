@@ -7,8 +7,8 @@
   "name": "@schemastore/bungee-plugin",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bungee-plugin",
   "scripts": {},
-  "typesPublisherContentHash": "782ee73bfded5335de76d2e77cd0a6e8b0477467b3a19cf7ff458e292062c363",
+  "typesPublisherContentHash": "7b16d05e522fba89952fc0813a89d3fe9509e47326a2978c98826a9d2e570b22",
   "types": "index.d.ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "typeScriptVersion": "2.2"
 }

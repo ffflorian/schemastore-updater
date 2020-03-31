@@ -95,7 +95,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
       | {
           [k: string]: any;
         }
-      | ("alpha" | "beta" | "stable" | "staging");
+      | ("alpha" | "beta" | "canary" | "stable" | "staging");
   };
   /**
    * Settings for the app’s desktop shortcut
@@ -282,6 +282,16 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
       };
       [k: string]: any;
     };
+    /**
+     * An array of scripts to download and run before other scripts in the page.
+     */
+    preloadScripts?: {
+      /**
+       * URL from which to fetch the script.
+       */
+      url?: string;
+      [k: string]: any;
+    }[];
     /**
      * A flag to drop to allow the user to resize the window.
      */

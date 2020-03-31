@@ -27,11 +27,11 @@ export interface JSONSchemaForBungeeCordPluginYAML {
   /**
    * Plugin hard dependencies.
    */
-  depend?: PluginName[];
+  depends?: PluginName[];
   /**
    * Plugin soft dependencies.
    */
-  softdepend?: PluginName[];
+  softdepends?: PluginName[];
   /**
    * Optional description.
    */

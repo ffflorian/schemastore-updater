@@ -11,7 +11,7 @@ export interface OptionsDefinition {
   /**
    * Include parentheses around a sole arrow function parameter.
    */
-  arrowParens?: "avoid" | "always";
+  arrowParens?: "always" | "avoid";
   /**
    * Print spaces between brackets.
    */
@@ -24,7 +24,7 @@ export interface OptionsDefinition {
   /**
    * Which end of line characters to apply.
    */
-  endOfLine?: "auto" | "lf" | "crlf" | "cr";
+  endOfLine?: "lf" | "crlf" | "cr" | "auto";
   /**
    * Specify the input filepath. This will be used to do parser inference.
    */
@@ -52,6 +52,7 @@ export interface OptionsDefinition {
     | "flow"
     | "babel"
     | "babel-flow"
+    | "babel-ts"
     | "typescript"
     | "css"
     | "less"
@@ -121,7 +122,7 @@ export interface OptionsDefinition {
   /**
    * Print trailing commas wherever possible when multi-line.
    */
-  trailingComma?: "none" | "es5" | "all";
+  trailingComma?: "es5" | "none" | "all";
   /**
    * Indent with tabs instead of spaces.
    */
@@ -152,7 +153,7 @@ export interface OverridesDefinition {
       /**
        * Include parentheses around a sole arrow function parameter.
        */
-      arrowParens?: "avoid" | "always";
+      arrowParens?: "always" | "avoid";
       /**
        * Print spaces between brackets.
        */
@@ -165,7 +166,7 @@ export interface OverridesDefinition {
       /**
        * Which end of line characters to apply.
        */
-      endOfLine?: "auto" | "lf" | "crlf" | "cr";
+      endOfLine?: "lf" | "crlf" | "cr" | "auto";
       /**
        * Specify the input filepath. This will be used to do parser inference.
        */
@@ -193,6 +194,7 @@ export interface OverridesDefinition {
         | "flow"
         | "babel"
         | "babel-flow"
+        | "babel-ts"
         | "typescript"
         | "css"
         | "less"
@@ -262,7 +264,7 @@ export interface OverridesDefinition {
       /**
        * Print trailing commas wherever possible when multi-line.
        */
-      trailingComma?: "none" | "es5" | "all";
+      trailingComma?: "es5" | "none" | "all";
       /**
        * Indent with tabs instead of spaces.
        */

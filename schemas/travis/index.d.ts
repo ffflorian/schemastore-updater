@@ -405,7 +405,8 @@ export type XcodeVersions =
   | "xcode10.3"
   | "xcode11"
   | "xcode11.1"
-  | "xcode11.2";
+  | "xcode11.2"
+  | "xcode11.3";
 export type PossiblySecretString =
   | string
   | {

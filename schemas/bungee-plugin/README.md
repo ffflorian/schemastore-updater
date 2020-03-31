@@ -8,5 +8,5 @@ This package contains type definitions for bungee-plugin.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bungee-plugin.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Tue, Mar 31, 2020, 08:28:20 GMT
 * Dependencies: none

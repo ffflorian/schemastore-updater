@@ -116,8 +116,8 @@
     "version": "0.0.3"
   },
   "bungee-plugin.json": {
-    "hash": "782ee73bfded5335de76d2e77cd0a6e8b0477467b3a19cf7ff458e292062c363",
-    "version": "1.0.3"
+    "hash": "7b16d05e522fba89952fc0813a89d3fe9509e47326a2978c98826a9d2e570b22",
+    "version": "1.0.4"
   },
   "chrome-manifest.json": {
     "hash": "60260edd452575cb9984e1cc6d65968f84523a6c86f1b1326b5fddb46297f2eb",
@@ -316,12 +316,20 @@
     "version": "0.0.4"
   },
   "gitlab-ci.json": {
-    "hash": "fa9ab5a6e27b7ef46ec503db8c2be761c101f9696e640e68e5c2f79947353c5f",
-    "version": "1.0.13"
+    "hash": "8d1df972712afd7f1201e663039a1afa5a9a546fec15624a62ee32e30566254a",
+    "version": "1.0.14"
   },
   "global.json": {
     "hash": "d83883fc1ce8fbd26ef653b91361a2c0398f09a5665cb210d246736307959240",
     "version": "0.0.4"
+  },
+  "grafana-dashboard-5.x.json": {
+    "hash": "b53ab67320765a73c7daafe63505cfd13b3fd8d5c4304c7d33fcc8414d18e817",
+    "version": "0.0.1"
+  },
+  "graphql-mesh-0.0.16.json": {
+    "hash": "92be3749b0f119f5badf545ec97d01a223981646434c02a3201d8681189aeeed",
+    "version": "0.0.1"
   },
   "grunt-clean-task.json": {
     "hash": "37afe5dcf7a3ca70e0eb22105711ea27eed4ef95de49e26d0faa1896edaee70a",
@@ -413,6 +421,10 @@
   },
   "jscsrc.json": {
     "hash": "587855da664fed0ce8d52087da3f42a815911575edfe31c5b711856929042d07",
+    "version": "0.0.1"
+  },
+  "jsdoc-1.0.0.json": {
+    "hash": "be5452bbf879070819dbee9193056278273fe0be817cca6232be58252d3e41a4",
     "version": "0.0.1"
   },
   "jshintrc.json": {
@@ -572,8 +584,8 @@
     "version": "0.0.3"
   },
   "openfin.json": {
-    "hash": "0d25338f2ba46fd52113592359ac9001449e6e82b726d062092ddfb58911343d",
-    "version": "0.0.4"
+    "hash": "ecbb65f6b2d1865cebb12710c78b5153e36234f41950f17904187173a00e1914",
+    "version": "0.0.5"
   },
   "opspec-io-0.1.7.json": {
     "hash": "dadb4b819249550f32d8ea68e986fee624a534acec18fe99777588e26f1a2cd6",
@@ -612,8 +624,8 @@
     "version": "0.0.3"
   },
   "prettierrc.json": {
-    "hash": "325e2065242be89b2502244ec226a0f298d19d5643e79d3735816dbc009b41a5",
-    "version": "0.0.7"
+    "hash": "cd0ce9af005d8f08a7cf07e8337799e17d42a794ee2926c0c9a7e39c626680a5",
+    "version": "0.0.8"
   },
   "prisma.json": {
     "hash": "4159c5ed7b88f081c6de2b72af370096174a420989e1724831e4bf62dc411064",
@@ -723,6 +735,10 @@
     "hash": "40832cb008371c6c055cb5f0b11472615d59aac40f9456a5f0f0276d87904909",
     "version": "0.0.2"
   },
+  "sarif-2.1.0-rtm.5.json": {
+    "hash": "09736b982e014f807c17baffa25707fea83623b38d3574cd2353d545024a6094",
+    "version": "0.0.1"
+  },
   "sarif-external-property-file-2.1.0-rtm.0.json": {
     "hash": "b2bbc0cb31fca0f69fcd0f9f5bbeae5ac3dc3ee78733b269622a77d7b00b57ff",
     "version": "0.0.1"
@@ -743,13 +759,17 @@
     "hash": "94b1f16c5941cfef72f57779b1a486c2d63f210ff3ede329f751160fbdcbecf8",
     "version": "0.0.1"
   },
+  "sarif-external-property-file-2.1.0-rtm.5.json": {
+    "hash": "84b38e388c3059f4ac0cde3a148ec39f89b40f1c3195a70d11b7181d8b9188c2",
+    "version": "0.0.1"
+  },
   "sarif-external-property-file.json": {
     "hash": "94b1f16c5941cfef72f57779b1a486c2d63f210ff3ede329f751160fbdcbecf8",
     "version": "0.0.1"
   },
   "sarif.json": {
-    "hash": "40832cb008371c6c055cb5f0b11472615d59aac40f9456a5f0f0276d87904909",
-    "version": "0.0.6"
+    "hash": "09736b982e014f807c17baffa25707fea83623b38d3574cd2353d545024a6094",
+    "version": "0.0.7"
   },
   "schema-catalog.json": {
     "hash": "7bbeef14515177f2b22c15f76c8ce097260f34c3f6725e95da5c667dafff954a",
@@ -824,8 +844,8 @@
     "version": "0.0.1"
   },
   "travis.json": {
-    "hash": "b10bfdccac9c4bca8e00765108e6adc000b282f0b3f8d4ca2c2cf3473a1cc266",
-    "version": "0.0.12"
+    "hash": "04ab6ed7533b093360a71349cd08bbd948f3cdcdcf3f56be2a6da1e0a503feb2",
+    "version": "0.0.13"
   },
   "ts-force-config.json": {
     "hash": "a87c4b874fde7bed1841ac2c1fb46b060f864066cf6ba2c7fdc146b76bdf8eb7",
@@ -844,8 +864,8 @@
     "version": "0.0.3"
   },
   "tslint.json": {
-    "hash": "c1107840c09963e76f1435bf816c217c8c29a6ad1f3bd15303ff8dea54b7c38b",
-    "version": "0.0.9"
+    "hash": "689c4cc75baf50b722c93a5d35fa3fb9e4c5be99faf53ff8e21082c36e682297",
+    "version": "0.0.10"
   },
   "typedoc.json": {
     "hash": "39b495886377870d16a60643fddeb6ab425332a02389f24356e74e7cea5609d8",
@@ -877,6 +897,10 @@
   },
   "vega.json": {
     "hash": "802f5f75daf5b97e7d517c80b5f5239b1cdc766fe4edb30509257d134a7e8318",
+    "version": "0.0.1"
+  },
+  "vim-addon-info.json": {
+    "hash": "1f4b469cf959d4aea4ce01f1292a8ed98854bc45d166edef81db007212728afb",
     "version": "0.0.1"
   },
   "vs-2017.3.host.json": {
