@@ -22,7 +22,7 @@
     "husky": "4.2.3",
     "lint-staged": "10.1.0",
     "logdown": "3.3.1",
-    "prettier": "1.19.1",
+    "prettier": "2.0.2",
     "rimraf": "3.0.2",
     "ts-node": "8.8.1",
     "tslint": "6.1.0",
