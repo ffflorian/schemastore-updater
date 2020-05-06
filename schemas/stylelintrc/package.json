@@ -7,8 +7,8 @@
   "name": "@schemastore/stylelintrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/stylelintrc",
   "scripts": {},
-  "typesPublisherContentHash": "cfb6f6e7f3d99b37c9f4fb9b0e498b9166ebda4a59ffb21d91a8dfd417369458",
+  "typesPublisherContentHash": "5ed071ee8dc930f71d79c1a19b60535d7f72b242ec7d62c7fb7820c7b63d82e7",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

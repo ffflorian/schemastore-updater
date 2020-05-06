@@ -7,8 +7,8 @@
   "name": "@schemastore/gitlab-ci",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/gitlab-ci",
   "scripts": {},
-  "typesPublisherContentHash": "8d1df972712afd7f1201e663039a1afa5a9a546fec15624a62ee32e30566254a",
+  "typesPublisherContentHash": "115a20e6576aff5f0e05012d119b341aea2c21572841076a1bd10c1e47b2d186",
   "types": "index.d.ts",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "typeScriptVersion": "2.2"
 }

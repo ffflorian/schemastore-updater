@@ -48,6 +48,12 @@ export interface HttpMockerConfiguration {
        * How many milliseconds are delayed to return a request, general used for control the request sequence
        */
       delay?: number;
+      /**
+       * Validate params in body by key and typeof value
+       */
+      validate?: {
+        [k: string]: any;
+      };
       [k: string]: any;
     };
   };

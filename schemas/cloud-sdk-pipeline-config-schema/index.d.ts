@@ -173,12 +173,6 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        */
       findbugsExcludesFile?: string;
     };
-    unitTests?: {
-      /**
-       * The image used in the step or stage.
-       */
-      dockerImage?: string;
-    };
     backendIntegrationTests?: {
       /**
        * The number of times that integration tests will retry before aborting the build. Note: This will consume more time for the jenkins build.
@@ -361,15 +355,13 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
          */
         url: string;
         /**
-         * Name of the nexus repository.
+         * Name of the nexus repository for Maven and MTA artifacts. Ignored if the project does not contain pom.xml or mta.yml in the project root.
          */
-        repository: string;
+        mavenRepository?: string;
         /**
-         * List of additional classifiers that should be deployed to nexus. Each item is a map of a type and a classifier name.
+         * Name of the nexus repository for NPM artifacts. Ignored if the project does not contain a package.json in the project root directory.
          */
-        additionalClassifiers?: {
-          [k: string]: any;
-        }[];
+        npmRepository?: string;
         credentialsId?: CredentialsId;
         [k: string]: any;
       };
@@ -433,11 +425,33 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       [k: string]: any;
     };
     /**
+     * Configure SonarQube (https://www.sonarqube.org/) scans.
+     */
+    sonarQubeScan?: {
+      /**
+       * Define whether the scan should also happen in non productive branches, i.e. if your SonarQube instance supports that.
+       */
+      runInAllBranches?: boolean;
+      /**
+       * The project is used to refer your project.
+       */
+      projectKey: string;
+      /**
+       * This property refers to a sonarqube instance, which needs to be defined in the Jenkins.
+       */
+      instance: string;
+      /**
+       * The image used in the step or stage.
+       */
+      dockerImage?: string;
+      [k: string]: any;
+    };
+    /**
      * The lint stage can enforce common coding guidelines within a team.It supports the SAPUI5 best practices linter which operates on SAPUI5 components. A component is identified by a Component.js file in the directory.
      */
     lint?: {
       ui5BestPractices?: {
-        enableES6?: boolean;
+        esLanguageLevel?: string;
         failThreshold?: {
           error?: number;
           warning?: number;

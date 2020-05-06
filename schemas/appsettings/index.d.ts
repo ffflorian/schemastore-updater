@@ -79,3 +79,22 @@ export interface Pwa {
   strategy?: "cacheFirst" | "cacheFirstSafe" | "minimal" | "networkFirst";
   [k: string]: any;
 }
+/**
+ * This interface was referenced by `JSONSchemaASPNETCoreSAppsettingsJsonFile`'s JSON-Schema definition
+ * via the `patternProperty` "^(ElmahIo|Elmahio|elmahIo|elmahio)$".
+ */
+export interface ElmahIo {
+  /**
+   * An elmah.io API key with the Messages | Write permission.
+   */
+  ApiKey: string;
+  /**
+   * The Id of the elmah.io log to store messages in.
+   */
+  LogId: string;
+  /**
+   * The Id of the elmah.io heartbeat to notify.
+   */
+  HeartbeatId?: string;
+  [k: string]: any;
+}

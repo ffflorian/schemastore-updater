@@ -194,7 +194,13 @@ export interface ConfigurationForTheEdgeHubModule {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
-      [k: string]: string;
+      [k: string]:
+        | {
+            route: string;
+            priority?: number;
+            timeToLiveSecs?: number;
+          }
+        | string;
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;

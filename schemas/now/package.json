@@ -7,8 +7,8 @@
   "name": "@schemastore/now",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/now",
   "scripts": {},
-  "typesPublisherContentHash": "cacd4d095cc495e735b61128b3952225769cb40d7e35bf87bfeba2d36f4495da",
+  "typesPublisherContentHash": "6082b3f2fd7649d4b9148a661f8dfb1bef6ce0a055e6750760b0b6bbeb072753",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

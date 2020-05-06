@@ -7,8 +7,8 @@
   "name": "@schemastore/cloud-sdk-pipeline-config-schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cloud-sdk-pipeline-config-schema",
   "scripts": {},
-  "typesPublisherContentHash": "acec937c1f3a58d0558fb0e7e3c0a3391da1e8b8f05744b651e68b4c33c4a1c8",
+  "typesPublisherContentHash": "67fed8630f52350ccf65b840640bfa5b8d5fd07e62c1adbc4b1abf29a7ef2b55",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

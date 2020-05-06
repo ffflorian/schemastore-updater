@@ -7,8 +7,8 @@
   "name": "@schemastore/ksp-ckan",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ksp-ckan",
   "scripts": {},
-  "typesPublisherContentHash": "114cb324c4d45015a175cd04722a6ba7982797084e8c1f19d88fa393fa75759c",
+  "typesPublisherContentHash": "d0c618a677694c3bb7b3c0718fb4a225b6e57097013c43c91cb25011782dfc55",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

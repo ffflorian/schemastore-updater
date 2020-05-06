@@ -7,8 +7,8 @@
   "name": "@schemastore/contribute",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/contribute",
   "scripts": {},
-  "typesPublisherContentHash": "a6b38c35b223e3477ce2616e5864f6b20a586ef1560ef4d7110d2eb72779c50f",
+  "typesPublisherContentHash": "10113769e2812fdacdbad05bada3482984fd7b59e07b0779540759888671fe87",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

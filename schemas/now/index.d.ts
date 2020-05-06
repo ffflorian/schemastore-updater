@@ -2123,35 +2123,14 @@ export interface Now {
   /**
    * a list of route definitions
    */
-  routes?: {
-    /**
-     * A PCRE-compatible regular expression that matches each incoming pathname (excluding querystring).
-     */
-    src: string;
-    /**
-     * A set of HTTP method types. If no method is provided, requests with any HTTP method will be a candidate for the route.
-     */
-    methods?: ("GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH")[];
-    /**
-     * A destination pathname or full URL, including querystring, with the ability to embed capture groups as $1, $2…
-     */
-    dest?: string;
-    /**
-     * A set of headers to apply for responses.
-     */
-    headers?: {
-      [k: string]: string;
-    };
-    /**
-     * A status code to respond with. Can be used in tandem with `Location:` header to implement redirects.
-     */
-    status?: number;
-    /**
-     * A boolean to change matching behavior. If true, routing will continue even when the src is matched.
-     */
-    continue?: boolean;
-    [k: string]: any;
-  }[];
+  routes?: (
+    | {
+        [k: string]: any;
+      }
+    | {
+        [k: string]: any;
+      }
+  )[];
   /**
    * the deployment regions of the Serverless Functions that get created as a result of the build steps
    */

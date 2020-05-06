@@ -8,5 +8,5 @@ This package contains type definitions for drone.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/drone.
 
 ## Additional Details
-* Last updated: Fri, Oct 18, 2019, 09:07:04 GMT
+* Last updated: Wed, May 06, 2020, 20:22:29 GMT
 * Dependencies: none

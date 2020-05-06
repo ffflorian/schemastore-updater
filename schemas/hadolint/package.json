@@ -1,0 +1,14 @@
+{
+  "author": "Florian Keller <github@floriankeller.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for hadolint.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/hadolint",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/hadolint",
+  "scripts": {},
+  "typesPublisherContentHash": "f82b1c243cc82b014e30cff47b1592f32845afca97cfc71a2e19af7df6008a65",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

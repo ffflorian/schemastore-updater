@@ -18,7 +18,8 @@ export type DroneCIConfigurationFile =
               }
             | {
                 [k: string]: any;
-              })[];
+              }
+          )[];
           services?: {
             name: NonEmptyString;
             image: NonEmptyString;
@@ -68,7 +69,8 @@ export type DroneCIConfigurationFile =
           token: StringOrSecret;
           steps?: Step[];
           [k: string]: any;
-        })
+        }
+    )
   | {
       kind?: {
         [k: string]: any;
@@ -88,13 +90,19 @@ export type DroneCIConfigurationFile =
       };
       [k: string]: any;
     };
+export type StepDocker = Step & {
+  command?: NonEmptyString;
+  entrypoint?: Commands;
+  image: NonEmptyString;
+  network_mode?: string;
+  privileged?: boolean;
+  pull?: "always" | "never" | "if-not-exists";
+  user?: string;
+  volumes?: Volumes;
+  [k: string]: any;
+};
 export type NonEmptyString = string;
 export type Commands = NonEmptyString[];
-export type Volumes = {
-  name: NonEmptyString;
-  path: NonEmptyString;
-  [k: string]: any;
-}[];
 export type Conditions =
   | Condition
   | {
@@ -106,26 +114,13 @@ export type Conditions =
       [k: string]: any;
     };
 export type Condition = string[];
+export type Volumes = {
+  name: NonEmptyString;
+  path: NonEmptyString;
+  [k: string]: any;
+}[];
 export type StringOrSecret = NonEmptyString | Secret;
 
-export interface StepDocker {
-  command?: NonEmptyString;
-  entrypoint?: Commands;
-  image: NonEmptyString;
-  network_mode?: string;
-  privileged?: boolean;
-  pull?: "always" | "never" | "if-not-exists";
-  user?: string;
-  volumes?: Volumes;
-  [k: string]: any;
-}
-export interface Environment {
-  [k: string]: string | Secret;
-}
-export interface Secret {
-  from_secret: string;
-  [k: string]: any;
-}
 export interface Step {
   name: NonEmptyString;
   failure?: "always" | "ignore";
@@ -134,6 +129,14 @@ export interface Step {
   environment?: Environment;
   when?: AllConditions;
   depends_on?: NonEmptyString[];
+  [k: string]: any;
+}
+export interface Environment {
+  [k: string]: string | Secret;
+}
+export interface Secret {
+  from_secret: string;
+  [k: string]: any;
 }
 export interface AllConditions {
   branch?: Conditions;

@@ -47,11 +47,11 @@ export type Services = (
 /**
  * Defines scripts that should run *before* the job. Can be set globally or per job.
  */
-export type BeforeScript = string[];
+export type BeforeScript = (string | string[])[];
 /**
  * Defines scripts that should run *after* the job. Can be set globally or per job.
  */
-export type AfterScript = string[];
+export type AfterScript = (string | string[])[];
 export type IncludeItem =
   | string
   | {
@@ -132,6 +132,12 @@ export interface GitlabCIConfiguration {
    * A special job used to upload static sites to Gitlab pages. Requires a `public/` directory with `artifacts.path` pointing to it.
    */
   pages?: JobTemplate & {
+    [k: string]: any;
+  };
+  workflow?: {
+    rules?: {
+      [k: string]: any;
+    }[];
     [k: string]: any;
   };
   [k: string]: Job;

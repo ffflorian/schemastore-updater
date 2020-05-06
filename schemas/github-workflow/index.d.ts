@@ -28,10 +28,23 @@ export type Event =
   | "pull_request_review"
   | "pull_request_review_comment"
   | "push"
+  | "registry_package"
   | "release"
   | "status"
   | "watch"
   | "repository_dispatch";
+/**
+ * You can override the default shell settings in the runner's operating system using the shell keyword. You can use built-in shell keywords, or you can define a custom set of shell options.
+ */
+export type Shell =
+  | {
+      [k: string]: any;
+    }
+  | ("bash" | "pwsh" | "python" | "sh" | "cmd" | "powershell");
+/**
+ * Using the working-directory keyword, you can specify the working directory of where to run the command.
+ */
+export type WorkingDirectory = string;
 export type Name = string;
 export type Machine = "linux" | "macos" | "windows";
 export type Architecture = "ARM32" | "x64" | "x86";
@@ -42,6 +55,34 @@ export type Configuration =
       [k: string]: Configuration;
     }
   | Configuration[];
+export type Container =
+  | string
+  | {
+      /**
+       * The Docker image to use as the container to run the action. The value can be the Docker Hub image name or a public docker registry name.
+       */
+      image: string;
+      /**
+       * Sets an array of environment variables in the container.
+       */
+      env?: {
+        [k: string]: string | number | boolean;
+      };
+      /**
+       * Sets an array of ports to expose on the container.
+       */
+      ports?: [number | string, ...(number | string)[]];
+      /**
+       * Sets an array of volumes for the container to use. You can use volumes to share data between services or other steps in a job. You can specify named Docker volumes, anonymous Docker volumes, or bind mounts on the host.
+       * To specify a volume, you specify the source and destination path: <source>:<destinationPath>
+       * The <source> is a volume name or an absolute path on the host machine, and <destinationPath> is an absolute path in the container.
+       */
+      volumes?: [string, ...string[]];
+      /**
+       * Additional Docker container resource options. For a list of options, see https://docs.docker.com/engine/reference/commandline/create/#options.
+       */
+      options?: string;
+    };
 
 export interface GithubWorkflow {
   /**
@@ -201,6 +242,12 @@ export interface GithubWorkflow {
           [k: string]: any;
         } | null;
         /**
+         * Runs your workflow anytime a package is published or updated. For more information, see https://help.github.com/en/github/managing-packages-with-github-packages.
+         */
+        registry_package?: {
+          [k: string]: any;
+        } | null;
+        /**
          * Runs your workflow anytime the release event occurs. More than one activity type triggers this event. For information about the REST API, see https://developer.github.com/v3/repos/releases/.
          */
         release?: {
@@ -244,6 +291,15 @@ export interface GithubWorkflow {
    */
   env?: {
     [k: string]: string | number | boolean;
+  };
+  /**
+   * A map of default settings that will apply to all jobs in the workflow.
+   */
+  defaults?: {
+    run?: {
+      shell?: Shell;
+      "working-directory"?: WorkingDirectory;
+    };
   };
   /**
    * A workflow run is made up of one or more jobs. Jobs run in parallel by default. To run jobs sequentially, you can define dependencies on other jobs using the jobs.<job_id>.needs keyword.
@@ -352,10 +408,25 @@ export interface GithubWorkflow {
               ]
           );
       /**
+       * A map of outputs for a job. Job outputs are available to all downstream jobs that depend on this job.
+       */
+      outputs?: {
+        [k: string]: string;
+      };
+      /**
        * A map of environment variables that are available to all steps in the job.
        */
       env?: {
         [k: string]: string | number | boolean;
+      };
+      /**
+       * A map of default settings that will apply to all steps in the job.
+       */
+      defaults?: {
+        run?: {
+          shell?: Shell;
+          "working-directory"?: WorkingDirectory;
+        };
       };
       /**
        * You can use the if conditional to prevent a job from running unless a condition is met. You can use any supported context and expression to create a conditional.
@@ -397,18 +468,8 @@ export interface GithubWorkflow {
            * Each run keyword represents a new process and shell in the virtual environment. When you provide multi-line commands, each line runs in the same shell.
            */
           run?: string;
-          /**
-           * Using the working-directory keyword, you can specify the working directory of where to run the command.
-           */
-          "working-directory"?: string;
-          /**
-           * You can override the default shell settings in the virtual environment's operating system using the shell keyword. You can use built-in shell keywords, or you can define a custom set of shell options.
-           */
-          shell?:
-            | {
-                [k: string]: any;
-              }
-            | ("bash" | "pwsh" | "python" | "sh" | "cmd" | "powershell");
+          "working-directory"?: WorkingDirectory;
+          shell?: Shell;
           /**
            * A map of the input parameters defined by the action. Each input parameter is a key/value pair. Input parameters are set as environment variables. The variable is prefixed with INPUT_ and converted to upper case.
            */
@@ -462,18 +523,8 @@ export interface GithubWorkflow {
            * Each run keyword represents a new process and shell in the virtual environment. When you provide multi-line commands, each line runs in the same shell.
            */
           run?: string;
-          /**
-           * Using the working-directory keyword, you can specify the working directory of where to run the command.
-           */
-          "working-directory"?: string;
-          /**
-           * You can override the default shell settings in the virtual environment's operating system using the shell keyword. You can use built-in shell keywords, or you can define a custom set of shell options.
-           */
-          shell?:
-            | {
-                [k: string]: any;
-              }
-            | ("bash" | "pwsh" | "python" | "sh" | "cmd" | "powershell");
+          "working-directory"?: WorkingDirectory;
+          shell?: Shell;
           /**
            * A map of the input parameters defined by the action. Each input parameter is a key/value pair. Input parameters are set as environment variables. The variable is prefixed with INPUT_ and converted to upper case.
            */
@@ -524,6 +575,10 @@ export interface GithubWorkflow {
         "max-parallel"?: number;
       };
       /**
+       * Prevents a workflow run from failing when a job fails. Set to true to allow a workflow run to pass when this job fails.
+       */
+      "continue-on-error"?: boolean | string;
+      /**
        * A container to run any steps in a job that don't already specify a container. If you have steps that use both script and container actions, the container actions will run as sibling containers on the same network with the same volume mounts.
        * If you do not set a container, all steps will run directly on the host specified by runs-on unless a step refers to an action configured to run in a container.
        */
@@ -541,30 +596,4 @@ export interface GithubWorkflow {
       };
     };
   };
-}
-export interface Container {
-  /**
-   * The Docker image to use as the container to run the action. The value can be the Docker Hub image name or a public docker registry name.
-   */
-  image: string;
-  /**
-   * Sets an array of environment variables in the container.
-   */
-  env?: {
-    [k: string]: string | number | boolean;
-  };
-  /**
-   * Sets an array of ports to expose on the container.
-   */
-  ports?: [number | string, ...(number | string)[]];
-  /**
-   * Sets an array of volumes for the container to use. You can use volumes to share data between services or other steps in a job. You can specify named Docker volumes, anonymous Docker volumes, or bind mounts on the host.
-   * To specify a volume, you specify the source and destination path: <source>:<destinationPath>
-   * The <source> is a volume name or an absolute path on the host machine, and <destinationPath> is an absolute path in the container.
-   */
-  volumes?: [string, ...string[]];
-  /**
-   * Additional Docker container resource options. For a list of options, see https://docs.docker.com/engine/reference/commandline/create/#options.
-   */
-  options?: string;
 }

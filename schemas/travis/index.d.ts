@@ -412,7 +412,7 @@ export type PossiblySecretString =
   | {
       secure?: string;
     };
-export type Cache = "bundler" | "cargo" | "ccache" | "cocoapods" | "packages" | "pip" | "yarn" | "npm";
+export type Cache = "apt" | "bundler" | "cargo" | "ccache" | "cocoapods" | "packages" | "pip" | "yarn" | "npm";
 export type Service =
   | "cassandra"
   | "couchdb"
@@ -895,7 +895,7 @@ export interface Job {
     | false
     | Cache
     | (
-        | ("bundler" | "cargo" | "ccache" | "cocoapods" | "packages" | "pip" | "yarn" | "npm")
+        | ("apt" | "bundler" | "cargo" | "ccache" | "cocoapods" | "packages" | "pip" | "yarn" | "npm")
         | {
             directories?: string[];
           }
@@ -906,6 +906,7 @@ export interface Job {
          * Upload timeout in seconds
          */
         timeout?: number;
+        apt?: boolean;
         bundler?: boolean;
         cocoapods?: boolean;
         pip?: boolean;

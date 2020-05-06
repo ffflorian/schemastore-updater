@@ -15,6 +15,11 @@ export interface MozillaSContributeJson {
     "mailing-list"?: string;
     irc?: string;
     "irc-contacts"?: string[];
+    chat?: {
+      url: string;
+      contacts?: string[];
+      [k: string]: any;
+    };
     [k: string]: any;
   };
   repository: {

@@ -9,7 +9,7 @@
  * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` ".*".
  */
-export type SimpleArrayStringRule = [string, ...(string)[]];
+export type SimpleArrayStringRule = [string, ...string[]];
 
 export interface JSONSchemaForTheStylelintConfigurationFiles {
   /**
@@ -19,7 +19,7 @@ export interface JSONSchemaForTheStylelintConfigurationFiles {
   /**
    * Plugins are rules or sets of rules built by the community that support methodologies, toolsets, non-standard CSS features, or very specific use cases
    */
-  plugins?: [string, ...(string)[]];
+  plugins?: [string, ...string[]];
   /**
    * Processors are functions that hook into stylelint's pipeline, modifying code on its way into stylelint and modifying results on their way out
    */
@@ -28,10 +28,11 @@ export interface JSONSchemaForTheStylelintConfigurationFiles {
     | []
     | [
         string,
-        ...({
+        ...{
           [k: string]: any;
-        })[]
-      ])[];
+        }[]
+      ]
+  )[];
   /**
    * Provide a glob or array of globs to ignore specific files
    */
@@ -76,56 +77,53 @@ export interface AtRule {
    */
   "at-rule-blacklist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Require or disallow an empty line before at-rules
    */
   "at-rule-empty-line-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify lowercase or uppercase for at-rules names
    */
   "at-rule-name-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Require a newline after at-rule names
    */
   "at-rule-name-newline-after"?:
     | null
     | ("always" | "always-multi-line" | [])
-    | [(("always" | "always-multi-line" | {}) | CoreRule), (("always" | "always-multi-line" | {}) | CoreRule)];
+    | [("always" | "always-multi-line" | {}) | CoreRule, ("always" | "always-multi-line" | {}) | CoreRule];
   /**
    * Require a single space after at-rule names
    */
   "at-rule-name-space-after"?:
     | null
     | ("always" | "always-single-line" | [])
-    | [(("always" | "always-single-line" | {}) | CoreRule), (("always" | "always-single-line" | {}) | CoreRule)];
+    | [("always" | "always-single-line" | {}) | CoreRule, ("always" | "always-single-line" | {}) | CoreRule];
   /**
    * Disallow unknown at-rules
    */
-  "at-rule-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "at-rule-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow vendor prefixes for at-rules
    */
-  "at-rule-no-vendor-prefix"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "at-rule-no-vendor-prefix"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require a newline after the semicolon of at-rules
    */
-  "at-rule-semicolon-newline-after"?:
-    | null
-    | ("always" | [])
-    | [(("always" | {}) | CoreRule), (("always" | {}) | CoreRule)];
+  "at-rule-semicolon-newline-after"?: null | ("always" | []) | [("always" | {}) | CoreRule, ("always" | {}) | CoreRule];
   /**
    * Specify a whitelist of allowed at-rules
    */
   "at-rule-whitelist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   [k: string]: any;
 }
 export interface CoreRule {
@@ -146,7 +144,7 @@ export interface Block {
   "block-closing-brace-empty-line-before"?:
     | null
     | ("always-multi-line" | "never" | [])
-    | [(("always-multi-line" | "never" | {}) | CoreRule), (("always-multi-line" | "never" | {}) | CoreRule)];
+    | [("always-multi-line" | "never" | {}) | CoreRule, ("always-multi-line" | "never" | {}) | CoreRule];
   /**
    * Require a newline or disallow whitespace after the closing brace of blocks
    */
@@ -156,10 +154,12 @@ export interface Block {
     | [
         (
           | ("always" | "always-single-line" | "never-single-line" | "always-multi-line" | "never-multi-line" | {})
-          | CoreRule),
+          | CoreRule
+        ),
         (
           | ("always" | "always-single-line" | "never-single-line" | "always-multi-line" | "never-multi-line" | {})
-          | CoreRule)
+          | CoreRule
+        )
       ];
   /**
    * Require a newline or disallow whitespace before the closing brace of blocks
@@ -168,8 +168,8 @@ export interface Block {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace after the closing brace of blocks
@@ -186,8 +186,10 @@ export interface Block {
               | "never-single-line"
               | "always-multi-line"
               | "never-multi-line"
-              | {})
-          | CoreRule),
+              | {}
+            )
+          | CoreRule
+        ),
         (
           | (
               | "always"
@@ -196,8 +198,10 @@ export interface Block {
               | "never-single-line"
               | "always-multi-line"
               | "never-multi-line"
-              | {})
-          | CoreRule)
+              | {}
+            )
+          | CoreRule
+        )
       ];
   /**
    * Require a single space or disallow whitespace before the closing brace of blocks
@@ -214,8 +218,10 @@ export interface Block {
               | "never-single-line"
               | "always-multi-line"
               | "never-multi-line"
-              | {})
-          | CoreRule),
+              | {}
+            )
+          | CoreRule
+        ),
         (
           | (
               | "always"
@@ -224,17 +230,19 @@ export interface Block {
               | "never-single-line"
               | "always-multi-line"
               | "never-multi-line"
-              | {})
-          | CoreRule)
+              | {}
+            )
+          | CoreRule
+        )
       ];
   /**
    * Disallow empty blocks
    */
-  "block-no-empty"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "block-no-empty"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow single-line blocks
    */
-  "block-no-single-line"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "block-no-single-line"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require a newline after the opening brace of blocks
    */
@@ -242,8 +250,8 @@ export interface Block {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a newline or disallow whitespace before the opening brace of blocks
@@ -254,10 +262,12 @@ export interface Block {
     | [
         (
           | ("always" | "always-single-line" | "never-single-line" | "always-multi-line" | "never-multi-line" | {})
-          | CoreRule),
+          | CoreRule
+        ),
         (
           | ("always" | "always-single-line" | "never-single-line" | "always-multi-line" | "never-multi-line" | {})
-          | CoreRule)
+          | CoreRule
+        )
       ];
   /**
    * Require a single space or disallow whitespace after the opening brace of blocks
@@ -274,8 +284,10 @@ export interface Block {
               | "never-single-line"
               | "always-multi-line"
               | "never-multi-line"
-              | {})
-          | CoreRule),
+              | {}
+            )
+          | CoreRule
+        ),
         (
           | (
               | "always"
@@ -284,8 +296,10 @@ export interface Block {
               | "never-single-line"
               | "always-multi-line"
               | "never-multi-line"
-              | {})
-          | CoreRule)
+              | {}
+            )
+          | CoreRule
+        )
       ];
   /**
    * Require a single space or disallow whitespace before the opening brace of blocks
@@ -296,10 +310,12 @@ export interface Block {
     | [
         (
           | ("always" | "always-single-line" | "never-single-line" | "always-multi-line" | "never-multi-line" | {})
-          | CoreRule),
+          | CoreRule
+        ),
         (
           | ("always" | "always-single-line" | "never-single-line" | "always-multi-line" | "never-multi-line" | {})
-          | CoreRule)
+          | CoreRule
+        )
       ];
   [k: string]: any;
 }
@@ -310,29 +326,29 @@ export interface Color {
   "color-hex-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Specify short or long notation for hex colors
    */
   "color-hex-length"?:
     | null
     | ("short" | "long" | [])
-    | [(("short" | "long" | {}) | CoreRule), (("short" | "long" | {}) | CoreRule)];
+    | [("short" | "long" | {}) | CoreRule, ("short" | "long" | {}) | CoreRule];
   /**
    * Require (where possible) or disallow named colors
    */
   "color-named"?:
     | null
     | ("always-where-possible" | "never" | [])
-    | [(("always-where-possible" | "never" | {}) | CoreRule), (("always-where-possible" | "never" | {}) | CoreRule)];
+    | [("always-where-possible" | "never" | {}) | CoreRule, ("always-where-possible" | "never" | {}) | CoreRule];
   /**
    * Disallow hex colors
    */
-  "color-no-hex"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "color-no-hex"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow invalid hex colors
    */
-  "color-no-invalid-hex"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "color-no-invalid-hex"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Comment {
@@ -342,31 +358,31 @@ export interface Comment {
   "comment-empty-line-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Disallow empty comments
    */
-  "comment-no-empty"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "comment-no-empty"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require or disallow whitespace on the inside of comment markers
    */
   "comment-whitespace-inside"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify a blacklist of disallowed words within comments
    */
   "comment-word-blacklist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   [k: string]: any;
 }
 export interface CustomMedia {
   /**
    * Specify a pattern for custom media query names
    */
-  "custom-media-pattern"?: (null | string) | [({} | CoreRule), ({} | CoreRule)];
+  "custom-media-pattern"?: (null | string) | [{} | CoreRule, {} | CoreRule];
   [k: string]: any;
 }
 export interface CustomProperty {
@@ -376,15 +392,15 @@ export interface CustomProperty {
   "custom-property-empty-line-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Disallow custom properties outside of `:root` rules
    */
-  "custom-property-no-outside-root"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "custom-property-no-outside-root"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify a pattern for custom properties
    */
-  "custom-property-pattern"?: (null | string) | [({} | CoreRule), ({} | CoreRule)];
+  "custom-property-pattern"?: (null | string) | [{} | CoreRule, {} | CoreRule];
   [k: string]: any;
 }
 export interface Declaration {
@@ -394,21 +410,21 @@ export interface Declaration {
   "declaration-bang-space-after"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace before the bang of declarations
    */
   "declaration-bang-space-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a newline or disallow whitespace after the colon of declarations
    */
   "declaration-colon-newline-after"?:
     | null
     | ("always" | "always-multi-line" | [])
-    | [(("always" | "always-multi-line" | {}) | CoreRule), (("always" | "always-multi-line" | {}) | CoreRule)];
+    | [("always" | "always-multi-line" | {}) | CoreRule, ("always" | "always-multi-line" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace after the colon of declarations
    */
@@ -416,8 +432,8 @@ export interface Declaration {
     | null
     | ("always" | "never" | "always-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace before the colon of declarations
@@ -425,18 +441,18 @@ export interface Declaration {
   "declaration-colon-space-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require or disallow an empty line before declarations
    */
   "declaration-empty-line-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Disallow `!important` within declarations
    */
-  "declaration-no-important"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "declaration-no-important"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify a blacklist of disallowed property and unit pairs within declarations
    */
@@ -479,28 +495,25 @@ export interface DeclarationBlock {
   /**
    * Disallow duplicate properties within declaration blocks
    */
-  "declaration-block-no-duplicate-properties"?:
-    | null
-    | (true | [])
-    | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "declaration-block-no-duplicate-properties"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow property values that are ignored due to another property value in the same rule
    */
-  "declaration-block-no-ignored-properties"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "declaration-block-no-ignored-properties"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow longhand properties that can be combined into one shorthand property
    */
   "declaration-block-no-redundant-longhand-properties"?:
     | null
     | (true | [])
-    | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+    | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow shorthand properties that override related longhand properties
    */
   "declaration-block-no-shorthand-property-overrides"?:
     | null
     | (true | [])
-    | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+    | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify the order of properties within declaration blocks
    */
@@ -508,7 +521,7 @@ export interface DeclarationBlock {
     | null
     | ("alphabetical" | [])
     | [
-        (("alphabetical" | [] | {}) | string | SimpleArrayStringRule | CoreRule),
+        ("alphabetical" | [] | {}) | string | SimpleArrayStringRule | CoreRule,
         ...(("alphabetical" | [] | {}) | string | SimpleArrayStringRule | CoreRule)[]
       ];
   /**
@@ -518,8 +531,8 @@ export interface DeclarationBlock {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a newline or disallow whitespace before the semicolons of declaration blocks
@@ -528,8 +541,8 @@ export interface DeclarationBlock {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace after the semicolons of declaration blocks
@@ -538,8 +551,8 @@ export interface DeclarationBlock {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace before the semicolons of declaration blocks
@@ -548,20 +561,20 @@ export interface DeclarationBlock {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Limit the number of declaration within a single line declaration block
    */
-  "declaration-block-single-line-max-declarations"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "declaration-block-single-line-max-declarations"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   /**
    * Require or disallow a trailing semicolon within declaration blocks
    */
   "declaration-block-trailing-semicolon"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Font {
@@ -572,8 +585,8 @@ export interface Font {
     | null
     | ("always-where-required" | "always-where-recommended" | "always-unless-keyword" | [])
     | [
-        (("always-where-required" | "always-where-recommended" | "always-unless-keyword" | {}) | CoreRule),
-        (("always-where-required" | "always-where-recommended" | "always-unless-keyword" | {}) | CoreRule)
+        ("always-where-required" | "always-where-recommended" | "always-unless-keyword" | {}) | CoreRule,
+        ("always-where-required" | "always-where-recommended" | "always-unless-keyword" | {}) | CoreRule
       ];
   /**
    * Require numeric or named (where possible) `font-weight` values. Also, when named values are expected, require only valid names
@@ -581,7 +594,7 @@ export interface Font {
   "font-weight-notation"?:
     | null
     | ("numeric" | "named-where-possible" | [])
-    | [(("numeric" | "named-where-possible" | {}) | CoreRule), (("numeric" | "named-where-possible" | {}) | CoreRule)];
+    | [("numeric" | "named-where-possible" | {}) | CoreRule, ("numeric" | "named-where-possible" | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Function {
@@ -590,11 +603,11 @@ export interface Function {
    */
   "function-blacklist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Disallow an unspaced operator within `calc` functions
    */
-  "function-calc-no-unspaced-operator"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "function-calc-no-unspaced-operator"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require a newline or disallow whitespace after the commas of functions
    */
@@ -602,8 +615,8 @@ export interface Function {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a newline or disallow whitespace before the commas of functions
@@ -612,8 +625,8 @@ export interface Function {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace after the commas of functions
@@ -622,8 +635,8 @@ export interface Function {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace before the commas of functions
@@ -632,8 +645,8 @@ export interface Function {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Disallow direction values in `linear-gradient()` calls that are not valid according to the standard syntax
@@ -641,18 +654,18 @@ export interface Function {
   "function-linear-gradient-no-nonstandard-direction"?:
     | null
     | (true | [])
-    | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+    | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Limit the number of adjacent empty lines within functions
    */
-  "function-max-empty-lines"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "function-max-empty-lines"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   /**
    * Specify lowercase or uppercase for function names
    */
   "function-name-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Require a newline or disallow whitespace on the inside of the parentheses of functions
    */
@@ -660,8 +673,8 @@ export interface Function {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace on the inside of the parentheses of functions
@@ -670,8 +683,8 @@ export interface Function {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Require or disallow data URIs for urls
@@ -679,37 +692,37 @@ export interface Function {
   "function-url-data-uris"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Disallow scheme-relative urls
    */
-  "function-url-no-scheme-relative"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "function-url-no-scheme-relative"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require or disallow quotes for urls
    */
   "function-url-quotes"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify a whitelist of allowed url schemes
    */
   "function-url-scheme-whitelist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Specify a whitelist of allowed functions
    */
   "function-whitelist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Require or disallow whitespace after functions
    */
   "function-whitespace-after"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   [k: string]: any;
 }
 export interface GeneralSheet {
@@ -719,78 +732,78 @@ export interface GeneralSheet {
   indentation?:
     | (null | number)
     | ("tab" | [])
-    | [number, ...(number)[]]
-    | [(number | ("tab" | {}) | CoreRule), (number | ("tab" | {}) | CoreRule)];
+    | [number, ...number[]]
+    | [number | ("tab" | {}) | CoreRule, number | ("tab" | {}) | CoreRule];
   /**
    * Limit the number of adjacent empty lines
    */
-  "max-empty-lines"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "max-empty-lines"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   /**
    * Limit the length of a line
    */
-  "max-line-length"?: (null | number) | [(number | CoreRule), (number | CoreRule)];
+  "max-line-length"?: (null | number) | [number | CoreRule, number | CoreRule];
   /**
    * Limit the allowed nesting depth
    */
-  "max-nesting-depth"?: (null | number) | [(number | CoreRule), (number | CoreRule)];
+  "max-nesting-depth"?: (null | number) | [number | CoreRule, number | CoreRule];
   /**
    * Disallow browser hacks that are irrelevant to the browsers you are targeting
    */
-  "no-browser-hacks"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-browser-hacks"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow selectors of lower specificity from coming after overriding selectors of higher specificity
    */
-  "no-descending-specificity"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-descending-specificity"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow duplicate selectors within a stylesheet
    */
-  "no-duplicate-selectors"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-duplicate-selectors"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow empty sources
    */
-  "no-empty-source"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-empty-source"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow end-of-line whitespace
    */
-  "no-eol-whitespace"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-eol-whitespace"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Dissalow extra semicolons
    */
-  "no-extra-semicolons"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-extra-semicolons"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow colors that are suspiciously close to being identical
    */
-  "no-indistinguishable-colors"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-indistinguishable-colors"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow double-slash comments `(//...)` which are not supported by CSS and could lead to unexpected results
    */
-  "no-invalid-double-slash-comments"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-invalid-double-slash-comments"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow missing end-of-source newlines
    */
-  "no-missing-end-of-source-newline"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-missing-end-of-source-newline"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow animation names that do not correspond to a `@keyframes` declaration
    */
-  "no-unknown-animations"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-unknown-animations"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow features that are unsupported by the browsers that you are targeting
    */
-  "no-unsupported-browser-features"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "no-unsupported-browser-features"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface KeyframeDeclaration {
   /**
    * Disallow !important within keyframe declarations
    */
-  "keyframe-declaration-no-important"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "keyframe-declaration-no-important"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Length {
   /**
    * Disallow units for zero lengths
    */
-  "length-zero-no-unit"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "length-zero-no-unit"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface MediaFeature {
@@ -800,54 +813,54 @@ export interface MediaFeature {
   "media-feature-colon-space-after"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace before the colon in media features
    */
   "media-feature-colon-space-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify lowercase or uppercase for media feature names
    */
   "media-feature-name-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Disallow unknown media feature names
    */
-  "media-feature-name-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "media-feature-name-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow vendor prefixes for media feature names
    */
-  "media-feature-name-no-vendor-prefix"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "media-feature-name-no-vendor-prefix"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow missing punctuation for non-boolean media features
    */
-  "media-feature-no-missing-punctuation"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "media-feature-no-missing-punctuation"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace on the inside of the parentheses within media features
    */
   "media-feature-parentheses-space-inside"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace after the range operator in media features
    */
   "media-feature-range-operator-space-after"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace before the range operator in media features
    */
   "media-feature-range-operator-space-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   [k: string]: any;
 }
 export interface MediaQueryList {
@@ -858,8 +871,8 @@ export interface MediaQueryList {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a newline or disallow whitespace before the commas of media query lists
@@ -868,8 +881,8 @@ export interface MediaQueryList {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace after the commas of media query lists
@@ -878,8 +891,8 @@ export interface MediaQueryList {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace before the commas of media query lists
@@ -888,8 +901,8 @@ export interface MediaQueryList {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   [k: string]: any;
 }
@@ -900,15 +913,15 @@ export interface Number {
   "number-leading-zero"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Limit the number of decimal places allowed in numbers
    */
-  "number-max-precision"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "number-max-precision"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   /**
    * Disallow trailing zeros in numbers
    */
-  "number-no-trailing-zeros"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "number-no-trailing-zeros"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Property {
@@ -917,35 +930,35 @@ export interface Property {
    */
   "property-blacklist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Specify lowercase or uppercase for properties
    */
   "property-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Disallow unknown properties
    */
-  "property-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "property-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow vendor prefixes for properties
    */
-  "property-no-vendor-prefix"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "property-no-vendor-prefix"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify a whitelist of allowed properties
    */
   "property-whitelist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   [k: string]: any;
 }
 export interface RootRule {
   /**
    * Disallow standard properties inside `:root` rules
    */
-  "root-no-standard-properties"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "root-no-standard-properties"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Rule {
@@ -956,8 +969,8 @@ export interface Rule {
     | null
     | ("always" | "never" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require or disallow an empty line before non-nested rules
@@ -966,8 +979,8 @@ export interface Rule {
     | null
     | ("always" | "never" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "never" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   [k: string]: any;
 }
@@ -978,170 +991,167 @@ export interface Selector {
   "selector-attribute-brackets-space-inside"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify a blacklist of disallowed attribute operators
    */
   "selector-attribute-operator-blacklist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Require a single space or disallow whitespace after operators within attribute selectors
    */
   "selector-attribute-operator-space-after"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace before operators within attribute selectors
    */
   "selector-attribute-operator-space-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify a whitelist of allowed attribute operators
    */
   "selector-attribute-operator-whitelist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Require or disallow quotes for attribute values
    */
   "selector-attribute-quotes"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify a pattern for class selectors
    */
-  "selector-class-pattern"?: (null | string) | [(string | CoreRule), (string | CoreRule)];
+  "selector-class-pattern"?: (null | string) | [string | CoreRule, string | CoreRule];
   /**
    * Require a single space or disallow whitespace after the combinators of selectors
    */
   "selector-combinator-space-after"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace before the combinators of selectors
    */
   "selector-combinator-space-before"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Disallow non-space characters for descendant combinators of selectors
    */
-  "selector-descendant-combinator-no-non-space"?:
-    | null
-    | (true | [])
-    | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-descendant-combinator-no-non-space"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify a pattern for id selectors
    */
-  "selector-id-pattern"?: (null | string) | [({} | CoreRule), ({} | CoreRule)];
+  "selector-id-pattern"?: (null | string) | [{} | CoreRule, {} | CoreRule];
   /**
    * Limit the number of compound selectors in a selector
    */
-  "selector-max-compound-selectors"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "selector-max-compound-selectors"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   /**
    * Limit the specificity of selectors
    */
-  "selector-max-specificity"?: (null | string) | [({} | CoreRule), ({} | CoreRule)];
+  "selector-max-specificity"?: (null | string) | [{} | CoreRule, {} | CoreRule];
   /**
    * Specify a pattern for the selectors of rules nested within rules
    */
-  "selector-nested-pattern"?: (null | string) | [({} | CoreRule), ({} | CoreRule)];
+  "selector-nested-pattern"?: (null | string) | [{} | CoreRule, {} | CoreRule];
   /**
    * Disallow attribute selectors
    */
-  "selector-no-attribute"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-attribute"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow combinators in selectors
    */
-  "selector-no-combinator"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-combinator"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow id selectors
    */
-  "selector-no-id"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-id"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow qualifying a selector by type
    */
-  "selector-no-qualifying-type"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-qualifying-type"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow type selectors
    */
-  "selector-no-type"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-type"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow the universal selector
    */
-  "selector-no-universal"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-universal"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow vendor prefixes for selectors
    */
-  "selector-no-vendor-prefix"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-no-vendor-prefix"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify lowercase or uppercase for pseudo-class selectors
    */
   "selector-pseudo-class-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Disallow unknown pseudo-class selectors
    */
-  "selector-pseudo-class-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-pseudo-class-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Require a single space or disallow whitespace on the inside of the parentheses within pseudo-class selectors
    */
   "selector-pseudo-class-parentheses-space-inside"?:
     | null
     | ("always" | "never" | [])
-    | [(("always" | "never" | {}) | CoreRule), (("always" | "never" | {}) | CoreRule)];
+    | [("always" | "never" | {}) | CoreRule, ("always" | "never" | {}) | CoreRule];
   /**
    * Specify a whitelist of allowed pseudo-class selectors
    */
   "selector-pseudo-class-whitelist"?:
     | (null | string)
-    | [(([] | {}) | SimpleArrayStringRule | CoreRule), ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
+    | [([] | {}) | SimpleArrayStringRule | CoreRule, ...(([] | {}) | SimpleArrayStringRule | CoreRule)[]];
   /**
    * Specify lowercase or uppercase for pseudo-element selectors
    */
   "selector-pseudo-element-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Specify single or double colon notation for applicable pseudo-elements
    */
   "selector-pseudo-element-colon-notation"?:
     | null
     | ("single" | "double" | [])
-    | [(("single" | "double" | {}) | CoreRule), (("single" | "double" | {}) | CoreRule)];
+    | [("single" | "double" | {}) | CoreRule, ("single" | "double" | {}) | CoreRule];
   /**
    * Disallow unknown pseudo-element selectors
    */
-  "selector-pseudo-element-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-pseudo-element-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Disallow the composition of :root in selectors
    */
-  "selector-root-no-composition"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-root-no-composition"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify lowercase or uppercase for type selectors
    */
   "selector-type-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Disallow unknown type selectors
    */
-  "selector-type-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "selector-type-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Limit the number of adjacent empty lines within selectors
    */
-  "selector-max-empty-lines"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "selector-max-empty-lines"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   [k: string]: any;
 }
 export interface SelectorList {
@@ -1152,8 +1162,8 @@ export interface SelectorList {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a newline or disallow whitespace before the commas of selector lists
@@ -1162,8 +1172,8 @@ export interface SelectorList {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace after the commas of selector lists
@@ -1172,8 +1182,8 @@ export interface SelectorList {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace before the commas of selector lists
@@ -1182,8 +1192,8 @@ export interface SelectorList {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   [k: string]: any;
 }
@@ -1191,21 +1201,21 @@ export interface ShorthandProperty {
   /**
    * Disallow redundant values in shorthand properties
    */
-  "shorthand-property-no-redundant-values"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "shorthand-property-no-redundant-values"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface String {
   /**
    * Disallow (unescaped) newlines in strings
    */
-  "string-no-newline"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "string-no-newline"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify single or double quotes around strings
    */
   "string-quotes"?:
     | null
     | ("single" | "double" | [])
-    | [(("single" | "double" | {}) | CoreRule), (("single" | "double" | {}) | CoreRule)];
+    | [("single" | "double" | {}) | CoreRule, ("single" | "double" | {}) | CoreRule];
   [k: string]: any;
 }
 export interface StylelintDisableComment {
@@ -1215,14 +1225,14 @@ export interface StylelintDisableComment {
   "stylelint-disable-reason"?:
     | null
     | ("always-before" | "always-after" | [])
-    | [(("always-before" | "always-after" | {}) | CoreRule), (("always-before" | "always-after" | {}) | CoreRule)];
+    | [("always-before" | "always-after" | {}) | CoreRule, ("always-before" | "always-after" | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Time {
   /**
    * Disallow `animation` and `transition` less than or equal to 100ms
    */
-  "time-no-imperceptible"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "time-no-imperceptible"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface Unit {
@@ -1261,7 +1271,8 @@ export interface Unit {
         | "dpcm"
         | "dppx"
         | "fr"
-        | [])
+        | []
+      )
     | [
         (
           | (
@@ -1295,7 +1306,8 @@ export interface Unit {
               | "dppx"
               | "fr"
               | []
-              | {})
+              | {}
+            )
           | [
               (
                 | "em"
@@ -1326,7 +1338,8 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr"),
+                | "fr"
+              ),
               ...(
                 | "em"
                 | "ex"
@@ -1356,9 +1369,11 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr")[]
+                | "fr"
+              )[]
             ]
-          | CoreRule),
+          | CoreRule
+        ),
         ...(
           | (
               | "em"
@@ -1391,7 +1406,8 @@ export interface Unit {
               | "dppx"
               | "fr"
               | []
-              | {})
+              | {}
+            )
           | [
               (
                 | "em"
@@ -1422,7 +1438,8 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr"),
+                | "fr"
+              ),
               ...(
                 | "em"
                 | "ex"
@@ -1452,9 +1469,11 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr")[]
+                | "fr"
+              )[]
             ]
-          | CoreRule)[]
+          | CoreRule
+        )[]
       ];
   /**
    * Specify lowercase or uppercase for units
@@ -1462,11 +1481,11 @@ export interface Unit {
   "unit-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Disallow unknown units
    */
-  "unit-no-unknown"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "unit-no-unknown"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   /**
    * Specify a whitelist of allowed units
    */
@@ -1502,7 +1521,8 @@ export interface Unit {
         | "dpcm"
         | "dppx"
         | "fr"
-        | [])
+        | []
+      )
     | [
         (
           | (
@@ -1536,7 +1556,8 @@ export interface Unit {
               | "dppx"
               | "fr"
               | []
-              | {})
+              | {}
+            )
           | [
               (
                 | "em"
@@ -1567,7 +1588,8 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr"),
+                | "fr"
+              ),
               ...(
                 | "em"
                 | "ex"
@@ -1597,9 +1619,11 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr")[]
+                | "fr"
+              )[]
             ]
-          | CoreRule),
+          | CoreRule
+        ),
         ...(
           | (
               | "em"
@@ -1632,7 +1656,8 @@ export interface Unit {
               | "dppx"
               | "fr"
               | []
-              | {})
+              | {}
+            )
           | [
               (
                 | "em"
@@ -1663,7 +1688,8 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr"),
+                | "fr"
+              ),
               ...(
                 | "em"
                 | "ex"
@@ -1693,9 +1719,11 @@ export interface Unit {
                 | "dpi"
                 | "dpcm"
                 | "dppx"
-                | "fr")[]
+                | "fr"
+              )[]
             ]
-          | CoreRule)[]
+          | CoreRule
+        )[]
       ];
   [k: string]: any;
 }
@@ -1706,11 +1734,11 @@ export interface Value {
   "value-keyword-case"?:
     | null
     | ("lower" | "upper" | [])
-    | [(("lower" | "upper" | {}) | CoreRule), (("lower" | "upper" | {}) | CoreRule)];
+    | [("lower" | "upper" | {}) | CoreRule, ("lower" | "upper" | {}) | CoreRule];
   /**
    * Disallow vendor prefixes for values
    */
-  "value-no-vendor-prefix"?: null | (true | []) | [((true | {}) | CoreRule), ((true | {}) | CoreRule)];
+  "value-no-vendor-prefix"?: null | (true | []) | [(true | {}) | CoreRule, (true | {}) | CoreRule];
   [k: string]: any;
 }
 export interface ValueList {
@@ -1721,8 +1749,8 @@ export interface ValueList {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a newline or disallow whitespace before the commas of value lists
@@ -1731,8 +1759,8 @@ export interface ValueList {
     | null
     | ("always" | "always-multi-line" | "never-multi-line" | [])
     | [
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule),
-        (("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule)
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule,
+        ("always" | "always-multi-line" | "never-multi-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace after the commas of value lists
@@ -1741,8 +1769,8 @@ export interface ValueList {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Require a single space or disallow whitespace before the commas of value lists
@@ -1751,12 +1779,12 @@ export interface ValueList {
     | null
     | ("always" | "never" | "always-single-line" | "never-single-line" | [])
     | [
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule),
-        (("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule)
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule,
+        ("always" | "never" | "always-single-line" | "never-single-line" | {}) | CoreRule
       ];
   /**
    * Limit the number of adjacent empty lines within value lists
    */
-  "value-list-max-empty-lines"?: (null | number) | [({} | CoreRule), ({} | CoreRule)];
+  "value-list-max-empty-lines"?: (null | number) | [{} | CoreRule, {} | CoreRule];
   [k: string]: any;
 }
