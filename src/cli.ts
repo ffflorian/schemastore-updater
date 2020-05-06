@@ -1,4 +1,4 @@
-import * as program from 'commander';
+import * as commander from 'commander';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
@@ -15,71 +15,74 @@ const {
   version: string;
 } = require('../package.json');
 
-program
-  .name(name)
-  .version(version)
-  .description(description)
+commander.name(name).version(version).description(description);
+
+commander
   .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
   .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)');
 
-const settingsFile = program.settings ? path.resolve(program.settings) : path.join(__dirname, '../settings.json');
+const settingsFile = commander.settings ? path.resolve(commander.settings) : path.join(__dirname, '../settings.json');
 
-program
+commander
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
   .action(async ({parent}) => {
     try {
-      const settings = await fs.readJSON(settingsFile);
-      await update({...settings, force: parent.force, source: parent.sourceDir});
-      await checkDisabled(settings, false);
+      const settings: FileSettings = await fs.readJSON(settingsFile);
+      const {sourceDir} = await update({
+        ...settings,
+        ...(parent.sourceDir && {source: parent.sourceDir}),
+        force: !!parent.force,
+      });
+      await checkDisabled({...settings, source: sourceDir}, false);
     } catch (error) {
-      console.error(`Error: ${error.message}`);
+      console.error(error);
       process.exit(1);
     }
   });
 
-program.command('check-disabled').action(async ({parent}) => {
+commander.command('check-disabled').action(async ({parent}) => {
   try {
     const settings = await fs.readJSON(settingsFile);
-    await checkDisabled({...settings, force: parent.force});
+    await checkDisabled({...settings, force: !!parent.force});
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error(error);
     process.exit(1);
   }
 });
 
-program.command('check-versions').action(async () => {
+commander.command('check-versions').action(async () => {
   try {
     const fileSettings = await fs.readJSON(settingsFile);
     const generator = new SchemaGenerator({...fileSettings});
     await generator.checkHashsums();
     await generator.checkVersions();
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error(error);
     process.exit(1);
   }
 });
 
-program.command('fix-lockfile').action(async () => {
+commander.command('fix-lockfile').action(async () => {
   try {
     const fileSettings = await fs.readJSON(settingsFile);
     const generator = new SchemaGenerator({...fileSettings});
     await generator.checkHashsums();
     await generator.fixLockfile();
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error(error);
     process.exit(1);
   }
 });
 
-program.parse(process.argv);
+commander.parse(process.argv);
 
-if (!program.rawArgs.length) {
-  program.outputHelp();
+if (!commander.rawArgs.length) {
+  commander.outputHelp();
   process.exit();
 }
 
-async function update(settings: Required<SchemaGeneratorOptions>): Promise<void> {
+async function update(settings: Required<SchemaGeneratorOptions>): Promise<{sourceDir: string}> {
   const generator = new SchemaGenerator(settings);
   await generator.checkVersions();
   await generator.checkHashsums();
@@ -100,6 +103,8 @@ async function update(settings: Required<SchemaGeneratorOptions>): Promise<void>
     delete settings.source;
     await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
   }
+
+  return {sourceDir: generator.options.source};
 }
 
 async function checkDisabled(settings: FileSettings, versionCheck = true): Promise<void> {

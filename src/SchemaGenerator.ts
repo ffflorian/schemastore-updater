@@ -18,11 +18,11 @@ const defaultOptions: Required<SchemaGeneratorOptions> = {
 };
 
 export class SchemaGenerator {
+  public readonly options: Required<SchemaGeneratorOptions>;
   private readonly jsonSchemasDir: string;
   private readonly lockFile: string;
   private readonly logFile: string;
   private readonly logger: logdown.Logger;
-  private readonly options: Required<SchemaGeneratorOptions>;
   private readonly schemaStoreDirResolved: string;
   private readonly updatedFilesFile: string;
 
@@ -31,9 +31,8 @@ export class SchemaGenerator {
       ...defaultOptions,
       ...options,
     };
-    this.schemaStoreDirResolved = this.options.source
-      ? path.resolve(this.options.source)
-      : path.join('temp/schemastore');
+    this.options.source = this.options.source || 'temp/schemastore';
+    this.schemaStoreDirResolved = path.resolve(this.options.source);
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
     this.logFile = path.resolve('schemagenerator.log');
@@ -59,7 +58,12 @@ export class SchemaGenerator {
   public async checkDisabled(): Promise<CheckResult> {
     this.logger.info('Checking disabled packages.');
 
-    if (!this.options.source) {
+    try {
+      const files = await fs.readdir(this.schemaStoreDirResolved);
+      if (files.length === 0) {
+        throw new Error('No files in directory');
+      }
+    } catch {
       await this.removeAndClone();
     }
 
@@ -165,7 +169,12 @@ export class SchemaGenerator {
   }
 
   public async generateAll(): Promise<BuildResult> {
-    if (!this.options.source) {
+    try {
+      const files = await fs.readdir(this.schemaStoreDirResolved);
+      if (files.length === 0) {
+        throw new Error('No files in directory');
+      }
+    } catch {
       await this.removeAndClone();
     }
     const allFiles = await fs.readdir(this.jsonSchemasDir);

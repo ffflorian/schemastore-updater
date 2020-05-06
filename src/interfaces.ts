@@ -7,6 +7,7 @@ export interface FileSettings {
   disabledSchemas: string[];
   lockFile: string;
   schemaStoreRepo: string;
+  source?: string;
 }
 
 export interface CheckResult {
