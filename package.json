@@ -6,7 +6,7 @@
   "dependencies": {
     "commander": "5.1.0",
     "fs-extra": "9.0.0",
-    "json-schema-to-typescript": "8.2.0",
+    "json-schema-to-typescript": "9.0.1",
     "jsonabc": "2.3.1",
     "semver": "7.3.2"
   },
@@ -16,6 +16,7 @@
     "@types/fs-extra": "8.1.0",
     "@types/jsonabc": "2.3.1",
     "@types/node": "~12",
+    "@types/prettier": "2.0.0",
     "@types/rimraf": "3.0.0",
     "@types/semver": "7.1.0",
     "cross-env": "7.0.2",
