@@ -1,0 +1,14 @@
+{
+  "extends": "@ffflorian/eslint-config",
+  "overrides": [
+    {
+      "files": "*.ts",
+      "rules": {
+        "@typescript-eslint/typedef": "off"
+      }
+    }
+  ],
+  "rules": {
+    "valid-jsdoc": "off"
+  }
+}

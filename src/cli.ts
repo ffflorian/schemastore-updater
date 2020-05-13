@@ -90,13 +90,13 @@ async function update(settings: Required<SchemaGeneratorOptions>): Promise<{sour
   const {disabledSchemas: newDisabledSchemas, generatedSchemas} = await generator.generateAll();
 
   if (generatedSchemas.length) {
-    console.log('Generated schemas:', generatedSchemas);
+    console.info('Generated schemas:', generatedSchemas);
   } else {
-    console.log('No schemas generated.');
+    console.info('No schemas generated.');
   }
 
   if (newDisabledSchemas.length) {
-    console.log('These schemas will be disabled:', newDisabledSchemas);
+    console.info('These schemas will be disabled:', newDisabledSchemas);
 
     settings.disabledSchemas = settings.disabledSchemas.concat(newDisabledSchemas).sort();
     delete settings.force;
@@ -123,6 +123,6 @@ async function checkDisabled(settings: FileSettings, versionCheck = true): Promi
 
     await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
   } else {
-    console.log('No schemas generated.');
+    console.info('No schemas generated.');
   }
 }
