@@ -885,10 +885,10 @@ eslint-plugin-sort-keys-fix@1.1.1:
   dependencies:
     requireindex "~1.2.0"
 
-eslint-plugin-typescript-sort-keys@0.8.0:
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-typescript-sort-keys/-/eslint-plugin-typescript-sort-keys-0.8.0.tgz#6d929625da825a7d1b9924b883196df9d23bf493"
-  integrity sha512-dOjRyoD8JbT16gqcInTcIOMOrkHtrAvKvD1qAgIBarFv0tBGJq0+ySEpWOdeSzVDtMtCtAPyFLbB5nJWt/s64g==
+eslint-plugin-typescript-sort-keys@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/eslint-plugin-typescript-sort-keys/-/eslint-plugin-typescript-sort-keys-0.9.0.tgz#a35aaf2485503c4a07f36aa705c68bb88bbe5522"
+  integrity sha512-RWAONXkZS0bnb/BN5PVVIRV/IN7aBKTl0NIpZuvOzqlg9w6ITkn6lOw1OlI8a1NHmsiuNDzvRWKsRLyG3pO0Jg==
   dependencies:
     natural-compare-lite "~1.4.0"
     requireindex "~1.2.0"
