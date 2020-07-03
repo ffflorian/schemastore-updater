@@ -282,7 +282,7 @@ SOFTWARE
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/${schemaName}",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/${schemaName}",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}",
   "scripts": {},
   "typesPublisherContentHash": "${schemaData.hash}",
   "types": "index.d.ts",
@@ -311,7 +311,7 @@ SOFTWARE
 This package contains type definitions for ${schemaName}.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/${schemaName}.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}.
 
 ## Additional Details
 * Last updated: ${timeStamp} GMT
