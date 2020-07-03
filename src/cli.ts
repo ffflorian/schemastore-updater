@@ -29,12 +29,11 @@ commander
   .action(async ({parent}) => {
     try {
       const settings: FileSettings = await fs.readJSON(settingsFile);
-      const {sourceDir} = await update({
+      await update({
         ...settings,
         ...(parent.sourceDir && {source: parent.sourceDir}),
         force: !!parent.force,
       });
-      await checkDisabled({...settings, source: sourceDir}, false);
     } catch (error) {
       console.error(error);
       process.exit(1);
