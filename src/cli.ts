@@ -26,13 +26,13 @@ const settingsFile = commander.settings ? path.resolve(commander.settings) : pat
 commander
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
-  .action(async ({parent}) => {
+  .action(async instance => {
     try {
       const settings: FileSettings = await fs.readJSON(settingsFile);
       await update({
         ...settings,
-        ...(parent.sourceDir && {source: parent.sourceDir}),
-        force: !!parent.force,
+        ...(instance.parent.sourceDir && {source: instance.parent.sourceDir}),
+        force: !!instance.force,
       });
     } catch (error) {
       console.error(error);
@@ -40,10 +40,10 @@ commander
     }
   });
 
-commander.command('check-disabled').action(async ({parent}) => {
+commander.command('check-disabled').action(async () => {
   try {
     const settings = await fs.readJSON(settingsFile);
-    await checkDisabled({...settings, force: !!parent.force});
+    await checkDisabled({...settings});
   } catch (error) {
     console.error(error);
     process.exit(1);
