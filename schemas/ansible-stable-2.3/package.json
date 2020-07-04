@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/ansible-stable-2.3",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ansible-stable-2.3",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ansible-stable-2.3",
   "scripts": {},
   "typesPublisherContentHash": "4bab8bc733c9f17b676374c04fe5a0686030fcc198254e8ebf47664b9b0ee991",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/ansible-stable-2.7",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ansible-stable-2.7",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ansible-stable-2.7",
   "scripts": {},
   "typesPublisherContentHash": "9a0630424f5b6dc4a5e9df8ce0e08f72a940545e78de207c95680cea153e2da6",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

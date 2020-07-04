@@ -6,7 +6,7 @@
  */
 
 export type Layout =
-  | any
+  | unknown
   | ("header" | "footer" | "diff" | "file" | "files" | "flag" | "flags" | "reach" | "sunburst" | "uncovered");
 
 /**
@@ -36,14 +36,14 @@ export interface JSONSchemaForCodecovConfigurationFiles {
     allow_pseudo_compare?: boolean;
     archive?: {
       uploads?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     notify?: {
       after_n_builds?: number;
       countdown?: number;
       delay?: number;
       wait_for_ci?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     ui?: {
       hide_density?: string[];
@@ -51,9 +51,9 @@ export interface JSONSchemaForCodecovConfigurationFiles {
       hide_contextual?: boolean;
       hide_sunburst?: boolean;
       hide_search?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Coverage configuration. See https://docs.codecov.io/docs/coverage-configuration for details.
@@ -79,7 +79,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         password?: string;
         nickserv_password?: string;
         notice?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Slack. See https://docs.codecov.io/docs/notifications#section-slack for details.
@@ -93,8 +93,8 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         base?: "parent" | "pr" | "auto";
         only_pulls?: boolean;
         paths?: string[];
-        attachments?: any;
-        [k: string]: any;
+        attachments?: unknown;
+        [k: string]: unknown;
       };
       /**
        * Gitter. See https://docs.codecov.io/docs/notifications#section-gitter for details.
@@ -108,7 +108,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         base?: "parent" | "pr" | "auto";
         only_pulls?: boolean;
         paths?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Hipchat. See https://docs.codecov.io/docs/notifications#section-hipchat for details.
@@ -124,7 +124,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         paths?: string[];
         card?: boolean;
         notify?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       webhook?: {
         url?: string;
@@ -135,7 +135,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         base?: "parent" | "pr" | "auto";
         only_pulls?: boolean;
         paths?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
       email?: {
         url?: string;
@@ -148,9 +148,9 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         paths?: string[];
         layout?: Layout;
         "+to"?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Commit status. See https://docs.codecov.io/docs/commit-status for details.
@@ -161,11 +161,11 @@ export interface JSONSchemaForCodecovConfigurationFiles {
           project?:
             | boolean
             | {
-                [k: string]: any;
+                [k: string]: unknown;
               };
-          [k: string]: any;
+          [k: string]: unknown;
         };
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Ignoring paths. see https://docs.codecov.io/docs/ignoring-paths for details.
@@ -196,12 +196,12 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         behavior?: "default" | "once" | "new" | "spammy";
         flags?: Flag[];
         paths?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Flag {
   joined?: boolean;
@@ -209,5 +209,5 @@ export interface Flag {
   ignore?: string[];
   paths?: string[];
   assume?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

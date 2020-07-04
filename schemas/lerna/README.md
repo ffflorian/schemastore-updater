@@ -5,8 +5,8 @@
 This package contains type definitions for lerna.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lerna.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lerna.
 
 ## Additional Details
-* Last updated: Fri, Oct 18, 2019, 09:07:04 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

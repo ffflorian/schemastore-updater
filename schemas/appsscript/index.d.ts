@@ -34,7 +34,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
        * The enabled version of the service (e.g., "v1").
        */
       version: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
     /**
      * The list of libraries used by the script project.
@@ -56,9 +56,9 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
        * If true, version is ignored and the script uses the current library project saved code, even if that code has not been saved to a new version.
        */
       developmentMode?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The script project's web app configuration. Only used if the project is deployed as a web app.
@@ -72,7 +72,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
      * The identity under which the web app executes.
      */
     executeAs?: "USER_ACCESSING" | "USER_DEPLOYING";
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The location where exceptions are logged.
@@ -94,7 +94,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
      * Determines who has permission to run the script from the API.
      */
     access?: "MYSELF" | "DOMAIN" | "ANYONE" | "ANYONE_ANONYMOUS";
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Defines manifest values specific to Sheets.
@@ -116,9 +116,9 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
        * Defines the keyboard shortcut that executes the macro. This must be of the form Ctrl+Alt+Shift+Number, where Number is a single-digit. Macros without shortcuts can only be executed from the Tools > Macros menu.
        */
       defaultShortcut: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Data Studio add-on manifest.
@@ -154,7 +154,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
      * Map of template name to report ID.
      */
     templates?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Even shorter description used in gallery cards. Only a maximum of 114 characters will be shown on the card.
@@ -172,7 +172,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
      * Url for terms of service information about the add-on.
      */
     termsOfServiceUrl?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * G Suite Add-ons
@@ -202,7 +202,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * The default color of buttons. Defaults to the primary color (if it is set); otherwise defaults to blue (#2196F3).
          */
         secondaryColor?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Homepage trigger data
@@ -216,7 +216,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * The name of the function to run
          */
         runFunctions?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Universal add-on actions
@@ -234,7 +234,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * Required for each defined universal action if openLink is not present. If provided, the name of the Apps Script function that executes when the user selects this action.
          */
         runFunction?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       }[];
       /**
        * Link prefixes.
@@ -244,7 +244,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
        * Use the locale from the host application?
        */
       useLocaleFromApp?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Gmail add-on metadata.
@@ -262,9 +262,9 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * Used to specify that the contextual trigger is fired for all Gmail messages. This is currently the only option, so this should always be an empty object.
          */
         unconditional?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       }[];
       /**
        * The trigger function specification for creating the add-on homepage in the Gmail host.
@@ -278,9 +278,9 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects.
          */
         runFunction?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Calendar add-on metadata.
@@ -298,7 +298,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects.
          */
         runFunction?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * When a Calendar event is opened
@@ -308,7 +308,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * Event hander function
          */
         runFunction?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * When a Calendar event is updated
@@ -318,15 +318,15 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
          * Event hander function
          */
         runFunction?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Handler access to Calendar event
        */
       eventAccess?: "METADATA" | "READ" | "WRITE" | "READ_WRITE";
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -18,7 +18,7 @@ export type Image =
       /**
        * Command or script that should be executed as the container's entrypoint. It will be translated to Docker's --entrypoint option while creating the container. The syntax is similar to Dockerfile's ENTRYPOINT directive, where each shell token is a separate string in the array.
        */
-      entrypoint?: [any, ...any[]];
+      entrypoint?: [unknown, ...unknown[]];
     };
 /**
  * Similar to `image` property, but will link the specified services to the `image` container.
@@ -89,16 +89,16 @@ export type IncludeItem =
 export type JobTemplate =
   | {
       when: "delayed";
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       when?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
 export type Job = JobTemplate & {
-  [k: string]: any;
+  [k: string]: unknown;
 };
 
 /**
@@ -118,7 +118,7 @@ export interface GitlabCIConfiguration {
     before_script?: BeforeScript;
     after_script?: AfterScript;
     cache?: Cache;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Groups jobs into stages. All jobs in one stage must complete before next stage is executed. Defaults to ['build', 'test', 'deploy'].
@@ -132,13 +132,13 @@ export interface GitlabCIConfiguration {
    * A special job used to upload static sites to Gitlab pages. Requires a `public/` directory with `artifacts.path` pointing to it.
    */
   pages?: JobTemplate & {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   workflow?: {
     rules?: {
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   [k: string]: Job;
 }
@@ -160,7 +160,7 @@ export interface Cache {
     | string
     | {
         files?: [string] | [string, string];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Set to `true` to cache untracked files.

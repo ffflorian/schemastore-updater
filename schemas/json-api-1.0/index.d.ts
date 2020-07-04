@@ -24,7 +24,7 @@ export type Link =
        */
       href: string;
       meta?: Meta;
-      [k: string]: any;
+      [k: string]: unknown;
     };
 
 export interface Success {
@@ -62,7 +62,7 @@ export interface Attributes {
    * via the `patternProperty` "^(?!relationships$|links$)\w[-\w_]*$".
    */
   [k: string]: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -74,7 +74,7 @@ export interface Relationships {
    * via the `patternProperty` "^\w[-\w_]*$".
    */
   [k: string]: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -86,13 +86,13 @@ export interface Links {
    */
   self?: string;
   related?: Link;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Non-standard meta-information that can not be represented as an attribute or relationship.
  */
 export interface Meta {
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Pagination {
   /**
@@ -111,7 +111,7 @@ export interface Pagination {
    * The next page of data
    */
   next?: string | null;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * An object describing the server's implementation
@@ -156,7 +156,7 @@ export interface Error {
      * A string indicating which query parameter caused the error.
      */
     parameter?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   meta?: Meta;
 }

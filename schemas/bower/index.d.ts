@@ -21,15 +21,15 @@ export interface JSONSchemaForBowerConfigurationFiles {
   /**
    * The primary acting files necessary to use your package.
    */
-  main?: string | any[];
+  main?: string | unknown[];
   /**
    * SPDX license identifier or path/url to a license.
    */
-  license?: string | any[];
+  license?: string | unknown[];
   /**
    * A list of files for Bower to ignore when installing your package.
    */
-  ignore?: string | any[];
+  ignore?: string | unknown[];
   /**
    * Used for search by keyword. Helps make your package easier to discover without people needing to know its name.
    */
@@ -40,8 +40,9 @@ export interface JSONSchemaForBowerConfigurationFiles {
   authors?: (
     | string
     | {
-        [k: string]: any;
-      })[];
+        [k: string]: unknown;
+      }
+  )[];
   /**
    * URL to learn more about the package. Falls back to GitHub project if not specified and it's a GitHub endpoint.
    */
@@ -52,7 +53,7 @@ export interface JSONSchemaForBowerConfigurationFiles {
   repository?: {
     type?: "git";
     url?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Dependencies are specified with a simple hash of package name to a semver compatible identifier or URL.
@@ -70,7 +71,7 @@ export interface JSONSchemaForBowerConfigurationFiles {
    * Dependency versions to automatically resolve with if conflicts occur between packages.
    */
   resolutions?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * If you set it to  true  it will refuse to publish it. This is a way to prevent accidental publication of private repositories.
@@ -81,7 +82,7 @@ export interface JSONSchemaForBowerConfigurationFiles {
    */
   exportsOverride?: {
     [k: string]: {
-      [k: string]: string | any[];
+      [k: string]: string | unknown[];
     };
   };
   /**
@@ -95,6 +96,6 @@ export interface JSONSchemaForBowerConfigurationFiles {
    * via the `patternProperty` "^_".
    */
   [k: string]: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }

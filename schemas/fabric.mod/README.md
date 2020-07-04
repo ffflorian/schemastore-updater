@@ -5,8 +5,8 @@
 This package contains type definitions for fabric.mod.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/fabric.mod.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/fabric.mod.
 
 ## Additional Details
-* Last updated: Fri, Sep 06, 2019, 11:50:22 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:18 GMT
 * Dependencies: none

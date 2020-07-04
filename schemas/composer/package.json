@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/composer",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/composer",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/composer",
   "scripts": {},
   "typesPublisherContentHash": "ca03ffb90890227c7c61983be9653ddeb47fba9880052bf30b1d3665bf2fdccc",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

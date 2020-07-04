@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/huskyrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/huskyrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/huskyrc",
   "scripts": {},
   "typesPublisherContentHash": "1d71a4b1c895d2eac42e7a1e6752721228fb9fc288786c3800a742a6f888a9e5",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

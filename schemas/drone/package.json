@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/drone",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/drone",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/drone",
   "scripts": {},
   "typesPublisherContentHash": "6bc99b0bbe23ac08f4ea533753e5f5dcf9c2a04489d568f2e9bf4d5b2590f79f",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

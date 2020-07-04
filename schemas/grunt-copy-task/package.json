@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/grunt-copy-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-copy-task",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-copy-task",
   "scripts": {},
   "typesPublisherContentHash": "356171b6258327a59e7637f27108dc40267e9d312c3a93d05dbdbf8d76fbbcb1",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -141,7 +141,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Specifies the background color of the status bar.
        */
       backgroundColor?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Configuration for the bottom navigation bar on Android.
@@ -159,7 +159,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Specifies the background color of the navigation bar.
        */
       backgroundColor?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Adds a notification to your standalone app with refresh button and debug info.
@@ -177,11 +177,11 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      * Any extra fields you want to pass to your experience. Values are accessible via `Expo.Constants.manifest.extra` ([read more](../sdk/constants.html#expoconstantsmanifest))
      */
     extra?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     rnCliPath?: string;
     packagerOpts?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     ignoreNodeModulesValidation?: boolean;
     nodeModulesPath?: string;
@@ -206,7 +206,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      * Provide overrides by locale for System Dialog prompts like Permissions Boxes
      */
     locales?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * iOS standalone app specific configuration
@@ -312,12 +312,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Dictionary of arbitrary configuration to add to your standalone app's native Info.plist. Applied prior to all other Expo-specific configuration. No other validation is performed, so use this at your own risk of rejection from the App Store.
        */
       infoPlist?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An array that contains Associated Domains for the standalone app.
        */
-      associatedDomains?: any[];
+      associatedDomains?: unknown[];
       /**
        * A boolean indicating if the app uses iCloud Storage for DocumentPicker. See DocumentPicker docs for details.
        */
@@ -354,7 +354,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
          */
         tabletImage?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
     };
     /**
@@ -439,7 +439,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * - `com.sec.android.provider.badge.permission.WRITE`
        * - `com.sonyericsson.home.permission.BROADCAST_BADGE`
        */
-      permissions?: any[];
+      permissions?: unknown[];
       /**
        * [Firebase Configuration File](https://support.google.com/firebase/answer/7015592) google-services.json file for configuring Firebase.
        */
@@ -530,7 +530,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
          */
         xxxhdpi?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An array of intent filters.
@@ -557,7 +557,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
               pathPrefix?: string;
               mimeType?: string;
             }[];
-        category?: any[] | string;
+        category?: unknown[] | string;
       }[];
     };
     /**
@@ -652,21 +652,21 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * DEPRECATED: Modify the Webpack config directly. Configuration for customizing webpack report. See `HtmlWebpackPlugin.Options` from `html-webpack-plugin`.
          */
         minifyHTML?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * DEPRECATED: Modify the Webpack config directly. Configuration for enabling webpack report and `stats.json`. See `BundleAnalyzerPlugin.Options` from `webpack-bundle-analyzer`.
          */
         report?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * DEPRECATED: Modify the Webpack config directly. Configuration for customizing the service worker. See `GenerateSWOptions` from `workbox-webpack-plugin`.
          */
         serviceWorker?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * DEPRECATED. Defines the meta tag elements that will be added to the head element of your index.html.
@@ -688,27 +688,27 @@ export interface JSONSchemaForExpoSDK37AppManifest {
            * If content is set to "default", the status bar appears normal. If set to "black", the status bar has a black background. If set to "black-translucent", the status bar is black and translucent. If set to "default" or "black", the web content is displayed below the status bar. If set to "black-translucent", the web content is displayed on the entire screen, partially obscured by the status bar.
            */
           barStyle?: "default" | "black" | "black-translucent";
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Twitter card protocol: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup.html
          */
         twitter?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The Open Graph protocol: http://ogp.me/
          */
         openGraph?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * X-UA protocol
          */
         microsoft?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Experimental features. These will break without deprecation notice.
@@ -722,7 +722,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Message that is rendered when the browser using your page doesn't have JS enabled.
          */
         noJavaScriptMessage?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configuration for PWA splash screens.
@@ -740,9 +740,9 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
          */
         image?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Used for all Facebook libraries. Set up your Facebook App ID at https://developers.facebook.com.
@@ -776,7 +776,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      * Extra fields needed by detached apps
      */
     detach?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Configuration for loading and splash screen for standalone apps.
@@ -794,17 +794,17 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
        */
       image?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Configuration for scripts to run to hook into the publish process
      */
     hooks?: {
-      postPublish?: any[];
+      postPublish?: unknown[];
     };
     /**
      * An array of file glob strings which point to assets that will be bundled within your standalone app binary. Read more in the [Offline Support guide](https://docs.expo.io/versions/latest/guides/offline-support.html)
      */
-    assetBundlePatterns?: any[];
+    assetBundlePatterns?: unknown[];
   };
 }

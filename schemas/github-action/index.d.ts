@@ -70,27 +70,27 @@ export interface GithubAction {
   runs:
     | {
         using?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         image?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         entrypoint?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         args?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         using?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         main?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * You can use a color and Feather icon to create a badge to personalize and distinguish your action in GitHub Marketplace. For more information, see "GitHub Actions in the GitHub Marketplace" in the GitHub Developer documentation.

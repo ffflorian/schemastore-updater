@@ -9,15 +9,15 @@ export type DroneCIConfigurationFile =
   | (
       | {
           type?: {
-            [k: string]: any;
+            [k: string]: unknown;
           };
           steps?: StepDocker[];
           volumes?: (
             | {
-                [k: string]: any;
+                [k: string]: unknown;
               }
             | {
-                [k: string]: any;
+                [k: string]: unknown;
               }
           )[];
           services?: {
@@ -28,29 +28,29 @@ export type DroneCIConfigurationFile =
             environment?: Environment;
             privileged?: boolean;
             pull?: {
-              [k: string]: any;
+              [k: string]: unknown;
             };
             volumes?: Volumes;
             working_dir?: NonEmptyString;
-            [k: string]: any;
+            [k: string]: unknown;
           }[];
           image_pull_secrets?: string[];
           node?: {
             instance?: string;
-            [k: string]: any;
+            [k: string]: unknown;
           };
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
           type?: {
-            [k: string]: any;
+            [k: string]: unknown;
           };
           steps?: Step[];
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
           type?: {
-            [k: string]: any;
+            [k: string]: unknown;
           };
           steps?: Step[];
           server: {
@@ -58,37 +58,37 @@ export type DroneCIConfigurationFile =
             user: StringOrSecret;
             password?: StringOrSecret;
             ssh_key?: StringOrSecret;
-            [k: string]: any;
+            [k: string]: unknown;
           };
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
           type?: {
-            [k: string]: any;
+            [k: string]: unknown;
           };
           token: StringOrSecret;
           steps?: Step[];
-          [k: string]: any;
+          [k: string]: unknown;
         }
     )
   | {
       kind?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       hmac: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       kind?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name: NonEmptyString;
       get: {
         path: NonEmptyString;
         name: NonEmptyString;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
 export type StepDocker = Step & {
   command?: NonEmptyString;
@@ -99,7 +99,7 @@ export type StepDocker = Step & {
   pull?: "always" | "never" | "if-not-exists";
   user?: string;
   volumes?: Volumes;
-  [k: string]: any;
+  [k: string]: unknown;
 };
 export type NonEmptyString = string;
 export type Commands = NonEmptyString[];
@@ -107,17 +107,17 @@ export type Conditions =
   | Condition
   | {
       include?: Condition;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       exclude?: Condition;
-      [k: string]: any;
+      [k: string]: unknown;
     };
 export type Condition = string[];
 export type Volumes = {
   name: NonEmptyString;
   path: NonEmptyString;
-  [k: string]: any;
+  [k: string]: unknown;
 }[];
 export type StringOrSecret = NonEmptyString | Secret;
 
@@ -129,14 +129,14 @@ export interface Step {
   environment?: Environment;
   when?: AllConditions;
   depends_on?: NonEmptyString[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Environment {
   [k: string]: string | Secret;
 }
 export interface Secret {
   from_secret: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface AllConditions {
   branch?: Conditions;
@@ -145,5 +145,5 @@ export interface AllConditions {
   repo?: Conditions;
   status?: Condition;
   target?: Condition;
-  [k: string]: any;
+  [k: string]: unknown;
 }

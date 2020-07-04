@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/jsbeautifyrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsbeautifyrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsbeautifyrc",
   "scripts": {},
   "typesPublisherContentHash": "aaec6f96a21849f226e40c28ca30ae69084e1ef1b2e874d253ac75494160ea99",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

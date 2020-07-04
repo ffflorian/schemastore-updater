@@ -5,8 +5,8 @@
 This package contains type definitions for avro-avsc.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/avro-avsc.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/avro-avsc.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:02 GMT
 * Dependencies: none

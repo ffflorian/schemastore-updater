@@ -5,8 +5,8 @@
 This package contains type definitions for container-structure-test.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/container-structure-test.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/container-structure-test.
 
 ## Additional Details
-* Last updated: Wed, May 06, 2020, 20:22:29 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:05 GMT
 * Dependencies: none

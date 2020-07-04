@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/fabric.mod",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/fabric.mod",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/fabric.mod",
   "scripts": {},
   "typesPublisherContentHash": "0a31f6cb7fe2b8eb73fa66f7313ec9dca421804089e500a503474392d3ef5eca",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

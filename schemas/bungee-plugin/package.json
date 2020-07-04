@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/bungee-plugin",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bungee-plugin",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bungee-plugin",
   "scripts": {},
   "typesPublisherContentHash": "7b16d05e522fba89952fc0813a89d3fe9509e47326a2978c98826a9d2e570b22",
   "types": "index.d.ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "typeScriptVersion": "2.2"
 }

@@ -22,5 +22,5 @@ export interface JSONSchemaForFantomasConfigurationFiles {
   KeepNewlineAfter?: boolean;
   MaxIfThenElseShortWidth?: number;
   StrictMode?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/eslintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/eslintrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/eslintrc",
   "scripts": {},
   "typesPublisherContentHash": "2291e45bed687827dc9cf628a741ce5209b506d19a8ebdf16e72253a4e1a9b14",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

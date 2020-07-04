@@ -37,7 +37,7 @@ export interface Version1 {
        * The target rate that the adaptive algorithm aims for on each instance
        */
       maxTelemetryItemsPerSecond?: number;
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
   functions?: Functions;
@@ -61,7 +61,7 @@ export interface Version1 {
     categoryLevels?: {
       [k: string]: "Critical" | "Debug" | "Error" | "Information" | "None" | "Trace" | "Warning";
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
   singleton?: Singleton;
   watchDirectories?: WatchDirectories;
@@ -183,7 +183,7 @@ export interface Singleton {
    * The interval between lock acquisition attempts.
    */
   lockAcquisitionPollingInterval?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -412,14 +412,14 @@ export interface Version2 {
          * The target rate that the adaptive algorithm aims for on each instance
          */
         maxTelemetryItemsPerSecond?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
     };
     /**
      * Value determining what level of file logging is enabled.
      */
     fileLoggingMode?: "never" | "always" | "debugOnly";
-    [k: string]: any;
+    [k: string]: unknown;
   };
   singleton?: Singleton;
   watchDirectories?: WatchDirectories;
@@ -492,7 +492,7 @@ export interface Version2 {
     };
     durableTask?: DurableTaskExtension;
     cosmosDB?: CosmosDBExtension;
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**

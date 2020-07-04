@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/jsonld",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsonld",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsonld",
   "scripts": {},
   "typesPublisherContentHash": "08460786d5403df9f125de2fdf41feeb7c3836ce5462e940e6b76d7d9c5b37e0",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

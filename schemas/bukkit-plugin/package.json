@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/bukkit-plugin",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bukkit-plugin",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bukkit-plugin",
   "scripts": {},
   "typesPublisherContentHash": "e95567cbfdc5d935615a4dae1b2c79011d9aebd1891968961252c0619f7de35a",
   "types": "index.d.ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "typeScriptVersion": "2.2"
 }

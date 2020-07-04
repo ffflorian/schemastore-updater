@@ -30,7 +30,7 @@ export type JSONSchemaForBeautifyrc = {
    * Preserve line-breaks. [JS,CSS,HTML]
    */
   preserve_newlines?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
   /**
    * Number of line-breaks to be preserved in one chunk. [JS,HTML]
@@ -52,7 +52,7 @@ export type JSONSchemaForBeautifyrc = {
    * Wrap lines at next opportunity after N characters. [JS,HTML]
    */
   wrap_line_length?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
   /**
    * Add a newline between multiple selectors. [CSS]
@@ -70,7 +70,7 @@ export type JSONSchemaForBeautifyrc = {
    * Ensure space around selector separators (>+~). [CSS]
    */
   space_around_combinator?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
   /**
    * HTLM void elements - aka self-closing tags. [HTML]
@@ -116,7 +116,7 @@ export type JSONSchemaForBeautifyrc = {
    * format and indent {{#foo}} and {{/foo}}. [HTML]
    */
   indent_handlebars?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
   /**
    * Initial indentation level. [JS]
@@ -174,7 +174,7 @@ export type JSONSchemaForBeautifyrc = {
    * Unindent chained methods. [JS]
    */
   unindent_chained_methods?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
   css?: {
     /**
@@ -201,7 +201,7 @@ export type JSONSchemaForBeautifyrc = {
      * Preserve line-breaks. [JS,CSS,HTML]
      */
     preserve_newlines?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   } & {
     /**
      * Add a newline between multiple selectors. [CSS]
@@ -219,7 +219,7 @@ export type JSONSchemaForBeautifyrc = {
      * Ensure space around selector separators (>+~). [CSS]
      */
     space_around_combinator?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   js?: {
     /**
@@ -246,7 +246,7 @@ export type JSONSchemaForBeautifyrc = {
      * Preserve line-breaks. [JS,CSS,HTML]
      */
     preserve_newlines?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   } & {
     /**
      * Number of line-breaks to be preserved in one chunk. [JS,HTML]
@@ -268,7 +268,7 @@ export type JSONSchemaForBeautifyrc = {
      * Wrap lines at next opportunity after N characters. [JS,HTML]
      */
     wrap_line_length?: number;
-    [k: string]: any;
+    [k: string]: unknown;
   } & {
     /**
      * Initial indentation level. [JS]
@@ -326,7 +326,7 @@ export type JSONSchemaForBeautifyrc = {
      * Unindent chained methods. [JS]
      */
     unindent_chained_methods?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   html?: {
     /**
@@ -353,7 +353,7 @@ export type JSONSchemaForBeautifyrc = {
      * Preserve line-breaks. [JS,CSS,HTML]
      */
     preserve_newlines?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   } & {
     /**
      * Number of line-breaks to be preserved in one chunk. [JS,HTML]
@@ -375,7 +375,7 @@ export type JSONSchemaForBeautifyrc = {
      * Wrap lines at next opportunity after N characters. [JS,HTML]
      */
     wrap_line_length?: number;
-    [k: string]: any;
+    [k: string]: unknown;
   } & {
     /**
      * HTLM void elements - aka self-closing tags. [HTML]
@@ -421,7 +421,7 @@ export type JSONSchemaForBeautifyrc = {
      * format and indent {{#foo}} and {{/foo}}. [HTML]
      */
     indent_handlebars?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 };

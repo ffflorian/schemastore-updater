@@ -145,7 +145,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Run E2E Tests in parallel. This feature is disabled by default because it is not supported in Blue Ocean. If this feature is enabled, we suggest not using the Blue Ocean interface and rely on the classic UI instead.
        */
       parallelTestExecution?: "on" | "off";
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * If the Jenkins is running on a kubernetes cluster as a pod, we can use the dynamic scaling feature in the pipeline. In order to enable this, an environment variable ON_K8S has to be set to true on the jenkins.
@@ -155,7 +155,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Docker image for jnlp agent to be used.
        */
       jnlpAgent?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
   } | null;
   /**
@@ -210,7 +210,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Environment variables to set in the container.
        */
       sidecarEnvVars?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
     };
     frontEndIntegrationTests?: {
@@ -229,7 +229,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        */
       onlyRunInProductiveBranch?: boolean;
       appUrls?: AppUrls;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * This stage uses the npm audit command to check for known vulnerabilities in dependencies.
@@ -243,7 +243,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
     performanceTests?: {
       neoTargets?: NeoTargets;
       cfTargets?: CfTargets;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     s4SdkQualityChecks?: {
       /**
@@ -266,7 +266,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * A map containing the thresholds unstable and failing. If the code coverage is lower than what is configured in unstable, the pipeline result is unstable. If it is lower than what is configured in failing, the pipeline will fail.
        */
       codeCoverageFrontend?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This setting allows the code coverage to be stricter compared to the default values. By default, the pipeline will fail if the coverage is below 65% line coverage (unstableCoverage), and will be unstable if it is less than 70% (successCoverage). If lower numbers are configured, or this configuration is left out, the default values are applied.
@@ -339,7 +339,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       appUrls?: AppUrls;
       neoTargets?: NeoTargets;
       cfTargets?: CfTargets;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * The deployment of artifacts to nexus can be configured with a map containing the following properties.
@@ -363,9 +363,9 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
          */
         npmRepository?: string;
         credentialsId?: CredentialsId;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Configure credentials for WhiteSource scans. The minimum required Maven WhiteSource plugin version is 18.6.2, ensure this in the plugins section of the project pom.xml file.
@@ -386,7 +386,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Unique identifier of the Secret Text on Jenkins server that stores WhiteSource userKey of a user. This is required only if the administrator of the WhiteSource service has enabled additional access level control. More details can be found here.
        */
       whitesourceUserTokenCredentialsId?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Configure SourceClear scans.Note: Please note that the SourceClear stage of this pipeline is not actively maintained anymore. In case of issues, feel free to contribute to this project by opening a pull request.
@@ -399,7 +399,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       config?: {
         vuln_methods_extra_ignored_directories?: string;
         scope?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
     };
     /**
@@ -422,7 +422,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * ID of your project in Fortify.
        */
       projectVersionId: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Configure SonarQube (https://www.sonarqube.org/) scans.
@@ -444,7 +444,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * The image used in the step or stage.
        */
       dockerImage?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * The lint stage can enforce common coding guidelines within a team.It supports the SAPUI5 best practices linter which operates on SAPUI5 components. A component is identified by a Component.js file in the directory.
@@ -459,7 +459,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
         };
       };
     };
-    [k: string]: any;
+    [k: string]: unknown;
   } | null;
   steps?: {
     /**
@@ -474,7 +474,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * The project settings.xml to be used for maven builds. You can specify a relative path to your project root or a URL starting with http or https.
        */
       projectSettingsFile?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * The executeNpm step is used for all invocations of the npm build tool. It is, for example, used for building the frontend and for executing end to end tests.
@@ -492,14 +492,14 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * The default npm registry url to be used as the remote mirror for the SAP npm packages. Bypasses the local download cache if specified.
        */
       sapNpmRegistry?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     executeSourceClearScan?: {
       /**
        * The image used in the step or stage.
        */
       dockerImage?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * A step configuration regarding Cloud Foundry deployment. This is required by stages like end-to-end tests, performance tests, and production deployment.
@@ -518,7 +518,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        */
       keepOldInstance?: boolean;
       cloudFoundry?: CloudFoundry;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     neoDeploy?: {
       /**
@@ -539,7 +539,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
         runtime: Runtime;
         runtimeVersion: RuntimeVersion;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * SpotBugs static code analysis is executed as part of the static code checks.
@@ -549,7 +549,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Bug definition filter file.
        */
       includeFilterFile?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Gatling is used as one of the performance tests tool.
@@ -559,7 +559,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * You can enable Gatling tests by turning the flag to true.
        */
       enabled?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Apache JMeter is executed as part of performance tests of the application. The user is free to choose between JMeter and Gatling or both.
@@ -585,7 +585,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Marks build as UNSTABLE if the value exceeds the threshold.
        */
       unstableThreshold?: number;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     executeFortifyScan?: {
       dockerImage: DockerImage;
@@ -621,7 +621,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * Additional Fortify options such as thread count, alias usage etc.
        */
       additionalScanOptions?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     mtaBuild?: {
       /**
@@ -647,7 +647,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       /**
        * Docker options to be set when starting the container (List or String).
        */
-      dockerOptions?: any[] | string;
+      dockerOptions?: unknown[] | string;
       /**
        * The path to the extension descriptor file.
        */
@@ -664,14 +664,14 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * The location of the SAP Multitarget Application Archive Builder jar file, including file name and extension. If it is not provided, the SAP Multitarget Application Archive Builder is expected on PATH.
        */
       mtaJarLocation?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     createHdiContainer?: {
       /**
        * The image used in the step or stage.
        */
       dockerImage?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * The debugReportArchive configuration can be used to create confidential (instead of redacted) debug reports. The difference between the redacted and the confidential debug report is that potentially confidential information, such as the GitHub repository and branch, global extension repository and shared libraries, are included in the confidential debug report. It is the user's responsibility to make sure that the debug report does not contain any confidential information.
@@ -681,11 +681,11 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
        * If set to true, a confidential debug report is being generated with each build.
        */
       shareConfidentialInformation?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   } | null;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A map specifying the Cloud Foundry specific parameters.
@@ -704,5 +704,5 @@ export interface CloudFoundry {
  * Map of environment variables in the form of KEY: VALUE.
  */
 export interface Environment {
-  [k: string]: any;
+  [k: string]: unknown;
 }

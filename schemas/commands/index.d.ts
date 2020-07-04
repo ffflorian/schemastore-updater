@@ -28,9 +28,9 @@ export interface Commands {
     BeforeBuild?: Vsbindings;
     Clean?: Vsbindings;
     ProjectOpen?: Vsbindings;
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * The friendly name of the command.
@@ -48,5 +48,5 @@ export interface Commands1 {
    * The arguments to pass to the executable file.
    */
   arguments?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

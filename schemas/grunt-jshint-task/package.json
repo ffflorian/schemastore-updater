@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/grunt-jshint-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-jshint-task",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-jshint-task",
   "scripts": {},
   "typesPublisherContentHash": "fec7f4acff2b231f230b95c5cb9def5f88491301f2b61134b2758a8d4fe7be11",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

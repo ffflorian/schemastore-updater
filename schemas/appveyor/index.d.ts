@@ -54,13 +54,13 @@ export type PossiblySecretString =
       secure?: string;
     };
 export type JobScalars = {
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
-  [k: string]: any;
+  [k: string]: unknown;
 } & {
-  [k: string]: any;
+  [k: string]: unknown;
 };
 export type Platform = "x86" | "x64" | "ARM" | "ARM64" | "Win32" | "Any CPU";
 export type Configuration = string;
@@ -134,7 +134,7 @@ export interface Job {
    */
   max_jobs?: number;
   notifications?: {
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   image?: Image;
   /**
@@ -158,7 +158,7 @@ export interface Job {
    */
   hosts?: {
     [k: string]: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
   /**
@@ -176,7 +176,7 @@ export interface Job {
          * an array of environment variables, each member of which is one dimension in the build matrix calculation
          */
         matrix?: EnvVarHash[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | EnvVarHash;
   matrix?: {
@@ -242,7 +242,7 @@ export interface Job {
      * Disable publishing of .nupkg artifacts to account/project feeds for pull request builds
      */
     disable_publish_on_pr?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Build platform, i.e. x86, x64, Any CPU. This setting is optional
@@ -345,7 +345,7 @@ export interface Job {
   deploy?:
     | false
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }[];
   /**
    * To run your custom scripts instead of provider deployments
@@ -367,7 +367,7 @@ export interface Job {
    * After build failure or success
    */
   on_finish?: Command[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface EnvVarHash {
   [k: string]: PossiblySecretString;

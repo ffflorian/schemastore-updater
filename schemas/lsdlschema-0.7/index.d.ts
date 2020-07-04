@@ -209,7 +209,8 @@ export type Phrasing = (
   | NounPhrasing
   | DynamicNounPhrasing
   | PrepositionPhrasing
-  | VerbPhrasing) &
+  | VerbPhrasing
+) &
   SharedPhrasingProperties;
 /**
  * Properties of an adjective phrasing
@@ -223,11 +224,11 @@ export type AdjectivePhrasingProperties =
       /**
        * Adjectives used to describe the Subject (with a high measurement)
        */
-      Adjectives: [Word, ...(Word)[]];
+      Adjectives: [Word, ...Word[]];
       /**
        * Adjectives used to describe the Subject (with a low measurement)
        */
-      Antonyms?: [Word, ...(Word)[]];
+      Antonyms?: [Word, ...Word[]];
       /**
        * The entity which measures the extent to which the Adjectives apply
        */
@@ -235,7 +236,7 @@ export type AdjectivePhrasingProperties =
       /**
        * Additional prepositional phrases which apply to the phrasing
        */
-      PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+      PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
     }
   | {
       /**
@@ -245,7 +246,7 @@ export type AdjectivePhrasingProperties =
       /**
        * Adjectives used to describe the Subject (with a low measurement)
        */
-      Antonyms: [Word, ...(Word)[]];
+      Antonyms: [Word, ...Word[]];
       /**
        * The entity which measures the extent to which the Adjectives apply
        */
@@ -253,7 +254,7 @@ export type AdjectivePhrasingProperties =
       /**
        * Additional prepositional phrases which apply to the phrasing
        */
-      PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+      PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
     };
 /**
  * This interface was referenced by `GlobalSubstitution`'s JSON-Schema definition
@@ -298,7 +299,7 @@ export interface LSDLSchema {
   /**
    * The global text substitutions in the linguistic schema.
    */
-  GlobalSubstitutions?: [GlobalSubstitution, ...(GlobalSubstitution)[]];
+  GlobalSubstitutions?: [GlobalSubstitution, ...GlobalSubstitution[]];
 }
 /**
  * A reference to an additional linguistic schema.
@@ -329,7 +330,7 @@ export interface Entity {
   /**
    * Words which can be used to refer to this entity
    */
-  Words?: [Word, ...(Word)[]];
+  Words?: [Word, ...Word[]];
   /**
    * The overall semantic category of the entity
    */
@@ -602,7 +603,7 @@ export interface Relationship {
   /**
    * A set of syntactic frames which define the types of language used to describe the relationship
    */
-  Phrasings?: [Phrasing, ...(Phrasing)[]];
+  Phrasings?: [Phrasing, ...Phrasing[]];
 }
 /**
  * A role in a linguistic relationship.
@@ -615,7 +616,7 @@ export interface FullRole {
   /**
    * Nouns which can be used to refer to the entity which is the target of the role, when used in the context of the relationship
    */
-  Nouns?: [Word, ...(Word)[]];
+  Nouns?: [Word, ...Word[]];
   /**
    * A role which indicates the quantity of this role's entity which participates in the relationship
    */
@@ -688,8 +689,8 @@ export interface Condition {
  */
 export interface AttributePhrasing {
   Attribute: AttributePhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of an attribute phrasing
@@ -706,7 +707,7 @@ export interface AttributePhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A prepositional phrase used in a phrasing
@@ -715,7 +716,7 @@ export interface PrepPhrase {
   /**
    * Prepositions used in the prepositional phrase
    */
-  Prepositions: [Word, ...(Word)[]];
+  Prepositions: [Word, ...Word[]];
   /**
    * The entity which is the object of the prepositional phrase
    */
@@ -726,8 +727,8 @@ export interface PrepPhrase {
  */
 export interface NamePhrasing {
   Name: NamePhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of a name phrasing
@@ -747,16 +748,16 @@ export interface NamePhrasingProperties {
  */
 export interface AdjectivePhrasing {
   Adjective: AdjectivePhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * A dynamic adjective phrasing on a linguistic relationship
  */
 export interface DynamicAdjectivePhrasing {
   DynamicAdjective: DynamicAdjectivePhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of a dynamic adjective phrasing
@@ -773,15 +774,15 @@ export interface DynamicAdjectivePhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A noun phrasing on a linguistic relationship
  */
 export interface NounPhrasing {
   Noun: NounPhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of a noun phrasing
@@ -794,19 +795,19 @@ export interface NounPhrasingProperties {
   /**
    * Nouns used to describe the Subject
    */
-  Nouns: [Word, ...(Word)[]];
+  Nouns: [Word, ...Word[]];
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A dynamic noun phrasing on a linguistic relationship
  */
 export interface DynamicNounPhrasing {
   DynamicNoun: DynamicNounPhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of a dynamic noun phrasing
@@ -823,15 +824,15 @@ export interface DynamicNounPhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A preposition phrasing on a linguistic relationship
  */
 export interface PrepositionPhrasing {
   Preposition: PrepositionPhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of a preposition phrasing
@@ -844,7 +845,7 @@ export interface PrepositionPhrasingProperties {
   /**
    * Prepositions used in the prepositional phrase
    */
-  Prepositions: [Word, ...(Word)[]];
+  Prepositions: [Word, ...Word[]];
   /**
    * The entity which is the object of the prepositional phrase
    */
@@ -852,15 +853,15 @@ export interface PrepositionPhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A verb phrasing on a linguistic relationship
  */
 export interface VerbPhrasing {
   Verb: VerbPhrasingProperties;
-  State?: any;
-  Weight?: any;
+  State?: unknown;
+  Weight?: unknown;
 }
 /**
  * Properties of a verb phrasing
@@ -873,7 +874,7 @@ export interface VerbPhrasingProperties {
   /**
    * Verbs used to describe the relationship
    */
-  Verbs: [Word, ...(Word)[]];
+  Verbs: [Word, ...Word[]];
   /**
    * The entity which is the indirect object of the verb
    */
@@ -885,7 +886,7 @@ export interface VerbPhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 export interface SharedPhrasingProperties {
   /**
@@ -896,7 +897,7 @@ export interface SharedPhrasingProperties {
    * The weight to apply to the phrasing
    */
   Weight?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A global text substitution in the linguistic schema.

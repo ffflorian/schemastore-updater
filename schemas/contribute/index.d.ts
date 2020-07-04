@@ -18,9 +18,9 @@ export interface MozillaSContributeJson {
     chat?: {
       url: string;
       contacts?: string[];
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
   repository: {
     type?: string;
@@ -28,19 +28,19 @@ export interface MozillaSContributeJson {
     license: string;
     tests?: string;
     clone?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   bugs?: {
     list?: string;
     report?: string;
     mentored?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   urls?: {
     prod?: string;
     stage?: string;
     dev?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

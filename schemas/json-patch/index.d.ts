@@ -13,5 +13,5 @@ export interface Path {
    * A JSON Pointer path.
    */
   path?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

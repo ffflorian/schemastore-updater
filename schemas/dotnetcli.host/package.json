@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/dotnetcli.host",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/dotnetcli.host",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/dotnetcli.host",
   "scripts": {},
   "typesPublisherContentHash": "7ebbaaebfde9e9e6248e7384a74aba84407cdace898693d0118f21788f721300",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

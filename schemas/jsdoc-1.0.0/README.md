@@ -5,8 +5,8 @@
 This package contains type definitions for jsdoc-1.0.0.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsdoc-1.0.0.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsdoc-1.0.0.
 
 ## Additional Details
-* Last updated: Wed, May 06, 2020, 20:22:29 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

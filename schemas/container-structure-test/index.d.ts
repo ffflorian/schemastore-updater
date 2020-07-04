@@ -58,7 +58,7 @@ export interface ContainerStructureTests {
      * Exit code that the command should exit with.
      */
     exitCode?: number;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * File existence tests check to make sure a specific file (or directory) exist within the file system of the image. No contents of the files or directories are checked. These tests can also be used to ensure a file or directory is not present in the file system.
@@ -92,7 +92,7 @@ export interface ContainerStructureTests {
      * Checks if file is executable by a given user.
      */
     isExecutableBy?: "owner" | "group" | "any" | "other";
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * File content tests open a file on the file system and check its contents. These tests assume the specified file is a file, and that it exists
@@ -114,7 +114,7 @@ export interface ContainerStructureTests {
      * List of regexes that should not match the contents of the file
      */
     excludedContents?: string[];
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * License tests check a list of copyright files and makes sure all licenses are allowed at Google. By default it will look at where Debian lists all copyright files, but can also look at an arbitrary list of files.
@@ -128,7 +128,7 @@ export interface ContainerStructureTests {
      * A list of other files to check.
      */
     files?: string[];
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   metadataTest?: {
     /**
@@ -165,7 +165,7 @@ export interface ContainerStructureTests {
      * The CMD specified in the container
      */
     cmd?: string[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * A list of environment variables can optionally be specified as part of the test setup.

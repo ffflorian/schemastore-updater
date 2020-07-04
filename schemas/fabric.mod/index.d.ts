@@ -19,7 +19,7 @@ export type Entrypoint =
        * The entrypoint function or class
        */
       value: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | string;
 export type VersionRange = string;
@@ -54,9 +54,9 @@ export type Person =
          * Project source code repository. Must be a valid URL
          */
         sources?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
 
 export interface Fabric {
@@ -89,7 +89,7 @@ export interface Fabric {
      * The entrypoint for the server environment (classes must implement DedicatedServerModInitializer)
      */
     server?: Entrypoint[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Contains an array of nestedJar objects
@@ -109,8 +109,9 @@ export interface Fabric {
          */
         config?: string;
         environment?: Environment;
-        [k: string]: any;
-      })[];
+        [k: string]: unknown;
+      }
+  )[];
   /**
    * id→versionRange map for dependencies. Failure to meet these causes a hard failure
    */
@@ -181,7 +182,7 @@ export interface Fabric {
      * Project source code repository. Must be a valid URL
      */
     sources?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The license the mod uses
@@ -199,14 +200,14 @@ export interface Fabric {
    * A map of namespace:id→value for custom data fields.
    */
   custom?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface NestedJar {
   /**
    * A string value pointing to a path from the root of the JAR to a nested JAR which should be loaded alongside the outer mod JAR
    */
   file: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

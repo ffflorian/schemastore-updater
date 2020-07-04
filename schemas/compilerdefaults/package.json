@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/compilerdefaults",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/compilerdefaults",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/compilerdefaults",
   "scripts": {},
   "typesPublisherContentHash": "b400c5764e21695d23dea02f2ae0033d7f7f2b754bc4b24e6c1c65f359f2be9f",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

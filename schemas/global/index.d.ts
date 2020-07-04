@@ -28,7 +28,7 @@ export interface JSONSchemaForTheASPNETGlobalConfigurationFiles {
       | "latestMinor"
       | "latestMajor"
       | "disable";
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

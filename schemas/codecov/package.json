@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/codecov",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/codecov",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/codecov",
   "scripts": {},
   "typesPublisherContentHash": "2b3ad1e138d30addc19062fff8aa6260394dd698fd7a35acf4ae1e1f159c5650",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

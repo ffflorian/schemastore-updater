@@ -11,7 +11,7 @@ export interface JSONSchemaForHostMetaFiles {
   aliases?: string[];
   properties?: Property;
   links?: Link[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Property {
   [k: string]: null | string;
@@ -26,5 +26,5 @@ export interface Link {
     [k: string]: string;
   };
   properties?: Property;
-  [k: string]: any;
+  [k: string]: unknown;
 }

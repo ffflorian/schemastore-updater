@@ -17,13 +17,13 @@ export interface HttpMockerConfiguration {
    * Custom request header
    */
   requestHeaders?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Custom response header
    */
   responseHeaders?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Rules for proxy and mock
@@ -52,10 +52,10 @@ export interface HttpMockerConfiguration {
        * Validate params in body by key and typeof value
        */
       validate?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

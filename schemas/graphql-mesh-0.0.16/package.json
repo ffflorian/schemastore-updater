@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/graphql-mesh-0.0.16",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/graphql-mesh-0.0.16",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/graphql-mesh-0.0.16",
   "scripts": {},
   "typesPublisherContentHash": "92be3749b0f119f5badf545ec97d01a223981646434c02a3201d8681189aeeed",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

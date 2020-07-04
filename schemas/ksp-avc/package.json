@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/ksp-avc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ksp-avc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ksp-avc",
   "scripts": {},
   "typesPublisherContentHash": "910253b1cb410c7a41155320a085a34f097decae837275de32eb0c2a82a9363b",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

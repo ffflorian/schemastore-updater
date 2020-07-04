@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/appsscript",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appsscript",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appsscript",
   "scripts": {},
   "typesPublisherContentHash": "27403506d6807be66a022abeec74351792ad74ac3da75fe030929480cce1ed8e",
   "types": "index.d.ts",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "typeScriptVersion": "2.2"
 }

@@ -32,7 +32,7 @@ export interface CHJProperties {
    * Preserve line-breaks. [JS,CSS,HTML]
    */
   preserve_newlines?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface HJProperties {
   /**
@@ -55,7 +55,7 @@ export interface HJProperties {
    * Wrap lines at next opportunity after N characters. [JS,HTML]
    */
   wrap_line_length?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface CProperties {
   /**
@@ -74,7 +74,7 @@ export interface CProperties {
    * Ensure space around selector separators (>+~). [CSS]
    */
   space_around_combinator?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface HProperties {
   /**
@@ -121,7 +121,7 @@ export interface HProperties {
    * format and indent {{#foo}} and {{/foo}}. [HTML]
    */
   indent_handlebars?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface JProperties {
   /**
@@ -180,5 +180,5 @@ export interface JProperties {
    * Unindent chained methods. [JS]
    */
   unindent_chained_methods?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

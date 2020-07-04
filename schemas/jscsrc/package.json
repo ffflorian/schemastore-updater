@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/jscsrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jscsrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jscsrc",
   "scripts": {},
   "typesPublisherContentHash": "587855da664fed0ce8d52087da3f42a815911575edfe31c5b711856929042d07",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

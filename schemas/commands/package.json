@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/commands",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/commands",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/commands",
   "scripts": {},
   "typesPublisherContentHash": "2eb3effcf1c8f0f27457e000053688580cedd7519f9c01a37348b8585fc9a369",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

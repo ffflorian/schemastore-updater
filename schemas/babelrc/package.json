@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/babelrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/babelrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/babelrc",
   "scripts": {},
   "typesPublisherContentHash": "10ade8809ba0bcb9d2f959254bddc316f7bcb0f6e17858c460eb5ad066b8b63e",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

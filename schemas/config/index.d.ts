@@ -7,7 +7,7 @@
 
 export interface JSONSchemaForDNXConfigurationFiles {
   Data?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

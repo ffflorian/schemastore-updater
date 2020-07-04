@@ -10,140 +10,153 @@
  */
 export type NullRule = null;
 export type Keywords2 = Keywords | boolean;
-export type Keywords = (
-  | "break"
-  | "case"
-  | "catch"
-  | "continue"
-  | "debugger"
-  | "default"
-  | "delete"
-  | "do"
-  | "else"
-  | "finally"
-  | "for"
-  | "function"
-  | "if"
-  | "in"
-  | "instanceof"
-  | "new"
-  | "return"
-  | "switch"
-  | "this"
-  | "throw"
-  | "try"
-  | "typeof"
-  | "var"
-  | "void"
-  | "while"
-  | "with")[];
-export type BlockKeywords = ("catch" | "do" | "else" | "finally" | "for" | "function" | "if" | "try" | "while")[];
-export type EsprimaNodeTypes = (
-  | "ArrayExpression"
-  | "ArrayPattern"
-  | "ArrowFunctionExpression"
-  | "AssignmentExpression"
-  | "AssignmentPattern"
-  | "BinaryExpression"
-  | "BlockStatement"
-  | "BreakStatement"
-  | "CallExpression"
-  | "CatchClause"
-  | "ClassBody"
-  | "ClassDeclaration"
-  | "ClassExpression"
-  | "ConditionalExpression"
-  | "ContinueStatement"
-  | "DebuggerStatement"
-  | "DoWhileStatement"
-  | "EmptyStatement"
-  | "ExportAllDeclaration"
-  | "ExportDefaultDeclaration"
-  | "ExportNamedDeclaration"
-  | "ExportSpecifier"
-  | "ExpressionStatement"
-  | "ForInStatement"
-  | "ForStatement"
-  | "FunctionDeclaration"
-  | "FunctionExpression"
-  | "Identifier"
-  | "IfStatement"
-  | "ImportDeclaration"
-  | "ImportDefaultSpecifier"
-  | "ImportNamespaceSpecifier"
-  | "ImportSpecifier"
-  | "LabeledStatement"
-  | "Literal"
-  | "LogicalExpression"
-  | "MemberExpression"
-  | "MethodDefinition"
-  | "NewExpression"
-  | "ObjectExpression"
-  | "ObjectPattern"
-  | "Program"
-  | "Property"
-  | "RestElement"
-  | "ReturnStatement"
-  | "SequenceExpression"
-  | "SpreadElement"
-  | "Super"
-  | "SwitchCase"
-  | "SwitchStatement"
-  | "TaggedTemplateExpression"
-  | "TemplateElement"
-  | "TemplateLiteral"
-  | "ThisExpression"
-  | "ThrowStatement"
-  | "TryStatement"
-  | "UnaryExpression"
-  | "UpdateExpression"
-  | "VariableDeclaration"
-  | "VariableDeclarator"
-  | "WhileStatement"
-  | "WithStatement")[];
-export type Operators = (
-  | ","
-  | ":"
-  | "?"
-  | "^"
-  | "^="
-  | "|"
-  | "||"
-  | "|="
-  | "&"
-  | "&&"
-  | "&="
-  | "+"
-  | "+="
-  | "-"
-  | "-="
-  | "%"
-  | "%="
-  | "/"
-  | "/="
-  | "*"
-  | "*="
-  | "="
-  | "=="
-  | "==="
-  | "!="
-  | "!=="
-  | ">"
-  | ">>"
-  | ">>>"
-  | ">="
-  | ">>="
-  | ">>>="
-  | "<"
-  | "<<"
-  | "<="
-  | "<<="
-  | null)[];
-export type UnaryOperators = ("++" | "--" | "+" | "-" | "~" | "!")[];
+export type Keywords =
+  | (
+      | "break"
+      | "case"
+      | "catch"
+      | "continue"
+      | "debugger"
+      | "default"
+      | "delete"
+      | "do"
+      | "else"
+      | "finally"
+      | "for"
+      | "function"
+      | "if"
+      | "in"
+      | "instanceof"
+      | "new"
+      | "return"
+      | "switch"
+      | "this"
+      | "throw"
+      | "try"
+      | "typeof"
+      | "var"
+      | "void"
+      | "while"
+      | "with"
+    )[]
+  | null;
+export type BlockKeywords =
+  | ("catch" | "do" | "else" | "finally" | "for" | "function" | "if" | "try" | "while")[]
+  | null;
+export type EsprimaNodeTypes =
+  | (
+      | "ArrayExpression"
+      | "ArrayPattern"
+      | "ArrowFunctionExpression"
+      | "AssignmentExpression"
+      | "AssignmentPattern"
+      | "BinaryExpression"
+      | "BlockStatement"
+      | "BreakStatement"
+      | "CallExpression"
+      | "CatchClause"
+      | "ClassBody"
+      | "ClassDeclaration"
+      | "ClassExpression"
+      | "ConditionalExpression"
+      | "ContinueStatement"
+      | "DebuggerStatement"
+      | "DoWhileStatement"
+      | "EmptyStatement"
+      | "ExportAllDeclaration"
+      | "ExportDefaultDeclaration"
+      | "ExportNamedDeclaration"
+      | "ExportSpecifier"
+      | "ExpressionStatement"
+      | "ForInStatement"
+      | "ForStatement"
+      | "FunctionDeclaration"
+      | "FunctionExpression"
+      | "Identifier"
+      | "IfStatement"
+      | "ImportDeclaration"
+      | "ImportDefaultSpecifier"
+      | "ImportNamespaceSpecifier"
+      | "ImportSpecifier"
+      | "LabeledStatement"
+      | "Literal"
+      | "LogicalExpression"
+      | "MemberExpression"
+      | "MethodDefinition"
+      | "NewExpression"
+      | "ObjectExpression"
+      | "ObjectPattern"
+      | "Program"
+      | "Property"
+      | "RestElement"
+      | "ReturnStatement"
+      | "SequenceExpression"
+      | "SpreadElement"
+      | "Super"
+      | "SwitchCase"
+      | "SwitchStatement"
+      | "TaggedTemplateExpression"
+      | "TemplateElement"
+      | "TemplateLiteral"
+      | "ThisExpression"
+      | "ThrowStatement"
+      | "TryStatement"
+      | "UnaryExpression"
+      | "UpdateExpression"
+      | "VariableDeclaration"
+      | "VariableDeclarator"
+      | "WhileStatement"
+      | "WithStatement"
+    )[]
+  | null;
+export type Operators =
+  | (
+      | ","
+      | ":"
+      | "?"
+      | "^"
+      | "^="
+      | "|"
+      | "||"
+      | "|="
+      | "&"
+      | "&&"
+      | "&="
+      | "+"
+      | "+="
+      | "-"
+      | "-="
+      | "%"
+      | "%="
+      | "/"
+      | "/="
+      | "*"
+      | "*="
+      | "="
+      | "=="
+      | "==="
+      | "!="
+      | "!=="
+      | ">"
+      | ">>"
+      | ">>>"
+      | ">="
+      | ">>="
+      | ">>>="
+      | "<"
+      | "<<"
+      | "<="
+      | "<<="
+      | null
+    )[]
+  | null;
+export type UnaryOperators = ("++" | "--" | "+" | "-" | "~" | "!")[] | null;
 export type BraceRules = null | {
-  [k: string]: any;
+  beforeOpeningRoundBrace?: boolean | null;
+  beforeOpeningCurlyBrace?: boolean | null;
+  [k: string]: unknown;
 };
-export type EqualityOperators = ("==" | "===" | "!=" | "!==" | null)[];
+export type EqualityOperators = ("==" | "===" | "!=" | "!==" | null)[] | null;
 
 export interface JSONSchemaForJSCSConfigurationFiles {
   /**
@@ -172,8 +185,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("function")[];
-        [k: string]: any;
+        allExcept?: "function"[];
+        [k: string]: unknown;
       };
   /**
    * Disallows curly braces after statements.
@@ -190,7 +203,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows empty blocks (except for catch blocks).
@@ -202,8 +215,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.  Blocks containing only comments would not be considered empty.
          */
-        allExcept?: ("comments")[];
-        [k: string]: any;
+        allExcept?: "comments"[];
+        [k: string]: unknown;
       };
   /**
    * Disallows function declarations.
@@ -220,7 +233,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows implicit type conversion.
    */
-  disallowImplicitTypeConversion?: ("numeric" | "boolean" | "binary" | "string")[];
+  disallowImplicitTypeConversion?: ("numeric" | "boolean" | "binary" | "string")[] | null;
   /**
    * Disallows one or more keywords in comments.
    */
@@ -257,7 +270,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
     | NullRule
     | {
         allowEOLComments?: boolean | null;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows multiple `var` declaration (except for-loop).
@@ -271,7 +284,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("require" | "undefined")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows unassigned functions to be named inline.
@@ -288,7 +301,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * The maximum levels of ternary nesting to be allowed.
          */
         maxLevel?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows newline before opening curly brace of all block statements.
@@ -298,12 +311,12 @@ export interface JSONSchemaForJSCSConfigurationFiles {
     | boolean
     | NullRule
     | {
-        value?: any[] | boolean;
+        value?: unknown[] | boolean;
         /**
          * Array of quoted keywords to exempt.  If `multiline` is specified, when the conditions span on multiple lines, require a new line before the curly brace.
          */
         allExcept?: (string | "multiline")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallow use of certain node types (from Esprima/ESTree).  Value equals an array of parser node types to be disallowed.
@@ -360,7 +373,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.  If `conditionals` is specified, conditionals (if, else if, else) blocks are ignored.  If `functions` is specified, function blocks are ignored.
          */
         allExcept?: ("conditionals" | "functions")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows newlines adjacent to curly braces in all object literals.
@@ -381,7 +394,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: (string | "reserved")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "allButReserved";
   /**
@@ -406,8 +419,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("sparseArrays")[];
-        [k: string]: any;
+        allExcept?: "sparseArrays"[];
+        [k: string]: unknown;
       };
   /**
    * Disallows space after the specified keywords.  A value of true will require spaces after all possible keywords.
@@ -428,7 +441,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("singleline" | "multiline" | "aligned" | "method")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ("ignoreSingleLine" | "ignoreMultiLine");
   /**
@@ -453,8 +466,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("sparseArrays")[];
-        [k: string]: any;
+        allExcept?: "sparseArrays"[];
+        [k: string]: unknown;
       }
     | "exceptExports";
   /**
@@ -480,7 +493,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens to exempt (allows whitespace before semicolon if preceded by the specified token).
          */
         allExcept?: ("(" | string)[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Ensure there are no spaces after argument separators in call expressions.
@@ -505,7 +518,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         afterTest?: boolean;
         beforeAlternate?: boolean;
         beforeConsequent?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallow spaces in between for statement.
@@ -537,7 +550,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * A value of true disallows space after *.
          */
         afterStar?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows space before () or {} in named function expressions
@@ -554,7 +567,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
          */
         allExcept?: ("(" | ")" | "{" | "}" | "[" | "]")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "nested";
   /**
@@ -568,7 +581,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
          */
         allExcept?: ("(" | ")" | "{" | "}" | "[" | "]")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows space after opening object curly brace and before closing.
@@ -581,7 +594,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens to exempt.  Applies only to closer tokens:  e.g. ) } ].  If a (closer) token is specified, the rule ignores contiguous (closer) tokens.
          */
         allExcept?: (")" | "}" | "]")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "nested";
   /**
@@ -595,7 +608,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted values to target.
          */
         only?: (("(" | ")" | "{" | "}" | "[" | "]" | "function") | string)[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows space after opening and before closing grouping parentheses.
@@ -608,7 +621,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens or items to exempt.  Tokens should consist of an opener with a matching closer () {} [] or `function`.
          */
         allExcept?: ("(" | ")" | "{" | "}" | "[" | "]" | "function")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows spaces before and after curly brace inside template string placeholders.
@@ -662,7 +675,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Lines should be at most the number of characters specified.
          */
         value: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires the file to be at most the number of lines specified.
@@ -674,12 +687,12 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of conditions that will exempt a line.
          */
-        allExcept?: ("comments")[];
+        allExcept?: "comments"[];
         /**
          * Lines should be at most the number of characters specified.
          */
         value: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Extends defined rules with preset rules.
@@ -714,8 +727,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("declarations")[];
-        [k: string]: any;
+        allExcept?: "declarations"[];
+        [k: string]: unknown;
       };
   /**
    * Requires that variable assignment from array values are * destructured.
@@ -741,7 +754,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Specifies a minimum number of lines containing elements in the block before validating.
          */
         minLines?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires identifiers to be camelCased or UPPERCASE_WITH_UNDERSCORES.
@@ -770,7 +783,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, forces the first character to not be capitalized.
          */
         strict?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "ignoreProperties";
   /**
@@ -788,7 +801,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, ignore comments in the middle of the code line.
          */
         inlined?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires capitalized constructors to to use the new keyword.
@@ -801,7 +814,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires constructors to be capitalized (except for "this")
@@ -814,7 +827,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires commas as last token on a line in lists.
@@ -834,7 +847,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.  Allows not using braces in some instances; ex.  /*allowed:* / if (x) return; /* not allowed* / if (x) i++; given "allExcept": ["return", "continue", "break", ...],
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Require a $ before variable names that are jquery assignments.
@@ -851,7 +864,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("keywords" | "snake_case")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "except_snake_case";
   /**
@@ -890,7 +903,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
     | NullRule
     | {
         includeModuleExports?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires the test, consequent and alternate to be on separate lines when using the ternary operator.
@@ -906,8 +919,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("require")[];
-        [k: string]: any;
+        allExcept?: "require"[];
+        [k: string]: unknown;
       }
     | "onevar";
   /**
@@ -921,7 +934,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires newline before opening curly brace of all block statements.  If true, always requires newline before curly brace of block statements.  Array specifies block-type keywords after which newlines are required before curly brace.
@@ -945,8 +958,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("sameLine")[];
-        [k: string]: any;
+        allExcept?: "sameLine"[];
+        [k: string]: unknown;
       };
   /**
    * Requires operators to appear before line breaks and not after.
@@ -967,7 +980,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("inCallExpressions" | "inNewExpressions" | "inArrayExpressions" | "inProperties")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires a blank line after 'use strict'; statements.
@@ -979,8 +992,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("require")[];
-        [k: string]: any;
+        allExcept?: "require"[];
+        [k: string]: unknown;
       };
   /**
    * Requires newline before module.exports.
@@ -1000,8 +1013,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("firstAfterCurly")[];
-        [k: string]: any;
+        allExcept?: "firstAfterCurly"[];
+        [k: string]: unknown;
       };
   /**
    * Requires blocks to begin and end with 2 newlines.
@@ -1023,7 +1036,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("conditionals" | "functions")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires newline inside curly braces of all objects.
@@ -1063,8 +1076,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("trailing")[];
-        [k: string]: any;
+        allExcept?: "trailing"[];
+        [k: string]: unknown;
       };
   /**
    * Requires space after the specified keywords.  A value of true will disallow spaces after all possible keywords.
@@ -1081,7 +1094,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of allowed strings before space.
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "allowSlash";
   /**
@@ -1116,7 +1129,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of allowed strings before space.
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires space after object keys.
@@ -1139,8 +1152,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
     /**
      * A boolean or an array of quoted exceptions.
      */
-    allExcept?: boolean | NullRule | ("shorthand")[];
-    [k: string]: any;
+    allExcept?: boolean | NullRule | "shorthand"[];
+    [k: string]: unknown;
   };
   /**
    * Requires space before `()` in call expressions.
@@ -1157,7 +1170,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         beforeConsequent?: boolean;
         afterConsequent?: boolean;
         beforeAlternate?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires spaces in between `for` statement.
@@ -1189,7 +1202,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, validates that there is a space after `*`.
          */
         afterStar?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires space before `()` or `{}` in named function expressions.
@@ -1205,7 +1218,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
          */
         allExcept?: ("{" | "}" | "[" | "]")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ("all" | "allButNested");
   /**
@@ -1219,7 +1232,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
          */
         allExcept?: ("{" | "}" | "[" | "]")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires space after opening object curly brace and before closing.
@@ -1231,7 +1244,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens that can occur after an opening object brace or before a closing object brace without a space.
          */
         allExcept?: ("(" | ")" | "{" | "}" | "[" | "]")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ("all" | "allButNested");
   /**
@@ -1246,7 +1259,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted tokens that can occur after an opening bracket or before a closing bracket without a space.
          */
         except?: (("(" | ")" | "{" | "}" | "[" | "]") | string)[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ("all" | "allButNested");
   /**
@@ -1260,7 +1273,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("{" | "}" | "function")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Disallows using `.apply` in favor of the spread operator.
@@ -1276,8 +1289,8 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * Array of quoted keywords to exempt.
          */
-        allExcept?: ("stringConcatenation")[];
-        [k: string]: any;
+        allExcept?: "stringConcatenation"[];
+        [k: string]: unknown;
       };
   /**
    * Requires an extra comma following the final element of an array or object literal.
@@ -1294,7 +1307,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, allows objects and arrays on a single line to not require a trailing comma.
          */
         ignoreSingleLine?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Requires `var` declaration to be on the top of an enclosing scope.
@@ -1323,7 +1336,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, specifies that the last function parameter must not be on the same line as the closing parenthesis `)` of the function parameters list.
          */
         lineBreakBeforeClosingBrace?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * This rule is for validating the positioning of line comments.  Block comments are ignored.  Comments that start with the following keywords are also ignored:  `eslint`, `jshint`, `jslint`, `istanbul`, `global`, `exported`, `jscs`, `falls through` eg. // jshint strict: true
@@ -1336,7 +1349,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted exceptions (comments that start with these values will be excepted).
          */
         allExcept?: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Validates indentation for switch statements and block statements.
@@ -1354,7 +1367,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Array of quoted exceptions.
          */
         allExcept?: ("comments" | "emptyLines")[];
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Option to check line break characters.
@@ -1367,7 +1380,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, specifies that validation for the file should stop running upon encountering the first rule violation and return the details of that violation in the report.
          */
         reportOncePerFile?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ("CR" | "LF" | "CRLF");
   /**
@@ -1383,7 +1396,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * If true, specifies that the `[` and `]` brackets can be placed on the same line as the array elements.
          */
         ignoreBrackets?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Validates the order in object keys.
@@ -1415,10 +1428,10 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          * Ignore JSX nodes.
          */
         ignoreJSX?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ('"' | "'");
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Validate jsdoc comments.
@@ -1438,7 +1451,7 @@ export interface JsDoc {
         extra?: {
           [k: string]: true | false | "some";
         };
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | ("closurecompiler" | "jsdoc3" | "jsduck5");
   /**
@@ -1492,7 +1505,7 @@ export interface JsDoc {
          * Array of quoted keywords to exempt.
          */
         allExcept?: ("expressions" | "exports" | "paramless-procedures")[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | "exceptExports";
   /**
@@ -1519,5 +1532,5 @@ export interface JsDoc {
    * Checks whether a jsdoc return description exists.
    */
   requireReturnDescription?: boolean | null;
-  [k: string]: any;
+  [k: string]: unknown;
 }

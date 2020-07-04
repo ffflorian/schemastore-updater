@@ -158,12 +158,12 @@ export interface JSONSchemaForCoffeelintJsonFiles {
    * This rule detects when changes are made by transform function, and warns that line numbers are probably incorrect. [default level: warn]
    */
   transform_messes_up_line_numbers?: Base;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Base {
   /**
    * Determines the error level
    */
   level?: "error" | "warn" | "ignore";
-  [k: string]: any;
+  [k: string]: unknown;
 }

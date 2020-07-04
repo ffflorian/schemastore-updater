@@ -122,9 +122,9 @@ export interface JSONSchemaForChutzpahTestRunnerSettingsFiles {
    * The dictionary of browser name (keys) to corresponding browser arguments (values), i.e.; { 'chrome': '--allow-file-access-from-files' }.
    */
   BrowserArguments?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ReferenceSettings {
   /**
@@ -148,7 +148,7 @@ export interface ReferenceSettings {
    */
   IsTestFrameworkFile?: boolean;
   TemplateOptions?: TemplateOptions;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TemplateOptions {
   /**
@@ -163,7 +163,7 @@ export interface TemplateOptions {
    * If in script mode what Type to place on script tag
    */
   Type?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TestSettings {
   /**
@@ -178,7 +178,7 @@ export interface TestSettings {
    * This is an optional array of exclude glob patterns.  Only files not matching the Exclude patterns will be added.
    */
   Excludes?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * The options to configure the chosen browser engine for Chutzpah to use.
@@ -188,7 +188,7 @@ export interface EngineOptions {
    * The path to the chrome/chromium executable on the machine
    */
   ChromeBrowserPath?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Server settings let you enable to configure Chutzpah web server mode.
@@ -206,7 +206,7 @@ export interface ServerSettings {
    * The root path of the server. All file paths are relative to this and should be in a directory below or equal to this. Defaults to drive root.
    */
   RootPath?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TransformConfig {
   /**
@@ -217,7 +217,7 @@ export interface TransformConfig {
    * The file for the transform to save its output to.
    */
   Path?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * This setting lets you describe in the Chutzpah.json file how to execute a command which can compile your source files to .js files. You tell Chutzpah what to execute and some information about what your executable does (like where to find the generated .js files). Then after running the executable Chutzpah can associate each source file with each output file to still give the nice behavior of mapping tests back to their original files.
@@ -267,7 +267,7 @@ export interface CompileSettings {
    * Should Chutzpah ignore files it expects to find compiled. If set to true Chutzpah will log an error otherwise it will throw
    */
   IgnoreMissingFiles?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface CompilePathMap {
   /**
@@ -282,5 +282,5 @@ export interface CompilePathMap {
    * The type (file or folder) that the output path refers to. If not specified Chutzpah will try to take a best guess by assuming it is a file if it has a .js extension
    */
   OutputPathType?: "File" | "Folder";
-  [k: string]: any;
+  [k: string]: unknown;
 }

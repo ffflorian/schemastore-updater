@@ -23,7 +23,7 @@ export type Bozr = {
   ignore?: string;
   calls: {
     args?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     on: {
       method: "GET" | "POST" | "PUT" | "DELETE" | "HEAD" | "OPTIONS" | "PATCH" | "CONNECT" | "TRACE";
@@ -32,15 +32,15 @@ export type Bozr = {
         Accept?: "application/json" | "application/xml" | "text/xml" | "text/csv";
         "Content-Type"?: "application/json" | "application/xml" | "text/xml" | "text/csv";
         Authorization?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       params?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       body?:
         | string
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           };
       bodyFile?: string;
     };
@@ -107,28 +107,28 @@ export type Bozr = {
         | 511;
       contentType?: string;
       headers?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       body?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       exactBody?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       bodyPath?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       bodySchemaFile?: string;
       bodySchema?: string;
       bodySchemaURI?: string;
-      absent?: [any, ...(any)[]];
+      absent?: [unknown, ...unknown[]];
     };
     remember?: {
       bodyPath?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       headers?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
     };
   }[];

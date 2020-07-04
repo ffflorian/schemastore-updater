@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/behat",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/behat",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/behat",
   "scripts": {},
   "typesPublisherContentHash": "44d49fbc2ad42c8e3d37589df435ceb0a86ab509133ea4be1dddeb89a98c0454",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

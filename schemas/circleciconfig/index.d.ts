@@ -13,41 +13,41 @@ export type Step =
   | string
   | {
       run?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       checkout?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       setup_remote_docker?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       save_cache?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       restore_cache?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       deploy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       store_artifacts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       store_test_results?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       persist_to_workspace?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       attach_workspace?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       add_ssh_keys?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
 /**
  * Options for the [docker executor](https://circleci.com/docs/2.0/configuration-reference/#docker)
@@ -101,15 +101,15 @@ export type ExecutorChoice =
        * Amount of CPU and RAM allocated to each container in a job. (Only works with the `docker` key for paid accounts and is subject to change in a future pricing update. **Note:** Paid accounts must request to use this feature by opening a support ticket (or by contacting their Customer Success Manager when applicable) and non-paid users must request to use this feature by opening a ticket at <https://support.circleci.com/hc/en-us/requests/new>.)
        */
       resource_class?: "small" | "medium" | "medium+" | "large" | "xlarge";
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       machine: MachineExecutor;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       macos: MacosExecutor;
-      [k: string]: any;
+      [k: string]: unknown;
     };
 
 export interface JSONSchemaForCircleCIConfigurationFiles {
@@ -148,7 +148,7 @@ export interface JSONSchemaForCircleCIConfigurationFiles {
           filters?: {
             branches?: Filter;
           };
-          [k: string]: any;
+          [k: string]: unknown;
         };
       }[];
       jobs?: (
@@ -172,15 +172,16 @@ export interface JSONSchemaForCircleCIConfigurationFiles {
                */
               filters?: {
                 [k: string]: {
-                  [k: string]: any;
+                  [k: string]: unknown;
                 };
               };
-              [k: string]: any;
+              [k: string]: unknown;
             };
-          })[];
+          }
+      )[];
     };
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * https://circleci.com/docs/2.0/configuration-reference/#orbs-requires-version-21
@@ -195,7 +196,7 @@ export interface Orbs {
         commands?: Commands;
         executors?: Executors;
         jobs?: Jobs;
-        [k: string]: any;
+        [k: string]: unknown;
       };
 }
 /**
@@ -229,51 +230,51 @@ export interface Commands {
             type: "string";
             description?: string;
             default?: string;
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
             type: "boolean";
             description?: string;
             default?: boolean;
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
             type: "integer";
             description?: string;
             default?: number;
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
             type: "enum";
-            enum: [string, ...(string)[]];
+            enum: [string, ...string[]];
             description?: string;
             default?: string;
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
             type: "executor";
             description?: string;
             default?: string;
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
             type: "steps";
             description?: string;
             default?: Step[];
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
             type: "env_var_name";
             description?: string;
             default?: string;
-            [k: string]: any;
+            [k: string]: unknown;
           };
     };
     /**
      * A string that describes the purpose of the command.
      */
     description?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -287,15 +288,15 @@ export interface Executors {
          * Amount of CPU and RAM allocated to each container in a job. (Only works with the `docker` key for paid accounts and is subject to change in a future pricing update. **Note:** Paid accounts must request to use this feature by opening a support ticket (or by contacting their Customer Success Manager when applicable) and non-paid users must request to use this feature by opening a ticket at <https://support.circleci.com/hc/en-us/requests/new>.)
          */
         resource_class?: "small" | "medium" | "medium+" | "large" | "xlarge";
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         machine: MachineExecutor;
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         macos: MacosExecutor;
-        [k: string]: any;
+        [k: string]: unknown;
       };
 }
 /**
@@ -328,7 +329,7 @@ export interface Jobs {
          * The name of the executor to use (defined via the top level executors map).
          */
         executor: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
 }
 /**

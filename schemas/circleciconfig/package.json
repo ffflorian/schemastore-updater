@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/circleciconfig",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/circleciconfig",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/circleciconfig",
   "scripts": {},
   "typesPublisherContentHash": "b78717d1c345efbf999d6ca04ee9a7e47698d442e18b94b8320018e3df3073fb",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

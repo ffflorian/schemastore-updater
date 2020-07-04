@@ -5,8 +5,8 @@
 This package contains type definitions for imageoptimizer.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/imageoptimizer.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/imageoptimizer.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:20 GMT
 * Dependencies: none

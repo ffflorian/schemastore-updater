@@ -5,8 +5,8 @@
 This package contains type definitions for jsconfig.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsconfig.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsconfig.
 
 ## Additional Details
-* Last updated: Mon, Feb 24, 2020, 11:37:51 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:21 GMT
 * Dependencies: none

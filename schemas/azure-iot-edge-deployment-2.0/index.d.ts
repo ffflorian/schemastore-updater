@@ -23,7 +23,7 @@ export interface TheConfigurationForAllTheModules {
    */
   [k: string]: {
     "properties.desired": {
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
 }
@@ -51,12 +51,12 @@ export interface ConfigurationForTheEdgeAgentModule {
          * via the `patternProperty` "^[^\.\$# ]+$".
          */
         [k: string]:
-          | any[]
+          | unknown[]
           | boolean
           | number
           | null
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | string;
       };
@@ -65,12 +65,12 @@ export interface ConfigurationForTheEdgeAgentModule {
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
       [k: string]:
-        | any[]
+        | unknown[]
         | boolean
         | number
         | null
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | string;
     };
@@ -85,12 +85,12 @@ export interface ConfigurationForTheEdgeAgentModule {
          * via the `patternProperty` "^[^\.\$# ]+$".
          */
         [k: string]:
-          | any[]
+          | unknown[]
           | boolean
           | number
           | null
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | string;
       };
@@ -114,12 +114,12 @@ export interface ConfigurationForTheEdgeAgentModule {
          * via the `patternProperty` "^[^\.\$# ]+$".
          */
         [k: string]:
-          | any[]
+          | unknown[]
           | boolean
           | number
           | null
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | string;
       };
@@ -129,12 +129,12 @@ export interface ConfigurationForTheEdgeAgentModule {
      * via the `patternProperty` "^[^\.\$# ]+$".
      */
     [k: string]:
-      | any[]
+      | unknown[]
       | boolean
       | number
       | null
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | string;
   };
@@ -147,12 +147,12 @@ export interface ModuleSettings {
    * via the `patternProperty` "^[^\.\$# ]+$".
    */
   [k: string]:
-    | any[]
+    | unknown[]
     | boolean
     | number
     | null
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string;
 }
@@ -177,12 +177,12 @@ export interface TheEdgehubSchema {
    * via the `patternProperty` "^[^\.\$# ]+$".
    */
   [k: string]:
-    | any[]
+    | unknown[]
     | boolean
     | number
     | null
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string;
 }
@@ -209,12 +209,12 @@ export interface ConfigurationForTheEdgeHubModule {
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
       [k: string]:
-        | any[]
+        | unknown[]
         | boolean
         | number
         | null
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | string;
     };
@@ -223,12 +223,12 @@ export interface ConfigurationForTheEdgeHubModule {
      * via the `patternProperty` "^[^\.\$# ]+$".
      */
     [k: string]:
-      | any[]
+      | unknown[]
       | boolean
       | number
       | null
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | string;
   };

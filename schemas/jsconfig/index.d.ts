@@ -70,7 +70,7 @@ export interface CompilerOptionsDefinition {
     module?:
       | ("commonJS" | "amd" | "umd" | "system" | "es6" | "es2015" | "es2020" | "esnext" | "none")
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         };
     /**
      * Specifies module resolution strategy: 'node' (Node) or 'classic' (TypeScript pre 1.6) .
@@ -78,7 +78,7 @@ export interface CompilerOptionsDefinition {
     moduleResolution?:
       | ("classic" | "node")
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         };
     /**
      * When down-level compiling, specifies the end of line sequence to be used when emitting files: 'crlf' (Windows) or 'lf' (Unix).
@@ -86,7 +86,7 @@ export interface CompilerOptionsDefinition {
     newLine?:
       | ("crlf" | "lf")
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         };
     /**
      * When down-level compiling, do not emit output.
@@ -182,7 +182,7 @@ export interface CompilerOptionsDefinition {
     target?:
       | ("es3" | "es5" | "es6" | "es2015" | "es2016" | "es2017" | "es2018" | "es2019" | "es2020" | "esnext")
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         };
     /**
      * When down-level compiling, watch input files.
@@ -300,37 +300,37 @@ export interface CompilerOptionsDefinition {
           | "webworker.importscripts"
         )
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
     )[];
     /**
@@ -393,21 +393,21 @@ export interface CompilerOptionsDefinition {
        * Plugin name.
        */
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
     /**
      * Have recompiles in '--incremental' and '--watch' assume that changes within a file will only affect files directly depending on it.
      */
     assumeChangesOnlyAffectDirectDependencies?: boolean;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface CompileOnSaveDefinition {
   /**
    * Enable Compile-on-Save for this project.
    */
   compileOnSave?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TypeAcquisitionDefinition {
   /**
@@ -426,35 +426,35 @@ export interface TypeAcquisitionDefinition {
      * Specifies a list of type declarations to be excluded from auto type acquisition. Ex. ["jquery", "lodash"]
      */
     exclude?: string[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ExtendsDefinition {
   /**
    * Path to base configuration file to inherit from. Requires TypeScript version 2.1 or later.
    */
   extends?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface FilesDefinition {
   /**
    * If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. When a 'files' property is specified, only those files and those specified by 'include' are included.
    */
   files?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ExcludeDefinition {
   /**
    * Specifies a list of files to be excluded from compilation. The 'exclude' property only affects the files included via the 'include' property and not the 'files' property. Glob patterns require TypeScript version 2.0 or later.
    */
   exclude?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface IncludeDefinition {
   /**
    * Specifies a list of glob patterns that match files to be included in compilation. If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. Requires TypeScript version 2.0 or later.
    */
   include?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

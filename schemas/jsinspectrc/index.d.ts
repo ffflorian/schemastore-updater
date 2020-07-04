@@ -30,5 +30,5 @@ export interface JSONSchemaForJSInspectConfigurationFiles {
    * A threshold determining the smallest subset of nodes to analyze
    */
   threshold?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -8,7 +8,7 @@
 /**
  * <head> resources block the page from rendering while your code executes.
  */
-export type JavaScriptAndCSSFilesIncludedInTheHeadOfASite = [Resource, ...(Resource)[]];
+export type JavaScriptAndCSSFilesIncludedInTheHeadOfASite = [Resource, ...Resource[]];
 export type WhichHTMLElementYourResourceShouldBeInsertedAs = "script" | "style";
 /**
  * This should be relative to the root of the project e.g. "./source/app.js"
@@ -22,7 +22,7 @@ export type ConditionallyIncludeResource = string;
 /**
  * <body> resources load and execute asynchronously. This is useful if your code should allow the page to render first.
  */
-export type JavaScriptAndCSSFilesIncludedInTheBodyOfTheSite = [Resource, ...(Resource)[]];
+export type JavaScriptAndCSSFilesIncludedInTheBodyOfTheSite = [Resource, ...Resource[]];
 /**
  * Preview resources can be used for local hook events, allowing your app to modify the install record e.g. fetching an API key with an OAuth token, then storing the key on an option.
  */
@@ -30,16 +30,16 @@ export type AlphaJavaScriptFilesExecutedInTheInstallPreview = [
   {
     src?: NixStylePathToYourResource;
   },
-  ...({
+  ...{
     src?: NixStylePathToYourResource;
-  })[]
+  }[]
 ];
 export type TheOptionsSectionIsAnArrayOfPropertyKeysWhichThisHandlerShouldApplyToWhenAnyOfThoseOptionsAreChangedDuringAPreviewThisHandlerWillBeTriggeredAGivenPropertyMayHaveMultipleHandlersOptionsCanAlsoBeHandledUsingSpecialKeysDefaultTriggerWhenAnyPropertyThatHasnTYetBeenHandledByAMoreSpecificEntryChangesAnyTriggerWhenAnyPropertyChangesRegardlessOfAnyOtherEntryProductTriggerWhenTheCustomerChangesTheirChosenProduct = string[];
 export type AFunctionToExecuteWhenAMatchingOptionHasChangedThisFunctionShouldBeDefinedInYourAppSJavaScriptEGWindowINSTALL_SCOPEUpdateOptionsNextOptions = string;
 export type DeclarationsForEachGroupOfMatchingOptionsAndTheirExecutingFunctionMultipleUpdateHandlersAreUsefulWhenAnAppHasOptionsThatHaveDifferentUpdatingProcedures = {
   options?: TheOptionsSectionIsAnArrayOfPropertyKeysWhichThisHandlerShouldApplyToWhenAnyOfThoseOptionsAreChangedDuringAPreviewThisHandlerWillBeTriggeredAGivenPropertyMayHaveMultipleHandlersOptionsCanAlsoBeHandledUsingSpecialKeysDefaultTriggerWhenAnyPropertyThatHasnTYetBeenHandledByAMoreSpecificEntryChangesAnyTriggerWhenAnyPropertyChangesRegardlessOfAnyOtherEntryProductTriggerWhenTheCustomerChangesTheirChosenProduct;
   execute?: AFunctionToExecuteWhenAMatchingOptionHasChangedThisFunctionShouldBeDefinedInYourAppSJavaScriptEGWindowINSTALL_SCOPEUpdateOptionsNextOptions;
-  [k: string]: any;
+  [k: string]: unknown;
 }[];
 /**
  * Some apps don't add anything visually to the site they're being installed upon. Showing a preview when nothing visually on the site has changed can be confusing to the customer, leading them to think your app is broken.
@@ -69,7 +69,7 @@ export type HookDeclarations = {
   block?: ShowALoadingIndicatorUntilYourResponseHasBeenLoadedYourChangesWillBeIgnoredIfYouDoNotSetThisProperty;
   events?: EventNamesThatTriggerAHookEvent;
   authenticate?: MatchingOptionKeysOfOAuthAccountFields;
-  [k: string]: any;
+  [k: string]: unknown;
 }[];
 /**
  * For example sub for sub.example.com max length: 255
@@ -109,22 +109,22 @@ export type DNSRecordDeclarations = {
    * Metadata about the record.
    */
   data?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }[];
 /**
  * Cloudflare workers declarations to be installed through an app onto a site.
  */
 export type CloudflareWorkers = {
   src?: NixStylePathToYourResource;
-  [k: string]: any;
+  [k: string]: unknown;
 }[];
 /**
  * The key should be camelCased.
  */
 export type TheKeyWhichYourOptionWillBeDefinedUnder = {
-  [k: string]: any;
+  [k: string]: unknown;
 };
 
 export interface JSONSchemaForConfiguringCloudflareAppsInstallJsonFiles {
@@ -134,7 +134,7 @@ export interface JSONSchemaForConfiguringCloudflareAppsInstallJsonFiles {
   dns?: DNSRecordDeclarations;
   workers?: CloudflareWorkers;
   options?: AParentObjectContainingYourAppSInstallOptions;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Each resource should be unminified and human-readable.
@@ -148,7 +148,7 @@ export interface Resource {
   type?: WhichHTMLElementYourResourceShouldBeInsertedAs;
   src?: NixStylePathToYourResource;
   if?: ConditionallyIncludeResource;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Preview options can be used to declare handlers that execute after an event has been triggered.
@@ -156,14 +156,14 @@ export interface Resource {
 export interface ConfigurationOfTheInstallerPreviewExperience {
   handlers?: DeclarationsForEachGroupOfMatchingOptionsAndTheirExecutingFunctionMultipleUpdateHandlersAreUsefulWhenAnAppHasOptionsThatHaveDifferentUpdatingProcedures;
   hide?: HideThePreviewPane;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Must contain a "properties" object.
  */
 export interface AParentObjectContainingYourAppSInstallOptions {
   properties: AnObjectContainingYourAppSInstallOptions;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Each declaration will appear in your app's installer for end-user customization. Their choices will accessible in your app's JavaScript resources as the constant `INSTALL_OPTIONS`.

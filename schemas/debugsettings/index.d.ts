@@ -12,7 +12,7 @@ export interface JSONSchemaForTheASPNETDebugSettingsJsonFiles {
    * A list of debug profiles
    */
   profiles?: Profile[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Content {
   /**
@@ -45,5 +45,5 @@ export interface Content {
    * Sets the version of the SDK.
    */
   sdkVersion?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

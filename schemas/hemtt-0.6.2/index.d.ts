@@ -84,11 +84,11 @@ export type TheReleasebuildSchema = TheItemsSchema8[];
 export type TheSchema = ParallelRequiresForeachToBeTrue;
 export type ParallelRequiresForeachToBeTrue =
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       foreach: true;
-      [k: string]: any;
+      [k: string]: unknown;
     };
 
 /**
@@ -115,7 +115,7 @@ export interface TheRootSchema {
   prebuild?: ThePrebuildSchema;
   releasebuild?: TheReleasebuildSchema;
   scripts?: TheScriptsSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TheScriptsSchema {
   [k: string]: TheSchema;

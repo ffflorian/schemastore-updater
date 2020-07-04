@@ -48,6 +48,7 @@ export type Builtins =
   | "$convert.rss";
 export type AdvancedTitle = TitleWithImage | TitleWithLabel;
 export type Color = string;
+export type ImgUrl1 = string;
 export type None = "none";
 export type BorderColor = string;
 
@@ -66,15 +67,15 @@ export interface $Jason {
     actions?: {
       [k: string]: Action;
     };
-    templates?: any;
-    data?: any;
-    [k: string]: any;
+    templates?: unknown;
+    data?: unknown;
+    [k: string]: unknown;
   };
   /**
    * Body contains everything that gets displayed on the screen.
    */
   body?: {
-    ads?: any;
+    ads?: unknown;
     /**
      * Header describes the top header bar and its components.
      */
@@ -88,89 +89,89 @@ export interface $Jason {
          * The value inside the search input is automatically stored to the local variable named by this property
          */
         name?: string;
-        placeholder?: any;
+        placeholder?: unknown;
         /**
          * Action to trigger if defined
          */
         action?: {
           type: Custom | Builtins;
           options?: {
-            [k: string]: any;
+            [k: string]: unknown;
           };
           success?: {
             type?: string;
             options?: {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-            [k: string]: any;
+            [k: string]: unknown;
           };
           error?: {
             type?: string;
             options?: {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-            [k: string]: any;
+            [k: string]: unknown;
           };
-          [k: string]: any;
+          [k: string]: unknown;
         };
         style?: {
           /**
            * background color
            */
           background?: string;
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      menu?: any;
+      menu?: unknown;
       style?: Style;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    sections?: any;
-    layers?: any;
-    footer?: any;
+    sections?: unknown;
+    layers?: unknown;
+    footer?: unknown;
     style?: {
       /**
        * setting the background of the view
        */
-      background?: Color;
+      background?: Color | ImgUrl1;
       /**
        * setting the border color for section items
        */
       border?: None | BorderColor;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Style {
   font?: string;
   size?: number;
   padding?: number;
   color?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Action {
   type: Custom | Builtins;
   options?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   success?: {
     type?: string;
     options?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
   error?: {
     type?: string;
     options?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TitleWithImage {
   type: "image";
@@ -178,12 +179,12 @@ export interface TitleWithImage {
   style?: {
     width?: number;
     height?: number;
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TitleWithLabel {
   type: "label";
   text: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

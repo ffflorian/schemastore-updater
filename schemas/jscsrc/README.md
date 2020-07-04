@@ -5,8 +5,8 @@
 This package contains type definitions for jscsrc.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jscsrc.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jscsrc.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:44 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

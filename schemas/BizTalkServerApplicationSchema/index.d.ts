@@ -22,7 +22,7 @@ export interface BizTalkServerApplicationInventorySchema {
      * Example: bins\\bts1.dll
      */
     Path?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Array of Binding Files used in Deployment.
@@ -37,7 +37,7 @@ export interface BizTalkServerApplicationInventorySchema {
      * Example: bindings\\binding1.xml
      */
     Path?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Array of Reference Assemblies to be deployed.
@@ -52,7 +52,7 @@ export interface BizTalkServerApplicationInventorySchema {
      * Example: bins\\bts1.dll
      */
     Path?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Pre-Processing Scripts used in Deployment.
@@ -72,7 +72,7 @@ export interface BizTalkServerApplicationInventorySchema {
      * Example: arg1,arg2
      */
     Arguments?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Post-Processing Scripts used in Deployment.
@@ -92,7 +92,7 @@ export interface BizTalkServerApplicationInventorySchema {
      * Example: arg1,arg2
      */
     Arguments?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * File used in Deployment.
@@ -107,11 +107,11 @@ export interface BizTalkServerApplicationInventorySchema {
      * Example: File\\File.txt
      */
     Path?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Sequence of Binding Files, Reference Assemblies, Pre-Processing and Post-Processing Scripts used in Deployment.
    */
   DeploymentSequence: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

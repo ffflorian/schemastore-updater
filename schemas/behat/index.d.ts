@@ -10,7 +10,7 @@ export type PathsToExecute = string[];
 export type SuiteContexts = (
   | string
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
 )[];
 
@@ -26,7 +26,7 @@ export interface DefaultProfile {
   formatters?: HowToFormatTestsOutput;
   suites?: TestSuites;
   extensions?: BehatExtensions;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TestSuites {
   [k: string]: TestSuite;
@@ -35,16 +35,16 @@ export interface TestSuite {
   paths?: PathsToExecute;
   contexts?: SuiteContexts;
   filters?: SuiteFilters;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface SuiteFilters {
   tags?: string;
   role?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface BehatExtensions {
   [k: string]: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 export interface ProfileName {
@@ -54,5 +54,5 @@ export interface ProfileName {
   formatters?: HowToFormatTestsOutput;
   suites?: TestSuites;
   extensions?: BehatExtensions;
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -21,7 +21,7 @@ export interface JSONSchemaForJSONDocumentTransforms {
   "@jdt.rename"?: {
     "@jdt.path"?: JdtPath;
     "@jdt.value"?: JdtValue;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Replaces the current node with the given value.
@@ -29,7 +29,7 @@ export interface JSONSchemaForJSONDocumentTransforms {
   "@jdt.replace"?: {
     "@jdt.path"?: JdtPath;
     "@jdt.value"?: JdtValue;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * Removes the node with the given name from the current level.
@@ -40,16 +40,17 @@ export interface JSONSchemaForJSONDocumentTransforms {
     | null
     | number
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
-    | string)[];
+    | string
+  )[];
   /**
    * Merges the current node value with the given object.
    */
   "@jdt.merge"?: {
     "@jdt.path"?: JdtPath;
     "@jdt.value"?: JdtValue;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   [k: string]: JSONSchemaForJSONDocumentTransforms;
 }

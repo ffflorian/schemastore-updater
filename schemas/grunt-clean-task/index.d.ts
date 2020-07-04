@@ -65,9 +65,9 @@ export interface JSONSchemaForTheGruntCleanTask {
                * Pattern(s) to match, relative to the 'cwd'.
                */
               src: string[];
-              [k: string]: any;
+              [k: string]: unknown;
             }[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         /**
@@ -121,11 +121,11 @@ export interface JSONSchemaForTheGruntCleanTask {
          * Pattern(s) to match, relative to the 'cwd'.
          */
         src: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         options?: Options;
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string[];
 }
@@ -141,5 +141,5 @@ export interface Options {
    * Will log messages of what would happen if the task was ran but doesn't actually delete the files.
    */
   "no-write"?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

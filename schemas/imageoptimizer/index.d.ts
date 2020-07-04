@@ -26,9 +26,9 @@ export interface Imageoptimizer {
        * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
        */
       lossy?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     },
-    ...({
+    ...{
       /**
        * An array of globbing patterns of files/folders to include in the optimization
        */
@@ -41,8 +41,8 @@ export interface Imageoptimizer {
        * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
        */
       lossy?: boolean;
-      [k: string]: any;
-    })[]
+      [k: string]: unknown;
+    }[]
   ];
-  [k: string]: any;
+  [k: string]: unknown;
 }

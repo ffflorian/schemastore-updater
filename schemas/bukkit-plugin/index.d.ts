@@ -87,7 +87,7 @@ export interface JSONSchemaForBukkitPluginYAML {
        * Allows other permissions to be set as a relation to the parent permission.
        */
       children?: string[];
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
   /**
@@ -102,7 +102,7 @@ export interface JSONSchemaForBukkitPluginYAML {
    * Gives the API version which this plugin is designed to support.
    */
   "api-version"?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Optional command attributes.
@@ -115,7 +115,7 @@ export interface Command {
   /**
    * Alternate command names a user may use instead.
    */
-  aliases?: string | any[];
+  aliases?: string | unknown[];
   /**
    * The permission required to use the command.
    */
@@ -128,5 +128,5 @@ export interface Command {
    * A short description of how to use this command.
    */
   usage?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

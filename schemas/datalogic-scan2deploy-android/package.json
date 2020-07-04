@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/datalogic-scan2deploy-android",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/datalogic-scan2deploy-android",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/datalogic-scan2deploy-android",
   "scripts": {},
   "typesPublisherContentHash": "8cfbb23f857651d6970dd4d317d1521171aaf37afbb4e9dcc936194c28690127",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

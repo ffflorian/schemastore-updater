@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/grunt-cssmin-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-cssmin-task",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-cssmin-task",
   "scripts": {},
   "typesPublisherContentHash": "384ff3a803ee681c607ff7473c9eed0a3d84fb35c7749fb8420d25f23060dd63",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/github-workflow",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/github-workflow",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/github-workflow",
   "scripts": {},
   "typesPublisherContentHash": "36279d86befa92e3e19f4f7e330637782e310123d754c025dfabd58611d12398",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

@@ -14,14 +14,14 @@ export interface Compilerdefaults {
     sass?: Sass;
     stylus?: Stylus;
     coffeescript?: CoffeeScript;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   minifiers?: {
     css?: BaseMinify & CssMinify;
     javascript?: BaseMinify & JavascriptMinify;
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Specify options for the compiler.
@@ -67,7 +67,7 @@ export interface Less {
    * Scss only. This is the opposite of the rootpath option, it specifies a path which should be removed from the output paths.
    */
   sourceMapBasePath?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Specify options for the compiler.
@@ -109,7 +109,7 @@ export interface Sass {
    * Scss only. Base path, will be emitted in source-map as is.
    */
   sourceMapRoot?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Specify options for the compiler.
@@ -119,7 +119,7 @@ export interface Stylus {
    * Generates a base64 encoded source map at the bottom of the output.
    */
   sourceMap?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Specify options for the compiler.
@@ -137,7 +137,7 @@ export interface CoffeeScript {
    * Generates a source map file.
    */
   sourceMap?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface BaseMinify {
   enabled?: boolean;
@@ -153,7 +153,7 @@ export interface BaseMinify {
    * SingleLine minifies everything to a single line. MultipleLines breaks the minified code into multiple lines for easier reading.
    */
   outputMode?: "multipleLines" | "singleLine" | "none";
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface CssMinify {
   /**
@@ -168,7 +168,7 @@ export interface CssMinify {
    * Forces all rules to be terminated with semicolons if set to true.
    */
   termSemicolons?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface JavascriptMinify {
   /**
@@ -187,5 +187,5 @@ export interface JavascriptMinify {
    * Forces all rules to be terminated with semicolons if set to true.
    */
   termSemicolons?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

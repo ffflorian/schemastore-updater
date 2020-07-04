@@ -18,7 +18,7 @@ export interface JSONSchemaForTheASPNETLaunchSettingsJsonFiles {
    * IIS and IIS Express settings
    */
   iisSettings?: IisSettingContent;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ProfileContent {
   /**
@@ -67,7 +67,7 @@ export interface ProfileContent {
    * Set to true to run the 64 bit version of IIS Express, false to run the x86 version.
    */
   use64Bit?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface IisSettingContent {
   /**
@@ -82,7 +82,7 @@ export interface IisSettingContent {
    * Site settings to use with IISExpress profiles.
    */
   iisExpress?: IisBindingContent;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface IisBindingContent {
   /**
@@ -93,5 +93,5 @@ export interface IisBindingContent {
    * The SSL Port to use for the web site.
    */
   sslPort?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }

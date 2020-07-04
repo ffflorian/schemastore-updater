@@ -36,5 +36,5 @@ export interface JSONSchemaForBungeeCordPluginYAML {
    * Optional description.
    */
   description?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

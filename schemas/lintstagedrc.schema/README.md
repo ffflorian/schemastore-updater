@@ -5,8 +5,8 @@
 This package contains type definitions for lintstagedrc.schema.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lintstagedrc.schema.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lintstagedrc.schema.
 
 ## Additional Details
-* Last updated: Fri, Jul 05, 2019, 15:12:46 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

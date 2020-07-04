@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/jsbeautifyrc-nested",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsbeautifyrc-nested",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsbeautifyrc-nested",
   "scripts": {},
   "typesPublisherContentHash": "6f666ec1e506bbaad432254284cbad7f3c887ff0d4064fc802048246712eea86",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

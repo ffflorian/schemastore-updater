@@ -10,15 +10,15 @@ export interface JSONSchemaForNETCLITemplateHostFiles {
     [k: string]: SymbolInfo;
   };
   usageExamples?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface SymbolInfo {
   isHidden?:
     | boolean
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       };
   longName?: string;
   shortName?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

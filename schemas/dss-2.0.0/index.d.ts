@@ -12,20 +12,20 @@ export interface Dss20 {
   verifyResp?: Dss2VerifyResponseType;
   pendingReq?: Dss2PendingRequestType;
   genericResp?: DsbResponseBaseType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignRequestType {
   profile?: string[];
   reqID?: string;
   inDocs?: Dss2InputDocumentsType;
   optInp?: Dss2OptionalInputsSignType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2InputDocumentsType {
   doc?: Dss2DocumentType[];
   transformed?: Dss2TransformedDataType[];
   docHash?: Dss2DocumentHashType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2DocumentType {
   ID?: string;
@@ -33,7 +33,7 @@ export interface Dss2DocumentType {
   refType?: string;
   schemaRefs?: Dss2DocumentType[];
   b64Data: DsbBase64DataType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbBase64DataType {
   ID?: string;
@@ -41,17 +41,17 @@ export interface DsbBase64DataType {
   attRef?: DsbAttachmentReferenceType;
   mimeType?: string;
   idRef?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbAttachmentReferenceType {
   di?: DsbDigestInfoType[];
   attURI: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbDigestInfoType {
   alg: string;
   val: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2TransformedDataType {
   ID?: string;
@@ -61,11 +61,11 @@ export interface Dss2TransformedDataType {
   transforms?: DsigrwTransformsType;
   b64Data: DsbBase64DataType;
   whichRef?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsigrwTransformsType {
   transform: DsigrwTransformType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsigrwTransformType {
   xpath?: string[];
@@ -74,12 +74,12 @@ export interface DsigrwTransformType {
   xPath?: string[];
   nsDecl?: DsbNsPrefixMappingType[];
   alg: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbNsPrefixMappingType {
   uri: string;
   pre: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2DocumentHashType {
   ID?: string;
@@ -89,7 +89,7 @@ export interface Dss2DocumentHashType {
   transforms?: DsigrwTransformsType;
   dis: DsbDigestInfoType[];
   whichRef?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2OptionalInputsSignType {
   policy?: string[];
@@ -109,7 +109,7 @@ export interface Dss2OptionalInputsSignType {
   nonce?: number;
   sigAlgo?: string;
   quality?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbAnyType {
   ID?: string;
@@ -117,12 +117,12 @@ export interface DsbAnyType {
   attRef?: DsbAttachmentReferenceType;
   mimeType?: string;
   idRef?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2ClaimedIdentityType {
   name: Saml2RwNameIDType;
   suppInfo?: DsbAnyType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Saml2RwNameIDType {
   spprovidedID?: string;
@@ -132,19 +132,19 @@ export interface Saml2RwNameIDType {
   provId?: string;
   nameQual?: string;
   spNameQual?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SchemasType {
   schema: Dss2DocumentType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2AugmentSignatureInstructionType {
   type?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2IntendedAudienceType {
   recipient: Saml2RwNameIDType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2KeySelectorType {
   x509Digest?: Dss2X509DigestType;
@@ -152,40 +152,40 @@ export interface Dss2KeySelectorType {
   ski?: string;
   cert?: string;
   name?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2X509DigestType {
   value?: string;
   alg: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2PropertiesHolderType {
   signedProps?: Dss2PropertiesType;
   unsignedProps?: Dss2PropertiesType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2PropertiesType {
   prop: Dss2PropertyType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2PropertyType {
   id: string;
   val?: DsbAnyType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2IncludeObjectType {
   whichDoc?: Dss2DocumentBaseType;
   hasObjectTagsAndAttributesSet?: boolean;
   objId?: string;
   createRef?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2DocumentBaseType {
   ID?: string;
   refURI?: string;
   refType?: string;
   schemaRefs?: Dss2DocumentType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignaturePlacementType {
   xpathAfter?: string;
@@ -195,18 +195,18 @@ export interface Dss2SignaturePlacementType {
   nsDecl?: DsbNsPrefixMappingType[];
   whichDoc?: Dss2DocumentBaseType;
   createEnvelopedSignature?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignedReferencesType {
   signedRef: Dss2SignedReferenceType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignedReferenceType {
   transforms?: DsigrwTransformsType;
   whichDoc: Dss2DocumentBaseType;
   refURI?: string;
   refId?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignResponseType {
   result?: DsbResultType;
@@ -215,7 +215,7 @@ export interface Dss2SignResponseType {
   respID?: string;
   optOutp?: Dss2OptionalOutputsSignType;
   sigObj?: Dss2SignatureObjectType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbResultType {
   maj:
@@ -227,12 +227,12 @@ export interface DsbResultType {
   min?: string;
   msg?: DsbInternationalStringType;
   pRef?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbInternationalStringType {
   value?: string;
   lang: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2OptionalOutputsSignType {
   policy?: string[];
@@ -240,29 +240,29 @@ export interface Dss2OptionalOutputsSignType {
   transformed?: Dss2TransformedDocumentType;
   schemas?: Dss2SchemasType;
   docWithSignature?: Dss2DocumentWithSignatureType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2TransformedDocumentType {
   doc: Dss2DocumentType;
   whichRef: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2DocumentWithSignatureType {
   doc: Dss2DocumentType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignatureObjectType {
   b64Sig?: DsbBase64DataType;
   sigPtr?: Dss2SignaturePtrType;
   schemaRefs?: Dss2DocumentBaseType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SignaturePtrType {
   xpath?: string;
   nsDecl?: DsbNsPrefixMappingType[];
   whichDoc: Dss2DocumentBaseType;
   xPath?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2VerifyRequestType {
   profile?: string[];
@@ -270,7 +270,7 @@ export interface Dss2VerifyRequestType {
   inDocs?: Dss2InputDocumentsType;
   optInp?: Dss2OptionalInputsVerifyType;
   sigObj?: Dss2SignatureObjectType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2OptionalInputsVerifyType {
   policy?: string[];
@@ -289,13 +289,13 @@ export interface Dss2OptionalInputsVerifyType {
   returnTransformed?: Dss2ReturnTransformedDocumentType[];
   returnTimestamped?: Dss2AugmentSignatureInstructionType;
   verifyManifests?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2UseVerificationTimeType {
   currTime?: boolean;
   specTime?: number;
   b64Content?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2AdditionalKeyInfoType {
   ocspresponse?: DsbBase64DataType;
@@ -307,11 +307,11 @@ export interface Dss2AdditionalKeyInfoType {
   crl?: DsbBase64DataType;
   ocsp?: DsbBase64DataType;
   poe?: DsbBase64DataType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2ReturnTransformedDocumentType {
   whichRef: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2VerifyResponseType {
   result?: DsbResultType;
@@ -319,7 +319,7 @@ export interface Dss2VerifyResponseType {
   reqID?: string;
   respID?: string;
   optOutp?: Dss2OptionalOutputsVerifyType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2OptionalOutputsVerifyType {
   policy?: string[];
@@ -334,67 +334,67 @@ export interface Dss2OptionalOutputsVerifyType {
   signerIdentity?: Saml2RwNameIDType;
   augSig?: Dss2AugmentedSignatureType;
   timestampedSig?: Dss2AugmentedSignatureType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2VerifyManifestResultsType {
   result: Dss2ManifestResultType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2ManifestResultType {
   xPath: string;
   status: "urn:oasis:names:tc:dss:1.0:manifeststatus:Valid" | "urn:oasis:names:tc:dss:1.0:manifeststatus:Invalid";
   nsDecl?: DsbNsPrefixMappingType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SigningTimeInfoType {
   signingTime: number;
   signingTimeBounds?: Dss2SigningTimeInfoTypeSigningTimeBoundaries;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2SigningTimeInfoTypeSigningTimeBoundaries {
   lowerBound?: number;
   upperBound?: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2VerificationTimeInfoType {
   verificationTime: number;
   additionalTimeInfo?: Dss2AdditionalTimeInfoType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2AdditionalTimeInfoType {
   value?: number;
   type: string;
   ref?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2ProcessingDetailsType {
   valid?: Dss2DetailType[];
   indeterminate?: Dss2DetailType[];
   invalid?: Dss2DetailType[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2DetailType {
   code?: string;
   msg?: DsbInternationalStringType;
   b64Content?: string;
   type: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2AugmentedSignatureType {
   sigObj: Dss2SignatureObjectType;
   type?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dss2PendingRequestType {
   profile?: string[];
   reqID?: string;
   claimedIdentity?: Dss2ClaimedIdentityType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DsbResponseBaseType {
   result: DsbResultType;
   profile?: string[];
   reqID?: string;
   respID?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

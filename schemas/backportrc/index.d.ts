@@ -18,8 +18,9 @@ export interface JSONSchemaForBackportConfigFile {
     | {
         name: string;
         checked: boolean;
-        [k: string]: any;
-      })[];
+        [k: string]: unknown;
+      }
+  )[];
   /**
    * Labels that will be added to the pull request
    */
@@ -28,5 +29,5 @@ export interface JSONSchemaForBackportConfigFile {
    * Whether to only show the current user's commits or commits from anyone
    */
   all?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

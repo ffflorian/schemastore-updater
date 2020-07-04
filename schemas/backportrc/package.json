@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/backportrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/backportrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/backportrc",
   "scripts": {},
   "typesPublisherContentHash": "30d6ad5ce816f384a92ab1c1981b212606f08fede3696fa0b4c3736882ed9117",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

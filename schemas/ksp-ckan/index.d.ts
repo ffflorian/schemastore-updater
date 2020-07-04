@@ -10,9 +10,9 @@
  */
 export type CKANJSONSchema =
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       kind: "metapackage";
-      [k: string]: any;
+      [k: string]: unknown;
     };

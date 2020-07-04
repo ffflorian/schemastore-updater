@@ -34,7 +34,7 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
    * This is an object of keys that represent different environments. For example, you may have: `{ env: { production: { /* specific options * / } } }` which will use those options when the environment variable BABEL_ENV is set to "production". If BABEL_ENV isn't set then NODE_ENV will be used, if it's not set then it defaults to "development"
    */
   env?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * A path to a .babelrc file to extend
@@ -59,11 +59,7 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
   /**
    * If true, attempt to load an input sourcemap from the file itself. If an object is provided, it will be treated as the source map object itself.
    */
-  inputSourceMap?:
-    | boolean
-    | {
-        [k: string]: any;
-      };
+  inputSourceMap?: boolean;
   /**
    * Keep extensions in module ids
    */
@@ -88,18 +84,36 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
    * List of plugins to load and use
    */
   plugins?: (
-    | string
-    | {
-        [k: string]: any;
-      })[][];
+    | (
+        | string
+        | {
+            [k: string]: unknown;
+          }
+      )[]
+    | (
+        | string
+        | {
+            [k: string]: unknown;
+          }
+      )[]
+  )[];
   /**
    * List of presets (a set of plugins) to load and use
    */
   presets?: (
-    | string
-    | {
-        [k: string]: any;
-      })[][];
+    | (
+        | string
+        | {
+            [k: string]: unknown;
+          }
+      )[]
+    | (
+        | string
+        | {
+            [k: string]: unknown;
+          }
+      )[]
+  )[];
   /**
    * Retain line numbers. This will lead to wacky code but is handy for scenarios where you can't use source maps. NOTE: This will obviously not retain the columns.
    */
@@ -120,5 +134,5 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
    * The root from which all sources are relative. (defaults to "moduleRoot")
    */
   sourceRoot?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

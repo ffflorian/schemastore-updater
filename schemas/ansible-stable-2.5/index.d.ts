@@ -38,10 +38,10 @@ export type Ansible25 = (
          * if command warnings are on in ansible.cfg, do not warn about this particular line if set to no/false.
          */
         warn?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       raw: string;
@@ -51,10 +51,10 @@ export type Ansible25 = (
          * when using privilege escalation (C(become)), a default shell will be assigned if one is not provided as privilege escalation requires a shell.
          */
         executable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       args?: {
@@ -85,7 +85,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A filename or (since 2.0) glob pattern, when it already exists, this step will B(not) be run.
          */
@@ -102,11 +103,11 @@ export type Ansible25 = (
          * Set the stdin of the command directly to the specified value.
          */
         stdin?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       command: string;
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       args?: {
@@ -122,29 +123,29 @@ export type Ansible25 = (
          * a filename, when it does not exist, this step will B(not) be run.
          */
         removes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name?: string;
       script: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       /**
        * List of file names to ignore.
        */
-      ignore_files?: any[];
+      ignore_files?: unknown[];
       /**
        * Limit the files that are loaded within any directory to this regular expression.
        */
@@ -158,7 +159,7 @@ export type Ansible25 = (
        *
        * List of file extensions to read when using C(dir).
        */
-      extensions?: any[];
+      extensions?: unknown[];
       /**
        * The file name from which variables should be loaded.
        * If the path is relative, it will look for the file in vars/ subdirectory of a role or relative to playbook.
@@ -173,7 +174,7 @@ export type Ansible25 = (
        * The name of a variable into which assign the included vars. If omitted (null) they will be made top level vars.
        */
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       shell: string;
@@ -200,10 +201,10 @@ export type Ansible25 = (
          * a filename, when it does not exist, this step will B(not) be run.
          */
         removes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       raw: string;
@@ -213,10 +214,10 @@ export type Ansible25 = (
          * when using privilege escalation (C(become)), a default shell will be assigned if one is not provided as privilege escalation requires a shell.
          */
         executable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       args?: {
@@ -242,11 +243,11 @@ export type Ansible25 = (
          * a filename or (since 2.0) glob pattern, when it does not exist, this step will B(not) be run.
          */
         removes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       command: string;
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       args?: {
@@ -258,20 +259,20 @@ export type Ansible25 = (
          * a filename, when it does not exist, this step will B(not) be run.
          */
         removes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name?: string;
       script: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       /**
        * List of file names to ignore. The defaults can not be overridden, but can be extended.
        */
-      ignore_files?: any[];
+      ignore_files?: unknown[];
       /**
        * Limit the variables that are loaded within any directory to this regular expression.
        */
@@ -294,20 +295,20 @@ export type Ansible25 = (
        * The name of a variable into which assign the included vars, if omitted (null) they will be made top level vars.
        */
       name?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       /**
        * Creates or terminates task definitions
        */
       ecs_taskdefinition?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure AlertScriptConfig object
@@ -352,7 +353,7 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete an Azure Container Service Instance.
@@ -381,15 +382,16 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Master profile suboptions.
          */
         master_profile:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         password?: string;
         /**
@@ -401,7 +403,7 @@ export type Ansible25 = (
          */
         resource_group: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Should VM Diagnostics be enabled for the Container Service VM's.
@@ -428,7 +430,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         append_tags?:
           | boolean
@@ -452,7 +455,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         /**
          * Specifies the Container Orchestration Platform to use. Currently can be either DCOS, Kubernetes or Swarm.
@@ -463,9 +467,9 @@ export type Ansible25 = (
          */
         linux_profile:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         secret?: string;
         /**
@@ -479,9 +483,9 @@ export type Ansible25 = (
          */
         agent_pool_profiles:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         client_id?: string;
         subscription_id?: string;
@@ -490,9 +494,9 @@ export type Ansible25 = (
          */
         service_principal?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         tenant?: string;
         /**
@@ -501,7 +505,7 @@ export type Ansible25 = (
          * Valid azure location. Defaults to location of the resource group.
          */
         location?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends a request to the remote device running JUNOS to execute the specified RPC using the NetConf transport.  The reply is then returned to the playbook in the C(xml) key.  If an alternate output format is requested, the reply is transformed to the requested output.
@@ -525,7 +529,7 @@ export type Ansible25 = (
          * The C(attrs) arguments defines a list of attributes and their values to set for the RPC call. This accepts a dictionary of key-values.
          */
         attrs?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute vrouter-ospf-add, vrouter-ospf-remove command.
@@ -562,7 +566,7 @@ export type Ansible25 = (
          * Target switch to run the CLI on.
          */
         pn_cliswitch?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * List Topics/Subscriptions from Google PubSub.  Use the gcpubsub module for topic/subscription management. See U(https://cloud.google.com/pubsub/docs) for an overview.
@@ -583,7 +587,7 @@ export type Ansible25 = (
          * Choices are 'topics' or 'subscriptions'
          */
         view?: "topics" | "subscriptions";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about the OneView Data Centers.
@@ -597,7 +601,7 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
@@ -606,12 +610,12 @@ export type Ansible25 = (
          */
         options?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manages locally configured user accounts on remote network devices running the JUNOS operating system.  It provides a set of arguments for creating, removing and updating locally defined accounts
@@ -653,17 +657,17 @@ export type Ansible25 = (
          * The C(sshkey) argument defines the public SSH key to be configured for the user account on the remote system.  This argument must be a valid SSH key
          */
         sshkey?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete volume snapshot policies.
        */
       cs_snapshot_policy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV disks.
@@ -674,7 +678,7 @@ export type Ansible25 = (
          * For example to search Disk X from storage Y use following pattern: name=X and storage.name=Y
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about a one or more OpenStack users
@@ -696,7 +700,7 @@ export type Ansible25 = (
          * A dictionary of meta data to use for further filtering.  Elements of this dictionary may be additional dictionaries.
          */
         filters?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures IP address pools and blocks of IP addresses on Cisco UCS Manager.
@@ -807,7 +811,7 @@ export type Ansible25 = (
          * ` (accent mark),  (backslash), ^ (carat), " (double quote), = (equal sign), > (greater than), < (less than), or ' (single quote).
          */
         descrption?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows the addition, clearing and removal of local Windows event logs, and the creation and removal of sources from a given event log.  Also allows the specification of settings per log and source.
@@ -861,7 +865,7 @@ export type Ansible25 = (
          * For C(DoNotOverwrite), all existing entries are kept and new entries are not retained.
          */
         overflow_action?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Cluster object
@@ -915,7 +919,7 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used for calling any resources defined in Avi REST API. U(https://avinetworks.com/)
@@ -944,7 +948,7 @@ export type Ansible25 = (
          * Path for Avi API resource. For example, C(path: virtualservice) will translate to C(api/virtualserivce).
          */
         path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure NetworkProfile object
@@ -992,7 +996,7 @@ export type Ansible25 = (
          * User defined description for the object.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Backup object
@@ -1054,7 +1058,7 @@ export type Ansible25 = (
          * Setting to patch will override that behavior to use HTTP PATCH.
          */
         avi_api_update_method?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages global configuration of EVPN on HUAWEI CloudEngine switches.
@@ -1064,7 +1068,7 @@ export type Ansible25 = (
          * Configure EVPN as the VXLAN control plane.
          */
         evpn_overlay_enable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV templates.
@@ -1075,25 +1079,25 @@ export type Ansible25 = (
          * For example to search template X from datacenter Y use following pattern: name=X and datacenter=Y
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows uploading or removing IAM policies for IAM users, groups or roles.
        */
       iam_policy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Ansible module which helps to manage Jenkins plugins.
        */
       jenkins_plugin?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the state of a program or group of programs running via supervisord
@@ -1129,15 +1133,15 @@ export type Ansible25 = (
          * The supervisor configuration file path
          */
         config?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate Rackspace Cloud Block Storage Volume Attachments
        */
       rax_cbs_attachments?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows configuring block device partition using the C(parted) command line tool. For a full description of the fields and the options check the GNU parted manual.
@@ -1192,9 +1196,9 @@ export type Ansible25 = (
          */
         flags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The block device (disk) where to operate.
@@ -1206,7 +1210,7 @@ export type Ansible25 = (
          * Selects the current default unit that Parted will use to display locations and capacities on the disk and to interpret those given by the user if they are not suffixed by an unit. When fetching information about a disk, it is always recommended to specify a unit.
          */
         unit?: "s" | "B" | "KB" | "KiB" | "MB" | "MiB" | "GB" | "GiB" | "TB" | "TiB" | "%" | "cyl" | "chs" | "compact";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates AWS VPN Virtual Gateways
@@ -1215,42 +1219,42 @@ export type Ansible25 = (
        * Detaches Virtual Gateways from VPCs
        */
       ec2_vpc_vgw?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Place an ESXI host into maintenance mode
        * Support for VSAN compliant maintenance mode when selected
        */
       vmware_maintenancemode?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -1260,45 +1264,45 @@ export type Ansible25 = (
        * Based on the work by Tom Bamford (https://github.com/tombamford)
        */
       ec2_lc_find?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Create, destroy, or update accounts on SolidFire
        */
       sf_snapshot_schedule_manager?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -1310,13 +1314,13 @@ export type Ansible25 = (
          * For example to search storage domain X from datacenter Y use following pattern: name=X and datacenter=Y
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/destroy Block Storage volume in DigitalOcean, or attach/detach Block Storage volume to a droplet.
        */
       digital_ocean_block_storage?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage content switching actions
@@ -1343,7 +1347,7 @@ export type Ansible25 = (
          * Name of the load balancing virtual server to which the content is switched.
          */
         targetlbvserver?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV vmpools.
@@ -1354,7 +1358,7 @@ export type Ansible25 = (
          * For example to search vmpool X: name=X
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure GslbApplicationPersistenceProfile object
@@ -1390,7 +1394,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages network device configurations over SSH.  This module allows implementers to work with the device running-config.  It provides a way to push a set of commands onto a network device by evaluating the current running-config and only pushing configuration commands that are not already configured.  The config source can be a set of commands or a template.
@@ -1412,26 +1416,27 @@ export type Ansible25 = (
          * When this argument is configured true, the module will backup the running-config from the node prior to making any changes. The backup file will be written to backup_{{ hostname }} in the root of the playbook directory.
          */
         backup?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or destroy Google instance templates of Compute Engine of Google Cloud Platform.
        */
       gce_instance_template?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages the inittab on AIX.
        */
       aix_inittab?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * AireOS does not use a block indent file syntax, so there are no sections or parents. This module provides an implementation for working with AireOS configurations in a deterministic way.
        */
@@ -1484,7 +1489,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify and delete a role within FreeIPA server using FreeIPA API
@@ -1548,7 +1553,7 @@ export type Ansible25 = (
          * A description of this role-group.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Install an operating system by setting the boot options like boot image and kickstart image and optionally select to install using ISSU (In Server Software Upgrade).
@@ -1571,7 +1576,7 @@ export type Ansible25 = (
          * Name of the kickstart image file on flash. (Not required on all Nexus platforms)
          */
         kickstart_image_file?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of IPL (inter-peer link) management on Mellanox ONYX network devices.
@@ -1595,7 +1600,7 @@ export type Ansible25 = (
          * IPL peer IP address.
          */
         peer_address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of logging on Cisco NX-OS devices.
@@ -1631,7 +1636,7 @@ export type Ansible25 = (
          * List of logging definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage BIG-IP data center configuration. A data center defines the location where the physical network components reside, such as the server and link objects that share the same subnet on the network. This module is able to manipulate the data center definitions in a BIG-IP
@@ -1661,27 +1666,28 @@ export type Ansible25 = (
          * The name of the data center.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will replace all instances of a pattern within a file.
        * It is up to the user to maintain idempotence by ensuring that the same pattern would never match any replacements made.
        */
       replace?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Provides support for deploying resources with Terraform and pulling resource information back into Ansible.
        */
@@ -1719,12 +1725,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A group of key-values to override template variables or those in variables files.
          */
         variables?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The path to the root of the Terraform directory with the vars.tf/main.tf/etc to use.
@@ -1754,36 +1761,37 @@ export type Ansible25 = (
          */
         targets?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to hipchat
        */
       hipchat?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs, upgrade, removes, and lists packages and groups with the I(dnf) package manager.
        */
       dnf?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * nssm is a service helper which doesn't suck. See https://nssm.cc/ for more information.
        */
       win_nssm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module is used to configure CloudConnectorUser object
        * more examples at U(https://github.com/avinetworks/devops)
@@ -1838,7 +1846,7 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage installation and Gem version dependencies for Ruby using the Bundler gem
@@ -1887,7 +1895,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -1915,7 +1924,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A space separated string of additional commands that can be applied to the Bundler command. Refer to the Bundler documentation for more information
          */
@@ -1953,7 +1963,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only applies if state is C(present). Specifies the directory to install any gem bins files to. When executed the bin files will run within the context of the Gemfile and fail if any required gem dependencies are not installed. If C(chdir) is set then this path is relative to C(chdir)
          */
@@ -1963,9 +1974,9 @@ export type Ansible25 = (
          */
         exclude_groups?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: no
@@ -1994,14 +2005,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: RubyGems gem paths
          *
          * Only applies if state is C(present). Specifies the directory to install the gems into. If C(chdir) is set then this path is relative to C(chdir)
          */
         gem_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows to manage user groups on a univention corporate server (UCS). It uses the python API of the UCS to create a new object or edit it.
@@ -2033,26 +2045,26 @@ export type Ansible25 = (
          * Name of the posix group.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages packages with I(urpmi) (such as for Mageia or Mandriva)
        */
       urpmi?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -2086,7 +2098,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -2115,7 +2128,7 @@ export type Ansible25 = (
          * Name of the router.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of MAGP protocol on vlan interface of Mellanox ONYX network devices.
@@ -2143,35 +2156,35 @@ export type Ansible25 = (
          * MAGP instance number 1-255
          */
         magp_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create VMware vSphere Cluster
        */
       vmware_cluster?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -2184,7 +2197,7 @@ export type Ansible25 = (
          * State of the LLDP configuration. If value is I(present) lldp will be enabled else if it is I(absent) it will be disabled.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add/remove subnet from a network
@@ -2223,7 +2236,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         availability_zone?: string;
         /**
          * Default: None
@@ -2309,7 +2323,7 @@ export type Ansible25 = (
          * The name of the subnet that should be created
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage filter entries for a filter on Cisco ACI fabrics.
@@ -2397,7 +2411,7 @@ export type Ansible25 = (
          * The APIC defaults new Filter Entries to C(unspecified).
          */
         ether_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Launch an Ansible Tower jobs. See U(https://www.ansible.com/tower) for an overview.
@@ -2439,7 +2453,7 @@ export type Ansible25 = (
          * Inventory to use for the job, only used if prompt for inventory is set.
          */
         inventory?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages the static routes on HUAWEI CloudEngine switches.
@@ -2491,7 +2505,7 @@ export type Ansible25 = (
          * Destination ip address family type of static route.
          */
         aftype?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is automatically called by playbooks to gather useful variables about remote hosts that can be used in playbooks. It can also be executed directly by C(/usr/bin/ansible) to check what variables are available to a host. Ansible provides many I(facts) about the system, automatically.
@@ -2511,9 +2525,9 @@ export type Ansible25 = (
          */
         gather_subset?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: /etc/ansible/facts.d
@@ -2527,29 +2541,29 @@ export type Ansible25 = (
          * Set the default timeout in seconds for individual fact gathering
          */
         gather_timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gets various details related to AWS VPC Managed Nat Gateways
        */
       ec2_vpc_nat_gateway_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage key-value pairs in aws parameter store.
        */
       aws_ssm_parameter_store?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove firewall groups.
@@ -2565,53 +2579,54 @@ export type Ansible25 = (
          * Name of the firewall group.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module ensures a particular line is in a file, or replace an existing line using a back-referenced regular expression.
        * This is primarily useful when you want to change a single line in a file only. See the M(replace) module if you want to change multiple, similar lines or check M(blockinfile) if you want to insert/update/remove a block of lines in a file. For other cases, see the M(copy) or M(template) modules.
        */
       lineinfile?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with access-lists on a Cisco ASA device.
        */
       asa_acl?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Creates, updates or removes a Scaling Policy
        */
       aws_application_scaling_policy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific public IP or all public IPs within a resource group.
@@ -2640,7 +2655,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only show results for a specific Public IP.
          */
@@ -2654,9 +2670,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -2665,19 +2681,19 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create an EC2 Placement Group; if the placement group already exists, nothing is done. Or, delete an existing placement group. If the placement group is absent, do nothing. See also http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
        */
       ec2_placement_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage load balancing vserver configuration
@@ -3162,7 +3178,7 @@ export type Ansible25 = (
          * Process traffic with the push virtual server that is bound to this load balancing virtual server.
          */
         push?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove users.
@@ -3204,7 +3220,7 @@ export type Ansible25 = (
          * Required if C(state=present).
          */
         email?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove security groups.
@@ -3242,7 +3258,7 @@ export type Ansible25 = (
          * Name of the security group.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(proxysql_query_rules) module modifies query rules using the proxysql admin interface.
@@ -3291,7 +3307,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Filtering criteria matching schemaname. If I(schemaname) is non-NULL, a query will match only if the connection uses schemaname as its default schema.
          */
@@ -3337,7 +3354,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of milliseconds to delay the execution of the query. This is essentially a throttling mechanism and QoS, and allows a way to give priority to queries over others. This value is added to the mysql-default_query_delay global variable that applies to all queries.
          */
@@ -3390,7 +3408,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -3413,7 +3432,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A rule with I(active) set to C(False) will be tracked in the database, but will be never loaded in the in-memory data structures.
          */
@@ -3439,7 +3459,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The number of milliseconds for which to cache the result of the query. Note in ProxySQL 1.1 I(cache_ttl) was in seconds.
          */
@@ -3477,7 +3498,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * By default we avoid deleting more than one schedule in a single batch, however if you need this behaviour and you're not concerned about the schedules deleted, you can set I(force_delete) to C(True).
          */
@@ -3503,7 +3525,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Match traffic from a specific source.
          */
@@ -3520,7 +3543,7 @@ export type Ansible25 = (
          * The unique id of the rule. Rules are processed in rule_id order.
          */
         rule_id?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV HostStorages (applicable only for block storage).
@@ -3545,33 +3568,33 @@ export type Ansible25 = (
          * C(password) - A CHAP password for logging into a target.
          */
         iscsi?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Lists S3 buckets in AWS
        */
       aws_s3_bucket_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage AWS IAM roles
        */
       iam_role?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module helps to install Powershell modules and register custom modules repository on Windows Server.
@@ -3599,7 +3622,7 @@ export type Ansible25 = (
          * If present a new module is installed. If absent a module is removed.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete or modify hosts on Pure Storage FlashArrays.
@@ -3634,19 +3657,19 @@ export type Ansible25 = (
          * List of wwns of the host if protocol is fc.
          */
         wwns?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gets various details related to AWS VPC Endpoints
        */
       ec2_vpc_endpoint_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Checks management connectivity of a windows host.
@@ -3662,7 +3685,7 @@ export type Ansible25 = (
          * If this parameter is set to C(crash), the module will cause an exception.
          */
         data?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower projects. See U(https://www.ansible.com/tower) for an overview.
@@ -3720,19 +3743,19 @@ export type Ansible25 = (
          * Description to use for the project.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about dhcp options sets in AWS
        */
       ec2_vpc_dhcp_options_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Uses syslog to add log entries to the host.
@@ -3800,8 +3823,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Create, update, or delete OpenStack Identity service. If a service with the supplied name already exists, it will be updated with the new description and enabled attributes.
@@ -3833,7 +3857,7 @@ export type Ansible25 = (
          * Description of the service
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes nat rules from a gateway in a vca environment
@@ -3847,7 +3871,7 @@ export type Ansible25 = (
          * If set to true, it will delete all rules in the gateway that are not given as paramter to this module.
          */
         purge_rules?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more of the Enclosures from OneView.
@@ -3861,7 +3885,7 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
@@ -3870,12 +3894,12 @@ export type Ansible25 = (
          */
         options?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages access list entries for ACLs.
@@ -3987,7 +4011,7 @@ export type Ansible25 = (
          * Second (end) port when using range operand.
          */
         dest_port2?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides configuration file management of EdgeOS devices. It provides arguments for managing both the configuration file and state of the active configuration. All configuration statements are based on `set` and `delete` commands in the device configuration.
@@ -4029,7 +4053,7 @@ export type Ansible25 = (
          * The C(match) argument controls the method used to match against the current active configuration. By default, the desired config is matched against the active config and the deltas are loaded. If the C(match) argument is set to C(none) the active configuration is ignored and the configuration is always loaded.
          */
         match?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure IpAddrGroup object
@@ -4107,7 +4131,7 @@ export type Ansible25 = (
          * User defined description for the object.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manage MAC pools in oVirt/RHV.
@@ -4139,7 +4163,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the MAC pool to manage.
          */
@@ -4167,12 +4192,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * List of MAC ranges. The from and to should be split by comma.
@@ -4180,9 +4206,9 @@ export type Ansible25 = (
          */
         ranges?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -4191,7 +4217,7 @@ export type Ansible25 = (
          */
         state?: "present" | "absent";
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         timeout?: number | string;
         wait?:
@@ -4216,12 +4242,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Description of the MAC pool.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove domain records.
@@ -4284,8 +4311,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Create a policy nat rule. Keep in mind that we can either end up configuring source NAT, destination NAT, or both. Instead of splitting it into two we will make a fair attempt to determine which one the user wants.
@@ -4332,18 +4360,18 @@ export type Ansible25 = (
          */
         source?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * list of source zones
          */
         from_zone:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: ['any']
@@ -4352,9 +4380,9 @@ export type Ansible25 = (
          */
         destination?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -4399,7 +4427,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -4427,7 +4456,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -4448,21 +4478,21 @@ export type Ansible25 = (
          * snat interface
          */
         snat_interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, remove, start, stop and tune GlusterFS volumes
        */
       gluster_volume?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -4479,7 +4509,7 @@ export type Ansible25 = (
          * NOTE: the socket attribute is only required for TCP/UDP handlers (i.e. handlers configured with "type": "tcp" or "type": "udp").
          */
         socket?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * An array of Sensu event handlers (names) to use for events using the handler set.
@@ -4488,9 +4518,9 @@ export type Ansible25 = (
          */
         handlers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * An array of Sensu event filters (names) to use when filtering events for the handler.
@@ -4498,9 +4528,9 @@ export type Ansible25 = (
          */
         filters?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * An array of check result severities the handler will handle.
@@ -4508,16 +4538,16 @@ export type Ansible25 = (
          */
         severities?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The pipe definition scope, used to configure the Sensu transport pipe.
          * NOTE: the pipe attribute is only required for Transport handlers (i.e. handlers configured with "type": "transport").
          */
         pipe?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The Sensu event mutator (name) to use to mutate event data for the handler.
@@ -4567,7 +4597,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If events matching one or more silence entries should be handled.
          */
@@ -4593,7 +4624,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The handler type
          */
@@ -4602,51 +4634,51 @@ export type Ansible25 = (
          * A unique name for the handler. The name cannot contain special characters or spaces.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage slb server objects on A10 Networks devices via aXAPI
        */
       a10_server?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -4807,7 +4839,7 @@ export type Ansible25 = (
          * If enabled, users have to consent to client access. This is 'consentRequired' in the Keycloak REST API.
          */
         consent_required?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows you to set the local security policies that are configured by SecEdit.exe.
@@ -4829,7 +4861,7 @@ export type Ansible25 = (
          * The module will return an error if this key is invalid.
          */
         key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for easy creation, updating and deletion of origin access identities.
@@ -4853,32 +4885,34 @@ export type Ansible25 = (
          * A unique identifier to reference the origin access identity by.
          */
         caller_reference?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, Removes and configures a binding to an existing IIS Web site
        */
       win_iis_webbinding?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Adds or removes Red Hat software channels.
        */
       rhn_channel?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Retrieve facts about one or more oVirt/RHV quotas.
        */
@@ -4891,7 +4925,7 @@ export type Ansible25 = (
          * Name of the datacenter where quota resides.
          */
         data_center?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for invalidation of a batch of paths for a CloudFront distribution.
@@ -4915,41 +4949,41 @@ export type Ansible25 = (
          * The alias of the cloudfront distribution to invalidate paths for. Can be specified instead of distribution_id.
          */
         alias?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates, updates, deletes beanstalk applications if app_name is provided
        */
       aws_elasticbeanstalk_app?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Assume a role using AWS Security Token Service and obtain temporary credentials
        */
       sts_assume_role?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * create / delete a database in the Cloud Databases.
        */
       rax_cdb_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * allows you to create/delete/stop instances in Proxmox VE cluster
@@ -4984,7 +5018,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -5071,7 +5106,7 @@ export type Ansible25 = (
          * specifies network interfaces for the container
          */
         netif?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * the instance id
@@ -5087,7 +5122,7 @@ export type Ansible25 = (
          * specifies additional mounts (separate disks) for the container
          */
         mounts?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * sets DNS server IP address for a container
@@ -5118,7 +5153,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * specifies whether a VM will be started during system bootup
          */
@@ -5144,50 +5180,52 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Migrate a VMK interface from VSS to VDS
        */
       vmware_migrate_vmk?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Manage scheduled tasks
        */
       win_scheduled_task?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages Cisco IOS network device configurations over SSH.  This module allows implementers to work with the device running-config.  It provides a way to push a set of commands onto a network device by evaluating the current running-config and only pushing configuration commands that are not already configured.  The config source can be a set of commands or a template.
        */
@@ -5212,20 +5250,21 @@ export type Ansible25 = (
          * The module, by default, will collect the current device running-config to use as a base for comparison to the commands in I(src).  Setting this value to true will cause the command issued to add any necessary flags to collect all defaults as well as the device configuration.  If the destination device does not support such a flag, this argument is silently ignored.
          */
         include_defaults?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage packages for FreeBSD using 'portinstall'.
        */
       portinstall?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages BGP Address-family configurations on HUAWEI CloudEngine switches.
        */
@@ -5506,32 +5545,33 @@ export type Ansible25 = (
          * If the value is true, the metrics of next-hop IGP routes are not compared when BGP selects an optimal route. If the value is false, the metrics of next-hop IGP routes are not compared when BGP selects an optimal route. A route with a smaller metric has a higher priority.
          */
         igp_metric_ignore?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete log_group in CloudWatchLogs.
        */
       cloudwatchlogs_log_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs packages using Chocolatey (http://chocolatey.org/). If Chocolatey is missing from the system, the module will install it. List of packages can be found at http://chocolatey.org/packages
        */
       win_chocolatey?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Configures VSANs on Cisco UCS Manager.
        * Examples can be used with the UCS Platform Emulator U(https://communities.cisco.com/ucspe).
@@ -5583,7 +5623,7 @@ export type Ansible25 = (
          * B - The VSAN maps to the a VSAN ID that exists only in fabric B.
          */
         fabric?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * You can wait for BIG-IP to be "ready". By "ready", we mean that BIG-IP is ready to accept configuration.
@@ -5612,7 +5652,7 @@ export type Ansible25 = (
          * The default timeout is deliberately set to 2 hours because no individual REST API.
          */
         timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage network interfaces of Virtual Machines in oVirt/RHV.
@@ -5644,7 +5684,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the network interface to manage.
          */
@@ -5657,9 +5698,9 @@ export type Ansible25 = (
         vm?: string;
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -5668,7 +5709,7 @@ export type Ansible25 = (
          */
         state?: "absent" | "plugged" | "present" | "unplugged";
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         timeout?: number | string;
         /**
@@ -5703,7 +5744,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the template to manage.
          * You must provide either C(vm) parameter or C(template) parameter.
@@ -5713,21 +5755,21 @@ export type Ansible25 = (
          * Logical network to which the VM network interface should use, by default Empty network is used if network is not specified.
          */
         network?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages OpenWrt packages
        */
       opkg?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -5749,7 +5791,7 @@ export type Ansible25 = (
          * A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
          */
         verbosity?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The C(win_dns_client) module configures the DNS client on Windows network adapters.
@@ -5763,7 +5805,7 @@ export type Ansible25 = (
          * Single or ordered list of DNS server IPv4 addresses to configure for lookup. An empty list will configure the adapter to use the DHCP-assigned values on connections where DHCP is enabled, or disable DNS lookup on statically-configured connections.
          */
         ipv4_addresses?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, remove, reconfigure, update a private network. This module has a dependency on 1and1 >= 1.0
@@ -5833,7 +5875,7 @@ export type Ansible25 = (
          * Private network name used with present state. Used as identifier (id or name) when used with absent state.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete an Azure Container Registry.
@@ -5862,7 +5904,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the Container Registry.
          */
@@ -5872,7 +5915,7 @@ export type Ansible25 = (
          */
         resource_group: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -5897,7 +5940,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         /**
          * If enabled, you can use the registry name as username and admin user access key as password to docker login to your container registry.
@@ -5924,7 +5968,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -5948,7 +5993,7 @@ export type Ansible25 = (
         password?: string;
         tenant?: string;
         secret?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, start, stop and delete servers on the cloudscale.ch IaaS service.
@@ -6032,7 +6077,7 @@ export type Ansible25 = (
          * Either C(name) or C(uuid) are required. These options are mutually exclusive.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Deploy, start, stop, update, restart, reinstall servers.
@@ -6115,7 +6160,7 @@ export type Ansible25 = (
          * Name of the server.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(proxysql_scheduler) module adds or removes schedules using the proxysql admin interface.
@@ -6184,7 +6229,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 10000
          *
@@ -6213,7 +6259,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_password?: string;
         /**
          * Default: True
@@ -6242,7 +6289,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -6265,19 +6313,20 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_host?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Homebrew casks.
        */
       homebrew_cask?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Power on / Power off / Restart a virtual machine.
@@ -6335,7 +6384,7 @@ export type Ansible25 = (
          * Scheduling task requires vCenter server. A standalone ESXi server does not support this option.
          */
         scheduled_at?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific availability set or all availability sets.
@@ -6364,7 +6413,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Limit results to a specific availability set
          */
@@ -6375,9 +6425,9 @@ export type Ansible25 = (
         resource_group?: string;
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -6386,7 +6436,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove instance groups.
@@ -6420,20 +6470,21 @@ export type Ansible25 = (
          * Name of the instance group.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, remove and revert VM from snapshots.
        */
       cs_vmsnapshot?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Execute vrouter-bgp-add, vrouter-bgp-remove, vrouter-bgp-modify command.
        * Each fabric, cluster, standalone switch, or virtual network (VNET) can provide its tenants with a vRouter service that forwards traffic between networks and implements Layer 4 protocols.
@@ -6473,7 +6524,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a value for external BGP to accept or attempt BGP connections to external peers, not directly connected, on the network. This is a value between 1 and 255.
          */
@@ -6503,7 +6555,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify BGP neighbor keepalive interval in seconds.
          */
@@ -6553,7 +6606,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify inbound route map for neighbor.
          */
@@ -6583,7 +6637,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the prefix list to filter traffic inbound.
          */
@@ -6621,7 +6676,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provide login username if user is not root.
          */
@@ -6664,7 +6720,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify BGP neighbor holdtime in seconds.
          */
@@ -6694,8 +6751,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on Cisco IOS XR network devices.
@@ -6761,7 +6819,7 @@ export type Ansible25 = (
          * Description of Interface being configured.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Policy objects form the match criteria for policy rules and many other functions in PAN-OS. These may include address object, address groups, service objects, service groups, and tag.
@@ -6786,9 +6844,9 @@ export type Ansible25 = (
          */
         static_value?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The description of the object.
@@ -6858,9 +6916,9 @@ export type Ansible25 = (
          */
         services?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -6885,7 +6943,7 @@ export type Ansible25 = (
          * The destination port to be used in a service object definition.
          */
         destination_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with switch configurations. It provides a way to back up the running or startup configurations of a switch to a remote server. This is achieved by periodically saving a copy of the startup or running configuration of the network device to a remote server using FTP, SFTP, TFTP, or SCP. The first step is to create a directory from where the remote server can be reached. The next step is to provide the full file path of the location where the configuration will be backed up. Authentication details required by the remote server must be provided as well. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_backup.html)
@@ -6918,7 +6976,7 @@ export type Ansible25 = (
          * This specifies the full file path where the configuration file will be copied on the remote server. In case the relative path is used as the variable value, the root folder for the user of the server needs to be specified.
          */
         rcpath: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove a subnet to an OpenStack network
@@ -7017,7 +7075,7 @@ export type Ansible25 = (
          * The name of the subnet that should be created. Although Neutron allows for non-unique subnet names, this module enforces subnet name uniqueness.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of the local usernames configured on Arista EOS devices.  It allows playbooks to manage either individual usernames or the collection of usernames in the current running config.  It also supports purging usernames from the configuration that are not explicitly defined.
@@ -7067,26 +7125,27 @@ export type Ansible25 = (
          * Specifies the SSH public key to configure for the given username.  This argument accepts a valid SSH key value.
          */
         sshkey?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or destroy Azure Resource Manager template deployments via the Azure SDK for Python. You can find some quick start templates in GitHub here https://github.com/azure/azure-quickstart-templates. For more information on Azue resource manager templates see https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-deploy/.
        */
       azure_rm_deployment?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Create/delete an SSH key in Packet host.
        * API is documented at U(https://www.packet.net/help/api/#page:ssh-keys,header:ssh-keys-ssh-keys-post).
        */
       packet_sshkey?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the network devices. Create, modify, and manage, ethernet, teams, bonds, vlans etc.
@@ -7209,7 +7268,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: conn_name
          *
@@ -7287,7 +7347,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A list of upto 3 dns servers, ipv6 format e.g. To add two IPv6 DNS server addresses: ["2001:4860:4860::8888 2001:4860:4860::8844"]
          */
@@ -7323,7 +7384,7 @@ export type Ansible25 = (
          * This is only used with bond - updelay
          */
         updelay?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure IpamDnsProviderProfile object
@@ -7410,7 +7471,7 @@ export type Ansible25 = (
          * Name for the ipam/dns provider profile.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific resource group or all resource groups.
@@ -7439,7 +7500,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Limit results to a specific resource group.
          */
@@ -7449,9 +7511,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         cloud_environment?: string;
         ad_user?: string;
@@ -7460,7 +7522,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with port aggregation related configurations. The operators used are overloaded to ensure control over switch port aggregation configurations. Apart from the regular device connection related attributes, there are five LAG arguments which are overloaded variables that will perform further configurations. They are interfaceArg1, interfaceArg2, interfaceArg3, interfaceArg4, and interfaceArg5. For more details on how to use these arguments, see [Overloaded Variables]. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_portchannel.html)
@@ -7504,24 +7566,24 @@ export type Ansible25 = (
          * This is an overloaded Port Channel third argument. Usage of this argument can be found is the User Guide referenced above.
          */
         interfaceArg3?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Starts gunicorn with the parameters specified. Common settings for gunicorn configuration are supported. For additional configuration use a config file See U(https://gunicorn-docs.readthedocs.io/en/latest/settings.html) for more options. It's recommended to always use the chdir option to avoid problems with the location of the app.
        */
       gunicorn?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Manage AAA user certificates on Cisco ACI fabrics.
@@ -7552,7 +7614,7 @@ export type Ansible25 = (
          * Whether this is a normal user or an appuser.
          */
         aaa_user_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage switch policy leaf profiles on Cisco ACI fabrics.
@@ -7573,7 +7635,7 @@ export type Ansible25 = (
          * The name of the Leaf Profile.
          */
         leaf_profile?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of node system attributes on network devices.  It provides an option to configure host system parameters or remove those parameters from the device active configuration.
@@ -7605,7 +7667,7 @@ export type Ansible25 = (
          * List of DNS name servers by IP address to use to perform name resolution lookups.  This argument accepts either a list of DNS servers See examples.
          */
         name_servers?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of an OSPF interface instanceon HUAWEI CloudEngine switches.
@@ -7661,27 +7723,27 @@ export type Ansible25 = (
          * Full name of interface, i.e. 40GE1/0/10.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates and manages CloudWatch event rules and targets.
        */
       cloudwatchevent_rule?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows users to manage their objects/buckets in Google Cloud Storage.  It allows upload and download operations and can set some canned permissions. It also allows retrieval of URLs for objects for use in playbooks, and retrieval of string contents of objects.  This module requires setting the default project in GCS prior to playbook usage.  See U(https://developers.google.com/storage/docs/reference/v1/apiversion1) for information about setting the default project.
        */
       gc_storage?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of priority flow control (PFC) on interfaces of Mellanox ONYX network devices.
@@ -7705,7 +7767,7 @@ export type Ansible25 = (
          * Name of the interface PFC should be configured on.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage LLDP interface policies on Cisco ACI fabrics.
@@ -7738,7 +7800,7 @@ export type Ansible25 = (
          * Use C(query) for listing an object or multiple objects.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the state of a virtual host in RabbitMQ.
@@ -7758,7 +7820,7 @@ export type Ansible25 = (
          * A dict or string describing the policy.
          */
         tags: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * A regex of queues to apply the policy to.
@@ -7786,35 +7848,35 @@ export type Ansible25 = (
          * What the policy applies to. Requires RabbitMQ 3.2.0 or later.
          */
         apply_to?: "all" | "exchanges" | "queues";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gets various details related to Route53 zone, record set or health check details
        */
       route53_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Similar to the kubectl scale command. Use to set the number of replicas for a Deployment, ReplicatSet, or Replication Controller, or the parallelism attribute of a Job. Supports check mode.
        */
       k8s_scale?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete a Rackspace Cloud Monitoring notification plan by associating existing rax_mon_notifications with severity levels. Rackspace monitoring module flow | rax_mon_entity -> rax_mon_check -> rax_mon_notification -> *rax_mon_notification_plan* -> rax_mon_alarm
        */
       rax_mon_notification_plan?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage BIG-IP module provisioning. This module will only provision at the standard levels of Dedicated, Nominal, and Minimum.
@@ -7836,22 +7898,22 @@ export type Ansible25 = (
          * Sets the provisioning level for the requested modules. Changing the level for one module may require modifying the level of another module. For example, changing one module to C(dedicated) requires setting all others to C(none). Setting the level of a module to C(none) means that the module is not activated.
          */
         level?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage cache clusters in Amazon Elasticache.
        * Returns information about the specified cache cluster.
        */
       elasticache?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Rack Type module let you manage your Rack Type easily. You can create create and delete Rack Type by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -7879,13 +7941,13 @@ export type Ansible25 = (
          * AOS Id of the Rack Type to manage (can't be used to create a new Rack Type), Only one of I(name), I(id) or I(content) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove an APT repositories in Ubuntu and Debian.
        */
       apt_repository?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove firewall rules.
@@ -7931,19 +7993,19 @@ export type Ansible25 = (
          * Required if C(state=present).
          */
         cidr?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete ECS container instance attributes.
        */
       ecs_attribute?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify and delete an IPA host using IPA API
@@ -8007,7 +8069,7 @@ export type Ansible25 = (
          * This option has no effect for states other than "absent".
          */
         update_dns?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides an interface to manage Logical Interconnect Group resources. Can create, update, or delete.
@@ -8039,7 +8101,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -8051,10 +8114,10 @@ export type Ansible25 = (
          * List with the Logical Interconnect Group properties.
          */
         data: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Nokia SR OS configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with SR OS configuration sections in a deterministic way.
@@ -8113,49 +8176,49 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Upload files to a vCenter datastore
        */
       vsphere_copy?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -8208,7 +8271,7 @@ export type Ansible25 = (
          * The name of the priority labels.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the management of AWS Batch Job Definitions. It is idempotent and supports "Check" mode.  Use module M(batch_compute_environment) to manage the compute environment, M(batch_job_queue) to manage job queues, M(batch_job_definition) to manage job definitions.
@@ -8288,7 +8351,7 @@ export type Ansible25 = (
          * A list of ulimits to set in the container. This parameter maps to Ulimits in the Create a container section of the Docker Remote API and the --ulimit option to docker run. List of dictionaries.
          */
         ulimits?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about a one or more OpenStack projects
@@ -8310,15 +8373,15 @@ export type Ansible25 = (
          * A dictionary of meta data to use for further filtering.  Elements of this dictionary may be additional dictionaries.
          */
         filters?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates / deletes a Rackspace Public Cloud isolated network.
        */
       rax_network?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages AAA server host configuration on HUAWEI CloudEngine switches.
@@ -8418,7 +8481,7 @@ export type Ansible25 = (
          * Set the public-net.
          */
         hwtacacs_is_public_net?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use variables to create new hosts and groups in inventory for use in later plays of the same playbook. Takes variables so you can define the new hosts more fully.
@@ -8433,7 +8496,7 @@ export type Ansible25 = (
          * The groups to add the hostname to, comma separated.
          */
         groups?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds and/or removes instances of host record objects from Infoblox NIOS servers.  This module manages NIOS C(record:host) objects using the Infoblox WAPI interface over REST.
@@ -8475,7 +8538,7 @@ export type Ansible25 = (
          * Sets the DNS view to associate this host record with.  The DNS view must already be configured on the system
          */
         view?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages global VPC configuration
@@ -8523,7 +8586,7 @@ export type Ansible25 = (
          * Source IP address used for peer keepalive link
          */
         pkl_src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, start, stop and delete Solaris zones. This module doesn't currently allow changing of options for a zone that's already been created.
@@ -8599,7 +8662,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The path where the zone will be created. This is required when the zone is created, but not used otherwise.
          */
@@ -8620,7 +8684,7 @@ export type Ansible25 = (
          * Zone name.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, modifies or removes groups in Active Directory.
@@ -8701,35 +8765,35 @@ export type Ansible25 = (
          * This value can be in the forms C(Distinguished Name), C(objectGUID), C(objectSid) or C(sAMAccountName), see examples for more details.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Migrates a virtual machine from a standard vswitch to distributed
        */
       vmware_vm_vss_dvs_migrate?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -8760,7 +8824,7 @@ export type Ansible25 = (
          * The state of the job queue. If the job queue state is ENABLED , it is able to accept jobs.
          */
         job_queue_state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to copy the running configuration of a switch over its startup configuration. It is recommended to use this module shortly after any major configuration changes so they persist after a switch restart. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_save.html)
@@ -8772,7 +8836,7 @@ export type Ansible25 = (
         deviceType: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures vNIC templates on Cisco UCS Manager.
@@ -8910,7 +8974,7 @@ export type Ansible25 = (
          * CDN Name used when cdn_source is set to user-defined.
          */
         cdn_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific resource group or all resource groups.
@@ -8939,7 +9003,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Limit results to a specific resource group.
          */
@@ -8949,9 +9014,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         cloud_environment?: string;
         ad_user?: string;
@@ -8960,7 +9025,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate remote syslog settings on a BIG-IP.
@@ -8985,7 +9050,7 @@ export type Ansible25 = (
          * Specifies the port that the system uses to send messages to the remote logging server. When creating a remote syslog, if this parameter is not specified, the default value C(514) is used.
          */
         remote_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Citrix NetScaler server and service entities.
@@ -9024,7 +9089,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: https
          *
@@ -9055,7 +9121,7 @@ export type Ansible25 = (
          * type of the entity
          */
         type?: "server" | "service";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates and deletes Azure DNS zones.
@@ -9084,7 +9150,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * name of the DNS Zone.
          */
@@ -9094,7 +9161,7 @@ export type Ansible25 = (
          */
         resource_group: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -9119,7 +9186,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -9132,7 +9200,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends an arbitrary set of commands to an JUNOS node and returns the results read from the device.  This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -9174,7 +9242,7 @@ export type Ansible25 = (
          * The I(match) argument is used in conjunction with the I(wait_for) argument to specify the match policy.  Valid values are C(all) or C(any).  If the value is set to C(all) then all conditionals in the I(wait_for) must be satisfied.  If the value is set to C(any) then only one of the values must be satisfied.
          */
         match?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Enables or disables a specified module of the Apache2 webserver.
@@ -9215,7 +9283,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the module to enable/disable as given to C(a2enmod/a2dismod).
          */
@@ -9245,8 +9314,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Management of LXC containers
@@ -9295,7 +9365,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable a container log for host actions to the container.
          */
@@ -9321,7 +9392,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: started
          *
@@ -9395,7 +9467,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a container.
          */
@@ -9428,7 +9501,7 @@ export type Ansible25 = (
          * Place rootfs directory under DIR.
          */
         directory?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use to enable or disable eAPI access, and set the port and state of http, https, local_http and unix-socket servers.
@@ -9491,7 +9564,7 @@ export type Ansible25 = (
          * The C(socket) argument controls the operating state of the UNIX Domain Socket used to receive eAPI requests.  When the value of this argument is set to True, the UDS will listen for eAPI requests.  When the value is set to False, the UDS will not be available to handle requests.  By default when eAPI is first configured, the UDS is disabled.
          */
         socket?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates (empty) files, updates file modification stamps of existing files, and can create or remove directories.
@@ -9507,17 +9580,17 @@ export type Ansible25 = (
          * If C(directory), all immediate subdirectories will be created if they do not exist. If C(file), the file will NOT be created if it does not exist, see the M(copy) or M(template) module if you want that behavior.  If C(absent), directories will be recursively deleted, and files will be removed. If C(touch), an empty file will be created if the C(path) does not exist, while an existing file or directory will receive updated file access and modification times (similar to the way C(touch) works from the command line).
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates / deletes a Rackspace Public Cloud instance and optionally waits for it to be 'running'.
        */
       rax?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Acquires and associates a public IP to an account or project. Due to API limitations this is not an idempotent call, so be sure to only conditionally call this when C(state=present)
@@ -9555,7 +9628,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -9588,7 +9662,7 @@ export type Ansible25 = (
          * Network the IP address is related to.
          */
         network?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages interface specific VPN configuration of HUAWEI CloudEngine switches.
@@ -9608,25 +9682,25 @@ export type Ansible25 = (
          * An interface that can binding VPN instance, i.e. 40GE1/0/22, Vlanif10. Must be fully qualified interface name. Interface types, such as 10GE, 40GE, 100GE, LoopBack, MEth, Tunnel, Vlanif....
          */
         vpn_interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about internet gateways in AWS.
        */
       ec2_vpc_igw_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove Zypper repositories on SUSE and openSUSE
        */
       zypper_repository?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Obtain the AOS server session token by providing the required username and password credentials.  Upon successful authentication, this module will return the session-token that is required by all subsequent AOS module usage. On success the module will automatically populate ansible facts with the variable I(aos_session) This module is not idempotent and do not support check mode.
@@ -9654,7 +9728,7 @@ export type Ansible25 = (
          * Address of the AOS Server on which you want to open a connection.
          */
         server?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage SPAN source groups on Cisco ACI fabrics.
@@ -9689,7 +9763,7 @@ export type Ansible25 = (
          * The name of the Tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Setting the Timestamp Format of Logs. Configuring the Device to Output Logs to the Log Buffer.
@@ -9733,7 +9807,7 @@ export type Ansible25 = (
          * Specifies the name of a module. The value is a module name in registration logs.
          */
         module_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage ssl cerificate keys.
@@ -9782,7 +9856,7 @@ export type Ansible25 = (
          * Passphrase that was used to encrypt the private-key. Use this option to load encrypted private-keys in PEM format.
          */
         password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage port security on Cisco ACI fabrics.
@@ -9808,7 +9882,7 @@ export type Ansible25 = (
          * The description for the contract.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and delete snapshots images on snapshot groups for NetApp E-series storage arrays.
@@ -9842,7 +9916,7 @@ export type Ansible25 = (
          * Should https certificates be validated?
          */
         validate_certs?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of a Protocol Independent Multicast (PIM) instance.
@@ -9852,32 +9926,32 @@ export type Ansible25 = (
          * Configure group ranges for Source Specific Multicast (SSM). Valid values are multicast addresses or the keyword C(none) or keyword C(default). C(none) removes all SSM group ranges. C(default) will set ssm_range to the default multicast address. If you set multicast address, please ensure that it is not the same as the C(default), otherwise use the C(default) option.
          */
         ssm_range?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Can create or delete AWS Autoscaling Configurations
        * Works with the ec2_asg module to manage Autoscaling Groups
        */
       ec2_lc?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates / deletes or resize a Rackspace Cloud Databases instance and optionally waits for it to be 'running'. The name option needs to be unique since it's used to identify the instance.
        */
       rax_cdb?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Runs one or more commands on remote devices running VyOS. This module can also be introspected to validate key parameters before returning successfully.
@@ -9905,7 +9979,7 @@ export type Ansible25 = (
          * Whether to apply (C(present)) or remove (C(absent)) the settings.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Each row in mysql_replication_hostgroups represent a pair of writer_hostgroup and reader_hostgroup. ProxySQL will monitor the value of read_only for all the servers in specified hostgroups, and based on the value of read_only will assign the server to the writer or reader hostgroups.
@@ -9957,7 +10031,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -9980,8 +10055,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Sends an arbitrary command to an HUAWEI CloudEngine node and returns the results read from the device.  The ce_command module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -10013,7 +10089,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command.  If the command does not pass the specified conditional, the interval indicates how to long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates AWS Direct Connect Gateway
@@ -10022,13 +10098,13 @@ export type Ansible25 = (
        * Detaches Virtual Gateways to Direct Connect Gateway
        */
       aws_direct_connect_gateway?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, disable, lock, enable and remove users.
@@ -10076,7 +10152,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -10115,7 +10192,7 @@ export type Ansible25 = (
          * Required on C(state=present).
          */
         email?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(grove) module sends a message for a service to a Grove.io channel.
@@ -10170,8 +10247,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure TrafficCloneProfile object
@@ -10229,7 +10307,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         clone_servers?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV tags.
@@ -10247,7 +10325,7 @@ export type Ansible25 = (
          * Name of the VM, which tags should be listed.
          */
         vm?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for virtual machine images.
@@ -10276,9 +10354,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         cloud_environment?: string;
         append_tags?:
@@ -10303,7 +10382,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         secret?: string;
         /**
@@ -10330,7 +10410,7 @@ export type Ansible25 = (
          */
         offer?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The manageiq_tags module supports adding, updating and deleting tags in ManageIQ.
@@ -10357,7 +10437,7 @@ export type Ansible25 = (
          * required if state is present or absent.
          */
         tags?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides direct access to the Cisco IMC REST API.
@@ -10365,21 +10445,21 @@ export type Ansible25 = (
        * More information about the IMC REST API is available from U(http://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/c/sw/api/3_0/b_Cisco_IMC_api_301.html)
        */
       imc_rest?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Controls runit services on remote hosts using the sv utility.
@@ -10415,7 +10495,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /var/service
          *
@@ -10432,15 +10513,15 @@ export type Ansible25 = (
          * directory where services are defined, the source of symlinks to service_dir.
          */
         service_src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages updates and bundles with the swupd bundle manager, which is used by the Clear Linux Project for Intel Architecture.
        */
       swupd?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind EPGs to Contracts on Cisco ACI fabrics.
@@ -10487,17 +10568,17 @@ export type Ansible25 = (
          * Name of an existing tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and update a virtual machine scale set.
        */
       azure_rm_virtualmachine_scaleset?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP GTM wide ip
@@ -10511,7 +10592,7 @@ export type Ansible25 = (
          * Wide IP name
          */
         wide_ip?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will load a candidate configuration from a template file onto a remote device running Junos.  The module will return the differences in configuration if the diff option is specified on the Ansible command line
@@ -10539,7 +10620,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         password?: string;
         ssh_keyfile?: string;
@@ -10557,7 +10639,7 @@ export type Ansible25 = (
         host: string;
         timeout?: number | string;
         provider?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: merge
@@ -10598,10 +10680,11 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: "netconf";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows one to run different config-sync actions. These actions allow you to manually sync your configuration across multiple BIG-IPs when those devices are in an HA pair.
@@ -10623,13 +10706,13 @@ export type Ansible25 = (
          * The device group that you want to perform config-sync actions on.
          */
         device_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Uses Layman to manage an additional repositories for the Portage package manager on Gentoo Linux. Please note that Layman must be installed on a managed node prior using this module.
        */
       layman?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VLAN configurations on Huawei CloudEngine switches.
@@ -10657,7 +10740,7 @@ export type Ansible25 = (
          * Specify VLAN description, in the range from 1 to 80.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Iptables is used to set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel. This module does not handle the saving and/or loading of rules, but rather only manipulates the current rules that are present in memory. This is the same as the behaviour of the "iptables" and "ip6tables" command which this module uses internally.
@@ -10694,9 +10777,9 @@ export type Ansible25 = (
          */
         ctstate?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * This specifies the target of the rule; i.e., what to do if the packet matches it. The target can be a user-defined chain (other than the one this rule is in), one of the special builtin targets which decide the fate of the packet immediately, or an extension (see EXTENSIONS below).  If this option is omitted in a rule (and the goto paramater is not used), then matching the rule will have no effect on the packet's fate, but the counters on the rule will be incremented.
@@ -10731,7 +10814,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: filter
          *
@@ -10785,9 +10869,9 @@ export type Ansible25 = (
          */
         match?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * This specifies that the processing should continue in a user specified chain. Unlike the jump argument return will not continue processing in this chain but instead in the chain that called us via jump.
@@ -10827,7 +10911,7 @@ export type Ansible25 = (
          * Name of an interface via which a packet was received (only for packets entering the INPUT, FORWARD and PREROUTING chains). When the "!" argument is used before the interface name, the sense is inverted. If the interface name ends in a "+", then any interface which begins with this name will match. If this option is omitted, any interface name will match.
          */
         in_interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Fabric interface policy leaf profile interface selectors on Cisco ACI fabrics.
@@ -10872,15 +10956,15 @@ export type Ansible25 = (
          * The name of the Fabric access policy leaf interface profile.
          */
         leaf_interface_profile?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete a Rackspace Cloud Monitoring entity, which represents a device to monitor. Entities associate checks and alarms with a target system and provide a convenient, centralized place to store IP addresses. Rackspace monitoring module flow | *rax_mon_entity* -> rax_mon_check -> rax_mon_notification -> rax_mon_notification_plan -> rax_mon_alarm
        */
       rax_mon_entity?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The command module allows running one or more commands on remote devices running VyOS.  This module can also be introspected to validate key parameters before returning successfully.  If the conditional statements are not met in the wait period, the task fails.
@@ -10913,7 +10997,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between I(retries) of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove a database on a Webfaction host. Further documentation at http://github.com/quentinsf/ansible-webfaction.
@@ -10951,7 +11035,7 @@ export type Ansible25 = (
          * The webfaction account to use
          */
         login_name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, remove snapshot volumes for NetApp E/EF-Series storage arrays.
@@ -11029,12 +11113,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name you wish to give the snapshot volume
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module offers the ability to set a configuration checkpoint file or rollback to a configuration checkpoint file on HUAWEI CloudEngine switches.
@@ -11064,7 +11149,7 @@ export type Ansible25 = (
          * Specifies the number of configuration rollback points. The value is an integer that ranges from 1 to 80.
          */
         oldest?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM virtual servers via iControl SOAP API
@@ -11141,7 +11226,7 @@ export type Ansible25 = (
          * Virtual server description
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on VyOS network devices.
@@ -11194,22 +11279,22 @@ export type Ansible25 = (
          * Description of Interface.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apply patch files using the GNU patch tool.
        */
       patch?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more networks from OpenStack.
@@ -11227,7 +11312,7 @@ export type Ansible25 = (
          * Ignored. Present for backwards compatibility
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The manageiq_user module supports adding, updating and deleting users in ManageIQ.
@@ -11282,7 +11367,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ca_bundle_path?: string;
         /**
          * The users' password.
@@ -11292,7 +11378,7 @@ export type Ansible25 = (
          * The users' E-mail address.
          */
         email?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows the addition and removal of local, service and domain users, and domain groups from a local group.
@@ -11315,21 +11401,22 @@ export type Ansible25 = (
          * Accepts service users as NT AUTHORITY\username.
          */
         members?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete or activate ZFS boot environments.
        * Mount and unmount ZFS boot environments.
        */
       beadm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages VPN instance of HUAWEI CloudEngine switches.
        */
@@ -11348,19 +11435,19 @@ export type Ansible25 = (
          * Description of the vrf, the string length is 1 - 242 .
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Discover targets on given portal, (dis)connect targets, mark targets to manually or auto start, return device nodes of connected targets.
        */
       open_iscsi?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage firmware image sources on Cisco ACI fabrics.
@@ -11399,7 +11486,7 @@ export type Ansible25 = (
          * Polling interval in minutes.
          */
         polling_interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages a system startup information on HUAWEI CloudEngine switches.
@@ -11427,7 +11514,7 @@ export type Ansible25 = (
          * Name of the configuration file that is applied for the next startup. The value is a string of 5 to 255 characters.
          */
         cfg_file?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Reboot a HUAWEI CloudEngine switches.
@@ -11441,7 +11528,7 @@ export type Ansible25 = (
          * Safeguard boolean. Set to true if you're sure you want to reboot.
          */
         confirm?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module fails the progress with a custom message. It can be useful for bailing out when a certain condition is met using C(when).
@@ -11450,9 +11537,9 @@ export type Ansible25 = (
       fail?: {
         active_connection_states?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         host?: string;
         connect_timeout?: number | string;
@@ -11463,9 +11550,9 @@ export type Ansible25 = (
         timeout?: number | string;
         exclude_hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 'Failed as requested from task'
@@ -11475,7 +11562,7 @@ export type Ansible25 = (
         msg?: string;
         path?: string;
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides support for verifying Cisco NSO configuration is in compliance with specified values.
@@ -11486,19 +11573,19 @@ export type Ansible25 = (
          *
          */
         data?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 Auto Scaling Groups (ASGs) in AWS
        */
       ec2_asg_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages client SSL profiles on a BIG-IP.
@@ -11536,28 +11623,28 @@ export type Ansible25 = (
          * When C(absent), ensures the profile is removed.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, stop and start a virtual machine. Provide an existing storage account and network interface or allow the module to create these for you. If you choose not to provide a network interface, the resource group must contain a virtual network with at least one subnet.
        * Before Ansible 2.5, this required an image found in the Azure Marketplace which can be discovered with M(azure_rm_virtualmachineimage_facts). In Ansible 2.5 and newer, custom images can be used as well, see the examples for more details.
        */
       azure_rm_virtualmachine?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure WafProfile object
@@ -11612,13 +11699,13 @@ export type Ansible25 = (
          * Field introduced in 17.2.1.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to an IRC channel. This is a very simplistic implementation.
        */
       irc?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove flavor, volume_type or other resources access from OpenStack.
@@ -11646,7 +11733,7 @@ export type Ansible25 = (
          * The availability zone of the resource.
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Much like the `roles:` keyword, this task loads a role, but it allows you to control it when the role tasks run in between other tasks of the play.
@@ -11687,7 +11774,7 @@ export type Ansible25 = (
          * File to load from a role's C(defaults/) directory.
          */
         defaults_from?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module uses rabbitMQ Rest API to create/delete queues
@@ -11755,7 +11842,7 @@ export type Ansible25 = (
          * extra arguments for queue. If defined this argument is a key/value dictionary
          */
         arguments?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * if the queue should delete itself after all queues/queues unbound from it
@@ -11782,7 +11869,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * rabbitMQ password for connection
          */
@@ -11827,30 +11915,31 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the queue to create
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about EC2 Elastic Load Balancers in AWS
        */
       elb_classic_lb_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete a Public IP address. Allows setting and updating the address allocation method and domain name label. Use the azure_rm_networkinterface module to associate a Public IP with a network interface.
        */
       azure_rm_publicipaddress?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will import/delete SSL keys on a BIG-IP. Keys can be imported from key files on the local disk, in PEM format.
@@ -11880,7 +11969,7 @@ export type Ansible25 = (
          * Passphrase on key.
          */
         passphrase?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM pools via iControl SOAP API
@@ -11940,7 +12029,7 @@ export type Ansible25 = (
          * Pool name
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Restart a device
@@ -11960,7 +12049,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages interface VPC configuration
@@ -11982,7 +12071,7 @@ export type Ansible25 = (
          * VPC group/id that will be configured on associated portchannel.
          */
         vpc?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Deploy to nodes controlled by Ironic.
@@ -12050,7 +12139,7 @@ export type Ansible25 = (
          * A configdrive file or HTTP(S) URL that will be passed along to the node.
          */
         config_drive?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an ios node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -12083,7 +12172,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Layer-2 interface on Juniper JUNOS network devices.
@@ -12133,7 +12222,7 @@ export type Ansible25 = (
          * Description of Interface.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to configure VMware DRS Affinity rule for virtual machine in given cluster.
@@ -12178,27 +12267,27 @@ export type Ansible25 = (
          * Required if C(state) is set to C(present).
          */
         vms?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the user to manage S3 buckets and the objects within them. Includes support for creating and deleting both objects and buckets, retrieving objects as files or strings and generating download links. This module has a dependency on boto3 and botocore.
        */
       aws_s3?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage AAA users on Cisco ACI fabrics.
@@ -12263,7 +12352,7 @@ export type Ansible25 = (
          * The password of the locally-authenticated user.
          */
         aaa_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manages whole lifecycle of the Virtual Machine(VM) in oVirt. Since VM can hold many states in oVirt, this see notes to see how the states of the VM are handled.
@@ -12299,7 +12388,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the cluster, where Virtual Machine should be created. Required if creating VM.
          */
@@ -12326,7 +12416,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * ID of the the Virtual Machine to manage.
          */
@@ -12362,7 +12453,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of NICs, which should be attached to Virtual Machine. NIC is described by following dictionary:
          * C(name) - Name of the NIC.
@@ -12374,9 +12466,9 @@ export type Ansible25 = (
          */
         nics?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Dictionary with values for Windows Virtual Machine initialization using sysprep:
@@ -12393,7 +12485,7 @@ export type Ansible25 = (
          * C(root_password) - Password to be set for username to Windows Virtual Machine.
          */
         sysprep?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Number of virtual CPUs cores of the Virtual Machine. Default value is set by oVirt engine.
@@ -12451,7 +12543,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Type of the Virtual Machine. Default value is set by oVirt engine.
          */
@@ -12483,7 +12576,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If I(True) then the disks of the created virtual machine will be cloned and independent of the template.
          * This parameter is used only when C(state) is I(running) or I(present) and VM didn't exist before.
@@ -12510,22 +12604,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of boot devices which should be used to boot. Choices I(network), I(hd) and I(cdrom).
          * For example: ['cdrom', 'hd']. Default value is set by oVirt engine.
          */
         boot_devices?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Specify host where Virtual Machine should be running. By default the host is chosen by engine scheduler.
@@ -12533,7 +12628,7 @@ export type Ansible25 = (
          */
         host?: string;
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         wait?:
           | boolean
@@ -12557,7 +12652,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If I(True) Virtual Machine will be set as stateless.
          * If I(False) Virtual Machine will be unset as stateless.
@@ -12585,7 +12681,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Operating system of the Virtual Machine. Default value is set by oVirt engine.
          */
@@ -12653,7 +12750,7 @@ export type Ansible25 = (
          * C(nic_on_boot) - If I(True) network interface will be set to start on boot.
          */
         cloud_init?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * List of disks, which should be attached to Virtual Machine. Disk is described by following dictionary:
@@ -12667,9 +12764,9 @@ export type Ansible25 = (
          */
         disks?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         poll_interval?: number | string;
         timeout?: number | string;
@@ -12677,7 +12774,7 @@ export type Ansible25 = (
          * Set a CPU shares for this Virtual Machine. Default value is set by oVirt engine.
          */
         cpu_shares?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to manage NTP configuration information about an ESXi host.
@@ -12708,7 +12805,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The C(win_copy) module copies a file on the local box to remote windows locations.
@@ -12760,7 +12857,7 @@ export type Ansible25 = (
          * This flag indicates that filesystem links in the source tree, if they exist, should be followed.
          */
         local_follow?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manages boundary meters
@@ -12801,7 +12898,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * meter name
          */
@@ -12812,7 +12910,7 @@ export type Ansible25 = (
          * Whether to create or remove the client from boundary
          */
         state: "present" | "absent";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BFD session configuration, creates a BFD session or deletes a specified BFD session on HUAWEI CloudEngine devices.
@@ -12856,7 +12954,7 @@ export type Ansible25 = (
          * Specifies the peer IP address type.
          */
         addr_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage or find Nuage VSP entities, this includes create, update, delete, assign, unassign and find, with all supported properties.
@@ -12867,7 +12965,7 @@ export type Ansible25 = (
          * If no I(id) and no I(match_filter) is specified, these are used to find or determine if the entity exists.
          */
         properties?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The type of parent the ID is specified for (example Enterprise).
@@ -12885,7 +12983,7 @@ export type Ansible25 = (
          * Requires a I(api_version) parameter (example v4_0).
          */
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The ID of the entity you want to work on.
@@ -12942,11 +13040,11 @@ export type Ansible25 = (
          */
         children?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP GTM pools.
@@ -12986,7 +13084,7 @@ export type Ansible25 = (
          * The type of GTM pool that you want to create. On BIG-IP releases prior to version 12, this parameter is not required. On later versions of BIG-IP, this is a required parameter.
          */
         type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove an I(apt) key, optionally downloading it.
@@ -13046,7 +13144,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The identifier of the key.
          * Including this allows check mode to correctly report the changed state.
@@ -13054,7 +13153,7 @@ export type Ansible25 = (
          * This parameter is required when C(state) is set to C(absent).
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV groups.
@@ -13065,30 +13164,30 @@ export type Ansible25 = (
          * For example to search group X use following pattern: name=X
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Used to test the management connection to the cluster.
        * The test pings the MVIP and SVIP, and executes a simple API method to verify connectivity.
        */
       sf_check_connections?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -13104,7 +13203,7 @@ export type Ansible25 = (
          *
          */
         fields?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Executes a low-down and dirty telnet command, not going through the module subsystem.
@@ -13167,7 +13266,7 @@ export type Ansible25 = (
          * Login or username prompt to expect
          */
         password_prompt?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure gslb vserver entities in Netscaler.
@@ -13316,14 +13415,14 @@ export type Ansible25 = (
          * Maximum value = C(128)
          */
         v6persistmasklen?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the atomic host platform
        * Rebooting of Atomic host platform should be done outside this module
        */
       atomic_host?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Gslb object
@@ -13427,7 +13526,7 @@ export type Ansible25 = (
          * Name for the gslb object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to perform various operations related to backup, restore and reset of ESXi host configuration.
@@ -13453,7 +13552,7 @@ export type Ansible25 = (
          * Name of ESXi server. This is required only if authentication against a vCenter is done.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can manage a pacemaker cluster and nodes from Ansible using the pacemaker cli.
@@ -13479,7 +13578,7 @@ export type Ansible25 = (
          * Timeout when the module should considered that the action has failed
          */
         timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages locales by editing /etc/locale.gen and invoking locale-gen.
@@ -13495,7 +13594,7 @@ export type Ansible25 = (
          * Name and encoding of the locale, such as "en_GB.UTF-8".
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove domains.
@@ -13529,7 +13628,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -13561,7 +13661,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -13577,7 +13678,7 @@ export type Ansible25 = (
          * Network domain for networks in the domain.
          */
         network_domain?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will let you trigger, acknowledge or resolve a PagerDuty incident by sending events
@@ -13621,7 +13722,7 @@ export type Ansible25 = (
          * For C(acknowledged) or C(resolved) I(state) - Text that will appear in the incident's log associated with this event.
          */
         desc?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, removes, or updates GitHub access keys.
@@ -13664,7 +13765,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * SSH key name
          */
@@ -13675,7 +13777,7 @@ export type Ansible25 = (
          * Whether to remove a key, ensure that it exists, or update its value.
          */
         state?: "present" | "absent";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Register a template from URL, create a template from a ROOT volume of a stopped VM or its snapshot, extract and delete templates.
@@ -13717,7 +13819,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name the hypervisor to be used for creating the new template.
          * Relevant when using C(state=present).
@@ -13768,7 +13871,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         /**
          * Name of the zone you wish the template to be registered or deleted from.
@@ -13800,7 +13904,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Register the template having XS/VMWare tools installed in order to support dynamic scaling of VM CPU/memory.
          * Only used if C(state) is present.
@@ -13827,7 +13932,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -13861,7 +13967,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Template details in key/value pairs.
          */
@@ -13892,7 +13999,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Register the template to be featured.
          * Only used if C(state) is present.
@@ -13919,7 +14027,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_key?: string;
         /**
          * Default: 64
@@ -13960,7 +14069,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * true if this template requires HVM.
          */
@@ -13986,7 +14096,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * True if the template supports the password reset feature.
          */
@@ -14012,7 +14123,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Display text of the template.
          */
@@ -14068,7 +14180,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the project the template to be registered in.
          */
@@ -14094,7 +14207,7 @@ export type Ansible25 = (
          * OS type that best represents the OS of this template.
          */
         os_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete or modify protection groups on Pure Storage FlashArrays.
@@ -14134,7 +14247,7 @@ export type Ansible25 = (
          * Define whether to eradicate the protection group on delete and leave in trash.
          */
         eradicate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve an auth token from an OpenStack Cloud
@@ -14144,7 +14257,7 @@ export type Ansible25 = (
          * Ignored. Present for backwards compatibility
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module transfers files via SCP from or to remote devices running Junos.
@@ -14168,7 +14281,7 @@ export type Ansible25 = (
          * The C(remote_src) argument enables the download of files (I(scp get)) from the remote device. The default behavior is to upload files (I(scp put)) to the remote device.
          */
         remote_src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP target host configurations on HUAWEI CloudEngine switches.
@@ -14228,7 +14341,7 @@ export type Ansible25 = (
          * To configure notify type as trap or inform.
          */
         notify_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and delete an IPA service using IPA API
@@ -14253,7 +14366,7 @@ export type Ansible25 = (
          * Can not be changed as it is the unique identifier.
          */
         krbcanonicalname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure SSLKeyAndCertificate object
@@ -14345,7 +14458,7 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Run targets in a Makefile.
@@ -14361,7 +14474,7 @@ export type Ansible25 = (
          * Any extra parameters to pass to make
          */
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: none
@@ -14369,7 +14482,7 @@ export type Ansible25 = (
          * The target to run
          */
         target?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create a dynamic address group object in the firewall used for policy rules
@@ -14412,7 +14525,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -14425,42 +14539,42 @@ export type Ansible25 = (
          * dynamic filter user by the dynamic address group
          */
         dag_filter: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create a VMware portgroup
        */
       vmware_portgroup?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Create, Retrieve and remove certificates DigitalOcean.
        */
       digital_ocean_certificate?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure GslbService object
@@ -14610,7 +14724,7 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as 0.
          */
         min_members?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages the AFM port lists on a BIG-IP. This module can be used to add and remove port list entries.
@@ -14650,38 +14764,38 @@ export type Ansible25 = (
          * Description of the port list
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, update and remove network ACL rules.
        */
       cs_network_acl_rule?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Read the AWS documentation for WAF U(https://aws.amazon.com/documentation/waf/)
@@ -14723,7 +14837,7 @@ export type Ansible25 = (
          * I(regex_pattern) is a dict with a C(name) key and C(regex_strings) list of strings to match
          */
         filters?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures MAC address pools and MAC address blocks on Cisco UCS Manager.
@@ -14776,7 +14890,7 @@ export type Ansible25 = (
          * sequential - Cisco UCS Manager selects the lowest available identity from the pool.
          */
         order?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage contexts or VRFs on Cisco ACI fabrics.
@@ -14810,7 +14924,7 @@ export type Ansible25 = (
          * The description for the VRF.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV hosts.
@@ -14821,7 +14935,7 @@ export type Ansible25 = (
          * For example to search host X from datacenter Y use following pattern: name=X and datacenter=Y
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure Sampled Flow (sFlow) to monitor traffic on an interface in real time, detect abnormal traffic, and locate the source of attack traffic, ensuring stable running of the network.
@@ -14913,7 +15027,7 @@ export type Ansible25 = (
          * Specifies the description of an sFlow collector. The value is a string of 1 to 255 case-sensitive characters without spaces.
          */
         collector_description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages UDLD interface configuration params.
@@ -14933,7 +15047,7 @@ export type Ansible25 = (
          * Manages UDLD mode for an interface.
          */
         mode?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * PanOS module that will commit firewall's candidate configuration on
@@ -14979,7 +15093,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -14994,7 +15109,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove a website on a Webfaction host.  Further documentation at http://github.com/quentinsf/ansible-webfaction.
@@ -15005,9 +15120,9 @@ export type Ansible25 = (
          */
         site_apps?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -15020,9 +15135,9 @@ export type Ansible25 = (
          */
         subdomains?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The webfaction host on which the site should be created.
@@ -15055,7 +15170,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The webfaction password to use
          */
@@ -15068,7 +15184,7 @@ export type Ansible25 = (
          * The name of the website
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify and delete an IPA DNS Record using IPA API.
@@ -15106,7 +15222,7 @@ export type Ansible25 = (
          * The DNS zone name to which DNS record needs to be managed.
          */
         zone_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * PanOS module that allows changes to the user account passwords by doing API calls to the Firewall using pan-api as the protocol.
@@ -15159,7 +15275,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -15168,7 +15285,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure CertificateManagementProfile object
@@ -15216,7 +15333,7 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The C(win_wakeonlan) module sends magic Wake-on-LAN (WoL) broadcast packets.
@@ -15238,16 +15355,16 @@ export type Ansible25 = (
          * UDP port to use for magic Wake-on-LAN packet.
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates a maintenance window for status.io
        * Deletes a maintenance window for status.io
        */
       statusio_maintenance?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use this module to manage order of boot devices
@@ -15286,7 +15403,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If set, request UEFI boot explicitly. Strictly speaking, the spec suggests that if not set, the system should BIOS boot and offers no "don't care" option. In practice, this flag not being set does not preclude UEFI boot on any system I've encountered.
          */
@@ -15312,7 +15430,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -15333,7 +15452,7 @@ export type Ansible25 = (
          * Remote RMCP port.
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows you to create/delete/stop Qemu(KVM) Virtual Machines in Proxmox VE cluster.
@@ -15369,7 +15488,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Revert a pending change.
          */
@@ -15384,7 +15504,7 @@ export type Ansible25 = (
          * C(policy) NUMA allocation policy.
          */
         numa?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Specifies the SCSI controller model.
@@ -15426,7 +15546,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -15456,7 +15577,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets the keyboard layout for VNC server.
          */
@@ -15487,7 +15609,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Creates a virtual hardware watchdog device.
          */
@@ -15499,7 +15622,7 @@ export type Ansible25 = (
          * /!\ If you pass through a host serial device, it is no longer possible to migrate such machines - use with special care.
          */
         serial?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         numa_enabled?:
           | boolean
@@ -15523,7 +15646,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -15572,7 +15696,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the BIOS implementation.
          */
@@ -15642,7 +15767,7 @@ export type Ansible25 = (
          * /!\ This option allows direct access to host hardware. So it is no longer possible to migrate such machines - use with special care.
          */
         hostpci?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: present
@@ -15678,7 +15803,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 512
          *
@@ -15696,7 +15822,7 @@ export type Ansible25 = (
          * If you specify no bridge, we create a kvm 'user' (NATed) network device, which provides DHCP and DNS services.
          */
         net?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Target node. Only allowed if the original VM is on shared storage.
@@ -15733,7 +15859,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Proxmox VE node, where the new VM will be created.
          * Only required for C(state=present).
@@ -15765,7 +15892,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash/dictionary of volume used as VIRTIO hard disk. C(virtio='{"key":"value", "key":"value"}').
          * Keys allowed are - C(virto[n]) where 0 ≤ n ≤ 15.
@@ -15775,7 +15903,7 @@ export type Ansible25 = (
          * C(format) is the drive's backing file's data format. C(qcow2|raw|subvol).
          */
         virtio?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: no
@@ -15804,7 +15932,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1000
          *
@@ -15857,7 +15986,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -15885,7 +16015,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash/dictionary of volume used as sata hard disk or CD-ROM. C(sata='{"key":"value", "key":"value"}').
          * Keys allowed are - C(sata[n]) where 0 ≤ n ≤ 5.
@@ -15895,7 +16026,7 @@ export type Ansible25 = (
          * C(format) is the drive's backing file's data format. C(qcow2|raw|subvol).
          */
         sata?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Enable/disable the protection flag of the VM. This will enable/disable the remove VM and remove disk operations.
@@ -15922,7 +16053,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Allow reboot. If set to yes, the VM exit on reboot.
          */
@@ -15948,7 +16080,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Selectively enable hotplug features.
          * This is a comma separated list of hotplug features C('network', 'disk', 'cpu', 'memory' and 'usb').
@@ -15965,7 +16098,7 @@ export type Ansible25 = (
          * Values allowed are - C("/dev/parport\d+|/dev/usb/lp\d+").
          */
         parallel?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Add the new VM to the specified pool.
@@ -16018,7 +16151,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the VM ID. Instead use I(name) parameter.
          * If vmid is not set, the next available VM ID will be fetched from ProxmoxAPI.
@@ -16059,7 +16193,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Sets number of hotplugged vcpus.
          */
@@ -16101,7 +16236,7 @@ export type Ansible25 = (
          * C(format) is the drive's backing file's data format. C(qcow2|raw|subvol).
          */
         scsi?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * A hash/dictionary of volume used as IDE hard disk or CD-ROM. C(ide='{"key":"value", "key":"value"}').
@@ -16112,7 +16247,7 @@ export type Ansible25 = (
          * C(format) is the drive's backing file's data format. C(qcow2|raw|subvol).
          */
         ide?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: no
@@ -16141,7 +16276,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -16169,12 +16305,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a list of settings you want to delete.
          */
         delete?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete AWS Dynamo DB tables.
@@ -16182,13 +16319,13 @@ export type Ansible25 = (
        * Returns the status of the specified table.
        */
       dynamodb_table?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use facts to create ad-hoc groups that can be used later in a playbook.
@@ -16205,15 +16342,15 @@ export type Ansible25 = (
          * The variables whose values will be used as groups
          */
         key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete a Rackspace Cloud Monitoring notification that specifies a channel that can be used to communicate alarms, such as email, webhooks, or PagerDuty. Rackspace monitoring module flow | rax_mon_entity -> rax_mon_check -> *rax_mon_notification* -> rax_mon_notification_plan -> rax_mon_alarm
        */
       rax_mon_notification?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will let you start and pause Uptime Robot Monitoring
@@ -16231,7 +16368,7 @@ export type Ansible25 = (
          * Uptime Robot API key.
          */
         apikey: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Management of LXD profiles
@@ -16255,7 +16392,7 @@ export type Ansible25 = (
          * Not all config values are supported to apply the existing profile. Maybe you need to delete and recreate a profile.
          */
         config?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: "{}/.config/lxc/client.crt" .format(os.environ["HOME"])
@@ -16267,7 +16404,7 @@ export type Ansible25 = (
          * The devices for the profile (e.g. {"rootfs": {"path": "/dev/kvm", "type": "unix-char"}). See U(https://github.com/lxc/lxd/blob/master/doc/rest-api.md#patch-3)
          */
         devices?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: present
@@ -16291,7 +16428,7 @@ export type Ansible25 = (
          * Name of a profile.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure SSLProfile object
@@ -16387,15 +16524,15 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete a Rackspace Cloud Monitoring check associated with an existing rax_mon_entity. A check is a specific test or measurement that is performed, possibly from different monitoring zones, on the systems you monitor. Rackspace monitoring module flow | rax_mon_entity -> *rax_mon_check* -> rax_mon_notification -> rax_mon_notification_plan -> rax_mon_alarm
        */
       rax_mon_check?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure SnmpTrapProfile object
@@ -16439,7 +16576,7 @@ export type Ansible25 = (
          * Uuid of the snmp trap profile object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage ACI Fiber Channel interface policies on Cisco ACI fabrics.
@@ -16466,48 +16603,48 @@ export type Ansible25 = (
          * The description of the Fiber Channel interface policy.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module uses rabbitMQ Rest API to create/delete bindings
        */
       rabbitmq_binding?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -16536,7 +16673,7 @@ export type Ansible25 = (
          * Mode of the link aggregation group.
          */
         mode?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VLAN configurations on NX-OS switches.
@@ -16606,7 +16743,7 @@ export type Ansible25 = (
          * Single VLAN ID.
          */
         vlan_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages interface specific VRF configuration.
@@ -16626,7 +16763,7 @@ export type Ansible25 = (
          * Name of VRF to be managed.
          */
         vrf?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of an ospf instance.
@@ -16642,7 +16779,7 @@ export type Ansible25 = (
          * Name of the ospf instance.
          */
         ospf?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module generates a self-signed certificate that can be used by GlobalProtect client, SSL connector, or
@@ -16679,7 +16816,7 @@ export type Ansible25 = (
          * Certificate CN (common name) embedded in the certificate signature.
          */
         cert_cn: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about an ESXi host's firewall configuration information when ESXi hostname or Cluster name is given.
@@ -16695,7 +16832,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the checks that should be run on a machine by I(Sensu).
@@ -16729,7 +16866,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When to disable handling of check failures
          */
@@ -16749,9 +16887,9 @@ export type Ansible25 = (
          */
         handlers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -16781,13 +16919,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash/dictionary of custom parameters for mixing to the configuration.
          * You can't rewrite others module parameters using this
          */
         custom?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The check source, used to create a JIT Sensu client for an external resource (e.g. a network switch).
@@ -16830,16 +16969,17 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Other checks this check depends on, if dependencies fail,
          * handling of this check will be disabled
          */
         dependencies?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * List of subscribers/channels this check should run for
@@ -16847,9 +16987,9 @@ export type Ansible25 = (
          */
         subscribers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Classifies the check as an aggregate check,
@@ -16877,7 +17017,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /etc/sensu/conf.d/checks.json
          *
@@ -16917,7 +17058,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Check interval in seconds
          */
@@ -16966,21 +17108,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Add and remove domain from the list of permissive domain.
        */
       selinux_permissive?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage OpenStack Identity users. Users can be created, updated or deleted using this module. A user will be updated if I(name) matches an existing user and I(state) is present. The value for I(name) cannot be updated without deleting and re-creating the user.
        */
@@ -17039,7 +17183,7 @@ export type Ansible25 = (
          * Username for the user
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used for fetching UCS files from remote machines and storing them locally in a file tree, organized by hostname. Note that this module is written to transfer UCS files that might not be present, so a missing remote UCS won't be an error unless fail_on_missing is set to 'yes'.
@@ -17077,7 +17221,7 @@ export type Ansible25 = (
          * Create a backup file including the timestamp information so you can get the original file back if you somehow clobbered it incorrectly.
          */
         backup?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * If behind NAT and need to know the public IP of your internet gateway.
@@ -17090,7 +17234,7 @@ export type Ansible25 = (
          * C(?format=json) will be appended per default.
          */
         api_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows one to (re)generate OpenSSL DH-params. This module uses file common arguments to specify generated file permissions.
@@ -17131,27 +17275,29 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 4096
          *
          * Size (in bits) of the generated DH-params
          */
         size?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/modify/remove networking bandwidth and associated resources for a type of traffic on a particular link.
        */
       flowadm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages NetStream template configuration on HUAWEI CloudEngine switches.
        */
@@ -17186,7 +17332,7 @@ export type Ansible25 = (
          * Configure flexible flow statistics template keywords.
          */
         match?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Runs configuration templates, creates workflows and runs workflow actions in Radware vDirect server.
@@ -17274,7 +17420,7 @@ export type Ansible25 = (
          * vDirect server HTTP port number, may be set as C(VDIRECT_HTTP_PORT) environment variable.
          */
         vdirect_http_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove a Stack to an OpenStack Heat
@@ -17318,7 +17464,7 @@ export type Ansible25 = (
          * Path of the template file to use for the stack creation
          */
         template?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about server instances from OpenStack.
@@ -17338,7 +17484,7 @@ export type Ansible25 = (
          * restrict results to servers with names or UUID matching this glob expression (e.g., C<web*>).
          */
         server?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind Bridge Domain to L3 Out on Cisco ACI fabrics.
@@ -17363,7 +17509,7 @@ export type Ansible25 = (
          * The name of the Tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Security policies allow you to enforce rules and take action, and can be as general or specific as needed. The policy rules are compared against the incoming traffic in sequence, and because the first rule that matches the traffic is applied, the more specific rules must precede the more general ones.
@@ -17389,9 +17535,9 @@ export type Ansible25 = (
          */
         hip_profiles?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -17430,7 +17576,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -17439,9 +17586,9 @@ export type Ansible25 = (
         data_filtering?: string;
         category?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -17450,9 +17597,9 @@ export type Ansible25 = (
          */
         to_zone?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: application-default
@@ -17461,9 +17608,9 @@ export type Ansible25 = (
          */
         service?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -17472,9 +17619,9 @@ export type Ansible25 = (
          */
         application?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -17483,9 +17630,9 @@ export type Ansible25 = (
          */
         destination?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -17494,9 +17641,9 @@ export type Ansible25 = (
          */
         from_zone?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -17505,9 +17652,9 @@ export type Ansible25 = (
          */
         source_user?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -17582,9 +17729,9 @@ export type Ansible25 = (
          */
         source?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: allow
@@ -17619,7 +17766,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -17647,8 +17795,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Adds or removes Vertica database user and, optionally, assigns roles.
@@ -17656,15 +17805,15 @@ export type Ansible25 = (
        * In such a situation, if the module tries to remove the user it will fail and only remove roles granted to the user.
        */
       vertica_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -17771,32 +17920,34 @@ export type Ansible25 = (
          * Organization that should own the credential.
          */
         organization?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage groups in oVirt/RHV
        */
       ovirt_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * create/delete/dump zabbix template
        */
       zabbix_template?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Retrieve facts about one or more oVirt scheduling policies.
        */
@@ -17809,7 +17960,7 @@ export type Ansible25 = (
          * Name of the scheduling policy, can be used as glob expression.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Perform server actions on an existing compute instance from OpenStack. This module does not return any data other than changed true/false.
@@ -17837,7 +17988,7 @@ export type Ansible25 = (
          * Name or ID of the instance
          */
         server?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Issue Nitro API requests to a Netscaler instance.
@@ -17867,22 +18018,22 @@ export type Ansible25 = (
          */
         expected_nitro_errorcode?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * A dictionary which defines the filter with which to refine the Nitro objects returned by the C(get_filtered) I(operation).
          */
         filter?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * A dictionary which defines the key arguments by which we will select the Nitro object to operate on.
          * It is required for the following I(operation) values: C(get_by_args), C('delete_by_args').
          */
         args?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The id of the target Netscaler instance when issuing a Nitro request through a MAS proxy.
@@ -17908,7 +18059,7 @@ export type Ansible25 = (
          * It is required for the following I(operation) values: C(add), C(update), C(action).
          */
         attributes?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The action to perform when the I(operation) value is set to C(action).
@@ -17962,7 +18113,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The password with which to authenticate to the Netscaler node.
          */
@@ -17971,7 +18123,7 @@ export type Ansible25 = (
          * The authentication token provided by the C(mas_login) operation. It is required when issuing Nitro API calls through a MAS proxy.
          */
         nitro_auth_token?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on Mellanox ONYX network devices.
@@ -18035,7 +18187,7 @@ export type Ansible25 = (
          * Description of Interface.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set the location settings of a Windows Server.
@@ -18060,7 +18212,7 @@ export type Ansible25 = (
          * The language format to set for the current user, see U(https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx) for a list of culture names to use. This needs to be set if C(location) or C(unicode_language) is not set.
          */
         format?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module controls the VDO dedupe and compression device. VDO, or Virtual Data Optimizer, is a device-mapper target that provides inline block-level deduplication, compression, and thin provisioning capabilities to primary storage.
@@ -18095,7 +18247,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the amount of index memory in gigabytes.  The default is 0.25.  The special decimal values 0.25, 0.5, and 0.75 can be used, as can any positive integer. This option is only available when creating a new volume, and cannot be changed for an existing volume.
          */
@@ -18189,7 +18342,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The size of the increment by which the physical size of a VDO volume is grown, in megabytes (or may be issued with an LVM-style suffix of K, M, G, or T).  Must be a power of two between 128M and 32G.  The default is 2G, which supports volumes having a physical size up to 16T. The maximum, 32G, supports a physical size of up to 256T. This option is only available when creating a new volume, and cannot be changed for an existing volume.
          */
@@ -18198,7 +18352,7 @@ export type Ansible25 = (
          * Specifies the number of threads across which to subdivide parts of the VDO processing based on logical block addresses.  Valid values are integer values from 1 to 100 (lower numbers are preferable due to overhead). The default is 1.  Existing volumes will maintain their previously configured setting unless a different value is specified in the playbook.
          */
         logicalthreads?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or terminates azure instances. When created optionally waits for it to be 'running'.
@@ -18323,7 +18477,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -18382,7 +18537,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the azure storage account in which to store the data disks.
          */
@@ -18428,33 +18584,35 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Creates or deletes instances of task definitions.
        */
       ecs_task?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Will install, upgrade and remove packages with swdepot package manager (HP-UX)
        */
       swdepot?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Allows creating and removing managed IAM policies
        */
@@ -18485,21 +18643,21 @@ export type Ansible25 = (
          * Remove all other non default revisions, if this is used with C(make_default) it will result in all other versions of this policy being deleted.
          */
         only_version?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage DNS records on Rackspace Cloud DNS
        */
       rax_dns_record?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for one Azure Function App or all Function Apps within a resource group
        */
       azure_rm_functionapp_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM tcp half-open monitors.
@@ -18549,7 +18707,7 @@ export type Ansible25 = (
          * Port address part of the IP/port definition. If this parameter is not provided when creating a new monitor, then the default value will be '*'. Note that if specifying an IP address, a value between 1 and 65535 must be specified
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage users,tenants, roles from OpenStack.
@@ -18630,7 +18788,7 @@ export type Ansible25 = (
          * The tenant name that has be added/removed
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can create and destroy unformatted GCE persistent disks U(https://developers.google.com/compute/docs/disks#persistentdisks). It also supports attaching and detaching disks from running instances. Full install/configuration instructions for the gce* modules can be found in the comments of ansible/test/gce_tests.py.
@@ -18661,7 +18819,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 10
          *
@@ -18703,9 +18862,9 @@ export type Ansible25 = (
         state?: string;
         external_projects?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: no
@@ -18734,7 +18893,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * path to the JSON file associated with the service account email
          */
@@ -18759,7 +18919,7 @@ export type Ansible25 = (
          * GCE mount mode of disk, READ_ONLY (default) or READ_WRITE
          */
         mode?: "READ_WRITE" | "READ_ONLY";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower users. See U(https://www.ansible.com/tower) for an overview.
@@ -18799,19 +18959,19 @@ export type Ansible25 = (
          * Email address of the user.
          */
         email?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Copies AMI from a source region to a destination region. This module has a dependency on python-boto >= 2.5
        */
       ec2_ami_copy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create new virtual machines from templates or other virtual machines.
@@ -19032,21 +19192,22 @@ export type Ansible25 = (
          * This parameter is case sensitive.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module works like M(fetch). It is used for fetching a base64- encoded blob containing the data in a remote file.
        * This module is also supported for Windows targets.
        */
       slurp?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Toggles SELinux booleans.
        */
@@ -19076,7 +19237,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -19104,12 +19266,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the boolean to configure.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage CORS for S3 buckets in AWS
@@ -19127,79 +19290,79 @@ export type Ansible25 = (
          * Name of the s3 bucket
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/remove Docker volumes.
        * Performs largely the same function as the "docker volume" CLI subcommand.
        */
       docker_volume?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * This module allows management of resources in an OpenShift cluster. The inventory host can be any host with network connectivity to the OpenShift cluster; the default port being 8443/TCP.
        * This module relies on a token to authenticate to OpenShift. This can either be a user or a service account.
        */
       oc?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add a VMware Standard Switch to an ESXi host
        */
       vmware_vswitch?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Gather facts about Network ACLs in an AWS VPC
        */
       ec2_vpc_nacl_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * CyberArk User Management using PAS Web Services SDK. It currently supports the following actions Get User Details, Add User, Update User, Delete User.
@@ -19235,7 +19398,7 @@ export type Ansible25 = (
          * Dictionary set by a CyberArk authentication containing the different values to perform actions on a logged-on CyberArk session, please see M(cyberark_authentication) module for an example of cyberark_session.
          */
         cyberark_session: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The name of the group the user will be added to.
@@ -19268,7 +19431,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -19296,7 +19460,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -19315,7 +19480,7 @@ export type Ansible25 = (
          * The user email address.
          */
         email?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower groups. See U(https://www.ansible.com/tower) for an overview.
@@ -19385,7 +19550,7 @@ export type Ansible25 = (
          * The description to use for the group.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Locates and consolidates fragmented files on local volumes to improve system performance.
@@ -19417,7 +19582,7 @@ export type Ansible25 = (
          * If this parameter is omitted, all volumes (not excluded) will be fragmented.
          */
         include_volumes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove local groups.
@@ -19438,7 +19603,7 @@ export type Ansible25 = (
          * Description of the group
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates, deletes or modifies hosts on Infinibox.
@@ -19462,30 +19627,30 @@ export type Ansible25 = (
          * List of wwns of the host
          */
         wwns?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the management of AWS Lambda function event source mappings such as DynamoDB and Kinesis stream events via the Ansible framework. These event source mappings are relevant only in the AWS Lambda pull model, where AWS Lambda invokes the function. It is idempotent and supports "Check" mode.  Use module M(lambda) to manage the lambda function itself and M(lambda_alias) to manage function aliases.
        */
       lambda_event?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -19542,13 +19707,13 @@ export type Ansible25 = (
          * Specifies what routes of the virtual address the system advertises. When C(when_any_available), advertises the route when any virtual server is available. When C(when_all_available), advertises the route when all virtual servers are available. When (always), always advertises the route regardless of the virtual servers available.
          */
         advertise_route?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates and removes firewall rules.
        */
       cs_firewall?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove LDAP attribute values.
@@ -19595,7 +19760,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A DN to bind with. If this is omitted, we'll try a SASL bind with the EXTERNAL mechanism. If this is blank, we'll use an anonymous bind.
          */
@@ -19607,7 +19773,7 @@ export type Ansible25 = (
          */
         state?: "present" | "absent" | "exact";
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The password to use with I(bind_dn).
@@ -19644,8 +19810,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an aireos node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -19678,35 +19845,35 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gathers facts about remote vmware host.
        */
       vmware_host_facts?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -19752,7 +19919,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The source/network you would like to add/remove to/from firewalld
          */
@@ -19786,7 +19954,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The amount of time the rule should be in effect for when non-permanent.
          */
@@ -19803,7 +19972,7 @@ export type Ansible25 = (
          * Rich rule to add/remove to/from firewalld.
          */
         rich_rule?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Managing device groups allows you to create HA pairs and clusters of BIG-IP devices. Usage of this module should be done in conjunction with the C(bigip_configsync_actions) to sync configuration across the pair or cluster if auto-sync is disabled.
@@ -19842,7 +20011,7 @@ export type Ansible25 = (
          * Description of the device group.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage logical networks in oVirt/RHV
@@ -19869,7 +20038,7 @@ export type Ansible25 = (
          */
         state?: "present" | "absent";
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Name of the label to assign to the network.
@@ -19897,12 +20066,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * If I(True) network will be marked as network for VM.
@@ -19930,7 +20100,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Datacenter name where network reside.
          */
@@ -19946,9 +20117,9 @@ export type Ansible25 = (
          */
         clusters?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Specify VLAN tag.
@@ -19980,61 +20151,62 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Adds or removes a user from a MongoDB database.
        */
       mongodb_user?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Return canonical (NAA) from an ESXi host based on SCSI target ID
        */
       vmware_target_canonical_facts?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -20071,13 +20243,13 @@ export type Ansible25 = (
          * Dictionary of external_ids applied to a port.
          */
         external_ids?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Name of port to manage on the bridge
          */
         port: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove DNS domains.
@@ -20099,7 +20271,7 @@ export type Ansible25 = (
          * Required if C(state=present).
          */
         server_ip?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure data-port (DP) network interface for DHCP. By default DP interfaces are static.
@@ -20142,7 +20314,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -20170,7 +20343,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the zone for the interface. If the zone does not exist it is created but if the zone exists and it is not of the layer3 type the operation will fail.
          *
@@ -20184,7 +20358,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device being configured.
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will manage LTM policy rules on a BIG-IP.
@@ -20229,13 +20403,13 @@ export type Ansible25 = (
          * The name of the rule.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module configures the timezone setting, both of the system clock and of the hardware clock. I(Currently only Linux platform is supported.) It is recommended to restart C(crond) after changing the timezone, otherwise the jobs may run at the wrong time. It uses the C(timedatectl) command if available. Otherwise, it edits C(/etc/sysconfig/clock) or C(/etc/timezone) for the system clock, and uses the C(hwclock) command for the hardware clock. If you want to set up the NTP, use M(service) module.
        */
       timezone?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Cisco IOS configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with IOS configuration sections in a deterministic way.
@@ -20324,7 +20498,7 @@ export type Ansible25 = (
          * Use this argument to specify one or more lines that should be ignored during the diff.  This is used for lines in the configuration that are automatically updated by the system.  This argument takes a list of regular expressions or exact line matches.
          */
         diff_ignore_lines?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage BIG-IP server configuration. This module is able to manipulate the server definitions in a BIG-IP.
@@ -20371,7 +20545,7 @@ export type Ansible25 = (
          * Data center the server belongs to. When creating a new GTM server, this value is required.
          */
         datacenter?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Packs an archive. It is the opposite of M(unarchive). By default, it assumes the compression source exists on the target. It will not copy the source file from the local system to the target before archiving. Source files can be deleted after archival by specifying I(remove=True).
@@ -20386,18 +20560,18 @@ export type Ansible25 = (
          */
         path:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Remote absolute path, glob, or list of paths or globs for the file or files to exclude from the archive
          */
         exclude_path?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: no
@@ -20426,7 +20600,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: gz
          *
@@ -20434,20 +20609,20 @@ export type Ansible25 = (
          * Support for xz was added in version 2.5.
          */
         format?: "bz2" | "gz" | "tar" | "xz" | "zip";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the user to manage verified email and domain identity for SES.
        * This covers verifying and removing identities as well as setting up complaint, bounce and delivery notification settings.
        */
       aws_ses_identity?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds service hooks and removes service hooks that have an error status.
@@ -20506,8 +20681,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ApplicationProfile object
@@ -20579,7 +20755,7 @@ export type Ansible25 = (
          * The name of the application profile.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will search a file for a line, and ensure that it is present or absent.
@@ -20662,7 +20838,7 @@ export type Ansible25 = (
          * The command is passed securely so shell features like expansion and pipes won't work.
          */
         validate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove a Big Cloud Fabric switch.
@@ -20704,7 +20880,7 @@ export type Ansible25 = (
          * Fabric role of the switch.
          */
         fabric_role?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VRFs on CISCO NXOS network devices.
@@ -20760,7 +20936,7 @@ export type Ansible25 = (
          * Description of the VRF or keyword 'default'.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VRF AF
@@ -20789,7 +20965,7 @@ export type Ansible25 = (
          * Name of the VRF.
          */
         vrf?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV virtual machines.
@@ -20812,7 +20988,7 @@ export type Ansible25 = (
          * If I(true) performed search will take case into account.
          */
         case_sensitive?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Remove compute instances from OpenStack.
@@ -20967,7 +21143,7 @@ export type Ansible25 = (
          * When I(auto_ip) is true and this option is true, the I(auto_ip) code will attempt to re-use unassigned floating ips in the project before creating a new one. It is important to note that it is impossible to safely do this concurrently, so if your use case involves concurrent server creation, it is highly recommended to set this to false and to delete the floating ip associated with a server when the server is deleted using I(delete_fip).
          */
         reuse_ips?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Ensure that the domain named by C(dns_domain_name) exists and is reachable. If the domain is not reachable, the domain is created in a new forest on the target Windows Server 2012R2+ host. This module may require subsequent use of the M(win_reboot) action if changes are made.
@@ -20991,7 +21167,7 @@ export type Ansible25 = (
          * If not set then the default path is C(%SYSTEMROOT%\SYSVOL).
          */
         sysvol_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides support for managing Serverless Framework (https://serverless.com/) project deployments and stacks.
@@ -21002,9 +21178,9 @@ export type Ansible25 = (
          */
         functions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -21033,7 +21209,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: us-east-1
          *
@@ -21058,7 +21235,7 @@ export type Ansible25 = (
          * The name of the serverless framework project stage to deploy to. This uses the serverless framework default "dev".
          */
         stage?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to manage (start, stop, restart) services on a given ESXi host.
@@ -21098,28 +21275,29 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages "spells" on Source Mage GNU/Linux using I(sorcery) toolchain
        */
       sorcery?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, Edit, or Remove Registry Keys and Values using ItemProperties Cmdlets
        */
       win_regedit?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module provides declarative management of logging on Cisco Ios devices.
        */
@@ -21156,7 +21334,7 @@ export type Ansible25 = (
          * Size of buffer. The acceptable value is in range from 4096 to 4294967295 bytes.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Tests reachability using ping from network device to a remote destination.
@@ -21190,7 +21368,7 @@ export type Ansible25 = (
          * The source IP Address.
          */
         source?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of node system attributes on Cisco IOS devices.  It provides an option to configure host system parameters or remove those parameters from the device active configuration.
@@ -21226,7 +21404,7 @@ export type Ansible25 = (
          * Administrative control for enabling or disabling DNS lookups.  When this argument is set to True, lookups are performed and when it is set to False, lookups are not performed.
          */
         lookup_enabled?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage RabbitMQ plugins.
@@ -21253,7 +21431,7 @@ export type Ansible25 = (
          * Does not disable plugins that are not in the names list.
          */
         new_only?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module offers the ability to be output to the log buffer, log file, console, terminal, or log host on HUAWEI CloudEngine switches.
@@ -21364,21 +21542,21 @@ export type Ansible25 = (
          * VPN name on a log server. The value is a string of 1 to 31 case-sensitive characters. The default value is _public_.
          */
         vrf_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages MacPorts packages
        */
       macports?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -21410,7 +21588,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Description of the affinity group.
          */
@@ -21429,7 +21608,7 @@ export type Ansible25 = (
          */
         state?: "absent" | "present";
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Name of the affinity group to manage.
@@ -21461,22 +21640,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the hosts names, which should have assigned this affinity group.
          * This parameter is support since oVirt/RHV 4.1 version.
          */
         hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         timeout?: number | string;
         /**
@@ -21511,15 +21691,16 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the VMs names, which should have assigned this affinity group.
          */
         vms?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         wait?:
           | boolean
@@ -21543,8 +21724,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This will configure both login and motd banners on network devices. It allows playbooks to add or remote banner text from the active running configuration.
@@ -21564,7 +21746,7 @@ export type Ansible25 = (
          * Specifies which banner that should be configured on the remote device.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove users from groups
@@ -21588,7 +21770,7 @@ export type Ansible25 = (
          * Ignored. Present for backwards compatibility
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ControllerProperties object
@@ -21888,7 +22070,7 @@ export type Ansible25 = (
          * Units(SEC).
          */
         dead_se_detection_timer?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VXLAN Virtual access point on HUAWEI CloudEngine Devices.
@@ -21924,7 +22106,7 @@ export type Ansible25 = (
          * Specifies an encapsulation type of packets allowed to pass through a Layer 2 sub-interface.
          */
         encapsulation?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to Create, Delete and Restore server snapshots in CenturyLink Cloud.
@@ -21941,9 +22123,9 @@ export type Ansible25 = (
          */
         server_ids:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -21957,7 +22139,7 @@ export type Ansible25 = (
          * Whether to wait for the provisioning tasks to finish before returning.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Layer-2 interface on network devices.
@@ -21998,9 +22180,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         pn_description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Registers services and checks for an agent with a consul cluster. A service is some process running on the agent node that should be advertised by consul's discovery mechanism. It may optionally supply a check definition, a periodic service test to notify the consul cluster of service's health.
@@ -22029,9 +22212,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -22138,7 +22321,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 8500
          *
@@ -22146,7 +22330,7 @@ export type Ansible25 = (
          */
         port?: number | string;
         check_host?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages symbolic links using the 'update-alternatives' tool
@@ -22172,7 +22356,7 @@ export type Ansible25 = (
          * The generic name of the link.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can add or remove tags U(https://cloud.google.com/compute/docs/instances/#tags) to/from GCE instance.
@@ -22189,9 +22373,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * service account email
@@ -22215,7 +22399,7 @@ export type Ansible25 = (
          * your GCE project ID
          */
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module to creates, deletes or modifies pools on Infinibox.
@@ -22245,7 +22429,7 @@ export type Ansible25 = (
          * Pool Physical Capacity in MB, GB or TB units. If pool size is not set on pool creation, size will be equal to 1TB. See examples.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages core NTP configuration.
@@ -22285,7 +22469,7 @@ export type Ansible25 = (
          * Local source interface from which NTP messages are sent. Must be fully qualified interface name or keyword 'default'
          */
         source_int?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for the initialization, suspension and resumption of an asynchronous mirror group's synchronization for NetApp E-series storage arrays.
@@ -22341,7 +22525,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -22369,12 +22554,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the async mirror group you wish to target
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV virtual machines relate to a storage domain.
@@ -22384,19 +22570,19 @@ export type Ansible25 = (
          * Flag which indicates whether to get unregistered virtual machines which contain one or more disks which reside on a storage domain or diskless virtual machines.
          */
         unregistered?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about application ELBs in AWS
        */
       elb_application_lb_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VRFs on Arista EOS network devices.
@@ -22438,7 +22624,7 @@ export type Ansible25 = (
          * This is a intent option and checks the operational state of the for given vrf C(name) for associated interfaces. If the value in the C(associated_interfaces) does not match with the operational state of vrf interfaces on device it will result in failure.
          */
         associated_interfaces?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove network ACLs.
@@ -22476,7 +22662,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -22514,7 +22701,7 @@ export type Ansible25 = (
          * Name of the network ACL.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures WWNNs or WWPN pools on Cisco UCS Manager.
@@ -22575,31 +22762,31 @@ export type Ansible25 = (
          * You cannot change this name after the WWNN or WWPN pool is created.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about dhcp options sets in AWS
        */
       ec2_vpc_dhcp_option_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Verifies Rackspace Cloud credentials and returns identity information
        */
       rax_identity?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove port forwarding rules.
@@ -22631,7 +22818,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * VM guest NIC secondary IP address for the port forwarding rule.
          */
@@ -22716,7 +22904,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the zone in which the virtual machine is in.
          * If not set, default zone is used.
@@ -22726,7 +22915,7 @@ export type Ansible25 = (
          * Public IP address the rule is assigned to.
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages a BIG-IP configuration by allowing TMSH commands that modify running configuration, or merge SCF formatted files into the running configuration. Additionally, this module is of significant importance because it allows you to save your running configuration to disk. Since the F5 module only manipulate running configuration, it is important that you utilize this module to save that running config.
@@ -22748,28 +22937,29 @@ export type Ansible25 = (
          * Loads the specified configuration that you want to merge into the running configuration. This is equivalent to using the C(tmsh) command C(load sys config from-terminal merge). If you need to read configuration from a file or template, use Ansible's C(file) or C(template) lookup plugins respectively.
          */
         merge_content?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Upload, download, and delete objects in Rackspace Cloud Files
        */
       rax_files_objects?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove rights/permissions for a given user or group for the specified src file or folder.
        */
       win_acl?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module creates, deletes or modifies volume on Infinibox.
        */
@@ -22792,7 +22982,7 @@ export type Ansible25 = (
          * Volume size in MB, GB or TB units. See examples.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provide management of firewall addresses on FortiOS devices.
@@ -22836,7 +23026,7 @@ export type Ansible25 = (
          * Type of the address.
          */
         type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with switch configurations. It provides a way to roll back configurations of a switch from a remote server. This is achieved by using startup or running configurations of the target device that were previously backed up to a remote server using FTP, SFTP, TFTP, or SCP. The first step is to create a directory from where the remote server can be reached. The next step is to provide the full file path of the backup configuration's location. Authentication details required by the remote server must be provided as well. By default, this method overwrites the switch's configuration file with the newly downloaded file. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_rollback.html)
@@ -22869,20 +23059,20 @@ export type Ansible25 = (
          * This specifies the full file path of the configuration file located on the remote server. In case the relative path is used as the variable value, the root folder for the user of the server needs to be specified.
          */
         rcpath: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Returns information about the load balancer.
        * Will be marked changed when called only if state is changed.
        */
       ec2_elb_lb?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VLANs on Arista EOS network devices.
@@ -22924,7 +23114,7 @@ export type Ansible25 = (
          * ID of the VLAN.
          */
         vlan_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure NetworkSecurityPolicy object
@@ -22981,19 +23171,19 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or instances in AWS Lightsail and optionally wait for it to be 'running'.
        */
       lightsail?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the arrays accessible via a NetApp Web Services Proxy for NetApp E-series storage arrays.
@@ -23010,9 +23200,9 @@ export type Ansible25 = (
          */
         meta_tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The url to the SANtricity WebServices Proxy or embedded REST API.
@@ -23064,7 +23254,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -23092,17 +23283,18 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The list addresses for the out-of-band management adapter or the agent host. Mutually exclusive of array_wwn parameter.
          */
         controller_addresses?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage SPAN destination groups on Cisco ACI fabrics.
@@ -23127,7 +23319,7 @@ export type Ansible25 = (
          * The name of the tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages global DLDP configuration on HUAWEI CloudEngine switches.
@@ -23157,7 +23349,7 @@ export type Ansible25 = (
          * Set global DLDP work-mode.
          */
         work_mode?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module has two possible ways of operation.
@@ -23165,18 +23357,18 @@ export type Ansible25 = (
        * If the user has mount-capabilities (CAP_SYS_ADMIN on Linux) this module mounts the ISO image to a temporary location, and copies files to a given destination, if needed.
        */
       iso_extract?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -23259,44 +23451,44 @@ export type Ansible25 = (
          * The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a SPOT compute environment.
          */
         spot_iam_fleet_role?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage power management of hosts in oVirt/RHV.
        */
       ovirt_host_pm?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Templates are processed by the Jinja2 templating language (U(http://jinja.pocoo.org/docs/)) - documentation on the template formatting can be found in the Template Designer Documentation (U(http://jinja.pocoo.org/docs/templates/)).
        * Six additional variables can be used in templates: C(ansible_managed) (configurable via the C(defaults) section of C(ansible.cfg)) contains a string which can be used to describe the template name, host, modification time of the template file and the owner uid. C(template_host) contains the node name of the template's machine. C(template_uid) the numeric user id of the owner. C(template_path) the path of the template. C(template_fullpath) is the absolute path of the template. C(template_run_date) is the date that the template was rendered.
        */
       template?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete instance of Key Vault.
@@ -23325,7 +23517,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault.
          */
@@ -23359,7 +23552,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         cloud_environment?: string;
         secret?: string;
@@ -23388,7 +23582,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Property to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault.
          */
@@ -23414,7 +23609,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -23450,22 +23646,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         client_id?: string;
         /**
          * SKU details
          */
         sku?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID.
          */
         access_policies?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         subscription_id?: string;
         password?: string;
@@ -23494,13 +23691,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
         /**
          * Resource location. If not set, location from the resource group will be used as default.
          */
         location?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower inventories. See U(https://www.ansible.com/tower) for an overview.
@@ -23528,7 +23726,7 @@ export type Ansible25 = (
          * Desired state of the resource.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete network namespaces using the ip command.
@@ -23544,7 +23742,7 @@ export type Ansible25 = (
          * Name of the namespace
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Wait for Ansible Tower job to finish and report success or failure. See U(https://www.ansible.com/tower) for an overview.
@@ -23570,7 +23768,7 @@ export type Ansible25 = (
          * Maximum time in seconds to wait for a job to finish.
          */
         timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manage tags in oVirt/RHV. It can also manage assignments of those tags to entities.
@@ -23607,12 +23805,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -23626,12 +23825,12 @@ export type Ansible25 = (
          */
         hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         timeout?: number | string;
         wait?:
@@ -23656,21 +23855,22 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the VMs names, which should have assigned this tag.
          */
         vms?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Description of the tag to manage.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV clusters.
@@ -23681,7 +23881,7 @@ export type Ansible25 = (
          * For example to search cluster X from datacenter Y use following pattern: name=X and datacenter=Y
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP interfaces configuration on VyOS network devices.
@@ -23701,19 +23901,19 @@ export type Ansible25 = (
          * Name of the interface LLDP should be configured on.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, modifies, and deletes Elasticache subnet groups. This module has a dependency on python-boto >= 2.5.
        */
       elasticache_subnet_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, assign and delete floating IPs on the cloudscale.ch IaaS service.
@@ -23763,35 +23963,35 @@ export type Ansible25 = (
          * IP protocol version of the floating IP.
          */
         ip_version?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to add/remove an ESXi host to/from vCenter
        */
       vmware_host?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -23808,7 +24008,7 @@ export type Ansible25 = (
          * Location information.
          */
         location?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove domains or subdomains on a Webfaction host. Further documentation at http://github.com/quentinsf/ansible-webfaction.
@@ -23836,7 +24036,7 @@ export type Ansible25 = (
          * The webfaction password to use
          */
         login_password: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, delete, export Grafana dashboards via API.
@@ -23913,7 +24113,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * slug of the dashboard. It's the friendly url name of the dashboard.
          * When C(state) is C(present), this parameter can override the slug in the meta section of the json file.
@@ -23947,8 +24148,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Add or remove mailboxes on a Webfaction account. Further documentation at http://github.com/quentinsf/ansible-webfaction.
@@ -23976,7 +24178,7 @@ export type Ansible25 = (
          * The webfaction password to use
          */
         login_password: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure VSDataScriptSet object
@@ -24049,32 +24251,33 @@ export type Ansible25 = (
          * Name for the virtual service datascript collection.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(sns_topic) module allows you to create, delete, and manage subscriptions for AWS SNS topics.
        */
       sns_topic?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, Removes and configures a IIS Web site
        */
       win_iis_website?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * After .NET framework is installed/updated, Windows will probably want to recompile things to optimise for the host.
        * This happens via scheduled task, usually at some inopportune time.
@@ -24082,14 +24285,15 @@ export type Ansible25 = (
        * http://blogs.msdn.com/b/dotnet/archive/2013/08/06/wondering-why-mscorsvw-exe-has-high-cpu-usage-you-can-speed-it-up.aspx
        */
       win_dotnet_ngen?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages MTU settings on Nexus switch.
        */
@@ -24112,7 +24316,7 @@ export type Ansible25 = (
          * MTU for a specific interface. Must be an even number between 576 and 9216.
          */
         mtu?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes (rpm --import) a gpg key to your rpm database.
@@ -24151,38 +24355,40 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Key that will be modified. Can be a url, a file, or a keyid if the key already exists in the database.
          */
         key: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Synchronizes the contents of two directories on the remote machine. Under the hood this just calls out to RoboCopy, since that should be available on most modern Windows Systems.
        */
       win_robocopy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * netact_cm_command can be used to run various configuration management operations. This module requires that the target hosts have Nokia NetAct network management system installed. Module will access the Configurator command line interface in NetAct to upload network configuration to NetAct, run configuration export, plan import and configuration provision operations To set the scope of the operation, define Distinguished Name (DN) or Working Set (WS) or Maintenance Region (MR) as input
        */
       netact_cm_command?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -24277,7 +24483,7 @@ export type Ansible25 = (
          * The name of the fabric interconnect that vHBAs created with this template are associated with.
          */
         fabric?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * View GitHub issue for a given repository.
@@ -24307,7 +24513,7 @@ export type Ansible25 = (
          * Name of the GitHub organization in which the repository is hosted.
          */
         organization: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather VMKernel facts about an ESXi host from given ESXi hostname or cluster name.
@@ -24325,25 +24531,25 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage hosts in oVirt/RHV
        */
       ovirt_hosts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Copies an EC2 Snapshot from a source region to a destination region.
        */
       ec2_snapshot_copy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BGP Address-family configurations on NX-OS switches.
@@ -24479,7 +24685,7 @@ export type Ansible25 = (
          * Specify decay half-life in minutes for route-flap dampening. Valid values are integer and keyword 'default'.
          */
         dampening_half_time?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * When the user does not exists in Gitlab, it will be created.
@@ -24487,7 +24693,7 @@ export type Ansible25 = (
        * When changes are made to user, the user will be updated.
        */
       gitlab_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages general policy configuration on a BIG-IP. This module is best used in conjunction with the C(bigip_policy_rule) module. This module can handle general configuration like setting the draft state of the policy, the description, and things unrelated to the policy rules themselves. It is also the first module that should be used when creating rules as the C(bigip_policy_rule) module requires a policy parameter.
@@ -24526,7 +24732,7 @@ export type Ansible25 = (
          * The name of the policy to create.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific DNS Record Set in a Zone, or a specific type in all Zones or in one Zone etc.
@@ -24555,13 +24761,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Limit results by resource group. Required when filtering by name or type.
          */
         resource_group?: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         /**
@@ -24592,7 +24799,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         /**
          * Only show results for a Record Set.
@@ -24611,7 +24819,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure VirtualService object
@@ -25078,23 +25286,23 @@ export type Ansible25 = (
          * List of services defined for this virtual service.
          */
         services?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Deploy, start, update, scale, restart, restore, stop and destroy instances.
        */
       cs_instance?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages TCL iApp services on a BIG-IP.
@@ -25143,7 +25351,7 @@ export type Ansible25 = (
          * If this option is specified in the Ansible task, it will take precedence over any similar setting in the iApp Server payload that you provide in the C(parameters) field.
          */
         traffic_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module sends push notifications via Pushbullet to channels or devices.
@@ -25176,19 +25384,19 @@ export type Ansible25 = (
          * The channel TAG you wish to broadcast a push notification, as seen on the "My Channels" > "Edit your channel" at Pushbullet page.
          */
         channel?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Registers or deregisters ec2 images.
        */
       ec2_ami?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Check if PAN-OS device is ready for being configured (no pending jobs).
@@ -25221,7 +25429,7 @@ export type Ansible25 = (
          * time waited between checks
          */
         interval?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Remove Ironic nodes from OpenStack.
@@ -25284,39 +25492,39 @@ export type Ansible25 = (
          * unique name identifier to be given to the resource.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages packages with I(apt-rpm). Both low-level (I(rpm)) and high-level (I(apt-get)) package manager binaries required.
        */
       apt_rpm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
        * Gathers information about IAM roles
        */
       iam_role_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VRRP configuration on NX-OS switches.
@@ -25358,7 +25566,7 @@ export type Ansible25 = (
          * Full name of interface that is being managed for VRRP.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to a Dell OS10 node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -25391,27 +25599,27 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the user to manage S3 buckets and the objects within them. Includes support for creating and deleting both objects and buckets, retrieving objects as files or strings and generating download links. This module has a dependency on python-boto.
        */
       s3?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * A trivial test module, this module always returns C(pong) on successful contact. It does not make sense in playbooks, but it is useful from C(/usr/bin/ansible) to verify the ability to login and that a usable python is configured.
@@ -25419,7 +25627,7 @@ export type Ansible25 = (
        */
       ping?: {
         data?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Cloud object
@@ -25601,7 +25809,7 @@ export type Ansible25 = (
          * It is a reference to an object of type ipamdnsproviderprofile.
          */
         east_west_dns_provider_ref?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collect facts from F5 BIG-IP devices via iControl SOAP API
@@ -25621,7 +25829,7 @@ export type Ansible25 = (
          * BIG-IP session support; may be useful to avoid concurrency issues in certain circumstances.
          */
         session?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Remove cinder block storage volumes
@@ -25683,7 +25891,7 @@ export type Ansible25 = (
          * Size of volume in GB. This parameter is required when the I(state) parameter is 'present'.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Eth-Trunk specific configuration parameters on HUAWEI CloudEngine switches.
@@ -25719,7 +25927,7 @@ export type Ansible25 = (
          * Eth-Trunk interface number. The value is an integer. The value range depends on the assign forward eth-trunk mode command. When 256 is specified, the value ranges from 0 to 255. When 512 is specified, the value ranges from 0 to 511. When 1024 is specified, the value ranges from 0 to 1023.
          */
         trunk_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage SLB (Server Load Balancer) server objects on A10 Networks devices via aXAPIv3.
@@ -25755,7 +25963,7 @@ export type Ansible25 = (
          * If C(no), SSL certificates will not be validated. This should only be used on personally controlled devices using self-signed certificates.
          */
         validate_certs?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows setting new variables.  Variables are set on a host-by-host basis just like facts discovered by the setup module.
@@ -25772,19 +25980,19 @@ export type Ansible25 = (
          * This boolean indicates if the facts set will also be added to the fact cache, if fact caching is enabled.
          */
         cacheable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 ENI interfaces in AWS
        */
       ec2_eni_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of the local usernames configured on network devices. It allows playbooks to manage either individual usernames or the aggregate of usernames in the current running config. It also supports purging usernames from the configuration that are not explicitly defined.
@@ -25834,7 +26042,7 @@ export type Ansible25 = (
          * Specifies the SSH public key to configure for the given username. This argument accepts a valid SSH key value.
          */
         sshkey?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of logging on Vyatta Vyos devices.
@@ -25866,27 +26074,27 @@ export type Ansible25 = (
          * List of logging definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(sns) module sends notifications to a topic on your Amazon SNS account
        */
       sns?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -25929,7 +26137,7 @@ export type Ansible25 = (
          * This is the local filename of the private key. Either one of C(key_src), C(key_content), C(cert_src) or C(cert_content) must be provided when C(state) is C(present).
          */
         key_src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VRF definitions on Juniper JUNOS devices.  It allows playbooks to manage individual or the entire VRF collection.
@@ -25975,7 +26183,7 @@ export type Ansible25 = (
          * The name of the VRF definition to be managed on the remote IOS device.  The VRF definition name is an ASCII string name used to uniquely identify the VRF.  This argument is mutually exclusive with the C(aggregate) argument
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides a mechanism for enabling and disabling protocols Mellanox on ONYX network devices.
@@ -26025,7 +26233,7 @@ export type Ansible25 = (
          * BGP protocol
          */
         bgp?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete or extend the capacity of a volume on Pure Storage FlashArray.
@@ -26061,19 +26269,19 @@ export type Ansible25 = (
          * Define whether to eradicate the volume on delete or leave in trash.
          */
         eradicate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Describes a task definition in ecs.
        */
       ecs_taskdefinition_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Modern SSH clients support ControlPersist which is just as fast as fireball was.  Please enable that in ansible.cfg as a replacement for fireball.
@@ -26109,9 +26317,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage End Point (EP) retention protocol policies on Cisco ACI fabrics.
@@ -26177,7 +26386,7 @@ export type Ansible25 = (
          * 0 is used for infinite.
          */
         bounce_age?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BGP address-family's neighbors configurations on NX-OS switches.
@@ -26327,7 +26536,7 @@ export type Ansible25 = (
          * Max-occurrences value for allowas_in. Valid values are an integer value or 'default'. This is mutually exclusive with allowas_in.
          */
         allowas_in_max?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure NetStream flow statistics exporting and versions for exported packets on HUAWEI CloudEngine switches.
@@ -26373,7 +26582,7 @@ export type Ansible25 = (
          * Specifies the VPN instance of the exported packets carrying flow statistics. Ensure the VPN instance has been created on the device.
          */
         host_vpn?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind AEPs to Physical or Virtual Domains on Cisco ACI fabrics.
@@ -26404,7 +26613,7 @@ export type Ansible25 = (
          * Support for CloudFoundry, OpenShift and Red Hat was added in ACI v3.1.
          */
         vm_provider?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure AlertConfig object
@@ -26556,7 +26765,7 @@ export type Ansible25 = (
          * It is a reference to an object of type actiongroupconfig.
          */
         action_group_ref?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage content switching vserver
@@ -26876,7 +27085,7 @@ export type Ansible25 = (
          * Maximum length = 127
          */
         dnsprofilename?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Update a storage array to become the primary or secondary instance in an asynchronous mirror group
@@ -26911,7 +27120,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The url to the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -26955,7 +27165,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Whether to avoid synchronization prior to role reversal
          */
@@ -26981,9 +27192,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SVR4 packages on Solaris 10 and 11.
@@ -27016,7 +27228,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the location to install the package from. Required when C(state=present).
          * Can be any path acceptable to the C(pkgadd) command's C(-d) option. e.g.: C(somefile.pkg), C(/dir/with/pkgs), C(http:/server/mypkgs.pkg).
@@ -27048,7 +27261,7 @@ export type Ansible25 = (
          * Specifies the location of a response file to be used if package expects input on install. (added in Ansible 1.4)
          */
         response_file?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, remove, update monitoring policies (and add/remove ports, processes, and servers). This module has a dependency on 1and1 >= 1.0
@@ -27150,7 +27363,7 @@ export type Ansible25 = (
          * Array of ports that will be monitoring.
          */
         ports?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage presence of groups on a host.
@@ -27194,12 +27407,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the group to manage.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides an interface to manage FCoE Network resources. Can create, update, or delete.
@@ -27231,7 +27445,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -27243,10 +27458,10 @@ export type Ansible25 = (
          * List with FCoE Network properties.
          */
         data: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove zones.
@@ -27323,13 +27538,13 @@ export type Ansible25 = (
          * Network type of the zone.
          */
         network_type?: "Basic" | "basic" | "Advanced" | "advanced";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage installation and uninstallation of Ruby gems.
        */
       gem?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is useful for sending emails from playbooks.
@@ -27338,18 +27553,18 @@ export type Ansible25 = (
        * Of course sending out a mail can be equally useful as a way to notify one or more people in a team that a specific action has been (successfully) taken.
        */
       mail?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Get facts for a specific public IP or all public IPs within a resource group.
@@ -27378,7 +27593,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only show results for a specific Public IP.
          */
@@ -27392,9 +27608,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -27403,7 +27619,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV datacenters.
@@ -27414,7 +27630,7 @@ export type Ansible25 = (
          * For example to search datacenter I(X) use following pattern: I(name=X)
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send notifications via pushover, to subscriber list of devices, and email addresses. Requires pushover app on devices.
@@ -27436,32 +27652,32 @@ export type Ansible25 = (
          * Message priority (see U(https://pushover.net) for details.)
          */
         pri?: "-2" | "-1" | "0" | "1" | "2";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set / reset link properties on Solaris/illumos systems.
        */
       dladm_linkprop?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -27491,7 +27707,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only show results for a specific zone.
          */
@@ -27505,9 +27722,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         append_tags?:
@@ -27532,28 +27749,29 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         client_id?: string;
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove secondary IPs to and from a NIC of an instance.
        */
       cs_instance_nic_secondaryip?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -27619,29 +27837,30 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a description for the VLAN.
          */
         pn_description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete a subnet within a given virtual network. Allows setting and updating the address prefix CIDR, which must be valid within the context of the virtual network. Use the azure_rm_networkinterface module to associate interfaces with the subnet and assign specific IP addresses.
        */
       azure_rm_subnet?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute vlag-create/vlag-delete/vlag-modify command.
@@ -27706,7 +27925,7 @@ export type Ansible25 = (
          * Specify the mode for the VLAG. Active-standby indicates one side is active and the other side is in standby mode. Active-active indicates that both sides of the vlag are up by default.
          */
         pn_mode?: "active-active" | "active-standby";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(hall) module connects to the U(https://hall.com) messaging API and allows you to deliver notication messages to rooms.
@@ -27728,7 +27947,7 @@ export type Ansible25 = (
          * The title of the message
          */
         title: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on Arista EOS network devices.
@@ -27789,22 +28008,22 @@ export type Ansible25 = (
          * Description of Interface upto 240 characters.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       name: string;
       /**
        * This module removes, or creates DHCP option sets, and can associate them to a VPC. Optionally, a new DHCP Options set can be created that converges a VPC's existing DHCP option set with values provided. When dhcp_options_id is provided, the module will 1. remove (with state='absent') 2. ensure tags are applied (if state='present' and tags are provided 3. attach it to a VPC (if state='present' and a vpc_id is provided. If any of the optional values are missing, they will either be treated as a no-op (i.e., inherit what already exists for the VPC) To remove existing options while inheriting, supply an empty value (e.g. set ntp_servers to [] if you want to remove them from the VPC's options) Most of the options should be self-explanatory.
        */
       ec2_vpc_dhcp_options?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to Create, Delete, Start and Stop servers in CenturyLink Cloud.
@@ -27851,9 +28070,9 @@ export type Ansible25 = (
          */
         custom_fields?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -27866,9 +28085,9 @@ export type Ansible25 = (
          */
         packages?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: Default Group
@@ -27911,9 +28130,9 @@ export type Ansible25 = (
          */
         server_ids?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: standard
@@ -27946,7 +28165,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -27958,9 +28178,9 @@ export type Ansible25 = (
          */
         additional_disks?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -27993,7 +28213,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -28017,9 +28238,9 @@ export type Ansible25 = (
          */
         public_ip_ports?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -28060,7 +28281,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -28109,7 +28331,7 @@ export type Ansible25 = (
          * How many CPUs to provision on the server
          */
         cpu?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * C(synchronize) is a wrapper around rsync to make common tasks in your playbooks quick and easy. It is run and originates on the local host where Ansible is being run. Of course, you could just use the C(command) action to call rsync yourself, but you also have to add a fair number of boilerplate options and host facts. C(synchronize) is not intended to provide access to the full power of rsync, but does make the most common invocations easier to implement. You `still` may need to call rsync directly via C(command) or C(shell) depending on your use case.
@@ -28142,15 +28364,16 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * add a destination to hard link against during the rsync.
          */
         link_dest?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: no
@@ -28179,7 +28402,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -28207,7 +28431,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -28235,7 +28460,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -28263,7 +28489,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -28291,7 +28518,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: Value of ansible_ssh_port for this host, remote_port config setting, or the value from ssh client configuration if none of those are set
          *
@@ -28326,7 +28554,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -28354,7 +28583,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the rsync command to run on the remote host. See C(--rsync-path) on the rsync man page.
          */
@@ -28390,7 +28620,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -28418,7 +28649,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the private key to use for SSH-based rsync connections (e.g. C(~/.ssh/id_rsa))
          */
@@ -28445,7 +28677,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -28473,7 +28706,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a --timeout for the rsync command in seconds.
          */
@@ -28483,9 +28717,9 @@ export type Ansible25 = (
          */
         rsync_opts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -28514,7 +28748,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -28542,7 +28777,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Path on the source host that will be synchronized to the destination; The path can be absolute or relative.
          */
@@ -28574,7 +28810,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: the value of the archive option
          *
@@ -28602,7 +28839,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: push
          *
@@ -28637,22 +28875,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manage route tables for AWS virtual private clouds
        */
       ec2_vpc_route_table?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on Mellanox ONYX network devices.
@@ -28684,7 +28923,7 @@ export type Ansible25 = (
          * List of L3 interfaces definitions
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages CSW packages (SVR4 format) on Solaris 10 and 11.
@@ -28732,8 +28971,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Tenant object
@@ -28786,7 +29026,7 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds and/or removes instances of DNS view objects from Infoblox NIOS servers.  This module manages NIOS C(view) objects using the Infoblox WAPI interface over REST.
@@ -28816,13 +29056,13 @@ export type Ansible25 = (
          * Allows for the configuration of Extensible Attributes on the instance of the object.  This argument accepts a set of key / value pairs for configuration.
          */
         extattrs?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Runs the I(facter) discovery program (U(https://github.com/puppetlabs/facter)) on the remote system, returning JSON data that can be useful for inventory purposes.
        */
       facter?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of link aggregation groups on Cisco NXOS devices.
@@ -28864,7 +29104,7 @@ export type Ansible25 = (
          * Channel-group number for the port-channel Link aggregation group.
          */
         group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Uploads a new or updates an existing configuration template or workflow template into the Radware vDirect server. All parameters may be set as environment variables.
@@ -28937,21 +29177,21 @@ export type Ansible25 = (
          * vDirect server HTTP port number, may be set as VDIRECT_HTTP_PORT environment variable.
          */
         vdirect_http_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove load balancer rule members.
        */
       cs_loadbalancer_rule_member?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -28974,9 +29214,9 @@ export type Ansible25 = (
         region: string;
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         pem_file?: string;
         /**
@@ -28997,7 +29237,7 @@ export type Ansible25 = (
          * IPv4 or named IP address. Must be of the same scope (regional, global). Reserved addresses can (and probably should) be used for global forwarding rules. You may reserve IPs from the console or via the gce_eip module.
          */
         address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of node system attributes on Arista EOS devices.  It provides an option to configure host system parameters or remove those parameters from the device active configuration.
@@ -29029,64 +29269,64 @@ export type Ansible25 = (
          * List of DNS name servers by IP address to use to perform name resolution lookups.  This argument accepts either a list of DNS servers or a list of hashes that configure the name server and VRF name.  See examples.
          */
         name_servers?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage slb virtual server objects on A10 Networks devices via aXAPI
        */
       a10_virtual_server?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -29131,19 +29371,19 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage an AWS VPC Internet gateway
        */
       ec2_vpc_igw?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OVH (French European hosting provider) LoadBalancing IP backends
@@ -29197,7 +29437,7 @@ export type Ansible25 = (
          * The IP address of the backend to update / modify / delete
          */
         backend: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows element-based ordering, addition, and removal of Windows path environment variables.
@@ -29228,7 +29468,7 @@ export type Ansible25 = (
          * Target path environment variable name
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of static IP routes on Cisco IOS network devices.
@@ -29260,7 +29500,7 @@ export type Ansible25 = (
          * List of static route definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running OS9.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -29272,7 +29512,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP user configurations on CloudEngine switches.
@@ -29314,7 +29554,7 @@ export type Ansible25 = (
          * Name of the group where user belongs to.
          */
         user_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and manage AWS Datapipelines. Creation is not idempotent in AWS, so the I(uniqueId) is created by hashing the options (minus objects) given to the datapipeline.
@@ -29358,7 +29598,7 @@ export type Ansible25 = (
          * An optional description for the pipeline being created.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/delete static/dynamic IP addresses on network interfaces on Solaris/illumos systems.
@@ -29366,7 +29606,7 @@ export type Ansible25 = (
        * Manage IPv6 link-local addresses on network interfaces on Solaris/illumos systems.
        */
       ipadm_addr?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VTP domain configuration.
@@ -29376,20 +29616,21 @@ export type Ansible25 = (
          * VTP domain name.
          */
         domain?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage I(git) checkouts of repositories to deploy files or software.
        */
       git?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * OS10 configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with OS10 configuration sections in a deterministic way.
        */
@@ -29444,28 +29685,29 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The Deploy Helper manages some of the steps common in deploying software. It creates a folder structure, manages a symlink for the current release and cleans up old releases.
        * Running it with the C(state=query) or C(state=present) will return the C(deploy_helper) fact. C(project_path), whatever you set in the path parameter, C(current_path), the path to the symlink that points to the active release, C(releases_path), the path to the folder to keep releases in, C(shared_path), the path to the folder to keep shared resources in, C(unfinished_filename), the file to check for to recognize unfinished builds, C(previous_release), the release the 'current' symlink is pointing to, C(previous_release_path), the full path to the 'current' symlink target, C(new_release), either the 'release' parameter or a generated timestamp, C(new_release_path), the path to the new release folder (not created by the module).
        */
       deploy_helper?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manipulate Rackspace Cloud Autoscale Scaling Policy
        */
       rax_scaling_policy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gathering facts from the API of an instance.
@@ -29493,7 +29735,7 @@ export type Ansible25 = (
          * Name or display name of the instance.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove a bigmon inline service chain.
@@ -29523,41 +29765,42 @@ export type Ansible25 = (
          * The name of the chain.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Tap external Homebrew repositories.
        */
       homebrew_tap?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Add or remove licenses on NetApp ONTAP.
        */
       na_cdot_license?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -29609,62 +29852,64 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
          * The desired state of the library. C(latest) ensures that the latest version is installed.
          */
         state?: "present" | "latest";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs, upgrade, downgrades, removes, and lists packages and groups with the I(yum) package manager.
        * This module only works on Python 2. If you require Python 3 support see the M(dnf) module.
        */
       yum?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set owner of files or directories
        */
       win_owner?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Allows for the management of Lambda functions.
        */
       lambda?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates and deletes DNS Health checks in Amazons Route53 service
        * Only the port, resource_path, string_match and request_interval are considered when updating existing health-checks.
        */
       route53_health_check?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on Cisco IOS network devices.
@@ -29729,7 +29974,7 @@ export type Ansible25 = (
          * Description of Interface.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage route tag policies on Cisco ACI fabrics.
@@ -29760,7 +30005,7 @@ export type Ansible25 = (
          * The description for the route tag policy.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running VyOS.  This module prepends all of the base network fact keys with U(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -29772,7 +30017,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, default, config, and neighbors.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve the facts about one or more of the FCoE Networks from OneView.
@@ -29786,24 +30031,24 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for the management of IAM users, user API keys, groups, roles.
        */
       iam?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get I(openstack) client config data from clouds.yaml or environment
@@ -29814,11 +30059,11 @@ export type Ansible25 = (
          */
         clouds?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This will configure both login and motd banners on remote devices running Cisco IOS.  It allows playbooks to add or remote banner text from the active running configuration.
@@ -29838,7 +30083,7 @@ export type Ansible25 = (
          * Specifies which banner should be configured on the remote device. In Ansible 2.4 and earlier only I(login) and I(motd) were supported.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete Azure availability set. An availability set cannot be updated, you will have to recreate one instead. The only update operation will be for the tags.
@@ -29867,7 +30112,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the availability set.
          */
@@ -29877,7 +30123,7 @@ export type Ansible25 = (
          */
         resource_group: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -29902,7 +30148,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -29939,7 +30186,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * When no given Hook found, will create one.
@@ -29947,13 +30194,13 @@ export type Ansible25 = (
        * In case state=absent and Hook exists, will delete it.
        */
       ec2_asg_lifecycle_hook?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about the Network Sets from OneView.
@@ -29967,7 +30214,7 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
@@ -29976,30 +30223,30 @@ export type Ansible25 = (
          */
         options?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 AMIs
        */
       ec2_ami_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages MLAG configuration on HUAWEI CloudEngine switches.
@@ -30049,7 +30296,7 @@ export type Ansible25 = (
          * A pseudo nickname of a DFS group. The value is an integer that ranges from 1 to 65471.
          */
         pseudo_nickname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or remove volumes (standard and thin) for NetApp E/EF-series storage arrays.
@@ -30088,7 +30335,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The ID of the array to manage (as configured on the web services proxy).
          */
@@ -30118,7 +30366,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Whether the volume should be thin provisioned.  Thin volumes can only be created on disk pools (raidDiskPool).
          */
@@ -30144,7 +30393,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         log_path?: string;
         /**
          * The password to authenticate with the SANtricity WebServices Proxy or embedded REST API.
@@ -30213,12 +30463,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The url to the SANtricity WebServices Proxy or embedded REST API.
          */
         api_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages NTP options, e.g. authoritative server and logging.
@@ -30242,13 +30493,13 @@ export type Ansible25 = (
          * If C(master=true), an optional stratum can be supplied (1-15). The device default is 8.
          */
         stratum?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides Windows product information.
        */
       win_product_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove key pair from nova .
@@ -30303,7 +30554,7 @@ export type Ansible25 = (
          * Name that has to be given to the key pair
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Netconf is a network management protocol developed and standardized by the IETF. It is documented in RFC 6241.
@@ -30350,7 +30601,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password of the user to authenticate with
          */
@@ -30361,14 +30613,14 @@ export type Ansible25 = (
          * the netconf port
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The C(copy) module copies a file from the local or remote machine to a location on the remote machine. Use the M(fetch) module to copy files from remote locations to the local box. If you need variable interpolation in copied files, use the M(template) module.
        * For Windows targets, use the M(win_copy) module instead.
        */
       copy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(pam_limits) module modify PAM limits, default in /etc/security/limits.conf. For the full documentation, see man limits.conf(5).
@@ -30405,7 +30657,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A username, @groupname, wildcard, uid/gid range.
          */
@@ -30447,7 +30700,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The limit to be set
          */
@@ -30502,8 +30756,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Templates are processed by the Jinja2 templating language (U(http://jinja.pocoo.org/docs/)) - documentation on the template formatting can be found in the Template Designer Documentation (U(http://jinja.pocoo.org/docs/templates/)).
@@ -30560,7 +30815,7 @@ export type Ansible25 = (
          * The string marking the beginning of a block.
          */
         block_start_string?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages global, zone, account, storage and cluster configurations.
@@ -30603,20 +30858,20 @@ export type Ansible25 = (
          * Name of the configuration.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Can create or delete scaling policies for autoscaling groups
        * Referenced autoscaling groups must already exist
        */
       ec2_scaling_policy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Logical Device Map module let you manage your Logical Device Map easily. You can create create and delete Logical Device Map by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -30644,15 +30899,15 @@ export type Ansible25 = (
          * AOS Id of the Logical Device Map to manage (can't be used to create a new Logical Device Map), Only one of I(name), I(id) or I(content) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates / deletes a Rackspace Public Cloud load balancer.
        */
       rax_clb?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage InfluxDB databases
@@ -30690,7 +30945,7 @@ export type Ansible25 = (
          * The port on which InfluxDB server is listening
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM tcp monitors via iControl SOAP API
@@ -30772,7 +31027,7 @@ export type Ansible25 = (
          * Port address part op the ipport definition. The default API setting is 0.
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove static NATs.
@@ -30814,7 +31069,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Network the IP address is related to.
          */
@@ -30852,7 +31108,7 @@ export type Ansible25 = (
          */
         ip_address: string;
         api_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, remove, update load balancers. This module has a dependency on 1and1 >= 1.0
@@ -30956,7 +31212,7 @@ export type Ansible25 = (
          * A list of rule ids that will be removed from an existing load balancer. Used in combination with update state.
          */
         remove_rules?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about available packages and their status on an ESXi host.
@@ -30974,7 +31230,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running OS6.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -30986,7 +31242,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces. Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * makes a computer speak! Amuse your friends, annoy your coworkers!
@@ -31000,7 +31256,7 @@ export type Ansible25 = (
          * What voice to use
          */
         voice?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows modifications and reading of dconf database. The module is implemented as a wrapper around dconf tool. Please see the dconf(1) man page for more details.
@@ -31021,7 +31277,7 @@ export type Ansible25 = (
          * Value to set for the specified dconf key. Value should be specified in GVariant format. Due to complexity of this format, it is best to have a look at existing values in the dconf database. Required for C(state=present).
          */
         value?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Build, load or pull an image, making the image available for creating containers. Also supports tagging an image into a repository and archiving an image to a .tar file.
@@ -31111,7 +31367,7 @@ export type Ansible25 = (
          * Timeout for HTTP requests during the image build operation. Provide a positive integer value for the number of seconds.
          */
         http_timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage End Point Groups (EPG) on Cisco ACI fabrics.
@@ -31170,48 +31426,48 @@ export type Ansible25 = (
          * Name of an existing tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Returns information about the load balancer.
        * Will be marked changed when called only if state is changed.
        */
       elb_classic_lb?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage SmartOS virtual machines through vmadm(1M).
        */
       vmadm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, modify, and terminate AWS virtual private clouds.
        */
       ec2_vpc_net?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create a keypair for use with Rackspace Cloud Servers
        */
       rax_keypair?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind EPGs to Physical and Virtual Domains on Cisco ACI fabrics.
@@ -31294,19 +31550,19 @@ export type Ansible25 = (
          * Name of an existing tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage role/user access to a KMS key. Not designed for encrypting/decrypting.
        */
       aws_kms?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP traps configurations.
@@ -31322,20 +31578,21 @@ export type Ansible25 = (
          * Case sensitive group.
          */
         group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sets machine time to the specified timezone, the module will check if the provided timezone is supported on the machine.
        */
       win_timezone?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage NTP servers on a BIG-IP
        */
@@ -31356,34 +31613,34 @@ export type Ansible25 = (
          * The state of the NTP servers on the system. When C(present), guarantees that the NTP servers are set on the system. When C(absent), removes the specified NTP servers from the device configuration.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and optionally attach an Elastic Network Interface (ENI) to an instance. If an ENI ID or private_ip is       provided, the existing ENI (if any) will be modified. The 'attached' parameter controls the attachment status       of the network interface.
        */
       ec2_eni?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to a Cisco Spark Room or Individual with options to control the formatting.
        */
       cisco_spark?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages information center debug configurations on HUAWEI CloudEngine switches.
@@ -31417,31 +31674,31 @@ export type Ansible25 = (
          * Module name of the rule. The value is a string of 1 to 31 case-insensitive characters. The default value is default. Please use lower-case letter, such as [aaa, acl, arp, bfd].
          */
         module_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 volume snapshots in AWS
        */
       ec2_snapshot_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts for ACM certificates
        */
       aws_acm_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use this module for power management
@@ -31475,50 +31732,50 @@ export type Ansible25 = (
          * Remote RMCP port.
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, update and remove load balancer rules.
        */
       cs_loadbalancer_rule?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
        * Create or remove a distributed vSwitch
        */
       vmware_dvswitch?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -31551,36 +31808,37 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 30
          *
          * The timeout in seconds used for polling DigitalOcean's API.
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage subnets in AWS virtual private clouds
        */
       ec2_vpc_subnet?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds, modifies and removes nodes from a Rackspace Cloud Load Balancer
        */
       rax_clb_nodes?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure HTTPPolicySet object
@@ -31650,20 +31908,21 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
          */
         is_internal_policy?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove MySQL databases from a remote host.
        */
       mysql_db?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Retrieve facts about one or more oVirt/RHV virtual machine snapshots.
        */
@@ -31680,7 +31939,7 @@ export type Ansible25 = (
          * Name of the VM with snapshot.
          */
         vm?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM monitors via iControl SOAP API
@@ -31762,7 +32021,7 @@ export type Ansible25 = (
          * The receive disable string for the monitor call
          */
         receive_disable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, Update or Destroy a Managed Instance Group (MIG).  See U(https://cloud.google.com/compute/docs/instance-groups) for an overview. Full install/configuration instructions for the gce* modules can be found in the comments of ansible/test/gce_tests.py.
@@ -31770,9 +32029,9 @@ export type Ansible25 = (
       gce_mig?: {
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of the Managed Instance Group.
@@ -31790,7 +32049,7 @@ export type Ansible25 = (
          * A dictionary of configuration for the autoscaler. 'enabled (bool)', 'name (str)' and policy.max_instances (int) are required fields if autoscaling is used. See U(https://cloud.google.com/compute/docs/reference/beta/autoscalers) for more information on Autoscaling.
          */
         autoscaling?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         recreate_instances?:
           | boolean
@@ -31814,16 +32073,17 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         pem_file?: string;
         /**
          * Define named ports that backend services can forward data to.  Format is a a list of name:port dictionaries.
          */
         named_ports?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -31847,7 +32107,7 @@ export type Ansible25 = (
          * Size of Managed Instance Group.  If MIG already exists, it will be resized to the number provided here.  Required for creating MIGs.
          */
         size?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Layer-2 interface on Cisco IOS devices.
@@ -31889,7 +32149,7 @@ export type Ansible25 = (
          * List of Layer-2 interface definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ServiceEngineGroup object
@@ -32536,7 +32796,7 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as True.
          */
         vs_host_redundancy?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(rocketchat) module sends notifications to Rocket Chat via the Incoming WebHook integration
@@ -32565,9 +32825,9 @@ export type Ansible25 = (
          */
         attachments?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: normal
@@ -32630,14 +32890,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
          * Channel to send the message to. If absent, the message goes to the channel selected for the I(token) specifed during the creation of webhook.
          */
         channel?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This will configure both pre-login and post-login banners on remote devices running VyOS. It allows playbooks to add or remote banner text from the active running configuration.
@@ -32657,16 +32918,16 @@ export type Ansible25 = (
          * Specifies which banner that should be configured on the remote device.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * A CRUD-like interface to managing bits of XML files.
        * You might also be interested in a brief tutorial from U(https://www.w3schools.com/xml/xpath_intro.asp) and U(https://developer.mozilla.org/en-US/docs/Web/XPath).
        */
       xml?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower teams. See U(https://www.ansible.com/tower) for an overview.
@@ -32686,20 +32947,21 @@ export type Ansible25 = (
          * Name to use for the team.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, Removes and configures a IIS Web Application Pool
        */
       win_iis_webapppool?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Creates a Virtual Network Identifier member (VNI) for an NVE overlay interface.
        */
@@ -32738,7 +33000,7 @@ export type Ansible25 = (
          * Suppress arp under layer 2 VNI.
          */
         suppress_arp?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP location configuration.
@@ -32754,15 +33016,15 @@ export type Ansible25 = (
          * Location information.
          */
         location?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate Rackspace Cloud Autoscale Groups
        */
       rax_scaling_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Notify newrelic about app deployments (see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/deployment-notifications#api)
@@ -32827,12 +33089,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A revision number (e.g., git commit SHA)
          */
         revision?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages core NTP configuration on HUAWEI CloudEngine switches.
@@ -32870,7 +33133,7 @@ export type Ansible25 = (
          * Local source interface from which NTP messages are sent. Must be fully qualified interface name, i.e. C(40GE1/0/22), C(vlanif10). Interface types, such as C(10GE), C(40GE), C(100GE), C(Eth-Trunk), C(LoopBack), C(MEth), C(NULL), C(Tunnel), C(Vlanif).
          */
         source_int?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete Azure Virtual Machine Extension
@@ -32899,7 +33162,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The type of the extension handler.
          */
@@ -32937,13 +33201,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ad_user?: string;
         /**
          * Json formatted public settings for the extension.
          */
         settings?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The name of the extension handler publisher.
@@ -32968,7 +33233,7 @@ export type Ansible25 = (
          * Json formatted protected settings for the extension.
          */
         protected_settings?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         subscription_id?: string;
         password?: string;
@@ -32981,7 +33246,7 @@ export type Ansible25 = (
          * The name of the virtual machine where the extension should be create or updated.
          */
         virtual_machine_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BGP neighbors configurations on NX-OS switches.
@@ -33083,7 +33348,7 @@ export type Ansible25 = (
          * Neighbor Identifier. Valid values are string. Neighbors may use IPv4 or IPv6 notation, with or without prefix length.
          */
         neighbor?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ServerAutoScalePolicy object
@@ -33195,7 +33460,7 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create (reserve) or Destroy (release) Regional or Global IP Addresses. See U(https://cloud.google.com/compute/docs/configure-instance-ip-addresses#reserve_new_static) for more on reserving static addresses.
@@ -33212,9 +33477,9 @@ export type Ansible25 = (
         region: string;
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         pem_file?: string;
         /**
@@ -33225,7 +33490,7 @@ export type Ansible25 = (
         state?: "present" | "absent";
         credentials_file?: string;
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Delete routers from OpenStack
@@ -33264,7 +33529,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -33308,7 +33574,7 @@ export type Ansible25 = (
          * Name to be give to the router
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates AWS VPC endpoints.
@@ -33316,15 +33582,15 @@ export type Ansible25 = (
        * This module support check mode.
        */
       ec2_vpc_endpoint?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * OS9 configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with OS9 configuration sections in a deterministic way.
@@ -33380,19 +33646,19 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage AWS IAM groups
        */
       iam_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to Create, Delete shared loadbalancers in CenturyLink Cloud.
@@ -33435,9 +33701,9 @@ export type Ansible25 = (
          */
         nodes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -33455,7 +33721,7 @@ export type Ansible25 = (
          * The name of the loadbalancer
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can create and delete GCE private images from gzipped compressed tarball containing raw disk data or from existing detached disks in any zone. U(https://cloud.google.com/compute/docs/images)
@@ -33507,15 +33773,15 @@ export type Ansible25 = (
          * the name of the image to create or delete
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set up, reconfigure, or remove SSL termination for an existing load balancer.
        */
       rax_clb_ssl?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The manageiq_alert_profiles module supports adding, updating and deleting alert profiles in ManageIQ.
@@ -33545,9 +33811,9 @@ export type Ansible25 = (
          */
         alerts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         token?: string;
         verify_ssl?:
@@ -33572,7 +33838,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ca_bundle_path?: string;
         password?: string;
         /**
@@ -33587,7 +33854,7 @@ export type Ansible25 = (
           | "EmsCluster"
           | "ExtManagementSystem"
           | "MiddlewareServer";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will let you pause/unpause Pingdom alerts
@@ -33613,7 +33880,7 @@ export type Ansible25 = (
          * Pingdom API key.
          */
         key: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on VyOS network devices.
@@ -33641,91 +33908,91 @@ export type Ansible25 = (
          * Name of the L3 interface.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows to manage samba shares on a univention corporate server (UCS). It uses the python API of the UCS to create a new object or edit it.
        */
       udm_share?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages domains and records via the DNSimple API, see the docs: U(http://developer.dnsimple.com/)
@@ -33756,7 +34023,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Domain to work with. Can be the domain name (e.g. "mydomain.com") or the numeric ID of the domain in DNSimple. If omitted, a list of domains will be returned.
          * If domain is present but the domain doesn't exist, it will be created.
@@ -33771,9 +34039,9 @@ export type Ansible25 = (
          */
         record_ids?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Record value
@@ -33821,7 +34089,7 @@ export type Ansible25 = (
          * Account API token. See I(account_email) for info.
          */
         account_api_token?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, remove or set User Rights for a group or users or groups.
@@ -33848,7 +34116,7 @@ export type Ansible25 = (
          * You can also add special local accounts like SYSTEM and others.
          */
         users?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Self-IPs on a BIG-IP system
@@ -33886,7 +34154,7 @@ export type Ansible25 = (
          * The traffic group for the self IP addresses in an active-active, redundant load balancer configuration.
          */
         traffic_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures anycast gateway MAC of the switch.
@@ -33896,7 +34164,7 @@ export type Ansible25 = (
          * Anycast gateway mac of the switch.
          */
         anycast_gateway_mac?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific load balancer or all load balancers.
@@ -33925,7 +34193,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Limit results to a specific resource group.
          */
@@ -33939,9 +34208,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -33950,7 +34219,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Install, uninstall a Windows hotfix.
@@ -33983,7 +34252,7 @@ export type Ansible25 = (
          * This MUST be set if C(state=present) and MUST be a .msu hotfix file.
          */
         source?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute show command in the nodes and returns the results read from the device.
@@ -34013,7 +34282,7 @@ export type Ansible25 = (
          * Target switch(es) to run the cli on.
          */
         pn_cliswitch?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to create, delete, move and rename folder on then given datacenter.
@@ -34057,7 +34326,7 @@ export type Ansible25 = (
          * If set to C(absent), then folder is unregistered and destroyed.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of static IP routes on Arista EOS network devices.
@@ -34087,7 +34356,7 @@ export type Ansible25 = (
          * Network address with prefix of the static route.
          */
         address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, update, start, stop, and reboot a ProfitBricks virtual machine. When the virtual machine is created it can optionally wait for it to be 'running' before returning. This module has a dependency on profitbricks >= 1.0.0
@@ -34112,9 +34381,9 @@ export type Ansible25 = (
          */
         ssh_keys?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The ProfitBricks username. Overrides the PB_SUBSCRIPTION_ID environement variable.
@@ -34163,7 +34432,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -34191,7 +34461,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -34213,9 +34484,9 @@ export type Ansible25 = (
          */
         instance_ids?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 600
@@ -34257,7 +34528,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -34295,7 +34567,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the virtual machine.
          */
@@ -34306,7 +34579,7 @@ export type Ansible25 = (
          * The number of CPU cores to allocate to the virtual machine.
          */
         cores?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, remove hosts on NetApp E-series storage arrays
@@ -34350,7 +34623,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         state: "absent" | "present";
         /**
          * The username to authenticate with the SANtricity WebServices Proxy or embedded REST API.
@@ -34387,22 +34661,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * a list of of dictionaries of host ports you wish to associate with the newly created host
          */
         ports?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * If the host doesnt yet exist, the label to assign at creation time.
          * If the hosts already exists, this is what is used to identify the host to apply any desired changes
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove server groups from OpenStack.
@@ -34422,7 +34697,7 @@ export type Ansible25 = (
          * A list of one or more policy names to associate with the server group. The list must contain at least one policy name. The current valid policy names are anti-affinity, affinity, soft-anti-affinity and soft-affinity.
          */
         policies?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove PostgreSQL users (roles) from a remote host and, optionally, grant the users access to an existing database or tables.
@@ -34430,14 +34705,15 @@ export type Ansible25 = (
        * A user cannot be removed until all the privileges have been stripped from the user. In such situation, if the module tries to remove the user it will fail. To avoid this from happening the fail_on_user option signals the module to try to remove the user, but if not possible keep going; the module will report if changes happened and separately if the user was removed or not.
        */
       postgresql_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module can install new and updated packages on remote devices running Junos.  The module will compare the specified package with the one running on the remote device and install the specified version if there is a mismatch
        */
@@ -34470,7 +34746,7 @@ export type Ansible25 = (
          * The I(validate) argument is responsible for instructing the remote device to skip checking the current device configuration compatibility with the package being installed. When set to false validation is not performed.
          */
         validate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove affinity groups.
@@ -34507,7 +34783,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -34540,19 +34817,19 @@ export type Ansible25 = (
          * Name of the affinity group.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Ensure the state of AWS VPC NAT Gateways based on their id, allocation and subnet ids.
        */
       ec2_vpc_nat_gateway?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or removes managed zones in Google Cloud DNS.
@@ -34590,7 +34867,7 @@ export type Ansible25 = (
          * The Google Cloud Platform project ID to use.
          */
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the state of a virtual host in RabbitMQ
@@ -34618,20 +34895,20 @@ export type Ansible25 = (
          * The name of the vhost to manage
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage cache snapshots in Amazon Elasticache.
        * Returns information about the specified snapshot.
        */
       elasticache_snapshot?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove VPN connections.
@@ -34667,7 +34944,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Domain the VPN connection is related to.
          */
@@ -34699,7 +34977,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -34750,9 +35029,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will allow user to pass and execute any supported OP command on the PANW device.
@@ -34780,13 +35060,13 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device or Panorama management console being configured.
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage I(libvirt) networks.
        */
       virt_net?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure CloudProperties object
@@ -34836,7 +35116,7 @@ export type Ansible25 = (
          * Setting to patch will override that behavior to use HTTP PATCH.
          */
         avi_api_update_method?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage storage connections in oVirt
@@ -34868,7 +35148,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         fetch_nested?:
           | boolean
           | (0 | 1)
@@ -34891,7 +35172,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Option which will be passed when mounting storage.
          */
@@ -34923,13 +35205,13 @@ export type Ansible25 = (
          */
         username?: string;
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Address of the storage server. E.g.: myserver.mydomain.com
@@ -34973,7 +35255,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The target IQN for the storage device.
          */
@@ -34988,7 +35271,7 @@ export type Ansible25 = (
          * Virtual File System type.
          */
         vfs_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages ARP attributes of VXLAN on HUAWEI CloudEngine devices.
@@ -35040,7 +35323,7 @@ export type Ansible25 = (
          * Enables EVN BGP or BGP EVPN to advertise host information.
          */
         host_collect_protocol?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage MCP interface policies on Cisco ACI fabrics.
@@ -35067,7 +35350,7 @@ export type Ansible25 = (
          * The name of the MCP interface.
          */
         mcp?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, Update or Destroy a Healthcheck. Currently only HTTP and HTTPS Healthchecks are supported. Healthchecks are used to monitor individual instances, managed instance groups and/or backend services. Healtchecks are reusable.
@@ -35105,9 +35388,9 @@ export type Ansible25 = (
          */
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 2
@@ -35147,7 +35430,7 @@ export type Ansible25 = (
          * The request path of the HTTPS health check request.
          */
         request_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage (add, remove, change) individual interface options in an interfaces-style file without having to manage the file as a whole with, say, M(template) or M(assemble). Interface has to be presented in a file.
@@ -35205,8 +35488,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manage the life cycle of docker containers.
@@ -35532,39 +35816,39 @@ export type Ansible25 = (
          * Keep stdin open after a container is launched, even if not attached.
          */
         interactive?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the management of AWS Lambda policy statements. It is idempotent and supports "Check" mode.  Use module M(lambda) to manage the lambda function itself, M(lambda_alias) to manage function aliases, M(lambda_event) to manage event source mappings such as Kinesis streams, M(lambda_invoke) to execute a lambda function and M(lambda_facts) to gather facts relating to one or more lambda functions.
        */
       lambda_policy?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -35591,19 +35875,19 @@ export type Ansible25 = (
          * Specifies which banner that should be configured on the remote device. Value C(login) indicates system login message prior to authenticating, C(motd) is login announcement after successful authentication.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about AWS Autoscaling Launch Configurations
        */
       ec2_lc_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create an annotation event with a given category, title and description. Optionally start, end or durations can be provided
@@ -35637,7 +35921,7 @@ export type Ansible25 = (
          * Circonus API key
          */
         api_key: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage service configuration in Netscaler.
@@ -35859,20 +36143,21 @@ export type Ansible25 = (
          * Enable compression for the service.
          */
         cmp?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module controls active and configured mount points in C(/etc/fstab).
        */
       mount?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Provides an interface to manage Fibre Channel Network resources. Can create, update, and delete.
        */
@@ -35903,7 +36188,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Indicates the desired state for the Fibre Channel Network resource. C(present) will ensure data properties are compliant with OneView. C(absent) will remove the resource from OneView, if it exists.
          */
@@ -35913,10 +36199,10 @@ export type Ansible25 = (
          * List with the Fibre Channel Network properties.
          */
         data: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage BIG-IP ASM policies.
@@ -35953,7 +36239,7 @@ export type Ansible25 = (
          * The C(Comprehensive), C(Drupal), C(Fundamental), C(Joomla), C(Vulnerability Assessment Baseline), and C(Wordpress) templates are only available on BIG-IP versions >= 13.
          */
         template?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage a bare metal server in the Packet Host (a "device" in the API terms).
@@ -35962,9 +36248,9 @@ export type Ansible25 = (
        * API is documented at U(https://www.packet.net/developers/api/devices).
        */
       packet_device?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Read the AWS documentation for WAF U(https://aws.amazon.com/documentation/waf/)
@@ -35996,7 +36282,7 @@ export type Ansible25 = (
          * Defaults to the same as name with disallowed characters removed
          */
         metric_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use this module to manage crontab variables. This module allows you to create, update, or delete cron variable definitions.
@@ -36059,8 +36345,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower roles. See U(https://www.ansible.com/tower) for an overview.
@@ -36108,7 +36395,7 @@ export type Ansible25 = (
          * User that receives the permissions specified by the role.
          */
         user?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS External Router module let you manage your External Router easily. You can create create and delete External Router by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -36144,7 +36431,7 @@ export type Ansible25 = (
          * ASN id of the external_router.
          */
         asn?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BFD global configuration on HUAWEI CloudEngine devices.
@@ -36188,7 +36475,7 @@ export type Ansible25 = (
          * Indicates the priority of BFD control packets for static BFD sessions. The value is an integer ranging from 0 to 7. The default priority is 7, which is the highest priority of BFD control packets.
          */
         tos_exp_static?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP service configuration on Mellanox ONYX network devices.
@@ -36200,7 +36487,7 @@ export type Ansible25 = (
          * State of the LLDP protocol configuration.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set system's hostname, supports most OSs/Distributions, including those using systemd.
@@ -36212,7 +36499,7 @@ export type Ansible25 = (
          * Name of the host
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure DnsPolicy object
@@ -36269,7 +36556,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific network interface or all network interfaces within a resource group.
@@ -36298,7 +36585,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only show results for a specific network interface.
          */
@@ -36312,9 +36600,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -36323,7 +36611,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Aruba configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with Aruba configuration sections in a deterministic way.
@@ -36396,7 +36684,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, update, start, stop, and reboot a 1&1 Host server. When the server is created it can optionally wait for it to be 'running' before returning.
@@ -36516,7 +36804,7 @@ export type Ansible25 = (
          * Server identifier (ID or hostname). It is required for all states except 'running' and 'present'.
          */
         server?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages timeout mode of NetStream on HUAWEI CloudEngine switches.
@@ -36546,7 +36834,7 @@ export type Ansible25 = (
          * Netstream timeout interval. If is active type the interval is 1-60. If is inactive ,the interval is 5-600.
          */
         timeout_interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Config Snapshots on Cisco ACI fabrics.
@@ -36594,7 +36882,7 @@ export type Ansible25 = (
          * The name of the snapshot to delete.
          */
         snapshot?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM nodes via iControl SOAP API
@@ -36644,7 +36932,7 @@ export type Ansible25 = (
          * Monitor quorum value when monitor_type is m_of_n
          */
         quorum?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/edit/delete scripts and execute the scripts on the FortiManager using jsonrpc API
@@ -36707,13 +36995,13 @@ export type Ansible25 = (
          * The type of script (CLI or TCL).
          */
         script_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The manageiq_provider module supports adding, updating, and deleting provider in ManageIQ.
        */
       manageiq_provider?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Change dpkg package selection state via --get-selections and --set-selections.
@@ -36727,33 +37015,33 @@ export type Ansible25 = (
          * Name of the package
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about AWS regions.
        */
       aws_region_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module removes, or creates DHCP option sets, and can associate them to a VPC. Optionally, a new DHCP Options set can be created that converges a VPC's existing DHCP option set with values provided. When dhcp_options_id is provided, the module will 1. remove (with state='absent') 2. ensure tags are applied (if state='present' and tags are provided 3. attach it to a VPC (if state='present' and a vpc_id is provided. If any of the optional values are missing, they will either be treated as a no-op (i.e., inherit what already exists for the VPC) To remove existing options while inheriting, supply an empty value (e.g. set ntp_servers to [] if you want to remove them from the VPC's options) Most of the options should be self-explanatory.
        */
       ec2_vpc_dhcp_option?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Change the admin password of PAN-OS via SSH using a SSH key for authentication.
@@ -36778,7 +37066,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure PoolGroup object
@@ -36868,7 +37156,7 @@ export type Ansible25 = (
          * The name of the pool group.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, deletes, and updates DNS records sets and records within an existing Azure DNS Zone.
@@ -36897,13 +37185,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * name of resource group
          */
         resource_group: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -36928,7 +37217,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -36940,9 +37230,9 @@ export type Ansible25 = (
          */
         records?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 3600
@@ -36974,25 +37264,25 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Deploy given repository URL / revision to dest. If dest exists, update to the specified revision, otherwise perform a checkout.
        */
       subversion?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create a policy nat rule. Keep in mind that we can either end up configuring source NAT, destination NAT, or both. Instead of splitting it into two we will make a fair attempt to determine which one the user wants.
@@ -37025,7 +37315,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -37082,9 +37373,9 @@ export type Ansible25 = (
          */
         destination_ip?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         devicegroup?: string;
         description?: string;
@@ -37123,9 +37414,9 @@ export type Ansible25 = (
          */
         source_zone?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: ['any']
@@ -37134,9 +37425,9 @@ export type Ansible25 = (
          */
         source_ip?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -37145,9 +37436,9 @@ export type Ansible25 = (
          */
         snat_dynamic_address?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         tag_name?: string;
         /**
@@ -37177,8 +37468,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module provides an implementation for working with the active configuration running on Juniper JUNOS devices.  It provides a set of arguments for loading configuration, performing rollback operations and zeroing the active configuration on the device.
@@ -37235,7 +37527,7 @@ export type Ansible25 = (
          * This argument will cause the module to create a full backup of the current C(running-config) from the remote device before any changes are made.  The backup file is written to the C(backup) folder in the playbook root directory or role root directory, if playbook is part of an ansible role. If the directory does not exist, it is created.
          */
         backup?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Fabric Node Members on Cisco ACI fabrics.
@@ -37272,7 +37564,7 @@ export type Ansible25 = (
          * The pod id of the new Fabric Node Member.
          */
         pod_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends notifications to U(http://your.mattermost.url) via the Incoming WebHook integration.
@@ -37329,12 +37621,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Channel to send the message to. If absent, the message goes to the channel selected for the I(api_key).
          */
         channel?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages domain membership or workgroup membership for a Windows host. Also supports hostname changes. This module may require subsequent use of the M(win_reboot) action if changes are made.
@@ -37369,7 +37662,7 @@ export type Ansible25 = (
          * when C(state) is C(domain), the DNS name of the domain to which the targeted Windows host should be joined
          */
         dns_domain_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages top level filter objects on Cisco ACI fabrics.
@@ -37395,13 +37688,13 @@ export type Ansible25 = (
          * The name of the tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Similar to the M(facter) module, this runs the I(Ohai) discovery program (U(http://wiki.opscode.com/display/chef/Ohai)) on the remote host and returns JSON inventory data. I(Ohai) data is a bit more verbose and nested than I(facter).
        */
       ohai?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The OpenSwitch platform provides a library for pushing JSON structured configuration files into the current running-config.  This module will read the current configuration from OpenSwitch and compare it against a provided candidate configuration. If there are changes, the candidate configuration is merged with the current configuration and pushed into OpenSwitch
@@ -37423,7 +37716,7 @@ export type Ansible25 = (
          * When this argument is configured true, the module will backup the running-config from the node prior to making any changes. The backup file will be written to backups/ in the root of the playbook directory.
          */
         backup?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower hosts. See U(https://www.ansible.com/tower) for an overview.
@@ -37457,7 +37750,7 @@ export type Ansible25 = (
          * The description to use for the host.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Perform software maintenance upgrades (SMUs) on Cisco NX-OS devices.
@@ -37471,7 +37764,7 @@ export type Ansible25 = (
          * The remote file system of the device. If omitted, devices that support a file_system parameter will use their default values.
          */
         file_system?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Requests Ironic to set a node into inspect state in order to collect metadata regarding the node. This command may be out of band or in-band depending on the ironic driver configuration. This is only possible on nodes in 'manageable' and 'available' state.
@@ -37507,19 +37800,19 @@ export type Ansible25 = (
          * globally unique identifier (UUID) to identify the host.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 instances in AWS
        */
       ec2_instance_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage tenants on Cisco ACI fabrics.
@@ -37540,7 +37833,7 @@ export type Ansible25 = (
          * The name of the tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * OS6 configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with OS6 configuration sections in a deterministic way.
@@ -37596,7 +37889,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove security groups from an OpenStack cloud.
@@ -37622,7 +37915,7 @@ export type Ansible25 = (
          * Name that has to be given to the security group. This module requires that security group names be unique.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Cisco IOS XR configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with IOS XR configuration sections in a deterministic way.
@@ -37685,7 +37978,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages the AFM address lists on a BIG-IP. This module can be used to add and remove address list entries.
@@ -37735,35 +38028,35 @@ export type Ansible25 = (
          * Specifies the name of the address list.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Wait for VMware tools to become available on the VM and return facts.
        */
       vmware_guest_tools_wait?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -37790,7 +38083,7 @@ export type Ansible25 = (
          * API endpoint port
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Control running and enabled state for system-wide or user services.
@@ -37826,7 +38119,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable or disable the service, independently of C(*.preset) file preference or running state. Mutually exclusive with I(preset). Will take effect prior to I(state=reset).
          */
@@ -37852,7 +38146,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -37880,12 +38175,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the service to manage.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Blueprint Virtual Network module let you manage your Virtual Network easily. You can create access, define and delete Virtual Network by name or by using a JSON / Yaml file. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -37913,20 +38209,21 @@ export type Ansible25 = (
          * Name of Virtual Network as part of the Blueprint.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify or remove Windows share and set share permissions.
        */
       win_share?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage gslb service entities in Netscaler.
        */
@@ -38045,7 +38342,7 @@ export type Ansible25 = (
          * Monitor the health of the GSLB service.
          */
         healthmonitor?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove ssh keys.
@@ -38066,15 +38363,15 @@ export type Ansible25 = (
          * Required if C(state=present).
          */
         ssh_key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Perl library dependencies.
        */
       cpanm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage VLAN encap blocks that are assigned to VLAN pools on Cisco ACI fabrics.
@@ -38115,7 +38412,7 @@ export type Ansible25 = (
          * The name of the pool that the encap block should be assigned to.
          */
         pool?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Delete routers from OpenStack. Although Neutron allows routers to share the same name, this module enforces name uniqueness to be more user friendly.
@@ -38172,7 +38469,7 @@ export type Ansible25 = (
          * Name to be give to the router
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(bearychat) module sends notifications to U(https://bearychat.com) via the Incoming Robot integration.
@@ -38213,21 +38510,22 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Define a list of attachments. For more information, see https://github.com/bearyinnovative/bearychat-tutorial/blob/master/robots/incoming.md#attachments
          */
         attachments?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Channel to send the message to. If absent, the message goes to the default channel selected by the I(url).
          */
         channel?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module de-registers or registers an AWS EC2 instance from the ELBs that it belongs to.
@@ -38235,13 +38533,13 @@ export type Ansible25 = (
        * Will be marked changed when called only if there are ELBs found to operate on.
        */
       elb_instance?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Unified utility to interact with redis instances. 'slave' sets a redis instance in slave or master mode. 'flush' flushes all the instance or a specified db. 'config' (new in 1.6), ensures a configuration setting on an instance.
@@ -38299,7 +38597,7 @@ export type Ansible25 = (
          * the mode of the redis instance [slave command]
          */
         slave_mode?: "master" | "slave";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to modify the running configuration of a switch. It provides a way to execute a single CNOS command on a network device by evaluating the current running configuration and executing the command only if the specific settings have not been already configured. The CNOS command is passed as an argument of the method. This module functions the same as the cnos_command module. The only exception is that the following inventory variable can be specified ["condition = <flag string>"] When this inventory variable is specified as the variable of a task, the command is executed for the network element that matches the flag string. Usually, commands are executed across a group of network devices. When there is a requirement to skip the execution of the command on one or more devices, it is recommended to use this module. This module uses SSH to manage network device configuration. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_conditional_command.html)
@@ -38323,19 +38621,19 @@ export type Ansible25 = (
          * If you specify condition=false in the inventory file against any device, the command execution is skipped for that device.
          */
         condition: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage AWS IAM users
        */
       iam_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages information center trap configurations on HUAWEI CloudEngine switches.
@@ -38379,20 +38677,21 @@ export type Ansible25 = (
          * Whether a device is enabled to output alarms.
          */
         trap_enable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This modules configures the HP iLO interface using hponcfg.
        */
       hponcfg?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module creates, removes or resizes logical volumes.
        */
@@ -38428,7 +38727,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The volume group this logical volume is part of.
          */
@@ -38474,7 +38774,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -38502,7 +38803,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Free-form options to be passed to the lvcreate command
          */
@@ -38511,7 +38813,7 @@ export type Ansible25 = (
          * The size of the logical volume, according to lvcreate(8) --size, by default in megabytes or optionally with one of [bBsSkKmMgGtTpPeE] units; or according to lvcreate(8) --extents as a percentage of [VG|PVS|FREE]; Float values must begin with a digit. Resizing using percentage values was not supported prior to 2.1.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP service on Arista EOS network devices.
@@ -38523,7 +38825,7 @@ export type Ansible25 = (
          * State of the LLDP configuration. If value is I(present) lldp will be enabled else if it is I(absent) it will be disabled.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures a front panel, sub-interface, SVI, management or loopback port on a Cumulus Linux switch. For bridge ports use the cl_bridge module. For bond ports use the cl_bond module. When configuring bridge related features like the "vid" option, please follow the guidelines for configuring "vlan aware" bridging. For more details review the Layer2 Interface Guide at U(http://docs.cumulusnetworks.com)
@@ -38607,7 +38909,7 @@ export type Ansible25 = (
          * Define IPv4 virtual IP used by the Cumulus Linux VRR feature.
          */
         virtual_ip?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Assembles a configuration file from fragments. Often a particular program will take a single configuration file and does not support a C(conf.d) style structure where it is easy to build up the configuration from multiple sources. C(assemble) will take a directory of files that can be local or have already been transferred to the system, and concatenate them together to produce a destination file. Files are assembled in string sorting order. Puppet calls this idea I(fragments).
@@ -38640,7 +38942,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * An already existing directory full of source files.
          */
@@ -38672,7 +38975,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A file to create using the concatenation of all of the source files.
          */
@@ -38716,8 +39020,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an Mellanox ONYX network device and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -38750,7 +39055,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of the local usernames configured on network devices. It allows playbooks to manage either individual usernames or the aggregate of usernames in the current running config. It also supports purging usernames from the configuration that are not explicitly defined.
@@ -38800,16 +39105,16 @@ export type Ansible25 = (
          * The set of username objects to be configured on the remote Cisco IOS XR device. The list entries can either be the username or a hash of username and properties. This argument is mutually exclusive with the C(name) argument.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs, upgrade and removes packages using the underlying OS package manager.
        * For Windows targets, use the M(win_package) module instead.
        */
       package?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Downloads files from HTTP, HTTPS, or FTP to the remote server. The remote server I(must) have direct access to the remote resource.
@@ -38819,7 +39124,7 @@ export type Ansible25 = (
        * For Windows targets, use the M(win_get_url) module instead.
        */
       get_url?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve the facts about one or more of the Fibre Channel Networks from OneView.
@@ -38833,38 +39138,39 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage virtual machine templates in oVirt/RHV.
        */
       ovirt_templates?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sets and retrieves file ACL information.
        */
       acl?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * When the project does not exists in Gitlab, it will be created.
        * When the project does exists and state=absent, the project will be deleted.
        * When changes are made to the project, the project will be updated.
        */
       gitlab_project?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more of the SAN Managers from OneView
@@ -38882,25 +39188,26 @@ export type Ansible25 = (
          * params allowed: - C(start): The first item to return, using 0-based indexing. - C(count): The number of resources to return. - C(query): A general query string to narrow the list of resources returned. - C(sort): The sort order of the returned data set.
          */
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage host networks in oVirt/RHV.
        */
       ovirt_host_networks?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Write data points into InfluxDB.
        */
@@ -38913,7 +39220,7 @@ export type Ansible25 = (
          * Name of the database.
          */
         database_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete an image from virtual machine, blob uri, managed disk or snapshot.
@@ -38949,7 +39256,7 @@ export type Ansible25 = (
          * The OS type of image.
          */
         os_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, remove, reconfigure, update firewall policies. This module has a dependency on 1and1 >= 1.0
@@ -39019,39 +39326,39 @@ export type Ansible25 = (
          * Custom API URL. Overrides the ONEANDONE_API_URL environement variable.
          */
         api_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, deletes, or modifies amazon Redshift cluster instances.
        */
       redshift?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with switch firmware images. It provides a way to download a firmware image to a network device from a remote server using FTP, SFTP, TFTP, or SCP. The first step is to create a directory from where the remote server can be reached. The next step is to provide the full file path of the image's location. Authentication details required by the remote server must be provided as well. By default, this method makes the newly downloaded firmware image the active image, which will be used by the switch during the next restart. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_image.html)
@@ -39087,7 +39394,7 @@ export type Ansible25 = (
         imgtype: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind Domain to VLAN Pools on Cisco ACI fabrics.
@@ -39122,55 +39429,55 @@ export type Ansible25 = (
          * The name of the pool.
          */
         pool?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Using VMware vCenter, move a virtual machine using vMotion to a different host.
        */
       vmware_vmotion?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -39227,7 +39534,7 @@ export type Ansible25 = (
          * Zabbix user password.
          */
         login_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * allows the addition, modification and deletion of ACL keys and associated rules in a consul cluster via the agent. For more details on using and configuring ACLs, see https://www.consul.io/docs/internals/acl.html.
@@ -39285,7 +39592,7 @@ export type Ansible25 = (
          * the port on which the consul agent is running
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, update and remove regions.
@@ -39318,7 +39625,7 @@ export type Ansible25 = (
          * Required if C(state=present)
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP user configuration.
@@ -39354,7 +39661,7 @@ export type Ansible25 = (
          * Authentication password when using md5 or sha. This is not idempotent
          */
         pwd?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific virtual network or all virtual networks within a resource group.
@@ -39383,7 +39690,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only show results for a specific security group.
          */
@@ -39397,9 +39705,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -39408,7 +39716,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to modify the switch running configuration. It provides a way to execute a single CNOS command on a switch by evaluating the current running configuration and executing the command only if the specific setting has not been already configured. The CNOS command is passed as an argument of the method. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_command.html)
@@ -39424,7 +39732,7 @@ export type Ansible25 = (
         deviceType: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to mount/umount datastore on ESXi host.
@@ -39481,7 +39789,7 @@ export type Ansible25 = (
          * Name of the datastore to add/remove.
          */
         datastore_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of static IP routes on Vyatta VyOS network devices.
@@ -39513,7 +39821,7 @@ export type Ansible25 = (
          * List of static route definitions
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Bridge Domains (BD) on Cisco ACI fabrics.
@@ -39643,33 +39951,33 @@ export type Ansible25 = (
          * The APIC defaults new Bridge domains to C(proxy).
          */
         l2_unknown_unicast?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove username/password entries in a password file using htpasswd.
        * This is used by web servers such as Apache and Nginx for basic authentication.
        */
       htpasswd?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -39707,7 +40015,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The new password of the user. This parameter is optional, and enables you to change a password.
          */
@@ -39716,7 +40025,7 @@ export type Ansible25 = (
          * Dictionary set by a CyberArk authentication containing the different values to perform actions on a logged-on CyberArk session.
          */
         cyberark_session?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: present
@@ -39755,7 +40064,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -39783,12 +40093,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A string containing the base URL of the server hosting CyberArk's Privileged Account Security Web Services SDK.
          */
         api_base_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP GTM virtual servers
@@ -39820,7 +40131,7 @@ export type Ansible25 = (
          * Virtual server state
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of an OSPF interface instance.
@@ -39880,7 +40191,7 @@ export type Ansible25 = (
          * Enables or disables the usage of message digest authentication. Valid values are 'true' and 'false'.
          */
         message_digest?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage service group configuration in Netscaler.
@@ -40051,7 +40362,7 @@ export type Ansible25 = (
          * Enable compression for the specified service.
          */
         cmp?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages static route configuration
@@ -40093,7 +40404,7 @@ export type Ansible25 = (
          * List of static route definitions
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to create, modify and delete Zabbix screens and associated graph data.
@@ -40137,7 +40448,7 @@ export type Ansible25 = (
          * Zabbix user password.
          */
         login_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages interface DLDP configuration on HUAWEI CloudEngine switches.
@@ -40169,15 +40480,15 @@ export type Ansible25 = (
          * Set the source MAC address for DLDP packets sent in the DLDP-compatible mode. The value of MAC address is in H-H-H format. H contains 1 to 4 hexadecimal digits.
          */
         local_mac?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage packages with the I(pacman) package manager, which is used by Arch Linux and its variants.
        */
       pacman?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP host configuration parameters.
@@ -40227,7 +40538,7 @@ export type Ansible25 = (
          * VRF to use to source traffic to source. If state = absent, the vrf is removed.
          */
         vrf?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(expect) module executes a command and responds to prompts
@@ -40242,7 +40553,7 @@ export type Ansible25 = (
          * Mapping of expected string/regex and string to respond with. If the response is a list, successive matches return successive responses. List functionality is new in 2.1.
          */
         responses: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * a filename, when it does not exist, this step will B(not) be run.
@@ -40273,7 +40584,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * a filename, when it already exists, this step will B(not) be run.
          */
@@ -40288,7 +40600,7 @@ export type Ansible25 = (
          * Amount of time in seconds to wait for the expected strings
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Used to import/export and remove certificates and keys from the local certificate store.
@@ -40371,7 +40683,7 @@ export type Ansible25 = (
          * If the pkcs12 file has no password set or no password should be set on the exported file, do not set this option.
          */
         password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Query / Set MySQL variables
@@ -40395,7 +40707,7 @@ export type Ansible25 = (
          */
         variable?: string;
         connect_timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(nagios) module has two basic functions: scheduling downtime and toggling alerts for services or hosts.
@@ -40405,7 +40717,7 @@ export type Ansible25 = (
        * When using the M(nagios) module you will need to specify your Nagios server using the C(delegate_to) parameter.
        */
       nagios?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage fabric interface policy leaf policy groups on Cisco ACI fabrics.
@@ -40497,7 +40809,7 @@ export type Ansible25 = (
          * Choice of lldp_policy to be used as part of the leaf policy group to be created.
          */
         lldp_policy?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to a flowdock team inbox or chat using the push API (see https://www.flowdock.com/api/team-inbox and https://www.flowdock.com/api/chat)
@@ -40574,29 +40886,31 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Content of the message
          */
         msg: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sets attributes of files, symlinks, and directories, or removes files/symlinks/directories. Many other modules support the same options as the C(file) module - including M(copy), M(template), and M(assemble).
        * For Windows targets, use the M(win_file) module instead.
        */
       file?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Returns information about a Windows file.
        * For non-Windows targets, use the M(stat) module instead.
@@ -40626,7 +40940,7 @@ export type Ansible25 = (
          * Algorithm to determine checksum of file. Will throw an error if the host is unable to use specified algorithm.
          */
         checksum_algorithm?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(wakeonlan) module sends magic Wake-on-LAN (WoL) broadcast packets.
@@ -40648,44 +40962,44 @@ export type Ansible25 = (
          * UDP port to use for magic Wake-on-LAN packet
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove secondary IPs to and from a NIC.
        */
       cs_nic?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
        * This module allows the management of AWS Lambda functions aliases via the Ansible framework.  It is idempotent and supports "Check" mode.    Use module M(lambda) to manage the lambda function itself and M(lambda_event) to manage event source mappings.
        */
       lambda_alias?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -40722,7 +41036,7 @@ export type Ansible25 = (
          * Get the complete list of supported parameters for this blueprint and the description of those parameters.
          */
         get_param_list?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages applying ACLs to interfaces.
@@ -40746,25 +41060,26 @@ export type Ansible25 = (
          * Specify desired state of the resource.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, Removes and configures a virtual directory in IIS.
        */
       win_iis_virtualdirectory?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage PHP packages with the pear package manager.
        */
       pear?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the hostname of a BIG-IP.
@@ -40774,7 +41089,7 @@ export type Ansible25 = (
          * Hostname of the BIG-IP host.
          */
         hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides support for displaying data from Cisco NSO.
@@ -40789,7 +41104,7 @@ export type Ansible25 = (
          *
          */
         operational?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates, deletes or modifies NFS exports on Infinibox.
@@ -40821,7 +41136,7 @@ export type Ansible25 = (
          * Name of exported file system.
          */
         filesystem?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more of the Logical Interconnect Groups from OneView
@@ -40835,12 +41150,12 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for the management of API Gateway APIs
@@ -40849,15 +41164,15 @@ export type Ansible25 = (
        * swagger_file and swagger_text are passed directly on to AWS transparently whilst swagger_dict is an ansible dict which is converted to JSON before the API definitions are uploaded.
        */
       aws_api_gateway?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages AAA server global configuration
@@ -40893,7 +41208,7 @@ export type Ansible25 = (
          * Global AAA shared secret or keyword 'default'.
          */
         global_key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Read the AWS documentation for WAF U(https://aws.amazon.com/documentation/waf/)
@@ -40931,7 +41246,7 @@ export type Ansible25 = (
          * Name of the Web Application Firewall ACL to manage
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete an Azure Container Instance.
@@ -40960,7 +41275,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the container group.
          */
@@ -41003,7 +41319,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         subscription_id?: string;
@@ -41041,28 +41358,28 @@ export type Ansible25 = (
          */
         containers:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * List of ports exposed within the container group.
          */
         ports?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete a virtual networks. Allows setting and updating the available IPv4 address ranges and setting custom DNS servers. Use the azure_rm_subnet module to associate subnets with a virtual network.
        */
       azure_rm_virtualnetwork?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages IGMP global configuration configuration settings.
@@ -41086,7 +41403,7 @@ export type Ansible25 = (
          * Removes routes when the IGMP process is restarted. By default, routes are not flushed.
          */
         flush_routes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage vlan, vxlan, and vsan ranges that are assigned to pools on Cisco ACI fabrics.
@@ -41133,7 +41450,7 @@ export type Ansible25 = (
          * The name to give to the encap range.
          */
         range_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Lenovo ENOS configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with ENOS configuration sections in a deterministic way.
@@ -41189,13 +41506,13 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures the SELinux mode and policy. A reboot may be required after usage. Ansible will not issue this reboot but will let you know when it is required.
        */
       selinux?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can create and destroy Google Compute Engine C(loadbalancer) and C(httphealthcheck) resources.  The primary LB resource is the C(load_balancer) resource and the health check parameters are all prefixed with I(httphealthcheck). The full documentation for Google Compute Engine load balancing is at U(https://developers.google.com/compute/docs/load-balancing/).  However, the ansible module simplifies the configuration by following the libcloud model. Full install/configuration instructions for the gce* modules can be found in the comments of ansible/test/gce_tests.py.
@@ -41268,9 +41585,9 @@ export type Ansible25 = (
          */
         members?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * path to the JSON file associated with the service account email
@@ -41298,7 +41615,7 @@ export type Ansible25 = (
          * the duration in seconds between each health check request
          */
         httphealthcheck_interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about a one or more OpenStack domains
@@ -41314,7 +41631,7 @@ export type Ansible25 = (
          * A dictionary of meta data to use for further filtering.  Elements of this dictionary may be additional dictionaries.
          */
         filters?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OpenStack DNS recordsets. Recordsets can be created, deleted or updated. Only the I(records), I(description), and I(ttl) values can be updated.
@@ -41354,24 +41671,24 @@ export type Ansible25 = (
          * Description of the recordset
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will let you create Zabbix maintenance windows.
        */
       zabbix_maintenance?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * install a different version of Cumulus Linux in the inactive slot. For more details go the Image Management User Guide at U(http://docs.cumulusnetworks.com/).
@@ -41393,7 +41710,7 @@ export type Ansible25 = (
          * Switch slots after installing the image. To run the installed code, reboot the switch.
          */
         switch_slot?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage a maintenance-mode or normal-mode profile with configuration commands that can be applied during graceful removal or graceful insertion.
@@ -41413,7 +41730,7 @@ export type Ansible25 = (
          * Specify desired state of the resource.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove kernel modules from blacklist.
@@ -41433,7 +41750,7 @@ export type Ansible25 = (
          * Name of kernel module to black- or whitelist.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends an arbitrary command to an NXOS node and returns the results read from the device.  This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -41466,7 +41783,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command.  If the command does not pass the specified conditional, the interval indicates how to long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage upload, installation and removal of UCS files.
@@ -41506,7 +41823,7 @@ export type Ansible25 = (
          * Performs a full restore of the UCS file and all the files it contains, with the exception of the license file. The option must be used to restore a UCS on RMA devices (Returned Materials Authorization).
          */
         no_license?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on network devices.
@@ -41543,16 +41860,17 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password: string;
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends logs to LogEntries in realtime
        */
       logentries?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM pool members via iControl SOAP API
@@ -41612,7 +41930,7 @@ export type Ansible25 = (
          * Pool name. This pool must exist.
          */
         pool?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds and/or removes instances of network objects from Infoblox NIOS servers.  This module manages NIOS C(network) objects using the Infoblox WAPI interface over REST.
@@ -41646,7 +41964,7 @@ export type Ansible25 = (
          * Configures the set of DHCP options to be included as part of the configured network instance.  This argument accepts a list of values (see suboptions).  When configuring suboptions at least one of C(name) or C(num) must be specified.
          */
         options?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove a floating IP to an instance
@@ -41702,7 +42020,7 @@ export type Ansible25 = (
          * When I(state) is present, and I(floating_ip_address) is not present, this parameter can be used to specify whether we should try to reuse a floating IP address already allocated to the project.
          */
         reuse?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs or uninstalls Windows Roles or Features on Windows Server. This module uses the Add/Remove-WindowsFeature Cmdlets on Windows 2008 R2 and Install/Uninstall-WindowsFeature Cmdlets on Windows 2012, which are not available on client os machines.
@@ -41744,7 +42062,7 @@ export type Ansible25 = (
          * DEPRECATED in Ansible 2.4, as unmanaged reboots cause numerous issues under Ansible. Check the C(reboot_required) return value from this module to determine if a reboot is necessary, and if so, use the M(win_reboot) action to perform it.
          */
         restart?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage and query Windows services.
@@ -41822,7 +42140,7 @@ export type Ansible25 = (
          * This should only be set to true when using the LocalSystem username.
          */
         desktop_interact?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module de-registers or registers an AWS EC2 instance from the ELBs that it belongs to.
@@ -41830,19 +42148,19 @@ export type Ansible25 = (
        * Will be marked changed when called only if there are ELBs found to operate on.
        */
       ec2_elb?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about the oVirt/RHV API.
        */
       ovirt_api_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates temporary files and directories.
@@ -41872,7 +42190,7 @@ export type Ansible25 = (
          * Suffix of file/directory name created by module.
          */
         suffix?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Reboot a Windows machine, wait for it to go down, come back up, and respond to commands.
@@ -41922,7 +42240,7 @@ export type Ansible25 = (
          * Maximum seconds to wait for a single successful TCP connection to the WinRM endpoint before trying again
          */
         connect_timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure AlertEmailConfig object
@@ -41974,7 +42292,7 @@ export type Ansible25 = (
          * User defined description for the object.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Attach/Detach a subnet interface to a router, to provide a gateway for the subnet.
@@ -42035,19 +42353,19 @@ export type Ansible25 = (
          * Name of the router to which the subnet's interface should be attached.
          */
         router_name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The S3 module is great, but it is very slow for a large volume of files- even a dozen will be noticeable. In addition to speed, it handles globbing, inclusions/exclusions, mime types, expiration mapping, recursion, cache control and smart directory mapping.
        */
       s3_sync?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure UserAccountProfile object
@@ -42115,20 +42433,21 @@ export type Ansible25 = (
          * Units(DAYS).
          */
         credentials_timeout_threshold?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes a user from a MySQL database.
        */
       mysql_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * maintains ec2 security groups. This module has a dependency on python-boto >= 2.5
        */
@@ -42188,7 +42507,7 @@ export type Ansible25 = (
          * Description of the security group. Required when C(state) is C(present).
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on Juniper JUNOS network devices.
@@ -42226,13 +42545,13 @@ export type Ansible25 = (
          * Logical interface number.
          */
         unit?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, put into maintenance, disable, enable and remove storage pools.
        */
       cs_storage_pool?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove images from the glance repository.
@@ -42341,7 +42660,7 @@ export type Ansible25 = (
          * Name that has to be given to the image
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * allows the addition, modification and deletion of sessions in a consul cluster. These sessions can then be used in conjunction with key value pairs to implement distributed locks. In depth documentation for working with sessions can be found here http://www.consul.io/docs/internals/sessions.html
@@ -42413,19 +42732,19 @@ export type Ansible25 = (
          * a list of checks that will be used to verify the session health. If all the checks fail, the session will be invalidated and any locks associated with the session will be release and can be acquired once the associated lock delay has expired.
          */
         checks?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gets the default administrator password from any EC2 Windows instance.  The instance is referenced by its id (e.g. i-XXXXXXX). This module has a dependency on python-boto.
        */
       ec2_win_password?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Ensure that a Windows Server 2012+ host is configured as a domain controller or demoted to member server. This module may require subsequent use of the M(win_reboot) action if changes are made.
@@ -42476,7 +42795,7 @@ export type Ansible25 = (
          * If not set then the default path is C(%SYSTEMROOT%\SYSVOL).
          */
         sysvol_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Jenkins jobs by using Jenkins REST API.
@@ -42519,7 +42838,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -42545,7 +42865,7 @@ export type Ansible25 = (
          * Considered if C(state=present).
          */
         config?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages global parameters of NetStream on HUAWEI CloudEngine switches.
@@ -42589,7 +42909,7 @@ export type Ansible25 = (
          * Specifies the type of netstream global.
          */
         type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Used to make changes to the system wide Audit Policy.
@@ -42613,31 +42933,31 @@ export type Ansible25 = (
          * Cannot be used with I(category). You must define one or the other.
          */
         subcategory?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Read the AWS documentation for VPC Peering Connections U(http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-peering.html)
        */
       ec2_vpc_peer?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 VPC subnets in AWS
        */
       ec2_vpc_subnet_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds and/or removes instances of network view objects from Infoblox NIOS servers.  This module manages NIOS C(networkview) objects using the Infoblox WAPI interface over REST.
@@ -42661,7 +42981,7 @@ export type Ansible25 = (
          * Allows for the configuration of Extensible Attributes on the instance of the object.  This argument accepts a set of key / value pairs for configuration.
          */
         extattrs?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Notify airbrake about app deployments (see http://help.airbrake.io/kb/api-2/deploy-tracking)
@@ -42716,12 +43036,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A hash, number, tag, or other identifier showing what revision was deployed
          */
         revision?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove YUM repositories in RPM-based Linux distributions.
@@ -42762,7 +43083,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Username to use for proxy.
          */
@@ -42821,7 +43143,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -42849,7 +43172,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -42877,7 +43201,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: roundrobin
          *
@@ -42926,7 +43251,7 @@ export type Ansible25 = (
          * Option used to allow the user to overwrite any of the other options. To remove an option, set the value of the option to C(null).
          */
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: no
@@ -42955,7 +43280,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Include external configuration file. Both, local path and URL is supported. Configuration file will be inserted at the position of the I(include=) line. Included files may contain further include lines. Yum will abort with an error if an inclusion loop is detected.
          */
@@ -43027,7 +43353,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of packages you want to only use from a repository. This should be a space separated list. Shell globs using wildcards (eg. C(*) and C(?)) are allowed. Substitution variables (e.g. C($releasever)) are honored here.
          * The list can also be a regular YAML array.
@@ -43060,7 +43387,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password to use with the username for basic authentication.
          */
@@ -43098,7 +43426,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -43127,7 +43456,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Enable bandwidth throttling for downloads.
          * This option can be expressed as a absolute data rate in bytes/sec. An SI prefix (k, M or G) may be appended to the bandwidth value.
@@ -43185,7 +43515,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 1
          *
@@ -43229,7 +43560,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: read-only:present
          *
@@ -43245,7 +43577,7 @@ export type Ansible25 = (
          * URL to the proxy server that yum should use. Set to C(_none_) to disable the global proxy setting.
          */
         proxy?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove a bigmon out-of-band policy.
@@ -43305,7 +43637,7 @@ export type Ansible25 = (
          * Run policy until delivery_packet_count packets are delivered.
          */
         delivery_packet_count?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs a Cumulus Linux license. The module reports no change of status when a license is installed. For more details go the Cumulus Linux License Documentation at U(http://docs.cumulusnetwork.com) and the Licensing KB Site at U(https://support.cumulusnetworks.com/hc/en-us/sections/200507688)
@@ -43319,7 +43651,7 @@ export type Ansible25 = (
          * Force installation of a license. Typically not needed. It is recommended to manually run this command via the ansible command. A reload of switchd is not required. Running the force option in a playbook will break the idempotent state machine of the module and cause the switchd notification to kick in all the time, causing a disruption.
          */
         force?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Template module let you manage your Template easily. You can create create and delete Template by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -43347,7 +43679,7 @@ export type Ansible25 = (
          * AOS Id of the Template to manage (can't be used to create a new Template), Only one of I(name), I(id) or I(src) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Returns list of matching AMIs with AMI ID, along with other useful information
@@ -43356,15 +43688,15 @@ export type Ansible25 = (
        * Results can be sorted and sliced
        */
       ec2_ami_find?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or delete OpenStack Identity domains. If a domain with the supplied name already exists, it will be updated with the new description and enabled attributes.
@@ -43392,7 +43724,7 @@ export type Ansible25 = (
          * Description of the domain
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Loads and executes a role as a task dynamically. This frees roles from the `roles:` directive and allows them to be treated more as tasks.
@@ -43402,9 +43734,9 @@ export type Ansible25 = (
       include_role?: {
         active_connection_states?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         host?: string;
         connect_timeout?: number | string;
@@ -43415,14 +43747,14 @@ export type Ansible25 = (
         timeout?: number | string;
         exclude_hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         msg?: string;
         path?: string;
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows one to (re)generate OpenSSL public keys from their private keys. It uses the pyOpenSSL python library to interact with openssl. Keys are generated in PEM format. This module works only if the version of PyOpenSSL is recent enough (> 16.0.0).
@@ -43457,7 +43789,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: PEM
          *
@@ -43478,7 +43811,7 @@ export type Ansible25 = (
          * Name of the file in which the generated TLS/SSL public key will be written.
          */
         path: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage action rule profiles on Cisco ACI fabrics.
@@ -43503,7 +43836,7 @@ export type Ansible25 = (
          * The name of the tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Sensu client configuration.
@@ -43535,7 +43868,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -43563,12 +43897,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The socket definition scope, used to configure the Sensu client socket.
          */
         socket?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * An array of client subscriptions, a list of roles and/or responsibilities assigned to the system (e.g. webserver).
@@ -43577,9 +43912,9 @@ export type Ansible25 = (
          */
         subscriptions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: Non-loopback IPv4 address as determined by Ruby Socket.ip_address_list (provided by Sensu)
@@ -43591,16 +43926,16 @@ export type Ansible25 = (
          * The chef definition scope, used to configure the Sensu Enterprise Chef integration (Sensu Enterprise users only).
          */
         chef?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Client definition attributes to redact (values) when logging and sending client keepalives.
          */
         redact?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -43612,13 +43947,13 @@ export type Ansible25 = (
          * The puppet definition scope, used to configure the Sensu Enterprise Puppet integration (Sensu Enterprise users only).
          */
         puppet?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The ec2 definition scope, used to configure the Sensu Enterprise AWS EC2 integration (Sensu Enterprise users only).
          */
         ec2?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * If safe mode is enabled for the client. Safe mode requires local check definitions in order to accept a check request and execute the check.
@@ -43645,30 +43980,31 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The registration definition scope, used to configure Sensu registration event handlers.
          */
         registration?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The keepalive definition scope, used to configure Sensu client keepalives behavior (e.g. keepalive thresholds, etc).
          */
         keepalive?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The deregistration definition scope, used to configure automated Sensu client de-registration.
          */
         deregistration?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The servicenow definition scope, used to configure the Sensu Enterprise ServiceNow integration (Sensu Enterprise users only).
          */
         servicenow?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: System hostname as determined by Ruby Socket.gethostname (provided by Sensu)
@@ -43676,7 +44012,7 @@ export type Ansible25 = (
          * A unique name for the client. The name cannot contain special characters or spaces.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Layer-2 interface on Mellanox ONYX network devices.
@@ -43710,19 +44046,19 @@ export type Ansible25 = (
          * List of Layer-2 interface definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Lists or describes services in ecs.
        */
       ecs_service_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages AAA server host-specific configuration.
@@ -43766,42 +44102,42 @@ export type Ansible25 = (
          * Alternate UDP port for RADIUS accounting or keyword 'default'.
          */
         acct_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, or update accounts on SolidFire
        */
       sf_account_manager?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Launches or updates an AWS CloudFormation stack and waits for it complete.
        */
       cloudformation?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure MicroServiceGroup object
@@ -43854,22 +44190,22 @@ export type Ansible25 = (
          * User defined description for the object.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Notify BigPanda when deployments start and end (successfully or not). Returns a deployment object containing all the parameters for future module calls.
        */
       bigpanda?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage content switching policy.
@@ -43904,7 +44240,7 @@ export type Ansible25 = (
          * Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
          */
         rule?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about an ESXi host's DNS configuration information when ESXi hostname or Cluster name is given.
@@ -43921,7 +44257,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Security policies allow you to enforce rules and take action, and can be as general or specific as needed. The policy rules are compared against the incoming traffic in sequence, and because the first rule that matches the traffic is applied, the more specific rules must precede the more general ones.
@@ -43953,9 +44289,9 @@ export type Ansible25 = (
          */
         hip_profiles?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -43988,7 +44324,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: add
          *
@@ -44003,9 +44340,9 @@ export type Ansible25 = (
         data_filtering?: string;
         category?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: application-default
@@ -44014,9 +44351,9 @@ export type Ansible25 = (
          */
         service?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -44025,9 +44362,9 @@ export type Ansible25 = (
          */
         application?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -44036,9 +44373,9 @@ export type Ansible25 = (
          */
         source_user?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -44053,9 +44390,9 @@ export type Ansible25 = (
          */
         destination_zone?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -44081,9 +44418,9 @@ export type Ansible25 = (
          */
         destination_ip?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -44129,9 +44466,9 @@ export type Ansible25 = (
          */
         source_zone?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: any
@@ -44140,9 +44477,9 @@ export type Ansible25 = (
          */
         source_ip?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -44151,9 +44488,9 @@ export type Ansible25 = (
          */
         tag_name?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: allow
@@ -44188,7 +44525,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -44216,8 +44554,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of an OSPF VPN instance on HUAWEI CloudEngine switches.
@@ -44317,7 +44656,7 @@ export type Ansible25 = (
          * The ID of the ospf process. Valid values are an integer, 1 - 4294967295, the default value is 1.
          */
         ospf?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * LogicMonitor is a hosted, full-stack, infrastructure monitoring platform.
@@ -44359,7 +44698,7 @@ export type Ansible25 = (
          * This parameter will add or update existing properties in your LogicMonitor account.
          */
         properties?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The action you wish to perform on target.
@@ -44379,9 +44718,9 @@ export type Ansible25 = (
          */
         groups?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 30
@@ -44429,7 +44768,7 @@ export type Ansible25 = (
          * NOTE Host and Hostgroup tasks should always be performed via local_action. There are no benefits to running these tasks on the remote host and doing so will typically cause problems.
          */
         target: "collector" | "host" | "datasource" | "hostgroup";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running EdgeOS. This module prepends all of the base network fact keys with U(ansible_net_<fact>). The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -44441,7 +44780,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset. Possible values for this argument include all, default, config, and neighbors. Can specify a list of values to include a larger subset. Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create snapshots of the running states of selected features, add new show commands for snapshot creation, delete and compare existing snapshots.
@@ -44505,7 +44844,7 @@ export type Ansible25 = (
          * Snapshot options to be used when C(action=compare).
          */
         compare_option?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Copy a file to a remote cloudengine device over SCP on HUAWEI CloudEngine switches.
@@ -44525,7 +44864,7 @@ export type Ansible25 = (
          * The remote file system of the device. If omitted, devices that support a I(file_system) parameter will use their default values. File system indicates the storage medium and can be set to as follows, 1) C(flash) is root directory of the flash memory on the master MPU. 2) C(slave#flash) is root directory of the flash memory on the slave MPU. If no slave MPU exists, this drive is unavailable. 3) C(chassis ID/slot number#flash) is root directory of the flash memory on a device in a stack. For example, C(1/5#flash) indicates the flash memory whose chassis ID is 1 and slot number is 5.
          */
         file_system?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OpenStack Identity Roles.
@@ -44541,34 +44880,34 @@ export type Ansible25 = (
          * Role Name
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about AWS KMS keys including tags and grants
        */
       aws_kms_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete an Azure Function App
        */
       azure_rm_functionapp?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(known_hosts) module lets you add or remove a host keys from the C(known_hosts) file.
@@ -44576,14 +44915,15 @@ export type Ansible25 = (
        * If you have a very large number of host keys to manage, you will find the M(template) module more useful.
        */
       known_hosts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module provides declarative management of VLANs on network devices.
        */
@@ -44623,9 +44963,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         pn_description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete instance of SQL Database.
@@ -44679,7 +45020,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the server.
          */
@@ -44755,7 +45097,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         profile?: string;
         cli_default_profile?:
           | boolean
@@ -44779,7 +45122,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Required if I(create_mode) is C(point_in_time_restore), this value is required. If I(create_mode) is C(restore), this value is optional. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. Must be greater than or equal to the source database's earliestRestoreDate value.
          */
@@ -44825,12 +45169,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The max size of the database expressed in bytes. If I(create_mode) is not C(default), this value is ignored. To see possible values, query the capabilities API (/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationID}/capabilities) referred to by operationId: 'Capabilities_ListByLocation.'
          */
         max_size_bytes?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts for a device using SNMP, the facts will be inserted to the ansible_facts key.
@@ -44873,7 +45218,7 @@ export type Ansible25 = (
          * Encryption key, required if version is authPriv
          */
         privkey?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This will configure both login and motd banners on remote devices running Arista EOS.  It allows playbooks to add or remote banner text from the active running configuration.
@@ -44893,7 +45238,7 @@ export type Ansible25 = (
          * Specifies which banner that should be configured on the remote device.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind interface selector profiles to switch policy leaf profiles on Cisco ACI fabrics.
@@ -44914,7 +45259,7 @@ export type Ansible25 = (
          * Name of the Leaf Profile to which we add a Selector.
          */
         leaf_profile?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Mellanox ONYX configurations uses a simple block indent file syntax for segmenting configuration into sections. This module provides an implementation for working with ONYX configuration sections in a deterministic way.
@@ -44964,13 +45309,13 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts from ZFS pool properties.
        */
       zpool_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VRFs on network devices.
@@ -45007,10 +45352,11 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         password: string;
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can create and destroy Google Compute Engine networks and firewall rules U(https://cloud.google.com/compute/docs/networking). The I(name) parameter is reserved for referencing a network while the I(fwname) parameter is used to reference firewall rules. IPv4 Address ranges must be specified using the CIDR U(http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) format. Full install/configuration instructions for the gce* modules can be found in the comments of ansible/test/gce_tests.py.
@@ -45021,9 +45367,9 @@ export type Ansible25 = (
          */
         src_tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * region of subnet to create
@@ -45044,9 +45390,9 @@ export type Ansible25 = (
          */
         src_range?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * path to the JSON file associated with the service account email
@@ -45069,9 +45415,9 @@ export type Ansible25 = (
          */
         target_tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * name of subnet to create
@@ -45099,7 +45445,7 @@ export type Ansible25 = (
          * description of subnet to create
          */
         subnet_desc?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to manage administrator permission for the local administrative account for the host when ESXi hostname is given.
@@ -45130,7 +45476,7 @@ export type Ansible25 = (
          * See examples for specifications.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OpenStack Quotas. Quotas can be created, updated or deleted using this module. A quota will be updated if matches an existing project and is present.
@@ -45342,7 +45688,7 @@ export type Ansible25 = (
          * Number of load balancers to allow.
          */
         loadbalancer?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VRRP interface attributes on HUAWEI CloudEngine devices.
@@ -45432,7 +45778,7 @@ export type Ansible25 = (
          * Virtual IP address. The value is a string of 0 to 255 characters.
          */
         virtual_ip?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of logging on network devices.
@@ -45468,7 +45814,7 @@ export type Ansible25 = (
          * List of logging definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Contract resources on Cisco ACI fabrics.
@@ -45511,7 +45857,7 @@ export type Ansible25 = (
          * The name of the tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, Update or Destory a Url_Map. See U(https://cloud.google.com/compute/docs/load-balancing/http/url-map) for an overview. More details on the Url_Map API can be found at U(https://cloud.google.com/compute/docs/reference/latest/urlMaps#resource).
@@ -45524,9 +45870,9 @@ export type Ansible25 = (
         service_account_email?: string;
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The list of named PathMatchers to use against the URL. Contains path_rules, which is a list of paths and an associated service. A default_service can also be specified for each path_matcher.
@@ -45536,9 +45882,9 @@ export type Ansible25 = (
          */
         path_matchers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of the Url_Map.
@@ -45552,14 +45898,14 @@ export type Ansible25 = (
          */
         host_rules?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         state?: "absent" | "present";
         credentials_file?: string;
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute cluster-create or cluster-delete command.
@@ -45603,7 +45949,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify action to perform. Use 'present' to create cluster and 'absent' to delete cluster.
          */
@@ -45622,19 +45969,19 @@ export type Ansible25 = (
          * Required for 'cluster-create'.
          */
         pn_cluster_node2?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates and deletes Route53 private and public zones
        */
       route53_zone?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure AlertSyslogConfig object
@@ -45682,7 +46029,7 @@ export type Ansible25 = (
          * User defined description for alert syslog config.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use the OpenShift Python client to perform CRUD operations on K8s objects.
@@ -45692,7 +46039,7 @@ export type Ansible25 = (
        * Supports check mode.
        */
       k8s_raw?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate general SNMP settings on a BIG-IP.
@@ -45718,43 +46065,43 @@ export type Ansible25 = (
          * When C(enabled), ensures that the system sends a trap whenever the SNMP agent starts running or stops running. This is usually enabled by default on a BIG-IP.
          */
         agent_status_traps?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage clusters in oVirt/RHV
        */
       ovirt_cluster?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure the VMkernel IP Address
        */
       vmware_vmkernel_ip_config?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -45773,13 +46120,13 @@ export type Ansible25 = (
          * This argument specifies the port the netconf service should listen on for SSH connections.  The default port as defined in RFC 6242 is 830.
          */
         netconf_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage Virtual Machine Snapshots in oVirt/RHV
        */
       ovirt_snapshots?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages IGMP snooping global configuration.
@@ -45811,70 +46158,70 @@ export type Ansible25 = (
          * Manage the state of the resource.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows to manage posix users on a univention corporate server (UCS). It uses the python API of the UCS to create a new object or edit it.
        */
       udm_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Module searches Amazon EFS file systems
        */
       efs_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows the administration of Keycloak client templates via the Keycloak REST API. It requires access to the REST API via OpenID Connect; the user connecting and the client being used must have the requisite access rights. In a default Keycloak installation, admin-cli and an admin user would work, as would a separate client definition with the scope tailored to your needs and a user having the expected roles.
@@ -45922,7 +46269,7 @@ export type Ansible25 = (
          * Name of the client template
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure GslbHealthMonitor object
@@ -46018,46 +46365,46 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as 2.
          */
         successful_checks?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes deploy keys for GitHub repositories. Supports authentication using username and password, username and password and 2-factor authentication code (OTP), OAuth2 token, or personal access token.
        */
       github_deploy_key?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -46129,7 +46476,7 @@ export type Ansible25 = (
          * If I(state) is C(absent) and I(overwrite) is C(True), this module will remove the given resource record unconditionally. If I(state) is C(absent) and I(overwrite) is C(False), this module will fail if the provided record_data do not match exactly with the existing resource record's record_data.
          */
         overwrite?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP service on VyOS network devices.
@@ -46141,45 +46488,45 @@ export type Ansible25 = (
          * State of the LLDP configuration.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, resize luns on NetApp cDOT.
        */
       na_cdot_lun?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * This module manipulates sysctl entries and optionally performs a C(/sbin/sysctl -p) after changing them.
        */
       sysctl?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, manage and delete Windows shortcuts
@@ -46232,20 +46579,21 @@ export type Ansible25 = (
          * The file name is followed by a comma and the number in the library file (.dll) or use 0 for an image file.
          */
         icon?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to create, modify, get and delete Zabbix proxy entries.
        */
       zabbix_proxy?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages members in a device group. Members in a device group can only be added or removed, never updated. This is because the members are identified by unique name values and changing that name would invalidate the uniqueness.
        */
@@ -46265,7 +46613,7 @@ export type Ansible25 = (
          * The device group that you want to add the member to.
          */
         device_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Import file on PAN-OS device
@@ -46303,7 +46651,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device.
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Query current pagefile configuration.
@@ -46357,7 +46705,7 @@ export type Ansible25 = (
          * Configures AutomaticManagedPagefile for the entire system.
          */
         automatic?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Install, upgrade, delete and list packages with the Helm package manage
@@ -46388,7 +46736,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Release name to manage
          */
@@ -46410,7 +46759,7 @@ export type Ansible25 = (
          *
          */
         chart?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: installed
@@ -46422,7 +46771,7 @@ export type Ansible25 = (
          * A map of value options for the chart.
          */
         values?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: localhost
@@ -46436,44 +46785,44 @@ export type Ansible25 = (
          * Tiller's server port
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Grant or revoke privileges on PostgreSQL database objects.
        * This module is basically a wrapper around most of the functionality of PostgreSQL's GRANT and REVOKE statements with detection of changes (GRANT/REVOKE I(privs) ON I(type) I(objs) TO/FROM I(roles))
        */
       postgresql_privs?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Manages physical attributes of interfaces of NX-OS switches.
@@ -46556,7 +46905,7 @@ export type Ansible25 = (
          * Full name of interface, i.e. Ethernet1/1, port-channel10.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to view the switch information. It executes the show sysinfo CLI command on a switch and returns a file containing all the system information of the target network device. This module uses SSH to manage network device configuration. The results of the operation can be viewed in results directory. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_facts.html)
@@ -46567,7 +46916,7 @@ export type Ansible25 = (
         password: string;
         enablePassword?: string;
         outputfile: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Cancel Ansible Tower jobs. See U(https://www.ansible.com/tower) for an overview.
@@ -46581,15 +46930,15 @@ export type Ansible25 = (
          * Fail loudly if the job_id does not reference a running job.
          */
         fail_if_not_running?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Controls systemd services on remote hosts.
        */
       systemd?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, register and remove SSH keys.
@@ -46628,7 +46977,7 @@ export type Ansible25 = (
          * Name of public key.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Enable or disable an Icinga2 feature
@@ -46644,19 +46993,19 @@ export type Ansible25 = (
          * This is the feature name to enable or disable.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Obtain a session token from the AWS Security Token Service
        */
       sts_session_token?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and Delete Instances/Databases on Spanner. See U(https://cloud.google.com/spanner/docs) for an overview.
@@ -46699,7 +47048,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * GCP spanner instance name.
          */
@@ -46725,7 +47075,7 @@ export type Ansible25 = (
          * If not specified, instance_id will be used instead.
          */
         instance_display_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Brocade Ironware configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with Ironware configuration sections in a deterministic way.
@@ -46789,7 +47139,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove Rundeck projects through HTTP API.
@@ -46820,15 +47170,15 @@ export type Ansible25 = (
          * Create or remove Rundeck project.
          */
         state?: "present" | "absent";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete a Rackspace Cloud Monitoring alarm that associates an existing rax_mon_entity, rax_mon_check, and rax_mon_notification_plan with criteria that specify what conditions will trigger which levels of notifications. Rackspace monitoring module flow | rax_mon_entity -> rax_mon_check -> rax_mon_notification -> rax_mon_notification_plan -> *rax_mon_alarm*
        */
       rax_mon_alarm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(proxysql_backend_servers) module adds or removes mysql hosts using the proxysql admin interface.
@@ -46893,7 +47243,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -46916,7 +47267,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If I(use_ssl) is set to C(True), connections to this server will be made using SSL connections. If omitted the proxysql database default for I(use_ssl) is C(False).
          */
@@ -46942,7 +47294,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If greater than 0, ProxySQL will reguarly monitor replication lag. If replication lag goes above I(max_replication_lag), proxysql will temporarily shun the server until replication catches up. If omitted the proxysql database default for I(max_replication_lag) is 0.
          */
@@ -46961,7 +47314,7 @@ export type Ansible25 = (
          * The maximum number of connections ProxySQL will open to this backend server. If omitted the proxysql database default for I(max_connections) is 1000.
          */
         max_connections?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Kibana plugins.
@@ -46992,7 +47345,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /opt/kibana/bin/kibana
          *
@@ -47033,15 +47387,15 @@ export type Ansible25 = (
          * Name of the plugin to install
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage Virtual Machine and floating disks in oVirt/RHV.
        */
       ovirt_disk?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows you to modify mapped network drives for individual users.
@@ -47075,7 +47429,7 @@ export type Ansible25 = (
          * This letter must not already be in use with Windows.
          */
         letter?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VTP version configuration.
@@ -47085,7 +47439,7 @@ export type Ansible25 = (
          * VTP version number.
          */
         version?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Ip Pool module let you manage your IP Pool easily. You can create create and delete IP Pool by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -47117,21 +47471,21 @@ export type Ansible25 = (
          * AOS Id of the IP Pool to manage (can't be used to create a new IP Pool), Only one of I(name), I(id) or I(content) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes Vertica database role and, optionally, assign other roles.
        */
       vertica_role?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -47161,13 +47515,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * PEM password.
          */
         pem_password?: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Name of the keyvault key.
@@ -47195,7 +47550,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -47221,7 +47577,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows setting/accumulating stats on the current ansible run, either per host of for all hosts in the run.
@@ -47242,7 +47598,7 @@ export type Ansible25 = (
          * boolean that indicates if the stats is per host or for all hosts in the run.
          */
         per_host?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This modules allows for enable/disable/activate of I(awall) policies. Alpine Wall (I(awall)) generates a firewall configuration from the enabled policy files and activates the configuration on the system.
@@ -47280,17 +47636,18 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A policy name, like C(foo), or multiple policies, like C(foo, bar).
          */
         name?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure VrfContext object
@@ -47365,7 +47722,7 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will update settings for OpenDJ with the command set-backend-prop.
@@ -47420,7 +47777,7 @@ export type Ansible25 = (
          * The name of the backend on which the property needs to be updated.
          */
         backend: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Query facts about which Jenkins jobs exist
@@ -47456,7 +47813,7 @@ export type Ansible25 = (
          * Password to authenticate with the Jenkins server.
          */
         password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides rollback and rollback preview functionality for Cisco ACI fabrics.
@@ -47516,7 +47873,7 @@ export type Ansible25 = (
          * The APIC defaults new Import Policies to C(yes).
          */
         fail_on_decrypt?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM udp monitors.
@@ -47577,7 +47934,7 @@ export type Ansible25 = (
          * This setting works like C(receive), except that the system marks the node or pool member disabled when its response matches the C(receive_disable) string but not C(receive). To use this setting, you must specify both C(receive_disable) and C(receive).
          */
         receive_disable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage InfluxDB users
@@ -47601,7 +47958,7 @@ export type Ansible25 = (
          * State of the user.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for easy creation, updating and deletion of CloudFront distributions.
@@ -47745,29 +48102,29 @@ export type Ansible25 = (
          * The default origin path to specify for an origin if no I(origins) have been specified. Defaults to empty if not specified.
          */
         default_origin_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or destroy svm on NetApp cDOT
        */
       na_cdot_svm?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -47775,13 +48132,13 @@ export type Ansible25 = (
        * Metrics you wish to alarm on must already exist.
        */
       ec2_metric_alarm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Logstash plugins.
@@ -47821,7 +48178,7 @@ export type Ansible25 = (
          * Install plugin with that name.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures VLANs on Cisco UCS Manager.
@@ -47884,7 +48241,7 @@ export type Ansible25 = (
          * You cannot change this name after the VLAN is created.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV templates relate to a storage domain.
@@ -47894,7 +48251,7 @@ export type Ansible25 = (
          * Flag which indicates whether to get unregistered templates which contain one or more disks which reside on a storage domain or diskless templates.
          */
         unregistered?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP interfaces configuration on network devices.
@@ -47918,7 +48275,7 @@ export type Ansible25 = (
          * Name of the interface LLDP should be configured on.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of the local usernames configured on Cisco Nexus devices.  It allows playbooks to manage either individual usernames or the collection of usernames in the current running config.  It also supports purging usernames from the configuration that are not explicitly defined.
@@ -47960,7 +48317,7 @@ export type Ansible25 = (
          * The C(sshkey) argument defines the SSH public key to configure for the username.  This argument accepts a valid SSH key value.
          */
         sshkey?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SELinux file context mapping definitions
@@ -48001,57 +48358,57 @@ export type Ansible25 = (
          * File type.
          */
         ftype?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Controls services on remote hosts. Supported init systems include BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
        * For Windows targets, use the M(win_service) module instead.
        */
       service?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove a host from distributed virtual switch
        */
       vmware_dvs_host?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Gather facts about Redshift cluster(s)
        */
       redshift_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects facts from devices running the OpenSwitch operating system.  Fact collection is supported over both Cli and Rest transports.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -48072,7 +48429,7 @@ export type Ansible25 = (
          * When enabled, this argument will collect the current running configuration from the remote device.  If the C(transport=rest) then the collected configuration will be the full system configuration.
          */
         config?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Will return whether the folder and task exists.
@@ -48091,19 +48448,19 @@ export type Ansible25 = (
          * The name of the scheduled task to get information for.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage logging facility of an s3 bucket in AWS
        */
       s3_logging?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages creating and downloading qkviews from a BIG-IP. Various options can be provided when creating qkviews. The qkview is important when dealing with F5 support. It may be required that you upload this qkview to the supported channels during resolution of an SRs that you may have opened.
@@ -48147,7 +48504,7 @@ export type Ansible25 = (
          * Exclude various file from the qkview.
          */
         exclude?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends alerts which appear in the Action Center area of the windows desktop.
@@ -48189,7 +48546,7 @@ export type Ansible25 = (
          * The message to appear inside the notification.  May include \n to format the message to appear within the Action Center.
          */
         msg?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages MLAG interface attributes on HUAWEI CloudEngine switches.
@@ -48231,29 +48588,29 @@ export type Ansible25 = (
          * M-LAG global LACP system priority. The value is an integer ranging from 0 to 65535. The default value is 32768.
          */
         mlag_priority_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or destroy aggregates on NetApp cDOT.
        */
       na_cdot_aggregate?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -48270,7 +48627,7 @@ export type Ansible25 = (
          * Specify one or more profiles to change.
          */
         profiles?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an ASA node and returns the results read from the device. The M(asa_command) module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -48302,7 +48659,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, attach, detach volumes.
@@ -48338,7 +48695,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the disk offering to be used.
          * Required one of C(disk_offering), C(snapshot) if volume is not already C(state=present).
@@ -48370,7 +48728,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -48399,7 +48758,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Size of disk in GB
          */
@@ -48431,7 +48791,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         /**
          * Name of the zone in which the volume should be deployed.
@@ -48484,7 +48845,7 @@ export type Ansible25 = (
          * Required one of C(disk_offering), C(snapshot) if volume is not already C(state=present).
          */
         snapshot?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects fact information from a remote device running the Junos operating system.  By default, the module will collect basic fact information from the device to be included with the hostvars. Additional fact information can be collected based on the configured set of arguments.
@@ -48502,7 +48863,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected. To maintain backward compatbility old style facts can be retrieved using all value, this reqires junos-eznc to be installed as a prerequisite.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an SR OS node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -48535,7 +48896,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to jabber
@@ -48571,19 +48932,19 @@ export type Ansible25 = (
          * port to connect to, overrides default
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * List the MFA (Multi-Factor Authentication) devices registered for a user
        */
       iam_mfa_device_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with the running configuration of a switch. It provides a way to execute a set of CNOS commands on a switch by evaluating the current running configuration and executing the commands only if the specific settings have not been already configured. The configuration source can be a set of commands or a template written in the Jinja2 templating language. This module functions the same as the cnos_template module. The only exception is that the following inventory variable can be specified ["condition = <flag string>"] When this inventory variable is specified as the variable of a task, the template is executed for the network element that matches the flag string. Usually, templates are used when commands are the same across a group of network devices. When there is a requirement to skip the execution of the template on one or more devices, it is recommended to use this module. This module uses SSH to manage network device configuration. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_conditional_template.html)
@@ -48607,7 +48968,7 @@ export type Ansible25 = (
          * If you specify condition=<flag string> in the inventory file against any device, the template execution is done for that device in case it matches the flag setting for that task.
          */
         condition: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP service on Juniper JUNOS network devices.
@@ -48637,7 +48998,7 @@ export type Ansible25 = (
          * Specify the number of seconds the device waits before sending advertisements to neighbors after a change is made in local system.
          */
         transmit_delay?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages HSRP configuration on NX-OS switches.
@@ -48683,7 +49044,7 @@ export type Ansible25 = (
          * Full name of interface that is being managed for HSRP.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an IOS XR node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -48716,19 +49077,19 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates an EC2 snapshot from an existing EBS volume
        */
       ec2_snapshot?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows notifications to be sent using sms / mms via the catapult bandwidth api.
@@ -48747,9 +49108,9 @@ export type Ansible25 = (
          */
         dest:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * For MMS messages, a media url to the location of the media to be sent with the message.
@@ -48767,7 +49128,7 @@ export type Ansible25 = (
          * The contents of the text message (must be 2048 characters or less).
          */
         msg: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Windows Active Directory user accounts.
@@ -48894,42 +49255,42 @@ export type Ansible25 = (
          * C(yes) will prevent the user from changing their password.  C(no) will allow the user to change their password.
          */
         user_cannot_change_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, or update volume access groups on SolidFire
        */
       sf_volume_access_group_manager?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Gather facts about virtual gateways in AWS.
        */
       ec2_vpc_vgw_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage bower packages with bower
@@ -48970,7 +49331,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The version to be installed
          */
@@ -49008,8 +49370,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Execute vrouter-ospf-add, vrouter-ospf-remove command.
@@ -49079,8 +49442,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Reboot a network device.
@@ -49090,13 +49454,13 @@ export type Ansible25 = (
          * Safeguard boolean. Set to true if you're sure you want to reboot.
          */
         confirm?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, delete user roles.
        */
       cs_role?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds and/or removes instances of DNS zone objects from Infoblox NIOS servers.  This module manages NIOS C(zone_auth) objects using the Infoblox WAPI interface over REST.
@@ -49134,7 +49498,7 @@ export type Ansible25 = (
          * Configures the DNS view name for the configured resource.  The specified DNS zone must already exist on the running NIOS instance prior to configuring zones.
          */
         view?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The C(unarchive) module unpacks an archive.
@@ -49176,7 +49540,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Remote absolute path where the archive should be unpacked.
          */
@@ -49208,7 +49573,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -49236,7 +49602,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If the specified absolute path (file or directory) already exists, this step will B(not) be run.
          */
@@ -49247,18 +49614,18 @@ export type Ansible25 = (
          */
         exclude?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Specify additional options by passing in an array.
          */
         extra_opts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: yes
@@ -49289,8 +49656,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * makes an OS computer speak!  Amuse your friends, annoy your coworkers!
@@ -49304,7 +49672,7 @@ export type Ansible25 = (
          * What voice to use
          */
         voice?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The C(jenkins_script) module takes a script plus a dict of values to use within the script and returns the result of the script being run.
@@ -49324,7 +49692,7 @@ export type Ansible25 = (
          * A dict of key-value pairs used in formatting the script using string.Template (see https://docs.python.org/2/library/string.html#template-strings).
          */
         args?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The username to connect to the jenkins server with.
@@ -49367,8 +49735,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Scheduler object
@@ -49453,7 +49822,7 @@ export type Ansible25 = (
          * Name of scheduler.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage (add, remove, change) individual settings in an INI-style file without having to manage the file as a whole with, say, M(template) or M(assemble). Adds missing sections if they don't exist.
@@ -49461,14 +49830,15 @@ export type Ansible25 = (
        * Since version 2.3, this module adds missing ending newlines to files to keep in line with the POSIX standard, even when no other modifications need to be applied.
        */
       ini_file?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages BGP configurations on HUAWEI CloudEngine switches.
        */
@@ -49599,35 +49969,35 @@ export type Ansible25 = (
          * Name of a BGP instance. The name is a case-sensitive string of characters.
          */
         vrf_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage VMware vSphere Datacenters
        */
       vmware_datacenter?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -49648,7 +50018,7 @@ export type Ansible25 = (
          * Sudo Command.
          */
         sudocmd?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower organizations. See U(https://www.ansible.com/tower) for an overview.
@@ -49668,7 +50038,7 @@ export type Ansible25 = (
          * The description to use for the organization.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove network from OpenStack.
@@ -49726,7 +50096,7 @@ export type Ansible25 = (
          * Whether this network is shared or not.
          */
         shared?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to modify servers in CenturyLink Cloud.
@@ -49773,9 +50143,9 @@ export type Ansible25 = (
          */
         server_ids:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -49810,8 +50180,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module affects the configuration files located in the interfaces folder defined by ifupdown2. Interfaces port and port ranges listed in the "allowed" parameter define what interfaces will be available on the switch. If the user runs this module and has an interface configured on the switch, but not found in the "allowed" list, this interface will be unconfigured. By default this is `/etc/network/interface.d` For more details go the Configuring Interfaces at U(http://docs.cumulusnetworks.com).
@@ -49827,19 +50198,19 @@ export type Ansible25 = (
          * List of ports to run initial run at 10G.
          */
         allowed?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gets information about an AWS CloudFormation stack
        */
       cloudformation_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * osx_defaults allows users to read, write, and delete Mac OS X user defaults from Ansible scripts. Mac OS X applications and other programs use the defaults system to record user preferences and other information that must be maintained when the applications aren't running (such as default font for new documents, or the position of an Info panel).
@@ -49901,14 +50272,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove OMAPI hosts into compatible DHCPd servers.
        */
       omapi_host?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure VsVip object
@@ -49979,7 +50351,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete or modifiy hostgroups on Pure Storage FlashArrays.
@@ -50003,7 +50375,7 @@ export type Ansible25 = (
          * The name of the hostgroup.
          */
         hostgroup?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VLANs on VyOS network devices.
@@ -50049,7 +50421,7 @@ export type Ansible25 = (
          * ID of the VLAN. Range 0-4094.
          */
         vlan_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about a single VM on a VMware ESX cluster
@@ -50095,20 +50467,21 @@ export type Ansible25 = (
          * If multiple VMs matching the name, use the first or last found
          */
         name_match?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Searches, downloads, and installs Windows updates synchronously by automating the Windows Update client
        */
       win_updates?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * You can wait for a set amount of time C(timeout), this is the default if nothing is specified or just C(timeout) is specified. This does not produce an error.
        * Waiting for a port to become available is useful for when services are not immediately available after their init scripts return which is true of certain Java application servers. It is also useful when starting guests with the M(virt) module and needing to pause until they are ready.
@@ -50125,9 +50498,9 @@ export type Ansible25 = (
          */
         active_connection_states?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 127.0.0.1
@@ -50176,9 +50549,9 @@ export type Ansible25 = (
          */
         exclude_hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * This overrides the normal error message from a failure to meet the required conditions.
@@ -50192,7 +50565,7 @@ export type Ansible25 = (
          * Port number to poll.
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more subnets from OpenStack.
@@ -50210,7 +50583,7 @@ export type Ansible25 = (
          * Ignored. Present for backwards compatibility
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gathers Vertica database facts.
@@ -50242,7 +50615,7 @@ export type Ansible25 = (
          * The password used to authenticate with.
          */
         login_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure HealthMonitor object
@@ -50359,7 +50732,7 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as 2.
          */
         successful_checks?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Downloads an artifact from a maven repository given the maven coordinates provided to the module. Can retrieve
@@ -50367,21 +50740,21 @@ export type Ansible25 = (
        * available.
        */
       maven_artifact?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module allows create, search and destroy Amazon EFS file systems
        */
       efs?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/remove Docker networks and connect containers to them.
@@ -50429,7 +50802,7 @@ export type Ansible25 = (
          * By default the connected list is canonical, meaning containers not on the list are removed from the network. Use C(appends) to leave existing containers connected.
          */
         appends?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to manage advance configuration information about an ESXi host when ESXi hostname or Cluster name is given.
@@ -50452,7 +50825,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/update/delete Grafana datasources via API.
@@ -50511,7 +50884,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The TLS CA certificate for self signed certificates.
          * Only used when C(tls_client_cert) and C(tls_client_key) are set.
@@ -50571,7 +50945,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: admin
          *
@@ -50672,13 +51047,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The client TLS private key
          * Starts with ----- BEGIN RSA PRIVATE KEY -----
          */
         tls_client_key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage registration to the Red Hat Network.
@@ -50719,7 +51095,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: Current value of I(serverURL) from C(/etc/sysconfig/rhn/up2date) is the default
          *
@@ -50731,9 +51108,9 @@ export type Ansible25 = (
          */
         channels?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -50784,8 +51161,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Allows the management of Foreman resources inside your Foreman server.
@@ -50825,18 +51203,19 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Parameters associated to the entity resource to set or edit in dictionary format (e.g. name, description).
          */
         params: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Password for user accessing Foreman server.
          */
         password: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify or delete sudo rule within IPA server using IPA API.
@@ -50907,7 +51286,7 @@ export type Ansible25 = (
          * Command category the rule applies to.
          */
         cmdcategory?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create the ip address to tag associations. Tags will in turn be used to create DAG's
@@ -50937,9 +51316,9 @@ export type Ansible25 = (
          */
         tag_names:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -50968,7 +51347,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The action to be taken. Supported values are I(add)/I(update)/I(find)/I(delete).
          */
@@ -50985,21 +51365,21 @@ export type Ansible25 = (
          * IP that will be registered with the given tag names.
          */
         ip_to_register?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage limits of resources for domains, accounts and projects.
        */
       cs_resourcelimit?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -51037,7 +51417,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The password to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -51050,37 +51431,38 @@ export type Ansible25 = (
          * The username to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
         api_username: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove VPN customer gateways.
        */
       cs_vpn_customer_gateway?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage I(bzr) branches to deploy files or software.
        */
       bzr?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Gets information about an AWS CloudFront distribution
        */
       cloudfront_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather IP geolocation facts of a host's IP address using ipinfo.io API
@@ -51098,7 +51480,7 @@ export type Ansible25 = (
          * HTTP connection timeout in seconds
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collect facts from F5 BIG-IP GTM devices.
@@ -51112,7 +51494,7 @@ export type Ansible25 = (
          * Fact category to collect.
          */
         include?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about an ESXi host's advance configuration information when ESXi hostname or Cluster name is given.
@@ -51128,7 +51510,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Layer 2 interfaces
@@ -51164,7 +51546,7 @@ export type Ansible25 = (
          * Full name of the interface, i.e. Ethernet1/1.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Huawei CloudEngine configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with CloudEngine configuration sections in a deterministic way.  This module works with CLI transports.
@@ -51218,7 +51600,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to view the switch running configuration. It executes the display running-config CLI command on a switch and returns a file containing the current running configuration of the target network device. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_showrun.html)
@@ -51229,7 +51611,7 @@ export type Ansible25 = (
         password: string;
         enablePassword?: string;
         outputfile: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind Contract Subjects to Filters on Cisco ACI fabrics.
@@ -51263,7 +51645,7 @@ export type Ansible25 = (
          * The name of the Contract Subject.
          */
         subject?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates/deletes an issue in a Taiga Project Management Platform (U(https://taiga.io)).
@@ -51290,9 +51672,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: Normal
@@ -51336,15 +51718,15 @@ export type Ansible25 = (
          * The issue severity. Must exist previously.
          */
         severity?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate Rackspace Cloud Block Storage Volumes
        */
       rax_cbs?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages base ACL configurations on HUAWEI CloudEngine switches.
@@ -51412,7 +51794,7 @@ export type Ansible25 = (
          * Type of packet fragmentation.
          */
         frag_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages AAA server global configuration on HUAWEI CloudEngine switches.
@@ -51464,38 +51846,38 @@ export type Ansible25 = (
          * Accounting Mode.
          */
         accounting_mode?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Return a list of files based on specific criteria. Multiple criteria are AND'd together.
        * For Windows targets, use the M(win_find) module instead.
        */
       find?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Create, update, enable, disable and remove CloudStack VPC offerings.
        */
       cs_vpc_offering?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set column values in record in database table.
@@ -51524,7 +51906,7 @@ export type Ansible25 = (
          */
         table: string;
         col: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage InfluxDB retention policies
@@ -51561,7 +51943,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the database where retention policy will be created
          */
@@ -51594,43 +51977,43 @@ export type Ansible25 = (
          * The port on which InfluxDB server is listening
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows you to create/remove/update or powermanage virtual machines on a RHEV/oVirt platform.
        */
       rhevm?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, destroy, or update volumes on SolidFire
        */
       sf_volume_manager?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * This module fetches data from the metadata servers in ec2 (aws) as per http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html. The module must be called from within the EC2 instance itself.
        */
       ec2_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages vCMP guests on a BIG-IP. This functionality only exists on actual hardware and must be enabled by provisioning C(vcmp) with the C(bigip_provision) module.
@@ -51697,32 +52080,32 @@ export type Ansible25 = (
          * In the event of a reboot, the system persists the guest to the same slot on which it ran prior to the reboot.
          */
         cores_per_slot?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, modifies, and deletes Redshift cluster subnet groups.
        */
       redshift_subnet_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Collects a base set of device facts from a ONYX Mellanox network devices This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -51734,7 +52117,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, version, module, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module authenticates to oVirt engine and creates SSO token, which should be later used in all other oVirt modules, so all modules don't need to perform login and logout. This module returns an Ansible fact called I(ovirt_auth). Every module can use this fact as C(auth) parameter, to perform authentication.
@@ -51777,7 +52160,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A boolean flag indicating if Kerberos authentication should be used instead of the default basic authentication.
          */
@@ -51803,7 +52187,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A boolean flag indicating if the SDK should ask the server to send compressed responses. The default is I(True). Note that this is a hint for the server, and that it may return uncompressed data even when this parameter is set to I(True).
          */
@@ -51829,7 +52214,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -51837,7 +52223,7 @@ export type Ansible25 = (
          */
         state?: "present" | "absent";
         ovirt_auth?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The maximum total time to wait for the response, in seconds. A value of zero (the default) means wait forever. If the timeout expires before the response is received an exception will be raised.
@@ -51847,19 +52233,19 @@ export type Ansible25 = (
          * The password of the user.
          */
         password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage an AWS VPC Egress Only Internet gateway
        */
       ec2_vpc_egress_igw?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates Connector Card messages through
@@ -51890,9 +52276,9 @@ export type Ansible25 = (
          */
         actions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * A string used for summarizing card content.
@@ -51906,11 +52292,11 @@ export type Ansible25 = (
          */
         sections?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage VLAN pools on Cisco ACI fabrics.
@@ -51935,7 +52321,7 @@ export type Ansible25 = (
          * The name of the pool.
          */
         pool?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Modify protocol properties on Solaris/illumos systems.
@@ -51980,12 +52366,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specifies the value we want to set for the property.
          */
         value?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete an Azure Managed Disk
@@ -52027,7 +52414,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         /**
          * Default: present
@@ -52070,12 +52458,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Tags to assign to the managed disk.
          */
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * URI to a valid VHD file to be used when I(create_option) is C(import).
@@ -52100,7 +52489,7 @@ export type Ansible25 = (
          * Type of Operating System: C(linux) or C(windows). Used when I(create_option) is either C(copy) or C(import) and the source is an OS disk.
          */
         os_type?: "linux" | "windows";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about DRS VM-VM and VM-HOST rules from the given cluster
@@ -52118,7 +52507,7 @@ export type Ansible25 = (
          * This is required parameter if C(cluster_name) parameter is not provided.
          */
         datacenter?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure PoolGroupDeploymentPolicy object
@@ -52209,20 +52598,20 @@ export type Ansible25 = (
          * The name of the pool group deployment policy.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Can create or delete AWS Autoscaling Groups
        * Works with the ec2_lc module to manage Launch Configurations
        */
       ec2_asg?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Return information about installed packages as facts
@@ -52234,58 +52623,58 @@ export type Ansible25 = (
          * The package manager used by the system so we can query the package information
          */
         manager?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage slb service-group objects on A10 Networks devices via aXAPI
        */
       a10_service_group?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -52315,7 +52704,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the server.
          */
@@ -52354,7 +52744,7 @@ export type Ansible25 = (
          * The SKU (pricing tier) of the server.
          */
         sku?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         subscription_id?: string;
         password?: string;
@@ -52383,9 +52773,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Trigger a graceful removal or insertion (GIR) of the switch.
@@ -52417,19 +52808,19 @@ export type Ansible25 = (
          * Boots the switch into maintenance mode automatically in the event of a specified system crash.
          */
         system_mode_maintenance_on_reload_reset_reason?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates, modifies, and deletes VPN connections. Idempotence is achieved by using the filters option or specifying the VPN connection identifier.
        */
       ec2_vpc_vpn?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Layer-2 interface on Cisco NXOS devices.
@@ -52469,19 +52860,19 @@ export type Ansible25 = (
          * List of Layer-2 interface definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Lists the specified log groups. You can list all your log groups or filter the results by prefix.
        */
       cloudwatchlogs_log_group_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows one to (re)generate OpenSSL private keys. It uses the pyOpenSSL python library to interact with openssl. One can generate either RSA or DSA private keys. Keys are generated in PEM format.
@@ -52512,7 +52903,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -52543,7 +52935,7 @@ export type Ansible25 = (
          * Size (in bits) of the TLS/SSL key to generate
          */
         size?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on Cisco NXOS network devices.
@@ -52571,30 +52963,30 @@ export type Ansible25 = (
          * Name of the L3 interface.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete, or modify a Direct Connect public or private virtual interface.
        */
       aws_direct_connect_virtual_interface?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -52659,7 +53051,7 @@ export type Ansible25 = (
          * Field introduced in 17.2.4.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage VLANs in Cloud Control network domains.
@@ -52699,7 +53091,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the target VLAN.
          * Required if C(state) is C(present).
@@ -52744,7 +53137,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Permit expansion of the target VLAN's network if the module parameters specify a larger network than the VLAN currently posesses?
          * If C(False), the module will fail under these conditions.
@@ -52772,9 +53166,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         wait_poll_interval?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ActionGroupConfig object
@@ -52854,35 +53249,35 @@ export type Ansible25 = (
          * Name of the object.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create a VMware VMkernel Interface
        */
       vmware_vmkernel?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -52917,33 +53312,33 @@ export type Ansible25 = (
          * A list of name serverz that the system uses to validate DNS lookups
          */
         name_servers?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates an EBS volume and optionally attaches it to an instance. If both an instance ID and a device name is given and the instance has a device at the device name, then no volume is created and no attachment is made. This module has a dependency on python-boto.
        */
       ec2_vol?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete, or modify a Direct Connect link aggregation group.
        */
       aws_direct_connect_link_aggregation_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Enables the management of the Cisco ACI fabric through direct access to the Cisco APIC REST API.
@@ -52973,20 +53368,21 @@ export type Ansible25 = (
          * Name of the absolute path of the filname that includes the body of the http request being sent to the ACI fabric.
          */
         src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove PostgreSQL extensions from a database.
        */
       postgresql_ext?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Edit PAM service's type, control, module path and module arguments. In order for a PAM rule to be modified, the type, control and module_path must match an existing rule.  See man(5) pam.d for details.
        */
@@ -53004,9 +53400,9 @@ export type Ansible25 = (
          */
         module_arguments?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The new type to assign to the new rule.
@@ -53040,31 +53436,31 @@ export type Ansible25 = (
          * The name generally refers to the PAM service file to change, for example system-auth.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 instances in AWS
        */
       ec2_instance?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage IP tunnel interfaces on Solaris/illumos systems.
        */
       dladm_iptun?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for the creation, removal and updating of Asynchronous Mirror Groups for NetApp E-series storage arrays
@@ -53140,7 +53536,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The username to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -53178,12 +53575,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The url to the SANtricity WebServices Proxy or embedded REST API.
          */
         api_url: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends an arbitrary set of commands to an EOS node and returns the results read from the device.  This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -53215,7 +53613,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command.  If the command does not pass the specified conditional, the interval indicates how to long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, Update or Destroy GCE Labels on instances, disks, snapshots, etc. When specifying the GCE resource, users may specifiy the full URL for the resource (its 'self_link'), or the individual parameters of the resource (type, location, name). Examples for the two options can be seen in the documentaion. See U(https://cloud.google.com/compute/docs/label-or-tag-resources) for more information about GCE Labels. Labels are gradually being added to more GCE resources, so this module will need to be updated as new resources are added to the GCE (v1) API.
@@ -53230,7 +53628,7 @@ export type Ansible25 = (
          * A list of labels (key/value pairs) to add or remove for the resource.
          */
         labels?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The location of resource (global, us-central1-f, etc.)
@@ -53239,9 +53637,9 @@ export type Ansible25 = (
         state?: "absent" | "present";
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         credentials_file?: string;
         pem_file?: string;
@@ -53254,19 +53652,19 @@ export type Ansible25 = (
          * The type of resource (instances, disks, snapshots, images)
          */
         resource_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts from AWS Elasticache clusters
        */
       elasticache_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends an arbitrary netconf command on HUAWEI CloudEngine switches.
@@ -53280,7 +53678,7 @@ export type Ansible25 = (
          * The config xml string.
          */
         cfg_xml?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Network object
@@ -53356,7 +53754,7 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove DNS records using DDNS updates
@@ -53391,9 +53789,9 @@ export type Ansible25 = (
          */
         value?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Apply DNS modification on this server.
@@ -53431,7 +53829,7 @@ export type Ansible25 = (
          * Use TSIG key secret, associated with C(key_name), to authenticate against C(server)
          */
         key_secret?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ClusterCloudDetails object
@@ -53477,7 +53875,7 @@ export type Ansible25 = (
          * Field introduced in 17.2.5.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP interfaces configuration on Mellanox ONYX network devices.
@@ -53501,31 +53899,31 @@ export type Ansible25 = (
          * Name of the interface LLDP should be configured on.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 VPCs in AWS
        */
       ec2_vpc_net_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Cisco ASA configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with ASA configuration sections in a deterministic way.
        */
       asa_config?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove security group rules.
        */
       cs_securitygroup_rule?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the container images on the atomic host platform
@@ -53559,7 +53957,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: latest
          *
@@ -53571,7 +53970,7 @@ export type Ansible25 = (
          * Name of the container image
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with Border Gateway Protocol (BGP) related configurations. The operators used are overloaded to ensure control over switch BGP configurations. This module is invoked using method with asNumber as one of its arguments. The first level of the BGP configuration allows to set up an AS number, with the following attributes going into various configuration operations under the context of BGP. After passing this level, there are eight BGP arguments that will perform further configurations. They are bgpArg1, bgpArg2, bgpArg3, bgpArg4, bgpArg5, bgpArg6, bgpArg7, and bgpArg8. For more details on how to use these arguments, see [Overloaded Variables]. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_bgp.html)
@@ -53613,7 +54012,7 @@ export type Ansible25 = (
          * This is an overloaded bgp third argument. Usage of this argument can be found is the User Guide referenced above.
          */
         bgpArg3?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of static IP routes on network appliances (routers, switches et. al.).
@@ -53649,7 +54048,7 @@ export type Ansible25 = (
          * List of static route definitions
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gathering facts from the API of a zone.
@@ -53665,7 +54064,7 @@ export type Ansible25 = (
          * Name of the zone.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures the NXAPI feature on devices running Cisco NXOS.  The NXAPI feature is absent from the configuration by default.  Since this module manages the NXAPI feature it only supports the use of the C(Cli) transport.
@@ -53703,7 +54102,7 @@ export type Ansible25 = (
          * Controls the operating state of the HTTPS protocol as one of the underlying transports for NXAPI.  By default, NXAPI will disable the HTTPS transport when the feature is first configured.  To enable the use of the HTTPS transport, set the value of this argument to True.
          */
         https?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides management of firewall IPv4 policies on FortiOS devices.
@@ -53807,7 +54206,7 @@ export type Ansible25 = (
          * Logs sessions that matched policy.
          */
         logtraffic?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Wraps the reg.exe command to import the contents of a registry file.
@@ -53818,20 +54217,21 @@ export type Ansible25 = (
        * See also M(win_template), M(win_regedit)
        */
       win_regmerge?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Designed to return the same information as the C(whoami /all) command.
        * Also includes information missing from C(whoami) such as logon metadata like logon rights, id, type.
        */
       win_whoami?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage switch policy explicit vPC protection groups on Cisco ACI fabrics.
@@ -53864,13 +54264,13 @@ export type Ansible25 = (
          * The Explicit vPC Protection Group ID.
          */
         protection_group_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete Azure load balancers
        */
       azure_rm_loadbalancer?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of node system attributes on Cisco NXOS devices.  It provides an option to configure host system parameters or remove those parameters from the device active configuration.
@@ -53906,7 +54306,7 @@ export type Ansible25 = (
          * Enables or disables the DNS lookup feature in Cisco NXOS.  This argument accepts boolean values.  When enabled, the system will try to resolve hostnames using DNS and when disabled, hostnames will not be resolved.
          */
         domain_lookup?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage SmartOS virtual machine images through imgadm(1M)
@@ -53937,7 +54337,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Image UUID. Can either be a full UUID or C(*) for all images.
          */
@@ -53962,7 +54363,7 @@ export type Ansible25 = (
          * zpool to import to or delete images from.
          */
         pool?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages MTU settings on HUAWEI CloudEngine switches.
@@ -53990,7 +54391,7 @@ export type Ansible25 = (
          * MTU for a specific interface. The value is an integer ranging from 46 to 9600, in bytes.
          */
         mtu?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove LDAP entries. This module only asserts the existence or non-existence of an LDAP entry, not its attributes. To assert the attribute values of an entry, see M(ldap_attr).
@@ -54031,7 +54432,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A DN to bind with. If this is omitted, we'll try a SASL bind with the EXTERNAL mechanism. If this is blank, we'll use an anonymous bind.
          */
@@ -54052,7 +54454,7 @@ export type Ansible25 = (
          * List of options which allows to overwrite any of the task or the I(attributes) options. To remove an option, set the value of the option to C(null).
          */
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The password to use with I(bind_dn).
@@ -54062,7 +54464,7 @@ export type Ansible25 = (
          * If I(state=present), attributes necessary to create an entry. Existing entries are never modified. To assert specific attribute values on an existing entry, use M(ldap_attr) module instead.
          */
         attributes?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: yes
@@ -54091,20 +54493,21 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Module to manage datacenter quotas in oVirt/RHV
        */
       ovirt_quotas?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages physical attributes of interfaces on HUAWEI CloudEngine switches.
@@ -54140,7 +54543,7 @@ export type Ansible25 = (
          * Specifies whether the interface is a Layer 2 sub-interface.
          */
         l2sub?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management and configuration of OSPF protocol on Mellanox ONYX network devices.
@@ -54164,7 +54567,7 @@ export type Ansible25 = (
          * OSPF state.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage physical, virtual, bridged, routed or FC domain profiles on Cisco ACI fabrics.
@@ -54216,7 +54619,7 @@ export type Ansible25 = (
          * Support for CloudFoundry, OpenShift and Red Hat was added in ACI v3.1.
          */
         vm_provider?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage top level Application Profile (AP) objects on Cisco ACI fabrics
@@ -54241,7 +54644,7 @@ export type Ansible25 = (
          * The name of an existing tenant.
          */
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Fetch DigitalOcean SSH keys facts.
@@ -54273,14 +54676,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 30
          *
          * The timeout in seconds used for polling DigitalOcean's API.
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Offers ability to enable and disable features in NX-OS.
@@ -54296,7 +54700,7 @@ export type Ansible25 = (
          * Name of feature.
          */
         feature?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures a bridge interface on Cumulus Linux To configure a bond port use the cl_bond module. To configure any other type of interface use the cl_interface module. Follow the guidelines for bridging found in the Cumulus User Guide at U(http://docs.cumulusnetworks.com)
@@ -54366,7 +54770,7 @@ export type Ansible25 = (
          * Interface directory location.
          */
         location?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind SPAN source groups to associated destinaton groups on Cisco ACI fabrics.
@@ -54395,7 +54799,7 @@ export type Ansible25 = (
          * The name of the Span source group.
          */
         src_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ApplicationPersistenceProfile object
@@ -54476,15 +54880,15 @@ export type Ansible25 = (
          * A user-friendly name for the persistence profile.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * create / delete a database in the Cloud Databases.
        */
       rax_cdb_database?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Tests reachability using ping from switch to a remote destination.
@@ -54517,7 +54921,7 @@ export type Ansible25 = (
          * Source IP Address or hostname (resolvable by switch)
          */
         source?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Subnets on Cisco ACI fabrics.
@@ -54602,7 +55006,7 @@ export type Ansible25 = (
          * The name of the Subnet.
          */
         subnet_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows you to attach or detach a volume from a ProfitBricks server. This module has a dependency on profitbricks >= 1.0.0
@@ -54667,8 +55071,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       znode?: {
         /**
@@ -54728,8 +55133,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Sends an email with a SendGrid account through their API, not through the SMTP service.
@@ -54755,42 +55161,42 @@ export type Ansible25 = (
          */
         attachments?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * a list of email addresses to cc
          */
         cc?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * a list of email addresses to bcc
          */
         bcc?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * a dict to pass on as headers
          */
         headers?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * a list with one or more recipient email addresses
          */
         to_addresses:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * whether the body is html content that should be rendered
@@ -54817,7 +55223,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * sendgrid API key to use instead of username/password
          */
@@ -54830,7 +55237,7 @@ export type Ansible25 = (
          * the desired subject for the email
          */
         subject: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This is a simple module that supports creating or removing vDCs. A vDC is required before you can create servers. This module has a dependency on profitbricks >= 1.0.0
@@ -54897,8 +55304,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manages IGMP interface configuration settings.
@@ -54978,7 +55386,7 @@ export type Ansible25 = (
          * Sets the response time advertised in IGMP queries. Values can range from 1 to 25 seconds. The default is 10 seconds.
          */
         query_mrt?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure the rollback feature on remote Nokia devices running the SR OS operating system.  this module provides a stateful implementation for managing the configuration of the rollback feature
@@ -55006,7 +55414,7 @@ export type Ansible25 = (
          * The I(rollback_location) specifies the location and filename of the rollback checkpoint files.   This argument supports any valid local or remote URL as specified in SR OS
          */
         rollback_location?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows to manage dns records on a univention corporate server (UCS). It uses the python API of the UCS to create a new object or edit it.
@@ -55034,22 +55442,22 @@ export type Ansible25 = (
          * Corresponding DNS zone for this record, e.g. example.com.
          */
         zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage user accounts and user attributes.
        * For Windows targets, use the M(win_user) module instead.
        */
       user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -55082,7 +55490,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provide login password if user is not root.
          */
@@ -55112,7 +55521,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the type of NIC. Used for vrouter-interface remove/modify.
          */
@@ -55177,7 +55587,7 @@ export type Ansible25 = (
          * Specify the DHCP method for IP address assignment.
          */
         pn_assignment?: "none" | "dhcp" | "dhcpv6" | "autov6";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and Delete Topics/Subscriptions, Publish and pull messages on PubSub. See U(https://cloud.google.com/pubsub/docs) for an overview.
@@ -55189,9 +55599,9 @@ export type Ansible25 = (
          */
         publish?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * GCP pubsub topic name.
@@ -55214,31 +55624,31 @@ export type Ansible25 = (
          * Dictionary containing a subscripton name associated with a topic (required), along with optional ack_deadline, push_endpoint and pull. For pulling from a subscription, message_ack (bool), max_messages (int) and return_immediate are available as subfields. See subfields name, push_endpoint and ack_deadline for more information.
          */
         subscription?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Modify IP interface properties on Solaris/illumos systems.
        */
       ipadm_ifprop?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -55266,15 +55676,15 @@ export type Ansible25 = (
          * The script type, can not be changed once created.
          */
         script_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate Rackspace Cloud Files Containers
        */
       rax_files?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This is the original Ansible module for managing the Docker container life cycle.
@@ -55574,17 +55984,17 @@ export type Ansible25 = (
          * Requires docker-py >= 0.6.0.
          */
         cpu_shares?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, enable, disable and remove network offerings.
        */
       cs_network_offering?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send notifications via telegram bot, to a verified group or user
@@ -55602,7 +56012,7 @@ export type Ansible25 = (
          * Telegram group or user chat_id
          */
         chat_id: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configuring Centralized All-Active Gateways or Distributed Gateway for the VXLAN Network on HUAWEI CloudEngine devices.
@@ -55670,7 +56080,7 @@ export type Ansible25 = (
          * Configure the IP address of an all-active gateway peer. The value is in dotted decimal notation.
          */
         dfs_peer_ip?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete etherstubs on Solaris/illumos systems.
@@ -55707,12 +56117,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Etherstub name.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP community configuration on HUAWEI CloudEngine switches.
@@ -55760,45 +56171,45 @@ export type Ansible25 = (
          * Access right read or write.
          */
         access_right?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete blob containers and blob objects. Use to upload a file and store it as a blob object, or download a blob object to a file.
        */
       azure_rm_storageblob?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Manages device IP configuration settings for HA on a BIG-IP. Each BIG-IP device has synchronization and failover connectivity information (IP addresses) that you define as part of HA pairing or clustering. This module allows you to configure that information.
@@ -55836,7 +56247,7 @@ export type Ansible25 = (
          * Port for the system to send multicast messages associated with failover. When C(failover_multicast) is C(yes) and this option is not provided, a default of C(62960) will be used. This value must be between 0 and 65535.
          */
         multicast_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sets or updates the password for a storage array.  When the password is updated on the storage array, it must be updated on the SANtricity Web Services proxy. Note, all storage arrays do not have a Monitor or RO role.
@@ -55897,7 +56308,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Boolean value on whether to update the admin password. If set to false then the RO account is updated.
          */
@@ -55923,12 +56335,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the storage array. Note that if more than one storage array with this name is detected, the task will fail and you'll have to use the ID instead.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * - Security policies allow you to enforce rules and take action, and can be as general or specific as needed. The policy rules are compared against the incoming traffic in sequence, and because the first rule that matches the traffic is applied, the more specific rules must precede the more general ones.
@@ -56013,67 +56426,68 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS firewall or Panorama management console being queried.
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts from ZFS dataset properties.
        */
       zfs_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * allows you to create new instances, either from scratch or an image, in addition to deleting or stopping instances on the oVirt/RHEV platform
        */
       ovirt?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * Sets or deletes values in etcd3 cluster using its v3 api.
@@ -56105,13 +56519,13 @@ export type Ansible25 = (
          * the port number used to connect to the cluster
          */
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage registration and subscription to the Red Hat Subscription Management entitlement platform using the C(subscription-manager) command
        */
       redhat_subscription?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows a server team to provision server network ports for new servers without having to access Arista CVP or asking the network team to do it for them. Provide the information for connecting to CVP, switch rack, port the new server is connected to, optional vlan, and an action and the module will apply the configuration to the switch port via CVP. Actions are add (applies template config to port), remove (defaults the interface config) and show (returns the current port config).
@@ -56180,7 +56594,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: show
          *
@@ -56195,14 +56610,14 @@ export type Ansible25 = (
          * The hostname of the switch is being configured for the server being provisioned.
          */
         switch_name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * When the group does not exists in Gitlab, it will be created.
        * When the group does exists and state=absent, the group will be deleted.
        */
       gitlab_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and clear (delete) a silence entries via the Sensu API for subscriptions and checks.
@@ -56243,7 +56658,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * If specified, this free-form string is used to provide context or rationale for the reason this silence entry was created.
          */
@@ -56267,7 +56683,7 @@ export type Ansible25 = (
          * To create a silence entry for a client append C(client:) to client name. Example - C(client:server1.example.dev)
          */
         subscription: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and delete an IPA DNS Zones using IPA API
@@ -56283,7 +56699,7 @@ export type Ansible25 = (
          * State to ensure
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Delete a Kinesis Stream.
@@ -56291,15 +56707,15 @@ export type Ansible25 = (
        * Update Tags on a Kinesis Stream.
        */
       kinesis_stream?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VTP password configuration.
@@ -56315,20 +56731,20 @@ export type Ansible25 = (
          * Manage the state of the resource
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete AWS SQS queues.
        * Update attributes on existing queues.
        */
       sqs_queue?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides management of FortiOS Devices configuration.
@@ -56342,19 +56758,19 @@ export type Ansible25 = (
          * The I(src) argument provides a path to the configuration template to load into the remote device.
          */
         src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage s3 bucket lifecycle rules in AWS
        */
       s3_lifecycle?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, Update or Remove ports from an OpenStack cloud. A I(state) of 'present' will ensure the port is created or updated if required.
@@ -56432,7 +56848,7 @@ export type Ansible25 = (
          * Name that has to be given to the port.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SELinux network port type definitions.
@@ -56465,7 +56881,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * SELinux type for the specified port.
          */
@@ -56484,7 +56901,7 @@ export type Ansible25 = (
          * Ports or port ranges, separated by a comma
          */
         ports: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify and delete an IPA host-group using IPA API
@@ -56519,7 +56936,7 @@ export type Ansible25 = (
          * State to ensure.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to typetalk using typetalk API ( http://developers.typetalk.in/ )
@@ -56541,20 +56958,21 @@ export type Ansible25 = (
          * OAuth2 client secret
          */
         client_secret: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove PostgreSQL databases from a remote host.
        */
       postgresql_db?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages Layer 3 attributes for IPv4 and IPv6 interfaces on HUAWEI CloudEngine switches.
        */
@@ -56589,7 +57007,7 @@ export type Ansible25 = (
          * Full name of interface, i.e. 40GE1/0/22, vlanif10.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind leaf selectors (with node block range and policy group) to switch policy leaf profiles on Cisco ACI fabrics.
@@ -56634,7 +57052,7 @@ export type Ansible25 = (
          * Name of the Policy Group to be added to Leaf Selector of given Leaf Profile
          */
         policy_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Supports managing traffic groups and their attributes on a BIG-IP.
@@ -56657,7 +57075,7 @@ export type Ansible25 = (
          * The name of the traffic group.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Downloads files from HTTP, HTTPS, or FTP to the remote server. The remote server I(must) have direct access to the remote resource.
@@ -56737,7 +57155,7 @@ export type Ansible25 = (
          * If C(skip_certificate_validation) was set, it overrides this option.
          */
         validate_certs?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP service configuration on network devices.
@@ -56749,7 +57167,7 @@ export type Ansible25 = (
          * State of the LLDP service configuration.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Bind static paths to EPGs on Cisco ACI fabrics.
@@ -56830,19 +57248,19 @@ export type Ansible25 = (
          * Usually something like '1011'.
          */
         extpaths?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * create or delete an ec2 key pair.
        */
       ec2_key?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, restart and delete networks.
@@ -56892,7 +57310,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         /**
          * Name of the zone in which the network should be deployed.
@@ -56954,7 +57373,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The netmask of the network.
          * Required for shared networks and isolated networks when it belongs to a VPC.
@@ -57014,7 +57434,7 @@ export type Ansible25 = (
          * The network domain.
          */
         network_domain?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module has been removed, this file is kept for historical documentation purposes.
@@ -57049,7 +57469,7 @@ export type Ansible25 = (
          * When enabled, the daemon will open a local socket file which can be used by future daemon executions to upload a new key to the already running daemon, so that multiple users can connect using different keys. This access still requires an ssh connection as the uid for which the daemon is currently running.
          */
         multi_key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove DNS records.
@@ -57096,7 +57516,7 @@ export type Ansible25 = (
          * Required if C(state=present) or C(multiple=yes).
          */
         data?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will configure both exec and motd banners on remote device running Cisco IOS XR. It allows playbooks to add or remove banner text from the running configuration.
@@ -57116,7 +57536,7 @@ export type Ansible25 = (
          * Specifies the type of banner to configure on remote device.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Open vSwitch bridges
@@ -57144,7 +57564,7 @@ export type Ansible25 = (
          * A dictionary of external-ids. Omitting this parameter is a No-op. To  clear all external-ids pass an empty value.
          */
         external_ids?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: 5
@@ -57152,15 +57572,15 @@ export type Ansible25 = (
          * How long to wait for ovs-vswitchd to respond
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/delete a DNS record in DigitalOcean.
        */
       digital_ocean_domain?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides an interface to manage Network Set resources. Can create, update, or delete.
@@ -57192,7 +57612,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -57204,10 +57625,10 @@ export type Ansible25 = (
          * List with the Network Set properties.
          */
         data: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure management settings of device
@@ -57270,7 +57691,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -57279,7 +57701,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create a static address group object in the firewall used for policy rules.
@@ -57311,9 +57733,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * name of the dynamic address group
@@ -57321,9 +57743,9 @@ export type Ansible25 = (
         sag_name: string;
         sag_match_filter?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -57352,7 +57774,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The operation to perform Supported values are I(add)/I(list)/I(delete).
          */
@@ -57365,7 +57788,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * List Ansible Tower jobs. See U(https://www.ansible.com/tower) for an overview.
@@ -57387,7 +57810,7 @@ export type Ansible25 = (
          * Fetch all the pages and return a single result.
          */
         all_pages?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure AuthProfile object
@@ -57453,7 +57876,7 @@ export type Ansible25 = (
          * Name of the auth profile.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates, deletes or modifies filesystems on Infinibox.
@@ -57477,7 +57900,7 @@ export type Ansible25 = (
          * File system size in MB, GB or TB units. See examples.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to a Brocade Ironware node and returns the results read from the device. This module includes a I(wait_for) argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -57509,20 +57932,21 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove MSSQL databases from a remote host.
        */
       mssql_db?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage BIG-IP system database variables
        */
@@ -57541,7 +57965,7 @@ export type Ansible25 = (
          * The database variable to manipulate.
          */
         key?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV external providers.
@@ -57555,7 +57979,7 @@ export type Ansible25 = (
          * Name of the external provider, can be used as glob expression.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Remove virtual machines from Openstack.
@@ -57581,7 +58005,7 @@ export type Ansible25 = (
          * A list of key value pairs that should be provided as a metadata to the new VM
          */
         meta?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: http://127.0.0.1:35357/v2.0/
@@ -57628,14 +58052,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
          * Arbitrary key/value pairs to the scheduler for custom use
          */
         scheduler_hints?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: None
@@ -57644,9 +58069,9 @@ export type Ansible25 = (
          */
         nics?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -57655,9 +58080,9 @@ export type Ansible25 = (
          */
         floating_ips?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 1
@@ -57704,7 +58129,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -57772,11 +58198,11 @@ export type Ansible25 = (
          */
         floating_ip_pools?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, delete, enable or disable IP interfaces on Solaris/illumos systems.
@@ -57813,12 +58239,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * IP interface name.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or destroy host groups on a NetApp E-Series storage array.
@@ -57846,9 +58273,9 @@ export type Ansible25 = (
         state: "present" | "absent";
         hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The username to authenticate with the SANtricity WebServices Proxy or embedded REST API.
@@ -57868,25 +58295,25 @@ export type Ansible25 = (
          * The url to the SANtricity WebServices Proxy or embedded REST API.
          */
         api_url: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage firewall with UFW.
        */
       ufw?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages applying ACLs to interfaces on HUAWEI CloudEngine switches.
@@ -57910,7 +58337,7 @@ export type Ansible25 = (
          * ACL number or name. For a numbered rule group, the value ranging from 2000 to 4999. For a named rule group, the value is a string of 1 to 32 case-sensitive characters starting with a letter, spaces not supported.
          */
         acl_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows the management of Katello resources inside your Foreman server.
@@ -57950,19 +58377,20 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Parameters associated to the entity resource to set or edit in dictionary format (e.g. name, description).
          */
         params: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         action?: string;
         /**
          * Password for user accessing Foreman server.
          */
         password: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage gslb site entities in Netscaler.
@@ -58026,7 +58454,7 @@ export type Ansible25 = (
          * * The exchange of metrics through MEP is enabled but the status of the service, learned through metrics exchange, is DOWN.
          */
         triggermonitor?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages HTTPD related settings on the BIG-IP. These settings are interesting to change when you want to set GUI timeouts and other TMUI related settings.
@@ -58076,13 +58504,13 @@ export type Ansible25 = (
          * Sets the maximum number of clients that can connect to the GUI at once.
          */
         max_clients?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Return service state information as fact data for various service management utilities
        */
       service_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of logging on Juniper JUNOS devices.
@@ -58132,15 +58560,15 @@ export type Ansible25 = (
          * Size of the file in archive, this is applicable if value of I(dest) is C(file). The acceptable value is in range from 65536 to 1073741824 bytes.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove tag(s) to DigitalOcean resource.
        */
       digital_ocean_tag?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures SAN Connectivity Policies on Cisco UCS Manager.
@@ -58198,7 +58626,7 @@ export type Ansible25 = (
          * You cannot change this name after the policy is created.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to create, modify and delete Zabbix host entries and associated group and template data.
@@ -58288,21 +58716,21 @@ export type Ansible25 = (
          * The name of the Zabbix Proxy to be used
          */
         proxy?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provide one or more image names, and the module will inspect each, returning an array of inspection results.
        */
       docker_image_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an ENOS node and returns the results read from the device. The C(enos_command) module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -58334,7 +58762,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to create or restore a volume snapshot. This module has a dependency on profitbricks >= 1.0.0
@@ -58403,8 +58831,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Add or Remove a floating IP to an instance
@@ -58465,7 +58894,7 @@ export type Ansible25 = (
          * Name of the network from which IP has to be assigned to VM. Please make sure the network is an external network
          */
         network_name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify and delete user within IPA server
@@ -58537,7 +58966,7 @@ export type Ansible25 = (
          * Password for new user
          */
         password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, disable, lock, enable and remove accounts.
@@ -58617,7 +59046,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Timezone of the user to be created if account did not exist.
          */
@@ -58633,7 +59063,7 @@ export type Ansible25 = (
          */
         email?: string;
         api_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds, removes or changes procedural languages with a PostgreSQL database.
@@ -58672,7 +59102,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: postgres
          *
@@ -58715,7 +59146,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -58751,7 +59183,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -58780,20 +59213,21 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 5432
          *
          * Database port to connect to.
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Reads data out of lldpctl
        */
       lldp?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove network from OpenStack.
@@ -58837,7 +59271,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -58871,7 +59306,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -58933,7 +59369,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -58946,7 +59383,7 @@ export type Ansible25 = (
          * Name to be assigned to the network
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage load balancing monitors.
@@ -59424,7 +59861,7 @@ export type Ansible25 = (
          * IP address of the dispatcher to which to send the probe.
          */
         dispatcherip?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the software update settings of a BIG-IP.
@@ -59442,7 +59879,7 @@ export type Ansible25 = (
          * Specifies the schedule for the automatic update check.
          */
         frequency?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes Vertica database schema and, optionally, roles with schema access privileges.
@@ -59450,58 +59887,59 @@ export type Ansible25 = (
        * In such a situation, if the module tries to remove the schema it will fail and only remove roles created for the schema if they have no dependencies.
        */
       vertica_schema?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * allows you to create/remove/update firewall rules
        */
       win_firewall_rule?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Start a program in a VM without the need for network connection
        */
       vmware_vm_shell?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -59528,13 +59966,13 @@ export type Ansible25 = (
          * Interface number.
          */
         interface_number?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage Virtual Machine and floating disks in oVirt.
        */
       ovirt_disks?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BGP configurations on NX-OS switches.
@@ -59702,7 +60140,7 @@ export type Ansible25 = (
          * Enable/Disable comparison of router IDs for identical eBGP paths.
          */
         bestpath_compare_routerid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VRF definitions on Cisco IOS devices.  It allows playbooks to manage individual or the entire VRF collection.  It also supports purging VRF definitions from the configuration that are not explicitly defined.
@@ -59760,20 +60198,21 @@ export type Ansible25 = (
          * The name of the VRF definition to be managed on the remote IOS device.  The VRF definition name is an ASCII string name used to uniquely identify the VRF.  This argument is mutually exclusive with the C(vrfs) argument
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Interacts with HTTP and HTTPS web services and supports Digest, Basic and WSSE HTTP authentication mechanisms.
        */
       win_uri?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage VLANs on a BIG-IP system
        */
@@ -59804,47 +60243,48 @@ export type Ansible25 = (
          * The VLAN to manage. If the special VLAN C(ALL) is specified with the C(state) value of C(absent) then all VLANs will be removed.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage RabbitMQ plugins.
        */
       rabbitmq_plugin?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Create or remove a Distributed vSwitch portgroup
        */
       vmware_dvs_portgroup?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -59853,21 +60293,21 @@ export type Ansible25 = (
        * Running in check mode will perform the authentication without updating the config file.
        */
       docker_login?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage user accounts and user attributes on a BIG-IP. Typically this module operates only on the REST API users and not the CLI users. There is one exception though and that is if you specify the C(username_credential) of C(root). When specifying C(root), you may only change the password. Your other parameters will be ignored in this case. Changing the C(root) password is not an idempotent operation. Therefore, it will change it every time this module attempts to change it.
@@ -59911,7 +60351,7 @@ export type Ansible25 = (
          * Name of the user to create, remove or modify. There is a special case that exists for the user C(root).
          */
         username_credential?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of the local usernames configured on network devices. It allows playbooks to manage either individual usernames or the collection of usernames in the current running config. It also supports purging usernames from the configuration that are not explicitly defined.
@@ -59953,13 +60393,13 @@ export type Ansible25 = (
          * The set of username objects to be configured on the remote VyOS device. The list entries can either be the username or a hash of username and properties. This argument is mutually exclusive with the C(name) argument.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, suspend, activate and remove projects.
        */
       cs_project?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, delete pods.
@@ -60009,7 +60449,7 @@ export type Ansible25 = (
          * Name of the pod.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete a storage account.
@@ -60056,7 +60496,7 @@ export type Ansible25 = (
          * Name of the storage account to update or create.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to add or delete public ip addresses on an existing server or servers in CenturyLink Cloud.
@@ -60067,9 +60507,9 @@ export type Ansible25 = (
          */
         server_ids:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -60090,9 +60530,9 @@ export type Ansible25 = (
          */
         ports?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -60121,8 +60561,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to Create or Delete Anti Affinity Policies at CenturyLink Cloud.
@@ -60148,7 +60589,7 @@ export type Ansible25 = (
          * Whether to wait for the tasks to finish before returning.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a virtual machine scale set
@@ -60177,7 +60618,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Limit results to a specific virtual machine scale set
          */
@@ -60188,9 +60630,9 @@ export type Ansible25 = (
         resource_group?: string;
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -60199,25 +60641,25 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module uses rabbitMQ Rest API to create/delete exchanges
        */
       rabbitmq_exchange?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module executes AWS Lambda functions, allowing synchronous and asynchronous invocation.
        */
       execute_lambda?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS ASN Pool module let you manage your ASN Pool easily. You can create and delete ASN Pool by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -60249,30 +60691,30 @@ export type Ansible25 = (
          * AOS Id of the ASN Pool to manage. Only one of I(name), I(id) or I(content) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage external providers in oVirt/RHV
        */
       ovirt_external_provider?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Create/delete/assign a floating IP.
        */
       digital_ocean_floating_ip?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to Create or Delete Alert Policies at CenturyLink Cloud.
@@ -60319,9 +60761,9 @@ export type Ansible25 = (
          */
         alert_recipients?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -60329,7 +60771,7 @@ export type Ansible25 = (
          * The length of time in minutes that the condition must exceed the threshold. This is required for state 'present'
          */
         duration?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Load configuration on PAN-OS device
@@ -60368,7 +60810,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -60383,7 +60826,7 @@ export type Ansible25 = (
          * configuration file to load
          */
         file?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OpenStack DNS zones. Zones can be created, deleted or updated. Only the I(email), I(description), I(ttl) and I(masters) values can be updated.
@@ -60427,7 +60870,7 @@ export type Ansible25 = (
          * Zone name
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage data centers in oVirt/RHV
@@ -60466,7 +60909,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the data center to manage.
          */
@@ -60502,7 +60946,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         poll_interval?: number | string;
         fetch_nested?:
           | boolean
@@ -60526,12 +60971,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -60540,7 +60986,7 @@ export type Ansible25 = (
          */
         state?: "present" | "absent";
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         timeout?: number | string;
         wait?:
@@ -60565,7 +61011,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Quota mode of the data center. One of I(disabled), I(audit) or I(enabled)
          */
@@ -60574,7 +61021,7 @@ export type Ansible25 = (
          * Description of the data center.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, Update or Destroy a Target_Proxy. See U(https://cloud.google.com/compute/docs/load-balancing/http/target-proxies) for an overview. More details on the Target_Proxy API can be found at U(https://cloud.google.com/compute/docs/reference/latest/targetHttpProxies#resource-representations).
@@ -60583,9 +61030,9 @@ export type Ansible25 = (
         service_account_email?: string;
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of the Url Map.  Required if type is HTTP or HTTPS proxy.
@@ -60603,31 +61050,31 @@ export type Ansible25 = (
          */
         target_proxy_type: "HTTP";
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 volumes in AWS
        */
       ec2_vol_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about availability zones in AWS.
        */
       aws_az_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify or delete sudo command group within IPA server using IPA API.
@@ -60653,7 +61100,7 @@ export type Ansible25 = (
          * Group description.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Register and remove ISO images.
@@ -60684,7 +61131,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_key?: string;
         /**
          * Name of the ISO.
@@ -60724,7 +61172,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_secret?: string;
         api_timeout?: number | string;
         /**
@@ -60756,7 +61205,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the project the ISO to be registered in.
          */
@@ -60797,7 +61247,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The MD5 checksum value of this ISO. If set, we search by checksum instead of name.
          */
@@ -60815,7 +61266,7 @@ export type Ansible25 = (
          */
         zone?: string;
         api_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages NTP authentication.
@@ -60849,7 +61300,7 @@ export type Ansible25 = (
          * Authentication key identifier (numeric).
          */
         key_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to restart the switch using the current startup configuration. The module is usually invoked after the running configuration has been saved over the startup configuration. This module uses SSH to manage network device configuration. The results of the operation can be viewed in results directory. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_reload.html)
@@ -60861,15 +61312,15 @@ export type Ansible25 = (
         deviceType: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate metadata for Rackspace Cloud Servers
        */
       rax_meta?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Controls daemontools services on remote hosts using the svc utility.
@@ -60905,7 +61356,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Wheater the service is enabled or not, if disabled it also implies stopped. Make note that a service can be enabled and downed (no auto restart).
          */
@@ -60931,7 +61383,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: /service
          *
@@ -60946,7 +61399,7 @@ export type Ansible25 = (
          * directory where services are defined, the source of symlinks to service_dir.
          */
         service_src?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running OS10.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -60958,7 +61411,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages DNS records via the v2 REST API of the DNS Made Easy service.  It handles records only; there is no manipulation of domains or monitor/account support yet. See: U(https://www.dnsmadeeasy.com/integration/restapi/)
@@ -61026,8 +61479,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manage the state of a program monitored via I(Monit)
@@ -61047,7 +61501,7 @@ export type Ansible25 = (
          * If there are pending actions for the service monitored by monit, then Ansible will check for up to this many seconds to verify the the requested action has been performed. Ansible will sleep for five seconds between each check.
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, and remove public IPs. This module has a dependency on 1and1 >= 1.0
@@ -61103,7 +61557,7 @@ export type Ansible25 = (
          * wait for the instance to be in state 'running' before returning
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages UDLD global configuration params.
@@ -61127,25 +61581,25 @@ export type Ansible25 = (
          * Manage the state of the resource. When set to 'absent', aggressive and msg_time are set to their default values.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Similar to the oc scale command. Use to set the number of replicas for a Deployment Config, Deployment, ReplicatSet, or Replication Controller, or the parallelism attribute of a Job. Supports check mode.
        */
       openshift_scale?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or terminates ecs clusters.
        */
       ecs_cluster?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running Ironware.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -61157,25 +61611,25 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, mpls and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 VPC route tables in AWS
        */
       ec2_vpc_route_table_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage I(libvirt) storage pools.
        */
       virt_pool?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates, deletes or modifys NFS client(s) for existing exports on Infinibox.
@@ -61205,7 +61659,7 @@ export type Ansible25 = (
          * Client IP or Range. Ranges can be defined as follows 192.168.0.1-192.168.0.254.
          */
         client?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage dynamic, cluster-wide parameters for RabbitMQ
@@ -61241,7 +61695,7 @@ export type Ansible25 = (
          * Specify if user is to be added or removed
          */
         state?: "present" | "absent";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used for calling any resources defined in Avi REST API. U(https://avinetworks.com/)
@@ -61267,20 +61721,21 @@ export type Ansible25 = (
          * Name of the GSLB Service
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Controls OpenWrt services on remote hosts.
        */
       openwrt_init?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Retrieve facts about all installed images on SmartOS. Facts will be inserted to the ansible_facts key.
        */
@@ -61291,7 +61746,7 @@ export type Ansible25 = (
          * Criteria for selecting image. Can be any value from image manifest and 'published_date', 'published', 'source', 'clones', and 'size'. More informaton can be found at U(https://smartos.org/man/1m/imgadm) under 'imgadm list'.
          */
         filters?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module offers the ability to configure a BGP EVPN peer relationship on HUAWEI CloudEngine switches.
@@ -61335,7 +61790,7 @@ export type Ansible25 = (
          * Specifies the IPv4 address of a BGP EVPN peer. The value is in dotted decimal notation.
          */
         peer_address?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of LLDP interfaces configuration on Juniper JUNOS network devices.
@@ -61357,7 +61812,7 @@ export type Ansible25 = (
          * Name of the interface LLDP should be configured on.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(git_config) module changes git configuration by invoking 'git config'. This is needed if you don't want to use M(template) for the entire git config file (e.g. because you need to change just C(user.email) in /etc/.git/config).  Solutions involving M(command) are cumbersone or don't work correctly in check mode.
@@ -61396,7 +61851,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the setting. If no value is supplied, the value will be read from the config if it has been set.
          */
@@ -61405,7 +61861,7 @@ export type Ansible25 = (
          * When specifying the name of a single setting, supply a value to set that setting to the given value.
          */
         value?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VXLAN Network Virtualization Endpoint (NVE) overlay interface that terminates VXLAN tunnels.
@@ -61443,20 +61899,20 @@ export type Ansible25 = (
          * Interface name for the VXLAN Network Virtualization Endpoint.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage cache security groups in Amazon Elasticache.
        * Returns information about the specified cache cluster.
        */
       elasticache_parameter_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages registration key (regkey) pools on a BIG-IQ. These pools function as a container in-which you will add lists of registration keys. To add registration keys, use the C(bigiq_regkey_license) module.
@@ -61479,20 +61935,21 @@ export type Ansible25 = (
          * A description to attach to the pool.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove PostgreSQL schema from a remote host.
        */
       postgresql_schema?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manage taboo contracts on Cisco ACI fabrics.
        */
@@ -61523,7 +61980,7 @@ export type Ansible25 = (
          * Use C(query) for listing an object or multiple objects.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV affinity labels.
@@ -61541,7 +61998,7 @@ export type Ansible25 = (
          * Name of the VM, which affinity labels should be listed.
          */
         vm?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of link aggregation groups on network devices.
@@ -61579,7 +62036,7 @@ export type Ansible25 = (
          * List of link aggregation definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP contact configurations on HUAWEI CloudEngine switches.
@@ -61595,19 +62052,19 @@ export type Ansible25 = (
          * Contact information.
          */
         contact?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 security groups in AWS.
        */
       ec2_group_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove Rundeck ACL policies through HTTP API.
@@ -61649,7 +62106,7 @@ export type Ansible25 = (
          * API version must be at least 14.
          */
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module uncoditionally saves the configuration on the target netscaler node.
@@ -61688,7 +62145,7 @@ export type Ansible25 = (
          * Time in seconds until a timeout error is thrown when establishing a new session with Netscaler.
          */
         nitro_timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Layer 2 interface policies on Cisco ACI fabrics.
@@ -61727,7 +62184,7 @@ export type Ansible25 = (
          * The scope of the VLAN.
          */
         vlan_scope?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use this module to manage crontab and environment variables entries. This module allows you to create environment variables and named crontab entries, update, or delete them.
@@ -61736,23 +62193,23 @@ export type Ansible25 = (
        * When using symbols such as %, they must be properly escaped.
        */
       cron?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure an s3 bucket as a website
        */
       s3_website?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Security policies allow you to enforce rules and take action, and can be as general or specific as needed.
@@ -61832,7 +62289,7 @@ export type Ansible25 = (
          * The inbound interface in a NAT rule.
          */
         to_interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ErrorPageBody object
@@ -61878,7 +62335,7 @@ export type Ansible25 = (
          * Field introduced in 17.2.4.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of logging on Arista Eos devices.
@@ -61914,7 +62371,7 @@ export type Ansible25 = (
          * Size of buffer. The acceptable value is in range from 10 to 2147483647 bytes.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or terminates AWS virtual private clouds.  This module has a dependency on python-boto.
@@ -61986,7 +62443,7 @@ export type Ansible25 = (
          * Wait for the VPC to be in state 'available' before returning.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Deploy applications to JBoss standalone using the filesystem
@@ -62012,7 +62469,7 @@ export type Ansible25 = (
          * The name of the deployment
          */
         deployment: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure SystemConfiguration object
@@ -62115,13 +62572,13 @@ export type Ansible25 = (
          * Setting to patch will override that behavior to use HTTP PATCH.
          */
         avi_api_update_method?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about account balance, charges and payments.
        */
       vr_account_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides an interface to manage SAN Manager resources. Can create, update, or delete.
@@ -62153,7 +62610,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -62165,10 +62623,10 @@ export type Ansible25 = (
          * List with SAN Manager properties.
          */
         data: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove clusters.
@@ -62285,7 +62743,7 @@ export type Ansible25 = (
          * Password for the VSM associated with this cluster.
          */
         vms_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VLANs on Juniper JUNOS network devices.
@@ -62323,7 +62781,7 @@ export type Ansible25 = (
          * Text description of VLANs.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP community configuration.
@@ -62351,7 +62809,7 @@ export type Ansible25 = (
          * ACL name to filter snmp requests or keyword 'default'.
          */
         acl?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Look up the most recent AMI on AWS for a given operating system.
@@ -62399,7 +62857,7 @@ export type Ansible25 = (
          * Linux distribution (e.g., C(ubuntu))
          */
         distro?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or cancels SoftLayer instances. When created, optionally waits for it to be 'running'.
@@ -62430,7 +62888,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Count of cpus to be assigned to new virtual instance
          */
@@ -62460,7 +62919,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Domain name to be provided to a virtual instance
          */
@@ -62496,15 +62956,16 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of ssh keys by their Id to be assigned to a virtual instance
          */
         ssh_keys?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Hostname to be provided to a virtual instance
@@ -62574,7 +63035,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Datacenter for the virtual instance to be deployed
          */
@@ -62614,9 +63076,9 @@ export type Ansible25 = (
          */
         disks?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Instance Id of the virtual instance to perform action option
@@ -62649,53 +63111,54 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Create or destroy Qtrees.
        */
       na_cdot_qtree?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Creates, modifies, and deletes RDS parameter groups. This module has a dependency on python-boto >= 2.5.
        */
       rds_param_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Reads data out of XenAPI, can be used instead of multiple xe commands.
        */
       xenserver_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of link aggregation groups on Juniper JUNOS network devices.
@@ -62741,61 +63204,62 @@ export type Ansible25 = (
          * Name of the link aggregation group.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Updates Vertica configuration parameters.
        */
       vertica_configuration?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * List details of EC2 Placement Group(s).
        */
       ec2_placement_group_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gathers various details related to Lambda functions, including aliases, versions and event source mappings. Use module M(lambda) to manage the lambda function itself, M(lambda_alias) to manage function aliases and M(lambda_event) to manage lambda event source mappings.
        */
       lambda_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, deletes, or modifies rds instances.  When creating an instance it can be either a new instance or a read-only replica of an existing instance. This module has a dependency on python-boto >= 2.5. The 'promote' command requires boto >= 2.18.0. Certain features such as tags rely on boto.rds2 (boto >= 2.26.0)
        */
       rds?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VLANs on Cisco IOS network devices.
@@ -62837,34 +63301,36 @@ export type Ansible25 = (
          * ID of the VLAN. Range 1-4094.
          */
         vlan_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove a host to Icinga2 through the API.
        * See U(https://www.icinga.com/docs/icinga2/latest/doc/12-icinga2-api/)
        */
       icinga2_host?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module works like M(copy), but in reverse. It is used for fetching files from remote machines and storing them locally in a file tree, organized by hostname.
        * This module is also supported for Windows targets.
        */
       fetch?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Allows the addition, modification and deletion of key/value entries in a consul cluster via the agent. The entire contents of the record, including the indices, flags and session are returned as 'value'.
        * If the key represents a prefix then Note that when a value is removed, the existing value if any is returned as part of the results.
@@ -62937,7 +63403,7 @@ export type Ansible25 = (
          * the port on which the consul agent is running
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Run commands (remotely) through the PsExec service
@@ -63025,7 +63491,7 @@ export type Ansible25 = (
          * Run the program so that it interacts with the desktop on the remote system.
          */
         interactive?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides user management for ejabberd servers
@@ -63070,12 +63536,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the ejabberd host associated with this username
          */
         host?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create virtual machines snapshots
@@ -63159,7 +63626,7 @@ export type Ansible25 = (
          * This is required if uuid is not supplied.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module boots a system through its HP iLO interface. The boot media can be one of: cdrom, floppy, hdd, network or usb.
@@ -63192,7 +63659,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: network
          *
@@ -63240,7 +63708,7 @@ export type Ansible25 = (
          * The password to authenticate to the HP iLO interface.
          */
         password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute vrouter-loopback-interface-add, vrouter-loopback-interface-remove commands.
@@ -63275,7 +63743,7 @@ export type Ansible25 = (
          * Target switch(es) to run the cli on.
          */
         pn_cliswitch?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure GslbGeoDbProfile object
@@ -63334,7 +63802,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Handles the EVPN control plane for VXLAN.
@@ -63344,21 +63812,21 @@ export type Ansible25 = (
          * EVPN control plane.
          */
         nv_overlay_evpn?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages I(apt) packages (such as for Debian/Ubuntu).
        */
       apt?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages I(apk) packages for Alpine Linux.
@@ -63398,7 +63866,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Update repository indexes. Can be run with other steps or on it's own.
          */
@@ -63424,56 +63893,58 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A package name, like C(foo), or mutliple packages, like C(foo, bar).
          */
         name?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, Removes and configures a IIS Web applications
        */
       win_iis_webapplication?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Composer is a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you
        */
       composer?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         )) & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         } & {
-          [k: string]: any;
+          [k: string]: unknown;
         };
       /**
        * This module allows Ansible to interface with the PubNub BLOCKS infrastructure by providing the following operations: create / remove, start / stop and rename for blocks and create / modify / remove for event handlers
@@ -63522,13 +63993,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * In case if single play use blocks management module few times it is preferred to enabled 'caching' by making previous module to share gathered artifacts and pass them to this parameter.
          *
          */
         cache?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Name of application's keys set which is bound to managed blocks.
@@ -63550,7 +64022,7 @@ export type Ansible25 = (
          * Possible options for change is: C(name).
          */
         changes?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Email from account for which new session should be started.
@@ -63569,15 +64041,15 @@ export type Ansible25 = (
          */
         event_handlers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of managed block which will be later visible on admin.pubnub.com.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends an arbitrary command to an BIG-IP node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -63616,7 +64088,7 @@ export type Ansible25 = (
          * The I(match) argument is used in conjunction with the I(wait_for) argument to specify the match policy. Valid values are C(all) or C(any). If the value is set to C(all) then all conditionals in the I(wait_for) must be satisfied. If the value is set to C(any) then only one of the values must be satisfied.
          */
         match?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure StringGroup object
@@ -63670,7 +64142,7 @@ export type Ansible25 = (
          * User defined description for the object.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Uses .NET libraries to convert text to speech and optionally play .wav sounds.  Audio Service needs to be running and some kind of speakers or headphones need to be attached to the windows target(s) for the speech to be audible.
@@ -63711,7 +64183,7 @@ export type Ansible25 = (
          * -10 is slowest, 10 is fastest.
          */
         speech_speed?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or delete OpenStack host aggregates. If a aggregate with the supplied name already exists, it will be updated with the new name, new availability zone, new metadata and new list of hosts.
@@ -63745,7 +64217,7 @@ export type Ansible25 = (
          * Metadata dict.
          */
         metadata?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an aruba node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -63778,7 +64250,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about available OpenStack instance flavors. By default, facts about ALL flavors are retrieved. Filters can be applied to get facts for only matching flavors. For example, you can filter on the amount of RAM available to the flavor, or the number of virtual CPUs available to the flavor, or both. When specifying multiple filters, *ALL* filters must match on a flavor before that flavor is returned as a fact.
@@ -63806,7 +64278,7 @@ export type Ansible25 = (
          * A flavor name. Cannot be used with I(ram) or I(vcpus).
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage vlan, vxlan, and vsan pools on Cisco ACI fabrics.
@@ -63836,35 +64308,35 @@ export type Ansible25 = (
          * The name of the pool.
          */
         pool?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Return basic facts pertaining to a vSphere virtual machine guest
        */
       vmware_vm_facts?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -64205,19 +64677,19 @@ export type Ansible25 = (
          * Header name for custom header persistence.
          */
         prst_hdr_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ec2 instances in AWS
        */
       ec2_remote_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove key pair from OpenStack
@@ -64251,7 +64723,7 @@ export type Ansible25 = (
          * Ignored. Present for backwards compatibility
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete instance of PostgreSQL Database.
@@ -64280,7 +64752,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -64309,7 +64782,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the database.
          */
@@ -64340,7 +64814,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Arista EOS configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with EOS configuration sections in a deterministic way.  This module works with either CLI or eAPI transports.
@@ -64426,7 +64900,7 @@ export type Ansible25 = (
          * Use this argument to specify one or more lines that should be ignored during the diff.  This is used for lines in the configuration that are automatically updated by the system.  This argument takes a list of regular expressions or exact line matches.
          */
         diff_ignore_lines?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages network device configurations over SSH or eAPI.  This module allows implementers to work with the device running-config.  It provides a way to push a set of commands onto a network device by evaluating the current running-config and only pushing configuration commands that are not already configured.  The config source can be a set of commands or a template.
@@ -64454,7 +64928,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         /**
@@ -64482,7 +64957,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The path to the config source.  The source can be either a file with config or a template that will be merged during runtime.  By default the task will search for the source file in role or playbook root folder in templates directory.
          */
@@ -64512,7 +64988,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         auth_pass?: string;
         /**
          * This argument will cause the provided configuration to be replaced on the destination node.   The use of the replace argument will always cause the task to set changed to true and will implies C(force=true).  This argument is only valid with C(transport=eapi).
@@ -64539,7 +65016,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * By default when the M(eos_template) connects to the remote device to retrieve the configuration it will issue the C(show running-config) command.  If this option is set to True then the issued command will be C(show running-config all).
          */
@@ -64565,11 +65043,12 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host: string;
         timeout?: number | string;
         provider?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         /**
@@ -64578,7 +65057,7 @@ export type Ansible25 = (
         config?: string;
         port?: number | string;
         transport?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OpenStack Identity Groups. Groups can be created, deleted or updated. Only the I(description) value can be updated.
@@ -64600,7 +65079,7 @@ export type Ansible25 = (
          * Group description
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages NTP authentication configuration on HUAWEI CloudEngine switches.
@@ -64640,21 +65119,22 @@ export type Ansible25 = (
          * Configure ntp authentication enable or unconfigure ntp authentication enable.
          */
         authentication?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get DLL or EXE file build version
        * change state alway be false
        */
       win_file_version?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Sends arbitrary commands to a Dell OS6 node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
        * This module does not support running commands in configuration mode. Please use M(dellos6_config) to configure Dell OS6 devices.
@@ -64686,31 +65166,31 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, removes and lists tags from any EC2 resource.  The resource is referenced by its resource id (e.g. an instance being i-XXXXXXX). It is designed to be used with complex args (tags), see the examples.  This module has a dependency on python-boto.
        */
       ec2_tag?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates, modifies, and deletes RDS database subnet groups. This module has a dependency on python-boto >= 2.5.
        */
       rds_subnet_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote Lenovo device running on ENOS.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -64722,7 +65202,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This will configure both exec and motd banners on remote devices running Cisco NXOS. It allows playbooks to add or remote banner text from the active running configuration.
@@ -64742,7 +65222,7 @@ export type Ansible25 = (
          * Specifies which banner that should be configured on the remote device.
          */
         banner?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Fetch metadata about Github Releases
@@ -64764,19 +65244,19 @@ export type Ansible25 = (
          * The GitHub account that owns the repository
          */
         user: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or deletes CloudTrail configuration. Ensures logging is also enabled.
        */
       cloudtrail?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and delete snapshots images on volume groups for NetApp E-series storage arrays.
@@ -64811,7 +65291,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Searches for all valid potential target and source volumes that could be used in a copy_pair
          * Mutually exclusive with volume_copy_pair_id, destination_volume_id and source_volume_id
@@ -64867,7 +65348,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The username to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -64906,9 +65388,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ssid: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Management of LXD containers
@@ -64919,7 +65402,7 @@ export type Ansible25 = (
          * The source for the container (e.g. { "type": "image", "mode": "pull", "server": "https://images.linuxcontainers.org", "protocol": "lxd", "alias": "ubuntu/xenial/amd64" }). See U(https://github.com/lxc/lxd/blob/master/doc/rest-api.md#post-1)
          */
         source?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: unix:/var/lib/lxd/unix.socket
@@ -64934,7 +65417,7 @@ export type Ansible25 = (
          * Not all config values are supported to apply the existing container. Maybe you need to delete and recreate a container.
          */
         config?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: "{}/.config/lxc/client.crt" .format(os.environ["HOME"])
@@ -64967,7 +65450,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The archiecture for the container (e.g. "x86_64" or "i686"). See U(https://github.com/lxc/lxd/blob/master/doc/rest-api.md#post-1)
          */
@@ -64976,7 +65460,7 @@ export type Ansible25 = (
          * The devices for the container (e.g. { "rootfs": { "path": "/dev/kvm", "type": "unix-char" }). See U(https://github.com/lxc/lxd/blob/master/doc/rest-api.md#post-1)
          */
         devices?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * If this is true, the M(lxd_container) waits until IPv4 addresses are set to the all network interfaces in the container after starting or restarting.
@@ -65003,7 +65487,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: started
          *
@@ -65012,9 +65497,9 @@ export type Ansible25 = (
         state?: "started" | "stopped" | "restarted" | "absent" | "frozen";
         profiles?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 30
@@ -65060,12 +65545,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of a container.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get interface link status on HUAWEI CloudEngine switches.
@@ -65075,25 +65561,25 @@ export type Ansible25 = (
          * For the interface parameter, you can enter C(all) to display information about all interface, an interface type such as C(40GE) to display information about interfaces of the specified type, or full name of an interface such as C(40GE1/0/22) or C(vlanif10) to display information about the specific interface.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or terminates Google Compute Engine (GCE) instances.  See U(https://cloud.google.com/compute) for an overview. Full install/configuration instructions for the gce* modules can be found in the comments of ansible/test/gce_tests.py.
        */
       gce?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Gentoo packages
        */
       portage?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The standard package manager for SmartOS, but also usable on NetBSD or any OS that uses C(pkgsrc).  (Home: U(http://pkgin.net/))
        */
       pkgin?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or remove disk groups and disk pools for NetApp E-series storage arrays.
@@ -65130,7 +65616,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The minimum size of the storage pool (in size_unit). The pool will be expanded if this value exceeds itscurrent size.
          */
@@ -65142,9 +65629,9 @@ export type Ansible25 = (
         log_path?: string;
         remove_drives?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Whether to convert to a secure storage pool. Will only work if all drives in the pool are security capable.
@@ -65171,7 +65658,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The password to authenticate with the SANtricity WebServices Proxy or embedded REST API.
          */
@@ -65218,7 +65706,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The type of disk (hdd or ssd) to use when searching for candidates to use.
          */
@@ -65256,7 +65745,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The interface type to use when selecting drives for the storage pool (no value means all interface types will be considered)
          */
@@ -65288,7 +65778,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Set the number of drives reserved by the storage pool for reconstruction operations. Only valide on raid disk pools.
          */
@@ -65297,7 +65788,7 @@ export type Ansible25 = (
          * The url to the SANtricity WebServices Proxy or embedded REST API.
          */
         api_url: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts for WAF ACLs, Rule , Conditions and Filters.
@@ -65307,19 +65798,19 @@ export type Ansible25 = (
          * The name of a Web Application Firewall
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage an AWS customer gateway
        */
       ec2_customer_gateway?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module gets the status of an asynchronous task.
@@ -65336,7 +65827,7 @@ export type Ansible25 = (
          * if C(status), obtain the status; if C(cleanup), clean up the async job cache (by default in C(~/.ansible_async/)) for the specified job I(jid).
          */
         mode?: "status" | "cleanup";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage node.js packages with Node Package Manager (npm)
@@ -65376,7 +65867,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Use the --ignore-scripts flag when installing.
          */
@@ -65402,7 +65894,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -65434,7 +65927,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The registry to install modules from.
          */
@@ -65447,7 +65941,7 @@ export type Ansible25 = (
          * The base path where to install the node.js libraries
          */
         path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the containers on the atomic host platform
@@ -65475,9 +65969,9 @@ export type Ansible25 = (
          */
         values?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: None
@@ -65495,7 +65989,7 @@ export type Ansible25 = (
          * Define the backend to use for the container
          */
         backend: "docker" | "ostree";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages mount behavior for a specified ISO, VHD, or VHDX image on a Windows host. When C(state) is C(present), the image will be mounted under a system-assigned drive letter, which will be returned in the C(mount_path) value of the module result. Requires Windows 8+ or Windows Server 2012+.
@@ -65511,7 +66005,7 @@ export type Ansible25 = (
          * path to an ISO, VHD, or VHDX image on the target Windows host (the file cannot reside on a network share)
          */
         image_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Delete objects and containers from OpenStack
@@ -65545,7 +66039,7 @@ export type Ansible25 = (
          * desired container access level.
          */
         container_access?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete a resource group.
@@ -65574,7 +66068,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Remove a resource group and all associated resources. Use with state 'absent' to delete a resource group that contains resources.
          */
@@ -65600,13 +66095,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the resource group.
          */
         name: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -65631,7 +66127,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -65648,7 +66145,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages port-channel specific configuration parameters.
@@ -65682,7 +66179,7 @@ export type Ansible25 = (
          * When true it forces port-channel members to match what is declared in the members param. This can be used to remove members.
          */
         force?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure ServiceEngine object
@@ -65784,7 +66281,7 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as VM name unknown.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific managed disk or all managed disks.
@@ -65813,7 +66310,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         disk_size_gb?: number | string;
         /**
          * Limit results to a specific managed disk
@@ -65850,7 +66348,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         storage_account_type?: "Standard_LRS" | "Premium_LRS";
@@ -65862,24 +66361,24 @@ export type Ansible25 = (
         password?: string;
         os_type?: "linux" | "windows";
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages dns records via the Cloudflare API, see the docs: U(https://api.cloudflare.com/)
        */
       cloudflare_dns?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * An Ansible module to deploy blue print package on a set of servers in CenturyLink Cloud.
@@ -65890,9 +66389,9 @@ export type Ansible25 = (
          */
         server_ids:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -65904,7 +66403,7 @@ export type Ansible25 = (
          * The dictionary of arguments required to deploy the blue print.
          */
         package_params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The package id of the blue print.
@@ -65916,7 +66415,7 @@ export type Ansible25 = (
          * Whether to wait for the tasks to finish before returning.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The manageiq_policies module supports adding and deleting policy_profiles in ManageIQ.
@@ -65943,22 +66442,22 @@ export type Ansible25 = (
          * the type of the resource to which the profile should be [un]assigned
          */
         resource_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and modify issues in a JIRA instance.
        */
       jira?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Provides an interface to manage Ethernet Network resources. Can create, update, or delete.
@@ -65990,7 +66489,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -66002,10 +66502,10 @@ export type Ansible25 = (
          * List with Ethernet Network properties.
          */
         data: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Cisco NXOS configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with NXOS configuration sections in a deterministic way.  This module works with either CLI or NXAPI transports.
@@ -66094,32 +66594,32 @@ export type Ansible25 = (
          * Use this argument to specify one or more lines that should be ignored during the diff.  This is used for lines in the configuration that are automatically updated by the system.  This argument takes a list of regular expressions or exact line matches.
          */
         diff_ignore_lines?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or destroy volumes on NetApp cDOT
        */
       na_cdot_volume?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -66138,19 +66638,19 @@ export type Ansible25 = (
          * Use only when creating a project, otherwise ignored. Adds a description to the project metadata.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Elastic Container Registry repositories
        */
       ecs_ecr?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Blueprint module let you manage your Blueprint easily. You can create create and delete Blueprint by Name or ID. You can also use it to retrieve all data from a blueprint. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -66188,7 +66688,7 @@ export type Ansible25 = (
          * When creating a blueprint, this value identifies, by name, an existing engineering design template within the AOS-server.
          */
         template?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates and removes VPN site-to-site gateways.
@@ -66226,7 +66726,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         api_url?: string;
         api_http_method?: "get" | "post";
         api_secret?: string;
@@ -66255,7 +66756,7 @@ export type Ansible25 = (
          * If not set, default zone is used.
          */
         zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs packages using Web Platform Installer command-line (http://www.iis.net/learn/install/web-platform-installer/web-platform-installer-v4-command-line-webpicmdexe-rtw-release).
@@ -66263,14 +66764,15 @@ export type Ansible25 = (
        * Install IIS first (see win_feature module)
        */
       win_webpicmd?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * The C(tempfile) module creates temporary files and directories. C(mktemp) command takes different parameters on various systems, this module helps to avoid troubles related to that. Files/directories created by module are accessible only by creator. In case you need to make them world-accessible you need to use M(file) module.
        * For Windows targets, use the M(win_tempfile) module instead.
@@ -66296,7 +66798,7 @@ export type Ansible25 = (
          * Whether to create file or directory.
          */
         state?: "directory" | "file";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or remove SSD caches on a NetApp E-Series storage array.
@@ -66373,19 +66875,20 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         disk_refs?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         criteria_disk_phy_type?: "sas" | "sas4k" | "fibre" | "fibre520b" | "scsi" | "sata" | "pata";
         /**
          * The ID of the array to manage (as configured on the web services proxy).
          */
         ssid: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about vmnics available on the given ESXi host.
@@ -66405,7 +66908,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove applications on a Webfaction host.  Further documentation at http://github.com/quentinsf/ansible-webfaction.
@@ -66440,7 +66943,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The machine name to use (optional for accounts with only one machine)
          */
@@ -66478,7 +66982,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The webfaction password to use
          */
@@ -66495,7 +67000,7 @@ export type Ansible25 = (
          * Any extra parameters required by the app
          */
         extra_info?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages advanced ACL configurations on HUAWEI CloudEngine switches.
@@ -66659,7 +67164,7 @@ export type Ansible25 = (
          * ID of a basic ACL rule in configuration mode. The value is an integer ranging from 0 to 4294967294.
          */
         rule_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Publish a message on an MQTT topic.
@@ -66720,7 +67225,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password for C(username) to authenticate against the broker.
          */
@@ -66729,57 +67235,57 @@ export type Ansible25 = (
          * Payload. The special string C("None") may be used to send a NULL (i.e. empty) payload which is useful to simply notify with the I(topic) or to clear previously retained messages.
          */
         payload: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve the attributes of a server certificate
        */
       iam_server_certificate_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows one to (re)generate OpenSSL certificate signing requests. It uses the pyOpenSSL python library to interact with openssl. This module supports the subjectAltName, keyUsage, extendedKeyUsage, basicConstraints and OCSP Must Staple extensions.
        */
       openssl_csr?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage VM pools in oVirt/RHV.
@@ -66805,9 +67311,9 @@ export type Ansible25 = (
         state?: "present" | "absent";
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Maximum number of VMs a single user can attach to from this pool.
@@ -66840,14 +67346,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Number of pre-started VMs defines the number of VMs in run state, that are waiting to be attached to Users.
          * Default value is set by engine.
          */
         prestarted?: number | string;
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Name of the template, which will be used to create VM pool.
@@ -66887,32 +67394,33 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module allows one to (re)generate OpenSSL certificates. It implements a notion of provider (ie. C(selfsigned), C(acme), C(assertonly)) for your certificate. The 'assertonly' provider is intended for use cases where one is only interested in checking properties of a supplied certificate. Many properties that can be specified in this module are for validation of an existing or newly generated certificate. The proper place to specify them, if you want to receive a certificate with these properties is a CSR (Certificate Signing Request). It uses the pyOpenSSL python library to interact with OpenSSL.
        */
       openssl_certificate?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Can create, update, or delete Spotinst AWS Elastigroups Launch configuration is part of the elastigroup configuration, so no additional modules are necessary for handling the launch configuration. You will have to have a credentials file in this location - <home>/.spotinst/credentials The credentials file must contain a row that looks like this token = <YOUR TOKEN> Full documentation available at https://help.spotinst.com/hc/en-us/articles/115003530285-Ansible-
@@ -66923,30 +67431,30 @@ export type Ansible25 = (
          */
         ebs_volume_pool?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (Object) The elastigroup OpsWorks integration configration.; Expects the following key - layer_id (String)
          */
         opsworks?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (List of Strings) List of target group arns instances should be registered to
          */
         target_group_arns?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (Object) Roll configuration.; If you would like the group to roll after updating, please use this feature. Accepts the following keys - batch_size_percentage(Integer, Required), grace_period - (Integer, Required), health_check_type(String, Optional)
          */
         roll_config?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (String) The Base64-encoded shutdown script that executes prior to instance termination. Encode before setting.
@@ -66956,16 +67464,16 @@ export type Ansible25 = (
          * (Object) The Rightscale integration configuration.; Expects the following keys - account_id (String), refresh_token (String)
          */
         right_scale?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (List of Objects) a list of hash/dictionaries of scaling policies to configure in the elastigroup; '[{"key":"value", "key":"value"}]'; keys allowed are - policy_name (String, required), namespace (String, required), metric_name (String, required), dimensions (List of Objects, Keys allowed are name (String, required) and value (String)), statistic (String, required) evaluation_periods (String, required), period (String, required), threshold (String, required), cooldown (String, required), unit (String, required), operator (String, required), action_type (String, required), adjustment (String), min_target_capacity (String), target (String), maximum (String), minimum (String)
          */
         up_scaling_policies?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (String) Base64-encoded MIME user data. Encode before setting the value.
@@ -66996,14 +67504,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (String) The instance profile iamRole name
          * Only use iam_role_arn, or iam_role_name
          */
         iam_role_name?: string;
         elastic_beanstalk?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (Integer) spin up time, in seconds, for the instance
@@ -67014,9 +67523,9 @@ export type Ansible25 = (
          */
         scheduled_tasks?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (String) The strategy orientation.
@@ -67039,9 +67548,9 @@ export type Ansible25 = (
          */
         availability_zones:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (Boolean) Describes whether instance Enhanced Monitoring is enabled
@@ -67049,15 +67558,15 @@ export type Ansible25 = (
         monitoring?: string;
         do_not_update?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         multai_load_balancers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: 300
@@ -67069,7 +67578,7 @@ export type Ansible25 = (
          * (Object) The Kubernetes integration configuration. Expects the following keys - api_server (String), token (String)
          */
         kubernetes?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (Integer) Time for instance to be drained from incoming requests and deregistered from ELB before termination.
@@ -67100,7 +67609,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (String) The instance profile iamRole arn
          * Only use iam_role_arn, or iam_role_name
@@ -67112,9 +67622,9 @@ export type Ansible25 = (
          */
         signals?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (String) create or delete the elastigroup
@@ -67133,9 +67643,9 @@ export type Ansible25 = (
          */
         down_scaling_policies?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (Integer) Minimal mount of time instance should be unhealthy for us to consider it unhealthy.
@@ -67145,7 +67655,7 @@ export type Ansible25 = (
          * (Object) The Rancher integration configuration.; Expects the following keys - access_key (String), secret_key (String), master_host (String)
          */
         rancher?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (Integer) Required if risk is not set
@@ -67157,9 +67667,9 @@ export type Ansible25 = (
          */
         block_device_mappings?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (String) On-demand instance type that will be provisioned
@@ -67169,13 +67679,13 @@ export type Ansible25 = (
          * (Object) The Stateful elastigroup configration.; Accepts the following keys - should_persist_root_device (Boolean), should_persist_block_devices (Boolean), should_persist_private_ip (Boolean)
          */
         persistence?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (Object) The Mesosphere integration configuration. Expects the following key - api_server (String)
          */
         mesosphere?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (String) Operation system type._
@@ -67190,27 +67700,27 @@ export type Ansible25 = (
          */
         target_tracking_policies?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (List of tagKey:tagValue paris) a list of tags to configure in the elastigroup. Please specify list of keys and values (key colon value);
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (List of Strings) List of ElasticIps Allocation Ids to associate to the group instances
          */
         elastic_ips?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (Integer) The lower limit number of instances that you can scale down to
@@ -67228,25 +67738,25 @@ export type Ansible25 = (
          * (Object) The ECS integration configuration.; Expects the following key - cluster_name (String)
          */
         ecs?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (List of Strings) List of classic ELB names
          */
         load_balancers?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (List of Strings) One or more security group IDs. ; In case of update it will override the existing Security Group with the new given array
          */
         security_group_ids:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (Integer) The upper limit number of instances that you can scale up to
@@ -67293,21 +67803,22 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (Object) The Chef integration configuration.; Expects the following keys - chef_server (String), organization (String), user (String), pem_key (String), chef_version (String)
          */
         chef?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * (List of Objects) a list of hash/dictionaries of network interfaces to add to the elastigroup; '[{"key":"value", "key":"value"}]'; keys allowed are - description (String), device_index (Integer), secondary_private_ip_address_count (Integer), associate_public_ip_address (Boolean), delete_on_termination (Boolean), groups (List of Strings), network_interface_id (String), private_ip_address (String), subnet_id (String), associate_ipv6_address (Boolean), private_ip_addresses (List of Objects, Keys are privateIpAddress (String, required) and primary (Boolean))
          */
         network_interfaces?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * (String) lifetime period
@@ -67343,7 +67854,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (Boolean) Whether or not the elastigroup creation / update actions should wait for the instances to spin
          */
@@ -67369,17 +67881,18 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * (List of Strings) Spot instance type that will be provisioned.
          */
         spot_instance_types:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to a Dell OS9 node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -67412,7 +67925,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of link aggregation groups on Cisco IOS network devices.
@@ -67444,7 +67957,7 @@ export type Ansible25 = (
          * List of link aggregation definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage packages on OpenBSD using the pkg tools.
@@ -67479,7 +67992,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the package.
          */
@@ -67490,7 +68004,7 @@ export type Ansible25 = (
          * When used in combination with the 'build' option, allows overriding the default ports source directory.
          */
         ports_dir?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage SNAT pools on a BIG-IP.
@@ -67516,7 +68030,7 @@ export type Ansible25 = (
          * List of members to put in the SNAT pool. When a C(state) of present is provided, this parameter is required. Otherwise, it is optional.
          */
         members?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running IOS XR.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -67528,7 +68042,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Javascript iApp packages on a BIG-IP. This module will allow you to deploy iAppLX packages to the BIG-IP and manage their lifecycle.
@@ -67545,7 +68059,7 @@ export type Ansible25 = (
          * When C(state) is C(absent), it is not necessary for the package to exist on the Ansible controller. If the full path to the package is provided, the fileame will specifically be cherry picked from it to properly remove the package.
          */
         package?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove flavors from OpenStack.
@@ -67609,20 +68123,21 @@ export type Ansible25 = (
          * Size of local disk, in GB.
          */
         disk?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows to manage dns zones on a univention corporate server (UCS). It uses the python API of the UCS to create a new object or edit it.
        */
       udm_dns_zone?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Like M(win_file), M(win_reg_stat) will return whether the key/property exists.
        * It also returns the sub keys and properties of the key specified.
@@ -67637,7 +68152,7 @@ export type Ansible25 = (
          * The registry property name to get information for, the return json will not include the sub_keys and properties entries for the I(key) specified.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage iRules across different modules on a BIG-IP.
@@ -67671,7 +68186,7 @@ export type Ansible25 = (
          * Whether the iRule should exist or not.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage fabric interface policy leaf profiles on Cisco ACI fabrics.
@@ -67692,20 +68207,21 @@ export type Ansible25 = (
          * Description for the Fabric access policy leaf interface profile.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Change ACL (Access Control List) inheritance and optionally copy inherited ACE's (Access Control Entry) to dedicated ACE's or vice versa.
        */
       win_acl_inheritance?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module is used to configure CustomIpamDnsProfile object
        * more examples at U(https://github.com/avinetworks/devops)
@@ -67756,7 +68272,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete a network security group. A security group contains Access Control List (ACL) rules that allow or deny network traffic to subnets or individual network interfaces. A security group is created with a set of default security rules and an empty set of security rules. Shape traffic flow by adding rules to the empty set of security rules.
@@ -67785,7 +68301,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Name of the resource group the security group belongs to.
          */
@@ -67815,18 +68332,19 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Set of rules shaping traffic flow to or from a subnet or NIC. Each rule is a dictionary.
          */
         rules?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         append_tags?:
@@ -67851,7 +68369,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -67859,9 +68378,9 @@ export type Ansible25 = (
          */
         default_rules?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Remove any existing rules not matching those defined in the default_rules parameter.
@@ -67888,7 +68407,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: present
          *
@@ -67909,31 +68429,31 @@ export type Ansible25 = (
          * Name of the security group to operate on.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or terminates ec2 instances.
        */
       ec2?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes firewall rules from a gateway in a vca environment
@@ -67943,7 +68463,7 @@ export type Ansible25 = (
          * A list of firewall rules to be added to the gateway, Please see examples on valid entries
          */
         fw_rules?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from an Ordnance Virtual router over SSH. This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -67955,7 +68475,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages global attributes of VXLAN and bridge domain on HUAWEI CloudEngine devices.
@@ -67999,15 +68519,15 @@ export type Ansible25 = (
          * Enabling or disabling the VXLAN service extension function.
          */
         nvo3_service_extend?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * creates / deletes a Rackspace Public Cloud queue.
        */
       rax_queue?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * allows you to upload/delete templates in Proxmox VE cluster
@@ -68047,7 +68567,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the host of the Proxmox VE cluster
          */
@@ -68111,13 +68632,14 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * the template name
          * required only for states C(absent), C(info)
          */
         template?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Consumes docker compose to start, shutdown and scale services.
@@ -68127,15 +68649,15 @@ export type Ansible25 = (
        * Supports check mode.
        */
       docker_service?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages a VRF for an OSPF router.
@@ -68201,7 +68723,7 @@ export type Ansible25 = (
          * Specify minimum hold time between Shortest Path First (SPF) calculations. Valid values are an integer, in milliseconds, or the keyword 'default'.
          */
         timer_throttle_spf_hold?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * LogicMonitor is a hosted, full-stack, infrastructure monitoring platform.
@@ -68250,7 +68772,7 @@ export type Ansible25 = (
          * This is required for querying a LogicMonitor host when a displayname is not specified.
          */
         collector?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about a image image from OpenStack.
@@ -68264,7 +68786,7 @@ export type Ansible25 = (
          * Ignored. Present for backwards compatibility
          */
         availability_zone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to reset a switch's startup configuration. The method provides a way to reset the startup configuration to its factory settings. This is helpful when you want to move the switch to another topology as a new network device. This module uses SSH to manage network device configuration. The results of the operation can be viewed in results directory. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_factory.html)
@@ -68276,35 +68798,35 @@ export type Ansible25 = (
         deviceType: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to configure VSAN clustering on an ESXi host
        */
       vmware_vsan_cluster?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -68327,7 +68849,7 @@ export type Ansible25 = (
          * Name of the group to manage.
          */
         group_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create an annotation event on the given annotation stream :name. If the annotation stream does not exist, it will be created automatically
@@ -68343,9 +68865,9 @@ export type Ansible25 = (
          */
         links?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The title of an annotation is a string and may contain spaces
@@ -68378,7 +68900,7 @@ export type Ansible25 = (
          * The description should contain specifics on the individual annotation e.g. Deployed 9b562b2 shipped new feature foo!
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Cisco Ethernet Virtual Private Network (EVPN) VXLAN Network Identifier (VNI) configurations of a Nexus device.
@@ -68410,29 +68932,29 @@ export type Ansible25 = (
          * Sets the route-target 'export' extended communities.
          */
         route_target_export?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or destroy user roles
        */
       na_cdot_user_role?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -68467,21 +68989,21 @@ export type Ansible25 = (
          * List of link aggregation definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage S3 buckets in AWS, Ceph, Walrus and FakeS3
        */
       s3_bucket?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will change the power plan of a Windows system to the defined string.
@@ -68492,7 +69014,7 @@ export type Ansible25 = (
          * String value that indicates the desired power plan. The power plan must already be present on the system. Commonly there will be options for C(balanced) and C(high performance).
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure Webhook object
@@ -68549,7 +69071,7 @@ export type Ansible25 = (
          * Field introduced in 17.1.1.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete or update firewall polices on Centurylink Cloud
@@ -68568,9 +69090,9 @@ export type Ansible25 = (
          */
         destination?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -68585,9 +69107,9 @@ export type Ansible25 = (
          */
         source?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: present
@@ -68616,9 +69138,9 @@ export type Ansible25 = (
          */
         ports?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: True
@@ -68626,7 +69148,7 @@ export type Ansible25 = (
          * Whether to wait for the provisioning tasks to finish before returning.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Used to apply audit rules to files, folders or registry keys.
@@ -68678,7 +69200,7 @@ export type Ansible25 = (
          * For more information on the choices see MSDN PropagationFlags enumeration at U(https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.inheritanceflags.aspx).
          */
         inheritance_flags?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with interface related configurations. The operators used are overloaded to ensure control over switch interface configurations. Apart from the regular device connection related attributes, there are seven interface arguments that will perform further configurations. They are interfaceArg1, interfaceArg2, interfaceArg3, interfaceArg4, interfaceArg5, interfaceArg6, and interfaceArg7. For more details on how to use these arguments, see [Overloaded Variables]. Interface configurations are taken care at six contexts in a regular CLI. They are 1. Interface Name - Configurations 2. Ethernet Interface - Configurations 3. Loopback Interface Configurations 4. Management Interface Configurations 5. Port Aggregation - Configurations 6. VLAN Configurations This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_interface.html)
@@ -68726,24 +69248,24 @@ export type Ansible25 = (
          * This is an overloaded interface third argument. Usage of this argument can be found is the User Guide referenced above.
          */
         interfaceArg3?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can allocate or release an EIP.
        * This module can associate/disassociate an EIP with instances or network interfaces.
        */
       ec2_eip?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage server entities configuration.
@@ -68812,13 +69334,13 @@ export type Ansible25 = (
          * IPv4 or IPv6 address of the server. If you create an IP address based server, you can specify the name of the server, instead of its IP address, when creating a service. Note: If you do not create a server entry, the server IP address that you enter when you create a service becomes the name of the server.
          */
         ipaddress?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Runs I(puppet) agent or apply in a reliable manner
        */
       puppet?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with virtual Link Aggregation Groups (vLAG) related configurations. The operators used are overloaded to ensure control over switch vLAG configurations. Apart from the regular device connection related attributes, there are four vLAG arguments which are overloaded variables that will perform further configurations. They are vlagArg1, vlagArg2, vlagArg3, and vlagArg4. For more details on how to use these arguments, see [Overloaded Variables]. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_vlag.html)
@@ -68846,19 +69368,19 @@ export type Ansible25 = (
         deviceType: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update or delete a network interface. When creating a network interface you must provide the name of an existing virtual network, the name of an existing subnet within the virtual network. A default security group and public IP address will be created automatically, or you can provide the name of an existing security group and public IP address. See the examples below for more details.
        */
       azure_rm_networkinterface?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with VLAN related configurations. The operators used are overloaded to ensure control over switch VLAN configurations. The first level of VLAN configuration allows to set up the VLAN range, the VLAN tag persistence, a VLAN access map and access map filter. After passing this level, there are five VLAN arguments that will perform further configurations. They are vlanArg1, vlanArg2, vlanArg3, vlanArg4, and vlanArg5. The value of vlanArg1 will determine the way following arguments will be evaluated. For more details on how to use these arguments, see [Overloaded Variables]. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_vlan.html)
@@ -68890,7 +69412,7 @@ export type Ansible25 = (
         vlanArg3?: string;
         password: string;
         enablePassword?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(proxysql_global_variables) module gets or sets the proxysql global variables.
@@ -68928,7 +69450,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -68951,20 +69474,21 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Defines which variable should be returned, or if I(value) is specified which variable should be updated.
          */
         variable: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete VNICs on Solaris/illumos systems.
        */
       dladm_vnic?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Use this module to add or remove hosts to a stacki front-end via API.
@@ -69021,7 +69545,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * MAC Address for the primary PXE boot network interface.
          */
@@ -69030,7 +69555,7 @@ export type Ansible25 = (
          * Name of the host to be added to Stacki.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure PKIProfile object
@@ -69107,7 +69632,7 @@ export type Ansible25 = (
          * Unique object identifier of the object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, delete snapshot groups for NetApp E-series storage arrays
@@ -69198,14 +69723,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: 80
          *
          * The repository utilization warning threshold, as a percentage of the repository volume capacity.
          */
         warning_threshold?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows to post events to DataDog (www.datadoghq.com) service.
@@ -69238,9 +69764,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Your DataDog app key.
@@ -69287,8 +69813,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Tests reachability using ping from switch to a remote destination.
@@ -69323,7 +69850,7 @@ export type Ansible25 = (
          * The source IP Address.
          */
         source?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage local roles on an ESXi host
@@ -69349,7 +69876,7 @@ export type Ansible25 = (
          * Please see U(https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-ED56F3C4-77D0-49E3-88B6-B99B8B437B62.html)
          */
         local_privilege_ids?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage BIG-IP global settings.
@@ -69393,7 +69920,7 @@ export type Ansible25 = (
          * Specifies, when C(enabled), that the system menu displays on the LCD screen on the front of the unit. This setting has no effect when used on the VE platform.
          */
         lcd_display?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running eos.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -69405,19 +69932,19 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Used to register or deregister a target in a target group
        */
       elb_target?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(slack) module sends notifications to U(http://slack.com) via the Incoming WebHook integration
@@ -69442,9 +69969,9 @@ export type Ansible25 = (
          */
         attachments?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: normal
@@ -69511,22 +70038,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
          * Channel to send the message to. If absent, the message goes to the channel selected for the I(token).
          */
         channel?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage packages with the XBPS package manager.
        */
       xbps?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides an abstraction that enables and configures the netconf system service running on Cisco IOS-XR Software. This module can be used to easily enable the Netconf API. Netconf provides a programmatic interface for working with configuration and state resources as defined in RFC 6242.
@@ -69550,21 +70078,22 @@ export type Ansible25 = (
          * This argument specifies the port the netconf service should listen on for SSH connections.  The default port as defined in RFC 6242 is 830.
          */
         netconf_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * IPS packages are the native packages in Solaris 11 and higher.
        * This modules will configure which publishers a client will download IPS packages from.
        */
       pkg5_publisher?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Apstra AOS Device module let you manage your devices in AOS easily. You can approve devices and define in which state the device should be. Currently only the state I(normal) is supported but the goal is to extend this module with additional state. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
        */
@@ -69597,7 +70126,7 @@ export type Ansible25 = (
          * The AOS internal id for a device; i.e. uniquely identifies the device in the AOS system. Only one of I(name) or I(id) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage BIG-IP partitions.
@@ -69621,7 +70150,7 @@ export type Ansible25 = (
          * Whether the partition should exist or not.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure HardwareSecurityModuleGroup object
@@ -69665,7 +70194,7 @@ export type Ansible25 = (
          * Uuid of the hsm group configuration object.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages VPN instance address family of HUAWEI CloudEngine switches.
@@ -69707,7 +70236,7 @@ export type Ansible25 = (
          * VPN instance target value. Such as X.X.X.X:number<0-65535> or number<0-65535>:number<0-4294967295> or number<0-65535>.number<0-65535>:number<0-65535> or number<65536-4294967295>:number<0-65535> but not support 0:0 and 0.0:0.
          */
         vpn_target_value?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to manage acceptance level of an ESXi host.
@@ -69741,7 +70270,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to gather facts about an ESXi host's services.
@@ -69759,7 +70288,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send code deploy and annotation events to Stackdriver
@@ -69815,7 +70344,7 @@ export type Ansible25 = (
          * The type of event to send, either annotation or deploy
          */
         event: "annotation" | "deploy";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of static IP routes on Juniper JUNOS network devices.
@@ -69857,7 +70386,7 @@ export type Ansible25 = (
          * List of static route definitions
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete volumes and volume snapshots on Pure Storage FlashArray.
@@ -69893,20 +70422,21 @@ export type Ansible25 = (
          * Define whether to eradicate the snapshot on delete or leave in trash.
          */
         eradicate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages filesystem user defined extended attributes, requires that they are enabled on the target filesystem and that the setfattr/getfattr utilities are present.
        */
       xattr?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manages MySQL server replication, slave, master status get and change master host.
        */
@@ -69937,7 +70467,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * same as mysql variable
          */
@@ -70002,7 +70533,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_host?: string;
         /**
          * same as mysql variable
@@ -70035,7 +70567,7 @@ export type Ansible25 = (
          * module operating mode. Could be getslave (SHOW SLAVE STATUS), getmaster (SHOW MASTER STATUS), changemaster (CHANGE MASTER TO), startslave (START SLAVE), stopslave (STOP SLAVE), resetslave (RESET SLAVE), resetslaveall (RESET SLAVE ALL)
          */
         mode?: "getslave" | "getmaster" | "changemaster" | "stopslave" | "startslave" | "resetslave" | "resetslaveall";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module gathers facts for a specific system using its HP iLO interface. These facts include hardware and network related information useful for provisioning (e.g. macaddress, uuid).
@@ -70064,7 +70596,7 @@ export type Ansible25 = (
          * The HP iLO hostname/address that is linked to the physical system.
          */
         host: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove images from the OpenStack Image Repository
@@ -70156,25 +70688,26 @@ export type Ansible25 = (
          * The Id of the image
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage permissions of users/groups in oVirt/RHV.
        */
       ovirt_permissions?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Create or delete VLAN interfaces on Solaris/illumos systems.
        */
       dladm_vlan?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Elasticsearch plugins.
@@ -70232,7 +70765,7 @@ export type Ansible25 = (
          * Name of the plugin to install. In ES 2.x, the name can be an url or file location
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The M(proxysql_mysql_users) module adds or removes mysql users using the proxysql admin interface.
@@ -70273,7 +70806,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The schema to which the connection should change to by default.
          */
@@ -70303,7 +70837,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_port?: number | string;
         login_user?: string;
         login_host?: string;
@@ -70333,7 +70868,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: True
          *
@@ -70361,7 +70897,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         login_unix_socket?: string;
         /**
          * Default: present
@@ -70394,7 +70931,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         load_to_runtime?:
           | boolean
           | (0 | 1)
@@ -70417,7 +70955,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         save_to_disk?:
           | boolean
           | (0 | 1)
@@ -70440,7 +70979,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A user with I(active) set to C(False) will be tracked in the database, but will be never loaded in the in-memory data structures. If omitted the proxysql database default for I(active) is C(True).
          */
@@ -70466,7 +71006,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         config_file?: string;
         /**
          * Password of the user connecting to the mysqld or ProxySQL instance.
@@ -70476,7 +71017,7 @@ export type Ansible25 = (
          * The maximum number of connections ProxySQL will open to the backend for this user. If omitted the proxysql database default for I(max_connections) is 10000.
          */
         max_connections?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * OpenSwitch configurations use a simple block indent file syntax for segmenting configuration into sections.  This module provides an implementation for working with ops configuration sections in a deterministic way.
@@ -70527,7 +71068,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides configuration file management of VyOS devices.  It provides arguments for managing both the configuration file and state of the active configuration.   All configuration statements are based on `set` and `delete` commands in the device configuration.
@@ -70567,7 +71108,7 @@ export type Ansible25 = (
          * The C(match) argument controls the method used to match against the current active configuration.  By default, the desired config is matched against the active config and the deltas are loaded.  If the C(match) argument is set to C(none) the active configuration is ignored and the configuration is always loaded.
          */
         match?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on IOS network devices.
@@ -70595,7 +71136,7 @@ export type Ansible25 = (
          * Name of the L3 interface to be configured eg. GigabitEthernet0/2
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage OpenStack Projects. Projects can be created, updated or deleted using this module. A project will be updated if I(name) matches an existing project and I(state) is present. The value for I(name) cannot be updated without deleting and re-creating the project.
@@ -70629,7 +71170,7 @@ export type Ansible25 = (
          * Domain id to create the project in if the cloud supports domains. The domain_id parameter requires shade >= 1.8.0
          */
         domain_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the SSHD settings of a BIG-IP
@@ -70663,7 +71204,7 @@ export type Ansible25 = (
          * Port that you want the SSH daemon to run on.
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages ZFS file systems, volumes, clones and snapshots.
@@ -70691,7 +71232,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Whether to create (C(present)), or remove (C(absent)) a file system, snapshot or volume. All parents/children will be created/destroyed as needed to reach the desired state.
          */
@@ -70700,18 +71242,18 @@ export type Ansible25 = (
          * File system, snapshot or volume name e.g. C(rpool/myfs)
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Interacts with HTTP and HTTPS web services and supports Digest, Basic and WSSE HTTP authentication mechanisms.
        * For Windows targets, use the M(win_uri) module instead.
        */
       uri?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects facts from CloudEngine devices running the CloudEngine operating system.  Fact collection is supported over Cli transport.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -70723,7 +71265,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages snapshots for GCE instances. This module manages snapshots for the storage volumes of a GCE compute instance. If there are multiple volumes, each snapshot will be prepended with the disk name
@@ -70740,9 +71282,9 @@ export type Ansible25 = (
          */
         disks?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The GCE instance to snapshot
@@ -70766,7 +71308,7 @@ export type Ansible25 = (
          * The GCP project ID to use
          */
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of an OSPF instance on HUAWEI CloudEngine switches.
@@ -70822,7 +71364,7 @@ export type Ansible25 = (
          * Indicates the weight of the next hop. The smaller the value is, the higher the preference of the route is. It is an integer that ranges from 1 to 254.
          */
         nexthop_weight?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove a static route.
@@ -70849,7 +71391,7 @@ export type Ansible25 = (
          * If present, it adds a network static route. If absent, it removes a network static route.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gathers facts from nginx from an URL having C(stub_status) enabled.
@@ -70865,7 +71407,7 @@ export type Ansible25 = (
          * HTTP connection timeout in seconds.
          */
         timeout?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This is a wrapper module around keytool. Which can be used to import/remove certificates from a given java keystore.
@@ -70896,7 +71438,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Imported certificate alias.
          */
@@ -70949,25 +71492,25 @@ export type Ansible25 = (
          * Path to keystore.
          */
         keystore_path?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will insert/update/remove a block of multi-line text surrounded by customizable marker lines.
        */
       blockinfile?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Pauses playbook execution for a set amount of time, or until a prompt is acknowledged. All parameters are optional. The default behavior is to pause with a prompt.
@@ -70979,9 +71522,9 @@ export type Ansible25 = (
       pause?: {
         active_connection_states?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         host?: string;
         connect_timeout?: number | string;
@@ -70992,14 +71535,14 @@ export type Ansible25 = (
         timeout?: number | string;
         exclude_hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         msg?: string;
         path?: string;
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages network device configurations over SSH or NXAPI.  This module allows implementers to work with the device running-config.  It provides a way to push a set of commands onto a network device by evaluating the current running-config and only pushing configuration commands that are not already configured.  The config source can be a set of commands or a template.
@@ -71027,7 +71570,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         username?: string;
         ssh_keyfile?: string;
         /**
@@ -71055,7 +71599,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The path to the config source.  The source can be either a file with config or a template that will be merged during runtime.  By default the task will search for the source file in role or playbook root folder in templates directory.
          */
@@ -71090,11 +71635,12 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         host: string;
         timeout?: number | string;
         provider?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         /**
@@ -71122,10 +71668,11 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         port?: number | string;
         transport?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L3 interfaces on Arista EOS network devices.
@@ -71153,7 +71700,7 @@ export type Ansible25 = (
          * Name of the L3 interface to be configured eg. ethernet1
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages licenses in a BIG-IQ registration key pool.
@@ -71186,7 +71733,7 @@ export type Ansible25 = (
          * When C(absent), removes the license from the pool.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of L2 interfaces on Arista EOS network devices.
@@ -71222,7 +71769,7 @@ export type Ansible25 = (
          * List of Layer-2 interface definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify and delete group within IPA server
@@ -71265,7 +71812,7 @@ export type Ansible25 = (
          * Users that are already assigned but not passed will be removed.
          */
         user?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apply an authcode to a device.
@@ -71314,22 +71861,23 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * authcode to be applied
          */
         auth_code?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete records.
        */
       exo_dns_record?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module offers the ability to set the VNI and mapped to the BD, and configure an ingress replication list on HUAWEI CloudEngine devices.
@@ -71369,7 +71917,7 @@ export type Ansible25 = (
          * The operation type of routing protocol.
          */
         protocol_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages configuration of an Protocol Independent Multicast (PIM) static rendezvous point (RP) address instance.
@@ -71401,7 +71949,7 @@ export type Ansible25 = (
          * Prefix list policy for static RP. Valid values are prefix-list policy names.
          */
         prefix_list?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows you to work with the running configuration of a switch. It provides a way to execute a set of CNOS commands on a switch by evaluating the current running configuration and executing the commands only if the specific settings have not been already configured. The configuration source can be a set of commands or a template written in the Jinja2 templating language. This module uses SSH to manage network device configuration. The results of the operation will be placed in a directory named 'results' that must be created by the user in their local directory to where the playbook is run. For more information about this module from Lenovo and customizing it usage for your use cases, please visit U(http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.switchmgt.ansible.doc%2Fcnos_template.html)
@@ -71417,21 +71965,21 @@ export type Ansible25 = (
          * This specifies the path to the CNOS command file which needs to be applied. This usually comes from the commands folder. Generally this file is the output of the variables applied on a template file. So this command is preceded by a template module. Note The command file must contain the Ansible keyword {{ inventory_hostname }} in its filename to ensure that the command file is unique for each switch and condition. If this is omitted, the command file will be overwritten during iteration. For example, commandfile=./commands/clos_leaf_bgp_{{ inventory_hostname }}_commands.txt
          */
         commandfile: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove Pulp repos from a remote host.
        */
       pulp_repo?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
@@ -71492,7 +72040,7 @@ export type Ansible25 = (
          * The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system.
          */
         before?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends a text message to a phone number through the Twilio messaging API.
@@ -71522,7 +72070,7 @@ export type Ansible25 = (
          * a URL with a picture, video or sound clip to send with an MMS (multimedia message) instead of a plain SMS
          */
         media_url?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages STP configurations on HUAWEI CloudEngine switches.
@@ -71586,7 +72134,7 @@ export type Ansible25 = (
          * Set the path cost of the current port. The default instance is 0.
          */
         cost?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Perform server actions on an existing compute instance from OpenStack. This module does not return any data other than changed true/false. When I(action) is 'rebuild', then I(image) parameter is required.
@@ -71622,26 +72170,27 @@ export type Ansible25 = (
          * If the module should wait for the instance action to be performed.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will let you create PagerDuty maintenance windows
        */
       pagerduty?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage binary packages for FreeBSD using 'pkgng' which is available in versions after 9.0.
        */
       pkgng?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Create and renew SSL certificates with Let's Encrypt. Let’s Encrypt is a free, automated, and open certificate authority (CA), run for the public’s benefit. For details see U(https://letsencrypt.org). The current implementation supports the http-01, tls-sni-02 and dns-01 challenges.
        * To use this module, it has to be executed at least twice. Either as two different tasks in the same run or during multiple runs.
@@ -71650,30 +72199,30 @@ export type Ansible25 = (
        * Although the defaults are choosen so that the module can be used with the Let's Encrypt CA, the module can be used with any service using the ACME protocol.
        */
       letsencrypt?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Send a SMS message via nexmo
        */
       nexmo?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, and delete MCP 1.0 & 2.0 networks
@@ -71724,7 +72273,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         validate_certs?:
           | boolean
           | (0 | 1)
@@ -71747,28 +72297,29 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Additional description of the network domain.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure a .deb package using debconf-set-selections. Or just query existing selections.
        */
       debconf?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -71854,7 +72405,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * password for authentication
          */
@@ -71863,7 +72415,7 @@ export type Ansible25 = (
          * IP address (or hostname) of PAN-OS device
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV networks.
@@ -71874,7 +72426,7 @@ export type Ansible25 = (
          * For example to search network starting with string vlan1 use: name=vlan1*
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures a bond interface on Cumulus Linux To configure a bridge port use the cl_bridge module. To configure any other type of interface use the cl_interface module. Follow the guidelines for bonding found in the Cumulus User Guide at U(http://docs.cumulusnetworks.com).
@@ -71992,7 +72544,7 @@ export type Ansible25 = (
          * Bond members.
          */
         slaves?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower job templates. See U(https://www.ansible.com/tower) for an overview.
@@ -72092,7 +72644,7 @@ export type Ansible25 = (
          * Prompt user for job tags on launch.
          */
         ask_tags?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or destroy Ansible Tower labels. See U(https://www.ansible.com/tower) for an overview.
@@ -72112,7 +72664,7 @@ export type Ansible25 = (
          * Name to use for the label.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to manage firewall configurations about an ESXi host when ESXi hostname or Cluster name is given.
@@ -72137,7 +72689,7 @@ export type Ansible25 = (
          * If C(cluster_name) is not given, this parameter is required.
          */
         esxi_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * You can wait for a set amount of time C(timeout), this is the default if nothing is specified.
@@ -72204,29 +72756,29 @@ export type Ansible25 = (
          * The port number to poll on C(host).
          */
         port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or destroy users.
        */
       na_cdot_user?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -72259,30 +72811,30 @@ export type Ansible25 = (
          * Full name of the interface, i.e. 40GE1/0/22.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create host groups if they do not exist.
        * Delete existing host groups if they exist.
        */
       zabbix_group?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -72295,7 +72847,7 @@ export type Ansible25 = (
          * State of the LLDP configuration. If value is I(present) lldp will be enabled else if it is I(absent) it will be disabled.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages local Windows user accounts
@@ -72360,7 +72912,7 @@ export type Ansible25 = (
          * Description of the user
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Sends arbitrary commands to an OpenSwitch node and returns the results read from the device. This module includes an argument that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
@@ -72392,7 +72944,7 @@ export type Ansible25 = (
          * Configures the interval in seconds to wait between I(retries) of the command. If the command does not pass the specified conditions, the interval indicates how long to wait before trying the command again.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service.
@@ -72420,7 +72972,7 @@ export type Ansible25 = (
          * User assigned name for this resource. Must be unique within the project.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify or delete an IPA HBAC rule using IPA API.
@@ -72505,19 +73057,19 @@ export type Ansible25 = (
          * Description
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Homebrew packages
        */
       homebrew?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove kernel modules.
@@ -72537,15 +73089,15 @@ export type Ansible25 = (
          * Name of kernel module to manage.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts for Rackspace Cloud Servers.
        */
       rax_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM https monitors.
@@ -72614,7 +73166,7 @@ export type Ansible25 = (
          * This setting works like C(receive), except that the system marks the node or pool member disabled when its response matches the C(receive_disable) string but not C(receive). To use this setting, you must specify both C(receive_disable) and C(receive).
          */
         receive_disable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Install and remove Grafana plugins.
@@ -72649,42 +73201,42 @@ export type Ansible25 = (
          * Default to latest.
          */
         version?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and remove hosts.
        */
       cs_host?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
        * Gets various details related to AWS VPC Peers
        */
       ec2_vpc_peering_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage domains on Rackspace Cloud DNS
        */
       rax_dns?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage port channel interface policies on Cisco ACI fabrics.
@@ -72767,7 +73319,7 @@ export type Ansible25 = (
          * The APIC defaults new Port Channel Policies to C(16).
          */
         max_links?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of BGP router and neighbors on Mellanox ONYX network devices.
@@ -72795,7 +73347,7 @@ export type Ansible25 = (
          * List of neighbors. Required if I(state=present).
          */
         neighbors?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BGP neighbor Address-family configurations on HUAWEI CloudEngine switches.
@@ -73057,7 +73609,7 @@ export type Ansible25 = (
          * Specify the minimum interval at which Update packets are sent. The value is an integer, in seconds. The value is an integer ranging from 0 to 600.
          */
         rt_updt_interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configure an RR in BGP-EVPN address family view on HUAWEI CloudEngine switches.
@@ -73093,20 +73645,21 @@ export type Ansible25 = (
          * Specify the peer type.
          */
         peer_type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage users in oVirt/RHV.
        */
       ovirt_users?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * The M(proxysql_global_variables) module writes the proxysql configuration settings between layers. Currently this module will always report a changed state, so should typically be used with WHEN however this will change in a future version when the CHECKSUM table commands are available for all tables in proxysql.
        */
@@ -73141,7 +73694,7 @@ export type Ansible25 = (
          * The supplied I(action) combines with the supplied I(direction) to provide the semantics of how we want to move the I(config_settings) between the I(config_layers).
          */
         action: "LOAD" | "SAVE";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BFD session view configuration on HUAWEI CloudEngine devices.
@@ -73193,31 +73746,32 @@ export type Ansible25 = (
          * Specifies the local detection multiplier of a BFD session. The value is an integer that ranges from 3 to 50.
          */
         detect_multi?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/delete a droplet in DigitalOcean and optionally wait for it to be 'running', or deploy an SSH key.
        */
       digital_ocean?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or remove users to RabbitMQ and assign permissions
        */
       rabbitmq_user?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Retrieve facts about ports from OpenStack.
        */
@@ -73230,7 +73784,7 @@ export type Ansible25 = (
          * A dictionary of meta data to use for further filtering. Elements of this dictionary will be matched against the returned port dictionaries. Matching is currently limited to strings within the port dictionary, or strings within nested dictionaries.
          */
         filters?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage which I(sensu channels) a machine should subscribe to
@@ -73274,12 +73828,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the channel
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module creates, removes or resizes AIX logical volumes. Inspired by lvol module.
@@ -73290,9 +73845,9 @@ export type Ansible25 = (
          */
         pvs?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: jfs2
@@ -73334,7 +73889,7 @@ export type Ansible25 = (
          * The size of the logical volume with one of the [MGT] units.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module asserts that given expressions are true with an optional custom message.
@@ -73343,9 +73898,9 @@ export type Ansible25 = (
       assert?: {
         active_connection_states?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         host?: string;
         connect_timeout?: number | string;
@@ -73356,9 +73911,9 @@ export type Ansible25 = (
         timeout?: number | string;
         exclude_hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The customized message used for a failing assertion
@@ -73366,7 +73921,7 @@ export type Ansible25 = (
         msg?: string;
         path?: string;
         port?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages Ethernet Virtual Private Network (EVPN) VXLAN Network Identifier (VNI) configurations on HUAWEI CloudEngine switches.
@@ -73410,7 +73965,7 @@ export type Ansible25 = (
          * Create or delete an EVPN instance for a VXLAN in BD view.
          */
         evpn?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage(Enable/Disable) RHSM repositories to the Red Hat Subscription Management entitlement platform using the C(subscription-manager) command.
@@ -73428,11 +73983,11 @@ export type Ansible25 = (
          */
         name:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on Juniper JUNOS network devices.
@@ -73503,53 +74058,53 @@ export type Ansible25 = (
          * Description of Interface.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to manage storage domains in oVirt/RHV
        */
       ovirt_storage_domains?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update, or delete a Direct Connect connection between a network and a specific AWS Direct Connect location. Upon creation the connection may be added to a link aggregation group or established as a standalone connection. The connection may later be associated or disassociated with a link aggregation group.
        */
       aws_direct_connect_connection?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to add/remove a resource pool to/from vCenter
        */
       vmware_resource_pool?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -73581,7 +74136,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -73633,8 +74189,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure AnalyticsProfile object
@@ -74064,7 +74621,7 @@ export type Ansible25 = (
          * Default value when not specified in API or module is interpreted by Avi Controller as False.
          */
         exclude_unsupported_dns_query_as_error?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of node system attributes on Cisco IOS XR devices. It provides an option to configure host system parameters or remove those parameters from the device active configuration.
@@ -74104,7 +74661,7 @@ export type Ansible25 = (
          * Provides administrative control for enabling or disabling DNS lookups.  When this argument is set to True, lookups are performed and when it is set to False, lookups are not performed.
          */
         lookup_enabled?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Adds or removes SSH authorized keys for particular user accounts
@@ -74145,7 +74702,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A string of ssh key options to be prepended to the key in the authorized_keys file
          */
@@ -74192,7 +74750,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -74222,7 +74781,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -74250,36 +74810,37 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manage VMware ESXi DNS Configuration
        */
       vmware_dns_config?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -74330,12 +74891,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * An existing script file to be executed in the future.
          */
         script_file?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage route domains on a BIG-IP
@@ -74389,7 +74951,7 @@ export type Ansible25 = (
          * The unique identifying integer representing the route domain.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs or uninstalls a Windows MSI file that is already located on the target server.
@@ -74423,13 +74985,13 @@ export type Ansible25 = (
          * Specify whether to wait for install or uninstall to complete before continuing.
          */
         wait?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages virtual machines supported by I(libvirt).
        */
       virt?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Wraps the msg.exe command in order to send messages to Windows hosts.
@@ -74460,7 +75022,7 @@ export type Ansible25 = (
          * How long to wait for receiver to acknowledge message, in seconds.
          */
         display_seconds?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage monitoring policies on Cisco ACI fabrics.
@@ -74485,7 +75047,7 @@ export type Ansible25 = (
          * Use C(query) for listing an object or multiple objects.
          */
         state?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Python library dependencies. To use this module, one of the following keys is required: C(name) or C(requirements).
@@ -74522,7 +75084,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The explicit executable or a pathname to the executable to be used to run pip for a specific version of Python installed in the system. For example C(pip-3.3), if there are both Python 2.7 and 3.3 installations in the system and you want to run pip for the Python 3.3 installation. It cannot be specified together with the 'virtualenv' parameter (added in 2.1). By default, it will take the appropriate version for the python interpreter use by ansible, e.g. pip3 on python 3, and pip2 or pip on python 2.
          */
@@ -74541,9 +75104,9 @@ export type Ansible25 = (
          */
         name?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The Python executable used for creating the virtual environment. For example C(python3.5), C(python2.7). When not specified, the Python version used to run the ansible module is used. This parameter should not be used when C(virtualenv_command) is using C(pyvenv) or the C(-m venv) module.
@@ -74580,7 +75143,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: virtualenv
          *
@@ -74609,7 +75173,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Extra arguments passed to pip.
          */
@@ -74625,7 +75190,7 @@ export type Ansible25 = (
          * The version number to install of the Python library specified in the I(name) parameter.
          */
         version?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage the trust relationships between BIG-IPs. Devices, once peered, cannot be updated. If updating is needed, the peer must first be removed before it can be re-added to the trust.
@@ -74664,7 +75229,7 @@ export type Ansible25 = (
          * The hostname that you want to associate with the device. This value will be used to easily distinguish this device in BIG-IP configuration. If not specified, the value of C(peer_server) will be used as a default.
          */
         peer_hostname?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure SeProperties object
@@ -74709,13 +75274,13 @@ export type Ansible25 = (
          * Setting to patch will override that behavior to use HTTP PATCH.
          */
         avi_api_update_method?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete VPCs.
        */
       cs_vpc?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Change an administrative parameter on a MongoDB server.
@@ -74770,7 +75335,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: str
          *
@@ -74789,7 +75355,7 @@ export type Ansible25 = (
          * Replica set to connect to (automatically connects to primary for writes)
          */
         replica_set?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Notify Rollbar about app deployments (see https://rollbar.com/docs/deploys_other/)
@@ -74848,12 +75414,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Revision number/sha being deployed.
          */
         revision: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Query data points from InfluxDB.
@@ -74867,13 +75434,13 @@ export type Ansible25 = (
          * Name of the database.
          */
         database_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage Linode Public Cloud instances and optionally wait for it to be 'running'.
        */
       linode?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages PIM interface configuration settings.
@@ -74933,7 +75500,7 @@ export type Ansible25 = (
          * Type of policy mapped to C(jp_policy_out).
          */
         jp_type_out?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Interface to the Network Command Line Utility, developed to make it easier to configure operating systems running ifupdown2 and Quagga, such as Cumulus Linux. Command documentation is available at U(https://docs.cumulusnetworks.com/display/DOCS/Network+Command+Line+Utility)
@@ -74944,9 +75511,9 @@ export type Ansible25 = (
          */
         commands?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: Ansible-originated commit
@@ -74979,7 +75546,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When true, equivalent to both I(commit) and I(abort) being true. Mutually exclusive with I(commit) and I(atomic).
          */
@@ -75005,7 +75573,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A single, multi-line string with jinja2 formatting. This string will be broken by lines, and each line will be run through net. Mutually exclusive with I(commands).
          */
@@ -75035,8 +75604,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Create, update, or delete OpenStack Identity service endpoints. If a service with the same combination of I(service), I(interface) and I(region) exist, the I(url) and I(state) (C(present) or C(absent)) will be updated.
@@ -75070,7 +75640,7 @@ export type Ansible25 = (
          * Interface of the service.
          */
         interface?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Configures LAN Connectivity Policies on Cisco UCS Manager.
@@ -75121,7 +75691,7 @@ export type Ansible25 = (
          * Org dn (distinguished name)
          */
         org_dn?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or delete Server Groups at Centurylink Centurylink Cloud
@@ -75176,8 +75746,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Manage Infinity IPAM using REST API
@@ -75246,7 +75817,7 @@ export type Ansible25 = (
          * Network type defined by Infinity
          */
         network_type?: "lan" | "shared_lan" | "supernet";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Find the folder path(s) for a virtual machine by name or UUID
@@ -75267,7 +75838,7 @@ export type Ansible25 = (
          * This is required if C(name) parameter is not supplied.
          */
         uuid?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages BGP peer configurations on HUAWEI CloudEngine switches.
@@ -75425,7 +75996,7 @@ export type Ansible25 = (
          * If the value is true, peer create MPLS Local IFNET disable. If the value is false, peer create MPLS Local IFNET enable.
          */
         mpls_local_ifnet_disable?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for a specific security group or all security groups within a resource group.
@@ -75454,7 +76025,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Only show results for a specific security group.
          */
@@ -75468,9 +76040,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         ad_user?: string;
         cloud_environment?: string;
@@ -75479,7 +76051,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates/Removes a gateway interface from the router, used to associate a external network with a router to route external traffic.
@@ -75534,7 +76106,7 @@ export type Ansible25 = (
          * Name of the router to which the gateway should be attached.
          */
         router_name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * The BIG-IP has an SNMP data collecting agent (DCA) that can query remote SNMP agents of various types, including the UC Davis agent (UCD) and the Windows 2000 Server agent (WIN2000).
@@ -75615,50 +76187,50 @@ export type Ansible25 = (
          * Specifies descriptive text that identifies the monitor.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * IPS packages are the native packages in Solaris 11 and higher.
        */
       pkg5?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage binary packages for Slackware using 'slackpkg' which is available in versions after 12.2.
        */
       slackpkg?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       ));
       /**
        * This module creates file system.
        */
       filesystem?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -75688,7 +76260,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the server.
          */
@@ -75698,7 +76271,7 @@ export type Ansible25 = (
          */
         resource_group: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -75723,7 +76296,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         /**
@@ -75751,7 +76325,7 @@ export type Ansible25 = (
          */
         identity?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Associates or disassociates a specific floating IP with a particular instance
@@ -75806,21 +76380,21 @@ export type Ansible25 = (
          * floating ip that should be assigned to the instance
          */
         ip_address: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages a Django application using the I(manage.py) application frontend to I(django-admin). With the I(virtualenv) parameter, all management commands will be executed by the given I(virtualenv) installation.
        */
       django_manage?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute vrouter-create, vrouter-delete, vrouter-modify command.
@@ -75905,7 +76479,7 @@ export type Ansible25 = (
          * Specify the Autonomous System Number(ASN) if the vRouter runs Border Gateway Protocol(BGP).
          */
         pn_bgp_as?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages TCL iApp templates on a BIG-IP. This module will allow you to deploy iApp templates to the BIG-IP and manage their lifecycle. The conventional way to use this module is to import new iApps as needed or by extracting the contents of the iApp archive that is provided at downloads.f5.com and then importing all the iApps with this module. This module can also update existing iApps provided that the source of the iApp changed while the name stayed the same. Note however that this module will not reconfigure any services that may have been created using the C(bigip_iapp_service) module. iApps are normally not updated in production. Instead, new versions are deployed and then existing services are changed to consume that new template. As such, the ability to update templates in-place requires the C(force) option to be used.
@@ -75935,25 +76509,25 @@ export type Ansible25 = (
          * The name of the iApp template that you want to delete. This option is only available when specifying a C(state) of C(absent) and is provided as a way to delete templates that you may no longer have the source of.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates and deletes DNS records in Amazons Route53 service
        */
       route53?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -75975,9 +76549,9 @@ export type Ansible25 = (
          */
         ssh_keys?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The ProfitBricks username. Overrides the PB_SUBSCRIPTION_ID environement variable.
@@ -76020,7 +76594,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The system image ID for the volume, e.g. a3eae284-a2fe-11e4-b187-5f1f641608c8. This can also be a snapshot image ID.
          */
@@ -76030,9 +76605,9 @@ export type Ansible25 = (
          */
         instance_ids?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * The name of the volumes. You can enumerate the names using auto_increment.
@@ -76087,7 +76662,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: HDD
          *
@@ -76101,7 +76677,7 @@ export type Ansible25 = (
          * The size of the volume.
          */
         size?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module allows for the manipulation of GNOME 2 Configuration via gconftool-2.  Please see the gconftool-2(1) man pages for more details.
@@ -76134,7 +76710,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Preference keys typically have simple values such as strings, integers, or lists of strings and integers. This is ignored if the state is "get". See man gconftool-2(1)
          */
@@ -76155,41 +76732,41 @@ export type Ansible25 = (
          * A GConf preference key is an element in the GConf repository that corresponds to an application preference. See man gconftool-2(1)
          */
         key: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about ELB target groups in AWS
        */
       elb_target_group_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manipulates files privileges using the Linux capabilities(7) system.
        */
       capabilities?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -76232,19 +76809,19 @@ export type Ansible25 = (
          * Route tag for IPv4 or IPv6 Address in integer format.
          */
         tag?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about EC2 Elastic Load Balancers in AWS
        */
       ec2_elb_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about datastores in VMWare
@@ -76264,21 +76841,22 @@ export type Ansible25 = (
          * This is required if datacenter is not supplied
          */
         cluster?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Uses .net Environment to set or remove environment variables and can set at User, Machine or Process level.
        * User level environment variables will be set, but not available until the user has logged off and on again.
        */
       win_environment?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module manages a basic AIX mksysb (image) of rootvg.
        */
@@ -76310,7 +76888,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Backup name
          */
@@ -76342,7 +76921,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -76370,7 +76950,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -76398,7 +76979,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -76426,7 +77008,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -76454,7 +77037,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -76482,7 +77066,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -76510,7 +77095,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: yes
          *
@@ -76538,12 +77124,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Storage path where the mksysb will stored.
          */
         storage_path: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add, modify, enable, disable and delete an IPA Lightweight Sub Certificate Authorities using IPA API.
@@ -76568,7 +77155,7 @@ export type Ansible25 = (
          * The Sub Certificate Authority's Subject. e.g., 'CN=SampleSubCA1,O=testrelm.test'
          */
         subca_subject?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This command module allows running one or more commands on a remote device running EdgeOS, such as the Ubiquiti EdgeRouter.
@@ -76604,7 +77191,7 @@ export type Ansible25 = (
          * The number of seconds to wait between C(retries) of the command.
          */
         interval?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages SNMP contact information.
@@ -76620,7 +77207,7 @@ export type Ansible25 = (
          * Contact information.
          */
         contact?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Notify Honeybadger.io about app deployments (see http://docs.honeybadger.io/article/188-deployment-tracking)
@@ -76679,14 +77266,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
          * A hash, number, tag, or other identifier showing what revision was deployed
          */
         revision?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of MLAG virtual IPs on Mellanox ONYX network devices.
@@ -76714,7 +77302,7 @@ export type Ansible25 = (
          * MLAG group name. Required if I(state=present).
          */
         group_name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management configuration of system logging (syslog) on Cisco IOS XR devices.
@@ -76766,20 +77354,20 @@ export type Ansible25 = (
          * Size of file when C(dest) = C(file). The acceptable value is in the range I(1 to 2097152)KB. Default 2 GB
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Uses boto3 to set TTL.
        * requires botocore version 1.5.24 or higher.
        */
       dynamodb_ttl?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manipulate static routes on a BIG-IP.
@@ -76835,7 +77423,7 @@ export type Ansible25 = (
          * Descriptive text that identifies the route.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Grant and revoke roles in either project or domain context for OpenStack Identity Users.
@@ -76867,28 +77455,28 @@ export type Ansible25 = (
          * Name or ID for the user. If I(user) is not specified, then I(group) is required. Both may not be specified.
          */
         user?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for the management of server certificates
        */
       iam_cert?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and delete service offerings for guest and system VMs.
        * Update display_text of existing service offering.
        */
       cs_service_offering?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete instance of MySQL Database.
@@ -76917,7 +77505,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: no
          *
@@ -76946,7 +77535,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the database.
          */
@@ -76977,7 +77567,7 @@ export type Ansible25 = (
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provices support for executing Cisco NSO actions and then verifying that the output is as expected.
@@ -77007,7 +77597,7 @@ export type Ansible25 = (
          *
          */
         input?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides support for managing configuration in Cisco NSO and can also ensure services are in sync.
@@ -77018,7 +77608,7 @@ export type Ansible25 = (
          *
          */
         data?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Apstra AOS Logical Device module let you manage your Logical Devices easily. You can create create and delete Logical Device by Name, ID or by using a JSON File. This module is idempotent and support the I(check) mode. It's using the AOS REST API.
@@ -77046,13 +77636,13 @@ export type Ansible25 = (
          * AOS Id of the Logical Device to manage (can't be used to create a new Logical Device), Only one of I(name), I(id) or I(content) can be set.
          */
         id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * With the module you can retrieve and output detailed information about the attached disks of the target and its volumes and partitions if existent.
        */
       win_disk_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Connect to external virtual and physical domains by using attachable Access Entity Profiles (AEP) on Cisco ACI fabrics.
@@ -77081,7 +77671,7 @@ export type Ansible25 = (
          * Description for the AEP.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure BackupConfiguration object
@@ -77157,7 +77747,7 @@ export type Ansible25 = (
          * Name of backup configuration.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage initial Contract Subjects on Cisco ACI fabrics.
@@ -77221,13 +77811,13 @@ export type Ansible25 = (
          * The contract subject name.
          */
         subject?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to obtain the version of the Avi REST API. U(https://avinetworks.com/)
        */
       avi_api_version?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Send a message to Campfire.
@@ -77298,7 +77888,7 @@ export type Ansible25 = (
           | "whoomp"
           | "yeah"
           | "yodel";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module manage affinity labels in oVirt/RHV. It can also manage assignments of those labels to hosts and VMs.
@@ -77317,9 +77907,9 @@ export type Ansible25 = (
         state?: "present" | "absent";
         nested_attributes?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of the cluster where vms and hosts resides.
@@ -77347,18 +77937,19 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * List of the hosts names, which should have assigned this affinity label.
          */
         hosts?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         auth: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         timeout?: number | string;
         /**
@@ -77366,9 +77957,9 @@ export type Ansible25 = (
          */
         vms?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         wait?:
           | boolean
@@ -77392,8 +77983,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * The manageiq_alerts module supports adding, updating and deleting alerts in ManageIQ.
@@ -77444,7 +78036,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         token?: string;
         verify_ssl?:
           | boolean
@@ -77468,7 +78061,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         ca_bundle_path?: string;
         password?: string;
         /**
@@ -77477,13 +78071,13 @@ export type Ansible25 = (
          * Required if state is "present".
          */
         expression?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Additional alert options, such as notification type and frequency
          */
         options?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * The entity type for the alert in ManageIQ. Required when state is "present".
@@ -77497,7 +78091,7 @@ export type Ansible25 = (
           | "EmsCluster"
           | "ExtManagementSystem"
           | "MiddlewareServer";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Copy a file to the flash (or bootflash) remote network device on NXOS devices.
@@ -77521,7 +78115,7 @@ export type Ansible25 = (
          * SSH port to connect to server during transfer of file
          */
         connect_ssh_port?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add or Remove rule from an existing security group
@@ -77579,13 +78173,13 @@ export type Ansible25 = (
          * Name or ID of the Security group to link (exclusive with remote_ip_prefix)
          */
         remote_group?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts for one storage account or all storage accounts within a resource group.
        */
       azure_rm_storageaccount_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Enable, disable, and set weights for HAProxy backend servers using socket commands.
@@ -77652,7 +78246,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * When disabling a server, immediately terminate all the sessions attached to the specified server. This can be used to terminate long-running sessions after a server is put into maintenance mode.
          */
@@ -77678,7 +78273,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Wait until the server reports a status of 'UP' when `state=enabled`, or status of 'MAINT' when `state=disabled`.
          */
@@ -77704,8 +78300,9 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * This module offers the ability to set a configuration checkpoint file or rollback to a configuration checkpoint file on Cisco NXOS switches.
@@ -77719,7 +78316,7 @@ export type Ansible25 = (
          * Name of checkpoint file to rollback to. Mutually exclusive with checkpoint_file.
          */
         rollback_to?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module fetches data from the metadata API in CloudStack. The module must be called from within the instance itself.
@@ -77737,25 +78334,25 @@ export type Ansible25 = (
           | "cloudstack_local_ipv4"
           | "cloudstack_instance_id"
           | "cloudstack_user_data";
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module fetches data from the instance metadata endpoint in ec2 as per http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html. The module must be called from within the EC2 instance itself.
        */
       ec2_metadata_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage an AWS Application Elastic Load Balancer. See U(https://aws.amazon.com/blogs/aws/new-aws-application-load-balancer/) for details.
        */
       elb_application_lb?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create or Destroy a Backend Service.  See U(https://cloud.google.com/compute/docs/load-balancing/http/backend-service) for an overview. Full install/configuration instructions for the Google Cloud modules can be found in the comments of ansible/test/gce_tests.py.
@@ -77790,16 +78387,17 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Service account email
          */
         service_account_email?: string;
         service_account_permissions?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         pem_file?: string;
         /**
@@ -77813,9 +78411,9 @@ export type Ansible25 = (
          */
         backends:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of the port on the managed instance group (MIG) that backend services can forward data to. Required for external load balancing.
@@ -77834,9 +78432,9 @@ export type Ansible25 = (
          */
         healthchecks:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Name of the Backend Service.
@@ -77846,7 +78444,7 @@ export type Ansible25 = (
          * GCE project ID.
          */
         project_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Write log entries to a given event log from a specified source.
@@ -77882,7 +78480,7 @@ export type Ansible25 = (
          * The message for the given log entry.
          */
         message?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Attach or Detach volumes from OpenStack VM's
@@ -77912,19 +78510,19 @@ export type Ansible25 = (
          * Name or ID of server you want to attach a volume to
          */
         server?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Gather facts about customer gateways in AWS
        */
       ec2_customer_gateway_facts?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of Interfaces on network devices.
@@ -77988,19 +78586,19 @@ export type Ansible25 = (
          * Description of Interface.
          */
         description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Creates or terminates ecs services.
        */
       ecs_service?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Waits for a total of C(timeout) seconds.
@@ -78032,7 +78630,7 @@ export type Ansible25 = (
          * Maximum number of seconds to wait for.
          */
         timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module is used to configure WafPolicy object
@@ -78122,7 +78720,7 @@ export type Ansible25 = (
          * Field introduced in 17.2.1.
          */
         waf_profile_ref?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Return a list of files based on specified criteria.
@@ -78194,35 +78792,35 @@ export type Ansible25 = (
          * Select files or folders whose size is equal to or greater than the specified size. Use a negative value to find files equal to or less than the specified size. You can specify the size with a suffix of the byte type i.e. kilo = k, mega = m... Size is not evaluated for symbolic links.
          */
         size?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and delete vCenter license keys.
        */
       vcenter_license?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -78235,7 +78833,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, legacy, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/delete/reconfigure a guest VM through VMware vSphere. This module has a dependency on pysphere >= 1.7
@@ -78282,7 +78880,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The virtual server name you wish to manage.
          */
@@ -78291,25 +78890,25 @@ export type Ansible25 = (
          * A key, value list of disks and their sizes and which datastore to keep it in.
          */
         vm_disk?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Dictionary which includes datacenter and hostname on which the VM should be created. For standalone ESXi hosts, ha-datacenter should be used as the datacenter name
          */
         esxi?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * A key, value list of nics, their types and what network to put them on.
          */
         vm_nic?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * A key, value list of VM config settings. Must include ['memory_mb', 'num_cpus', 'osid', 'scsi'].
          */
         vm_hardware?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Specifies if the VM should be deployed from a template (mutually exclusive with 'state' parameter). No guest customization changes to hardware such as CPU, RAM, NICs or Disks can be applied when launching from template.
@@ -78336,7 +78935,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Username to connect to vcenter as.
          */
@@ -78378,12 +78978,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A key, value pair of any extra values you want set or changed in the vmx file of the VM. Useful to set advanced options on the VM.
          */
         vm_extra_config?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Default: True
@@ -78412,7 +79013,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Password of the user to connect to vcenter as.
          */
@@ -78444,7 +79046,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -78457,20 +79060,21 @@ export type Ansible25 = (
          * A string that when specified, will create a linked clone copy of the VM. Snapshot must already be taken in vCenter.
          */
         snapshot_to_clone?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Unzips compressed files and archives. For extracting any compression types other than .zip, the PowerShellCommunityExtensions (PSCX) Module is required.  This module (in conjunction with PSCX) has the ability to recursively unzip files within the src zip file provided and also functionality for many other compression types. If the destination directory does not exist, it will be created before unzipping the file.  Specifying rm parameter will force removal of the src file after extraction.
        */
       win_unzip?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Manipulate SNMP trap information on a BIG-IP.
        */
@@ -78511,7 +79115,7 @@ export type Ansible25 = (
          * Name of the SNMP configuration endpoint.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Module to copy a file to a VM, fetch a file from a VM and create or delete a directory in the guest OS.
@@ -78586,7 +79190,7 @@ export type Ansible25 = (
          *   dest: file destination on localhost, path must be exist
          */
         fetch?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Runs getent against one of it's various databases and returns information into the host's facts, in a getent_<database> prefixed variable
@@ -78619,7 +79223,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Default: None
          *
@@ -78634,48 +79239,48 @@ export type Ansible25 = (
          * the name of a getent database supported by the target system (passwd, group, hosts, etc).
          */
         database: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module will actively managed vCloud Air vApp instances.  Instances can be created and deleted as well as both deployed and undeployed.
        */
       vca_vapp?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * Manages Mercurial (hg) repositories. Supports SSH, HTTP/S and local address.
        */
       hg?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of link aggregation groups on Arista EOS network devices.
@@ -78711,21 +79316,22 @@ export type Ansible25 = (
          * List of link aggregation definitions.
          */
         aggregate?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Installs or uninstalls a package.
        * Optionally uses a product_id to check if the package needs installing. You can find product ids for installed programs in the windows registry either in C(HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall) or for 32 bit programs C(HKLM:Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall)
        */
       win_package?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * Creates/Deletes/Updates a single record in ServiceNow
        */
@@ -78770,22 +79376,23 @@ export type Ansible25 = (
          * key, value pairs of data to load into the record. See Examples. Required for C(state:present)
          */
         data?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Add and remove nic to and from network
        */
       cs_instance_nic?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
-          });
+            [k: string]: unknown;
+          }
+      );
       /**
        * This module creates, removes or resizes volume groups.
        */
@@ -78800,9 +79407,9 @@ export type Ansible25 = (
          */
         pvs?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: no
@@ -78831,7 +79438,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the volume group.
          */
@@ -78848,7 +79456,7 @@ export type Ansible25 = (
          * The size of the physical extent in megabytes. Must be a power of 2.
          */
         pesize?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of the local usernames configured on network devices. It allows playbooks to manage either individual usernames or the aggregate of usernames in the current running config. It also supports purging usernames from the configuration that are not explicitly defined.
@@ -78894,19 +79502,19 @@ export type Ansible25 = (
          * Configures the view for the username in the device running configuration. The argument accepts a string value defining the view name. This argument does not check if the view has been configured on the device.
          */
         view?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage an AWS Elastic Load Balancer target group. See U(http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html) or U(http://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html) for details.
        */
       elb_target_group?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV virtual machine network interfaces.
@@ -78920,7 +79528,7 @@ export type Ansible25 = (
          * Name of the NIC, can be used as glob expression.
          */
         name?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Collects a base set of device facts from a remote device that is running IOS.  This module prepends all of the base network fact keys with C(ansible_net_<fact>).  The facts module will always collect a base set of facts from the device and can enable or disable collection of additional facts.
@@ -78932,7 +79540,7 @@ export type Ansible25 = (
          * When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include all, hardware, config, and interfaces.  Can specify a list of values to include a larger subset.  Values can also be used with an initial C(M(!)) to specify that a specific subset should not be collected.
          */
         gather_subset?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create, update and delete instance of PostgreSQL Server.
@@ -78961,7 +79569,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the server.
          */
@@ -79000,7 +79609,7 @@ export type Ansible25 = (
          * The SKU (pricing tier) of the server.
          */
         sku?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         subscription_id?: string;
         password?: string;
@@ -79029,9 +79638,10 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Retrieve facts about one or more oVirt/RHV users.
@@ -79042,7 +79652,7 @@ export type Ansible25 = (
          * For example to search user X use following pattern: name=X
          */
         pattern?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set the initial port attribute defined in the Cumulus Linux ports.conf, file. This module does not do any error checking at the moment. Be careful to not include ports that do not exist on the switch. Carefully read the original ports.conf file for any exceptions or limitations. For more details go the Configure Switch Port Attribute Documentation at U(http://docs.cumulusnetworks.com).
@@ -79064,19 +79674,19 @@ export type Ansible25 = (
          * List of 10G ports that will be ganged to form a 40G port.
          */
         speed_40g_div_4?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Read the AWS documentation for Network ACLS U(http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
        */
       ec2_vpc_nacl?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of node system attributes on Juniper JUNOS devices.  It provides an option to configure host system parameters or remove those parameters from the device active configuration.
@@ -79110,7 +79720,7 @@ export type Ansible25 = (
          * List of DNS name servers by IP address to use to perform name resolution lookups.  This argument accepts either a list of DNS servers See examples.
          */
         name_servers?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create and remove Docker secrets in a Swarm environment. Similar to `docker secret create` and `docker secret rm`.
@@ -79120,15 +79730,15 @@ export type Ansible25 = (
        * Updates to secrets are performed by removing the secret and creating it again.
        */
       docker_secret?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module provides declarative management of VLANs on Mellanox ONYX network devices.
@@ -79156,7 +79766,7 @@ export type Ansible25 = (
          * ID of the VLAN.
          */
         vlan_id?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Control Linux encrypted block devices that are set up during system boot in C(/etc/crypttab).
@@ -79190,7 +79800,7 @@ export type Ansible25 = (
          * A comma-delimited list of options. See C(crypttab(5) ) for details.
          */
         opts?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * This module can be used to join nodes to a cluster, check the status of the cluster.
@@ -79259,56 +79869,57 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
-        [k: string]: any;
+              | "FALSE"
+            );
+        [k: string]: unknown;
       };
       /**
        * Retrieves facts for a file similar to the linux/unix 'stat' command.
        * For Windows targets, use the M(win_stat) module instead.
        */
       stat?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage local users on an ESXi host
        */
       vmware_local_user_manager?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
        * This module can manage Kubernetes resources on an existing cluster using the Kubernetes server API. Users can specify in-line API data, or specify an existing Kubernetes YAML file. Currently, this module, Only supports HTTP Basic Auth Only supports 'strategic merge' for update, http://goo.gl/fCPYxT SSL certs are not working, use 'validate_certs=off' to disable
        */
       kubernetes?: {
-        [k: string]: any;
+        [k: string]: unknown;
       } & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages F5 BIG-IP LTM tcp echo monitors.
@@ -79354,22 +79965,22 @@ export type Ansible25 = (
          * The number of seconds in which the node or service must respond to the monitor request. If the target responds within the set time period, it is considered up. If the target does not respond within the set time period, it is considered down. You can change this number to any number you want, however, it should be 3 times the interval number of seconds plus 1 second. If this parameter is not provided when creating a new monitor, then the default value will be 16.
          */
         timeout?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manage packages on SUSE and openSUSE using the zypper and rpm tools.
        */
       zypper?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) & {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Execute trunk-create or trunk-delete command.
@@ -79413,7 +80024,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the MAC address of the port.
          */
@@ -79447,7 +80059,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify if the configuration receives mirrored traffic.
          */
@@ -79473,7 +80086,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify an egress port data rate limit for the configuration.
          */
@@ -79523,7 +80137,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify the port speed or disable the port.
          */
@@ -79553,7 +80168,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify if the port can receive jumbo frames.
          */
@@ -79579,7 +80195,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Provide login password if user is not root.
          */
@@ -79630,12 +80247,13 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * Specify a description for the trunk configuration.
          */
         pn_description?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Get facts of SQL Server.
@@ -79664,7 +80282,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal.
          */
@@ -79674,7 +80293,7 @@ export type Ansible25 = (
          */
         server_name?: string;
         tags?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         ad_user?: string;
         append_tags?:
@@ -79699,14 +80318,15 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         cloud_environment?: string;
         secret?: string;
         client_id?: string;
         subscription_id?: string;
         password?: string;
         tenant?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Commits pending configuration changes on one or more Radware devices via vDirect server.
@@ -79799,32 +80419,32 @@ export type Ansible25 = (
          * vDirect server password, may be set as C(VDIRECT_PASSWORD) environment variable.
          */
         vdirect_password?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Modify IP address properties on Solaris/illumos systems.
        */
       ipadm_addrprop?: ({
-        [k: string]: any;
+        [k: string]: unknown;
       } & (
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
       )) &
         ({
-          [k: string]: any;
+          [k: string]: unknown;
         } & (
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
         ));
       /**
@@ -79839,7 +80459,7 @@ export type Ansible25 = (
         name?: string;
         hostname?: string;
         params?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         password?: string;
         config?: string;
@@ -79848,18 +80468,18 @@ export type Ansible25 = (
          */
         options?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         api_version?: number | string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Create/delete DigitalOcean SSH keys.
        */
       digital_ocean_sshkey?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Allows for the creation and removal of volume to host mappings for NetApp E-series storage arrays.
@@ -79924,7 +80544,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The LUN number you wish to give the mapping
          * If the supplied I(volume_name) is associated with a different LUN, it will be updated to what is supplied here.
@@ -79935,7 +80556,7 @@ export type Ansible25 = (
          * This can optionally be set via an environment variable, API_URL
          */
         api_url: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Manages monitors within Datadog
@@ -79967,7 +80588,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * A boolean indicating whether changes to this monitor should be restricted to the creator or admins.
          */
@@ -79993,7 +80615,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The number of hours of the monitor not reporting data before it will automatically resolve from a triggered state.
          */
@@ -80005,9 +80628,9 @@ export type Ansible25 = (
          */
         tags?:
           | string
-          | any[]
+          | unknown[]
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             };
         /**
          * Default: {'warning': 1, 'ok': 1, 'critical': 1}
@@ -80015,13 +80638,13 @@ export type Ansible25 = (
          * A dictionary of thresholds by status. This option is only available for service checks and metric alerts. Because each of them can have multiple thresholds, we don't define them directly in the query.
          */
         thresholds?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Dictionary of scopes to timestamps or None. Each scope will be muted until the given POSIX timestamp or forever if the value is None.
          */
         silenced?: {
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * Your DataDog app key.
@@ -80052,7 +80675,8 @@ export type Ansible25 = (
               | "false"
               | "True"
               | "FalseTRUE"
-              | "FALSE");
+              | "FALSE"
+            );
         /**
          * The number of minutes after the last notification before a monitor will re-notify on the current status. It will only re-notify if it's not resolved.
          */
@@ -80092,7 +80716,8 @@ export type Ansible25 = (
          * The name of the alert.
          */
         name: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
-    })[];
+      [k: string]: unknown;
+    }
+)[];

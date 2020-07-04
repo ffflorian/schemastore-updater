@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/jshintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jshintrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jshintrc",
   "scripts": {},
   "typesPublisherContentHash": "2524aa8334e0c62648b83d95fc5089d0505857f7c44c5925621dc01a670bcbeb",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

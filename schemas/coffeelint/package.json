@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/coffeelint",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/coffeelint",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/coffeelint",
   "scripts": {},
   "typesPublisherContentHash": "48ad0f2ab5b57fd08f22cfe8b0c2297d0ce0650bba618702c85edc7fa1021b6b",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

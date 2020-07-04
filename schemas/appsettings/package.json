@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/appsettings",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appsettings",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appsettings",
   "scripts": {},
   "typesPublisherContentHash": "ae429f27afe4eb0adb0f51a30951b256a433c67769224e6b64dcd81967666dee",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

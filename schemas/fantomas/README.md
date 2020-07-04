@@ -5,8 +5,8 @@
 This package contains type definitions for fantomas.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/fantomas.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/fantomas.
 
 ## Additional Details
-* Last updated: Fri, Jan 03, 2020, 10:45:39 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:18 GMT
 * Dependencies: none

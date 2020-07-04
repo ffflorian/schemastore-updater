@@ -18,5 +18,5 @@ export interface JSONSchemaForGoogleAppsScriptProjectFiles {
    * The ID for the Google Cloud Platform project linked to this script
    */
   projectId?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

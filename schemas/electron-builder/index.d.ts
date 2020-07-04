@@ -23,7 +23,7 @@ export interface ElectronBuilder {
    */
   afterAllArtifactBuild?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   /**
@@ -31,7 +31,7 @@ export interface ElectronBuilder {
    */
   afterPack?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   /**
@@ -39,7 +39,7 @@ export interface ElectronBuilder {
    */
   afterSign?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   apk?: LinuxTargetSpecificOptions | null;
@@ -58,7 +58,7 @@ export interface ElectronBuilder {
    */
   artifactBuildCompleted?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   /**
@@ -66,7 +66,7 @@ export interface ElectronBuilder {
    */
   artifactBuildStarted?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   /**
@@ -90,7 +90,7 @@ export interface ElectronBuilder {
    */
   beforeBuild?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   /**
@@ -153,7 +153,7 @@ export interface ElectronBuilder {
    * Inject properties to `package.json`.
    */
   extraMetadata?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   extraResources?: FileSet | (FileSet | string)[] | (null | string);
   /**
@@ -227,7 +227,7 @@ export interface ElectronBuilder {
    */
   onNodeModuleFile?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   p5p?: LinuxTargetSpecificOptions | null;
@@ -260,7 +260,8 @@ export interface ElectronBuilder {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * Whether to fail if the application is not signed (to prevent unsigned app if code signing configuration is not correct).
@@ -314,7 +315,7 @@ export interface LinuxTargetSpecificOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * *Advanced only* The [fpm](https://github.com/jordansissel/fpm/wiki#usage) options.
@@ -346,7 +347,8 @@ export interface LinuxTargetSpecificOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The [short description](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Description).
@@ -584,7 +586,7 @@ export interface CustomPublishOptions {
   publishAutoUpdate?: boolean;
   publisherName?: string[] | null;
   updaterCacheDirName?: null | string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface AppImageOptions {
   /**
@@ -603,7 +605,7 @@ export interface AppImageOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The path to EULA license file. Defaults to `license.txt` or `eula.txt` (or uppercase variants). Only plain text is supported.
@@ -627,7 +629,8 @@ export interface AppImageOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The [short description](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Description).
@@ -686,7 +689,8 @@ export interface AppXOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The Windows Store publisher. Not used if AppX is build for testing. See [AppX Package Code Signing](#appx-package-code-signing) below.
@@ -744,7 +748,7 @@ export interface DebOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * *Advanced only* The [fpm](https://github.com/jordansissel/fpm/wiki#usage) options.
@@ -780,7 +784,8 @@ export interface DebOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The [short description](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Description).
@@ -857,7 +862,8 @@ export interface DmgOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The title of the produced DMG, which will be shown when mounted (volume name).
@@ -1013,7 +1019,7 @@ export interface LinuxConfiguration {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Whether to infer update channel from application version pre-release components. e.g. if version `0.12.1-alpha.1`, channel will be set to `alpha`. Otherwise to `latest`.
@@ -1078,7 +1084,8 @@ export interface LinuxConfiguration {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   releaseInfo?: ReleaseInfo;
   /**
@@ -1240,7 +1247,7 @@ export interface MacConfiguration {
    * The extra entries for `Info.plist`.
    */
   extendInfo?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Extra files to put in archive. Not applicable for `tar.*`.
@@ -1300,7 +1307,8 @@ export interface MacConfiguration {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   releaseInfo?: ReleaseInfo1;
   /**
@@ -1326,7 +1334,9 @@ export interface MacConfiguration {
             | "tar.gz"
             | "tar.lz"
             | "tar.xz"
-            | "zip"))[]
+            | "zip"
+          )
+      )[]
     | (
         | "7z"
         | "default"
@@ -1339,7 +1349,8 @@ export interface MacConfiguration {
         | "tar.gz"
         | "tar.lz"
         | "tar.xz"
-        | "zip")
+        | "zip"
+      )
     | null;
   /**
    * Whether to sign app for development or for distribution.
@@ -1453,7 +1464,7 @@ export interface MasConfiguration {
    * The extra entries for `Info.plist`.
    */
   extendInfo?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Extra files to put in archive. Not applicable for `tar.*`.
@@ -1513,7 +1524,8 @@ export interface MasConfiguration {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   releaseInfo?: ReleaseInfo2;
   /**
@@ -1539,7 +1551,9 @@ export interface MasConfiguration {
             | "tar.gz"
             | "tar.lz"
             | "tar.xz"
-            | "zip"))[]
+            | "zip"
+          )
+      )[]
     | (
         | "7z"
         | "default"
@@ -1552,7 +1566,8 @@ export interface MasConfiguration {
         | "tar.gz"
         | "tar.lz"
         | "tar.xz"
-        | "zip")
+        | "zip"
+      )
     | null;
   /**
    * Whether to sign app for development or for distribution.
@@ -1623,7 +1638,8 @@ export interface MsiOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * Whether to run the installed application after finish. For assisted installer corresponding checkbox will be removed.
@@ -1763,7 +1779,8 @@ export interface NsisOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * Whether to run the installed application after finish. For assisted installer corresponding checkbox will be removed.
@@ -1934,7 +1951,8 @@ export interface NsisWebOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * Whether to run the installed application after finish. For assisted installer corresponding checkbox will be removed.
@@ -2068,7 +2086,8 @@ export interface PkgOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The scripts directory, relative to `build` (build resources directory).
@@ -2128,7 +2147,8 @@ export interface PortableOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The [requested execution level](http://nsis.sourceforge.net/Reference/RequestExecutionLevel) for Windows.
@@ -2211,9 +2231,9 @@ export interface SnapOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  environment?: any;
+  environment?: unknown;
   /**
    * The quality grade of the snap. It can be either `devel` (i.e. a development version of the snap, so not to be published to the “stable” or “candidate” channels) or “stable” (i.e. a stable release or release candidate, which can be released to all channels).
    */
@@ -2260,7 +2280,8 @@ export interface SnapOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * The list of Ubuntu packages to use that are needed to support the `app` part creation. Like `depends` for `deb`.
@@ -2284,7 +2305,7 @@ export interface SnapOptions {
 }
 export interface PlugDescriptor {
   [k: string]: {
-    [k: string]: any;
+    [k: string]: unknown;
   } | null;
 }
 export interface SquirrelWindowsOptions {
@@ -2328,7 +2349,8 @@ export interface SquirrelWindowsOptions {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * A URL to your existing updates. Or `true` to automatically set to your GitHub repository. If given, these will be downloaded to create delta updates.
@@ -2440,7 +2462,8 @@ export interface WindowsConfiguration {
         | GenericServerOptions
         | BintrayOptions
         | CustomPublishOptions
-        | string)[]
+        | string
+      )[]
     | (null | string);
   /**
    * [The publisher name](https://github.com/electron-userland/electron-builder/issues/1187#issuecomment-278972073), exactly as in your code signed certificate. Several names can be provided.
@@ -2462,7 +2485,7 @@ export interface WindowsConfiguration {
    */
   sign?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | (null | string);
   /**

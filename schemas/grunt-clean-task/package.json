@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/grunt-clean-task",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grunt-clean-task",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-clean-task",
   "scripts": {},
   "typesPublisherContentHash": "37afe5dcf7a3ca70e0eb22105711ea27eed4ef95de49e26d0faa1896edaee70a",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

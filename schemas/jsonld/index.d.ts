@@ -13,23 +13,23 @@ export interface Context {
    */
   "@context"?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string
-    | any[]
+    | unknown[]
     | null;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Graph {
   /**
    * Used to express a graph.
    */
   "@graph"?:
-    | any[]
+    | unknown[]
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Common {
   /**
@@ -47,22 +47,22 @@ export interface Common {
   /**
    * Used to set the data type of a node or typed value.
    */
-  "@type"?: string | null | any[];
+  "@type"?: string | null | unknown[];
   /**
    * Used to set the default container type for a term.
    */
-  "@container"?: "@language" | "@list" | "@index" | "@set";
+  "@container"?: ("@language" | "@list" | "@index" | "@set") | null;
   /**
    * Used to express an ordered set of data.
    */
   "@list"?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Used to express an unordered set of data and to ensure that values are always represented as arrays.
    */
   "@set"?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Used to express reverse properties.
@@ -70,7 +70,7 @@ export interface Common {
   "@reverse"?:
     | string
     | {
-        [k: string]: any;
+        [k: string]: Common;
       }
     | null;
   /**

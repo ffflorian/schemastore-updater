@@ -8,7 +8,7 @@
 /**
  * Enables plugins for JSDoc
  */
-export type ConfiguringPlugins = any[];
+export type ConfiguringPlugins = unknown[];
 /**
  * Controls recursion depth for source files and tutorials
  */
@@ -16,11 +16,11 @@ export type SpecifyingRecursionDepth = number;
 /**
  * An array of paths to input files
  */
-export type InputFilesPaths = any[];
+export type InputFilesPaths = unknown[];
 /**
  * An array of paths to exclude from input
  */
-export type InputFilesExclusionPaths = any[];
+export type InputFilesExclusionPaths = unknown[];
 /**
  * Forces input filenames to match regular expression
  */
@@ -80,12 +80,16 @@ export type TutorialsPath = string;
 /**
  * Determines how to handle unrecognized tags
  */
-export type UnknownTags2 = UnknownTags;
+export type UnknownTags2 = UnknownTags | UnknownTags1;
 export type JSDocTag = string;
 /**
  * Determines how to handle unrecognized tags
  */
 export type UnknownTags = JSDocTag[];
+/**
+ * Determines how to handle unrecognized tags
+ */
+export type UnknownTags1 = JSDocTag[];
 export type Dictionary = "jsdoc" | "closure";
 /**
  * Controls which tags JSDoc recognizes and how they are interpreted
@@ -124,7 +128,7 @@ export interface JSONSchemaForJSDocConfigurationFiles {
   opts?: IncorporatingCLIOptions;
   tags?: ConfiguringTagsAndTagDictionaries;
   templates?: ConfiguringTemplates;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Determines the set of input files
@@ -169,10 +173,10 @@ export interface ConfiguringTemplates {
     outputSourceFiles?: GeneratingPrettyPrintedSourceFiles;
     staticFiles?: CopyingStaticFiles;
     useLongnameInNav?: ShowingLongnames;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   monospaceLinks?: LinkText;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface CopyingStaticFiles {
   /**

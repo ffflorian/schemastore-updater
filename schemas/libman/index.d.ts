@@ -10,27 +10,27 @@ export type JSONSchemaForClientSideLibraryConfigFiles = (SpecifiedProvider | Def
 
 export interface SpecifiedProvider {
   libraries?: {
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DefaultProvider {
   /**
    * The unique identifier of the provider to use as default.
    */
   defaultProvider?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface SpecifiedDestination {
   libraries?: {
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface DefaultDestination {
   /**
    * The default destination to place library files.
    */
   defaultDestination?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

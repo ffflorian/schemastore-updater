@@ -8,11 +8,11 @@
 export type Composer =
   | {
       type: "library";
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       type?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };

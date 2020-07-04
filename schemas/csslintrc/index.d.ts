@@ -46,5 +46,5 @@ export interface JSONSchemaForCSSLintConfigurationFiles {
   "unqualified-attributes"?: Rule;
   "vendor-prefix"?: Rule;
   "zero-units"?: Rule;
-  [k: string]: any;
+  [k: string]: unknown;
 }

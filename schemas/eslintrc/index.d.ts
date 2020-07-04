@@ -5,7 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type Rule = number | ("off" | "warn" | "error") | any[];
+export type Rule = number | ("off" | "warn" | "error") | unknown[];
 
 export interface JSONSchemaForESLintConfigurationFiles {
   /**
@@ -49,7 +49,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
     superInFunctions?: boolean;
     templateStrings?: boolean;
     unicodeCodePointEscapes?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * An environment defines global variables that are predefined.
@@ -155,7 +155,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
      * web workers global variables
      */
     worker?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * If you want to extend a specific configuration file, you can use the extends property and specify the path to the file. The path can be either relative or absolute.
@@ -217,7 +217,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
       superInFunctions?: boolean;
       templateStrings?: boolean;
       unicodeCodePointEscapes?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Set to 3, 5 (default), 6, 7, 8, 9, 10 or 11 to specify the version of ECMAScript syntax you want to use. You can also set to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10) or 2020 (same as 11) to use the year-based naming.
@@ -227,7 +227,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
      * set to "script" (default) or "module" if your code is in ECMAScript modules
      */
     sourceType?: "script" | "module";
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.
@@ -256,7 +256,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
    * ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.
    */
   settings?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Allows to override configuration for files and folders, specified by glob patterns
@@ -315,7 +315,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
       superInFunctions?: boolean;
       templateStrings?: boolean;
       unicodeCodePointEscapes?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * An environment defines global variables that are predefined.
@@ -421,7 +421,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
        * web workers global variables
        */
       worker?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.
@@ -475,7 +475,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
         superInFunctions?: boolean;
         templateStrings?: boolean;
         unicodeCodePointEscapes?: boolean;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Set to 3, 5 (default), 6, 7, 8, 9, 10 or 11 to specify the version of ECMAScript syntax you want to use. You can also set to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10) or 2020 (same as 11) to use the year-based naming.
@@ -485,7 +485,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
        * set to "script" (default) or "module" if your code is in ECMAScript modules
        */
       sourceType?: "script" | "module";
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.
@@ -510,1064 +510,1064 @@ export interface JSONSchemaForESLintConfigurationFiles {
      * ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.
      */
     settings?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
   }[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface PossibleErrors {
   /**
    * Require or disallow trailing commas
    */
-  "comma-dangle"?: number | ("off" | "warn" | "error") | any[];
+  "comma-dangle"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce “for” loop update clause moving the counter in the right direction
    */
-  "for-direction"?: number | ("off" | "warn" | "error") | any[];
+  "for-direction"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce return statements in getters
    */
-  "getter-return"?: number | ("off" | "warn" | "error") | any[];
+  "getter-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow await inside of loops
    */
-  "no-await-in-loop"?: number | ("off" | "warn" | "error") | any[];
+  "no-await-in-loop"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow comparing against -0
    */
-  "no-compare-neg-zero"?: number | ("off" | "warn" | "error") | any[];
+  "no-compare-neg-zero"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow assignment operators in conditional expressions
    */
-  "no-cond-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-cond-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of console
    */
-  "no-console"?: number | ("off" | "warn" | "error") | any[];
+  "no-console"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow constant expressions in conditions
    */
-  "no-constant-condition"?: number | ("off" | "warn" | "error") | any[];
+  "no-constant-condition"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow control characters in regular expressions
    */
-  "no-control-regex"?: number | ("off" | "warn" | "error") | any[];
+  "no-control-regex"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of debugger
    */
-  "no-debugger"?: number | ("off" | "warn" | "error") | any[];
+  "no-debugger"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow duplicate arguments in function definitions
    */
-  "no-dupe-args"?: number | ("off" | "warn" | "error") | any[];
+  "no-dupe-args"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow duplicate keys in object literals
    */
-  "no-dupe-keys"?: number | ("off" | "warn" | "error") | any[];
+  "no-dupe-keys"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow duplicate case labels
    */
-  "no-duplicate-case"?: number | ("off" | "warn" | "error") | any[];
+  "no-duplicate-case"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow empty block statements
    */
-  "no-empty"?: number | ("off" | "warn" | "error") | any[];
+  "no-empty"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow empty character classes in regular expressions
    */
-  "no-empty-character-class"?: number | ("off" | "warn" | "error") | any[];
+  "no-empty-character-class"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow reassigning exceptions in catch clauses
    */
-  "no-ex-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-ex-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary boolean casts
    */
-  "no-extra-boolean-cast"?: number | ("off" | "warn" | "error") | any[];
+  "no-extra-boolean-cast"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary parentheses
    */
-  "no-extra-parens"?: number | ("off" | "warn" | "error") | any[];
+  "no-extra-parens"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary semicolons
    */
-  "no-extra-semi"?: number | ("off" | "warn" | "error") | any[];
+  "no-extra-semi"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow reassigning function declarations
    */
-  "no-func-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-func-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow function or var declarations in nested blocks
    */
-  "no-inner-declarations"?: number | ("off" | "warn" | "error") | any[];
+  "no-inner-declarations"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow invalid regular expression strings in RegExp constructors
    */
-  "no-invalid-regexp"?: number | ("off" | "warn" | "error") | any[];
+  "no-invalid-regexp"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow irregular whitespace outside of strings and comments
    */
-  "no-irregular-whitespace"?: number | ("off" | "warn" | "error") | any[];
+  "no-irregular-whitespace"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow negating the left operand in in expressions (deprecated)
    */
-  "no-negated-in-lhs"?: number | ("off" | "warn" | "error") | any[];
+  "no-negated-in-lhs"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow calling global object properties as functions
    */
-  "no-obj-calls"?: number | ("off" | "warn" | "error") | any[];
+  "no-obj-calls"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow calling some Object.prototype methods directly on objects
    */
-  "no-prototype-builtins"?: number | ("off" | "warn" | "error") | any[];
+  "no-prototype-builtins"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow multiple spaces in regular expressions
    */
-  "no-regex-spaces"?: number | ("off" | "warn" | "error") | any[];
+  "no-regex-spaces"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow sparse arrays
    */
-  "no-sparse-arrays"?: number | ("off" | "warn" | "error") | any[];
+  "no-sparse-arrays"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow template literal placeholder syntax in regular strings
    */
-  "no-template-curly-in-string"?: number | ("off" | "warn" | "error") | any[];
+  "no-template-curly-in-string"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow confusing multiline expressions
    */
-  "no-unexpected-multiline"?: number | ("off" | "warn" | "error") | any[];
+  "no-unexpected-multiline"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unreachable code after return, throw, continue, and break statements
    */
-  "no-unreachable"?: number | ("off" | "warn" | "error") | any[];
+  "no-unreachable"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow control flow statements in finally blocks
    */
   "no-unsafe-finally"?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Disallow negating the left operand of relational operators
    */
-  "no-unsafe-negation"?: number | ("off" | "warn" | "error") | any[];
+  "no-unsafe-negation"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require calls to isNaN() when checking for NaN
    */
-  "use-isnan"?: number | ("off" | "warn" | "error") | any[];
+  "use-isnan"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce valid JSDoc comments
    */
-  "valid-jsdoc"?: number | ("off" | "warn" | "error") | any[];
+  "valid-jsdoc"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce comparing typeof expressions against valid strings
    */
-  "valid-typeof"?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  "valid-typeof"?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface BestPractices {
   /**
    * Enforce getter and setter pairs in objects
    */
-  "accessor-pairs"?: number | ("off" | "warn" | "error") | any[];
+  "accessor-pairs"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce return statements in callbacks of array methods
    */
-  "array-callback-return"?: number | ("off" | "warn" | "error") | any[];
+  "array-callback-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the use of variables within the scope they are defined
    */
-  "block-scoped-var"?: number | ("off" | "warn" | "error") | any[];
+  "block-scoped-var"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce that class methods utilize this
    */
-  "class-methods-use-this"?: number | ("off" | "warn" | "error") | any[];
+  "class-methods-use-this"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum cyclomatic complexity allowed in a program
    */
-  complexity?: number | ("off" | "warn" | "error") | any[];
+  complexity?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require return statements to either always or never specify values
    */
-  "consistent-return"?: number | ("off" | "warn" | "error") | any[];
+  "consistent-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent brace style for all control statements
    */
-  curly?: number | ("off" | "warn" | "error") | any[];
+  curly?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require default cases in switch statements
    */
-  "default-case"?: number | ("off" | "warn" | "error") | any[];
+  "default-case"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent newlines before and after dots
    */
-  "dot-location"?: number | ("off" | "warn" | "error") | any[];
+  "dot-location"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce dot notation whenever possible
    */
-  "dot-notation"?: number | ("off" | "warn" | "error") | any[];
+  "dot-notation"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require the use of === and !==
    */
-  eqeqeq?: number | ("off" | "warn" | "error") | any[];
+  eqeqeq?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require for-in loops to include an if statement
    */
-  "guard-for-in"?: number | ("off" | "warn" | "error") | any[];
+  "guard-for-in"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of alert, confirm, and prompt
    */
-  "no-alert"?: number | ("off" | "warn" | "error") | any[];
+  "no-alert"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of arguments.caller or arguments.callee
    */
-  "no-caller"?: number | ("off" | "warn" | "error") | any[];
+  "no-caller"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow lexical declarations in case clauses
    */
-  "no-case-declarations"?: number | ("off" | "warn" | "error") | any[];
+  "no-case-declarations"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow division operators explicitly at the beginning of regular expressions
    */
-  "no-div-regex"?: number | ("off" | "warn" | "error") | any[];
+  "no-div-regex"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow else blocks after return statements in if statements
    */
-  "no-else-return"?: number | ("off" | "warn" | "error") | any[];
+  "no-else-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow empty functions
    */
-  "no-empty-function"?: number | ("off" | "warn" | "error") | any[];
+  "no-empty-function"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow empty destructuring patterns
    */
-  "no-empty-pattern"?: number | ("off" | "warn" | "error") | any[];
+  "no-empty-pattern"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow null comparisons without type-checking operators
    */
-  "no-eq-null"?: number | ("off" | "warn" | "error") | any[];
+  "no-eq-null"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of eval()
    */
-  "no-eval"?: number | ("off" | "warn" | "error") | any[];
+  "no-eval"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow extending native types
    */
-  "no-extend-native"?: number | ("off" | "warn" | "error") | any[];
+  "no-extend-native"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary calls to .bind()
    */
-  "no-extra-bind"?: number | ("off" | "warn" | "error") | any[];
+  "no-extra-bind"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary labels
    */
-  "no-extra-label"?: number | ("off" | "warn" | "error") | any[];
+  "no-extra-label"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow fallthrough of case statements
    */
-  "no-fallthrough"?: number | ("off" | "warn" | "error") | any[];
+  "no-fallthrough"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow leading or trailing decimal points in numeric literals
    */
-  "no-floating-decimal"?: number | ("off" | "warn" | "error") | any[];
+  "no-floating-decimal"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow assignments to native objects or read-only global variables
    */
-  "no-global-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-global-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow shorthand type conversions
    */
-  "no-implicit-coercion"?: number | ("off" | "warn" | "error") | any[];
+  "no-implicit-coercion"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow var and named function declarations in the global scope
    */
-  "no-implicit-globals"?: number | ("off" | "warn" | "error") | any[];
+  "no-implicit-globals"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of eval()-like methods
    */
-  "no-implied-eval"?: number | ("off" | "warn" | "error") | any[];
+  "no-implied-eval"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow this keywords outside of classes or class-like objects
    */
-  "no-invalid-this"?: number | ("off" | "warn" | "error") | any[];
+  "no-invalid-this"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of the __iterator__ property
    */
-  "no-iterator"?: number | ("off" | "warn" | "error") | any[];
+  "no-iterator"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow labeled statements
    */
-  "no-labels"?: number | ("off" | "warn" | "error") | any[];
+  "no-labels"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary nested blocks
    */
-  "no-lone-blocks"?: number | ("off" | "warn" | "error") | any[];
+  "no-lone-blocks"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow function declarations and expressions inside loop statements
    */
-  "no-loop-func"?: number | ("off" | "warn" | "error") | any[];
+  "no-loop-func"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow magic numbers
    */
-  "no-magic-numbers"?: number | ("off" | "warn" | "error") | any[];
+  "no-magic-numbers"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow multiple spaces
    */
-  "no-multi-spaces"?: number | ("off" | "warn" | "error") | any[];
+  "no-multi-spaces"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow multiline strings
    */
-  "no-multi-str"?: number | ("off" | "warn" | "error") | any[];
+  "no-multi-str"?: number | ("off" | "warn" | "error") | unknown[];
   "no-native-reassign"?: Rule;
   /**
    * Disallow new operators outside of assignments or comparisons
    */
-  "no-new"?: number | ("off" | "warn" | "error") | any[];
+  "no-new"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow new operators with the Function object
    */
-  "no-new-func"?: number | ("off" | "warn" | "error") | any[];
+  "no-new-func"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow new operators with the String, Number, and Boolean objects
    */
-  "no-new-wrappers"?: number | ("off" | "warn" | "error") | any[];
+  "no-new-wrappers"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow octal literals
    */
-  "no-octal"?: number | ("off" | "warn" | "error") | any[];
+  "no-octal"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow octal escape sequences in string literals
    */
-  "no-octal-escape"?: number | ("off" | "warn" | "error") | any[];
+  "no-octal-escape"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow reassigning function parameters
    */
-  "no-param-reassign"?: number | ("off" | "warn" | "error") | any[];
+  "no-param-reassign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of the __proto__ property
    */
-  "no-proto"?: number | ("off" | "warn" | "error") | any[];
+  "no-proto"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow var redeclaration
    */
-  "no-redeclare"?: number | ("off" | "warn" | "error") | any[];
+  "no-redeclare"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow certain properties on certain objects
    */
-  "no-restricted-properties"?: number | ("off" | "warn" | "error") | any[];
+  "no-restricted-properties"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow assignment operators in return statements
    */
-  "no-return-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-return-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary return await
    */
-  "no-return-await"?: number | ("off" | "warn" | "error") | any[];
+  "no-return-await"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow javascript: urls
    */
-  "no-script-url"?: number | ("off" | "warn" | "error") | any[];
+  "no-script-url"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow assignments where both sides are exactly the same
    */
-  "no-self-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-self-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow comparisons where both sides are exactly the same
    */
-  "no-self-compare"?: number | ("off" | "warn" | "error") | any[];
+  "no-self-compare"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow comma operators
    */
-  "no-sequences"?: number | ("off" | "warn" | "error") | any[];
+  "no-sequences"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow throwing literals as exceptions
    */
-  "no-throw-literal"?: number | ("off" | "warn" | "error") | any[];
+  "no-throw-literal"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unmodified loop conditions
    */
-  "no-unmodified-loop-condition"?: number | ("off" | "warn" | "error") | any[];
+  "no-unmodified-loop-condition"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unused expressions
    */
-  "no-unused-expressions"?: number | ("off" | "warn" | "error") | any[];
+  "no-unused-expressions"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unused labels
    */
-  "no-unused-labels"?: number | ("off" | "warn" | "error") | any[];
+  "no-unused-labels"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary calls to .call() and .apply()
    */
-  "no-useless-call"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-call"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary concatenation of literals or template literals
    */
-  "no-useless-concat"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-concat"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary escape characters
    */
-  "no-useless-escape"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-escape"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow redundant return statements
    */
-  "no-useless-return"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow void operators
    */
-  "no-void"?: number | ("off" | "warn" | "error") | any[];
+  "no-void"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow specified warning terms in comments
    */
-  "no-warning-comments"?: number | ("off" | "warn" | "error") | any[];
+  "no-warning-comments"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow with statements
    */
-  "no-with"?: number | ("off" | "warn" | "error") | any[];
+  "no-with"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require using Error objects as Promise rejection reasons
    */
-  "prefer-promise-reject-errors"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-promise-reject-errors"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the consistent use of the radix argument when using parseInt()
    */
-  radix?: number | ("off" | "warn" | "error") | any[];
+  radix?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow async functions which have no await expression
    */
-  "require-await"?: number | ("off" | "warn" | "error") | any[];
+  "require-await"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require var declarations be placed at the top of their containing scope
    */
-  "vars-on-top"?: number | ("off" | "warn" | "error") | any[];
+  "vars-on-top"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require parentheses around immediate function invocations
    */
-  "wrap-iife"?: number | ("off" | "warn" | "error") | any[];
+  "wrap-iife"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or Disallow “Yoda” conditions
    */
-  yoda?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  yoda?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface StrictMode {
   /**
    * require or disallow strict mode directives
    */
-  strict?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  strict?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface Variables {
   /**
    * Require or disallow initialization in var declarations
    */
-  "init-declarations"?: number | ("off" | "warn" | "error") | any[];
+  "init-declarations"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow catch clause parameters from shadowing variables in the outer scope
    */
-  "no-catch-shadow"?: number | ("off" | "warn" | "error") | any[];
+  "no-catch-shadow"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow deleting variables
    */
-  "no-delete-var"?: number | ("off" | "warn" | "error") | any[];
+  "no-delete-var"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow labels that share a name with a variable
    */
-  "no-label-var"?: number | ("off" | "warn" | "error") | any[];
+  "no-label-var"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow specified global variables
    */
-  "no-restricted-globals"?: number | ("off" | "warn" | "error") | any[];
+  "no-restricted-globals"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow var declarations from shadowing variables in the outer scope
    */
-  "no-shadow"?: number | ("off" | "warn" | "error") | any[];
+  "no-shadow"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow identifiers from shadowing restricted names
    */
-  "no-shadow-restricted-names"?: number | ("off" | "warn" | "error") | any[];
+  "no-shadow-restricted-names"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of undeclared variables unless mentioned in /*global * / comments
    */
-  "no-undef"?: number | ("off" | "warn" | "error") | any[];
+  "no-undef"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of undefined as an identifier
    */
-  "no-undefined"?: number | ("off" | "warn" | "error") | any[];
+  "no-undefined"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow initializing variables to undefined
    */
-  "no-undef-init"?: number | ("off" | "warn" | "error") | any[];
+  "no-undef-init"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unused variables
    */
-  "no-unused-vars"?: number | ("off" | "warn" | "error") | any[];
+  "no-unused-vars"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of variables before they are defined
    */
-  "no-use-before-define"?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  "no-use-before-define"?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface NodeAndCommonJs {
   /**
    * Require return statements after callbacks
    */
-  "callback-return"?: number | ("off" | "warn" | "error") | any[];
+  "callback-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require require() calls to be placed at top-level module scope
    */
-  "global-require"?: number | ("off" | "warn" | "error") | any[];
+  "global-require"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require error handling in callbacks
    */
-  "handle-callback-err"?: number | ("off" | "warn" | "error") | any[];
+  "handle-callback-err"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow use of the Buffer() constructor
    */
-  "no-buffer-constructor"?: number | ("off" | "warn" | "error") | any[];
+  "no-buffer-constructor"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow require calls to be mixed with regular var declarations
    */
-  "no-mixed-requires"?: number | ("off" | "warn" | "error") | any[];
+  "no-mixed-requires"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow new operators with calls to require
    */
-  "no-new-require"?: number | ("off" | "warn" | "error") | any[];
+  "no-new-require"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow string concatenation with __dirname and __filename
    */
-  "no-path-concat"?: number | ("off" | "warn" | "error") | any[];
+  "no-path-concat"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of process.env
    */
-  "no-process-env"?: number | ("off" | "warn" | "error") | any[];
+  "no-process-env"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the use of process.exit()
    */
-  "no-process-exit"?: number | ("off" | "warn" | "error") | any[];
+  "no-process-exit"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow specified modules when loaded by require
    */
-  "no-restricted-modules"?: number | ("off" | "warn" | "error") | any[];
+  "no-restricted-modules"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow synchronous methods
    */
-  "no-sync"?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  "no-sync"?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface StylisticIssues {
   /**
    * Enforce line breaks after opening and before closing array brackets
    */
-  "array-bracket-newline"?: number | ("off" | "warn" | "error") | any[];
+  "array-bracket-newline"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing inside array brackets
    */
-  "array-bracket-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "array-bracket-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce line breaks after each array element
    */
-  "array-element-newline"?: number | ("off" | "warn" | "error") | any[];
+  "array-element-newline"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing inside single-line blocks
    */
-  "block-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "block-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent brace style for blocks
    */
-  "brace-style"?: number | ("off" | "warn" | "error") | any[];
+  "brace-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce camelcase naming convention
    */
-  camelcase?: number | ("off" | "warn" | "error") | any[];
+  camelcase?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce or disallow capitalization of the first letter of a comment
    */
-  "capitalized-comments"?: number | ("off" | "warn" | "error") | any[];
+  "capitalized-comments"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow trailing commas
    */
-  "comma-dangle"?: number | ("off" | "warn" | "error") | any[];
+  "comma-dangle"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before and after commas
    */
-  "comma-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "comma-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent comma style
    */
-  "comma-style"?: number | ("off" | "warn" | "error") | any[];
+  "comma-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing inside computed property brackets
    */
-  "computed-property-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "computed-property-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent naming when capturing the current execution context
    */
-  "consistent-this"?: number | ("off" | "warn" | "error") | any[];
+  "consistent-this"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce at least one newline at the end of files
    */
-  "eol-last"?: number | ("off" | "warn" | "error") | any[];
+  "eol-last"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow spacing between function identifiers and their invocations
    */
-  "func-call-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "func-call-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require function names to match the name of the variable or property to which they are assigned
    */
-  "func-name-matching"?: number | ("off" | "warn" | "error") | any[];
+  "func-name-matching"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow named function expressions
    */
-  "func-names"?: number | ("off" | "warn" | "error") | any[];
+  "func-names"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the consistent use of either function declarations or expressions
    */
-  "func-style"?: number | ("off" | "warn" | "error") | any[];
+  "func-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce line breaks between arguments of a function call
    */
-  "function-call-argument-newline"?: number | ("off" | "warn" | "error") | any[];
+  "function-call-argument-newline"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent line breaks inside function parentheses
    */
-  "function-paren-newline"?: number | ("off" | "warn" | "error") | any[];
+  "function-paren-newline"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow specified identifiers
    */
-  "id-blacklist"?: number | ("off" | "warn" | "error") | any[];
+  "id-blacklist"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce minimum and maximum identifier lengths
    */
-  "id-length"?: number | ("off" | "warn" | "error") | any[];
+  "id-length"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require identifiers to match a specified regular expression
    */
-  "id-match"?: number | ("off" | "warn" | "error") | any[];
+  "id-match"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the location of arrow function bodies
    */
-  "implicit-arrow-linebreak"?: number | ("off" | "warn" | "error") | any[];
+  "implicit-arrow-linebreak"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent indentation
    */
-  indent?: number | ("off" | "warn" | "error") | any[];
+  indent?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent indentation (legacy, deprecated)
    */
-  "indent-legacy"?: number | ("off" | "warn" | "error") | any[];
+  "indent-legacy"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the consistent use of either double or single quotes in JSX attributes
    */
-  "jsx-quotes"?: number | ("off" | "warn" | "error") | any[];
+  "jsx-quotes"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing between keys and values in object literal properties
    */
-  "key-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "key-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before and after keywords
    */
-  "keyword-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "keyword-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce position of line comments
    */
-  "line-comment-position"?: number | ("off" | "warn" | "error") | any[];
+  "line-comment-position"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow an empty line between class members
    */
-  "lines-between-class-members"?: number | ("off" | "warn" | "error") | any[];
+  "lines-between-class-members"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent linebreak style
    */
-  "linebreak-style"?: number | ("off" | "warn" | "error") | any[];
+  "linebreak-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require empty lines around comments
    */
-  "lines-around-comment"?: number | ("off" | "warn" | "error") | any[];
+  "lines-around-comment"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow newlines around directives
    */
-  "lines-around-directive"?: number | ("off" | "warn" | "error") | any[];
+  "lines-around-directive"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum depth that blocks can be nested
    */
-  "max-depth"?: number | ("off" | "warn" | "error") | any[];
+  "max-depth"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum line length
    */
-  "max-len"?: number | ("off" | "warn" | "error") | any[];
+  "max-len"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum number of lines per file
    */
-  "max-lines"?: number | ("off" | "warn" | "error") | any[];
+  "max-lines"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum depth that callbacks can be nested
    */
-  "max-nested-callbacks"?: number | ("off" | "warn" | "error") | any[];
+  "max-nested-callbacks"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum number of parameters in function definitions
    */
-  "max-params"?: number | ("off" | "warn" | "error") | any[];
+  "max-params"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum number of statements allowed in function blocks
    */
-  "max-statements"?: number | ("off" | "warn" | "error") | any[];
+  "max-statements"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a maximum number of statements allowed per line
    */
-  "max-statements-per-line"?: number | ("off" | "warn" | "error") | any[];
+  "max-statements-per-line"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce a particular style for multiline comments
    */
-  "multiline-comment-style"?: number | ("off" | "warn" | "error") | any[];
+  "multiline-comment-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce newlines between operands of ternary expressions
    */
-  "multiline-ternary"?: number | ("off" | "warn" | "error") | any[];
+  "multiline-ternary"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require constructor function names to begin with a capital letter
    */
-  "new-cap"?: number | ("off" | "warn" | "error") | any[];
+  "new-cap"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow an empty line after var declarations
    */
-  "newline-after-var"?: number | ("off" | "warn" | "error") | any[];
+  "newline-after-var"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require an empty line before return statements
    */
-  "newline-before-return"?: number | ("off" | "warn" | "error") | any[];
+  "newline-before-return"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require a newline after each call in a method chain
    */
-  "newline-per-chained-call"?: number | ("off" | "warn" | "error") | any[];
+  "newline-per-chained-call"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require parentheses when invoking a constructor with no arguments
    */
-  "new-parens"?: number | ("off" | "warn" | "error") | any[];
+  "new-parens"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow Array constructors
    */
-  "no-array-constructor"?: number | ("off" | "warn" | "error") | any[];
+  "no-array-constructor"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow bitwise operators
    */
-  "no-bitwise"?: number | ("off" | "warn" | "error") | any[];
+  "no-bitwise"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow continue statements
    */
-  "no-continue"?: number | ("off" | "warn" | "error") | any[];
+  "no-continue"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow inline comments after code
    */
-  "no-inline-comments"?: number | ("off" | "warn" | "error") | any[];
+  "no-inline-comments"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow if statements as the only statement in else blocks
    */
-  "no-lonely-if"?: number | ("off" | "warn" | "error") | any[];
+  "no-lonely-if"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow mixed binary operators
    */
-  "no-mixed-operators"?: number | ("off" | "warn" | "error") | any[];
+  "no-mixed-operators"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow mixed spaces and tabs for indentation
    */
-  "no-mixed-spaces-and-tabs"?: number | ("off" | "warn" | "error") | any[];
+  "no-mixed-spaces-and-tabs"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow use of chained assignment expressions
    */
-  "no-multi-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-multi-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow multiple empty lines
    */
-  "no-multiple-empty-lines"?: number | ("off" | "warn" | "error") | any[];
+  "no-multiple-empty-lines"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow negated conditions
    */
-  "no-negated-condition"?: number | ("off" | "warn" | "error") | any[];
+  "no-negated-condition"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow nested ternary expressions
    */
-  "no-nested-ternary"?: number | ("off" | "warn" | "error") | any[];
+  "no-nested-ternary"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow Object constructors
    */
-  "no-new-object"?: number | ("off" | "warn" | "error") | any[];
+  "no-new-object"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow the unary operators ++ and --
    */
-  "no-plusplus"?: number | ("off" | "warn" | "error") | any[];
+  "no-plusplus"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow specified syntax
    */
-  "no-restricted-syntax"?: number | ("off" | "warn" | "error") | any[];
+  "no-restricted-syntax"?: number | ("off" | "warn" | "error") | unknown[];
   "no-spaced-func"?: Rule;
   /**
    * Disallow tabs in file
    */
-  "no-tabs"?: number | ("off" | "warn" | "error") | any[];
+  "no-tabs"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow ternary operators
    */
-  "no-ternary"?: number | ("off" | "warn" | "error") | any[];
+  "no-ternary"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow trailing whitespace at the end of lines
    */
-  "no-trailing-spaces"?: number | ("off" | "warn" | "error") | any[];
+  "no-trailing-spaces"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow dangling underscores in identifiers
    */
-  "no-underscore-dangle"?: number | ("off" | "warn" | "error") | any[];
+  "no-underscore-dangle"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow ternary operators when simpler alternatives exist
    */
-  "no-unneeded-ternary"?: number | ("off" | "warn" | "error") | any[];
+  "no-unneeded-ternary"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow whitespace before properties
    */
-  "no-whitespace-before-property"?: number | ("off" | "warn" | "error") | any[];
+  "no-whitespace-before-property"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the location of single-line statements
    */
-  "nonblock-statement-body-position"?: number | ("off" | "warn" | "error") | any[];
+  "nonblock-statement-body-position"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent line breaks inside braces
    */
-  "object-curly-newline"?: number | ("off" | "warn" | "error") | any[];
+  "object-curly-newline"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing inside braces
    */
-  "object-curly-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "object-curly-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce placing object properties on separate lines
    */
-  "object-property-newline"?: number | ("off" | "warn" | "error") | any[];
+  "object-property-newline"?: number | ("off" | "warn" | "error") | unknown[];
   "object-shorthand"?: Rule;
   /**
    * Enforce variables to be declared either together or separately in functions
    */
-  "one-var"?: number | ("off" | "warn" | "error") | any[];
+  "one-var"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow newlines around var declarations
    */
-  "one-var-declaration-per-line"?: number | ("off" | "warn" | "error") | any[];
+  "one-var-declaration-per-line"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow assignment operator shorthand where possible
    */
-  "operator-assignment"?: number | ("off" | "warn" | "error") | any[];
+  "operator-assignment"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent linebreak style for operators
    */
-  "operator-linebreak"?: number | ("off" | "warn" | "error") | any[];
+  "operator-linebreak"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow padding within blocks
    */
-  "padded-blocks"?: number | ("off" | "warn" | "error") | any[];
+  "padded-blocks"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow padding lines between statements
    */
-  "padding-line-between-statements"?: number | ("off" | "warn" | "error") | any[];
+  "padding-line-between-statements"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require quotes around object literal property names
    */
-  "quote-props"?: number | ("off" | "warn" | "error") | any[];
+  "quote-props"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce the consistent use of either backticks, double, or single quotes
    */
-  quotes?: number | ("off" | "warn" | "error") | any[];
+  quotes?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require JSDoc comments
    */
-  "require-jsdoc"?: number | ("off" | "warn" | "error") | any[];
+  "require-jsdoc"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow semicolons instead of ASI
    */
-  semi?: number | ("off" | "warn" | "error") | any[];
+  semi?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before and after semicolons
    */
-  "semi-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "semi-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce location of semicolons
    */
-  "semi-style"?: number | ("off" | "warn" | "error") | any[];
+  "semi-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Requires object keys to be sorted
    */
-  "sort-keys"?: number | ("off" | "warn" | "error") | any[];
+  "sort-keys"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require variables within the same declaration block to be sorted
    */
-  "sort-vars"?: number | ("off" | "warn" | "error") | any[];
+  "sort-vars"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before blocks
    */
-  "space-before-blocks"?: number | ("off" | "warn" | "error") | any[];
+  "space-before-blocks"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before function definition opening parenthesis
    */
-  "space-before-function-paren"?: number | ("off" | "warn" | "error") | any[];
+  "space-before-function-paren"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing after the // or /* in a comment
    */
-  "spaced-comment"?: number | ("off" | "warn" | "error") | any[];
+  "spaced-comment"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require spacing around operators
    */
-  "space-infix-ops"?: number | ("off" | "warn" | "error") | any[];
+  "space-infix-ops"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing inside parentheses
    */
-  "space-in-parens"?: number | ("off" | "warn" | "error") | any[];
+  "space-in-parens"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before or after unary operators
    */
-  "space-unary-ops"?: number | ("off" | "warn" | "error") | any[];
+  "space-unary-ops"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce spacing around colons of switch statements
    */
-  "switch-colon-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "switch-colon-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow spacing between template tags and their literals
    */
-  "template-tag-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "template-tag-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow Unicode byte order mark (BOM)
    */
-  "unicode-bom"?: number | ("off" | "warn" | "error") | any[];
+  "unicode-bom"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require parenthesis around regex literals
    */
-  "wrap-regex"?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  "wrap-regex"?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface EcmaScript6 {
   /**
    * Require braces around arrow function bodies
    */
-  "arrow-body-style"?: number | ("off" | "warn" | "error") | any[];
+  "arrow-body-style"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require parentheses around arrow function arguments
    */
-  "arrow-parens"?: number | ("off" | "warn" | "error") | any[];
+  "arrow-parens"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing before and after the arrow in arrow functions
    */
-  "arrow-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "arrow-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require super() calls in constructors
    */
-  "constructor-super"?: number | ("off" | "warn" | "error") | any[];
+  "constructor-super"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce consistent spacing around * operators in generator functions
    */
-  "generator-star-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "generator-star-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow reassigning class members
    */
-  "no-class-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-class-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow arrow functions where they could be confused with comparisons
    */
-  "no-confusing-arrow"?: number | ("off" | "warn" | "error") | any[];
+  "no-confusing-arrow"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow reassigning const variables
    */
-  "no-const-assign"?: number | ("off" | "warn" | "error") | any[];
+  "no-const-assign"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow duplicate class members
    */
-  "no-dupe-class-members"?: number | ("off" | "warn" | "error") | any[];
+  "no-dupe-class-members"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow duplicate module imports
    */
-  "no-duplicate-imports"?: number | ("off" | "warn" | "error") | any[];
+  "no-duplicate-imports"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow new operators with the Symbol object
    */
-  "no-new-symbol"?: number | ("off" | "warn" | "error") | any[];
+  "no-new-symbol"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow specified modules when loaded by import
    */
-  "no-restricted-imports"?: number | ("off" | "warn" | "error") | any[];
+  "no-restricted-imports"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow this/super before calling super() in constructors
    */
-  "no-this-before-super"?: number | ("off" | "warn" | "error") | any[];
+  "no-this-before-super"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary computed property keys in object literals
    */
-  "no-useless-computed-key"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-computed-key"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow unnecessary constructors
    */
-  "no-useless-constructor"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-constructor"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow renaming import, export, and destructured assignments to the same name
    */
-  "no-useless-rename"?: number | ("off" | "warn" | "error") | any[];
+  "no-useless-rename"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require let or const instead of var
    */
-  "no-var"?: number | ("off" | "warn" | "error") | any[];
+  "no-var"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow method and property shorthand syntax for object literals
    */
-  "object-shorthand"?: number | ("off" | "warn" | "error") | any[];
+  "object-shorthand"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require arrow functions as callbacks
    */
-  "prefer-arrow-callback"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-arrow-callback"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require const declarations for variables that are never reassigned after declared
    */
-  "prefer-const"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-const"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require destructuring from arrays and/or objects
    */
-  "prefer-destructuring"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-destructuring"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Disallow parseInt() in favor of binary, octal, and hexadecimal literals
    */
-  "prefer-numeric-literals"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-numeric-literals"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require Reflect methods where applicable
    */
-  "prefer-reflect"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-reflect"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require rest parameters instead of arguments
    */
-  "prefer-rest-params"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-rest-params"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require spread operators instead of .apply()
    */
-  "prefer-spread"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-spread"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require template literals instead of string concatenation
    */
-  "prefer-template"?: number | ("off" | "warn" | "error") | any[];
+  "prefer-template"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require generator functions to contain yield
    */
-  "require-yield"?: number | ("off" | "warn" | "error") | any[];
+  "require-yield"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce spacing between rest and spread operators and their expressions
    */
-  "rest-spread-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "rest-spread-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Enforce sorted import declarations within modules
    */
-  "sort-imports"?: number | ("off" | "warn" | "error") | any[];
+  "sort-imports"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require symbol descriptions
    */
-  "symbol-description"?: number | ("off" | "warn" | "error") | any[];
+  "symbol-description"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow spacing around embedded expressions of template strings
    */
-  "template-curly-spacing"?: number | ("off" | "warn" | "error") | any[];
+  "template-curly-spacing"?: number | ("off" | "warn" | "error") | unknown[];
   /**
    * Require or disallow spacing around the * in yield* expressions
    */
-  "yield-star-spacing"?: number | ("off" | "warn" | "error") | any[];
-  [k: string]: any;
+  "yield-star-spacing"?: number | ("off" | "warn" | "error") | unknown[];
+  [k: string]: unknown;
 }
 export interface Legacy {
   "max-depth"?: Rule;
@@ -1576,5 +1576,5 @@ export interface Legacy {
   "max-statements"?: Rule;
   "no-bitwise"?: Rule;
   "no-plusplus"?: Rule;
-  [k: string]: any;
+  [k: string]: unknown;
 }

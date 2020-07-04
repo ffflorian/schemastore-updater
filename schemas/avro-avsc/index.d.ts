@@ -46,7 +46,7 @@ export type Union = [AvroSchema, ...AvroSchema[]];
  */
 export interface PrimitiveTypeWithMetadata {
   type: PrimitiveType;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A Record
@@ -58,7 +58,7 @@ export interface Record {
   doc?: string;
   aliases?: Name[];
   fields: Field[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A field within a Record
@@ -67,10 +67,10 @@ export interface Field {
   name: Name;
   type: AvroTypes;
   doc?: string;
-  default?: any;
+  default?: unknown;
   order?: "ascending" | "descending" | "ignore";
   aliases?: Name[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * An enumeration
@@ -82,7 +82,7 @@ export interface Enum {
   doc?: string;
   aliases?: Name[];
   symbols: Name[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * An array
@@ -94,7 +94,7 @@ export interface Array {
   doc?: string;
   aliases?: Name[];
   items: AvroTypes;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A map of values
@@ -106,7 +106,7 @@ export interface Map {
   doc?: string;
   aliases?: Name[];
   values: AvroTypes;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A fixed sized array of bytes
@@ -118,5 +118,5 @@ export interface Fixed {
   doc?: string;
   aliases?: Name[];
   size: number;
-  [k: string]: any;
+  [k: string]: unknown;
 }

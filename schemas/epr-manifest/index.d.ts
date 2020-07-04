@@ -20,7 +20,7 @@ export interface JSONSchemaForEntryPointRegulationManifestFiles {
   defaultNavBehavior?: Behavior;
   defaultResBehavior?: Behavior;
   rules: Rule[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Rule {
   /**
@@ -36,5 +36,5 @@ export interface Rule {
    * Determines if data is allowed at this path.
    */
   allowData?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

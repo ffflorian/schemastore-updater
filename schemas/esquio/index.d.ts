@@ -6,10 +6,27 @@
  */
 
 export type Esquio = {
-  [k: string]: any;
+  Products: Product[] | null;
+  [k: string]: unknown;
+} | null;
+export type Product = {
+  Name: string | null;
+  Features: Feature[] | null;
+  [k: string]: unknown;
+} | null;
+export type Feature = {
+  Name: string | null;
+  Enabled: boolean;
+  Toggles: Toggle[] | null;
+  [k: string]: unknown;
+} | null;
+export type Toggle = {
+  Type: string | null;
+  Parameters: unknown;
+  [k: string]: unknown;
 } | null;
 
 export interface JSONSchemaForEsquioConfigurationFiles {
   Esquio: Esquio;
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -2695,7 +2695,7 @@ export interface CryProjSchema {
   console_variables?: {
     name: VariableName;
     value: ValueOfTheCVar;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   content: {
     assets?: AssetsFolder[];
@@ -2706,16 +2706,16 @@ export interface CryProjSchema {
         any?: LibSNameToImportForAllTheSupportedPlatforms;
         win_x64?: LibSNameToImportForTheWinX64Platform;
         win_x86?: LibSNameToImportForTheWinX86Platform;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   info: {
     name: ProjectName;
     guid?: ProjectGUID;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   require: {
     engine: EngineVersion;
@@ -2723,16 +2723,16 @@ export interface CryProjSchema {
       path: PluginName;
       type: PluginType;
       platforms?: ThisPluginWillBeUsedOnlyByThesePlatforms[];
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   type?: string;
   version: ProjectVersion;
   console_commands?: {
     name: CommandName;
     value: ValueOfTheCommand;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

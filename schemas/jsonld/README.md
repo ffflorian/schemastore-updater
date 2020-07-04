@@ -5,8 +5,8 @@
 This package contains type definitions for jsonld.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jsonld.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsonld.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

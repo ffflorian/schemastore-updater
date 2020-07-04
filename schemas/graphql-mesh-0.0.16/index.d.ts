@@ -35,7 +35,7 @@ export interface Source {
    * in the context, under an object named as the API
    */
   context?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   handler: Handler;
   /**
@@ -63,7 +63,7 @@ export interface GraphQLHandler {
    * JSON object representing the Headers to add to the runtime of the API calls
    */
   headers?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * A url to your remote GraphQL endpoint
@@ -86,10 +86,10 @@ export interface JsonSchemaHandler {
   baseUrl: string;
   typeReferences?: JsonSchemaTypeReference[];
   operationHeaders?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   schemaHeaders?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   operations: JsonSchemaOperation[];
 }
@@ -114,7 +114,7 @@ export interface JsonSchemaOperation {
   requestSchema: string;
   responseSchema: string;
   headers?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 export interface MongooseHandler {
@@ -198,7 +198,7 @@ export interface TypeConverterResolversOpts {
   connection?:
     | boolean
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Any of: Boolean, PaginationResolverOpts
@@ -223,7 +223,7 @@ export interface FilterHelperArgsOpts {
   operators?:
     | boolean
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       };
   removeFields?: string[];
 }
@@ -254,7 +254,7 @@ export interface OpenapiHandler {
    * JSON object representing the Headers to add to the runtime of the API calls
    */
   headers?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -292,7 +292,7 @@ export interface SoapHandler {
    */
   wsdl: string;
   config?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 export interface Transform {

@@ -141,11 +141,11 @@ export interface CEScan2DeploySchema {
   network?: NetworkSectionSchema;
   deployment?: DeploymentSectionSchema;
   shell?: ShellSectionSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface LayoutSchema {
   description?: DescriptionSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to configure application scoped settings
@@ -154,14 +154,14 @@ export interface GlobalSectionSchema {
   "target-path"?: TargetPathSchema;
   action?: ActionSchema;
   "ping-timeout"?: PingTimeoutSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to configure inner device settings
  */
 export interface SettingsSectionSchema {
   "usb-function"?: USBFunctionSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to configure device Wi-Fi network
@@ -187,7 +187,7 @@ export interface NetworkSectionSchema {
   "auto-pac"?: AutoPacSchema;
   "pac-file-path"?: PacFilePathSchema;
   "pac-aid-info"?: PacAidInfoSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to download a ZIP archive from a server and inflate it to the 'target-path' folder
@@ -197,17 +197,17 @@ export interface DeploymentSectionSchema {
   host: HostSchema;
   port?: PortSchema;
   path?: PathSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section for executable shell commands to be performed in the final staging phase
  */
 export interface ShellSectionSchema {
   cmds: CmdsSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ItemsSchema {
   "app-name": AppNameSchema;
   args?: ArgsSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }

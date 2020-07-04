@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/csscomb",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/csscomb",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/csscomb",
   "scripts": {},
   "typesPublisherContentHash": "0bbd4d8c761c47a1e2047c18e36db88d911d62f73a628561682b991700e57408",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -8,7 +8,7 @@
 export type ModuleType = "docker";
 export type CreateOptions =
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | string;
 export type Status = "running" | "stopped";
@@ -16,7 +16,7 @@ export type RestartPolicy = "never" | "on-failure" | "on-unhealthy" | "always";
 
 export interface JSONSchemaForAzureIoTEdgeDeploymentTemplateVersion10 {
   modulesContent: TheConfigurationForAllTheModules;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TheConfigurationForAllTheModules {
   $edgeAgent: ConfigurationForTheEdgeAgentModule;
@@ -27,9 +27,9 @@ export interface TheConfigurationForAllTheModules {
    */
   [k: string]: {
     "properties.desired": {
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 export interface ConfigurationForTheEdgeAgentModule {
@@ -49,19 +49,19 @@ export interface ConfigurationForTheEdgeAgentModule {
             username: string;
             password: string;
             address: string;
-            [k: string]: any;
+            [k: string]: unknown;
           };
         };
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     systemModules: {
       edgeAgent: {
         type: ModuleType;
         settings: ModuleSettings;
         env?: Env;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       edgeHub: TheEdgehubSchema;
     };
@@ -77,17 +77,17 @@ export interface ConfigurationForTheEdgeAgentModule {
         restartPolicy: RestartPolicy;
         env?: Env;
         settings: ModuleSettings;
-        [k: string]: any;
+        [k: string]: unknown;
       };
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ModuleSettings {
   image: string;
   createOptions?: CreateOptions;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Env {
   /**
@@ -96,7 +96,7 @@ export interface Env {
    */
   [k: string]: {
     value: number | string | boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 export interface TheEdgehubSchema {
@@ -105,7 +105,7 @@ export interface TheEdgehubSchema {
   env?: Env;
   status: Status;
   restartPolicy: RestartPolicy;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ConfigurationForTheEdgeHubModule {
   "properties.desired": {
@@ -119,9 +119,9 @@ export interface ConfigurationForTheEdgeHubModule {
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

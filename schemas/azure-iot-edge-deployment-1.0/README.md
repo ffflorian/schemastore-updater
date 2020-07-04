@@ -5,8 +5,8 @@
 This package contains type definitions for azure-iot-edge-deployment-1.0.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/azure-iot-edge-deployment-1.0.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-iot-edge-deployment-1.0.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:02 GMT
 * Dependencies: none

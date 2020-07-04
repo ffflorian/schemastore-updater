@@ -5,8 +5,8 @@
 This package contains type definitions for ansible-stable-2.6.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ansible-stable-2.6.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ansible-stable-2.6.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Sat, Jul 04, 2020, 10:30:51 GMT
 * Dependencies: none

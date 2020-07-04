@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/feed",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/feed",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/feed",
   "scripts": {},
   "typesPublisherContentHash": "a389782e8583e8d91e99848441b3febb930716b851c0b157f8dcb1095de0122f",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

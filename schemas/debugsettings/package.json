@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/debugsettings",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/debugsettings",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/debugsettings",
   "scripts": {},
   "typesPublisherContentHash": "78cd337254d9dc8505c2369cef53df23312013d20721b5d940c382318f7d0ea3",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/cloud-sdk-pipeline-config-schema",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cloud-sdk-pipeline-config-schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cloud-sdk-pipeline-config-schema",
   "scripts": {},
   "typesPublisherContentHash": "67fed8630f52350ccf65b840640bfa5b8d5fd07e62c1adbc4b1abf29a7ef2b55",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

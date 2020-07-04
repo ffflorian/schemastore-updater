@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/bower",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/bower",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bower",
   "scripts": {},
   "typesPublisherContentHash": "b4135f9f8dee2354b01e18cf5bd41f642dd497f13757278691a8787ea8178687",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

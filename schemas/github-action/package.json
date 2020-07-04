@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/github-action",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/github-action",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/github-action",
   "scripts": {},
   "typesPublisherContentHash": "7b828fc0a108eb48a917ee86e6aee8b74fbbfd086f40c096376e7b0d3fd015d7",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

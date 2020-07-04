@@ -6,5 +6,5 @@
  */
 
 export interface HttpsToolsWmflabsOrgSpdxSchemaLicensesJson {
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -105,5 +105,5 @@ export interface JSONSchemaForCSSCombConfigurationFiles {
    * Sort unknown properties alphabetically
    */
   "sort-order-fallback"?: "abc";
-  [k: string]: any;
+  [k: string]: unknown;
 }

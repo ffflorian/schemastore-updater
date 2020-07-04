@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/azure-iot-edge-deployment-template-2.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/azure-iot-edge-deployment-template-2.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-iot-edge-deployment-template-2.0",
   "scripts": {},
   "typesPublisherContentHash": "ecbf99ac80b4ce9548e17555f1cc68563c22a5d88542df3c4c9895ee6cd1ae7e",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

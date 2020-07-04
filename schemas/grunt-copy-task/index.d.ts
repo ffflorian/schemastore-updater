@@ -65,9 +65,9 @@ export interface JSONSchemaForTheGruntCleanTask {
                * Pattern(s) to match, relative to the 'cwd'.
                */
               src: string[];
-              [k: string]: any;
+              [k: string]: unknown;
             }[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         /**
@@ -121,10 +121,11 @@ export interface JSONSchemaForTheGruntCleanTask {
          * Pattern(s) to match, relative to the 'cwd'.
          */
         src: string[];
-        [k: string]: any;
-      }) & {
+        [k: string]: unknown;
+      }
+  ) & {
     options?: Options;
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -143,5 +144,5 @@ export interface Options {
    * Whether to copy or set the existing file permissions. Set to true to copy the existing file permissions. Or set to the mode, i.e.: 0644, that copied files will be set to.
    */
   mode?: boolean | number;
-  [k: string]: any;
+  [k: string]: unknown;
 }

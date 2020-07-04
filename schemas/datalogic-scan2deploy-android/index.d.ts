@@ -47,11 +47,19 @@ export type AutoScanSchema = boolean;
  * Used to force the downgrade of pre-installed application (even System app), if required
  */
 export type DownloadPreinstalledSchema = boolean;
+/**
+ * A string specifying the absolute/relative path of a file, or a JSON array of strings describing the file content line-by-line. The script file will be interpreted last in staging process.
+ */
+export type ScriptSchema2 = ScriptSchema | ScriptSchema1;
 export type ItemsSchema = string;
 /**
  * A string specifying the absolute/relative path of a file, or a JSON array of strings describing the file content line-by-line. The script file will be interpreted last in staging process.
  */
 export type ScriptSchema = ItemsSchema[];
+/**
+ * A string specifying the absolute/relative path of a file, or a JSON array of strings describing the file content line-by-line. The script file will be interpreted last in staging process.
+ */
+export type ScriptSchema1 = ItemsSchema[];
 /**
  * Specifies the final action performed by the application at the end of the staging process.
  */
@@ -244,12 +252,12 @@ export interface AndroidScan2DeploySchema {
   network?: NetworkSchema;
   deployment?: DeploymentSchema;
   blobs?: BlobsSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface LayoutSchema {
   description?: DescriptionSchema;
   enroll?: EnrollSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to configure the staging locking feature
@@ -259,7 +267,7 @@ export interface PadlockSchema {
   key?: KeySchema;
   state?: StateSchema;
   "hide-from-launcher"?: HideFromLauncherSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to configure application scoped settings
@@ -271,10 +279,10 @@ export interface GlobalSchema {
   "purge-target-path"?: PurgeTargetPathSchema;
   "auto-scan"?: AutoScanSchema;
   "download-preinstalled"?: DownloadPreinstalledSchema;
-  script?: ScriptSchema;
+  script?: ScriptSchema2;
   action?: ActionSchema;
   "backup-to-enterprise"?: BackupToEnterpriseSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to control inner device settings that typically need to be changed from the Android defaults
@@ -291,7 +299,7 @@ export interface SettingsSchema {
   "charge-threshold"?: ChargeThresholdSchema;
   "usb-profile"?: UsbProfileSchema;
   "usb-function"?: UsbFunctionSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section used to configure the device Wi-Fi network
@@ -318,7 +326,7 @@ export interface NetworkSchema {
   "save-to-file"?: SaveToFileSchema;
   ephemeral?: EphemeralSchema;
   "wait-for-connection"?: WaitForConnectionSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Section can be used to download a ZIP archive from a server and inflate it to the 'target-path' folder
@@ -332,10 +340,10 @@ export interface DeploymentSchema {
   "check-timeout"?: CheckTimeoutSchema;
   "working-archive"?: WorkingArchiveSchema;
   "skip-inflation"?: SkipInflationSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface ItemsSchema1 {
   file: FileSchema;
   content: ContentSchema;
-  [k: string]: any;
+  [k: string]: unknown;
 }

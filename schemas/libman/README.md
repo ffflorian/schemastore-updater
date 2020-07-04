@@ -5,8 +5,8 @@
 This package contains type definitions for libman.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/libman.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/libman.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

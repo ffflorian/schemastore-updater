@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/epr-manifest",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/epr-manifest",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/epr-manifest",
   "scripts": {},
   "typesPublisherContentHash": "65a5fa96b9f2165f3b094f2affc7f7b7102df40ed09a1cb66c64eb0563c0b064",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

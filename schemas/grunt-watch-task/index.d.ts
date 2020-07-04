@@ -15,11 +15,11 @@ export type OptionsWithEvents =
        * Specify the type watch event that trigger the specified task.
        */
       events?: EventType[];
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
       events?: EventType;
-      [k: string]: any;
+      [k: string]: unknown;
     };
 /**
  * Specify the type watch event that trigger the specified task.
@@ -40,5 +40,5 @@ export interface Target {
    */
   tasks?: string[];
   options?: Options;
-  [k: string]: any;
+  [k: string]: unknown;
 }

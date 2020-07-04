@@ -11,7 +11,7 @@
 export interface GrafanaDashboard5X {
   meta?: {
     isStarred?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   dashboard?: {
     /**
@@ -73,18 +73,18 @@ export interface GrafanaDashboard5X {
          * In grid height units, each represents 30 pixels.
          */
         h?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
       id?: number;
       mode?: string;
       content?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
     /**
      * time range for dashboard, i.e. last 6 hours, last 7 days, etc
      */
     time?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * timepicker metadata
@@ -103,7 +103,7 @@ export interface GrafanaDashboard5X {
       refresh_intervals?: string[];
       status?: string;
       type?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * templating metadata
@@ -128,7 +128,7 @@ export interface GrafanaDashboard5X {
           tags?: string[];
           text?: string;
           value?: string;
-          [k: string]: any;
+          [k: string]: unknown;
         };
         /**
          * shows data source for the variables
@@ -157,7 +157,7 @@ export interface GrafanaDashboard5X {
           selected?: boolean;
           text?: string;
           value?: string;
-          [k: string]: any;
+          [k: string]: unknown;
         }[];
         /**
          * data source query used to fetch values for a variable
@@ -169,21 +169,21 @@ export interface GrafanaDashboard5X {
          * type of variable, i.e. custom, query or interval
          */
         type?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       }[];
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * annotations metadata
      */
     annotations?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * auto-refresh interval
      */
     refresh?: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * version of the JSON schema (integer), incremented each time a Grafana update brings changes to said schema
@@ -193,9 +193,9 @@ export interface GrafanaDashboard5X {
      * version of the dashboard (integer), incremented each time the dashboard is updated
      */
     version?: number;
-    links?: any;
-    [k: string]: any;
+    links?: unknown;
+    [k: string]: unknown;
   };
   overwrite?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

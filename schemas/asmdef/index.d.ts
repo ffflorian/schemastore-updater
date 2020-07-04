@@ -10,10 +10,10 @@
  */
 export type UnityAssemblyDefinition = {
   includePlatforms?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   excludePlatforms?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 };

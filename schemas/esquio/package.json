@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/esquio",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/esquio",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/esquio",
   "scripts": {},
   "typesPublisherContentHash": "4aa0d14ed80c15e2ddd1ef5ea12638c907c372eb7b2cbc878803dfe30b305020",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

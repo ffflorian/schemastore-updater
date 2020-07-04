@@ -33,18 +33,18 @@ export interface JSONSchemaForDrushSiteAliases {
     docker?: {
       service?: TheNameOfTheContainerToRunOn;
       exec?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     };
     vagrant?: VagrantTransport;
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 export interface ContainsSettingsUsedToControlHowSshCommandsAreGeneratedWhenRunningRemoteCommands {
   options?: AdditionalCommandlineOptionsForTheSshCommandItself;
   tty?: AFlagToForceDrushToAlwaysOrNeverCreateATty;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface AliasesForCommonRsyncTargets {
   "drush-script"?: PathToTheRemoteDrushCommand;
@@ -54,6 +54,6 @@ export interface AliasesForCommonRsyncTargets {
 }
 export interface ContainsOptionsForSpecificCommands {
   [k: string]: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }

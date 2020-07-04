@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/csslintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/csslintrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/csslintrc",
   "scripts": {},
   "typesPublisherContentHash": "11d1c8b64294a22c7da23b7fa83880d313f70e19624b01f9c01ad3c2915985fc",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/hemtt-0.6.2",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/hemtt-0.6.2",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/hemtt-0.6.2",
   "scripts": {},
   "typesPublisherContentHash": "ae48f691534d28708ade1ef67b5f27d4dc52b3ee2a5c3d2a9f389fcc4de5744c",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

@@ -73,9 +73,9 @@ export interface DependabotConfigurationFile {
          * which updates to do
          */
         update_type?: "security" | "all";
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
     /**
      * By default no updates are ignored. The version_requirement specifies the versions to ignore. The range format is specific to the package manager (e.g., ^1.0.0 for JS, or ~> 2.0 for Ruby).
@@ -90,9 +90,9 @@ export interface DependabotConfigurationFile {
          * The version_requirement specifies the versions to ignore. The range format is specific to the package manager (e.g., ^1.0.0 for JS, or ~> 2.0 for Ruby).
          */
         version_requirement?: string;
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
     /**
      * Automerged updates must be enabled at the account level (from account settings in your dashboard) before they can be configured on a project. Specify which update pull requests should be merged automatically. By default no updates are automerged. For all of the options below Dependabot will wait until all your status checks pass before merging. You can also set working hours for automerging in your dashboard account settings.
@@ -105,9 +105,9 @@ export interface DependabotConfigurationFile {
         dependency_name?: string;
         dependency_type?: "development" | "production" | "all";
         update_type?: "security:patch" | "semver:patch" | "semver:minor" | "in_range" | "all";
-        [k: string]: any;
+        [k: string]: unknown;
       };
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
     /**
      * Specify how Dependabot should update your package manifest (e.g. package.json, Gemfile etc), as opposed to your lockfile. By default, version requirements are increased if it's an app and the range widened if it's a library.
@@ -125,9 +125,9 @@ export interface DependabotConfigurationFile {
       prefix?: string;
       prefix_development?: string;
       include_scope?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

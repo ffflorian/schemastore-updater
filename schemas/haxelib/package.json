@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/haxelib",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/haxelib",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/haxelib",
   "scripts": {},
   "typesPublisherContentHash": "5663bf0783d4956cf2fc6bd00e1f5e7cedbea722e9aa0d8a71d7c7c27f9f9712",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

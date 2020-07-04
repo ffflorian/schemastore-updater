@@ -5,8 +5,8 @@
 This package contains type definitions for ksp-avc.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ksp-avc.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ksp-avc.
 
 ## Additional Details
-* Last updated: Wed, May 06, 2020, 20:22:29 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
 * Dependencies: none

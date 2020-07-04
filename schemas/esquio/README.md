@@ -5,8 +5,8 @@
 This package contains type definitions for esquio.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/esquio.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/esquio.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:17 GMT
 * Dependencies: none

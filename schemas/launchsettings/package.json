@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/launchsettings",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/launchsettings",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/launchsettings",
   "scripts": {},
   "typesPublisherContentHash": "e5417eb29559164a9a6233b761efc3d97ee370d11fd80fa519bad5dac201e82b",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,8 +5,8 @@
 This package contains type definitions for appveyor.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/appveyor.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appveyor.
 
 ## Additional Details
-* Last updated: Mon, Feb 03, 2020, 18:14:51 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:02 GMT
 * Dependencies: none

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/dependabot",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/dependabot",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/dependabot",
   "scripts": {},
   "typesPublisherContentHash": "acd5ae96c0640e5dc3ae6f4df306ecf15cea8a7c45459ce578330dc77dd57cee",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

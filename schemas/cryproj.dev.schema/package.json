@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/cryproj.dev.schema",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cryproj.dev.schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cryproj.dev.schema",
   "scripts": {},
   "typesPublisherContentHash": "df369f19917345c422b6ce14d49b662ccaa8afd439a2c87972fcf7e73d0ce16e",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

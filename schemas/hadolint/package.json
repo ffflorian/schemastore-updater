@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/hadolint",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/hadolint",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/hadolint",
   "scripts": {},
   "typesPublisherContentHash": "f82b1c243cc82b014e30cff47b1592f32845afca97cfc71a2e19af7df6008a65",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

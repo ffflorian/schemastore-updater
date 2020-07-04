@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/imageoptimizer",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/imageoptimizer",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/imageoptimizer",
   "scripts": {},
   "typesPublisherContentHash": "3d41f3e503b9567585d38ee28cfaf0c61f94299c3006fe381dcfc2712a43e27a",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

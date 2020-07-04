@@ -31,5 +31,5 @@ export interface CommandObject {
    * The name of the output created by this compilation step
    */
   output?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/container-structure-test",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/container-structure-test",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/container-structure-test",
   "scripts": {},
   "typesPublisherContentHash": "c3ec903b62f45251b79848dbe09196302776f471a0620861a84a1e9bd8c22fa3",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

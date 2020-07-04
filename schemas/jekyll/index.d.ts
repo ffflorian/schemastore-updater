@@ -253,11 +253,11 @@ export interface JekyllStaticSiteGeneratorConfigFileSchema {
       };
   rdiscount?: {
     extensions?: StringArray;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   redcarpet?: {
     extensions?: StringArray;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   kramdown?: {
     auto_id_prefix?: PrefixUsedForAutomaticallyGeneratedHeaderIDs;
@@ -293,15 +293,15 @@ export interface JekyllStaticSiteGeneratorConfigFileSchema {
     transliterated_header_ids?: TransliterateTheHeaderTextBeforeGeneratingTheID;
     typographic_symbols?: DefinesAMappingFromTypographicalSymbolToOutputCharacters;
     show_warnings?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   webrick?: WEBrickOptions;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface FrontMatterDefault {
   scope?: Scope;
   values?: FrontMatterDefaultValues;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Scope {
   path: FilePathForThisScope;
@@ -314,14 +314,14 @@ export interface FrontMatterDefaultValues {
   layout?: TheLayoutToUse;
   output?: boolean;
   permalink?: PermalinkFormat;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface MappedCollection {
   output?: LetJekyllRenderTheCollectionOutput;
   permalink?: PermalinkFormat;
   sort_by?: SortDocumentsByFrontMatterKey;
   order?: ManuallyOrderDocumentsAsListed;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Values are two element Arrays with the link URL and the link title
@@ -333,25 +333,25 @@ export interface PreDefinesLinkDefinitions {
  * Specifies options for the math engine set via the math_engine configuration option.
  */
 export interface SetTheMathEngineOptions {
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Specifies options for the syntax highlighter set via the syntax_highlighter configuration option.
  */
 export interface SetTheSyntaxHighlighterOptions {
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Typographical symbols are normally output using their equivalent Unicode codepoint. However, sometimes one wants to change the output, mostly to fallback to a sequence of ASCII characters.
  */
 export interface DefinesAMappingFromTypographicalSymbolToOutputCharacters {
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * You can provide custom headers for your site.
  */
 export interface WEBrickOptions {
   headers?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/lerna",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lerna",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lerna",
   "scripts": {},
   "typesPublisherContentHash": "adb3b167beaba5ff226588528508db3b2aadf87139603ed38ee602d13df99eb2",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

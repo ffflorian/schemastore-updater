@@ -57,14 +57,14 @@ export interface JSONSchemaForMicrosoftBandManifests {
    */
   tileIcon: {
     "46": Icon;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Specifies the location of the small tile icon. If not provided, the badging functionality is not enabled.
    */
   badgeIcon?: {
     "24": Icon;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Specifies the custom theme colors for the web tile.
@@ -76,7 +76,7 @@ export interface JSONSchemaForMicrosoftBandManifests {
     secondary?: Color;
     highcontrast?: Color;
     muted?: Color;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Specifies the desired data refresh interval, in minutes. Refresh intervals shorter than 15 will not be honored. If not provided, it defaults to 30.
@@ -100,7 +100,7 @@ export interface JSONSchemaForMicrosoftBandManifests {
    * Creates notification that gets delivered when certain conditions are detected in the new web data.
    */
   notifications?: Notification[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Resource {
   /**
@@ -117,7 +117,7 @@ export interface Resource {
   content: {
     [k: string]: string;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Page {
   /**
@@ -134,12 +134,12 @@ export interface Page {
   /**
    * Similar to textBindings, but used to select one of the web tile icons in icons list for each icon in the page. If there are no icon elements on the page, this member may be omitted.
    */
-  iconBindings?: [IconBinding, ...(IconBinding)[]];;
+  iconBindings?: [IconBinding, ...IconBinding[]];
   /**
    * An array of objects corresponding to each page element that contains string content. Each binding object provides the numeric id of the page element based on the predefined layout selected, and the string value that it should contain.
    */
-  textBindings?: [TextBinding, ...(TextBinding)[]];;
-  [k: string]: any;
+  textBindings?: [TextBinding, ...TextBinding[]];
+  [k: string]: unknown;
 }
 export interface IconBinding {
   elementId: ElementId;
@@ -152,14 +152,14 @@ export interface IconBinding {
      * The name of the icon as specified in the 'icons' node.
      */
     icon?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface TextBinding {
   elementId: ElementId;
   value: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Notification {
   /**
@@ -174,5 +174,5 @@ export interface Notification {
    * The text to use for the notification body. If longer than 20 characters, it will be truncated.
    */
   body?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

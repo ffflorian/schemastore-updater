@@ -295,8 +295,8 @@ export interface JSONSchemaForJSHintConfigurationFiles {
      * The path pattern to apply the given options to
      */
     [k: string]: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

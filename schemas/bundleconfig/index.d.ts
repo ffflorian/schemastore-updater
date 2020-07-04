@@ -13,7 +13,7 @@ export type Bundleconfig = Bundle[];
 
 export interface JsBundle {
   outputFileName?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * JavaScript only. Set to true to produce a source map.
@@ -24,7 +24,7 @@ export interface JsBundle {
    */
   sourceMapRootPath?: string;
   minify?: AjaxminBaseSettings;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface AjaxminBaseSettings {
   /**
@@ -35,18 +35,18 @@ export interface AjaxminBaseSettings {
    * SingleLine minifies everything to a single line. MultipleLines breaks the minified code into multiple lines for easier reading.
    */
   outputMode?: "multipleLines" | "singleLine" | "none";
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface CssBundle {
   outputFileName?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   minify?: AjaxminBaseSettings;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface HtmlBundle {
   outputFileName?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   minify?: {
     /**
@@ -93,7 +93,7 @@ export interface HtmlBundle {
      * HTML only. Indicating whether to remove quoted attributes when possible.
      */
     removeQuotedAttributes?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

@@ -14,208 +14,208 @@ export interface JSONSchemaForHadolintADockerfileLinterTool {
    */
   ignored?: (
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
   )[];
   /**

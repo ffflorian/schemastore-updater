@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/grafana-dashboard-5.x",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grafana-dashboard-5.x",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grafana-dashboard-5.x",
   "scripts": {},
   "typesPublisherContentHash": "b53ab67320765a73c7daafe63505cfd13b3fd8d5c4304c7d33fcc8414d18e817",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

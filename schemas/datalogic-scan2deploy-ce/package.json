@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/datalogic-scan2deploy-ce",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/datalogic-scan2deploy-ce",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/datalogic-scan2deploy-ce",
   "scripts": {},
   "typesPublisherContentHash": "c431acb4646f01afced4ef72fbd0d57036e61276d7337752c2bc558943acd53c",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

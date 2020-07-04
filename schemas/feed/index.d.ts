@@ -8,13 +8,13 @@
 export type Uri = string;
 export type Item =
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     };
 
 export interface JSONSchemaForTheJSONFeedFormat {
@@ -35,7 +35,7 @@ export interface JSONSchemaForTheJSONFeedFormat {
    * The URL of the feed, and serves as the unique identifier for the feed. As with 'home_page_url', this should be considered required for feeds on the public web.
    */
   feed_url?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The URL of the resource that the feed describes. This resource may or may not actually be a “home” page, but it should be an HTML page. If a feed is published on the public web, this should be considered as required. But it may not make sense in the case of a file created on a desktop computer, when that file is not shared or is shared only privately.
@@ -50,7 +50,7 @@ export interface JSONSchemaForTheJSONFeedFormat {
      */
     type: string;
     url: Uri;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * The URL of an image for the feed suitable to be used in a timeline, much the way an avatar might be used. It should be square and relatively large — such as 512 x 512 — so that it can be scaled-down and so that it can look good on retina displays. It should use transparency where appropriate, since it may be rendered on a non-white background.
@@ -107,5 +107,5 @@ export interface Extension {
    * A description or URL to description of the custom extension.
    */
   about?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

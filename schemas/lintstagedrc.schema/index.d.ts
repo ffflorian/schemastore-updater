@@ -7,7 +7,7 @@
 
 export type Lintstagedrc = AdvancedConfig | BasicConfig;
 export type $SchemaProperty = string;
-export type Linter = string | any[];
+export type Linter = string | unknown[];
 
 export interface AdvancedConfig {
   $schema?: $SchemaProperty;

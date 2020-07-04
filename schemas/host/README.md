@@ -5,8 +5,8 @@
 This package contains type definitions for host.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/host.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/host.
 
 ## Additional Details
-* Last updated: Mon, Feb 03, 2020, 18:14:51 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:20 GMT
 * Dependencies: none

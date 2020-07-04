@@ -8,7 +8,7 @@
 export type ModuleType = "docker";
 export type CreateOptions =
   | {
-      [k: string]: any;
+      [k: string]: unknown;
     }
   | string;
 export type ImagePullPolicy = "never" | "on-create";
@@ -29,7 +29,7 @@ export interface TheConfigurationForAllTheModules {
    */
   [k: string]: {
     "properties.desired": {
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
 }
@@ -57,12 +57,12 @@ export interface ConfigurationForTheEdgeAgentModule {
          * via the `patternProperty` "^[^\.\$# ]+$".
          */
         [k: string]:
-          | any[]
+          | unknown[]
           | boolean
           | number
           | null
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | string;
       };
@@ -71,12 +71,12 @@ export interface ConfigurationForTheEdgeAgentModule {
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
       [k: string]:
-        | any[]
+        | unknown[]
         | boolean
         | number
         | null
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | string;
     };
@@ -91,12 +91,12 @@ export interface ConfigurationForTheEdgeAgentModule {
          * via the `patternProperty` "^[^\.\$# ]+$".
          */
         [k: string]:
-          | any[]
+          | unknown[]
           | boolean
           | number
           | null
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | string;
       };
@@ -120,12 +120,12 @@ export interface ConfigurationForTheEdgeAgentModule {
          * via the `patternProperty` "^[^\.\$# ]+$".
          */
         [k: string]:
-          | any[]
+          | unknown[]
           | boolean
           | number
           | null
           | {
-              [k: string]: any;
+              [k: string]: unknown;
             }
           | string;
       };
@@ -135,12 +135,12 @@ export interface ConfigurationForTheEdgeAgentModule {
      * via the `patternProperty` "^[^\.\$# ]+$".
      */
     [k: string]:
-      | any[]
+      | unknown[]
       | boolean
       | number
       | null
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | string;
   };
@@ -153,12 +153,12 @@ export interface ModuleSettings {
    * via the `patternProperty` "^[^\.\$# ]+$".
    */
   [k: string]:
-    | any[]
+    | unknown[]
     | boolean
     | number
     | null
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string;
 }
@@ -183,12 +183,12 @@ export interface TheEdgehubSchema {
    * via the `patternProperty` "^[^\.\$# ]+$".
    */
   [k: string]:
-    | any[]
+    | unknown[]
     | boolean
     | number
     | null
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string;
 }
@@ -200,7 +200,13 @@ export interface ConfigurationForTheEdgeHubModule {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
-      [k: string]: string;
+      [k: string]:
+        | {
+            route: string;
+            priority?: number;
+            timeToLiveSecs?: number;
+          }
+        | string;
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;
@@ -209,12 +215,12 @@ export interface ConfigurationForTheEdgeHubModule {
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
       [k: string]:
-        | any[]
+        | unknown[]
         | boolean
         | number
         | null
         | {
-            [k: string]: any;
+            [k: string]: unknown;
           }
         | string;
     };
@@ -223,12 +229,12 @@ export interface ConfigurationForTheEdgeHubModule {
      * via the `patternProperty` "^[^\.\$# ]+$".
      */
     [k: string]:
-      | any[]
+      | unknown[]
       | boolean
       | number
       | null
       | {
-          [k: string]: any;
+          [k: string]: unknown;
         }
       | string;
   };

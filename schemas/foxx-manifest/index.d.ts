@@ -26,13 +26,13 @@ export interface FoxxManifest {
        * The default value for this option in plain JSON. Can be omitted to provide no default value.
        */
       default?: {
-        [k: string]: any;
+        [k: string]: unknown;
       };
       /**
        * Whether the service can not function without this option. Defaults to true unless a default value is provided.
        */
       required?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
   /**
@@ -66,7 +66,7 @@ export interface FoxxManifest {
            * Whether the dependency can be specified more than once.
            */
           multiple?: boolean;
-          [k: string]: any;
+          [k: string]: unknown;
         };
   };
   /**
@@ -104,7 +104,7 @@ export interface FoxxManifest {
            * The MIME content type of the file. Defaults to an intelligent guess based on the filename's extension.
            */
           type?: string;
-          [k: string]: any;
+          [k: string]: unknown;
         };
   };
   /**
@@ -160,5 +160,5 @@ export interface FoxxManifest {
    * The version number of the Foxx service. The version number must follow the semantic versioning format. This will be shown in the web interface.
    */
   version?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

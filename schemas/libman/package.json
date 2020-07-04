@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/libman",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/libman",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/libman",
   "scripts": {},
   "typesPublisherContentHash": "1230675101f80184c044c162eecfa6af1e83517cc80c03b53fcb6f92afaf90c8",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -50,5 +50,5 @@ export interface JSONSchemaForCreatomicConfigurationFile {
    * Always show rule failures as warnings, independent of the tslint configuration.
    */
   "tslint.alwaysShowRuleFailuresAsWarnings"?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }

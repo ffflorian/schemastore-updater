@@ -65,9 +65,9 @@ export interface JSONSchemaForTheGruntCssminTask {
                * Pattern(s) to match, relative to the 'cwd'.
                */
               src: string[];
-              [k: string]: any;
+              [k: string]: unknown;
             }[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         /**
@@ -121,10 +121,11 @@ export interface JSONSchemaForTheGruntCssminTask {
          * Pattern(s) to match, relative to the 'cwd'.
          */
         src: string[];
-        [k: string]: any;
-      }) & {
+        [k: string]: unknown;
+      }
+  ) & {
     options?: Options;
-    [k: string]: any;
+    [k: string]: unknown;
   };
 }
 /**
@@ -143,5 +144,5 @@ export interface Options {
    * Either report only minification result or report minification and gzip results. This is useful to see exactly how well clean-css is performing but using  'gzip'  will make the task take 5-10x longer to complete.
    */
   report?: "min" | "gzip";
-  [k: string]: any;
+  [k: string]: unknown;
 }

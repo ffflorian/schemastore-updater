@@ -27,7 +27,7 @@ export type Version =
        * Build informaion
        */
       BUILD?: number;
-      [k: string]: any;
+      [k: string]: unknown;
     };
 
 /**
@@ -70,7 +70,7 @@ export interface AddOnVersionCheckerFile {
      * Include pre-releases in the latest release search
      */
     "ALLOW_PRE_RELEASE "?: boolean;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * URL to this mod's page on KerbalStuff
@@ -98,7 +98,7 @@ export interface AddOnVersionCheckerFile {
          * Build informaion
          */
         BUILD?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Version of KSP that the add-on was made to support
@@ -122,7 +122,7 @@ export interface AddOnVersionCheckerFile {
          * Build informaion
          */
         BUILD?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Minimum version of KSP that the add-on supports
@@ -146,7 +146,7 @@ export interface AddOnVersionCheckerFile {
          * Build informaion
          */
         BUILD?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * Maximum version of KSP that the add-on supports
@@ -170,7 +170,7 @@ export interface AddOnVersionCheckerFile {
          * Build informaion
          */
         BUILD?: number;
-        [k: string]: any;
+        [k: string]: unknown;
       };
   /**
    * If true, don't trust KSP-AVC's idea of which game versions are compatible with which other game versions, based on user configuration
@@ -200,7 +200,7 @@ export interface AddOnVersionCheckerFile {
    * Stanza to define file location to check, used by MADLAD
    */
   "INSTALL_LOC|INSTALL_LOC*"?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

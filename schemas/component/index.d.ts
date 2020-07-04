@@ -86,5 +86,5 @@ export interface JSONSchemaForComponentJsonFiles {
    * The license string such as 'MIT' may be used for search output and other reporting, developers SHOULD specify this field
    */
   license?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

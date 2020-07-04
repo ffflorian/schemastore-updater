@@ -133,7 +133,7 @@ export interface GoogleCloudBuildBuildConfigFile {
      * Requested hash for SourceProvenance.
      */
     sourceProvenanceHash?: ("NONE" | "SHA256" | "MD5")[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The location of the source files to build.
@@ -174,9 +174,9 @@ export interface GoogleCloudBuildBuildConfigFile {
        * Name of the branch to build.
        */
       branchName?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Artifacts produced by the build that should be uploaded upon
@@ -210,7 +210,7 @@ export interface GoogleCloudBuildBuildConfigFile {
        * Path globs used to match files in the build's workspace.
        */
       paths?: string[];
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * A list of images to be pushed upon the successful completion of all build
@@ -224,7 +224,7 @@ export interface GoogleCloudBuildBuildConfigFile {
      * If any of the images fail to be pushed, the build is marked FAILURE.
      */
     images?: string[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Amount of time that this build should be allowed to run, to second
@@ -238,7 +238,7 @@ export interface GoogleCloudBuildBuildConfigFile {
    * Secrets to decrypt using Cloud Key Management Service.
    */
   secrets?: Secret[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * A step in the build pipeline.
@@ -334,7 +334,7 @@ export interface BuildStep {
    * the step's execution.
    */
   dir?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Volume describes a Docker container volume which is mounted into build steps
@@ -355,7 +355,7 @@ export interface Volume {
    * same build step or with certain reserved volume paths.
    */
   path?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * If provided, get the source from this location in Google Cloud Storage.
@@ -379,7 +379,7 @@ export interface StorageSource {
    * build.
    */
   object?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Pairs a set of secret environment variables containing encrypted
@@ -401,5 +401,5 @@ export interface Secret {
   secretEnv?: {
     [k: string]: string;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

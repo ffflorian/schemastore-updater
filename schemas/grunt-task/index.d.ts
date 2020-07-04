@@ -7,7 +7,7 @@
 
 export interface JSONSchemaForAnyGruntTask {
   options?: {
-    [k: string]: any;
+    [k: string]: unknown;
   };
   [k: string]: FileFormat | Dynamic;
 }
@@ -17,7 +17,7 @@ export interface FileFormat {
         [k: string]: string[];
       }
     | Dynamic[];
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface Dynamic {
   /**
@@ -64,5 +64,5 @@ export interface Dynamic {
    * Pattern(s) to match, relative to the 'cwd'.
    */
   src: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

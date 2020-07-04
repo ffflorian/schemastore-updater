@@ -54,7 +54,7 @@ export interface AJSONSchemaForLernaJsonFiles {
        * A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information.
        */
       message?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Options for the bootstrap command.
@@ -68,7 +68,7 @@ export interface AJSONSchemaForLernaJsonFiles {
        * Array of strings that will be passed as arguments directly to "npm install" during the "lerna bootstrap" command.
        */
       npmClientArgs?: string[];
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Options for the init command.
@@ -78,7 +78,7 @@ export interface AJSONSchemaForLernaJsonFiles {
        * Use lerna 1.x behavior of "exact" comparison. It will enforce the exact match for all subsequent executions.
        */
       exact?: boolean;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Options for the run command.
@@ -88,7 +88,7 @@ export interface AJSONSchemaForLernaJsonFiles {
        * Which npm client should be used when running package scripts.
        */
       npmClient?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
     /**
      * Options for the version command.
@@ -102,9 +102,9 @@ export interface AJSONSchemaForLernaJsonFiles {
        * A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information.
        */
       message?: string;
-      [k: string]: any;
+      [k: string]: unknown;
     };
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

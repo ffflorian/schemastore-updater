@@ -5,8 +5,8 @@
 This package contains type definitions for grafana-dashboard-5.x.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/grafana-dashboard-5.x.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grafana-dashboard-5.x.
 
 ## Additional Details
-* Last updated: Tue, Mar 31, 2020, 08:28:20 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:18 GMT
 * Dependencies: none

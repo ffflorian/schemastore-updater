@@ -77,9 +77,9 @@ export interface JSONSchemaForTheGruntJSHintTask {
                * Pattern(s) to match, relative to the 'cwd'.
                */
               src: string[];
-              [k: string]: any;
+              [k: string]: unknown;
             }[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         /**
@@ -133,11 +133,11 @@ export interface JSONSchemaForTheGruntJSHintTask {
          * Pattern(s) to match, relative to the 'cwd'.
          */
         src: string[];
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | {
         options?: Options;
-        [k: string]: any;
+        [k: string]: unknown;
       };
 }
 export interface JSONSchemaForJSHintConfigurationFiles {
@@ -430,8 +430,8 @@ export interface JSONSchemaForJSHintConfigurationFiles {
      * The path pattern to apply the given options to
      */
     [k: string]: {
-      [k: string]: any;
+      [k: string]: unknown;
     };
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

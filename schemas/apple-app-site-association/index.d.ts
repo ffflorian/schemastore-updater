@@ -17,9 +17,9 @@ export interface AppleUniversalLinkAppSiteAssociation {
        */
       appID?: string;
       paths?: string[];
-      [k: string]: any;
+      [k: string]: unknown;
     }[];
-    [k: string]: any;
+    [k: string]: unknown;
   };
-  [k: string]: any;
+  [k: string]: unknown;
 }

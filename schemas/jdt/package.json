@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/jdt",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/jdt",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jdt",
   "scripts": {},
   "typesPublisherContentHash": "814d7459bcda4346e1f8e2804f2297d20bf4278414e1a363b2c40a16b14e0351",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

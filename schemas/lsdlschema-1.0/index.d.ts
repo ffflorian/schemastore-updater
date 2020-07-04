@@ -215,27 +215,27 @@ export type Phrasing =
  */
 export type AttributePhrasing = {
   Attribute: AttributePhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * A name phrasing on a linguistic relationship
  */
 export type NamePhrasing = {
   Name: NamePhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * An adjective phrasing on a linguistic relationship
  */
 export type AdjectivePhrasing = {
   Adjective: AdjectivePhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * Properties of an adjective phrasing
@@ -249,11 +249,11 @@ export type AdjectivePhrasingProperties =
       /**
        * Adjectives used to describe the Subject (with a high measurement)
        */
-      Adjectives: [Term, ...(Term)[]];
+      Adjectives: [Term, ...Term[]];
       /**
        * Adjectives used to describe the Subject (with a low measurement)
        */
-      Antonyms?: [Term, ...(Term)[]];
+      Antonyms?: [Term, ...Term[]];
       /**
        * The entity which measures the extent to which the Adjectives apply
        */
@@ -261,7 +261,7 @@ export type AdjectivePhrasingProperties =
       /**
        * Additional prepositional phrases which apply to the phrasing
        */
-      PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+      PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
     }
   | {
       /**
@@ -271,7 +271,7 @@ export type AdjectivePhrasingProperties =
       /**
        * Adjectives used to describe the Subject (with a low measurement)
        */
-      Antonyms: [Term, ...(Term)[]];
+      Antonyms: [Term, ...Term[]];
       /**
        * The entity which measures the extent to which the Adjectives apply
        */
@@ -279,52 +279,52 @@ export type AdjectivePhrasingProperties =
       /**
        * Additional prepositional phrases which apply to the phrasing
        */
-      PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+      PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
     };
 /**
  * A dynamic adjective phrasing on a linguistic relationship
  */
 export type DynamicAdjectivePhrasing = {
   DynamicAdjective: DynamicAdjectivePhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * A noun phrasing on a linguistic relationship
  */
 export type NounPhrasing = {
   Noun: NounPhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * A dynamic noun phrasing on a linguistic relationship
  */
 export type DynamicNounPhrasing = {
   DynamicNoun: DynamicNounPhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * A preposition phrasing on a linguistic relationship
  */
 export type PrepositionPhrasing = {
   Preposition: PrepositionPhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * A verb phrasing on a linguistic relationship
  */
 export type VerbPhrasing = {
   Verb: VerbPhrasingProperties;
-  State?: any;
-  Weight?: any;
-  TemplateSchema?: any;
+  State?: unknown;
+  Weight?: unknown;
+  TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
  * This interface was referenced by `GlobalSubstitution`'s JSON-Schema definition
@@ -373,7 +373,7 @@ export interface LSDLSchema {
   /**
    * The global text substitutions in the linguistic schema.
    */
-  GlobalSubstitutions?: [GlobalSubstitution, ...(GlobalSubstitution)[]];
+  GlobalSubstitutions?: [GlobalSubstitution, ...GlobalSubstitution[]];
 }
 /**
  * A reference to an additional linguistic schema.
@@ -408,7 +408,7 @@ export interface Entity {
   /**
    * Terms which can be used to refer to this entity
    */
-  Terms?: [Term, ...(Term)[]];
+  Terms?: [Term, ...Term[]];
   /**
    * The overall semantic category of the entity
    */
@@ -416,7 +416,7 @@ export interface Entity {
   /**
    * Nouns which indicate the units represented in this numeric property entity.
    */
-  Units?: [Term, ...(Term)[]];
+  Units?: [Term, ...Term[]];
   /**
    * Defines how instance values from the model are recognized
    */
@@ -705,7 +705,7 @@ export interface Relationship {
   /**
    * A set of syntactic frames which define the types of language used to describe the relationship
    */
-  Phrasings?: [Phrasing, ...(Phrasing)[]];
+  Phrasings?: [Phrasing, ...Phrasing[]];
 }
 /**
  * A role in a linguistic relationship.
@@ -718,7 +718,7 @@ export interface FullRole {
   /**
    * Nouns which can be used to refer to the entity which is the target of the role, when used in the context of the relationship
    */
-  Nouns?: [Term, ...(Term)[]];
+  Nouns?: [Term, ...Term[]];
   /**
    * A role which indicates the quantity of this role's entity which participates in the relationship
    */
@@ -801,7 +801,7 @@ export interface AttributePhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A prepositional phrase used in a phrasing
@@ -810,7 +810,7 @@ export interface PrepPhrase {
   /**
    * Prepositions used in the prepositional phrase
    */
-  Prepositions: [Term, ...(Term)[]];
+  Prepositions: [Term, ...Term[]];
   /**
    * The entity which is the object of the prepositional phrase
    */
@@ -829,7 +829,7 @@ export interface PhrasingProperties {
    * Identifies the shared template schema from which the phrasing is derived
    */
   TemplateSchema?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Properties of a name phrasing
@@ -859,7 +859,7 @@ export interface DynamicAdjectivePhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * Properties of a noun phrasing
@@ -872,11 +872,11 @@ export interface NounPhrasingProperties {
   /**
    * Nouns used to describe the Subject
    */
-  Nouns: [Term, ...(Term)[]];
+  Nouns: [Term, ...Term[]];
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * Properties of a dynamic noun phrasing
@@ -893,7 +893,7 @@ export interface DynamicNounPhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * Properties of a preposition phrasing
@@ -906,7 +906,7 @@ export interface PrepositionPhrasingProperties {
   /**
    * Prepositions used in the prepositional phrase
    */
-  Prepositions: [Term, ...(Term)[]];
+  Prepositions: [Term, ...Term[]];
   /**
    * The entity which is the object of the prepositional phrase
    */
@@ -914,7 +914,7 @@ export interface PrepositionPhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * Properties of a verb phrasing
@@ -927,7 +927,7 @@ export interface VerbPhrasingProperties {
   /**
    * Verbs used to describe the relationship
    */
-  Verbs: [Term, ...(Term)[]];
+  Verbs: [Term, ...Term[]];
   /**
    * The entity which is the indirect object of the verb
    */
@@ -939,7 +939,7 @@ export interface VerbPhrasingProperties {
   /**
    * Additional prepositional phrases which apply to the phrasing
    */
-  PrepositionalPhrases?: [PrepPhrase, ...(PrepPhrase)[]];
+  PrepositionalPhrases?: [PrepPhrase, ...PrepPhrase[]];
 }
 /**
  * A global text substitution in the linguistic schema.

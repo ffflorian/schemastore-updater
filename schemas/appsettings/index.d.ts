@@ -6,7 +6,7 @@
  */
 
 export interface JSONSchemaASPNETCoreSAppsettingsJsonFile {
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Settings for WebOptimizer.Core
@@ -29,7 +29,7 @@ export interface WebOptimizer {
    * Determines if `<script>` and `<link>` elements should point to the bundled path or a reference per source file should be created. This is helpful to disable when in development mode.
    */
   enableTagHelperBundling?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * Definitions for WebEssentials.AspNetCore.CdnTagHelpers
@@ -46,7 +46,7 @@ export interface Cdn {
    * If true, injects a <link rel='dns-prefetch'> tag that speeds up DNS resolution to the CDN.
    */
   prefetch?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * This interface was referenced by `JSONSchemaASPNETCoreSAppsettingsJsonFile`'s JSON-Schema definition
@@ -77,7 +77,7 @@ export interface Pwa {
    * Selects one of the predefined service worker types.
    */
   strategy?: "cacheFirst" | "cacheFirstSafe" | "minimal" | "networkFirst";
-  [k: string]: any;
+  [k: string]: unknown;
 }
 /**
  * This interface was referenced by `JSONSchemaASPNETCoreSAppsettingsJsonFile`'s JSON-Schema definition
@@ -96,5 +96,5 @@ export interface ElmahIo {
    * The Id of the elmah.io heartbeat to notify.
    */
   HeartbeatId?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }

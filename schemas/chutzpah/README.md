@@ -5,8 +5,8 @@
 This package contains type definitions for chutzpah.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/chutzpah.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/chutzpah.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:04 GMT
 * Dependencies: none

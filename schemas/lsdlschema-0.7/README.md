@@ -5,8 +5,8 @@
 This package contains type definitions for lsdlschema-0.7.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lsdlschema-0.7.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lsdlschema-0.7.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Sat, Jul 04, 2020, 11:00:23 GMT
 * Dependencies: none

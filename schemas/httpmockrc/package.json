@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/httpmockrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/httpmockrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/httpmockrc",
   "scripts": {},
   "typesPublisherContentHash": "f5a7dc3a17a44c112637ae2b6130625b115b57c3f88dc495d0c123d697be216a",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

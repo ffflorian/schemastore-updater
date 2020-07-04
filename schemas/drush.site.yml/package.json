@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/drush.site.yml",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/drush.site.yml",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/drush.site.yml",
   "scripts": {},
   "typesPublisherContentHash": "575f3e72e8959cead2c54f8d60e4822acc9ed190722d02d2d92fe045acb72f3e",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

@@ -25,7 +25,19 @@ export interface JSONSchemaForBowerrcFiles {
   registry?:
     | string
     | {
-        [k: string]: any;
+        /**
+         * An array of URLs pointing to read-only Bower registries. A string means only one. When looking into the registry for an endpoint, Bower will query these registries by the specified order.
+         */
+        search?: unknown[] | string;
+        /**
+         * The URL to use when registering packages.
+         */
+        register?: string;
+        /**
+         * The URL to use when publishing packages.
+         */
+        publish?: string;
+        [k: string]: unknown;
       };
   /**
    * The proxy to use for http requests.
@@ -52,7 +64,7 @@ export interface JSONSchemaForBowerrcFiles {
    */
   ca?:
     | {
-        [k: string]: any;
+        [k: string]: unknown;
       }
     | string;
   /**
@@ -66,7 +78,7 @@ export interface JSONSchemaForBowerrcFiles {
     packages?: string;
     registry?: string;
     links?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Where to store temporary files and folders
@@ -100,11 +112,11 @@ export interface JSONSchemaForBowerrcFiles {
      * A script to run before uninstall
      */
     preuninstall?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Bower will ignore these dependencies when resolving packages
    */
   ignoredDependencies?: string[];
-  [k: string]: any;
+  [k: string]: unknown;
 }

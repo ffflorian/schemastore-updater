@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/cosmos-config",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/cosmos-config",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cosmos-config",
   "scripts": {},
   "typesPublisherContentHash": "52918f7b0a300f9800fc3cd5346535e8a3b68e1d3c53eb33aff99700a6fed731",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }
