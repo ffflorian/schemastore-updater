@@ -323,7 +323,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
     const disabledSchemas: string[] = [];
     const generatedSchemas: string[] = [];
 
-    const promises = Object.keys(jsonData).map(async fileName => {
+    for (const fileName in jsonData) {
       const schemaName = fileName.replace('.json', '');
       const fileNameResolved = path.resolve(this.jsonSchemasDir, fileName);
       this.logger.info(`Processing "${schemaName}" ...`);
@@ -337,8 +337,8 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       } catch (error) {
         this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
         disabledSchemas.push(fileName);
-        await fs.appendFile(this.logFile, error.message, {encoding: 'utf-8'});
-        return;
+        await fs.appendFile(this.logFile, `${error.message}\n`, {encoding: 'utf-8'});
+        break;
       }
 
       const schemaDirResolved = path.resolve('schemas', schemaName);
@@ -358,14 +358,12 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       const license = this.generateLicense();
       await saveToSchemaDir('LICENSE', license);
 
-      await fs.appendFile(this.updatedFilesFile, schemaName, {encoding: 'utf-8'});
+      await fs.appendFile(this.updatedFilesFile, `${schemaName}\n`, {encoding: 'utf-8'});
 
       this.logger.info(`Finished processing "${schemaName}".`);
 
       generatedSchemas.push(schemaName);
-    });
-
-    await Promise.all(promises);
+    }
 
     return {
       disabledSchemas,
