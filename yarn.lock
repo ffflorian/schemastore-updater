@@ -110,10 +110,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@ffflorian/eslint-config@0.5.1":
-  version "0.5.1"
-  resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.5.1.tgz#4db259228af71f9fdf7162bbe5023afb7a2ae6aa"
-  integrity sha512-4wC1Dik6C4O/48urCHY87D7vFfJj3t9huzTf7Y7ecP2PDsB6R1aULpfNNd67aXTeZETHoRT50OGSSw5su9FSvg==
+"@ffflorian/eslint-config@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.6.0.tgz#c47b32efddccb9e3f9c38001d176e4fad1b34da4"
+  integrity sha512-uxTeThoNOHVCVIPM5Rzvx0PukR4+kq3DD+QsiaigaaPYQ629TSQ7GOMy4oVlwT5IiTQh3VqIGLTyaOK/YnRH8A==
 
 "@ffflorian/prettier-config@0.1.0":
   version "0.1.0"
