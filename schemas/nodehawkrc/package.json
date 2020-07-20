@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/nodehawkrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/nodehawkrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nodehawkrc",
   "scripts": {},
   "typesPublisherContentHash": "5bac28bc780047539e9effb298d1ce489479dfe7a598a2f36d884b9e835b55fc",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

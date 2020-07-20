@@ -5,8 +5,8 @@
 This package contains type definitions for prometheus.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prometheus.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/prometheus.
 
 ## Additional Details
-* Last updated: Fri, Oct 18, 2019, 09:07:04 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

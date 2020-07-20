@@ -5,8 +5,8 @@
 This package contains type definitions for vsix-publish.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsix-publish.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vsix-publish.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

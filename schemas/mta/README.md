@@ -5,8 +5,8 @@
 This package contains type definitions for mta.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mta.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mta.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:20 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

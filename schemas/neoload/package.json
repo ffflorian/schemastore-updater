@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/neoload",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/neoload",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/neoload",
   "scripts": {},
   "typesPublisherContentHash": "46e97ef751f80282b2b43ceb246d929c572ba46ef89fb48ffce98f8623e8717a",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

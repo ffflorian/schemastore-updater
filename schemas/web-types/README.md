@@ -5,8 +5,8 @@
 This package contains type definitions for web-types.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-types.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/web-types.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

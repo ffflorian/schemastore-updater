@@ -5,8 +5,8 @@
 This package contains type definitions for neoload.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/neoload.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/neoload.
 
 ## Additional Details
-* Last updated: Fri, Jan 03, 2020, 10:45:39 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

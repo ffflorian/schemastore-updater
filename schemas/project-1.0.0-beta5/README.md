@@ -5,8 +5,8 @@
 This package contains type definitions for project-1.0.0-beta5.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/project-1.0.0-beta5.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/project-1.0.0-beta5.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

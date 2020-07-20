@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/project-1.0.0-beta8",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/project-1.0.0-beta8",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/project-1.0.0-beta8",
   "scripts": {},
   "typesPublisherContentHash": "dbf565576df0608e68e2d0838401802b5d62a9ee5fdda597c07bb3b1dfd584b3",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

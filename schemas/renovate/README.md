@@ -5,8 +5,8 @@
 This package contains type definitions for renovate.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/renovate.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/renovate.
 
 ## Additional Details
-* Last updated: Wed, May 06, 2020, 20:22:29 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

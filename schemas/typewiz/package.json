@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/typewiz",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/typewiz",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/typewiz",
   "scripts": {},
   "typesPublisherContentHash": "747458f24c4d9146c57de79f971705164b22eaeefc3642ba364b3c6c770492e1",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

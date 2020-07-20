@@ -5,8 +5,8 @@
 This package contains type definitions for xunit.runner.schema.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/xunit.runner.schema.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/xunit.runner.schema.
 
 ## Additional Details
-* Last updated: Mon, Oct 07, 2019, 07:39:35 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

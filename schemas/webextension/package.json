@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/webextension",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/webextension",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/webextension",
   "scripts": {},
   "typesPublisherContentHash": "8e72346d0416eb3073fb11a751c5ac906971db89e1bf65292852d609c751d0ae",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

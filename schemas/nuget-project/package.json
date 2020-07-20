@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/nuget-project",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/nuget-project",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nuget-project",
   "scripts": {},
   "typesPublisherContentHash": "1703b54f4f54c3266457191842ad77b3b126cc6b38eae3e7b5e502fff6a409ce",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

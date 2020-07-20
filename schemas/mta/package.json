@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/mta",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mta",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mta",
   "scripts": {},
   "typesPublisherContentHash": "6b644854caf6fc8c4121e2da1ef32b6ebd6952c40036aec8fbf04c3a584276df",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

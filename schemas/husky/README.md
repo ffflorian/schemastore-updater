@@ -5,8 +5,8 @@
 This package contains type definitions for husky.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/husky.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/husky.
 
 ## Additional Details
-* Last updated: Tue, May 21, 2019, 11:24:36 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

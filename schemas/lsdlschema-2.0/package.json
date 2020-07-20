@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/lsdlschema-2.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/lsdlschema-2.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lsdlschema-2.0",
   "scripts": {},
   "typesPublisherContentHash": "832ef33738b32d6b5e5dbe8bd86551ff9f1464fade95a5432c8420f5a252468e",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

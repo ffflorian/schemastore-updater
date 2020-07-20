@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/mtaext",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mtaext",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mtaext",
   "scripts": {},
   "typesPublisherContentHash": "20b6312e97f8092693af5549d5a0199f2d1dc66ea3ddd96dcbacbff50e5f06e6",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

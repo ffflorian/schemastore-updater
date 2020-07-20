@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/nodemon",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/nodemon",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nodemon",
   "scripts": {},
   "typesPublisherContentHash": "4896ad84dceca2ed63f75343d3d919626c9935971c683f790e82ed432a80b368",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/resjson",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/resjson",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/resjson",
   "scripts": {},
   "typesPublisherContentHash": "f268c7820133f09c68c0599a1adce555255aa93e27f0ddb8c54c69da1e254f3f",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

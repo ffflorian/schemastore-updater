@@ -5,8 +5,8 @@
 This package contains type definitions for mtaext.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mtaext.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mtaext.
 
 ## Additional Details
-* Last updated: Fri, Jul 05, 2019, 15:12:46 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/webjobs-list",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/webjobs-list",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/webjobs-list",
   "scripts": {},
   "typesPublisherContentHash": "f898c9e3de948ebbde435dbf8d3d2971f680c3fd234e5046bb0ea215cc909d8a",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

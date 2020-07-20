@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/schema-draft-v4",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/schema-draft-v4",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/schema-draft-v4",
   "scripts": {},
   "typesPublisherContentHash": "4ac3fdcf0206cb602f566289543696bd37655c6596b07677d139d9475583a8d5",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

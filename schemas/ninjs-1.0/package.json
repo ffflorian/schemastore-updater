@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/ninjs-1.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ninjs-1.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ninjs-1.0",
   "scripts": {},
   "typesPublisherContentHash": "05e2cf88b6cb0809e0a4d610cbe80591640c8cb3c95ae67738574c76233967e3",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

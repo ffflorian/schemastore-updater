@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/vsix-publish",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsix-publish",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vsix-publish",
   "scripts": {},
   "typesPublisherContentHash": "b728905d848a830d5aec8be257869f91b3aeca2386391fa536a302a6a2ae82c2",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

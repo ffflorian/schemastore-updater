@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/xunit.runner.schema",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/xunit.runner.schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/xunit.runner.schema",
   "scripts": {},
   "typesPublisherContentHash": "bafcfb07fb1e7d161a5109c8329b0a47e36b836f3e7a67f3a235045593f9615a",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

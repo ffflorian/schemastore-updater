@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/vs-nesting",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vs-nesting",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vs-nesting",
   "scripts": {},
   "typesPublisherContentHash": "c1ad0f66084f4ff6631ee887ab07c0ee8d7bd4112d5555c62c948a6b7ac2bc56",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/renovate",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/renovate",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/renovate",
   "scripts": {},
   "typesPublisherContentHash": "bdaa8d89e5bce5dd040eb35bc2fa1c3c080b7cae9018a17a7cef4604e4f63e9b",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/sarif-2.1.0-rtm.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sarif-2.1.0-rtm.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sarif-2.1.0-rtm.0",
   "scripts": {},
   "typesPublisherContentHash": "e764ec55ef06b7fdc6dd92077692542d2e8c625ac823f48cd0e3bf096c49cf98",
   "types": "index.d.ts",

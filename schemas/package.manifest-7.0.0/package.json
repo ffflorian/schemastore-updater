@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/package.manifest-7.0.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/package.manifest-7.0.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/package.manifest-7.0.0",
   "scripts": {},
   "typesPublisherContentHash": "146942337290d037a7fbbfac1a3f13fba411594e2fccd56aa78ef3c176740c81",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

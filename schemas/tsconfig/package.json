@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/tsconfig",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/tsconfig",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/tsconfig",
   "scripts": {},
   "typesPublisherContentHash": "449eda4bdf20d07926410ec7959c0ec2f7c2c55cd80bbe2c84440b8779e885d3",
   "types": "index.d.ts",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "typeScriptVersion": "2.2"
 }

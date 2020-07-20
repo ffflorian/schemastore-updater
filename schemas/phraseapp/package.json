@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/phraseapp",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/phraseapp",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/phraseapp",
   "scripts": {},
   "typesPublisherContentHash": "ee4bd185e2e73e999d992bcb89c3a1344f8db20af5cb6d4948784966c531fd7e",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

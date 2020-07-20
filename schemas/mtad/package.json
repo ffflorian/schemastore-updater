@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/mtad",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/mtad",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mtad",
   "scripts": {},
   "typesPublisherContentHash": "0bb95348efb74e51199c18dd2770ae228303e9f253a38338a70030ee35d16999",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

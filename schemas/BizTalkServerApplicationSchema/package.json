@@ -4,11 +4,11 @@
   "description": "TypeScript definitions for BizTalkServerApplicationSchema.",
   "license": "MIT",
   "main": "index.d.ts",
-  "name": "@schemastore/BizTalkServerApplicationSchema",
+  "name": "@schemastore/biztalkserverapplicationschema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/BizTalkServerApplicationSchema",
   "scripts": {},
   "typesPublisherContentHash": "903c66852cd9e6273edadcedea11c465abb7c608ba848b97af77a24013cb6c68",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

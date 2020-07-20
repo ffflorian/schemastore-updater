@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/vsix-manifestinjection",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsix-manifestinjection",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vsix-manifestinjection",
   "scripts": {},
   "typesPublisherContentHash": "0997e027cf3b0296d3514a09d2b7010604057fe42dfd8abb5e46ac9fd5e2166f",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

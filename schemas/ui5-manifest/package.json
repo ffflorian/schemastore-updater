@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/ui5-manifest",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ui5-manifest",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ui5-manifest",
   "scripts": {},
   "typesPublisherContentHash": "137540bae419736bacffb02510de34525fc841411105576a99d405633578a169",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

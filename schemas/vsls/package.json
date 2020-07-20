@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/vsls",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsls",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vsls",
   "scripts": {},
   "typesPublisherContentHash": "959a45e7276a7f1c1cd777a679b75d9096a79e7268a22a4aa248f922338f4d50",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

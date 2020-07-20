@@ -5,8 +5,8 @@
 This package contains type definitions for pubspec.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/pubspec.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pubspec.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

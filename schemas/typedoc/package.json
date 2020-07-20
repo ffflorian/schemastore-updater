@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/typedoc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/typedoc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/typedoc",
   "scripts": {},
   "typesPublisherContentHash": "39b495886377870d16a60643fddeb6ab425332a02389f24356e74e7cea5609d8",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

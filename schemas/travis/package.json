@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/travis",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/travis",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/travis",
   "scripts": {},
   "typesPublisherContentHash": "a3cc4daec2337c2ab41286ecfd1fdc79ffcdd7fc18c2169581e98a1f30890d5b",
   "types": "index.d.ts",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "typeScriptVersion": "2.2"
 }

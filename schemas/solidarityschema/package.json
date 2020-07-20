@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/solidarityschema",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/solidarityschema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/solidarityschema",
   "scripts": {},
   "typesPublisherContentHash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

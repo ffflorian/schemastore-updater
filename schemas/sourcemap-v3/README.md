@@ -5,8 +5,8 @@
 This package contains type definitions for sourcemap-v3.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sourcemap-v3.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sourcemap-v3.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

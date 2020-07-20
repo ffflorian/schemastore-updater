@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/omnisharp",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/omnisharp",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/omnisharp",
   "scripts": {},
   "typesPublisherContentHash": "3dca75b20347a784f9e1d67aab73449ddf4bd9ea5a0a9a36d13a8d0b36cc867e",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/web-manifest",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-manifest",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/web-manifest",
   "scripts": {},
   "typesPublisherContentHash": "d298692aa60bf289097ac6139f40d0071ee65aa02dcb0cb247d4792cf57a4128",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "",
   "name": "@schemastore/ksp-ckan-1.16",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ksp-ckan-1.16",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ksp-ckan-1.16",
   "scripts": {},
   "typesPublisherContentHash": "0ab843c8712c665792162532c0e687e6ada9abd8cf8025da4c27acfa45f4c177",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/resume",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/resume",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/resume",
   "scripts": {},
   "typesPublisherContentHash": "54c51d0a041ce2fbcff44675d4d70eff801e7c881341d68dc75011592eb4bb95",
   "types": "index.d.ts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "typeScriptVersion": "2.2"
 }

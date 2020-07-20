@@ -5,8 +5,8 @@
 This package contains type definitions for ninjs-1.2.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/ninjs-1.2.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ninjs-1.2.
 
 ## Additional Details
-* Last updated: Wed, Nov 27, 2019, 11:23:16 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

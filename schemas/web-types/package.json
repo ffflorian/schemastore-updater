@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/web-types",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-types",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/web-types",
   "scripts": {},
   "typesPublisherContentHash": "28d788be2872a3f09d4fd076c144a0f7fd88a99d37b41ce44ead80606f37d8f0",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

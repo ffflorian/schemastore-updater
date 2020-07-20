@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/sarif-2.0.0-csd.2.beta.2019-01-09",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/sarif-2.0.0-csd.2.beta.2019-01-09",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sarif-2.0.0-csd.2.beta.2019-01-09",
   "scripts": {},
   "typesPublisherContentHash": "03689a2bfc8b48b310525febf58d1d948c5bcab1ed429a101c75526e84e34827",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

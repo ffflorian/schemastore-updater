@@ -5,8 +5,8 @@
 This package contains type definitions for web-manifest.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/web-manifest.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/web-manifest.
 
 ## Additional Details
-* Last updated: Sat, Aug 31, 2019, 06:46:12 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

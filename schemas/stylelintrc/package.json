@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/stylelintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/stylelintrc",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/stylelintrc",
   "scripts": {},
   "typesPublisherContentHash": "5ed071ee8dc930f71d79c1a19b60535d7f72b242ec7d62c7fb7820c7b63d82e7",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

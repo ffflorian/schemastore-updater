@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/prettierrc-1.8.2",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prettierrc-1.8.2",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/prettierrc-1.8.2",
   "scripts": {},
   "typesPublisherContentHash": "3752212c2514117b36737748b21e7210538acd3adf7623b7500db1b968648432",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/prometheus",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/prometheus",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/prometheus",
   "scripts": {},
   "typesPublisherContentHash": "5d6edbb6dc75e041b09ddabac31535d95c32b7f83fc378adddf954d827aa72d0",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

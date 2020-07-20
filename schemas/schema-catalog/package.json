@@ -5,10 +5,10 @@
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/schema-catalog",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/master/schemas/schema-catalog",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/schema-catalog",
   "scripts": {},
   "typesPublisherContentHash": "7bbeef14515177f2b22c15f76c8ce097260f34c3f6725e95da5c667dafff954a",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

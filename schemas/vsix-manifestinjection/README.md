@@ -5,8 +5,8 @@
 This package contains type definitions for vsix-manifestinjection.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/vsix-manifestinjection.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vsix-manifestinjection.
 
 ## Additional Details
-* Last updated: Thu, Jul 25, 2019, 17:59:05 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none

@@ -5,8 +5,8 @@
 This package contains type definitions for swagger-2.0.
 
 ## Details
-Files were exported from https://github.com/ffflorian/schemastore-updater/tree/master/schemas/swagger-2.0.
+Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/swagger-2.0.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:15 GMT
+* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
 * Dependencies: none
