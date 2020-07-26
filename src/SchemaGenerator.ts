@@ -276,7 +276,7 @@ SOFTWARE
 
   private generatePackageJson(schemaName: string, schemaData: SchemaData): string {
     return `{
-  "author": "Florian Keller <github@floriankeller.de>",
+  "author": "Florian Keller <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for ${schemaName}.",
   "license": "MIT",
