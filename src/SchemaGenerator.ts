@@ -252,7 +252,7 @@ export class SchemaGenerator {
   private generateLicense(): string {
     return `MIT License
 
-Copyright (c) Florian Keller. All rights reserved.
+Copyright (c) Florian Imdahl. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -276,7 +276,7 @@ SOFTWARE
 
   private generatePackageJson(schemaName: string, schemaData: SchemaData): string {
     return `{
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for ${schemaName}.",
   "license": "MIT",
