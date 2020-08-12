@@ -115,10 +115,10 @@
   resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.6.1.tgz#36df9d68bd9e3847995eff8dfd2953e9a1789914"
   integrity sha512-dqZ7X4ER8w9xv8kXfSu22OLPfg/2cde8KfDq8G7edmnx1jhKDo9E69kdtp8qYO2C915DQ5zbSwWTMVUdGtYdTA==
 
-"@ffflorian/prettier-config@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.1.1.tgz#ccaf7f9aaed7e0b37c2f612c35b3327c19ee9525"
-  integrity sha512-kqPJzPlJSWZNISCPmp5URbe57jDQN97o43y1fC3KPk0Lcj0CXWNWmg3EuT+D3d+Er8tSBmEe08fSJqTmkFibNg==
+"@ffflorian/prettier-config@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.1.2.tgz#d0a45f0ad666f4f1d741a6b17e1320a0306f4ed9"
+  integrity sha512-QphlsqI6Mr+cmn5jaii/68/DuNceQEoZmCcvHTkA130cKWmLhuWZIk8Xj70sT10A3v/WegZ8r7bpkgobDzd44g==
 
 "@jsdevtools/ono@^7.1.2":
   version "7.1.2"
