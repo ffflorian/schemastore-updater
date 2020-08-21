@@ -81,7 +81,9 @@ if (!commander.rawArgs.length) {
   process.exit();
 }
 
-async function update(settings: Required<SchemaGeneratorOptions>): Promise<{sourceDir: string}> {
+async function update(
+  settings: SchemaGeneratorOptions & Required<Pick<SchemaGeneratorOptions, 'disabledSchemas'>>
+): Promise<{sourceDir: string}> {
   const generator = new SchemaGenerator(settings);
   await generator.checkVersions();
   await generator.checkHashsums();
