@@ -1,6 +1,6 @@
 name: Build
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build_lint_test:
@@ -11,7 +11,7 @@ jobs:
       !contains(github.event.head_commit.message, '[skip ci]')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
@@ -29,3 +29,4 @@ jobs:
           yarn
           yarn lint
           yarn dist
+          yarn test
