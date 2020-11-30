@@ -201,6 +201,11 @@
   resolved "https://registry.npmjs.org/@types/jsonabc/-/jsonabc-2.3.1.tgz#3aa5d3f938331ef2472d3ea56c6b4c805bef6198"
   integrity sha512-SOR8DMQQVUmk3JnNp7FU75U+vp/VcFcghvS68mUQEuq4FKDANIQ9dxDA5qEQMDahBCd5Vyhk81ywn0JbcLpZZw==
 
+"@types/lodash@4.14.165":
+  version "4.14.165"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
+  integrity sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
