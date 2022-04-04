@@ -337,7 +337,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       } catch (error) {
         this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);
         disabledSchemas.push(fileName);
-        await fs.appendFile(this.logFile, `${error.message}\n`, {encoding: 'utf-8'});
+        await fs.appendFile(this.logFile, `${(error as Error).message}\n`, {encoding: 'utf-8'});
         break;
       }
 
