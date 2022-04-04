@@ -51,7 +51,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
       /**
        * The version of the library that is used by the script. This is either a version number or stable, meaning the last version created.
        */
-      version: string;
+      version: number & string;
       /**
        * If true, version is ignored and the script uses the current library project saved code, even if that code has not been saved to a new version.
        */
@@ -326,7 +326,34 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
       eventAccess?: "METADATA" | "READ" | "WRITE" | "READ_WRITE";
       [k: string]: unknown;
     };
+    /**
+     * Configurations for the Google Workspace Add-on's appearance and behavior within the Sheets host application.
+     */
+    sheets?: {
+      homepageTrigger?: HomepageTrigger;
+      /**
+       * A configuration for a contextual trigger that fires when the add-on presents the request file scope dialog.
+       */
+      onFileScopeGrantedTrigger?: {
+        runFunction?: string;
+        [k: string]: unknown;
+      };
+    };
     [k: string]: unknown;
   };
+  [k: string]: unknown;
+}
+/**
+ * The Google Workspace add-on manifest configuration for homepage triggers.
+ */
+export interface HomepageTrigger {
+  /**
+   * Whether or not homepage (non-contextual) cards are enabled in Calendar. Defaults to true.
+   */
+  enabled?: boolean;
+  /**
+   * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects.
+   */
+  runFunction?: string;
   [k: string]: unknown;
 }

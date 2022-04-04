@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for agripparc-1.3.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/agripparc-1.3",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/agripparc-1.3",
+  "scripts": {},
+  "typesPublisherContentHash": "1401dbd7750b6c0b31e955e09050592c8a3a3f4b6ef0a74ced4cb7d3300e9672",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

@@ -5,7 +5,17 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface JSONSchemaForBabel6ConfigurationFiles {
+export type JSONSchemaForBabel6ConfigurationFiles = Options & {
+  /**
+   * This is an object of keys that represent different environments. For example, you may have: `{ env: { production: { /* specific options * / } } }` which will use those options when the environment variable BABEL_ENV is set to "production". If BABEL_ENV isn't set then NODE_ENV will be used, if it's not set then it defaults to "development"
+   */
+  env?: {
+    [k: string]: Options;
+  };
+  [k: string]: unknown;
+};
+
+export interface Options {
   /**
    * Include the AST in the returned object
    */
@@ -31,12 +41,6 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
    */
   compact?: "auto" | true | false;
   /**
-   * This is an object of keys that represent different environments. For example, you may have: `{ env: { production: { /* specific options * / } } }` which will use those options when the environment variable BABEL_ENV is set to "production". If BABEL_ENV isn't set then NODE_ENV will be used, if it's not set then it defaults to "development"
-   */
-  env?: {
-    [k: string]: unknown;
-  };
-  /**
    * A path to a .babelrc file to extend
    */
   extends?: string;
@@ -55,11 +59,15 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
   /**
    * Opposite of the "only" option
    */
-  ignore?: string[];
+  ignore?: string | string[];
   /**
    * If true, attempt to load an input sourcemap from the file itself. If an object is provided, it will be treated as the source map object itself.
    */
-  inputSourceMap?: boolean;
+  inputSourceMap?:
+    | boolean
+    | {
+        [k: string]: unknown;
+      };
   /**
    * Keep extensions in module ids
    */
@@ -71,7 +79,7 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
   /**
    * If truthy, insert an explicit id for modules. By default, all modules are anonymous. (Not available for common modules)
    */
-  moduleIds?: string;
+  moduleIds?: boolean & string;
   /**
    * Optional prefix for the AMD module formatter that will be prepend to the filename on module definitions. (defaults to "sourceRoot")
    */
@@ -79,40 +87,34 @@ export interface JSONSchemaForBabel6ConfigurationFiles {
   /**
    * A glob, regex, or mixed array of both, matching paths to only compile. Can also be an array of arrays containing paths to explicitly match. When attempting to compile a non-matching file it's returned verbatim.
    */
-  only?: string[];
+  only?: string | string[];
   /**
    * List of plugins to load and use
    */
   plugins?: (
-    | (
-        | string
-        | {
-            [k: string]: unknown;
-          }
-      )[]
-    | (
-        | string
-        | {
-            [k: string]: unknown;
-          }
-      )[]
+    | string
+    | []
+    | [string]
+    | [
+        string,
+        {
+          [k: string]: unknown;
+        }
+      ]
   )[];
   /**
    * List of presets (a set of plugins) to load and use
    */
   presets?: (
-    | (
-        | string
-        | {
-            [k: string]: unknown;
-          }
-      )[]
-    | (
-        | string
-        | {
-            [k: string]: unknown;
-          }
-      )[]
+    | string
+    | []
+    | [string]
+    | [
+        string,
+        {
+          [k: string]: unknown;
+        }
+      ]
   )[];
   /**
    * Retain line numbers. This will lead to wacky code but is handy for scenarios where you can't use source maps. NOTE: This will obviously not retain the columns.

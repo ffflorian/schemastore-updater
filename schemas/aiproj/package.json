@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for aiproj.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/aiproj",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/aiproj",
+  "scripts": {},
+  "typesPublisherContentHash": "705958d27bcb94ae0f1ecf5d5516b62699e64dbb7eef40be13cf57467a3aa394",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

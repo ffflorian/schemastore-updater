@@ -6,6 +6,10 @@
  */
 
 export type ModuleType = "docker";
+/**
+ * This interface was referenced by `ModuleSettings`'s JSON-Schema definition
+ * via the `patternProperty` "^(createoptions|createOptions)[0-9]*$".
+ */
 export type CreateOptions =
   | {
       [k: string]: unknown;
@@ -14,6 +18,7 @@ export type CreateOptions =
 export type ImagePullPolicy = "never" | "on-create";
 export type Status = "running" | "stopped";
 export type RestartPolicy = "never" | "on-failure" | "on-unhealthy" | "always";
+export type StartupOrder = number;
 
 export interface JSONSchemaForAzureIoTEdgeDeploymentTemplateVersion20 {
   modulesContent: TheConfigurationForAllTheModules;
@@ -44,7 +49,7 @@ export interface ConfigurationForTheEdgeAgentModule {
         registryCredentials?: {
           /**
            * This interface was referenced by `undefined`'s JSON-Schema definition
-           * via the `patternProperty` "^[^\.\# ]+$".
+           * via the `patternProperty` "^[^.# ]+$".
            */
           [k: string]: {
             username: string;
@@ -52,33 +57,7 @@ export interface ConfigurationForTheEdgeAgentModule {
             address: string;
           };
         };
-        /**
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "^[^\.\$# ]+$".
-         */
-        [k: string]:
-          | unknown[]
-          | boolean
-          | number
-          | null
-          | {
-              [k: string]: unknown;
-            }
-          | string;
       };
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "^[^\.\$# ]+$".
-       */
-      [k: string]:
-        | unknown[]
-        | boolean
-        | number
-        | null
-        | {
-            [k: string]: unknown;
-          }
-        | string;
     };
     systemModules: {
       edgeAgent: {
@@ -86,19 +65,6 @@ export interface ConfigurationForTheEdgeAgentModule {
         settings: ModuleSettings;
         env?: Env;
         imagePullPolicy?: ImagePullPolicy;
-        /**
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "^[^\.\$# ]+$".
-         */
-        [k: string]:
-          | unknown[]
-          | boolean
-          | number
-          | null
-          | {
-              [k: string]: unknown;
-            }
-          | string;
       };
       edgeHub: TheEdgehubSchema;
     };
@@ -115,52 +81,14 @@ export interface ConfigurationForTheEdgeAgentModule {
         env?: Env;
         settings: ModuleSettings;
         imagePullPolicy?: ImagePullPolicy;
-        /**
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "^[^\.\$# ]+$".
-         */
-        [k: string]:
-          | unknown[]
-          | boolean
-          | number
-          | null
-          | {
-              [k: string]: unknown;
-            }
-          | string;
+        startupOrder?: StartupOrder;
       };
     };
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "^[^\.\$# ]+$".
-     */
-    [k: string]:
-      | unknown[]
-      | boolean
-      | number
-      | null
-      | {
-          [k: string]: unknown;
-        }
-      | string;
   };
 }
 export interface ModuleSettings {
   image: string;
-  createOptions?: CreateOptions;
-  /**
-   * This interface was referenced by `ModuleSettings`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\.\$# ]+$".
-   */
-  [k: string]:
-    | unknown[]
-    | boolean
-    | number
-    | null
-    | {
-        [k: string]: unknown;
-      }
-    | string;
+  [k: string]: CreateOptions;
 }
 export interface Env {
   /**
@@ -178,19 +106,7 @@ export interface TheEdgehubSchema {
   status: Status;
   restartPolicy: RestartPolicy;
   imagePullPolicy?: ImagePullPolicy;
-  /**
-   * This interface was referenced by `TheEdgehubSchema`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\.\$# ]+$".
-   */
-  [k: string]:
-    | unknown[]
-    | boolean
-    | number
-    | null
-    | {
-        [k: string]: unknown;
-      }
-    | string;
+  startupOrder?: StartupOrder;
 }
 export interface ConfigurationForTheEdgeHubModule {
   "properties.desired": {
@@ -210,32 +126,6 @@ export interface ConfigurationForTheEdgeHubModule {
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "^[^\.\$# ]+$".
-       */
-      [k: string]:
-        | unknown[]
-        | boolean
-        | number
-        | null
-        | {
-            [k: string]: unknown;
-          }
-        | string;
     };
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "^[^\.\$# ]+$".
-     */
-    [k: string]:
-      | unknown[]
-      | boolean
-      | number
-      | null
-      | {
-          [k: string]: unknown;
-        }
-      | string;
   };
 }

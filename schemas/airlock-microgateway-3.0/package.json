@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for airlock-microgateway-3.0.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/airlock-microgateway-3.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/airlock-microgateway-3.0",
+  "scripts": {},
+  "typesPublisherContentHash": "114cad16c31f74c9d38afedce4cd6362e8c490b25c170ba18fbea55c6f1a109f",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

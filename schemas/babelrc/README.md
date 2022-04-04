@@ -8,5 +8,5 @@ This package contains type definitions for babelrc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/babelrc.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:04 GMT
+* Last updated: Mon, Apr 04, 2022, 11:03:18 GMT
 * Dependencies: none

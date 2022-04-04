@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for base.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/base",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/base",
+  "scripts": {},
+  "typesPublisherContentHash": "ddf9a5acf6944e3a194ca85781e591c19c5f4f6295e3eb134154c336f8b15e5c",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

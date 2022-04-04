@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for backportrc.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/backportrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/backportrc",
   "scripts": {},
-  "typesPublisherContentHash": "30d6ad5ce816f384a92ab1c1981b212606f08fede3696fa0b4c3736882ed9117",
+  "typesPublisherContentHash": "77f879d97ec026ee9104e3e2047ecde5b8ef3f0effd96af81e04e8f94b7276a6",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

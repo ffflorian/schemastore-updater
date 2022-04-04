@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for artifacthub-repo.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/artifacthub-repo",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/artifacthub-repo",
+  "scripts": {},
+  "typesPublisherContentHash": "079f7e998c94cd5d962118d8b90dd873bde31e477109ee6e669a161311fd8e4b",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

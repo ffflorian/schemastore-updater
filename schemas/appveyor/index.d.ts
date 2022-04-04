@@ -11,16 +11,23 @@ export type JSONSchemaForAppVeyorCIConfigurationFiles = Job;
  */
 export type Image = ImageName[] | ImageName;
 export type ImageName =
+  | "macOS"
+  | "macOS-Mojave"
+  | "Previous macOS"
+  | "Previous macOS-Mojave"
   | "Ubuntu"
   | "Ubuntu1604"
   | "Ubuntu1804"
+  | "Ubuntu2004"
   | "Previous Ubuntu"
   | "Previous Ubuntu1604"
   | "Previous Ubuntu1804"
+  | "Previous Ubuntu2004"
   | "Visual Studio 2013"
   | "Visual Studio 2015"
   | "Visual Studio 2017"
   | "Visual Studio 2019"
+  | "Visual Studio 2022"
   | "Visual Studio 2017 Preview"
   | "Visual Studio 2019 Preview"
   | "Previous Visual Studio 2013"
@@ -44,9 +51,13 @@ export type Command =
     }
   | {
       cmd?: string;
+    }
+  | {
+      sh?: string;
     };
 export type PossiblySecretString =
   | string
+  | number
   | {
       /**
        * This should have been encrypted by the same user account to which the project belongs
@@ -100,7 +111,7 @@ export interface Job {
      */
     message?: string;
     /**
-     * Commit author's username, name, email or regexp maching one of these.
+     * Commit author's username, name, email or regexp matching one of these.
      */
     author?: string;
     /**
@@ -117,7 +128,7 @@ export interface Job {
      */
     message?: string;
     /**
-     * Commit author's username, name, email or regexp maching one of these.
+     * Commit author's username, name, email or regexp matching one of these.
      */
     author?: string;
     /**
@@ -159,7 +170,7 @@ export interface Job {
   hosts?: {
     [k: string]: {
       [k: string]: unknown;
-    };
+    } & string;
   };
   /**
    * Environment variables
@@ -201,6 +212,7 @@ export interface Job {
    * Enable service required for build/tests
    */
   services?: (
+    | "docker"
     | "iis"
     | "mongodb"
     | "msmq"

@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for azure-iot-edgeagent-deployment-1.1.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/azure-iot-edgeagent-deployment-1.1",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-iot-edgeagent-deployment-1.1",
+  "scripts": {},
+  "typesPublisherContentHash": "2485e1f518092ea2a0e1d9b4ac233a870db24c6581dd1e9ddcb4578da36064e8",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

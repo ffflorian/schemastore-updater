@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for appsscript.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/appsscript",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appsscript",
   "scripts": {},
-  "typesPublisherContentHash": "27403506d6807be66a022abeec74351792ad74ac3da75fe030929480cce1ed8e",
+  "typesPublisherContentHash": "4a6ee7eaec43aac85213bc2fd53b2b7e5e30252122c4a35473c6807296f36456",
   "types": "index.d.ts",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "typeScriptVersion": "2.2"
 }

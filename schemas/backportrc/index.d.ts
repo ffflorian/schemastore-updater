@@ -7,7 +7,7 @@
 
 export interface JSONSchemaForBackportConfigFile {
   /**
-   * Identifier for the Github project as `{owner}/{repoName}`
+   * Identifier for the GitHub project as `{owner}/{repoName}`
    */
   upsteam?: string;
   /**
