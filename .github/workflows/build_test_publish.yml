@@ -1,0 +1,76 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build_test_publish:
+    name: Build, test and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Skip CI check
+        uses: mstachniuk/ci-skip@v1
+
+      - name: Set up Node.js
+        if: env.CI_SKIP == 'false'
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Set yarn cache directory
+        if: env.CI_SKIP == 'false'
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        if: env.CI_SKIP == 'false'
+        id: yarn-cache
+        with:
+          path: ${{steps.yarn-cache-dir-path.outputs.dir}}
+          key: ${{runner.os}}-yarn-${{hashFiles('**/yarn.lock')}}
+          restore-keys: ${{runner.os}}-yarn-
+
+      - name: Build, lint and test
+        if: env.CI_SKIP == 'false'
+        run: |
+          yarn
+          yarn lint
+          yarn test
+          yarn dist
+
+      - name: Release on npm
+        if: |
+          env.CI_SKIP == 'false' &&
+          github.event_name != 'pull_request' &&
+          !startsWith(github.event.head_commit.message, 'chore(deps')
+        env:
+          GIT_AUTHOR_NAME: ffflobot
+          GIT_AUTHOR_EMAIL: ffflobot@users.noreply.github.com
+          GIT_COMMITTER_NAME: ffflobot
+          GIT_COMMITTER_EMAIL: ffflobot@users.noreply.github.com
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          git config --global "user.email" "${GIT_AUTHOR_EMAIL}"
+          git config --global "user.name" "${GIT_AUTHOR_NAME}"
+          REPO_URL="$(git remote get-url origin | sed -n "s/https:\/\/github.com\//https:\/\/${GIT_AUTHOR_NAME}:${GITHUB_TOKEN}@github.com\//p")"
+          yarn release -r "${REPO_URL}"
+
+      - name: Release on GitHub
+        if: |
+          env.CI_SKIP == 'false' &&
+          github.event_name != 'pull_request' &&
+          !startsWith(github.event.head_commit.message, 'chore(deps')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > ~/.npmrc
+          sed -i -E "s/\"name\": \"([^@].+)/\"name\": \"@ffflorian\/\1/" package.json
+          npm publish --registry=https://npm.pkg.github.com || true
