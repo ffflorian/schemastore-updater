@@ -17,24 +17,26 @@ const {
 
 commander.name(name).version(version).description(description);
 
+const commanderOptions = commander.opts();
+
 commander
   .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
   .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)');
 
-const settingsFile = commander.opts().settings
-  ? path.resolve(commander.opts().settings)
+const settingsFile = commanderOptions.settings
+  ? path.resolve(commanderOptions.settings)
   : path.join(__dirname, '../settings.json');
 
 commander
   .command('update')
   .option('-f, --force', 'Force re-generating all schemas', false)
-  .action(async instance => {
+  .action(async () => {
     try {
       const settings: FileSettings = await fs.readJSON(settingsFile);
       await update({
         ...settings,
-        ...(instance.parent.sourceDir && {source: instance.parent.sourceDir}),
-        force: !!instance.force,
+        ...(commanderOptions.sourceDir && {source: commanderOptions.sourceDir}),
+        force: !!commanderOptions.force,
       });
     } catch (error) {
       console.error(error);
