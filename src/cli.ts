@@ -1,4 +1,4 @@
-import * as commander from 'commander';
+import {program as commander} from 'commander';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
@@ -21,7 +21,9 @@ commander
   .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
   .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)');
 
-const settingsFile = commander.settings ? path.resolve(commander.settings) : path.join(__dirname, '../settings.json');
+const settingsFile = commander.opts().settings
+  ? path.resolve(commander.opts().settings)
+  : path.join(__dirname, '../settings.json');
 
 commander
   .command('update')
@@ -76,7 +78,7 @@ commander.command('fix-lockfile').action(async () => {
 
 commander.parse(process.argv);
 
-if (!commander.rawArgs.length) {
+if (!commander.args.length) {
   commander.outputHelp();
   process.exit();
 }
