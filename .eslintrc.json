@@ -4,7 +4,8 @@
     {
       "files": "*.ts",
       "rules": {
-        "@typescript-eslint/typedef": "off"
+        "@typescript-eslint/typedef": "off",
+        "unused-imports/no-unused-imports-ts": "off"
       }
     }
   ],

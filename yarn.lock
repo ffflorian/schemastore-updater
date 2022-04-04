@@ -123,10 +123,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@ffflorian/eslint-config@0.6.2":
-  version "0.6.2"
-  resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.6.2.tgz#4414fd357e1f5e8a8f0baada36bacda35ade430e"
-  integrity sha512-cH+jSftXoewGrnoyUgAiW6ZRgxVn40BdsAJ3rCjcQ/pBdWTOgvnZAqZXpl8oK277gwAfX0GnRewR93lKcP7wOg==
+"@ffflorian/eslint-config@0.7.0":
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.7.0.tgz#461f8e13e36a2539513eb053be1003451b5ab1f5"
+  integrity sha512-MqhU6bM0VU3vfBsiVp2hPc6QUu6qR2M4krzPMHEUkscb4VJkOvnLlE/UlzP4WbJFIEeu3XrLPkD18UxIexiTCQ==
 
 "@ffflorian/prettier-config@0.1.2":
   version "0.1.2"
@@ -976,6 +976,18 @@ eslint-plugin-typescript-sort-keys@1.5.0:
     "@typescript-eslint/experimental-utils" "^2.32.0"
     json-schema "^0.2.5"
     natural-compare-lite "^1.4.0"
+
+eslint-plugin-unused-imports@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/eslint-plugin-unused-imports/-/eslint-plugin-unused-imports-2.0.0.tgz#d8db8c4d0cfa0637a8b51ce3fd7d1b6bc3f08520"
+  integrity sha512-3APeS/tQlTrFa167ThtP0Zm0vctjr4M44HMpeg1P4bK6wItarumq0Ma82xorMKdFsWpphQBlRPzw/pxiVELX1A==
+  dependencies:
+    eslint-rule-composer "^0.3.0"
+
+eslint-rule-composer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
+  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@^5.0.0, eslint-scope@^5.1.1:
   version "5.1.1"
