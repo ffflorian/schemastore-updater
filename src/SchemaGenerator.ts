@@ -7,7 +7,7 @@ import * as logdown from 'logdown';
 import * as path from 'path';
 import * as semver from 'semver';
 
-import {BuildResult, CheckResult, SchemaData, SchemaGeneratorOptions, SchemaHashes} from './interfaces';
+import type {BuildResult, CheckResult, SchemaData, SchemaGeneratorOptions, SchemaHashes} from './interfaces';
 
 const defaultOptions: Required<SchemaGeneratorOptions> = {
   disabledSchemas: [],
