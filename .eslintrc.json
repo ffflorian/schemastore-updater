@@ -4,12 +4,12 @@
     {
       "files": "*.ts",
       "rules": {
-        "@typescript-eslint/typedef": "off",
-        "unused-imports/no-unused-imports-ts": "off"
+        "@typescript-eslint/typedef": "off"
       }
     }
   ],
   "rules": {
-    "valid-jsdoc": "off"
+    "valid-jsdoc": "off",
+    "unused-imports/no-unused-imports": "off"
   }
 }
