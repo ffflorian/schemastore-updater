@@ -144,10 +144,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@ffflorian/eslint-config@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.7.0.tgz#461f8e13e36a2539513eb053be1003451b5ab1f5"
-  integrity sha512-MqhU6bM0VU3vfBsiVp2hPc6QUu6qR2M4krzPMHEUkscb4VJkOvnLlE/UlzP4WbJFIEeu3XrLPkD18UxIexiTCQ==
+"@ffflorian/eslint-config@0.8.1":
+  version "0.8.1"
+  resolved "https://registry.npmjs.org/@ffflorian/eslint-config/-/eslint-config-0.8.1.tgz#5ddccb495d8cfbde81489ae72f3d0baf2103b450"
+  integrity sha512-sHkTnnK1RFC8PDhJW6TZ8poYOS6UShGsnNcDE/DKmFyXDiq9hYZ4ASXPcRdEJnyTte6Nj2rfvWGfPjw+lLuqSQ==
 
 "@ffflorian/prettier-config@0.1.2":
   version "0.1.2"
