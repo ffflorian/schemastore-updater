@@ -17,7 +17,7 @@
     "@types/jsonabc": "2.3.1",
     "@types/lodash": "4.14.181",
     "@types/node": "~16",
-    "@types/prettier": "2.4.4",
+    "@types/prettier": "2.6.0",
     "@types/rimraf": "3.0.2",
     "@types/semver": "7.3.9",
     "@typescript-eslint/eslint-plugin": "4.0.0",
