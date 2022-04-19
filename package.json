@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "commander": "9.2.0",
-    "fs-extra": "10.0.1",
+    "fs-extra": "10.1.0",
     "json-schema-to-typescript": "10.1.5",
     "jsonabc": "2.3.1",
     "semver": "7.3.7"
