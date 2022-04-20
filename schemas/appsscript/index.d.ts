@@ -51,7 +51,7 @@ export interface JSONSchemaForGoogleAppsScriptManifestFiles {
       /**
        * The version of the library that is used by the script. This is either a version number or stable, meaning the last version created.
        */
-      version: number & string;
+      version: string;
       /**
        * If true, version is ignored and the script uses the current library project saved code, even if that code has not been saved to a new version.
        */

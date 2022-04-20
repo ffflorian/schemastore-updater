@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for cdk.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/cdk",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cdk",
+  "scripts": {},
+  "typesPublisherContentHash": "10c219cdf9bcb7702fa2fdb3eb0dbbdd542334847d4778a0e9b9491a90408a75",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

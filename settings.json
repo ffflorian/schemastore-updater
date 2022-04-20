@@ -2,12 +2,7 @@
   "disabledSchemas": [
     "ansible-stable-2.9.json",
     "bitrise-step.json",
-    "bootstraprc.json",
-    "chrome-manifest.json",
-    "cirrus.json",
-    "compilerconfig.json",
-    "content-security-policy-report-2.json",
-    "docfx.json",
+    "eslintrc.json",
     "function.json",
     "htmlhint.json",
     "kustomization.json",

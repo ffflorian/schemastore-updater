@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for chrome-manifest.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/chrome-manifest",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/chrome-manifest",
+  "scripts": {},
+  "typesPublisherContentHash": "865b9b02deaa20d96d7d0b9a261b46f3dd040da98622ed1b49cc2b2b1d8bde24",
+  "types": "index.d.ts",
+  "version": "0.0.2",
+  "typeScriptVersion": "2.2"
+}
