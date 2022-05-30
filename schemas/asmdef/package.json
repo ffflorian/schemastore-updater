@@ -7,8 +7,8 @@
   "name": "@schemastore/asmdef",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/asmdef",
   "scripts": {},
-  "typesPublisherContentHash": "1dd3ebc2be77a2745493964e25979a267bdb8253d216a95f83535d6fed9f3ea1",
+  "typesPublisherContentHash": "c7ac3347c0826a9c25f0138dd45a2bf20b48218afad533030f70900511759f18",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

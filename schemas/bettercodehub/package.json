@@ -7,8 +7,8 @@
   "name": "@schemastore/bettercodehub",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bettercodehub",
   "scripts": {},
-  "typesPublisherContentHash": "0bb113b5fbc031abd0ed5678d689ea8f9e812227133354054f6d164371a6ec6b",
+  "typesPublisherContentHash": "79d7385e26c91cd89856d5b79053dea446720a4c0a5f3732b8f65704156dd467",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

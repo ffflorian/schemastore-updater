@@ -8,5 +8,5 @@ This package contains type definitions for band-manifest.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/band-manifest.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:04 GMT
+* Last updated: Mon, May 30, 2022, 07:50:59 GMT
 * Dependencies: none

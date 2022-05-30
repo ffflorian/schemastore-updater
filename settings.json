@@ -2,6 +2,7 @@
   "disabledSchemas": [
     "ansible-stable-2.9.json",
     "bitrise-step.json",
+    "bitrise.json",
     "eslintrc.json",
     "function.json",
     "htmlhint.json",

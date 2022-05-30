@@ -8,5 +8,5 @@ This package contains type definitions for appsscript.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appsscript.
 
 ## Additional Details
-* Last updated: Wed, Apr 20, 2022, 07:12:43 GMT
+* Last updated: Mon, May 30, 2022, 07:50:55 GMT
 * Dependencies: none

@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for band-manifest.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/band-manifest",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/band-manifest",
   "scripts": {},
-  "typesPublisherContentHash": "8bf40d13d08df73a4961cdcada0adb356af4ef43d3a8368d829ab262379e0b77",
+  "typesPublisherContentHash": "b43f3a114386834b140fe4b44c190c57e3f76f92a1fd8231c9062e8dca177070",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

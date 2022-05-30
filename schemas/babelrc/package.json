@@ -7,8 +7,8 @@
   "name": "@schemastore/babelrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/babelrc",
   "scripts": {},
-  "typesPublisherContentHash": "85edda420549955a7c16b8c1afbb23c453053a736b25b4c16f188ada6b585401",
+  "typesPublisherContentHash": "4f035967cab9ddd817b8b20ec6d22b363da230d17e2c1e34e9651c3fd57c978d",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

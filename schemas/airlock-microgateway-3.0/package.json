@@ -7,8 +7,8 @@
   "name": "@schemastore/airlock-microgateway-3.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/airlock-microgateway-3.0",
   "scripts": {},
-  "typesPublisherContentHash": "114cad16c31f74c9d38afedce4cd6362e8c490b25c170ba18fbea55c6f1a109f",
+  "typesPublisherContentHash": "79db4fbf5e59ed92b500a7b74d831e87fa88945442d4357a05db01f213c1c5cd",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for avro-avsc.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/avro-avsc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/avro-avsc",
   "scripts": {},
-  "typesPublisherContentHash": "4b065f923ae66a8041bb654564dfb01eaa5fc6b5fc987dcbda5f5deb614e4322",
+  "typesPublisherContentHash": "8163b248b883bae8ddd25230dd6d67fe359e3e0073ef545786285f6819a3469a",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

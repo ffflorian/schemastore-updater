@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for asconfig-schema.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/asconfig-schema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/asconfig-schema",
+  "scripts": {},
+  "typesPublisherContentHash": "f07eefcb3012497bb5b2ffe8e3265776b1afeacf1ba6563392e67d21dda712ee",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}

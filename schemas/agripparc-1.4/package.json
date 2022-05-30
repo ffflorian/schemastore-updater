@@ -7,8 +7,8 @@
   "name": "@schemastore/agripparc-1.4",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/agripparc-1.4",
   "scripts": {},
-  "typesPublisherContentHash": "01cf83f2eccd46ffb7ad9dd0bfffe50e8e7ef98d10e8e1bf9ca9f9366d58b3d7",
+  "typesPublisherContentHash": "a9d033eb8dee73df0f04136987e940fc081947c42480c19990891a086f837d7f",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

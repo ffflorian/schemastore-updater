@@ -7,8 +7,8 @@
   "name": "@schemastore/backportrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/backportrc",
   "scripts": {},
-  "typesPublisherContentHash": "77f879d97ec026ee9104e3e2047ecde5b8ef3f0effd96af81e04e8f94b7276a6",
+  "typesPublisherContentHash": "3ab8d0bdfa0f4be2c39082e770723244c28f7ac50210043196ca6a13036a67a5",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

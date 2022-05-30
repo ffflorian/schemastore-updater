@@ -1,14 +1,14 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
-  "description": "TypeScript definitions for BizTalkServerApplicationSchema.",
+  "description": "TypeScript definitions for biztalkserverapplicationschema.",
   "license": "MIT",
   "main": "index.d.ts",
-  "name": "@schemastore/BizTalkServerApplicationSchema",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/BizTalkServerApplicationSchema",
+  "name": "@schemastore/biztalkserverapplicationschema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/biztalkserverapplicationschema",
   "scripts": {},
-  "typesPublisherContentHash": "fc21913a52eb7aa1c6e4f5e6345c62f84fa24f42be1da033d4cc2ee5c3c7f40a",
+  "typesPublisherContentHash": "cf48d7a981efb73731075ed94afbcd3e090143e96df44a468386be8422e5d7f1",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

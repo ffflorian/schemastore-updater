@@ -355,7 +355,7 @@ export interface Job {
    */
   before_deploy?: Command[];
   deploy?:
-    | false
+    | "off"
     | {
         [k: string]: unknown;
       }[];

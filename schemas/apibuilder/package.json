@@ -7,8 +7,8 @@
   "name": "@schemastore/apibuilder",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/apibuilder",
   "scripts": {},
-  "typesPublisherContentHash": "35c893fe5925c7a9b7c948d55b2bba0d5e57b8753652a10586f94c2baff89367",
+  "typesPublisherContentHash": "82e40ed4f2c2835f01abdea7fa081465034534df2094a1fc11bdf18f5c8440a2",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

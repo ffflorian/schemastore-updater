@@ -7,8 +7,8 @@
   "name": "@schemastore/anywork-ac-1.1",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/anywork-ac-1.1",
   "scripts": {},
-  "typesPublisherContentHash": "c37e5ac9a86d794f7d8ce7d707fa56e1e52306009bce6ac8a56abea72f5bfc4a",
+  "typesPublisherContentHash": "4ba61558cf81584f7f1480ac2214b1186032faf18f600866644f70e800b6200f",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

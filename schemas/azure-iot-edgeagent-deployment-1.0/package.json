@@ -7,8 +7,8 @@
   "name": "@schemastore/azure-iot-edgeagent-deployment-1.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-iot-edgeagent-deployment-1.0",
   "scripts": {},
-  "typesPublisherContentHash": "6858682306ad1b508286bac5206830401666db4ba43f419fcbc13d93ea15a8bc",
+  "typesPublisherContentHash": "a47a753d9ed02c77afc296387203d5dc29a64d39d76bf442e233c3f4fdfb8ff1",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }

@@ -7,8 +7,8 @@
   "name": "@schemastore/azure-iot-edge-deployment-template-4.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-iot-edge-deployment-template-4.0",
   "scripts": {},
-  "typesPublisherContentHash": "50adfa9e90cb6ba132a9890e52d93c242e168d669be1b37ddb898d2b9dd90c03",
+  "typesPublisherContentHash": "cdb9d14e87ab78ea6cd8f6bc386f0a0311c40af1ee54deb701497f0bdb8080a5",
   "types": "index.d.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "typeScriptVersion": "2.2"
 }
