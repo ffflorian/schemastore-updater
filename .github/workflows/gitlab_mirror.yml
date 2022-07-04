@@ -1,0 +1,19 @@
+name: Mirror and run GitLab CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Mirror + trigger CI
+      uses: SvanBoxel/gitlab-mirror-and-ci-action@75d5778cddb9b18f4da47b5e4a826cd148dde62a
+      with:
+        args: "https://gitlab.com/ffflorian/schemastore-updater"
+      env:
+        GITLAB_HOSTNAME: "gitlab.com"
+        GITLAB_USERNAME: "ffflorian"
+        GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD }}
+        GITLAB_PROJECT_ID: "12704184"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
