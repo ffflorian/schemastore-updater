@@ -66,7 +66,7 @@
     "lint": "yarn lint:ts && yarn lint:other",
     "lint:other": "yarn prettier --list-different",
     "lint:ts": "eslint --ignore-path .gitignore --ext .ts src/",
-    "prettier": "prettier --ignore-path .gitignore \"*.{json,md}\"",
+    "prettier": "prettier \"*.{json,md,yml}\"",
     "start": "cross-env NODE_DEBUG='schemastore-updater/*' ts-node src/cli.ts",
     "test": "exit 0",
     "update": "yarn start update"
