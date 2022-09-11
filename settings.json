@@ -3,6 +3,7 @@
     "ansible-stable-2.9.json",
     "bitrise-step.json",
     "bitrise.json",
+    "cargo-make.json",
     "eslintrc.json",
     "function.json",
     "htmlhint.json",

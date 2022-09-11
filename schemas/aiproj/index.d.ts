@@ -6,76 +6,252 @@
  */
 
 /**
- * Settings for project analysis by the application inspector
+ * Settings for project analysis by the Application Inspector
  */
 export interface Aiproj {
+  $schema?: string;
   /**
-   * Active scanning language
+   * Black box and autocheck options
    */
-  ProgrammingLanguage?: "None" | "Php";
+  BlackBoxSettings?: {
+    /**
+     * Dictionary of additional HTTP headers
+     */
+    AdditionalHttpHeaders?: {
+      [k: string]: string;
+    };
+    /**
+     * Authentication options
+     */
+    Authentication?: (
+      | {
+          Type: "RawCookie";
+          Cookie: {
+            [k: string]: unknown;
+          };
+          [k: string]: unknown;
+        }
+      | {
+          Type: "Form";
+          Form: {
+            [k: string]: unknown;
+          };
+          [k: string]: unknown;
+        }
+      | {
+          Type: "Http";
+          Http: {
+            [k: string]: unknown;
+          };
+          [k: string]: unknown;
+        }
+      | {
+          Type: "None";
+          [k: string]: unknown;
+        }
+      | null
+    ) &
+      (
+        | (
+            | {
+                Type: "RawCookie";
+                Cookie: {
+                  [k: string]: unknown;
+                };
+                [k: string]: unknown;
+              }
+            | {
+                Type: "Form";
+                Form: {
+                  [k: string]: unknown;
+                };
+                [k: string]: unknown;
+              }
+            | {
+                Type: "Http";
+                Http: {
+                  [k: string]: unknown;
+                };
+                [k: string]: unknown;
+              }
+            | {
+                Type: "None";
+                [k: string]: unknown;
+              }
+            | null
+          )
+        | (null &
+            (
+              | {
+                  Type: "RawCookie";
+                  Cookie: {
+                    [k: string]: unknown;
+                  };
+                  [k: string]: unknown;
+                }
+              | {
+                  Type: "Form";
+                  Form: {
+                    [k: string]: unknown;
+                  };
+                  [k: string]: unknown;
+                }
+              | {
+                  Type: "Http";
+                  Http: {
+                    [k: string]: unknown;
+                  };
+                  [k: string]: unknown;
+                }
+              | {
+                  Type: "None";
+                  [k: string]: unknown;
+                }
+              | null
+            ))
+      );
+    /**
+     * Search mode
+     */
+    Level?: "None" | "Fast" | "Full" | "Normal";
+    /**
+     * Proxy server settings
+     */
+    ProxySettings?: {
+      /**
+       * Enabled
+       */
+      Enabled?: boolean;
+      /**
+       * Address
+       */
+      Host?: string | null;
+      /**
+       * User
+       */
+      Login?: string | null;
+      /**
+       * Password
+       */
+      Password?: string | null;
+      /**
+       * Port
+       */
+      Port?: number;
+      /**
+       * Type of proxy
+       */
+      Type?: "Http" | "Socks4" | "Socks5";
+    } | null;
+    /**
+     * Autocheck vulnerabilities after scanning
+     */
+    RunAutocheckAfterScan?: boolean;
+    /**
+     * Scan scope
+     */
+    ScanScope?: "Domain" | "Folder" | "Path";
+    /**
+     * Website address
+     */
+    Site?: string;
+  } | null;
   /**
-   * Enabled modules
+   * Vulnerable components scan options
    */
-  ScanAppType?: ("None" | "Configuration" | "PHP" | "DependencyCheck")[];
-  /**
-   * The address of the site for which the exploits are generated
-   */
-  Site?: string;
-  /**
-   * JDK launch parameters
-   */
-  JavaParameters?: string | null;
-  /**
-   * Unpack user's packages
-   */
-  IsUnpackUserPackages?: boolean;
-  /**
-   * Download dependencies
-   */
-  IsDownloadDependencies?: boolean;
-  /**
-   * Search from available public and protected methods
-   */
-  IsUsePublicAnalysisMethod?: boolean;
-  /**
-   * Search from entry points
-   */
-  IsUseEntryAnalysisPoint?: boolean;
+  ComponentsSettings?: {
+    /**
+     * Use custom yara rules
+     */
+    UseCustomYaraRules?: boolean;
+  } | null;
   /**
    * Custom kernel startup parameters
    */
   CustomParameters?: string | null;
   /**
-   * Hide suspicions of vulnerability
+   * .NET scan options
    */
-  HideSuspectedVulnerabilities?: boolean;
+  DotNetSettings?: {
+    /**
+     * Type of application
+     */
+    ProjectType?: "None" | "Solution" | "WebSite";
+    /**
+     * Path to a solution or project
+     */
+    SolutionFile?: string | null;
+  } | null;
   /**
-   * Type of application
+   * Download dependencies
    */
-  ProjectType?: "None" | "Solution" | "WebSite";
+  DownloadDependencies?: boolean;
   /**
-   * Path to sln or proj file
+   * Java scan options
    */
-  SolutionFile?: string | null;
+  JavaSettings?: {
+    /**
+     * JVM start options
+     */
+    Parameters?: string | null;
+    /**
+     * Unpack custom JAR files
+     */
+    UnpackUserPackages?: boolean;
+    /**
+     * Prefixes of custom packages
+     */
+    UserPackagePrefixes?: string | null;
+    /**
+     * JDK version
+     */
+    Version?: "v1_8" | "v1_11";
+  } | null;
   /**
-   * Site directory
+   * Active scanning language
    */
-  WebSiteFolder?: string | null;
+  ProgrammingLanguage?:
+    | "Java"
+    | "CSharp"
+    | "VB"
+    | "Php"
+    | "JavaScript"
+    | "Python"
+    | "ObjectiveC"
+    | "Swift"
+    | "CAndCPlusPlus"
+    | "Go"
+    | "Kotlin"
+    | "Sql";
   /**
-   * Preprocessing timeout in seconds
+   * Project name
    */
-  PreprocessingTimeout?: number;
+  ProjectName?: string;
   /**
-   * Whether to use the AI.Taint engine for analysis
+   * Enabled modules
    */
-  UseTaintAnalysis?: boolean;
+  ScanModules?: (
+    | "Configuration"
+    | "Components"
+    | "BlackBox"
+    | "DataFlowAnalysis"
+    | "PatternMatching"
+    | "VulnerableSourceCode"
+  )[];
   /**
-   * Whether to use the PT.PM engine for analysis
+   * Exclude from scanning the files from the .gitignore file
    */
-  UsePmAnalysis?: boolean;
+  SkipGitIgnoreFiles?: boolean;
   /**
-   * JDK Version
+   * Search from available public and protected methods
    */
-  JavaVersion?: "v1_8" | "v1_11";
-  [k: string]: unknown;
+  UsePublicAnalysisMethod?: boolean;
+  /**
+   * Enable SAST Analysis rules
+   */
+  UseSastRules?: boolean;
+  /**
+   * Check for compliance with the security policy
+   */
+  UseSecurityPolicies?: boolean;
 }

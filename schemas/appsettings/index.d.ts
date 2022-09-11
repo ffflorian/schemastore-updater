@@ -152,7 +152,7 @@ export interface Logging {
       [k: string]: unknown;
     };
     /**
-     * The minimum level of messages are written to Console.Error.
+     * Log level threshold.
      */
     LogToStandardErrorThreshold?: "Trace" | "Debug" | "Information" | "Warning" | "Error" | "Critical" | "None";
     [k: string]: unknown;
@@ -373,7 +373,10 @@ export interface NLog {
      */
     [k: string]: number | string | boolean;
   };
-  "default-wrapper"?: {
+  /**
+   * Wrap all defined targets with this custom target wrapper.
+   */
+  targetDefaultWrapper?: {
     type: string;
     [k: string]: unknown;
   };
@@ -413,6 +416,7 @@ export interface NLogRulesItem {
   levels?: string;
   minLevel?: ("Trace" | "Debug" | "Info" | "Warn" | "Error" | "Fatal") | string;
   maxLevel?: ("Trace" | "Debug" | "Info" | "Warn" | "Error" | "Fatal") | string;
+  finalMinLevel?: ("Trace" | "Debug" | "Info" | "Warn" | "Error" | "Fatal") | string;
   /**
    * Name or names of a target - separated by comma. Remove this property for sending events to the blackhole.
    */

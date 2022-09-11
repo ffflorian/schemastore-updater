@@ -7,8 +7,8 @@
   "name": "@schemastore/appsettings",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appsettings",
   "scripts": {},
-  "typesPublisherContentHash": "434a532f1179267dbeea71a785281a525054d64b360b441a65a47962c8e2e91f",
+  "typesPublisherContentHash": "a04770bb30b1272a072813d5675891eaedc42482b3d973f5a0e885c0d66da0a7",
   "types": "index.d.ts",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "typeScriptVersion": "2.2"
 }

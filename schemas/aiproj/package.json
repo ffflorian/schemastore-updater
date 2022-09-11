@@ -7,8 +7,8 @@
   "name": "@schemastore/aiproj",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/aiproj",
   "scripts": {},
-  "typesPublisherContentHash": "11d32a97f1f190d9eafb2fa31e323fedcd44b8e2072af2511272ca49bf8adf9e",
+  "typesPublisherContentHash": "c740788b6ea90bf1bde462fadd1ddf3745110893461a5ecf1ee4dd33b060deb1",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

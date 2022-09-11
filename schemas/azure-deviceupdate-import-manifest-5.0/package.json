@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for azure-deviceupdate-import-manifest-5.0.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/azure-deviceupdate-import-manifest-5.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-deviceupdate-import-manifest-5.0",
+  "scripts": {},
+  "typesPublisherContentHash": "4165cd15cc9fd67a4bde5fa9f59b6fd80849e9f95d09a7191119f1fe911d560a",
+  "types": "index.d.ts",
+  "version": "0.0.1",
+  "typeScriptVersion": "2.2"
+}
