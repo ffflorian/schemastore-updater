@@ -16,7 +16,7 @@
     "@ffflorian/prettier-config": "0.1.4",
     "@types/fs-extra": "9.0.13",
     "@types/jsonabc": "2.3.1",
-    "@types/lodash": "4.14.184",
+    "@types/lodash": "4.14.185",
     "@types/node": "~16",
     "@types/prettier": "2.7.0",
     "@types/rimraf": "3.0.2",
