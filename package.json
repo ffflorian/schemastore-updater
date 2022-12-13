@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "1.2.4",
-    "@ffflorian/eslint-config": "0.8.1",
+    "@ffflorian/eslint-config": "0.8.2",
     "@ffflorian/prettier-config": "0.1.4",
     "@types/fs-extra": "9.0.13",
     "@types/jsonabc": "2.3.1",
