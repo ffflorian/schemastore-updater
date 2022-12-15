@@ -11,7 +11,7 @@
     "semver": "7.3.8"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "1.2.4",
+    "@evilmartians/lefthook": "1.2.6",
     "@ffflorian/eslint-config": "0.8.2",
     "@ffflorian/prettier-config": "0.1.4",
     "@types/fs-extra": "9.0.13",
