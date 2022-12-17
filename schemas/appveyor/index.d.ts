@@ -64,7 +64,19 @@ export type PossiblySecretString =
        */
       secure?: string;
     };
-export type JobScalars = {
+export type JobScalars = JobScalars1 & {
+  image?: Image;
+  /**
+   * Build platform, i.e. x86, x64, Any CPU. This setting is optional
+   */
+  platform?: Platform | Platform[];
+  /**
+   * Build Configuration, i.e. Debug, Release, etc.
+   */
+  configuration?: Configuration | Configuration[];
+  [k: string]: unknown;
+};
+export type JobScalars1 = {
   [k: string]: unknown;
 } & {
   [k: string]: unknown;
@@ -102,40 +114,8 @@ export interface Job {
    * Start builds on tags only (GitHub and BitBucket)
    */
   skip_non_tags?: boolean;
-  /**
-   * Skipping commits with particular message or from specific user
-   */
-  skip_commits?: {
-    /**
-     * Regex for matching commit message
-     */
-    message?: string;
-    /**
-     * Commit author's username, name, email or regexp matching one of these.
-     */
-    author?: string;
-    /**
-     * Only specific files (glob patterns)
-     */
-    files?: string[];
-  };
-  /**
-   * Including commits with particular message or from specific user
-   */
-  only_commits?: {
-    /**
-     * Regex for matching commit message
-     */
-    message?: string;
-    /**
-     * Commit author's username, name, email or regexp matching one of these.
-     */
-    author?: string;
-    /**
-     * Only specific files (glob patterns)
-     */
-    files?: string[];
-  };
+  skip_commits?: CommitFilter;
+  only_commits?: CommitFilter1;
   /**
    * Do not build feature branch with open Pull Requests
    */
@@ -177,19 +157,14 @@ export interface Job {
    */
   environment?:
     | {
-        /**
-         * variables defined here are no different than those defined at top level of 'environment' node
-         */
-        global?: {
-          [k: string]: PossiblySecretString;
-        };
+        global?: EnvVarHash;
         /**
          * an array of environment variables, each member of which is one dimension in the build matrix calculation
          */
-        matrix?: EnvVarHash[];
+        matrix?: EnvVarHash1[];
         [k: string]: unknown;
       }
-    | EnvVarHash;
+    | EnvVarHash1;
   matrix?: {
     /**
      * Set this flag to immediately finish build once one of the jobs fails
@@ -216,12 +191,15 @@ export interface Job {
     | "iis"
     | "mongodb"
     | "msmq"
+    | "mssql"
     | "mssql2008r2sp2"
     | "mssql2008r2sp2rs"
     | "mssql2012sp1"
     | "mssql2012sp1rs"
     | "mssql2014"
     | "mssql2014rs"
+    | "mssql2016"
+    | "mssql2017"
     | "mysql"
     | "postgresql"
     | "postgresql93"
@@ -229,6 +207,9 @@ export interface Job {
     | "postgresql95"
     | "postgresql96"
     | "postgresql10"
+    | "postgresql11"
+    | "postgresql12"
+    | "postgresql13"
   )[];
   /**
    * Scripts that run after cloning repository
@@ -381,6 +362,46 @@ export interface Job {
   on_finish?: Command[];
   [k: string]: unknown;
 }
+/**
+ * Skipping commits with particular message or from specific user
+ */
+export interface CommitFilter {
+  /**
+   * Regex for matching commit message
+   */
+  message?: string;
+  /**
+   * Commit author's username, name, email or regexp matching one of these.
+   */
+  author?: string;
+  /**
+   * Only specific files (glob patterns)
+   */
+  files?: string[];
+}
+/**
+ * Including commits with particular message or from specific user
+ */
+export interface CommitFilter1 {
+  /**
+   * Regex for matching commit message
+   */
+  message?: string;
+  /**
+   * Commit author's username, name, email or regexp matching one of these.
+   */
+  author?: string;
+  /**
+   * Only specific files (glob patterns)
+   */
+  files?: string[];
+}
+/**
+ * variables defined here are no different than those defined at top level of 'environment' node
+ */
 export interface EnvVarHash {
+  [k: string]: PossiblySecretString;
+}
+export interface EnvVarHash1 {
   [k: string]: PossiblySecretString;
 }

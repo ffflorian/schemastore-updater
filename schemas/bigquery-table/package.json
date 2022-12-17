@@ -7,8 +7,8 @@
   "name": "@schemastore/bigquery-table",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bigquery-table",
   "scripts": {},
-  "typesPublisherContentHash": "81dabcefce9d5507ab51a678d185e076e377287c02ad3bfccc348e82398d97e8",
+  "typesPublisherContentHash": "6d2d8bef2d3052441195979a2dea8502a7379a223df46074e0ea46ee54f4b15f",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

@@ -8,5 +8,5 @@ This package contains type definitions for appsettings.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/appsettings.
 
 ## Additional Details
-* Last updated: Sun, Sep 11, 2022, 10:48:53 GMT
+* Last updated: Sat, Dec 17, 2022, 12:06:04 GMT
 * Dependencies: none

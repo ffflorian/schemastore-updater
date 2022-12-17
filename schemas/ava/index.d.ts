@@ -6,24 +6,39 @@
  */
 
 export type Path = string;
+/**
+ * An array of glob patterns to select test files. Files with an underscore prefix are ignored. By default only selects files with `cjs`, `mjs` & `js` extensions, even if the pattern matches other files. Specify `extensions` to allow other file extensions
+ */
+export type ArrayOfPaths = Path[];
+/**
+ * An array of glob patterns to match files that, even if changed, are ignored by the watcher
+ */
+export type ArrayOfPaths1 = Path[];
+/**
+ * Not typically useful in the `package.json` configuration, but equivalent to specifying `--match` on the CLI
+ */
+export type ArrayOfPaths2 = Path[];
 export type ArrayOfStrings = string[];
+/**
+ * Extra modules to require before tests are run. Modules are required in the worker processes
+ */
+export type ArrayOfPaths3 = Path[];
+/**
+ * Configure Node.js arguments used to launch worker processes
+ */
+export type ArrayOfStrings1 = string[];
+/**
+ * You can configure AVA to recognize additional file extensions as TypeScript (e.g., `["ts", "tsx"]` to add partial JSX support). Note that the preserve mode for JSX is not (yet) supported. See also AVA's `extensions` object
+ */
+export type ArrayOfPaths4 = Path[];
 
 /**
  * Configuration Schema for the JavaScript test runner AVA
  */
 export interface AVAConfigSchema {
-  /**
-   * An array of glob patterns to select test files. Files with an underscore prefix are ignored. By default only selects files with `cjs`, `mjs` & `js` extensions, even if the pattern matches other files. Specify `extensions` to allow other file extensions
-   */
-  files?: Path[];
-  /**
-   * An array of glob patterns to match files that, even if changed, are ignored by the watcher
-   */
-  ignoredByWatcher?: Path[];
-  /**
-   * Not typically useful in the `package.json` configuration, but equivalent to specifying `--match` on the CLI
-   */
-  match?: Path[];
+  files?: ArrayOfPaths;
+  ignoredByWatcher?: ArrayOfPaths1;
+  match?: ArrayOfPaths2;
   /**
    * Defaults to `true` to cache compiled files under `node_modules/.cache/ava.` If `false`, files are cached in a temporary directory instead
    */
@@ -44,12 +59,7 @@ export interface AVAConfigSchema {
    * If `false`, does not fail a test if it doesn't run assertions
    */
   failWithoutAssertions?: boolean;
-  /**
-   * Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from `process.env`
-   */
-  environmentVariables?: {
-    [k: string]: string;
-  };
+  environmentVariables?: EnvironmentVariables;
   /**
    * If `true`, enables the TAP reporter
    */
@@ -65,49 +75,47 @@ export interface AVAConfigSchema {
   /**
    * Extensions of test files. Setting this overrides the default `["cjs", "mjs", "js"]` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded
    */
-  extensions?:
-    | ArrayOfStrings
-    | {
-        [k: string]: "commonjs" | "module";
-      };
-  /**
-   * Extra modules to require before tests are run. Modules are required in the worker processes
-   */
-  require?: Path[];
+  extensions?: ArrayOfStrings | Extensions;
+  require?: ArrayOfPaths3;
   /**
    * Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options
    */
   timeout?: number | string;
-  /**
-   * Configure Node.js arguments used to launch worker processes
-   */
-  nodeArguments?: string[];
+  nodeArguments?: ArrayOfStrings1;
   /**
    * If `false`, disable parallel builds (default: `true`)
    */
   utilizeParallelBuilds?: boolean;
+  typescript?: Configuration;
+}
+/**
+ * Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from `process.env`
+ */
+export interface EnvironmentVariables {
+  [k: string]: string;
+}
+export interface Extensions {
+  [k: string]: "commonjs" | "module";
+}
+/**
+ * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
+ */
+export interface Configuration {
+  extensions?: ArrayOfPaths4;
+  rewritePaths?: Paths;
   /**
-   * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
+   * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode
    */
-  typescript?: {
-    /**
-     * You can configure AVA to recognize additional file extensions as TypeScript (e.g., `["ts", "tsx"]` to add partial JSX support). Note that the preserve mode for JSX is not (yet) supported. See also AVA's `extensions` object
-     */
-    extensions?: Path[];
-    /**
-     * AVA searches your entire project for `*.js`, `*.cjs`, `*.mjs` and `*.ts` files (or other extensions you've configured). It will ignore such files found in the `rewritePaths` targets (e.g. `build/`). If you use more specific paths, for instance `build/main/`, you may need to change AVA's `files` configuration to ignore other directories. Paths are relative to your project directory
-     */
-    rewritePaths?: {
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "/$".
-       */
-      [k: string]: string;
-    };
-    /**
-     * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode
-     */
-    compile?: false | "tsc";
-    [k: string]: unknown;
-  };
+  compile?: false | "tsc";
+  [k: string]: unknown;
+}
+/**
+ * AVA searches your entire project for `*.js`, `*.cjs`, `*.mjs` and `*.ts` files (or other extensions you've configured). It will ignore such files found in the `rewritePaths` targets (e.g. `build/`). If you use more specific paths, for instance `build/main/`, you may need to change AVA's `files` configuration to ignore other directories. Paths are relative to your project directory
+ */
+export interface Paths {
+  /**
+   * This interface was referenced by `Paths`'s JSON-Schema definition
+   * via the `patternProperty` "/$".
+   */
+  [k: string]: string;
 }

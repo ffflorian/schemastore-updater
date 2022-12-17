@@ -663,10 +663,6 @@ export interface UmbracoGlobal {
    */
   VersionCheckPeriod?: number;
   /**
-   * Umbraco back-office path
-   */
-  UmbracoPath?: string;
-  /**
    * Path to Umbraco Icons for backoffice
    */
   IconsPath?: string;

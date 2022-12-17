@@ -25,6 +25,7 @@ export type Docker =
         [k: string]: unknown;
       };
       "use-default-volumes"?: boolean;
+      "docker-run-arguments"?: string[];
       [k: string]: unknown;
     };
 /**
@@ -52,36 +53,7 @@ export type Events =
   | "job-queue-timeout"
   | "job-queued-without-capable-agents";
 export type PlanPermissions = Permission[];
-export type Triggers = (
-  | (
-      | number
-      | {
-          period?: number;
-          [k: string]: unknown;
-        }
-    )
-  | (
-      | string
-      | {
-          expression?: string;
-          [k: string]: unknown;
-        }
-    )
-  | (
-      | "remote"
-      | {
-          remote?: string;
-          [k: string]: unknown;
-        }
-      | {
-          remote?: {
-            ip?: string;
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
-    )
-)[];
+export type Triggers = (Polling | Cron | Remote | string)[];
 export type PredefinedTask = "inject-variables" | "clean" | "checkout" | "artifact-download";
 export type Script =
   | string
@@ -104,7 +76,7 @@ export interface BambooCISpecification {
    * An environment represents the servers or groups of servers where the software release has been deployed to, and the tasks that are needed for the deployment to work smoothly
    */
   environments?: string[];
-  labels?: string;
+  labels?: string[];
   notifications?: {
     recipients?: (
       | string
@@ -128,6 +100,46 @@ export interface BambooCISpecification {
    * You can define how releases should be named when they are created by Bamboo
    */
   "release-naming"?: ReleaseNaming | string;
+  repositories?: (
+    | string
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "[a-zA-Z0-9_]".
+         */
+        [k: string]: {
+          scope?: "project" | "global";
+          type?: string;
+          slug?: string;
+          url?: string;
+          branch?: string;
+          viewer?: string;
+          "ssh-key"?: string;
+          "ssh-key-passphrase"?: string;
+          username?: string;
+          password?: string;
+          "shared-credentials"?: string;
+          lfs?: boolean;
+          "use-shallow-clones"?: boolean;
+          submodules?: boolean;
+          "change-detection"?: {
+            "quiet-period"?: {
+              "quiet-period-seconds"?: number;
+              "max-retries"?: number;
+              [k: string]: unknown;
+            };
+            "exclude-changeset-pattern"?: string;
+            "file-filter-type"?: string;
+            "file-filter-pattern"?: string;
+            [k: string]: unknown;
+          };
+          [k: string]: unknown;
+        };
+      }
+  )[];
+  /**
+   * Stages group jobs to individual steps within a plan’s build process.
+   */
   stages?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -138,6 +150,9 @@ export interface BambooCISpecification {
   triggers?: Triggers;
   variables?: KeyValue;
   version?: number;
+  other?: {
+    [k: string]: unknown;
+  };
   [k: string]: Job;
 }
 /**
@@ -190,8 +205,43 @@ export interface Stage {
   final?: boolean;
   jobs?: string[];
 }
+export interface Polling {
+  polling?:
+    | number
+    | {
+        period?: number;
+        conditions?: {
+          /**
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` "[a-zA-Z0-9\s+_-]".
+           */
+          [k: string]: {
+            [k: string]: boolean;
+          };
+        }[];
+      };
+}
 /**
- * Variables specific to a deployment environment
+ * Execute deployment by schedule.
+ */
+export interface Cron {
+  cron?:
+    | string
+    | {
+        expression?: string;
+        [k: string]: unknown;
+      };
+}
+export interface Remote {
+  remote?:
+    | string
+    | {
+        ip?: string;
+        [k: string]: unknown;
+      };
+}
+/**
+ * Variables can be used to make values available when building plans in Bamboo.
  */
 export interface KeyValue {
   /**
@@ -221,41 +271,44 @@ export interface Job {
         [k: string]: string;
       }
   )[];
-  tasks?: (
-    | PredefinedTask
-    | Script
+  tasks?: (PredefinedTask | Script | Task)[];
+  [k: string]: unknown;
+}
+/**
+ * A task is a small unit of work, such as source code checkout, or running a script
+ */
+export interface Task {
+  interpreter?: string;
+  clean?: {
+    [k: string]: unknown;
+  };
+  checkout?: {
+    repository?: string;
+    path?: string;
+    "force-clean-build"?: boolean & string;
+    [k: string]: unknown;
+  };
+  "inject-variables"?:
+    | string
     | {
-        interpreter?: string;
-        clean?: {
-          [k: string]: unknown;
-        };
-        checkout?: {
-          repository?: string;
-          path?: string;
-          "force-clean-build"?: boolean & string;
-          [k: string]: unknown;
-        };
-        "inject-variables"?:
-          | string
-          | {
-              file?: string;
-              scope?: string;
-              namespace?: string;
-            };
-        /**
-         * The Test Results Parser task in Bamboo parses test data
-         */
-        "test-parser"?:
-          | TestParser
-          | {
-              type: TestParser;
-              "ignore-time"?: boolean;
-              "test-results"?: string[];
-              [k: string]: unknown;
-            };
-        scripts?: [Script, ...Script[]];
+        file?: string;
+        scope?: string;
+        namespace?: string;
+      };
+  /**
+   * The Test Results Parser task in Bamboo parses test data
+   */
+  "test-parser"?:
+    | TestParser
+    | {
+        type: TestParser;
+        "ignore-time"?: boolean;
+        "test-results"?: string[];
         [k: string]: unknown;
-      }
-  )[];
+      };
+  /**
+   * @minItems 1
+   */
+  scripts?: [Script, ...Script[]];
   [k: string]: unknown;
 }

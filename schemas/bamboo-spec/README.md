@@ -8,5 +8,5 @@ This package contains type definitions for bamboo-spec.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bamboo-spec.
 
 ## Additional Details
-* Last updated: Mon, May 30, 2022, 07:50:59 GMT
+* Last updated: Sat, Dec 17, 2022, 12:06:04 GMT
 * Dependencies: none

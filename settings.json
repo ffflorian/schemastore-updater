@@ -4,6 +4,7 @@
     "bitrise-step.json",
     "bitrise.json",
     "cargo-make.json",
+    "circleciconfig.json",
     "eslintrc.json",
     "function.json",
     "htmlhint.json",
