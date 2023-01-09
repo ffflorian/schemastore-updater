@@ -13,7 +13,7 @@ updates:
     ignore:
       - dependency-name: '@types/node'
         versions:
-          - '> 16.x'
+          - '> 18.x'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
