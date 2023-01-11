@@ -14,7 +14,7 @@
     "@evilmartians/lefthook": "1.2.7",
     "@ffflorian/eslint-config": "0.8.2",
     "@ffflorian/prettier-config": "0.1.4",
-    "@types/fs-extra": "11.0.0",
+    "@types/fs-extra": "11.0.1",
     "@types/jsonabc": "2.3.1",
     "@types/lodash": "4.14.191",
     "@types/node": "~18",
