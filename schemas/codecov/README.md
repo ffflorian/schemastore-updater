@@ -8,5 +8,5 @@ This package contains type definitions for codecov.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/codecov.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:05 GMT
+* Last updated: Tue, Jan 17, 2023, 20:16:45 GMT
 * Dependencies: none

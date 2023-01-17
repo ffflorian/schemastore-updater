@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for cloudbuild.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/cloudbuild",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cloudbuild",
   "scripts": {},
-  "typesPublisherContentHash": "f34346452b14c907f71fcc3f926aa1b4eedb0daada291e319151d3fe2891d337",
+  "typesPublisherContentHash": "0667c383101f7aac9a70d29edafb2792c710db18a84edc94c245c2d773e50882",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

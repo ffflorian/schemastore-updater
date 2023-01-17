@@ -191,15 +191,12 @@ export interface Job {
     | "iis"
     | "mongodb"
     | "msmq"
-    | "mssql"
     | "mssql2008r2sp2"
     | "mssql2008r2sp2rs"
     | "mssql2012sp1"
     | "mssql2012sp1rs"
     | "mssql2014"
     | "mssql2014rs"
-    | "mssql2016"
-    | "mssql2017"
     | "mysql"
     | "postgresql"
     | "postgresql93"
@@ -207,9 +204,6 @@ export interface Job {
     | "postgresql95"
     | "postgresql96"
     | "postgresql10"
-    | "postgresql11"
-    | "postgresql12"
-    | "postgresql13"
   )[];
   /**
    * Scripts that run after cloning repository

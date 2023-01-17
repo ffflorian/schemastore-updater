@@ -8,6 +8,96 @@
 export type Layout =
   | unknown
   | ("header" | "footer" | "diff" | "file" | "files" | "flag" | "flags" | "reach" | "sunburst" | "uncovered");
+export type Default = {
+  target?: string | number;
+  threshold?: string;
+  base?: string;
+  flags?: unknown[];
+  paths?: unknown[] | string;
+  branches?: unknown[];
+  if_not_found?: "failure" | "success";
+  informational?: boolean;
+  only_pulls?: boolean;
+  if_ci_failed?: "error" | "success";
+  flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+  [k: string]: unknown;
+} & (
+  | {
+      target?: string | number;
+      threshold?: string;
+      base?: string;
+      flags?: unknown[];
+      paths?: unknown[] | string;
+      branches?: unknown[];
+      if_not_found?: "failure" | "success";
+      informational?: boolean;
+      only_pulls?: boolean;
+      if_ci_failed?: "error" | "success";
+      flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+      [k: string]: unknown;
+    }
+  | boolean
+);
+export type Default1 = {
+  target?: string | number;
+  threshold?: string;
+  base?: string;
+  flags?: unknown[];
+  paths?: unknown[] | string;
+  branches?: unknown[];
+  if_not_found?: "failure" | "success";
+  informational?: boolean;
+  only_pulls?: boolean;
+  if_ci_failed?: "error" | "success";
+  flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+  [k: string]: unknown;
+} & (
+  | {
+      target?: string | number;
+      threshold?: string;
+      base?: string;
+      flags?: unknown[];
+      paths?: unknown[] | string;
+      branches?: unknown[];
+      if_not_found?: "failure" | "success";
+      informational?: boolean;
+      only_pulls?: boolean;
+      if_ci_failed?: "error" | "success";
+      flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+      [k: string]: unknown;
+    }
+  | boolean
+);
+export type Default3 = {
+  target?: string | number;
+  threshold?: string;
+  base?: string;
+  flags?: unknown[];
+  paths?: unknown[] | string;
+  branches?: unknown[];
+  if_not_found?: "failure" | "success";
+  informational?: boolean;
+  only_pulls?: boolean;
+  if_ci_failed?: "error" | "success";
+  flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+  [k: string]: unknown;
+} & (
+  | {
+      target?: string | number;
+      threshold?: string;
+      base?: string;
+      flags?: unknown[];
+      paths?: unknown[] | string;
+      branches?: unknown[];
+      if_not_found?: "failure" | "success";
+      informational?: boolean;
+      only_pulls?: boolean;
+      if_ci_failed?: "error" | "success";
+      flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+      [k: string]: unknown;
+    }
+  | boolean
+);
 
 /**
  * Schema for codecov.yml files.
@@ -46,8 +136,8 @@ export interface JSONSchemaForCodecovConfigurationFiles {
       [k: string]: unknown;
     };
     ui?: {
-      hide_density?: string[];
-      hide_complexity?: string[];
+      hide_density?: boolean | string[];
+      hide_complexity?: boolean | string[];
       hide_contextual?: boolean;
       hide_sunburst?: boolean;
       hide_search?: boolean;
@@ -158,12 +248,15 @@ export interface JSONSchemaForCodecovConfigurationFiles {
     status?:
       | boolean
       | {
-          project?:
-            | boolean
-            | {
-                [k: string]: unknown;
-              };
-          [k: string]: unknown;
+          default_rules?: {
+            [k: string]: unknown;
+          };
+          project?: {
+            default?: Default;
+            [k: string]: Default1;
+          };
+          patch?: Default2 | "off";
+          changes?: Default3;
         };
     [k: string]: unknown;
   };
@@ -198,9 +291,21 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         paths?: string[];
         [k: string]: unknown;
       }
-    | {
-        [k: string]: unknown;
-      };
+    | false;
+  [k: string]: unknown;
+}
+export interface Default2 {
+  target?: string | number;
+  threshold?: string;
+  base?: string;
+  flags?: unknown[];
+  paths?: unknown[] | string;
+  branches?: unknown[];
+  if_not_found?: "failure" | "success";
+  informational?: boolean;
+  only_pulls?: boolean;
+  if_ci_failed?: "error" | "success";
+  flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
   [k: string]: unknown;
 }
 export interface Flag {
@@ -208,6 +313,6 @@ export interface Flag {
   required?: boolean;
   ignore?: string[];
   paths?: string[];
-  assume?: string[];
+  assume?: boolean | string[];
   [k: string]: unknown;
 }

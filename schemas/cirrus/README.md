@@ -8,5 +8,5 @@ This package contains type definitions for cirrus.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cirrus.
 
 ## Additional Details
-* Last updated: Wed, Apr 20, 2022, 07:13:18 GMT
+* Last updated: Tue, Jan 17, 2023, 20:16:45 GMT
 * Dependencies: none

@@ -5,112 +5,31 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * A cheatpath path
- * https://github.com/cheat/cheat#cheatpaths
- */
-export type Path = string;
-
-export interface ACheatsheetConfigSchema {
-  editor?: unknown;
+export interface CheatsheetsConfigFileSchema {
   /**
-   * Whether cheatsheets should be colorized
+   * The cheat paths
    * https://github.com/cheat/cheat#cheatpaths
    */
-  colorize?: boolean;
-  /**
-   * A color schema applied for cheatsheets
-   * https://github.com/cheat/cheat#cheatpaths
-   */
-  style?:
-    | "abap"
-    | "algol"
-    | "algol_nu"
-    | "api"
-    | "arduino"
-    | "autumn"
-    | "average"
-    | "base16-snazzy"
-    | "borland"
-    | "bw"
-    | "catppuccin"
-    | "colorful"
-    | "doom-one2"
-    | "doom-one"
-    | "dracula"
-    | "emacs"
-    | "friendly"
-    | "fruity"
-    | "github-dark"
-    | "github"
-    | "gruvbox"
-    | "gruvbox-light"
-    | "hr_dark"
-    | "hr_high_contrast"
-    | "igor"
-    | "lovelace"
-    | "manni"
-    | "modus-operandi"
-    | "modus-vivendi"
-    | "monokai"
-    | "monokailight"
-    | "murphy"
-    | "native"
-    | "nord"
-    | "onesenterprise"
-    | "paraiso-dark"
-    | "paraiso-light"
-    | "pastie"
-    | "perldoc"
-    | "pygments"
-    | "rainbow_dash"
-    | "rose-pine-dawn"
-    | "rose-pine"
-    | "rose-pine-moon"
-    | "rrt"
-    | "solarized-dark256"
-    | "solarized-dark"
-    | "solarized-light"
-    | "swapoff"
-    | "tango"
-    | "trac"
-    | "vim"
-    | "vs"
-    | "vulcan"
-    | "witchhazel"
-    | "xcode-dark"
-    | "xcode";
-  /**
-   * A formatter to format cheatsheets
-   * https://github.com/cheat/cheat#cheatpaths
-   */
-  formatter?: "terminal" | "terminal256" | "terminal16m";
-  pager?: unknown;
-  /**
-   * Cheatpaths
-   * https://github.com/cheat/cheat#cheatpaths
-   */
-  cheatpaths?: Cheatpath[];
-}
-/**
- * A cheatpath
- * https://github.com/cheat/cheat#cheatpaths
- */
-export interface Cheatpath {
-  /**
-   * A cheatpath name
-   * https://github.com/cheat/cheat#cheatpaths
-   */
-  name?: string;
-  path?: Path;
-  /**
-   * Cheatpath tags
-   * https://github.com/cheat/cheat#cheatpaths
-   */
-  tags?: string[];
-  /**
-   * Whether allow creating cheatsheets in a cheatpath
-   * https://github.com/cheat/cheat#cheatpaths
-   */
-  readonly?: boolean;
+  cheatpaths?: {
+    /**
+     * The name
+     * https://github.com/cheat/cheat#cheatpaths
+     */
+    name?: string;
+    /**
+     * The path
+     * https://github.com/cheat/cheat#cheatpaths
+     */
+    path?: string;
+    /**
+     * The tags
+     * https://github.com/cheat/cheat#cheatpaths
+     */
+    tags?: string[];
+    /**
+     * Allow/restrict creating cheatsheets
+     * https://github.com/cheat/cheat#cheatpaths
+     */
+    readonly?: boolean;
+  }[];
 }

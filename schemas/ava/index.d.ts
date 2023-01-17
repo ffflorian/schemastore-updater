@@ -59,7 +59,12 @@ export interface AVAConfigSchema {
    * If `false`, does not fail a test if it doesn't run assertions
    */
   failWithoutAssertions?: boolean;
-  environmentVariables?: EnvironmentVariables;
+  /**
+   * Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from `process.env`
+   */
+  environmentVariables?: {
+    [k: string]: string;
+  };
   /**
    * If `true`, enables the TAP reporter
    */
@@ -75,7 +80,11 @@ export interface AVAConfigSchema {
   /**
    * Extensions of test files. Setting this overrides the default `["cjs", "mjs", "js"]` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded
    */
-  extensions?: ArrayOfStrings | Extensions;
+  extensions?:
+    | ArrayOfStrings
+    | {
+        [k: string]: "commonjs" | "module";
+      };
   require?: ArrayOfPaths3;
   /**
    * Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options
@@ -86,36 +95,25 @@ export interface AVAConfigSchema {
    * If `false`, disable parallel builds (default: `true`)
    */
   utilizeParallelBuilds?: boolean;
-  typescript?: Configuration;
-}
-/**
- * Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from `process.env`
- */
-export interface EnvironmentVariables {
-  [k: string]: string;
-}
-export interface Extensions {
-  [k: string]: "commonjs" | "module";
-}
-/**
- * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
- */
-export interface Configuration {
-  extensions?: ArrayOfPaths4;
-  rewritePaths?: Paths;
   /**
-   * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode
+   * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
    */
-  compile?: false | "tsc";
-  [k: string]: unknown;
-}
-/**
- * AVA searches your entire project for `*.js`, `*.cjs`, `*.mjs` and `*.ts` files (or other extensions you've configured). It will ignore such files found in the `rewritePaths` targets (e.g. `build/`). If you use more specific paths, for instance `build/main/`, you may need to change AVA's `files` configuration to ignore other directories. Paths are relative to your project directory
- */
-export interface Paths {
-  /**
-   * This interface was referenced by `Paths`'s JSON-Schema definition
-   * via the `patternProperty` "/$".
-   */
-  [k: string]: string;
+  typescript?: {
+    extensions?: ArrayOfPaths4;
+    /**
+     * AVA searches your entire project for `*.js`, `*.cjs`, `*.mjs` and `*.ts` files (or other extensions you've configured). It will ignore such files found in the `rewritePaths` targets (e.g. `build/`). If you use more specific paths, for instance `build/main/`, you may need to change AVA's `files` configuration to ignore other directories. Paths are relative to your project directory
+     */
+    rewritePaths?: {
+      /**
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` "/$".
+       */
+      [k: string]: string;
+    };
+    /**
+     * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode
+     */
+    compile?: false | "tsc";
+    [k: string]: unknown;
+  };
 }

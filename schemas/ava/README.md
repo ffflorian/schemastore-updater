@@ -8,5 +8,5 @@ This package contains type definitions for ava.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ava.
 
 ## Additional Details
-* Last updated: Sat, Dec 17, 2022, 12:06:04 GMT
+* Last updated: Tue, Jan 17, 2023, 20:16:45 GMT
 * Dependencies: none

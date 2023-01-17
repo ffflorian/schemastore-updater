@@ -5,6 +5,7 @@
     "bitrise.json",
     "cargo-make.json",
     "circleciconfig.json",
+    "component-detection-manifest.json",
     "eslintrc.json",
     "function.json",
     "htmlhint.json",

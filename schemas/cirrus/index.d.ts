@@ -715,7 +715,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
   /**
    * Task timeout in minutes
    */
-  timeout_in?: number;
+  timeout_in?: string;
   /**
    * Trigger type
    */

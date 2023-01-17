@@ -59,173 +59,9 @@ export interface GoogleCloudBuildBuildConfigFile {
    * `FAILURE`.
    */
   images?: string[];
-  /**
-   * Special options for this build.
-   */
-  options?: {
-    /**
-     * Compute Engine machine type on which to run the build.
-     */
-    machineType?: "UNSPECIFIED" | "N1_HIGHCPU_8" | "N1_HIGHCPU_32";
-    /**
-     * Global list of volumes to mount for ALL build steps
-     *
-     * Each volume is created as an empty volume prior to starting the build
-     * process. Upon completion of the build, volumes and their contents are
-     * discarded. Global volume names and paths cannot conflict with the volumes
-     * defined a build step.
-     *
-     * Using a global volume in a build with only one step is not valid as
-     * it is indicative of a build request with an incorrect configuration.
-     */
-    volumes?: Volume[];
-    /**
-     * Option to define build log streaming behavior to Google Cloud
-     * Storage.
-     */
-    logStreamingOption?: "STREAM_DEFAULT" | "STREAM_ON" | "STREAM_OFF";
-    /**
-     * Option to specify a `WorkerPool` for the build. User specifies the pool
-     * with the format "[WORKERPOOL_PROJECT_ID]/[WORKERPOOL_NAME]".
-     * This is an experimental field.
-     */
-    workerPool?: string;
-    /**
-     * A list of global environment variable definitions that will exist for all
-     * build steps in this build. If a variable is defined in both globally and in
-     * a build step, the variable will use the build step value.
-     *
-     * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
-     * being given the value "VALUE".
-     */
-    env?: string[];
-    /**
-     * Option to specify the logging mode, which determines where the logs are
-     * stored.
-     */
-    logging?: "LOGGING_UNSPECIFIED" | "LEGACY" | "GCS_ONLY";
-    /**
-     * Requested verifiability options.
-     */
-    requestedVerifyOption?: "NOT_VERIFIED" | "VERIFIED";
-    /**
-     * Option to specify behavior when there is an error in the substitution
-     * checks.
-     */
-    substitutionOption?: "MUST_MATCH" | "ALLOW_LOOSE";
-    /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT*
-     * "disk free"; some of the space will be used by the operating system and
-     * build utilities. Also note that this is the minimum disk size that will be
-     * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
-     * more than the maximum are rejected with an error.
-     */
-    diskSizeGb?: string;
-    /**
-     * A list of global environment variables, which are encrypted using a Cloud
-     * Key Management Service crypto key. These values must be specified in the
-     * build's `Secret`. These variables will be available to all build steps
-     * in this build.
-     */
-    secretEnv?: string[];
-    /**
-     * Requested hash for SourceProvenance.
-     */
-    sourceProvenanceHash?: ("NONE" | "SHA256" | "MD5")[];
-    [k: string]: unknown;
-  };
-  /**
-   * The location of the source files to build.
-   */
-  source?: {
-    storageSource?: StorageSource;
-    /**
-     * If provided, get the source from this location in a Cloud Source
-     * Repository.
-     */
-    repoSource?: {
-      /**
-       * Name of the tag to build.
-       */
-      tagName?: string;
-      /**
-       * ID of the project that owns the Cloud Source Repository. If omitted, the
-       * project ID requesting the build is assumed.
-       */
-      projectId?: string;
-      /**
-       * Name of the Cloud Source Repository. If omitted, the name "default" is
-       * assumed.
-       */
-      repoName?: string;
-      /**
-       * Explicit commit SHA to build.
-       */
-      commitSha?: string;
-      /**
-       * Directory, relative to the source root, in which to run the build.
-       *
-       * This must be a relative path. If a step's `dir` is specified and is an
-       * absolute path, this value is ignored for that step's execution.
-       */
-      dir?: string;
-      /**
-       * Name of the branch to build.
-       */
-      branchName?: string;
-      [k: string]: unknown;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * Artifacts produced by the build that should be uploaded upon
-   * successful completion of all build steps.
-   */
-  artifacts?: {
-    /**
-     * A list of objects to be uploaded to Cloud Storage upon successful
-     * completion of all build steps.
-     *
-     * Files in the workspace matching specified paths globs will be uploaded to
-     * the specified Cloud Storage location using the builder service account's
-     * credentials.
-     *
-     * The location and generation of the uploaded objects will be stored in the
-     * Build resource's results field.
-     *
-     * If any objects fail to be pushed, the build is marked FAILURE.
-     */
-    objects?: {
-      /**
-       * Cloud Storage bucket and optional object path, in the form
-       * "gs://bucket/path/to/somewhere/". (see [Bucket Name
-       * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
-       *
-       * Files in the workspace matching any path pattern will be uploaded to
-       * Cloud Storage with this location as a prefix.
-       */
-      location?: string;
-      /**
-       * Path globs used to match files in the build's workspace.
-       */
-      paths?: string[];
-      [k: string]: unknown;
-    };
-    /**
-     * A list of images to be pushed upon the successful completion of all build
-     * steps.
-     *
-     * The images will be pushed using the builder service account's credentials.
-     *
-     * The digests of the pushed images will be stored in the Build resource's
-     * results field.
-     *
-     * If any of the images fail to be pushed, the build is marked FAILURE.
-     */
-    images?: string[];
-    [k: string]: unknown;
-  };
+  options?: BuildOptions;
+  source?: Source;
+  artifacts?: Artifacts;
   /**
    * Amount of time that this build should be allowed to run, to second
    * granularity. If this amount of time elapses, work on the build will cease
@@ -358,6 +194,90 @@ export interface Volume {
   [k: string]: unknown;
 }
 /**
+ * Special options for this build.
+ */
+export interface BuildOptions {
+  /**
+   * Compute Engine machine type on which to run the build.
+   */
+  machineType?: "UNSPECIFIED" | "N1_HIGHCPU_8" | "N1_HIGHCPU_32" | "E2_HIGHCPU_8" | "E2_HIGHCPU_32";
+  /**
+   * Global list of volumes to mount for ALL build steps
+   *
+   * Each volume is created as an empty volume prior to starting the build
+   * process. Upon completion of the build, volumes and their contents are
+   * discarded. Global volume names and paths cannot conflict with the volumes
+   * defined a build step.
+   *
+   * Using a global volume in a build with only one step is not valid as
+   * it is indicative of a build request with an incorrect configuration.
+   */
+  volumes?: Volume[];
+  /**
+   * Option to define build log streaming behavior to Google Cloud
+   * Storage.
+   */
+  logStreamingOption?: "STREAM_DEFAULT" | "STREAM_ON" | "STREAM_OFF";
+  /**
+   * Option to specify a `WorkerPool` for the build. User specifies the pool
+   * with the format "[WORKERPOOL_PROJECT_ID]/[WORKERPOOL_NAME]".
+   * This is an experimental field.
+   */
+  workerPool?: string;
+  /**
+   * A list of global environment variable definitions that will exist for all
+   * build steps in this build. If a variable is defined in both globally and in
+   * a build step, the variable will use the build step value.
+   *
+   * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
+   * being given the value "VALUE".
+   */
+  env?: string[];
+  /**
+   * Option to specify the logging mode, which determines where the logs are
+   * stored.
+   */
+  logging?: "LOGGING_UNSPECIFIED" | "LEGACY" | "GCS_ONLY" | "CLOUD_LOGGING_ONLY" | "NONE";
+  /**
+   * Requested verifiability options.
+   */
+  requestedVerifyOption?: "NOT_VERIFIED" | "VERIFIED";
+  /**
+   * Option to specify behavior when there is an error in the substitution
+   * checks.
+   */
+  substitutionOption?: "MUST_MATCH" | "ALLOW_LOOSE";
+  /**
+   * Requested disk size for the VM that runs the build. Note that this is *NOT*
+   * "disk free"; some of the space will be used by the operating system and
+   * build utilities. Also note that this is the minimum disk size that will be
+   * allocated for the build -- the build may run with a larger disk than
+   * requested. At present, the maximum disk size is 1000GB; builds that request
+   * more than the maximum are rejected with an error.
+   */
+  diskSizeGb?: string;
+  /**
+   * A list of global environment variables, which are encrypted using a Cloud
+   * Key Management Service crypto key. These values must be specified in the
+   * build's `Secret`. These variables will be available to all build steps
+   * in this build.
+   */
+  secretEnv?: string[];
+  /**
+   * Requested hash for SourceProvenance.
+   */
+  sourceProvenanceHash?: ("NONE" | "SHA256" | "MD5")[];
+  [k: string]: unknown;
+}
+/**
+ * The location of the source files to build.
+ */
+export interface Source {
+  storageSource?: StorageSource;
+  repoSource?: RepoSource;
+  [k: string]: unknown;
+}
+/**
  * If provided, get the source from this location in Google Cloud Storage.
  */
 export interface StorageSource {
@@ -379,6 +299,91 @@ export interface StorageSource {
    * build.
    */
   object?: string;
+  [k: string]: unknown;
+}
+/**
+ * If provided, get the source from this location in a Cloud Source
+ * Repository.
+ */
+export interface RepoSource {
+  /**
+   * Name of the tag to build.
+   */
+  tagName?: string;
+  /**
+   * ID of the project that owns the Cloud Source Repository. If omitted, the
+   * project ID requesting the build is assumed.
+   */
+  projectId?: string;
+  /**
+   * Name of the Cloud Source Repository. If omitted, the name "default" is
+   * assumed.
+   */
+  repoName?: string;
+  /**
+   * Explicit commit SHA to build.
+   */
+  commitSha?: string;
+  /**
+   * Directory, relative to the source root, in which to run the build.
+   *
+   * This must be a relative path. If a step's `dir` is specified and is an
+   * absolute path, this value is ignored for that step's execution.
+   */
+  dir?: string;
+  /**
+   * Name of the branch to build.
+   */
+  branchName?: string;
+  [k: string]: unknown;
+}
+/**
+ * Artifacts produced by the build that should be uploaded upon
+ * successful completion of all build steps.
+ */
+export interface Artifacts {
+  objects?: ArtifactObjects;
+  /**
+   * A list of images to be pushed upon the successful completion of all build
+   * steps.
+   *
+   * The images will be pushed using the builder service account's credentials.
+   *
+   * The digests of the pushed images will be stored in the Build resource's
+   * results field.
+   *
+   * If any of the images fail to be pushed, the build is marked FAILURE.
+   */
+  images?: string[];
+  [k: string]: unknown;
+}
+/**
+ * A list of objects to be uploaded to Cloud Storage upon successful
+ * completion of all build steps.
+ *
+ * Files in the workspace matching specified paths globs will be uploaded to
+ * the specified Cloud Storage location using the builder service account's
+ * credentials.
+ *
+ * The location and generation of the uploaded objects will be stored in the
+ * Build resource's results field.
+ *
+ * If any objects fail to be pushed, the build is marked FAILURE.
+ */
+export interface ArtifactObjects {
+  /**
+   * Cloud Storage bucket and optional object path, in the form
+   * "gs://bucket/path/to/somewhere/". (see [Bucket Name
+   * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+   *
+   * Files in the workspace matching any path pattern will be uploaded to
+   * Cloud Storage with this location as a prefix.
+   */
+  location?: string;
+  /**
+   * Path globs used to match files in the build's workspace.
+   */
+  paths?: string[];
   [k: string]: unknown;
 }
 /**

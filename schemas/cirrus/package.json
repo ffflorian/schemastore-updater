@@ -7,8 +7,8 @@
   "name": "@schemastore/cirrus",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cirrus",
   "scripts": {},
-  "typesPublisherContentHash": "974e5f8ddacd6279e53ebfad3e738114bad9f83c7c81b1751e12970835ec9d12",
+  "typesPublisherContentHash": "a99f2acac14d8c15fe9e8ca3dcdba991f0d4d5ef5f83270f852cac54e68f6360",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

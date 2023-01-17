@@ -7,8 +7,8 @@
   "name": "@schemastore/bamboo-spec",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bamboo-spec",
   "scripts": {},
-  "typesPublisherContentHash": "b174c99651d121fc2ac879265f9015dcf63cc644fc333f7d5ce390ddf26ec358",
+  "typesPublisherContentHash": "9d9a1e119c0dc8bfafb5b7aba592eac15bc74c15dc40616f5721adf6c2acf020",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

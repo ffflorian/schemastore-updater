@@ -7,8 +7,8 @@
   "name": "@schemastore/cheatsheets",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cheatsheets",
   "scripts": {},
-  "typesPublisherContentHash": "c64d9459650f3387c319982d2b581a4519e5ceb1ab788019b5313069bc5eee0e",
+  "typesPublisherContentHash": "0d8f0f93a074e651126c276a59830aa0ac6f9dcbdb44fac95e186cf1c34fe12e",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }
