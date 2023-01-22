@@ -4,7 +4,7 @@
     "schemastore-updater": "dist/cli.js"
   },
   "dependencies": {
-    "commander": "9.5.0",
+    "commander": "10.0.0",
     "fs-extra": "11.1.0",
     "json-schema-to-typescript": "11.0.2",
     "jsonabc": "2.3.1",
