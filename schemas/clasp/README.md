@@ -8,5 +8,5 @@ This package contains type definitions for clasp.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/clasp.
 
 ## Additional Details
-* Last updated: Tue, Jan 17, 2023, 20:16:45 GMT
+* Last updated: Mon, Jan 23, 2023, 19:39:42 GMT
 * Dependencies: none

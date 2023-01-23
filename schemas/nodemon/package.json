@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for nodemon.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/nodemon",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nodemon",
   "scripts": {},
-  "typesPublisherContentHash": "4896ad84dceca2ed63f75343d3d919626c9935971c683f790e82ed432a80b368",
+  "typesPublisherContentHash": "20c4b9e046bf6829b34ec81e00d7c1e4120e07cfdbc0b41822132d5bf573a8e0",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.9",
   "typeScriptVersion": "2.2"
 }

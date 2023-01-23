@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for nest-cli.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/nest-cli",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nest-cli",
+  "scripts": {},
+  "typesPublisherContentHash": "9b3b86e69f04259f9db8b2e990e44e0a04beece4358ca1c81ba6fee485b8c104",
+  "types": "index.d.ts",
+  "version": "0.0.5",
+  "typeScriptVersion": "2.2"
+}

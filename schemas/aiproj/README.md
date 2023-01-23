@@ -8,5 +8,5 @@ This package contains type definitions for aiproj.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/aiproj.
 
 ## Additional Details
-* Last updated: Tue, Jan 17, 2023, 20:16:44 GMT
+* Last updated: Mon, Jan 23, 2023, 19:39:40 GMT
 * Dependencies: none

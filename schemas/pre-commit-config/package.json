@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for pre-commit-config.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/pre-commit-config",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pre-commit-config",
   "scripts": {},
-  "typesPublisherContentHash": "f8df0b9c8cc41bc22cc5318f8124191e7b5c7266796de95f4cf527ad4850d406",
+  "typesPublisherContentHash": "29af0f067b5c1bb0996c513b1f331a28cc8f7cbf801bac39aa091029798f9ae0",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "typeScriptVersion": "2.2"
 }

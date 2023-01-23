@@ -7,8 +7,8 @@
   "name": "@schemastore/clang-format",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/clang-format",
   "scripts": {},
-  "typesPublisherContentHash": "7059cb1a5236593057c1d15912ae187e8030f5d9ffe137282bbd5ae7f2327ee4",
+  "typesPublisherContentHash": "59bf7dfe1d2fcc14f171d719abddfd9b89bb6a8689a7d0a8b6753d27cd0e32c4",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

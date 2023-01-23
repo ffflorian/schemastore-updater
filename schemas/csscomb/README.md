@@ -8,5 +8,5 @@ This package contains type definitions for csscomb.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/csscomb.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:14 GMT
+* Last updated: Mon, Jan 23, 2023, 19:39:42 GMT
 * Dependencies: none

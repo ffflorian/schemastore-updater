@@ -7,8 +7,8 @@
   "name": "@schemastore/comet",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/comet",
   "scripts": {},
-  "typesPublisherContentHash": "59399eb518f86f707f837697945a54e61d4d7744b3fd79f3649981cf41d4bbc2",
+  "typesPublisherContentHash": "c05d719671e8a059cae16d91f1b15a6e1755df84d7452cc89415404c6df14f9e",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

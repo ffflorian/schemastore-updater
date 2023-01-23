@@ -7,8 +7,8 @@
   "name": "@schemastore/base",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/base",
   "scripts": {},
-  "typesPublisherContentHash": "b32f174d19b29be7f50b8b23d6dbc534e2fcd1784dc9d671d60a786be4e952b0",
+  "typesPublisherContentHash": "f6134dad52152f032ecc6d032e5cd8827aa0b72dc61ad18e5515468150ea2a9d",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

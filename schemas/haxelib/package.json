@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for haxelib.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/haxelib",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/haxelib",
   "scripts": {},
-  "typesPublisherContentHash": "5663bf0783d4956cf2fc6bd00e1f5e7cedbea722e9aa0d8a71d7c7c27f9f9712",
+  "typesPublisherContentHash": "56b62a411d52e1e6f6fd3cb2a773fddfbdb3a7c2250873e5b39c7f6aaa5dc518",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.11",
   "typeScriptVersion": "2.2"
 }

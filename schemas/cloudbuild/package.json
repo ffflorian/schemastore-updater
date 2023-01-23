@@ -7,8 +7,8 @@
   "name": "@schemastore/cloudbuild",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cloudbuild",
   "scripts": {},
-  "typesPublisherContentHash": "0667c383101f7aac9a70d29edafb2792c710db18a84edc94c245c2d773e50882",
+  "typesPublisherContentHash": "778f15989f2ad6fddffdd9d41c6a8b3fd071ee4f5c15fbddd99f02f7a6d1f29a",
   "types": "index.d.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "typeScriptVersion": "2.2"
 }

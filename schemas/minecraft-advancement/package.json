@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for minecraft-advancement.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/minecraft-advancement",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/minecraft-advancement",
+  "scripts": {},
+  "typesPublisherContentHash": "401c3902a4574b55576f00f3d6c52fcd2e91e7f9c1e000b13cc197865e89b80c",
+  "types": "index.d.ts",
+  "version": "0.0.5",
+  "typeScriptVersion": "2.2"
+}

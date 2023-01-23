@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for fly.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/fly",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/fly",
+  "scripts": {},
+  "typesPublisherContentHash": "3de2488c7f465ef0d62a995383bc17ec5d14055e67141288ad0c0e0038977f64",
+  "types": "index.d.ts",
+  "version": "0.0.4",
+  "typeScriptVersion": "2.2"
+}

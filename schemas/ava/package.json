@@ -7,8 +7,8 @@
   "name": "@schemastore/ava",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ava",
   "scripts": {},
-  "typesPublisherContentHash": "562b17686625d21cf0a1b5ac1f63d091c51ead248a188f15bfde79075c6eba83",
+  "typesPublisherContentHash": "caac352aa35b50925f53c304e5d2ddb9a2b744ee97d73037bfec482e2aac5369",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

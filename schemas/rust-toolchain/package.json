@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for rust-toolchain.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/rust-toolchain",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/rust-toolchain",
+  "scripts": {},
+  "typesPublisherContentHash": "41727d89ef69bdea919dc38ab5bf437e7882d00cc19d7b540b42e0a009d4ca65",
+  "types": "index.d.ts",
+  "version": "0.0.4",
+  "typeScriptVersion": "2.2"
+}

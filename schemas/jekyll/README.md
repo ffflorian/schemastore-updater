@@ -8,5 +8,5 @@ This package contains type definitions for jekyll.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jekyll.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:20 GMT
+* Last updated: Mon, Jan 23, 2023, 19:39:45 GMT
 * Dependencies: none

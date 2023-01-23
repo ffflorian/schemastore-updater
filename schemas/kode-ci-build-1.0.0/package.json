@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for kode-ci-build-1.0.0.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/kode-ci-build-1.0.0",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/kode-ci-build-1.0.0",
+  "scripts": {},
+  "typesPublisherContentHash": "47360d4b4f307e1d73b793d41d2054c5342714f45a942c0199a8034765fd5e2d",
+  "types": "index.d.ts",
+  "version": "0.0.4",
+  "typeScriptVersion": "2.2"
+}

@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for pyproject.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/pyproject",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pyproject",
+  "scripts": {},
+  "typesPublisherContentHash": "e2feb9fe742084c6c3411e9bf2b0911220a2d7975ab49bb5020efb6d138e39d9",
+  "types": "index.d.ts",
+  "version": "0.0.4",
+  "typeScriptVersion": "2.2"
+}
