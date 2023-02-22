@@ -150,10 +150,10 @@
   resolved "https://registry.yarnpkg.com/@ffflorian/eslint-config/-/eslint-config-0.8.2.tgz#480f9ff2bcc842099a5c4808d72ffd8967e89c66"
   integrity sha512-iDC3vImsVTq5C9O/ij7BYqs6rE0uDYy9ZkzHPmph4z+cxd5G8us9Mf0YHW2+xOXwdY+j3tV5ZLCH9AfYzvcFEA==
 
-"@ffflorian/prettier-config@0.1.4":
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/@ffflorian/prettier-config/-/prettier-config-0.1.4.tgz#1fceaa5a97c26b705b1b1c81e581276bf61aeb2c"
-  integrity sha512-BHw1pwV2VYIkemwKcy0O/sAj2rb/g/HLBh6/M4DJKU8rWxa0m2E8G6BbnmLYCdt7n7AYeKHOuQYznVJ4wsmyMw==
+"@ffflorian/prettier-config@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ffflorian/prettier-config/-/prettier-config-0.2.1.tgz#af35f166511685991b7118ae16f6466cff0cc278"
+  integrity sha512-LDXPRxblOtOLubdxEGYaERdD8Nh8vuSZ5UG6nwSRehXlDezEyKkehqSUnMyxj/f63d1NeuS1MdobR1vQD72UbA==
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
