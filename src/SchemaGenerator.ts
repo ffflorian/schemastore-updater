@@ -282,7 +282,7 @@ SOFTWARE
   "license": "MIT",
   "main": "index.d.ts",
   "name": "@schemastore/${schemaName.toLowerCase()}",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName.toLowerCase()}",
   "scripts": {},
   "typesPublisherContentHash": "${schemaData.hash}",
   "types": "index.d.ts",
