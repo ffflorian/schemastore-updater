@@ -279,20 +279,24 @@ SOFTWARE
   }
 
   private generatePackageJson(schemaName: string, schemaData: SchemaData): string {
-    return JSON.stringify({
-      author: 'Florian Imdahl <git@ffflorian.de>',
-      dependencies: {},
-      description: `TypeScript definitions for ${schemaName}.`,
-      license: 'MIT',
-      main: 'index.d.ts',
-      name: `@schemastore/${schemaName.toLowerCase()}`,
-      repository: `https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}`,
-      scripts: {},
-      typesPublisherContentHash: schemaData.hash,
-      types: 'index.d.ts',
-      version: schemaData.version,
-      typeScriptVersion: '2.2',
-    }, null, 2);
+    return JSON.stringify(
+      {
+        author: 'Florian Imdahl <git@ffflorian.de>',
+        dependencies: {},
+        description: `TypeScript definitions for ${schemaName}.`,
+        license: 'MIT',
+        main: 'index.d.ts',
+        name: `@schemastore/${schemaName.toLowerCase()}`,
+        repository: `https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}`,
+        scripts: {},
+        typeScriptVersion: '2.2',
+        types: 'index.d.ts',
+        typesPublisherContentHash: schemaData.hash,
+        version: schemaData.version,
+      },
+      null,
+      2
+    );
   }
 
   private generateReadme(schemaName: string): string {
