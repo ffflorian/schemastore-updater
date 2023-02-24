@@ -8,5 +8,5 @@ This package contains type definitions for BizTalkServerApplicationSchema.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/BizTalkServerApplicationSchema.
 
 ## Additional Details
-* Last updated: Mon, May 30, 2022, 07:50:54 GMT
+* Last updated: Fri, Feb 24, 2023, 13:09:44 GMT
 * Dependencies: none

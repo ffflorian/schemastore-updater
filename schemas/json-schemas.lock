@@ -221,7 +221,7 @@
   },
   "BizTalkServerApplicationSchema.json": {
     "hash": "cf48d7a981efb73731075ed94afbcd3e090143e96df44a468386be8422e5d7f1",
-    "version": "0.0.4"
+    "version": "0.0.5"
   },
   "block.json": {
     "hash": "3becb0a01d97450eb7d803c801402e70dca40b1c814cd2028bd373a2109577f9",
@@ -1599,13 +1599,9 @@
     "hash": "0a6ef9167f8eaf25ebb37eacaf2bf5973d3bd6d3902051b04d133102afd4ac2d",
     "version": "0.0.2"
   },
-  "solidarityschema.json": {
-    "hash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
-    "version": "0.0.5"
-  },
   "solidaritySchema.json": {
     "hash": "c5755a85c08464c2453332d5dadc4d0ff9f1ce9d79d9a76154ea3a01c2b73070",
-    "version": "0.0.6"
+    "version": "0.0.7"
   },
   "solution-filter.json": {
     "hash": "609bdcc7f51ac177da6ab3697c440b3d19eb96297602ba668495d2eea6645037",

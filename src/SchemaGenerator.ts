@@ -76,7 +76,7 @@ export class SchemaGenerator {
     const invalidEntries = [];
 
     for (const entry in lockFileData) {
-      const name = entry.replace('.json', '');
+      const name = entry.replace(/\.json$/, '');
       const fileName = `./schemas/${name}/package.json`;
       const fileIsReadable = await this.fileIsReadable(fileName);
       if (fileIsReadable) {
@@ -129,7 +129,9 @@ export class SchemaGenerator {
         const packageJsonHash = packageJson.typesPublisherContentHash;
 
         if (lockFileHash !== packageJsonHash) {
-          this.logger.info(`${entry}: Expected "${packageJsonHash}", got "${lockFileHash}". Replacing lock file hash with package.json hash.`);
+          this.logger.info(
+            `${entry}: Expected "${packageJsonHash}", got "${lockFileHash}". Replacing lock file hash with package.json hash.`
+          );
           lockFileData[entry].hash = packageJsonHash;
         }
 
@@ -137,7 +139,9 @@ export class SchemaGenerator {
         const packageJsonVersion = packageJson.version;
 
         if (lockFileVersion !== packageJsonVersion) {
-          this.logger.info(`${entry}: Expected "${packageJsonVersion}", got "${lockFileVersion}". Replacing lock file version with package.json version.`);
+          this.logger.info(
+            `${entry}: Expected "${packageJsonVersion}", got "${lockFileVersion}". Replacing lock file version with package.json version.`
+          );
           lockFileData[entry].version = packageJsonVersion;
         }
       }
@@ -275,21 +279,20 @@ SOFTWARE
   }
 
   private generatePackageJson(schemaName: string, schemaData: SchemaData): string {
-    return `{
-  "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
-  "description": "TypeScript definitions for ${schemaName}.",
-  "license": "MIT",
-  "main": "index.d.ts",
-  "name": "@schemastore/${schemaName.toLowerCase()}",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName.toLowerCase()}",
-  "scripts": {},
-  "typesPublisherContentHash": "${schemaData.hash}",
-  "types": "index.d.ts",
-  "version": "${schemaData.version}",
-  "typeScriptVersion": "2.2"
-}
-`;
+    return JSON.stringify({
+      author: 'Florian Imdahl <git@ffflorian.de>',
+      dependencies: {},
+      description: `TypeScript definitions for ${schemaName}.`,
+      license: 'MIT',
+      main: 'index.d.ts',
+      name: `@schemastore/${schemaName.toLowerCase()}`,
+      repository: `https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}`,
+      scripts: {},
+      typesPublisherContentHash: schemaData.hash,
+      types: 'index.d.ts',
+      version: schemaData.version,
+      typeScriptVersion: '2.2',
+    }, null, 2);
   }
 
   private generateReadme(schemaName: string): string {
