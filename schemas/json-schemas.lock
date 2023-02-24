@@ -628,8 +628,8 @@
     "version": "0.0.5"
   },
   "eslintrc.json": {
-    "hash": "2291e45bed687827dc9cf628a741ce5209b506d19a8ebdf16e72253a4e1a9b14",
-    "version": "0.0.6"
+    "hash": "759027ec0d75be6162e9509626deeebd116243b40897d5b1c4012600ebebc626",
+    "version": "0.0.7"
   },
   "esmrc.json": {
     "hash": "ddfe8386aa4921663ddfe568d029411525a1af261193f698535d1d33aaa214a8",
@@ -708,8 +708,8 @@
     "version": "0.0.5"
   },
   "function.json": {
-    "hash": "2df8a8cc5f7572bc62ad349f808fcce44537474fb7fbb003b5ab00dd9f46d59f",
-    "version": "0.0.3"
+    "hash": "c8d664e09679a4cf2bcdc70e3caf830c07f11fcb17fbccc750b9ee329d875a81",
+    "version": "0.0.4"
   },
   "geojson.json": {
     "hash": "82139f90a29a357685f2dfe7a1a76c16e32c5bbaa7da01e54454fd506b567363",
@@ -1264,8 +1264,8 @@
     "version": "0.0.3"
   },
   "package.json": {
-    "hash": "4476e2319e6b9682246c7a83d93eade8fec74d7c9e158de26b5c3812f1719e3f",
-    "version": "0.0.6"
+    "hash": "4643ec01eaaf150d3302a3fd1e3e3cb7329b192ebec86d0660777a13c741c6b7",
+    "version": "0.0.7"
   },
   "package.manifest-7.0.0.json": {
     "hash": "efc911ed3e7b8651020c83b83a52d90af1f2531f3088684e0eeec515a933b3bf",

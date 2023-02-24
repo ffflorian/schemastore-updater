@@ -8,5 +8,5 @@ This package contains type definitions for eslintrc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/eslintrc.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:17 GMT
+* Last updated: Fri, Feb 24, 2023, 13:20:55 GMT
 * Dependencies: none

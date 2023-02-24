@@ -8,5 +8,5 @@ This package contains type definitions for package.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/package.
 
 ## Additional Details
-* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
+* Last updated: Fri, Feb 24, 2023, 13:20:57 GMT
 * Dependencies: none
