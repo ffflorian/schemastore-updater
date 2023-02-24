@@ -13,8 +13,8 @@ const defaultOptions: Required<SchemaGeneratorOptions> = {
   disabledSchemas: [],
   force: false,
   lockFile: 'schemas/json-schemas.lock',
-  schemaStoreRepo: 'https://github.com/SchemaStore/schemastore',
   schema: '',
+  schemaStoreRepo: 'https://github.com/SchemaStore/schemastore',
   source: '',
 };
 

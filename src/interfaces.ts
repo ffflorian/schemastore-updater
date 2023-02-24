@@ -26,6 +26,6 @@ export interface SchemaData {
 
 export interface SchemaGeneratorOptions extends Partial<FileSettings> {
   force?: boolean;
-  source?: string;
   schema?: string;
+  source?: string;
 }
