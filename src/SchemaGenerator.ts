@@ -281,7 +281,7 @@ SOFTWARE
   "description": "TypeScript definitions for ${schemaName}.",
   "license": "MIT",
   "main": "index.d.ts",
-  "name": "@schemastore/${schemaName}",
+  "name": "@schemastore/${schemaName.toLowerCase()}",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/${schemaName}",
   "scripts": {},
   "typesPublisherContentHash": "${schemaData.hash}",

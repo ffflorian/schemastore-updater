@@ -4,7 +4,7 @@
   "description": "TypeScript definitions for solidaritySchema.",
   "license": "MIT",
   "main": "index.d.ts",
-  "name": "@schemastore/solidaritySchema",
+  "name": "@schemastore/solidarityschema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/solidaritySchema",
   "scripts": {},
   "typesPublisherContentHash": "c5755a85c08464c2453332d5dadc4d0ff9f1ce9d79d9a76154ea3a01c2b73070",
