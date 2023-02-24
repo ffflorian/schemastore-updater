@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for jdt.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/jdt",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jdt",
   "scripts": {},
-  "typesPublisherContentHash": "814d7459bcda4346e1f8e2804f2297d20bf4278414e1a363b2c40a16b14e0351",
+  "typesPublisherContentHash": "0aeb0506f5103d9ac6d65e0174e304c989f28be500305eb3d629feed548b38b8",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

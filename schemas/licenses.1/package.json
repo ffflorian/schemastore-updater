@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for licenses.1.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/licenses.1",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/licenses.1",
   "scripts": {},
-  "typesPublisherContentHash": "0a0652cea53b76df324f0b916c9b57770b312e90d3b338785e654ed9bddcaa14",
+  "typesPublisherContentHash": "84012ca5bdfc65b01e45c77ca93a94d04d82abaa18612564efb6163221790642",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

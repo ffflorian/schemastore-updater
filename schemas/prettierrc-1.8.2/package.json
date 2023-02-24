@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for prettierrc-1.8.2.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/prettierrc-1.8.2",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/prettierrc-1.8.2",
   "scripts": {},
-  "typesPublisherContentHash": "3752212c2514117b36737748b21e7210538acd3adf7623b7500db1b968648432",
+  "typesPublisherContentHash": "202864091eb92cff132e32d303d6a8ddc124e8949d7f732c1fe6f9b7d43a4e01",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

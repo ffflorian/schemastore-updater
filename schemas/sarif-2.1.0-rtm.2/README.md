@@ -8,5 +8,5 @@ This package contains type definitions for sarif-2.1.0-rtm.2.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sarif-2.1.0-rtm.2.
 
 ## Additional Details
-* Last updated: Mon, Jul 29, 2019, 11:30:14 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:40 GMT
 * Dependencies: none

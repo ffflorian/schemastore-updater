@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for fabric.mod.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/fabric.mod",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/fabric.mod",
   "scripts": {},
-  "typesPublisherContentHash": "0a31f6cb7fe2b8eb73fa66f7313ec9dca421804089e500a503474392d3ef5eca",
+  "typesPublisherContentHash": "30bc5d7580f5cffe3d01d6197f4524a71160669298e7a6296c2aa255b5b60705",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

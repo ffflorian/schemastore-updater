@@ -8,5 +8,5 @@ This package contains type definitions for geojson.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/geojson.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:18 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:33 GMT
 * Dependencies: none

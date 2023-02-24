@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for package.manifest-8.0.0.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/package.manifest-8.0.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/package.manifest-8.0.0",
   "scripts": {},
-  "typesPublisherContentHash": "15ae5c55a14d2498d604b228fa92e8c71842891bd7404a770a38ed44493bd8b5",
+  "typesPublisherContentHash": "d2d3516a6c8170315d1184d0f139b2354f3986d95ba0ef71a463c3964956f1e8",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

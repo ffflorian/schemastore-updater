@@ -8,5 +8,5 @@ This package contains type definitions for npm-link-up.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/npm-link-up.
 
 ## Additional Details
-* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:37 GMT
 * Dependencies: none

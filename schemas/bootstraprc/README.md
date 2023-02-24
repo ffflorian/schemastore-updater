@@ -8,5 +8,5 @@ This package contains type definitions for bootstraprc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bootstraprc.
 
 ## Additional Details
-* Last updated: Wed, Apr 20, 2022, 07:13:18 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:30 GMT
 * Dependencies: none

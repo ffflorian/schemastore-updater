@@ -8,5 +8,5 @@ This package contains type definitions for compile-commands.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/compile-commands.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:05 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:31 GMT
 * Dependencies: none

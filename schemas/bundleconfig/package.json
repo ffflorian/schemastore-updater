@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for bundleconfig.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/bundleconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bundleconfig",
   "scripts": {},
-  "typesPublisherContentHash": "ffcb7b8e2b5767e4e0c24549ddfd95387739d1d0ed6c4fc1f4d9ff54833fa7d4",
+  "typesPublisherContentHash": "31c9c2912414e433fe8ab4b1e3a7900af902854409be227393050184a1d9b1b1",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

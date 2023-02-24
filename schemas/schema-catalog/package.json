@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for schema-catalog.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/schema-catalog",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/schema-catalog",
   "scripts": {},
-  "typesPublisherContentHash": "7bbeef14515177f2b22c15f76c8ce097260f34c3f6725e95da5c667dafff954a",
+  "typesPublisherContentHash": "447d799fdc4fdce6b55cef6b5002f797d7a9699b65ceeb2e22014e8913ec896b",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

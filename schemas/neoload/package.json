@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for neoload.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/neoload",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/neoload",
   "scripts": {},
-  "typesPublisherContentHash": "46e97ef751f80282b2b43ceb246d929c572ba46ef89fb48ffce98f8623e8717a",
+  "typesPublisherContentHash": "2bc1e232c19df339ce760bb6c927972294e8223afd99cdf1be717abdc5bd5db2",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for compilerdefaults.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/compilerdefaults",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/compilerdefaults",
   "scripts": {},
-  "typesPublisherContentHash": "b400c5764e21695d23dea02f2ae0033d7f7f2b754bc4b24e6c1c65f359f2be9f",
+  "typesPublisherContentHash": "ea6ab194b65d2217fb25a6d9d855ac089a78f9c582999cf5e716a20674f0a509",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

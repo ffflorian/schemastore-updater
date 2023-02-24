@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for hemtt-0.6.2.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/hemtt-0.6.2",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/hemtt-0.6.2",
   "scripts": {},
-  "typesPublisherContentHash": "ae48f691534d28708ade1ef67b5f27d4dc52b3ee2a5c3d2a9f389fcc4de5744c",
+  "typesPublisherContentHash": "877a68e3a4bfa6a41a32943e1a626abff3e228797e83a3945904ac23a7d0419f",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

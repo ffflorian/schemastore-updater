@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for phraseapp.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/phraseapp",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/phraseapp",
   "scripts": {},
-  "typesPublisherContentHash": "ee4bd185e2e73e999d992bcb89c3a1344f8db20af5cb6d4948784966c531fd7e",
+  "typesPublisherContentHash": "9052c81e8f6ffa35badb857a7ae4aee9879309d1c5759f29d07874970a400b45",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

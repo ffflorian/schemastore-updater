@@ -7,8 +7,8 @@
   "name": "@schemastore/chrome-manifest",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/chrome-manifest",
   "scripts": {},
-  "typesPublisherContentHash": "865b9b02deaa20d96d7d0b9a261b46f3dd040da98622ed1b49cc2b2b1d8bde24",
+  "typesPublisherContentHash": "78b2e30e3b2a898c7a2a41c770b30f31d24af03bbbd8ea20a2cc482093bd9ad4",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

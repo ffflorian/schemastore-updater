@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for mtaext.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/mtaext",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mtaext",
   "scripts": {},
-  "typesPublisherContentHash": "20b6312e97f8092693af5549d5a0199f2d1dc66ea3ddd96dcbacbff50e5f06e6",
+  "typesPublisherContentHash": "1e6eba9984ebbbe22c5be0ce7a64e9b751c1085da3cbf04e86096789fae83c52",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

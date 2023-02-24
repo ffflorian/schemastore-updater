@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for geojson.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/geojson",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/geojson",
   "scripts": {},
-  "typesPublisherContentHash": "f3dda50f235e2dcde73f3c165c0001f17a52d26d63b27eb8f86e10152ea0dbb9",
+  "typesPublisherContentHash": "82139f90a29a357685f2dfe7a1a76c16e32c5bbaa7da01e54454fd506b567363",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

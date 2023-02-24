@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for json-patch.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/json-patch",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/json-patch",
   "scripts": {},
-  "typesPublisherContentHash": "4abe3f9e2f5d3484e95fc2655fe1726ccc2bcc9cfc49e9dd686e76831c917b9a",
+  "typesPublisherContentHash": "3eab3cfe6e9159170b9772db28bb8f8d4c072b722f07eb1a33cae6ee43d79d1e",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

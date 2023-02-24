@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for vs-nesting.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/vs-nesting",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vs-nesting",
   "scripts": {},
-  "typesPublisherContentHash": "c1ad0f66084f4ff6631ee887ab07c0ee8d7bd4112d5555c62c948a6b7ac2bc56",
+  "typesPublisherContentHash": "cd9760a7d6d4224e183e3d5b362ccf8bca0cda387a363b6d6fbad583a8bed737",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

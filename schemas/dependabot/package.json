@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for dependabot.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/dependabot",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/dependabot",
   "scripts": {},
-  "typesPublisherContentHash": "acd5ae96c0640e5dc3ae6f4df306ecf15cea8a7c45459ce578330dc77dd57cee",
+  "typesPublisherContentHash": "4bababb382717ab8ddfb3714ef05fbbc065a286a86910cec2eee63c95ebc3dd6",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

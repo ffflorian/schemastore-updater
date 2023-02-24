@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for project.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/project",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/project",
   "scripts": {},
-  "typesPublisherContentHash": "a7e5136894f6a3f352aad341d332c82f30beb31d9de04b94bc92980fec8be079",
+  "typesPublisherContentHash": "83ab5a464bdc2a0cadb55531ca824ce8c3527cfd6b35b2e50f95069b057db277",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

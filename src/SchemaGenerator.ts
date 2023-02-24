@@ -98,11 +98,11 @@ export class SchemaGenerator {
     const invalidEntries = [];
 
     for (const entry in lockFileData) {
-      const name = entry.replace('.json', '');
+      const name = entry.replace(/\.json$/, '');
       const fileName = `./schemas/${name}/package.json`;
-      const fileIsReadable = await this.fileIsReadable(fileName);
+      const fileIsReadable = await this.fileIsReadable(path.resolve(fileName));
       if (fileIsReadable) {
-        const packageJson = await fs.readJson(fileName);
+        const packageJson = await fs.readJson(path.resolve(fileName));
         const lockFileVersion = lockFileData[entry].version;
         if (lockFileVersion !== packageJson.version) {
           invalidEntries.push(entry);
@@ -119,17 +119,17 @@ export class SchemaGenerator {
     const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
 
     for (const entry in lockFileData) {
-      const name = entry.replace('.json', '');
+      const name = entry.replace(/\.json$/, '');
       const fileName = `./schemas/${name}/package.json`;
-      const fileIsReadable = await this.fileIsReadable(fileName);
+      const fileIsReadable = await this.fileIsReadable(path.resolve(fileName));
       if (fileIsReadable) {
-        const packageJson = await fs.readJson(fileName);
+        const packageJson = await fs.readJson(path.resolve(fileName));
 
         const lockFileHash = lockFileData[entry].hash;
         const packageJsonHash = packageJson.typesPublisherContentHash;
 
         if (lockFileHash !== packageJsonHash) {
-          this.logger.info(`${entry}: Expected "${packageJsonHash}", got "${lockFileHash}".`);
+          this.logger.info(`${entry}: Expected "${packageJsonHash}", got "${lockFileHash}". Replacing lock file hash with package.json hash.`);
           lockFileData[entry].hash = packageJsonHash;
         }
 
@@ -137,7 +137,7 @@ export class SchemaGenerator {
         const packageJsonVersion = packageJson.version;
 
         if (lockFileVersion !== packageJsonVersion) {
-          this.logger.info(`${entry}: Expected "${packageJsonVersion}", got "${lockFileVersion}".`);
+          this.logger.info(`${entry}: Expected "${packageJsonVersion}", got "${lockFileVersion}". Replacing lock file version with package.json version.`);
           lockFileData[entry].version = packageJsonVersion;
         }
       }

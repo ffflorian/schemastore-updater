@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for grunt-cssmin-task.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/grunt-cssmin-task",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-cssmin-task",
   "scripts": {},
-  "typesPublisherContentHash": "384ff3a803ee681c607ff7473c9eed0a3d84fb35c7749fb8420d25f23060dd63",
+  "typesPublisherContentHash": "c22c3b2ab5e45a2f8863afb0bdb3e5e30cfb0754183dc18ff59c1e730e09e18d",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

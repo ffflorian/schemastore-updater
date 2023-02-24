@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for sarif-2.0.0-csd.2.beta.2018-10-10.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/sarif-2.0.0-csd.2.beta.2018-10-10",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sarif-2.0.0-csd.2.beta.2018-10-10",
   "scripts": {},
-  "typesPublisherContentHash": "42a8241a7114e696e7413099815dce2f740855fe23c4123c57e21666dd91a639",
+  "typesPublisherContentHash": "340101400b7ddab594e583c682f1da2015af5b7809315043174145c594b01d5c",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

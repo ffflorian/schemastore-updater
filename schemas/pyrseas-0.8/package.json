@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for pyrseas-0.8.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/pyrseas-0.8",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pyrseas-0.8",
   "scripts": {},
-  "typesPublisherContentHash": "f72a2f6148f313520f86b15c7537c25b4e7c1b85cb8f7bc423f57220bb308f86",
+  "typesPublisherContentHash": "9b461c585b0977c84571b1b6eb33cad43429847296cc52f6ac7c8862f605e4b5",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

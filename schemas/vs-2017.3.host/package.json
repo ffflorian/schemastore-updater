@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for vs-2017.3.host.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/vs-2017.3.host",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vs-2017.3.host",
   "scripts": {},
-  "typesPublisherContentHash": "e46bdf556074586d3b0a39871f3456e24a29805709c60805739d7f5a3a4a411b",
+  "typesPublisherContentHash": "db21dd1cfe78cf8ddb12fdd6e9c26bc982354fd623f0a7794125f14703f5996d",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

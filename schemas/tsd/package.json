@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for tsd.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/tsd",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/tsd",
   "scripts": {},
-  "typesPublisherContentHash": "c34d6febcf996c2462470c24aa7279637c3f9f3280ebf6e6791aff1e04732540",
+  "typesPublisherContentHash": "e0de9bc326f2511f3eac87e4a7d108fa0de038721a92dad55d4e0c379da6f4dd",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

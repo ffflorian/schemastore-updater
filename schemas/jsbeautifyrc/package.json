@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for jsbeautifyrc.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/jsbeautifyrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsbeautifyrc",
   "scripts": {},
-  "typesPublisherContentHash": "aaec6f96a21849f226e40c28ca30ae69084e1ef1b2e874d253ac75494160ea99",
+  "typesPublisherContentHash": "cdfa87735e1d970ea53410a86f0072eec25e878973a4cf8bbb86ca69c9b47bae",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

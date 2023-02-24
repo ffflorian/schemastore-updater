@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for grunt-task.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/grunt-task",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-task",
   "scripts": {},
-  "typesPublisherContentHash": "1f7b2aa1b5efd6d393a6aba27e1081fdf9eb47644e2239b8e23538bd69537ab6",
+  "typesPublisherContentHash": "57b01e88166c10bf7156bb4837f0c9eca736665ab17e2afa1b7cce8db604a118",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

@@ -8,5 +8,5 @@ This package contains type definitions for schema-draft-v4.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/schema-draft-v4.
 
 ## Additional Details
-* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:40 GMT
 * Dependencies: none

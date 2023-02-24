@@ -1,14 +1,14 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
-  "description": "TypeScript definitions for solidarityschema.",
+  "description": "TypeScript definitions for solidaritySchema.",
   "license": "MIT",
   "main": "index.d.ts",
-  "name": "@schemastore/solidarityschema",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/solidarityschema",
+  "name": "@schemastore/solidaritySchema",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/solidaritySchema",
   "scripts": {},
-  "typesPublisherContentHash": "d74654c0d9064385d1b177c1760f38afc92b868e8133a704d9da1b46c299f1da",
+  "typesPublisherContentHash": "c5755a85c08464c2453332d5dadc4d0ff9f1ce9d79d9a76154ea3a01c2b73070",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

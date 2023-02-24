@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for libman.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/libman",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/libman",
   "scripts": {},
-  "typesPublisherContentHash": "1230675101f80184c044c162eecfa6af1e83517cc80c03b53fcb6f92afaf90c8",
+  "typesPublisherContentHash": "d1e2de530b0fd159462f61715580fca265523357de9047cc2bf2fefe2ddeccff",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

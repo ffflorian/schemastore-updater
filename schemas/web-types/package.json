@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for web-types.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/web-types",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/web-types",
   "scripts": {},
-  "typesPublisherContentHash": "28d788be2872a3f09d4fd076c144a0f7fd88a99d37b41ce44ead80606f37d8f0",
+  "typesPublisherContentHash": "4f9ea40af684d277de445851715d500b981796af5dfeed87e5800eaa6988117e",
   "types": "index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "typeScriptVersion": "2.2"
 }

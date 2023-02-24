@@ -8,5 +8,5 @@ This package contains type definitions for prometheus.rules.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/prometheus.rules.
 
 ## Additional Details
-* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:37 GMT
 * Dependencies: none

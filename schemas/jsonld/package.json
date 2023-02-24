@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for jsonld.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/jsonld",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsonld",
   "scripts": {},
-  "typesPublisherContentHash": "08460786d5403df9f125de2fdf41feeb7c3836ce5462e940e6b76d7d9c5b37e0",
+  "typesPublisherContentHash": "a860d18f90b2b09a49a6d9ebbb96ccfe716bb2a5f19b782686e7f6e83524f7b5",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

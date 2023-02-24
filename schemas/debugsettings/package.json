@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for debugsettings.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/debugsettings",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/debugsettings",
   "scripts": {},
-  "typesPublisherContentHash": "78cd337254d9dc8505c2369cef53df23312013d20721b5d940c382318f7d0ea3",
+  "typesPublisherContentHash": "91f93be3a86c7e6845a145dfff404cfb1ca8569ab7d164b25b5d715a45af8329",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

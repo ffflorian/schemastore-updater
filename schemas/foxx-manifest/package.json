@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for foxx-manifest.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/foxx-manifest",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/foxx-manifest",
   "scripts": {},
-  "typesPublisherContentHash": "2ae59f64f7b5d8563a8f010a3722d2d6507985847ff2a2f6cad47a00820bad61",
+  "typesPublisherContentHash": "5454a84fbd0436ce4656e529ee9e6b44a05a8c6c7c9e697aa0570c04c0d2d66b",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

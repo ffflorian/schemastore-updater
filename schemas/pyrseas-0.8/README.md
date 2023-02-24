@@ -8,5 +8,5 @@ This package contains type definitions for pyrseas-0.8.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pyrseas-0.8.
 
 ## Additional Details
-* Last updated: Mon, Jul 20, 2020, 19:14:56 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:37 GMT
 * Dependencies: none

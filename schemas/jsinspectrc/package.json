@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for jsinspectrc.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/jsinspectrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsinspectrc",
   "scripts": {},
-  "typesPublisherContentHash": "7f5e226b76b71a3f11cd1bee1b92f7cd9d9e354ffa700aab7cd942d7ca7f6bd7",
+  "typesPublisherContentHash": "124e44bc5cec3c779da85f5bd74f57165ff62191d677fd74ad6b6c7413d4c9d1",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

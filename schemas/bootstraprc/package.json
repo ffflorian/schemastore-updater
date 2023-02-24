@@ -7,8 +7,8 @@
   "name": "@schemastore/bootstraprc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bootstraprc",
   "scripts": {},
-  "typesPublisherContentHash": "b4389cd91524875d61ccbe10a181897875c298e84e0279a62814d8a57bbcbcbd",
+  "typesPublisherContentHash": "fb116e8a8c50b59d21ca39bb4ee613cc953a3f0215c5cd014f37028ef7dc43a4",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

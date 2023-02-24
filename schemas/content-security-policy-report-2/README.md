@@ -8,5 +8,5 @@ This package contains type definitions for content-security-policy-report-2.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/content-security-policy-report-2.
 
 ## Additional Details
-* Last updated: Wed, Apr 20, 2022, 07:13:19 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:32 GMT
 * Dependencies: none

@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for lsdlschema-2.0.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/lsdlschema-2.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lsdlschema-2.0",
   "scripts": {},
-  "typesPublisherContentHash": "832ef33738b32d6b5e5dbe8bd86551ff9f1464fade95a5432c8420f5a252468e",
+  "typesPublisherContentHash": "11bdb5dc2d28934808aa582236ae5914ea0b6add92ecc4ea99a913ea71e19306",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

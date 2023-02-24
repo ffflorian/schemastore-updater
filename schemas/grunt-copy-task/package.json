@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for grunt-copy-task.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/grunt-copy-task",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-copy-task",
   "scripts": {},
-  "typesPublisherContentHash": "356171b6258327a59e7637f27108dc40267e9d312c3a93d05dbdbf8d76fbbcb1",
+  "typesPublisherContentHash": "0d7d552f45c9a51eca5d4c0795dfabb790ab299dd191e1ae02fd99812d670029",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

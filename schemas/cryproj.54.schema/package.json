@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for cryproj.54.schema.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/cryproj.54.schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cryproj.54.schema",
   "scripts": {},
-  "typesPublisherContentHash": "a14d11a77b99448c3436e124f60cda54d805ae8ac4580caaab15c2da64bfbd5e",
+  "typesPublisherContentHash": "7c936790f9120e6dc26ed92d055484e558cfddbe044dc58bba9adf1ebe882a9f",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

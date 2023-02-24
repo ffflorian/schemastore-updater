@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for grunt-clean-task.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/grunt-clean-task",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/grunt-clean-task",
   "scripts": {},
-  "typesPublisherContentHash": "37afe5dcf7a3ca70e0eb22105711ea27eed4ef95de49e26d0faa1896edaee70a",
+  "typesPublisherContentHash": "8451e055c52a4d361c8844c59c8f277283284b88293e9f420dd2a4d05367cf4a",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

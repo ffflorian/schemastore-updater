@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for npm-link-up.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/npm-link-up",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/npm-link-up",
   "scripts": {},
-  "typesPublisherContentHash": "8a5c13e2f04ae7f519580b6f9ff9bc062cd66b544014c72d4a3e651d5cd43c29",
+  "typesPublisherContentHash": "86c48b1aeb45e86970833242c134b3a71dae6d0306edbc1f1a0d273c64faa72a",
   "types": "index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "typeScriptVersion": "2.2"
 }

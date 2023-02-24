@@ -8,5 +8,5 @@ This package contains type definitions for ksp-ckan.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ksp-ckan.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:22 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:35 GMT
 * Dependencies: none

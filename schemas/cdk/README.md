@@ -8,5 +8,5 @@ This package contains type definitions for cdk.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cdk.
 
 ## Additional Details
-* Last updated: Wed, Apr 20, 2022, 07:12:43 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:30 GMT
 * Dependencies: none

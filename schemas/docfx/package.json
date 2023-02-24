@@ -7,8 +7,8 @@
   "name": "@schemastore/docfx",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/docfx",
   "scripts": {},
-  "typesPublisherContentHash": "e4caa7d049250691bad781a4dd44343383dc678020319c677b6ad84789edb3d7",
+  "typesPublisherContentHash": "d62d9f47e08989ee81a80db018c2c744dce2f62191202a50a54ba52ce0f30388",
   "types": "index.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "typeScriptVersion": "2.2"
 }

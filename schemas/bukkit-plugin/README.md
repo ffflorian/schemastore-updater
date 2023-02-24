@@ -8,5 +8,5 @@ This package contains type definitions for bukkit-plugin.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bukkit-plugin.
 
 ## Additional Details
-* Last updated: Sat, Jul 04, 2020, 11:00:04 GMT
+* Last updated: Fri, Feb 24, 2023, 11:23:30 GMT
 * Dependencies: none

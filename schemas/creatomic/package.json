@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for creatomic.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/creatomic",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/creatomic",
   "scripts": {},
-  "typesPublisherContentHash": "80ce6ad83e9f2816eaaaa3cd55c619484c0af9ff75f61b7734067ef65767ae0d",
+  "typesPublisherContentHash": "e7449527b6be2eceb70fdc49e77625469a938166e55c89b982b4d6b08cf9c277",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }

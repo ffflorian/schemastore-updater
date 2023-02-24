@@ -1,5 +1,5 @@
 {
-  "author": "Florian Keller <git@ffflorian.de>",
+  "author": "Florian Imdahl <git@ffflorian.de>",
   "dependencies": {},
   "description": "TypeScript definitions for commands.",
   "license": "MIT",
@@ -7,8 +7,8 @@
   "name": "@schemastore/commands",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/commands",
   "scripts": {},
-  "typesPublisherContentHash": "2eb3effcf1c8f0f27457e000053688580cedd7519f9c01a37348b8585fc9a369",
+  "typesPublisherContentHash": "306d980ad5de48dd438fda9227d8646e13d0ea18c7c2939078d9d80adb56d2f3",
   "types": "index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "typeScriptVersion": "2.2"
 }
