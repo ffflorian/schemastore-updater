@@ -7,7 +7,7 @@
 
 export type JSONSchemaForNPMPackageJsonFiles = JSONSchemaForNPMPackageJsonFiles1 & JSONSchemaForNPMPackageJsonFiles2;
 export type JSONSchemaForNPMPackageJsonFiles1 = {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 /**
  * A person who has been involved in creating or maintaining this package.
@@ -16,14 +16,14 @@ export type Person = {
   name: string;
   url?: string;
   email?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & Person1;
 export type Person1 =
   | {
       name: string;
       url?: string;
       email?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | string;
 export type PackageExportsEntry = PackageExportsEntryPath | PackageExportsEntryObject;
@@ -15116,7 +15116,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
          * The email address to which issues should be reported.
          */
         email?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | string;
   /**
@@ -15129,7 +15129,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
   licenses?: {
     type?: string;
     url?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   author?: Person;
   /**
@@ -15164,14 +15164,14 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^\./.+".
          */
-        [k: string]: PackageExportsEntry | PackageExportsFallback;
+        [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
       }
     | PackageExportsEntryObject1
     | PackageExportsFallback1;
   bin?:
     | string
     | {
-        [k: string]: string;
+        [k: string]: string | undefined;
       };
   /**
    * When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
@@ -15192,12 +15192,14 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
     /**
      * Contains overrides for the TypeScript version that matches the version range matching the property key.
      */
-    [k: string]: {
-      /**
-       * Maps all file paths to the file paths specified in the array.
-       */
-      "*"?: string[];
-    };
+    [k: string]:
+      | {
+          /**
+           * Maps all file paths to the file paths specified in the array.
+           */
+          "*"?: string[];
+        }
+      | undefined;
   };
   /**
    * Specify either a single file or an array of filenames to put in place for the man program to find.
@@ -15225,7 +15227,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
      */
     man?: string;
     test?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Specify the place where your code lives. This is helpful for people who want to contribute.
@@ -15235,7 +15237,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
         type?: string;
         url?: string;
         directory?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | string;
   funding?: FundingUrl | FundingWay | [FundingUrl | FundingWay, ...(FundingUrl | FundingWay)[]];
@@ -15306,13 +15308,13 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
      * Start dev server to serve application files
      */
     serve?: string;
-    [k: string]: string | undefined;
+    [k: string]: string | undefined | undefined;
   };
   /**
    * A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.
    */
   config?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   dependencies?: Dependency;
   devDependencies?: Dependency;
@@ -15322,13 +15324,15 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
    * When a user installs your package, warnings are emitted if packages specified in "peerDependencies" are not already installed. The "peerDependenciesMeta" field serves to provide more information on how your peer dependencies are utilized. Most commonly, it allows peer dependencies to be marked as optional. Metadata for this field is specified with a simple hash of the package name to a metadata object.
    */
   peerDependenciesMeta?: {
-    [k: string]: {
-      /**
-       * Specifies that this peer dependency is optional and should not be installed automatically.
-       */
-      optional?: boolean;
-      [k: string]: unknown;
-    };
+    [k: string]:
+      | {
+          /**
+           * Specifies that this peer dependency is optional and should not be installed automatically.
+           */
+          optional?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   /**
    * Array of package names that will be bundled when publishing the package.
@@ -15342,7 +15346,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
    * Resolutions is used to support selective version resolutions, which lets you define custom package versions or ranges inside your dependencies. See: https://classic.yarnpkg.com/en/docs/selective-version-resolutions
    */
   resolutions?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html
@@ -15350,7 +15354,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
   packageManager?: string;
   engines?: {
     node?: string;
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   engineStrict?: boolean;
   /**
@@ -15373,12 +15377,12 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
     access?: "public" | "restricted";
     tag?: string;
     registry?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   dist?: {
     shasum?: string;
     tarball?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   readme?: string;
   /**
@@ -15393,7 +15397,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
     | {
         main?: string;
         browser?: string;
-        [k: string]: string;
+        [k: string]: string | undefined;
       };
   /**
    * Allows packages within a directory to depend on one another using direct linking of local files. Additionally, dependencies within a workspace are hoisted to the workspace root when possible to reduce duplication. Note: It's also a good idea to set "private" to true when using this feature.
@@ -15409,7 +15413,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
          * Packages to block from hoisting to the workspace root. Currently only supported in Yarn only.
          */
         nohoist?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   jspm?: JSONSchemaForNPMPackageJsonFiles1;
   eslintConfig?: JSONSchemaForESLintConfigurationFiles;
@@ -15455,7 +15459,7 @@ export interface PackageExportsEntryObject {
    * This interface was referenced by `PackageExportsEntryObject1`'s JSON-Schema definition
    * via the `patternProperty` "^(?![\.0-9]).".
    */
-  [k: string]: PackageExportsEntry | PackageExportsFallback;
+  [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
 }
 /**
  * Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.
@@ -15486,7 +15490,7 @@ export interface PackageExportsEntryObject1 {
    * This interface was referenced by `PackageExportsEntryObject1`'s JSON-Schema definition
    * via the `patternProperty` "^(?![\.0-9]).".
    */
-  [k: string]: PackageExportsEntry | PackageExportsFallback;
+  [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
 }
 /**
  * Used to inform about ways to help fund development of the package.
@@ -15502,7 +15506,7 @@ export interface FundingWay {
  * Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.
  */
 export interface Dependency {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 export interface JSONSchemaForESLintConfigurationFiles {
   ecmaFeatures?: EcmaFeatures;
@@ -15530,7 +15534,7 @@ export interface JSONSchemaForESLintConfigurationFiles {
   rules?: Rules;
   settings?: Settings;
   overrides?: Overrides;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.
@@ -15573,7 +15577,7 @@ export interface EcmaFeatures {
   superInFunctions?: boolean;
   templateStrings?: boolean;
   unicodeCodePointEscapes?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * An environment defines global variables that are predefined.
@@ -15679,13 +15683,13 @@ export interface Env {
    * web workers global variables
    */
   worker?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.
  */
 export interface Globals {
-  [k: string]: ("readonly" | "writable" | "off") | boolean;
+  [k: string]: (("readonly" | "writable" | "off") | boolean) | undefined;
 }
 /**
  * The JavaScript language options to be supported
@@ -15721,7 +15725,7 @@ export interface ParserOptions {
    * set to "script" (default) or "module" if your code is in ECMAScript modules
    */
   sourceType?: "script" | "module";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PossibleErrors {
   /**
@@ -15868,7 +15872,7 @@ export interface PossibleErrors {
    * Enforce comparing typeof expressions against valid strings
    */
   "valid-typeof"?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface BestPractices {
   /**
@@ -16152,14 +16156,14 @@ export interface BestPractices {
    * Require or Disallow "Yoda" conditions
    */
   yoda?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface StrictMode {
   /**
    * require or disallow strict mode directives
    */
   strict?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Variables {
   /**
@@ -16210,7 +16214,7 @@ export interface Variables {
    * Disallow the use of variables before they are defined
    */
   "no-use-before-define"?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface NodeAndCommonJs {
   /**
@@ -16257,7 +16261,7 @@ export interface NodeAndCommonJs {
    * Disallow synchronous methods
    */
   "no-sync"?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface StylisticIssues {
   /**
@@ -16642,7 +16646,7 @@ export interface StylisticIssues {
    * Require parenthesis around regex literals
    */
   "wrap-regex"?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface EcmaScript6 {
   /**
@@ -16773,7 +16777,7 @@ export interface EcmaScript6 {
    * Require or disallow spacing around the * in yield* expressions
    */
   "yield-star-spacing"?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Legacy {
   "max-depth"?: number | ("off" | "warn" | "error") | unknown[];
@@ -16782,13 +16786,13 @@ export interface Legacy {
   "max-statements"?: number | ("off" | "warn" | "error") | unknown[];
   "no-bitwise"?: number | ("off" | "warn" | "error") | unknown[];
   "no-plusplus"?: number | ("off" | "warn" | "error") | unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.
  */
 export interface Settings {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface OptionsDefinition {
   /**
@@ -16931,7 +16935,7 @@ export interface OptionsDefinition {
    * Indent script and style tags in Vue files.
    */
   vueIndentScriptAndStyle?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface OverridesDefinition {
   /**
@@ -16948,7 +16952,7 @@ export interface OverridesDefinition {
     excludeFiles?: string | string[];
     options?: OptionsDefinition1;
   }[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The options to apply for this override.
@@ -17094,7 +17098,7 @@ export interface OptionsDefinition1 {
    * Indent script and style tags in Vue files.
    */
   vueIndentScriptAndStyle?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface JSONSchemaForTheStylelintConfigurationFiles {
   extends?: SimpleStringOrArrayStringRule;
@@ -17110,7 +17114,7 @@ export interface JSONSchemaForTheStylelintConfigurationFiles {
     files?: string[];
     customSyntax?: string;
     rules?: AllRules;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Processors are functions that hook into stylelint's pipeline, modifying code on its way into stylelint and modifying results on their way out
@@ -17121,7 +17125,7 @@ export interface JSONSchemaForTheStylelintConfigurationFiles {
     | [
         string,
         ...{
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }[]
       ]
   )[];
@@ -17138,7 +17142,7 @@ export interface JSONSchemaForTheStylelintConfigurationFiles {
   reportInvalidScopeDisables?: BooleanRule39;
   reportNeedlessDisables?: BooleanRule40;
   rules?: AllRules;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface AtRule {
   "at-rule-blacklist"?: ArrayStringRule;
@@ -17346,7 +17350,7 @@ export interface AtRule {
           unknown[])
     );
   "at-rule-whitelist"?: ArrayStringRule1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CoreRule {
   disableFix?: boolean;
@@ -17359,7 +17363,7 @@ export interface CoreRule {
    * Message status
    */
   severity?: "warning" | "error";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Block {
   /**
@@ -17749,7 +17753,7 @@ export interface Block {
     );
   "block-opening-brace-space-after"?: NewlineSpaceRule2;
   "block-opening-brace-space-before"?: NewlineSpaceWithIgnoreRule1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Color {
   "color-hex-case"?: LowerUpperRule1;
@@ -17875,7 +17879,7 @@ export interface Color {
     );
   "color-no-hex"?: BooleanRule3;
   "color-no-invalid-hex"?: BooleanRule4;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Comment {
   /**
@@ -17929,11 +17933,11 @@ export interface Comment {
   "comment-no-empty"?: BooleanRule5;
   "comment-whitespace-inside"?: AlwaysNeverRule;
   "comment-word-blacklist"?: ArrayStringRule2;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CustomMedia {
   "custom-media-pattern"?: StringRule;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CustomProperty {
   /**
@@ -17986,7 +17990,7 @@ export interface CustomProperty {
     );
   "custom-property-no-outside-root"?: BooleanRule6;
   "custom-property-pattern"?: StringRule1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Declaration {
   "declaration-bang-space-after"?: AlwaysNeverRule1;
@@ -18118,7 +18122,7 @@ export interface Declaration {
   "declaration-property-unit-whitelist"?: ObjectRule1;
   "declaration-property-value-blacklist"?: ObjectRule2;
   "declaration-property-value-whitelist"?: ObjectRule3;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface DeclarationBlock {
   /**
@@ -18289,7 +18293,7 @@ export interface DeclarationBlock {
   "declaration-block-semicolon-space-before"?: SpaceRule1;
   "declaration-block-single-line-max-declarations"?: IntegerRule;
   "declaration-block-trailing-semicolon"?: AlwaysNeverRule4;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Font {
   /**
@@ -18462,7 +18466,7 @@ export interface Font {
         ) &
           unknown[])
     );
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Function {
   "function-blacklist"?: ArrayStringRule3;
@@ -18529,7 +18533,7 @@ export interface Function {
   "function-url-scheme-whitelist"?: ArrayStringRule4;
   "function-whitelist"?: ArrayStringRule5;
   "function-whitespace-after"?: AlwaysNeverRule7;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneralSheet {
   /**
@@ -18877,15 +18881,15 @@ export interface GeneralSheet {
         ) &
           unknown[])
     );
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface KeyframeDeclaration {
   "keyframe-declaration-no-important"?: BooleanRule20;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Length {
   "length-zero-no-unit"?: BooleanRule21;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface MediaFeature {
   "media-feature-colon-space-after"?: AlwaysNeverRule9;
@@ -18936,20 +18940,20 @@ export interface MediaFeature {
   "media-feature-parentheses-space-inside"?: AlwaysNeverRule11;
   "media-feature-range-operator-space-after"?: AlwaysNeverRule12;
   "media-feature-range-operator-space-before"?: AlwaysNeverRule13;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface MediaQueryList {
   "media-query-list-comma-newline-after"?: NewlineRule7;
   "media-query-list-comma-newline-before"?: NewlineRule8;
   "media-query-list-comma-space-after"?: SpaceRule5;
   "media-query-list-comma-space-before"?: SpaceRule6;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Number {
   "number-leading-zero"?: AlwaysNeverRule14;
   "number-max-precision"?: IntegerRule3;
   "number-no-trailing-zeros"?: BooleanRule24;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Property {
   "property-blacklist"?: ArrayStringRule6;
@@ -18996,11 +19000,11 @@ export interface Property {
     );
   "property-no-vendor-prefix"?: BooleanRule25;
   "property-whitelist"?: ArrayStringRule7;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface RootRule {
   "root-no-standard-properties"?: BooleanRule26;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Rule {
   /**
@@ -19147,7 +19151,7 @@ export interface Rule {
         ) &
           unknown[])
     );
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Selector {
   "selector-attribute-brackets-space-inside"?: AlwaysNeverRule15;
@@ -19412,23 +19416,23 @@ export interface Selector {
           unknown[])
     );
   "selector-max-empty-lines"?: IntegerRule5;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface SelectorList {
   "selector-list-comma-newline-after"?: NewlineRule9;
   "selector-list-comma-newline-before"?: NewlineRule10;
   "selector-list-comma-space-after"?: SpaceRule7;
   "selector-list-comma-space-before"?: SpaceRule8;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ShorthandProperty {
   "shorthand-property-no-redundant-values"?: BooleanRule34;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface String {
   "string-no-newline"?: BooleanRule35;
   "string-quotes"?: SingleDoubleRule1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface StylelintDisableComment {
   /**
@@ -19503,11 +19507,11 @@ export interface StylelintDisableComment {
         ) &
           unknown[])
     );
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Time {
   "time-no-imperceptible"?: BooleanRule36;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Unit {
   "unit-blacklist"?: UnitRule;
@@ -19553,7 +19557,7 @@ export interface Unit {
           unknown[])
     );
   "unit-whitelist"?: UnitRule1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Value {
   /**
@@ -19605,7 +19609,7 @@ export interface Value {
           unknown[])
     );
   "value-no-vendor-prefix"?: BooleanRule37;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ValueList {
   "value-list-comma-newline-after"?: NewlineRule11;
@@ -19613,7 +19617,7 @@ export interface ValueList {
   "value-list-comma-space-after"?: SpaceRule9;
   "value-list-comma-space-before"?: SpaceRule10;
   "value-list-max-empty-lines"?: IntegerRule6;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Configuration Schema for the JavaScript test runner AVA
@@ -19675,10 +19679,10 @@ export interface AVAConfigSchema {
  * Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from `process.env`
  */
 export interface EnvironmentVariables {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 export interface Extensions {
-  [k: string]: "commonjs" | "module";
+  [k: string]: ("commonjs" | "module") | undefined;
 }
 /**
  * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
@@ -19690,7 +19694,7 @@ export interface Configuration {
    * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode
    */
   compile?: false | "tsc";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * AVA searches your entire project for `*.js`, `*.cjs`, `*.mjs` and `*.ts` files (or other extensions you've configured). It will ignore such files found in the `rewritePaths` targets (e.g. `build/`). If you use more specific paths, for instance `build/main/`, you may need to change AVA's `files` configuration to ignore other directories. Paths are relative to your project directory
@@ -19731,7 +19735,7 @@ export interface SemanticReleaseSchema {
    * Set to false to skip Continuous Integration environment verifications. This allows for making releases from a local machine
    */
   ci?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface BranchObject {
   name: string;
@@ -19764,7 +19768,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    * custom mapping from formats to file extensions (default: https://github.com/kucherenko/jscpd/blob/master/packages/tokenizer/src/formats.ts); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md
    */
   formatsExts?: {
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * path to directory for non-console reports

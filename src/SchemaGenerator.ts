@@ -14,6 +14,7 @@ const defaultOptions: Required<SchemaGeneratorOptions> = {
   force: false,
   lockFile: 'schemas/json-schemas.lock',
   schemaStoreRepo: 'https://github.com/SchemaStore/schemastore',
+  schema: '',
   source: '',
 };
 
@@ -23,6 +24,7 @@ export class SchemaGenerator {
   private readonly lockFile: string;
   private readonly logFile: string;
   private readonly logger: logdown.Logger;
+  private readonly schema?: string;
   private readonly schemaStoreDirResolved: string;
   private readonly updatedFilesFile: string;
 
@@ -31,8 +33,9 @@ export class SchemaGenerator {
       ...defaultOptions,
       ...options,
     };
-    this.options.source = this.options.source || 'temp/schemastore';
+    this.options.source ||= 'temp/schemastore';
     this.schemaStoreDirResolved = path.resolve(this.options.source);
+    this.schema = this.options.schema;
     this.jsonSchemasDir = path.join(this.schemaStoreDirResolved, 'src/schemas/json');
     this.lockFile = path.resolve(this.options.lockFile);
     this.logFile = path.resolve('schemagenerator.log');
@@ -51,7 +54,7 @@ export class SchemaGenerator {
     this.logger.info(`Using lockfile "${this.lockFile}".`);
 
     if (this.options.force) {
-      this.logger.info('Force is set. Will re-generate all schemas.');
+      this.logger.info('Force is set. Will re-generate all enabled schemas.');
     }
   }
 
@@ -72,7 +75,10 @@ export class SchemaGenerator {
   }
 
   public async checkHashsums(): Promise<void> {
-    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    let lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    if (this.schema && lockFileData[this.schema]) {
+      lockFileData = {[this.schema]: lockFileData[this.schema]};
+    }
     const invalidEntries = [];
 
     for (const entry in lockFileData) {
@@ -94,7 +100,10 @@ export class SchemaGenerator {
   }
 
   public async checkVersions(): Promise<void> {
-    const lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    let lockFileData: SchemaHashes = await fs.readJSON(this.lockFile);
+    if (this.schema && lockFileData[this.schema]) {
+      lockFileData = {[this.schema]: lockFileData[this.schema]};
+    }
     const invalidEntries = [];
 
     for (const entry in lockFileData) {
@@ -181,15 +190,27 @@ export class SchemaGenerator {
     } catch {
       await this.removeAndClone();
     }
-    const allFiles = await fs.readdir(this.jsonSchemasDir);
 
-    const enabledSchemas = allFiles.filter(fileName => {
+    let files = await fs.readdir(this.jsonSchemasDir);
+
+    if (this.schema && files.includes(this.schema)) {
+      files = [this.schema];
+    }
+
+    const enabledSchemas = files.filter(fileName => {
       const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
       return fileName.endsWith('.json') && !schemaIsDisabled;
     });
 
+    const disabledSchemas = files.filter(fileName => {
+      const schemaIsDisabled = this.options.disabledSchemas.includes(fileName);
+      return fileName.endsWith('.json') && schemaIsDisabled;
+    });
+
     this.logger.info(
-      `Loaded ${enabledSchemas.length} enabled schemas and ${this.options.disabledSchemas.length} disabled schemas.`
+      `Loaded ${enabledSchemas.length} enabled schema${enabledSchemas.length === 1 ? '' : 's'} and ${
+        disabledSchemas.length
+      } disabled schema${disabledSchemas.length === 1 ? '' : 's'}.`
     );
 
     return this.generate(enabledSchemas);
@@ -340,6 +361,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
       try {
         newSchema = await schemaGenerator.compileFromFile(fileNameResolved, {
           cwd: this.jsonSchemasDir,
+          strictIndexSignatures: true,
         });
       } catch (error) {
         this.logger.error(`Can't process "${schemaName}". Adding to the list of disabled schemas.`);

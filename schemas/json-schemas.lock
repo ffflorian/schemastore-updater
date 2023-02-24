@@ -1265,7 +1265,7 @@
   },
   "package.json": {
     "hash": "4643ec01eaaf150d3302a3fd1e3e3cb7329b192ebec86d0660777a13c741c6b7",
-    "version": "0.0.7"
+    "version": "0.0.8"
   },
   "package.manifest-7.0.0.json": {
     "hash": "efc911ed3e7b8651020c83b83a52d90af1f2531f3088684e0eeec515a933b3bf",

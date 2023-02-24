@@ -17,7 +17,7 @@ const {
 
 commander.name(name).version(version).description(description);
 
-const commanderOptions: {settings?: string, sourceDir?: string} = commander.opts();
+const commanderOptions: {settings?: string; sourceDir?: string} = commander.opts();
 
 commander
   .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
@@ -29,13 +29,15 @@ const settingsFile = commanderOptions.settings
 
 commander
   .command('update')
-  .option('-f, --force', 'Force re-generating all schemas', false)
-  .action(async (updateOptions: {force?: boolean}) => {
+  .option('-f, --force', 'Force re-generating schema(s)', false)
+  .option('-k, --schema [schema]', 'Select single schema to update')
+  .action(async (updateOptions: {force?: boolean; schema?: string}) => {
     try {
       const settings: FileSettings = await fs.readJSON(settingsFile);
       await update({
         ...settings,
         ...(commanderOptions.sourceDir && {source: commanderOptions.sourceDir}),
+        ...(updateOptions.schema && {schema: updateOptions.schema}),
         force: !!updateOptions.force,
       });
     } catch (error) {
