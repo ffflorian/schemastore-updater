@@ -14,23 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Skip CI check
-        uses: mstachniuk/ci-skip@v1
-
       - name: Set up Node.js
-        if: env.CI_SKIP == 'false'
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
 
       - name: Set yarn cache directory
-        if: env.CI_SKIP == 'false'
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Get yarn cache
         uses: actions/cache@v3
-        if: env.CI_SKIP == 'false'
         id: yarn-cache
         with:
           path: ${{steps.yarn-cache-dir-path.outputs.dir}}
@@ -38,7 +32,6 @@ jobs:
           restore-keys: ${{runner.os}}-yarn-
 
       - name: Build, lint and test
-        if: env.CI_SKIP == 'false'
         run: |
           yarn
           yarn lint
@@ -47,7 +40,6 @@ jobs:
 
       # - name: Release on npm
       #   if: |
-      #     env.CI_SKIP == 'false' &&
       #     github.event_name != 'pull_request' &&
       #     !startsWith(github.event.head_commit.message, 'chore(deps')
       #   env:
@@ -65,7 +57,6 @@ jobs:
 
       # - name: Release on GitHub
       #   if: |
-      #     env.CI_SKIP == 'false' &&
       #     github.event_name != 'pull_request' &&
       #     !startsWith(github.event.head_commit.message, 'chore(deps')
       #   env:
