@@ -1,8 +1,6 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "bin": {
-    "schemastore-updater": "dist/cli.js"
-  },
+  "bin": "dist/cli.js",
   "dependencies": {
     "commander": "10.0.1",
     "fs-extra": "11.1.1",
@@ -42,7 +40,7 @@
     "typescript": "5.0.4"
   },
   "engines": {
-    "node": ">= 10.9"
+    "node": ">= 14.10"
   },
   "files": [
     "dist",
@@ -51,6 +49,7 @@
   "license": "GPL-3.0",
   "main": "dist/index.js",
   "name": "schemastore-updater",
+  "packageManager": "yarn@3.5.0",
   "prettier": "@ffflorian/prettier-config",
   "repository": "https://github.com/ffflorian/schemastore-updater.git",
   "scripts": {
