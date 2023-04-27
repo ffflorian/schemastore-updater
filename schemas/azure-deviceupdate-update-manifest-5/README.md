@@ -8,5 +8,5 @@ This package contains type definitions for azure-deviceupdate-update-manifest-5.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-deviceupdate-update-manifest-5.
 
 ## Additional Details
-* Last updated: Sun, Sep 11, 2022, 10:48:53 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:34 GMT
 * Dependencies: none

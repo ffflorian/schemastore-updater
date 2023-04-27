@@ -7,8 +7,8 @@
   "name": "@schemastore/bxci.schema-1.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bxci.schema-1.0",
   "scripts": {},
-  "typesPublisherContentHash": "f2c17eda48d3fd16a127fb38b6cd419834c8cb97e03b430f811c93023ff2b7f5",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.1",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ec702347f46d4a385db723b7b206e0b99a20aff95dd63a056ff53ad533856be6",
+  "version": "0.0.2"
 }

@@ -8,5 +8,5 @@ This package contains type definitions for bundleconfig.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bundleconfig.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:30 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:34 GMT
 * Dependencies: none

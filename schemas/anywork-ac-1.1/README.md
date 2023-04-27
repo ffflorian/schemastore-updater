@@ -8,5 +8,5 @@ This package contains type definitions for anywork-ac-1.1.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/anywork-ac-1.1.
 
 ## Additional Details
-* Last updated: Mon, May 30, 2022, 07:50:55 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:33 GMT
 * Dependencies: none

@@ -6,5 +6,5 @@
  */
 
 export interface CommonTypesForAllSchemas {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for accelerator.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/accelerator",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/accelerator",
+  "scripts": {},
+  "typeScriptVersion": "2.2",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "82b6a74ad76365689aab38c8c448e302ce729cd6fce42ea394570355f13c3bbf",
+  "version": "0.0.1"
+}

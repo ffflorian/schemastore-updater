@@ -7,8 +7,8 @@
   "name": "@schemastore/bundleconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bundleconfig",
   "scripts": {},
-  "typesPublisherContentHash": "31c9c2912414e433fe8ab4b1e3a7900af902854409be227393050184a1d9b1b1",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "389af74d1684491b58f812e2b9460651cb576715de118f381d6cc29dbce2f464",
+  "version": "0.0.6"
 }

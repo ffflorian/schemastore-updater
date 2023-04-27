@@ -15,18 +15,18 @@ export type Deployment = string | DeploymentProjects;
  */
 export type DeploymentPermissions = Permission[];
 /**
- * Builds and deployments are normally run on the Bamboo agent’s native operating system
+ * Builds and deployments are normally run on the Bamboo agent's native operating system
  */
 export type Docker =
   | string
   | {
       image: string;
       volumes?: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       "use-default-volumes"?: boolean;
       "docker-run-arguments"?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 /**
  * Permissions specific to an environment
@@ -59,7 +59,7 @@ export type Script =
   | string
   | {
       script?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 export type TestParser = "junit" | "mstest" | "nunit" | "mocha" | "testng";
 
@@ -83,16 +83,16 @@ export interface BambooCISpecification {
       | {
           users?: string[];
           emails?: string[];
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
     )[];
     events?: (
       | Events
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
     )[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   plan?: Plan;
   "plan-permissions"?: PlanPermissions;
@@ -126,19 +126,19 @@ export interface BambooCISpecification {
             "quiet-period"?: {
               "quiet-period-seconds"?: number;
               "max-retries"?: number;
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             };
             "exclude-changeset-pattern"?: string;
             "file-filter-type"?: string;
             "file-filter-pattern"?: string;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
       }
   )[];
   /**
-   * Stages group jobs to individual steps within a plan’s build process.
+   * Stages group jobs to individual steps within a plan's build process.
    */
   stages?: {
     /**
@@ -151,9 +151,9 @@ export interface BambooCISpecification {
   variables?: KeyValue;
   version?: number;
   other?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: Job;
+  [k: string]: JobUndefined;
 }
 /**
  * Plan permissions allow a user to control access to the functions of the build plan.
@@ -165,7 +165,7 @@ export interface Permission {
     | ("view" | "edit" | "build" | "admin" | "clone" | "deploy");
   roles?: string[];
   users?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A deployment project in Bamboo is a container for holding the software project you are deploying: releases that have been built and tested, and the environments to which releases are deployed
@@ -173,7 +173,7 @@ export interface Permission {
 export interface DeploymentProjects {
   name?: string;
   "source-plan"?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A plan defines everything about your continuous integration build process in Bamboo.
@@ -182,17 +182,17 @@ export interface Plan {
   "project-key"?: string;
   key?: string;
   name?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ReleaseNaming {
   "next-version-name"?: string;
   "applies-to-branches"?: boolean;
   "auto-increment"?: boolean;
   "auto-increment-variables"?: string | string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
- * Stages group jobs to individual steps within a plan’s build process.
+ * Stages group jobs to individual steps within a plan's build process.
  */
 export interface Stage {
   /**
@@ -216,7 +216,7 @@ export interface Polling {
            * via the `patternProperty` "[a-zA-Z0-9\s+_-]".
            */
           [k: string]: {
-            [k: string]: boolean;
+            [k: string]: boolean | undefined;
           };
         }[];
       };
@@ -229,7 +229,7 @@ export interface Cron {
     | string
     | {
         expression?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
 }
 export interface Remote {
@@ -237,7 +237,7 @@ export interface Remote {
     | string
     | {
         ip?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
 }
 /**
@@ -259,7 +259,7 @@ export interface Job {
   key?: string;
   other?: {
     "clean-working-dir"?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   requirements?: (
     | string
@@ -272,7 +272,7 @@ export interface Job {
       }
   )[];
   tasks?: (PredefinedTask | Script | Task)[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A task is a small unit of work, such as source code checkout, or running a script
@@ -280,13 +280,13 @@ export interface Job {
 export interface Task {
   interpreter?: string;
   clean?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   checkout?: {
     repository?: string;
     path?: string;
     "force-clean-build"?: boolean & string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   "inject-variables"?:
     | string
@@ -304,11 +304,11 @@ export interface Task {
         type: TestParser;
         "ignore-time"?: boolean;
         "test-results"?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * @minItems 1
    */
   scripts?: [Script, ...Script[]];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

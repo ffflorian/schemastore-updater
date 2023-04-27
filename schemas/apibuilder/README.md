@@ -8,5 +8,5 @@ This package contains type definitions for apibuilder.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/apibuilder.
 
 ## Additional Details
-* Last updated: Sun, Sep 11, 2022, 10:48:53 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:33 GMT
 * Dependencies: none

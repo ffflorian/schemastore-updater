@@ -8,5 +8,5 @@ This package contains type definitions for airlock-microgateway-3.2.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/airlock-microgateway-3.2.
 
 ## Additional Details
-* Last updated: Sun, Sep 11, 2022, 10:48:53 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:32 GMT
 * Dependencies: none

@@ -7,8 +7,8 @@
   "name": "@schemastore/apple-app-site-association",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/apple-app-site-association",
   "scripts": {},
-  "typesPublisherContentHash": "2e43bd29f64effca13b95d7189434664c1a1e57ffba9736e73076e587678aa5a",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "5348f7f866d8b505a6e0e3d9f965e308775785f6f6521b92fa51a3c3d3668f0f",
+  "version": "0.0.6"
 }

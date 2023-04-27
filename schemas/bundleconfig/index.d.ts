@@ -23,13 +23,13 @@ export type Bundle = {
      * Produce a .gz file after minification.
      */
     gzip?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * The relative path to the desired output file name.
    */
   outputFileName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & Bundle1;
 export type Bundle1 = JsBundle | CssBundle | HtmlBundle;
 /**
@@ -39,7 +39,7 @@ export type Bundleconfig = Bundle[];
 
 export interface JsBundle {
   outputFileName?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * JavaScript only. Set to true to produce a source map.
@@ -50,7 +50,7 @@ export interface JsBundle {
    */
   sourceMapRootPath?: string;
   minify?: AjaxminBaseSettings;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface AjaxminBaseSettings {
   /**
@@ -61,18 +61,18 @@ export interface AjaxminBaseSettings {
    * SingleLine minifies everything to a single line. MultipleLines breaks the minified code into multiple lines for easier reading.
    */
   outputMode?: "multipleLines" | "singleLine" | "none";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CssBundle {
   outputFileName?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   minify?: AjaxminBaseSettings;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface HtmlBundle {
   outputFileName?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   minify?: {
     /**
@@ -119,7 +119,7 @@ export interface HtmlBundle {
      * HTML only. Indicating whether to remove quoted attributes when possible.
      */
     removeQuotedAttributes?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

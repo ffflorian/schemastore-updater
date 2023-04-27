@@ -7,8 +7,8 @@
   "name": "@schemastore/artifacthub-repo",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/artifacthub-repo",
   "scripts": {},
-  "typesPublisherContentHash": "76704b78786c8ad55c2416b91c3c77f4a4187e61359b796db84efdc96f87a9ad",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.2",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "513a63c21dd8c2a5a0bf75916a7f1002f90c61d4e66f1b68ed679a810ffcfe6a",
+  "version": "0.0.3"
 }

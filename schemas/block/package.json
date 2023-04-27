@@ -1,0 +1,14 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "dependencies": {},
+  "description": "TypeScript definitions for block.",
+  "license": "MIT",
+  "main": "index.d.ts",
+  "name": "@schemastore/block",
+  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/block",
+  "scripts": {},
+  "typeScriptVersion": "2.2",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "0aa46e28337dd68b4ecd9f1f7dbd29d8dafaf3401f73276e5422ed3b06cc6df0",
+  "version": "0.0.3"
+}

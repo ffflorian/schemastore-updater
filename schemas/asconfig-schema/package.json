@@ -7,8 +7,8 @@
   "name": "@schemastore/asconfig-schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/asconfig-schema",
   "scripts": {},
-  "typesPublisherContentHash": "f07eefcb3012497bb5b2ffe8e3265776b1afeacf1ba6563392e67d21dda712ee",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.1",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "5a2cdf47a3053310eadc6692f7014b3ff2cb3c5657c980d4194d72cb8e17ccf0",
+  "version": "0.0.2"
 }

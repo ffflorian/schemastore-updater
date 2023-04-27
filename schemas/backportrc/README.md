@@ -8,5 +8,5 @@ This package contains type definitions for backportrc.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/backportrc.
 
 ## Additional Details
-* Last updated: Mon, May 30, 2022, 07:50:59 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:34 GMT
 * Dependencies: none

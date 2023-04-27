@@ -8,5 +8,5 @@ This package contains type definitions for bxci.schema-2.0.0.
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bxci.schema-2.0.0.
 
 ## Additional Details
-* Last updated: Sun, Sep 11, 2022, 10:48:54 GMT
+* Last updated: Thu, Apr 27, 2023, 09:50:34 GMT
 * Dependencies: none

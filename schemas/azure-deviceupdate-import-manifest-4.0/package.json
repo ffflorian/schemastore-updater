@@ -7,8 +7,8 @@
   "name": "@schemastore/azure-deviceupdate-import-manifest-4.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-deviceupdate-import-manifest-4.0",
   "scripts": {},
-  "typesPublisherContentHash": "e822f2993c6e6bded5e01f726fb31848bd1507b92fc92bda49932c461d977397",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.2",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "34e33d982c94b9510d05114aa20407fe362d5f36ccb1b5d3be50999c94a1348f",
+  "version": "0.0.3"
 }
