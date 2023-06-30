@@ -2,7 +2,7 @@
   "author": "Florian Imdahl <git@ffflorian.de>",
   "bin": "dist/cli.js",
   "dependencies": {
-    "commander": "10.0.1",
+    "commander": "11.0.0",
     "fs-extra": "11.1.1",
     "json-schema-to-typescript": "12.0.0",
     "jsonabc": "2.3.1",
