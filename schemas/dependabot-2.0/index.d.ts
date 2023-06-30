@@ -10,6 +10,7 @@ export type ScheduleInterval = "daily" | "weekly" | "monthly";
 
 export interface GitHubDependabotV2Config {
   version: string | number;
+  "enable-beta-ecosystems"?: boolean;
   updates: PackageEcosystem[];
   registries?: Registries;
 }
@@ -23,7 +24,7 @@ export interface PackageEcosystem {
   allow?: {
     "dependency-name"?: string;
     "dependency-type"?: DependencyType;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Assignees to set on pull requests
@@ -36,7 +37,7 @@ export interface PackageEcosystem {
     prefix?: string;
     "prefix-development"?: string;
     include?: "scope";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Location of package manifests
@@ -49,7 +50,7 @@ export interface PackageEcosystem {
     "dependency-name"?: string;
     "dependency-type"?: DependencyType;
     versions?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Labels to set on pull requests
@@ -91,7 +92,7 @@ export interface PackageEcosystem {
      * Change separator for PR branch name
      */
     separator: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Disable automatic rebasing
@@ -118,7 +119,7 @@ export interface PackageEcosystem {
      * The time zone identifier must be from the Time Zone database maintained by IANA
      */
     timezone?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Branch to create pull requests against
@@ -128,7 +129,7 @@ export interface PackageEcosystem {
    * How to update manifest version requirements
    */
   "versioning-strategy"?: "lockfile-only" | "auto" | "widen" | "increase" | "increase-if-necessary";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The top-level registries key is optional. It allows you to specify authentication details that Dependabot can use to access private package registries.

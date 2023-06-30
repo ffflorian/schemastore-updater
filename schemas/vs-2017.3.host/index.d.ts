@@ -31,7 +31,7 @@ export type SymbolInfo = OverrideInfo & {
    * Specifies the name and description overrides for individual choice parameters
    */
   choices?: OverrideInfo[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 
 export interface JSONSchemaForIDETemplateHostFiles1 {
@@ -87,13 +87,13 @@ export interface JSONSchemaForIDETemplateHostFiles1 {
    * Required components in order to display this template.
    */
   requiredComponents?: RequiredComponent[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Text {
   text: string;
   package?: string;
   id?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface OverrideInfo {
   /**
@@ -108,7 +108,7 @@ export interface OverrideInfo {
    * Overrides the name specified in the template.json
    */
   description?: Text;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Tags {
   /**
@@ -123,7 +123,7 @@ export interface Tags {
    * Tags to remove. * can be specified to remove all tags specified in template.json
    */
   remove?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface UnsupportedHost {
   /**
@@ -134,9 +134,9 @@ export interface UnsupportedHost {
    * A version range specifying the unsupported host versions. This uses the nuget package format.
    */
   version?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * To require a particular host version specify the hostId and optionally version only. To require a particular SetupComponent or Extension, specify the ID and set the componentType appropriately. Version range is optional.
@@ -155,7 +155,7 @@ export interface RequiredComponent {
    * A version range specifying the required version range. This uses the nuget package format.
    */
   version?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

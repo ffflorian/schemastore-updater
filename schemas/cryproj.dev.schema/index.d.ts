@@ -2719,48 +2719,48 @@ export interface CryProjSchema {
   type?: PropertiesType;
   version: ProjectVersion;
   console_commands?: PropertiesConsoleCommands;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesConsoleVariablesItems {
   name: VariableName;
   value: ValueOfTheCVar;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesContent {
   assets?: PropertiesContentPropertiesAssets;
   code: PropertiesContentPropertiesCode;
   libs?: PropertiesContentPropertiesLibs;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesContentPropertiesLibsItems {
   name?: LibSName;
   shared?: PropertiesContentPropertiesLibsItemsPropertiesShared;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesContentPropertiesLibsItemsPropertiesShared {
   any?: LibSNameToImportForAllTheSupportedPlatforms;
   win_x64?: LibSNameToImportForTheWinX64Platform;
   win_x86?: LibSNameToImportForTheWinX86Platform;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesInfo {
   name: ProjectName;
   guid?: ProjectGUID;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesRequire {
   engine: EngineVersion;
   plugins?: PropertiesRequirePropertiesPlugins;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesRequirePropertiesPluginsItems {
   path: PluginName;
   type: PluginType;
   platforms?: PropertiesPluginsItemsPropertiesPlatforms;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PropertiesConsoleCommandsItems {
   name: CommandName;
   value: ValueOfTheCommand;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

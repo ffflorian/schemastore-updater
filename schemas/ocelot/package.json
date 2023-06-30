@@ -7,8 +7,8 @@
   "name": "@schemastore/ocelot",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ocelot",
   "scripts": {},
-  "typesPublisherContentHash": "cd287e18cb1d80b4c8759b8d8854d54fedb64e87586ac8b019cf824333b20da7",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "159814a9df75121241c7ac0ee6260fffb8faa99747a377bf8c5b4c006b5720cd",
+  "version": "0.0.6"
 }

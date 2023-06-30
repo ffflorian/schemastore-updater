@@ -37,7 +37,7 @@ export interface Version1 {
        * The target rate that the adaptive algorithm aims for on each instance
        */
       maxTelemetryItemsPerSecond?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
   };
   functions?: Functions;
@@ -59,9 +59,9 @@ export interface Version1 {
      * Log levels for specific categories.
      */
     categoryLevels?: {
-      [k: string]: "Critical" | "Debug" | "Error" | "Information" | "None" | "Trace" | "Warning";
+      [k: string]: ("Critical" | "Debug" | "Error" | "Information" | "None" | "Trace" | "Warning") | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   singleton?: Singleton;
   watchDirectories?: WatchDirectories;
@@ -183,7 +183,7 @@ export interface Singleton {
    * The interval between lock acquisition attempts.
    */
   lockAcquisitionPollingInterval?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -235,7 +235,7 @@ export interface HttpExtension {
    * Allows you to set custom headers in the HTTP response, ex. X-Content-Type-Options.
    */
   customHeaders?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -419,7 +419,7 @@ export interface Version2 {
        * The default level for logging. If a category level is not specified, this value is used.
        */
       default?: "Critical" | "Debug" | "Error" | "Information" | "None" | "Trace" | "Warning";
-      [k: string]: "Critical" | "Debug" | "Error" | "Information" | "None" | "Trace" | "Warning";
+      [k: string]: ("Critical" | "Debug" | "Error" | "Information" | "None" | "Trace" | "Warning") | undefined;
     };
     /**
      * Configuration settings for Application Insights logging.
@@ -473,7 +473,7 @@ export interface Version2 {
          * A semi-colon delimited list of types that you want to be sampled. Recognized: Dependency, Event, Exception, PageView, Request, and Trace.
          */
         includedTypes?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Enables live metrics collection.
@@ -596,7 +596,7 @@ export interface Version2 {
      * Value determining what level of file logging is enabled.
      */
     fileLoggingMode?: "never" | "always" | "debugOnly";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Managed dependency is a feature that is currently only supported with PowerShell based functions. It enables dependencies to be automatically managed by the service.
@@ -631,7 +631,7 @@ export interface Version2 {
      * Value indicating the maximumInterval for function execution retries when using ExponentialBackoff strategy.
      */
     maximumInterval?: string | null;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Configuration settings for Custom Handler.
@@ -653,7 +653,7 @@ export interface Version2 {
        * Arguments to be passed to the Custom Handler process. Can use environment variables following pattern %envVarName%
        */
       arguments?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Forward HttpTrigger request to the custom handler
@@ -739,6 +739,10 @@ export interface Version2 {
      */
     eventHubs?:
       | {
+          /**
+           * The target number of unprocessed events per worker for Event Hub-triggered functions. This is used in target-based scaling to override the default scaling threshold inferred from maxEventBatchSize.
+           */
+          targetUnprocessedEventThreshold?: number;
           /**
            * The maximum number of events that will be included in a batch for a single invocation.
            */
@@ -843,7 +847,7 @@ export interface Version2 {
        */
       maxDegreeOfParallelism?: number;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Configuration settings for dynamic concurrency

@@ -7,8 +7,8 @@
   "name": "@schemastore/nodemon",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nodemon",
   "scripts": {},
-  "typesPublisherContentHash": "20c4b9e046bf6829b34ec81e00d7c1e4120e07cfdbc0b41822132d5bf573a8e0",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.9",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "8f8f63dc2791ec18eab4dd70b8b44022fb81fc37c7322258aa0e36fb0e0aaf87",
+  "version": "0.0.10"
 }

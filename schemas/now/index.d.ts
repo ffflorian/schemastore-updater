@@ -30,7 +30,7 @@ export interface Now {
   env?: Env;
   build?: {
     env?: Env1;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * a list of build descriptions whose src references valid source files
@@ -48,19 +48,19 @@ export interface Now {
      * An object including arbitrary metadata to be passed to the Builder.
      */
     config?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * a list of route definitions
    */
   routes?: (
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   )[];
   /**
@@ -91,19 +91,19 @@ export interface Now {
      * When set to false, Now for GitHub will always build pushes in sequence without cancelling a build for the most recent commit.
      */
     autoJobCancelation?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * environment variables passed to the invoked Serverless Functions
  */
 export interface Env {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * environment variables passed to the Build processes
  */
 export interface Env1 {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }

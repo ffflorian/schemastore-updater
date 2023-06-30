@@ -57,7 +57,7 @@ export interface GithubAction {
     };
   };
   outputs?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   runs: RunsJavascript | RunsComposite | RunsDocker;
   /**
@@ -367,10 +367,10 @@ export interface RunsComposite {
    */
   steps: (
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   )[];
 }
@@ -390,7 +390,7 @@ export interface RunsDocker {
    * Specifies a key/value map of environment variables to set in the container environment.
    */
   env?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Overrides the Docker `ENTRYPOINT` in the `Dockerfile`, or sets it if one wasn't already specified. Use `entrypoint` when the `Dockerfile` does not specify an `ENTRYPOINT` or you want to override the `ENTRYPOINT` instruction. If you omit `entrypoint`, the commands you specify in the Docker `ENTRYPOINT` instruction will execute. The Docker `ENTRYPOINT instruction has a *shell* form and *exec* form. The Docker `ENTRYPOINT` documentation recommends using the *exec* form of the `ENTRYPOINT` instruction.

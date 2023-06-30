@@ -27,17 +27,17 @@ export type Labels = {
 export type LabelValue = string;
 export type FilepathGlob = string;
 export type Auth = {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type RelabelConfigs =
   | {
@@ -68,8 +68,19 @@ export type RelabelConfigs =
       /**
        * Action to perform based on regex matching.
        */
-      action?: "replace" | "keep" | "drop" | "hashmod" | "labelmap" | "labeldrop" | "labelkeep";
-      [k: string]: unknown;
+      action?:
+        | "replace"
+        | "lowercase"
+        | "uppercase"
+        | "keep"
+        | "drop"
+        | "keepequal"
+        | "dropequal"
+        | "hashmod"
+        | "labelmap"
+        | "labeldrop"
+        | "labelkeep";
+      [k: string]: unknown | undefined;
     }[]
   | null;
 export type LabelName = string;
@@ -109,6 +120,10 @@ export type Prometheus2 = {
    */
   remote_read?: Auth[] | null;
   /**
+   * Scrape config files specifies a list of globs. Scrape configs are read from all matching files and appended to the list of scrape configs.
+   */
+  scrape_config_files?: FilepathGlob[] | null;
+  /**
    * A list of scrape configurations.
    */
   scrape_configs?: Auth[] | null;
@@ -118,7 +133,7 @@ export type Prometheus2 = {
   alerting?: {
     alert_relabel_configs?: RelabelConfigs;
     alertmanagers?: Auth[] | null;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   } | null;
   /**
    * Storage related settings that are runtime reloadable.
@@ -166,6 +181,10 @@ export interface Prometheus1 {
    */
   remote_read?: Auth[] | null;
   /**
+   * Scrape config files specifies a list of globs. Scrape configs are read from all matching files and appended to the list of scrape configs.
+   */
+  scrape_config_files?: FilepathGlob[] | null;
+  /**
    * A list of scrape configurations.
    */
   scrape_configs?: Auth[] | null;
@@ -175,7 +194,7 @@ export interface Prometheus1 {
   alerting?: {
     alert_relabel_configs?: RelabelConfigs;
     alertmanagers?: Auth[] | null;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   } | null;
   /**
    * Storage related settings that are runtime reloadable.

@@ -59,7 +59,7 @@ export type Postgres = (
       database: Database;
       username?: Username;
       password?: Password;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 )[];
 /**
@@ -88,7 +88,7 @@ export type Redis = {
   port: PortNumber;
   password?: Password1;
   username?: Username1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 /**
  * The hostname or IP address of the MongoDB server
@@ -121,7 +121,7 @@ export type MongoDB = {
   port?: PortNumber3;
   password?: Password2;
   username?: Username2;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 /**
  * The hostname or IP address of the database server
@@ -279,6 +279,7 @@ export type Notifications = (
   | Gotify
   | Opsgenie
   | Pushbullet
+  | Instatus
 )[];
 /**
  * Sends status notification periodically according to a cron schedule. Set to false to disable.
@@ -315,7 +316,7 @@ export interface HttpsGithubComHyperjumptechMonikaMainMonikaConfigSchemaJson {
  * The data bytes transmitted in an HTTP transaction message immediately following the headers if there are any
  */
 export interface Body {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A list of strings sent and received by both the client program and server on every HTTP request and response
@@ -369,7 +370,7 @@ export interface Headers {
    * The user agent string of the user agent
    */
   "User-Agent"?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Socket is a TCP type request
@@ -517,7 +518,7 @@ export interface Pagerduty {
   id: string;
   type: "pagerduty";
   /**
-   * Data for your payload
+   * An array of email addresses that will receive the e-mail from Monika
    */
   data: {
     /**
@@ -528,7 +529,7 @@ export interface Pagerduty {
      * Monika Probe ID
      */
     probeID: string;
-  };
+  }[];
 }
 export interface Sendgrid {
   /**
@@ -778,6 +779,26 @@ export interface Pushbullet {
     deviceID?: string;
   };
 }
+export interface Instatus {
+  /**
+   * The type of notification
+   */
+  id: string;
+  type: "instatus";
+  /**
+   * Data for your payload
+   */
+  data: {
+    /**
+     * Instatus API key
+     */
+    apiKey: string;
+    /**
+     * Instatus Page ID
+     */
+    pageID: string;
+  };
+}
 /**
  * Check validity of your TLS certificate(s).
  */
@@ -797,7 +818,7 @@ export interface Certificate {
          */
         options?: {
           path?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
       }
   )[];

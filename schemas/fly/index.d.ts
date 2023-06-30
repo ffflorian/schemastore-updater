@@ -94,7 +94,7 @@ export interface FlyIoConfigSchemaFlyToml {
      * Enables private network access to the Fly organization. Defaults to `true`.
      */
     private_network?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Set non-sensitive information as environment variables in the application's [runtime environment](https://fly.io/docs/reference/runtime-environment/).
@@ -106,7 +106,7 @@ export interface FlyIoConfigSchemaFlyToml {
    * ```
    */
   env?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Build configuration options. See docs at https://fly.io/docs/reference/builders.
@@ -131,7 +131,7 @@ export interface FlyIoConfigSchemaFlyToml {
      * ```
      */
     args?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
     /**
      * Specify the target stage for [multistage Dockerfile builds](https://docs.docker.com/develop/develop-images/multistage-build/).
@@ -146,10 +146,10 @@ export interface FlyIoConfigSchemaFlyToml {
      */
     dockerfile?: string;
     additionalProperties?: false;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   additionalProperties?: true;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Statics {
   /**
@@ -176,7 +176,7 @@ export interface Services {
    * This type of check is **deprecated**. See `tcp_checks` or `http_checks` for alternatives.
    */
   script_checks?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * The protocol used to communicate with your application. Can be: `tcp` or `udp`.
@@ -199,7 +199,7 @@ export interface Services {
      * When an application instance is __at__ or __over__ this number, the system is likely to bring up another instance.
      */
     soft_limit?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * For each external port you want to accept connections on, add a `ports` section.
@@ -208,9 +208,9 @@ export interface Services {
     /**
      * An array of strings that select handlers to terminate the connection at the edge.
      *
-     * Valid options: http, tls, proxy_proto.
+     * Valid options: http, tls, proxy_proto, pg_tls, edge_http.
      */
-    handlers?: ("http" | "tls" | "proxy_proto")[];
+    handlers?: ("http" | "tls" | "proxy_proto" | "pg_tls" | "edge_http")[];
     /**
      * The port to accept traffic on. Valid ports: 1-65535
      */
@@ -219,7 +219,7 @@ export interface Services {
      * Force HTTP connections to HTTPS. `force_https` requires the `http` handler in the `handlers` section.
      */
     force_https?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Basic TCP connection health checks. This is the default check that runs against the configured `internal_port`.
@@ -228,11 +228,11 @@ export interface Services {
     /**
      * The time to wait after a VM starts before checking its health. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    grace_period?: string;
+    grace_period?: number | string;
     /**
      * Length of the pause between connectivity checks. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    interval?: string;
+    interval?: number | string;
     /**
      * The number of consecutive TCP check failures to allow before attempting to restart the VM. The default is `0`, which disables restarts based on failed TCP health checks.
      */
@@ -240,8 +240,8 @@ export interface Services {
     /**
      * The maximum time a connection can take before being reported as failing its healthcheck. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    timeout?: string;
-    [k: string]: unknown;
+    timeout?: number | string;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * HTTP-based health checks run against the `internal_port`. These checks will pass when receiving a 2xx response. Any other response is considered a failure.
@@ -250,11 +250,11 @@ export interface Services {
     /**
      * The time to wait after a VM starts before checking its health. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    grace_period?: string;
+    grace_period?: number | string;
     /**
      * Length of the pause between connectivity checks. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    interval?: string;
+    interval?: number | string;
     /**
      * The number of consecutive check failures to allow before attempting to restart the VM. The default is `0`, which disables restarts based on failed health checks.
      */
@@ -262,7 +262,7 @@ export interface Services {
     /**
      * The maximum time a connection can take before being reported as failing its healthcheck. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    timeout?: string;
+    timeout?: number | string;
     /**
      * The HTTP method to be used for the check.
      */
@@ -283,9 +283,9 @@ export interface Services {
      * Set key/value pairs of HTTP headers to pass along with the check request.
      */
     headers?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

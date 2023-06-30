@@ -7,8 +7,8 @@
   "name": "@schemastore/imageoptimizer",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/imageoptimizer",
   "scripts": {},
-  "typesPublisherContentHash": "9ef3d872957a83db6d8c95eb736d46a6b00a60402e63efcf0e822317b886cfe4",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "b11597e40e8df2ca890dadab28cec9a32ea24bdede847d178e27e395e65c0509",
+  "version": "0.0.7"
 }

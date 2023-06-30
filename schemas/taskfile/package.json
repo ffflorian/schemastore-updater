@@ -7,8 +7,8 @@
   "name": "@schemastore/taskfile",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/taskfile",
   "scripts": {},
-  "typesPublisherContentHash": "07c13c32b33a3376c1d59ece12c6cd88a6c8bd5831fb6fb9a1ce1477ef4c82d9",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "8569e21619f7f2b27090a62a948feb5f35ef464bca366a2b27334e331517f006",
+  "version": "0.0.7"
 }

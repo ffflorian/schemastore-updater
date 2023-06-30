@@ -22,6 +22,10 @@ export interface XUnitNetRunnerConfiguration {
    */
   diagnosticMessages?: boolean;
   /**
+   * Enables or disables converting skipped tests into failed tests.
+   */
+  failSkips?: boolean;
+  /**
    * Enables or disables internal diagnostic information during test discovery and execution.
    */
   internalDiagnosticMessages?: boolean;
@@ -57,4 +61,8 @@ export interface XUnitNetRunnerConfiguration {
    * Enables or disables use of shadow copying when using app domains. Has no effect if app domains are not used.
    */
   shadowCopy?: boolean;
+  /**
+   * Enable or disable stopping running further tests once a failed test has been recorded.
+   */
+  stopOnFail?: boolean;
 }

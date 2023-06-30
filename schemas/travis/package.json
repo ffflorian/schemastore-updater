@@ -7,8 +7,8 @@
   "name": "@schemastore/travis",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/travis",
   "scripts": {},
-  "typesPublisherContentHash": "4ef27a69e798b7ae67f785295e3d1df0ece7ee01a294bb53a57c130eac02aa90",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.16",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "e39dffb968afd33ad8a0e031a0169ec87673123a955af9f5ddf3a1404471bc58",
+  "version": "0.0.17"
 }

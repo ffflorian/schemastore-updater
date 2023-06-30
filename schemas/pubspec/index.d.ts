@@ -9,34 +9,37 @@ export type Version = string;
 /**
  * Version range of the package or SDK to use
  */
-export type VersionConstraint = ("any" | "") | Version | string;
+export type VersionConstraint = (("any" | "") | Version | string) | undefined;
 export type Dependency =
-  | (("any" | "") | Version | string)
-  | null
-  | SDKDependency
-  | HostedDependency
-  | {
-      git:
-        | string
-        | {
-            /**
-             * URI of the repository hosting this package
-             */
-            url?: string;
-            /**
-             * Path of this package relative to the Git repo's root
-             */
-            path?: string;
-            /**
-             * The branch, tag, or anything else Git allows to identify a commit.
-             */
-            ref?: string;
-            [k: string]: unknown;
-          };
-    }
-  | {
-      path?: string;
-    };
+  | (
+      | (("any" | "") | Version | string)
+      | null
+      | SDKDependency
+      | HostedDependency
+      | {
+          git:
+            | string
+            | {
+                /**
+                 * URI of the repository hosting this package
+                 */
+                url?: string;
+                /**
+                 * Path of this package relative to the Git repo's root
+                 */
+                path?: string;
+                /**
+                 * The branch, tag, or anything else Git allows to identify a commit.
+                 */
+                ref?: string;
+                [k: string]: unknown | undefined;
+              };
+        }
+      | {
+          path?: string;
+        }
+    )
+  | undefined;
 
 /**
  * Dart Pubspec file
@@ -54,26 +57,26 @@ export interface Pubspec {
   issue_tracker?: string;
   documentation?: string;
   executables?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   publish_to?: string;
   environment?: {
-    [k: string]: VersionConstraint;
+    [k: string]: VersionConstraintUndefined;
   };
   dependencies?: Dependencies;
   dev_dependencies?: Dependencies;
   dependency_overrides?: Dependencies;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Dependencies {
-  [k: string]: Dependency;
+  [k: string]: DependencyUndefined;
 }
 export interface SDKDependency {
   /**
    * The SDK which contains this package
    */
   sdk: string;
-  version?: VersionConstraint;
+  version?: VersionConstraintUndefined;
 }
 export interface HostedDependency {
   hosted:
@@ -84,7 +87,7 @@ export interface HostedDependency {
          * The package server hosting this package
          */
         url: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-  version?: VersionConstraint;
+  version?: VersionConstraintUndefined;
 }

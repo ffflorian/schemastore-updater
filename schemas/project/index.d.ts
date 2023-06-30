@@ -37,15 +37,10 @@ export type Compile = {
          * List of file globbing patterns to be included.
          */
         exclude?: string | string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-  /**
-   * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-   */
-  mappings?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
+  mappings?: MappingOptions;
+  [k: string]: unknown | undefined;
 } & (
   | string
   | string[]
@@ -78,15 +73,10 @@ export type Compile = {
              * List of file globbing patterns to be included.
              */
             exclude?: string | string[];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
-      /**
-       * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-       */
-      mappings?: {
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
+      mappings?: MappingOptions;
+      [k: string]: unknown | undefined;
     }
 );
 export type PublishOptions = (
@@ -121,18 +111,13 @@ export type PublishOptions = (
              * List of file globbing patterns to be included.
              */
             exclude?: string | string[];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
-      /**
-       * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-       */
-      mappings?: {
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
+      mappings?: MappingOptions;
+      [k: string]: unknown | undefined;
     }
 ) & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type LibraryIncludeFlags = LibraryIncludeFlag | LibraryIncludeFlag[];
 export type LibraryIncludeFlag =
@@ -159,12 +144,7 @@ export interface JSONSchemaForNETCoreProjectJsonFiles {
    * The author of the application.
    */
   authors?: string[];
-  /**
-   * [Deprecated] Pairs of destination folders and glob patterns specifying additional files to include in the output NuGet package. (data type: JSON map). Example: { "tools/": "tools/** /*.*" }. Use 'files' in 'packOptions' instead.
-   */
-  packInclude?: {
-    [k: string]: unknown;
-  };
+  packInclude?: PathOptions;
   /**
    * [Deprecated] Glob pattern to specify files to exclude from publish output. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'publishOptions' instead.
    */
@@ -241,25 +221,14 @@ export interface JSONSchemaForNETCoreProjectJsonFiles {
    * The name of the test runner to use with this project
    */
   testRunner?: string;
-  commands?: {
-    [k: string]: string;
-  };
+  commands?: CommandOptions;
   compilationOptions?: CompilationOptions;
   buildOptions?: BuildOptions;
   packOptions?: PackOptions;
   runtimeOptions?: RuntimeOptions;
   publishOptions?: PublishOptions;
-  /**
-   * Configurations are named groups of compilation settings. There are two defaults built into the runtime: 'Debug' and 'Release'.
-   */
-  configurations?: {
-    [k: string]: {
-      compilationOptions?: CompilationOptions;
-      buildOptions?: BuildOptions;
-      [k: string]: unknown;
-    };
-  };
-  dependencies?: Dependencies;
+  configurations?: ConfigurationOptions;
+  dependencies?: DependencyOptions;
   /**
    * Copyright details for the package.
    */
@@ -308,67 +277,30 @@ export interface JSONSchemaForNETCoreProjectJsonFiles {
    * The description of the project/package.
    */
   description?: string;
-  /**
-   * Target frameworks that will be built, and dependencies that are specific to the build of this project for that framework.
-   */
-  frameworks?: {
-    [k: string]: ConfigType;
-  };
-  /**
-   * Overrides the generated resource names with custom ones.
-   */
-  namedResource?: {
-    [k: string]: string;
-  };
-  /**
-   * [Deprecated] Contains information about the repository where the project is stored. Use this in 'packOptions' instead.
-   */
-  repository?: {
-    type?: "git";
-    url?: string;
-    [k: string]: string;
-  };
-  /**
-   * Scripts to execute during the various stages.
-   */
-  scripts?: {
-    precompile?: Script;
-    postcompile?: Script;
-    prepack?: Script;
-    postpack?: Script;
-    prepublish?: Script;
-    postpublish?: Script;
-    prerestore?: Script;
-    postrestore?: Script;
-    prepare?: Script;
-    [k: string]: unknown;
-  };
+  frameworks?: FrameworkOptions1;
+  namedResource?: ResourceOptions;
+  repository?: RepositoryOptions1;
+  scripts?: ScriptOptions;
   /**
    * The version of the project/package. Examples: 1.2.3, 1.2.3-beta, 1.2.3-*
    */
   version?: string;
-  /**
-   * Project-specific command line tools accessible when in the project.json directory.
-   */
-  tools?: {
-    [k: string]:
-      | string
-      | {
-          version?: string;
-          [k: string]: unknown;
-        };
-  };
-  /**
-   * List of runtime identifiers supported by this project (used when building standalone applications).
-   */
-  runtimes?: {
-    [k: string]: unknown;
-  };
+  tools?: ToolOptions;
+  runtimes?: RuntimeOptions1;
   /**
    * Specify a unique identifier for the development time user secrets of the project.
    */
   userSecretsId?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
+}
+/**
+ * [Deprecated] Pairs of destination folders and glob patterns specifying additional files to include in the output NuGet package. (data type: JSON map). Example: { "tools/": "tools/** /*.*" }. Use 'files' in 'packOptions' instead.
+ */
+export interface PathOptions {
+  [k: string]: unknown | undefined;
+}
+export interface CommandOptions {
+  [k: string]: string | undefined;
 }
 /**
  * [Deprecated] Options that are passed to the compiler. Use 'buildOptions' instead.
@@ -385,13 +317,13 @@ export interface CompilationOptions {
   keyFile?: string;
   delaySign?: boolean;
   publicSign?: boolean;
-  debugType?: "portable" | "full" | "none";
+  debugType?: "portable" | "full";
   /**
    * Set this option to preserve reference assemblies and other context data to allow for runtime compilation
    */
   preserveCompilationContext?: boolean;
   outputName?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Options that are passed to the compiler.
@@ -448,18 +380,13 @@ export interface BuildOptions {
                * List of file globbing patterns to be included.
                */
               exclude?: string | string[];
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             };
-        /**
-         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-         */
-        mappings?: {
-          [k: string]: unknown;
-        };
-        [k: string]: unknown;
+        mappings?: MappingOptions;
+        [k: string]: unknown | undefined;
       }
   ) & {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   copyToOutput?: (
     | string
@@ -493,20 +420,23 @@ export interface BuildOptions {
                * List of file globbing patterns to be included.
                */
               exclude?: string | string[];
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             };
-        /**
-         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-         */
-        mappings?: {
-          [k: string]: unknown;
-        };
-        [k: string]: unknown;
+        mappings?: MappingOptions;
+        [k: string]: unknown | undefined;
       }
   ) & {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  xmlDoc?: boolean;
+  additionalArguments?: string[];
+  [k: string]: unknown | undefined;
+}
+/**
+ * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+ */
+export interface MappingOptions {
+  [k: string]: unknown | undefined;
 }
 /**
  * Defines options pertaining to the packaging of the project output into a NuGet package.
@@ -540,14 +470,7 @@ export interface PackOptions {
    * A Boolean value that specifies whether the client needs to ensure that the package license (described by licenseUrl) is accepted before the package is installed.
    */
   requireLicenseAcceptance?: boolean;
-  /**
-   * Contains information about the repository where the project is stored.
-   */
-  repository?: {
-    type?: "git";
-    url?: string;
-    [k: string]: string;
-  };
+  repository?: RepositoryOptions;
   files?: (
     | string
     | string[]
@@ -580,62 +503,188 @@ export interface PackOptions {
                * List of file globbing patterns to be included.
                */
               exclude?: string | string[];
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             };
-        /**
-         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-         */
-        mappings?: {
-          [k: string]: unknown;
-        };
-        [k: string]: unknown;
+        mappings?: MappingOptions;
+        [k: string]: unknown | undefined;
       }
   ) & {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Contains information about the repository where the project is stored.
+ */
+export interface RepositoryOptions {
+  type?: "git";
+  url?: string;
+  [k: string]: string | undefined;
 }
 export interface RuntimeOptions {
-  configProperties?: {
-    /**
-     * Enables/disables server garbage collection.
-     */
-    "System.GC.Server"?: boolean;
-    /**
-     * Enables/disables concurrent garbage collection.
-     */
-    "System.GC.Concurrent"?: boolean;
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
+  configProperties?: ConfigOptions;
+  framework?: FrameworkOptions;
+  /**
+   * Determines if the framework version is strictly obeyed by the host.
+   */
+  applyPatches?: boolean;
+  [k: string]: unknown | undefined;
+}
+export interface ConfigOptions {
+  /**
+   * Enables/disables server garbage collection.
+   */
+  "System.GC.Server"?: boolean;
+  /**
+   * Enables/disables concurrent garbage collection.
+   */
+  "System.GC.Concurrent"?: boolean;
+  /**
+   * Limits the number of heaps created by the garbage collector.
+   */
+  "System.GC.HeapCount"?: number;
+  /**
+   * Specifies the exact processors that garbage collector threads should use.
+   */
+  "System.GC.HeapAffinitizeMask"?: number;
+  /**
+   * Specifies the list of processors to use for garbage collector threads.
+   */
+  "System.GC.GCHeapAffinitizeRanges"?: string;
+  /**
+   * Specifies whether to affinitize garbage collection threads with processors. To affinitize a GC thread means that it can only run on its specific CPU. A heap is created for each GC thread.
+   */
+  "System.GC.NoAffinitize"?: boolean;
+  /**
+   * Specifies the maximum commit size, in bytes, for the GC heap and GC bookkeeping.
+   */
+  "System.GC.HeapHardLimit"?: string;
+  /**
+   * Specifies the GC heap usage as a percentage of the total memory.
+   */
+  "System.GC.HeapHardLimitPercent"?: number;
+  /**
+   * Configures whether segments that should be deleted are put on a standby list for future use or are released back to the operating system (OS).
+   */
+  "System.GC.RetainVM"?: boolean;
+  /**
+   * Specifies the threshold size, in bytes, that causes objects to go on the large object heap (LOH).
+   */
+  "System.GC.LOHThreshold"?: number;
+  /**
+   * Sets the minimum number of threads for the thread pool.
+   */
+  "System.Threading.ThreadPool.MinThreads"?: number;
+  /**
+   * Sets the maximum number of threads for the thread pool.
+   */
+  "System.Threading.ThreadPool.MaxThreads"?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Properties of the shared framework to use when activating the application.
+ */
+export interface FrameworkOptions {
+  name?: string;
+  version?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Configurations are named groups of compilation settings. There are two defaults built into the runtime: 'Debug' and 'Release'.
+ */
+export interface ConfigurationOptions {
+  [k: string]: AdditionalOptionsUndefined;
+}
+export interface AdditionalOptions {
+  compilationOptions?: CompilationOptions;
+  buildOptions?: BuildOptions;
+  [k: string]: unknown | undefined;
 }
 /**
  * Each dependency is defined by a name and a version. Dependencies are resolved from NuGet feeds defined by your package sources and projects located in the directories specified by the 'global.json' file.
  */
-export interface Dependencies {
+export interface DependencyOptions {
   [k: string]:
-    | string
-    | {
-        version?: string;
-        type?: "default" | "build" | "platform";
-        /**
-         * Restrict this dependency to matching only a Project or a Package.
-         */
-        target?: "project" | "package";
-        include?: LibraryIncludeFlags;
-        exclude?: LibraryIncludeFlags;
-        suppressParent?: LibraryIncludeFlags;
-        [k: string]: unknown;
-      };
+    | (
+        | string
+        | {
+            version?: string;
+            type?: "default" | "build" | "platform";
+            /**
+             * Restrict this dependency to matching only a Project or a Package.
+             */
+            target?: "project" | "package";
+            include?: LibraryIncludeFlags;
+            exclude?: LibraryIncludeFlags;
+            suppressParent?: LibraryIncludeFlags;
+            [k: string]: unknown | undefined;
+          }
+      )
+    | undefined;
 }
-export interface ConfigType {
-  dependencies?: Dependencies;
+/**
+ * Target frameworks that will be built, and dependencies that are specific to the build of this project for that framework.
+ */
+export interface FrameworkOptions1 {
+  [k: string]: ConfigOptions1Undefined;
+}
+export interface ConfigOptions1 {
+  dependencies?: DependencyOptions;
   compilationOptions?: CompilationOptions;
   buildOptions?: BuildOptions;
-  frameworkAssemblies?: Dependencies;
+  frameworkAssemblies?: DependencyOptions;
   /**
    * Allow packages supporting these frameworks to be installed in this target, regardless of the compatibility rules.
    */
   imports?: string | string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Overrides the generated resource names with custom ones.
+ */
+export interface ResourceOptions {
+  [k: string]: string | undefined;
+}
+/**
+ * [Deprecated] Contains information about the repository where the project is stored. Use this in 'packOptions' instead.
+ */
+export interface RepositoryOptions1 {
+  type?: "git";
+  url?: string;
+  [k: string]: string | undefined;
+}
+/**
+ * Scripts to execute during the various stages.
+ */
+export interface ScriptOptions {
+  precompile?: Script;
+  postcompile?: Script;
+  prepack?: Script;
+  postpack?: Script;
+  prepublish?: Script;
+  postpublish?: Script;
+  prerestore?: Script;
+  postrestore?: Script;
+  prepare?: Script;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Project-specific command line tools accessible when in the project.json directory.
+ */
+export interface ToolOptions {
+  [k: string]:
+    | (
+        | string
+        | {
+            version?: string;
+            [k: string]: unknown | undefined;
+          }
+      )
+    | undefined;
+}
+/**
+ * List of runtime identifiers supported by this project (used when building standalone applications).
+ */
+export interface RuntimeOptions1 {
+  [k: string]: unknown | undefined;
 }

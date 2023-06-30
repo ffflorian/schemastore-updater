@@ -18,7 +18,7 @@ export type WhichHTMLElementYourResourceShouldBeInsertedAs = "script" | "style";
  */
 export type NixStylePathToYourResource = string;
 /**
- * Specify that a resource should be conditionally included. Prefix the option’s name with a ! to invert the match.
+ * Specify that a resource should be conditionally included. Prefix the option's name with a ! to invert the match.
  */
 export type ConditionallyIncludeResource = string;
 /**
@@ -48,7 +48,7 @@ export type DeclarationsForEachGroupOfMatchingOptionsAndTheirExecutingFunctionMu
   {
     options?: TheOptionsSectionIsAnArrayOfPropertyKeysWhichThisHandlerShouldApplyToWhenAnyOfThoseOptionsAreChangedDuringAPreviewThisHandlerWillBeTriggeredAGivenPropertyMayHaveMultipleHandlersOptionsCanAlsoBeHandledUsingSpecialKeysDefaultTriggerWhenAnyPropertyThatHasnTYetBeenHandledByAMoreSpecificEntryChangesAnyTriggerWhenAnyPropertyChangesRegardlessOfAnyOtherEntryProductTriggerWhenTheCustomerChangesTheirChosenProduct;
     execute?: AFunctionToExecuteWhenAMatchingOptionHasChangedThisFunctionShouldBeDefinedInYourAppSJavaScriptEGWindowINSTALL_SCOPEUpdateOptionsNextOptions;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
 /**
  * Some apps don't add anything visually to the site they're being installed upon. Showing a preview when nothing visually on the site has changed can be confusing to the customer, leading them to think your app is broken.
@@ -79,7 +79,7 @@ export type HookDeclarations = {
   block?: ShowALoadingIndicatorUntilYourResponseHasBeenLoadedYourChangesWillBeIgnoredIfYouDoNotSetThisProperty;
   events?: EventNamesThatTriggerAHookEvent;
   authenticate?: MatchingOptionKeysOfOAuthAccountFields;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 /**
  * For example sub for sub.example.com max length: 255
@@ -122,23 +122,25 @@ export type DNSRecordDeclarations = {
    * Metadata about the record.
    */
   data?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 /**
  * Cloudflare workers declarations to be installed through an app onto a site.
  */
 export type CloudflareWorkers = {
   src?: NixStylePathToYourResource;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 /**
  * The key should be camelCased.
  */
-export type TheKeyWhichYourOptionWillBeDefinedUnder = {
-  [k: string]: unknown;
-};
+export type TheKeyWhichYourOptionWillBeDefinedUnder =
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | undefined;
 
 export interface JSONSchemaForConfiguringCloudflareAppsInstallJsonFiles {
   resources?: FilesIncludedInYourAppToBeInsertedOntoHTMLPages;
@@ -147,7 +149,7 @@ export interface JSONSchemaForConfiguringCloudflareAppsInstallJsonFiles {
   dns?: DNSRecordDeclarations;
   workers?: CloudflareWorkers;
   options?: AParentObjectContainingYourAppSInstallOptions;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Each resource should be unminified and human-readable.
@@ -161,7 +163,7 @@ export interface Resource {
   type?: WhichHTMLElementYourResourceShouldBeInsertedAs;
   src?: NixStylePathToYourResource;
   if?: ConditionallyIncludeResource;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Preview options can be used to declare handlers that execute after an event has been triggered.
@@ -169,18 +171,18 @@ export interface Resource {
 export interface ConfigurationOfTheInstallerPreviewExperience {
   handlers?: DeclarationsForEachGroupOfMatchingOptionsAndTheirExecutingFunctionMultipleUpdateHandlersAreUsefulWhenAnAppHasOptionsThatHaveDifferentUpdatingProcedures;
   hide?: HideThePreviewPane;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Must contain a "properties" object.
  */
 export interface AParentObjectContainingYourAppSInstallOptions {
   properties: AnObjectContainingYourAppSInstallOptions;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Each declaration will appear in your app's installer for end-user customization. Their choices will accessible in your app's JavaScript resources as the constant `INSTALL_OPTIONS`.
  */
 export interface AnObjectContainingYourAppSInstallOptions {
-  [k: string]: TheKeyWhichYourOptionWillBeDefinedUnder;
+  [k: string]: TheKeyWhichYourOptionWillBeDefinedUnderUndefined;
 }

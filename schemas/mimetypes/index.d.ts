@@ -5,14 +5,14 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface JSONSchemaForMimeTypeCollections {
+export interface MimeTypes {
   /**
-   * A file extension mapping.
+   * A file extension
    *
-   * This interface was referenced by `JSONSchemaForMimeTypeCollections`'s JSON-Schema definition
+   * This interface was referenced by `MimeTypes`'s JSON-Schema definition
    * via the `patternProperty` "^\..+".
    */
   [k: string]: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }

@@ -41,7 +41,7 @@ export type PreConditions = {
      * The type of database expected. Multiple dbms values can be specified using comma-separated values. (required)
      */
     type: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the database user executed under matches the username specified.
@@ -51,7 +51,7 @@ export type PreConditions = {
      * The database user script which is expected to run as. (required)
      */
     username: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified changeset has already been executed.
@@ -69,7 +69,7 @@ export type PreConditions = {
      * The file name (including classpath relative path) of the changeset. (required)
      */
     changeLogFile: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified column exists in the database.
@@ -87,7 +87,7 @@ export type PreConditions = {
      * The name of the column. (required)
      */
     columnName: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified table exists in the database.
@@ -101,7 +101,7 @@ export type PreConditions = {
      * The name of the table. (required)
      */
     tableName: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified view exists in the database.
@@ -115,7 +115,7 @@ export type PreConditions = {
      * The name of the view. (required)
      */
     viewName: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified foreign key exists in the database.
@@ -129,7 +129,7 @@ export type PreConditions = {
      * The name of the foreign key. (required)
      */
     foreignKeyName: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified index exists in the database. You can either specify the indexName attribute or tableName and columnName attributes.
@@ -152,7 +152,7 @@ export type PreConditions = {
      * The name of the column.
      */
     columnName?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified sequence exists in the database.
@@ -166,7 +166,7 @@ export type PreConditions = {
      * The name of the sequence. (required)
      */
     sequenceName: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Defines if the specified primary key exists in the database.
@@ -185,7 +185,7 @@ export type PreConditions = {
      * The name of the table containing primary key.
      */
     tableName?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Executes an SQL string and checks the returned value. The SQL must return a single row with a single value.
@@ -199,7 +199,7 @@ export type PreConditions = {
      */
     expectedResult: number;
     sql?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Checks whether given changelog attribute is present. It fails if the value is not the same as given.
@@ -213,7 +213,7 @@ export type PreConditions = {
      * The required value for a given property.
      */
     value?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Can be created by adding a class that implements the liquibase.precondition.CustomPrecondition interface. Parameters on custom classes are set through reflection based on the <param> sub-tags. Pass parameters as strings to the custom precondition.
@@ -228,12 +228,12 @@ export type PreConditions = {
      * The name of the custom precondition class. (required)
      */
     className: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   and?: PreConditions;
   or?: PreConditions;
   not?: PreConditions;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 /**
  * The name of the catalog
@@ -261,12 +261,12 @@ export type Columns = [
   {
     column?: Column;
     modifySql?: ModifySql;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   },
   ...{
     column?: Column;
     modifySql?: ModifySql;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[]
 ];
 /**
@@ -305,9 +305,9 @@ export type WhereParams = {
      * Name of the sequence which current value is used
      */
     valueSequenceCurrent?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 export type Changes = {
   tagDatabase?: TagDatabase;
@@ -358,7 +358,7 @@ export type Changes = {
   executeCommand?: ExecuteCommand;
   output?: Output;
   modifySql?: ModifySql;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 
 export interface Liquibase3 {
@@ -405,7 +405,7 @@ export interface Liquibase3 {
        */
       global?: boolean;
       target?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     preConditions?: PreConditions;
     /**
@@ -464,7 +464,7 @@ export interface Liquibase3 {
        */
       created?: string;
       /**
-       * Overrides the order in the changelog from where the changeset with the runOrder="first|last" will be run. It is typically used when you want a changeset to be always executed after everything else but don’t want to keep moving it to the end of the changelog. Setting the runOrder to last will automatically move it in the final changeset order.Since 3.5
+       * Overrides the order in the changelog from where the changeset with the runOrder="first|last" will be run. It is typically used when you want a changeset to be always executed after everything else but don't want to keep moving it to the end of the changelog. Setting the runOrder to last will automatically move it in the final changeset order.Since 3.5
        */
       runOrder?: string;
       /**
@@ -490,10 +490,10 @@ export interface Liquibase3 {
             changeSetId: string;
             changeSetAuthor: string;
             changeSetPath?: string;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
       modifySql?: ModifySql[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * The <include> tag is used within your master changelog to reference other changelogs.
@@ -519,7 +519,7 @@ export interface Liquibase3 {
       labels?: string;
       ignore?: string;
       created?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * The <includeAll> tag allows you to specify a directory that contains multiple changelog files. It is used within your master changelog file to call on the directory and include all .xml files as changelog files, and all .sql files as individual changes.
@@ -549,11 +549,11 @@ export interface Liquibase3 {
        * Appends a context (using an AND statement) to all contained changesets.
        */
       context?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The tagDatabase Change Type applies a tag to the database for future update or rollback.
@@ -563,7 +563,7 @@ export interface TagDatabase {
    * The tag to apply
    */
   tag: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * You can typically use the createTable Change Type when you want to create a table in your changelog file and then deploy it to your database. It can include columns and another values listed in this documentation.
@@ -578,7 +578,7 @@ export interface CreateTable {
   tablespace?: string;
   remarks?: Remarks;
   columns: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Column {
   /**
@@ -789,9 +789,9 @@ export interface Column {
      * The attribute that defines whether to validate the defined foreign key constraint.
      */
     validateForeignKey?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Although Liquibase supports most standard SQL statements with its Change Types, there are times when you need the generated SQL to be different. The following examples show how to change data types or add additional vendor-specific clauses such as ENGINE INNODB to CREATE TABLE statements. Since 1.9
@@ -812,14 +812,14 @@ export interface ModifySql {
    */
   prepend?: {
     value?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Adds SQL to the end of the statement.
    */
   append?: {
     value?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Replaces all instances of the text specified.
@@ -827,7 +827,7 @@ export interface ModifySql {
   replace?: {
     replace?: string;
     with?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Replaces all instances of the regular expression specified.
@@ -835,9 +835,9 @@ export interface ModifySql {
   regExpReplace?: {
     replace?: string;
     with?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing table from your database.
@@ -850,7 +850,7 @@ export interface DropTable {
    * Add the `CASCADE CONSTRAINTS` to the statement
    */
   cascadeConstraints?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Creates a new database view.
@@ -887,7 +887,7 @@ export interface CreateView {
    * SQL for generating the view
    */
   selectQuery?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface RenameView {
   catalogName?: CatalogName;
@@ -900,7 +900,7 @@ export interface RenameView {
    * Name to rename the view to
    */
   newViewName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing view.
@@ -912,13 +912,13 @@ export interface DropView {
   viewName: string;
   catalogName?: CatalogName;
   schemaName?: SchemaName;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * empty
  */
 export interface Empty {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * You can typically use the insert Change Type when you want to add and deploy the specific data or values to the existing table in your database. It can include columns and another attributes listed in this documentation.
@@ -929,7 +929,7 @@ export interface Insert {
   tableName: TableName;
   dbms?: Dbms;
   columns?: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * You can typically use the addColumn Change Type when you want to add a new column and deploy it to the table in your database.
@@ -939,7 +939,7 @@ export interface AddColumn {
   schemaName?: SchemaName;
   tableName: TableName;
   columns: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * It is useful for complex changes that aren't supported through Liquibase's automated Change Types and to work around bugs and limitations of Liquibase. The SQL contained in the <SQL> Change Type can be multi-line.
@@ -964,7 +964,7 @@ export interface Sql {
    * Specifies the SQL to execute
    */
   sql: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The createProcedure Change Type defines the definition for a stored procedure. This Change Type is better to use for creating procedures than the raw SQL command because it will not attempt to strip comments or break up lines.
@@ -1003,7 +1003,7 @@ export interface CreateProcedure {
    * The comments you can specify in the changeset.
    */
   comments?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing procedure
@@ -1015,7 +1015,7 @@ export interface DropProcedure {
   procedureName: string;
   catalogName?: CatalogName;
   schemaName?: SchemaName;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The <sqlFile> Change Type is useful for complex changes that are not supported through Liquibase automated Change Types such as stored procedures. The SQL contained in the <sqlFile> Change Type can be multi-line.
@@ -1048,7 +1048,7 @@ export interface SqlFile {
   relativeToChangelogFile?: boolean;
   dbms?: Dbms;
   comment?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Stops Liquibase execution with a message. Mainly useful for debugging and stepping through a changelog
@@ -1058,7 +1058,7 @@ export interface Stop {
    * Message to output when execution stops
    */
   message?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Renames an existing table.
@@ -1074,7 +1074,7 @@ export interface RenameTable {
    * New name for the table
    */
   newTableName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Renames an existing column.
@@ -1099,7 +1099,7 @@ export interface RenameColumn {
    * Remarks of the column
    */
   remarks?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing column(s).
@@ -1115,7 +1115,7 @@ export interface DropColumn {
    */
   columnName?: string;
   columns?: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The mergeColumns Change Type concatenates the values in two columns and joins them with a string. The Change Type stores the resulting value in a new column.
@@ -1145,7 +1145,7 @@ export interface MergeColumns {
    * The data type of the column to create
    */
   finalColumnType: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Allows you to modify data types.
@@ -1159,7 +1159,7 @@ export interface ModifyDataType {
    */
   columnName: string;
   newDataType: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Creates a new database sequence.
@@ -1203,7 +1203,7 @@ export interface CreateSequence {
    * Can the sequence cycle when it hits the max value?
    */
   cycle?: boolean & string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Alters properties of an existing sequence.
@@ -1243,7 +1243,7 @@ export interface AlterSequence {
    * Can the sequence cycle when it hits the max value?
    */
   cycle?: boolean & string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing sequence.
@@ -1255,7 +1255,7 @@ export interface DropSequence {
    * Name of the sequence to drop
    */
   sequenceName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Renames an existing sequence.
@@ -1271,7 +1271,7 @@ export interface RenameSequence {
    * New name for the sequence
    */
   newSequenceName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The createIndex Change Type creates an index on an existing column or a set of columns.
@@ -1299,7 +1299,7 @@ export interface CreateIndex {
   tablespace?: string;
   column?: Column;
   columns?: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The dropIndex Change Type drops an existing index on a column.
@@ -1313,7 +1313,7 @@ export interface DropIndex {
    */
   indexName: string;
   associatedWith?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The addNotNullConstraint Change Type adds a NOT NULL constraint to an existing table.
@@ -1342,7 +1342,7 @@ export interface AddNotNullConstraint {
    * The attribute which is true if the NOT NULL constraint has 'ENABLE VALIDATE' set, or which is false if the NOT NULL constrain has 'ENABLE NOVALIDATE' set.
    */
   validate?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Makes a column nullable.
@@ -1359,7 +1359,7 @@ export interface DropNotNullConstraint {
    * Current data type of the column
    */
   columnDataType?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Adds a foreign key constraint to an existing column.
@@ -1423,7 +1423,7 @@ export interface AddForeignKeyConstraint {
    * Shall be true if the foreign key should 'ENABLE VALIDATE' set, or false if the foreign key should 'ENABLE NOVALIDATE' set.
    */
   validate?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing foreign key.
@@ -1439,7 +1439,7 @@ export interface DropForeignKeyConstraint {
    * Name of the foreign key constraint to drop
    */
   constraintName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops all foreign key constraints for a table.
@@ -1457,7 +1457,7 @@ export interface DropAllForeignKeyConstraints {
    * Name of the table containing columns constrained by foreign keys
    */
   baseTableName: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Adds a primary key out of an existing column or set of columns.
@@ -1483,7 +1483,7 @@ export interface AddPrimaryKey {
    * This is true if the primary key has 'ENABLE VALIDATE' set, or false if the primary key has 'ENABLE NOVALIDATE' set.
    */
   validate?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The dropPrimaryKey Change Type drops an existing primary key in the table.
@@ -1500,7 +1500,7 @@ export interface DropPrimaryKey {
    * The index to drop.
    */
   dropIndex?: boolean & string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Creates a lookup table containing values stored in a column and creates a foreign key to the new table.
@@ -1534,10 +1534,10 @@ export interface AddLookupTable {
    * Name of the foreign-key constraint to create between the existing table and the lookup table
    */
   constraintName?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
- * Converts an existing column to be an auto-increment (a.k.a ‘identity') column.
+ * Converts an existing column to be an auto-increment (a.k.a 'identity') column.
  */
 export interface AddAutoIncrement {
   catalogName?: CatalogName;
@@ -1567,7 +1567,7 @@ export interface AddAutoIncrement {
    * Integer value the increment increments at each call
    */
   incrementBy?: number;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The addDefaultValue Change Type adds a default value to the database definition for the specified column.
@@ -1612,7 +1612,7 @@ export interface AddDefaultValue {
    * The attribute that sets a unique name for default constraint used for a specific column. It works only along with any of defaultValue* attributes listed.
    */
   defaultValueConstraintName?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Removes the database default value for a column.
@@ -1626,7 +1626,7 @@ export interface DropDefaultValue {
    */
   columnName: string;
   columnDataType?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Adds a unique constraint to an existing column or set of columns.
@@ -1670,7 +1670,7 @@ export interface AddUniqueConstraint {
    * Should be true if the unique constraint shall 'ENABLE VALIDATE' set, or false if the 'ENABLE NOVALIDATE' shall.
    */
   validate?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Drops an existing unique constraint.
@@ -1684,7 +1684,7 @@ export interface DropUniqueConstraint {
    */
   constraintName: string;
   uniqueColumns?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Sets remarks on a table.
@@ -1697,7 +1697,7 @@ export interface SetTableRemarks {
    * Comment to set on the table
    */
   remarks: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The setColumnRemarks Change Type sets remarks on a column.
@@ -1714,14 +1714,14 @@ export interface SetColumnRemarks {
    * The comment to set on the column
    */
   remarks: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The customChange type creates a custom Change Type class.
  */
 export interface CustomChange {
   class: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * You can typically use the update Change Type when you want to update a table in your changelog file and then deploy this update to your database. It can include columns and another values listed in this documentation.
@@ -1733,7 +1733,7 @@ export interface Update {
   columns: Columns;
   where?: Where;
   whereParams?: WhereParams;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Deletes data from an existing table.
@@ -1744,7 +1744,7 @@ export interface Delete {
   tableName: TableName;
   where?: Where;
   whereParams?: WhereParams;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Loads data from a CSV file into an existing table when you add it to your changelog.
@@ -1783,12 +1783,12 @@ export interface LoadData {
   commentLineStartsWith?: string;
   column?: Column;
   columns?: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Loads or updates data from a CSV file into an existing table. Differs from loadData by issuing a SQL batch that checks for the existence of a record. If found, the record is UPDATEd, else the record is INSERTed. Also, generates DELETE statements for a rollback.
  *
- * A value of NULL in a cell will be converted to a database NULL rather than the string ‘NULL'
+ * A value of NULL in a cell will be converted to a database NULL rather than the string 'NULL'
  */
 export interface LoadUpdateData {
   catalogName?: CatalogName;
@@ -1832,7 +1832,7 @@ export interface LoadUpdateData {
   usePreparedStatements?: boolean & string;
   column?: Column;
   columns?: Columns;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The executeCommand Change Type executes a system command.
@@ -1858,7 +1858,7 @@ export interface ExecuteCommand {
      * The value of the attribute (for example: '-param')
      */
     value?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Arguments for the executable
@@ -1868,9 +1868,9 @@ export interface ExecuteCommand {
      * The value of the attribute (for example: '-param')
      */
     value?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Logs a message and continues execution.
@@ -1884,5 +1884,5 @@ export interface Output {
    * Target for message. Possible values: STDOUT, STDERR, FATAL, WARN, INFO, DEBUG. Default value: STDERR
    */
   target?: "STDOUT" | "STDERR" | "FATAL" | "WARN" | "INFO" | "DEBUG";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

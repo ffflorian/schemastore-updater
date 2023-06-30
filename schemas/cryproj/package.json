@@ -7,8 +7,8 @@
   "name": "@schemastore/cryproj",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/cryproj",
   "scripts": {},
-  "typesPublisherContentHash": "c9418ecdfb9495f122b8c833925041f3d1ae891d1bf815e22532f2b3a69b53fb",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ca46268bba489166c138628bb3104857d98f2938b64fa4908220cef87dee1ff8",
+  "version": "0.0.6"
 }

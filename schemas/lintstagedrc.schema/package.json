@@ -7,8 +7,8 @@
   "name": "@schemastore/lintstagedrc.schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/lintstagedrc.schema",
   "scripts": {},
-  "typesPublisherContentHash": "ba52110c9b6a466868f489233f5d7ed3c780106821302cf4ec259f4f24acaa2e",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.3",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ee0951ce03d280ef9da10913125da73020b69b7beb5774e6ea6814a350f39a58",
+  "version": "0.0.4"
 }

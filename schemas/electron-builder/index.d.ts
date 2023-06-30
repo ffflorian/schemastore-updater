@@ -23,7 +23,7 @@ export interface ElectronBuilder {
    */
   afterAllArtifactBuild?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   /**
@@ -31,7 +31,7 @@ export interface ElectronBuilder {
    */
   afterPack?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   /**
@@ -39,7 +39,7 @@ export interface ElectronBuilder {
    */
   afterSign?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   apk?: LinuxTargetSpecificOptions | null;
@@ -58,7 +58,7 @@ export interface ElectronBuilder {
    */
   artifactBuildCompleted?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   /**
@@ -66,7 +66,7 @@ export interface ElectronBuilder {
    */
   artifactBuildStarted?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   /**
@@ -90,7 +90,7 @@ export interface ElectronBuilder {
    */
   beforeBuild?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   /**
@@ -153,7 +153,7 @@ export interface ElectronBuilder {
    * Inject properties to `package.json`.
    */
   extraMetadata?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   extraResources?: FileSet | (FileSet | string)[] | (null | string);
   /**
@@ -227,7 +227,7 @@ export interface ElectronBuilder {
    */
   onNodeModuleFile?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   p5p?: LinuxTargetSpecificOptions | null;
@@ -315,7 +315,7 @@ export interface LinuxTargetSpecificOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * *Advanced only* The [fpm](https://github.com/jordansissel/fpm/wiki#usage) options.
@@ -586,7 +586,7 @@ export interface CustomPublishOptions {
   publishAutoUpdate?: boolean;
   publisherName?: string[] | null;
   updaterCacheDirName?: null | string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface AppImageOptions {
   /**
@@ -605,7 +605,7 @@ export interface AppImageOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * The path to EULA license file. Defaults to `license.txt` or `eula.txt` (or uppercase variants). Only plain text is supported.
@@ -647,7 +647,7 @@ export interface AppXOptions {
    */
   addAutoLaunchExtension?: boolean;
   /**
-   * The application id. Defaults to `identityName`. Can’t start with numbers.
+   * The application id. Defaults to `identityName`. Can't start with numbers.
    */
   applicationId?: string;
   /**
@@ -748,7 +748,7 @@ export interface DebOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * *Advanced only* The [fpm](https://github.com/jordansissel/fpm/wiki#usage) options.
@@ -976,7 +976,7 @@ export interface FileAssociation {
    */
   name?: null | string;
   /**
-   * *macOS-only* The app’s role with respect to the type. The value can be `Editor`, `Viewer`, `Shell`, or `None`. Corresponds to `CFBundleTypeRole`.
+   * *macOS-only* The app's role with respect to the type. The value can be `Editor`, `Viewer`, `Shell`, or `None`. Corresponds to `CFBundleTypeRole`.
    */
   role?: string;
 }
@@ -1019,7 +1019,7 @@ export interface LinuxConfiguration {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Whether to infer update channel from application version pre-release components. e.g. if version `0.12.1-alpha.1`, channel will be set to `alpha`. Otherwise to `latest`.
@@ -1116,7 +1116,7 @@ export interface Protocol {
    */
   name: string;
   /**
-   * *macOS-only* The app’s role with respect to the type.
+   * *macOS-only* The app's role with respect to the type.
    */
   role?: "Editor" | "None" | "Shell" | "Viewer";
   /**
@@ -1247,7 +1247,7 @@ export interface MacConfiguration {
    * The extra entries for `Info.plist`.
    */
   extendInfo?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Extra files to put in archive. Not applicable for `tar.*`.
@@ -1464,7 +1464,7 @@ export interface MasConfiguration {
    * The extra entries for `Info.plist`.
    */
   extendInfo?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Extra files to put in archive. Not applicable for `tar.*`.
@@ -2001,15 +2001,15 @@ export interface PkgOptions {
    */
   allowAnywhere?: null | boolean;
   /**
-   * Whether can be installed into the current user’s home directory.
+   * Whether can be installed into the current user's home directory.
    * A home directory installation is done as the current user (not as root), and it cannot write outside of the home directory.
-   * If the product cannot be installed in the user’s home directory and be not completely functional from user’s home directory.
+   * If the product cannot be installed in the user's home directory and be not completely functional from user's home directory.
    *
    * Corresponds to [enable_currentUserHome](https://developer.apple.com/library/content/documentation/DeveloperTools/Reference/DistributionDefinitionRef/Chapters/Distribution_XML_Ref.html#//apple_ref/doc/uid/TP40005370-CH100-SW70).
    */
   allowCurrentUserHome?: null | boolean;
   /**
-   * Whether can be installed into the root directory. Should usually be `true` unless the product can be installed only to the user’s home directory.
+   * Whether can be installed into the root directory. Should usually be `true` unless the product can be installed only to the user's home directory.
    *
    * Corresponds to [enable_localSystem](https://developer.apple.com/library/content/documentation/DeveloperTools/Reference/DistributionDefinitionRef/Chapters/Distribution_XML_Ref.html#//apple_ref/doc/uid/TP40005370-CH100-SW70).
    */
@@ -2231,11 +2231,11 @@ export interface SnapOptions {
    * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
    */
   desktop?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   environment?: unknown;
   /**
-   * The quality grade of the snap. It can be either `devel` (i.e. a development version of the snap, so not to be published to the “stable” or “candidate” channels) or “stable” (i.e. a stable release or release candidate, which can be released to all channels).
+   * The quality grade of the snap. It can be either `devel` (i.e. a development version of the snap, so not to be published to the "stable" or "candidate" channels) or "stable" (i.e. a stable release or release candidate, which can be released to all channels).
    */
   grade?: ("devel" | "stable") | null;
   /**
@@ -2304,9 +2304,11 @@ export interface SnapOptions {
   useTemplateApp?: boolean;
 }
 export interface PlugDescriptor {
-  [k: string]: {
-    [k: string]: unknown;
-  } | null;
+  [k: string]:
+    | ({
+        [k: string]: unknown | undefined;
+      } | null)
+    | undefined;
 }
 export interface SquirrelWindowsOptions {
   /**
@@ -2485,7 +2487,7 @@ export interface WindowsConfiguration {
    */
   sign?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | (null | string);
   /**

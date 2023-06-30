@@ -19,10 +19,10 @@ export type Entrypoint =
        * The entrypoint function or class
        */
       value: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | string;
-export type VersionRanges = VersionRange | VersionRange[];
+export type VersionRanges = (VersionRange | VersionRange[]) | undefined;
 /**
  * A version range that matches versions. The following variants are supported:
  *
@@ -39,7 +39,7 @@ export type Person =
        */
       name: string;
       contact?: ContactInfo;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 
 export interface Fabric {
@@ -73,9 +73,17 @@ export interface Fabric {
      */
     server?: Entrypoint[];
     /**
+     * The entrypoint for the data generator environment (classes must implement DataGeneratorEntrypoint)
+     */
+    "fabric-datagen"?: Entrypoint[];
+    /**
+     * The entrypoint for the Game Test environment (classes must implement FabricGameTest)
+     */
+    "fabric-gametest"?: Entrypoint[];
+    /**
      * Custom mod entrypoints
      */
-    [k: string]: Entrypoint[];
+    [k: string]: Entrypoint[] | undefined;
   };
   /**
    * Contains an array of nestedJar objects
@@ -85,7 +93,7 @@ export interface Fabric {
    * A string→string dictionary, connecting namespaces to LanguageAdapter implementations
    */
   languageAdapters?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   mixins?: (
     | string
@@ -95,7 +103,7 @@ export interface Fabric {
          */
         config?: string;
         environment?: Environment;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   )[];
   /**
@@ -106,31 +114,31 @@ export interface Fabric {
    * id→versionRange map for dependencies. Failure to meet these causes a hard failure
    */
   depends?: {
-    [k: string]: VersionRanges;
+    [k: string]: VersionRangesUndefined;
   };
   /**
    * id→versionRange map for dependencies. Failure to meet these causes a soft failure (warning)
    */
   recommends?: {
-    [k: string]: VersionRanges;
+    [k: string]: VersionRangesUndefined;
   };
   /**
    * id→versionRange map for dependencies. Are not matched and are mainly used as metadata
    */
   suggests?: {
-    [k: string]: VersionRanges;
+    [k: string]: VersionRangesUndefined;
   };
   /**
    * id→versionRange map for dependencies. A successful match causes a soft failure (warning)
    */
   conflicts?: {
-    [k: string]: VersionRanges;
+    [k: string]: VersionRangesUndefined;
   };
   /**
    * id→versionRange map for dependencies. A successful match causes a hard failure
    */
   breaks?: {
-    [k: string]: VersionRanges;
+    [k: string]: VersionRangesUndefined;
   };
   /**
    * Name of the mod
@@ -159,22 +167,22 @@ export interface Fabric {
         /**
          * The path to a single .PNG file from the root of the JAR
          */
-        [k: string]: string;
+        [k: string]: string | undefined;
       };
   /**
    * A map of namespace:id→value for custom data fields.
    */
   custom?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface NestedJar {
   /**
    * A string value pointing to a path from the root of the JAR to a nested JAR which should be loaded alongside the outer mod JAR
    */
   file: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Contact information for the person
@@ -203,7 +211,7 @@ export interface ContactInfo {
   /**
    * Custom contact or profile informations
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * Contact information for the mod
@@ -232,5 +240,5 @@ export interface ContactInfo1 {
   /**
    * Custom contact or profile informations
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }

@@ -5,26 +5,26 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type Profile = ProfileContent;
+export type Profile = ProfileContent | undefined;
 
 export interface JSONSchemaForTheVisualStudioLaunchSettingsJsonFile {
   /**
    * A list of debug profiles
    */
   profiles?: {
-    [k: string]: Profile;
+    [k: string]: ProfileUndefined;
   };
   /**
    * IIS and IIS Express settings
    */
   iisSettings?: IisSettingContent;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ProfileContent {
   /**
    * Identifies the debug target to run.
    */
-  commandName?: "Executable" | "Project" | "IIS" | "IISExpress" | "DebugRoslynComponent";
+  commandName?: "Executable" | "Project" | "IIS" | "IISExpress" | "DebugRoslynComponent" | "Docker" | "DockerCompose";
   /**
    * The arguments to pass to the target being run.
    */
@@ -49,7 +49,7 @@ export interface ProfileContent {
    * Set the environment variables as key/value pairs.
    */
   environmentVariables?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A semi-colon delimited list of URL(s) to configure for the web server.
@@ -127,7 +127,7 @@ export interface ProfileContent {
    * A relative ot absolute path to the .NET project file on which Roslyn component should be executed. Relative to the current project's folder.
    */
   targetProject?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface IisSettingContent {
   /**
@@ -146,7 +146,7 @@ export interface IisSettingContent {
    * Site settings to use with IIS profiles.
    */
   iis?: IisBindingContent;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface IisBindingContent {
   /**
@@ -157,5 +157,5 @@ export interface IisBindingContent {
    * The SSL port to use for the web site.
    */
   sslPort?: number;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

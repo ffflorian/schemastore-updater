@@ -7,8 +7,8 @@
   "name": "@schemastore/kode-ci-build-1.0.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/kode-ci-build-1.0.0",
   "scripts": {},
-  "typesPublisherContentHash": "47360d4b4f307e1d73b793d41d2054c5342714f45a942c0199a8034765fd5e2d",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ffb4ea00f96fee38186b7b1aa3a5ddc080a66aeac155f65a880a7ff83eddb0b8",
+  "version": "0.0.5"
 }

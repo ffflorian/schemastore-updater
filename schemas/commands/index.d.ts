@@ -18,7 +18,7 @@ export interface Commands {
    * A list of commands.
    */
   commands?: {
-    [k: string]: Commands1;
+    [k: string]: Commands1Undefined;
   };
   /**
    * Specify any Visual Studio event bindings.
@@ -28,9 +28,9 @@ export interface Commands {
     BeforeBuild?: Vsbindings;
     Clean?: Vsbindings;
     ProjectOpen?: Vsbindings;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The friendly name of the command.
@@ -48,5 +48,5 @@ export interface Commands1 {
    * The arguments to pass to the executable file.
    */
   arguments?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

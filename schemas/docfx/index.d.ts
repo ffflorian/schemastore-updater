@@ -65,7 +65,7 @@ export type Theme = string | string[];
 export interface DocFxConfigurationFile {
   metadata?: MetadataConfig;
   build?: BuildConfig;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface MetadataConfigItem {
   src: FileMappingSrc;
@@ -171,14 +171,14 @@ export interface BuildConfig {
    * Contains metadata that will be applied to every file, in key-value pair format.
    */
   globalMetadata?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   globalMetadataFiles?: GlobalMetadataFiles;
   /**
    * Contains metadata that will be applied to specific files.
    */
   fileMetadata?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   fileMetadataFiles?: FileMetadataFiles;
   template?: Template;
@@ -238,7 +238,7 @@ export interface BuildConfig {
    * Set the parameters for markdown engine.
    */
   markdownEngineProperties?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Disable default lang keyword, e.g. `null`.

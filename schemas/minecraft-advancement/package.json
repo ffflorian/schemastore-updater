@@ -7,8 +7,8 @@
   "name": "@schemastore/minecraft-advancement",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/minecraft-advancement",
   "scripts": {},
-  "typesPublisherContentHash": "401c3902a4574b55576f00f3d6c52fcd2e91e7f9c1e000b13cc197865e89b80c",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "cdc24eeeeb340ea910b869de0adac7f6857e3fad276a41d3b9fd9c5e0b43619a",
+  "version": "0.0.6"
 }

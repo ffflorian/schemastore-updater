@@ -7,8 +7,8 @@
   "name": "@schemastore/pyproject",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pyproject",
   "scripts": {},
-  "typesPublisherContentHash": "e2feb9fe742084c6c3411e9bf2b0911220a2d7975ab49bb5020efb6d138e39d9",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "14cfb0158f50a41650693f2e328fdab0fb9c4ab91e22c024700b81154f737bf8",
+  "version": "0.0.5"
 }

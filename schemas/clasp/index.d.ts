@@ -38,5 +38,5 @@ export interface GoogleAppsScriptConfigSchema {
    * https://github.com/google/clasp#filepushorder-optional
    */
   filePushOrder?: File[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

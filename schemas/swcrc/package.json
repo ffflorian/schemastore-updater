@@ -7,8 +7,8 @@
   "name": "@schemastore/swcrc",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/swcrc",
   "scripts": {},
-  "typesPublisherContentHash": "c6172b0ffd2131f64f1019ade7ac3a66bae233927e9353077a7dd21ed0d8076e",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "e0342e13c3bf4f267a3c0fe4d27378b16cd08176e87eb5426939f3a7e685bc94",
+  "version": "0.0.7"
 }

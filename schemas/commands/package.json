@@ -7,8 +7,8 @@
   "name": "@schemastore/commands",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/commands",
   "scripts": {},
-  "typesPublisherContentHash": "306d980ad5de48dd438fda9227d8646e13d0ea18c7c2939078d9d80adb56d2f3",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ec305bb6032c7da92c7fad847b8af308109b3a6d9869ebd5c12e7d9bba134cab",
+  "version": "0.0.6"
 }

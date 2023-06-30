@@ -829,7 +829,7 @@ export interface JSONSchemaForPreCommitConfigYaml {
      * https://pre-commit.ci/#configuration
      */
     submodules?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Repository mappings of the current project
@@ -841,7 +841,7 @@ export interface JSONSchemaForPreCommitConfigYaml {
    * https://pre-commit.com/#pre-commit-configyaml---top-level
    */
   default_language_version?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   default_stages?: Stages1;
   /**
@@ -864,15 +864,15 @@ export interface JSONSchemaForPreCommitConfigYaml {
    * https://pre-commit.com/#pre-commit-configyaml---top-level
    */
   minimum_pre_commit_version?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface MetaRepo {
   repo?: "meta";
   hooks?: {
     id: "check-hooks-apply" | "check-useless-excludes" | "identity";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface LocalRepo {
   /**
@@ -881,7 +881,7 @@ export interface LocalRepo {
    */
   repo?: "local";
   hooks?: HookDefinition[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface HookDefinition {
   /**
@@ -977,7 +977,7 @@ export interface HookDefinition {
    * https://pre-commit.com/#pre-commit-configyaml---hooks
    */
   pass_filenames?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface UriRepo {
   /**
@@ -995,7 +995,7 @@ export interface UriRepo {
    * https://pre-commit.com/#pre-commit-configyaml---hooks.
    */
   hooks?: HookDefinition1[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface HookDefinition1 {
   /**
@@ -1091,5 +1091,5 @@ export interface HookDefinition1 {
    * https://pre-commit.com/#pre-commit-configyaml---hooks
    */
   pass_filenames?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

@@ -7,8 +7,8 @@
   "name": "@schemastore/content-security-policy-report-2",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/content-security-policy-report-2",
   "scripts": {},
-  "typesPublisherContentHash": "8964fe1296036ecccbc29a4cd36dc7c028dd84418010c6777a8ad6ce4450398a",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.3",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "def5aae1e3a34b8af5378a038ba9db5f63061ae94067670368cedf524bfc6dc1",
+  "version": "0.0.4"
 }

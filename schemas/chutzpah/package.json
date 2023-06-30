@@ -7,8 +7,8 @@
   "name": "@schemastore/chutzpah",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/chutzpah",
   "scripts": {},
-  "typesPublisherContentHash": "21674f1a50ea4790938b8f8fe88f3fe64354d6e7b55f584da98d874a0901c3bb",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "a4cd3e112933974b3057a1e0ce21ba3e1e2c2cde09259465bd51708a4d0a38be",
+  "version": "0.0.7"
 }

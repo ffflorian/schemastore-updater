@@ -7,16 +7,17 @@
 
 export type FConsumer = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   acls?: ACLGroup[];
   basicauth_credentials?: BasicAuth[];
   created_at?: number;
   custom_id?: string;
+  groups?: ConsumerGroup1[];
   hmacauth_credentials?: HMACAuth[];
   id?: string;
   jwt_secrets?: JWTAuth[];
@@ -61,10 +62,10 @@ export type FRoute = FRoute1 & {
 };
 export type FRoute1 =
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 export type FService = FService1 & {
   ca_certificates?: string[];
@@ -91,17 +92,17 @@ export type FService = FService1 & {
 };
 export type FService1 =
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 export type FRoute2 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   created_at?: number;
@@ -137,10 +138,10 @@ export type FRoute2 = (
 };
 export type FService2 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   ca_certificates?: string[];
@@ -176,13 +177,14 @@ export interface KongJsonSchema {
      * via the `patternProperty` ".*".
      */
     [k: string]: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
   };
   _transform?: boolean;
   _workspace?: string;
   ca_certificates?: FCACertificate[];
   certificates?: FCertificate[];
+  consumer_groups?: FConsumerGroupObject[];
   consumers?: FConsumer[];
   plugins?: FPlugin[];
   rbac_roles?: FRBACRole[];
@@ -414,15 +416,16 @@ export interface FCertificate {
   key: string;
   snis?: {
     name?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   tags?: string[];
 }
-export interface ACLGroup {
-  consumer?: Consumer;
+export interface FConsumerGroupObject {
+  consumers?: Consumer[];
   created_at?: number;
-  group: string;
   id?: string;
+  name?: string;
+  plugins?: ConsumerGroupPlugin[];
   tags?: string[];
 }
 export interface Consumer {
@@ -432,6 +435,28 @@ export interface Consumer {
   tags?: string[];
   username?: string;
 }
+export interface ConsumerGroupPlugin {
+  config?: {
+    [k: string]: unknown | undefined;
+  };
+  consumer_group?: ConsumerGroup;
+  created_at?: number;
+  id?: string;
+  name?: string;
+}
+export interface ConsumerGroup {
+  created_at?: number;
+  id?: string;
+  name?: string;
+  tags?: string[];
+}
+export interface ACLGroup {
+  consumer?: Consumer;
+  created_at?: number;
+  group: string;
+  id?: string;
+  tags?: string[];
+}
 export interface BasicAuth {
   consumer?: Consumer;
   created_at?: number;
@@ -439,6 +464,12 @@ export interface BasicAuth {
   password: string;
   tags?: string[];
   username: string;
+}
+export interface ConsumerGroup1 {
+  created_at?: number;
+  id?: string;
+  name?: string;
+  tags?: string[];
 }
 export interface HMACAuth {
   consumer?: Consumer;
@@ -484,6 +515,7 @@ export interface CACertificate {
 export interface Oauth2Credential {
   client_id: string;
   client_secret: string;
+  client_type?: string;
   consumer?: Consumer;
   created_at?: number;
   hash_secret?: boolean;
@@ -495,7 +527,7 @@ export interface Oauth2Credential {
 export interface FPlugin {
   _config?: string;
   config?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   consumer?: string;
   created_at?: number;
@@ -552,7 +584,7 @@ export interface RBACRole {
 export interface FPlugin1 {
   _config?: string;
   config?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   consumer?: string;
   created_at?: number;
@@ -633,7 +665,7 @@ export interface FTarget {
 }
 export interface FVault {
   config?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   created_at?: number;
   description?: string;

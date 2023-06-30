@@ -7,8 +7,8 @@
   "name": "@schemastore/clasp",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/clasp",
   "scripts": {},
-  "typesPublisherContentHash": "0a6e3471732a1fc3fcdb24b206cb737053313eef35b0267d639f411debc9bf5c",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "1.0.8",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "544756fae459be897546d90468ca8b414227062939d6fef69115f038962bf283",
+  "version": "1.0.9"
 }

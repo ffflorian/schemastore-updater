@@ -13,27 +13,29 @@ export interface FoxxManifest {
    * An object defining the configuration options this service requires.
    */
   configuration?: {
-    [k: string]: {
-      /**
-       * A human-readable description of the option.
-       */
-      description?: string;
-      /**
-       * The type of value expected for this option.
-       */
-      type: "integer" | "boolean" | "number" | "string" | "json" | "password" | "int" | "bool";
-      /**
-       * The default value for this option in plain JSON. Can be omitted to provide no default value.
-       */
-      default?: {
-        [k: string]: unknown;
-      };
-      /**
-       * Whether the service can not function without this option. Defaults to true unless a default value is provided.
-       */
-      required?: boolean;
-      [k: string]: unknown;
-    };
+    [k: string]:
+      | {
+          /**
+           * A human-readable description of the option.
+           */
+          description?: string;
+          /**
+           * The type of value expected for this option.
+           */
+          type: "integer" | "boolean" | "number" | "string" | "json" | "password" | "int" | "bool";
+          /**
+           * The default value for this option in plain JSON. Can be omitted to provide no default value.
+           */
+          default?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether the service can not function without this option. Defaults to true unless a default value is provided.
+           */
+          required?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   /**
    * If specified, the / (root) route of the service will automatically redirect to the given relative path, e.g. "index.html".
@@ -44,30 +46,33 @@ export interface FoxxManifest {
    */
   dependencies?: {
     [k: string]:
-      | string
-      | {
-          /**
-           * Name of the API the service expects.
-           */
-          name?: string;
-          /**
-           * The semantic version ranges of the API the service expects.
-           */
-          version?: string;
-          /**
-           * A description of how the API is used or why it is needed.
-           */
-          description?: string;
-          /**
-           * Whether the service can not function without this dependency.
-           */
-          required?: boolean;
-          /**
-           * Whether the dependency can be specified more than once.
-           */
-          multiple?: boolean;
-          [k: string]: unknown;
-        };
+      | (
+          | string
+          | {
+              /**
+               * Name of the API the service expects.
+               */
+              name?: string;
+              /**
+               * The semantic version ranges of the API the service expects.
+               */
+              version?: string;
+              /**
+               * A description of how the API is used or why it is needed.
+               */
+              description?: string;
+              /**
+               * Whether the service can not function without this dependency.
+               */
+              required?: boolean;
+              /**
+               * Whether the dependency can be specified more than once.
+               */
+              multiple?: boolean;
+              [k: string]: unknown | undefined;
+            }
+        )
+      | undefined;
   };
   /**
    * The dependencies this provides, i.e. which APIs it claims to be compatible with.
@@ -76,36 +81,39 @@ export interface FoxxManifest {
     /**
      * The semantic version ranges of the API the service implements.
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * An object indicating the semantic version ranges of ArangoDB (or compatible environments) the service will be compatible with.
    */
   engines?: {
     arangodb?: string;
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * An object defining file assets served by this service.
    */
   files?: {
     [k: string]:
-      | string
-      | {
-          /**
-           * Relative path of the file or folder within the service.
-           */
-          path: string;
-          /**
-           * If set to true the file will be served with gzip-encoding if supported by the client. This can be useful when serving text files like client-side JavaScript, CSS or HTML.
-           */
-          gzip?: boolean;
-          /**
-           * The MIME content type of the file. Defaults to an intelligent guess based on the filename's extension.
-           */
-          type?: string;
-          [k: string]: unknown;
-        };
+      | (
+          | string
+          | {
+              /**
+               * Relative path of the file or folder within the service.
+               */
+              path: string;
+              /**
+               * If set to true the file will be served with gzip-encoding if supported by the client. This can be useful when serving text files like client-side JavaScript, CSS or HTML.
+               */
+              gzip?: boolean;
+              /**
+               * The MIME content type of the file. Defaults to an intelligent guess based on the filename's extension.
+               */
+              type?: string;
+              [k: string]: unknown | undefined;
+            }
+        )
+      | undefined;
   };
   /**
    * The relative path to the Foxx JavaScript files in the service, e.g. "lib". Defaults to the folder containing this manifest.
@@ -122,7 +130,7 @@ export interface FoxxManifest {
     /**
      * Path of the script (relative to lib), e.g. "scripts/setup.js".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A path/pattern or list of paths/patterns of JavaScript tests provided for this service.
@@ -160,5 +168,5 @@ export interface FoxxManifest {
    * The version number of the Foxx service. The version number must follow the semantic versioning format. This will be shown in the web interface.
    */
   version?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

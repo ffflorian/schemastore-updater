@@ -7,8 +7,8 @@
   "name": "@schemastore/tslint",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/tslint",
   "scripts": {},
-  "typesPublisherContentHash": "9f5e19563c372ca4001cd1e492872074e08c121da2bdc3059a2d0119a22aed4b",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.12",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "32e81635dd49340f06f0531b262e89d2bf73b91a11921f5d835d601cc269c382",
+  "version": "0.0.13"
 }

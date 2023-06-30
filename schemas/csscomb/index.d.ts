@@ -133,5 +133,5 @@ export interface ACSSCombConfigSchema {
    * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
    */
   "sort-order-fallback"?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

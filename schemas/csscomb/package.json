@@ -7,8 +7,8 @@
   "name": "@schemastore/csscomb",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/csscomb",
   "scripts": {},
-  "typesPublisherContentHash": "e56ea33797097d324156cd5831541ecc8fc0cdac171f46309db0f022ecca25b0",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.8",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "914d9e014b1552b47759bf71895328a42dc2e964b187b38ddeecd18daeb0ef0f",
+  "version": "0.0.9"
 }

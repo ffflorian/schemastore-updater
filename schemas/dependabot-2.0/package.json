@@ -7,8 +7,8 @@
   "name": "@schemastore/dependabot-2.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/dependabot-2.0",
   "scripts": {},
-  "typesPublisherContentHash": "0145ea78fc316cea17b232a9220b845533e5b8f0045790df84c950907b303578",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ef262d20f0642ef4b19cba05788ed812335b71214ca6c7523ecaa0eed9d822b3",
+  "version": "0.0.6"
 }

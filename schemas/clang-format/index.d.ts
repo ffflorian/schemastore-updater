@@ -114,7 +114,7 @@ export interface ClangFormatConfig {
   /**
  * clang-format 9
 
- If a function call or braced initializer list doesn’t fit on a line, allow putting all arguments onto the next line, even if BinPackArguments is false.
+ If a function call or braced initializer list doesn't fit on a line, allow putting all arguments onto the next line, even if BinPackArguments is false.
  */
   AllowAllArgumentsOnNextLine?: boolean;
   /**
@@ -122,13 +122,13 @@ export interface ClangFormatConfig {
 
  This option is deprecated in clang-format 15. See NextLine of PackConstructorInitializers.
 
- If a constructor definition with a member initializer list doesn’t fit on a single line, allow putting all member initializers onto the next line, if `ConstructorInitializerAllOnOneLineOrOnePerLine` is true. Note that this parameter has no effect if `ConstructorInitializerAllOnOneLineOrOnePerLine` is false.
+ If a constructor definition with a member initializer list doesn't fit on a single line, allow putting all member initializers onto the next line, if `ConstructorInitializerAllOnOneLineOrOnePerLine` is true. Note that this parameter has no effect if `ConstructorInitializerAllOnOneLineOrOnePerLine` is false.
  */
   AllowAllConstructorInitializersOnNextLine?: boolean;
   /**
  * clang-format 3.3
 
- If the function declaration doesn’t fit on a line, allow putting all parameters of a function declaration onto the next line even if BinPackParameters is false.
+ If the function declaration doesn't fit on a line, allow putting all parameters of a function declaration onto the next line even if BinPackParameters is false.
  */
   AllowAllParametersOfDeclarationOnNextLine?: boolean;
   /**
@@ -208,13 +208,13 @@ export interface ClangFormatConfig {
   /**
  * clang-format 3.7
 
- If false, a function call’s arguments will either be all on the same line or will have one line each.
+ If false, a function call's arguments will either be all on the same line or will have one line each.
  */
   BinPackArguments?: boolean;
   /**
  * clang-format 3.7
 
- If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each.
+ If false, a function declaration's or function definition's parameters will either all be on the same line or will have one line each.
  */
   BinPackParameters?: boolean;
   /**
@@ -301,7 +301,7 @@ export interface ClangFormatConfig {
      * bool SplitEmptyNamespace If false, empty namespace body can be put on a single line. This option is used only if the opening brace of the namespace has already been wrapped, i.e. the AfterNamespace brace wrapping mode is set.
      */
     SplitEmptyNamespace?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
  * clang-format 3.8
@@ -450,7 +450,7 @@ export interface ClangFormatConfig {
   /**
  * clang-format 5
 
- If true, clang-format adds missing namespace end comments for short namespaces and fixes invalid existing ones. Short ones are controlled by “ShortNamespaceLines”.
+ If true, clang-format adds missing namespace end comments for short namespaces and fixes invalid existing ones. Short ones are controlled by "ShortNamespaceLines".
  */
   FixNamespaceComments?: boolean;
   /**
@@ -482,22 +482,22 @@ export interface ClangFormatConfig {
     Priority: number;
     SortPriority?: number;
     CaseSensitive?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
  * clang-format 7
 
  Specify a regular expression of suffixes that are allowed in the file-to-main-include mapping.
-When guessing whether a #include is the “main” include (to assign category 0, see above), use this regex of allowed suffixes to the header stem. A partial match is done, so that: - “” means “arbitrary suffix” - “$” means “no suffix”
-For example, if configured to “(_test)?$”, then a header a.h would be seen as the “main” include in both a.cc and a_test.cc.
+When guessing whether a #include is the "main" include (to assign category 0, see above), use this regex of allowed suffixes to the header stem. A partial match is done, so that: - "" means "arbitrary suffix" - "$" means "no suffix"
+For example, if configured to "(_test)?$", then a header a.h would be seen as the "main" include in both a.cc and a_test.cc.
  */
   IncludeIsMainRegex?: string;
   /**
  * clang-format 7
 
- Specify a regular expression for files being formatted that are allowed to be considered “main” in the file-to-main-include mapping.
-By default, clang-format considers files as “main” only when they end with: .c, .cc, .cpp, .c++, .cxx, .m or .mm extensions. For these files a guessing of “main” include takes place (to assign category 0, see above). This config option allows for additional suffixes and extensions for files to be considered as “main”.
-By default, clang-format considers files as “main” only when they end with: .c, .cc, .cpp, .c++, .cxx, .m or .mm extensions. For these files a guessing of “main” include takes place (to assign category 0, see above). This config option allows for additional suffixes and extensions for files to be considered as “main”. 
+ Specify a regular expression for files being formatted that are allowed to be considered "main" in the file-to-main-include mapping.
+By default, clang-format considers files as "main" only when they end with: .c, .cc, .cpp, .c++, .cxx, .m or .mm extensions. For these files a guessing of "main" include takes place (to assign category 0, see above). This config option allows for additional suffixes and extensions for files to be considered as "main".
+By default, clang-format considers files as "main" only when they end with: .c, .cc, .cpp, .c++, .cxx, .m or .mm extensions. For these files a guessing of "main" include takes place (to assign category 0, see above). This config option allows for additional suffixes and extensions for files to be considered as "main". 
  */
   IncludeIsMainSourceRegex?: string;
   /**
@@ -568,7 +568,7 @@ When false, goto labels are flushed left.
  * clang-fomrat 15
  Insert braces after control statements (if, else, for, do, and while) in C++ unless the control statements are inside macro definitions or the braces would enclose preprocessor directives.
 
- Warning: Setting this option to true could lead to incorrect code formatting due to clang-format’s lack of complete semantic information. As such, extra care should be taken to review code changes made by this option.
+ Warning: Setting this option to true could lead to incorrect code formatting due to clang-format's lack of complete semantic information. As such, extra care should be taken to review code changes made by this option.
  */
   InsertBraces?: boolean;
   /**
@@ -768,7 +768,7 @@ If Never, lays out Objective-C protocol conformance list items onto individual l
 
  The order in which the qualifiers appear. Order is an array that can contain any of the following. 
 
- Note: it MUST contain ‘type’. Items to the left of ‘type’ will be placed to the left of the type and aligned in the order supplied. Items to the right of ‘type’ will be placed to the right of the type and aligned in the order supplied.
+ Note: it MUST contain 'type'. Items to the left of 'type' will be placed to the left of the type and aligned in the order supplied. Items to the right of 'type' will be placed to the right of the type and aligned in the order supplied.
  */
   QualifierOrder?: ("const" | "inline" | "static" | "constexpr" | "volatile" | "restrict" | "type")[];
   /**
@@ -806,7 +806,7 @@ If Never, lays out Objective-C protocol conformance list items onto individual l
       | "gnu"
       | "inheritparentconfig";
     EnclosingFunctions?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
  * clang-format 13
@@ -827,7 +827,7 @@ If Never, lays out Objective-C protocol conformance list items onto individual l
 
  WarningThis option will be renamed and expanded to support other styles.
 
- Setting this option to true could lead to incorrect code formatting due to clang-format’s lack of complete semantic information. As such, extra care should be taken to review code changes made by this option.
+ Setting this option to true could lead to incorrect code formatting due to clang-format's lack of complete semantic information. As such, extra care should be taken to review code changes made by this option.
  */
   RemoveBracesLLVM?: boolean;
   /**
@@ -881,7 +881,7 @@ If Never, lays out Objective-C protocol conformance list items onto individual l
   /**
  * clang-format 4
 
- If true, a space will be inserted after the ‘template’ keyword.
+ If true, a space will be inserted after the 'template' keyword.
  */
   SpaceAfterTemplateKeyword?: boolean;
   /**
@@ -976,7 +976,7 @@ If Never, lays out Objective-C protocol conformance list items onto individual l
      * bool BeforeNonEmptyParentheses If true, put a space before opening parentheses only if the parentheses are not empty.
      */
     BeforeNonEmptyParentheses?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
  * clang-format 7
@@ -1042,7 +1042,7 @@ This does not affect trailing block comments (/* - comments) as those commonly h
   SpacesInLineCommentPrefix?: {
     Minimum?: number;
     Maximum?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
  * clang-format 3.7
@@ -1112,5 +1112,5 @@ For example: OpenSSL STACK_OF, BSD LIST_ENTRY.
  For example: BOOST_PP_STRINGIZE
  */
   WhitespaceSensitiveMacros?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

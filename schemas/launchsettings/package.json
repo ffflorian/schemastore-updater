@@ -7,8 +7,8 @@
   "name": "@schemastore/launchsettings",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/launchsettings",
   "scripts": {},
-  "typesPublisherContentHash": "b077d71709f32073fd1cfd411f71dc087dd73d8a52be2fdf55e664d562815db9",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.9",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "ef0c5ae0c2fbc31b04a61134e540ca313f9d36a8e41d331d76805711e9dd5818",
+  "version": "0.0.10"
 }

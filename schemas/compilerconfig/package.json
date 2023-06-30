@@ -7,8 +7,8 @@
   "name": "@schemastore/compilerconfig",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/compilerconfig",
   "scripts": {},
-  "typesPublisherContentHash": "cd5b92182b37fbd7264f604e89c0f6159ea6bb9d263f3f3ca6245d78cf13f1f2",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.3",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "e524dee5ac6fd41a134599fb64ed0bfde8cc5de07b4201730d86a5fe2a9c3425",
+  "version": "0.0.4"
 }

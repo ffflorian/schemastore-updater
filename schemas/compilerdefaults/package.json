@@ -7,8 +7,8 @@
   "name": "@schemastore/compilerdefaults",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/compilerdefaults",
   "scripts": {},
-  "typesPublisherContentHash": "ea6ab194b65d2217fb25a6d9d855ac089a78f9c582999cf5e716a20674f0a509",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "8429ff08b016460459562a5acbd81250b3ea7cf9f6b94fdda67a148ec3900cc4",
+  "version": "0.0.6"
 }

@@ -30,7 +30,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
       | unknown[]
       | ("public" | "unlisted")
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | null;
     /**
@@ -56,7 +56,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
       | unknown[]
       | ("default" | "portrait" | "landscape")
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | null;
     /**
@@ -98,7 +98,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         | unknown[]
         | ("default" | "collapse")
         | {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         | null;
       /**
@@ -121,7 +121,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         | unknown[]
         | ("white" | "blue")
         | {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         | null;
       /**
@@ -165,7 +165,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Specifies the background color of the status bar.
        */
       backgroundColor?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Configuration for the bottom navigation bar on Android.
@@ -183,7 +183,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Specifies the background color of the navigation bar.
        */
       backgroundColor?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Adds a notification to your standalone app with refresh button and debug info.
@@ -201,11 +201,11 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      * Any extra fields you want to pass to your experience. Values are accessible via `Expo.Constants.manifest.extra` ([read more](../sdk/constants.html#expoconstantsmanifest))
      */
     extra?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     rnCliPath?: string;
     packagerOpts?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     ignoreNodeModulesValidation?: boolean;
     nodeModulesPath?: string;
@@ -224,7 +224,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         | unknown[]
         | ("ON_ERROR_RECOVERY" | "ON_LOAD")
         | {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         | null;
       /**
@@ -236,7 +236,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      * Provide overrides by locale for System Dialog prompts like Permissions Boxes
      */
     locales?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * iOS standalone app specific configuration
@@ -342,7 +342,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        * Dictionary of arbitrary configuration to add to your standalone app's native Info.plist. Applied prior to all other Expo-specific configuration. No other validation is performed, so use this at your own risk of rejection from the App Store.
        */
       infoPlist?: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * An array that contains Associated Domains for the standalone app.
@@ -379,7 +379,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
           | unknown[]
           | ("cover" | "contain")
           | {
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
           | null;
         /**
@@ -390,7 +390,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
          */
         tabletImage?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
     /**
@@ -549,7 +549,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
           | unknown[]
           | ("cover" | "contain" | "native")
           | {
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
           | null;
         /**
@@ -572,7 +572,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
          */
         xxxhdpi?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * An array of intent filters.
@@ -639,7 +639,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       dir?: "auto" | "ltr" | "rtl";
       /**
-       * Defines the developers’ preferred display mode for the website.
+       * Defines the developers' preferred display mode for the website.
        */
       display?: "fullscreen" | "standalone" | "minimal-ui" | "browser";
       /**
@@ -659,7 +659,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         | "portrait-primary"
         | "portrait-secondary";
       /**
-       * Defines the expected “background color” for the website. This value repeats what is already available in the site’s CSS, but can be used by browsers to draw the background color of a shortcut when the manifest is available before the stylesheet has loaded. This creates a smooth transition between launching the web application and loading the site's content.
+       * Defines the expected "background color" for the website. This value repeats what is already available in the site's CSS, but can be used by browsers to draw the background color of a shortcut when the manifest is available before the stylesheet has loaded. This creates a smooth transition between launching the web application and loading the site's content.
        */
       backgroundColor?: string;
       /**
@@ -694,21 +694,21 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * DEPRECATED: Modify the Webpack config directly. Configuration for customizing webpack report. See `HtmlWebpackPlugin.Options` from `html-webpack-plugin`.
          */
         minifyHTML?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         /**
          * DEPRECATED: Modify the Webpack config directly. Configuration for enabling webpack report and `stats.json`. See `BundleAnalyzerPlugin.Options` from `webpack-bundle-analyzer`.
          */
         report?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         /**
          * DEPRECATED: Modify the Webpack config directly. Configuration for customizing the service worker. See `GenerateSWOptions` from `workbox-webpack-plugin`.
          */
         serviceWorker?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * DEPRECATED. Defines the meta tag elements that will be added to the head element of your index.html.
@@ -730,27 +730,27 @@ export interface JSONSchemaForExpoSDK37AppManifest {
            * If content is set to "default", the status bar appears normal. If set to "black", the status bar has a black background. If set to "black-translucent", the status bar is black and translucent. If set to "default" or "black", the web content is displayed below the status bar. If set to "black-translucent", the web content is displayed on the entire screen, partially obscured by the status bar.
            */
           barStyle?: "default" | "black" | "black-translucent";
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         /**
          * Twitter card protocol: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup.html
          */
         twitter?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         /**
          * The Open Graph protocol: http://ogp.me/
          */
         openGraph?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         /**
          * X-UA protocol
          */
         microsoft?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Experimental features. These will break without deprecation notice.
@@ -764,7 +764,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          * Message that is rendered when the browser using your page doesn't have JS enabled.
          */
         noJavaScriptMessage?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Configuration for PWA splash screens.
@@ -781,16 +781,16 @@ export interface JSONSchemaForExpoSDK37AppManifest {
           | unknown[]
           | ("cover" | "contain")
           | {
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
           | null;
         /**
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
          */
         image?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Used for all Facebook libraries. Set up your Facebook App ID at https://developers.facebook.com.
@@ -824,7 +824,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      * Extra fields needed by detached apps
      */
     detach?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Configuration for loading and splash screen for standalone apps.
@@ -841,14 +841,14 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         | unknown[]
         | ("cover" | "contain")
         | {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         | null;
       /**
        * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
        */
       image?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Configuration for scripts to run to hook into the publish process

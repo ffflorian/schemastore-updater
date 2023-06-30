@@ -16,12 +16,20 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = CompilerOptio
 
 export interface CompilerOptionsDefinition {
   compilerOptions?: CompilerOptions;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Instructs the TypeScript compiler how to compile .ts files.
  */
 export interface CompilerOptions {
+  /**
+   * Enable importing files with any extension, provided a declaration file is present.
+   */
+  allowArbitraryExtensions?: boolean;
+  /**
+   * Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set.
+   */
+  allowImportingTsExtensions?: boolean;
   /**
    * No longer supported. In early versions, manually set the text encoding for reading files.
    */
@@ -30,6 +38,10 @@ export interface CompilerOptions {
    * Enable constraints that allow a TypeScript project to be used with project references.
    */
   composite?: boolean;
+  /**
+   * Conditions to set in addition to the resolver-specific defaults when resolving imports.
+   */
+  customConditions?: string[];
   /**
    * Generate .d.ts files from TypeScript and JavaScript files in your project.
    */
@@ -125,7 +137,7 @@ export interface CompilerOptions {
         | "NodeNext"
       )
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   ) &
     string;
@@ -133,9 +145,9 @@ export interface CompilerOptions {
    * Specify how TypeScript looks up a file from a given module specifier.
    */
   moduleResolution?: (
-    | ("Classic" | "Node" | "Node16" | "NodeNext")
+    | ("classic" | "node" | "node16" | "nodenext" | "bundler")
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   ) &
     string;
@@ -145,7 +157,7 @@ export interface CompilerOptions {
   newLine?: (
     | ("crlf" | "lf")
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   ) &
     string;
@@ -273,10 +285,11 @@ export interface CompilerOptions {
         | "ES2020"
         | "ES2021"
         | "ES2022"
+        | "ES2023"
         | "ESNext"
       )
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   ) &
     string;
@@ -361,7 +374,7 @@ export interface CompilerOptions {
    * Specify a set of entries that re-map imports to additional lookup locations.
    */
   paths?: {
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * Specify a list of language service plugins to include.
@@ -371,7 +384,7 @@ export interface CompilerOptions {
      * Plugin name.
      */
     name?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Allow multiple folders to be treated as one when resolving modules.
@@ -486,43 +499,43 @@ export interface CompilerOptions {
         | "ES2022.String"
       )
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   ) &
     string)[];
@@ -599,6 +612,14 @@ export interface CompilerOptions {
    */
   resolveJsonModule?: boolean;
   /**
+   * Use the package.json 'exports' field when resolving package imports.
+   */
+  resolvePackageJsonExports?: boolean;
+  /**
+   * Use the package.json 'imports' field when resolving imports.
+   */
+  resolvePackageJsonImports?: boolean;
+  /**
    * Have recompiles in '--incremental' and '--watch' assume that changes within a file will only affect files directly depending on it. Requires TypeScript version 3.8 or later.
    */
   assumeChangesOnlyAffectDirectDependencies?: boolean;
@@ -618,14 +639,18 @@ export interface CompilerOptions {
    * Opt a project out of multi-project reference checking when editing.
    */
   disableSolutionSearching?: boolean;
-  [k: string]: unknown;
+  /**
+   * Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting.
+   */
+  verbatimModuleSyntax?: boolean;
+  [k: string]: unknown | undefined;
 }
 export interface CompileOnSaveDefinition {
   /**
    * Enable Compile-on-Save for this project.
    */
   compileOnSave?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TypeAcquisitionDefinition {
   /**
@@ -644,16 +669,16 @@ export interface TypeAcquisitionDefinition {
      * Specifies a list of type declarations to be excluded from auto type acquisition. Ex. ["jquery", "lodash"]
      */
     exclude?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ExtendsDefinition {
   /**
-   * Path to base configuration file to inherit from. Requires TypeScript version 2.1 or later.
+   * Path to base configuration file to inherit from (requires TypeScript version 2.1 or later), or array of base files, with the rightmost files having the greater priority (requires TypeScript version 5.0 or later).
    */
-  extends?: string;
-  [k: string]: unknown;
+  extends?: string | string[];
+  [k: string]: unknown | undefined;
 }
 export interface WatchOptionsDefinition {
   /**
@@ -688,9 +713,9 @@ export interface WatchOptionsDefinition {
      * Remove a list of directories from the watch process.
      */
     excludeDirectories?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface BuildOptionsDefinition {
   buildOptions?: {
@@ -718,9 +743,9 @@ export interface BuildOptionsDefinition {
      * Log paths used during the `moduleResolution` process.
      */
     traceResolution?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TsNodeDefinition {
   /**
@@ -848,7 +873,7 @@ export interface TsNodeDefinition {
       | [
           string,
           {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         ]
       | string;
@@ -856,9 +881,9 @@ export interface TsNodeDefinition {
      * **DEPRECATED** Specify type-check is enabled (e.g. `transpileOnly == false`).
      */
     typeCheck?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Override certain paths to be compiled and executed as CommonJS or ECMAScript modules.
@@ -876,28 +901,28 @@ export interface TsNodeDefinition {
  * tsconfig.json "module" options.
  */
 export interface TsNodeModuleTypes {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface FilesDefinition {
   /**
    * If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. When a 'files' property is specified, only those files and those specified by 'include' are included.
    */
   files?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ExcludeDefinition {
   /**
    * Specifies a list of files to be excluded from compilation. The 'exclude' property only affects the files included via the 'include' property and not the 'files' property. Glob patterns require TypeScript version 2.0 or later.
    */
   exclude?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface IncludeDefinition {
   /**
    * Specifies a list of glob patterns that match files to be included in compilation. If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. Requires TypeScript version 2.0 or later.
    */
   include?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ReferencesDefinition {
   /**
@@ -908,7 +933,7 @@ export interface ReferencesDefinition {
      * Path to referenced tsconfig or to folder containing tsconfig.
      */
     path?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

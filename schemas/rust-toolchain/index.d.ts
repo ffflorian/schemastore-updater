@@ -15,7 +15,7 @@ export interface SchemaForRustToolchainToml {
    *  Get more from [`Toolchains`](https://rust-lang.github.io/rustup/concepts/toolchains.html)
    */
   toolchain: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

@@ -7,8 +7,8 @@
   "name": "@schemastore/rust-toolchain",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/rust-toolchain",
   "scripts": {},
-  "typesPublisherContentHash": "41727d89ef69bdea919dc38ab5bf437e7882d00cc19d7b540b42e0a009d4ca65",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "3043b4ff7420e8f8c5c36f9147a1977d8d2eca43c9ceaffe02c7dbd252e53fba",
+  "version": "0.0.5"
 }

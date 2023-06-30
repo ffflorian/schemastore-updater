@@ -7,8 +7,8 @@
   "name": "@schemastore/jsdoc-1.0.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/jsdoc-1.0.0",
   "scripts": {},
-  "typesPublisherContentHash": "842f9ee81339fbad11004ff79b6e198958c1270abe537bbf1cbb9d62b79fedac",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "7a27a8ad30848f40a733fd0a3a814c4e098f2bbaa19be663c64c166f37bd76cc",
+  "version": "0.0.5"
 }

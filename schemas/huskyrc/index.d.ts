@@ -97,7 +97,7 @@ export interface GitHooks {
   /**
    * This hook is called by git-push and can be used to prevent a push from taking place. The hook is called with two parameters which provide the name and location of the destination remote, if a named remote is not being used both values will be the same.
    *
-   * Information about what is to be pushed is provided on the hook’s standard input with lines of the form:
+   * Information about what is to be pushed is provided on the hook's standard input with lines of the form:
    *
    * <local ref> SP <local sha1> SP <remote ref> SP <remote sha1> LF
    * For instance, if the command git push origin master:foreign were run the hook would receive a line like the following:

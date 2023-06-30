@@ -28,7 +28,7 @@ export interface Imageoptimizer {
        * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
        */
       lossy?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     },
     ...{
       /**
@@ -43,8 +43,8 @@ export interface Imageoptimizer {
        * When set to true, images are compressed a lot more but with a slight quality loss that may not be visible to the human eye.
        */
       lossy?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[]
   ];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

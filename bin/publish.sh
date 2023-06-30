@@ -17,6 +17,6 @@ fi
 while IFS= read -r DIR; do
   (
     cd "./schemas/${DIR}" || exit 1
-    npm publish --access=public --registry=https://registry.npmjs.org
+    npm publish --access public --registry https://registry.npmjs.org
   )
 done < "${UPDATE_FILE}"

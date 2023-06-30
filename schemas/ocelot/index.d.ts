@@ -39,7 +39,7 @@ export type TheRequestidkeySchema1 = string;
 export interface JSONSchemaForOcelotJson {
   Routes: TheRoutesSchema;
   GlobalConfiguration?: TheGlobalconfigurationSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheItemsSchema {
   DownstreamPathTemplate?: TheDownstreampathtemplateSchema;
@@ -61,35 +61,35 @@ export interface TheItemsSchema {
   AuthenticationOptions?: TheAuthenticationoptionsSchema;
   HttpHandlerOptions?: TheHttphandleroptionsSchema;
   DangerousAcceptAnyServerCertificateValidator?: TheDangerousacceptanyservercertificatevalidatorSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheAddHeadersToRequestSchema {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheAddClaimsToRequestSchema {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheRouteclaimsrequirementSchema {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheAddQueriesToRequestSchema {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheFilecacheoptionsSchema {
   TtlSeconds?: TheTtlsecondsSchema;
   Region?: TheRegionSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheItemsSchema2 {
   Host?: TheHostSchema;
   Port?: ThePortSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheQosoptionsSchema {
   ExceptionsAllowedBeforeBreaking?: TheExceptionsallowedbeforebreakingSchema;
   DurationOfBreak?: TheDurationofbreakSchema;
   TimeoutValue?: TheTimeoutvalueSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheRatelimitoptionsSchema {
   ClientWhitelist?: TheClientwhitelistSchema;
@@ -97,20 +97,20 @@ export interface TheRatelimitoptionsSchema {
   Period?: ThePeriodSchema;
   PeriodTimespan?: ThePeriodtimespanSchema;
   Limit?: TheLimitSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheAuthenticationoptionsSchema {
   AuthenticationProviderKey?: TheAuthenticationproviderkeySchema;
   AllowedScopes?: TheAllowedscopesSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheHttphandleroptionsSchema {
   AllowAutoRedirect?: TheAllowautoredirectSchema;
   UseCookieContainer?: TheUsecookiecontainerSchema;
   UseTracing?: TheUsetracingSchema;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TheGlobalconfigurationSchema {
   RequestIdKey?: TheRequestidkeySchema1;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

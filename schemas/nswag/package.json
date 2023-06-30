@@ -7,8 +7,8 @@
   "name": "@schemastore/nswag",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nswag",
   "scripts": {},
-  "typesPublisherContentHash": "8d2924d398d35eeb555a7c3e5969dc74dc3045644d92829206e746b440964997",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "b94eb4d82fff16d6b9c9d97bdd410481a08eefd56a24b79531c71c4d11fe7891",
+  "version": "0.0.6"
 }

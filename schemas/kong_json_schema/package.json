@@ -7,8 +7,8 @@
   "name": "@schemastore/kong_json_schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/kong_json_schema",
   "scripts": {},
-  "typesPublisherContentHash": "3658a89da5a0dcd6c6a209a3411361598d1179540a36acb4c4015049842cfec1",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "689e102e3060e01c06df71741ebee3c6788399465d031e3d87bb17b5af97a3f8",
+  "version": "0.0.5"
 }

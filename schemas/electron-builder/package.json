@@ -7,8 +7,8 @@
   "name": "@schemastore/electron-builder",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/electron-builder",
   "scripts": {},
-  "typesPublisherContentHash": "adb932c4f2f94f2d0f0ee3a645aafd0c7da93e40fc47b7516c33b2948e256530",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.3",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "0160ef1a8a6316039c5d6568cc740aeee8ab6600eee13d59f52c8d1b1287be21",
+  "version": "0.0.4"
 }

@@ -50,6 +50,6 @@ export interface JSONSchemaForContentSecurityPolicyLevel2ViolationReports {
      * The column number in source-file on which the violation occurred.
      */
     "column-number"?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }

@@ -47,7 +47,7 @@ export interface AzureStaticWebAppsConfigurationFile {
        * A path to rewrite the request route to
        */
       rewrite?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
   };
   /**
@@ -64,7 +64,7 @@ export interface AzureStaticWebAppsConfigurationFile {
    * Default headers to set on all responses
    */
   globalHeaders?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   auth?: Auth;
   /**
@@ -88,7 +88,7 @@ export interface AzureStaticWebAppsConfigurationFile {
      * HTTP header name/value pairs that are required for access
      */
     requiredHeaders?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
   };
   /**
@@ -108,7 +108,8 @@ export interface AzureStaticWebAppsConfigurationFile {
       | "node:16"
       | "node:18"
       | "python:3.8"
-      | "python:3.9";
+      | "python:3.9"
+      | "python:3.10";
   };
   /**
    * Trailing slash configuration
@@ -136,7 +137,7 @@ export interface Route {
    * Override any matching global headers
    */
   headers?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Redirect to a relative or absolute path, or an external URI. Default status code is 302, override with 301.
@@ -316,7 +317,7 @@ export interface Auth {
              * The name of the application setting containing the Client Secret
              */
             clientSecretSettingName: string;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
           openIdConnectConfiguration: {
             /**
@@ -339,7 +340,7 @@ export interface Auth {
              * The path to the well known configuration endpoint
              */
             wellKnownOpenIdConfiguration?: string;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
         };
         login: {

@@ -120,7 +120,7 @@ export interface JSONSchemaForJSDocConfigurationFiles {
   opts?: IncorporatingCLIOptions;
   tags?: ConfiguringTagsAndTagDictionaries;
   templates?: ConfiguringTemplates;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Determines the set of input files
@@ -165,10 +165,10 @@ export interface ConfiguringTemplates {
     outputSourceFiles?: GeneratingPrettyPrintedSourceFiles;
     staticFiles?: CopyingStaticFiles;
     useLongnameInNav?: ShowingLongnames;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   monospaceLinks?: LinkText;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CopyingStaticFiles {
   /**

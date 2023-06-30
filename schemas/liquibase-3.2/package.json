@@ -7,8 +7,8 @@
   "name": "@schemastore/liquibase-3.2",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/liquibase-3.2",
   "scripts": {},
-  "typesPublisherContentHash": "37eec75a08e0d8d64ab7adc69d7c5c8e28d5d45852d14a750b20b3b14873f231",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "d3d4914b23b3ff3edae8680347fd23368e5ce588d7438461fb053c94cdf32d33",
+  "version": "0.0.6"
 }

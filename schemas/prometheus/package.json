@@ -7,8 +7,8 @@
   "name": "@schemastore/prometheus",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/prometheus",
   "scripts": {},
-  "typesPublisherContentHash": "762781d6dc73201d8dcd83403b5ee505f50216d1d587094d66e8ff5130ac376d",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.3",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "856f800197a12835e8acb3eff6d08fe0be05e8e7345d5ed5739cf52485de4bac",
+  "version": "0.0.4"
 }

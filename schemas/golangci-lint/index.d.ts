@@ -14,15 +14,16 @@ export type GocriticChecks =
   | "badCond"
   | "badLock"
   | "badRegexp"
+  | "badSorting"
   | "boolExprSimplify"
   | "builtinShadow"
   | "builtinShadowDecl"
   | "captLocal"
   | "caseOrder"
   | "codegenComment"
-  | "commentFormatting"
   | "commentedOutCode"
   | "commentedOutImport"
+  | "commentFormatting"
   | "defaultCaseOrder"
   | "deferUnlambda"
   | "deferInLoop"
@@ -33,6 +34,7 @@ export type GocriticChecks =
   | "dupCase"
   | "dupImport"
   | "dupSubExpr"
+  | "dynamicFmtString"
   | "elseif"
   | "emptyDecl"
   | "emptyFallthrough"
@@ -84,10 +86,12 @@ export type GocriticChecks =
   | "sprintfQuotedString"
   | "sqlQuery"
   | "stringConcatSimplify"
+  | "stringsCompare"
   | "stringXbytes"
   | "suspiciousSorting"
   | "switchTrue"
   | "syncMapLoadAndDelete"
+  | "timeCmpSimplify"
   | "timeExprSimplify"
   | "tooManyResultsChecker"
   | "truncateCmp"
@@ -95,6 +99,7 @@ export type GocriticChecks =
   | "typeDefFirst"
   | "typeSwitchVar"
   | "typeUnparen"
+  | "uncheckedInlineErr"
   | "underef"
   | "unlabelStmt"
   | "unlambda"
@@ -212,6 +217,8 @@ export type Linters =
       | "forcetypeassert"
       | "funlen"
       | "gci"
+      | "ginkgolinter"
+      | "gocheckcompilerdirectives"
       | "gochecknoglobals"
       | "gochecknoinits"
       | "gocognit"
@@ -246,6 +253,7 @@ export type Linters =
       | "makezero"
       | "maligned"
       | "misspell"
+      | "musttag"
       | "nakedret"
       | "nestif"
       | "nilerr"
@@ -339,7 +347,7 @@ export interface GolangciLint {
      * Targeted Go version.
      */
     go?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Output configuration options.
@@ -365,7 +373,7 @@ export interface GolangciLint {
      * Add a prefix to the output file references.
      */
     "path-prefix"?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * All available settings of specific linters.
@@ -376,7 +384,7 @@ export interface GolangciLint {
        * Keywords for detecting duplicate words. If this list is not empty, only the words defined in this list will be detected.
        */
       keywords?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     asasalint?: {
       /**
@@ -391,7 +399,7 @@ export interface GolangciLint {
        * Ignore *_test.go files.
        */
       "ignore-test"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     bidichk?: {
       /**
@@ -430,7 +438,7 @@ export interface GolangciLint {
        * Disallow: POP-DIRECTIONAL-ISOLATE
        */
       "pop-directional-isolate"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     cyclop?: {
       /**
@@ -445,7 +453,7 @@ export interface GolangciLint {
        * Max average complexity in package
        */
       "package-average"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     decorder?: {
       "dec-order"?: ("type" | "const" | "var" | "func")[];
@@ -461,7 +469,7 @@ export interface GolangciLint {
        * Multiple global type, const and var declarations are allowed
        */
       "disable-dec-num-check"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     depguard?: {
       /**
@@ -501,23 +509,23 @@ export interface GolangciLint {
          * Specify rules by which the linter ignores certain files for consideration.
          */
         "ignore-file-rules"?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     dogsled?: {
       /**
        * Check assignments with too many blank identifiers.
        */
       "max-blank-identifiers"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     dupl?: {
       /**
        * Tokens count to trigger issue.
        */
       threshold?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     errcheck?: {
       /**
@@ -544,7 +552,7 @@ export interface GolangciLint {
        * To disable the errcheck built-in exclude list
        */
       "disable-default-exclusions"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     errchkjson?: {
       "check-error-free-encoding"?: boolean;
@@ -552,7 +560,7 @@ export interface GolangciLint {
        * Issue on struct that doesn't have exported fields.
        */
       "report-no-exported"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     errorlint?: {
       /**
@@ -567,7 +575,7 @@ export interface GolangciLint {
        * Check for plain error comparisons
        */
       comparison?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     exhaustive?: {
       /**
@@ -595,17 +603,36 @@ export interface GolangciLint {
        */
       "ignore-enum-members"?: string;
       /**
+       * Enum types matching the supplied regex do not have to be listed in switch statements to satisfy exhaustiveness.
+       */
+      "ignore-enum-types"?: string;
+      /**
        * Consider enums only in package scopes, not in inner scopes.
        */
       "package-scope-only"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
+    };
+    ginkgolinter?: {
+      /**
+       * Suppress the wrong length assertion warning.
+       */
+      "suppress-len-assertion"?: boolean;
+      /**
+       * Suppress the wrong nil assertion warning.
+       */
+      "suppress-nil-assertion"?: boolean;
+      /**
+       * Suppress the wrong error assertion warning.
+       */
+      "suppress-err-assertion"?: boolean;
+      [k: string]: unknown | undefined;
     };
     exhaustivestruct?: {
       /**
        * Struct Patterns is list of expressions to match struct packages (written using `path` matching syntax)
        */
       "struct-patterns"?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     exhaustruct?: {
       /**
@@ -616,7 +643,7 @@ export interface GolangciLint {
        * List of regular expressions to exclude struct packages and names from check.
        */
       exclude?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     forbidigo?: {
       /**
@@ -627,7 +654,7 @@ export interface GolangciLint {
        * List of identifiers to forbid (written using `regexp`)
        */
       forbid?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     funlen?: {
       /**
@@ -638,7 +665,7 @@ export interface GolangciLint {
        * Limit statements number per function
        */
       statements?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gci?: {
       /**
@@ -657,14 +684,14 @@ export interface GolangciLint {
        * Enable custom order of sections.
        */
       "custom-order"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gocognit?: {
       /**
        * Minimal code complexity to report (we recommend 10-20).
        */
       "min-complexity"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     goconst?: {
       /**
@@ -699,7 +726,7 @@ export interface GolangciLint {
        * Maximum value, only works with `numbers`
        */
       max?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gocritic?: {
       /**
@@ -722,16 +749,16 @@ export interface GolangciLint {
        * Settings passed to gocritic. Properties must be valid and enabled check names.
        */
       settings?: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gocyclo?: {
       /**
        * Minimum code complexity to report (we recommend 10-20).
        */
       "min-complexity"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     godot?: {
       /**
@@ -754,14 +781,14 @@ export interface GolangciLint {
        * DEPRECATED: Check all top-level comments, not only declarations.
        */
       "check-all"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     godox?: {
       /**
        * Report any comments starting with one of theses keywords. This is useful for TODO or FIXME comments that might be left in the code accidentally and should be resolved before merging.
        */
       keywords?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gofmt?: {
       /**
@@ -775,14 +802,14 @@ export interface GolangciLint {
         pattern?: string;
         replacement?: string;
       }[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     interfacebloat?: {
       /**
        * The maximum number of methods allowed for an interface.
        */
       max?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gofumpt?: {
       /**
@@ -797,7 +824,7 @@ export interface GolangciLint {
        *  Module path which contains the source code being formatted.
        */
       "module-path"?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     goheader?: {
       values?: {
@@ -823,23 +850,23 @@ export interface GolangciLint {
            */
           [k: string]: string;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     } & (
       | {
           /**
            * Template to put on top of every file.
            */
           template: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | {
           /**
            * Path to the file containing the template source.
            */
           "template-path": string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
     );
     goimports?: {
@@ -847,14 +874,14 @@ export interface GolangciLint {
        * Put imports beginning with prefix after 3rd-party packages. It is a comma-separated list of prefixes.
        */
       "local-prefixes"?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     golint?: {
       /**
        * Minimum confidence for issues.
        */
       "min-confidence"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gomnd?: {
       settings?: {
@@ -875,9 +902,9 @@ export interface GolangciLint {
            * The list of enabled checks.
            */
           checks?: ("argument" | "case" | "condition" | "operation" | "return" | "assign")[];
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * List of file patterns to exclude from analysis.
@@ -895,7 +922,7 @@ export interface GolangciLint {
        * The list of enabled checks, see https://github.com/tommy-muehle/go-mnd/#checks for description.
        */
       checks?: ("argument" | "case" | "condition" | "operation" | "return" | "assign")[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gomodguard?: {
       allowed?: {
@@ -907,7 +934,7 @@ export interface GolangciLint {
          * List of allowed module domains.
          */
         domains?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       blocked?: {
         /**
@@ -927,7 +954,7 @@ export interface GolangciLint {
              * Reason why the recommended module should be used.
              */
             reason?: string;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
         }[];
         /**
@@ -947,16 +974,16 @@ export interface GolangciLint {
              * Reason why the version constraint exists.
              */
             reason: string;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
         }[];
         /**
          * Raise lint issues if loading local path with replace directive
          */
         local_replace_directives?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gosimple?: {
       /**
@@ -964,7 +991,7 @@ export interface GolangciLint {
        */
       go?: string;
       checks?: ("all" | string)[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     gosec?: {
       /**
@@ -991,13 +1018,13 @@ export interface GolangciLint {
        * To specify the configuration of rules
        */
       config?: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Concurrency value
        */
       concurrency?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     govet?: {
       /**
@@ -1016,7 +1043,7 @@ export interface GolangciLint {
          * via the `patternProperty` "^.*$".
          */
         [k: string]: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
       };
       /**
@@ -1035,7 +1062,7 @@ export interface GolangciLint {
        * Disable all analyzers.
        */
       "disable-all"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     grouper?: {
       "const-require-single-const"?: boolean;
@@ -1046,7 +1073,7 @@ export interface GolangciLint {
       "type-require-grouping"?: boolean;
       "var-require-single-const"?: boolean;
       "var-require-grouping"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     ifshort?: {
       /**
@@ -1057,7 +1084,7 @@ export interface GolangciLint {
        * maximum length of variable declaration measured in number of characters, after which the linter won't suggest using short syntax.
        */
       "max-decl-chars"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     importas?: {
       /**
@@ -1080,15 +1107,15 @@ export interface GolangciLint {
          * Package alias e.g. autoscalingv1alpha1
          */
         alias: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Use either `reject` or `allow` properties for interfaces matching.
      */
     ireturn?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     lll?: {
       /**
@@ -1099,7 +1126,7 @@ export interface GolangciLint {
        * Maximum allowed line length, lines longer will be reported.
        */
       "line-length"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Maintainability index https://docs.microsoft.com/en-us/visualstudio/code-quality/code-metrics-maintainability-index-range-and-meaning?view=vs-2022
@@ -1109,14 +1136,14 @@ export interface GolangciLint {
        * Minimum accatpable maintainability index level (see https://docs.microsoft.com/en-us/visualstudio/code-quality/code-metrics-maintainability-index-range-and-meaning?view=vs-2022)
        */
       under?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     makezero?: {
       /**
        * Allow only slices initialized with a length of zero.
        */
       "suggest-new"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     loggercheck?: {
       /**
@@ -1147,14 +1174,14 @@ export interface GolangciLint {
        * List of custom rules to check against, where each rule is a single logger pattern, useful for wrapped loggers.
        */
       rules?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     maligned?: {
       /**
        * Whether to print struct with more effective memory layout.
        */
       "suggest-new"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Correct spellings using locale preferences for US or UK. Default is to use a neutral variety of English.
@@ -1165,35 +1192,43 @@ export interface GolangciLint {
        * List of words to ignore.
        */
       "ignore-words"?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
+    };
+    musttag?: {
+      functions?: {
+        name?: string;
+        tag?: string;
+        "arg-pos"?: number;
+      }[];
+      [k: string]: unknown | undefined;
     };
     nakedret?: {
       /**
        * Report if a function has more lines of code than this value and it has naked returns.
        */
       "max-func-lines"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     nestif?: {
       /**
        * Minimum complexity of "if" statements to report.
        */
       "min-complexity"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     nilnil?: {
       /**
        * Order of return types to check.
        */
       "checked-types"?: ("ptr" | "func" | "iface" | "map" | "chan")[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     nlreturn?: {
       /**
        * set block size that is still ok
        */
       "block-size"?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     nolintlint?: {
       /**
@@ -1212,25 +1247,25 @@ export interface GolangciLint {
        * Enable to require nolint directives to mention the specific linter being suppressed.
        */
       "require-specific"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     reassign?: {
       patterns?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     nonamedreturns?: {
       /**
        * Report named error if it is assigned inside defer.
        */
       "report-error-in-defer"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     paralleltest?: {
       /**
        * Ignore missing calls to `t.Parallel()` and only report incorrect uses of it.
        */
       "ignore-missing"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * We do not recommend using this linter before doing performance profiling.
@@ -1249,7 +1284,7 @@ export interface GolangciLint {
        * Report preallocation suggestions on for loops.
        */
       "for-loops"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     predeclared?: {
       /**
@@ -1260,7 +1295,7 @@ export interface GolangciLint {
        * Include method names and field names (i.e., qualified names) in checks.
        */
       q?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     promlinter?: {
       strict?: unknown;
@@ -1274,7 +1309,7 @@ export interface GolangciLint {
         | "CamelCase"
         | "UnitAbbreviations"
       )[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     revive?: {
       "max-open-files"?: number;
@@ -1287,13 +1322,13 @@ export interface GolangciLint {
         disabled?: boolean;
         severity?: "warning" | "error";
         arguments?: unknown[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     rowserrcheck?: {
       packages?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     staticcheck?: {
       /**
@@ -1301,7 +1336,7 @@ export interface GolangciLint {
        */
       go?: string;
       checks?: ("all" | string)[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     stylecheck?: {
       /**
@@ -1385,7 +1420,7 @@ export interface GolangciLint {
        * ST1003 check, among other things, for the correct capitalization of initialisms. The set of known initialisms can be configured with this option.
        */
       initialisms?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     tagliatelle?: {
       case?: {
@@ -1408,18 +1443,19 @@ export interface GolangciLint {
             | "goKebab"
             | "goSnake"
             | "upper"
-            | "lower";
+            | "lower"
+            | "header";
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     tenv?: {
       /**
        * The option `all` will run against whole test files (`_test.go`) regardless of method/function signatures.
        */
       all?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     testpackage?: {
       /**
@@ -1430,7 +1466,7 @@ export interface GolangciLint {
        * List of packages that don't end with _test that tests are allowed to be in.
        */
       "allow-packages"?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     thelper?: {
       test?: {
@@ -1446,7 +1482,7 @@ export interface GolangciLint {
          * Check if *testing.T param has t name.
          */
         name?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       benchmark?: {
         /**
@@ -1461,7 +1497,7 @@ export interface GolangciLint {
          * Check if *testing.B param has b name.
          */
         name?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       tb?: {
         /**
@@ -1476,7 +1512,7 @@ export interface GolangciLint {
          * Check if *testing.TB param has tb name.
          */
         name?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       fuzz?: {
         /**
@@ -1491,9 +1527,9 @@ export interface GolangciLint {
          * Check if *testing.F param has f name.
          */
         name?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     unparam?: {
       /**
@@ -1504,14 +1540,65 @@ export interface GolangciLint {
        * with golangci-lint call it on a directory with the changed file.
        */
       "check-exported"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
+    };
+    usestdlibvars?: {
+      /**
+       * Suggest the use of http.MethodXX.
+       */
+      "http-method"?: boolean;
+      /**
+       * Suggest the use of http.StatusXX.
+       */
+      "http-status-code"?: boolean;
+      /**
+       * Suggest the use of time.Weekday.String().
+       */
+      "time-weekday"?: boolean;
+      /**
+       * Suggest the use of time.Month.String().
+       */
+      "time-month"?: boolean;
+      /**
+       * Suggest the use of time.Layout.
+       */
+      "time-layout"?: boolean;
+      /**
+       * Suggest the use of crypto.Hash.String().
+       */
+      "crypto-hash"?: boolean;
+      /**
+       * Suggest the use of rpc.DefaultXXPath.
+       */
+      "default-rpc-path"?: boolean;
+      /**
+       * Suggest the use of os.DevNull.
+       */
+      "os-dev-null"?: boolean;
+      /**
+       * Suggest the use of sql.LevelXX.String().
+       */
+      "sql-isolation-level"?: boolean;
+      /**
+       * Suggest the use of tls.SignatureScheme.String().
+       */
+      "tls-signature-scheme"?: boolean;
+      /**
+       * Suggest the use of constant.Kind.String().
+       */
+      "constant-kind"?: boolean;
+      /**
+       * Suggest the use of syslog.Priority.
+       */
+      "syslog-priority"?: boolean;
+      [k: string]: unknown | undefined;
     };
     varcheck?: {
       /**
        * Check usage of exported variables
        */
       "exported-fields"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     varnamelen?: {
       /**
@@ -1554,7 +1641,7 @@ export interface GolangciLint {
        * Optional list of variable declarations that should be ignored completely.
        */
       "ignore-decls"?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     whitespace?: {
       /**
@@ -1565,7 +1652,7 @@ export interface GolangciLint {
        * Enforces newlines (or comments) after every multi-line function signature
        */
       "multi-func"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     wrapcheck?: {
       /**
@@ -1584,7 +1671,7 @@ export interface GolangciLint {
        * An array of glob patterns which, if matched to an underlying interface name, will ignore unwrapped errors returned from a function whose call is defined on the given interface.
        */
       ignoreInterfaceRegexps?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     wsl?: {
       /**
@@ -1624,18 +1711,18 @@ export interface GolangciLint {
        */
       "allow-cuddle-with-rhs"?: string[];
       /**
-       * When enforce-err-cuddling is enabled this is a list of names used for error variables to check for in the conditional.
+       * When force-err-cuddling is enabled this is a list of names used for error variables to check for in the conditional.
        */
       "error-variable-names"?: string[];
       /**
        * Causes an error when an If statement that checks an error variable doesn't cuddle with the assignment of that variable.
        */
-      "enforce-err-cuddling"?: boolean;
+      "force-err-cuddling"?: boolean;
       /**
        * If true, append is only allowed to be cuddled if appending value is matching variables, fields or types on line above.
        */
       "strict-append"?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * The custom section can be used to define linter plugins to be loaded at runtime. See README of golangci-lint for more information.
@@ -1659,10 +1746,10 @@ export interface GolangciLint {
          * Intended to point to the repo location of the linter, for documentation purposes only.
          */
         "original-url"?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   linters?: {
     /**
@@ -1703,7 +1790,7 @@ export interface GolangciLint {
      * Enable run of fast linters.
      */
     fast?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   issues?: {
     /**
@@ -1719,7 +1806,7 @@ export interface GolangciLint {
       linters?: Linters[];
       text?: string;
       source?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
     /**
      * Independently from option `exclude` we use default exclude patterns. This behavior can be disabled by this option.
@@ -1753,7 +1840,7 @@ export interface GolangciLint {
      * Show only new issues created in git patch with this file path.
      */
     "new-from-patch"?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   severity?: {
     /**
@@ -1770,33 +1857,33 @@ export interface GolangciLint {
      */
     rules?: ((IssueMatchPath | IssueMatchSource | IssueMatchLinters | IssueMatchText) & {
       severity?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     })[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface IssueMatchPath {
   path?: string;
   severity?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface IssueMatchSource {
   source?: string;
   severity?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface IssueMatchLinters {
   linters?: Linters[];
   severity?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface IssueMatchText {
   text?: string;
   severity?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }

@@ -27,11 +27,11 @@ export type SwaggerToTypeScriptClient = SwaggerToTypeScriptClient1 & {
   moduleName?: string;
   nullValue?: string;
   typeStyle?: "Interface" | "Class" | "KnockoutClass";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type SwaggerToTypeScriptClient1 = ClientGenerator;
 export type SwaggerToCSharpClient = SwaggerToCSharpClient1 & {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type SwaggerToCSharpClient1 = ClientGenerator;
 export type SwaggerToCSharpController = unknown;
@@ -39,11 +39,11 @@ export type SwaggerToCSharpController = unknown;
 export interface Nswag {
   swaggerGenerator?: SwaggerGenerator;
   codeGenerators?: CodeGenerators;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface SwaggerGenerator {
   webApiToSwagger?: WebApiToSwagger;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface WebApiToSwagger {
   assemblyPaths?: string[];
@@ -61,13 +61,13 @@ export interface WebApiToSwagger {
   infoTitle?: string;
   infoVersion?: string;
   output?: null;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CodeGenerators {
   swaggerToTypeScriptClient?: SwaggerToTypeScriptClient;
   swaggerToCSharpClient?: SwaggerToCSharpClient;
   swaggerToCSharpController?: SwaggerToCSharpController;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface ClientGenerator {
   namespace?: string;
@@ -95,5 +95,5 @@ export interface ClientGenerator {
   wrapResponseMethods?: string[];
   generateResponseClasses?: boolean;
   responseClass?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

@@ -7,8 +7,8 @@
   "name": "@schemastore/fly",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/fly",
   "scripts": {},
-  "typesPublisherContentHash": "3de2488c7f465ef0d62a995383bc17ec5d14055e67141288ad0c0e0038977f64",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "777e2ee732d17a59004ad8ad26f38f2186bd3895d40573ffbea156629dc27df3",
+  "version": "0.0.5"
 }

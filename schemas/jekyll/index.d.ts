@@ -6,50 +6,11 @@
  */
 
 /**
- * The directory where Jekyll reads files
+ * A time zone for the current site
  * https://jekyllrb.com/docs/configuration/options/#global-configuration
  */
-export type SiteSource = string;
-/**
- * The directory where Jekyll writes files
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type SiteDestination = string;
-/**
- * Enable/disable non-whitelisted plugins and symbolic links
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type Safe = boolean;
-/**
- * Enable/disable caching content to disk
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type DisableDiskCache = boolean;
-/**
- * Use/ignore theme configuration
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type IgnoreThemeConfiguration = boolean;
-/**
- * Exclude directories and/or files from the conversion
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type Exclude = string[];
-/**
- * Include directories and/or files in the conversion
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type Include = string[];
-/**
- * Keep the selected files when clobbering the site destination
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type KeepFiles = string[];
-/**
- * The default time zone
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type TimeZone =
+export type NullableTimezone = Timezone | null;
+export type Timezone =
   | "Africa/Abidjan"
   | "Africa/Accra"
   | "Africa/Addis_Ababa"
@@ -622,241 +583,25 @@ export type TimeZone =
   | "US/Pacific"
   | "US/Samoa";
 /**
- * The default encoding
- * https://jekyllrb.com/docs/configuration/options/#global-configuration
- */
-export type Encoding =
-  | "ASCII-8BIT"
-  | "UTF-8"
-  | "US-ASCII"
-  | "UTF-16BE"
-  | "UTF-16LE"
-  | "UTF-32BE"
-  | "UTF-32LE"
-  | "UTF-16"
-  | "UTF-32"
-  | "UTF8-MAC"
-  | "EUC-JP"
-  | "Windows-31J"
-  | "Big5"
-  | "Big5-HKSCS"
-  | "Big5-UAO"
-  | "CESU-8"
-  | "CP949"
-  | "Emacs-Mule"
-  | "EUC-KR"
-  | "EUC-TW"
-  | "GB18030"
-  | "GBK"
-  | "ISO-8859-1"
-  | "ISO-8859-2"
-  | "ISO-8859-3"
-  | "ISO-8859-4"
-  | "ISO-8859-5"
-  | "ISO-8859-6"
-  | "ISO-8859-7"
-  | "ISO-8859-8"
-  | "ISO-8859-9"
-  | "ISO-8859-10"
-  | "ISO-8859-11"
-  | "ISO-8859-13"
-  | "ISO-8859-14"
-  | "ISO-8859-15"
-  | "ISO-8859-16"
-  | "KOI8-R"
-  | "KOI8-U"
-  | "Shift_JIS"
-  | "Windows-1250"
-  | "Windows-1251"
-  | "Windows-1252"
-  | "Windows-1253"
-  | "Windows-1254"
-  | "Windows-1257"
-  | "IBM437"
-  | "IBM737"
-  | "IBM775"
-  | "CP850"
-  | "IBM852"
-  | "CP852"
-  | "IBM855"
-  | "CP855"
-  | "IBM857"
-  | "IBM860"
-  | "IBM861"
-  | "IBM862"
-  | "IBM863"
-  | "IBM864"
-  | "IBM865"
-  | "IBM866"
-  | "IBM869"
-  | "Windows-1258"
-  | "GB1988"
-  | "macCentEuro"
-  | "macCroatian"
-  | "macCyrillic"
-  | "macGreek"
-  | "macIceland"
-  | "macRoman"
-  | "macRomania"
-  | "macThai"
-  | "macTurkish"
-  | "macUkraine"
-  | "CP950"
-  | "CP951"
-  | "IBM037"
-  | "stateless-ISO-2022-JP"
-  | "eucJP-ms"
-  | "CP51932"
-  | "EUC-JIS-2004"
-  | "GB2312"
-  | "GB12345"
-  | "ISO-2022-JP"
-  | "ISO-2022-JP-2"
-  | "CP50220"
-  | "CP50221"
-  | "Windows-1256"
-  | "Windows-1255"
-  | "TIS-620"
-  | "Windows-874"
-  | "MacJapanese"
-  | "UTF-7"
-  | "UTF8-DoCoMo"
-  | "SJIS-DoCoMo"
-  | "UTF8-KDDI"
-  | "SJIS-KDDI"
-  | "ISO-2022-JP-KDDI"
-  | "stateless-ISO-2022-JP-KDDI"
-  | "UTF8-SoftBank"
-  | "SJIS-SoftBank";
-/**
  * The global permalink format
  * https://jekyllrb.com/docs/permalinks/#global
  */
 export type GlobalPermalink = string;
 /**
- * The plugin directories
+ * Whether to process and render draft posts for the current site
  * https://jekyllrb.com/docs/configuration/options/#build-command-options
  */
-export type Plugins = string | string[];
+export type NullableBoolean = boolean | null;
 /**
- * The layout directories
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type Layouts = string | string[];
-/**
- * Enable/disable processing and rendering draft posts
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type Drafts = boolean;
-/**
- * Enable/disable publishing posts or collection documents with a future date
+ * Whether to publish posts or collection documents with a future date for the current site
  * https://jekyllrb.com/docs/configuration/options/#build-command-options
  */
 export type Future = boolean;
-/**
- * Enable/disable rendering posts that were marked as unpublished
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type Unpublished = boolean;
-/**
- * Enable/disable producing an index for related posts
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type LSI = boolean;
-/**
- * Limit the number of posts to parse and publish
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type LimitPosts = number;
-/**
- * Enable/disable watching to use polling
- */
-export type TheForcePollingHttpsJekyllrbComDocsConfigurationOptionsBuildCommandOptions = boolean;
-/**
- * Enable/disable the experimental incremental build feature
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type IncrementalBuild = boolean;
-/**
- * Enable/disable Liquid rendering profile generation to help you identify performance bottlenecks
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type LiquidProfiler = boolean;
-/**
- * Fail/Proceed build if there is a YAML syntax error in a page's front matter
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type StrictFrontMatter = boolean;
-/**
- * The URL from which serve the website
- * https://jekyllrb.com/docs/configuration/options/#build-command-options
- */
-export type BaseURL = string;
-/**
- * Listen on the given port
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type LocalServerPort = number;
-/**
- * Listen at the given hostname
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type LocalServerHostname = string;
-/**
- * Enable/disable automatic page reload on the browser when its content is edited
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type LiveReload = boolean;
-/**
- * The file glob patterns for LiveReload to ignore
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type LiveReloadIgnore = string[];
-/**
- * The minimum delay before automatically reloading page
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type LiveReloadMinDelay = number;
-/**
- * The maximum delay before automatically reloading page
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type LiveReloadMaxDelay = number;
-/**
- * Enable/disable opening the site's URL in the browser
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type OpenURL = boolean;
-/**
- * Enable/disable detaching the server from the terminal
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type Detach = boolean;
-/**
- * Enable/disable skipping the initial site build which occurs before the server is started
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type SkipsTheInitialSiteBuild = boolean;
-/**
- * Enable/disable showing directory listing instead of your index file
- * https://jekyllrb.com/docs/configuration/options/#serve-command-options
- */
-export type ShowDirectoryListing = boolean;
 /**
  * The collection permalink format
  * https://jekyllrb.com/docs/permalinks/#collections
  */
 export type CollectionPermalink = string;
-/**
- * The directory where Jekyll stores your collections
- * https://jekyllrb.com/docs/collections/#setup
- */
-export type CollectionsDirectory = string;
-/**
- * The directory where Jekyll stores your data files
- * https://jekyllrb.com/docs/configuration/default/
- */
-export type DataDirectory = string;
 /**
  * Enable/disable non-existing filters catch
  * https://jekyllrb.com/docs/configuration/liquid/
@@ -868,528 +613,772 @@ export type StrictFilters = boolean;
  */
 export type StrictVariables = boolean;
 
-export interface JekyllStaticSiteGeneratorConfigFileSchema {
-  source?: SiteSource;
-  destination?: SiteDestination;
-  safe?: Safe;
-  disable_disk_cache?: DisableDiskCache;
-  ignore_theme_config?: IgnoreThemeConfiguration;
-  exclude?: Exclude;
-  include?: Include;
-  keep_files?: KeepFiles;
-  timezone?: TimeZone;
-  encoding?: Encoding;
+export interface JekyllConfigSchema {
+  /**
+   * A directory to read files from for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  source?: string;
+  /**
+   * A directory to write files to for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  destination?: string;
+  /**
+   * Whether to enable non-whitelisted plugins and symbolic links for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  safe?: boolean;
+  /**
+   * Whether to disable caching to disk for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  disable_disk_cache?: boolean;
+  /**
+   * Whether to ignore a theme configuration for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  ignore_theme_config?: boolean;
+  /**
+   * Excluded directories and files from the conversion for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  exclude?: string[];
+  /**
+   * Included directories and files in the conversion for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  include?: string[];
+  /**
+   * Keeped files when clobbering for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  keep_files?: string[];
+  timezone?: NullableTimezone;
+  /**
+   * An encoding for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   */
+  encoding?:
+    | "ASCII-8BIT"
+    | "UTF-8"
+    | "utf-8"
+    | "US-ASCII"
+    | "UTF-16BE"
+    | "UTF-16LE"
+    | "UTF-32BE"
+    | "UTF-32LE"
+    | "UTF-16"
+    | "UTF-32"
+    | "UTF8-MAC"
+    | "EUC-JP"
+    | "Windows-31J"
+    | "Big5"
+    | "Big5-HKSCS"
+    | "Big5-UAO"
+    | "CESU-8"
+    | "CP949"
+    | "Emacs-Mule"
+    | "EUC-KR"
+    | "EUC-TW"
+    | "GB18030"
+    | "GBK"
+    | "ISO-8859-1"
+    | "ISO-8859-2"
+    | "ISO-8859-3"
+    | "ISO-8859-4"
+    | "ISO-8859-5"
+    | "ISO-8859-6"
+    | "ISO-8859-7"
+    | "ISO-8859-8"
+    | "ISO-8859-9"
+    | "ISO-8859-10"
+    | "ISO-8859-11"
+    | "ISO-8859-13"
+    | "ISO-8859-14"
+    | "ISO-8859-15"
+    | "ISO-8859-16"
+    | "KOI8-R"
+    | "KOI8-U"
+    | "Shift_JIS"
+    | "Windows-1250"
+    | "Windows-1251"
+    | "Windows-1252"
+    | "Windows-1253"
+    | "Windows-1254"
+    | "Windows-1257"
+    | "IBM437"
+    | "IBM737"
+    | "IBM775"
+    | "CP850"
+    | "IBM852"
+    | "CP852"
+    | "IBM855"
+    | "CP855"
+    | "IBM857"
+    | "IBM860"
+    | "IBM861"
+    | "IBM862"
+    | "IBM863"
+    | "IBM864"
+    | "IBM865"
+    | "IBM866"
+    | "IBM869"
+    | "Windows-1258"
+    | "GB1988"
+    | "macCentEuro"
+    | "macCroatian"
+    | "macCyrillic"
+    | "macGreek"
+    | "macIceland"
+    | "macRoman"
+    | "macRomania"
+    | "macThai"
+    | "macTurkish"
+    | "macUkraine"
+    | "CP950"
+    | "CP951"
+    | "IBM037"
+    | "stateless-ISO-2022-JP"
+    | "eucJP-ms"
+    | "CP51932"
+    | "EUC-JIS-2004"
+    | "GB2312"
+    | "GB12345"
+    | "ISO-2022-JP"
+    | "ISO-2022-JP-2"
+    | "CP50220"
+    | "CP50221"
+    | "Windows-1256"
+    | "Windows-1255"
+    | "TIS-620"
+    | "Windows-874"
+    | "MacJapanese"
+    | "UTF-7"
+    | "UTF8-DoCoMo"
+    | "SJIS-DoCoMo"
+    | "UTF8-KDDI"
+    | "SJIS-KDDI"
+    | "ISO-2022-JP-KDDI"
+    | "stateless-ISO-2022-JP-KDDI"
+    | "UTF8-SoftBank"
+    | "SJIS-SoftBank";
   /**
    * The front matter defaults
    * https://jekyllrb.com/docs/configuration/options/#global-configuration
    */
-  defaults?: {
-    /**
-     * The scope
-     * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-     */
-    scope?: {
-      /**
-       * The file path for this scope
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      path: string;
-      /**
-       * The page type for this scope
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      type?: string;
-    };
-    /**
-     * The front matter default values
-     * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-     */
-    values?: {
-      /**
-       * The layout to use
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      layout?: string;
-      /**
-       * Enable/disable output
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      output?: boolean;
-      permalink?: GlobalPermalink;
-      /**
-       * The date for pages
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      date?: string;
-      /**
-       * The categories for pages
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      categories?: string[];
-      /**
-       * The tags for pages
-       * https://jekyllrb.com/docs/configuration/front-matter-defaults/
-       */
-      tags?: string[];
-      [k: string]: unknown;
-    };
-    [k: string]: unknown;
-  }[];
-  plugins_dir?: Plugins;
-  layouts_dir?: Layouts;
-  show_drafts?: Drafts;
-  future?: Future;
-  unpublished?: Unpublished;
-  lsi?: LSI;
-  limit_posts?: LimitPosts;
-  force_polling?: TheForcePollingHttpsJekyllrbComDocsConfigurationOptionsBuildCommandOptions;
+  defaults?: FrontMatterDefault[];
   /**
-   * Hide/show the normal output while building
+   * Plugin directories for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  plugins_dir?: string | string[];
+  /**
+   * Layout directories for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  layouts_dir?: string | string[];
+  show_drafts?: NullableBoolean;
+  future?: Future;
+  /**
+   * Whether to publish posts that were marked as unpublished for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  unpublished?: boolean;
+  /**
+   * Whether to produce an index for related posts for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  lsi?: boolean;
+  /**
+   * A number of posts to publish for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  limit_posts?: number;
+  /**
+   * Whether to use polling for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  force_polling?: boolean;
+  /**
+   * Whether to hide a normal output while building for the current site
    * https://jekyllrb.com/docs/configuration/options/#build-command-options
    */
   quiet?: boolean;
   /**
-   * Enable/disable the verbose output
+   * Whether to write a verbose output while building for the current site
    * https://jekyllrb.com/docs/configuration/options/#build-command-options
    */
   verbose?: boolean;
-  incremental?: IncrementalBuild;
-  profile?: LiquidProfiler;
-  strict_front_matter?: StrictFrontMatter;
-  baseurl?: BaseURL;
-  port?: LocalServerPort;
-  host?: LocalServerHostname;
-  livereload?: LiveReload;
-  livereload_ignore?: LiveReloadIgnore;
-  livereload_min_delay?: LiveReloadMinDelay;
-  livereload_max_delay?: LiveReloadMaxDelay;
-  open_url?: OpenURL;
-  detach?: Detach;
-  skip_initial_build?: SkipsTheInitialSiteBuild;
-  show_dir_listing?: ShowDirectoryListing;
+  /**
+   * Whether to enable the experimental incremental build feature for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  incremental?: boolean;
+  /**
+   * Whether to render profile generation to help identify performance bottlenecks for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  profile?: boolean;
+  /**
+   * Whether to fail build if there is a YAML syntax error in a page's front matter for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  strict_front_matter?: boolean;
+  /**
+   * A base URL for the current site
+   * https://jekyllrb.com/docs/configuration/options/#build-command-options
+   */
+  baseurl?: string;
+  /**
+   * A port to listen on for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  port?: number;
+  /**
+   * A hostname to listen on for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  host?: string;
+  /**
+   * Whether to reload pages on the browser when its content was changed for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  livereload?: boolean;
+  /**
+   * File glob patterns for LiveReload to ignore for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  livereload_ignore?: string[];
+  /**
+   * A minimum delay before automatically reloading page for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  livereload_min_delay?: number;
+  /**
+   * A maximum delay before automatically reloading page for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  livereload_max_delay?: number;
+  /**
+   * Whether to open a site's URL in the browser for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  open_url?: boolean;
+  /**
+   * Whether to detach a server from a terminal for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  detach?: boolean;
+  /**
+   * Whether to skip an initial site build which occurs before the server is started for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  skip_initial_build?: boolean;
+  /**
+   * Whether to show directory listing instead of an index file for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   */
+  show_dir_listing?: boolean;
   /**
    * The collections to group several site pages
    * https://jekyllrb.com/docs/collections/
    */
-  collections?:
-    | string[]
-    | {
-        /**
-         * The collection
-         * https://jekyllrb.com/docs/collections/#setup
-         *
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` ".".
-         */
-        [k: string]: {
-          /**
-           * Enable/disable collection rendering
-           * https://jekyllrb.com/docs/collections/#setup
-           */
-          output?: boolean;
-          permalink?: CollectionPermalink;
-          /**
-           * The collection's front matter sort key
-           * https://jekyllrb.com/docs/collections/#sort-by-front-matter-key
-           */
-          sort_by?: string;
-          /**
-           * The page order list in collection
-           * https://jekyllrb.com/docs/collections/#manually-ordering-documents
-           */
-          order?: string[];
-        };
-      };
-  collections_dir?: CollectionsDirectory;
-  data_dir?: DataDirectory;
+  collections?: string[] | Collection;
   /**
-   * The includes directory
+   * A directory where to store collections for the current site
+   * https://jekyllrb.com/docs/collections/#setup
+   */
+  collections_dir?: string;
+  /**
+   * A directory to store data files for the current site
+   * https://jekyllrb.com/docs/configuration/default/
+   */
+  data_dir?: string;
+  /**
+   * An includes directory for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   includes_dir?: string;
   /**
-   * The markdown extensions
+   * Markdown extensions for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   markdown_ext?: string;
   /**
-   * The plugin whitelist
+   * Whitelisted plugins for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   whitelist?: string[];
   /**
-   * The enabled plugins
+   * Enabled plugins for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   plugins?: string[];
   /**
-   * The markdown processor
+   * A markdown processor for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   markdown?: string;
   /**
-   * The syntax highlighter
+   * A yntax highlighter for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   highlighter?: string;
   /**
-   * The posts excerpt separator
+   * A post excerpt separator for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   excerpt_separator?: string;
   permalink?: GlobalPermalink;
   /**
-   * The destination of the pagination pages
+   * A destination of the pagination pages for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   paginate_path?: string;
+  kramdown?: KramdownOptions;
+  liquid?: LiquidOptions;
+  sass?: SassOptions;
+  webrick?: WebrickOptions;
+  rdiscount?: RdiscountOptions;
+  redcarpet?: RedcarpetOptions;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The front matter default
+ * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+ */
+export interface FrontMatterDefault {
+  scope?: Scope;
+  values?: Value;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The scope
+ * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+ */
+export interface Scope {
   /**
-   * kramdown options
-   * https://kramdown.gettalong.org/documentation.html
+   * The file path for this scope
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
    */
-  kramdown?: {
-    /**
-     * The selected kramdown processor
-     * https://jekyllrb.com/docs/configuration/markdown/
-     */
-    input?: string;
-    /**
-     * Enable/disable interpreting line breaks literally
-     * https://github.com/kramdown/parser-gfm#options
-     */
-    hard_wrap?: boolean;
-    /**
-     * Enabled GFM quirks
-     * https://github.com/kramdown/parser-gfm#options
-     */
-    gfm_quirks?: ("paragraph_end" | "no_auto_typographic")[];
-    /**
-     * Enable/disable rendering emoji amidst GFM
-     * https://github.com/kramdown/parser-gfm#options
-     */
-    gfm_emojis?: boolean;
-    /**
-     * Configuration for rendering emoji amidst GFM
-     * https://github.com/kramdown/parser-gfm#options
-     */
-    gfm_emoji_opts?: {
-      /**
-       * Remote location of emoji assets
-       */
-      asset_path?: string;
-    };
-    /**
-     * The prefix used for automatically generated header IDs
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    auto_id_prefix?: string;
-    /**
-     * Strip/leave all formatting from header text for automatic ID generation
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    auto_id_stripping?: boolean;
-    /**
-     * Enable/disable automatic header ID generation
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    auto_ids?: boolean;
-    /**
-     * The entity output
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    entity_output?: "as_char" | "as_input" | "numeric" | "symbolic";
-    /**
-     * The text that should be used for the footnote backlinks
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    footnote_backlink?: string;
-    /**
-     * Enable/disable inlining of the footnote backlink
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    footnote_backlink_inline?: boolean & string;
-    /**
-     * The number of the first footnote
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    footnote_nr?: number;
-    /**
-     * The prefix for footnote IDs
-     * https://kramdown.gettalong.org/options.html
-     */
-    footnote_prefix?: string;
-    /**
-     * The options that may not be set using the {::options} extension
-     * https://kramdown.gettalong.org/options.html
-     */
-    forbidden_inline_options?: string[];
-    /**
-     * The output offset for headers
-     * https://kramdown.gettalong.org/options.html
-     */
-    header_offset?: number;
-    /**
-     * Enable/disable HTML elements to native elements conversion
-     * https://kramdown.gettalong.org/parser/kramdown.html
-     */
-    html_to_native?: boolean;
-    /**
-     * The LaTeX commands for different header levels
-     * https://kramdown.gettalong.org/options.html
-     */
-    latex_headers?: string;
-    /**
-     * The line width when outputting the document
-     * https://kramdown.gettalong.org/options.html
-     */
-    line_width?: number;
-    /**
-     * The pre-defined link definitions
-     */
-    link_defs?:
-      | string
-      | {
-          /**
-           * The link identifier
-           *
-           * @minItems 2
-           * @maxItems 2
-           *
-           * This interface was referenced by `undefined`'s JSON-Schema definition
-           * via the `patternProperty` ".".
-           */
-          [k: string]: [GlobalPermalink, string];
-        };
-    /**
-     * The math engine
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    math_engine?: string;
-    /**
-     * The math engine options
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    math_engine_opts?: {
-      [k: string]: unknown;
-    };
-    /**
-     * Enable/disable processing kramdown syntax in block HTML tags
-     * https://kramdown.gettalong.org/parser/kramdown.html
-     */
-    parse_block_html?: boolean;
-    /**
-     * Enable/disable processing kramdown syntax in span HTML tags
-     * https://kramdown.gettalong.org/parser/kramdown.html
-     */
-    parse_span_html?: boolean;
-    /**
-     * Enable/disable removing block HTML tags
-     * https://kramdown.gettalong.org/options.html
-     */
-    remove_block_html_tags?: boolean;
-    /**
-     * Leave/remove line breaks between CJK characters
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    remove_line_breaks_for_cjk?: boolean;
-    /**
-     * Enable/disable removing span HTML tags
-     * https://kramdown.gettalong.org/options.html
-     */
-    remove_span_html_tags?: boolean;
-    /**
-     * The HTML entity names or code points for smart quote output
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    smart_quotes?: string;
-    /**
-     * The syntax highlighter
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    syntax_highlighter?: string | null;
-    /**
-     * The syntax highlighter options
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    syntax_highlighter_opts?: {
-      [k: string]: unknown;
-    };
-    /**
-     * The name of an ERB template file that should be used to wrap the output or the ERB template itself
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    template?: string;
-    /**
-     * The levels that are used for the table of contents
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    toc_levels?: string;
-    /**
-     * Enable/disable transliterating header text before generating the ID
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    transliterated_header_ids?: boolean;
-    /**
-     * The mapping from typographical symbol to output characters
-     * https://kramdown.gettalong.org/converter/html.html
-     */
-    typographic_symbols?: {
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      hellip?: string;
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      mdash?: string;
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      ndash?: string;
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      laquo?: string;
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      raquo?: string;
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      laquo_space?: string;
-      /**
-       * Typographical symbol
-       * https://kramdown.gettalong.org/converter/html.html
-       */
-      raquo_space?: string;
-      [k: string]: unknown;
-    };
-  };
+  path: string;
   /**
-   * Liquid options
+   * The page type for this scope
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+   */
+  type?: string;
+}
+/**
+ * The front matter default values
+ * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+ */
+export interface Value {
+  /**
+   * The layout to use
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+   */
+  layout?: string;
+  /**
+   * Enable/disable output
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+   */
+  output?: boolean;
+  permalink?: GlobalPermalink;
+  /**
+   * The date for pages
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+   */
+  date?: string;
+  /**
+   * The categories for pages
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+   */
+  categories?: string[];
+  /**
+   * The tags for pages
+   * https://jekyllrb.com/docs/configuration/front-matter-defaults/
+   */
+  tags?: string[];
+  [k: string]: unknown | undefined;
+}
+export interface Collection {
+  [k: string]: Collection1;
+}
+/**
+ * The collection
+ * https://jekyllrb.com/docs/collections/#setup
+ *
+ * This interface was referenced by `Collection`'s JSON-Schema definition
+ * via the `patternProperty` ".".
+ */
+export interface Collection1 {
+  /**
+   * Enable/disable collection rendering
+   * https://jekyllrb.com/docs/collections/#setup
+   */
+  output?: boolean;
+  permalink?: CollectionPermalink;
+  /**
+   * The collection's front matter sort key
+   * https://jekyllrb.com/docs/collections/#sort-by-front-matter-key
+   */
+  sort_by?: string;
+  /**
+   * The page order list in collection
+   * https://jekyllrb.com/docs/collections/#manually-ordering-documents
+   */
+  order?: string[];
+}
+/**
+ * kramdown options
+ * https://kramdown.gettalong.org/documentation.html
+ */
+export interface KramdownOptions {
+  /**
+   * The selected kramdown processor
+   * https://jekyllrb.com/docs/configuration/markdown/
+   */
+  input?: string;
+  /**
+   * Enable/disable interpreting line breaks literally
+   * https://github.com/kramdown/parser-gfm#options
+   */
+  hard_wrap?: boolean;
+  /**
+   * Enabled GFM quirks
+   * https://github.com/kramdown/parser-gfm#options
+   */
+  gfm_quirks?: ("paragraph_end" | "no_auto_typographic")[];
+  /**
+   * Enable/disable rendering emoji amidst GFM
+   * https://github.com/kramdown/parser-gfm#options
+   */
+  gfm_emojis?: boolean;
+  gfm_emoji_opts?: EmojiOptions;
+  /**
+   * The prefix used for automatically generated header IDs
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  auto_id_prefix?: string;
+  /**
+   * Strip/leave all formatting from header text for automatic ID generation
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  auto_id_stripping?: boolean;
+  /**
+   * Enable/disable automatic header ID generation
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  auto_ids?: boolean;
+  /**
+   * The entity output
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  entity_output?: "as_char" | "as_input" | "numeric" | "symbolic";
+  /**
+   * The text that should be used for the footnote backlinks
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  footnote_backlink?: string;
+  /**
+   * Enable/disable inlining of the footnote backlink
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  footnote_backlink_inline?: boolean & string;
+  /**
+   * The number of the first footnote
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  footnote_nr?: number;
+  /**
+   * The prefix for footnote IDs
+   * https://kramdown.gettalong.org/options.html
+   */
+  footnote_prefix?: string;
+  /**
+   * The options that may not be set using the {::options} extension
+   * https://kramdown.gettalong.org/options.html
+   */
+  forbidden_inline_options?: string[];
+  /**
+   * The output offset for headers
+   * https://kramdown.gettalong.org/options.html
+   */
+  header_offset?: number;
+  /**
+   * Enable/disable HTML elements to native elements conversion
+   * https://kramdown.gettalong.org/parser/kramdown.html
+   */
+  html_to_native?: boolean;
+  /**
+   * The LaTeX commands for different header levels
+   * https://kramdown.gettalong.org/options.html
+   */
+  latex_headers?: string;
+  /**
+   * The line width when outputting the document
+   * https://kramdown.gettalong.org/options.html
+   */
+  line_width?: number;
+  /**
+   * The pre-defined link definitions
+   */
+  link_defs?: string | LinkOptions;
+  /**
+   * The math engine
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  math_engine?: string;
+  math_engine_opts?: MathEngineOptions;
+  /**
+   * Enable/disable processing kramdown syntax in block HTML tags
+   * https://kramdown.gettalong.org/parser/kramdown.html
+   */
+  parse_block_html?: boolean;
+  /**
+   * Enable/disable processing kramdown syntax in span HTML tags
+   * https://kramdown.gettalong.org/parser/kramdown.html
+   */
+  parse_span_html?: boolean;
+  /**
+   * Enable/disable removing block HTML tags
+   * https://kramdown.gettalong.org/options.html
+   */
+  remove_block_html_tags?: boolean;
+  /**
+   * Leave/remove line breaks between CJK characters
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  remove_line_breaks_for_cjk?: boolean;
+  /**
+   * Enable/disable removing span HTML tags
+   * https://kramdown.gettalong.org/options.html
+   */
+  remove_span_html_tags?: boolean;
+  /**
+   * The HTML entity names or code points for smart quote output
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  smart_quotes?: string;
+  /**
+   * The syntax highlighter
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  syntax_highlighter?: string | null;
+  syntax_highlighter_opts?: SyntaxHighlighterOptions;
+  /**
+   * The name of an ERB template file that should be used to wrap the output or the ERB template itself
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  template?: string;
+  /**
+   * The levels that are used for the table of contents
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  toc_levels?: string | unknown[];
+  /**
+   * Enable/disable transliterating header text before generating the ID
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  transliterated_header_ids?: boolean;
+  typographic_symbols?: TypographicalSymbolOptions;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Configuration for rendering emoji amidst GFM
+ * https://github.com/kramdown/parser-gfm#options
+ */
+export interface EmojiOptions {
+  /**
+   * Remote location of emoji assets
+   */
+  asset_path?: string;
+}
+export interface LinkOptions {
+  /**
+   * The link identifier
+   *
+   * @minItems 2
+   * @maxItems 2
+   *
+   * This interface was referenced by `LinkOptions`'s JSON-Schema definition
+   * via the `patternProperty` ".".
+   */
+  [k: string]: [GlobalPermalink, string];
+}
+/**
+ * The math engine options
+ * https://kramdown.gettalong.org/converter/html.html
+ */
+export interface MathEngineOptions {
+  [k: string]: unknown | undefined;
+}
+/**
+ * The syntax highlighter options
+ * https://kramdown.gettalong.org/converter/html.html
+ */
+export interface SyntaxHighlighterOptions {
+  [k: string]: unknown | undefined;
+}
+/**
+ * The mapping from typographical symbol to output characters
+ * https://kramdown.gettalong.org/converter/html.html
+ */
+export interface TypographicalSymbolOptions {
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  hellip?: string;
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  mdash?: string;
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  ndash?: string;
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  laquo?: string;
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  raquo?: string;
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  laquo_space?: string;
+  /**
+   * Typographical symbol
+   * https://kramdown.gettalong.org/converter/html.html
+   */
+  raquo_space?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Liquid options
+ * https://jekyllrb.com/docs/configuration/liquid/
+ */
+export interface LiquidOptions {
+  /**
+   * The response to errors
    * https://jekyllrb.com/docs/configuration/liquid/
    */
-  liquid?: {
-    /**
-     * The response to errors
-     * https://jekyllrb.com/docs/configuration/liquid/
-     */
-    error_mode?: "lax" | "warn" | "strict";
-    strict_filters?: StrictFilters;
-    strict_variables?: StrictVariables;
-  };
+  error_mode?: "lax" | "warn" | "strict";
+  strict_filters?: StrictFilters;
+  strict_variables?: StrictVariables;
+}
+/**
+ * Sass options
+ * https://github.com/jekyll/jekyll-sass-converter#configuration-options
+ */
+export interface SassOptions {
   /**
-   * Sass options
+   * The implementation to use
    * https://github.com/jekyll/jekyll-sass-converter#configuration-options
    */
-  sass?: {
-    /**
-     * The implementation to use
-     * https://github.com/jekyll/jekyll-sass-converter#configuration-options
-     */
-    implementation?: "sassc" | "sass-embedded";
-    /**
-     * The style of CSS-output
-     * https://github.com/jekyll/jekyll-sass-converter#configuration-options
-     */
-    style?: "nested" | "compact" | "compressed" | "expanded";
-    /**
-     * The path with Sass partials
-     * https://github.com/jekyll/jekyll-sass-converter#configuration-options
-     */
-    sass_dir?: string;
-    /**
-     * The additional paths with Sass partials
-     * https://github.com/jekyll/jekyll-sass-converter#configuration-options
-     */
-    load_paths?: string[];
-    /**
-     * Enable/disable including line number and filename of the source in compiled CSS file
-     * https://github.com/jekyll/jekyll-sass-converter#configuration-options
-     */
-    line_comments?: boolean;
-    /**
-     * Control when source maps shall be generated
-     * https://github.com/jekyll/jekyll-sass-converter#configuration-options
-     */
-    sourcemap?: "never" | "always" | "development";
-  };
-  webrick?: WEBrickOptions;
+  implementation?: "sassc" | "sass-embedded";
   /**
-   * RDiscount options
-   * https://rdoc.info/github/davidfstr/rdiscount/RDiscount
+   * The style of CSS-output
+   * https://github.com/jekyll/jekyll-sass-converter#configuration-options
    */
-  rdiscount?: {
-    /**
-     * The enabled extensions
-     * https://rdoc.info/github/davidfstr/rdiscount/RDiscount
-     */
-    extensions?: (
-      | "autolink"
-      | "filter_html"
-      | "filter_styles"
-      | "fold_lines"
-      | "footnotes"
-      | "generate_toc"
-      | "no_image"
-      | "no_links"
-      | "no_pseudo_protocols"
-      | "no_strikethrough"
-      | "no_superscript"
-      | "no_tables"
-      | "safelink"
-      | "smart"
-      | "strict"
-    )[];
-  };
+  style?: "nested" | "compact" | "compressed" | "expanded";
   /**
-   * Redcarpet options
-   * https://github.com/vmg/redcarpet
+   * The path with Sass partials
+   * https://github.com/jekyll/jekyll-sass-converter#configuration-options
    */
-  redcarpet?: {
-    /**
-     * The enabled extensions
-     * https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
-     */
-    extensions?: (
-      | "no_intra_emphasis"
-      | "tables"
-      | "fenced_code_blocks"
-      | "autolink"
-      | "disable_indented_code_blocks"
-      | "strikethrough"
-      | "lax_spacing"
-      | "space_after_headers"
-      | "superscript"
-      | "underline"
-      | "highlight"
-      | "quote"
-      | "footnotes"
-    )[];
-  };
-  [k: string]: unknown;
+  sass_dir?: string;
+  /**
+   * The additional paths with Sass partials
+   * https://github.com/jekyll/jekyll-sass-converter#configuration-options
+   */
+  load_paths?: string[];
+  /**
+   * Enable/disable including line number and filename of the source in compiled CSS file
+   * https://github.com/jekyll/jekyll-sass-converter#configuration-options
+   */
+  line_comments?: boolean;
+  /**
+   * Control when source maps shall be generated
+   * https://github.com/jekyll/jekyll-sass-converter#configuration-options
+   */
+  sourcemap?: "never" | "always" | "development";
 }
 /**
  * WEBrick options
  * https://docs.ruby-lang.org/en/2.4.0/WEBrick.html
  */
-export interface WEBrickOptions {
+export interface WebrickOptions {
+  headers?: HeaderOptions;
+}
+/**
+ * The custom headers for this site
+ * https://docs.ruby-lang.org/en/2.4.0/WEBrick.html
+ */
+export interface HeaderOptions {
   /**
-   * The custom headers for this site
-   * https://docs.ruby-lang.org/en/2.4.0/WEBrick.html
+   * This interface was referenced by `HeaderOptions`'s JSON-Schema definition
+   * via the `patternProperty` ".".
    */
-  headers?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".".
-     */
-    [k: string]: string;
-  };
+  [k: string]: string;
+}
+/**
+ * RDiscount options
+ * https://rdoc.info/github/davidfstr/rdiscount/RDiscount
+ */
+export interface RdiscountOptions {
+  /**
+   * The enabled extensions
+   * https://rdoc.info/github/davidfstr/rdiscount/RDiscount
+   */
+  extensions?: (
+    | "autolink"
+    | "filter_html"
+    | "filter_styles"
+    | "fold_lines"
+    | "footnotes"
+    | "generate_toc"
+    | "no_image"
+    | "no_links"
+    | "no_pseudo_protocols"
+    | "no_strikethrough"
+    | "no_superscript"
+    | "no_tables"
+    | "safelink"
+    | "smart"
+    | "strict"
+  )[];
+}
+/**
+ * Redcarpet options
+ * https://github.com/vmg/redcarpet
+ */
+export interface RedcarpetOptions {
+  /**
+   * The enabled extensions
+   * https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
+   */
+  extensions?: (
+    | "no_intra_emphasis"
+    | "tables"
+    | "fenced_code_blocks"
+    | "autolink"
+    | "disable_indented_code_blocks"
+    | "strikethrough"
+    | "lax_spacing"
+    | "space_after_headers"
+    | "superscript"
+    | "underline"
+    | "highlight"
+    | "quote"
+    | "footnotes"
+  )[];
 }

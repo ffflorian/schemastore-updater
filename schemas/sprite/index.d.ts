@@ -16,7 +16,7 @@ export interface Sprite {
     /**
      * A custom CSS declaration (property: value).
      */
-    [k: string]: string | number;
+    [k: string]: (string | number) | undefined;
   };
   /**
    * The image resolution of the generated image sprite
@@ -29,7 +29,7 @@ export interface Sprite {
     /**
      * A source image for the sprite.
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Optimizes the generated image either lossy or lossless. Requires the "Image Optimizer" extension for Visual Studio
@@ -55,5 +55,5 @@ export interface Sprite {
    * Define stylesheets (css, less, sass) to be generated as part of the sprite generation process.
    */
   stylesheet?: "none" | "css" | "less" | "scss" | "styl";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

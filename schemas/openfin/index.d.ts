@@ -32,7 +32,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
     version: string;
   }[];
   /**
-   * If an application specifies a valid “assetsUrl”, then that “assetsUrl” will be used as the base portion of the URL instead of the OpenFin default, https://developer.openfin.co/release/.
+   * If an application specifies a valid "assetsUrl", then that "assetsUrl" will be used as the base portion of the URL instead of the OpenFin default, https://developer.openfin.co/release/.
    */
   assets_url?: string;
   /**
@@ -77,7 +77,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
    */
   runtime: {
     /**
-     * Command line arguments to set when launching the runtime. The OpenFin Runtime supports Chromium command line switches e.g.: “– –disable-accelerated-compositing – –enable-threaded-compositing” for a complete list of values please refer to current Chromium switches.
+     * Command line arguments to set when launching the runtime. The OpenFin Runtime supports Chromium command line switches e.g.: "– –disable-accelerated-compositing – –enable-threaded-compositing" for a complete list of values please refer to current Chromium switches.
      */
     arguments?: string;
     /**
@@ -93,14 +93,14 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
      */
     version: (
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | ("alpha" | "beta" | "canary" | "stable" | "staging")
     ) &
       string;
   };
   /**
-   * Settings for the app’s desktop shortcut
+   * Settings for the app's desktop shortcut
    */
   shortcut: {
     /**
@@ -128,7 +128,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
      */
     startMenuRootFolder?: string;
     /**
-     * Locations for where the application shortcut is added on the desktop owner’s machine. Available options are “desktop”, “start-menu” and “automatic-start-up”. The default is start-menu and desktop.
+     * Locations for where the application shortcut is added on the desktop owner's machine. Available options are "desktop", "start-menu" and "automatic-start-up". The default is start-menu and desktop.
      */
     target?: ("automatic-start-up" | "desktop" | "start-menu")[];
     /**
@@ -272,7 +272,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
     permissions?: {
       ExternalWindow?: {
         wrap?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       System?: {
         downloadAsset?: boolean;
@@ -280,9 +280,9 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
         launchExternalProcess?: boolean;
         readRegistryValue?: boolean;
         terminateExternalProcess?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * An array of scripts to download and run before other scripts in the page.
@@ -292,7 +292,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
        * URL from which to fetch the script.
        */
       url: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
     /**
      * A flag to drop to allow the user to resize the window.
@@ -316,11 +316,11 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
      */
     saveWindowState?: boolean;
     /**
-     * A flag to show the Window’s icon in the taskbar.
+     * A flag to show the Window's icon in the taskbar.
      */
     showTaskbarIcon?: boolean;
     /**
-     * A string that sets the window to be “minimized”, “maximized”, or “normal” on creation.
+     * A string that sets the window to be "minimized", "maximized", or "normal" on creation.
      */
     state?: "maximized" | "minimized" | "normal";
     /**
@@ -340,7 +340,7 @@ export interface JSONSchemaForOpenFinApplicationConfigurationFiles {
      */
     uuid: string;
     /**
-     * When set to false, the page will render before the “load” event is fired on the window. Caution, when false you will see an initial empty white window.
+     * When set to false, the page will render before the "load" event is fired on the window. Caution, when false you will see an initial empty white window.
      */
     waitForPageLoad?: boolean;
   };

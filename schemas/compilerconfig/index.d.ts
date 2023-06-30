@@ -26,7 +26,7 @@ export type Config = {
    * DEPRECATED! Use 'options/sourceMap' instead.
    */
   sourceMap?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & Config1;
 export type Config1 =
   | LessOptions
@@ -55,15 +55,15 @@ export interface BaseMinify {
    * SingleLine minifies everything to a single line. MultipleLines breaks the minified code into multiple lines for easier reading.
    */
   outputMode?: "multipleLines" | "singleLine" | "none";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface LessOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   options?: Less;
   minify?: CssMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specify options for the compiler.
@@ -113,7 +113,7 @@ export interface Less {
    * Scss only. This is the opposite of the rootpath option, it specifies a path which should be removed from the output paths.
    */
   sourceMapBasePath?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CssMinify {
   /**
@@ -128,15 +128,15 @@ export interface CssMinify {
    * Forces all rules to be terminated with semicolons if set to true.
    */
   termSemicolons?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface SassOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   options?: Sass;
   minify?: CssMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specify options for the compiler.
@@ -178,15 +178,15 @@ export interface Sass {
    * Scss only. Base path, will be emitted in source-map as is.
    */
   sourceMapRoot?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface StylusOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   options?: Stylus;
   minify?: CssMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specify options for the compiler.
@@ -196,15 +196,15 @@ export interface Stylus {
    * Generates a base64 encoded source map at the bottom of the output.
    */
   sourceMap?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface CoffeeScriptOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   options?: CoffeeScript;
   minify?: JavascriptMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specify options for the compiler.
@@ -222,7 +222,7 @@ export interface CoffeeScript {
    * Generates a source map file.
    */
   sourceMap?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface JavascriptMinify {
   /**
@@ -241,30 +241,30 @@ export interface JavascriptMinify {
    * Forces all rules to be terminated with semicolons if set to true.
    */
   termSemicolons?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface IcedCoffeeScriptOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   options?: CoffeeScript;
   minify?: JavascriptMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface BabelOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   minify?: JavascriptMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface HandlebarsOptions {
   inputFile?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   options?: Handlebars;
   minify?: JavascriptMinify;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specify options for the compiler.
@@ -299,5 +299,5 @@ export interface Handlebars {
    * Exports amd style (require.js), this option has priority to commonjs.
    */
   amd?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

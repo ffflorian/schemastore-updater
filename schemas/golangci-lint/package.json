@@ -7,8 +7,8 @@
   "name": "@schemastore/golangci-lint",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/golangci-lint",
   "scripts": {},
-  "typesPublisherContentHash": "da99df8a983f0a127d1989b416dd3f00926167b5ad32b219b649593fd20f9d93",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "4f5f5e5d9d3e2f66d024ef21924f173ab2b972592e48bf81761ae3f85093572c",
+  "version": "0.0.7"
 }

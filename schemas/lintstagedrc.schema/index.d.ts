@@ -7,7 +7,7 @@
 
 export type Lintstagedrc = AdvancedConfig | BasicConfig;
 export type $SchemaProperty = string;
-export type Linter = string | unknown[];
+export type Linter = (string | unknown[]) | undefined;
 
 export interface AdvancedConfig {
   $schema?: $SchemaProperty;
@@ -46,9 +46,9 @@ export interface GlobOptions {
  * keys (String) are glob patterns, values (Array<String> | String) are commands to execute.
  */
 export interface LintersMap {
-  [k: string]: Linter;
+  [k: string]: LinterUndefined;
 }
 export interface BasicConfig {
   $schema?: $SchemaProperty;
-  [k: string]: Linter;
+  [k: string]: LinterUndefined;
 }

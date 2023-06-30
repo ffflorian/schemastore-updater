@@ -7,8 +7,8 @@
   "name": "@schemastore/pre-commit-config",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/pre-commit-config",
   "scripts": {},
-  "typesPublisherContentHash": "29af0f067b5c1bb0996c513b1f331a28cc8f7cbf801bac39aa091029798f9ae0",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.9",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "8b987e23cb764698c73ddb69f579baccf1d86b826a6adcb4a19da358b535e291",
+  "version": "0.0.10"
 }

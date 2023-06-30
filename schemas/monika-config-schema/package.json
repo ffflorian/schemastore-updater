@@ -7,8 +7,8 @@
   "name": "@schemastore/monika-config-schema",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/monika-config-schema",
   "scripts": {},
-  "typesPublisherContentHash": "887066512d557fc30ed66ccf726232b118eb10e86c36f98ebb545d473bddb591",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "83bf63b27a49eba266bbe7868a2ec3fab0da4c3cbf128acec596cddf4cae2658",
+  "version": "0.0.5"
 }

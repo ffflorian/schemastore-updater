@@ -7,8 +7,8 @@
   "name": "@schemastore/openfin",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/openfin",
   "scripts": {},
-  "typesPublisherContentHash": "060f4bad5b919b323cafd22c324eee21abb9a76db41ac7d800f0c64d9ded0195",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.7",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "360df9513e7eb67d7dc05e3a543f605c8d546cf53adb23dc27a11613fe3980fc",
+  "version": "0.0.8"
 }

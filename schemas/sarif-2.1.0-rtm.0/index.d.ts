@@ -10,13 +10,13 @@
  */
 export type ReportingDescriptorReference = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -42,7 +42,7 @@ export type ReportingDescriptorReference = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -50,10 +50,10 @@ export type ReportingDescriptorReference = (
  */
 export type Message = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -84,7 +84,7 @@ export type Message = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -92,10 +92,10 @@ export type Message = (
  */
 export type Message1 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -126,7 +126,7 @@ export type Message1 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -134,13 +134,13 @@ export type Message1 = (
  */
 export type ReportingDescriptorReference1 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -166,7 +166,7 @@ export type ReportingDescriptorReference1 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -174,10 +174,10 @@ export type ReportingDescriptorReference1 = (
  */
 export type PhysicalLocation = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   address?: Address;
@@ -194,7 +194,7 @@ export type PhysicalLocation = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -202,10 +202,10 @@ export type PhysicalLocation = (
  */
 export type Message2 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -236,7 +236,7 @@ export type Message2 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -244,10 +244,10 @@ export type Message2 = (
  */
 export type Message3 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -278,7 +278,7 @@ export type Message3 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -286,10 +286,10 @@ export type Message3 = (
  */
 export type Message4 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -320,7 +320,7 @@ export type Message4 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -328,10 +328,10 @@ export type Message4 = (
  */
 export type Message5 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -362,7 +362,7 @@ export type Message5 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -370,10 +370,10 @@ export type Message5 = (
  */
 export type Message6 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -404,7 +404,7 @@ export type Message6 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -412,13 +412,13 @@ export type Message6 = (
  */
 export type ReportingDescriptorReference2 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -444,7 +444,7 @@ export type ReportingDescriptorReference2 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -452,13 +452,13 @@ export type ReportingDescriptorReference2 = (
  */
 export type ReportingDescriptorReference3 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -484,7 +484,7 @@ export type ReportingDescriptorReference3 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -492,10 +492,10 @@ export type ReportingDescriptorReference3 = (
  */
 export type Message7 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -526,7 +526,7 @@ export type Message7 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -534,10 +534,10 @@ export type Message7 = (
  */
 export type Message8 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -568,7 +568,7 @@ export type Message8 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -576,10 +576,10 @@ export type Message8 = (
  */
 export type Message9 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -610,7 +610,7 @@ export type Message9 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -618,10 +618,10 @@ export type Message9 = (
  */
 export type Message10 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -652,7 +652,7 @@ export type Message10 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -660,13 +660,13 @@ export type Message10 = (
  */
 export type ReportingDescriptorReference4 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -692,7 +692,7 @@ export type ReportingDescriptorReference4 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -700,10 +700,10 @@ export type ReportingDescriptorReference4 = (
  */
 export type Message11 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -734,7 +734,7 @@ export type Message11 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -742,10 +742,10 @@ export type Message11 = (
  */
 export type Message12 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -776,7 +776,7 @@ export type Message12 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -784,10 +784,10 @@ export type Message12 = (
  */
 export type Message13 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -818,7 +818,7 @@ export type Message13 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -848,18 +848,18 @@ export type ReportingDescriptorReference5 = ReportingDescriptorReference6 & {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 export type ReportingDescriptorReference6 =
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 /**
  * Represents a path through a graph.
@@ -878,13 +878,13 @@ export type GraphTraversal = {
    * Values of relevant expressions at the start of the graph traversal that may change during graph traversal.
    */
   initialState?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * Values of relevant expressions at the start of the graph traversal that remain constant for the graph traversal.
    */
   immutableState?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * The sequences of edges traversed by this graph traversal.
@@ -902,7 +902,7 @@ export type GraphTraversal = {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 } & GraphTraversal1;
 /**
@@ -910,10 +910,10 @@ export type GraphTraversal = {
  */
 export type Message14 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -944,7 +944,7 @@ export type Message14 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -952,10 +952,10 @@ export type Message14 = (
  */
 export type Message15 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -986,25 +986,25 @@ export type Message15 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 export type GraphTraversal1 =
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 /**
  * A message describing the role played by the attachment.
  */
 export type Message16 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -1035,7 +1035,7 @@ export type Message16 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -1043,10 +1043,10 @@ export type Message16 = (
  */
 export type Message17 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -1077,7 +1077,7 @@ export type Message17 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -1098,25 +1098,25 @@ export type PhysicalLocation1 = PhysicalLocation2 & {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 export type PhysicalLocation2 =
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 /**
  * A message that describes the proposed fix, enabling viewers to present the proposed change to an end user.
  */
 export type Message18 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -1147,7 +1147,7 @@ export type Message18 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -1155,10 +1155,10 @@ export type Message18 = (
  */
 export type Message19 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   /**
@@ -1189,7 +1189,7 @@ export type Message19 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 };
 /**
@@ -1197,10 +1197,10 @@ export type Message19 = (
  */
 export type ExternalPropertyFileReference = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   location?: ArtifactLocation13;
@@ -1222,9 +1222,9 @@ export type ExternalPropertyFileReference = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type ExternalPropertyFileReference1 = ExternalPropertyFileReference2 & {
   location?: ArtifactLocation13;
@@ -1246,26 +1246,26 @@ export type ExternalPropertyFileReference1 = ExternalPropertyFileReference2 & {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type ExternalPropertyFileReference2 =
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 /**
  * An external property file containing a run.properties object to be merged with the root log file.
  */
 export type ExternalPropertyFileReference3 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   location?: ArtifactLocation13;
@@ -1287,19 +1287,19 @@ export type ExternalPropertyFileReference3 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 /**
  * An external property file containing a run.driver object to be merged with the root log file.
  */
 export type ExternalPropertyFileReference4 = (
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 ) & {
   location?: ArtifactLocation13;
@@ -1321,9 +1321,9 @@ export type ExternalPropertyFileReference4 = (
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 
 /**
@@ -1360,7 +1360,7 @@ export interface StaticAnalysisResultsFormatSARIFVersion210Rtm0JSONSchema {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1504,7 +1504,7 @@ export interface Run {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1528,7 +1528,7 @@ export interface Tool {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1589,7 +1589,7 @@ export interface ToolComponent {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
@@ -1653,7 +1653,7 @@ export interface ToolComponent {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1678,7 +1678,7 @@ export interface MultiformatMessageString {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1703,7 +1703,7 @@ export interface MultiformatMessageString1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1728,7 +1728,7 @@ export interface MultiformatMessageString2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1771,7 +1771,7 @@ export interface ReportingDescriptor {
    * A set of name/value pairs with arbitrary names. Each value is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   messageStrings?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   defaultConfiguration?: ReportingConfiguration;
   /**
@@ -1795,7 +1795,7 @@ export interface ReportingDescriptor {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1820,7 +1820,7 @@ export interface MultiformatMessageString3 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1845,7 +1845,7 @@ export interface MultiformatMessageString4 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1875,7 +1875,7 @@ export interface ReportingConfiguration {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1888,7 +1888,7 @@ export interface PropertyBag {
    * @minItems 0
    */
   tags?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A message string or message format string rendered in multiple formats.
@@ -1912,7 +1912,7 @@ export interface MultiformatMessageString5 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1935,7 +1935,7 @@ export interface ReportingDescriptorRelationship {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -1964,9 +1964,9 @@ export interface ToolComponentReference {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specifies the location of an artifact.
@@ -1995,7 +1995,7 @@ export interface ArtifactLocation {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2024,9 +2024,9 @@ export interface ToolComponentReference1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Translation metadata, required for a translation, not populated by other component types.
@@ -2060,9 +2060,9 @@ export interface TranslationMetadata {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A message string or message format string rendered in multiple formats.
@@ -2086,7 +2086,7 @@ export interface MultiformatMessageString6 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2111,7 +2111,7 @@ export interface MultiformatMessageString7 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface ToolComponentReference2 {
@@ -2137,9 +2137,9 @@ export interface ToolComponentReference2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A component, such as a plug-in or the driver, of the analysis tool that was run.
@@ -2199,7 +2199,7 @@ export interface ToolComponent1 {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
@@ -2263,7 +2263,7 @@ export interface ToolComponent1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2360,7 +2360,7 @@ export interface Invocation {
    * The environment variables associated with the analysis tool process, expressed as key/value pairs.
    */
   environmentVariables?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   stdin?: ArtifactLocation4;
   stdout?: ArtifactLocation5;
@@ -2376,7 +2376,7 @@ export interface Invocation {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2395,7 +2395,7 @@ export interface ConfigurationOverride {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2425,7 +2425,7 @@ export interface ReportingConfiguration1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2464,7 +2464,7 @@ export interface Notification {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2500,7 +2500,7 @@ export interface Location {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2553,7 +2553,7 @@ export interface Address {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2574,10 +2574,10 @@ export interface ArtifactLocation1 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -2589,7 +2589,7 @@ export interface ArtifactLocation1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2644,7 +2644,7 @@ export interface Region {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2670,7 +2670,7 @@ export interface ArtifactContent {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2695,7 +2695,7 @@ export interface MultiformatMessageString8 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2737,10 +2737,10 @@ export interface Region1 {
   snippet?: ArtifactContent;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Specifies the source language, if any, of the portion of the artifact specified by the region object.
@@ -2756,7 +2756,7 @@ export interface Region1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2797,7 +2797,7 @@ export interface LogicalLocation {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2839,10 +2839,10 @@ export interface Region2 {
   snippet?: ArtifactContent;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Specifies the source language, if any, of the portion of the artifact specified by the region object.
@@ -2858,7 +2858,7 @@ export interface Region2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2884,7 +2884,7 @@ export interface LocationRelationship {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2916,9 +2916,9 @@ export interface Exception {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The sequence of function calls leading to the exception.
@@ -2941,7 +2941,7 @@ export interface Stack {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2973,7 +2973,7 @@ export interface StackFrame {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -2986,18 +2986,18 @@ export interface Location1 {
   id?: number;
   physicalLocation?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   logicalLocation?: LogicalLocation;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * A set of regions relevant to the location.
@@ -3021,7 +3021,7 @@ export interface Location1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface Exception1 {
@@ -3050,9 +3050,9 @@ export interface Exception1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specifies the location of an artifact.
@@ -3072,10 +3072,10 @@ export interface ArtifactLocation2 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3087,7 +3087,7 @@ export interface ArtifactLocation2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3108,10 +3108,10 @@ export interface ArtifactLocation3 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3123,7 +3123,7 @@ export interface ArtifactLocation3 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3144,10 +3144,10 @@ export interface ArtifactLocation4 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3159,7 +3159,7 @@ export interface ArtifactLocation4 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3180,10 +3180,10 @@ export interface ArtifactLocation5 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3195,7 +3195,7 @@ export interface ArtifactLocation5 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3216,10 +3216,10 @@ export interface ArtifactLocation6 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3231,7 +3231,7 @@ export interface ArtifactLocation6 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3252,10 +3252,10 @@ export interface ArtifactLocation7 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3267,7 +3267,7 @@ export interface ArtifactLocation7 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3292,7 +3292,7 @@ export interface Conversion {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3316,7 +3316,7 @@ export interface Tool1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3413,7 +3413,7 @@ export interface Invocation1 {
    * The environment variables associated with the analysis tool process, expressed as key/value pairs.
    */
   environmentVariables?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   stdin?: ArtifactLocation4;
   stdout?: ArtifactLocation5;
@@ -3429,7 +3429,7 @@ export interface Invocation1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3467,7 +3467,7 @@ export interface VersionControlDetails {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3488,10 +3488,10 @@ export interface ArtifactLocation8 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3503,7 +3503,7 @@ export interface ArtifactLocation8 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3571,7 +3571,7 @@ export interface Artifact {
    * A dictionary, each of whose keys is the name of a hash function and each of whose values is the hashed value of the artifact produced by the specified hash function.
    */
   hashes?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The Coordinated Universal Time (UTC) date and time at which the artifact was most recently modified. See "Date/time properties" in the SARIF spec for the required format.
@@ -3587,7 +3587,7 @@ export interface Artifact {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3608,10 +3608,10 @@ export interface ArtifactLocation9 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -3623,7 +3623,7 @@ export interface ArtifactLocation9 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3649,7 +3649,7 @@ export interface ArtifactContent1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3690,7 +3690,7 @@ export interface LogicalLocation1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3720,7 +3720,7 @@ export interface Graph {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3749,7 +3749,7 @@ export interface Node {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3762,18 +3762,18 @@ export interface Location2 {
   id?: number;
   physicalLocation?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   logicalLocation?: LogicalLocation;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * A set of regions relevant to the location.
@@ -3797,7 +3797,7 @@ export interface Location2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3827,7 +3827,7 @@ export interface Edge {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3875,13 +3875,13 @@ export interface Result {
    * A set of strings that contribute to the stable, unique identity of the result.
    */
   partialFingerprints?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A set of strings each of which individually defines a stable, unique identity for the result.
    */
   fingerprints?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * An array of 'stack' objects relevant to the result.
@@ -3968,7 +3968,7 @@ export interface Result {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -3989,10 +3989,10 @@ export interface ArtifactLocation10 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -4004,7 +4004,7 @@ export interface ArtifactLocation10 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4013,10 +4013,10 @@ export interface ArtifactLocation10 {
 export interface Stack1 {
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
@@ -4034,7 +4034,7 @@ export interface Stack1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4058,7 +4058,7 @@ export interface CodeFlow {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface ThreadFlow {
@@ -4071,13 +4071,13 @@ export interface ThreadFlow {
    * Values of relevant expressions at the start of the thread flow that may change during thread flow execution.
    */
   initialState?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * Values of relevant expressions at the start of the thread flow that remain constant.
    */
   immutableState?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
@@ -4095,9 +4095,9 @@ export interface ThreadFlow {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A location visited by an analysis tool while simulating or monitoring the execution of a program.
@@ -4129,7 +4129,7 @@ export interface ThreadFlowLocation {
    * A dictionary, each of whose keys specifies a variable or expression, the associated value of which represents the variable or expression value. For an annotation of kind 'continuation', for example, this dictionary might hold the current assumed values of a set of global variables.
    */
   state?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * An integer representing a containment hierarchy within the thread flow.
@@ -4159,7 +4159,7 @@ export interface ThreadFlowLocation {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4172,18 +4172,18 @@ export interface Location3 {
   id?: number;
   physicalLocation?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   logicalLocation?: LogicalLocation;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * A set of regions relevant to the location.
@@ -4207,7 +4207,7 @@ export interface Location3 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4216,10 +4216,10 @@ export interface Location3 {
 export interface Stack2 {
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
@@ -4237,7 +4237,7 @@ export interface Stack2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4268,13 +4268,13 @@ export interface WebRequest {
    * The request headers.
    */
   headers?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The request parameters.
    */
   parameters?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   body?: ArtifactContent2;
   /**
@@ -4287,9 +4287,9 @@ export interface WebRequest {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The body of the request.
@@ -4314,7 +4314,7 @@ export interface ArtifactContent2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4345,7 +4345,7 @@ export interface WebResponse {
    * The response headers.
    */
   headers?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   body?: ArtifactContent3;
   /**
@@ -4362,9 +4362,9 @@ export interface WebResponse {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The body of the response.
@@ -4389,7 +4389,7 @@ export interface ArtifactContent3 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4405,7 +4405,7 @@ export interface EdgeTraversal {
    * The values of relevant expressions after the edge has been traversed.
    */
   finalState?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * The number of edge traversals necessary to return from a nested graph.
@@ -4421,7 +4421,7 @@ export interface EdgeTraversal {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4455,7 +4455,7 @@ export interface Suppression {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4468,18 +4468,18 @@ export interface Location4 {
   id?: number;
   physicalLocation?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   logicalLocation?: LogicalLocation;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * A set of regions relevant to the location.
@@ -4503,7 +4503,7 @@ export interface Location4 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4534,7 +4534,7 @@ export interface Attachment {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4555,10 +4555,10 @@ export interface ArtifactLocation11 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -4570,7 +4570,7 @@ export interface ArtifactLocation11 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4604,7 +4604,7 @@ export interface Rectangle {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4647,7 +4647,7 @@ export interface ResultProvenance {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4671,7 +4671,7 @@ export interface Fix {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4695,7 +4695,7 @@ export interface ArtifactChange {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4716,10 +4716,10 @@ export interface ArtifactLocation12 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -4731,7 +4731,7 @@ export interface ArtifactLocation12 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4750,7 +4750,7 @@ export interface Replacement {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4792,10 +4792,10 @@ export interface Region3 {
   snippet?: ArtifactContent;
   message?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Specifies the source language, if any, of the portion of the artifact specified by the region object.
@@ -4811,7 +4811,7 @@ export interface Region3 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4837,7 +4837,7 @@ export interface ArtifactContent4 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4868,13 +4868,13 @@ export interface WebRequest1 {
    * The request headers.
    */
   headers?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The request parameters.
    */
   parameters?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   body?: ArtifactContent2;
   /**
@@ -4887,9 +4887,9 @@ export interface WebRequest1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A web response associated with this result.
@@ -4919,7 +4919,7 @@ export interface WebResponse1 {
    * The response headers.
    */
   headers?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   body?: ArtifactContent3;
   /**
@@ -4936,9 +4936,9 @@ export interface WebResponse1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Automation details that describe this run.
@@ -4967,7 +4967,7 @@ export interface RunAutomationDetails {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -4976,10 +4976,10 @@ export interface RunAutomationDetails {
 export interface RunAutomationDetails1 {
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * A hierarchical string that uniquely identifies this object's containing run object.
@@ -5003,7 +5003,7 @@ export interface RunAutomationDetails1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -5101,7 +5101,7 @@ export interface ExternalPropertyFileReferences {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -5122,10 +5122,10 @@ export interface ArtifactLocation13 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -5137,7 +5137,7 @@ export interface ArtifactLocation13 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -5190,7 +5190,7 @@ export interface Address1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -5221,13 +5221,13 @@ export interface WebRequest2 {
    * The request headers.
    */
   headers?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The request parameters.
    */
   parameters?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   body?: ArtifactContent2;
   /**
@@ -5240,9 +5240,9 @@ export interface WebRequest2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A web response object.
@@ -5272,7 +5272,7 @@ export interface WebResponse2 {
    * The response headers.
    */
   headers?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   body?: ArtifactContent3;
   /**
@@ -5289,9 +5289,9 @@ export interface WebResponse2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A specialLocations object that defines locations of special significance to SARIF consumers.
@@ -5308,9 +5308,9 @@ export interface SpecialLocations {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specifies the location of an artifact.
@@ -5330,10 +5330,10 @@ export interface ArtifactLocation14 {
   index?: number;
   description?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Key/value pairs that provide additional information about the artifact location.
@@ -5345,7 +5345,7 @@ export interface ArtifactLocation14 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface ExternalProperties {
@@ -5456,9 +5456,9 @@ export interface ExternalProperties {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A conversion object that will be merged with a separate run.
@@ -5482,7 +5482,7 @@ export interface Conversion1 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -5495,7 +5495,7 @@ export interface PropertyBag1 {
    * @minItems 0
    */
   tags?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A component, such as a plug-in or the driver, of the analysis tool that was run.
@@ -5555,7 +5555,7 @@ export interface ToolComponent2 {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2;
+    [k: string]: MultiformatMessageString2Undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
@@ -5619,6 +5619,6 @@ export interface ToolComponent2 {
      * @minItems 0
      */
     tags?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }

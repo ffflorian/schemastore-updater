@@ -29,7 +29,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
     include?: Job[];
     allow_failures?: Job[];
     /**
-     * If some rows in the build matrix are allowed to fail, the build won’t be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
+     * If some rows in the build matrix are allowed to fail, the build won't be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
      */
     fast_finish?: boolean;
   };
@@ -39,18 +39,18 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
        * The name of the build stage
        */
       stage?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     })[];
     exclude?: (Job & {
       /**
        * The name of the build stage
        */
       stage?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     })[];
     allow_failures?: Job[];
     /**
-     * If some rows in the build matrix are allowed to fail, the build won’t be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
+     * If some rows in the build matrix are allowed to fail, the build won't be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
      */
     fast_finish?: boolean;
   };
@@ -75,7 +75,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
    * Import YAML config snippets that can be shared across repositories.
    */
   import?: Import[] | Import;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type StringOrStringArrayUnique = NonEmptyString | StringArrayUnique;
 export type NonEmptyString = string;
@@ -168,23 +168,23 @@ export type Deployment = {
      * if [[ <condition> ]]; then <deploy>; fi
      */
     condition?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & (
   | {
       provider: "script";
       script: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
       provider: "surge";
       project?: string;
       domain?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
       provider: "releases";
@@ -197,7 +197,7 @@ export type Deployment = {
        * If you need to overwrite existing files
        */
       overwrite?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
       provider: "heroku";
@@ -212,7 +212,7 @@ export type Deployment = {
       app?:
         | string
         | {
-            [k: string]: string;
+            [k: string]: string | undefined;
           };
       /**
        * to run a command on Heroku after a successful deploy
@@ -226,7 +226,7 @@ export type Deployment = {
        * Travis CI supports different mechanisms for deploying to Heroku: api is default
        */
       strategy?: "api" | "git";
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
       provider: "s3";
@@ -249,11 +249,11 @@ export type Deployment = {
       cache_control?: string;
       expires?: string;
       endpoint?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
       provider: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
 );
 export type PossiblySecretStringOrPossiblySecretStringTypeArrayUnique =
@@ -353,7 +353,7 @@ export interface Job {
     xvfb?: boolean;
     dartanalyzer?: boolean;
     dartfmt?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   ghc?: string[];
   lein?: string;
@@ -407,7 +407,7 @@ export interface Job {
    * Dictionary of repositories to pass to options(repos)
    */
   repos?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The CPU Architecture to run the job on
@@ -421,7 +421,9 @@ export interface Job {
   /**
    * The operating system to run the job on
    */
-  os?: ("osx" | "linux" | "windows") | ["osx" | "linux" | "windows", ...("osx" | "linux" | "windows")[]];
+  os?:
+    | ("osx" | "linux" | "linux-ppc64le" | "windows")
+    | ["osx" | "linux" | "linux-ppc64le" | "windows", ...("osx" | "linux" | "linux-ppc64le" | "windows")[]];
   osx_image?: XcodeVersions | [XcodeVersions, ...XcodeVersions[]];
   /**
    * The Ubuntu distribution to use
@@ -472,14 +474,14 @@ export interface Job {
           s3_region?: string;
           paths?: string[];
           /**
-           * If you’d like to upload file from a specific directory, you can change your working directory
+           * If you'd like to upload file from a specific directory, you can change your working directory
            */
           working_dir?: string;
           /**
-           * If you’d like to see more detail about what the artifacts addon is doing
+           * If you'd like to see more detail about what the artifacts addon is doing
            */
           debug?: boolean;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
     /**
      * Firefox addon
@@ -510,7 +512,7 @@ export interface Job {
       | {
           username?: string;
           access_key?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | boolean;
     /**
@@ -519,7 +521,7 @@ export interface Job {
     sonarcloud?: {
       organization?: string;
       token?: SecretString;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Coverity Scan addon
@@ -532,7 +534,7 @@ export interface Job {
         name: string;
         version?: number;
         description?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Where email notification of build analysis results will be sent
@@ -550,7 +552,7 @@ export interface Job {
        * Pattern to match selecting branches that will run analysis. We recommend leaving this set to 'coverity_scan'
        */
       branch_pattern?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Homebrew addon
@@ -614,7 +616,7 @@ export interface Job {
       proxyPass?: NonEmptyString;
       forcelocal?: boolean;
       only?: NonEmptyString;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
   };
   cache?:
@@ -646,7 +648,7 @@ export interface Job {
   git?: {
     depth?: number | false;
     /**
-     * Travis CI clones repositories without the quiet flag (-q) by default. Enabling the quiet flag can be useful if you’re trying to avoid log file size limits or even if you just don’t need to include it.
+     * Travis CI clones repositories without the quiet flag (-q) by default. Enabling the quiet flag can be useful if you're trying to avoid log file size limits or even if you just don't need to include it.
      */
     quiet?: boolean;
     /**
@@ -662,7 +664,7 @@ export interface Job {
      */
     clone?: boolean;
     /**
-     * Is a path to the existing file in the current repository with data you’d like to put into $GIT_DIR/info/sparse-checkout file of format described in Git documentation.
+     * Is a path to the existing file in the current repository with data you'd like to put into $GIT_DIR/info/sparse-checkout file of format described in Git documentation.
      */
     sparse_checkout?: string;
     /**
@@ -695,7 +697,7 @@ export interface Job {
   deploy?: Deployment[] | Deployment;
   after_deploy?: Step;
   after_script?: Step;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface SecretString {
   secure?: NonEmptyString;

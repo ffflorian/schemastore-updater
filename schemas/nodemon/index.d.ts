@@ -30,7 +30,7 @@ export interface JSONSchemaForNodemonConfig {
    * The global config file is useful for setting up default executables
    */
   execMap?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Exit nodemon after crash
@@ -102,5 +102,5 @@ export interface JSONSchemaForNodemonConfig {
         re: string;
       }
   )[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

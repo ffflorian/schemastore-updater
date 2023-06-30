@@ -12,10 +12,10 @@ export interface SchemaForAWSCDKContextFilesCdkJson {
   watch?: {
     include?: string[];
     exclude?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   context?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

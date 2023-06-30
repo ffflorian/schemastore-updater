@@ -22,7 +22,7 @@ export type Source = Source1 & {
    * The path (relative to the directory the user has specified) that content should be written to.
    */
   target?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 };
 export type Source1 = Modifier;
 export type Ice = string[] | string;
@@ -32,7 +32,7 @@ export type Ice = string[] | string;
 export type Datatype =
   | ("choice" | "bool" | "float" | "int" | "hex" | "text")
   | {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 
 export interface JSONSchemaNETTemplateConfigurationTemplateJson {
@@ -48,6 +48,10 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    * The name to use during creation if no name has been specified by the user or provided from the host.
    */
   defaultName?: string;
+  /**
+   * Indicates if the template's default name will be used when no name option is specified during instantiation.
+   */
+  preferDefaultName?: boolean & string;
   /**
    * The semantic version range of the Microsoft.TemplateEngine.Orchestrator.RunnableProjects package that this template is usable with. In older versions of the engine, the four octet version string is used but is matched against a constant which was never changed from 1.0.0.0 - either syntax is now accepted, however the four octet string will not be changed from 1.0.0.0.
    */
@@ -84,7 +88,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
      * A list of key-value pairs to use when performing the action. The specific parameters required / allowed are defined by the action itself.
      */
     args?: {
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * A C++ style expression that, if it evaluates to 'false' causes the post-action to be skipped. This expression may refer to any symbols that have been defined.
@@ -112,12 +116,12 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
        * Defines identifier to be used when localizing the manual instructions.
        */
       id?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   } & (
     | {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C";
@@ -130,9 +134,9 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
            * The arguments to instruct the user to run the executable with - if executable is not specified, this value is unused.
            */
           args?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2";
@@ -153,9 +157,9 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
            * The arguments to supply to the executable.
            */
           args?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "B17581D1-C5C9-4489-8F0A-004BE667B814";
@@ -177,9 +181,9 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
            */
           version?: string;
           targetFiles?: string[] | string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "cb9a6cf3-4f5c-4860-b9d2-03a574959774";
@@ -187,17 +191,17 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
          * The permissions to set: the key-value pairs, where the key is a permission, and the value is a file or array of files to apply the permission to.
          */
         args?: {
-          [k: string]: string[] | string;
+          [k: string]: (string[] | string) | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "210D431B-A78B-4D2F-B762-4ED3E3EA9025";
         args?: {
           files?: string[] | string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "D396686C-DE0E-4DE6-906D-291CD29FC5DE";
@@ -215,9 +219,9 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
            */
           inRoot?: boolean;
           projectFiles?: string[] | string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | {
         actionId?: "84C0DA21-51C8-4541-9940-6CA19AF04EE6";
@@ -226,9 +230,9 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
            * A semicolon delimited list of indexes of the primary outputs that should be opened in the editor.
            */
           files?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   ))[];
   /**
@@ -251,7 +255,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
      * The condition for including the specified path in the primary outputs set.
      */
     condition?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   shortName: string | string[];
   /**
@@ -267,266 +271,272 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   forms?: {
     [k: string]:
-      | {
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "lowerCaseInvariant";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "xmlEncode";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "safe_name";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "lower_safe_name";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "replace";
-          /**
-           * A regular expression whose matches will be replaced with the literal value specified in replacement.
-           */
-          pattern: string;
-          /**
-           * The value to replace the matches of the specified pattern in the source value with.
-           */
-          replacement: string;
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "safe_namespace";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "lower_safe_namespace";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "chain";
-          steps: string[];
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "lowerCase";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "identity";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "upperCase";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "upperCaseInvariant";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "jsonEncode";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "firstLowerCase";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "firstLowerCaseInvariant";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "firstUpperCase";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "firstUpperCaseInvariant";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "titleCase";
-          [k: string]: unknown;
-        }
-      | {
-          identifier?: "kebabCase";
-          [k: string]: unknown;
-        };
+      | (
+          | {
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "lowerCaseInvariant";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "xmlEncode";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "safe_name";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "lower_safe_name";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "replace";
+              /**
+               * A regular expression whose matches will be replaced with the literal value specified in replacement.
+               */
+              pattern: string;
+              /**
+               * The value to replace the matches of the specified pattern in the source value with.
+               */
+              replacement: string;
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "safe_namespace";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "lower_safe_namespace";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "chain";
+              steps: string[];
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "lowerCase";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "identity";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "upperCase";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "upperCaseInvariant";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "jsonEncode";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "firstLowerCase";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "firstLowerCaseInvariant";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "firstUpperCase";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "firstUpperCaseInvariant";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "titleCase";
+              [k: string]: unknown | undefined;
+            }
+          | {
+              identifier?: "kebabCase";
+              [k: string]: unknown | undefined;
+            }
+        )
+      | undefined;
   };
   /**
    * The symbols section defines variables and their values, the values may be the defined in terms of other symbols. When a defined symbol name is encountered anywhere in the template definition, it is replaced by the value defined in this configuration. The symbols configuration is a collection of key-value pairs. The keys are the symbol names, and the value contains key-value-pair configuration information on how to assign the symbol a value.
    */
   symbols?: {
     [k: string]:
-      | {
-          /**
-           * The symbol binds value from external sources.
-           */
-          type?: "bind";
-          /**
-           * The source and the name of parameter to take the value from. The syntax is: <external source>:<parameter name>. Well known external sources are: host - a value that is defined by the template engine host; env - environment variable.
-           */
-          binding: string;
-          /**
-           * The value assigned to the symbol if no value was provided from external source(s).
-           */
-          defaultValue?: string;
-          /**
-           * The text to replace with the value of this symbol.
-           */
-          replaces?: string;
-          /**
-           * Defines the portion of file names which will be replaced by symbol value.
-           */
-          fileRename?: string;
-          onlyIf?: {
-            /**
-             * The replacement string occurs after this value.
-             */
-            after?: string;
-            /**
-             * The replacement string occurs before this value.
-             */
-            before?: string;
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
-      | {
-          /**
-           * The value of this symbol is derived from the value of another symbol by the application of value forms.
-           */
-          type?: "derived";
-          /**
-           * The name of the symbol that the value should be derived from.
-           */
-          valueSource: string;
-          /**
-           * The name of the value form that should be applied to the source value to use as the value of this symbol.
-           */
-          valueTransform: string;
-          /**
-           * The value assigned to the symbol if no value was provided.
-           */
-          defaultValue?: string;
-          /**
-           * The text to replace with the value of this symbol.
-           */
-          replaces?: string;
-          /**
-           * Defines the portion of file names which will be replaced by symbol value.
-           */
-          fileRename?: string;
-          onlyIf?: {
-            /**
-             * The replacement string occurs after this value.
-             */
-            after?: string;
-            /**
-             * The replacement string occurs before this value.
-             */
-            before?: string;
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
       | (
-          | GeneratorCasing
-          | GeneratorCoalesce
-          | GeneratorConstant
-          | GeneratorGuid
-          | GeneratorNow
-          | GeneratorPort
-          | GeneratorRandom
-          | GeneratorRegex
-          | GeneratorRegexMatch
-          | GeneratorSwitch
-          | GeneratorJoin
+          | {
+              /**
+               * The symbol binds value from external sources.
+               */
+              type?: "bind";
+              /**
+               * The source and the name of parameter to take the value from. The syntax is: <external source>:<parameter name>. Well known external sources are: host - a value that is defined by the template engine host; env - environment variable.
+               */
+              binding: string;
+              /**
+               * The value assigned to the symbol if no value was provided from external source(s).
+               */
+              defaultValue?: string;
+              /**
+               * The text to replace with the value of this symbol.
+               */
+              replaces?: string;
+              /**
+               * Defines the portion of file names which will be replaced by symbol value.
+               */
+              fileRename?: string;
+              onlyIf?: {
+                /**
+                 * The replacement string occurs after this value.
+                 */
+                after?: string;
+                /**
+                 * The replacement string occurs before this value.
+                 */
+                before?: string;
+                [k: string]: unknown | undefined;
+              };
+              [k: string]: unknown | undefined;
+            }
+          | {
+              /**
+               * The value of this symbol is derived from the value of another symbol by the application of value forms.
+               */
+              type?: "derived";
+              /**
+               * The name of the symbol that the value should be derived from.
+               */
+              valueSource: string;
+              /**
+               * The name of the value form that should be applied to the source value to use as the value of this symbol.
+               */
+              valueTransform: string;
+              /**
+               * The value assigned to the symbol if no value was provided.
+               */
+              defaultValue?: string;
+              /**
+               * The text to replace with the value of this symbol.
+               */
+              replaces?: string;
+              /**
+               * Defines the portion of file names which will be replaced by symbol value.
+               */
+              fileRename?: string;
+              onlyIf?: {
+                /**
+                 * The replacement string occurs after this value.
+                 */
+                after?: string;
+                /**
+                 * The replacement string occurs before this value.
+                 */
+                before?: string;
+                [k: string]: unknown | undefined;
+              };
+              [k: string]: unknown | undefined;
+            }
+          | (
+              | GeneratorCasing
+              | GeneratorCoalesce
+              | GeneratorConstant
+              | GeneratorGuid
+              | GeneratorNow
+              | GeneratorPort
+              | GeneratorRandom
+              | GeneratorRegex
+              | GeneratorRegexMatch
+              | GeneratorSwitch
+              | GeneratorJoin
+            )
+          | {
+              /**
+               * Defines the high level configuration of symbol.
+               */
+              type?: "parameter";
+              isRequired?: boolean | string;
+              isEnabled?: boolean | string;
+              /**
+               * An array listing the valid choices for a symbol whose datatype = choice. If not provided, there are no valid choices for the symbol, so it can never be assigned a value.
+               */
+              choices?: {
+                /**
+                 * A valid value for the symbol.
+                 */
+                choice: string;
+                /**
+                 * Help text describing the meaning of the corresponding value.
+                 */
+                description?: string;
+                /**
+                 * The friendly name of the choice to be displayed to the user. This property can be localized.
+                 */
+                displayName?: string;
+                [k: string]: unknown | undefined;
+              }[];
+              /**
+               * The value assigned to the symbol if no value for it is provided by the user or host.
+               */
+              defaultValue?: string;
+              /**
+               * The description of the parameter.
+               */
+              description?: string;
+              /**
+               * The text to replace with the value of this symbol.
+               */
+              replaces?: string;
+              /**
+               * The element defines the portion of file names which will be replaced by symbol value.
+               */
+              fileRename?: string;
+              onlyIf?: {
+                /**
+                 * The replacement string occurs after this value.
+                 */
+                after?: string;
+                /**
+                 * The replacement string occurs before this value.
+                 */
+                before?: string;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * Indication whether multiple values can be specified for a parameter. Valid only for datatype = choice.
+               */
+              allowMultipleValues?: boolean;
+              /**
+               * Indication whether implicit symbols for each choice value should be added to parameter collection. This allows condition syntax without using quotes for choice literals. Valid only for datatype = choice.
+               */
+              enableQuotelessLiterals?: boolean;
+              /**
+               * The friendly name of the symbol to be displayed to the user. This property can be localized.
+               */
+              displayName?: string;
+              forms?: {
+                global?: string[] | string;
+                [k: string]: unknown | undefined;
+              };
+              [k: string]: unknown | undefined;
+            }
+          | {
+              /**
+               * Defines the high level configuration of symbol.
+               */
+              type?: "computed";
+              /**
+               * An evaluate-able condition whose result defines the value of the symbol.
+               */
+              value?: string;
+              [k: string]: unknown | undefined;
+            }
         )
-      | {
-          /**
-           * Defines the high level configuration of symbol.
-           */
-          type?: "parameter";
-          isRequired?: boolean | string;
-          isEnabled?: boolean | string;
-          /**
-           * An array listing the valid choices for a symbol whose datatype = choice. If not provided, there are no valid choices for the symbol, so it can never be assigned a value.
-           */
-          choices?: {
-            /**
-             * A valid value for the symbol.
-             */
-            choice: string;
-            /**
-             * Help text describing the meaning of the corresponding value.
-             */
-            description?: string;
-            /**
-             * The friendly name of the choice to be displayed to the user. This property can be localized.
-             */
-            displayName?: string;
-            [k: string]: unknown;
-          }[];
-          /**
-           * The value assigned to the symbol if no value for it is provided by the user or host.
-           */
-          defaultValue?: string;
-          /**
-           * The description of the parameter.
-           */
-          description?: string;
-          /**
-           * The text to replace with the value of this symbol.
-           */
-          replaces?: string;
-          /**
-           * The element defines the portion of file names which will be replaced by symbol value.
-           */
-          fileRename?: string;
-          onlyIf?: {
-            /**
-             * The replacement string occurs after this value.
-             */
-            after?: string;
-            /**
-             * The replacement string occurs before this value.
-             */
-            before?: string;
-            [k: string]: unknown;
-          };
-          /**
-           * Indication whether multiple values can be specified for a parameter. Valid only for datatype = choice.
-           */
-          allowMultipleValues?: boolean;
-          /**
-           * Indication whether implicit symbols for each choice value should be added to parameter collection. This allows condition syntax without using quotes for choice literals. Valid only for datatype = choice.
-           */
-          enableQuotelessLiterals?: boolean;
-          /**
-           * The friendly name of the symbol to be displayed to the user. This property can be localized.
-           */
-          displayName?: string;
-          forms?: {
-            global?: string[] | string;
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
-      | {
-          /**
-           * Defines the high level configuration of symbol.
-           */
-          type?: "computed";
-          /**
-           * An evaluate-able condition whose result defines the value of the symbol.
-           */
-          value?: string;
-          [k: string]: unknown;
-        };
+      | undefined;
   };
   /**
    * Alternate sets of defaults for symbols.
@@ -535,22 +545,24 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
     /**
      * A named set of alternate defaults.
      */
-    [k: string]: {
-      /**
-       * A string to use to indicate the intent of the baseline.
-       */
-      description?: string;
-      /**
-       * A lookup of symbol names to new defaults.
-       */
-      defaultOverrides?: {
-        /**
-         * An updated default value for the specified symbol.
-         */
-        [k: string]: string;
-      };
-      [k: string]: unknown;
-    };
+    [k: string]:
+      | {
+          /**
+           * A string to use to indicate the intent of the baseline.
+           */
+          description?: string;
+          /**
+           * A lookup of symbol names to new defaults.
+           */
+          defaultOverrides?: {
+            /**
+             * An updated default value for the specified symbol.
+             */
+            [k: string]: string | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   /**
    * Common information about templates, these are effectively interchangeable with choice type parameter symbols.
@@ -564,7 +576,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
      * The type of template: project or item.
      */
     type: "project" | "item" | "solution";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * An URL for a document indicating any libraries used by the template that are not owned/provided by the template author.
@@ -579,61 +591,64 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   constraints?: {
     [k: string]:
-      | {
-          args?:
-            | unknown[]
-            | {
-                [k: string]: unknown;
-              }
-            | string;
-          [k: string]: unknown;
-        }
-      | {
-          type?: "os";
-          args?: ("Windows" | "Linux" | "OSX") | ("Windows" | "Linux" | "OSX")[];
-          [k: string]: unknown;
-        }
-      | {
-          type?: "host";
-          args?: {
-            /**
-             * The identifier of supported host. Commonly used identifiers are: 'dotnetcli'' - .NET SDK, 'vs' - Visual Studio, 'vs-mac' - Visual Studio for Mac, 'ide' - Visual Studio (any platform).
-             */
-            hostname: (
-              | {
-                  [k: string]: unknown;
-                }
-              | ("dotnetcli" | "vs" | "vs-mac" | "ide")
-            ) &
-              string;
-            /**
-             * The supported version of the host. May be an exact version, float version or version range. Refer to https://docs.microsoft.com/en-us/nuget/concepts/package-versioning for more info.
-             */
-            version?: string;
-            [k: string]: unknown;
-          }[];
-          [k: string]: unknown;
-        }
-      | {
-          type?: "workload";
-          args?: string | string[];
-          [k: string]: unknown;
-        }
-      | {
-          type?: "sdk-version";
-          args?: string | string[];
-          [k: string]: unknown;
-        }
-      | {
-          type?: "project-capability";
-          /**
-           * Project capability expression that should be satisfied by the project. Refer to https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.shell.interop.vsprojectcapabilityexpressionmatcher for more info.
-           */
-          args?: string;
-          [k: string]: unknown;
-        };
+      | (
+          | {
+              args?:
+                | unknown[]
+                | {
+                    [k: string]: unknown | undefined;
+                  }
+                | string;
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type?: "os";
+              args?: ("Windows" | "Linux" | "OSX") | ("Windows" | "Linux" | "OSX")[];
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type?: "host";
+              args?: {
+                /**
+                 * The identifier of supported host. Commonly used identifiers are: 'dotnetcli'' - .NET SDK, 'vs' - Visual Studio, 'vs-mac' - Visual Studio for Mac, 'ide' - Visual Studio (any platform).
+                 */
+                hostname: (
+                  | {
+                      [k: string]: unknown | undefined;
+                    }
+                  | ("dotnetcli" | "vs" | "vs-mac" | "ide")
+                ) &
+                  string;
+                /**
+                 * The supported version of the host. May be an exact version, float version or version range. Refer to https://docs.microsoft.com/en-us/nuget/concepts/package-versioning for more info.
+                 */
+                version?: string;
+                [k: string]: unknown | undefined;
+              }[];
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type?: "workload";
+              args?: string | string[];
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type?: "sdk-version";
+              args?: string | string[];
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type?: "project-capability";
+              /**
+               * Project capability expression that should be satisfied by the project. Refer to https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.shell.interop.vsprojectcapabilityexpressionmatcher for more info.
+               */
+              args?: string;
+              [k: string]: unknown | undefined;
+            }
+        )
+      | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Modifier {
   /**
@@ -656,9 +671,9 @@ export interface Modifier {
    * The set of explicit renames to perform. Each key is a path to a file in the source, each value is a path to the target location.
    */
   rename?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorCasing {
   generator?: "casing";
@@ -671,9 +686,9 @@ export interface GeneratorCasing {
      * Whether the case changed to should be lower case, if false, the value is made to be uppercase instead.
      */
     toLower?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorCoalesce {
   generator?: "coalesce";
@@ -690,9 +705,9 @@ export interface GeneratorCoalesce {
      * The name of the symbol to return the value of if the symbol referred to by sourceVariableName has a value equal to the value of defaultValue.
      */
     fallbackVariableName: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorConstant {
   generator?: "constant";
@@ -701,9 +716,9 @@ export interface GeneratorConstant {
      * The constant value to be assigned to the symbol.
      */
     value?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorGuid {
   generator?: "guid";
@@ -716,9 +731,9 @@ export interface GeneratorGuid {
      * The format of guid to be generated. Accepts a single value from ('n', 'd', 'b', 'p', 'x') for lowercase output or ('N', 'D', 'B', 'P', 'X') for uppercase output. The formats are defined in Guid.ToString() method documentation.
      */
     defaultFormat?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorNow {
   generator?: "now";
@@ -731,9 +746,9 @@ export interface GeneratorNow {
      * If true, use UTC time. If false, use local time.
      */
     utc?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorPort {
   generator?: "port";
@@ -750,9 +765,9 @@ export interface GeneratorPort {
      * The port number to use if no free ports could be found.
      */
     fallback?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorRandom {
   generator?: "random";
@@ -765,9 +780,9 @@ export interface GeneratorRandom {
      * An integer value indicating the high-end of the range to generate the random number in. If not explicitly provided, defaults to int.MaxValue.
      */
     high?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorRegex {
   generator?: "regex";
@@ -788,11 +803,11 @@ export interface GeneratorRegex {
        * The replacement for any sequences matched by the supplied regular expression.
        */
       replacement: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorRegexMatch {
   generator?: "regexMatch";
@@ -806,9 +821,9 @@ export interface GeneratorRegexMatch {
      * The regular expression to use to match.
      */
     pattern?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorSwitch {
   generator?: "switch";
@@ -830,11 +845,11 @@ export interface GeneratorSwitch {
        * The value to return if the condition evaluates to true.
        */
       value: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GeneratorJoin {
   generator?: "join";
@@ -859,9 +874,9 @@ export interface GeneratorJoin {
        * Either name of another symbol or string constant.
        */
       value: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

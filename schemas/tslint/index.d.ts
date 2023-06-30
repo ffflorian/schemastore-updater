@@ -13,7 +13,7 @@ export type Rule = {
    * Severity level. Level "error" will cause exit code 2.
    */
   severity?: "default" | "error" | "warning" | "warn" | "off" | "none";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & Rule1;
 export type Rule1 =
   | boolean
@@ -22,7 +22,7 @@ export type Rule1 =
        * Severity level. Level "error" will cause exit code 2.
        */
       severity?: "default" | "error" | "warning" | "warn" | "off" | "none";
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | [unknown, ...unknown[]];
 /**
@@ -3450,15 +3450,19 @@ export interface JSONSchemaForTheTSLintConfigurationFiles {
      * An array of globs. Any file matching these globs will not be linted. All exclude patterns are relative to the configuration file they were specified in.
      */
     exclude?: string[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface TsRules {
   /**
    * Enforces function overloads to be consecutive.
    */
   "adjacent-overload-signatures"?: (Rule & []) | [boolean];
+  /**
+   * Bans "// @ts-ignore" comments from being used.
+   */
+  "ban-ts-ignore"?: (Rule1 & []) | [boolean];
   /**
    * Requires using either 'T[]' or 'Array<T>' for arrays.
    */
@@ -3508,7 +3512,7 @@ export interface TsRules {
         boolean,
         {
           "ignore-rest-args"?: boolean;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       ];
   /**
@@ -3606,7 +3610,7 @@ export interface TsRules {
    */
   "no-var-requires"?: (Rule1 & []) | [boolean];
   /**
-   * Requires that private variables are marked as `readonly` if they’re never modified outside of the constructor.
+   * Requires that private variables are marked as `readonly` if they're never modified outside of the constructor.
    */
   "prefer-readonly"?: (Rule1 & []) | [boolean, ..."only-inline-lambdas"[]];
   /**
@@ -3705,7 +3709,7 @@ export interface TsRules {
         boolean,
         {
           singleLine?: "always" | "never";
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       ];
   /**
@@ -3716,7 +3720,11 @@ export interface TsRules {
    * Warns if an explicitly specified type argument is the default for that type parameter.
    */
   "use-default-type-parameter"?: (Rule1 & []) | [boolean];
-  [k: string]: unknown;
+  /**
+   * Prevents using the built-in Function constructor.
+   */
+  "function-constructor"?: (Rule1 & []) | [boolean];
+  [k: string]: unknown | undefined;
 }
 export interface Rules {
   /**
@@ -3774,7 +3782,7 @@ export interface Rules {
           | {
               "ignore-words"?: string[];
               "ignore-pattern"?: string;
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
         )[]
       ];
@@ -3831,7 +3839,7 @@ export interface Rules {
               variables?: {
                 visibilities?: "all" | "exported" | "internal";
               };
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
         )[]
       ];
@@ -3891,7 +3899,7 @@ export interface Rules {
               /**
                * @minItems 1
                */
-              [k: string]: [string, ...string[]];
+              [k: string]: [string, ...string[]] | undefined;
             }
           | string[]
         )[]
@@ -4018,11 +4026,16 @@ export interface Rules {
    */
   "no-eval"?: (Rule1 & []) | [boolean];
   /**
+   * Forbid for…in statements
+   * https://palantir.github.io/tslint/rules/no-for-in/
+   */
+  "no-for-in"?: (Rule1 & []) | [boolean];
+  /**
    * Disallows iterating over an array with a for-in loop.
    */
   "no-for-in-array"?: (Rule1 & []) | [boolean];
   /**
-   * Disallows importing modules that are not listed as dependency in the project’s package.json.
+   * Disallows importing modules that are not listed as dependency in the project's package.json.
    */
   "no-implicit-dependencies"?:
     | (Rule1 & [])
@@ -4048,6 +4061,11 @@ export interface Rules {
    * When no list of allowed values is specified, -1, 0 and 1 are allowed by default.
    */
   "no-magic-numbers"?: (Rule1 & []) | [boolean, ...number[]];
+  /**
+   * Forbid explicitly declared or implicitly returned union types with both null and undefined as members
+   * https://palantir.github.io/tslint/rules/no-null-undefined-union/
+   */
+  "no-null-undefined-union"?: (Rule1 & []) | [boolean];
   /**
    * Disallows use of the `null` keyword literal.
    */
@@ -4216,6 +4234,11 @@ export interface Rules {
    */
   "prefer-while"?: (Rule1 & []) | [boolean];
   /**
+   * Force functions marked async contain an await or return statement
+   * https://palantir.github.io/tslint/rules/no-async-without-await/
+   */
+  "no-async-without-await"?: (Rule1 & []) | [boolean];
+  /**
    * Requires any function or method that returns a promise to be marked async.
    */
   "promise-function-async"?: (Rule1 & []) | [boolean];
@@ -4315,7 +4338,7 @@ export interface Rules {
           | "check-postbrace"
         )[]
       ];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Items1 {
   order?:
@@ -8461,7 +8484,7 @@ export interface Items5 {
         name?: string;
         match: string;
         order: number;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
   )[];
   "import-sources-order"?:
@@ -8571,7 +8594,7 @@ export interface Rules1 {
           | {
               "ignore-words"?: string[];
               "ignore-pattern"?: string;
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
         )[]
       ];
@@ -8628,7 +8651,7 @@ export interface Rules1 {
               variables?: {
                 visibilities?: "all" | "exported" | "internal";
               };
-              [k: string]: unknown;
+              [k: string]: unknown | undefined;
             }
         )[]
       ];
@@ -8688,7 +8711,7 @@ export interface Rules1 {
               /**
                * @minItems 1
                */
-              [k: string]: [string, ...string[]];
+              [k: string]: [string, ...string[]] | undefined;
             }
           | string[]
         )[]
@@ -8815,11 +8838,16 @@ export interface Rules1 {
    */
   "no-eval"?: (Rule1 & []) | [boolean];
   /**
+   * Forbid for…in statements
+   * https://palantir.github.io/tslint/rules/no-for-in/
+   */
+  "no-for-in"?: (Rule1 & []) | [boolean];
+  /**
    * Disallows iterating over an array with a for-in loop.
    */
   "no-for-in-array"?: (Rule1 & []) | [boolean];
   /**
-   * Disallows importing modules that are not listed as dependency in the project’s package.json.
+   * Disallows importing modules that are not listed as dependency in the project's package.json.
    */
   "no-implicit-dependencies"?:
     | (Rule1 & [])
@@ -8845,6 +8873,11 @@ export interface Rules1 {
    * When no list of allowed values is specified, -1, 0 and 1 are allowed by default.
    */
   "no-magic-numbers"?: (Rule1 & []) | [boolean, ...number[]];
+  /**
+   * Forbid explicitly declared or implicitly returned union types with both null and undefined as members
+   * https://palantir.github.io/tslint/rules/no-null-undefined-union/
+   */
+  "no-null-undefined-union"?: (Rule1 & []) | [boolean];
   /**
    * Disallows use of the `null` keyword literal.
    */
@@ -9013,6 +9046,11 @@ export interface Rules1 {
    */
   "prefer-while"?: (Rule1 & []) | [boolean];
   /**
+   * Force functions marked async contain an await or return statement
+   * https://palantir.github.io/tslint/rules/no-async-without-await/
+   */
+  "no-async-without-await"?: (Rule1 & []) | [boolean];
+  /**
    * Requires any function or method that returns a promise to be marked async.
    */
   "promise-function-async"?: (Rule1 & []) | [boolean];
@@ -9112,5 +9150,5 @@ export interface Rules1 {
           | "check-postbrace"
         )[]
       ];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
