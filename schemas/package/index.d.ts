@@ -15164,7 +15164,7 @@ export interface JSONSchemaForNPMPackageJsonFiles2 {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^\./.+".
          */
-        [k: string]: PackageExportsEntry | PackageExportsFallback;
+        [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
       }
     | PackageExportsEntryObject1
     | PackageExportsFallback1;
@@ -15469,7 +15469,7 @@ export interface PackageExportsEntryObject {
    * This interface was referenced by `PackageExportsEntryObject1`'s JSON-Schema definition
    * via the `patternProperty` "^(?![\.0-9]).".
    */
-  [k: string]: PackageExportsEntry | PackageExportsFallback;
+  [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
 }
 /**
  * Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.
@@ -15504,7 +15504,7 @@ export interface PackageExportsEntryObject1 {
    * This interface was referenced by `PackageExportsEntryObject1`'s JSON-Schema definition
    * via the `patternProperty` "^(?![\.0-9]).".
    */
-  [k: string]: PackageExportsEntry | PackageExportsFallback;
+  [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
 }
 /**
  * Used to inform about ways to help fund development of the package.
