@@ -2682,9 +2682,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-schema-to-typescript@npm:13.0.2":
-  version: 13.0.2
-  resolution: "json-schema-to-typescript@npm:13.0.2"
+"json-schema-to-typescript@npm:13.1.0":
+  version: 13.1.0
+  resolution: "json-schema-to-typescript@npm:13.1.0"
   dependencies:
     "@bcherny/json-schema-ref-parser": 10.0.5-fork
     "@types/json-schema": ^7.0.11
@@ -2702,7 +2702,7 @@ __metadata:
     prettier: ^2.6.2
   bin:
     json2ts: dist/src/cli.js
-  checksum: 2d9871d2c9391dddfb59e3d188fc6bd9f25241b62b06bac0a415bb4a86676388a28c231c4f151a5dbe05ef3c73211b14fb80d0adf804f66e5f8938fcbf4c822c
+  checksum: 6b7fd63b002d4a7d1625347be817d8b789cc555196e48302c637582030d7e195184e30a3052e7637fd4f2fea6a5caf1ff0b8656a2423664fdac0e123f6bfd315
   languageName: node
   linkType: hard
 
@@ -3330,7 +3330,7 @@ __metadata:
     eslint-plugin-typescript-sort-keys: 2.3.0
     eslint-plugin-unused-imports: 3.0.0
     fs-extra: 11.1.1
-    json-schema-to-typescript: 13.0.2
+    json-schema-to-typescript: 13.1.0
     jsonabc: 2.3.1
     logdown: 3.3.1
     prettier: 2.8.8
