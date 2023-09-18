@@ -19,7 +19,7 @@
     "@types/prettier": "2.7.3",
     "@types/semver": "7.3.13",
     "@typescript-eslint/eslint-plugin": "6.6.0",
-    "@typescript-eslint/parser": "6.4.0",
+    "@typescript-eslint/parser": "6.7.2",
     "babel-eslint": "10.1.0",
     "cross-env": "7.0.3",
     "eslint": "8.47.0",
