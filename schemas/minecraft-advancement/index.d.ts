@@ -7,7 +7,7 @@
 
 /**
  * A title for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export type Title =
   | string
@@ -405,12 +405,12 @@ export type JsonTextComponent1 = {
 );
 /**
  * A background directory for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export type Path = string;
 /**
  * A description for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export type Description =
   | string
@@ -493,12 +493,12 @@ export type Description =
     };
 /**
  * A parent directory for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export type Path1 = string;
 /**
  * Check properties of the player for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Criteria
+ * https://minecraft.wiki/w/Advancement/JSON_format#Criteria
  */
 export type PlayerOptions =
   | unknown[]
@@ -508,7 +508,7 @@ export type PlayerOptions =
 
 /**
  * A data pack advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export interface DataPackAdvancement {
   display?: Display;
@@ -516,7 +516,7 @@ export interface DataPackAdvancement {
   criteria?: Criterias;
   /**
    * Requirements for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   requirements?: string[][];
   rewards?: Rewards;
@@ -524,48 +524,48 @@ export interface DataPackAdvancement {
 }
 /**
  * Display options for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export interface Display {
   icon?: Icon;
   title?: Title;
   /**
    * A frame type for the icon for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   frame?: "challenge" | "goal" | "task";
   background?: Path;
   description?: Description;
   /**
    * Whether or not to show the toast pop up after completing the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   show_toast?: boolean;
   /**
    * Whether or not to announce in the chat when the current advancement has been completed
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   annouce_to_chat?: boolean;
   /**
    * Whether or not to hide this advancement and all its children from the advancement screen until the current advancement have been completed
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   hidden?: boolean;
   [k: string]: unknown | undefined;
 }
 /**
  * Icon options for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export interface Icon {
   /**
    * An item identifier for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   item?: string;
   /**
    * A named binary tag of an item for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   nbt?: string;
   [k: string]: unknown | undefined;
@@ -607,24 +607,24 @@ export interface Contents {
 }
 /**
  * Required criterias have to be met for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export interface Criterias {
   [k: string]: CriteriaUndefined;
 }
 /**
  * Required criteria have to be met for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export interface Criteria {
   /**
    * A trigger for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Criteria
+   * https://minecraft.wiki/w/Advancement/JSON_format#Criteria
    */
   trigger?: string;
   /**
    * Conditions need to be met when the trigger gets activated for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Criteria
+   * https://minecraft.wiki/w/Advancement/JSON_format#Criteria
    */
   conditions?: {
     player?: PlayerOptions;
@@ -634,27 +634,27 @@ export interface Criteria {
 }
 /**
  * Rewards for the current advancement
- * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+ * https://minecraft.wiki/w/Advancement/JSON_format#Legend
  */
 export interface Rewards {
   /**
    * Recipes to unlock for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   recipes?: string[];
   /**
    * Loot tables to give to the player for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   loot?: string[];
   /**
    * An experience amount for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   experience?: number;
   /**
    * A function to run for the current advancement
-   * https://minecraft.fandom.com/wiki/Advancement/JSON_format#Legend
+   * https://minecraft.wiki/w/Advancement/JSON_format#Legend
    */
   function?: string;
 }
