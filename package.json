@@ -18,7 +18,7 @@
     "@types/node": "~18",
     "@types/prettier": "3.0.0",
     "@types/semver": "7.5.2",
-    "@typescript-eslint/eslint-plugin": "6.7.2",
+    "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.2",
     "babel-eslint": "10.1.0",
     "cross-env": "7.0.3",
