@@ -12,7 +12,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Mirror + trigger CI
-        uses: SvanBoxel/gitlab-mirror-and-ci-action@da9671d8dedf7a7c8a663b0f6332462157ca07fd
+        uses: SvanBoxel/gitlab-mirror-and-ci-action@f80bc118403c3f3f5b8fe1e6417b7ac43771d6fa
         with:
           args: 'https://gitlab.com/ffflorian/schemastore-updater.git'
         env:
