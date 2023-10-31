@@ -582,10 +582,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonabc@npm:2.3.1":
-  version: 2.3.1
-  resolution: "@types/jsonabc@npm:2.3.1"
-  checksum: dc85828a1dab023e9faab4c8547b63a5e77019dda1a8e31585f4927032ef9dc57ed700b0c5dfa220cd5ccf4185007e13ddc16af0c02d30803b61f9b0b271526e
+"@types/jsonabc@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@types/jsonabc@npm:2.3.2"
+  checksum: ad671547de0c64d8b487e2e7abcc602d3756b69e765e9a85c5cb6f74089b248bae5880deb72cce2ad24f7f52b91f8418f4d9db1662c99a76f4179480c1dd80fa
   languageName: node
   linkType: hard
 
@@ -3741,7 +3741,7 @@ __metadata:
     "@ffflorian/eslint-config": 0.10.1
     "@ffflorian/prettier-config": 0.3.1
     "@types/fs-extra": 11.0.3
-    "@types/jsonabc": 2.3.1
+    "@types/jsonabc": 2.3.2
     "@types/lodash": 4.14.200
     "@types/node": ~18
     "@types/prettier": 3.0.0
