@@ -3,7 +3,7 @@
   "bin": "dist/cli.js",
   "dependencies": {
     "commander": "11.1.0",
-    "fs-extra": "11.1.1",
+    "fs-extra": "11.2.0",
     "json-schema-to-typescript": "13.1.1",
     "jsonabc": "2.3.1",
     "semver": "7.5.4"
