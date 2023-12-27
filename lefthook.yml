@@ -2,8 +2,8 @@ pre-commit:
   parallel: false
   commands:
     prettier:
-      glob: '*.{json,md,yml}'
+      glob: '*.{json,md,yml,ts}'
       run: npx prettier --write {staged_files} && git add {staged_files}
     eslint:
       glob: 'src/*.ts'
-      run: npx eslint --fix {staged_files} && git add {staged_files}
+      run: npx oxlint --fix {staged_files} && git add {staged_files}

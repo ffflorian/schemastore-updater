@@ -348,7 +348,7 @@ This package contains type definitions for ${schemaName}.
 ## Usage
 
 \`\`\`ts
-import * as ${schemaName.toLowerCase().replace(/[\.-]/g, '_')} from '@schemastore/${schemaName.toLowerCase()}';
+import * as ${schemaName.toLowerCase().replace(/[.-]/g, '_')} from '@schemastore/${schemaName.toLowerCase()}';
 \`\`\`
 
 ## Note
