@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowUnusedLabels": true,
+    "alwaysStrict": false,
+    "declaration": false,
+    "forceConsistentCasingInFileNames": false,
+    "noEmit": true,
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "rootDir": "schemas",
+    "sourceMap": false,
+    "strict": false,
+    "strictFunctionTypes": false
+  },
+  "exclude": ["dist", "node_modules", "src", "temp"],
+  "extends": "./tsconfig.json"
+}

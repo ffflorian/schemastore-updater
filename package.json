@@ -66,7 +66,7 @@
     "lint:ts": "oxlint --ignore-path .gitignore src/",
     "prettier": "prettier \"*.{json,md,yml}\"",
     "start": "cross-env NODE_DEBUG='schemastore-updater/*' ts-node src/cli.ts",
-    "test": "exit 0",
+    "test": "tsc -p tsconfig.schemas.json",
     "update": "yarn start update"
   },
   "version": "2.0.0"
