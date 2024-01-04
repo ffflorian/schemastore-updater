@@ -15,7 +15,7 @@ export type Deployment = string | DeploymentProjects;
  */
 export type DeploymentPermissions = Permission[];
 /**
- * Builds and deployments are normally run on the Bamboo agent's native operating system
+ * Builds and deployments are normally run on the Bamboo agent’s native operating system
  */
 export type Docker =
   | string
@@ -25,7 +25,6 @@ export type Docker =
         [k: string]: unknown | undefined;
       };
       "use-default-volumes"?: boolean;
-      "docker-run-arguments"?: string[];
       [k: string]: unknown | undefined;
     };
 /**
@@ -53,7 +52,36 @@ export type Events =
   | "job-queue-timeout"
   | "job-queued-without-capable-agents";
 export type PlanPermissions = Permission[];
-export type Triggers = (Polling | Cron | Remote | string)[];
+export type Triggers = (
+  | (
+      | number
+      | {
+          period?: number;
+          [k: string]: unknown | undefined;
+        }
+    )
+  | (
+      | string
+      | {
+          expression?: string;
+          [k: string]: unknown | undefined;
+        }
+    )
+  | (
+      | "remote"
+      | {
+          remote?: string;
+          [k: string]: unknown | undefined;
+        }
+      | {
+          remote?: {
+            ip?: string;
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+    )
+)[];
 export type PredefinedTask = "inject-variables" | "clean" | "checkout" | "artifact-download";
 export type Script =
   | string
@@ -76,7 +104,7 @@ export interface BambooCISpecification {
    * An environment represents the servers or groups of servers where the software release has been deployed to, and the tasks that are needed for the deployment to work smoothly
    */
   environments?: string[];
-  labels?: string[];
+  labels?: string;
   notifications?: {
     recipients?: (
       | string
@@ -100,46 +128,6 @@ export interface BambooCISpecification {
    * You can define how releases should be named when they are created by Bamboo
    */
   "release-naming"?: ReleaseNaming | string;
-  repositories?: (
-    | string
-    | {
-        /**
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "[a-zA-Z0-9_]".
-         */
-        [k: string]: {
-          scope?: "project" | "global";
-          type?: string;
-          slug?: string;
-          url?: string;
-          branch?: string;
-          viewer?: string;
-          "ssh-key"?: string;
-          "ssh-key-passphrase"?: string;
-          username?: string;
-          password?: string;
-          "shared-credentials"?: string;
-          lfs?: boolean;
-          "use-shallow-clones"?: boolean;
-          submodules?: boolean;
-          "change-detection"?: {
-            "quiet-period"?: {
-              "quiet-period-seconds"?: number;
-              "max-retries"?: number;
-              [k: string]: unknown | undefined;
-            };
-            "exclude-changeset-pattern"?: string;
-            "file-filter-type"?: string;
-            "file-filter-pattern"?: string;
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        };
-      }
-  )[];
-  /**
-   * Stages group jobs to individual steps within a plan's build process.
-   */
   stages?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -150,10 +138,7 @@ export interface BambooCISpecification {
   triggers?: Triggers;
   variables?: KeyValue;
   version?: number;
-  other?: {
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: JobUndefined;
+  [k: string]: Job | undefined;
 }
 /**
  * Plan permissions allow a user to control access to the functions of the build plan.
@@ -192,7 +177,7 @@ export interface ReleaseNaming {
   [k: string]: unknown | undefined;
 }
 /**
- * Stages group jobs to individual steps within a plan's build process.
+ * Stages group jobs to individual steps within a plan’s build process.
  */
 export interface Stage {
   /**
@@ -205,43 +190,8 @@ export interface Stage {
   final?: boolean;
   jobs?: string[];
 }
-export interface Polling {
-  polling?:
-    | number
-    | {
-        period?: number;
-        conditions?: {
-          /**
-           * This interface was referenced by `undefined`'s JSON-Schema definition
-           * via the `patternProperty` "[a-zA-Z0-9\s+_-]".
-           */
-          [k: string]: {
-            [k: string]: boolean | undefined;
-          };
-        }[];
-      };
-}
 /**
- * Execute deployment by schedule.
- */
-export interface Cron {
-  cron?:
-    | string
-    | {
-        expression?: string;
-        [k: string]: unknown | undefined;
-      };
-}
-export interface Remote {
-  remote?:
-    | string
-    | {
-        ip?: string;
-        [k: string]: unknown | undefined;
-      };
-}
-/**
- * Variables can be used to make values available when building plans in Bamboo.
+ * Variables specific to a deployment environment
  */
 export interface KeyValue {
   /**

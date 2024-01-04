@@ -13,8 +13,6 @@ export type Image = ImageName[] | ImageName;
 export type ImageName =
   | "macOS"
   | "macOS-Mojave"
-  | "macos-bigsur"
-  | "macos-monterey"
   | "Previous macOS"
   | "Previous macOS-Mojave"
   | "Ubuntu"
@@ -35,8 +33,6 @@ export type ImageName =
   | "Previous Visual Studio 2013"
   | "Previous Visual Studio 2015"
   | "Previous Visual Studio 2017"
-  | "Previous Visual Studio 2019"
-  | "Previous Visual Studio 2022"
   | "zhaw18"
   | "WMF 5";
 export type Command =
@@ -59,8 +55,31 @@ export type Command =
   | {
       sh?: string;
     };
-export type PossiblySecretString = (string | number | SecretString) | undefined;
-export type JobScalars = {
+export type PossiblySecretString =
+  | (
+      | string
+      | number
+      | {
+          /**
+           * This should have been encrypted by the same user account to which the project belongs
+           */
+          secure?: string;
+        }
+    )
+  | undefined;
+export type JobScalars = JobScalars1 & {
+  image?: Image;
+  /**
+   * Build platform, i.e. x86, x64, Any CPU. This setting is optional
+   */
+  platform?: Platform | Platform[];
+  /**
+   * Build Configuration, i.e. Debug, Release, etc.
+   */
+  configuration?: Configuration | Configuration[];
+  [k: string]: unknown | undefined;
+};
+export type JobScalars1 = {
   [k: string]: unknown | undefined;
 } & {
   [k: string]: unknown | undefined;
@@ -77,7 +96,19 @@ export interface Job {
    * Version format
    */
   version?: string;
-  branches?: BranchOptions;
+  /**
+   * Branches to build
+   */
+  branches?: {
+    /**
+     * Whitelist
+     */
+    only?: string[];
+    /**
+     * Blacklist
+     */
+    except?: string[];
+  };
   /**
    * Do not build on tags (GitHub and BitBucket)
    */
@@ -96,7 +127,9 @@ export interface Job {
    * Maximum number of concurrent jobs for the project
    */
   max_jobs?: number;
-  notifications?: Notification[];
+  notifications?: {
+    [k: string]: unknown | undefined;
+  }[];
   image?: Image;
   /**
    * Scripts that are called at very beginning, before repo cloning
@@ -114,12 +147,47 @@ export interface Job {
    * Set git clone depth
    */
   clone_depth?: number;
-  hosts?: HostOptions;
+  /**
+   * Setting up etc\hosts file
+   */
+  hosts?: {
+    [k: string]:
+      | (
+          | {
+              [k: string]: unknown | undefined;
+            }
+          | (undefined & string)
+          | undefined
+        )
+      | undefined;
+  };
   /**
    * Environment variables
    */
-  environment?: EnvironmentOptions | EnvironmentVariableHash1;
-  matrix?: MatrixOptions;
+  environment?:
+    | {
+        global?: EnvVarHash;
+        /**
+         * an array of environment variables, each member of which is one dimension in the build matrix calculation
+         */
+        matrix?: EnvVarHash1[];
+        [k: string]: unknown | undefined;
+      }
+    | EnvVarHash1;
+  matrix?: {
+    /**
+     * Set this flag to immediately finish build once one of the jobs fails
+     */
+    fast_finish?: boolean;
+    /**
+     * This is how to allow failing jobs in the matrix
+     */
+    allow_failures?: JobScalars[];
+    /**
+     * Exclude configuration from the matrix. Works similarly to 'allow_failures' but build not even being started for excluded combination.
+     */
+    exclude?: Job[];
+  };
   /**
    * Build cache to preserve files/folders between builds
    */
@@ -132,15 +200,12 @@ export interface Job {
     | "iis"
     | "mongodb"
     | "msmq"
-    | "mssql"
     | "mssql2008r2sp2"
     | "mssql2008r2sp2rs"
     | "mssql2012sp1"
     | "mssql2012sp1rs"
     | "mssql2014"
     | "mssql2014rs"
-    | "mssql2016"
-    | "mssql2017"
     | "mysql"
     | "postgresql"
     | "postgresql93"
@@ -148,16 +213,33 @@ export interface Job {
     | "postgresql95"
     | "postgresql96"
     | "postgresql10"
-    | "postgresql11"
-    | "postgresql12"
-    | "postgresql13"
   )[];
   /**
    * Scripts that run after cloning repository
    */
   install?: Command[];
-  assembly_info?: AssemblyOptions;
-  nuget?: NuGetOptions;
+  /**
+   * Enable patching of AssemblyInfo.* files
+   */
+  assembly_info?: {
+    patch?: boolean;
+    file?: string;
+    assembly_version?: string;
+    assembly_file_version?: string;
+    assembly_informational_version?: string;
+  };
+  /**
+   * Automatically register private account and/or project AppVeyor NuGet feeds
+   */
+  nuget?: {
+    account_feed?: boolean;
+    project_feed?: boolean;
+    /**
+     * Disable publishing of .nupkg artifacts to account/project feeds for pull request builds
+     */
+    disable_publish_on_pr?: boolean;
+    [k: string]: unknown | undefined;
+  };
   /**
    * Build platform, i.e. x86, x64, Any CPU. This setting is optional
    */
@@ -166,7 +248,46 @@ export interface Job {
    * Build Configuration, i.e. Debug, Release, etc.
    */
   configuration?: Configuration | Configuration[];
-  build?: false | BuildOptions;
+  build?:
+    | false
+    | {
+        /**
+         * Enable MSBuild parallel builds
+         */
+        parallel?: boolean;
+        /**
+         * Path to Visual Studio solution or project
+         */
+        project?: string;
+        /**
+         * Package Web Application Projects (WAP) for Web Deploy
+         */
+        publish_wap?: boolean;
+        /**
+         * Package Web Application Projects (WAP) for XCopy deployment
+         */
+        publish_wap_xcopy?: boolean;
+        /**
+         * Package Azure Cloud Service projects and push to artifacts
+         */
+        publish_azure?: boolean;
+        /**
+         * Package projects with .nuspec files and push to artifacts
+         */
+        publish_nuget?: boolean;
+        /**
+         * Generate and publish NuGet symbol packages
+         */
+        publish_nuget_symbols?: boolean;
+        /**
+         * Add -IncludeReferencedProjects option while packaging NuGet artifacts
+         */
+        include_nuget_references?: boolean;
+        /**
+         * MSBuild verbosity level
+         */
+        verbosity?: "quiet" | "minimal" | "normal" | "detailed";
+      };
   /**
    * Scripts to run before build
    */
@@ -187,7 +308,20 @@ export interface Job {
    * Scripts to run before tests
    */
   before_test?: Command[];
-  test?: false | TestOptions;
+  test?:
+    | false
+    | {
+        assemblies?: {
+          only?: string[];
+          except?: string[];
+        };
+        categories?:
+          | {
+              only?: string[];
+              except?: string[];
+            }
+          | (string | string[])[];
+      };
   /**
    * To run your custom scripts instead of automatic tests
    */
@@ -196,12 +330,19 @@ export interface Job {
    * Scripts to run after tests
    */
   after_test?: Command[];
-  artifacts?: ArtifactOptions[];
+  artifacts?: {
+    path: string;
+    name?: string;
+  }[];
   /**
    * Scripts to run before deployment
    */
   before_deploy?: Command[];
-  deploy?: "off" | DeploymentOptions[];
+  deploy?:
+    | "off"
+    | {
+        [k: string]: unknown | undefined;
+      }[];
   /**
    * To run your custom scripts instead of provider deployments
    */
@@ -223,19 +364,6 @@ export interface Job {
    */
   on_finish?: Command[];
   [k: string]: unknown | undefined;
-}
-/**
- * Branches to build
- */
-export interface BranchOptions {
-  /**
-   * Whitelist
-   */
-  only?: string[];
-  /**
-   * Blacklist
-   */
-  except?: string[];
 }
 /**
  * Skipping commits with particular message or from specific user
@@ -271,159 +399,12 @@ export interface CommitFilter1 {
    */
   files?: string[];
 }
-export interface Notification {
-  [k: string]: unknown | undefined;
-}
-/**
- * Setting up etc\hosts file
- */
-export interface HostOptions {
-  [k: string]:
-    | (
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | (undefined & string)
-        | undefined
-      )
-    | undefined;
-}
-export interface EnvironmentOptions {
-  global?: EnvironmentVariableHash;
-  /**
-   * an array of environment variables, each member of which is one dimension in the build matrix calculation
-   */
-  matrix?: EnvironmentVariableHash1[];
-  [k: string]: unknown | undefined;
-}
 /**
  * variables defined here are no different than those defined at top level of 'environment' node
  */
-export interface EnvironmentVariableHash {
-  [k: string]: PossiblySecretStringUndefined;
+export interface EnvVarHash {
+  [k: string]: PossiblySecretString | undefined;
 }
-export interface SecretString {
-  /**
-   * This should have been encrypted by the same user account to which the project belongs
-   */
-  secure?: string;
-}
-export interface EnvironmentVariableHash1 {
-  [k: string]: PossiblySecretStringUndefined;
-}
-export interface MatrixOptions {
-  /**
-   * Set this flag to immediately finish build once one of the jobs fails
-   */
-  fast_finish?: boolean;
-  /**
-   * This is how to allow failing jobs in the matrix
-   */
-  allow_failures?: JobScalars[];
-  /**
-   * Exclude configuration from the matrix. Works similarly to 'allow_failures' but build not even being started for excluded combination.
-   */
-  exclude?: Job[];
-}
-/**
- * Enable patching of AssemblyInfo.* files
- */
-export interface AssemblyOptions {
-  patch?: boolean;
-  file?: string;
-  assembly_version?: string;
-  assembly_file_version?: string;
-  assembly_informational_version?: string;
-}
-/**
- * Automatically register private account and/or project AppVeyor NuGet feeds
- */
-export interface NuGetOptions {
-  account_feed?: boolean;
-  project_feed?: boolean;
-  /**
-   * Disable publishing of .nupkg artifacts to account/project feeds for pull request builds
-   */
-  disable_publish_on_pr?: boolean;
-  [k: string]: unknown | undefined;
-}
-export interface BuildOptions {
-  /**
-   * Enable MSBuild parallel builds
-   */
-  parallel?: boolean;
-  /**
-   * Path to Visual Studio solution or project
-   */
-  project?: string;
-  /**
-   * Package Web Application Projects (WAP) for Web Deploy
-   */
-  publish_wap?: boolean;
-  /**
-   * Package Web Application Projects (WAP) for XCopy deployment
-   */
-  publish_wap_xcopy?: boolean;
-  /**
-   * Package Web Applications for AWS Elastic Beanstalk deployment
-   */
-  publish_wap_beanstalk?: boolean;
-  /**
-   * Package Web Applications for Octopus deployment
-   */
-  publish_wap_octopus?: boolean;
-  /**
-   * Package Azure WebJobs for Zip Push deployment
-   */
-  publish_azure_webjob?: boolean;
-  /**
-   * Package Azure Cloud Service projects and push to artifacts
-   */
-  publish_azure?: boolean;
-  /**
-   * Package ASP.NET Core projects
-   */
-  publish_aspnet_core?: boolean;
-  /**
-   * Package .NET Core console projects
-   */
-  publish_core_console?: boolean;
-  /**
-   * Package projects with .nuspec files and push to artifacts
-   */
-  publish_nuget?: boolean;
-  /**
-   * Generate and publish NuGet symbol packages
-   */
-  publish_nuget_symbols?: boolean;
-  /**
-   * Add -IncludeReferencedProjects option while packaging NuGet artifacts
-   */
-  include_nuget_references?: boolean;
-  /**
-   * MSBuild verbosity level
-   */
-  verbosity?: "quiet" | "minimal" | "normal" | "detailed";
-}
-/**
- * To run tests again only selected assemblies and/or categories
- */
-export interface TestOptions {
-  assemblies?: AssemblyOptions1;
-  categories?: CategoryOptions | (string | string[])[];
-}
-export interface AssemblyOptions1 {
-  only?: string[];
-  except?: string[];
-}
-export interface CategoryOptions {
-  only?: string[];
-  except?: string[];
-}
-export interface ArtifactOptions {
-  path: string;
-  name?: string;
-}
-export interface DeploymentOptions {
-  [k: string]: unknown | undefined;
+export interface EnvVarHash1 {
+  [k: string]: PossiblySecretString | undefined;
 }

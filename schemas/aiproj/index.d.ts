@@ -6,208 +6,207 @@
  */
 
 /**
- * Black box and autocheck options
- */
-export type BlackBoxOptions = {
-  AdditionalHttpHeaders?: HttpHeaders;
-  Authentication?: AuthenticationOptions;
-  /**
-   * Search mode
-   */
-  Level?: "None" | "Fast" | "Full" | "Normal";
-  ProxySettings?: ProxyOptions;
-  /**
-   * Autocheck vulnerabilities after scanning
-   */
-  RunAutocheckAfterScan?: boolean;
-  /**
-   * Scan scope
-   */
-  ScanScope?: "Domain" | "Folder" | "Path";
-  /**
-   * Website address
-   */
-  Site?: string;
-} | null;
-/**
- * Authentication options
- */
-export type AuthenticationOptions = AuthenticationOptions1 & AuthenticationOptions2;
-export type AuthenticationOptions1 =
-  | {
-      Type: "RawCookie";
-      Cookie: {
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
-    }
-  | {
-      Type: "Form";
-      Form: {
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
-    }
-  | {
-      Type: "Http";
-      Http: {
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
-    }
-  | {
-      Type: "None";
-      [k: string]: unknown;
-    }
-  | null;
-export type AuthenticationOptions2 =
-  | (
-      | {
-          Type: "RawCookie";
-          Cookie: {
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
-      | {
-          Type: "Form";
-          Form: {
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
-      | {
-          Type: "Http";
-          Http: {
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        }
-      | {
-          Type: "None";
-          [k: string]: unknown;
-        }
-      | null
-    )
-  | (null &
-      (
-        | {
-            Type: "RawCookie";
-            Cookie: {
-              [k: string]: unknown;
-            };
-            [k: string]: unknown;
-          }
-        | {
-            Type: "Form";
-            Form: {
-              [k: string]: unknown;
-            };
-            [k: string]: unknown;
-          }
-        | {
-            Type: "Http";
-            Http: {
-              [k: string]: unknown;
-            };
-            [k: string]: unknown;
-          }
-        | {
-            Type: "None";
-            [k: string]: unknown;
-          }
-        | null
-      ));
-/**
- * Proxy server settings
- */
-export type ProxyOptions = {
-  /**
-   * Enabled
-   */
-  Enabled?: boolean;
-  /**
-   * Address
-   */
-  Host?: string | null;
-  /**
-   * User
-   */
-  Login?: string | null;
-  /**
-   * Password
-   */
-  Password?: string | null;
-  /**
-   * Port
-   */
-  Port?: number;
-  /**
-   * Type of proxy
-   */
-  Type?: "Http" | "Socks4" | "Socks5";
-} | null;
-/**
- * Vulnerable components scan options
- */
-export type VulnerabilityScanOptions = {
-  /**
-   * Use custom yara rules
-   */
-  UseCustomYaraRules?: boolean;
-} | null;
-/**
- * .NET scan options
- */
-export type NetScanOptions = {
-  /**
-   * Type of application
-   */
-  ProjectType?: "None" | "Solution" | "WebSite";
-  /**
-   * Path to a solution or project
-   */
-  SolutionFile?: string | null;
-} | null;
-/**
- * Java scan options
- */
-export type JavaScanOptions = {
-  /**
-   * JVM start options
-   */
-  Parameters?: string | null;
-  /**
-   * Unpack custom JAR files
-   */
-  UnpackUserPackages?: boolean;
-  /**
-   * Prefixes of custom packages
-   */
-  UserPackagePrefixes?: string | null;
-  /**
-   * JDK version
-   */
-  Version?: "v1_8" | "v1_11";
-} | null;
-
-/**
  * Settings for project analysis by the Application Inspector
  */
 export interface Aiproj {
   $schema?: string;
-  BlackBoxSettings?: BlackBoxOptions;
-  ComponentsSettings?: VulnerabilityScanOptions;
+  /**
+   * Black box and autocheck options
+   */
+  BlackBoxSettings?: {
+    /**
+     * Dictionary of additional HTTP headers
+     */
+    AdditionalHttpHeaders?: {
+      [k: string]: string | undefined;
+    };
+    /**
+     * Authentication options
+     */
+    Authentication?: (
+      | {
+          Type: "RawCookie";
+          Cookie: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      | {
+          Type: "Form";
+          Form: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      | {
+          Type: "Http";
+          Http: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      | {
+          Type: "None";
+          [k: string]: unknown | undefined;
+        }
+      | null
+    ) &
+      (
+        | (
+            | {
+                Type: "RawCookie";
+                Cookie: {
+                  [k: string]: unknown | undefined;
+                };
+                [k: string]: unknown | undefined;
+              }
+            | {
+                Type: "Form";
+                Form: {
+                  [k: string]: unknown | undefined;
+                };
+                [k: string]: unknown | undefined;
+              }
+            | {
+                Type: "Http";
+                Http: {
+                  [k: string]: unknown | undefined;
+                };
+                [k: string]: unknown | undefined;
+              }
+            | {
+                Type: "None";
+                [k: string]: unknown | undefined;
+              }
+            | null
+          )
+        | (null &
+            (
+              | {
+                  Type: "RawCookie";
+                  Cookie: {
+                    [k: string]: unknown | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                }
+              | {
+                  Type: "Form";
+                  Form: {
+                    [k: string]: unknown | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                }
+              | {
+                  Type: "Http";
+                  Http: {
+                    [k: string]: unknown | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                }
+              | {
+                  Type: "None";
+                  [k: string]: unknown | undefined;
+                }
+              | null
+            ))
+      );
+    /**
+     * Search mode
+     */
+    Level?: "None" | "Fast" | "Full" | "Normal";
+    /**
+     * Proxy server settings
+     */
+    ProxySettings?: {
+      /**
+       * Enabled
+       */
+      Enabled?: boolean;
+      /**
+       * Address
+       */
+      Host?: string | null;
+      /**
+       * User
+       */
+      Login?: string | null;
+      /**
+       * Password
+       */
+      Password?: string | null;
+      /**
+       * Port
+       */
+      Port?: number;
+      /**
+       * Type of proxy
+       */
+      Type?: "Http" | "Socks4" | "Socks5";
+    } | null;
+    /**
+     * Autocheck vulnerabilities after scanning
+     */
+    RunAutocheckAfterScan?: boolean;
+    /**
+     * Scan scope
+     */
+    ScanScope?: "Domain" | "Folder" | "Path";
+    /**
+     * Website address
+     */
+    Site?: string;
+  } | null;
+  /**
+   * Vulnerable components scan options
+   */
+  ComponentsSettings?: {
+    /**
+     * Use custom yara rules
+     */
+    UseCustomYaraRules?: boolean;
+  } | null;
   /**
    * Custom kernel startup parameters
    */
   CustomParameters?: string | null;
-  DotNetSettings?: NetScanOptions;
+  /**
+   * .NET scan options
+   */
+  DotNetSettings?: {
+    /**
+     * Type of application
+     */
+    ProjectType?: "None" | "Solution" | "WebSite";
+    /**
+     * Path to a solution or project
+     */
+    SolutionFile?: string | null;
+  } | null;
   /**
    * Download dependencies
    */
   DownloadDependencies?: boolean;
-  JavaSettings?: JavaScanOptions;
+  /**
+   * Java scan options
+   */
+  JavaSettings?: {
+    /**
+     * JVM start options
+     */
+    Parameters?: string | null;
+    /**
+     * Unpack custom JAR files
+     */
+    UnpackUserPackages?: boolean;
+    /**
+     * Prefixes of custom packages
+     */
+    UserPackagePrefixes?: string | null;
+    /**
+     * JDK version
+     */
+    Version?: "v1_8" | "v1_11";
+  } | null;
   /**
    * Active scanning language
    */
@@ -255,10 +254,4 @@ export interface Aiproj {
    * Check for compliance with the security policy
    */
   UseSecurityPolicies?: boolean;
-}
-/**
- * Dictionary of additional HTTP headers
- */
-export interface HttpHeaders {
-  [k: string]: string;
 }

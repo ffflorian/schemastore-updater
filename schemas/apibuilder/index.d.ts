@@ -17,8 +17,8 @@ export interface APIBuilderSchema {
    * The human readable name of this service. Used for display, and as the basis for generating a unique key for URL.
    */
   name: string;
-  apidoc?: APIDocumentation;
-  info?: ContactInformation;
+  apidoc?: Apidoc;
+  info?: Info;
   /**
    * Specifies the namespace for this service. Namespace is primarily used when other services import definitions from your service and in the code generators when defining things like package names. If not specified, we will automatically generate a namespace based on [organization namespace].[formatted service name].[major version number]. Note that by default API Builder includes the major version number in the package name which allows service authors and clients to interact with multiple versions of the service where changes have been made in a non backwards compatible way.
    */
@@ -39,7 +39,7 @@ export interface APIBuilderSchema {
    * JSON Array defining any HTTP Headers that the service understands or expects.
    */
   headers?: Header[];
-  enums?: Enumeration;
+  enums?: Enum;
   interfaces?: Interface;
   models?: Model;
   unions?: Union;
@@ -53,7 +53,7 @@ export interface APIBuilderSchema {
 /**
  * Optionally specify the specific version of API Builder for which your service is written. If not provided, we automatically default to the current production version.
  */
-export interface APIDocumentation {
+export interface Apidoc {
   /**
    * Specifies the version of the API Builder specification that this file is written for. The latest version can be found by visiting /apicollective/apibuilder-spec.
    */
@@ -62,14 +62,14 @@ export interface APIDocumentation {
 /**
  * Optionally specify additional metadata about this service (e.g. contact info, license).
  */
-export interface ContactInformation {
-  contact?: ContactInformation1;
+export interface Info {
+  contact?: Contact;
   license?: License;
 }
 /**
  * Specifies contact information for this service.
  */
-export interface ContactInformation1 {
+export interface Contact {
   /**
    * Identifying name of the contact person/organization
    */
@@ -129,26 +129,25 @@ export interface Header {
    * JSON Array defining additional meta data about this header for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
 }
 export interface Attribute {
   /**
    * the name and identifier of the attribute.
    */
   name: string;
-  value: JsonObject;
+  /**
+   * a JSON object that is usually utilized by a downstream Generator.
+   */
+  value: {
+    [k: string]: unknown | undefined;
+  };
   description?: string;
-}
-/**
- * a JSON object that is usually utilized by a downstream Generator.
- */
-export interface JsonObject {
-  [k: string]: unknown | undefined;
 }
 /**
  * JSON Object that indicates that this object is deprecated.
  */
-export interface JsonObject1 {
+export interface Deprecation {
   /**
    * Optional, but recommended to contain notes for what the user is supposed to do now that this property is deprecated. Supports GFM.
    */
@@ -157,35 +156,34 @@ export interface JsonObject1 {
 /**
  * JSON object defining all of the enums in this API. The key of each object is the enum name.
  */
-export interface Enumeration {
-  [k: string]: Name;
+export interface Enum {
+  /**
+   * The name of the enum. Names must be alphanumeric and must start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, models, or unions types.
+   *
+   * This interface was referenced by `Enum`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-zA-Z0-9_]*$".
+   */
+  [k: string]: {
+    /**
+     * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
+     */
+    plural?: string;
+    /**
+     * Optional longer description for this enum.
+     */
+    description?: string;
+    /**
+     * JSON Array of EnumValue objects. Each element defines a valid value and an optional description.
+     */
+    values: Enumvalues[];
+    /**
+     * JSON Array defining additional meta data about this enum for use by generators.
+     */
+    attributes?: Attribute[];
+    deprecation?: Deprecation;
+  };
 }
-/**
- * The name of the enum. Names must be alphanumeric and must start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, models, or unions types.
- *
- * This interface was referenced by `Enumeration`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
- */
-export interface Name {
-  /**
-   * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
-   */
-  plural?: string;
-  /**
-   * Optional longer description for this enum.
-   */
-  description?: string;
-  /**
-   * JSON Array of EnumValue objects. Each element defines a valid value and an optional description.
-   */
-  values: Evaluates[];
-  /**
-   * JSON Array defining additional meta data about this enum for use by generators.
-   */
-  attributes?: Attribute[];
-  deprecation?: JsonObject1;
-}
-export interface Evaluates {
+export interface Enumvalues {
   /**
    * The name of the value. Names must start with a letter.
    */
@@ -202,35 +200,34 @@ export interface Evaluates {
    * JSON Array defining additional meta data about this enum value for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
 }
 export interface Interface {
-  [k: string]: Name1;
-}
-/**
- * Name specifies the name of the interface. Names must be alphanumeric and start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, or models. Note you may define an interface and a union of the same name.
- *
- * This interface was referenced by `Interface`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
- */
-export interface Name1 {
   /**
-   * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
+   * Name specifies the name of the interface. Names must be alphanumeric and start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, or models. Note you may define an interface and a union of the same name.
+   *
+   * This interface was referenced by `Interface`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-zA-Z0-9_]*$".
    */
-  plural?: string;
-  /**
-   * Optional description for what this model provides. Supports GFM.
-   */
-  description?: string;
-  /**
-   * JSON Array of 0 or more Fields.
-   */
-  fields?: Field[];
-  /**
-   * JSON Array defining additional meta data about this model for use by generators.
-   */
-  attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  [k: string]: {
+    /**
+     * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
+     */
+    plural?: string;
+    /**
+     * Optional description for what this model provides. Supports GFM.
+     */
+    description?: string;
+    /**
+     * JSON Array of 0 or more Fields.
+     */
+    fields?: Field[];
+    /**
+     * JSON Array defining additional meta data about this model for use by generators.
+     */
+    attributes?: Attribute[];
+    deprecation?: Deprecation;
+  };
 }
 export interface Field {
   /**
@@ -271,7 +268,7 @@ export interface Field {
    * JSON Array defining additional meta data about this field for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
   /**
    * JSON Array of type string where each value indicates the name of a declared annotation (optional),
    */
@@ -281,29 +278,28 @@ export interface Field {
  * JSON object defining all of the models in this API. The key of each object is the model name.
  */
 export interface Model {
-  [k: string]: Model1;
-}
-/**
- * This interface was referenced by `Model`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
- */
-export interface Model1 {
   /**
-   * Description for what this model provides.
+   * This interface was referenced by `Model`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-zA-Z0-9_]*$".
    */
-  description?: string;
-  /**
-   * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
-   */
-  plural?: string;
-  /**
-   * JSON Array of type string where each value indicates the name of a declared interface
-   */
-  interfaces?: string[];
-  fields?: Field[];
-  attributes?: Attribute[];
-  deprecation?: JsonObject1;
-  [k: string]: unknown | undefined;
+  [k: string]: {
+    /**
+     * Description for what this model provides.
+     */
+    description?: string;
+    /**
+     * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
+     */
+    plural?: string;
+    /**
+     * JSON Array of type string where each value indicates the name of a declared interface
+     */
+    interfaces?: string[];
+    fields?: Field[];
+    attributes?: Attribute[];
+    deprecation?: Deprecation;
+    [k: string]: unknown | undefined;
+  };
 }
 export interface Union {
   /**
@@ -332,15 +328,15 @@ export interface Union {
     /**
      * Specifies the individual types that are part of this union type.
      */
-    types: UnionType[];
+    types: Uniontype[];
     /**
      * JSON Array defining additional meta data about this union for use by generators.
      */
     attributes?: Attribute[];
-    deprecation?: JsonObject1;
+    deprecation?: Deprecation;
   };
 }
-export interface UnionType {
+export interface Uniontype {
   /**
    * Specifies the type to include in this union type. Acceptable values include the name of either an enum, a model, or a (primitive type).
    * description optional description for what this type provides. Supports GFM.
@@ -359,38 +355,37 @@ export interface UnionType {
    * JSON Array defining additional meta data about this union type for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
 }
 /**
  * JSON object defining all of the resources in this API. The key of each object is the name of a type that this resource represents. The type must be the name of a model or an enum.
  */
 export interface Resource {
-  [k: string]: Name2;
-}
-/**
- * The name of the model or enum that this resource represents
- *
- * This interface was referenced by `Resource`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_.]*$".
- */
-export interface Name2 {
   /**
-   * Optional path where this resource is located. If not provided, defaults to the plural of the typeName, with some assumptions of formatting for web (e.g. lower case, dash separated). Path parameters can be specified by prefixing a path element with ':'. For example, a path of '/:guid' would imply that all operations for this path will require a parameter named 'guid' of type 'string'
+   * The name of the model or enum that this resource represents
+   *
+   * This interface was referenced by `Resource`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-zA-Z0-9_.]*$".
    */
-  path?: string;
-  /**
-   * Optional description for what this resource provides. Supports GFM.
-   */
-  description?: string;
-  /**
-   * One or more operations is required.
-   */
-  operations: Operation[];
-  /**
-   * JSON Array defining additional meta data about this resource for use by generators.
-   */
-  attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  [k: string]: {
+    /**
+     * Optional path where this resource is located. If not provided, defaults to the plural of the typeName, with some assumptions of formatting for web (e.g. lower case, dash separated). Path parameters can be specified by prefixing a path element with ':'. For example, a path of '/:guid' would imply that all operations for this path will require a parameter named 'guid' of type 'string'
+     */
+    path?: string;
+    /**
+     * Optional description for what this resource provides. Supports GFM.
+     */
+    description?: string;
+    /**
+     * One or more operations is required.
+     */
+    operations: Operation[];
+    /**
+     * JSON Array defining additional meta data about this resource for use by generators.
+     */
+    attributes?: Attribute[];
+    deprecation?: Deprecation;
+  };
 }
 export interface Operation {
   /**
@@ -415,7 +410,7 @@ export interface Operation {
    * JSON array defining additional meta data about this operation for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
 }
 /**
  * Optional specification for the type of the body of this request. For all operations that support bodies (e.g. POST, PUT, PATCH), allows you to specify the type of the body.
@@ -433,7 +428,7 @@ export interface Body {
    * JSON Array defining additional meta data about this body for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
 }
 export interface Parameter {
   /**
@@ -478,56 +473,54 @@ export interface Parameter {
    * JSON array defining additional meta data about this parameter for use by generators.
    */
   attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  deprecation?: Deprecation;
 }
 /**
  * Optional JSON Object of HTTP Response Code to Response. If not provided, an HTTP NoContent response is assumed. Only responses for HTTP status codes that are interesting should be documented.
  */
 export interface Response {
-  [k: string]: HTTPStatus;
-}
-/**
- * A valid HTTP status code for this response (e.g. 200). Only status codes that have interesting return types should be documented. You can also specify an HTTP status code of 'default' to map to all other non documented types. This is useful to capture a generic error type that would be returned for non documented response codes.
- *
- * There are a few conventions enforced:
- * - HTTP Response codes of 5xx cannot be explicitly specified and are handled automatically to ensure consistent behavior in generated client libraries.
- * - HTTP Response codes of 204 and 304 indicate that no content is returned, so they must use a type of unit.
- *
- * This interface was referenced by `Response`'s JSON-Schema definition
- * via the `patternProperty` "^[0-9]*$".
- */
-export interface HTTPStatus {
   /**
-   * Specifies the type of this response. Acceptable values include the name of either an enum, a model, or a (primitive type). To specify a List, the type name can be wrapped with "[]". For example, to specify that the type is a collection of strings, use "[string]". To specify a Map, the type name can be prefixed with "map[type]". For example, to specify that the type is a Map of string to long, use "map[long]". Note that for map, the keys must be strings (per the JSON specification).
+   * A valid HTTP status code for this response (e.g. 200). Only status codes that have interesting return types should be documented. You can also specify an HTTP status code of 'default' to map to all other non documented types. This is useful to capture a generic error type that would be returned for non documented response codes.
+   *
+   * There are a few conventions enforced:
+   * - HTTP Response codes of 5xx cannot be explicitly specified and are handled automatically to ensure consistent behavior in generated client libraries.
+   * - HTTP Response codes of 204 and 304 indicate that no content is returned, so they must use a type of unit.
+   *
+   * This interface was referenced by `Response`'s JSON-Schema definition
+   * via the `patternProperty` "^[0-9]*$".
    */
-  type: string;
-  headers?: Header[];
-  /**
-   * Optional description for what this response provides. Supports GFM.
-   */
-  description?: string;
-  /**
-   * JSON Array defining additional meta data about this service. Attributes are used to add custom extensions to API Builder and are typically used by generators to enable advanced code generation.
-   */
-  attributes?: Attribute[];
-  deprecation?: JsonObject1;
+  [k: string]: {
+    /**
+     * Specifies the type of this response. Acceptable values include the name of either an enum, a model, or a (primitive type). To specify a List, the type name can be wrapped with "[]". For example, to specify that the type is a collection of strings, use "[string]". To specify a Map, the type name can be prefixed with "map[type]". For example, to specify that the type is a Map of string to long, use "map[long]". Note that for map, the keys must be strings (per the JSON specification).
+     */
+    type: string;
+    headers?: Header[];
+    /**
+     * Optional description for what this response provides. Supports GFM.
+     */
+    description?: string;
+    /**
+     * JSON Array defining additional meta data about this service. Attributes are used to add custom extensions to API Builder and are typically used by generators to enable advanced code generation.
+     */
+    attributes?: Attribute[];
+    deprecation?: Deprecation;
+  };
 }
 /**
  * JSON object defining all of the annotations in this API. The key of each object is the annotation name.
  */
 export interface Annotation {
-  [k: string]: Annotation1;
-}
-/**
- * An annotation is just a short key that can be used to tag any field in any model of this API.
- *
- * This interface was referenced by `Annotation`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
- */
-export interface Annotation1 {
   /**
-   * Describes what the annotation is used for.
+   * An annotation is just a short key that can be used to tag any field in any model of this API.
+   *
+   * This interface was referenced by `Annotation`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-zA-Z0-9_]*$".
    */
-  description?: string;
-  deprecation?: JsonObject1;
+  [k: string]: {
+    /**
+     * Describes what the annotation is used for.
+     */
+    description?: string;
+    deprecation?: Deprecation;
+  };
 }

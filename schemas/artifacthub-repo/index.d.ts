@@ -5,43 +5,29 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface AnArtifactHubConfigFile {
+export interface ArtifactHubRepositoryMetadataFile {
   /**
-   * An identifier of the Artifact Hub repository where the packages will be published to
+   * The ID of the Artifact Hub repository where the packages will be published to (optional, but it enables verified publisher)
    */
   repositoryID?: string;
   /**
-   * Repository owners
+   * Used to claim repository ownership
    */
-  owners?: Owner[];
+  owners?: {
+    name?: string;
+    email?: string;
+  }[];
   /**
    * Packages that should not be indexed by Artifact Hub
    */
-  ignore?: Package[];
-}
-/**
- * A repository owner
- */
-export interface Owner {
-  /**
-   * A repository owner name
-   */
-  name?: string;
-  /**
-   * A repository owner email
-   */
-  email?: string;
-}
-/**
- * A package
- */
-export interface Package {
-  /**
-   * A package name
-   */
-  name: string;
-  /**
-   * Regular expression
-   */
-  version?: string;
+  ignore?: {
+    /**
+     * Exact match
+     */
+    name: string;
+    /**
+     * Regular expression (when omitted, all versions are ignored)
+     */
+    version?: string;
+  }[];
 }

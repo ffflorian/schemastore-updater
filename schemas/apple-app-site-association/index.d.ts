@@ -5,43 +5,21 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Path to open in the mobile app
- */
-export type Path = string;
-
-/**
- * An Apple Universal Link config schema
- */
-export interface AppleUniversalLinkConfig {
-  applinks: ApplicationLinks;
-  [k: string]: unknown | undefined;
-}
-/**
- * Application links
- */
-export interface ApplicationLinks {
-  /**
-   * Applications
-   */
-  apps: unknown[];
-  /**
-   * Details
-   */
-  details: Detail[];
-  [k: string]: unknown | undefined;
-}
-/**
- * A detail
- */
-export interface Detail {
-  /**
-   * An appID key or app ID prefix, followed by the bundle ID
-   */
-  appID?: string;
-  /**
-   * Paths
-   */
-  paths?: Path[];
+export interface AppleUniversalLinkAppSiteAssociation {
+  applinks: {
+    /**
+     * Must be an empty array
+     */
+    apps: [];
+    details: {
+      /**
+       * The value of the appID key is the team ID or app ID prefix, followed by the bundle ID
+       */
+      appID?: string;
+      paths?: string[];
+      [k: string]: unknown | undefined;
+    }[];
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }

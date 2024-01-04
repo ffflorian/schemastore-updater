@@ -30,39 +30,68 @@ export type AllowedHosts = string;
 
 export interface JSONSchemaASPNETCoreSAppsettingsJsonFile {
   Kestrel?: Kestrel;
-  Logging?: LoggingOptions;
+  Logging?: Logging;
   AllowedHosts?: AllowedHosts;
-  ConnectionStrings?: ConnectionStringOptions;
+  ConnectionStrings?: ConnectionStrings;
   [k: string]: unknown | undefined;
 }
 /**
  * ASP.NET Core Kestrel server configuration.
  */
 export interface Kestrel {
-  Endpoints?: Endpoints;
-  EndpointDefaults?: EndpointDefaults;
-  Certificates?: Certificates;
-  [k: string]: unknown | undefined;
-}
-/**
- * Endpoints that Kestrel listens to for network requests. Each endpoint has a name specified by its JSON property name.
- */
-export interface Endpoints {
-  [k: string]: EndpointOptionsUndefined;
-}
-/**
- * Kestrel endpoint configuration.
- */
-export interface EndpointOptions {
   /**
-   * The scheme, host name, and port the endpoint will listen on. A Url is required.
+   * Endpoints that Kestrel listens to for network requests. Each endpoint has a name specified by its JSON property name.
    */
-  Url: string;
-  Protocols?: Protocols;
-  SslProtocols?: SslProtocols;
-  Certificate?: Certificate;
-  ClientCertificateMode?: ClientCertificateMode;
-  Sni?: SNI;
+  Endpoints?: {
+    /**
+     * Kestrel endpoint configuration.
+     */
+    [k: string]:
+      | {
+          /**
+           * The scheme, host name, and port the endpoint will listen on. A Url is required.
+           */
+          Url: string;
+          Protocols?: Protocols;
+          SslProtocols?: SslProtocols;
+          Certificate?: Certificate;
+          ClientCertificateMode?: ClientCertificateMode;
+          /**
+           * Server Name Indication (SNI) configuration. This enables the mapping of client requested host names to certificates and other TLS settings. Wildcard names prefixed with '*.', as well as a top level '*' are supported. Available in .NET 5 and later.
+           */
+          Sni?: {
+            /**
+             * Endpoint SNI configuration.
+             */
+            [k: string]:
+              | {
+                  Protocols?: Protocols;
+                  SslProtocols?: SslProtocols;
+                  Certificate?: Certificate;
+                  ClientCertificateMode?: ClientCertificateMode;
+                  [k: string]: unknown | undefined;
+                }
+              | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
+  };
+  /**
+   * Default configuration applied to all endpoints. Named endpoint specific configuration overrides defaults.
+   */
+  EndpointDefaults?: {
+    Protocols?: Protocols;
+    SslProtocols?: SslProtocols;
+    ClientCertificateMode?: ClientCertificateMode;
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Certificates that Kestrel uses with HTTPS endpoints. Each certificate has a name specified by its JSON property name. The 'Default' certificate is used by HTTPS endpoints that haven't specified a certificate.
+   */
+  Certificates?: {
+    [k: string]: Certificate;
+  };
   [k: string]: unknown | undefined;
 }
 /**
@@ -100,48 +129,34 @@ export interface Certificate {
   [k: string]: unknown | undefined;
 }
 /**
- * Server Name Indication (SNI) configuration. This enables the mapping of client requested host names to certificates and other TLS settings. Wildcard names prefixed with '*.', as well as a top level '*' are supported. Available in .NET 5 and later.
- */
-export interface SNI {
-  [k: string]: SNIOptionsUndefined;
-}
-/**
- * Endpoint SNI configuration.
- */
-export interface SNIOptions {
-  Protocols?: Protocols;
-  SslProtocols?: SslProtocols;
-  Certificate?: Certificate;
-  ClientCertificateMode?: ClientCertificateMode;
-  [k: string]: unknown | undefined;
-}
-/**
- * Default configuration applied to all endpoints. Named endpoint specific configuration overrides defaults.
- */
-export interface EndpointDefaults {
-  Protocols?: Protocols;
-  SslProtocols?: SslProtocols;
-  ClientCertificateMode?: ClientCertificateMode;
-  [k: string]: unknown | undefined;
-}
-/**
- * Certificates that Kestrel uses with HTTPS endpoints. Each certificate has a name specified by its JSON property name. The 'Default' certificate is used by HTTPS endpoints that haven't specified a certificate.
- */
-export interface Certificates {
-  [k: string]: Certificate;
-}
-/**
  * Configuration for Microsoft.Extensions.Logging.
  */
-export interface LoggingOptions {
-  LogLevel?: LoggingLevelOptions;
+export interface Logging {
+  LogLevel?: LogLevel;
   Console?: {
-    LogLevel?: LoggingLevelOptions;
+    LogLevel?: LogLevel;
     /**
      * Name of the log message formatter to use. Defaults to 'simple'.
      */
     FormatterName?: string;
-    FormatterOptions?: FormatterOptions;
+    /**
+     * Log message formatter options. Additional properties are available on the options depending on the configured formatter. The formatter is specified by FormatterName.
+     */
+    FormatterOptions?: {
+      /**
+       * Include scopes when true. Defaults to false.
+       */
+      IncludeScopes?: boolean;
+      /**
+       * Format string used to format timestamp in logging messages. Defaults to null.
+       */
+      TimestampFormat?: string;
+      /**
+       * Indication whether or not UTC timezone should be used to for timestamps in logging messages. Defaults to false.
+       */
+      UseUtcTimestamp?: boolean;
+      [k: string]: unknown | undefined;
+    };
     /**
      * Log level threshold.
      */
@@ -149,62 +164,45 @@ export interface LoggingOptions {
     [k: string]: unknown | undefined;
   };
   EventSource?: {
-    LogLevel?: LoggingLevelOptions;
+    LogLevel?: LogLevel;
     [k: string]: unknown | undefined;
   };
   Debug?: {
-    LogLevel?: LoggingLevelOptions;
+    LogLevel?: LogLevel;
     [k: string]: unknown | undefined;
   };
   EventLog?: {
-    LogLevel?: LoggingLevelOptions;
+    LogLevel?: LogLevel;
     [k: string]: unknown | undefined;
   };
   ElmahIo?: {
-    LogLevel?: LoggingLevelOptions;
+    LogLevel?: LogLevel;
     [k: string]: unknown | undefined;
   };
   ElmahIoBreadcrumbs?: {
-    LogLevel?: LoggingLevelOptions;
+    LogLevel?: LogLevel;
     [k: string]: unknown | undefined;
   };
-  [k: string]: ProviderLoggingSettingsUndefined;
+  /**
+   * Logging configuration for a provider. The provider name must match the configuration's JSON property property name.
+   */
+  [k: string]:
+    | {
+        LogLevel?: LogLevel;
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 /**
  * Log level configurations used when creating logs. Only logs that exceeds its matching log level will be enabled. Each log level configuration has a category specified by its JSON property name. For more information about configuring log levels, see https://docs.microsoft.com/aspnet/core/fundamentals/logging/#configure-logging.
  */
-export interface LoggingLevelOptions {
-  [k: string]: LogLevelThresholdUndefined;
-}
-/**
- * Log message formatter options. Additional properties are available on the options depending on the configured formatter. The formatter is specified by FormatterName.
- */
-export interface FormatterOptions {
-  /**
-   * Include scopes when true. Defaults to false.
-   */
-  IncludeScopes?: boolean;
-  /**
-   * Format string used to format timestamp in logging messages. Defaults to null.
-   */
-  TimestampFormat?: string;
-  /**
-   * Indication whether or not UTC timezone should be used to for timestamps in logging messages. Defaults to false.
-   */
-  UseUtcTimestamp?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * Logging configuration for a provider. The provider name must match the configuration's JSON property property name.
- */
-export interface ProviderLoggingSettings {
-  LogLevel?: LoggingLevelOptions;
-  [k: string]: unknown | undefined;
+export interface LogLevel {
+  [k: string]: LogLevelThreshold | undefined;
 }
 /**
  * Connection string configuration. Get connection strings with the IConfiguration.GetConnectionString(string) extension method.
  */
-export interface ConnectionStringOptions {
+export interface ConnectionStrings {
   /**
    * Connection string configuration. Each connection string has a name specified by its JSON property name.
    */
@@ -239,7 +237,7 @@ export interface WebOptimizer {
  * This interface was referenced by `JSONSchemaASPNETCoreSAppsettingsJsonFile`'s JSON-Schema definition
  * via the `patternProperty` "^(cdn|Cdn)$".
  */
-export interface CDN {
+export interface Cdn {
   /**
    * An absolute URL used as a prefix for static resources
    */
@@ -318,7 +316,7 @@ export interface ElmahIo {
  * This interface was referenced by `JSONSchemaASPNETCoreSAppsettingsJsonFile`'s JSON-Schema definition
  * via the `patternProperty` "^(nlog|Nlog|NLog)$".
  */
-export interface NLogOptions {
+export interface NLog {
   /**
    * Automatically reload the NLog configuration when notified that appsettings.json file has changed.
    */
@@ -358,59 +356,59 @@ export interface NLogOptions {
   /**
    * Load NLog extension packages for additional targets and layouts
    */
-  extensions?: Extension[];
-  variables?: Variables;
-  targetDefaultWrapper?: DefaultWrapper;
-  targets?: Targets;
-  rules?: NLogRuleItem[] | Rules;
-  [k: string]: unknown | undefined;
-}
-export interface Extension {
+  extensions?: {
+    /**
+     * Assembly Name of the NLog extension package.
+     */
+    assembly?: string;
+    /**
+     * Appends prefix to all type-names loaded from the assembly
+     */
+    prefix?: string;
+    /**
+     * Absolute filepath to the Assembly-file of the NLog extension package.
+     */
+    assemblyFile?: string;
+    [k: string]: unknown | undefined;
+  }[];
   /**
-   * Assembly Name of the NLog extension package.
+   * Key-value pair of variables
    */
-  assembly?: string;
+  variables?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` ".*".
+     */
+    [k: string]: number | string | boolean;
+  };
   /**
-   * Appends prefix to all type-names loaded from the assembly
+   * Wrap all defined targets with this custom target wrapper.
    */
-  prefix?: string;
-  /**
-   * Absolute filepath to the Assembly-file of the NLog extension package.
-   */
-  assemblyFile?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Key-value pair of variables
- */
-export interface Variables {
-  /**
-   * This interface was referenced by `Variables`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   */
-  [k: string]: number | string | boolean;
-}
-/**
- * Wrap all defined targets with this custom target wrapper.
- */
-export interface DefaultWrapper {
-  type: string;
-  [k: string]: unknown | undefined;
-}
-export interface Targets {
-  /**
-   * Wrap all defined targets using AsyncWrapper with OverflowAction=Discard for better performance.
-   */
-  async?: boolean;
+  targetDefaultWrapper?: {
+    type: string;
+    [k: string]: unknown | undefined;
+  };
+  targets?: {
+    /**
+     * Wrap all defined targets using AsyncWrapper with OverflowAction=Discard for better performance.
+     */
+    async?: boolean;
+    [k: string]: unknown | undefined;
+  };
+  rules?:
+    | NLogRulesItem[]
+    | {
+        [k: string]: NLogRulesItem;
+      };
   [k: string]: unknown | undefined;
 }
 /**
  * Redirect LogEvents from matching Logger objects to specified targets
  *
- * This interface was referenced by `Rules`'s JSON-Schema definition
+ * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` ".*".
  */
-export interface NLogRuleItem {
+export interface NLogRulesItem {
   /**
    * Match Logger objects based on their Logger-name. Can use wildcard characters ('*' or '?').
    */
@@ -436,26 +434,23 @@ export interface NLogRuleItem {
    */
   final?: boolean;
   enabled?: boolean;
-  filters?: Filter[] | Filter1;
+  filters?:
+    | {
+        type: string;
+        /**
+         * Result action when filter matches logevent.
+         */
+        action?: "Neutral" | "Log" | "Ignore" | "LogFinal" | "IgnoreFinal";
+        [k: string]: unknown | undefined;
+      }[]
+    | {
+        [k: string]: unknown | undefined;
+      };
   /**
    * Default action if none of the filters match.
    */
   filterDefaultAction?: "Neutral" | "Log" | "Ignore" | "LogFinal" | "IgnoreFinal";
   [k: string]: unknown | undefined;
-}
-export interface Filter {
-  type: string;
-  /**
-   * Result action when filter matches logevent.
-   */
-  action?: "Neutral" | "Log" | "Ignore" | "LogFinal" | "IgnoreFinal";
-  [k: string]: unknown | undefined;
-}
-export interface Filter1 {
-  [k: string]: unknown | undefined;
-}
-export interface Rules {
-  [k: string]: NLogRuleItem;
 }
 /**
  * Configuration of Open Source .NET CMS - Umbraco
@@ -464,82 +459,81 @@ export interface Rules {
  * via the `patternProperty` "^(Umbraco|umbraco)$".
  */
 export interface Umbraco {
-  CMS: CMDOptions;
-  [k: string]: unknown | undefined;
-}
-export interface CMDOptions {
-  ActiveDirectory?: UmbracoActiveDirectory;
-  Content?: UmbracoContent;
-  Debug?: UmbracoDebug;
-  Examine?: {
-    /**
-     * Lucene directory factory type
-     */
-    LuceneDirectoryFactory?: string;
+  CMS: {
+    ActiveDirectory?: UmbracoActiveDirectory;
+    Content?: UmbracoContent;
+    Debug?: UmbracoDebug;
+    Examine?: {
+      /**
+       * Lucene directory factory type
+       */
+      LuceneDirectoryFactory?: string;
+      [k: string]: unknown | undefined;
+    };
+    ExceptionFilter?: {
+      /**
+       * Indicating whether the exception filter is disabled
+       */
+      Disabled?: boolean;
+      [k: string]: unknown | undefined;
+    };
+    Global?: UmbracoGlobal;
+    HealthChecks?: UmbracoHealthChecks;
+    Hosting?: UmbracoHosting;
+    Imaging?: UmbracoImaging;
+    KeepAlive?: UmbracoKeepAlive;
+    Logging?: {
+      /**
+       * Maximum age of a log file - https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings
+       */
+      MaxLogAge?: string;
+      [k: string]: unknown | undefined;
+    };
+    ModelsBuilder?: UmbracoModelsBuilder;
+    NuCache?: {
+      BTreeBlockSize?: number;
+      [k: string]: unknown | undefined;
+    };
+    Plugins?: {
+      /**
+       * Allowed file extensions (including the period .) that should be accessible from the browser
+       */
+      BrowsableFileExtensions?: string;
+      [k: string]: unknown | undefined;
+    };
+    RequestHandler?: UmbracoRequestHandler;
+    RichTextEditor?: UmbracoRichTextEditor;
+    Runtime?: {
+      /**
+       * Value for the maximum query string length
+       */
+      MaxQueryStringLength?: number;
+      /**
+       * Value for the maximum request length
+       */
+      MaxRequestLength?: number;
+      [k: string]: unknown | undefined;
+    };
+    RuntimeMinification?: UmbracoRuntimeMinification;
+    Security?: UmbracoSecurity;
+    Tours?: {
+      /**
+       * Indicating whether back-office tours are enabled
+       */
+      EnableTours?: boolean;
+      [k: string]: unknown | undefined;
+    };
+    TypeFinder?: {
+      /**
+       * A CSV string of assemblies that accept load exceptions during type finder operations
+       */
+      AssembliesAcceptingLoadExceptions?: string;
+      [k: string]: unknown | undefined;
+    };
+    WebRouting?: UmbracoWebRouting;
+    Unattended?: UmbracoUnattended;
     [k: string]: unknown | undefined;
   };
-  ExceptionFilter?: {
-    /**
-     * Indicating whether the exception filter is disabled
-     */
-    Disabled?: boolean;
-    [k: string]: unknown | undefined;
-  };
-  Global?: UmbracoGlobal;
-  HealthChecks?: UmbracoHealthChecks;
-  Hosting?: UmbracoHosting;
-  Imaging?: UmbracoImaging;
-  KeepAlive?: UmbracoKeepAlive;
-  Logging?: {
-    /**
-     * Maximum age of a log file - https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings
-     */
-    MaxLogAge?: string;
-    [k: string]: unknown | undefined;
-  };
-  ModelsBuilder?: UmbracoModelsBuilder;
-  NuCache?: {
-    BTreeBlockSize?: number;
-    [k: string]: unknown | undefined;
-  };
-  Plugins?: {
-    /**
-     * Allowed file extensions (including the period .) that should be accessible from the browser
-     */
-    BrowsableFileExtensions?: string;
-    [k: string]: unknown | undefined;
-  };
-  RequestHandler?: UmbracoRequestHandler;
-  RichTextEditor?: UmbracoRichTextEditor;
-  Runtime?: {
-    /**
-     * Value for the maximum query string length
-     */
-    MaxQueryStringLength?: number;
-    /**
-     * Value for the maximum request length
-     */
-    MaxRequestLength?: number;
-    [k: string]: unknown | undefined;
-  };
-  RuntimeMinification?: UmbracoRuntimeMinification;
-  Security?: UmbracoSecurity;
-  Tours?: {
-    /**
-     * Indicating whether back-office tours are enabled
-     */
-    EnableTours?: boolean;
-    [k: string]: unknown | undefined;
-  };
-  TypeFinder?: {
-    /**
-     * A CSV string of assemblies that accept load exceptions during type finder operations
-     */
-    AssembliesAcceptingLoadExceptions?: string;
-    [k: string]: unknown | undefined;
-  };
-  WebRouting?: UmbracoWebRouting;
-  Unattended?: UmbracoUnattended;
   [k: string]: unknown | undefined;
 }
 /**
@@ -677,6 +671,10 @@ export interface UmbracoGlobal {
    */
   VersionCheckPeriod?: number;
   /**
+   * Umbraco back-office path
+   */
+  UmbracoPath?: string;
+  /**
    * Path to Umbraco Icons for backoffice
    */
   IconsPath?: string;
@@ -782,7 +780,34 @@ export interface UmbracoHealthChecks {
      * The period of the healthcheck notifications are run https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings
      */
     Period?: string;
-    NotificationMethods?: NotificationMethods;
+    /**
+     * A collection of health check notification methods that are set by their alias such as 'email'
+     */
+    NotificationMethods?: {
+      [k: string]:
+        | {
+            /**
+             * Indicating whether the health check notification method is enabled
+             */
+            Enabled?: boolean;
+            /**
+             * The health check notifications reporting verbosity
+             */
+            Verbosity?: "Summary" | "Detailed";
+            /**
+             * Indicating whether the health check notifications should occur on failures only
+             */
+            FailureOnly?: boolean;
+            /**
+             * An object of Health Check Notification provider specific settings. For the email notification it uses a setting 'RecipientEmail'
+             */
+            Settings?: {
+              [k: string]: unknown | undefined;
+            };
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
+    };
     DisabledChecks?: UmbracoDisabledHealthChecks[];
     [k: string]: unknown | undefined;
   };
@@ -793,34 +818,6 @@ export interface UmbracoDisabledHealthChecks {
    * Guid of healthcheck to disable
    */
   Id?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * A collection of health check notification methods that are set by their alias such as 'email'
- */
-export interface NotificationMethods {
-  [k: string]: NotificationMethodOptionsUndefined;
-}
-export interface NotificationMethodOptions {
-  /**
-   * Indicating whether the health check notification method is enabled
-   */
-  Enabled?: boolean;
-  /**
-   * The health check notifications reporting verbosity
-   */
-  Verbosity?: "Summary" | "Detailed";
-  /**
-   * Indicating whether the health check notifications should occur on failures only
-   */
-  FailureOnly?: boolean;
-  Settings?: Options;
-  [k: string]: unknown | undefined;
-}
-/**
- * An object of Health Check Notification provider specific settings. For the email notification it uses a setting 'RecipientEmail'
- */
-export interface Options {
   [k: string]: unknown | undefined;
 }
 export interface UmbracoHosting {
@@ -935,7 +932,12 @@ export interface UmbracoRichTextEditor {
    * An array of TinyMCE Plugins to load such as 'paste', 'table'
    */
   Plugins?: string;
-  CustomConfig?: TinyMCEOptions;
+  /**
+   * Custom configuration for TinyMCE and its plugins
+   */
+  CustomConfig?: {
+    [k: string]: unknown | undefined;
+  };
   /**
    * A CSV string of valid HTML elements in the richtext editor. Ex: iframe[*],button[class|title]
    */
@@ -959,12 +961,6 @@ export interface UmbracoRichTextEditorCommands {
    * Set how the Richtext Editor Command can be used. Such as when a selection is made
    */
   Mode?: "Insert" | "Selection" | "All";
-  [k: string]: unknown | undefined;
-}
-/**
- * Custom configuration for TinyMCE and its plugins
- */
-export interface TinyMCEOptions {
   [k: string]: unknown | undefined;
 }
 export interface UmbracoRuntimeMinification {

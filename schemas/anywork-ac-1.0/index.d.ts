@@ -6,20 +6,21 @@
  */
 
 /**
- * AnyWork automation config schema
+ * Used to configure any part of AnyWork automation.
  */
-export type AnyWorkAutomationConfig = AnyWorkAutomationConfig1 & AnyWorkAutomationConfig2;
-export type AnyWorkAutomationConfig1 = {
+export type AnyWorkAutomationConfigurationSchema = AnyWorkAutomationConfigurationSchema1 &
+  AnyWorkAutomationConfigurationSchema2;
+export type AnyWorkAutomationConfigurationSchema1 = {
   [k: string]: unknown | undefined;
 };
 
-export interface AnyWorkAutomationConfig2 {
+export interface AnyWorkAutomationConfigurationSchema2 {
   /**
-   * A configuration type
+   * type of configuration, means who will use this configuration.
    */
   ctype: string;
   /**
-   * A configuration version of configuration
+   * Version of configuration. The reader will parse configuration based on this.
    */
   cversion: number;
   [k: string]: unknown | undefined;

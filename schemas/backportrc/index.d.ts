@@ -5,25 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * A Backport config schema
- */
-export interface Backportrc {
-  /**
-   * A repo name for the current project
-   * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#reponame-required
-   */
-  repoName: string;
-  /**
-   * A repo owner for the current project
-   * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#repoowner-required
-   */
-  repoOwner: string;
-  /**
-   * Target branches for the current project
-   * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#targetbranchchoices-required
-   */
-  targetBranchChoices: (string | TargetBranch)[];
+export interface JSONSchemaForBackportConfigFile {
   /**
    * Identifier for the GitHub project as `{owner}/{repoName}`
    */
@@ -31,7 +13,7 @@ export interface Backportrc {
   /**
    * Branches to backport to
    */
-  branches?: (
+  branches: (
     | string
     | {
         name: string;
@@ -47,16 +29,5 @@ export interface Backportrc {
    * Whether to only show the current user's commits or commits from anyone
    */
   all?: boolean;
-}
-export interface TargetBranch {
-  /**
-   * A target branch for the current project
-   * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#targetbranchchoices-required
-   */
-  name: string;
-  /**
-   * Whether to pre-select a target branch for the current project
-   * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#targetbranchchoices-required
-   */
-  checked: boolean;
+  [k: string]: unknown | undefined;
 }

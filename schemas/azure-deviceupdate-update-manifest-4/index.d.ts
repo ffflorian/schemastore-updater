@@ -270,7 +270,7 @@ export interface MiniUpdateManifest {
  * Map of '#/definitions/fileId' to file metadata.
  */
 export interface UpdateManifestFile {
-  [k: string]: UpdateFileUndefined;
+  [k: string]: UpdateFile | undefined;
 }
 /**
  * Update payload file, e.g. binary, firmware, script, etc. Must be unique within update.
@@ -333,5 +333,5 @@ export interface ReferenceInstallationStep {
  * Map of '#/definitions/fileId' to file metadata.
  */
 export interface UpdateFiles {
-  [k: string]: UpdateFileUndefined;
+  [k: string]: UpdateFile | undefined;
 }
