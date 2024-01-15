@@ -1,7 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
   "extends": "@ffflorian/eslint-config",
   "overrides": [
     {
+      "plugins": ["@typescript-eslint", "jsdoc", "no-unsanitized", "prettier", "sort-keys-fix", "typescript-sort-keys", "unused-imports", "oxlint"],
       "files": "*.ts",
       "rules": {
         "@typescript-eslint/typedef": "off",
