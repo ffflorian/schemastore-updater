@@ -485,44 +485,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-arm64@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@oxlint/darwin-arm64@npm:0.2.0"
+"@oxlint/darwin-arm64@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@oxlint/darwin-arm64@npm:0.2.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-x64@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@oxlint/darwin-x64@npm:0.2.0"
+"@oxlint/darwin-x64@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@oxlint/darwin-x64@npm:0.2.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@oxlint/linux-arm64@npm:0.2.0"
+"@oxlint/linux-arm64@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@oxlint/linux-arm64@npm:0.2.1"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@oxlint/linux-x64@npm:0.2.0"
+"@oxlint/linux-x64@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@oxlint/linux-x64@npm:0.2.1"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxlint/win32-arm64@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@oxlint/win32-arm64@npm:0.2.0"
+"@oxlint/win32-arm64@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@oxlint/win32-arm64@npm:0.2.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/win32-x64@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@oxlint/win32-x64@npm:0.2.0"
+"@oxlint/win32-x64@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@oxlint/win32-x64@npm:0.2.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3500,16 +3500,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxlint@npm:0.2.0":
-  version: 0.2.0
-  resolution: "oxlint@npm:0.2.0"
+"oxlint@npm:0.2.1":
+  version: 0.2.1
+  resolution: "oxlint@npm:0.2.1"
   dependencies:
-    "@oxlint/darwin-arm64": "npm:0.2.0"
-    "@oxlint/darwin-x64": "npm:0.2.0"
-    "@oxlint/linux-arm64": "npm:0.2.0"
-    "@oxlint/linux-x64": "npm:0.2.0"
-    "@oxlint/win32-arm64": "npm:0.2.0"
-    "@oxlint/win32-x64": "npm:0.2.0"
+    "@oxlint/darwin-arm64": "npm:0.2.1"
+    "@oxlint/darwin-x64": "npm:0.2.1"
+    "@oxlint/linux-arm64": "npm:0.2.1"
+    "@oxlint/linux-x64": "npm:0.2.1"
+    "@oxlint/win32-arm64": "npm:0.2.1"
+    "@oxlint/win32-x64": "npm:0.2.1"
   dependenciesMeta:
     "@oxlint/darwin-arm64":
       optional: true
@@ -3525,7 +3525,7 @@ __metadata:
       optional: true
   bin:
     oxlint: bin/oxlint
-  checksum: a382b63359edc33469ecc5ff413b2de8461cf840c3bfc0786dbc20be1ac269e8a9e77fa588e38d5980390dfc8766643738456dab702bb22e3770003269c8cb07
+  checksum: 1be71820aed022884d31bb692c926b6a7cde0d2fc43727bbe1a86f3214dd43ec8e191f7bdecb0a03651ec1b6fbb46c3b8fbc85798954cb5d92fcf27f67330fdd
   languageName: node
   linkType: hard
 
@@ -3859,7 +3859,7 @@ __metadata:
     json-schema-to-typescript: "npm:13.1.2"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
-    oxlint: "npm:0.2.0"
+    oxlint: "npm:0.2.1"
     prettier: "npm:3.1.1"
     rimraf: "npm:5.0.5"
     semver: "npm:7.5.4"
