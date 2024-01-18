@@ -310,12 +310,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/prettier-config@npm:0.3.1":
-  version: 0.3.1
-  resolution: "@ffflorian/prettier-config@npm:0.3.1"
+"@ffflorian/prettier-config@npm:0.3.2":
+  version: 0.3.2
+  resolution: "@ffflorian/prettier-config@npm:0.3.2"
   peerDependencies:
     prettier: ">= 1.17.0"
-  checksum: 7105f5d766637fe4ed1783f1cf95b0d9ded621fa383e93df0fbf17ace2827cb36cec800832670acb1b6554918e9a188f13a2f1be8c1427eb344e2dc754e64ba8
+  checksum: 015656aeebf66d4f6f3f28cc5fed4f0fff04c37b91042acafce2d335aa2ccfef08e41fb94fe6119b1ce784d0ef248152f20545c898b2a6984062d5e9bbf60e5f
   languageName: node
   linkType: hard
 
@@ -3830,7 +3830,7 @@ __metadata:
   dependencies:
     "@evilmartians/lefthook": "npm:1.5.6"
     "@ffflorian/eslint-config": "npm:0.10.2"
-    "@ffflorian/prettier-config": "npm:0.3.1"
+    "@ffflorian/prettier-config": "npm:0.3.2"
     "@types/eslint": "npm:8.56.2"
     "@types/fs-extra": "npm:11.0.4"
     "@types/jsonabc": "npm:2.3.3"
