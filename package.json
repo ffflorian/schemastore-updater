@@ -12,7 +12,7 @@
     "@evilmartians/lefthook": "1.6.7",
     "@ffflorian/eslint-config": "0.10.2",
     "@ffflorian/prettier-config": "0.3.2",
-    "@types/eslint": "8.56.5",
+    "@types/eslint": "8.56.6",
     "@types/fs-extra": "11.0.4",
     "@types/jsonabc": "2.3.3",
     "@types/lodash": "4.14.202",
