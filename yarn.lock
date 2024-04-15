@@ -1817,12 +1817,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-simple-import-sort@npm:12.0.0":
-  version: 12.0.0
-  resolution: "eslint-plugin-simple-import-sort@npm:12.0.0"
+"eslint-plugin-simple-import-sort@npm:12.1.0":
+  version: 12.1.0
+  resolution: "eslint-plugin-simple-import-sort@npm:12.1.0"
   peerDependencies:
     eslint: ">=5.0.0"
-  checksum: 94d15a6b287b3036c402de4e034f2a4c950dc04be3a85c699f481327344bdecdeb659e86cfdf2dd69861b7044e10a4bef009029c107896ed1cf1c2badd7cdbce
+  checksum: c28d46c88c7590e3a5cc49494ba8fd3c46b6cec903236a7e165b9441f27decd67baf63b13526203e505713c217ccfb43935ae600debb8e9d6cc817fbaab5f2e2
   languageName: node
   linkType: hard
 
@@ -3850,7 +3850,7 @@ __metadata:
     eslint-plugin-no-unsanitized: "npm:4.0.2"
     eslint-plugin-oxlint: "npm:0.2.7"
     eslint-plugin-prettier: "npm:5.1.3"
-    eslint-plugin-simple-import-sort: "npm:12.0.0"
+    eslint-plugin-simple-import-sort: "npm:12.1.0"
     eslint-plugin-sort-keys-fix: "npm:1.1.2"
     eslint-plugin-typescript-sort-keys: "npm:3.2.0"
     eslint-plugin-unused-imports: "npm:3.1.0"
