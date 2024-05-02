@@ -478,58 +478,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-arm64@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/darwin-arm64@npm:0.2.16"
+"@oxlint/darwin-arm64@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/darwin-arm64@npm:0.3.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-x64@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/darwin-x64@npm:0.2.16"
+"@oxlint/darwin-x64@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/darwin-x64@npm:0.3.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-gnu@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/linux-arm64-gnu@npm:0.2.16"
+"@oxlint/linux-arm64-gnu@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/linux-arm64-gnu@npm:0.3.1"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-musl@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/linux-arm64-musl@npm:0.2.16"
+"@oxlint/linux-arm64-musl@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/linux-arm64-musl@npm:0.3.1"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-gnu@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/linux-x64-gnu@npm:0.2.16"
+"@oxlint/linux-x64-gnu@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/linux-x64-gnu@npm:0.3.1"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-musl@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/linux-x64-musl@npm:0.2.16"
+"@oxlint/linux-x64-musl@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/linux-x64-musl@npm:0.3.1"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/win32-arm64@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/win32-arm64@npm:0.2.16"
+"@oxlint/win32-arm64@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/win32-arm64@npm:0.3.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/win32-x64@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@oxlint/win32-x64@npm:0.2.16"
+"@oxlint/win32-x64@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@oxlint/win32-x64@npm:0.3.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3493,18 +3493,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxlint@npm:0.2.16":
-  version: 0.2.16
-  resolution: "oxlint@npm:0.2.16"
+"oxlint@npm:0.3.1":
+  version: 0.3.1
+  resolution: "oxlint@npm:0.3.1"
   dependencies:
-    "@oxlint/darwin-arm64": "npm:0.2.16"
-    "@oxlint/darwin-x64": "npm:0.2.16"
-    "@oxlint/linux-arm64-gnu": "npm:0.2.16"
-    "@oxlint/linux-arm64-musl": "npm:0.2.16"
-    "@oxlint/linux-x64-gnu": "npm:0.2.16"
-    "@oxlint/linux-x64-musl": "npm:0.2.16"
-    "@oxlint/win32-arm64": "npm:0.2.16"
-    "@oxlint/win32-x64": "npm:0.2.16"
+    "@oxlint/darwin-arm64": "npm:0.3.1"
+    "@oxlint/darwin-x64": "npm:0.3.1"
+    "@oxlint/linux-arm64-gnu": "npm:0.3.1"
+    "@oxlint/linux-arm64-musl": "npm:0.3.1"
+    "@oxlint/linux-x64-gnu": "npm:0.3.1"
+    "@oxlint/linux-x64-musl": "npm:0.3.1"
+    "@oxlint/win32-arm64": "npm:0.3.1"
+    "@oxlint/win32-x64": "npm:0.3.1"
   dependenciesMeta:
     "@oxlint/darwin-arm64":
       optional: true
@@ -3524,7 +3524,7 @@ __metadata:
       optional: true
   bin:
     oxlint: bin/oxlint
-  checksum: 3cf8eccccfab82a8fd13e0f974fa7bfebba87dd27c9129f0687d39d3620286f49ee127e78e2f8b1b0a3770ff5f95eda4ecf181b683e5a84c883b4e0428867fc8
+  checksum: fbe6f45d1ea56afa70c689e36c593796d3eefbcb901383eafad17994c89e7cfdf49cda390a52dc2918786bf90e0e597d17e7b25191eda2b5c337d4568ed6fb54
   languageName: node
   linkType: hard
 
@@ -3858,7 +3858,7 @@ __metadata:
     json-schema-to-typescript: "npm:13.1.2"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
-    oxlint: "npm:0.2.16"
+    oxlint: "npm:0.3.1"
     prettier: "npm:3.2.5"
     rimraf: "npm:5.0.5"
     semver: "npm:7.6.0"
