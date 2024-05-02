@@ -52,7 +52,7 @@
   "license": "GPL-3.0",
   "main": "dist/index.js",
   "name": "schemastore-updater",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.2.1",
   "prettier": "@ffflorian/prettier-config",
   "repository": "https://github.com/ffflorian/schemastore-updater.git",
   "scripts": {
