@@ -659,7 +659,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.17.4, @types/lodash@npm:^4.17.0":
+"@types/lodash@npm:4.17.5":
+  version: 4.17.5
+  resolution: "@types/lodash@npm:4.17.5"
+  checksum: 10/10e2e9cbeb16998026f4071f9f5f2a38b651eba15302f512e0b8ab904c07c197ca0282d2821f64e53c2b692d7046af0a1ce3ead190fb077cbe4036948fce1924
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.17.0":
   version: 4.17.4
   resolution: "@types/lodash@npm:4.17.4"
   checksum: 10/3ec19f9fc48200006e71733e08bcb1478b0398673657fcfb21a8643d41a80bcce09a01000077c3b23a3c6d86b9b314abe0672a8fdfc0fd66b893bd41955cfab8
@@ -3876,7 +3883,7 @@ __metadata:
     "@types/eslint": "npm:8.56.7"
     "@types/fs-extra": "npm:11.0.4"
     "@types/jsonabc": "npm:2.3.3"
-    "@types/lodash": "npm:4.17.4"
+    "@types/lodash": "npm:4.17.5"
     "@types/node": "npm:~20"
     "@types/prettier": "npm:3.0.0"
     "@types/semver": "npm:7.5.8"
