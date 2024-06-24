@@ -273,12 +273,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@evilmartians/lefthook@npm:1.6.16":
-  version: 1.6.16
-  resolution: "@evilmartians/lefthook@npm:1.6.16"
+"@evilmartians/lefthook@npm:1.6.18":
+  version: 1.6.18
+  resolution: "@evilmartians/lefthook@npm:1.6.18"
   bin:
     lefthook: bin/index.js
-  checksum: 10/496126ddc51bdc5d123245c74ada2559d3de62f2056b7c09f9dd53333b2a10ef0f23665b756b4bc20dffcf955c0a45b0d67f2ec615ce442cc53a25c676375e35
+  checksum: 10/3016cc6329d7e3f4f9b318f9a61ecc42e7b26362dbc494d658f8444c5f619a269b1feae900303be7bcd791ce3b5b192fe82527c6a01eab32d0cb884112c2a8b8
   conditions: (os=darwin | os=linux | os=win32) & (cpu=x64 | cpu=arm64 | cpu=ia32)
   languageName: node
   linkType: hard
@@ -3877,7 +3877,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "schemastore-updater@workspace:."
   dependencies:
-    "@evilmartians/lefthook": "npm:1.6.16"
+    "@evilmartians/lefthook": "npm:1.6.18"
     "@ffflorian/eslint-config": "npm:0.10.3"
     "@ffflorian/prettier-config": "npm:0.3.3"
     "@types/eslint": "npm:8.56.7"
