@@ -1858,12 +1858,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-oxlint@npm:0.4.0":
-  version: 0.4.0
-  resolution: "eslint-plugin-oxlint@npm:0.4.0"
+"eslint-plugin-oxlint@npm:0.5.0":
+  version: 0.5.0
+  resolution: "eslint-plugin-oxlint@npm:0.5.0"
   dependencies:
     scule: "npm:^1.3.0"
-  checksum: 10/ada01d485e41ff65da78d55e165765d7b00eec511120cb2df9807e9c5dfb5a9408ba2b05edec41369ef8c75bb0eafca90c8cf0432f00eb4f8cf69dbc07646f2a
+  checksum: 10/a9087ea95c0d192dd8d3f00784d5942614939ca5c931591b99f024a145a216b2cbdd2f914c7f8d4bbb885bd14dc1ec418aabbe76e11ef8c9220dc6d19691f980
   languageName: node
   linkType: hard
 
@@ -3982,7 +3982,7 @@ __metadata:
     eslint-plugin-jasmine: "npm:4.2.0"
     eslint-plugin-jsdoc: "npm:48.5.2"
     eslint-plugin-no-unsanitized: "npm:4.0.2"
-    eslint-plugin-oxlint: "npm:0.4.0"
+    eslint-plugin-oxlint: "npm:0.5.0"
     eslint-plugin-prettier: "npm:5.1.3"
     eslint-plugin-simple-import-sort: "npm:12.1.0"
     eslint-plugin-sort-keys-fix: "npm:1.1.2"
