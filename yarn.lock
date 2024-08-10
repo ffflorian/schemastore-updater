@@ -2865,9 +2865,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-schema-to-typescript@npm:14.1.0":
-  version: 14.1.0
-  resolution: "json-schema-to-typescript@npm:14.1.0"
+"json-schema-to-typescript@npm:15.0.0":
+  version: 15.0.0
+  resolution: "json-schema-to-typescript@npm:15.0.0"
   dependencies:
     "@apidevtools/json-schema-ref-parser": "npm:^11.5.5"
     "@types/json-schema": "npm:^7.0.15"
@@ -2883,7 +2883,7 @@ __metadata:
     prettier: "npm:^3.2.5"
   bin:
     json2ts: dist/src/cli.js
-  checksum: 10/7cafec839ff937e9eda6602798ad5fdb388674f9f85f9d1fc5df75353dbc8fd399b1be479baf2f447b2012413934a8022df4124f54e73497c7ec679407d01bab
+  checksum: 10/ac62f4190932087c67d0a2ee23e659ce9a9b3413cdb60d0e109fefc4795305022033a8965cc9cbba08cd515aa3c9bdc9727fd71a714f6b8cf96a2d20b6faf082
   languageName: node
   linkType: hard
 
@@ -3628,7 +3628,7 @@ __metadata:
     eslint-plugin-typescript-sort-keys: "npm:3.2.0"
     eslint-plugin-unused-imports: "npm:3.2.0"
     fs-extra: "npm:11.2.0"
-    json-schema-to-typescript: "npm:14.1.0"
+    json-schema-to-typescript: "npm:15.0.0"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
     oxlint: "npm:0.7.0"
