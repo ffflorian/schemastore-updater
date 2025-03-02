@@ -47,7 +47,7 @@ export class SchemaGenerator {
 
     try {
       fs.accessSync(this.lockFile, fs.constants.R_OK | fs.constants.F_OK);
-    } catch (error) {
+    } catch {
       throw new Error(`Lockfile "${this.lockFile}" not found.`);
     }
 
@@ -248,7 +248,7 @@ export class SchemaGenerator {
     try {
       await fs.access(filePath, fs.constants.F_OK | fs.constants.R_OK);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   }
