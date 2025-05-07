@@ -477,58 +477,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-arm64@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/darwin-arm64@npm:0.16.4"
+"@oxlint/darwin-arm64@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/darwin-arm64@npm:0.16.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-x64@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/darwin-x64@npm:0.16.4"
+"@oxlint/darwin-x64@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/darwin-x64@npm:0.16.9"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-gnu@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/linux-arm64-gnu@npm:0.16.4"
+"@oxlint/linux-arm64-gnu@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/linux-arm64-gnu@npm:0.16.9"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-musl@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/linux-arm64-musl@npm:0.16.4"
+"@oxlint/linux-arm64-musl@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/linux-arm64-musl@npm:0.16.9"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-gnu@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/linux-x64-gnu@npm:0.16.4"
+"@oxlint/linux-x64-gnu@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/linux-x64-gnu@npm:0.16.9"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-musl@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/linux-x64-musl@npm:0.16.4"
+"@oxlint/linux-x64-musl@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/linux-x64-musl@npm:0.16.9"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/win32-arm64@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/win32-arm64@npm:0.16.4"
+"@oxlint/win32-arm64@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/win32-arm64@npm:0.16.9"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/win32-x64@npm:0.16.4":
-  version: 0.16.4
-  resolution: "@oxlint/win32-x64@npm:0.16.4"
+"@oxlint/win32-x64@npm:0.16.9":
+  version: 0.16.9
+  resolution: "@oxlint/win32-x64@npm:0.16.9"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3532,18 +3532,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxlint@npm:0.16.4":
-  version: 0.16.4
-  resolution: "oxlint@npm:0.16.4"
+"oxlint@npm:0.16.9":
+  version: 0.16.9
+  resolution: "oxlint@npm:0.16.9"
   dependencies:
-    "@oxlint/darwin-arm64": "npm:0.16.4"
-    "@oxlint/darwin-x64": "npm:0.16.4"
-    "@oxlint/linux-arm64-gnu": "npm:0.16.4"
-    "@oxlint/linux-arm64-musl": "npm:0.16.4"
-    "@oxlint/linux-x64-gnu": "npm:0.16.4"
-    "@oxlint/linux-x64-musl": "npm:0.16.4"
-    "@oxlint/win32-arm64": "npm:0.16.4"
-    "@oxlint/win32-x64": "npm:0.16.4"
+    "@oxlint/darwin-arm64": "npm:0.16.9"
+    "@oxlint/darwin-x64": "npm:0.16.9"
+    "@oxlint/linux-arm64-gnu": "npm:0.16.9"
+    "@oxlint/linux-arm64-musl": "npm:0.16.9"
+    "@oxlint/linux-x64-gnu": "npm:0.16.9"
+    "@oxlint/linux-x64-musl": "npm:0.16.9"
+    "@oxlint/win32-arm64": "npm:0.16.9"
+    "@oxlint/win32-x64": "npm:0.16.9"
   dependenciesMeta:
     "@oxlint/darwin-arm64":
       optional: true
@@ -3564,7 +3564,7 @@ __metadata:
   bin:
     oxc_language_server: bin/oxc_language_server
     oxlint: bin/oxlint
-  checksum: 10/84623a7ccac9075bae920de55efbd87798f8c6486ad9f9e3695f9a60ea08a26a5f3ccd3c5ac560fad8109c13674e9712191621b2fe046c4898d021869d1cb5c2
+  checksum: 10/94231e74a8484d48b886e9773152870d2481fa7f770f4c7d12666230a697d6a4c5ca277f6ecd9e6c725abc40052d6adcb6bfa5e5ed565df49e5f875a340e0793
   languageName: node
   linkType: hard
 
@@ -3941,7 +3941,7 @@ __metadata:
     json-schema-to-typescript: "npm:15.0.4"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
-    oxlint: "npm:0.16.4"
+    oxlint: "npm:0.16.9"
     prettier: "npm:3.5.3"
     rimraf: "npm:6.0.1"
     semver: "npm:7.7.1"
