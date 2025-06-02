@@ -6,7 +6,7 @@
     "fs-extra": "11.3.0",
     "json-schema-to-typescript": "15.0.4",
     "jsonabc": "2.3.1",
-    "semver": "7.7.1"
+    "semver": "7.7.2"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "1.11.13",
