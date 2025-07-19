@@ -46,9 +46,9 @@ export interface GlobOptions {
  * keys (String) are glob patterns, values (Array<String> | String) are commands to execute.
  */
 export interface LintersMap {
-  [k: string]: LinterUndefined;
+  [k: string]: Linter | undefined;
 }
 export interface BasicConfig {
   $schema?: $SchemaProperty;
-  [k: string]: LinterUndefined;
+  [k: string]: Linter | undefined;
 }

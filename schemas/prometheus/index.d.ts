@@ -8,7 +8,117 @@
 /**
  * Prometheus configuration file
  */
-export type Prometheus = Prometheus1 & Prometheus2;
+export type Prometheus = {
+  /**
+   * The global configuration specifies parameters that are valid in all other configuration contexts. They also serve as defaults for other configuration sections.
+   */
+  global?: {
+    /**
+     * How frequently to scrape targets by default.
+     */
+    scrape_interval?: string | null;
+    /**
+     * How long until a scrape request times out.
+     */
+    scrape_timeout?: string | null;
+    /**
+     * How frequently to evaluate rules.
+     */
+    evaluation_interval?: string | null;
+    external_labels?: Labels;
+    /**
+     * File to which PromQL queries are logged. Reloading the configuration will reopen the file.
+     */
+    query_log_file?: string | null;
+  } | null;
+  /**
+   * Rule files specifies a list of globs. Rules and alerts are read from all matching files.
+   */
+  rule_files?: FilepathGlob[] | null;
+  /**
+   * Settings related to the remote write feature.
+   */
+  remote_write?: Auth[] | null;
+  /**
+   * Settings related to the remote read feature.
+   */
+  remote_read?: Auth[] | null;
+  /**
+   * A list of scrape configurations.
+   */
+  scrape_configs?: Auth[] | null;
+  /**
+   * Alerting specifies settings related to the Alertmanager.
+   */
+  alerting?: {
+    alert_relabel_configs?: RelabelConfigs;
+    alertmanagers?: Auth[] | null;
+    [k: string]: unknown | undefined;
+  } | null;
+  /**
+   * Storage related settings that are runtime reloadable.
+   */
+  storage?:
+    | {
+        max_exemplars?: number | null;
+      }[]
+    | null;
+} & ({
+  /**
+   * The global configuration specifies parameters that are valid in all other configuration contexts. They also serve as defaults for other configuration sections.
+   */
+  global?: {
+    /**
+     * How frequently to scrape targets by default.
+     */
+    scrape_interval?: string | null;
+    /**
+     * How long until a scrape request times out.
+     */
+    scrape_timeout?: string | null;
+    /**
+     * How frequently to evaluate rules.
+     */
+    evaluation_interval?: string | null;
+    external_labels?: Labels;
+    /**
+     * File to which PromQL queries are logged. Reloading the configuration will reopen the file.
+     */
+    query_log_file?: string | null;
+  } | null;
+  /**
+   * Rule files specifies a list of globs. Rules and alerts are read from all matching files.
+   */
+  rule_files?: FilepathGlob[] | null;
+  /**
+   * Settings related to the remote write feature.
+   */
+  remote_write?: Auth[] | null;
+  /**
+   * Settings related to the remote read feature.
+   */
+  remote_read?: Auth[] | null;
+  /**
+   * A list of scrape configurations.
+   */
+  scrape_configs?: Auth[] | null;
+  /**
+   * Alerting specifies settings related to the Alertmanager.
+   */
+  alerting?: {
+    alert_relabel_configs?: RelabelConfigs;
+    alertmanagers?: Auth[] | null;
+    [k: string]: unknown | undefined;
+  } | null;
+  /**
+   * Storage related settings that are runtime reloadable.
+   */
+  storage?:
+    | {
+        max_exemplars?: number | null;
+      }[]
+    | null;
+} | null);
 /**
  * The labels to add to any time series or alerts when communicating with external systems (federation, remote storage, Alertmanager).
  */
@@ -27,16 +137,6 @@ export type Labels = {
 export type LabelValue = string;
 export type FilepathGlob = string;
 export type Auth = {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
   [k: string]: unknown | undefined;
 };
 export type RelabelConfigs =
@@ -68,140 +168,8 @@ export type RelabelConfigs =
       /**
        * Action to perform based on regex matching.
        */
-      action?:
-        | "replace"
-        | "lowercase"
-        | "uppercase"
-        | "keep"
-        | "drop"
-        | "keepequal"
-        | "dropequal"
-        | "hashmod"
-        | "labelmap"
-        | "labeldrop"
-        | "labelkeep";
+      action?: "replace" | "keep" | "drop" | "hashmod" | "labelmap" | "labeldrop" | "labelkeep";
       [k: string]: unknown | undefined;
     }[]
   | null;
 export type LabelName = string;
-export type Prometheus2 = {
-  /**
-   * The global configuration specifies parameters that are valid in all other configuration contexts. They also serve as defaults for other configuration sections.
-   */
-  global?: {
-    /**
-     * How frequently to scrape targets by default.
-     */
-    scrape_interval?: string | null;
-    /**
-     * How long until a scrape request times out.
-     */
-    scrape_timeout?: string | null;
-    /**
-     * How frequently to evaluate rules.
-     */
-    evaluation_interval?: string | null;
-    external_labels?: Labels;
-    /**
-     * File to which PromQL queries are logged. Reloading the configuration will reopen the file.
-     */
-    query_log_file?: string | null;
-  } | null;
-  /**
-   * Rule files specifies a list of globs. Rules and alerts are read from all matching files.
-   */
-  rule_files?: FilepathGlob[] | null;
-  /**
-   * Settings related to the remote write feature.
-   */
-  remote_write?: Auth[] | null;
-  /**
-   * Settings related to the remote read feature.
-   */
-  remote_read?: Auth[] | null;
-  /**
-   * Scrape config files specifies a list of globs. Scrape configs are read from all matching files and appended to the list of scrape configs.
-   */
-  scrape_config_files?: FilepathGlob[] | null;
-  /**
-   * A list of scrape configurations.
-   */
-  scrape_configs?: Auth[] | null;
-  /**
-   * Alerting specifies settings related to the Alertmanager.
-   */
-  alerting?: {
-    alert_relabel_configs?: RelabelConfigs;
-    alertmanagers?: Auth[] | null;
-    [k: string]: unknown | undefined;
-  } | null;
-  /**
-   * Storage related settings that are runtime reloadable.
-   */
-  storage?:
-    | {
-        max_exemplars?: number | null;
-      }[]
-    | null;
-} | null;
-
-export interface Prometheus1 {
-  /**
-   * The global configuration specifies parameters that are valid in all other configuration contexts. They also serve as defaults for other configuration sections.
-   */
-  global?: {
-    /**
-     * How frequently to scrape targets by default.
-     */
-    scrape_interval?: string | null;
-    /**
-     * How long until a scrape request times out.
-     */
-    scrape_timeout?: string | null;
-    /**
-     * How frequently to evaluate rules.
-     */
-    evaluation_interval?: string | null;
-    external_labels?: Labels;
-    /**
-     * File to which PromQL queries are logged. Reloading the configuration will reopen the file.
-     */
-    query_log_file?: string | null;
-  } | null;
-  /**
-   * Rule files specifies a list of globs. Rules and alerts are read from all matching files.
-   */
-  rule_files?: FilepathGlob[] | null;
-  /**
-   * Settings related to the remote write feature.
-   */
-  remote_write?: Auth[] | null;
-  /**
-   * Settings related to the remote read feature.
-   */
-  remote_read?: Auth[] | null;
-  /**
-   * Scrape config files specifies a list of globs. Scrape configs are read from all matching files and appended to the list of scrape configs.
-   */
-  scrape_config_files?: FilepathGlob[] | null;
-  /**
-   * A list of scrape configurations.
-   */
-  scrape_configs?: Auth[] | null;
-  /**
-   * Alerting specifies settings related to the Alertmanager.
-   */
-  alerting?: {
-    alert_relabel_configs?: RelabelConfigs;
-    alertmanagers?: Auth[] | null;
-    [k: string]: unknown | undefined;
-  } | null;
-  /**
-   * Storage related settings that are runtime reloadable.
-   */
-  storage?:
-    | {
-        max_exemplars?: number | null;
-      }[]
-    | null;
-}

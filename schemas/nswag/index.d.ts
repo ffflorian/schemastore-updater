@@ -5,7 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type SwaggerToTypeScriptClient = SwaggerToTypeScriptClient1 & {
+export type SwaggerToTypeScriptClient = ClientGenerator & {
   template?: "JQueryCallbacks" | "JQueryPromises" | "AngularJS" | "Angular" | "Fetch" | "Aurelia";
   promiseType?: "Promise" | "QPromise";
   wrapDtoExceptions?: boolean;
@@ -29,11 +29,9 @@ export type SwaggerToTypeScriptClient = SwaggerToTypeScriptClient1 & {
   typeStyle?: "Interface" | "Class" | "KnockoutClass";
   [k: string]: unknown | undefined;
 };
-export type SwaggerToTypeScriptClient1 = ClientGenerator;
-export type SwaggerToCSharpClient = SwaggerToCSharpClient1 & {
+export type SwaggerToCSharpClient = ClientGenerator & {
   [k: string]: unknown | undefined;
 };
-export type SwaggerToCSharpClient1 = ClientGenerator;
 export type SwaggerToCSharpController = unknown;
 
 export interface Nswag {

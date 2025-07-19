@@ -9,102 +9,114 @@
  * The Services are responsible for configuring how to reach the actual services that will eventually handle the incoming requests.
  */
 export type HttpService =
-  | {
-      loadBalancer?: HttpLoadBalancerService;
-    }
-  | {
-      weighted?: HttpWeightedService;
-    }
-  | {
-      mirroring?: HttpMirroringService;
-    }
-  | {
-      failover?: HttpFailoverService;
-    };
+  | (
+      | {
+          loadBalancer?: HttpLoadBalancerService;
+        }
+      | {
+          weighted?: HttpWeightedService;
+        }
+      | {
+          mirroring?: HttpMirroringService;
+        }
+      | {
+          failover?: HttpFailoverService;
+        }
+    )
+  | undefined;
 export type HttpMiddleware =
-  | {
-      addPrefix?: AddPrefixMiddleware;
-    }
-  | {
-      basicAuth?: BasicAuthMiddleware;
-    }
-  | {
-      buffering?: BufferingMiddleware;
-    }
-  | {
-      chain?: ChainMiddleware;
-    }
-  | {
-      circuitBreaker?: CircuitBreakerMiddleware;
-    }
-  | {
-      compress?: CompressMiddleware;
-    }
-  | {
-      contentType?: ContentTypeMiddleware;
-    }
-  | {
-      digestAuth?: DigestAuthMiddleware;
-    }
-  | {
-      errors?: ErrorsMiddleware;
-    }
-  | {
-      forwardAuth?: ForwardAuthMiddleware;
-    }
-  | {
-      headers?: HeadersMiddleware;
-    }
-  | {
-      ipWhiteList?: IpWhiteListMiddleware;
-    }
-  | {
-      inFlightReq?: InFlightReqMiddleware;
-    }
-  | {
-      passTLSClientCert?: PassTLSClientCertMiddleware;
-    }
-  | {
-      plugin?: PluginMiddleware;
-    }
-  | {
-      rateLimit?: RateLimitMiddleware;
-    }
-  | {
-      redirectRegex?: RedirectRegexMiddleware;
-    }
-  | {
-      redirectScheme?: RedirectSchemeMiddleware;
-    }
-  | {
-      replacePath?: ReplacePathMiddleware;
-    }
-  | {
-      replacePathRegex?: ReplacePathRegexMiddleware;
-    }
-  | {
-      retry?: RetryMiddleware;
-    }
-  | {
-      stripPrefix?: StripPrefixMiddleware;
-    }
-  | {
-      stripPrefixRegex?: StripPrefixRegexMiddleware;
-    };
+  | (
+      | {
+          addPrefix?: AddPrefixMiddleware;
+        }
+      | {
+          basicAuth?: BasicAuthMiddleware;
+        }
+      | {
+          buffering?: BufferingMiddleware;
+        }
+      | {
+          chain?: ChainMiddleware;
+        }
+      | {
+          circuitBreaker?: CircuitBreakerMiddleware;
+        }
+      | {
+          compress?: CompressMiddleware;
+        }
+      | {
+          contentType?: ContentTypeMiddleware;
+        }
+      | {
+          digestAuth?: DigestAuthMiddleware;
+        }
+      | {
+          errors?: ErrorsMiddleware;
+        }
+      | {
+          forwardAuth?: ForwardAuthMiddleware;
+        }
+      | {
+          headers?: HeadersMiddleware;
+        }
+      | {
+          ipWhiteList?: IpWhiteListMiddleware;
+        }
+      | {
+          inFlightReq?: InFlightReqMiddleware;
+        }
+      | {
+          passTLSClientCert?: PassTLSClientCertMiddleware;
+        }
+      | {
+          plugin?: PluginMiddleware;
+        }
+      | {
+          rateLimit?: RateLimitMiddleware;
+        }
+      | {
+          redirectRegex?: RedirectRegexMiddleware;
+        }
+      | {
+          redirectScheme?: RedirectSchemeMiddleware;
+        }
+      | {
+          replacePath?: ReplacePathMiddleware;
+        }
+      | {
+          replacePathRegex?: ReplacePathRegexMiddleware;
+        }
+      | {
+          retry?: RetryMiddleware;
+        }
+      | {
+          stripPrefix?: StripPrefixMiddleware;
+        }
+      | {
+          stripPrefixRegex?: StripPrefixRegexMiddleware;
+        }
+    )
+  | undefined;
 export type TcpService =
-  | {
-      loadBalancer?: TcpLoadBalancerService;
-    }
-  | {
-      weighted?: TcpWeightedService;
-    };
+  | (
+      | {
+          loadBalancer?: TcpLoadBalancerService;
+        }
+      | {
+          weighted?: TcpWeightedService;
+        }
+    )
+  | undefined;
 export type UdpService =
-  | {
-      loadBalancer?: UdpLoadBalancerService;
-    }
-  | {
-      weighted?: UdpWeightedService;
-    };
+  | (
+      | {
+          loadBalancer?: UdpLoadBalancerService;
+        }
+      | {
+          weighted?: UdpWeightedService;
+        }
+    )
+  | undefined;
 
 /**
  * Traefik v2 Dynamic Configuration File Provider
@@ -112,10 +124,10 @@ export type UdpService =
 export interface TraefikV2FileProvider {
   http?: {
     routers?: {
-      [k: string]: HttpRouter;
+      [k: string]: HttpRouter | undefined;
     };
     services?: {
-      [k: string]: HttpService;
+      [k: string]: HttpService | undefined;
     };
     /**
      * Attached to the routers, pieces of middleware are a means of tweaking the requests before they are sent to your service (or before the answer from the services are sent to the clients).
@@ -125,35 +137,36 @@ export interface TraefikV2FileProvider {
      * Pieces of middleware can be combined in chains to fit every scenario.
      */
     middlewares?: {
-      [k: string]: HttpMiddleware;
+      [k: string]: HttpMiddleware | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   tcp?: {
     routers?: {
-      [k: string]: TcpRouter;
+      [k: string]: TcpRouter | undefined;
     };
     /**
      * Each of the fields of the service section represents a kind of service. Which means, that for each specified service, one of the fields, and only one, has to be enabled to define what kind of service is created. Currently, the two available kinds are LoadBalancer, and Weighted.
      */
     services?: {
-      [k: string]: TcpService;
+      [k: string]: TcpService | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   udp?: {
     /**
      * Similarly to TCP, as UDP is the transport layer, there is no concept of a request, so there is no notion of an URL path prefix to match an incoming UDP packet with. Furthermore, as there is no good TLS support at the moment for multiple hosts, there is no Host SNI notion to match against either. Therefore, there is no criterion that could be used as a rule to match incoming packets in order to route them. So UDP "routers" at this time are pretty much only load-balancers in one form or another.
      */
     routers?: {
-      [k: string]: UdpRouter;
+      [k: string]: UdpRouter | undefined;
     };
     /**
      * Each of the fields of the service section represents a kind of service. Which means, that for each specified service, one of the fields, and only one, has to be enabled to define what kind of service is created. Currently, the two available kinds are LoadBalancer, and Weighted.
      */
     services?: {
-      [k: string]: UdpService;
+      [k: string]: UdpService | undefined;
     };
+    [k: string]: unknown | undefined;
   };
   /**
    * Configures the TLS connection, TLS options, and certificate stores.
@@ -166,98 +179,74 @@ export interface TraefikV2FileProvider {
        * A list of stores can be specified here to indicate where the certificates should be stored. Although the stores list will actually be ignored and automatically set to ["default"].
        */
       stores?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
     /**
      * The TLS options allow one to configure some parameters of the TLS connection.
      */
     options?: {
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "[a-zA-Z0-9-_]+".
-       */
-      [k: string]: {
-        /**
-         * Minimum TLS Version
-         */
-        minVersion?: string;
-        /**
-         * Maximum TLS Version. It is discouraged to use of this setting to disable TLS1.3. The recommended approach is to update the clients to support TLS1.3.
-         */
-        maxVersion?: string;
-        /**
-         * Cipher suites defined for TLS 1.2 and below cannot be used in TLS 1.3, and vice versa. With TLS 1.3, the cipher suites are not configurable (all supported cipher suites are safe in this case).
-         */
-        cipherSuites?: string[];
-        /**
-         * This option allows to set the preferred elliptic curves in a specific order.
-         *
-         * The names of the curves defined by crypto (e.g. CurveP521) and the RFC defined names (e.g. secp521r1) can be used.
-         */
-        curvePreferences?: string[];
-        /**
-         * With strict SNI checking enabled, Traefik won't allow connections from clients that do not specify a server_name extension or don't match any certificate configured on the tlsOption.
-         */
-        sniStrict?: boolean;
-        /**
-         * This option allows the server to choose its most preferred cipher suite instead of the client's. Please note that this is enabled automatically when minVersion or maxVersion are set.
-         */
-        preferServerCipherSuites?: boolean;
-        /**
-         * Traefik supports mutual authentication, through the clientAuth section.
-         */
-        clientAuth?: {
-          /**
-           * For authentication policies that require verification of the client certificate, the certificate authority for the certificate should be set here.
-           */
-          caFiles?: string[];
-          clientAuthType?: string;
-          [k: string]: unknown;
-        };
-        [k: string]: unknown;
-      };
+      [k: string]:
+        | {
+            /**
+             * Minimum TLS Version
+             */
+            minVersion?: string;
+            /**
+             * Maximum TLS Version. It is discouraged to use of this setting to disable TLS1.3. The recommended approach is to update the clients to support TLS1.3.
+             */
+            maxVersion?: string;
+            /**
+             * Cipher suites defined for TLS 1.2 and below cannot be used in TLS 1.3, and vice versa. With TLS 1.3, the cipher suites are not configurable (all supported cipher suites are safe in this case).
+             */
+            cipherSuites?: string[];
+            /**
+             * This option allows to set the preferred elliptic curves in a specific order.
+             *
+             * The names of the curves defined by crypto (e.g. CurveP521) and the RFC defined names (e.g. secp521r1) can be used.
+             */
+            curvePreferences?: string[];
+            /**
+             * With strict SNI checking enabled, Traefik won't allow connections from clients that do not specify a server_name extension or don't match any certificate configured on the tlsOption.
+             */
+            sniStrict?: boolean;
+            /**
+             * This option allows the server to choose its most preferred cipher suite instead of the client's. Please note that this is enabled automatically when minVersion or maxVersion are set.
+             */
+            preferServerCipherSuites?: boolean;
+            /**
+             * Traefik supports mutual authentication, through the clientAuth section.
+             */
+            clientAuth?: {
+              /**
+               * For authentication policies that require verification of the client certificate, the certificate authority for the certificate should be set here.
+               */
+              caFiles?: string[];
+              clientAuthType?: string;
+              [k: string]: unknown | undefined;
+            };
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
     };
     /**
      * Any store definition other than the default one (named default) will be ignored, and there is therefore only one globally available TLS store.
      */
     stores?: {
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "[a-zA-Z0-9-_]+".
-       */
-      [k: string]: {
-        /**
-         * Traefik can use a default certificate for connections without a SNI, or without a matching domain. If no default certificate is provided, Traefik generates and uses a self-signed certificate.
-         */
-        defaultCertificate?: {
-          certFile?: string;
-          keyFile?: string;
-        };
-        /**
-         * GeneratedCert defines the default generated certificate configuration.
-         */
-        defaultGeneratedCert?: {
-          /**
-           * Resolver is the name of the resolver that will be used to issue the DefaultCertificate.
-           */
-          resolver?: string;
-          /**
-           * Domain is the domain definition for the DefaultCertificate.
-           */
-          domain?: {
+      [k: string]:
+        | {
             /**
-             * Main defines the main domain name.
+             * Traefik can use a default certificate for connections without a SNI, or without a matching domain. If no default certificate is provided, Traefik generates and uses a self-signed certificate.
              */
-            main?: string;
-            /**
-             * SANs defines the subject alternative domain names.
-             */
-            sans?: string[];
-            [k: string]: unknown;
-          };
-        };
-      };
+            defaultCertificate?: {
+              certFile?: string;
+              keyFile?: string;
+              [k: string]: unknown | undefined;
+            };
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
     };
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -300,17 +289,11 @@ export interface HttpRouter {
      * You can set SANs (alternative domains) for each main domain. Every domain must have A/AAAA records pointing to Traefik. Each domain & SAN will lead to a certificate request.
      */
     domains?: {
-      /**
-       * Main defines the main domain name.
-       */
       main?: string;
-      /**
-       * SANs defines the subject alternative domain names.
-       */
       sans?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -330,14 +313,14 @@ export interface HttpLoadBalancerService {
        * The url option point to a specific instance. Paths in the servers' url have no effect. If you want the requests to be sent to a specific path on your servers, configure your routers to use a corresponding middleware (e.g. the AddPrefix or ReplacePath) middlewares.
        */
       url: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     },
     ...{
       /**
        * The url option point to a specific instance. Paths in the servers' url have no effect. If you want the requests to be sent to a specific path on your servers, configure your routers to use a corresponding middleware (e.g. the AddPrefix or ReplacePath) middlewares.
        */
       url: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[]
   ];
   /**
@@ -355,18 +338,14 @@ export interface HttpLoadBalancerService {
        * Can be none, lax, strict or empty.
        */
       sameSite?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Configure health check to remove unhealthy servers from the load balancing rotation. Traefik will consider your servers healthy as long as they return status codes between 2XX and 3XX to the health check requests (carried out every interval). Traefik keeps monitoring the health of unhealthy servers. If a server has recovered (returning 2xx -> 3xx responses again), it will be added back to the load balancer rotation pool.
    */
   healthCheck?: {
-    /**
-     * If defined, will apply this Method for the health check request.
-     */
-    method?: string;
     /**
      * path is appended to the server URL to set the health check endpoint.
      */
@@ -395,13 +374,13 @@ export interface HttpLoadBalancerService {
      * Defines custom headers to be sent to the health check endpoint.
      */
     headers?: {
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
     /**
      * Defines whether redirects should be followed during the health check calls (default: true).
      */
     followRedirects?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * The passHostHeader allows to forward client Host header to server. By default, passHostHeader is true.
@@ -415,7 +394,7 @@ export interface HttpLoadBalancerService {
      * Specifies the interval in between flushes to the client while copying the response body. It is a duration in milliseconds, defaulting to 100. A negative value means to flush immediately after each write to the client. The flushInterval is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately.
      */
     flushInterval?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   serversTransport?: string;
 }
@@ -428,7 +407,7 @@ export interface HttpWeightedService {
   services?: {
     name?: string;
     weight?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * When sticky sessions are enabled, a cookie is set on the initial request and response to let the client know which server handles the first response. On subsequent requests, to keep the session alive with the same server, the client should resend the same cookie.
@@ -445,12 +424,12 @@ export interface HttpWeightedService {
        * Can be none, lax, strict or empty.
        */
       sameSite?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   healthCheck?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -465,17 +444,17 @@ export interface HttpMirroringService {
   mirrors?: {
     name?: string;
     percent?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   healthCheck?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface HttpFailoverService {
   service?: string;
   fallback?: string;
   healthCheck?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
@@ -513,7 +492,7 @@ export interface BasicAuthMiddleware {
    * Set the removeHeader option to true to remove the authorization header before forwarding the request to your service. (Default value is false.)
    */
   removeHeader?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The Buffering middleware gives you control on how you want to read the requests before sending them to services.
@@ -688,7 +667,7 @@ export interface ForwardAuthMiddleware {
      * If insecureSkipVerify is true, TLS for the connection to authentication server accepts any certificate presented by the server and any host name in that certificate.
      */
     insecureSkipVerify?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Set the trustForwardHeader option to true to trust all the existing X-Forwarded-* headers.
@@ -715,13 +694,13 @@ export interface HeadersMiddleware {
    * The customRequestHeaders option lists the Header names and values to apply to the request.
    */
   customRequestHeaders?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The customResponseHeaders option lists the Header names and values to apply to the response.
    */
   customResponseHeaders?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The accessControlAllowCredentials indicates whether the request can include user credentials.
@@ -783,7 +762,7 @@ export interface HeadersMiddleware {
    * The sslProxyHeaders option is set of header keys with associated values that would indicate a valid https request. Useful when using other proxies with header like: "X-Forwarded-Proto": "https".
    */
   sslProxyHeaders?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Set sslForceHost to true and set SSLHost to forced requests to use SSLHost even the ones that are already using SSL.
@@ -954,7 +933,7 @@ export interface PassTLSClientCertMiddleware {
        * Set the domainComponent option to true to add the domainComponent information into the subject.
        */
       domainComponent?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * The issuer select the specific client certificate issuer details you want to add to the X-Forwarded-Tls-Client-Cert-Info header.
@@ -988,18 +967,20 @@ export interface PassTLSClientCertMiddleware {
        * Set the domainComponent option to true to add the domainComponent information into the issuer.
        */
       domainComponent?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**
  * Some plugins will need to be configured by adding a dynamic configuration.
  */
 export interface PluginMiddleware {
-  [k: string]: {
-    [k: string]: unknown;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 /**
  * The RateLimit middleware ensures that services will receive a fair number of requests, and allows one to define what fair is.
@@ -1165,17 +1146,11 @@ export interface TcpRouter {
      * You can set SANs (alternative domains) for each main domain. Every domain must have A/AAAA records pointing to Traefik. Each domain & SAN will lead to a certificate request.
      */
     domains?: {
-      /**
-       * Main defines the main domain name.
-       */
       main?: string;
-      /**
-       * SANs defines the subject alternative domain names.
-       */
       sans?: string[];
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface TcpLoadBalancerService {
@@ -1190,14 +1165,14 @@ export interface TcpLoadBalancerService {
        * The address option (IP:Port) point to a specific instance.
        */
       address: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     },
     ...{
       /**
        * The address option (IP:Port) point to a specific instance.
        */
       address: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[]
   ];
   /**
@@ -1212,7 +1187,7 @@ export interface TcpLoadBalancerService {
   terminationDelay?: number;
   proxyProtocol?: {
     version?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 export interface TcpWeightedService {
@@ -1252,11 +1227,11 @@ export interface UdpLoadBalancerService {
   servers: [
     {
       address: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     },
     ...{
       address: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[]
   ];
 }

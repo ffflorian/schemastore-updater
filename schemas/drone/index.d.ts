@@ -5,23 +5,26 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type DroneCIConfigurationFile = DroneCIConfigurationFile1 & DroneCIConfigurationFile2;
-export type DroneCIConfigurationFile2 =
+export type DroneCIConfigurationFile = {
+  kind: "signature" | "secret" | "template" | "pipeline";
+  [k: string]: unknown | undefined;
+} & (
   | KindSignature
   | KindSecret
   | KindTemplate
   | (KindPipeline &
-      (PipelineDocker | PipelineKubernetes | PipelineExec | PipelineSsh | PipelineDigitalocean | PipelineMacstadium));
+      (PipelineDocker | PipelineKubernetes | PipelineExec | PipelineSsh | PipelineDigitalocean | PipelineMacstadium))
+);
 export type NonEmptyString = string;
 export type Conditions =
   | Condition
   | {
       include?: Condition;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | {
       exclude?: Condition;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 export type Condition = string[];
 export type StepDocker = Step & {
@@ -31,7 +34,7 @@ export type StepDocker = Step & {
   pull?: "always" | "never" | "if-not-exists";
   volumes?: StepsVolumes;
   settings?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   name?: unknown;
   detach?: boolean;
@@ -46,25 +49,11 @@ export type Commands = NonEmptyString[];
 export type StepsVolumes = {
   name: NonEmptyString;
   path: NonEmptyString;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
-export type Volumes = (
-  | {
-      [k: string]: unknown;
-    }
-  | {
-      [k: string]: unknown;
-    }
-  | {
-      [k: string]: unknown;
-    }
-  | {
-      [k: string]: unknown;
-    }
-  | {
-      [k: string]: unknown;
-    }
-)[];
+export type Volumes = {
+  [k: string]: unknown | undefined;
+}[];
 export type Services = {
   name: NonEmptyString;
   image: NonEmptyString;
@@ -75,7 +64,7 @@ export type Services = {
   pull?: "always";
   volumes?: Volumes;
   working_dir?: NonEmptyString;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }[];
 export type StepKubernetes = Step & {
   image: NonEmptyString;
@@ -84,7 +73,7 @@ export type StepKubernetes = Step & {
   resources?: IoK8SApiCoreV16;
   volumes?: StepsVolumes;
   settings?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   name?: unknown;
   failure?: unknown;
@@ -127,14 +116,10 @@ export type StepMacstadium = Step & {
   depends_on?: unknown;
 };
 
-export interface DroneCIConfigurationFile1 {
-  kind: "signature" | "secret" | "template" | "pipeline";
-  [k: string]: unknown;
-}
 export interface KindSignature {
   kind?: "signature";
   hmac: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface KindSecret {
   kind?: "secret";
@@ -143,16 +128,16 @@ export interface KindSecret {
   get?: {
     path: NonEmptyString;
     name: NonEmptyString;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface KindTemplate {
   load: string;
   data?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface KindPipeline {
   kind?: "pipeline";
@@ -161,36 +146,33 @@ export interface KindPipeline {
   platform?: Platform;
   workspace?: {
     path: NonEmptyString;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   clone?: {
     depth?: number;
     disable?: true;
-    retries?: number;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   steps: unknown[];
   trigger?: AllConditions;
   depends_on?: NonEmptyString[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Platform {
   os?: "linux" | "windows" | "darwin" | "freebsd" | "netbsd" | "openbsd" | "dragonfly" | "solaris";
-  arch?: "arm" | "arm64" | "amd64" | "386";
+  arсh?: "arm" | "arm64" | "amd64" | "386";
   variant?: string;
   version?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface AllConditions {
   branch?: Conditions;
-  cron?: Conditions;
   event?: Conditions;
-  paths?: Conditions;
   ref?: Conditions;
   repo?: Conditions;
   status?: Condition;
   target?: Conditions;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PipelineDocker {
   type?: "docker";
@@ -210,11 +192,11 @@ export interface PipelineDocker {
   depends_on?: unknown;
 }
 export interface Environment {
-  [k: string]: string | number | boolean | Secret;
+  [k: string]: (string | number | boolean | Secret) | undefined;
 }
 export interface Secret {
   from_secret: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Step {
   name: NonEmptyString;
@@ -224,14 +206,14 @@ export interface Step {
   environment?: Environment;
   when?: AllConditions;
   depends_on?: NonEmptyString[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Node {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 export interface Concurrency {
   limit: number;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PipelineKubernetes {
   type?: "kubernetes";
@@ -274,7 +256,7 @@ export interface IoK8SApimachineryPkgApisMetaV1 {
    * Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
    */
   annotations?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.
@@ -316,7 +298,7 @@ export interface IoK8SApimachineryPkgApisMetaV1 {
    * Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
    */
   labels?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like "ci-cd". The set of fields is always in the version that the workflow used when modifying the object.
@@ -354,7 +336,7 @@ export interface IoK8SApimachineryPkgApisMetaV1 {
    * Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
    */
   uid?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.
@@ -381,13 +363,13 @@ export interface IoK8SApimachineryPkgApisMetaV11 {
    * Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
    */
   time?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * FieldsV1 holds the first JSON version format as described in the "FieldsV1" type.
  */
 export interface IoK8SApimachineryPkgApisMetaV12 {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
@@ -417,7 +399,7 @@ export interface IoK8SApimachineryPkgApisMetaV13 {
    * UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
    */
   uid: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
@@ -443,7 +425,7 @@ export interface IoK8SApiCoreV1 {
    * Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
    */
   value?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.
@@ -461,7 +443,7 @@ export interface IoK8SApiCoreV11 {
    * A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
    */
   searches?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * PodDNSConfigOption defines DNS resolver options of a pod.
@@ -472,7 +454,7 @@ export interface IoK8SApiCoreV12 {
    */
   name?: string;
   value?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -486,7 +468,7 @@ export interface IoK8SApiCoreV13 {
    * IP address of the host file entry.
    */
   ip?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.
@@ -500,7 +482,7 @@ export interface IoK8SApiCoreV14 {
    * A list of node selector requirements by node's fields.
    */
   matchFields?: IoK8SApiCoreV15[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -518,7 +500,7 @@ export interface IoK8SApiCoreV15 {
    * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
    */
   values?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ResourceRequirements describes the compute resource requirements.
@@ -528,15 +510,15 @@ export interface IoK8SApiCoreV16 {
    * Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
    */
   limits?: {
-    [k: string]: string | number;
+    [k: string]: (string | number) | undefined;
   };
   /**
    * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
    */
   requests?: {
-    [k: string]: string | number;
+    [k: string]: (string | number) | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface PipelineExec {
   type?: "exec";
@@ -558,7 +540,7 @@ export interface PipelineSsh {
     user: StringOrSecret;
     password?: StringOrSecret;
     ssh_key?: StringOrSecret;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   kind?: unknown;
   name?: unknown;

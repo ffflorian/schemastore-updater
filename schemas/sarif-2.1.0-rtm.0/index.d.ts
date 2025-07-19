@@ -8,17 +8,9 @@
 /**
  * Information about how to locate a relevant reporting descriptor.
  */
-export type ReportingDescriptorReference = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ReportingDescriptorReference = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * The id of the descriptor.
    */
@@ -48,14 +40,9 @@ export type ReportingDescriptorReference = (
 /**
  * A description of the reporting descriptor relationship.
  */
-export type Message = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -90,14 +77,9 @@ export type Message = (
 /**
  * A short description of the artifact location.
  */
-export type Message1 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message1 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -132,17 +114,9 @@ export type Message1 = (
 /**
  * Information about how to locate a relevant reporting descriptor.
  */
-export type ReportingDescriptorReference1 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ReportingDescriptorReference1 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * The id of the descriptor.
    */
@@ -172,14 +146,9 @@ export type ReportingDescriptorReference1 = (
 /**
  * Identifies the artifact and region.
  */
-export type PhysicalLocation = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type PhysicalLocation = {
+  [k: string]: unknown | undefined;
+} & {
   address?: Address;
   artifactLocation?: ArtifactLocation1;
   region?: Region;
@@ -200,14 +169,9 @@ export type PhysicalLocation = (
 /**
  * A message relevant to the region.
  */
-export type Message2 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message2 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -242,14 +206,9 @@ export type Message2 = (
 /**
  * A message relevant to the location.
  */
-export type Message3 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message3 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -284,14 +243,9 @@ export type Message3 = (
 /**
  * A description of the location relationship.
  */
-export type Message4 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message4 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -326,14 +280,9 @@ export type Message4 = (
 /**
  * A message that describes the condition that was encountered.
  */
-export type Message5 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message5 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -368,14 +317,9 @@ export type Message5 = (
 /**
  * A message relevant to this call stack.
  */
-export type Message6 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message6 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -410,17 +354,9 @@ export type Message6 = (
 /**
  * Information about how to locate a relevant reporting descriptor.
  */
-export type ReportingDescriptorReference2 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ReportingDescriptorReference2 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * The id of the descriptor.
    */
@@ -450,17 +386,9 @@ export type ReportingDescriptorReference2 = (
 /**
  * Information about how to locate a relevant reporting descriptor.
  */
-export type ReportingDescriptorReference3 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ReportingDescriptorReference3 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * The id of the descriptor.
    */
@@ -490,14 +418,9 @@ export type ReportingDescriptorReference3 = (
 /**
  * A short description of the artifact.
  */
-export type Message7 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message7 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -532,14 +455,9 @@ export type Message7 = (
 /**
  * A description of the graph.
  */
-export type Message8 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message8 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -574,14 +492,9 @@ export type Message8 = (
 /**
  * A short description of the node.
  */
-export type Message9 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message9 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -616,14 +529,9 @@ export type Message9 = (
 /**
  * A short description of the edge.
  */
-export type Message10 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message10 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -658,17 +566,9 @@ export type Message10 = (
 /**
  * Information about how to locate a relevant reporting descriptor.
  */
-export type ReportingDescriptorReference4 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ReportingDescriptorReference4 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * The id of the descriptor.
    */
@@ -698,14 +598,9 @@ export type ReportingDescriptorReference4 = (
 /**
  * A message that describes the result. The first sentence of the message only will be displayed when visible space is limited.
  */
-export type Message11 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message11 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -740,14 +635,9 @@ export type Message11 = (
 /**
  * A message relevant to the code flow.
  */
-export type Message12 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message12 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -851,16 +741,9 @@ export type ReportingDescriptorReference5 = ReportingDescriptorReference6 & {
     [k: string]: unknown | undefined;
   };
 };
-export type ReportingDescriptorReference6 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type ReportingDescriptorReference6 = {
+  [k: string]: unknown | undefined;
+};
 /**
  * Represents a path through a graph.
  */
@@ -878,13 +761,13 @@ export type GraphTraversal = {
    * Values of relevant expressions at the start of the graph traversal that may change during graph traversal.
    */
   initialState?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * Values of relevant expressions at the start of the graph traversal that remain constant for the graph traversal.
    */
   immutableState?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * The sequences of edges traversed by this graph traversal.
@@ -908,14 +791,9 @@ export type GraphTraversal = {
 /**
  * A description of this graph traversal.
  */
-export type Message14 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message14 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -950,14 +828,9 @@ export type Message14 = (
 /**
  * A message to display to the user as the edge is traversed.
  */
-export type Message15 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message15 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -989,24 +862,15 @@ export type Message15 = (
     [k: string]: unknown | undefined;
   };
 };
-export type GraphTraversal1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type GraphTraversal1 = {
+  [k: string]: unknown | undefined;
+};
 /**
  * A message describing the role played by the attachment.
  */
-export type Message16 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message16 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -1041,14 +905,9 @@ export type Message16 = (
 /**
  * A message relevant to the rectangle.
  */
-export type Message17 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message17 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -1101,24 +960,15 @@ export type PhysicalLocation1 = PhysicalLocation2 & {
     [k: string]: unknown | undefined;
   };
 };
-export type PhysicalLocation2 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type PhysicalLocation2 = {
+  [k: string]: unknown | undefined;
+};
 /**
  * A message that describes the proposed fix, enabling viewers to present the proposed change to an end user.
  */
-export type Message18 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message18 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -1153,14 +1003,9 @@ export type Message18 = (
 /**
  * A description of the identity and role played within the engineering system by this object's containing run object.
  */
-export type Message19 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type Message19 = {
+  [k: string]: unknown | undefined;
+} & {
   /**
    * A plain text message string.
    */
@@ -1195,14 +1040,9 @@ export type Message19 = (
 /**
  * An external property file containing a run.conversion object to be merged with the root log file.
  */
-export type ExternalPropertyFileReference = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ExternalPropertyFileReference = {
+  [k: string]: unknown | undefined;
+} & {
   location?: ArtifactLocation13;
   /**
    * A stable, unique identifier for the external property file in the form of a GUID.
@@ -1250,24 +1090,15 @@ export type ExternalPropertyFileReference1 = ExternalPropertyFileReference2 & {
   };
   [k: string]: unknown | undefined;
 };
-export type ExternalPropertyFileReference2 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type ExternalPropertyFileReference2 = {
+  [k: string]: unknown | undefined;
+};
 /**
  * An external property file containing a run.properties object to be merged with the root log file.
  */
-export type ExternalPropertyFileReference3 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ExternalPropertyFileReference3 = {
+  [k: string]: unknown | undefined;
+} & {
   location?: ArtifactLocation13;
   /**
    * A stable, unique identifier for the external property file in the form of a GUID.
@@ -1294,14 +1125,9 @@ export type ExternalPropertyFileReference3 = (
 /**
  * An external property file containing a run.driver object to be merged with the root log file.
  */
-export type ExternalPropertyFileReference4 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type ExternalPropertyFileReference4 = {
+  [k: string]: unknown | undefined;
+} & {
   location?: ArtifactLocation13;
   /**
    * A stable, unique identifier for the external property file in the form of a GUID.
@@ -1589,7 +1415,7 @@ export interface ToolComponent {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
@@ -1771,7 +1597,7 @@ export interface ReportingDescriptor {
    * A set of name/value pairs with arbitrary names. Each value is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   messageStrings?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   defaultConfiguration?: ReportingConfiguration;
   /**
@@ -2199,7 +2025,7 @@ export interface ToolComponent1 {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
@@ -2572,13 +2398,7 @@ export interface ArtifactLocation1 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -2735,13 +2555,7 @@ export interface Region1 {
    */
   byteLength?: number;
   snippet?: ArtifactContent;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message2;
   /**
    * Specifies the source language, if any, of the portion of the artifact specified by the region object.
    */
@@ -2837,13 +2651,7 @@ export interface Region2 {
    */
   byteLength?: number;
   snippet?: ArtifactContent;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message2;
   /**
    * Specifies the source language, if any, of the portion of the artifact specified by the region object.
    */
@@ -2984,21 +2792,9 @@ export interface Location1 {
    * Value that distinguishes this location from all other locations within a single result object.
    */
   id?: number;
-  physicalLocation?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  physicalLocation?: PhysicalLocation;
   logicalLocation?: LogicalLocation;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message3;
   /**
    * A set of regions relevant to the location.
    *
@@ -3070,13 +2866,7 @@ export interface ArtifactLocation2 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3106,13 +2896,7 @@ export interface ArtifactLocation3 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3142,13 +2926,7 @@ export interface ArtifactLocation4 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3178,13 +2956,7 @@ export interface ArtifactLocation5 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3214,13 +2986,7 @@ export interface ArtifactLocation6 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3250,13 +3016,7 @@ export interface ArtifactLocation7 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3486,13 +3246,7 @@ export interface ArtifactLocation8 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3606,13 +3360,7 @@ export interface ArtifactLocation9 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -3760,21 +3508,9 @@ export interface Location2 {
    * Value that distinguishes this location from all other locations within a single result object.
    */
   id?: number;
-  physicalLocation?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  physicalLocation?: PhysicalLocation;
   logicalLocation?: LogicalLocation;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message3;
   /**
    * A set of regions relevant to the location.
    *
@@ -3955,7 +3691,7 @@ export interface Result {
    *
    * @minItems 0
    */
-  taxa?: ReportingDescriptorReference6[];
+  taxa?: ReportingDescriptorReference5[];
   webRequest?: WebRequest1;
   webResponse?: WebResponse1;
   /**
@@ -3987,13 +3723,7 @@ export interface ArtifactLocation10 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -4011,13 +3741,7 @@ export interface ArtifactLocation10 {
  * A call stack that is relevant to a result.
  */
 export interface Stack1 {
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message6;
   /**
    * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
    *
@@ -4071,13 +3795,13 @@ export interface ThreadFlow {
    * Values of relevant expressions at the start of the thread flow that may change during thread flow execution.
    */
   initialState?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * Values of relevant expressions at the start of the thread flow that remain constant.
    */
   immutableState?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
@@ -4129,7 +3853,7 @@ export interface ThreadFlowLocation {
    * A dictionary, each of whose keys specifies a variable or expression, the associated value of which represents the variable or expression value. For an annotation of kind 'continuation', for example, this dictionary might hold the current assumed values of a set of global variables.
    */
   state?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * An integer representing a containment hierarchy within the thread flow.
@@ -4170,21 +3894,9 @@ export interface Location3 {
    * Value that distinguishes this location from all other locations within a single result object.
    */
   id?: number;
-  physicalLocation?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  physicalLocation?: PhysicalLocation;
   logicalLocation?: LogicalLocation;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message3;
   /**
    * A set of regions relevant to the location.
    *
@@ -4214,13 +3926,7 @@ export interface Location3 {
  * The call stack leading to this location.
  */
 export interface Stack2 {
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message6;
   /**
    * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
    *
@@ -4405,7 +4111,7 @@ export interface EdgeTraversal {
    * The values of relevant expressions after the edge has been traversed.
    */
   finalState?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * The number of edge traversals necessary to return from a nested graph.
@@ -4466,21 +4172,9 @@ export interface Location4 {
    * Value that distinguishes this location from all other locations within a single result object.
    */
   id?: number;
-  physicalLocation?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  physicalLocation?: PhysicalLocation;
   logicalLocation?: LogicalLocation;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message3;
   /**
    * A set of regions relevant to the location.
    *
@@ -4553,13 +4247,7 @@ export interface ArtifactLocation11 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -4714,13 +4402,7 @@ export interface ArtifactLocation12 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -4790,13 +4472,7 @@ export interface Region3 {
    */
   byteLength?: number;
   snippet?: ArtifactContent;
-  message?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  message?: Message2;
   /**
    * Specifies the source language, if any, of the portion of the artifact specified by the region object.
    */
@@ -4974,13 +4650,7 @@ export interface RunAutomationDetails {
  * Information that describes a run's identity and role within an engineering system process.
  */
 export interface RunAutomationDetails1 {
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message19;
   /**
    * A hierarchical string that uniquely identifies this object's containing run object.
    */
@@ -5023,74 +4693,74 @@ export interface ExternalPropertyFileReferences {
    *
    * @minItems 0
    */
-  artifacts?: ExternalPropertyFileReference2[];
+  artifacts?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.invocations arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  invocations?: ExternalPropertyFileReference2[];
+  invocations?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.logicalLocations arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  logicalLocations?: ExternalPropertyFileReference2[];
+  logicalLocations?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.threadFlowLocations arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  threadFlowLocations?: ExternalPropertyFileReference2[];
+  threadFlowLocations?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.results arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  results?: ExternalPropertyFileReference2[];
+  results?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.taxonomies arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  taxonomies?: ExternalPropertyFileReference2[];
+  taxonomies?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.addresses arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  addresses?: ExternalPropertyFileReference2[];
+  addresses?: ExternalPropertyFileReference1[];
   driver?: ExternalPropertyFileReference4;
   /**
    * An array of external property files containing run.extensions arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  extensions?: ExternalPropertyFileReference2[];
+  extensions?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.policies arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  policies?: ExternalPropertyFileReference2[];
+  policies?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.translations arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  translations?: ExternalPropertyFileReference2[];
+  translations?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.requests arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  webRequests?: ExternalPropertyFileReference2[];
+  webRequests?: ExternalPropertyFileReference1[];
   /**
    * An array of external property files containing run.responses arrays to be merged with the root log file.
    *
    * @minItems 0
    */
-  webResponses?: ExternalPropertyFileReference2[];
+  webResponses?: ExternalPropertyFileReference1[];
   /**
    * Key/value pairs that provide additional information about the external property files.
    */
@@ -5120,13 +4790,7 @@ export interface ArtifactLocation13 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -5328,13 +4992,7 @@ export interface ArtifactLocation14 {
    * The index within the run artifacts array of the artifact object associated with the artifact location.
    */
   index?: number;
-  description?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+  description?: Message1;
   /**
    * Key/value pairs that provide additional information about the artifact location.
    */
@@ -5555,7 +5213,7 @@ export interface ToolComponent2 {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2Undefined;
+    [k: string]: MultiformatMessageString2 | undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.

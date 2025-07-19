@@ -18,7 +18,7 @@ export interface Commands {
    * A list of commands.
    */
   commands?: {
-    [k: string]: Commands1Undefined;
+    [k: string]: Commands1 | undefined;
   };
   /**
    * Specify any Visual Studio event bindings.

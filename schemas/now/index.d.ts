@@ -55,14 +55,9 @@ export interface Now {
   /**
    * a list of route definitions
    */
-  routes?: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-  )[];
+  routes?: {
+    [k: string]: unknown | undefined;
+  }[];
   /**
    * the deployment regions of the Serverless Functions that get created as a result of the build steps
    */

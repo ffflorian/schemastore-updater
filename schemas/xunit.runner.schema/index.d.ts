@@ -18,6 +18,14 @@ export interface XUnitNetRunnerConfiguration {
    */
   appDomain?: "required" | "ifAvailable" | "denied";
   /**
+   * Determines the maximum recursive depth for object comparisons when using Assert.Equivalent.
+   */
+  assertEquivalentMaxDepth?: number;
+  /**
+   * Sets the culture used when running tests. It should be one of: a BCP 47-compatible culture name (https://www.rfc-editor.org/info/bcp47); 'invariant' for the system invariant culture; or 'default' for the current system culture.
+   */
+  culture?: string;
+  /**
    * Enables or disables diagnostic information during test discovery and execution.
    */
   diagnosticMessages?: boolean;
@@ -25,6 +33,10 @@ export interface XUnitNetRunnerConfiguration {
    * Enables or disables converting skipped tests into failed tests.
    */
   failSkips?: boolean;
+  /**
+   * Enables or disables warned tests being treated as errors. Supported for v3+ test assemblies only.
+   */
+  failWarns?: boolean;
   /**
    * Enables or disables internal diagnostic information during test discovery and execution.
    */
@@ -34,9 +46,9 @@ export interface XUnitNetRunnerConfiguration {
    */
   longRunningTestSeconds?: number;
   /**
-   * Configures the maximum number of threads to be used when parallelizing tests within this assembly. Use a value of 0 to indicate that you would like the default behavior; use a value of -1 to indicate that you do not wish to limit the number of threads used for parallelization.
+   * Configures the maximum number of threads to be used when parallelizing tests within this assembly. Use a value of 'default' or 0 to indicate that you would like the default behavior; use a value of 'unlimited' or -1 to indicate that you do not wish to limit the number of threads used for parallelization. Positive integer values indicate an exact number of threads; a string value formatted as a positive integer or decimal followed by 'x' indicates a thread count which is a multiple of the CPU threads available (example: '1x' would give 4 threads on a 4 thread CPU, or '1.5x' would give 6 threads on a 4 thread CPU).
    */
-  maxParallelThreads?: number;
+  maxParallelThreads?: number | string;
   /**
    * Configures the default display name for test cases. If you choose 'method', the display name will be just the method (without the class name); if you choose 'classAndMethod', the default display name will be the fully qualified class name and method name.
    */
@@ -46,6 +58,10 @@ export interface XUnitNetRunnerConfiguration {
    */
   methodDisplayOptions?: string;
   /**
+   * Configures the algorithm used when parallelizing test collections (and a limited number of threads). Valid values are 'conservative' (default) or 'aggressive'. For more information: https://xunit.net/docs/running-tests-in-parallel#algorithms
+   */
+  parallelAlgorithm?: "conservative" | "aggressive";
+  /**
    * Instructs the test runner that this assembly is willing to run in parallel with other assemblies.
    */
   parallelizeAssembly?: boolean;
@@ -54,13 +70,37 @@ export interface XUnitNetRunnerConfiguration {
    */
   parallelizeTestCollections?: boolean;
   /**
-   * Enables or disables pre-enumerate of theories so that there is an individual test case for each theory data row. Set this to 'false' to return a single test case for each theory without pre-enumerating the data ahead of time.
+   * Enables or disables pre-enumerate of theories so that there is an individual test case for each theory data row. Set this to 'false' to return a single test case for each theory without pre-enumerating the data ahead of time; set this to 'true' to attempt to pre-enumerate each theory row when possible.
    */
   preEnumerateTheories?: boolean;
+  /**
+   * Sets the maximum number of items to print when printing a collection, after which an ellipsis will be shown. Defaults to 5. If set to 0, there is no maximum length when printing collections collection.
+   */
+  printMaxEnumerableLength?: number;
+  /**
+   * Sets the maximum number of embedded objects to print, after which an ellipsis will be shown. Defaults to 3. If set to 1, only prints top-level objects; if set to 0, there is no maximum depth for embedded objects.
+   */
+  printMaxObjectDepth?: number;
+  /**
+   * Sets the maximum number of members to print when printing an object, after which an ellipsis will be shown. Defaults to 5. If set to 0, all object members will be printed.
+   */
+  printMaxObjectMemberCount?: number;
+  /**
+   * Sets the maximum length when printing a string value, after which an ellipsis will be shown. Defaults to 50. If set to 0, strings will not be truncated when printed.
+   */
+  printMaxStringLength?: number;
+  /**
+   * Set this to set the seed used for randomization (affects how the test cases are randomized). This is only valid for v3.0+ test assemblies; it will be ignored for v1 or v2 assemblies. If the seed value isn't set, then the system will determine a reasonable seed.
+   */
+  seed?: number;
   /**
    * Enables or disables use of shadow copying when using app domains. Has no effect if app domains are not used.
    */
   shadowCopy?: boolean;
+  /**
+   * Enables or disables showing output from ITestOutputHelper live during the test run (in addition to showing them after the test has completed).
+   */
+  showLiveOutput?: boolean;
   /**
    * Enable or disable stopping running further tests once a failed test has been recorded.
    */

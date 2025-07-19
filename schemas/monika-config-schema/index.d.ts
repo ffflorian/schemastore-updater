@@ -22,137 +22,6 @@ export type Description = string;
  */
 export type Interval = number;
 /**
- * Postgres uri connection configuration
- */
-export type URIConnection = string;
-/**
- * Postgres port to connect to
- */
-export type Port = Port1 & Port2;
-export type Port1 = number;
-export type Port2 = string;
-/**
- * Name of the database
- */
-export type Database = string;
-/**
- * Username with access to the database
- */
-export type Username = string;
-/**
- * User's database password
- */
-export type Password = string;
-/**
- * Monitor postgres readiness
- */
-export type Postgres = (
-  | {
-      uri: URIConnection;
-    }
-  | {
-      /**
-       * Postgres host address to connect to
-       */
-      host: string;
-      port: Port;
-      database: Database;
-      username?: Username;
-      password?: Password;
-      [k: string]: unknown | undefined;
-    }
-)[];
-/**
- * The hostname or IP address of the redis server
- */
-export type RedisHost = string;
-/**
- * Port number used for the redis
- */
-export type PortNumber = PortNumber1 & PortNumber2;
-export type PortNumber1 = number;
-export type PortNumber2 = string;
-/**
- * Password used for the redis AUTH, if set.
- */
-export type Password1 = string;
-/**
- * Username used for the redis AUTH, if set.
- */
-export type Username1 = string;
-/**
- * Monitor redis health
- */
-export type Redis = {
-  host: RedisHost;
-  port: PortNumber;
-  password?: Password1;
-  username?: Username1;
-  [k: string]: unknown | undefined;
-}[];
-/**
- * The hostname or IP address of the MongoDB server
- */
-export type MongoDBURI = string;
-/**
- * The hostname or IP address of the MongoDB server
- */
-export type MongoDBHost = string;
-/**
- * Port number used for the MongoDB
- */
-export type PortNumber3 = PortNumber4 & PortNumber5;
-export type PortNumber4 = number;
-export type PortNumber5 = string;
-/**
- * Password used for the MongoDB AUTH, if set.
- */
-export type Password2 = string;
-/**
- * Username used for the MongoDB AUTH, if set.
- */
-export type Username2 = string;
-/**
- * Monitor MongoDB health
- */
-export type MongoDB = {
-  uri?: MongoDBURI;
-  host?: MongoDBHost;
-  port?: PortNumber3;
-  password?: Password2;
-  username?: Username2;
-  [k: string]: unknown | undefined;
-}[];
-/**
- * The hostname or IP address of the database server
- */
-export type DatabaseHost = string;
-/**
- * Port number used by your database server
- */
-export type PortNumber6 = PortNumber7 & PortNumber8;
-export type PortNumber7 = number;
-export type PortNumber8 = string;
-/**
- * User with access to the database
- */
-export type Username3 = string;
-/**
- * User password for authentication
- */
-export type Password3 = string;
-export type Database1 = string;
-/**
- * Monitor MariaDB/Mysql health
- */
-export type MariaDBMysql = {
-  host: DatabaseHost;
-  port: PortNumber6;
-  username: Username3;
-  password: Password3;
-  database: Database1;
-}[];
-/**
  * The http method
  */
 export type HTTPMethod = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
@@ -169,42 +38,24 @@ export type Timeout = number;
  */
 export type SaveBody = boolean;
 /**
- * An expression that will trigger an alert when its is logically true. See the assertions here: https://monika.hyperjump.tech/guides/alerts#alert-query
- */
-export type Assertion = string;
-/**
- * Message that will be sent to the notification channel
- */
-export type Message = string;
-/**
- * Note: Query is deprecated, please use assertion
+ * An expression that will trigger an alert when its is logically true. See the queries here: https://monika.hyperjump.tech/guides/alerts#alert-query
  */
 export type Query = string;
 /**
  * Message that will be sent to the notification channel
  */
-export type Message1 = string;
+export type Message = string;
 /**
  * The condition which will trigger an alert and the subsequent notification
  */
-export type Alerts = (
-  | {
-      assertion: Assertion;
-      message: Message;
-    }
-  | {
-      query: Query;
-      message: Message1;
-    }
-)[];
+export type Alerts = {
+  query: Query;
+  message: Message;
+}[];
 /**
  * If defined and to true, the request is an ICMP ping
  */
 export type Ping = boolean;
-/**
- * If defined and to true, the request will ignore SSL certificate validity
- */
-export type AllowUnauthorized = boolean;
 /**
  * The http or ping request to probe for
  */
@@ -215,14 +66,13 @@ export type Requests = {
   saveBody?: SaveBody;
   alerts?: Alerts;
   ping?: Ping;
-  allowUnauthorized?: AllowUnauthorized;
   body?: Body;
   headers?: Headers;
 }[];
 /**
  * Host port to connect to
  */
-export type Port3 = number;
+export type Port = number;
 /**
  * Data payload for the request
  */
@@ -243,11 +93,6 @@ export type Probes = {
   name?: Name;
   description?: Description;
   interval?: Interval;
-  postgres?: Postgres;
-  redis?: Redis;
-  mongo?: MongoDB;
-  mariadb?: MariaDBMysql;
-  mysql?: MariaDBMysql;
   requests?: Requests;
   socket?: Socket;
   incidentThreshold?: IncidentThreshold;
@@ -270,16 +115,12 @@ export type Notifications = (
   | Sendgrid
   | Slack
   | SMTP
-  | Statuspage
   | Telegram
   | Webhook
   | WhatsAppForBusiness
   | Dingtalk
   | Pushover
-  | Gotify
   | Opsgenie
-  | Pushbullet
-  | Instatus
 )[];
 /**
  * Sends status notification periodically according to a cron schedule. Set to false to disable.
@@ -380,7 +221,7 @@ export interface Socket {
    * Address to your host
    */
   host: string;
-  port: Port3;
+  port: Port;
   data: Data;
 }
 export interface Desktop {
@@ -518,7 +359,7 @@ export interface Pagerduty {
   id: string;
   type: "pagerduty";
   /**
-   * An array of email addresses that will receive the e-mail from Monika
+   * Data for your payload
    */
   data: {
     /**
@@ -529,7 +370,7 @@ export interface Pagerduty {
      * Monika Probe ID
      */
     probeID: string;
-  }[];
+  };
 }
 export interface Sendgrid {
   /**
@@ -601,26 +442,6 @@ export interface SMTP {
      * The password set for your username
      */
     password: string;
-  };
-}
-export interface Statuspage {
-  /**
-   * Notification identity number
-   */
-  id: string;
-  type: "statuspage";
-  /**
-   * Data for your payload
-   */
-  data: {
-    /**
-     * Statuspage API key
-     */
-    apiKey: string;
-    /**
-     * Statuspage page ID
-     */
-    pageID: string;
   };
 }
 export interface Telegram {
@@ -723,26 +544,6 @@ export interface Pushover {
     user: string;
   };
 }
-export interface Gotify {
-  /**
-   * Unique Gotify notification id
-   */
-  id: string;
-  type: "gotify";
-  /**
-   * Data for your payload
-   */
-  data: {
-    /**
-     * Gotify application token
-     */
-    token: string;
-    /**
-     * Gotify base url
-     */
-    url: string;
-  };
-}
 export interface Opsgenie {
   /**
    * Unique opsgenie notification id
@@ -757,46 +558,6 @@ export interface Opsgenie {
      * Opsgenie application token
      */
     geniekey: string;
-  };
-}
-export interface Pushbullet {
-  /**
-   * Unique notification id
-   */
-  id: string;
-  type: "pushbullet";
-  /**
-   * Data for your payload
-   */
-  data: {
-    /**
-     * Pushbullet application token.
-     */
-    token: string;
-    /**
-     * Pushbullet device identifier (optional)
-     */
-    deviceID?: string;
-  };
-}
-export interface Instatus {
-  /**
-   * The type of notification
-   */
-  id: string;
-  type: "instatus";
-  /**
-   * Data for your payload
-   */
-  data: {
-    /**
-     * Instatus API key
-     */
-    apiKey: string;
-    /**
-     * Instatus Page ID
-     */
-    pageID: string;
   };
 }
 /**

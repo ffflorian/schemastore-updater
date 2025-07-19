@@ -18,7 +18,7 @@ export type WhichHTMLElementYourResourceShouldBeInsertedAs = "script" | "style";
  */
 export type NixStylePathToYourResource = string;
 /**
- * Specify that a resource should be conditionally included. Prefix the option's name with a ! to invert the match.
+ * Specify that a resource should be conditionally included. Prefix the option’s name with a ! to invert the match.
  */
 export type ConditionallyIncludeResource = string;
 /**
@@ -104,10 +104,7 @@ export type Priority = number;
 /**
  * Time to live for DNS record.
  */
-export type MatchingOptionKeysOfOAuthAccountFields1 = MatchingOptionKeysOfOAuthAccountFields2 &
-  MatchingOptionKeysOfOAuthAccountFields3;
-export type MatchingOptionKeysOfOAuthAccountFields2 = number;
-export type MatchingOptionKeysOfOAuthAccountFields3 = string;
+export type MatchingOptionKeysOfOAuthAccountFields1 = number & string;
 /**
  * Cloudflare DNS record to be created upon installing a Cloudflare App. Note all other records previously created by the app on the site will be removed. Following the Cloudflare API https://api.cloudflare.com/#dns-records-for-a-zone-create-dns-record.
  */
@@ -184,5 +181,5 @@ export interface AParentObjectContainingYourAppSInstallOptions {
  * Each declaration will appear in your app's installer for end-user customization. Their choices will accessible in your app's JavaScript resources as the constant `INSTALL_OPTIONS`.
  */
 export interface AnObjectContainingYourAppSInstallOptions {
-  [k: string]: TheKeyWhichYourOptionWillBeDefinedUnderUndefined;
+  [k: string]: TheKeyWhichYourOptionWillBeDefinedUnder | undefined;
 }

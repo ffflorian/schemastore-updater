@@ -740,10 +740,6 @@ export interface Version2 {
     eventHubs?:
       | {
           /**
-           * The target number of unprocessed events per worker for Event Hub-triggered functions. This is used in target-based scaling to override the default scaling threshold inferred from maxEventBatchSize.
-           */
-          targetUnprocessedEventThreshold?: number;
-          /**
            * The maximum number of events that will be included in a batch for a single invocation.
            */
           maxEventBatchSize?: number;
@@ -848,19 +844,6 @@ export interface Version2 {
       maxDegreeOfParallelism?: number;
     };
     [k: string]: unknown | undefined;
-  };
-  /**
-   * Configuration settings for dynamic concurrency
-   */
-  concurrency?: {
-    /**
-     * Enables or disables dynamic concurrency for function apps.
-     */
-    dynamicConcurrencyEnabled?: boolean;
-    /**
-     * Enables or disables the learned concurrency values persisting in storage.
-     */
-    snapshotPersistenceEnabled?: boolean;
   };
 }
 /**

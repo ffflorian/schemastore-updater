@@ -60,15 +60,15 @@ export interface JSONSchemaForIDETemplateHostFiles1 {
    */
   disableHttpsSymbol?: string;
   /**
-   * Sets the default isVisible for a symbolInfo if not explictly specified. Controls if the parameter is displayed in the IDE. Defaults to false if not specified
+   * Sets the default isVisible for a symbolInfo if not explicitly specified. Controls if the parameter is displayed in the IDE. Defaults to false if not specified
    */
   defaultSymbolVisibility?: boolean;
   /**
-   * The dafault value for a symbolInfo if not explictly specified. Determines if the user entered value should be persisted and used the next time a template is selected. Used starting in Visual Studio 2022 17.3
+   * The default value for a symbolInfo if not explicitly specified. Determines if the user entered value should be persisted and used the next time a template is selected. Used starting in Visual Studio 2022 17.3
    */
   defaultPersistenceScope?: "none" | "templateGroup" | "shared";
   /**
-   * The dafault value for a symbolInfo if not explictly specified. Specifies the scope name of the persisted template option. To avoid conflicts with other templates, treat this like a namespace. Used starting in Visual Studio 2022 17.3
+   * The default value for a symbolInfo if not explicitly specified. Specifies the scope name of the persisted template option. To avoid conflicts with other templates, treat this like a namespace. Used starting in Visual Studio 2022 17.3
    */
   defaultPersistenceScopeName?: string;
   /**
@@ -80,7 +80,7 @@ export interface JSONSchemaForIDETemplateHostFiles1 {
    */
   tags?: Tags[];
   /**
-   * Unsuppored Hosts. This can be used to supress the template from being displayed in the new project dialog in Visual Studio.
+   * Unsupported Hosts. This can be used to suppress the template from being displayed in the new project dialog in Visual Studio.
    */
   unsupportedHosts?: UnsupportedHost[];
   /**

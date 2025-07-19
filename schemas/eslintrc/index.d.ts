@@ -34,7 +34,7 @@ export type Overrides = {
    */
   extends?: string | string[];
   /**
-   * If a file matches any of the 'excludedFiles' glob patterns, the 'overrides' configuration won't apply
+   * If a file matches any of the 'excludedFiles' glob patterns, the 'overrides' configuration won’t apply
    */
   excludedFiles?: string | string[];
   ecmaFeatures?: EcmaFeatures;
@@ -91,7 +91,7 @@ export interface EcmaFeatures {
   defaultParams?: boolean;
   destructuring?: boolean;
   /**
-   * Enables support for the experimental object rest/spread properties (IMPORTANT: This is an experimental feature that may change significantly in the future. It's recommended that you do not write rules relying on this functionality unless you are willing to incur maintenance cost when it changes.)
+   * Enables support for the experimental object rest/spread properties (IMPORTANT: This is an experimental feature that may change significantly in the future. It’s recommended that you do not write rules relying on this functionality unless you are willing to incur maintenance cost when it changes.)
    */
   experimentalObjectRestSpread?: boolean;
   forOf?: boolean;
@@ -241,7 +241,7 @@ export interface Globals {
 export interface ParserOptions {
   ecmaFeatures?: EcmaFeatures;
   /**
-   * Set to 3, 5, 6, 7, 8, 9, 10, 11 (default), 12, 13, 14 or "latest" to specify the version of ECMAScript syntax you want to use. You can also set to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13) or 2023 (same as 14) to use the year-based naming. "latest" always enables the latest supported ECMAScript version.
+   * Set to 3, 5, 6, 7, 8, 9, 10, 11 (default), 12, 13 or "latest" to specify the version of ECMAScript syntax you want to use. You can also set to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11) or 2021 (same as 12) or 2022 (same as 13) to use the year-based naming. "latest" always enables the latest supported ECMAScript version.
    */
   ecmaVersion?:
     | 3
@@ -262,8 +262,6 @@ export interface ParserOptions {
     | 2021
     | 13
     | 2022
-    | 14
-    | 2023
     | "latest";
   /**
    * set to "script" (default) or "module" if your code is in ECMAScript modules
@@ -277,7 +275,7 @@ export interface PossibleErrors {
    */
   "comma-dangle"?: number | ("off" | "warn" | "error") | unknown[];
   /**
-   * Enforce "for" loop update clause moving the counter in the right direction
+   * Enforce “for” loop update clause moving the counter in the right direction
    */
   "for-direction"?: number | ("off" | "warn" | "error") | unknown[];
   /**
@@ -697,7 +695,7 @@ export interface BestPractices {
    */
   "wrap-iife"?: number | ("off" | "warn" | "error") | unknown[];
   /**
-   * Require or Disallow "Yoda" conditions
+   * Require or Disallow “Yoda” conditions
    */
   yoda?: number | ("off" | "warn" | "error") | unknown[];
   [k: string]: unknown | undefined;

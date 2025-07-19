@@ -61,10 +61,6 @@ export interface FlyIoConfigSchemaFlyToml {
      * The path at which the `source` volume should be mounted in the running app VM.
      */
     destination: string;
-    /**
-     * The name of the process(es) to which this mount should be applied. See [multiple processes](https://community.fly.io/t/preview-multi-process-apps-get-your-workers-here/2316).
-     */
-    processes?: string[];
   };
   /**
    * Flags and features that are subject to change, deprecation or promotion to the main configuration.
@@ -145,10 +141,10 @@ export interface FlyIoConfigSchemaFlyToml {
      * Dockerfile used for builds. Defaults to './Dockerfile'
      */
     dockerfile?: string;
-    additionalProperties?: false;
+    additionalProperties?: never;
     [k: string]: unknown | undefined;
   };
-  additionalProperties?: true;
+  additionalProperties?: unknown;
   [k: string]: unknown | undefined;
 }
 export interface Statics {
@@ -171,6 +167,7 @@ export interface Statics {
  */
 export interface Services {
   /**
+   * @deprecated
    * Health checks that run as one-off commands directly on the VM.
    *
    * This type of check is **deprecated**. See `tcp_checks` or `http_checks` for alternatives.
@@ -208,9 +205,9 @@ export interface Services {
     /**
      * An array of strings that select handlers to terminate the connection at the edge.
      *
-     * Valid options: http, tls, proxy_proto, pg_tls, edge_http.
+     * Valid options: http, tls, proxy_proto.
      */
-    handlers?: ("http" | "tls" | "proxy_proto" | "pg_tls" | "edge_http")[];
+    handlers?: ("http" | "tls" | "proxy_proto")[];
     /**
      * The port to accept traffic on. Valid ports: 1-65535
      */
@@ -228,11 +225,11 @@ export interface Services {
     /**
      * The time to wait after a VM starts before checking its health. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    grace_period?: number | string;
+    grace_period?: string;
     /**
      * Length of the pause between connectivity checks. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    interval?: number | string;
+    interval?: string;
     /**
      * The number of consecutive TCP check failures to allow before attempting to restart the VM. The default is `0`, which disables restarts based on failed TCP health checks.
      */
@@ -240,7 +237,7 @@ export interface Services {
     /**
      * The maximum time a connection can take before being reported as failing its healthcheck. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    timeout?: number | string;
+    timeout?: string;
     [k: string]: unknown | undefined;
   }[];
   /**
@@ -250,11 +247,11 @@ export interface Services {
     /**
      * The time to wait after a VM starts before checking its health. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    grace_period?: number | string;
+    grace_period?: string;
     /**
      * Length of the pause between connectivity checks. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    interval?: number | string;
+    interval?: string;
     /**
      * The number of consecutive check failures to allow before attempting to restart the VM. The default is `0`, which disables restarts based on failed health checks.
      */
@@ -262,7 +259,7 @@ export interface Services {
     /**
      * The maximum time a connection can take before being reported as failing its healthcheck. Units are milliseconds unless you specify them like `10s` or `1m`.
      */
-    timeout?: number | string;
+    timeout?: string;
     /**
      * The HTTP method to be used for the check.
      */

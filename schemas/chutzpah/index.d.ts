@@ -240,7 +240,7 @@ export interface CompileSettings {
    */
   WorkingDirectory?: string;
   /**
-   * The path to an executable which Chutzpah executes to perform the batch compilation. Chutzpah will try to resolve the path relative to the settings directory. But if can't find the file there you must give it a full path.
+   * The path to an executable which Chutzpah executes to perform the batch compilation. Chutzpah will try to resolve the path relative to the settings directory. But if can’t find the file there you must give it a full path.
    */
   Executable?: string | null;
   /**
@@ -252,7 +252,7 @@ export interface CompileSettings {
    */
   Timeout?: number;
   /**
-   * Skips the execution if all files Chutzpah knows about are older than all of the output files. This is defaulted to true but if you hit issues since it is possible Chutzpah might not know about all the files your compilation is using then you can turn this off. Ideally you should tell Chutzpah about these files using the references and tests settings since this setting helps Chutzpah not need to even invoke the executable if it figures out it's not needed.
+   * Skips the execution if all files Chutzpah knows about are older than all of the output files. This is defaulted to true but if you hit issues since it is possible Chutzpah might not know about all the files your compilation is using then you can turn this off. Ideally you should tell Chutzpah about these files using the references and tests settings since this setting helps Chutzpah not need to even invoke the executable if it figures out it’s not needed.
    */
   SkipIfUnchanged?: boolean;
   /**

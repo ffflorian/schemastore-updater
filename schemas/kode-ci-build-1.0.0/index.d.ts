@@ -5,6 +5,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type BranchMatcher = string;
+
 export interface KoDECIBuildSpec {
   on?: BuildCondition;
   /**
@@ -25,90 +27,11 @@ export interface BuildCondition {
    */
   push?: {
     /**
-     * Push 빌드의 branch 조건
+     * Push로 빌드를 실행할 브랜치
      *
      * @minItems 1
      */
-    branches?: [string, ...string[]];
-    /**
-     * Push 빌드의 tag 조건
-     *
-     * @minItems 1
-     */
-    tags?: [string, ...string[]];
-    commit?: {
-      /**
-       * commit message에 주어진 문자열을 포함한 경우만 빌드
-       */
-      "message-contain"?: string;
-      [k: string]: unknown | undefined;
-    };
-  };
-  /**
-   * PullRequest 이벤트에 의한 조건
-   */
-  "pull-request"?: {
-    /**
-     * PR빌드의 target 브랜치 조건
-     *
-     * @minItems 1
-     */
-    branches?: [string, ...string[]];
-    /**
-     * PR 이벤트 타입
-     *
-     * @minItems 1
-     */
-    types?: [
-      (
-        | "assigned"
-        | "unassigned"
-        | "labeled"
-        | "unlabeled"
-        | "opened"
-        | "edited"
-        | "closed"
-        | "reopened"
-        | "synchronize"
-        | "converted_to_draft"
-        | "ready_for_review"
-        | "locked"
-        | "unlocked"
-        | "review_requested"
-        | "review_request_removed"
-        | "auto_merge_enabled"
-        | "auto_merge_disabled"
-      ),
-      ...(
-        | "assigned"
-        | "unassigned"
-        | "labeled"
-        | "unlabeled"
-        | "opened"
-        | "edited"
-        | "closed"
-        | "reopened"
-        | "synchronize"
-        | "converted_to_draft"
-        | "ready_for_review"
-        | "locked"
-        | "unlocked"
-        | "review_requested"
-        | "review_request_removed"
-        | "auto_merge_enabled"
-        | "auto_merge_disabled"
-      )[]
-    ];
-    /**
-     * Commit 조건
-     */
-    commit?: {
-      /**
-       * 커밋 메시지가 지정된 문자열을 포함하면 빌드를 실행
-       */
-      "message-contain"?: string;
-      [k: string]: unknown | undefined;
-    };
+    branches?: [BranchMatcher, ...BranchMatcher[]];
   };
   [k: string]: unknown | undefined;
 }
@@ -127,10 +50,6 @@ export interface Job {
    * 사내 Proxy 설정
    */
   "set-proxy"?: ("shell" | "gradle" | "npm" | "docker" | "yarn" | "maven")[];
-  /**
-   * proxy 예외할 host 목록 (ip, ip/mask, domain)
-   */
-  "no-proxy-hosts"?: string[];
   "run-on"?: RunOn;
   /**
    * artifact로 지정할 파일 혹은 디렉토리 경로

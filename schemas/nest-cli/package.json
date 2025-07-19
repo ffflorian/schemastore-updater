@@ -7,8 +7,8 @@
   "name": "@schemastore/nest-cli",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/nest-cli",
   "scripts": {},
-  "typesPublisherContentHash": "9b3b86e69f04259f9db8b2e990e44e0a04beece4358ca1c81ba6fee485b8c104",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "b3cd41e12eedc79f976df455eaf26b14a822029435f8b79364bb0b45d6830981",
+  "version": "0.0.6"
 }

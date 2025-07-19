@@ -10,7 +10,6 @@ export type ScheduleInterval = "daily" | "weekly" | "monthly";
 
 export interface GitHubDependabotV2Config {
   version: string | number;
-  "enable-beta-ecosystems"?: boolean;
   updates: PackageEcosystem[];
   registries?: Registries;
 }
@@ -82,7 +81,6 @@ export interface PackageEcosystem {
     | "npm"
     | "nuget"
     | "pip"
-    | "pub"
     | "terraform";
   /**
    * Pull request branch name preferences
@@ -148,7 +146,6 @@ export interface Registries {
       | "docker-registry"
       | "git"
       | "hex-organization"
-      | "hex-repository"
       | "maven-repository"
       | "npm-registry"
       | "nuget-feed"
@@ -180,8 +177,5 @@ export interface Registries {
      */
     "replaces-base"?: boolean;
     organization?: string;
-    repo?: string;
-    "auth-key"?: string;
-    "public-key-fingerprint"?: string;
   };
 }

@@ -27,14 +27,14 @@ export interface EmbraceConfigSchema {
        * The SDK collects the disk usage for the app. You can disable this if your app has a large number of local files to prevent excessive resource usage, especially on lower-end devices. Defaults to true.
        */
       report_disk_usage?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     crash_handler?: {
       /**
        * Set to false to prevent the SDK from connecting to the uncaught exception handler. Defaults to true.
        */
       enabled?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     networking?: {
       /**
@@ -54,8 +54,8 @@ export interface EmbraceConfigSchema {
       /**
        * Set the name of the header used for the trace ID. Defaults to 'x-emb-trace-id'.
        */
-      trace_id_header?: string;
-      [k: string]: unknown;
+      track_id_header?: string;
+      [k: string]: unknown | undefined;
     };
     session?: {
       /**
@@ -66,7 +66,7 @@ export interface EmbraceConfigSchema {
        * Enable automatic ending of sessions every N seconds. This is only recommended for applications, such as kiosks, where the app is never expected to go to the background. This value must be 60 seconds or greater if set.
        */
       max_session_seconds?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     startup_moment?: {
       /**
@@ -77,14 +77,14 @@ export interface EmbraceConfigSchema {
        * Control whether screenshots are taken during the startup moment. Defaults to false.
        */
       take_screenshot?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     taps?: {
       /**
        * Set to false to disable capturing tap coordinates. Defaults to true.
        */
       capture_coordinates?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     webview?: {
       /**
@@ -95,9 +95,9 @@ export interface EmbraceConfigSchema {
        * Set to false to disable capturing of web views. Defaults to true.
        */
       enable?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

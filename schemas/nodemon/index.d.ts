@@ -15,7 +15,7 @@ export interface JSONSchemaForNodemonConfig {
    */
   cwd?: string;
   /**
-   * debounce restart for a number of milliseconds
+   * debounce restart for a number of seconds
    */
   delay?: number;
   /**

@@ -44,7 +44,7 @@ export interface GoogleCloudBuildBuildConfigFile {
    * Substitutions data for `Build` resource.
    */
   substitutions?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A list of images to be pushed upon the successful completion of all build
@@ -74,7 +74,7 @@ export interface GoogleCloudBuildBuildConfigFile {
    * Secrets to decrypt using Cloud Key Management Service.
    */
   secrets?: Secret[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A step in the build pipeline.
@@ -170,7 +170,7 @@ export interface BuildStep {
    * the step's execution.
    */
   dir?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Volume describes a Docker container volume which is mounted into build steps
@@ -191,7 +191,7 @@ export interface Volume {
    * same build step or with certain reserved volume paths.
    */
   path?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Special options for this build.
@@ -200,25 +200,7 @@ export interface BuildOptions {
   /**
    * Compute Engine machine type on which to run the build.
    */
-  machineType?:
-    | "E2_HIGHCPU_2"
-    | "E2_HIGHCPU_4"
-    | "E2_HIGHCPU_8"
-    | "E2_HIGHCPU_16"
-    | "E2_HIGHCPU_32"
-    | "E2_HIGHMEM_2"
-    | "E2_HIGHMEM_4"
-    | "E2_HIGHMEM_8"
-    | "E2_HIGHMEM_16"
-    | "E2_MEDIUM"
-    | "E2_STANDARD_2"
-    | "E2_STANDARD_4"
-    | "E2_STANDARD_8"
-    | "E2_STANDARD_16"
-    | "E2_STANDARD_32"
-    | "N1_HIGHCPU_8"
-    | "N1_HIGHCPU_32"
-    | "UNSPECIFIED";
+  machineType?: "UNSPECIFIED" | "N1_HIGHCPU_8" | "N1_HIGHCPU_32" | "E2_HIGHCPU_8" | "E2_HIGHCPU_32";
   /**
    * Global list of volumes to mount for ALL build steps
    *
@@ -285,7 +267,7 @@ export interface BuildOptions {
    * Requested hash for SourceProvenance.
    */
   sourceProvenanceHash?: ("NONE" | "SHA256" | "MD5")[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The location of the source files to build.
@@ -293,7 +275,7 @@ export interface BuildOptions {
 export interface Source {
   storageSource?: StorageSource;
   repoSource?: RepoSource;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * If provided, get the source from this location in Google Cloud Storage.
@@ -317,7 +299,7 @@ export interface StorageSource {
    * build.
    */
   object?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * If provided, get the source from this location in a Cloud Source
@@ -353,7 +335,7 @@ export interface RepoSource {
    * Name of the branch to build.
    */
   branchName?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Artifacts produced by the build that should be uploaded upon
@@ -373,7 +355,7 @@ export interface Artifacts {
    * If any of the images fail to be pushed, the build is marked FAILURE.
    */
   images?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A list of objects to be uploaded to Cloud Storage upon successful
@@ -402,7 +384,7 @@ export interface ArtifactObjects {
    * Path globs used to match files in the build's workspace.
    */
   paths?: string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Pairs a set of secret environment variables containing encrypted
@@ -422,7 +404,7 @@ export interface Secret {
    * build's secrets.
    */
   secretEnv?: {
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

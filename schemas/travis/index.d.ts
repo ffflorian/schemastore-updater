@@ -29,7 +29,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
     include?: Job[];
     allow_failures?: Job[];
     /**
-     * If some rows in the build matrix are allowed to fail, the build won't be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
+     * If some rows in the build matrix are allowed to fail, the build won’t be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
      */
     fast_finish?: boolean;
   };
@@ -50,7 +50,7 @@ export type JSONSchemaForTravisCIConfigurationFiles = Job & {
     })[];
     allow_failures?: Job[];
     /**
-     * If some rows in the build matrix are allowed to fail, the build won't be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
+     * If some rows in the build matrix are allowed to fail, the build won’t be marked as finished until they have completed. To mark the build as finished as soon as possible, add fast_finish: true
      */
     fast_finish?: boolean;
   };
@@ -421,9 +421,7 @@ export interface Job {
   /**
    * The operating system to run the job on
    */
-  os?:
-    | ("osx" | "linux" | "linux-ppc64le" | "windows")
-    | ["osx" | "linux" | "linux-ppc64le" | "windows", ...("osx" | "linux" | "linux-ppc64le" | "windows")[]];
+  os?: ("osx" | "linux" | "windows") | ["osx" | "linux" | "windows", ...("osx" | "linux" | "windows")[]];
   osx_image?: XcodeVersions | [XcodeVersions, ...XcodeVersions[]];
   /**
    * The Ubuntu distribution to use
@@ -474,11 +472,11 @@ export interface Job {
           s3_region?: string;
           paths?: string[];
           /**
-           * If you'd like to upload file from a specific directory, you can change your working directory
+           * If you’d like to upload file from a specific directory, you can change your working directory
            */
           working_dir?: string;
           /**
-           * If you'd like to see more detail about what the artifacts addon is doing
+           * If you’d like to see more detail about what the artifacts addon is doing
            */
           debug?: boolean;
           [k: string]: unknown | undefined;
@@ -648,7 +646,7 @@ export interface Job {
   git?: {
     depth?: number | false;
     /**
-     * Travis CI clones repositories without the quiet flag (-q) by default. Enabling the quiet flag can be useful if you're trying to avoid log file size limits or even if you just don't need to include it.
+     * Travis CI clones repositories without the quiet flag (-q) by default. Enabling the quiet flag can be useful if you’re trying to avoid log file size limits or even if you just don’t need to include it.
      */
     quiet?: boolean;
     /**
@@ -664,7 +662,7 @@ export interface Job {
      */
     clone?: boolean;
     /**
-     * Is a path to the existing file in the current repository with data you'd like to put into $GIT_DIR/info/sparse-checkout file of format described in Git documentation.
+     * Is a path to the existing file in the current repository with data you’d like to put into $GIT_DIR/info/sparse-checkout file of format described in Git documentation.
      */
     sparse_checkout?: string;
     /**

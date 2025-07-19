@@ -73,14 +73,6 @@ export interface Fabric {
      */
     server?: Entrypoint[];
     /**
-     * The entrypoint for the data generator environment (classes must implement DataGeneratorEntrypoint)
-     */
-    "fabric-datagen"?: Entrypoint[];
-    /**
-     * The entrypoint for the Game Test environment (classes must implement FabricGameTest)
-     */
-    "fabric-gametest"?: Entrypoint[];
-    /**
      * Custom mod entrypoints
      */
     [k: string]: Entrypoint[] | undefined;
@@ -114,31 +106,31 @@ export interface Fabric {
    * id→versionRange map for dependencies. Failure to meet these causes a hard failure
    */
   depends?: {
-    [k: string]: VersionRangesUndefined;
+    [k: string]: VersionRanges | undefined;
   };
   /**
    * id→versionRange map for dependencies. Failure to meet these causes a soft failure (warning)
    */
   recommends?: {
-    [k: string]: VersionRangesUndefined;
+    [k: string]: VersionRanges | undefined;
   };
   /**
    * id→versionRange map for dependencies. Are not matched and are mainly used as metadata
    */
   suggests?: {
-    [k: string]: VersionRangesUndefined;
+    [k: string]: VersionRanges | undefined;
   };
   /**
    * id→versionRange map for dependencies. A successful match causes a soft failure (warning)
    */
   conflicts?: {
-    [k: string]: VersionRangesUndefined;
+    [k: string]: VersionRanges | undefined;
   };
   /**
    * id→versionRange map for dependencies. A successful match causes a hard failure
    */
   breaks?: {
-    [k: string]: VersionRangesUndefined;
+    [k: string]: VersionRanges | undefined;
   };
   /**
    * Name of the mod

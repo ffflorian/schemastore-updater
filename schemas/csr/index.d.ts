@@ -5,26 +5,11 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface ACSRFrameworkConfigSchema {
+export interface CSRFrameworkSchema {
   log?: LoggerOptions;
-  template?: {
-    path?: string;
-    cache?: string;
-    [k: string]: unknown;
-  };
-  database?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: {
-      provider: string;
-      user?: string;
-      password?: string;
-      [k: string]: unknown;
-    };
-  };
-  [k: string]: unknown;
+  template?: Template;
+  database?: Database;
+  [k: string]: unknown | undefined;
 }
 export interface LoggerOptions {
   channel?: string;
@@ -33,12 +18,29 @@ export interface LoggerOptions {
     message?: string;
     file?: string;
     dir?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   telegram?: {
     bot_token: string;
     chat_id: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
+}
+export interface Template {
+  path?: string;
+  cache?: string;
+  [k: string]: unknown | undefined;
+}
+export interface Database {
+  /**
+   * This interface was referenced by `Database`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
+   */
+  [k: string]: {
+    provider: string;
+    user?: string;
+    password?: string;
+    [k: string]: unknown | undefined;
+  };
 }

@@ -35,13 +35,9 @@ export type OutputHelmUpdatesProperties = {
    */
   value?: string;
 } & OutputHelmUpdatesProperties1;
-export type OutputHelmUpdatesProperties1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type OutputHelmUpdatesProperties1 = {
+  [k: string]: unknown | undefined;
+};
 /**
  * Helm chart publishing configuration. If not present, no charts will be published
  */

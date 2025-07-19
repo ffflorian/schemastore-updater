@@ -34,7 +34,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      */
     region?: "westus" | "eastus";
     resource_group?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   azure_credentials?: string;
   /**
@@ -57,7 +57,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      * VM platform.
      */
     platform?: "freebsd" | "linux" | "windows" | "solaris";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Container definition for Community Cluster.
@@ -110,7 +110,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
              * Container readiness probe command.
              */
             readiness_command?: string | [] | [string];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         ];
     cpu?: number;
@@ -146,7 +146,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      * Boolean expression that can use environment variables.
      */
     use_static_ip?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * AWS EC2 definition.
@@ -174,7 +174,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
       | "us-west-1"
       | "us-west-2";
     type?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * EKS Container definition.
@@ -227,7 +227,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
              * Container readiness probe command.
              */
             readiness_command?: string | [] | [string];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         ];
     /**
@@ -260,7 +260,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
       | "us-west-2";
     registry_config?: string;
     use_in_memory_disk?: boolean;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Map represented as an object.
@@ -304,7 +304,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      * Boolean expression that can use environment variables.
      */
     use_static_ip?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Google Compute Engine Virtual Machine definition.
@@ -357,7 +357,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
              * Container readiness probe command.
              */
             readiness_command?: string | [] | [string];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         ];
     /**
@@ -427,7 +427,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
       | "us-east4-a"
       | "us-east4-b"
       | "us-east4-c";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Google Compute Engine Virtual Machine definition.
@@ -504,7 +504,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
       | "us-east4-a"
       | "us-east4-b"
       | "us-east4-c";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   gcp_credentials?: string;
   /**
@@ -558,7 +558,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
              * Container readiness probe command.
              */
             readiness_command?: string | [] | [string];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }
         ];
     /**
@@ -636,7 +636,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
       | "us-east4-a"
       | "us-east4-b"
       | "us-east4-c";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * macOS Virtual Machine definition for Community Cluster.
@@ -646,7 +646,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      * macOS VM image.
      */
     image?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Boolean expression that can use environment variables.
@@ -660,7 +660,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      * macOS VM image.
      */
     image?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Persistent Worker definition.
@@ -690,15 +690,15 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
          * SSH username
          */
         user?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Labels for selection.
      */
     labels?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Boolean expression that can use environment variables.
@@ -756,7 +756,7 @@ export interface JSONSchemaForCirrusCIConfigurationFiles {
      * Boolean expression that can use environment variables.
      */
     use_static_ip?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

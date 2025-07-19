@@ -647,7 +647,7 @@ export interface AppXOptions {
    */
   addAutoLaunchExtension?: boolean;
   /**
-   * The application id. Defaults to `identityName`. Can't start with numbers.
+   * The application id. Defaults to `identityName`. Can’t start with numbers.
    */
   applicationId?: string;
   /**
@@ -976,7 +976,7 @@ export interface FileAssociation {
    */
   name?: null | string;
   /**
-   * *macOS-only* The app's role with respect to the type. The value can be `Editor`, `Viewer`, `Shell`, or `None`. Corresponds to `CFBundleTypeRole`.
+   * *macOS-only* The app’s role with respect to the type. The value can be `Editor`, `Viewer`, `Shell`, or `None`. Corresponds to `CFBundleTypeRole`.
    */
   role?: string;
 }
@@ -1116,7 +1116,7 @@ export interface Protocol {
    */
   name: string;
   /**
-   * *macOS-only* The app's role with respect to the type.
+   * *macOS-only* The app’s role with respect to the type.
    */
   role?: "Editor" | "None" | "Shell" | "Viewer";
   /**
@@ -2001,15 +2001,15 @@ export interface PkgOptions {
    */
   allowAnywhere?: null | boolean;
   /**
-   * Whether can be installed into the current user's home directory.
+   * Whether can be installed into the current user’s home directory.
    * A home directory installation is done as the current user (not as root), and it cannot write outside of the home directory.
-   * If the product cannot be installed in the user's home directory and be not completely functional from user's home directory.
+   * If the product cannot be installed in the user’s home directory and be not completely functional from user’s home directory.
    *
    * Corresponds to [enable_currentUserHome](https://developer.apple.com/library/content/documentation/DeveloperTools/Reference/DistributionDefinitionRef/Chapters/Distribution_XML_Ref.html#//apple_ref/doc/uid/TP40005370-CH100-SW70).
    */
   allowCurrentUserHome?: null | boolean;
   /**
-   * Whether can be installed into the root directory. Should usually be `true` unless the product can be installed only to the user's home directory.
+   * Whether can be installed into the root directory. Should usually be `true` unless the product can be installed only to the user’s home directory.
    *
    * Corresponds to [enable_localSystem](https://developer.apple.com/library/content/documentation/DeveloperTools/Reference/DistributionDefinitionRef/Chapters/Distribution_XML_Ref.html#//apple_ref/doc/uid/TP40005370-CH100-SW70).
    */
@@ -2235,7 +2235,7 @@ export interface SnapOptions {
   };
   environment?: unknown;
   /**
-   * The quality grade of the snap. It can be either `devel` (i.e. a development version of the snap, so not to be published to the "stable" or "candidate" channels) or "stable" (i.e. a stable release or release candidate, which can be released to all channels).
+   * The quality grade of the snap. It can be either `devel` (i.e. a development version of the snap, so not to be published to the “stable” or “candidate” channels) or “stable” (i.e. a stable release or release candidate, which can be released to all channels).
    */
   grade?: ("devel" | "stable") | null;
   /**

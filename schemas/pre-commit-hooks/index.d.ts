@@ -257,7 +257,6 @@ export type FileType =
   | "directory"
   | "dockerfile"
   | "dockerignore"
-  | "dotenv"
   | "dtd"
   | "editorconfig"
   | "edn"

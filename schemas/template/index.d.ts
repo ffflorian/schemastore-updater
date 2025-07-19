@@ -5,29 +5,26 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * A guid string to be replaced in source files. Format and casing is not significant in the config as format and casing is preserved based on the particular guid in processed file(s).
- */
 export type Guid = string;
-export type Source = Source1 & {
+export type Source = Modifier & {
+  modifiers?: Modifiers;
   /**
-   * A list of additional source information which gets added to the top-level source information, based on evaluation the corresponding source.modifiers.condition.
-   */
-  modifiers?: Modifier[];
-  /**
-   * The path in the template content (relative to the directory containing the .template.config folder) that should be processed.
+   * The path in the template content (relative to the directory containing the .template.config folder) that should be processed
    */
   source?: string;
   /**
-   * The path (relative to the directory the user has specified) that content should be written to.
+   * The path (relative to the directory the user has specified) that content should be written to
    */
   target?: string;
   [k: string]: unknown | undefined;
 };
-export type Source1 = Modifier;
+/**
+ * A list of additional source information which gets added to the top-level source information, based on evaluation the corresponding source.modifiers.condition.
+ */
+export type Modifiers = Modifier[];
 export type Ice = string[] | string;
 /**
- * Indicates limitations on the valid values a symbol may be assigned. The datatype "choice" also requires providing symbols.choices configuration for the symbol.
+ * Indicates limitations on the valid values a symbol may be assigned. At this point, the only valid datatype is "choice", which also requires providing symbols.choices configuration for the symbol.
  */
 export type Datatype =
   | ("choice" | "bool" | "float" | "int" | "hex" | "text")
@@ -35,25 +32,21 @@ export type Datatype =
       [k: string]: unknown | undefined;
     };
 
-export interface JSONSchemaNETTemplateConfigurationTemplateJson {
+export interface JSONSchemaNETTemplateFiles {
   /**
-   * The author of the template.
+   * The author of the template
    */
   author: string;
   /**
-   * Zero or more characteristics of the template that a user might search for it by.
+   * Zero or more characteristics of the template that a user might search for it by
    */
   classifications: string[];
   /**
-   * The name to use during creation if no name has been specified by the user or provided from the host.
+   * The name to use during creation if no name has been specified and no other opinionation about naming has been provided from the host
    */
   defaultName?: string;
   /**
-   * Indicates if the template's default name will be used when no name option is specified during instantiation.
-   */
-  preferDefaultName?: boolean & string;
-  /**
-   * The semantic version range of the Microsoft.TemplateEngine.Orchestrator.RunnableProjects package that this template is usable with. In older versions of the engine, the four octet version string is used but is matched against a constant which was never changed from 1.0.0.0 - either syntax is now accepted, however the four octet string will not be changed from 1.0.0.0.
+   * The semantic version range of the Microsoft.TemplateEngine.Orchestrator.RunnableProjects package that this template is usable with. In older versions of the engine, the four octet version string is used but is matched against a constant which was never changed from 1.0.0.0 - either syntax is now accepted, however the four octet string will not be changed from 1.0.0.0
    */
   generatorVersions?: string;
   /**
@@ -65,11 +58,11 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   guids?: Guid[];
   /**
-   * A unique name for this template.
+   * A unique name for this template
    */
   identity: string;
   /**
-   * The name for the template that users should see.
+   * The name for the template that users should see
    */
   name: string;
   /**
@@ -91,9 +84,13 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
       [k: string]: unknown | undefined;
     };
     /**
-     * A C++ style expression that, if it evaluates to 'false' causes the post-action to be skipped. This expression may refer to any symbols that have been defined.
+     * A C++ style expression that, if it evaluates to 'false' causes the post-action to be skipped. This expression may refer to any symbols that have been defined
      */
     condition?: string;
+    /**
+     * Additional configuration for the associated post action. The structure & content will vary based on the post action.
+     */
+    configFile?: string;
     /**
      * If this action fails, the value of continueOnError indicates whether to attempt the next action, or stop processing the post actions. Should be set to true when subsequent actions rely on the success of the current action.
      */
@@ -127,11 +124,11 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
         actionId?: "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C";
         args?: {
           /**
-           * The executable to instruct the user to run.
+           * The executable to instruct the user to run
            */
           executable?: string;
           /**
-           * The arguments to instruct the user to run the executable with - if executable is not specified, this value is unused.
+           * The arguments to instruct the user to run the executable with - if executable is not specified, this value is unused
            */
           args?: string;
           [k: string]: unknown | undefined;
@@ -142,19 +139,19 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
         actionId?: "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2";
         args?: {
           /**
-           * Whether or not to redirect stdout for the process (prevents output from being displayed if true).
+           * Whether or not to redirect stdout for the process (prevents output from being displayed if true)
            */
-          redirectStandardOutput?: boolean;
+          redirectStandardOutput?: "true" | "false";
           /**
            * Defines whether or not the stderr should be redirected. If the output is redirected, it prevents it from being displayed.
            */
-          redirectStandardError?: boolean;
+          redirectStandardError?: "true" | "false";
           /**
-           * The executable to run.
+           * The executable to run
            */
           executable: string;
           /**
-           * The arguments to supply to the executable.
+           * The arguments to supply to the executable
            */
           args?: string;
           [k: string]: unknown | undefined;
@@ -169,29 +166,25 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
            */
           referenceType: "project" | "package" | "framework";
           /**
-           * Must be a literal extension for the project file(s) of interest, may be a semicolon delimited list. If unspecified, any project file (*.*proj) is allowed.
+           * Must be a literal extension for the project file(s) of interest, may be a semicolon delimited list. If unspecified, any project file (*.*proj) is allowed
            */
           projectFileExtensions?: string;
           /**
-           * The reference to be added (if referenceType=package, this is the package ID; if referenceType=framework, this is the path or assembly name; if referenceType=project, this is the path to the project reference to add).
+           * The reference to be added (if referenceType=package, this is the package ID; if referenceType=framework, this is the path or assembly name; if referenceType=project, this is the path to the project reference to add)
            */
           reference: string;
           /**
-           * The version of the package reference to add, applicable only if referenceType=package.
+           * The version of the package reference to add, applicable only if referenceType=package
            */
           version?: string;
-          targetFiles?: string[] | string;
           [k: string]: unknown | undefined;
         };
         [k: string]: unknown | undefined;
       }
     | {
         actionId?: "cb9a6cf3-4f5c-4860-b9d2-03a574959774";
-        /**
-         * The permissions to set: the key-value pairs, where the key is a permission, and the value is a file or array of files to apply the permission to.
-         */
         args?: {
-          [k: string]: (string[] | string) | undefined;
+          [k: string]: (unknown[] | string) | undefined;
         };
         [k: string]: unknown | undefined;
       }
@@ -207,18 +200,13 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
         actionId?: "D396686C-DE0E-4DE6-906D-291CD29FC5DE";
         args?: {
           /**
-           * A semicolon delimited list of indexes of the primary outputs that should be added to the solution, if not specified, all primary outputs are used.
+           * A semicolon delimited list of indexes of the primary outputs that should be added to the solution, if not specified, all primary outputs are used
            */
           primaryOutputIndexes?: string;
           /**
-           * The destination solution folder path to add the projects to. Can't be used with 'inRoot'. Optional.
+           * Defines the destination solution folder path to add the projects to. Optional.
            */
           solutionFolder?: string;
-          /**
-           * Places the projects in the root of the solution, rather than creating a solution folder. Cannot be used with 'solutionFolder'. Optional. Available since .NET SDK 7.0.200.
-           */
-          inRoot?: boolean;
-          projectFiles?: string[] | string;
           [k: string]: unknown | undefined;
         };
         [k: string]: unknown | undefined;
@@ -227,7 +215,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
         actionId?: "84C0DA21-51C8-4541-9940-6CA19AF04EE6";
         args?: {
           /**
-           * A semicolon delimited list of indexes of the primary outputs that should be opened in the editor.
+           * A semicolon delimited list of indexes of the primary outputs that should be opened in the editor
            */
           files?: string;
           [k: string]: unknown | undefined;
@@ -236,11 +224,11 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
       }
   ))[];
   /**
-   * A value used to determine how preferred this template is among the other templates with the same groupIdentity (higher values are more preferred).
+   * A value used to determine how preferred this template is among the other templates with the same groupIdentity (higher values are more preferred)
    */
   precedence?: number | string;
   /**
-   * Indicates whether to create a directory for the template if name is specified but an output directory is not set (instead of creating the content directly in the current directory).
+   * Indicates whether to create a directory for the template if name is specified but an output directory is not set (instead of creating the content directly in the current directory)
    */
   preferNameDirectory?: boolean;
   /**
@@ -248,26 +236,26 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   primaryOutputs?: {
     /**
-     * The path to the file in the template content whose corresponding output file should be included as a primary output.
+     * The path to the file in the template content whose corresponding output file should be included as a primary output
      */
     path: string;
     /**
-     * The condition for including the specified path in the primary outputs set.
+     * The condition for including the specified path in the primary outputs set
      */
     condition?: string;
     [k: string]: unknown | undefined;
   }[];
   shortName: string | string[];
   /**
-   * The name in the source tree to replace with the name the user specifies.
+   * The name in the source tree to replace with the name the user specifies
    */
   sourceName?: string;
   /**
-   * The set of mappings in the template content to user directories.
+   * The set of mappings in the template content to user directories
    */
   sources?: Source[];
   /**
-   * Custom value forms used by the template.
+   * Custom value forms used by the template
    */
   forms?: {
     [k: string]:
@@ -294,11 +282,11 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
           | {
               identifier?: "replace";
               /**
-               * A regular expression whose matches will be replaced with the literal value specified in replacement.
+               * A regular expression whose matches will be replaced with the literal value specified in replacement
                */
               pattern: string;
               /**
-               * The value to replace the matches of the specified pattern in the source value with.
+               * The value to replace the matches of the specified pattern in the source value with
                */
               replacement: string;
               [k: string]: unknown | undefined;
@@ -326,10 +314,6 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
             }
           | {
               identifier?: "upperCase";
-              [k: string]: unknown | undefined;
-            }
-          | {
-              identifier?: "upperCaseInvariant";
               [k: string]: unknown | undefined;
             }
           | {
@@ -371,80 +355,39 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
       | (
           | {
               /**
-               * The symbol binds value from external sources.
+               * Defines a symbol that has its value provided by the host
                */
               type?: "bind";
               /**
-               * The source and the name of parameter to take the value from. The syntax is: <external source>:<parameter name>. Well known external sources are: host - a value that is defined by the template engine host; env - environment variable.
+               * The name of the host property to take the value from
                */
               binding: string;
-              /**
-               * The value assigned to the symbol if no value was provided from external source(s).
-               */
-              defaultValue?: string;
-              /**
-               * The text to replace with the value of this symbol.
-               */
-              replaces?: string;
-              /**
-               * Defines the portion of file names which will be replaced by symbol value.
-               */
-              fileRename?: string;
-              onlyIf?: {
-                /**
-                 * The replacement string occurs after this value.
-                 */
-                after?: string;
-                /**
-                 * The replacement string occurs before this value.
-                 */
-                before?: string;
-                [k: string]: unknown | undefined;
-              };
               [k: string]: unknown | undefined;
             }
           | {
               /**
-               * The value of this symbol is derived from the value of another symbol by the application of value forms.
+               * The value of this symbol is derived from the value of another symbol by the application of value forms
                */
               type?: "derived";
               /**
-               * The name of the symbol that the value should be derived from.
+               * The name of the symbol that the value should be derived from
                */
               valueSource: string;
               /**
-               * The name of the value form that should be applied to the source value to use as the value of this symbol.
+               * The name of the value form that should be applied to the source value to use as the value of this symbol
                */
-              valueTransform: string;
+              valueTransform?: string;
               /**
-               * The value assigned to the symbol if no value was provided.
-               */
-              defaultValue?: string;
-              /**
-               * The text to replace with the value of this symbol.
-               */
-              replaces?: string;
-              /**
-               * Defines the portion of file names which will be replaced by symbol value.
+               * The element defines the portion of file names which will be replaced by symbol value
                */
               fileRename?: string;
-              onlyIf?: {
-                /**
-                 * The replacement string occurs after this value.
-                 */
-                after?: string;
-                /**
-                 * The replacement string occurs before this value.
-                 */
-                before?: string;
-                [k: string]: unknown | undefined;
-              };
               [k: string]: unknown | undefined;
             }
           | (
               | GeneratorCasing
               | GeneratorCoalesce
               | GeneratorConstant
+              | GeneratorEvaluate
               | GeneratorGuid
               | GeneratorNow
               | GeneratorPort
@@ -456,25 +399,24 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
             )
           | {
               /**
-               * Defines the high level configuration of symbol.
+               * Defines the high level configuration of symbol
                */
               type?: "parameter";
-              isRequired?: boolean | string;
-              isEnabled?: boolean | string;
+              isRequired?: boolean;
               /**
                * An array listing the valid choices for a symbol whose datatype = choice. If not provided, there are no valid choices for the symbol, so it can never be assigned a value.
                */
               choices?: {
                 /**
-                 * A valid value for the symbol.
+                 * A valid value for the symbol
                  */
                 choice: string;
                 /**
-                 * Help text describing the meaning of the corresponding value.
+                 * Help text describing the meaning of the corresponding value
                  */
                 description?: string;
                 /**
-                 * The friendly name of the choice to be displayed to the user. This property can be localized.
+                 * The friendly name of the choice to be displayed to the user. This property is localizable.
                  */
                 displayName?: string;
                 [k: string]: unknown | undefined;
@@ -484,24 +426,20 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
                */
               defaultValue?: string;
               /**
-               * The description of the parameter.
+               * The description of the parameter
                */
               description?: string;
               /**
-               * The text to replace with the value of this symbol.
-               */
-              replaces?: string;
-              /**
-               * The element defines the portion of file names which will be replaced by symbol value.
+               * The element defines the portion of file names which will be replaced by symbol value
                */
               fileRename?: string;
               onlyIf?: {
                 /**
-                 * The replacement string occurs after this value.
+                 * The replacement string occurs after this value
                  */
                 after?: string;
                 /**
-                 * The replacement string occurs before this value.
+                 * The replacement string occurs before this value
                  */
                 before?: string;
                 [k: string]: unknown | undefined;
@@ -511,22 +449,14 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
                */
               allowMultipleValues?: boolean;
               /**
-               * Indication whether implicit symbols for each choice value should be added to parameter collection. This allows condition syntax without using quotes for choice literals. Valid only for datatype = choice.
+               * Indication whether implicit symbols for each choice value should be added to parameter collection. This allows condition syntax without enquoting choice literals. Valid only for datatype = choice.
                */
               enableQuotelessLiterals?: boolean;
-              /**
-               * The friendly name of the symbol to be displayed to the user. This property can be localized.
-               */
-              displayName?: string;
-              forms?: {
-                global?: string[] | string;
-                [k: string]: unknown | undefined;
-              };
               [k: string]: unknown | undefined;
             }
           | {
               /**
-               * Defines the high level configuration of symbol.
+               * Defines the high level configuration of symbol
                */
               type?: "computed";
               /**
@@ -539,24 +469,24 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
       | undefined;
   };
   /**
-   * Alternate sets of defaults for symbols.
+   * Alternate sets of defaults for symbols
    */
   baselines?: {
     /**
-     * A named set of alternate defaults.
+     * A named set of alternate defaults
      */
     [k: string]:
       | {
           /**
-           * A string to use to indicate the intent of the baseline.
+           * A string to use to indicate the intent of the baseline
            */
           description?: string;
           /**
-           * A lookup of symbol names to new defaults.
+           * A lookup of symbol names to new defaults
            */
           defaultOverrides?: {
             /**
-             * An updated default value for the specified symbol.
+             * An updated default value for the specified symbol
              */
             [k: string]: string | undefined;
           };
@@ -565,25 +495,25 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
       | undefined;
   };
   /**
-   * Common information about templates, these are effectively interchangeable with choice type parameter symbols.
+   * Common information about templates, these are effectively interchangeable with choice type parameter symbols
    */
   tags: {
     /**
-     * The programming language the template primarily contains or is intended for use with.
+     * The programming language the template primarily contains or is intended for use with
      */
     language?: string;
     /**
-     * The type of template: project or item.
+     * The type of template: project or item
      */
     type: "project" | "item" | "solution";
     [k: string]: unknown | undefined;
   };
   /**
-   * An URL for a document indicating any libraries used by the template that are not owned/provided by the template author.
+   * An URL for a document indicating any libraries used by the template that are not owned/provided by the template author
    */
   thirdPartyNotices?: string;
   /**
-   * A description of the template's purpose or contents for use in help.
+   * A description of the template's purpose or contents for use in help
    */
   description?: string;
   /**
@@ -603,7 +533,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
             }
           | {
               type?: "os";
-              args?: ("Windows" | "Linux" | "OSX") | ("Windows" | "Linux" | "OSX")[];
+              args?: ("Windows" | "Unix" | "OSX") | ("Windows" | "Unix" | "OSX")[];
               [k: string]: unknown | undefined;
             }
           | {
@@ -637,38 +567,31 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
               args?: string | string[];
               [k: string]: unknown | undefined;
             }
-          | {
-              type?: "project-capability";
-              /**
-               * Project capability expression that should be satisfied by the project. Refer to https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.shell.interop.vsprojectcapabilityexpressionmatcher for more info.
-               */
-              args?: string;
-              [k: string]: unknown | undefined;
-            }
         )
       | undefined;
   };
   [k: string]: unknown | undefined;
 }
 export interface Modifier {
+  modifiers?: Modifiers;
   /**
-   * Boolean condition to indicate if the sources configuration should be included or ignored. If the condition evaluates to true or is not provided, the sources config will be used for creating the template. If it evaluates to false, the sources config will be ignored.
+   * Boolean-evaluable condition to indicate if the sources configuration should be included or ignored. If the condition evaluates to true or is not provided, the sources config will be used for creating the template. If it evaluates to false, the sources config will be ignored.
    */
   condition?: string;
   /**
-   * The set of globbing patterns indicating the content that was included by sources.include that should not be processed.
+   * The set of globbing patterns indicating the content that was included by sources.include that should not be processed
    */
   exclude?: Ice;
   /**
-   * The set of globbing patterns indicating the content to process in the path referred to by the source.
+   * The set of globbing patterns indicating the content to process in the path referred to by sources.source
    */
   include?: Ice;
   /**
-   * The set of globbing patterns indicating the content that was included by sources.include, that hasn't been excluded by sources.exclude that should be placed in the user's directory without modification.
+   * The set of globbing patterns indicating the content that was included by sources.include, that hasn't been excluded by sources.exclude that should be placed in the user's directory without modification
    */
   copyOnly?: Ice;
   /**
-   * The set of explicit renames to perform. Each key is a path to a file in the source, each value is a path to the target location.
+   * The set of explicit renames to perform. Each key is a path to a file in the source, each value is a path to the target location - only the values will be evaluated with the information the user supplies
    */
   rename?: {
     [k: string]: string | undefined;
@@ -679,11 +602,11 @@ export interface GeneratorCasing {
   generator?: "casing";
   parameters?: {
     /**
-     * The name of the symbol whose value should have its case changed.
+     * The name of the symbol whose value should have its case changed
      */
     source: string;
     /**
-     * Whether the case changed to should be lower case, if false, the value is made to be uppercase instead.
+     * Whether the case changed to should be lower case, if false, the value is made to be uppercase instead
      */
     toLower?: boolean;
     [k: string]: unknown | undefined;
@@ -694,15 +617,15 @@ export interface GeneratorCoalesce {
   generator?: "coalesce";
   parameters?: {
     /**
-     * The name of the symbol whose value will be inspected - if the value is effectively equal to the default value, the value of the symbol referred to by fallbackVariableName is used, otherwise the value of this symbol.
+     * The name of the symbol whose value will be inspected - if the value is effectively equal to the default value, the value of the symbol referred to by fallbackVariableName is used, otherwise the value of this symbol
      */
     sourceVariableName: string;
     /**
-     * The value to consider as being the default - if the value of the symbol referred to by sourceVariableName is equal to this, the value of the symbol referred to in fallbackVariableName is used instead.
+     * The value to consider as being the default - if the value of the symbol referred to by sourceVariableName is equal to this, the value of the symbol referred to in fallbackVariableName is used instead
      */
     defaultValue?: string;
     /**
-     * The name of the symbol to return the value of if the symbol referred to by sourceVariableName has a value equal to the value of defaultValue.
+     * The name of the symbol to return the value of if the symbol referred to by sourceVariableName has a value equal to the value of defaultValue
      */
     fallbackVariableName: string;
     [k: string]: unknown | undefined;
@@ -713,9 +636,24 @@ export interface GeneratorConstant {
   generator?: "constant";
   parameters?: {
     /**
-     * The constant value to be assigned to the symbol.
+     * The value to be assigned to the symbol
      */
     value?: string;
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+export interface GeneratorEvaluate {
+  generator?: "evaluate";
+  parameters?: {
+    /**
+     * The Boolean predicate whose evaluation result becomes the symbol value
+     */
+    action?: string;
+    /**
+     * A string indicating the predicate evaluator to evaluate the action against.
+     */
+    evaluator?: string;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -724,7 +662,8 @@ export interface GeneratorGuid {
   generator?: "guid";
   parameters?: {
     /**
-     * This property is not maintained and may be removed in the future. Use defaultFormat instead, or use 'guids' section.
+     * @deprecated
+     * This property is not maintained and may be removed in the future. Use defaultFormat instead, or use guids section.
      */
     format?: string;
     /**
@@ -754,15 +693,15 @@ export interface GeneratorPort {
   generator?: "port";
   parameters?: {
     /**
-     * The lower bound of acceptable port numbers.
+     * The lower bound of acceptable port numbers
      */
     low?: number;
     /**
-     * The upper bound of acceptable port numbers.
+     * The upper bound of acceptable port numbers
      */
     high?: number;
     /**
-     * The port number to use if no free ports could be found.
+     * The port number to use if no free ports could be found
      */
     fallback?: number;
     [k: string]: unknown | undefined;
@@ -788,7 +727,7 @@ export interface GeneratorRegex {
   generator?: "regex";
   parameters?: {
     /**
-     * The name of a different parameter in the template configuration. A copy of its value will be used by this generator's regex to generate the value for this parameter. The value of the source parameter is not modified.
+     * The name of a different parameter in the template configuration. A copy of its value will be used by this generator's regex to generate the value for this parameter. The value of the source parameter is not modified
      */
     source?: string;
     /**
@@ -796,11 +735,11 @@ export interface GeneratorRegex {
      */
     steps?: {
       /**
-       * The regular expression to use to locate the sequence to replace.
+       * The regular expression to use to locate the sequence to replace
        */
       regex: string;
       /**
-       * The replacement for any sequences matched by the supplied regular expression.
+       * The replacement for any sequences matched by the supplied regular expression
        */
       replacement: string;
       [k: string]: unknown | undefined;
@@ -814,11 +753,11 @@ export interface GeneratorRegexMatch {
   datatype?: "bool";
   parameters?: {
     /**
-     * The symbol to search for a match. Its value will be used by this generator's regex to evaluate if there is a match. The value of the source parameter is not modified.
+     * The symbol to search for a match. Its value will be used by this generator's regex to evaluate if there is a match. The value of the source parameter is not modified
      */
     source?: string;
     /**
-     * The regular expression to use to match.
+     * The regular expression to use to match
      */
     pattern?: string;
     [k: string]: unknown | undefined;
@@ -829,20 +768,20 @@ export interface GeneratorSwitch {
   generator?: "switch";
   parameters?: {
     /**
-     * The style of evaluator to use.
+     * The style of evaluator to use
      */
     evaluator?: "C++" | "C++2" | "MSBUILD" | "VB";
     datatype?: Datatype;
     /**
-     * The set of cases to test for. The first one, in document order, to return true's value is used, if none return true, empty string is returned.
+     * The set of cases to test for. The first one, in document order, to return true's value is used, if none return true, empty string is returned
      */
     cases?: {
       /**
-       * An expression to be interpreted by the specified evaluator type.
+       * An expression to be interpreted by the specified evaluator type
        */
       condition: string;
       /**
-       * The value to return if the condition evaluates to true.
+       * The value to return if the condition evaluates to true
        */
       value: string;
       [k: string]: unknown | undefined;
@@ -855,7 +794,7 @@ export interface GeneratorJoin {
   generator?: "join";
   parameters?: {
     /**
-     * The value used as the separator between the values to be concatenated, notice that you can use "/" as folder separator also on Windows since File API will convert it into "\".
+     * The value used as the separator between the values to be concatenated, notice that you can use "/" as folder separator also on Windows since File API will convert it into "\"
      */
     separator?: string;
     /**
@@ -863,7 +802,7 @@ export interface GeneratorJoin {
      */
     removeEmptyValues?: boolean & string;
     /**
-     * All values to concatenate.
+     * All values to concatenate
      */
     symbols?: {
       /**
@@ -871,7 +810,7 @@ export interface GeneratorJoin {
        */
       type?: "ref" | "const";
       /**
-       * Either name of another symbol or string constant.
+       * Either name of another symbol or string constant
        */
       value: string;
       [k: string]: unknown | undefined;

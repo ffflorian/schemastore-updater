@@ -365,14 +365,9 @@ export interface RunsComposite {
   /**
    * The run steps that you plan to run in this action.
    */
-  steps: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-  )[];
+  steps: {
+    [k: string]: unknown | undefined;
+  }[];
 }
 /**
  * Configures the image used for the Docker action.

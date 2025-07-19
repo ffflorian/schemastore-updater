@@ -5,25 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles = JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 &
-  JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles2;
-/**
- * A list of JavaScript file paths to include when this package is used. Paths are relative to the package root directory. Scripts will be loaded in the listed order as standard scripts.
- */
-export type StringArray = string[];
-/**
- * A list of JavaScript ES modules to include when this package is used. Paths are relative to the package root directory. Modules will be loaded in the listed order as modules.
- */
-export type StringArray1 = string[];
-/**
- * A list of CSS file paths to include when this package is used. Paths are relative to the package root directory. Files will be loaded in the listed order.
- */
-export type StringArray2 = string[];
-export type JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles2 = {
-  [k: string]: unknown;
-};
-
-export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
+export type JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles = {
   /**
    * The unique package identifier. This must be lowercase and contain no special characters other than hyphens to separate multiple terms. This must also match the name of the directory.
    */
@@ -49,9 +31,13 @@ export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
    */
   authors?: unknown[];
   /**
+   * Specifies the minimum Foundry version required to be able to install and use this package.
+   */
+  minimumCoreVersion: string;
+  /**
    * Specifies the latest Foundry version this package is compatible with.
    */
-  compatibility: string;
+  compatibleCoreVersion?: string;
   scripts?: StringArray;
   esmodules?: StringArray1;
   styles?: StringArray2;
@@ -82,7 +68,7 @@ export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
     /**
      * Each Compendium pack must designate which type of Entity it contains.
      */
-    type:
+    entity:
       | "Actor"
       | "Item"
       | "Journal"
@@ -93,7 +79,7 @@ export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
       | "RollTable"
       | "Table"
       | "Scene";
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Packages can require other modules, systems, or worlds be installed to allow their use.
@@ -111,7 +97,7 @@ export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
      * Provides an explicit URL to the dependency's manifest to be able to install the package. If not provided, Foundry will check the website package list.
      */
     manifest?: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * A list of localization files that Foundry can use to translate strings.
@@ -129,7 +115,7 @@ export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
      * Relative path to the JSON localization file.
      */
     path: string;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * A string or array of strings specifying which systems this module is compatible with.
@@ -187,5 +173,19 @@ export interface JSONSchemaForFoundryVTTSystemJsonAndModuleJsonFiles1 {
    * A public URL where update and release notes for the package can be found.
    */
   changelog?: string;
-  [k: string]: unknown;
-}
+  [k: string]: unknown | undefined;
+} & {
+  [k: string]: unknown | undefined;
+};
+/**
+ * A list of JavaScript file paths to include when this package is used. Paths are relative to the package root directory. Scripts will be loaded in the listed order as standard scripts.
+ */
+export type StringArray = string[];
+/**
+ * A list of JavaScript ES modules to include when this package is used. Paths are relative to the package root directory. Modules will be loaded in the listed order as modules.
+ */
+export type StringArray1 = string[];
+/**
+ * A list of CSS file paths to include when this package is used. Paths are relative to the package root directory. Files will be loaded in the listed order.
+ */
+export type StringArray2 = string[];

@@ -12,7 +12,7 @@ export interface JSONSchemaForTheVisualStudioLaunchSettingsJsonFile {
    * A list of debug profiles
    */
   profiles?: {
-    [k: string]: ProfileUndefined;
+    [k: string]: Profile | undefined;
   };
   /**
    * IIS and IIS Express settings
@@ -24,7 +24,7 @@ export interface ProfileContent {
   /**
    * Identifies the debug target to run.
    */
-  commandName?: "Executable" | "Project" | "IIS" | "IISExpress" | "DebugRoslynComponent" | "Docker" | "DockerCompose";
+  commandName?: string;
   /**
    * The arguments to pass to the target being run.
    */
@@ -99,34 +99,6 @@ export interface ProfileContent {
    * Set to true to enable applying code changes to the running application.
    */
   hotReloadEnabled?: boolean;
-  /**
-   * Publish all exposed ports to random ports in Docker (-P).
-   */
-  publishAllPorts?: boolean;
-  /**
-   * Set to true to bind the SSL port.
-   */
-  useSSL?: boolean;
-  /**
-   * The SSL port to use for the web site.
-   */
-  sslPort?: number;
-  /**
-   * The HTTP port to use for the web site.
-   */
-  httpPort?: number;
-  /**
-   * Set to true to display a message when the project is building.
-   */
-  dotnetRunMessages?: boolean;
-  /**
-   * The url to enable debugging on a Blazor WebAssembly application.
-   */
-  inspectUri?: string;
-  /**
-   * A relative ot absolute path to the .NET project file on which Roslyn component should be executed. Relative to the current project's folder.
-   */
-  targetProject?: string;
   [k: string]: unknown | undefined;
 }
 export interface IisSettingContent {
@@ -154,7 +126,7 @@ export interface IisBindingContent {
    */
   applicationUrl?: string;
   /**
-   * The SSL port to use for the web site.
+   * The SSL Port to use for the web site.
    */
   sslPort?: number;
   [k: string]: unknown | undefined;

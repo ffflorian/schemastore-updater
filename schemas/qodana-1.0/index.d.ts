@@ -49,19 +49,9 @@ export interface Qodana {
    */
   include?: Include[];
   /**
-   * The linter (Docker image) to run for Qodana CLI / any CI extensions
-   */
-  linter?: string;
-  /**
    * The command to run inside Docker before the analysis starts
    */
   bootstrap?: string;
-  /**
-   * Set JVM properties to be used while running Qodana
-   */
-  properties?: {
-    [k: string]: string;
-  };
   /**
    * A list of license rules to apply for license checks
    *
@@ -80,23 +70,7 @@ export interface Qodana {
    * @minItems 0
    */
   customDependencies?: CustomDependency[];
-  /**
-   * The configuration for .NET solutions and projects
-   */
-  "dot-net"?:
-    | {
-        /**
-         * The name of a .NET solution inside the Qodana project
-         */
-        solution?: string;
-      }
-    | {
-        /**
-         * The name of a .NET project inside the Qodana project
-         */
-        project?: string;
-      };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The run scenario. 'default' by default
@@ -110,7 +84,7 @@ export interface Script {
    * The parameters to pass to the script
    */
   parameters?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }
 /**

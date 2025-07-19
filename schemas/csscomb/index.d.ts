@@ -5,133 +5,105 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface ACSSCombConfigSchema {
+export interface JSONSchemaForCSSCombConfigurationFiles {
   /**
-   * A list of files to ignore in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * An array of files/globbing patterns to ignore
    */
   exclude?: string[];
   verbose?: boolean;
-  /**
-   * Whether to add missing semicolon in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
-   */
   "always-semicolon"?: boolean;
   /**
-   * A block indent style in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Whether to add a semicolon after the last value/mixin.
    */
   "block-indent"?: string;
   /**
-   * A hexadecimal color style in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Unify case of hexadecimal colors.
    */
   "color-case"?: "lower" | "upper";
   /**
-   * Whether to expand hexadecimal color or use shorthand in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Whether to expand hexadecimal colors or use shorthands.
    */
   "color-shorthand"?: boolean;
   /**
-   * Whether to unify case of element selector in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Unify case of element selectors.
    */
   "element-case"?: "lower" | "upper";
   /**
-   * Whether to add a trailing line break in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Add/remove line break at EOF.
    */
   "eof-newline"?: boolean;
   /**
-   * Whether to add leading zero in a dimension in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Add/remove leading zero in dimensions.
    */
   "leading-zero"?: boolean;
   /**
-   * A quote style in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Unify quotes style.
    */
   quotes?: "single" | "double";
   /**
-   * Whether to remove empty rulesets
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Remove all rulesets that contain nothing but spaces.
    */
   "remove-empty-rulesets"?: boolean;
   /**
-   * A space style after a colon in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space after `:` in declarations.
    */
   "space-after-colon"?: string;
   /**
-   * A space style after a combinator in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space after combinator (for example, in selectors like `p > a`).
    */
   "space-after-combinator"?: string;
   /**
-   * A space style after an opening brace in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space after `{`.
    */
   "space-after-opening-brace"?: string;
   /**
-   * A space style after a selector delimiter in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space after selector delimiter.
    */
   "space-after-selector-delimiter"?: string;
   /**
-   * A space style after a closing brace in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space before `}`.
    */
   "space-after-closing-brace"?: string;
   /**
-   * A space style before a colon in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space before `:` in declarations.
    */
   "space-before-colon"?: string;
   /**
-   * A space style before a combinator in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space before combinator (for example, in selectors like `p > a`).
    */
   "space-before-combinator"?: string;
   /**
-   * A space style before an opening brace in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space before `{`.
    */
   "space-before-opening-brace"?: string;
   /**
-   * A space style before a selector delimiter in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space before selector delimiter.
    */
   "space-before-selector-delimiter"?: string;
   /**
-   * A space style between declarations in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Set space between declarations (i.e. `color: tomato`).
    */
   "space-between-declarations"?: string;
   /**
-   * Whether to trim trailing space in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Whether to trim trailing spaces.
    */
   "strip-spaces"?: boolean;
   /**
-   * Whether to remove unit in zero-valued dimension in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Whether to remove units in zero-valued dimensions.
    */
   "unitless-zero"?: boolean;
   /**
-   * Whether to align prefix in property and value in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Whether to align prefixes in properties and values.
    */
   "vendor-prefix-align"?: boolean;
   /**
-   * A sort order in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Sort properties in particular order.
    */
   "sort-order"?: string[][];
   "tab-size"?: boolean;
   /**
-   * A sort style of unknown properties in the current project
-   * https://github.com/csscomb/csscomb.js/blob/dev/doc/configuration.md#create-custom-config
+   * Sort unknown properties alphabetically
    */
-  "sort-order-fallback"?: string;
+  "sort-order-fallback"?: "abc";
   [k: string]: unknown | undefined;
 }
