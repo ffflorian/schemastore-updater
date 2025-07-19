@@ -7,8 +7,8 @@
   "name": "@schemastore/csr",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/csr",
   "scripts": {},
-  "typesPublisherContentHash": "9edac3f6fe8bf097e6212f9c70a4f375f430c0ae7b8347478130678771792b6d",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "e4b789dd1defa4420745f2a15c5c081e44d298eccf10c60c0c48cf94b5278ecc",
+  "version": "0.0.6"
 }

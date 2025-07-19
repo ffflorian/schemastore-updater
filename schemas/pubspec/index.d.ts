@@ -51,6 +51,9 @@ export interface Pubspec {
   name: string;
   version?: Version;
   description?: string;
+  /**
+   * @deprecated
+   */
   authors?: string[];
   homepage?: string;
   repository?: string;
@@ -61,7 +64,7 @@ export interface Pubspec {
   };
   publish_to?: string;
   environment?: {
-    [k: string]: VersionConstraintUndefined;
+    [k: string]: VersionConstraint | undefined;
   };
   dependencies?: Dependencies;
   dev_dependencies?: Dependencies;
@@ -69,14 +72,14 @@ export interface Pubspec {
   [k: string]: unknown | undefined;
 }
 export interface Dependencies {
-  [k: string]: DependencyUndefined;
+  [k: string]: Dependency | undefined;
 }
 export interface SDKDependency {
   /**
    * The SDK which contains this package
    */
   sdk: string;
-  version?: VersionConstraintUndefined;
+  version?: VersionConstraint | undefined;
 }
 export interface HostedDependency {
   hosted:
@@ -89,5 +92,5 @@ export interface HostedDependency {
         url: string;
         [k: string]: unknown | undefined;
       };
-  version?: VersionConstraintUndefined;
+  version?: VersionConstraint | undefined;
 }

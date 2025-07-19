@@ -7,8 +7,8 @@
   "name": "@schemastore/qodana-1.0",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/qodana-1.0",
   "scripts": {},
-  "typesPublisherContentHash": "f1fe32a8639283ba6fb783a1a5b6e491e92f939886edab5b1db87e34bc2516b5",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "3e2fb746048eec41f6c30e23580c61ebc2c0db09ba4a6faeefa719e8dbf7526a",
+  "version": "0.0.6"
 }

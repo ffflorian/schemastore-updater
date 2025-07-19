@@ -5,80 +5,58 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * An output path
- * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
- */
-export type Path = string;
-
 export interface JSONSchemaForPrismaPrismaYmlFiles {
   /**
    * Type definitions for database models, relations, enums and other types
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
    */
-  datamodel: string | string[];
+  datamodel: string | (string | unknown[])[];
   /**
-   * A secure secret for the current API endpoint
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
+   * Secret for securing the API Endpoint
    */
   secret?: string;
   /**
-   * Disable authentication for the current API endpoint
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
+   * Disable authentication for the endpoint
    */
   disableAuth?: boolean;
+  generate?: {
+    generator?: string;
+    output?: string;
+    [k: string]: unknown | undefined;
+  }[];
   /**
-   * How and where generate client
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
+   * Database seed
    */
-  generate?: File[];
-  seed?: Seed;
+  seed?: {
+    import?: string;
+    run?: string;
+    [k: string]: unknown | undefined;
+  };
   /**
-   * Server-side subscriptions
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
+   * All server-side subscriptions
    */
   subscriptions?: {
-    [k: string]: Subscription;
+    [k: string]: Subscription | undefined;
   };
-  custom?: Fields;
-  hooks?: Hooks;
   /**
-   * An endpoint the service will be reachable at
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
+   * Custom field to use in variable interpolations with ${self:custom.field}
+   */
+  custom?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Command hooks. Current available hooks are: post-deploy.
+   */
+  hooks?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Endpoint the service will be reachable at. This also determines the cluster the service will deployed to.
    */
   endpoint?: string;
   /**
-   * A relational or document database
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
+   * Specifies either a relational or document database.
    */
   databaseType?: "relational" | "document";
-}
-/**
- * Files to be generated for the current API endpoint
- */
-export interface File {
-  /**
-   * A client name
-   * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
-   */
-  generator?: "javascript-client" | "typescript-client" | "flow-client" | "go-client" | "graphql-schema";
-  output?: Path;
-  [k: string]: unknown;
-}
-/**
- * A database seed
- * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
- */
-export interface Seed {
-  /**
-   * Commands to run while seeding a service for the current API endpoint
-   */
-  import?: string;
-  /**
-   * Instructions to run while seeding a service for the current API endpoint
-   */
-  run?: string;
-  [k: string]: unknown;
 }
 /**
  * A piece of code that you should run.
@@ -90,23 +68,9 @@ export interface Subscription {
     | {
         url: string;
         headers?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-  [k: string]: unknown;
-}
-/**
- * Fields to use in variable interpolations via `${self:custom.field}`
- * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
- */
-export interface Fields {
-  [k: string]: unknown;
-}
-/**
- * Hooks
- * https://v1.prisma.io/docs/1.34/prisma-cli-and-configuration/prisma-yml-5cy7/#reference
- */
-export interface Hooks {
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

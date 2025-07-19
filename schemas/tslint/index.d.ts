@@ -3460,53 +3460,49 @@ export interface TsRules {
    */
   "adjacent-overload-signatures"?: (Rule & []) | [boolean];
   /**
-   * Bans "// @ts-ignore" comments from being used.
-   */
-  "ban-ts-ignore"?: (Rule1 & []) | [boolean];
-  /**
    * Requires using either 'T[]' or 'Array<T>' for arrays.
    */
-  "array-type"?: (Rule1 & []) | [boolean, ...("array" | "generic" | "array-simple")[]];
+  "array-type"?: (Rule & []) | [boolean, ...("array" | "generic" | "array-simple")[]];
   /**
    * Warns for an awaited value that is not a Promise.
    */
-  "await-promise"?: (Rule1 & []) | [boolean, ...string[]];
+  "await-promise"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Bans specific types from being used. Does not ban the corresponding runtime objects from being used.
    */
-  "ban-types"?: (Rule1 & []) | [boolean, ...Items[]];
+  "ban-types"?: (Rule & []) | [boolean, ...Items[]];
   /**
    * An interface or literal type with just a call signature can be written as a function type.
    */
-  "callable-types"?: (Rule1 & []) | [boolean];
+  "callable-types"?: (Rule & []) | [boolean];
   /**
    * Requires interface names to begin with a capital 'I'
    */
-  "interface-name"?: (Rule1 & []) | [boolean, ...("always-prefix" | "never-prefix")[]];
+  "interface-name"?: (Rule & []) | [boolean, ...("always-prefix" | "never-prefix")[]];
   /**
    * Prefer an interface declaration over a type literal (`type T = { ... }`)
    */
-  "interface-over-type-literal"?: (Rule1 & []) | [boolean];
+  "interface-over-type-literal"?: (Rule & []) | [boolean];
   /**
    * Requires that a default import have the same name as the declaration it imports.
    * Does nothing for anonymous default exports.
    */
-  "match-default-export-name"?: (Rule1 & []) | [boolean];
+  "match-default-export-name"?: (Rule & []) | [boolean];
   /**
    * Requires explicit visibility declarations for class members.
    */
   "member-access"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("no-public" | "check-accessor" | "check-constructor" | "check-parameter-property")[]];
   /**
    * Requires the use of `as Type` for type assertions instead of `<Type>`.
    */
-  "no-angle-bracket-type-assertion"?: (Rule1 & []) | [boolean];
+  "no-angle-bracket-type-assertion"?: (Rule & []) | [boolean];
   /**
    * Disallows usages of `any` as a type declaration.
    */
   "no-any"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean]
     | [
         boolean,
@@ -3518,84 +3514,84 @@ export interface TsRules {
   /**
    * Warns on comparison to a boolean literal, as in `x === true`.
    */
-  "no-boolean-literal-compare"?: (Rule1 & []) | [boolean];
+  "no-boolean-literal-compare"?: (Rule & []) | [boolean];
   /**
    * Forbids empty interfaces.
    */
-  "no-empty-interface"?: (Rule1 & []) | [boolean];
+  "no-empty-interface"?: (Rule & []) | [boolean];
   /**
    * Promises returned by functions must be handled appropriately.
    */
-  "no-floating-promises"?: (Rule1 & []) | [boolean, ...string[]];
+  "no-floating-promises"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean.
    */
-  "no-inferrable-types"?: (Rule1 & []) | [boolean, ...("ignore-params" | "ignore-properties")[]];
+  "no-inferrable-types"?: (Rule & []) | [boolean, ...("ignore-params" | "ignore-properties")[]];
   /**
    * Disallow type inference of {} (empty object type) at function and constructor call sites
    */
-  "no-inferred-empty-object-type"?: (Rule1 & []) | [boolean];
+  "no-inferred-empty-object-type"?: (Rule & []) | [boolean];
   /**
    * Disallows internal `module`
    */
-  "no-internal-module"?: (Rule1 & []) | [boolean];
+  "no-internal-module"?: (Rule & []) | [boolean];
   /**
    * Disallows mergeable namespaces in the same file.
    */
-  "no-mergeable-namespace"?: (Rule1 & []) | [boolean];
+  "no-mergeable-namespace"?: (Rule & []) | [boolean];
   /**
    * Warns on apparent attempts to define constructors for interfaces or `new` for classes.
    */
-  "no-misused-new"?: (Rule1 & []) | [boolean];
+  "no-misused-new"?: (Rule & []) | [boolean];
   /**
    * Disallows use of internal `module`s and `namespace`s.
    */
-  "no-namespace"?: (Rule1 & []) | [boolean, ..."allow-declarations"[]];
+  "no-namespace"?: (Rule & []) | [boolean, ..."allow-declarations"[]];
   /**
    * Disallows non-null assertions.
    */
-  "no-non-null-assertion"?: (Rule1 & []) | [boolean];
+  "no-non-null-assertion"?: (Rule & []) | [boolean];
   /**
    * Forbids an object literal to appear in a type assertion expression.
    * Casting to `any` is still allowed.
    */
-  "no-object-literal-type-assertion"?: (Rule1 & []) | [boolean];
+  "no-object-literal-type-assertion"?: (Rule & []) | [boolean];
   /**
    * Disallows parameter properties in class constructors.
    */
-  "no-parameter-properties"?: (Rule1 & []) | [boolean];
+  "no-parameter-properties"?: (Rule & []) | [boolean];
   /**
    * Forbids JSDoc which duplicates TypeScript functionality.
    */
-  "no-redundant-jsdoc"?: (Rule1 & []) | [boolean];
+  "no-redundant-jsdoc"?: (Rule & []) | [boolean];
   /**
    * Don't `<reference types="foo" />` if you import `foo` anyway.
    */
-  "no-reference-import"?: (Rule1 & []) | [boolean];
+  "no-reference-import"?: (Rule & []) | [boolean];
   /**
    * Warns when a method is used as outside of a method call.
    */
-  "no-unbound-method"?: (Rule1 & []) | [boolean, ..."ignore-static"[]];
+  "no-unbound-method"?: (Rule & []) | [boolean, ..."ignore-static"[]];
   /**
    * Warns when a namespace qualifier (`A.x`) is unnecessary.
    */
-  "no-unnecessary-qualifier"?: (Rule1 & []) | [boolean];
+  "no-unnecessary-qualifier"?: (Rule & []) | [boolean];
   /**
    * Warns if a type assertion does not change the type of an expression.
    */
-  "no-unnecessary-type-assertion"?: (Rule1 & []) | [boolean, ...string[]];
+  "no-unnecessary-type-assertion"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Warns when using an expression of type 'any' in a dynamic way.
    * Uses are only allowed if they would work for `{} | null | undefined`.
    * Type casts and tests are allowed.
    * Expressions that work on all values (such as `"" + x`) are allowed.
    */
-  "no-unsafe-any"?: (Rule1 & []) | [boolean];
+  "no-unsafe-any"?: (Rule & []) | [boolean];
   /**
    * Disallows unused imports, variables, functions and private class members. Similar to tsc's --noUnusedParameters and --noUnusedLocals options, but does not interrupt code compilation.
    */
   "no-unused-variable"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3608,11 +3604,11 @@ export interface TsRules {
   /**
    * Disallows the use of require statements except in import statements.
    */
-  "no-var-requires"?: (Rule1 & []) | [boolean];
+  "no-var-requires"?: (Rule & []) | [boolean];
   /**
-   * Requires that private variables are marked as `readonly` if they're never modified outside of the constructor.
+   * Requires that private variables are marked as `readonly` if they’re never modified outside of the constructor.
    */
-  "prefer-readonly"?: (Rule1 & []) | [boolean, ..."only-inline-lambdas"[]];
+  "prefer-readonly"?: (Rule & []) | [boolean, ..."only-inline-lambdas"[]];
   /**
    * Restricts the types allowed in boolean expressions. By default only booleans are allowed.
    *
@@ -3622,7 +3618,7 @@ export interface TsRules {
    * * Conditions for `if`, `for`, `while`, and `do-while` statements.
    */
   "strict-boolean-expressions"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3645,12 +3641,12 @@ export interface TsRules {
    *
    * This rule requires `strictNullChecks` to work properly.
    */
-  "strict-type-predicates"?: (Rule1 & []) | [boolean];
+  "strict-type-predicates"?: (Rule & []) | [boolean];
   /**
    * Requires type definitions to exist.
    */
   typedef?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3669,7 +3665,7 @@ export interface TsRules {
    * Requires or disallows whitespace for type definitions.
    */
   "typedef-whitespace"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean]
     | [
         boolean,
@@ -3703,7 +3699,7 @@ export interface TsRules {
    * Enforces a trailing semicolon for multiline type literals.
    */
   "type-literal-delimiter"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean]
     | [
         boolean,
@@ -3715,35 +3711,31 @@ export interface TsRules {
   /**
    * Warns for any two overloads that could be unified into one by using a union or an optional/rest parameter.
    */
-  "unified-signatures"?: (Rule1 & []) | [boolean];
+  "unified-signatures"?: (Rule & []) | [boolean];
   /**
    * Warns if an explicitly specified type argument is the default for that type parameter.
    */
-  "use-default-type-parameter"?: (Rule1 & []) | [boolean];
-  /**
-   * Prevents using the built-in Function constructor.
-   */
-  "function-constructor"?: (Rule1 & []) | [boolean];
+  "use-default-type-parameter"?: (Rule & []) | [boolean];
   [k: string]: unknown | undefined;
 }
 export interface Rules {
   /**
    * Enforces vertical alignment.
    */
-  align?: (Rule1 & []) | [boolean, ...("arguments" | "elements" | "members" | "parameters" | "statements")[]];
+  align?: (Rule & []) | [boolean, ...("arguments" | "elements" | "members" | "parameters" | "statements")[]];
   /**
    * Requires parentheses around the parameters of arrow function definitions.
    */
-  "arrow-parens"?: (Rule1 & []) | [boolean, ..."ban-single-arg-parens"[]];
+  "arrow-parens"?: (Rule & []) | [boolean, ..."ban-single-arg-parens"[]];
   /**
    * Suggests to convert `() => { return x; }` to `() => x`.
    */
-  "arrow-return-shorthand"?: (Rule1 & []) | [boolean, ..."multiline"[]];
+  "arrow-return-shorthand"?: (Rule & []) | [boolean, ..."multiline"[]];
   /**
    * Bans the use of specific functions or global methods.
    */
   ban?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3760,21 +3752,21 @@ export interface Rules {
   /**
    * Bans the comma operator.
    */
-  "ban-comma-operator"?: (Rule1 & []) | [boolean];
+  "ban-comma-operator"?: (Rule & []) | [boolean];
   /**
    * In a binary expression, a literal should always be on the right-hand side if possible.
    * For example, prefer 'x + 1' over '1 + x'.
    */
-  "binary-expression-operand-order"?: (Rule1 & []) | [boolean];
+  "binary-expression-operand-order"?: (Rule & []) | [boolean];
   /**
    * Enforces PascalCased class and interface names.
    */
-  "class-name"?: (Rule1 & []) | [boolean];
+  "class-name"?: (Rule & []) | [boolean];
   /**
    * Enforces formatting rules for single-line comments.
    */
   "comment-format"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3790,7 +3782,7 @@ export interface Rules {
    * Enforces documentation for important items be filled out.
    */
   "completed-docs"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3846,27 +3838,27 @@ export interface Rules {
   /**
    * Enforces braces for `if`/`for`/`do`/`while` statements.
    */
-  curly?: (Rule1 & []) | [boolean, ...("as-needed" | "ignore-same-line")[]];
+  curly?: (Rule & []) | [boolean, ...("as-needed" | "ignore-same-line")[]];
   /**
    * Enforces a threshold of cyclomatic complexity.
    */
-  "cyclomatic-complexity"?: (Rule1 & []) | [boolean, ...number[]];
+  "cyclomatic-complexity"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Warns when deprecated APIs are used.
    */
-  deprecation?: (Rule1 & []) | [boolean];
+  deprecation?: (Rule & []) | [boolean];
   /**
    * Enforces UTF-8 file encoding.
    */
-  encoding?: (Rule1 & []) | [boolean];
+  encoding?: (Rule & []) | [boolean];
   /**
    * Ensures the file ends with a newline.
    */
-  eofline?: (Rule1 & []) | [boolean];
+  eofline?: (Rule & []) | [boolean];
   /**
    * Enforces a certain header comment for all files, matched by a regular expression.
    */
-  "file-header"?: (Rule1 & []) | [boolean, ...string[]];
+  "file-header"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Enforces a consistent file naming convention.
    *
@@ -3884,13 +3876,13 @@ export interface Rules {
   /**
    * Requires a `for ... in` statement to be filtered with an `if` statement.
    */
-  forin?: (Rule1 & []) | [boolean];
+  forin?: (Rule & []) | [boolean];
   /**
    * Disallows importing the specified modules directly via `import` and `require`.
    * Instead only sub modules may be imported from that module.
    */
   "import-blacklist"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3907,36 +3899,36 @@ export interface Rules {
   /**
    * Ensures proper spacing between import statement keywords
    */
-  "import-spacing"?: (Rule1 & []) | [boolean];
+  "import-spacing"?: (Rule & []) | [boolean];
   /**
    * Enforces indentation with tabs or spaces.
    */
-  indent?: (Rule1 & []) | [boolean] | [boolean, "tabs" | "spaces"] | [boolean, "tabs" | "spaces", 2 | 4];
+  indent?: (Rule & []) | [boolean] | [boolean, "tabs" | "spaces"] | [boolean, "tabs" | "spaces", 2 | 4];
   /**
    * Enforces basic format rules for JSDoc comments.
    */
-  "jsdoc-format"?: (Rule1 & []) | [boolean, ..."check-multiline-start"[]];
+  "jsdoc-format"?: (Rule & []) | [boolean, ..."check-multiline-start"[]];
   /**
    * Only allows labels in sensible locations.
    */
-  "label-position"?: (Rule1 & []) | [boolean];
+  "label-position"?: (Rule & []) | [boolean];
   /**
    * Enforces a consistent linebreak style.
    */
-  "linebreak-style"?: (Rule1 & []) | [boolean, ...("LF" | "CRLF")[]];
+  "linebreak-style"?: (Rule & []) | [boolean, ...("LF" | "CRLF")[]];
   /**
    * A file may not contain more than the specified number of classes
    */
-  "max-classes-per-file"?: (Rule1 & [boolean, number]) | [boolean, number, "exclude-class-expressions"];
+  "max-classes-per-file"?: (Rule & [boolean, number]) | [boolean, number, "exclude-class-expressions"];
   /**
    * Requires files to remain under a certain number of lines
    */
-  "max-file-line-count"?: (Rule1 & []) | [boolean, ...number[]];
+  "max-file-line-count"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Requires lines to be under a certain max length.
    */
   "max-line-length"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -3952,359 +3944,344 @@ export interface Rules {
   /**
    * Enforces member ordering.
    */
-  "member-ordering"?: (Rule1 & []) | [boolean, ...Items1[]];
+  "member-ordering"?: (Rule & []) | [boolean, ...Items1[]];
   /**
    * Enforces blank line before return when not the only line in the block.
    */
-  "newline-before-return"?: (Rule1 & []) | [boolean];
+  "newline-before-return"?: (Rule & []) | [boolean];
   /**
    * Requires that chained method calls be broken apart onto separate lines.
    */
-  "newline-per-chained-call"?: (Rule1 & []) | [boolean];
+  "newline-per-chained-call"?: (Rule & []) | [boolean];
   /**
    * Requires parentheses when invoking a constructor via the `new` keyword.
    */
-  "new-parens"?: (Rule1 & []) | [boolean];
+  "new-parens"?: (Rule & []) | [boolean];
   /**
    * Disallows use of `arguments.callee`.
    */
-  "no-arg"?: (Rule1 & []) | [boolean];
+  "no-arg"?: (Rule & []) | [boolean];
   /**
    * Disallows bitwise operators.
    */
-  "no-bitwise"?: (Rule1 & []) | [boolean];
+  "no-bitwise"?: (Rule & []) | [boolean];
   /**
    * Disallows any type of assignment in conditionals.
    */
-  "no-conditional-assignment"?: (Rule1 & []) | [boolean];
+  "no-conditional-assignment"?: (Rule & []) | [boolean];
   /**
    * Disallows one or more blank lines in a row.
    */
-  "no-consecutive-blank-lines"?: (Rule1 & []) | [boolean, ...number[]];
+  "no-consecutive-blank-lines"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Bans the use of specified `console` methods.
    */
-  "no-console"?: (Rule1 & []) | [boolean, ...string[]];
+  "no-console"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Disallows access to the constructors of `String`, `Number`, and `Boolean`.
    */
-  "no-construct"?: (Rule1 & []) | [boolean];
+  "no-construct"?: (Rule & []) | [boolean];
   /**
    * Disallows `debugger` statements.
    */
-  "no-debugger"?: (Rule1 & []) | [boolean];
+  "no-debugger"?: (Rule & []) | [boolean];
   /**
    * Disallows default exports in ES6-style modules.
    */
-  "no-default-export"?: (Rule1 & []) | [boolean];
+  "no-default-export"?: (Rule & []) | [boolean];
   /**
    * Disallows multiple import statements from the same module.
    */
-  "no-duplicate-imports"?: (Rule1 & []) | [boolean] | [boolean, Options];
+  "no-duplicate-imports"?: (Rule & []) | [boolean] | [boolean, Options];
   /**
    * Warns if 'super()' appears twice in a constructor.
    */
-  "no-duplicate-super"?: (Rule1 & []) | [boolean];
+  "no-duplicate-super"?: (Rule & []) | [boolean];
   /**
    * Prevents duplicate cases in switch statements.
    */
-  "no-duplicate-switch-case"?: (Rule1 & []) | [boolean];
+  "no-duplicate-switch-case"?: (Rule & []) | [boolean];
   /**
    * Disallows duplicate variable declarations in the same block scope.
    */
-  "no-duplicate-variable"?: (Rule1 & []) | [boolean, ..."check-parameters"[]];
+  "no-duplicate-variable"?: (Rule & []) | [boolean, ..."check-parameters"[]];
   /**
    * Bans usage of the delete operator with computed key expressions.
    */
-  "no-dynamic-delete"?: (Rule1 & []) | [boolean];
+  "no-dynamic-delete"?: (Rule & []) | [boolean];
   /**
    * Disallows empty blocks.
    */
-  "no-empty"?: (Rule1 & []) | [boolean, ...("allow-empty-catch" | "allow-empty-functions")[]];
+  "no-empty"?: (Rule & []) | [boolean, ...("allow-empty-catch" | "allow-empty-functions")[]];
   /**
    * Disallows `eval` function invocations.
    */
-  "no-eval"?: (Rule1 & []) | [boolean];
-  /**
-   * Forbid for…in statements
-   * https://palantir.github.io/tslint/rules/no-for-in/
-   */
-  "no-for-in"?: (Rule1 & []) | [boolean];
+  "no-eval"?: (Rule & []) | [boolean];
   /**
    * Disallows iterating over an array with a for-in loop.
    */
-  "no-for-in-array"?: (Rule1 & []) | [boolean];
+  "no-for-in-array"?: (Rule & []) | [boolean];
   /**
-   * Disallows importing modules that are not listed as dependency in the project's package.json.
+   * Disallows importing modules that are not listed as dependency in the project’s package.json.
    */
   "no-implicit-dependencies"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...[{type: "string"; enum: ["dev", "optional"]}, {type: "array"; minItems: 0}][]];
   /**
    * Avoid import statements with side-effect.
    */
-  "no-import-side-effect"?: (Rule1 & []) | [boolean, ...Items2[]];
+  "no-import-side-effect"?: (Rule & []) | [boolean, ...Items2[]];
   /**
    * Warns on use of `${` in non-template strings.
    */
-  "no-invalid-template-strings"?: (Rule1 & []) | [boolean];
+  "no-invalid-template-strings"?: (Rule & []) | [boolean];
   /**
    * Disallows using the `this` keyword outside of classes.
    */
-  "no-invalid-this"?: (Rule1 & []) | [boolean, ..."check-function-in-method"[]];
+  "no-invalid-this"?: (Rule & []) | [boolean, ..."check-function-in-method"[]];
   /**
    * Disallow irregular whitespace outside of strings and comments
    */
-  "no-irregular-whitespace"?: (Rule1 & []) | [boolean];
+  "no-irregular-whitespace"?: (Rule & []) | [boolean];
   /**
    * Disallows the use constant number values outside of variable assignments.
    * When no list of allowed values is specified, -1, 0 and 1 are allowed by default.
    */
-  "no-magic-numbers"?: (Rule1 & []) | [boolean, ...number[]];
-  /**
-   * Forbid explicitly declared or implicitly returned union types with both null and undefined as members
-   * https://palantir.github.io/tslint/rules/no-null-undefined-union/
-   */
-  "no-null-undefined-union"?: (Rule1 & []) | [boolean];
+  "no-magic-numbers"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Disallows use of the `null` keyword literal.
    */
-  "no-null-keyword"?: (Rule1 & []) | [boolean];
+  "no-null-keyword"?: (Rule & []) | [boolean];
   /**
    * Disallows reassigning parameters.
    */
-  "no-parameter-reassignment"?: (Rule1 & []) | [boolean];
+  "no-parameter-reassignment"?: (Rule & []) | [boolean];
   /**
    * Disallows `/// <reference path=>` imports (use ES6-style imports instead).
    */
-  "no-reference"?: (Rule1 & []) | [boolean];
+  "no-reference"?: (Rule & []) | [boolean];
   /**
    * Disallows unnecessary `return await`.
    */
-  "no-return-await"?: (Rule1 & []) | [boolean];
+  "no-return-await"?: (Rule & []) | [boolean];
   /**
    * Disallows invocation of `require()`.
    */
-  "no-require-imports"?: (Rule1 & []) | [boolean];
+  "no-require-imports"?: (Rule & []) | [boolean];
   /**
    * Disallows shadowing variable declarations.
    */
-  "no-shadowed-variable"?: (Rule1 & []) | [boolean, ...Items3[]];
+  "no-shadowed-variable"?: (Rule & []) | [boolean, ...Items3[]];
   /**
    * Forbids array literals to contain missing elements.
    */
-  "no-sparse-arrays"?: (Rule1 & []) | [boolean];
+  "no-sparse-arrays"?: (Rule & []) | [boolean];
   /**
    * Forbids unnecessary string literal property access.
    * Allows `obj["prop-erty"]` (can't be a regular property access).
    * Disallows `obj["property"]` (should be `obj.property`).
    */
-  "no-string-literal"?: (Rule1 & []) | [boolean];
+  "no-string-literal"?: (Rule & []) | [boolean];
   /**
    * Flags throwing plain strings or concatenations of strings because only Errors produce proper stack traces.
    */
-  "no-string-throw"?: (Rule1 & []) | [boolean];
+  "no-string-throw"?: (Rule & []) | [boolean];
   /**
    * Disallows importing any submodule.
    */
-  "no-submodule-imports"?: (Rule1 & []) | [boolean, ...string[]];
+  "no-submodule-imports"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Disallows falling through case statements.
    */
-  "no-switch-case-fall-through"?: (Rule1 & []) | [boolean];
+  "no-switch-case-fall-through"?: (Rule & []) | [boolean];
   /**
    * Disallows unnecessary references to `this`.
    */
-  "no-this-assignment"?: (Rule1 & []) | [boolean, ...Items4[]];
+  "no-this-assignment"?: (Rule & []) | [boolean, ...Items4[]];
   /**
    * Disallows trailing whitespace at the end of a line.
    */
   "no-trailing-whitespace"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("ignore-comments" | "ignore-jsdoc" | "ignore-template-strings" | "ignore-blank-lines")[]];
   /**
    * Replaces `x => f(x)` with just `f`.
    * To catch more cases, enable `only-arrow-functions` and `arrow-return-shorthand` too.
    */
-  "no-unnecessary-callback-wrapper"?: (Rule1 & []) | [boolean];
+  "no-unnecessary-callback-wrapper"?: (Rule & []) | [boolean];
   /**
    * Disallows classes that are not strictly necessary.
    */
   "no-unnecessary-class"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("allow-constructor-only" | "allow-empty-class" | "allow-static-only")[]];
   /**
    * Forbids a 'var'/'let' statement or destructuring initializer to be initialized to 'undefined'.
    */
-  "no-unnecessary-initializer"?: (Rule1 & []) | [boolean];
+  "no-unnecessary-initializer"?: (Rule & []) | [boolean];
   /**
    * Disallows control flow statements, such as `return`, `continue` `break` and `throws` in finally blocks.
    */
-  "no-unsafe-finally"?: (Rule1 & []) | [boolean];
+  "no-unsafe-finally"?: (Rule & []) | [boolean];
   /**
    * Disallows unused expression statements.
    */
   "no-unused-expression"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("allow-fast-null-checks" | "allow-new" | "allow-tagged-template")[]];
   /**
    * Disallows usage of variables before their declaration.
    */
-  "no-use-before-declare"?: (Rule1 & []) | [boolean];
+  "no-use-before-declare"?: (Rule & []) | [boolean];
   /**
    * Disallows usage of the `var` keyword.
    */
-  "no-var-keyword"?: (Rule1 & []) | [boolean];
+  "no-var-keyword"?: (Rule & []) | [boolean];
   /**
    * Requires expressions of type `void` to appear in statement position.
    */
-  "no-void-expression"?: (Rule1 & []) | [boolean, ..."ignore-arrow-function-shorthand"[]];
+  "no-void-expression"?: (Rule & []) | [boolean, ..."ignore-arrow-function-shorthand"[]];
   /**
    * Checks that decimal literals should begin with '0.' instead of just '.', and should not end with a trailing '0'.
    */
-  "number-literal-format"?: (Rule1 & []) | [boolean];
+  "number-literal-format"?: (Rule & []) | [boolean];
   /**
    * Enforces consistent object literal property quote style.
    */
   "object-literal-key-quotes"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("always" | "as-needed" | "consistent" | "consistent-as-needed")[]];
   /**
    * Enforces use of ES6 object literal shorthand when possible.
    */
-  "object-literal-shorthand"?: (Rule1 & []) | [boolean, ...("always" | "never")[]];
+  "object-literal-shorthand"?: (Rule & []) | [boolean, ...("always" | "never")[]];
   /**
    * Checks ordering of keys in object literals.
    */
   "object-literal-sort-keys"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("ignore-case" | "locale-compare" | "match-declaration-order" | "shorthand-first")[]];
   /**
    * Requires the specified tokens to be on the same line as the expression preceding them.
    */
   "one-line"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("check-catch" | "check-finally" | "check-else" | "check-open-brace" | "check-whitespace")[]];
   /**
    * Disallows multiple variable definitions in the same declaration statement.
    */
-  "one-variable-per-declaration"?: (Rule1 & []) | [boolean, ..."ignore-for-loop"[]];
+  "one-variable-per-declaration"?: (Rule & []) | [boolean, ..."ignore-for-loop"[]];
   /**
    * Disallows traditional (non-arrow) function expressions.
    */
-  "only-arrow-functions"?: (Rule1 & []) | [boolean, ...("allow-declarations" | "allow-named-functions")[]];
+  "only-arrow-functions"?: (Rule & []) | [boolean, ...("allow-declarations" | "allow-named-functions")[]];
   /**
    * Requires that import statements be alphabetized.
    */
-  "ordered-imports"?: (Rule1 & []) | [boolean, ...Items5[]];
+  "ordered-imports"?: (Rule & []) | [boolean, ...Items5[]];
   /**
    * Recommends to use a conditional expression instead of assigning to the same thing in each branch of an if statement.
    */
-  "prefer-conditional-expression"?: (Rule1 & []) | [boolean, ..."check-else-if"[]];
+  "prefer-conditional-expression"?: (Rule & []) | [boolean, ..."check-else-if"[]];
   /**
    * Requires that variable declarations use `const` instead of `let` and `var` if possible.
    */
-  "prefer-const"?: (Rule1 & []) | [boolean, ...Items6[]];
+  "prefer-const"?: (Rule & []) | [boolean, ...Items6[]];
   /**
    * Recommends a 'for-of' loop over a standard 'for' loop if the index is only used to access the array being iterated.
    */
-  "prefer-for-of"?: (Rule1 & []) | [boolean];
+  "prefer-for-of"?: (Rule & []) | [boolean];
   /**
    * Warns for class methods that do not use 'this'.
    */
-  "prefer-function-over-method"?: (Rule1 & []) | [boolean, ...("allow-public" | "allow-protected")[]];
+  "prefer-function-over-method"?: (Rule & []) | [boolean, ...("allow-public" | "allow-protected")[]];
   /**
    * Prefer `foo(): void` over `foo: () => void` in interfaces and types.
    */
-  "prefer-method-signature"?: (Rule1 & []) | [boolean];
+  "prefer-method-signature"?: (Rule & []) | [boolean];
   /**
    * Enforces the use of the ES2015 object spread operator over `Object.assign()` where appropriate.
    */
-  "prefer-object-spread"?: (Rule1 & []) | [boolean];
+  "prefer-object-spread"?: (Rule & []) | [boolean];
   /**
    * Prefer a `switch` statement to an `if` statement with simple `===` comparisons.
    */
-  "prefer-switch"?: (Rule1 & []) | [boolean, ...Items7[]];
+  "prefer-switch"?: (Rule & []) | [boolean, ...Items7[]];
   /**
    * Prefer a template expression over string literal concatenation.
    */
-  "prefer-template"?: (Rule1 & []) | [boolean, ..."allow-single-concat"[]];
+  "prefer-template"?: (Rule & []) | [boolean, ..."allow-single-concat"[]];
   /**
    * Prefer while loops instead of for loops without an initializer and incrementor.
    */
-  "prefer-while"?: (Rule1 & []) | [boolean];
-  /**
-   * Force functions marked async contain an await or return statement
-   * https://palantir.github.io/tslint/rules/no-async-without-await/
-   */
-  "no-async-without-await"?: (Rule1 & []) | [boolean];
+  "prefer-while"?: (Rule & []) | [boolean];
   /**
    * Requires any function or method that returns a promise to be marked async.
    */
-  "promise-function-async"?: (Rule1 & []) | [boolean];
+  "promise-function-async"?: (Rule & []) | [boolean];
   /**
    * Requires single or double quotes for string literals.
    */
   quotemark?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("single" | "double" | "jsx-single" | "jsx-double" | "avoid-escape" | "avoid-template")[]];
   /**
    * Requires the radix parameter to be specified when calling `parseInt`.
    */
-  radix?: (Rule1 & []) | [boolean];
+  radix?: (Rule & []) | [boolean];
   /**
    * When adding two variables, operands must both be of type number or of type string.
    */
-  "restrict-plus-operands"?: (Rule1 & []) | [boolean];
+  "restrict-plus-operands"?: (Rule & []) | [boolean];
   /**
    * Prefer `return;` in void functions and `return undefined;` in value-returning functions.
    */
-  "return-undefined"?: (Rule1 & []) | [boolean];
+  "return-undefined"?: (Rule & []) | [boolean];
   /**
    * Enforces consistent semicolon usage at the end of every statement.
    */
   semicolon?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean]
     | [boolean, "always" | "never"]
     | [boolean, "always" | "never", "ignore-interfaces" | "ignore-bound-class-methods" | "strict-bound-class-methods"];
   /**
    * Require or disallow a space before function parenthesis
    */
-  "space-before-function-paren"?: (Rule1 & []) | [boolean, ...Items8[]];
+  "space-before-function-paren"?: (Rule & []) | [boolean, ...Items8[]];
   /**
    * Enforces spaces within parentheses or disallow them.
    */
-  "space-within-parens"?: (Rule1 & []) | [boolean, ...number[]];
+  "space-within-parens"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Require a `default` case in all `switch` statements.
    */
-  "switch-default"?: (Rule1 & []) | [boolean];
+  "switch-default"?: (Rule & []) | [boolean];
   /**
    * Checks whether the final clause of a switch statement ends in `break;`.
    */
-  "switch-final-break"?: (Rule1 & []) | [boolean, ..."always"[]];
+  "switch-final-break"?: (Rule & []) | [boolean, ..."always"[]];
   /**
    * Requires or disallows trailing commas in array and object literals, destructuring assignments, function typings, named imports and exports and function parameters.
    */
-  "trailing-comma"?: (Rule1 & []) | [boolean, ...Items9[]];
+  "trailing-comma"?: (Rule & []) | [boolean, ...Items9[]];
   /**
    * Requires `===` and `!==` in place of `==` and `!=`.
    */
-  "triple-equals"?: (Rule1 & []) | [boolean, ...("allow-null-check" | "allow-undefined-check")[]];
+  "triple-equals"?: (Rule & []) | [boolean, ...("allow-null-check" | "allow-undefined-check")[]];
   /**
    * Makes sure result of `typeof` is compared to correct string values
    */
-  "typeof-compare"?: (Rule1 & []) | [boolean];
+  "typeof-compare"?: (Rule & []) | [boolean];
   /**
    * Enforces use of the `isNaN()` function to check for NaN references instead of a comparison to the `NaN` constant.
    */
-  "use-isnan"?: (Rule1 & []) | [boolean];
+  "use-isnan"?: (Rule & []) | [boolean];
   /**
    * Checks variable names for various errors.
    */
   "variable-name"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -4321,7 +4298,7 @@ export interface Rules {
    * Enforces whitespace style conventions.
    */
   whitespace?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -8542,20 +8519,20 @@ export interface Rules1 {
   /**
    * Enforces vertical alignment.
    */
-  align?: (Rule1 & []) | [boolean, ...("arguments" | "elements" | "members" | "parameters" | "statements")[]];
+  align?: (Rule & []) | [boolean, ...("arguments" | "elements" | "members" | "parameters" | "statements")[]];
   /**
    * Requires parentheses around the parameters of arrow function definitions.
    */
-  "arrow-parens"?: (Rule1 & []) | [boolean, ..."ban-single-arg-parens"[]];
+  "arrow-parens"?: (Rule & []) | [boolean, ..."ban-single-arg-parens"[]];
   /**
    * Suggests to convert `() => { return x; }` to `() => x`.
    */
-  "arrow-return-shorthand"?: (Rule1 & []) | [boolean, ..."multiline"[]];
+  "arrow-return-shorthand"?: (Rule & []) | [boolean, ..."multiline"[]];
   /**
    * Bans the use of specific functions or global methods.
    */
   ban?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -8572,21 +8549,21 @@ export interface Rules1 {
   /**
    * Bans the comma operator.
    */
-  "ban-comma-operator"?: (Rule1 & []) | [boolean];
+  "ban-comma-operator"?: (Rule & []) | [boolean];
   /**
    * In a binary expression, a literal should always be on the right-hand side if possible.
    * For example, prefer 'x + 1' over '1 + x'.
    */
-  "binary-expression-operand-order"?: (Rule1 & []) | [boolean];
+  "binary-expression-operand-order"?: (Rule & []) | [boolean];
   /**
    * Enforces PascalCased class and interface names.
    */
-  "class-name"?: (Rule1 & []) | [boolean];
+  "class-name"?: (Rule & []) | [boolean];
   /**
    * Enforces formatting rules for single-line comments.
    */
   "comment-format"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -8602,7 +8579,7 @@ export interface Rules1 {
    * Enforces documentation for important items be filled out.
    */
   "completed-docs"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -8658,27 +8635,27 @@ export interface Rules1 {
   /**
    * Enforces braces for `if`/`for`/`do`/`while` statements.
    */
-  curly?: (Rule1 & []) | [boolean, ...("as-needed" | "ignore-same-line")[]];
+  curly?: (Rule & []) | [boolean, ...("as-needed" | "ignore-same-line")[]];
   /**
    * Enforces a threshold of cyclomatic complexity.
    */
-  "cyclomatic-complexity"?: (Rule1 & []) | [boolean, ...number[]];
+  "cyclomatic-complexity"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Warns when deprecated APIs are used.
    */
-  deprecation?: (Rule1 & []) | [boolean];
+  deprecation?: (Rule & []) | [boolean];
   /**
    * Enforces UTF-8 file encoding.
    */
-  encoding?: (Rule1 & []) | [boolean];
+  encoding?: (Rule & []) | [boolean];
   /**
    * Ensures the file ends with a newline.
    */
-  eofline?: (Rule1 & []) | [boolean];
+  eofline?: (Rule & []) | [boolean];
   /**
    * Enforces a certain header comment for all files, matched by a regular expression.
    */
-  "file-header"?: (Rule1 & []) | [boolean, ...string[]];
+  "file-header"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Enforces a consistent file naming convention.
    *
@@ -8696,13 +8673,13 @@ export interface Rules1 {
   /**
    * Requires a `for ... in` statement to be filtered with an `if` statement.
    */
-  forin?: (Rule1 & []) | [boolean];
+  forin?: (Rule & []) | [boolean];
   /**
    * Disallows importing the specified modules directly via `import` and `require`.
    * Instead only sub modules may be imported from that module.
    */
   "import-blacklist"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -8719,36 +8696,36 @@ export interface Rules1 {
   /**
    * Ensures proper spacing between import statement keywords
    */
-  "import-spacing"?: (Rule1 & []) | [boolean];
+  "import-spacing"?: (Rule & []) | [boolean];
   /**
    * Enforces indentation with tabs or spaces.
    */
-  indent?: (Rule1 & []) | [boolean] | [boolean, "tabs" | "spaces"] | [boolean, "tabs" | "spaces", 2 | 4];
+  indent?: (Rule & []) | [boolean] | [boolean, "tabs" | "spaces"] | [boolean, "tabs" | "spaces", 2 | 4];
   /**
    * Enforces basic format rules for JSDoc comments.
    */
-  "jsdoc-format"?: (Rule1 & []) | [boolean, ..."check-multiline-start"[]];
+  "jsdoc-format"?: (Rule & []) | [boolean, ..."check-multiline-start"[]];
   /**
    * Only allows labels in sensible locations.
    */
-  "label-position"?: (Rule1 & []) | [boolean];
+  "label-position"?: (Rule & []) | [boolean];
   /**
    * Enforces a consistent linebreak style.
    */
-  "linebreak-style"?: (Rule1 & []) | [boolean, ...("LF" | "CRLF")[]];
+  "linebreak-style"?: (Rule & []) | [boolean, ...("LF" | "CRLF")[]];
   /**
    * A file may not contain more than the specified number of classes
    */
-  "max-classes-per-file"?: (Rule1 & [boolean, number]) | [boolean, number, "exclude-class-expressions"];
+  "max-classes-per-file"?: (Rule & [boolean, number]) | [boolean, number, "exclude-class-expressions"];
   /**
    * Requires files to remain under a certain number of lines
    */
-  "max-file-line-count"?: (Rule1 & []) | [boolean, ...number[]];
+  "max-file-line-count"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Requires lines to be under a certain max length.
    */
   "max-line-length"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -8764,359 +8741,344 @@ export interface Rules1 {
   /**
    * Enforces member ordering.
    */
-  "member-ordering"?: (Rule1 & []) | [boolean, ...Items1[]];
+  "member-ordering"?: (Rule & []) | [boolean, ...Items1[]];
   /**
    * Enforces blank line before return when not the only line in the block.
    */
-  "newline-before-return"?: (Rule1 & []) | [boolean];
+  "newline-before-return"?: (Rule & []) | [boolean];
   /**
    * Requires that chained method calls be broken apart onto separate lines.
    */
-  "newline-per-chained-call"?: (Rule1 & []) | [boolean];
+  "newline-per-chained-call"?: (Rule & []) | [boolean];
   /**
    * Requires parentheses when invoking a constructor via the `new` keyword.
    */
-  "new-parens"?: (Rule1 & []) | [boolean];
+  "new-parens"?: (Rule & []) | [boolean];
   /**
    * Disallows use of `arguments.callee`.
    */
-  "no-arg"?: (Rule1 & []) | [boolean];
+  "no-arg"?: (Rule & []) | [boolean];
   /**
    * Disallows bitwise operators.
    */
-  "no-bitwise"?: (Rule1 & []) | [boolean];
+  "no-bitwise"?: (Rule & []) | [boolean];
   /**
    * Disallows any type of assignment in conditionals.
    */
-  "no-conditional-assignment"?: (Rule1 & []) | [boolean];
+  "no-conditional-assignment"?: (Rule & []) | [boolean];
   /**
    * Disallows one or more blank lines in a row.
    */
-  "no-consecutive-blank-lines"?: (Rule1 & []) | [boolean, ...number[]];
+  "no-consecutive-blank-lines"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Bans the use of specified `console` methods.
    */
-  "no-console"?: (Rule1 & []) | [boolean, ...string[]];
+  "no-console"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Disallows access to the constructors of `String`, `Number`, and `Boolean`.
    */
-  "no-construct"?: (Rule1 & []) | [boolean];
+  "no-construct"?: (Rule & []) | [boolean];
   /**
    * Disallows `debugger` statements.
    */
-  "no-debugger"?: (Rule1 & []) | [boolean];
+  "no-debugger"?: (Rule & []) | [boolean];
   /**
    * Disallows default exports in ES6-style modules.
    */
-  "no-default-export"?: (Rule1 & []) | [boolean];
+  "no-default-export"?: (Rule & []) | [boolean];
   /**
    * Disallows multiple import statements from the same module.
    */
-  "no-duplicate-imports"?: (Rule1 & []) | [boolean] | [boolean, Options];
+  "no-duplicate-imports"?: (Rule & []) | [boolean] | [boolean, Options];
   /**
    * Warns if 'super()' appears twice in a constructor.
    */
-  "no-duplicate-super"?: (Rule1 & []) | [boolean];
+  "no-duplicate-super"?: (Rule & []) | [boolean];
   /**
    * Prevents duplicate cases in switch statements.
    */
-  "no-duplicate-switch-case"?: (Rule1 & []) | [boolean];
+  "no-duplicate-switch-case"?: (Rule & []) | [boolean];
   /**
    * Disallows duplicate variable declarations in the same block scope.
    */
-  "no-duplicate-variable"?: (Rule1 & []) | [boolean, ..."check-parameters"[]];
+  "no-duplicate-variable"?: (Rule & []) | [boolean, ..."check-parameters"[]];
   /**
    * Bans usage of the delete operator with computed key expressions.
    */
-  "no-dynamic-delete"?: (Rule1 & []) | [boolean];
+  "no-dynamic-delete"?: (Rule & []) | [boolean];
   /**
    * Disallows empty blocks.
    */
-  "no-empty"?: (Rule1 & []) | [boolean, ...("allow-empty-catch" | "allow-empty-functions")[]];
+  "no-empty"?: (Rule & []) | [boolean, ...("allow-empty-catch" | "allow-empty-functions")[]];
   /**
    * Disallows `eval` function invocations.
    */
-  "no-eval"?: (Rule1 & []) | [boolean];
-  /**
-   * Forbid for…in statements
-   * https://palantir.github.io/tslint/rules/no-for-in/
-   */
-  "no-for-in"?: (Rule1 & []) | [boolean];
+  "no-eval"?: (Rule & []) | [boolean];
   /**
    * Disallows iterating over an array with a for-in loop.
    */
-  "no-for-in-array"?: (Rule1 & []) | [boolean];
+  "no-for-in-array"?: (Rule & []) | [boolean];
   /**
-   * Disallows importing modules that are not listed as dependency in the project's package.json.
+   * Disallows importing modules that are not listed as dependency in the project’s package.json.
    */
   "no-implicit-dependencies"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...[{type: "string"; enum: ["dev", "optional"]}, {type: "array"; minItems: 0}][]];
   /**
    * Avoid import statements with side-effect.
    */
-  "no-import-side-effect"?: (Rule1 & []) | [boolean, ...Items2[]];
+  "no-import-side-effect"?: (Rule & []) | [boolean, ...Items2[]];
   /**
    * Warns on use of `${` in non-template strings.
    */
-  "no-invalid-template-strings"?: (Rule1 & []) | [boolean];
+  "no-invalid-template-strings"?: (Rule & []) | [boolean];
   /**
    * Disallows using the `this` keyword outside of classes.
    */
-  "no-invalid-this"?: (Rule1 & []) | [boolean, ..."check-function-in-method"[]];
+  "no-invalid-this"?: (Rule & []) | [boolean, ..."check-function-in-method"[]];
   /**
    * Disallow irregular whitespace outside of strings and comments
    */
-  "no-irregular-whitespace"?: (Rule1 & []) | [boolean];
+  "no-irregular-whitespace"?: (Rule & []) | [boolean];
   /**
    * Disallows the use constant number values outside of variable assignments.
    * When no list of allowed values is specified, -1, 0 and 1 are allowed by default.
    */
-  "no-magic-numbers"?: (Rule1 & []) | [boolean, ...number[]];
-  /**
-   * Forbid explicitly declared or implicitly returned union types with both null and undefined as members
-   * https://palantir.github.io/tslint/rules/no-null-undefined-union/
-   */
-  "no-null-undefined-union"?: (Rule1 & []) | [boolean];
+  "no-magic-numbers"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Disallows use of the `null` keyword literal.
    */
-  "no-null-keyword"?: (Rule1 & []) | [boolean];
+  "no-null-keyword"?: (Rule & []) | [boolean];
   /**
    * Disallows reassigning parameters.
    */
-  "no-parameter-reassignment"?: (Rule1 & []) | [boolean];
+  "no-parameter-reassignment"?: (Rule & []) | [boolean];
   /**
    * Disallows `/// <reference path=>` imports (use ES6-style imports instead).
    */
-  "no-reference"?: (Rule1 & []) | [boolean];
+  "no-reference"?: (Rule & []) | [boolean];
   /**
    * Disallows unnecessary `return await`.
    */
-  "no-return-await"?: (Rule1 & []) | [boolean];
+  "no-return-await"?: (Rule & []) | [boolean];
   /**
    * Disallows invocation of `require()`.
    */
-  "no-require-imports"?: (Rule1 & []) | [boolean];
+  "no-require-imports"?: (Rule & []) | [boolean];
   /**
    * Disallows shadowing variable declarations.
    */
-  "no-shadowed-variable"?: (Rule1 & []) | [boolean, ...Items3[]];
+  "no-shadowed-variable"?: (Rule & []) | [boolean, ...Items3[]];
   /**
    * Forbids array literals to contain missing elements.
    */
-  "no-sparse-arrays"?: (Rule1 & []) | [boolean];
+  "no-sparse-arrays"?: (Rule & []) | [boolean];
   /**
    * Forbids unnecessary string literal property access.
    * Allows `obj["prop-erty"]` (can't be a regular property access).
    * Disallows `obj["property"]` (should be `obj.property`).
    */
-  "no-string-literal"?: (Rule1 & []) | [boolean];
+  "no-string-literal"?: (Rule & []) | [boolean];
   /**
    * Flags throwing plain strings or concatenations of strings because only Errors produce proper stack traces.
    */
-  "no-string-throw"?: (Rule1 & []) | [boolean];
+  "no-string-throw"?: (Rule & []) | [boolean];
   /**
    * Disallows importing any submodule.
    */
-  "no-submodule-imports"?: (Rule1 & []) | [boolean, ...string[]];
+  "no-submodule-imports"?: (Rule & []) | [boolean, ...string[]];
   /**
    * Disallows falling through case statements.
    */
-  "no-switch-case-fall-through"?: (Rule1 & []) | [boolean];
+  "no-switch-case-fall-through"?: (Rule & []) | [boolean];
   /**
    * Disallows unnecessary references to `this`.
    */
-  "no-this-assignment"?: (Rule1 & []) | [boolean, ...Items4[]];
+  "no-this-assignment"?: (Rule & []) | [boolean, ...Items4[]];
   /**
    * Disallows trailing whitespace at the end of a line.
    */
   "no-trailing-whitespace"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("ignore-comments" | "ignore-jsdoc" | "ignore-template-strings" | "ignore-blank-lines")[]];
   /**
    * Replaces `x => f(x)` with just `f`.
    * To catch more cases, enable `only-arrow-functions` and `arrow-return-shorthand` too.
    */
-  "no-unnecessary-callback-wrapper"?: (Rule1 & []) | [boolean];
+  "no-unnecessary-callback-wrapper"?: (Rule & []) | [boolean];
   /**
    * Disallows classes that are not strictly necessary.
    */
   "no-unnecessary-class"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("allow-constructor-only" | "allow-empty-class" | "allow-static-only")[]];
   /**
    * Forbids a 'var'/'let' statement or destructuring initializer to be initialized to 'undefined'.
    */
-  "no-unnecessary-initializer"?: (Rule1 & []) | [boolean];
+  "no-unnecessary-initializer"?: (Rule & []) | [boolean];
   /**
    * Disallows control flow statements, such as `return`, `continue` `break` and `throws` in finally blocks.
    */
-  "no-unsafe-finally"?: (Rule1 & []) | [boolean];
+  "no-unsafe-finally"?: (Rule & []) | [boolean];
   /**
    * Disallows unused expression statements.
    */
   "no-unused-expression"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("allow-fast-null-checks" | "allow-new" | "allow-tagged-template")[]];
   /**
    * Disallows usage of variables before their declaration.
    */
-  "no-use-before-declare"?: (Rule1 & []) | [boolean];
+  "no-use-before-declare"?: (Rule & []) | [boolean];
   /**
    * Disallows usage of the `var` keyword.
    */
-  "no-var-keyword"?: (Rule1 & []) | [boolean];
+  "no-var-keyword"?: (Rule & []) | [boolean];
   /**
    * Requires expressions of type `void` to appear in statement position.
    */
-  "no-void-expression"?: (Rule1 & []) | [boolean, ..."ignore-arrow-function-shorthand"[]];
+  "no-void-expression"?: (Rule & []) | [boolean, ..."ignore-arrow-function-shorthand"[]];
   /**
    * Checks that decimal literals should begin with '0.' instead of just '.', and should not end with a trailing '0'.
    */
-  "number-literal-format"?: (Rule1 & []) | [boolean];
+  "number-literal-format"?: (Rule & []) | [boolean];
   /**
    * Enforces consistent object literal property quote style.
    */
   "object-literal-key-quotes"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("always" | "as-needed" | "consistent" | "consistent-as-needed")[]];
   /**
    * Enforces use of ES6 object literal shorthand when possible.
    */
-  "object-literal-shorthand"?: (Rule1 & []) | [boolean, ...("always" | "never")[]];
+  "object-literal-shorthand"?: (Rule & []) | [boolean, ...("always" | "never")[]];
   /**
    * Checks ordering of keys in object literals.
    */
   "object-literal-sort-keys"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("ignore-case" | "locale-compare" | "match-declaration-order" | "shorthand-first")[]];
   /**
    * Requires the specified tokens to be on the same line as the expression preceding them.
    */
   "one-line"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("check-catch" | "check-finally" | "check-else" | "check-open-brace" | "check-whitespace")[]];
   /**
    * Disallows multiple variable definitions in the same declaration statement.
    */
-  "one-variable-per-declaration"?: (Rule1 & []) | [boolean, ..."ignore-for-loop"[]];
+  "one-variable-per-declaration"?: (Rule & []) | [boolean, ..."ignore-for-loop"[]];
   /**
    * Disallows traditional (non-arrow) function expressions.
    */
-  "only-arrow-functions"?: (Rule1 & []) | [boolean, ...("allow-declarations" | "allow-named-functions")[]];
+  "only-arrow-functions"?: (Rule & []) | [boolean, ...("allow-declarations" | "allow-named-functions")[]];
   /**
    * Requires that import statements be alphabetized.
    */
-  "ordered-imports"?: (Rule1 & []) | [boolean, ...Items5[]];
+  "ordered-imports"?: (Rule & []) | [boolean, ...Items5[]];
   /**
    * Recommends to use a conditional expression instead of assigning to the same thing in each branch of an if statement.
    */
-  "prefer-conditional-expression"?: (Rule1 & []) | [boolean, ..."check-else-if"[]];
+  "prefer-conditional-expression"?: (Rule & []) | [boolean, ..."check-else-if"[]];
   /**
    * Requires that variable declarations use `const` instead of `let` and `var` if possible.
    */
-  "prefer-const"?: (Rule1 & []) | [boolean, ...Items6[]];
+  "prefer-const"?: (Rule & []) | [boolean, ...Items6[]];
   /**
    * Recommends a 'for-of' loop over a standard 'for' loop if the index is only used to access the array being iterated.
    */
-  "prefer-for-of"?: (Rule1 & []) | [boolean];
+  "prefer-for-of"?: (Rule & []) | [boolean];
   /**
    * Warns for class methods that do not use 'this'.
    */
-  "prefer-function-over-method"?: (Rule1 & []) | [boolean, ...("allow-public" | "allow-protected")[]];
+  "prefer-function-over-method"?: (Rule & []) | [boolean, ...("allow-public" | "allow-protected")[]];
   /**
    * Prefer `foo(): void` over `foo: () => void` in interfaces and types.
    */
-  "prefer-method-signature"?: (Rule1 & []) | [boolean];
+  "prefer-method-signature"?: (Rule & []) | [boolean];
   /**
    * Enforces the use of the ES2015 object spread operator over `Object.assign()` where appropriate.
    */
-  "prefer-object-spread"?: (Rule1 & []) | [boolean];
+  "prefer-object-spread"?: (Rule & []) | [boolean];
   /**
    * Prefer a `switch` statement to an `if` statement with simple `===` comparisons.
    */
-  "prefer-switch"?: (Rule1 & []) | [boolean, ...Items7[]];
+  "prefer-switch"?: (Rule & []) | [boolean, ...Items7[]];
   /**
    * Prefer a template expression over string literal concatenation.
    */
-  "prefer-template"?: (Rule1 & []) | [boolean, ..."allow-single-concat"[]];
+  "prefer-template"?: (Rule & []) | [boolean, ..."allow-single-concat"[]];
   /**
    * Prefer while loops instead of for loops without an initializer and incrementor.
    */
-  "prefer-while"?: (Rule1 & []) | [boolean];
-  /**
-   * Force functions marked async contain an await or return statement
-   * https://palantir.github.io/tslint/rules/no-async-without-await/
-   */
-  "no-async-without-await"?: (Rule1 & []) | [boolean];
+  "prefer-while"?: (Rule & []) | [boolean];
   /**
    * Requires any function or method that returns a promise to be marked async.
    */
-  "promise-function-async"?: (Rule1 & []) | [boolean];
+  "promise-function-async"?: (Rule & []) | [boolean];
   /**
    * Requires single or double quotes for string literals.
    */
   quotemark?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean, ...("single" | "double" | "jsx-single" | "jsx-double" | "avoid-escape" | "avoid-template")[]];
   /**
    * Requires the radix parameter to be specified when calling `parseInt`.
    */
-  radix?: (Rule1 & []) | [boolean];
+  radix?: (Rule & []) | [boolean];
   /**
    * When adding two variables, operands must both be of type number or of type string.
    */
-  "restrict-plus-operands"?: (Rule1 & []) | [boolean];
+  "restrict-plus-operands"?: (Rule & []) | [boolean];
   /**
    * Prefer `return;` in void functions and `return undefined;` in value-returning functions.
    */
-  "return-undefined"?: (Rule1 & []) | [boolean];
+  "return-undefined"?: (Rule & []) | [boolean];
   /**
    * Enforces consistent semicolon usage at the end of every statement.
    */
   semicolon?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [boolean]
     | [boolean, "always" | "never"]
     | [boolean, "always" | "never", "ignore-interfaces" | "ignore-bound-class-methods" | "strict-bound-class-methods"];
   /**
    * Require or disallow a space before function parenthesis
    */
-  "space-before-function-paren"?: (Rule1 & []) | [boolean, ...Items8[]];
+  "space-before-function-paren"?: (Rule & []) | [boolean, ...Items8[]];
   /**
    * Enforces spaces within parentheses or disallow them.
    */
-  "space-within-parens"?: (Rule1 & []) | [boolean, ...number[]];
+  "space-within-parens"?: (Rule & []) | [boolean, ...number[]];
   /**
    * Require a `default` case in all `switch` statements.
    */
-  "switch-default"?: (Rule1 & []) | [boolean];
+  "switch-default"?: (Rule & []) | [boolean];
   /**
    * Checks whether the final clause of a switch statement ends in `break;`.
    */
-  "switch-final-break"?: (Rule1 & []) | [boolean, ..."always"[]];
+  "switch-final-break"?: (Rule & []) | [boolean, ..."always"[]];
   /**
    * Requires or disallows trailing commas in array and object literals, destructuring assignments, function typings, named imports and exports and function parameters.
    */
-  "trailing-comma"?: (Rule1 & []) | [boolean, ...Items9[]];
+  "trailing-comma"?: (Rule & []) | [boolean, ...Items9[]];
   /**
    * Requires `===` and `!==` in place of `==` and `!=`.
    */
-  "triple-equals"?: (Rule1 & []) | [boolean, ...("allow-null-check" | "allow-undefined-check")[]];
+  "triple-equals"?: (Rule & []) | [boolean, ...("allow-null-check" | "allow-undefined-check")[]];
   /**
    * Makes sure result of `typeof` is compared to correct string values
    */
-  "typeof-compare"?: (Rule1 & []) | [boolean];
+  "typeof-compare"?: (Rule & []) | [boolean];
   /**
    * Enforces use of the `isNaN()` function to check for NaN references instead of a comparison to the `NaN` constant.
    */
-  "use-isnan"?: (Rule1 & []) | [boolean];
+  "use-isnan"?: (Rule & []) | [boolean];
   /**
    * Checks variable names for various errors.
    */
   "variable-name"?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(
@@ -9133,7 +9095,7 @@ export interface Rules1 {
    * Enforces whitespace style conventions.
    */
   whitespace?:
-    | (Rule1 & [])
+    | (Rule & [])
     | [
         boolean,
         ...(

@@ -7,8 +7,8 @@
   "name": "@schemastore/package.manifest",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/package.manifest",
   "scripts": {},
-  "typesPublisherContentHash": "00239884d91f841cfb167a8913a62801ba63cac59abc3c666fd6d27458b9ffc5",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.11",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "a99c046b3323144aea9ba3e13cc5db7a9ab14c09943ba18e309a775013c1bebf",
+  "version": "0.0.12"
 }

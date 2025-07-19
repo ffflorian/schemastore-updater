@@ -30,9 +30,9 @@ export type Fields = [
     view?: string;
     validation?: {
       type?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   },
   ...{
     /**
@@ -53,9 +53,9 @@ export type Fields = [
     view?: string;
     validation?: {
       type?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }[];
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   }[]
 ];
 
@@ -124,7 +124,7 @@ export interface ASchemaForUmbracoSPackageManifestFiles {
    * @minItems 1
    */
   contentApps?: [ContentApp, ...ContentApp[]];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Editors {
   /**
@@ -135,7 +135,7 @@ export interface Editors {
    * Provides a collection of default configuration values, in cases the property editor is not configured or is used a parameter editor, which doesn't allow configuration. The object is a key/value collection and must match the prevalue fields keys.
    */
   defaultConfig?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   editor: Editor;
   /**
@@ -154,7 +154,7 @@ export interface Editors {
    * The group to place this editor in within the 'Select Editor' dialog. Use a new group name or alternatively use an existing one such as 'Pickers'
    */
   group?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * This describes details about the editor
@@ -176,16 +176,12 @@ export interface Editor {
    * Object describing required validators on the editor
    */
   validation?: {
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * If set to true this makes the property editor read only
    */
   isReadOnly?: boolean;
-  /**
-   * If set to true, it will disable the default umbraco read only overlay and use the one thats implemented instead
-   */
-  supportsReadOnly?: boolean;
 }
 export interface PreValues {
   /**
@@ -193,9 +189,9 @@ export interface PreValues {
    */
   prevalues?: {
     fields?: Fields;
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GridEditor {
   /**
@@ -242,11 +238,11 @@ export interface GridEditor {
        * Width of image in pixels
        */
       width?: number;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * An Umbraco dashboard to display contextual information when in a section/application
@@ -278,18 +274,18 @@ export interface Dashboard {
   access?: [
     (
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
     ),
     ...(
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
       | {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         }
     )[]
   ];

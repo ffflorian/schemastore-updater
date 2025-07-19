@@ -5,19 +5,13 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type FConsumer = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type FConsumer = {
+  [k: string]: unknown | undefined;
+} & {
   acls?: ACLGroup[];
   basicauth_credentials?: BasicAuth[];
   created_at?: number;
   custom_id?: string;
-  groups?: ConsumerGroup1[];
   hmacauth_credentials?: HMACAuth[];
   id?: string;
   jwt_secrets?: JWTAuth[];
@@ -31,7 +25,6 @@ export type FConsumer = (
 export type FRoute = FRoute1 & {
   created_at?: number;
   destinations?: CIDRPort[];
-  expression?: string;
   headers?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -48,7 +41,6 @@ export type FRoute = FRoute1 & {
   paths?: string[];
   plugins?: FPlugin1[];
   preserve_host?: boolean;
-  priority?: number;
   protocols?: string[];
   regex_priority?: number;
   request_buffering?: boolean;
@@ -60,13 +52,9 @@ export type FRoute = FRoute1 & {
   tags?: string[];
   updated_at?: number;
 };
-export type FRoute1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type FRoute1 = {
+  [k: string]: unknown | undefined;
+};
 export type FService = FService1 & {
   ca_certificates?: string[];
   client_certificate?: string;
@@ -90,24 +78,14 @@ export type FService = FService1 & {
   url?: string;
   write_timeout?: number;
 };
-export type FService1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
-export type FRoute2 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type FService1 = {
+  [k: string]: unknown | undefined;
+};
+export type FRoute2 = {
+  [k: string]: unknown | undefined;
+} & {
   created_at?: number;
   destinations?: CIDRPort[];
-  expression?: string;
   headers?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -124,7 +102,6 @@ export type FRoute2 = (
   paths?: string[];
   plugins?: FPlugin1[];
   preserve_host?: boolean;
-  priority?: number;
   protocols?: string[];
   regex_priority?: number;
   request_buffering?: boolean;
@@ -136,14 +113,9 @@ export type FRoute2 = (
   tags?: string[];
   updated_at?: number;
 };
-export type FService2 = (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-) & {
+export type FService2 = {
+  [k: string]: unknown | undefined;
+} & {
   ca_certificates?: string[];
   client_certificate?: string;
   connect_timeout?: number;
@@ -184,7 +156,6 @@ export interface KongJsonSchema {
   _workspace?: string;
   ca_certificates?: FCACertificate[];
   certificates?: FCertificate[];
-  consumer_groups?: FConsumerGroupObject[];
   consumers?: FConsumer[];
   plugins?: FPlugin[];
   rbac_roles?: FRBACRole[];
@@ -192,7 +163,6 @@ export interface KongJsonSchema {
   service_packages?: FServicePackage[];
   services?: FService2[];
   upstreams?: FUpstream[];
-  vaults?: FVault[];
 }
 export interface Info {
   defaults?: KongDefaults;
@@ -207,7 +177,6 @@ export interface KongDefaults {
 export interface Route {
   created_at?: number;
   destinations?: CIDRPort[];
-  expression?: string;
   headers?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -223,7 +192,6 @@ export interface Route {
   path_handling?: string;
   paths?: string[];
   preserve_host?: boolean;
-  priority?: number;
   protocols?: string[];
   regex_priority?: number;
   request_buffering?: boolean;
@@ -309,14 +277,10 @@ export interface Upstream {
   created_at?: number;
   hash_fallback?: string;
   hash_fallback_header?: string;
-  hash_fallback_query_arg?: string;
-  hash_fallback_uri_capture?: string;
   hash_on?: string;
   hash_on_cookie?: string;
   hash_on_cookie_path?: string;
   hash_on_header?: string;
-  hash_on_query_arg?: string;
-  hash_on_uri_capture?: string;
   healthchecks?: Healthcheck;
   host_header?: string;
   id?: string;
@@ -384,14 +348,10 @@ export interface Upstream1 {
   created_at?: number;
   hash_fallback?: string;
   hash_fallback_header?: string;
-  hash_fallback_query_arg?: string;
-  hash_fallback_uri_capture?: string;
   hash_on?: string;
   hash_on_cookie?: string;
   hash_on_cookie_path?: string;
   hash_on_header?: string;
-  hash_on_query_arg?: string;
-  hash_on_uri_capture?: string;
   healthchecks?: Healthcheck;
   host_header?: string;
   id?: string;
@@ -420,12 +380,11 @@ export interface FCertificate {
   }[];
   tags?: string[];
 }
-export interface FConsumerGroupObject {
-  consumers?: Consumer[];
+export interface ACLGroup {
+  consumer?: Consumer;
   created_at?: number;
+  group: string;
   id?: string;
-  name?: string;
-  plugins?: ConsumerGroupPlugin[];
   tags?: string[];
 }
 export interface Consumer {
@@ -435,28 +394,6 @@ export interface Consumer {
   tags?: string[];
   username?: string;
 }
-export interface ConsumerGroupPlugin {
-  config?: {
-    [k: string]: unknown | undefined;
-  };
-  consumer_group?: ConsumerGroup;
-  created_at?: number;
-  id?: string;
-  name?: string;
-}
-export interface ConsumerGroup {
-  created_at?: number;
-  id?: string;
-  name?: string;
-  tags?: string[];
-}
-export interface ACLGroup {
-  consumer?: Consumer;
-  created_at?: number;
-  group: string;
-  id?: string;
-  tags?: string[];
-}
 export interface BasicAuth {
   consumer?: Consumer;
   created_at?: number;
@@ -464,12 +401,6 @@ export interface BasicAuth {
   password: string;
   tags?: string[];
   username: string;
-}
-export interface ConsumerGroup1 {
-  created_at?: number;
-  id?: string;
-  name?: string;
-  tags?: string[];
 }
 export interface HMACAuth {
   consumer?: Consumer;
@@ -515,7 +446,6 @@ export interface CACertificate {
 export interface Oauth2Credential {
   client_id: string;
   client_secret: string;
-  client_type?: string;
   consumer?: Consumer;
   created_at?: number;
   hash_secret?: boolean;
@@ -634,14 +564,10 @@ export interface FUpstream {
   created_at?: number;
   hash_fallback?: string;
   hash_fallback_header?: string;
-  hash_fallback_query_arg?: string;
-  hash_fallback_uri_capture?: string;
   hash_on?: string;
   hash_on_cookie?: string;
   hash_on_cookie_path?: string;
   hash_on_header?: string;
-  hash_on_query_arg?: string;
-  hash_on_uri_capture?: string;
   healthchecks?: Healthcheck1;
   host_header?: string;
   id?: string;
@@ -662,16 +588,4 @@ export interface FTarget {
   target: string;
   upstream?: Upstream;
   weight?: number;
-}
-export interface FVault {
-  config?: {
-    [k: string]: unknown | undefined;
-  };
-  created_at?: number;
-  description?: string;
-  id?: string;
-  name?: string;
-  prefix?: string;
-  tags?: string[];
-  updated_at?: number;
 }

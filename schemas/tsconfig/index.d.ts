@@ -23,14 +23,6 @@ export interface CompilerOptionsDefinition {
  */
 export interface CompilerOptions {
   /**
-   * Enable importing files with any extension, provided a declaration file is present.
-   */
-  allowArbitraryExtensions?: boolean;
-  /**
-   * Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set.
-   */
-  allowImportingTsExtensions?: boolean;
-  /**
    * No longer supported. In early versions, manually set the text encoding for reading files.
    */
   charset?: string;
@@ -38,10 +30,6 @@ export interface CompilerOptions {
    * Enable constraints that allow a TypeScript project to be used with project references.
    */
   composite?: boolean;
-  /**
-   * Conditions to set in addition to the resolver-specific defaults when resolving imports.
-   */
-  customConditions?: string[];
   /**
    * Generate .d.ts files from TypeScript and JavaScript files in your project.
    */
@@ -145,7 +133,7 @@ export interface CompilerOptions {
    * Specify how TypeScript looks up a file from a given module specifier.
    */
   moduleResolution?: (
-    | ("classic" | "node" | "node16" | "nodenext" | "bundler")
+    | ("Classic" | "Node" | "Node16" | "NodeNext")
     | {
         [k: string]: unknown | undefined;
       }
@@ -285,7 +273,6 @@ export interface CompilerOptions {
         | "ES2020"
         | "ES2021"
         | "ES2022"
-        | "ES2023"
         | "ESNext"
       )
     | {
@@ -501,42 +488,6 @@ export interface CompilerOptions {
     | {
         [k: string]: unknown | undefined;
       }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      }
   ) &
     string)[];
   /**
@@ -612,14 +563,6 @@ export interface CompilerOptions {
    */
   resolveJsonModule?: boolean;
   /**
-   * Use the package.json 'exports' field when resolving package imports.
-   */
-  resolvePackageJsonExports?: boolean;
-  /**
-   * Use the package.json 'imports' field when resolving imports.
-   */
-  resolvePackageJsonImports?: boolean;
-  /**
    * Have recompiles in '--incremental' and '--watch' assume that changes within a file will only affect files directly depending on it. Requires TypeScript version 3.8 or later.
    */
   assumeChangesOnlyAffectDirectDependencies?: boolean;
@@ -639,10 +582,6 @@ export interface CompilerOptions {
    * Opt a project out of multi-project reference checking when editing.
    */
   disableSolutionSearching?: boolean;
-  /**
-   * Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting.
-   */
-  verbatimModuleSyntax?: boolean;
   [k: string]: unknown | undefined;
 }
 export interface CompileOnSaveDefinition {
@@ -675,9 +614,9 @@ export interface TypeAcquisitionDefinition {
 }
 export interface ExtendsDefinition {
   /**
-   * Path to base configuration file to inherit from (requires TypeScript version 2.1 or later), or array of base files, with the rightmost files having the greater priority (requires TypeScript version 5.0 or later).
+   * Path to base configuration file to inherit from. Requires TypeScript version 2.1 or later.
    */
-  extends?: string | string[];
+  extends?: string;
   [k: string]: unknown | undefined;
 }
 export interface WatchOptionsDefinition {

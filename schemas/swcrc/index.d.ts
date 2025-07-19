@@ -52,14 +52,14 @@ export type FeatureOrModule =
       | "transform-unicode-escapes"
     );
 /**
- * Query
- */
-export type EnvQuery = string | string[];
-/**
  * This interface was referenced by `EnvVersions`'s JSON-Schema definition
  * via the `patternProperty` "".
  */
 export type EnvVersion = string | number;
+/**
+ * Query
+ */
+export type EnvQuery = string | string[];
 /**
  * QueryOrVersion
  *
@@ -84,7 +84,8 @@ export interface EntryPoint {
     skip?: string[];
     include?: FeatureOrModule[];
     exclude?: FeatureOrModule[];
-    coreJs?: string;
+    coreJs?: EnvVersion;
+    corejs?: EnvVersion;
     targets?:
       | EnvQuery
       | {
@@ -96,7 +97,6 @@ export interface EntryPoint {
         };
     shippedProposals?: boolean;
     forceAllTransforms?: boolean;
-    bugfixes?: boolean;
   };
   /**
    * Matches the files to include
@@ -233,11 +233,6 @@ export interface EntryPoint {
        * If true, decorator metadata is emitted. Make sure "Reflect" is present.
        */
       decoratorMetadata?: boolean;
-      /**
-       * If false, the old behaviour is used and _defineProperty is not generated for class properties.
-       * https://swc.rs/docs/configuration/compilation#jsctransformusedefineforclassfields
-       */
-      useDefineForClassFields?: boolean;
       hidden?: {
         jest?: boolean;
       };
@@ -247,33 +242,13 @@ export interface EntryPoint {
      */
     externalHelpers?: boolean;
     /**
-     * If true, all comments will be preserved during compilation
-     */
-    preserveAllComments?: boolean;
-    /**
      * Specifies the target environment
      */
-    target?:
-      | "es3"
-      | "es5"
-      | "es2015"
-      | "es2016"
-      | "es2017"
-      | "es2018"
-      | "es2019"
-      | "es2020"
-      | "es2021"
-      | "es2022"
-      | "esnext";
+    target?: "es3" | "es5" | "es2015" | "es2016" | "es2017" | "es2018" | "es2019" | "es2020" | "es2021" | "es2022";
     /**
      * If true, swc generates more efficient code
      */
     loose?: boolean;
-    /**
-     * Preserve original class names
-     * https://swc.rs/docs/configuration/compilation#jsckeepclassnames
-     */
-    keepClassNames?: boolean;
     /**
      * Should reflect "paths" property in project's tsconfig.json . See https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping
      */
@@ -284,7 +259,6 @@ export interface EntryPoint {
      * Should reflect "baseUrl" property in project's tsconfig.json . See https://www.typescriptlang.org/docs/handbook/module-resolution.html#base-url
      */
     baseUrl?: string;
-    minify?: MinificationOptions;
   };
   skipHelperInjection?: boolean;
   disableHygiene?: boolean;
@@ -322,11 +296,4 @@ export interface StringStringMap {
    * via the `patternProperty` "".
    */
   [k: string]: string;
-}
-/**
- * Minification options
- * https://swc.rs/docs/configuration/minification
- */
-export interface MinificationOptions {
-  [k: string]: unknown | undefined;
 }

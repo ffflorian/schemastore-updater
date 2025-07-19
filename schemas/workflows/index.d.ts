@@ -8,26 +8,15 @@
 /**
  * Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.
  */
-export type GoogleCloudWorkflows =
+export type GoogleCloudWorkflowsConfigFile =
+  | StepArray
   | {
-      main: {
-        /**
-         * The name of the parameter variable.
-         *
-         * @minItems 0
-         * @maxItems 1
-         */
-        params?: [] | [string];
-        steps?: StepArray;
-      };
-      [k: string]: SubworkflowUndefined;
-    }
-  | StepArray6;
+      [k: string]: Subworkflow;
+    };
 /**
- * An array of objects with a single step.
+ * A list of steps.
  *
  * @minItems 1
- * @maxItems 100000
  */
 export type StepArray = [
   {
@@ -38,44 +27,9 @@ export type StepArray = [
   }[]
 ];
 /**
- * A list of variable assignment maps.
+ * A list of steps to run in this switch statement.
  *
  * @minItems 1
- * @maxItems 50
- */
-export type Assign = [
-  {
-    [k: string]: unknown | undefined;
-  },
-  ...{
-    [k: string]: unknown | undefined;
-  }[]
-];
-/**
- * Run a function and return a result.
- */
-export type Call =
-  | ("http.get" | "http.post" | "http.put" | "http.patch" | "http.delete" | "http.request")
-  | ("sys.sleep" | "sys.sleep_until" | "sys.log")
-  | ("events.await_callback" | "events.create_callback_endpoint")
-  | string
-  | string;
-/**
- * Define what step Workflows should execute next.
- */
-export type Next = string | "end" | "continue" | "break";
-/**
- * A switch block. A selection mechanism that allows the value of an expression to control the flow of a workflow's execution. If a value matches, that condition's statement is executed.
- *
- * @minItems 1
- * @maxItems 50
- */
-export type Switch = [Condition, ...Condition[]];
-/**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
  */
 export type StepArray1 = [
   {
@@ -86,32 +40,9 @@ export type StepArray1 = [
   }[]
 ];
 /**
- * Iterates over a sequence of numbers or through a collection of data, such as a list or map.
- */
-export type For = {
-  /**
-   * A loop variable name. Contains the value of the currently iterated element.
-   */
-  value: string;
-  /**
-   * An index variable name. Contains the value to the current offset of the iteration.
-   */
-  index?: string;
-  /**
-   * An expression that evaluates into a list or a list definition. Required, if not using 'range'.
-   */
-  in?: unknown[] | string;
-  /**
-   * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
-   */
-  range?: [number, number] | string;
-  steps: StepArray2;
-} & For1;
-/**
  * An array of objects with a single step.
  *
  * @minItems 1
- * @maxItems 100000
  */
 export type StepArray2 = [
   {
@@ -121,356 +52,12 @@ export type StepArray2 = [
     [k: string]: Step;
   }[]
 ];
-export type For1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
-/**
- * Define a part of your workflow where two or more steps can execute concurrently. A 'parallel' step waits until all the steps defined within it have completed or are interrupted by an unhandled exception; execution then continues.
- */
-export type Parallel = {
-  /**
-   * The action for other branches when an exception occurs. Optional. The default policy, 'continueAll', results in no further action, and all other branches will attempt to run.
-   */
-  exception_policy?: "continueAll";
-  /**
-   * A list of writable variables with parent scope that allow assignments within the 'parallel' step.
-   */
-  shared?: string[];
-  /**
-   * The maximum number of branches and iterations that can concurrently execute within a single workflow execution before further branches and iterations are queued to wait. This applies to a single 'parallel' step only and does not cascade. Must be a positive integer and can be either a literal value or an expression.
-   */
-  concurrency_limit?: number;
-  branches?: Branches;
-  for?: For2;
-} & Parallel1;
-/**
- * Branches that can run concurrently. Required, if not using 'for'.
- *
- * @minItems 2
- * @maxItems 10
- */
-export type Branches =
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ]
-  | [
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      },
-      {
-        [k: string]: Step;
-      }
-    ];
-/**
- * Iterates over a sequence of numbers or through a collection of data, such as a list or map.
- */
-export type For2 = {
-  /**
-   * A loop variable name. Contains the value of the currently iterated element.
-   */
-  value: string;
-  /**
-   * An index variable name. Contains the value to the current offset of the iteration.
-   */
-  index?: string;
-  /**
-   * An expression that evaluates into a list or a list definition. Required, if not using 'range'.
-   */
-  in?: unknown[] | string;
-  /**
-   * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
-   */
-  range?: [number, number] | string;
-  steps: StepArray2;
-} & (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    }
-);
-export type Parallel1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
-/**
- * Raise an exception.
- */
-export type Raise =
-  | string
-  | {
-      /**
-       * Error code.
-       */
-      code?: number;
-      /**
-       * Error message string.
-       */
-      message?: string;
-      [k: string]: unknown | undefined;
-    };
-/**
- * A try/except structure for error handling.
- */
-export type Try = Step1 | StepArray4;
-/**
- * Define a retry policy to retry steps that return a specific error code.
- */
-export type Retry =
-  | {
-      /**
-       * Defines which error codes will be retried. Options include ${http.default_retry_predicate}, ${http.default_retry_predicate_non_idempotent}, or a custom predicate defined as a subworkflow.
-       */
-      predicate?: string;
-      /**
-       * Maximum number of times a step will be retried, not counting the initial step execution attempt.
-       */
-      max_retries?: number;
-      /**
-       * Block that controls how retries occur.
-       */
-      backoff?: {
-        /**
-         * Delay in seconds between the initial failure and the first retry.
-         */
-        initial_delay?: number;
-        /**
-         * Maximum delay in seconds between retries.
-         */
-        max_delay?: number;
-        /**
-         * Multiplier applied to the previous delay to calculate the delay for the subsequent retry.
-         */
-        multiplier?: number;
-      };
-    }
-  | string;
 /**
  * An array of objects with a single step.
  *
  * @minItems 1
- * @maxItems 100000
  */
 export type StepArray3 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray4 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray5 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray6 = [
   {
     [k: string]: Step;
   },
@@ -486,203 +73,471 @@ export type StepArray6 = [
  * via the `patternProperty` "^.*$".
  */
 export interface Step {
-  assign?: Assign;
-  call?: Call;
-  args?: Args;
-  result?: Result;
-  next?: Next;
-  switch?: Switch;
-  for?: For1;
-  parallel?: Parallel1;
-  raise?: Raise;
-  try?: Try;
-  retry?: Retry;
-  except?: Except;
-  return?: Return;
-  steps?: StepArray1;
-}
-/**
- * Pass arguments and their values when calling a function that accepts parameters.
- */
-export interface Args {
-  url?: string | string;
   /**
-   * The type of HTTP request method to use. Required if using call type http.request.
+   * Required
    */
-  method?: "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+  call?: ("http.get" | "http.post" | "http.request" | "sys.sleep") | string;
   /**
-   * Header fields to supply input to the API.
+   * Arguments to a workflow step.
    */
-  headers?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Body fields to supply input to the API.
-   */
-  body?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | null
-    | string
-    | string;
-  /**
-   * Query fields to supply input to the API.
-   */
-  query?:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | string;
-  /**
-   * Required if the API being called requires authentication.
-   */
-  auth?: {
+  args?: {
+    url?: string | string;
     /**
-     * The type of authentication.
+     * Required if using call type http.request. The type of HTTP request method to use.
      */
-    type?: "OIDC" | "OAuth2";
+    method?: "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
     /**
-     * Specify token scope to limit an application's access to a user's account.
+     * Request headers.
      */
-    scope?: unknown[] | string;
-    /**
-     * Specify token scope to limit an application's access to a user's account.
-     */
-    scopes?: unknown[] | string | string;
-    /**
-     * Specifies the audience for the OIDC token. By default, it's set to the same value as url; however, it should be set to your service's root URL.
-     */
-    audience?: string | string;
-  };
-  /**
-   * Time in seconds. How long a request is allowed to run before throwing an exception. Default and maximum values vary by call.
-   */
-  timeout?: number;
-  /**
-   * Connector-specific parameters.
-   */
-  connector_params?: {
-    /**
-     * Time in seconds. The end-to-end duration the connector call is allowed to run for before throwing a timeout exception.
-     */
-    timeout?: number;
-    /**
-     * Polling policy.
-     */
-    polling_policy?: {
-      /**
-       * Time in seconds. Only applies to long-running operation calls.
-       */
-      initial_delay?: number;
-      /**
-       * Time in seconds. Only applies to long-running operation calls.
-       */
-      multiplier?: number;
-      /**
-       * Time in seconds. Only applies to long-running operation calls.
-       */
-      max_delay?: number;
+    headers?: {
       [k: string]: unknown | undefined;
     };
     /**
-     * If set to True, the connector invocation call is non-blocking if the initial request to manage or update the resource succeeds
+     * Request body.
      */
-    skip_polling?: boolean;
+    body?: {
+      [k: string]: unknown | undefined;
+    };
     /**
-     * OAuth2 scopes to pass to the Google API.
+     * Request query parameters.
      */
-    scopes?: unknown[] | string | string;
+    query?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Required if the API being called requires authentication.
+     */
+    auth?: {
+      /**
+       * The type of authentication.
+       */
+      type?: "OIDC" | "OAuth2";
+    };
+    /**
+     * Time in seconds. How long a request is allowed to run before throwing an exception.
+     */
+    timeout?: number;
+    /**
+     * The number of seconds to sleep.
+     */
+    seconds?: number;
+  };
+  /**
+   * Define a dictionary.
+   */
+  assign?: {
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Variable name where the result of an HTTP invocation step is stored.
+   */
+  result?: string;
+  /**
+   * A switch block.
+   */
+  switch?: {
+    /**
+     * An expression to switch on.
+     */
+    condition: string;
+    /**
+     * The next step to jump to. "end" to terminate.
+     */
+    next?: string;
+    steps?: StepArray1;
+    /**
+     * Stop a workflow's execution and return a value, variable, or expression.
+     */
+    return?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Raise an exception.
+     */
+    raise?:
+      | string
+      | {
+          [k: string]: unknown | undefined;
+        };
+  }[];
+  /**
+   * The next step to jump to. "end" to terminate.
+   */
+  next?: string;
+  /**
+   * Stop a workflow's execution and return a value, variable, or expression.
+   */
+  return?: {
     [k: string]: unknown | undefined;
   };
-  [k: string]: unknown | undefined;
-}
-/**
- * Assign the result from a call to this variable.
- */
-export interface Result {
-  [k: string]: unknown | undefined;
-}
-/**
- * Define conditional expressions for a switch block.
- */
-export interface Condition {
+  try?: Step1;
   /**
-   * An expression to switch on.
+   * Optional. If omitted, all other fields are required. Options include ${http.default_retry} and ${http.default_retry_non_idempotent}. Allows you to specify a default retry policy to use. If you specify a retry policy, omit all other fields in the retry block.
    */
-  condition: string | boolean;
-  steps?: StepArray1;
-  assign?: Assign;
-  call?: Call;
-  args?: Args;
-  result?: Result;
-  next?: Next;
-  switch?: Switch;
-  for?: For;
-  parallel?: Parallel;
-  raise?: Raise;
-  try?: Try;
-  retry?: Retry;
-  except?: Except;
-  return?: Return;
-  [k: string]: unknown | undefined;
+  retry?: {
+    /**
+     * Required if you don't select a default retry policy. Defines which error codes will be retried. Options include ${http.default_retry_predicate}, ${http.default_retry_predicate_non_idempotent}, or a custom predicate defined as a subworkflow.
+     */
+    predicate?: string;
+    /**
+     * Maximum number of times a step will be retried.
+     */
+    max_retries?: number;
+    /**
+     * Block that controls how retries occur.
+     */
+    backoff?: {
+      /**
+       * Delay in seconds between the initial failure and the first retry.
+       */
+      initial_delay?: number;
+      /**
+       * Maximum delay in seconds between retries.
+       */
+      max_delay?: number;
+      /**
+       * Multiplier applied to the previous delay to calculate the delay for the subsequent retry.
+       */
+      multiplier?: number;
+    };
+  };
+  /**
+   * Except a try clause.
+   */
+  except?:
+    | Step2
+    | {
+        /**
+         * Name of a dictionary variable that contains the error message.
+         */
+        as?: string;
+        steps?: StepArray2;
+      };
+  /**
+   * Raise an exception.
+   */
+  raise?:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      };
 }
 /**
- * A step.
+ * Try a single step or a list of steps.
  */
 export interface Step1 {
-  assign?: Assign;
-  call?: Call;
-  args?: Args;
-  result?: Result;
-  next?: Next;
-  switch?: Switch;
-  for?: For1;
-  parallel?: Parallel1;
-  raise?: Raise;
-  try?: Try;
-  retry?: Retry;
-  except?: Except;
-  return?: Return;
-  steps?: StepArray1;
-}
-/**
- * A try/except structure for error handling.
- */
-export interface Except {
   /**
-   * The name of a map variable that contains the error message.
+   * Required
    */
-  as?: string;
-  steps?: StepArray3;
+  call?: ("http.get" | "http.post" | "http.request" | "sys.sleep") | string;
+  /**
+   * Arguments to a workflow step.
+   */
+  args?: {
+    url?: string | string;
+    /**
+     * Required if using call type http.request. The type of HTTP request method to use.
+     */
+    method?: "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+    /**
+     * Request headers.
+     */
+    headers?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Request body.
+     */
+    body?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Request query parameters.
+     */
+    query?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Required if the API being called requires authentication.
+     */
+    auth?: {
+      /**
+       * The type of authentication.
+       */
+      type?: "OIDC" | "OAuth2";
+    };
+    /**
+     * Time in seconds. How long a request is allowed to run before throwing an exception.
+     */
+    timeout?: number;
+    /**
+     * The number of seconds to sleep.
+     */
+    seconds?: number;
+  };
+  /**
+   * Define a dictionary.
+   */
+  assign?: {
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Variable name where the result of an HTTP invocation step is stored.
+   */
+  result?: string;
+  /**
+   * A switch block.
+   */
+  switch?: {
+    /**
+     * An expression to switch on.
+     */
+    condition: string;
+    /**
+     * The next step to jump to. "end" to terminate.
+     */
+    next?: string;
+    steps?: StepArray1;
+    /**
+     * Stop a workflow's execution and return a value, variable, or expression.
+     */
+    return?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Raise an exception.
+     */
+    raise?:
+      | string
+      | {
+          [k: string]: unknown | undefined;
+        };
+  }[];
+  /**
+   * The next step to jump to. "end" to terminate.
+   */
+  next?: string;
+  /**
+   * Stop a workflow's execution and return a value, variable, or expression.
+   */
+  return?: {
+    [k: string]: unknown | undefined;
+  };
+  try?: Step1;
+  /**
+   * Optional. If omitted, all other fields are required. Options include ${http.default_retry} and ${http.default_retry_non_idempotent}. Allows you to specify a default retry policy to use. If you specify a retry policy, omit all other fields in the retry block.
+   */
+  retry?: {
+    /**
+     * Required if you don't select a default retry policy. Defines which error codes will be retried. Options include ${http.default_retry_predicate}, ${http.default_retry_predicate_non_idempotent}, or a custom predicate defined as a subworkflow.
+     */
+    predicate?: string;
+    /**
+     * Maximum number of times a step will be retried.
+     */
+    max_retries?: number;
+    /**
+     * Block that controls how retries occur.
+     */
+    backoff?: {
+      /**
+       * Delay in seconds between the initial failure and the first retry.
+       */
+      initial_delay?: number;
+      /**
+       * Maximum delay in seconds between retries.
+       */
+      max_delay?: number;
+      /**
+       * Multiplier applied to the previous delay to calculate the delay for the subsequent retry.
+       */
+      multiplier?: number;
+    };
+  };
+  /**
+   * Except a try clause.
+   */
+  except?:
+    | Step2
+    | {
+        /**
+         * Name of a dictionary variable that contains the error message.
+         */
+        as?: string;
+        steps?: StepArray2;
+      };
+  /**
+   * Raise an exception.
+   */
+  raise?:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      };
 }
 /**
- * Stop a workflow's execution and return a value, variable, or expression.
+ * A single workflow step.
  */
-export interface Return {
-  [k: string]: unknown | undefined;
+export interface Step2 {
+  /**
+   * Required
+   */
+  call?: ("http.get" | "http.post" | "http.request" | "sys.sleep") | string;
+  /**
+   * Arguments to a workflow step.
+   */
+  args?: {
+    url?: string | string;
+    /**
+     * Required if using call type http.request. The type of HTTP request method to use.
+     */
+    method?: "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+    /**
+     * Request headers.
+     */
+    headers?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Request body.
+     */
+    body?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Request query parameters.
+     */
+    query?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Required if the API being called requires authentication.
+     */
+    auth?: {
+      /**
+       * The type of authentication.
+       */
+      type?: "OIDC" | "OAuth2";
+    };
+    /**
+     * Time in seconds. How long a request is allowed to run before throwing an exception.
+     */
+    timeout?: number;
+    /**
+     * The number of seconds to sleep.
+     */
+    seconds?: number;
+  };
+  /**
+   * Define a dictionary.
+   */
+  assign?: {
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Variable name where the result of an HTTP invocation step is stored.
+   */
+  result?: string;
+  /**
+   * A switch block.
+   */
+  switch?: {
+    /**
+     * An expression to switch on.
+     */
+    condition: string;
+    /**
+     * The next step to jump to. "end" to terminate.
+     */
+    next?: string;
+    steps?: StepArray1;
+    /**
+     * Stop a workflow's execution and return a value, variable, or expression.
+     */
+    return?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Raise an exception.
+     */
+    raise?:
+      | string
+      | {
+          [k: string]: unknown | undefined;
+        };
+  }[];
+  /**
+   * The next step to jump to. "end" to terminate.
+   */
+  next?: string;
+  /**
+   * Stop a workflow's execution and return a value, variable, or expression.
+   */
+  return?: {
+    [k: string]: unknown | undefined;
+  };
+  try?: Step1;
+  /**
+   * Optional. If omitted, all other fields are required. Options include ${http.default_retry} and ${http.default_retry_non_idempotent}. Allows you to specify a default retry policy to use. If you specify a retry policy, omit all other fields in the retry block.
+   */
+  retry?: {
+    /**
+     * Required if you don't select a default retry policy. Defines which error codes will be retried. Options include ${http.default_retry_predicate}, ${http.default_retry_predicate_non_idempotent}, or a custom predicate defined as a subworkflow.
+     */
+    predicate?: string;
+    /**
+     * Maximum number of times a step will be retried.
+     */
+    max_retries?: number;
+    /**
+     * Block that controls how retries occur.
+     */
+    backoff?: {
+      /**
+       * Delay in seconds between the initial failure and the first retry.
+       */
+      initial_delay?: number;
+      /**
+       * Maximum delay in seconds between retries.
+       */
+      max_delay?: number;
+      /**
+       * Multiplier applied to the previous delay to calculate the delay for the subsequent retry.
+       */
+      multiplier?: number;
+    };
+  };
+  /**
+   * Except a try clause.
+   */
+  except?:
+    | Step2
+    | {
+        /**
+         * Name of a dictionary variable that contains the error message.
+         */
+        as?: string;
+        steps?: StepArray2;
+      };
+  /**
+   * Raise an exception.
+   */
+  raise?:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      };
 }
 /**
  * A subworkflow.
+ *
+ * This interface was referenced by `undefined`'s JSON-Schema definition
+ * via the `patternProperty` "^.*$".
  */
 export interface Subworkflow {
   /**
-   * The name of the parameter variable.
-   *
-   * @minItems 0
-   * @maxItems 10
+   * A list of parameters.
    */
-  params?:
-    | []
-    | [unknown]
-    | [unknown, unknown]
-    | [unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-    | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown];
-  steps?: StepArray5;
+  params?: string[];
+  steps?: StepArray3;
 }

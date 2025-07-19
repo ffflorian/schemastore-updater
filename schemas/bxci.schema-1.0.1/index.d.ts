@@ -23,13 +23,9 @@ export type OutputHelmUpdatesProperties = {
    */
   value?: string;
 } & OutputHelmUpdatesProperties1;
-export type OutputHelmUpdatesProperties1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
-      [k: string]: unknown | undefined;
-    };
+export type OutputHelmUpdatesProperties1 = {
+  [k: string]: unknown | undefined;
+};
 
 /**
  * CI configuration for Amdocs Bill Experience projects

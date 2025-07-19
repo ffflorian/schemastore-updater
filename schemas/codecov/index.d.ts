@@ -11,6 +11,9 @@ export type Layout =
 export type Default = {
   target?: string | number;
   threshold?: string;
+  /**
+   * @deprecated
+   */
   base?: string;
   flags?: unknown[];
   paths?: unknown[] | string;
@@ -20,11 +23,14 @@ export type Default = {
   only_pulls?: boolean;
   if_ci_failed?: "error" | "success";
   flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & (
   | {
       target?: string | number;
       threshold?: string;
+      /**
+       * @deprecated
+       */
       base?: string;
       flags?: unknown[];
       paths?: unknown[] | string;
@@ -34,43 +40,59 @@ export type Default = {
       only_pulls?: boolean;
       if_ci_failed?: "error" | "success";
       flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | boolean
 );
-export type Default1 = {
-  target?: string | number;
-  threshold?: string;
-  base?: string;
-  flags?: unknown[];
-  paths?: unknown[] | string;
-  branches?: unknown[];
-  if_not_found?: "failure" | "success";
-  informational?: boolean;
-  only_pulls?: boolean;
-  if_ci_failed?: "error" | "success";
-  flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-  [k: string]: unknown;
-} & (
-  | {
-      target?: string | number;
-      threshold?: string;
-      base?: string;
-      flags?: unknown[];
-      paths?: unknown[] | string;
-      branches?: unknown[];
-      if_not_found?: "failure" | "success";
-      informational?: boolean;
-      only_pulls?: boolean;
-      if_ci_failed?: "error" | "success";
-      flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-      [k: string]: unknown;
-    }
-  | boolean
-);
+export type Default1 =
+  | (
+      | {
+          target?: string | number;
+          threshold?: string;
+          /**
+           * @deprecated
+           */
+          base?: string;
+          flags?: unknown[];
+          paths?: unknown[] | string;
+          branches?: unknown[];
+          if_not_found?: "failure" | "success";
+          informational?: boolean;
+          only_pulls?: boolean;
+          if_ci_failed?: "error" | "success";
+          flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+          [k: string]: unknown | undefined;
+        }
+      | (undefined &
+          (
+            | {
+                target?: string | number;
+                threshold?: string;
+                /**
+                 * @deprecated
+                 */
+                base?: string;
+                flags?: unknown[];
+                paths?: unknown[] | string;
+                branches?: unknown[];
+                if_not_found?: "failure" | "success";
+                informational?: boolean;
+                only_pulls?: boolean;
+                if_ci_failed?: "error" | "success";
+                flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
+                [k: string]: unknown | undefined;
+              }
+            | boolean
+          ))
+      | undefined
+    )
+  | undefined;
 export type Default3 = {
   target?: string | number;
   threshold?: string;
+  /**
+   * @deprecated
+   */
   base?: string;
   flags?: unknown[];
   paths?: unknown[] | string;
@@ -80,11 +102,14 @@ export type Default3 = {
   only_pulls?: boolean;
   if_ci_failed?: "error" | "success";
   flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & (
   | {
       target?: string | number;
       threshold?: string;
+      /**
+       * @deprecated
+       */
       base?: string;
       flags?: unknown[];
       paths?: unknown[] | string;
@@ -94,7 +119,7 @@ export type Default3 = {
       only_pulls?: boolean;
       if_ci_failed?: "error" | "success";
       flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     }
   | boolean
 );
@@ -126,14 +151,14 @@ export interface JSONSchemaForCodecovConfigurationFiles {
     allow_pseudo_compare?: boolean;
     archive?: {
       uploads?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     notify?: {
       after_n_builds?: number;
       countdown?: number;
       delay?: number;
       wait_for_ci?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     ui?: {
       hide_density?: boolean | string[];
@@ -141,9 +166,9 @@ export interface JSONSchemaForCodecovConfigurationFiles {
       hide_contextual?: boolean;
       hide_sunburst?: boolean;
       hide_search?: boolean;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Coverage configuration. See https://docs.codecov.io/docs/coverage-configuration for details.
@@ -169,7 +194,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         password?: string;
         nickserv_password?: string;
         notice?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Slack. See https://docs.codecov.io/docs/notifications#section-slack for details.
@@ -184,7 +209,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         only_pulls?: boolean;
         paths?: string[];
         attachments?: unknown;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Gitter. See https://docs.codecov.io/docs/notifications#section-gitter for details.
@@ -198,7 +223,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         base?: "parent" | "pr" | "auto";
         only_pulls?: boolean;
         paths?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       /**
        * Hipchat. See https://docs.codecov.io/docs/notifications#section-hipchat for details.
@@ -214,7 +239,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         paths?: string[];
         card?: boolean;
         notify?: boolean;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       webhook?: {
         url?: string;
@@ -225,7 +250,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         base?: "parent" | "pr" | "auto";
         only_pulls?: boolean;
         paths?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       email?: {
         url?: string;
@@ -238,9 +263,9 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         paths?: string[];
         layout?: Layout;
         "+to"?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     /**
      * Commit status. See https://docs.codecov.io/docs/commit-status for details.
@@ -249,16 +274,16 @@ export interface JSONSchemaForCodecovConfigurationFiles {
       | boolean
       | {
           default_rules?: {
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
           project?: {
             default?: Default;
-            [k: string]: Default1;
+            [k: string]: Default1 | undefined;
           };
-          patch?: Default2 | "off" | boolean;
+          patch?: Default2 | "off";
           changes?: Default3;
         };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   /**
    * Ignoring paths. see https://docs.codecov.io/docs/ignoring-paths for details.
@@ -289,24 +314,17 @@ export interface JSONSchemaForCodecovConfigurationFiles {
         behavior?: "default" | "once" | "new" | "spammy";
         flags?: Flag[];
         paths?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       }
     | false;
-  /**
-   * GitHub Checks. See https://docs.codecov.com/docs/github-checks for details.
-   */
-  github_checks?:
-    | {
-        annotations?: boolean;
-        [k: string]: unknown;
-      }
-    | boolean
-    | "off";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Default2 {
   target?: string | number;
   threshold?: string;
+  /**
+   * @deprecated
+   */
   base?: string;
   flags?: unknown[];
   paths?: unknown[] | string;
@@ -316,7 +334,7 @@ export interface Default2 {
   only_pulls?: boolean;
   if_ci_failed?: "error" | "success";
   flag_coverage_not_uploaded_behavior?: "include" | "exclude" | "pass";
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface Flag {
   joined?: boolean;
@@ -324,5 +342,5 @@ export interface Flag {
   ignore?: string[];
   paths?: string[];
   assume?: boolean | string[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

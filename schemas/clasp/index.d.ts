@@ -5,38 +5,18 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * A root directory path of the current Google Apps Script project
- * https://github.com/google/clasp#rootdir-optional
- */
-export type Path = string;
-/**
- * A file
- * https://github.com/google/clasp#filepushorder-optional
- */
-export type File = string;
-
-export interface GoogleAppsScriptConfigSchema {
+export interface JSONSchemaForGoogleAppsScriptProjectFiles {
   /**
-   * An ID of the current Google Apps Script project
-   * https://github.com/google/clasp#scriptid-required
+   * The ID of the Apps Script project
    */
   scriptId: string;
-  rootDir?: Path;
   /**
-   * An ID for a Google Cloud Platform project linked to the current Google Apps Script project
-   * https://github.com/google/clasp#projectid-optional
+   * The relative path to the custom root directory to your Apps Script files.
+   */
+  rootDir?: string;
+  /**
+   * The ID for the Google Cloud Platform project linked to this script
    */
   projectId?: string;
-  /**
-   * An extension for local files of the current Google Apps Script project
-   * https://github.com/google/clasp#filepushorder-optional
-   */
-  fileExtension?: string;
-  /**
-   * Files pushed first of the current Google Apps Script project
-   * https://github.com/google/clasp#filepushorder-optional
-   */
-  filePushOrder?: File[];
   [k: string]: unknown | undefined;
 }

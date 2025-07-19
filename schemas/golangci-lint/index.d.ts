@@ -14,16 +14,15 @@ export type GocriticChecks =
   | "badCond"
   | "badLock"
   | "badRegexp"
-  | "badSorting"
   | "boolExprSimplify"
   | "builtinShadow"
   | "builtinShadowDecl"
   | "captLocal"
   | "caseOrder"
   | "codegenComment"
+  | "commentFormatting"
   | "commentedOutCode"
   | "commentedOutImport"
-  | "commentFormatting"
   | "defaultCaseOrder"
   | "deferUnlambda"
   | "deferInLoop"
@@ -34,7 +33,6 @@ export type GocriticChecks =
   | "dupCase"
   | "dupImport"
   | "dupSubExpr"
-  | "dynamicFmtString"
   | "elseif"
   | "emptyDecl"
   | "emptyFallthrough"
@@ -86,12 +84,10 @@ export type GocriticChecks =
   | "sprintfQuotedString"
   | "sqlQuery"
   | "stringConcatSimplify"
-  | "stringsCompare"
   | "stringXbytes"
   | "suspiciousSorting"
   | "switchTrue"
   | "syncMapLoadAndDelete"
-  | "timeCmpSimplify"
   | "timeExprSimplify"
   | "tooManyResultsChecker"
   | "truncateCmp"
@@ -99,7 +95,6 @@ export type GocriticChecks =
   | "typeDefFirst"
   | "typeSwitchVar"
   | "typeUnparen"
-  | "uncheckedInlineErr"
   | "underef"
   | "unlabelStmt"
   | "unlambda"
@@ -126,7 +121,6 @@ export type GosecRules =
   | "G111"
   | "G112"
   | "G113"
-  | "G114"
   | "G201"
   | "G202"
   | "G203"
@@ -202,7 +196,6 @@ export type Linters =
       | "depguard"
       | "dogsled"
       | "dupl"
-      | "dupword"
       | "durationcheck"
       | "errcheck"
       | "errchkjson"
@@ -217,8 +210,6 @@ export type Linters =
       | "forcetypeassert"
       | "funlen"
       | "gci"
-      | "ginkgolinter"
-      | "gocheckcompilerdirectives"
       | "gochecknoglobals"
       | "gochecknoinits"
       | "gocognit"
@@ -244,16 +235,13 @@ export type Linters =
       | "ifshort"
       | "importas"
       | "ineffassign"
-      | "interfacebloat"
       | "interfacer"
       | "ireturn"
       | "lll"
-      | "loggercheck"
       | "maintidx"
       | "makezero"
       | "maligned"
       | "misspell"
-      | "musttag"
       | "nakedret"
       | "nestif"
       | "nilerr"
@@ -268,7 +256,6 @@ export type Linters =
       | "prealloc"
       | "predeclared"
       | "promlinter"
-      | "reassign"
       | "revive"
       | "rowserrcheck"
       | "scopelint"
@@ -278,7 +265,6 @@ export type Linters =
       | "stylecheck"
       | "tagliatelle"
       | "tenv"
-      | "testableexamples"
       | "testpackage"
       | "thelper"
       | "tparallel"
@@ -286,7 +272,6 @@ export type Linters =
       | "unconvert"
       | "unparam"
       | "unused"
-      | "usestdlibvars"
       | "varcheck"
       | "varnamelen"
       | "wastedassign"
@@ -356,7 +341,7 @@ export interface GolangciLint {
     /**
      * Output format to use.
      */
-    format?: string;
+    format?: "colored-line-number" | "line-number" | "json" | "tab" | "checkstyle" | "code-climate";
     /**
      * Print lines of code with issue.
      */
@@ -379,13 +364,6 @@ export interface GolangciLint {
    * All available settings of specific linters.
    */
   "linters-settings"?: {
-    dupword?: {
-      /**
-       * Keywords for detecting duplicate words. If this list is not empty, only the words defined in this list will be detected.
-       */
-      keywords?: string[];
-      [k: string]: unknown | undefined;
-    };
     asasalint?: {
       /**
        * To specify a set of function names to exclude.
@@ -579,21 +557,9 @@ export interface GolangciLint {
     };
     exhaustive?: {
       /**
-       * Program elements to check for exhaustiveness.
-       */
-      check?: string[];
-      /**
        * Check switch statements in generated files
        */
       "check-generated"?: boolean;
-      /**
-       * Only run exhaustive check on switches with "//exhaustive:enforce" comment.
-       */
-      "explicit-exhaustive-switch"?: boolean;
-      /**
-       * Only run exhaustive check on map literals with "//exhaustive:enforce" comment.
-       */
-      "explicit-exhaustive-map"?: boolean;
       /**
        * Presence of `default` case in switch statements satisfies exhaustiveness, even if all enum members are not listed.
        */
@@ -603,28 +569,9 @@ export interface GolangciLint {
        */
       "ignore-enum-members"?: string;
       /**
-       * Enum types matching the supplied regex do not have to be listed in switch statements to satisfy exhaustiveness.
-       */
-      "ignore-enum-types"?: string;
-      /**
        * Consider enums only in package scopes, not in inner scopes.
        */
       "package-scope-only"?: boolean;
-      [k: string]: unknown | undefined;
-    };
-    ginkgolinter?: {
-      /**
-       * Suppress the wrong length assertion warning.
-       */
-      "suppress-len-assertion"?: boolean;
-      /**
-       * Suppress the wrong nil assertion warning.
-       */
-      "suppress-nil-assertion"?: boolean;
-      /**
-       * Suppress the wrong error assertion warning.
-       */
-      "suppress-err-assertion"?: boolean;
       [k: string]: unknown | undefined;
     };
     exhaustivestruct?: {
@@ -680,10 +627,6 @@ export interface GolangciLint {
        * Skip generated files.
        */
       "skip-generated"?: boolean;
-      /**
-       * Enable custom order of sections.
-       */
-      "custom-order"?: boolean;
       [k: string]: unknown | undefined;
     };
     gocognit?: {
@@ -795,20 +738,6 @@ export interface GolangciLint {
        * Simplify code.
        */
       simplify?: boolean;
-      /**
-       * Apply the rewrite rules to the source before reformatting.
-       */
-      "rewrite-rules"?: {
-        pattern?: string;
-        replacement?: string;
-      }[];
-      [k: string]: unknown | undefined;
-    };
-    interfacebloat?: {
-      /**
-       * The maximum number of methods allowed for an interface.
-       */
-      max?: number;
       [k: string]: unknown | undefined;
     };
     gofumpt?: {
@@ -1145,37 +1074,6 @@ export interface GolangciLint {
       "suggest-new"?: boolean;
       [k: string]: unknown | undefined;
     };
-    loggercheck?: {
-      /**
-       * Allow check for the github.com/go-kit/log library.
-       */
-      kitlog?: boolean;
-      /**
-       * Allow check for the k8s.io/klog/v2 library.
-       */
-      klog?: boolean;
-      /**
-       * Allow check for the github.com/go-logr/logr library.
-       */
-      logr?: boolean;
-      /**
-       * Allow check for the "sugar logger" from go.uber.org/zap library.
-       */
-      zap?: boolean;
-      /**
-       * Require all logging keys to be inlined constant strings.
-       */
-      "require-string-key"?: boolean;
-      /**
-       * Require printf-like format specifier (%s, %d for example) not present.
-       */
-      "no-printf-like"?: boolean;
-      /**
-       * List of custom rules to check against, where each rule is a single logger pattern, useful for wrapped loggers.
-       */
-      rules?: string[];
-      [k: string]: unknown | undefined;
-    };
     maligned?: {
       /**
        * Whether to print struct with more effective memory layout.
@@ -1192,14 +1090,6 @@ export interface GolangciLint {
        * List of words to ignore.
        */
       "ignore-words"?: string[];
-      [k: string]: unknown | undefined;
-    };
-    musttag?: {
-      functions?: {
-        name?: string;
-        tag?: string;
-        "arg-pos"?: number;
-      }[];
       [k: string]: unknown | undefined;
     };
     nakedret?: {
@@ -1236,6 +1126,10 @@ export interface GolangciLint {
        */
       "allow-unused"?: boolean;
       /**
+       * Disable to ensure that nolint directives don't have a leading space.
+       */
+      "allow-leading-space"?: boolean;
+      /**
        * Exclude these linters from requiring an explanation.
        */
       "allow-no-explanation"?: Linters[];
@@ -1247,10 +1141,6 @@ export interface GolangciLint {
        * Enable to require nolint directives to mention the specific linter being suppressed.
        */
       "require-specific"?: boolean;
-      [k: string]: unknown | undefined;
-    };
-    reassign?: {
-      patterns?: string[];
       [k: string]: unknown | undefined;
     };
     nonamedreturns?: {
@@ -1443,8 +1333,7 @@ export interface GolangciLint {
             | "goKebab"
             | "goSnake"
             | "upper"
-            | "lower"
-            | "header";
+            | "lower";
         };
         [k: string]: unknown | undefined;
       };
@@ -1540,57 +1429,6 @@ export interface GolangciLint {
        * with golangci-lint call it on a directory with the changed file.
        */
       "check-exported"?: boolean;
-      [k: string]: unknown | undefined;
-    };
-    usestdlibvars?: {
-      /**
-       * Suggest the use of http.MethodXX.
-       */
-      "http-method"?: boolean;
-      /**
-       * Suggest the use of http.StatusXX.
-       */
-      "http-status-code"?: boolean;
-      /**
-       * Suggest the use of time.Weekday.String().
-       */
-      "time-weekday"?: boolean;
-      /**
-       * Suggest the use of time.Month.String().
-       */
-      "time-month"?: boolean;
-      /**
-       * Suggest the use of time.Layout.
-       */
-      "time-layout"?: boolean;
-      /**
-       * Suggest the use of crypto.Hash.String().
-       */
-      "crypto-hash"?: boolean;
-      /**
-       * Suggest the use of rpc.DefaultXXPath.
-       */
-      "default-rpc-path"?: boolean;
-      /**
-       * Suggest the use of os.DevNull.
-       */
-      "os-dev-null"?: boolean;
-      /**
-       * Suggest the use of sql.LevelXX.String().
-       */
-      "sql-isolation-level"?: boolean;
-      /**
-       * Suggest the use of tls.SignatureScheme.String().
-       */
-      "tls-signature-scheme"?: boolean;
-      /**
-       * Suggest the use of constant.Kind.String().
-       */
-      "constant-kind"?: boolean;
-      /**
-       * Suggest the use of syslog.Priority.
-       */
-      "syslog-priority"?: boolean;
       [k: string]: unknown | undefined;
     };
     varcheck?: {
@@ -1703,19 +1541,7 @@ export interface GolangciLint {
        */
       "force-case-trailing-whitespace"?: number;
       /**
-       * A list of call idents that everything can be cuddled with.
-       */
-      "allow-cuddle-with-calls"?: string[];
-      /**
-       * AllowCuddleWithRHS is a list of right hand side variables that is allowed to be cuddled with anything.
-       */
-      "allow-cuddle-with-rhs"?: string[];
-      /**
-       * When force-err-cuddling is enabled this is a list of names used for error variables to check for in the conditional.
-       */
-      "error-variable-names"?: string[];
-      /**
-       * Causes an error when an If statement that checks an error variable doesn't cuddle with the assignment of that variable.
+       * Force cuddling of err checks with err var assignment.
        */
       "force-err-cuddling"?: boolean;
       /**

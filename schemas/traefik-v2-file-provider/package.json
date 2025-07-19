@@ -7,8 +7,8 @@
   "name": "@schemastore/traefik-v2-file-provider",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/traefik-v2-file-provider",
   "scripts": {},
-  "typesPublisherContentHash": "5baf679e50ede05d0da109fe5e2ca1c09723c5f4f8d0c2c9ec3bfc73e4f8a215",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "36d6cf1d01edd01c4b77ff6d2146f628351cebbed18cfafb96cfc81dfb0f8ce3",
+  "version": "0.0.7"
 }

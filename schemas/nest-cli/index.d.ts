@@ -11,7 +11,7 @@ export type PluginItems = {
    */
   name?: string;
   options?: PluginOptions | GraphQLPluginOptions | SwaggerPluginOptions;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 } & PluginItems1;
 export type PluginItems1 =
   | string
@@ -21,7 +21,7 @@ export type PluginItems1 =
        */
       name?: string;
       options?: PluginOptions | GraphQLPluginOptions | SwaggerPluginOptions;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
 /**
  * For finer control, the element can be object.
@@ -361,10 +361,6 @@ export type GenerateSpecOptions1 =
        */
       res?: boolean;
     };
-/**
- * If true, all generate commands will generate a flat structure
- */
-export type GenerateFlatOptions = boolean;
 
 export interface NestCLIConfiguration {
   language?: string;
@@ -391,9 +387,9 @@ export interface NestCLIConfiguration {
   compilerOptions?: CompilerOptions;
   generateOptions?: GenerateOptions;
   projects?: {
-    [k: string]: ProjectConfiguration;
+    [k: string]: ProjectConfiguration | undefined;
   };
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A map with keys specifying compiler options and values specifying the option setting. See https://docs.nestjs.com/cli/monorepo#global-compiler-options for details
@@ -430,14 +426,14 @@ export interface PluginOptions {
    * If set to true, plugin will generate descriptions and example values for properties based on comments.
    */
   introspectComments?: boolean;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface GraphQLPluginOptions {
   /**
    * (GraphQL Only) GraphQL types files suffix. Default value: ['.input.ts', '.args.ts', '.entity.ts', '.model.ts']. See https://docs.nestjs.com/graphql/cli-plugin#using-the-cli-plugin for details.
    */
   typeFileNameSuffix?: unknown[];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 export interface SwaggerPluginOptions {
   /**
@@ -460,14 +456,13 @@ export interface SwaggerPluginOptions {
    * (Swagger Only) The property key to set the comment text to on ApiOperation. See https://docs.nestjs.com/openapi/cli-plugin#using-the-cli-plugin for details
    */
   controllerKeyOfComment?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * A map with keys specifying global generate options and values specifying the option setting. See https://docs.nestjs.com/cli/monorepo#global-generate-options for details
  */
 export interface GenerateOptions {
   spec?: GenerateSpecOptions;
-  flat?: GenerateFlatOptions;
 }
 export interface ProjectConfiguration {
   type?: string;

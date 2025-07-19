@@ -13,14 +13,14 @@ export interface TraefikV2 {
       statusCodes?: string[];
       retryAttempts?: boolean;
       minDuration?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     fields?: {
       defaultMode?: string;
       names?: {
         /**
          * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "[a-zA-Z0-9-_]+".
+         * via the `patternProperty` "[a-zA-Z0-9-_]*".
          */
         [k: string]: string;
       };
@@ -29,13 +29,13 @@ export interface TraefikV2 {
         names?: {
           /**
            * This interface was referenced by `undefined`'s JSON-Schema definition
-           * via the `patternProperty` "[a-zA-Z0-9-_]+".
+           * via the `patternProperty` "[a-zA-Z0-9-_]*".
            */
           [k: string]: string;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     bufferingSize?: number;
   };
@@ -47,7 +47,7 @@ export interface TraefikV2 {
   certificatesResolvers?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "[a-zA-Z0-9-_]+".
+     * via the `patternProperty` "[a-zA-Z0-9-_]*".
      */
     [k: string]: {
       acme?: {
@@ -60,30 +60,30 @@ export interface TraefikV2 {
         eab?: {
           kid?: string;
           hmacEncoded?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         dnsChallenge?: {
           provider?: string;
           delayBeforeCheck?: string;
           resolvers?: string[];
           disablePropagationCheck?: boolean;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         httpChallenge?: {
           entryPoint?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         tlsChallenge?: {
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
   };
   entryPoints?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "[a-zA-Z0-9-_]+".
+     * via the `patternProperty` "[a-zA-Z0-9-_]*".
      */
     [k: string]: {
       address?: string;
@@ -91,25 +91,25 @@ export interface TraefikV2 {
         lifeCycle?: {
           requestAcceptGraceTimeout?: string;
           graceTimeOut?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         respondingTimeouts?: {
           readTimeout?: string;
           writeTimeout?: string;
           idleTimeout?: string;
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       proxyProtocol?: {
         insecure?: boolean;
         trustedIPs?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       forwardedHeaders?: {
         insecure?: boolean;
         trustedIPs?: string[];
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       http?: {
         redirections?: {
@@ -118,9 +118,9 @@ export interface TraefikV2 {
             scheme?: string;
             permanent?: boolean;
             priority?: number;
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           };
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
         middlewares?: string[];
         tls?: {
@@ -129,23 +129,23 @@ export interface TraefikV2 {
           domains?: {
             main?: string;
             sans?: string[];
-            [k: string]: unknown;
+            [k: string]: unknown | undefined;
           }[];
-          [k: string]: unknown;
+          [k: string]: unknown | undefined;
         };
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       http2?: {
         maxConcurrentStreams?: number;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       http3?: {
         advertisedPort?: number;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
       udp?: {
         timeout?: string;
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
   };
@@ -156,7 +156,7 @@ export interface TraefikV2 {
     plugins?: {
       /**
        * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "[a-zA-Z0-9-_]+".
+       * via the `patternProperty` "[a-zA-Z0-9-_]*".
        */
       [k: string]: {
         moduleName?: string;
@@ -166,7 +166,7 @@ export interface TraefikV2 {
     localPlugins?: {
       /**
        * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "[a-zA-Z0-9-_]+".
+       * via the `patternProperty` "[a-zA-Z0-9-_]*".
        */
       [k: string]: {
         moduleName?: string;
@@ -188,7 +188,7 @@ export interface TraefikV2 {
       ca?: string;
       cert?: string;
       key?: string;
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
   };
   log?: {
@@ -233,7 +233,7 @@ export interface TraefikV2 {
       addRoutersLabels?: boolean;
       addServicesLabels?: boolean;
       additionalLabels?: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
     influxDB2?: {
@@ -246,7 +246,7 @@ export interface TraefikV2 {
       addRoutersLabels?: boolean;
       addServicesLabels?: boolean;
       additionalLabels?: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
   };
@@ -395,7 +395,7 @@ export interface TraefikV2 {
           password?: string;
         };
       };
-      [k: string]: unknown;
+      [k: string]: unknown | undefined;
     };
     nomad?: {
       constraints?: string;
@@ -422,7 +422,6 @@ export interface TraefikV2 {
     ecs?: {
       constraints?: string;
       exposedByDefault?: boolean;
-      ecsAnywhere?: boolean;
       refreshSeconds?: number;
       defaultRule?: string;
       clusters?: string[];
@@ -434,6 +433,8 @@ export interface TraefikV2 {
     consul?: {
       rootKey?: string;
       endpoints?: string[];
+      username?: string;
+      password?: string;
       token?: string;
       namespace?: string;
       namespaces?: string[];
@@ -450,6 +451,7 @@ export interface TraefikV2 {
       endpoints?: string[];
       username?: string;
       password?: string;
+      token?: string;
       tls?: {
         ca?: string;
         caOptional?: boolean;
@@ -463,13 +465,21 @@ export interface TraefikV2 {
       endpoints?: string[];
       username?: string;
       password?: string;
+      token?: string;
+      tls?: {
+        ca?: string;
+        caOptional?: boolean;
+        cert?: string;
+        key?: string;
+        insecureSkipVerify?: boolean;
+      };
     };
     redis?: {
       rootKey?: string;
       endpoints?: string[];
       username?: string;
       password?: string;
-      db?: number;
+      token?: string;
       tls?: {
         ca?: string;
         caOptional?: boolean;
@@ -493,13 +503,13 @@ export interface TraefikV2 {
     plugin?: {
       /**
        * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "[a-zA-Z0-9-_]+".
+       * via the `patternProperty` "[a-zA-Z0-9-_]*".
        */
       [k: string]: {
-        [k: string]: unknown;
+        [k: string]: unknown | undefined;
       };
     };
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
   serversTransport?: {
     insecureSkipVerify?: boolean;
@@ -538,16 +548,6 @@ export interface TraefikV2 {
     datadog?: {
       localAgentHostPort?: string;
       globalTag?: string;
-      /**
-       * Sets a list of key:value tags on all spans.
-       */
-      globalTags?: {
-        /**
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "[a-zA-Z0-9-_]+".
-         */
-        [k: string]: string;
-      };
       debug?: boolean;
       prioritySampling?: boolean;
       traceIDHeaderName?: string;

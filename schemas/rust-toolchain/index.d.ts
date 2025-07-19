@@ -10,12 +10,249 @@
  */
 export interface SchemaForRustToolchainToml {
   /**
-   * A `toolchain` is a complete installation of the Rust compiler (`rustc`) and related tools (like `cargo`). A toolchain specification includes the release channel or version, and the host platform that the toolchain runs on.
-   *
-   *  Get more from [`Toolchains`](https://rust-lang.github.io/rustup/concepts/toolchains.html)
+   * A "toolchain" is a complete installation of the Rust
+   * compiler (`rustc`) and related tools (like `cargo`). A toolchain
+   * specification includes the release channel or version, and the host
+   * platform that the toolchain runs on.
    */
-  toolchain: {
-    [k: string]: unknown | undefined;
-  };
+  toolchain:
+    | {
+        /**
+         * Rust is released to three different "channels": stable, beta,
+         * and nightly.
+         */
+        channel: (
+          | ("stable" | "beta" | "nightly")
+          | {
+              [k: string]: unknown | undefined;
+            }
+        ) &
+          string;
+        /**
+         * Each release of Rust includes several "components", some of
+         * which are required (like `rustc`) and some that are optional (like
+         * [`clippy`][clippy]).
+         *
+         * [clippy]: https://github.com/rust-lang/rust-clippy
+         */
+        components?: (
+          | "rustc"
+          | "cargo"
+          | "rustfmt"
+          | "rust-std"
+          | "rust-docs"
+          | "rls"
+          | "clippy"
+          | "miri"
+          | "rust-src"
+          | "rust-analysis"
+          | "rust-mingw"
+          | "llvm-tools-preview"
+          | "rustc-dev"
+        )[];
+        /**
+         * `rustc` is capable of generating code for many platforms. The
+         * "target" specifies the platform that the code will be generated for. By
+         * default, `cargo` and `rustc` use the host toolchain's platform as the
+         * target. To build for a different target, usually the target's standard
+         * library needs to be installed first via the `rustup target` command.
+         */
+        targets?: (
+          | "aarch64-apple-darwin"
+          | "aarch64-apple-ios"
+          | "aarch64-apple-ios-macabi"
+          | "aarch64-apple-ios-sim"
+          | "aarch64-apple-tvos"
+          | "aarch64-fuchsia"
+          | "aarch64-kmc-solid_asp3"
+          | "aarch64-linux-android"
+          | "aarch64-pc-windows-msvc"
+          | "aarch64-unknown-freebsd"
+          | "aarch64-unknown-hermit"
+          | "aarch64-unknown-linux-gnu"
+          | "aarch64-unknown-linux-gnu_ilp32"
+          | "aarch64-unknown-linux-musl"
+          | "aarch64-unknown-netbsd"
+          | "aarch64-unknown-none"
+          | "aarch64-unknown-none-softfloat"
+          | "aarch64-unknown-openbsd"
+          | "aarch64-unknown-redox"
+          | "aarch64-unknown-uefi"
+          | "aarch64-uwp-windows-msvc"
+          | "aarch64-wrs-vxworks"
+          | "aarch64_be-unknown-linux-gnu"
+          | "aarch64_be-unknown-linux-gnu_ilp32"
+          | "arm-linux-androideabi"
+          | "arm-unknown-linux-gnueabi"
+          | "arm-unknown-linux-gnueabihf"
+          | "arm-unknown-linux-musleabi"
+          | "arm-unknown-linux-musleabihf"
+          | "armebv7r-none-eabi"
+          | "armebv7r-none-eabihf"
+          | "armv4t-unknown-linux-gnueabi"
+          | "armv5te-unknown-linux-gnueabi"
+          | "armv5te-unknown-linux-musleabi"
+          | "armv5te-unknown-linux-uclibceabi"
+          | "armv6-unknown-freebsd"
+          | "armv6-unknown-netbsd-eabihf"
+          | "armv6k-nintendo-3ds"
+          | "armv7-apple-ios"
+          | "armv7-linux-androideabi"
+          | "armv7-unknown-freebsd"
+          | "armv7-unknown-linux-gnueabi"
+          | "armv7-unknown-linux-gnueabihf"
+          | "armv7-unknown-linux-musleabi"
+          | "armv7-unknown-linux-musleabihf"
+          | "armv7-unknown-linux-uclibceabihf"
+          | "armv7-unknown-netbsd-eabihf"
+          | "armv7-wrs-vxworks-eabihf"
+          | "armv7a-kmc-solid_asp3-eabi"
+          | "armv7a-kmc-solid_asp3-eabihf"
+          | "armv7a-none-eabi"
+          | "armv7a-none-eabihf"
+          | "armv7r-none-eabi"
+          | "armv7r-none-eabihf"
+          | "armv7s-apple-ios"
+          | "asmjs-unknown-emscripten"
+          | "avr-unknown-gnu-atmega328"
+          | "bpfeb-unknown-none"
+          | "bpfel-unknown-none"
+          | "hexagon-unknown-linux-musl"
+          | "i386-apple-ios"
+          | "i586-pc-windows-msvc"
+          | "i586-unknown-linux-gnu"
+          | "i586-unknown-linux-musl"
+          | "i686-apple-darwin"
+          | "i686-linux-android"
+          | "i686-pc-windows-gnu"
+          | "i686-pc-windows-msvc"
+          | "i686-unknown-freebsd"
+          | "i686-unknown-haiku"
+          | "i686-unknown-linux-gnu"
+          | "i686-unknown-linux-musl"
+          | "i686-unknown-netbsd"
+          | "i686-unknown-openbsd"
+          | "i686-unknown-uefi"
+          | "i686-uwp-windows-gnu"
+          | "i686-uwp-windows-msvc"
+          | "i686-wrs-vxworks"
+          | "m68k-unknown-linux-gnu"
+          | "mips-unknown-linux-gnu"
+          | "mips-unknown-linux-musl"
+          | "mips-unknown-linux-uclibc"
+          | "mips64-unknown-linux-gnuabi64"
+          | "mips64-unknown-linux-muslabi64"
+          | "mips64el-unknown-linux-gnuabi64"
+          | "mips64el-unknown-linux-muslabi64"
+          | "mipsel-sony-psp"
+          | "mipsel-unknown-linux-gnu"
+          | "mipsel-unknown-linux-musl"
+          | "mipsel-unknown-linux-uclibc"
+          | "mipsel-unknown-none"
+          | "mipsisa32r6-unknown-linux-gnu"
+          | "mipsisa32r6el-unknown-linux-gnu"
+          | "mipsisa64r6-unknown-linux-gnuabi64"
+          | "mipsisa64r6el-unknown-linux-gnuabi64"
+          | "msp430-none-elf"
+          | "nvptx64-nvidia-cuda"
+          | "powerpc-unknown-freebsd"
+          | "powerpc-unknown-linux-gnu"
+          | "powerpc-unknown-linux-gnuspe"
+          | "powerpc-unknown-linux-musl"
+          | "powerpc-unknown-netbsd"
+          | "powerpc-unknown-openbsd"
+          | "powerpc-wrs-vxworks"
+          | "powerpc-wrs-vxworks-spe"
+          | "powerpc64-unknown-freebsd"
+          | "powerpc64-unknown-linux-gnu"
+          | "powerpc64-unknown-linux-musl"
+          | "powerpc64-wrs-vxworks"
+          | "powerpc64le-unknown-freebsd"
+          | "powerpc64le-unknown-linux-gnu"
+          | "powerpc64le-unknown-linux-musl"
+          | "riscv32gc-unknown-linux-gnu"
+          | "riscv32gc-unknown-linux-musl"
+          | "riscv32i-unknown-none-elf"
+          | "riscv32imac-unknown-none-elf"
+          | "riscv32imc-esp-espidf"
+          | "riscv32imc-unknown-none-elf"
+          | "riscv64gc-unknown-freebsd"
+          | "riscv64gc-unknown-linux-gnu"
+          | "riscv64gc-unknown-linux-musl"
+          | "riscv64gc-unknown-none-elf"
+          | "riscv64imac-unknown-none-elf"
+          | "s390x-unknown-linux-gnu"
+          | "s390x-unknown-linux-musl"
+          | "sparc-unknown-linux-gnu"
+          | "sparc64-unknown-linux-gnu"
+          | "sparc64-unknown-netbsd"
+          | "sparc64-unknown-openbsd"
+          | "sparcv9-sun-solaris"
+          | "thumbv4t-none-eabi"
+          | "thumbv6m-none-eabi"
+          | "thumbv7a-pc-windows-msvc"
+          | "thumbv7a-uwp-windows-msvc"
+          | "thumbv7em-none-eabi"
+          | "thumbv7em-none-eabihf"
+          | "thumbv7m-none-eabi"
+          | "thumbv7neon-linux-androideabi"
+          | "thumbv7neon-unknown-linux-gnueabihf"
+          | "thumbv7neon-unknown-linux-musleabihf"
+          | "thumbv8m.base-none-eabi"
+          | "thumbv8m.main-none-eabi"
+          | "thumbv8m.main-none-eabihf"
+          | "wasm32-unknown-emscripten"
+          | "wasm32-unknown-unknown"
+          | "wasm32-wasi"
+          | "wasm64-unknown-unknown"
+          | "x86_64-apple-darwin"
+          | "x86_64-apple-ios"
+          | "x86_64-apple-ios-macabi"
+          | "x86_64-apple-tvos"
+          | "x86_64-fortanix-unknown-sgx"
+          | "x86_64-fuchsia"
+          | "x86_64-linux-android"
+          | "x86_64-pc-solaris"
+          | "x86_64-pc-windows-gnu"
+          | "x86_64-pc-windows-msvc"
+          | "x86_64-sun-solaris"
+          | "x86_64-unknown-dragonfly"
+          | "x86_64-unknown-freebsd"
+          | "x86_64-unknown-haiku"
+          | "x86_64-unknown-hermit"
+          | "x86_64-unknown-illumos"
+          | "x86_64-unknown-l4re-uclibc"
+          | "x86_64-unknown-linux-gnu"
+          | "x86_64-unknown-linux-gnux32"
+          | "x86_64-unknown-linux-musl"
+          | "x86_64-unknown-netbsd"
+          | "x86_64-unknown-none"
+          | "x86_64-unknown-none-hermitkernel"
+          | "x86_64-unknown-none-linuxkernel"
+          | "x86_64-unknown-openbsd"
+          | "x86_64-unknown-redox"
+          | "x86_64-unknown-uefi"
+          | "x86_64-uwp-windows-gnu"
+          | "x86_64-uwp-windows-msvc"
+          | "x86_64-wrs-vxworks"
+        )[];
+        /**
+         * In order to make it easier to work with components, a
+         * "profile" defines a grouping of components.
+         */
+        profile?: "minimal" | "default" | "complete";
+        [k: string]: unknown | undefined;
+      }
+    | {
+        /**
+         * Path to a custom local toolchain. Since a `path` directive directly names a local toolchain, other options
+         * like `components`, `targets`, and `profile` have no effect. `channel`
+         * and `path` are mutually exclusive, since a `path` already points to a
+         * specific toolchain. A relative `path` is resolved relative to the
+         * location of the `rust-toolchain.toml` file.
+         */
+        path: string;
+        [k: string]: unknown | undefined;
+      };
   [k: string]: unknown | undefined;
 }

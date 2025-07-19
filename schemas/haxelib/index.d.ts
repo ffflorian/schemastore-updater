@@ -30,7 +30,7 @@ export type DependencyVersion = Semver;
 /**
  * A haxelib project
  */
-export interface HaxelibProjectConfiguration {
+export interface Haxelib {
   name: ProjectName;
   /**
    * Project's website
@@ -70,19 +70,6 @@ export interface HaxelibProjectConfiguration {
    */
   dependencies?: {
     [k: string]: DependencyVersion;
-  };
-  /**
-   * Project's documentation resources
-   */
-  documentation?: {
-    /**
-     * Relative path to json file describing this project's custom defines
-     */
-    defines?: string;
-    /**
-     * Relative path to json file describing this project's custom metadata
-     */
-    metadata?: string;
   };
   /**
    * Short description of changes made in this version

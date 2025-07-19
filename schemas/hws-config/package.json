@@ -7,8 +7,8 @@
   "name": "@schemastore/hws-config",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/hws-config",
   "scripts": {},
-  "typesPublisherContentHash": "823e8c0b59cedf46471c586fd2c1f2a1e156014e570664ac10b9fad1fbabc8d0",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.4",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "8e481ce39a085a96f0a4e85001046c066c650239216818c93f5992b628518809",
+  "version": "0.0.5"
 }

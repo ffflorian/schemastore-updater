@@ -311,6 +311,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         };
       };
       /**
+       * @deprecated
        * DEPRECATED: use `updates.enabled` instead.
        */
       isRemoteJSEnabled?: boolean;
@@ -319,6 +320,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       googleServicesFile?: string;
       /**
+       * @deprecated
        * DEPRECATED: use `updates` key with `fallbackToCacheTimeout: 0` instead.
        */
       loadJSInBackgroundExperimental?: boolean;
@@ -639,7 +641,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       dir?: "auto" | "ltr" | "rtl";
       /**
-       * Defines the developers' preferred display mode for the website.
+       * Defines the developers’ preferred display mode for the website.
        */
       display?: "fullscreen" | "standalone" | "minimal-ui" | "browser";
       /**
@@ -659,7 +661,7 @@ export interface JSONSchemaForExpoSDK37AppManifest {
         | "portrait-primary"
         | "portrait-secondary";
       /**
-       * Defines the expected "background color" for the website. This value repeats what is already available in the site's CSS, but can be used by browsers to draw the background color of a shortcut when the manifest is available before the stylesheet has loaded. This creates a smooth transition between launching the web application and loading the site's content.
+       * Defines the expected “background color” for the website. This value repeats what is already available in the site’s CSS, but can be used by browsers to draw the background color of a shortcut when the manifest is available before the stylesheet has loaded. This creates a smooth transition between launching the web application and loading the site's content.
        */
       backgroundColor?: string;
       /**

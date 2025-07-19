@@ -102,14 +102,11 @@ export interface AzureStaticWebAppsConfigurationFile {
       | "dotnet:3.1"
       | "dotnet:6.0"
       | "dotnet-isolated:6.0"
-      | "dotnet-isolated:7.0"
       | "node:12"
       | "node:14"
       | "node:16"
-      | "node:18"
       | "python:3.8"
-      | "python:3.9"
-      | "python:3.10";
+      | "python:3.9";
   };
   /**
    * Trailing slash configuration

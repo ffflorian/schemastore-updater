@@ -464,7 +464,7 @@ export interface Liquibase3 {
        */
       created?: string;
       /**
-       * Overrides the order in the changelog from where the changeset with the runOrder="first|last" will be run. It is typically used when you want a changeset to be always executed after everything else but don't want to keep moving it to the end of the changelog. Setting the runOrder to last will automatically move it in the final changeset order.Since 3.5
+       * Overrides the order in the changelog from where the changeset with the runOrder="first|last" will be run. It is typically used when you want a changeset to be always executed after everything else but don’t want to keep moving it to the end of the changelog. Setting the runOrder to last will automatically move it in the final changeset order.Since 3.5
        */
       runOrder?: string;
       /**
@@ -483,7 +483,6 @@ export interface Liquibase3 {
       comment?: string;
       changes?: Changes;
       rollback?:
-        | {}
         | Changes
         | string
         | {
@@ -1537,7 +1536,7 @@ export interface AddLookupTable {
   [k: string]: unknown | undefined;
 }
 /**
- * Converts an existing column to be an auto-increment (a.k.a 'identity') column.
+ * Converts an existing column to be an auto-increment (a.k.a ‘identity') column.
  */
 export interface AddAutoIncrement {
   catalogName?: CatalogName;
@@ -1788,7 +1787,7 @@ export interface LoadData {
 /**
  * Loads or updates data from a CSV file into an existing table. Differs from loadData by issuing a SQL batch that checks for the existence of a record. If found, the record is UPDATEd, else the record is INSERTed. Also, generates DELETE statements for a rollback.
  *
- * A value of NULL in a cell will be converted to a database NULL rather than the string 'NULL'
+ * A value of NULL in a cell will be converted to a database NULL rather than the string ‘NULL'
  */
 export interface LoadUpdateData {
   catalogName?: CatalogName;

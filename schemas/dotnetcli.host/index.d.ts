@@ -7,7 +7,7 @@
 
 export interface JSONSchemaForNETCLITemplateHostFiles {
   symbolInfo?: {
-    [k: string]: SymbolInfoUndefined;
+    [k: string]: SymbolInfo | undefined;
   };
   usageExamples?: string[];
   [k: string]: unknown | undefined;

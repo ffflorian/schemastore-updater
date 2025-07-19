@@ -7,8 +7,8 @@
   "name": "@schemastore/foundryvtt-manifest",
   "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/foundryvtt-manifest",
   "scripts": {},
-  "typesPublisherContentHash": "8b647a8a7d10a9e413d408d4a782dce8063fe7a19b9acc2dc34011de29ee2158",
+  "typeScriptVersion": "2.2",
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "typesPublisherContentHash": "5390f8a6d2f7bf76720e1400b5bc92b6d6faf81255a2ef9a022a9fafc2eed9ff",
+  "version": "0.0.6"
 }
