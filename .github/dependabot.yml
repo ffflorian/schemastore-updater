@@ -11,7 +11,7 @@ updates:
     ignore:
       - dependency-name: '@types/node'
         versions:
-          - '> 20.x'
+          - '> 24.x'
       - dependency-name: '@types/eslint'
         versions:
           - '> 8.x'
