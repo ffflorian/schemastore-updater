@@ -17,13 +17,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 24.x
           cache: yarn
 
       - name: Setup yarn
         run: |
           corepack prepare yarn@stable --activate
-          yarn set version 4.2.1
+          yarn set version berry
 
       - name: Build, lint and test
         run: |
