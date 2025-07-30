@@ -20,11 +20,6 @@ jobs:
           node-version: 24.x
           cache: yarn
 
-      - name: Setup yarn
-        run: |
-          corepack prepare yarn@stable --activate
-          yarn set version berry
-
       - name: Build, lint and test
         run: |
           yarn --immutable
