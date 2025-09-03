@@ -751,16 +751,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/fs-extra@npm:11.0.4":
-  version: 11.0.4
-  resolution: "@types/fs-extra@npm:11.0.4"
-  dependencies:
-    "@types/jsonfile": "npm:*"
-    "@types/node": "npm:*"
-  checksum: 10/acc4c1eb0cde7b1f23f3fe6eb080a14832d8fa9dc1761aa444c5e2f0f6b6fa657ed46ebae32fb580a6700fc921b6165ce8ac3e3ba030c3dd15f10ad4dd4cae98
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.15":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -789,15 +779,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonfile@npm:*":
-  version: 6.1.1
-  resolution: "@types/jsonfile@npm:6.1.1"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10/0f8fe0a9221a00e8413cffba723dfe16553868724b830237256fb0052ecd5cac96498189d1235a001cfa815f352008261c9ceb373f0aa58227f891e0c7a12c4d
-  languageName: node
-  linkType: hard
-
 "@types/lodash@npm:4.17.20":
   version: 4.17.20
   resolution: "@types/lodash@npm:4.17.20"
@@ -812,7 +793,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:~24":
+"@types/node@npm:~24":
   version: 24.1.0
   resolution: "@types/node@npm:24.1.0"
   dependencies:
@@ -2629,17 +2610,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:11.3.0":
-  version: 11.3.0
-  resolution: "fs-extra@npm:11.3.0"
-  dependencies:
-    graceful-fs: "npm:^4.2.0"
-    jsonfile: "npm:^6.0.1"
-    universalify: "npm:^2.0.0"
-  checksum: 10/c9fe7b23dded1efe7bbae528d685c3206477e20cc60e9aaceb3f024f9b9ff2ee1f62413c161cb88546cc564009ab516dec99e9781ba782d869bb37e4fe04a97f
-  languageName: node
-  linkType: hard
-
 "fs.realpath@npm:^1.0.0":
   version: 1.0.0
   resolution: "fs.realpath@npm:1.0.0"
@@ -2923,13 +2893,6 @@ __metadata:
   version: 1.2.0
   resolution: "gopd@npm:1.2.0"
   checksum: 10/94e296d69f92dc1c0768fcfeecfb3855582ab59a7c75e969d5f96ce50c3d201fd86d5a2857c22565764d5bb8a816c7b1e58f133ec318cd56274da36c5e3fb1a1
-  languageName: node
-  linkType: hard
-
-"graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0":
-  version: 4.2.4
-  resolution: "graceful-fs@npm:4.2.4"
-  checksum: 10/4485e131bdbd386dca764dc962ea815512ed47b9d4245c49e5df70fc79472fcb21bc8e5abd99c4d488e3b3f369673ca0d4270687de9bc766ae64915c96f14d40
   languageName: node
   linkType: hard
 
@@ -3745,19 +3708,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "jsonfile@npm:6.0.1"
-  dependencies:
-    graceful-fs: "npm:^4.1.6"
-    universalify: "npm:^1.0.0"
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: 10/7abeaf3a7e03bedd4e7f6264a2bd1dd78723b8ff554539acbc30fd1e5ca780c343c89f439ebeb8710a97b22bb60fb1b383e5627c52f9efd51e1a77d68741056b
-  languageName: node
-  linkType: hard
-
 "keyv@npm:^4.5.3":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -4514,7 +4464,6 @@ __metadata:
     "@ffflorian/prettier-config": "npm:0.3.3"
     "@swc/core": "npm:1.13.3"
     "@types/eslint": "npm:8.56.7"
-    "@types/fs-extra": "npm:11.0.4"
     "@types/jsonabc": "npm:2.3.3"
     "@types/lodash": "npm:4.17.20"
     "@types/node": "npm:~24"
@@ -4536,7 +4485,6 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:1.1.2"
     eslint-plugin-typescript-sort-keys: "npm:3.3.0"
     eslint-plugin-unused-imports: "npm:4.1.4"
-    fs-extra: "npm:11.3.0"
     json-schema-to-typescript: "npm:15.0.4"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
@@ -5282,20 +5230,6 @@ __metadata:
   version: 7.8.0
   resolution: "undici-types@npm:7.8.0"
   checksum: 10/fcff3fbab234f067fbd69e374ee2c198ba74c364ceaf6d93db7ca267e784457b5518cd01d0d2329b075f412574205ea3172a9a675facb49b4c9efb7141cd80b7
-  languageName: node
-  linkType: hard
-
-"universalify@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "universalify@npm:1.0.0"
-  checksum: 10/095a808f2b915e3b89d29b6f3b4ee4163962b02fa5b7cb686970b8d0439f4ca789bc43f319b7cbb1ce552ae724e631d148e5aee9ce04c4f46a7fe0c5bbfd2b9e
-  languageName: node
-  linkType: hard
-
-"universalify@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "universalify@npm:2.0.0"
-  checksum: 10/2406a4edf4a8830aa6813278bab1f953a8e40f2f63a37873ffa9a3bc8f9745d06cc8e88f3572cb899b7e509013f7f6fcc3e37e8a6d914167a5381d8440518c44
   languageName: node
   linkType: hard
 
