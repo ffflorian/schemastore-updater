@@ -11,7 +11,7 @@
     "@evilmartians/lefthook": "1.12.3",
     "@ffflorian/eslint-config": "0.10.3",
     "@ffflorian/prettier-config": "0.3.3",
-    "@swc/core": "1.13.3",
+    "@swc/core": "1.13.5",
     "@types/eslint": "8.56.7",
     "@types/jsonabc": "2.3.3",
     "@types/lodash": "4.17.20",
