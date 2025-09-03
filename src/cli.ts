@@ -1,6 +1,6 @@
 import {program as commander} from 'commander';
-import * as fs from 'fs-extra';
-import * as path from 'path';
+import {promises as fs} from 'node:fs';
+import * as path from 'node:path';
 
 import {SchemaGenerator} from './';
 import {FileSettings, SchemaGeneratorOptions} from './interfaces';
@@ -33,7 +33,7 @@ commander
   .option('-k, --schema [schema]', 'Select single schema to update')
   .action(async (updateOptions: {force?: boolean; schema?: string}) => {
     try {
-      const settings: FileSettings = await fs.readJSON(settingsFile);
+      const settings: FileSettings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
       await update({
         ...settings,
         ...(commanderOptions.sourceDir && {source: commanderOptions.sourceDir}),
@@ -48,7 +48,7 @@ commander
 
 commander.command('check-disabled').action(async () => {
   try {
-    const settings = await fs.readJSON(settingsFile);
+    const settings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
     await checkDisabled({...settings});
   } catch (error) {
     console.error(error);
@@ -58,7 +58,7 @@ commander.command('check-disabled').action(async () => {
 
 commander.command('check-versions').action(async () => {
   try {
-    const fileSettings = await fs.readJSON(settingsFile);
+    const fileSettings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
     const generator = new SchemaGenerator({...fileSettings});
     await generator.checkHashsums();
     await generator.checkVersions();
@@ -70,7 +70,7 @@ commander.command('check-versions').action(async () => {
 
 commander.command('fix-lockfile').action(async () => {
   try {
-    const fileSettings = await fs.readJSON(settingsFile);
+    const fileSettings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
     const generator = new SchemaGenerator({...fileSettings});
     await generator.checkHashsums();
     await generator.fixLockfile();
