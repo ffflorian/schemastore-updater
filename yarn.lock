@@ -2153,12 +2153,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-no-unsanitized@npm:4.1.2":
-  version: 4.1.2
-  resolution: "eslint-plugin-no-unsanitized@npm:4.1.2"
+"eslint-plugin-no-unsanitized@npm:4.1.4":
+  version: 4.1.4
+  resolution: "eslint-plugin-no-unsanitized@npm:4.1.4"
   peerDependencies:
     eslint: ^8 || ^9
-  checksum: 10/868d143e46645d1c3abc127dbb0f4a3bd281c5fb74f7f7c82dcea5f67193517b28f2b88f66a9446ad986d5afc61367268d689ed33052af4f0323584039a4984d
+  checksum: 10/ca013683e94f65f1db2f743bfc6ae841a86f8c976c582335fff8d0e6d461ef946bd88f11a4bc858272ccaff17a547c3603e6e593b0d5d6445a723463a6f52119
   languageName: node
   linkType: hard
 
@@ -4494,7 +4494,7 @@ __metadata:
     eslint-plugin-import: "npm:2.32.0"
     eslint-plugin-jasmine: "npm:4.2.2"
     eslint-plugin-jsdoc: "npm:61.0.1"
-    eslint-plugin-no-unsanitized: "npm:4.1.2"
+    eslint-plugin-no-unsanitized: "npm:4.1.4"
     eslint-plugin-oxlint: "npm:1.19.0"
     eslint-plugin-prettier: "npm:5.5.4"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
