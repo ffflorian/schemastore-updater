@@ -504,8 +504,8 @@
     "version": "0.0.5"
   },
   "dein.json": {
-    "hash": "a1557448a32ff00b25dda92be2802e766dc1540caa4d5f79fe3fea04a122dbfc",
-    "version": "0.0.5"
+    "hash": "2a929c49d6d0e2a12961d898a6804e9cf786db7113131a9f9623ddc2b0f78366",
+    "version": "0.0.4"
   },
   "dependabot-2.0.json": {
     "hash": "6e3cc257843dea1e82ea71b337fe2848e7064d6d1a3154f81aac578791c11082",
@@ -780,8 +780,8 @@
     "version": "0.0.6"
   },
   "github-workflow.json": {
-    "hash": "53201c46dea723c4ee7c679523134d7a3b07a44d5c29e55590cb54e8c572a430",
-    "version": "0.0.14"
+    "hash": "f1a9b25f7b54075afc706aa2d6b44f5e77fd10d8ae9e92f360a6836386692bb7",
+    "version": "0.0.13"
   },
   "gitlab-ci.json": {
     "hash": "115a20e6576aff5f0e05012d119b341aea2c21572841076a1bd10c1e47b2d186",
@@ -1348,8 +1348,8 @@
     "version": "0.0.3"
   },
   "package.json": {
-    "hash": "4643ec01eaaf150d3302a3fd1e3e3cb7329b192ebec86d0660777a13c741c6b7",
-    "version": "0.0.11"
+    "hash": "706ba9014643c594ac6ab92494abf9e4a452b9fe9ab42b75d159300ddf0ee64e",
+    "version": "0.0.10"
   },
   "package.manifest-7.0.0.json": {
     "hash": "efc911ed3e7b8651020c83b83a52d90af1f2531f3088684e0eeec515a933b3bf",
@@ -1540,8 +1540,8 @@
     "version": "0.0.4"
   },
   "renovate.json": {
-    "hash": "bdec874361b27a4add55115a8ab92bcd636c0b7b49672e883a2d24a201c8580a",
-    "version": "0.0.10"
+    "hash": "608fb3d3e2b409e306d466b22272129637d7359f1b5ed004661839f43c72d6ca",
+    "version": "0.0.9"
   },
   "replit.json": {
     "hash": "e15de9442674ce7351ddd927b70c0979bd10a5c2b96dd2023768ecc171d07447",
@@ -2000,8 +2000,8 @@
     "version": "0.0.4"
   },
   "webextension.json": {
-    "hash": "1b1a5a874a73aeec930a3eb4439f45d700138ecc1221647473dce3e818ad2df5",
-    "version": "0.0.11"
+    "hash": "6a1a201ff294bd1d4741ecd2dbadea3406e87ef409492d2d28d5f9d4fdcbdd12",
+    "version": "0.0.10"
   },
   "webjob-publish-settings.json": {
     "hash": "edc73f3dc9885b1f331cc39da578588f307ba99159a0c5089b205deaebf22841",
