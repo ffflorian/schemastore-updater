@@ -3,9 +3,6 @@
     "noEmit": true,
     "rootDir": "schemas"
   },
-  "ts-node": {
-    "swc": true
-  },
   "exclude": ["dist", "node_modules", "src", "temp"],
   "extends": "./tsconfig.json"
 }

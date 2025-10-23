@@ -18,8 +18,5 @@
     "strictFunctionTypes": true,
     "target": "es6"
   },
-  "ts-node": {
-    "swc": true
-  },
   "exclude": ["dist", "node_modules", "schemas", "temp"]
 }
