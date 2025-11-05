@@ -1,7 +1,7 @@
 import {execSync} from 'node:child_process';
 import * as crypto from 'node:crypto';
 import * as fsSync from 'node:fs';
-import {promises as fs} from 'node:fs';
+import * as fs from 'node:fs/promises';
 import * as schemaGenerator from 'json-schema-to-typescript';
 import * as jsonAbc from 'jsonabc';
 import logdown = require('logdown');
