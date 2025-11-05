@@ -1,6 +1,6 @@
-import {program as commander} from 'commander';
-import {promises as fs} from 'node:fs';
+import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
+import {program as commander} from 'commander';
 
 import {SchemaGenerator} from './';
 import {FileSettings, SchemaGeneratorOptions} from './interfaces';
