@@ -1,0 +1,21 @@
+name: Mirror to Codeberg
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+        with:
+          fetch-depth: 0
+
+      - uses: yesolutions/mirror-action@662fce0eced8996f64d7fa264d76cddd84827f33
+        with:
+          REMOTE: 'ssh://git@codeberg.org/ffflorian/schemastore-updater.git'
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.CODEBERG_SECRET }}
+          GIT_SSH_NO_VERIFY_HOST: 'true'
