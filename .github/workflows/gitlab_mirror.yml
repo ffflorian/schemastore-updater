@@ -1,4 +1,4 @@
-name: Mirror and run GitLab CI
+name: Mirror to GitLab
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Mirror + trigger CI
+      - name: Mirror to GitLab
         uses: SvanBoxel/gitlab-mirror-and-ci-action@5c211f993d35256d96b772d995972f434b94e11a
         with:
           args: 'https://gitlab.com/ffflorian/schemastore-updater.git'
