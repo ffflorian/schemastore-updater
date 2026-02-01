@@ -700,58 +700,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-arm64@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/darwin-arm64@npm:1.36.0"
+"@oxlint/darwin-arm64@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/darwin-arm64@npm:1.42.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-x64@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/darwin-x64@npm:1.36.0"
+"@oxlint/darwin-x64@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/darwin-x64@npm:1.42.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-gnu@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/linux-arm64-gnu@npm:1.36.0"
+"@oxlint/linux-arm64-gnu@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/linux-arm64-gnu@npm:1.42.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-musl@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/linux-arm64-musl@npm:1.36.0"
+"@oxlint/linux-arm64-musl@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/linux-arm64-musl@npm:1.42.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-gnu@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/linux-x64-gnu@npm:1.36.0"
+"@oxlint/linux-x64-gnu@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/linux-x64-gnu@npm:1.42.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-musl@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/linux-x64-musl@npm:1.36.0"
+"@oxlint/linux-x64-musl@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/linux-x64-musl@npm:1.42.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/win32-arm64@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/win32-arm64@npm:1.36.0"
+"@oxlint/win32-arm64@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/win32-arm64@npm:1.42.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/win32-x64@npm:1.36.0":
-  version: 1.36.0
-  resolution: "@oxlint/win32-x64@npm:1.36.0"
+"@oxlint/win32-x64@npm:1.42.0":
+  version: 1.42.0
+  resolution: "@oxlint/win32-x64@npm:1.42.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -4410,20 +4410,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxlint@npm:1.36.0":
-  version: 1.36.0
-  resolution: "oxlint@npm:1.36.0"
+"oxlint@npm:1.42.0":
+  version: 1.42.0
+  resolution: "oxlint@npm:1.42.0"
   dependencies:
-    "@oxlint/darwin-arm64": "npm:1.36.0"
-    "@oxlint/darwin-x64": "npm:1.36.0"
-    "@oxlint/linux-arm64-gnu": "npm:1.36.0"
-    "@oxlint/linux-arm64-musl": "npm:1.36.0"
-    "@oxlint/linux-x64-gnu": "npm:1.36.0"
-    "@oxlint/linux-x64-musl": "npm:1.36.0"
-    "@oxlint/win32-arm64": "npm:1.36.0"
-    "@oxlint/win32-x64": "npm:1.36.0"
+    "@oxlint/darwin-arm64": "npm:1.42.0"
+    "@oxlint/darwin-x64": "npm:1.42.0"
+    "@oxlint/linux-arm64-gnu": "npm:1.42.0"
+    "@oxlint/linux-arm64-musl": "npm:1.42.0"
+    "@oxlint/linux-x64-gnu": "npm:1.42.0"
+    "@oxlint/linux-x64-musl": "npm:1.42.0"
+    "@oxlint/win32-arm64": "npm:1.42.0"
+    "@oxlint/win32-x64": "npm:1.42.0"
   peerDependencies:
-    oxlint-tsgolint: ">=0.10.0"
+    oxlint-tsgolint: ">=0.11.2"
   dependenciesMeta:
     "@oxlint/darwin-arm64":
       optional: true
@@ -4445,9 +4445,8 @@ __metadata:
     oxlint-tsgolint:
       optional: true
   bin:
-    oxc_language_server: bin/oxc_language_server
     oxlint: bin/oxlint
-  checksum: 10c0/e480ede331a2be74f879e378bea9eae9e5561064ea81938cf68c525ef3295633100c92f7f045730eae8561da27f02c0fdfd1a59c567df5a32f5a92a60253b811
+  checksum: 10c0/5974e6ef9944c848d86b33675d976e6dc9d7eefc30429a05278b2d384bd83db657d58af74175e9c8a2d2377c33039ccd6a430790cda6ce2bd0846a1a5a00606d
   languageName: node
   linkType: hard
 
@@ -4949,7 +4948,7 @@ __metadata:
     json-schema-to-typescript: "npm:15.0.4"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
-    oxlint: "npm:1.36.0"
+    oxlint: "npm:1.42.0"
     prettier: "npm:3.7.4"
     rimraf: "npm:6.1.2"
     semver: "npm:7.7.3"
