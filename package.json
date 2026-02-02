@@ -14,7 +14,7 @@
     "@types/jsonabc": "2.3.3",
     "@types/node": "~24",
     "@types/semver": "7.7.1",
-    "@typescript-eslint/eslint-plugin": "8.51.0",
+    "@typescript-eslint/eslint-plugin": "8.54.0",
     "@typescript-eslint/parser": "8.51.0",
     "babel-eslint": "10.1.0",
     "eslint": "8.57.0",
