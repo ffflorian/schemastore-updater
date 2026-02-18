@@ -1,0 +1,44 @@
+name: Check for yarn updates
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  schedule:
+    - cron: '0 5 1 * *'
+
+jobs:
+  yarn-update-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Setup Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Update yarn
+        id: check-yarn-version
+        run: |
+          echo "Old version: $(yarn --version)"
+          yarn set version stable
+          echo "New version: $(yarn --version)"
+          echo "YARN_VERSION=$(yarn --version)" >> "${GITHUB_OUTPUT}"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
+        with:
+          author: 'Florian Imdahl <git@ffflorian.de>'
+          committer: 'Florian Imdahl <git@ffflorian.de>'
+          base: main
+          body: |
+            This PR updates yarn to version **${{ steps.check-yarn-version.outputs.YARN_VERSION }}**.
+
+            See the [release notes](https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F${{ steps.check-yarn-version.outputs.YARN_VERSION }}) for more details.
+          branch: 'chore/deps/yarn-${{ steps.check-yarn-version.outputs.YARN_VERSION }}'
+          commit-message: 'chore(deps): Update yarn to version ${{ steps.check-yarn-version.outputs.YARN_VERSION }}'
+          title: 'chore(deps): Update yarn to version ${{ steps.check-yarn-version.outputs.YARN_VERSION }}'
