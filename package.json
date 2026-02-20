@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@evilmartians/lefthook": "2.0.16",
+    "@evilmartians/lefthook": "2.1.1",
     "@ffflorian/eslint-config": "0.13.3",
     "@ffflorian/prettier-config": "0.6.3",
     "@types/jsonabc": "2.3.3",
