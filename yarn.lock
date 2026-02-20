@@ -958,7 +958,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.56.0, @typescript-eslint/utils@npm:^8.53.1, @typescript-eslint/utils@npm:^8.54.0":
+"@typescript-eslint/utils@npm:8.56.0, @typescript-eslint/utils@npm:^8.53.1, @typescript-eslint/utils@npm:^8.56.0":
   version: 8.56.0
   resolution: "@typescript-eslint/utils@npm:8.56.0"
   dependencies:
@@ -2326,15 +2326,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-perfectionist@npm:5.5.0":
-  version: 5.5.0
-  resolution: "eslint-plugin-perfectionist@npm:5.5.0"
+"eslint-plugin-perfectionist@npm:5.6.0":
+  version: 5.6.0
+  resolution: "eslint-plugin-perfectionist@npm:5.6.0"
   dependencies:
-    "@typescript-eslint/utils": "npm:^8.54.0"
+    "@typescript-eslint/utils": "npm:^8.56.0"
     natural-orderby: "npm:^5.0.0"
   peerDependencies:
-    eslint: ">=8.45.0"
-  checksum: 10c0/0d115eb6cd68eb28996c3576d9f79938cd8fe022fc1f610d38d0d598d0884a2001dd058489001405d30918e5bdf4c6a88d22ecc1be8d46c1bedd95a3f228a91d
+    eslint: ^8.45.0 || ^9.0.0 || ^10.0.0
+  checksum: 10c0/52fa7891c0e59dd4dfe112293f8f7fa1f9d0c08ff6a28b09548aef699c2feade4795f48f59e4c54e424a341d7d0a514ebd3800f7595699c1fc6a628b88f8c78e
   languageName: node
   linkType: hard
 
@@ -4640,7 +4640,7 @@ __metadata:
     eslint-import-resolver-typescript: "npm:4.4.4"
     eslint-plugin-import: "npm:2.32.0"
     eslint-plugin-oxlint: "npm:1.49.0"
-    eslint-plugin-perfectionist: "npm:5.5.0"
+    eslint-plugin-perfectionist: "npm:5.6.0"
     json-schema-to-typescript: "npm:15.0.4"
     jsonabc: "npm:2.3.1"
     logdown: "npm:3.3.1"
