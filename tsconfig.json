@@ -18,5 +18,5 @@
     "strictFunctionTypes": true,
     "target": "es6"
   },
-  "exclude": ["dist", "node_modules", "schemas", "temp"]
+  "exclude": ["dist", "node_modules", "schemas", "temp", "eslint.config.ts"]
 }
