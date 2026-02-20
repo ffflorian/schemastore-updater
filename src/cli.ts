@@ -1,19 +1,19 @@
+import {program as commander} from 'commander';
+import * as fsSync from 'node:fs';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import {program as commander} from 'commander';
 
-import {SchemaGenerator} from './';
-import {FileSettings, SchemaGeneratorOptions} from './interfaces';
-
-const {
-  description,
-  name,
-  version,
-}: {
+interface PackageJson {
   description: string;
   name: string;
   version: string;
-} = require('../package.json');
+}
+
+const packageJsonPath = path.join(__dirname, '../package.json');
+
+const {description, name, version}: PackageJson = JSON.parse(fsSync.readFileSync(packageJsonPath, 'utf-8'));
+import {SchemaGenerator} from './';
+import {FileSettings, SchemaGeneratorOptions} from './interfaces';
 
 commander.name(name).version(version).description(description);
 
@@ -87,8 +87,28 @@ if (!commander.args.length) {
   process.exit();
 }
 
+async function checkDisabled(settings: FileSettings, versionCheck = true): Promise<void> {
+  const generator = new SchemaGenerator(settings);
+
+  if (versionCheck) {
+    await generator.checkVersions();
+    await generator.checkHashsums();
+  }
+
+  const {enabledSchemas} = await generator.checkDisabled();
+
+  if (enabledSchemas.length) {
+    const enabledSchemaFiles = enabledSchemas.map(schema => `${schema}.json`);
+    settings.disabledSchemas = settings.disabledSchemas.filter(schema => !enabledSchemaFiles.includes(schema)).sort();
+
+    await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
+  } else {
+    console.info('No schemas generated.');
+  }
+}
+
 async function update(
-  settings: SchemaGeneratorOptions & Required<Pick<SchemaGeneratorOptions, 'disabledSchemas'>>
+  settings: Required<Pick<SchemaGeneratorOptions, 'disabledSchemas'>> & SchemaGeneratorOptions
 ): Promise<{sourceDir: string}> {
   const generator = new SchemaGenerator(settings);
   await generator.checkVersions();
@@ -112,24 +132,4 @@ async function update(
   }
 
   return {sourceDir: generator.options.source};
-}
-
-async function checkDisabled(settings: FileSettings, versionCheck = true): Promise<void> {
-  const generator = new SchemaGenerator(settings);
-
-  if (versionCheck) {
-    await generator.checkVersions();
-    await generator.checkHashsums();
-  }
-
-  const {enabledSchemas} = await generator.checkDisabled();
-
-  if (enabledSchemas.length) {
-    const enabledSchemaFiles = enabledSchemas.map(schema => `${schema}.json`);
-    settings.disabledSchemas = settings.disabledSchemas.filter(schema => !enabledSchemaFiles.includes(schema)).sort();
-
-    await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
-  } else {
-    console.info('No schemas generated.');
-  }
 }

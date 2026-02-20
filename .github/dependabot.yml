@@ -15,9 +15,6 @@ updates:
       - dependency-name: '@types/eslint'
         versions:
           - '> 8.x'
-      - dependency-name: 'eslint'
-        versions:
-          - '> 8.x'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
