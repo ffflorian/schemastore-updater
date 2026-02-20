@@ -8,7 +8,7 @@
     "semver": "7.7.3"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.2",
+    "@eslint/js": "10.0.1",
     "@evilmartians/lefthook": "2.0.16",
     "@ffflorian/eslint-config": "0.13.3",
     "@ffflorian/prettier-config": "0.5.4",
