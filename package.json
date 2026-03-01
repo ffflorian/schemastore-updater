@@ -15,7 +15,7 @@
     "@types/jsonabc": "2.3.3",
     "@types/node": "~24",
     "@types/semver": "7.7.1",
-    "eslint": "10.0.0",
+    "eslint": "10.0.2",
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-oxlint": "1.49.0",
