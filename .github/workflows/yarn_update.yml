@@ -7,6 +7,11 @@ permissions:
 on:
   schedule:
     - cron: '0 5 1 * *'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/yarn_update.yml'
 
 jobs:
   yarn-update-check:
@@ -19,26 +24,31 @@ jobs:
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
           node-version: 24
-          cache: yarn
 
       - name: Update yarn
-        id: check-yarn-version
+        id: update-yarn
         run: |
-          echo "Old version: $(yarn --version)"
+          OLD_VERSION=$(yarn --version)
           yarn set version stable
-          echo "New version: $(yarn --version)"
-          echo "YARN_VERSION=$(yarn --version)" >> "${GITHUB_OUTPUT}"
+          NEW_VERSION=$(yarn --version)
+          if [ "${OLD_VERSION}" == "${NEW_VERSION}" ]; then
+            echo "yarn is already up to date."
+          else
+            echo "yarn updated to version ${NEW_VERSION}."
+            echo "YARN_VERSION=${NEW_VERSION}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create Pull Request
+        if: steps.update-yarn.outputs.YARN_VERSION != ''
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
         with:
           author: 'Florian Imdahl <git@ffflorian.de>'
           committer: 'Florian Imdahl <git@ffflorian.de>'
           base: main
           body: |
-            This PR updates yarn to version **${{ steps.check-yarn-version.outputs.YARN_VERSION }}**.
+            This PR updates yarn to version **${{ steps.update-yarn.outputs.YARN_VERSION }}**.
 
-            See the [release notes](https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F${{ steps.check-yarn-version.outputs.YARN_VERSION }}) for more details.
-          branch: 'chore/deps/yarn-${{ steps.check-yarn-version.outputs.YARN_VERSION }}'
-          commit-message: 'chore(deps): Update yarn to version ${{ steps.check-yarn-version.outputs.YARN_VERSION }}'
-          title: 'chore(deps): Update yarn to version ${{ steps.check-yarn-version.outputs.YARN_VERSION }}'
+            See the [release notes](https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F${{ steps.update-yarn.outputs.YARN_VERSION }}) for more details.
+          branch: 'chore/deps/yarn-${{ steps.update-yarn.outputs.YARN_VERSION }}'
+          commit-message: 'chore(deps): bump yarn to version ${{ steps.update-yarn.outputs.YARN_VERSION }}'
+          title: 'chore(deps): Update yarn to version ${{ steps.update-yarn.outputs.YARN_VERSION }}'
