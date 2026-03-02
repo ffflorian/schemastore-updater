@@ -22,6 +22,7 @@ jobs:
           REMOTE_NAME: 'gitlab-mirror'
           GIT_SSH_KNOWN_HOSTS: 'gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf'
           GIT_SSH_PRIVATE_KEY: ${{ secrets.GITLAB_SECRET }}
+          PUSH_ALL_REFS: 'false'
 
       - name: Mirror to Codeberg
         uses: cynicsketch/mirror-action@b1e3c960aead673763e5ccb22007129401a15917
@@ -30,3 +31,4 @@ jobs:
           REMOTE_NAME: 'codeberg-mirror'
           GIT_SSH_KNOWN_HOSTS: 'codeberg.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVIC02vnjFyL+I4RHfvIGNtOgJMe769VTF1VR4EB3ZB'
           GIT_SSH_PRIVATE_KEY: ${{ secrets.CODEBERG_SECRET }}
+          PUSH_ALL_REFS: 'false'
