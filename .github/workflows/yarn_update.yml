@@ -8,8 +8,6 @@ on:
   schedule:
     - cron: '0 5 1 * *'
   push:
-    branches:
-      - main
     paths:
       - '.github/workflows/yarn_update.yml'
 
@@ -21,7 +19,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: 24
 
@@ -51,4 +49,4 @@ jobs:
             See the [release notes](https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F${{ steps.update-yarn.outputs.YARN_VERSION }}) for more details.
           branch: 'chore/deps/yarn-${{ steps.update-yarn.outputs.YARN_VERSION }}'
           commit-message: 'chore(deps): bump yarn to version ${{ steps.update-yarn.outputs.YARN_VERSION }}'
-          title: 'chore(deps): Update yarn to version ${{ steps.update-yarn.outputs.YARN_VERSION }}'
+          title: 'chore(deps): bump yarn to version ${{ steps.update-yarn.outputs.YARN_VERSION }}'
