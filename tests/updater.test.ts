@@ -277,16 +277,6 @@ async function readLockFile(workspaceDir: string): Promise<SchemaLockFile> {
   return JSON.parse(raw) as SchemaLockFile;
 }
 
-async function writeLockFile(workspaceDir: string, lockFile: SchemaLockFile): Promise<void> {
-  await writeFile(path.join(workspaceDir, 'schema-lock.json'), `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
-}
-
-async function writeSchemaFile(sourceDir: string, relativePath: string, content: string): Promise<void> {
-  const schemaPath = path.join(sourceDir, 'src', 'schemas', 'json', relativePath);
-  await mkdir(path.dirname(schemaPath), {recursive: true});
-  await writeFile(schemaPath, content, 'utf-8');
-}
-
 async function withWorkingDirectory<T>(targetDirectory: string, action: () => Promise<T>): Promise<T> {
   const previousDirectory = process.cwd();
   process.chdir(targetDirectory);
@@ -296,4 +286,14 @@ async function withWorkingDirectory<T>(targetDirectory: string, action: () => Pr
   } finally {
     process.chdir(previousDirectory);
   }
+}
+
+async function writeLockFile(workspaceDir: string, lockFile: SchemaLockFile): Promise<void> {
+  await writeFile(path.join(workspaceDir, 'schema-lock.json'), `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
+}
+
+async function writeSchemaFile(sourceDir: string, relativePath: string, content: string): Promise<void> {
+  const schemaPath = path.join(sourceDir, 'src', 'schemas', 'json', relativePath);
+  await mkdir(path.dirname(schemaPath), {recursive: true});
+  await writeFile(schemaPath, content, 'utf-8');
 }
