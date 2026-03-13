@@ -47,6 +47,7 @@ describe('updateSchemas', () => {
       string,
       boolean | string
     >;
+    const generatorLog = await readFile(path.join(context.workspaceDir, 'schemagenerator.log'), 'utf-8');
     const lockFile = await readLockFile(context.workspaceDir);
 
     expect(generatedDts.startsWith('/* eslint-disable */')).toBe(true);
@@ -65,6 +66,7 @@ describe('updateSchemas', () => {
     expect(generatedReadme).toContain(
       'https://github.com/ffflorian/schemastore-updater/tree/main/schemas/accelerator-schema'
     );
+    expect(generatorLog).toContain('No schema generation or type-check errors.');
 
     const lockEntry = lockFile.entries['accelerator/schema.json'];
     expect(lockEntry).toBeDefined();
@@ -141,6 +143,7 @@ describe('updateSchemas', () => {
     const stats = await withWorkingDirectory(context.workspaceDir, () =>
       updateSchemas({force: false, sourceDir: context.sourceDir})
     );
+    const generatorLog = await readFile(path.join(context.workspaceDir, 'schemagenerator.log'), 'utf-8');
     const lockFile = await readLockFile(context.workspaceDir);
 
     expect(stats).toEqual({
@@ -149,6 +152,7 @@ describe('updateSchemas', () => {
       skipped: 0,
       totalSchemas: 1,
     });
+    expect(generatorLog).toContain('Skipped (conversion failed): broken/schema.json');
     expect(lockFile.entries).toEqual({});
   });
 
@@ -166,6 +170,7 @@ describe('updateSchemas', () => {
     const stats = await withWorkingDirectory(context.workspaceDir, () =>
       mockedUpdater.updateSchemas({force: false, sourceDir: context.sourceDir})
     );
+    const generatorLog = await readFile(path.join(context.workspaceDir, 'schemagenerator.log'), 'utf-8');
 
     const brokenPackageDir = path.join(context.workspaceDir, 'schemas', 'broken-schema');
 
@@ -175,6 +180,7 @@ describe('updateSchemas', () => {
       skipped: 0,
       totalSchemas: 1,
     });
+    expect(generatorLog).toContain('Skipped (type-check failed): broken/schema.json');
     await expect(readFile(path.join(brokenPackageDir, 'index.d.ts'), 'utf-8')).rejects.toThrow();
   });
 });

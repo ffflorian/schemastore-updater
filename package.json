@@ -7,7 +7,7 @@
     "semver": "7.7.3",
     "typescript": "5.9.2"
   },
-  "description": "v3 implementation of schemastore-updater",
+  "description": "SchemaStore schema updater",
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@ffflorian/eslint-config": "0.13.3",

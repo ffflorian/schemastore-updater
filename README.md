@@ -1,6 +1,6 @@
 # schemastore-updater
 
-Fresh TypeScript implementation focused on a repeatable CLI workflow.
+This project updates JSON schemas from [SchemaStore](https://github.com/SchemaStore/schemastore), generates TypeScript definitions for them, and prepares one publishable npm package per schema under the `@schemastore` scope.
 
 ## Agent Notes
 

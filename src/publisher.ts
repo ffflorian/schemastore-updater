@@ -7,6 +7,7 @@ import type {PublishStats} from './types.js';
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
+const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
 
 interface PackageManifest {
   name?: string;
@@ -50,35 +51,40 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     skipped: 0,
   };
 
+  await writePublishLog(logFilePath, errorMessages);
+
   for (const packageDirectory of packageDirectories) {
     const packageJsonPath = path.join(packageDirectory, 'package.json');
     if (!(await exists(packageJsonPath))) {
       stats.skipped += 1;
+      await writePublishLog(logFilePath, errorMessages);
       continue;
     }
 
+    const schemaName = path.basename(packageDirectory);
     const packageManifest = await readPackageManifest(packageJsonPath);
-    const packageLabel = formatPackageLabel(packageManifest, path.basename(packageDirectory));
+    const packageLabel = formatPackageLabel(packageManifest, schemaName);
 
     stats.attempted += 1;
 
     try {
       if (dryRun) {
         stats.published += 1;
-        console.info(`Dry run: ${packageLabel}`);
+        console.info(`Dry run: ${schemaName}`);
         continue;
       }
 
+      console.info(`Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
       await publishPackage(packageDirectory);
       stats.published += 1;
-      console.info(`Published: ${packageLabel}`);
+      console.info(`Published: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
     } catch (error) {
       stats.failed += 1;
       errorMessages.push(formatPublishError(packageLabel, error));
     }
-  }
 
-  await writePublishLog(logFilePath, errorMessages);
+    await writePublishLog(logFilePath, errorMessages);
+  }
 
   return stats;
 }
@@ -105,7 +111,7 @@ function formatPublishError(packageLabel: string, error: unknown): string {
 }
 
 async function publishPackageDirectory(packageDirectory: string): Promise<void> {
-  await execFileAsync('npm', ['publish', '--access', 'public'], {
+  await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
     cwd: packageDirectory,
     env: process.env,
   });

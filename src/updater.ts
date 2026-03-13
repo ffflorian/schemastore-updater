@@ -53,6 +53,8 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
     totalSchemas: files.length,
   };
 
+  await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
+
   for (const schemaFilePath of files) {
     const schemaRelativePath = path.relative(schemaRoot, schemaFilePath);
     const schemaId = getSchemaId(schemaRelativePath);
@@ -77,6 +79,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
     ) {
       nextEntries[schemaRelativePath] = previousEntry;
       stats.skipped += 1;
+      await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
       continue;
     }
 
@@ -100,6 +103,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
         stats.failed += 1;
         logEntries.push(`Skipped (type-check failed): ${schemaRelativePath}`);
         logEntries.push(typeCheckResult.errors);
+        await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
         continue;
       }
 
@@ -126,6 +130,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
       stats.generated += 1;
       console.info(`Generated: ${schemaRelativePath}`);
+      await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
     } catch (error) {
       stats.failed += 1;
       const errorMessage = error instanceof Error ? error.message : String(error);
@@ -135,6 +140,8 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       if (error instanceof Error && error.stack) {
         logEntries.push(error.stack);
       }
+
+      await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
     }
   }
 
@@ -145,7 +152,6 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   } satisfies SchemaLockFile;
 
   await writeFile(lockFilePath, `${JSON.stringify(nextLockFile, null, 2)}\n`, 'utf-8');
-  await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
 
   return stats;
 }
