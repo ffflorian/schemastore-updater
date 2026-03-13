@@ -3,768 +3,896 @@
     "abc-clinical-demand-forecast-1.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-1.0.0/index.d.ts",
       "generatedSha256": "8afe712dbf94e7e9ffa099b4e308733a20108b2908211b75bae803f5f380771b",
+      "published": true,
       "sourceSha256": "e17835334a79571b53c9316f623f2b5f66c012dbf667c94f6ed623108803a6db",
       "updatedAt": "2026-03-13T10:18:58.359Z"
     },
     "abc-inventory-module-data-1.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-1.0.0/index.d.ts",
       "generatedSha256": "03c7dce3ec9fb7683ada33a5daad4ff676536fcac59ad40371c886acfce5ac66",
+      "published": true,
       "sourceSha256": "c5e31d4dff8384276609547cc693e823c5f309064c732f4941e69a2d25ccddc0",
       "updatedAt": "2026-03-13T10:18:58.609Z"
     },
     "abc-inventory-module-data-2.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-2.0.0/index.d.ts",
       "generatedSha256": "9e532ef2b5908132599bf543f2af917311fce17d29ede98ab30c907fc77c3e9d",
+      "published": true,
       "sourceSha256": "d7de1215940cff88981143e0de42eddc1949fca1f7f69a37cf43b2eac4edb2cd",
       "updatedAt": "2026-03-13T10:18:58.819Z"
     },
     "abc-inventory-module-data-3.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-3.0.0/index.d.ts",
       "generatedSha256": "eac3e74451ec0bd14d7bfc150fc1fbdb7b872156db56aab350820ebdb52aa1fc",
+      "published": true,
       "sourceSha256": "ee544629454515a6b70961d1d8f179a177007ac5ae74c305e15a04309fec3cde",
       "updatedAt": "2026-03-13T10:18:59.020Z"
     },
     "abc-inventory-module-data-4.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-4.0.0/index.d.ts",
       "generatedSha256": "27023f896903d8fd943b3680f5c4cb506785ba60bc10cd966cbd046482b04aa2",
+      "published": true,
       "sourceSha256": "d71bd49bc682c3d775eac121deb03f9c8069f23cc1c554997e0415f8427ce356",
       "updatedAt": "2026-03-13T10:18:59.246Z"
     },
     "abc-inventory-module-data-5.1.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.1.0/index.d.ts",
       "generatedSha256": "0f66e340ba52f4b9bc54050b960d37adc45e3f9d40b20b32a5649efe7cb4ca3a",
+      "published": true,
       "sourceSha256": "f736c91022d828b8f77b555809c1af1f40226a14986316028a2529030bcb51e3",
       "updatedAt": "2026-03-13T10:18:59.469Z"
     },
     "abc-inventory-module-data-5.2.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.2.0/index.d.ts",
       "generatedSha256": "d63c744b128dfc582236e134ae2f1133d32819dfc6a796115311f343b7ee14b6",
+      "published": true,
       "sourceSha256": "99e1a2ad86747c348d0d67ea0d088871c6f12e1af8d091eaba3ab312a6487540",
       "updatedAt": "2026-03-13T10:18:59.663Z"
     },
     "abc-supply-plan-1.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-1.0.0/index.d.ts",
       "generatedSha256": "413fd75d21e2adfd1098011838462d41bcc3b32a2c1a775987c4f5768c114385",
+      "published": true,
       "sourceSha256": "fd8056c4d4d5c2a6c289e1a943c64687d593b648c08f08692088955fa9cd13bc",
       "updatedAt": "2026-03-13T10:18:59.857Z"
     },
     "abc-supply-plan-10.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-10.0.0/index.d.ts",
       "generatedSha256": "0ae426868e93a91a69caf388ab5610a7f9c1bf94c7b9461f9133136920b1ef67",
+      "published": true,
       "sourceSha256": "05d9c655eb191891d44788833ee39a65aa5a552a9790e2d055f1d955a59462d9",
       "updatedAt": "2026-03-13T10:19:00.060Z"
     },
     "abc-supply-plan-10.1.0.json": {
       "generatedFile": "schemas/abc-supply-plan-10.1.0/index.d.ts",
       "generatedSha256": "87553c862e11b781572e501d47973bdf4488f3ef2d959b49105c5bcddd38ab6f",
+      "published": true,
       "sourceSha256": "2b75cbb1f83844f2f2c05da6dea0ad06c4b9a7ddd2edff545e0e21b4936bf21b",
       "updatedAt": "2026-03-13T10:19:00.264Z"
     },
     "abc-supply-plan-11.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.0.0/index.d.ts",
       "generatedSha256": "c13469c39f86f3ce5872a32867a7e767d1199ba9b12be503f1152794dc396283",
+      "published": true,
       "sourceSha256": "2afef01c2b64ef733160d2fafb4769194246a45cbd2442048f0c1220e1fef9fa",
       "updatedAt": "2026-03-13T10:19:00.481Z"
     },
     "abc-supply-plan-11.1.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.1.0/index.d.ts",
       "generatedSha256": "ac876f0eca297e925eb1ef18610c122617d8f13c4231b2c338f17e46b296abc9",
+      "published": true,
       "sourceSha256": "6f3e99ecfdc0a17a4bcb7fddffb5a088d987e33829a0b35e7e7a9086485fb1f5",
       "updatedAt": "2026-03-13T10:19:00.702Z"
     },
     "abc-supply-plan-11.2.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.2.0/index.d.ts",
       "generatedSha256": "52202d5837f182eb6043a9555dc1450fc9ae0d77092c0d0333b9a4c8d1f2e180",
+      "published": true,
       "sourceSha256": "979add0dee2acce70a8cd703b31075994d7100f0b5b6fb828833b65ac2aed6af",
       "updatedAt": "2026-03-13T10:19:00.896Z"
     },
     "abc-supply-plan-11.3.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.3.0/index.d.ts",
       "generatedSha256": "d07829e191af16b85c1f252f938b5576880d686ac34774007841adefc0a0a215",
+      "published": true,
       "sourceSha256": "4de515a1db65886ed9ae0d0abe7f9d37c0b872f4757bed03a29287bc5b0e3f10",
       "updatedAt": "2026-03-13T10:19:01.093Z"
     },
     "abc-supply-plan-11.4.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.4.0/index.d.ts",
       "generatedSha256": "5bf01c9800fb13f7082b0e489f82acd5677cdc1ec640447a518395b04ae1ea7e",
+      "published": true,
       "sourceSha256": "0fbc1d5f60b455b461c9adbb6856e93cf5291f0bc09df3a607e36c632dfa3331",
       "updatedAt": "2026-03-13T10:19:01.284Z"
     },
     "abc-supply-plan-2.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-2.0.0/index.d.ts",
       "generatedSha256": "5d21ae71fce575a72e792fcefdb493739a96ae54de78fc60cdb6e197307b5059",
+      "published": true,
       "sourceSha256": "ebc56977522ed5d1719a491e85d595a85a5ebd424a3b107d3e696b7b62d945e0",
       "updatedAt": "2026-03-13T10:19:01.480Z"
     },
     "abc-supply-plan-3.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-3.0.0/index.d.ts",
       "generatedSha256": "edd9c2cb0c83b2e9b05f33ca84613a38ab536f8ef3a03436acc0cf8e695fa107",
+      "published": true,
       "sourceSha256": "0f255f22d21daec868786ea5c666c4b9907aa23efda7f9bb8d4fda79ee084b63",
       "updatedAt": "2026-03-13T10:19:01.688Z"
     },
     "abc-supply-plan-4.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-4.0.0/index.d.ts",
       "generatedSha256": "0e4cd68fcd9ed361973069b27443af965281c59edc4128f532f00913bb897879",
+      "published": true,
       "sourceSha256": "ac49ae32d4ce3fa1c44852b8f35e7d36fb69eaaebef2d4ec27953453b1e084ba",
       "updatedAt": "2026-03-13T10:19:01.881Z"
     },
     "abc-supply-plan-5.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-5.0.0/index.d.ts",
       "generatedSha256": "06b73515baf8022f55a2a6504bf3daad189fa5fb725e34bb95812733669526f5",
+      "published": true,
       "sourceSha256": "c7424627d1f6e3a3e29f8ae8554269245fc11fa5b8207898d9b17e2d0d2f7b08",
       "updatedAt": "2026-03-13T10:19:02.081Z"
     },
     "abc-supply-plan-6.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-6.0.0/index.d.ts",
       "generatedSha256": "98a36fad12b529ebdc3940d452239e6d95b6d062d016d62355e551a158b6419e",
+      "published": true,
       "sourceSha256": "04f54339045df78684d6ea8425bfb7c53f3697bc0d6b2c8df677f29b56b27cf8",
       "updatedAt": "2026-03-13T10:19:02.289Z"
     },
     "abc-supply-plan-7.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-7.0.0/index.d.ts",
       "generatedSha256": "0326f54e02ba11bb29abd9825a3c012a45bea3d9c5485ea877885460038c1aca",
+      "published": true,
       "sourceSha256": "148619fd7499687892bdb990ee0d23e7bb127e9a32f002ac1d394d86c6341461",
       "updatedAt": "2026-03-13T10:19:02.482Z"
     },
     "abc-supply-plan-8.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-8.0.0/index.d.ts",
       "generatedSha256": "ad98997e6ee11dc1d19c9135a0117688d3df853b1cb5a40eb2e750607b29c24e",
+      "published": true,
       "sourceSha256": "896eec16f6e51604518675ccddb87fddb550c9079d840284353f671ab9eb581e",
       "updatedAt": "2026-03-13T10:19:02.673Z"
     },
     "abc-supply-plan-9.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-9.0.0/index.d.ts",
       "generatedSha256": "e2641ca3377cd44fd21d7f7a8f8f2ba8e85e74b0ddae786444f290e91bc4e086",
+      "published": true,
       "sourceSha256": "37361bd08a52e49473333aeb8ea2a3f040dadfd178489de340d92e12b19d86f2",
       "updatedAt": "2026-03-13T10:19:02.861Z"
     },
     "agripparc-1.2.json": {
       "generatedFile": "schemas/agripparc-1.2/index.d.ts",
       "generatedSha256": "ccdf4f24e25f804e1f261adca92313fe9d8cef78c6859f292ad8435325582d6b",
+      "published": true,
       "sourceSha256": "e9de943bd13fed26cac5ae7eaeb914d4c37b8d5b8c9dd4984427d34488ac149b",
       "updatedAt": "2026-03-13T10:19:03.059Z"
     },
     "agripparc-1.3.json": {
       "generatedFile": "schemas/agripparc-1.3/index.d.ts",
       "generatedSha256": "5dca8086b58310cf68e6a5cc0162aa2bd563a4991dfe4794878abf4839678643",
+      "published": true,
       "sourceSha256": "d2f30bc8b75fa3bc7107ec8604543868e0397ac20f1baf376e76595ac2ef8358",
       "updatedAt": "2026-03-13T10:19:03.256Z"
     },
     "agripparc-1.4.json": {
       "generatedFile": "schemas/agripparc-1.4/index.d.ts",
       "generatedSha256": "b4d24d3985e6709fe7b08a5029eb63324e1297ec3077bf25efe9141afcc9ae84",
+      "published": true,
       "sourceSha256": "2b17ef79e7f140408917b009d600775bb320cb66c6660822ee3eace8ab550409",
       "updatedAt": "2026-03-13T10:19:03.437Z"
     },
     "aiconfig-1.0.json": {
       "generatedFile": "schemas/aiconfig-1.0/index.d.ts",
       "generatedSha256": "bc9dd83b2a05314ce2fc26d1db1c5fc9355b3f3aff66a5b3e11c50fbbce10920",
+      "published": true,
       "sourceSha256": "3cd7d77a4aa963d30f185b01751f13974b5c5c689c3d49ff09f72ba88e40ce5c",
       "updatedAt": "2026-03-13T10:19:03.623Z"
     },
     "aider-0.82.json": {
       "generatedFile": "schemas/aider-0.82/index.d.ts",
       "generatedSha256": "b34af4e0309d9d6ed321a71934f6f2b4a056cd096d57a00955964f05bee27518",
+      "published": true,
       "sourceSha256": "38a856d268813d59fb762de86f367547a3a791fb870a198efabce7ae8c543e21",
       "updatedAt": "2026-03-13T10:19:03.811Z"
     },
     "aio-connector-metadata-10.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-10.0-preview/index.d.ts",
       "generatedSha256": "f74e3c92b5f477395f8485251d38d7bfc6ddfa20e984f7a1bb5132ad44e559f8",
+      "published": true,
       "sourceSha256": "da40203a41aedd2d0e292db74fdcb9218abd4468e431165e3b5f05387a451cd7",
       "updatedAt": "2026-03-13T10:19:04.393Z"
     },
     "aio-connector-metadata-5.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-5.0-preview/index.d.ts",
       "generatedSha256": "42c53c10b788a2af4bcabcffb90a58b4891c5a9939f379e3abeb1941d4eac306",
+      "published": true,
       "sourceSha256": "dd33cd7612f90dc27c0bb2d3098c801eb800864f7a128c3e06d084a6b30a88e8",
       "updatedAt": "2026-03-13T10:19:04.865Z"
     },
     "aio-connector-metadata-6.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-6.0-preview/index.d.ts",
       "generatedSha256": "ab34d725e2e1c2d6373188d8a241b2289299d803196849a62191ac96ebd13162",
+      "published": true,
       "sourceSha256": "5d7e2c605ff3692f81fee93ec0b510c0c08359dd4339aaa6d4e54dcab96a1480",
       "updatedAt": "2026-03-13T10:19:05.309Z"
     },
     "aio-connector-metadata-7.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-7.0-preview/index.d.ts",
       "generatedSha256": "497bef2ce51968d41069e50abfa245797bd06feb04d306153e17802233ec557b",
+      "published": true,
       "sourceSha256": "2f7b5bb4f0d6cde9a95dfbb12255f8013a0062bc628f732c636def69cdb1c817",
       "updatedAt": "2026-03-13T10:19:05.783Z"
     },
     "aio-connector-metadata-8.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-8.0-preview/index.d.ts",
       "generatedSha256": "22a89fb30f5cf36f3a731a478f6a2121098920ed240b07c98eb96bfb8514fa45",
+      "published": true,
       "sourceSha256": "c8df6b5954fca0b826de0d15b50a0be8825da95cb8222f2dcadf76b5532c06b2",
       "updatedAt": "2026-03-13T10:19:06.276Z"
     },
     "aio-connector-metadata-9.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-9.0-preview/index.d.ts",
       "generatedSha256": "907f5d1d9c2d86f41a8ea89131a1c27901894c6e06a4bcea31a96fe2b77ab2b5",
+      "published": true,
       "sourceSha256": "5a33023be7e0c565295ce2a02af48a0fddf6c106ece2e1e785d0fa469fe7efdb",
       "updatedAt": "2026-03-13T10:19:06.801Z"
     },
     "aio-wasm-graph-config-1.0.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
       "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
+      "published": true,
       "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
       "updatedAt": "2026-03-13T10:19:07.004Z"
     },
     "aio-wasm-graph-config-1.1.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.1.0/index.d.ts",
       "generatedSha256": "a1ab3e37a1fac3d6e353c010fd756e92f97e477b21c249dd345797515a2a40a0",
+      "published": true,
       "sourceSha256": "2dc4250c72e0ec908e5ec6347f81f76b1d3e18b3e890060fa95ad9c96e479a98",
       "updatedAt": "2026-03-13T10:19:07.196Z"
     },
     "aiproj-1.0.json": {
       "generatedFile": "schemas/aiproj-1.0/index.d.ts",
       "generatedSha256": "a96ef686aa70ad84864b687b7a0030022ae81bd91d31d8b8bf8495f505fb145a",
+      "published": true,
       "sourceSha256": "3c0c1198c3178a3b9e5f61e2ac5aad035c0c522b3389d8b6c29df25ef05b8fd0",
       "updatedAt": "2026-03-13T10:19:07.390Z"
     },
     "aiproj-1.1.json": {
       "generatedFile": "schemas/aiproj-1.1/index.d.ts",
       "generatedSha256": "34ebc1b498caef7305fce6daff6f98dde099fb7e0dd510f05b2a909324d764ab",
+      "published": true,
       "sourceSha256": "403f624664ff294522c452e09bac06c233fa7810d9cb1b0a1d449928d5adc9a8",
       "updatedAt": "2026-03-13T10:19:07.592Z"
     },
     "aiproj-1.2.json": {
       "generatedFile": "schemas/aiproj-1.2/index.d.ts",
       "generatedSha256": "84cf3e8ae378f109c54e46654e6e68efcfe6285d7b23e3d9663c4b83601bd052",
+      "published": true,
       "sourceSha256": "005721d08845d0781d31c8843515dc19cd77e2388c6ff0eb7ebb93657e684c74",
       "updatedAt": "2026-03-13T10:19:07.787Z"
     },
     "aiproj-1.3.json": {
       "generatedFile": "schemas/aiproj-1.3/index.d.ts",
       "generatedSha256": "1b78c7ca12c5168f1bae386f0a2d1781de48d02a1a42a2c55bfec1883032ed3b",
+      "published": true,
       "sourceSha256": "e01a5d56e28c7a7334b7ef67471cc45f7eb568f70b04580a893067cd76ce167a",
       "updatedAt": "2026-03-13T10:19:07.986Z"
     },
     "aiproj-1.4.json": {
       "generatedFile": "schemas/aiproj-1.4/index.d.ts",
       "generatedSha256": "a1e13ea4fa181fa9b310387ee8d689ceef43440db3bff7ca126104b8fba85f5d",
+      "published": true,
       "sourceSha256": "b771cc3b96b03443da68ebfd726febcbebbdd82dbae414f29425f5295b6b66a6",
       "updatedAt": "2026-03-13T10:19:08.202Z"
     },
     "aiproj-1.5.json": {
       "generatedFile": "schemas/aiproj-1.5/index.d.ts",
       "generatedSha256": "48a71ec812e97c1308e9c346cf91b7faaa8e0f2429d8b99c287f13fa0dc13a33",
+      "published": true,
       "sourceSha256": "9df3840fdc2e6d5016bc139105825618df4805977adb0d34b784f3b91d293fed",
       "updatedAt": "2026-03-13T10:19:08.400Z"
     },
     "aiproj-1.6.json": {
       "generatedFile": "schemas/aiproj-1.6/index.d.ts",
       "generatedSha256": "1641e00df4ff34e8529ac3bcddb87584e6a2b019263a266dac87910eaf2db250",
+      "published": true,
       "sourceSha256": "2448cdb36e988c98099d26e2404c8f4be88bae1d9ebcb538d8ae345cf67e052e",
       "updatedAt": "2026-03-13T10:19:08.601Z"
     },
     "aiproj-1.7.json": {
       "generatedFile": "schemas/aiproj-1.7/index.d.ts",
       "generatedSha256": "76cf5be944a6203e8c3a0f7dfce00ad2df9339b0138a6ce1f8219d4231488ddb",
+      "published": true,
       "sourceSha256": "4773769ed5ff6b70ba1df34e9ebd898fb85c467ee97a2a72361f37755301bab7",
       "updatedAt": "2026-03-13T10:19:08.815Z"
     },
     "aiproj-1.8.json": {
       "generatedFile": "schemas/aiproj-1.8/index.d.ts",
       "generatedSha256": "52e493c025b5f1496dacd7b543c13da50ecbdeda82603c2e0086a22d32f185a1",
+      "published": true,
       "sourceSha256": "3217721a3ba2ec53c5e5ffc27e54fda7268d41f309b01bbf38d73b5e1c0c35a0",
       "updatedAt": "2026-03-13T10:19:09.013Z"
     },
     "aiproj-1.9.json": {
       "generatedFile": "schemas/aiproj-1.9/index.d.ts",
       "generatedSha256": "08ecb32adc18e95cfec64ef9774bea475dae7ad9e9fe3046d282e15253b3c42f",
+      "published": true,
       "sourceSha256": "4ffdb81bbb0417080ec276b9ca283108fcaf248ae70c71763fe721463353cbca",
       "updatedAt": "2026-03-13T10:19:09.215Z"
     },
     "airlock-microgateway-3.0.json": {
       "generatedFile": "schemas/airlock-microgateway-3.0/index.d.ts",
       "generatedSha256": "5da2e65b8edf57fdb8768073cffccb80564fb487ba103a20177b32eff852375b",
+      "published": true,
       "sourceSha256": "ce52896adf7ba90f5b26662caee7f2d186c7e60d34466187acc31d26a5b523f3",
       "updatedAt": "2026-03-13T10:19:09.436Z"
     },
     "airlock-microgateway-3.1.json": {
       "generatedFile": "schemas/airlock-microgateway-3.1/index.d.ts",
       "generatedSha256": "5d393fba6bfe78c72806d8cc7176a980cdec55ef338ec1b8ccaeb6ae96f49733",
+      "published": true,
       "sourceSha256": "bc827aad859dcb00e17a3df7b6ddb0a9d76c3b6f7f32028059ef7cbdef0700bc",
       "updatedAt": "2026-03-13T10:19:09.640Z"
     },
     "airlock-microgateway-3.2.json": {
       "generatedFile": "schemas/airlock-microgateway-3.2/index.d.ts",
       "generatedSha256": "c5535ed790443685b955f9b5da3bf08a1bd47c682c25fdce31741e4f34816d77",
+      "published": true,
       "sourceSha256": "570ae783869ebb4ad35ef2959a2636af48a55a2edd627c3ac2aa90d32dbca9dd",
       "updatedAt": "2026-03-13T10:19:09.847Z"
     },
     "aliases.json": {
       "generatedFile": "schemas/aliases/index.d.ts",
       "generatedSha256": "e73a8078e52c7ab0027c79ce9e9fc8e95fdba3e8c464975c9d915cfebccb6775",
+      "published": true,
       "sourceSha256": "a1d9b390a17fcc60c741876df6b720d01947ae6df57f718fd4d51ebb78771f2d",
       "updatedAt": "2026-03-13T10:19:10.061Z"
     },
     "all-contributors.json": {
       "generatedFile": "schemas/all-contributors/index.d.ts",
       "generatedSha256": "9b3d8fead51d6c348a4ad3ba999b49175767a266a91f550781e7a541dcaad1e7",
+      "published": true,
       "sourceSha256": "a4af0db5bbd907af72eabcb1ff065685bf9264716a17ff75ab08092debe41e17",
       "updatedAt": "2026-03-13T10:19:10.250Z"
     },
     "amplify.json": {
       "generatedFile": "schemas/amplify/index.d.ts",
       "generatedSha256": "aa3185f32dbc07e35e5f7bcff244f59bc60d08c096b3ee0b881e977c5508f5f2",
+      "published": true,
       "sourceSha256": "936ef51288e299277612aa91d6df68018dc5877875045b877608ee3d0918e39a",
       "updatedAt": "2026-03-13T10:19:10.441Z"
     },
     "amx-muse.json": {
       "generatedFile": "schemas/amx-muse/index.d.ts",
       "generatedSha256": "ff9eeb983ddfb7f9a263fac0f02c91ad6fb57f8080f63d73d8893e25c86012e6",
+      "published": true,
       "sourceSha256": "c35c25e72d190a188b03c7cf3c0ce3abf5aa3a6dc62e78258aae3d490bec8bf5",
       "updatedAt": "2026-03-13T10:19:10.628Z"
     },
     "any.json": {
       "generatedFile": "schemas/any/index.d.ts",
       "generatedSha256": "c7bdba6e3829287a8f7be8bc6931e7c086b42c6ae9a02a4a7304cd95d78a8cdd",
+      "published": true,
       "sourceSha256": "1fb157cefd0b47b2e60f349d842c95e40c859914dc3ce334a0c1578e836e63c7",
       "updatedAt": "2026-03-13T10:19:10.840Z"
     },
     "anywork-ac-1.0.json": {
       "generatedFile": "schemas/anywork-ac-1.0/index.d.ts",
       "generatedSha256": "773b0ff18db01ca26d06ae2a6ebaf3ab39802f6dc0df7f94a899e769ee3a7203",
+      "published": true,
       "sourceSha256": "907327d2d991978a18ff0171f472e25bd53c9db7d7c9f251210e420bf1968e0f",
       "updatedAt": "2026-03-13T10:19:11.815Z"
     },
     "anywork-ac-1.1.json": {
       "generatedFile": "schemas/anywork-ac-1.1/index.d.ts",
       "generatedSha256": "44e9d4ca2d002574fda9a8cdd4f7e6bc3bea083e6e03a3e5a262ba853d9f6a4c",
+      "published": true,
       "sourceSha256": "ae5e7a422810bc3ce182220ed4005338eb4a6205514b3aeeff060a1abccf6f1b",
       "updatedAt": "2026-03-13T10:19:12.000Z"
     },
     "apibuilder.json": {
       "generatedFile": "schemas/apibuilder/index.d.ts",
       "generatedSha256": "a282aee6888cd6455b662c2b1da826810be64bb917d6c16959a3998f77f6d6ac",
+      "published": true,
       "sourceSha256": "6d6d30d93739c0b55dcec30d94394c7d3c7c6a2ad17dd08ef8a4278e5681187c",
       "updatedAt": "2026-03-13T10:19:12.193Z"
     },
     "apollo-router-2.8.1.json": {
       "generatedFile": "schemas/apollo-router-2.8.1/index.d.ts",
       "generatedSha256": "d9c449d3af123c75abf2ad3e9aa399b74e8e8225ff45833eec14671d6162d100",
+      "published": true,
       "sourceSha256": "dbc74f769db201f362da851c0582d1ab9bb87bae0b429c00c16fadc86ee62945",
       "updatedAt": "2026-03-13T10:19:12.509Z"
     },
     "apollo-router-2.8.2.json": {
       "generatedFile": "schemas/apollo-router-2.8.2/index.d.ts",
       "generatedSha256": "d9c449d3af123c75abf2ad3e9aa399b74e8e8225ff45833eec14671d6162d100",
+      "published": true,
       "sourceSha256": "eab3873589be8c34ba7ad9f8373d656a19781d41e6311589166d53ba46eb336d",
       "updatedAt": "2026-03-13T10:19:12.818Z"
     },
     "apollo-router-2.9.0.json": {
       "generatedFile": "schemas/apollo-router-2.9.0/index.d.ts",
       "generatedSha256": "921b2ee94195d3d6b3a1e6eb8072d9e5aa5b296b89dc3bb3b208a8ed0b84266f",
+      "published": true,
       "sourceSha256": "e198327f50f36da1481cb386557df6c538b7ed02901b7aacde211bbd4931f502",
       "updatedAt": "2026-03-13T10:19:13.111Z"
     },
     "apple-app-site-association.json": {
       "generatedFile": "schemas/apple-app-site-association/index.d.ts",
       "generatedSha256": "e212dd1940d65d33f35671032ca41f3084b9c3b2ae745a2bcc9c1023fd7d019d",
+      "published": true,
       "sourceSha256": "f4b8253b9f267442e595c6878cc771f3c7946d2ca0198371430af004ae92e067",
       "updatedAt": "2026-03-13T10:19:13.309Z"
     },
     "appsettings.json": {
       "generatedFile": "schemas/appsettings/index.d.ts",
       "generatedSha256": "1bbe12313eec336069ccbb3decad3c77f6e37805a7bf18f93abcb62c01216014",
+      "published": true,
       "sourceSha256": "4b0c62c67a9ede75ae2b157a2f678ef909359db608e768a8614ae18fefd21469",
       "updatedAt": "2026-03-13T10:19:13.511Z"
     },
     "appsscript.json": {
       "generatedFile": "schemas/appsscript/index.d.ts",
       "generatedSha256": "3392759595cf5f3e9c4c05be455622d5dafcb8f391bacb848169061dd230631d",
+      "published": true,
       "sourceSha256": "a7a426813ee84fde2b573f88a28f600afd075f55648a007e7a9006d67d10003c",
       "updatedAt": "2026-03-13T10:19:13.701Z"
     },
     "appveyor.json": {
       "generatedFile": "schemas/appveyor/index.d.ts",
       "generatedSha256": "e246b9c12d161feaff995e34806dd4fbcf92dec1df19d5bd0a3edb9c7e0d95e7",
+      "published": true,
       "sourceSha256": "c71e0f14379239543731b39ee049287540ad874985e5e36a59c625ca19221780",
       "updatedAt": "2026-03-13T10:19:13.911Z"
     },
     "architectfx.json": {
       "generatedFile": "schemas/architectfx/index.d.ts",
       "generatedSha256": "7bb033323cc3afb6862af7bb8b59d1e5257b0b7566c4a123fcce4b96a91f5303",
+      "published": true,
       "sourceSha256": "6fc59b16613d8ee72e046bb41af654dd794b1b24ba8cc8acf8c466b7429e6ae6",
       "updatedAt": "2026-03-13T10:19:14.101Z"
     },
     "artifacthub-repo.json": {
       "generatedFile": "schemas/artifacthub-repo/index.d.ts",
       "generatedSha256": "82c5f25847a3af08180976adf58a8d9d04a63fb5113cc168aec9eda6fdb6255c",
+      "published": true,
       "sourceSha256": "b5871baa454c77d89a196edb5a3059625ff8ed4c3b9edaf264fd765f039f737c",
       "updatedAt": "2026-03-13T10:19:14.285Z"
     },
     "asconfig-schema.json": {
       "generatedFile": "schemas/asconfig-schema/index.d.ts",
       "generatedSha256": "602b64f45e1c7e376d8eba82249dfd3ddb273686e4c56377b3cdf75dd23ce31d",
+      "published": true,
       "sourceSha256": "75d3a29f943b849292a49ac260c44515338245b9f1ab9684c1555795468441f4",
       "updatedAt": "2026-03-13T10:19:14.501Z"
     },
     "asmdef.json": {
       "generatedFile": "schemas/asmdef/index.d.ts",
       "generatedSha256": "f7d2eddc43d036ecf181a56400764a6de78d2e8398a570ea69823e437de6f0bb",
+      "published": true,
       "sourceSha256": "f0a1e2f593ec199eec97c1b555d3c22426a7cc22942a298284519caa6e86fbf4",
       "updatedAt": "2026-03-13T10:19:14.692Z"
     },
     "aspire-8.0.json": {
       "generatedFile": "schemas/aspire-8.0/index.d.ts",
       "generatedSha256": "187d61bbd0870143bec1b96423f22081efeaa1f4b0211ba0d6673fb5b4c5abf1",
+      "published": true,
       "sourceSha256": "afd3a56edfc9caf933b7670f224719cee05f223a69b9387c42c54970fd084909",
       "updatedAt": "2026-03-13T10:19:14.882Z"
     },
     "assetlinks.json": {
       "generatedFile": "schemas/assetlinks/index.d.ts",
       "generatedSha256": "cbfe5078060f6cb3de3b9de5bf2876c92a1a31381c466a4d92c74be5bf574ce9",
+      "published": true,
       "sourceSha256": "c26c89c96df9eb37e75455f2d1ae7c061609451b0c410df4abcba40fecabc78c",
       "updatedAt": "2026-03-13T10:19:15.076Z"
     },
     "aurora-1.0.json": {
       "generatedFile": "schemas/aurora-1.0/index.d.ts",
       "generatedSha256": "0f236478196ab34bc84526519cbe8f5fc0d5de1e17348c065324618fc9436965",
+      "published": true,
       "sourceSha256": "2179fafaf0e9f765f8bf272479c6a1e89a70cd253a25d43c21128d66209f1611",
       "updatedAt": "2026-03-13T10:19:15.294Z"
     },
     "aurora-1.1.json": {
       "generatedFile": "schemas/aurora-1.1/index.d.ts",
       "generatedSha256": "818a68ec7f3c16ac784d84cdcbfb1721d56f9af94110f9455ef6b53bb2407325",
+      "published": true,
       "sourceSha256": "e802a55b4e7494f421193b8b49aac8ac8a2364665d9bae5685a5f22af2d753c2",
       "updatedAt": "2026-03-13T10:19:15.488Z"
     },
     "aurora-1.2.json": {
       "generatedFile": "schemas/aurora-1.2/index.d.ts",
       "generatedSha256": "fd434d8aac4149c41f5dbdcf8575db21ab092500c6342a2cc87a008babc823b2",
+      "published": true,
       "sourceSha256": "1f4cde975cdf2f90f0c54f72249abb5ee013ce21a9a4bc4bb63216b354d0037c",
       "updatedAt": "2026-03-13T10:19:15.677Z"
     },
     "aurora-1.3.json": {
       "generatedFile": "schemas/aurora-1.3/index.d.ts",
       "generatedSha256": "2429ba3a1976e00d456d6779ac6085a33aa1bce60d71cc80ab8c8a2a0a17ab74",
+      "published": true,
       "sourceSha256": "1a06ba554780d9e0befb2d1a0d9949c1ebdd7fa296408aca79dce8d099454b99",
       "updatedAt": "2026-03-13T10:19:15.870Z"
     },
     "ava.json": {
       "generatedFile": "schemas/ava/index.d.ts",
       "generatedSha256": "0ebe79394a2ec03d871e987d4bd07cce5cd836069c61d7f4f936ea52d7914658",
+      "published": true,
       "sourceSha256": "3c02652299c240b152d8d30bc476dfa4bda7854132632dc9595afe53ac12ee0a",
       "updatedAt": "2026-03-13T10:19:16.063Z"
     },
     "avro-avsc.json": {
       "generatedFile": "schemas/avro-avsc/index.d.ts",
       "generatedSha256": "2bca547382e793dfbfcbcabc393c5cb70a264da112f1a501ecaf7cf5a256eee8",
+      "published": true,
       "sourceSha256": "19f9e390bf90531598de0fb29574e9eb4e779f83ca5140e40941a64bf23688e9",
       "updatedAt": "2026-03-13T10:19:16.250Z"
     },
     "aws-cdk-appconfig-featureflags-1.0.0.json": {
       "generatedFile": "schemas/aws-cdk-appconfig-featureflags-1.0.0/index.d.ts",
       "generatedSha256": "2970e91ce95f8c2e49e89745c1c25afeb098ca56c96c12486ac246d2bf3eb1c7",
+      "published": true,
       "sourceSha256": "c85fdb5848c970a4b0914d5eeb078b71d7caf700da01d54807e3c2f5975c0c70",
       "updatedAt": "2026-03-13T10:19:16.449Z"
     },
     "azure-containerapp-template.json": {
       "generatedFile": "schemas/azure-containerapp-template/index.d.ts",
       "generatedSha256": "c0599987d9ab5f4e65ccc332c6e8cc9dce2bbc33edcb1d7da814e7cd6eccbc72",
+      "published": true,
       "sourceSha256": "71e57c366d72032f7a8bb008bff65ba0abe5a0badc0cbbc0dc2d3cce32440bc6",
       "updatedAt": "2026-03-13T10:19:16.658Z"
     },
     "azure-deviceupdate-import-manifest-4.0.json": {
       "generatedFile": "schemas/azure-deviceupdate-import-manifest-4.0/index.d.ts",
       "generatedSha256": "2462033ff39ab4c849178cdf6602aa0c4e8d593f18f30277fef9164e76f49e04",
+      "published": true,
       "sourceSha256": "898390d2b8c5e6601df6c28c118582e654bfd6824642a1296c5b6507119412bf",
       "updatedAt": "2026-03-13T10:19:16.850Z"
     },
     "azure-deviceupdate-import-manifest-5.0.json": {
       "generatedFile": "schemas/azure-deviceupdate-import-manifest-5.0/index.d.ts",
       "generatedSha256": "2e942735c6ed1956b6ede95ff601f926026a6a6475e22c91a56a330352843bc3",
+      "published": true,
       "sourceSha256": "80b3c049d41fef671061feac45e699cfe2053c77773a22c5a6e75719aa980184",
       "updatedAt": "2026-03-13T10:19:17.046Z"
     },
     "azure-deviceupdate-manifest-definitions-4.0.json": {
       "generatedFile": "schemas/azure-deviceupdate-manifest-definitions-4.0/index.d.ts",
       "generatedSha256": "b63deca500d0e8bf60ac038a676f150bb32f50736a2fda38d12bb4ef2abe9784",
+      "published": true,
       "sourceSha256": "4aa5c4cd4460d1b8e3a3f6374e08bcaac0da00d4c29bf15a541d5ebd77f6eb75",
       "updatedAt": "2026-03-13T10:19:17.259Z"
     },
     "azure-deviceupdate-manifest-definitions-5.0.json": {
       "generatedFile": "schemas/azure-deviceupdate-manifest-definitions-5.0/index.d.ts",
       "generatedSha256": "5db22dd6141ee309b6bffff148a4288b48f39067a92f3014052d1d7410059dc6",
+      "published": true,
       "sourceSha256": "b32651d630a996773a2705e0de4dd768952320c5c12426b5fff65d8231d160b7",
       "updatedAt": "2026-03-13T10:19:17.449Z"
     },
     "azure-deviceupdate-update-manifest-4.json": {
       "generatedFile": "schemas/azure-deviceupdate-update-manifest-4/index.d.ts",
       "generatedSha256": "e1c07519ba5eae24fa5ce1329f99893111be5d292be51caa5c66abb0bb0506bd",
+      "published": true,
       "sourceSha256": "79c7a50e57962de74162c01082fdf2d40e1abcc00f44c56b128667c0a55d057c",
       "updatedAt": "2026-03-13T10:19:17.641Z"
     },
     "azure-deviceupdate-update-manifest-5.json": {
       "generatedFile": "schemas/azure-deviceupdate-update-manifest-5/index.d.ts",
       "generatedSha256": "759331f551fb76f33893bed41a264ad28ed2a66fe5e8e6ea1affcc51484b9ced",
+      "published": true,
       "sourceSha256": "aa2facf7a250bf105373f16acd3751da60651e097378214617bd7da3ff116eb9",
       "updatedAt": "2026-03-13T10:19:17.833Z"
     },
     "azure-devops-extension-manifest-1.0.json": {
       "generatedFile": "schemas/azure-devops-extension-manifest-1.0/index.d.ts",
       "generatedSha256": "6612955a13604dc033f19d02d14aeeffde3b8ac62814c94adb97d6ebce990093",
+      "published": true,
       "sourceSha256": "d98710c053bee8ad38159d38e8eeaec579e71b30e233d36a26bb28dbec78b1ea",
       "updatedAt": "2026-03-13T10:19:18.050Z"
     },
     "azure-iot-edge-deployment-1.0.json": {
       "generatedFile": "schemas/azure-iot-edge-deployment-1.0/index.d.ts",
       "generatedSha256": "1b0a06a1a4ef5b401e641a539f6e513a4bf878bf13e35309c9c0c71363f3806d",
+      "published": true,
       "sourceSha256": "0c47affa632f69451a1432b669feb201898c591e54256cafaa5af53ca7f78f45",
       "updatedAt": "2026-03-13T10:19:18.245Z"
     },
     "azure-iot-edge-deployment-2.0.json": {
       "generatedFile": "schemas/azure-iot-edge-deployment-2.0/index.d.ts",
       "generatedSha256": "e3877bcedc856c3b1e785075abde7bada9f59f1bc6c54e4da8abb93cf28ea03d",
+      "published": true,
       "sourceSha256": "2eb4e0299316e8b8b484459d23d153e0c03f05eaa7aea93a7cfbd0657f5c70b3",
       "updatedAt": "2026-03-13T10:19:18.432Z"
     },
     "azure-iot-edge-deployment-template-1.0.json": {
       "generatedFile": "schemas/azure-iot-edge-deployment-template-1.0/index.d.ts",
       "generatedSha256": "c597942877b4a598d3ce14d15ae5d7cae3c7496e512b0aa16fd8ea317013a803",
+      "published": true,
       "sourceSha256": "3dce4941dc8fa5af7a7035d8e009a0a6b2b7111679a67e32435d72f3aad8e5fb",
       "updatedAt": "2026-03-13T10:19:19.504Z"
     },
     "azure-iot-edge-deployment-template-2.0.json": {
       "generatedFile": "schemas/azure-iot-edge-deployment-template-2.0/index.d.ts",
       "generatedSha256": "5135a6658388cb58afe969e32ac5426826101cbb472a02fe743f39f25f71cf7e",
+      "published": true,
       "sourceSha256": "97d577aa53cb6863cbc3a506f9c7ad0a27fffbfe715e452e75eafa38232a56e0",
       "updatedAt": "2026-03-13T10:19:20.021Z"
     },
     "azure-iot-edge-deployment-template-3.0.json": {
       "generatedFile": "schemas/azure-iot-edge-deployment-template-3.0/index.d.ts",
       "generatedSha256": "b67af8b37a322e4531ebc1bb0da13b8ce2a5ab0f3822413d806479c2ee99c3c8",
+      "published": true,
       "sourceSha256": "8b456182b93f812a900e059fef570b8507da1adeb5a6e86c7c0d33b11e1940bf",
       "updatedAt": "2026-03-13T10:19:20.923Z"
     },
     "azure-iot-edge-deployment-template-4.0.json": {
       "generatedFile": "schemas/azure-iot-edge-deployment-template-4.0/index.d.ts",
       "generatedSha256": "cd4d269e28bef6b3b98ff5f819786700508fae520b492a1a082c52e3e25561ae",
+      "published": true,
       "sourceSha256": "cdb9d14e87ab78ea6cd8f6bc386f0a0311c40af1ee54deb701497f0bdb8080a5",
       "updatedAt": "2026-03-13T10:19:21.374Z"
     },
     "azure-iot-edgeagent-deployment-1.0.json": {
       "generatedFile": "schemas/azure-iot-edgeagent-deployment-1.0/index.d.ts",
       "generatedSha256": "8d60fde7a6bf83f495f828b838266d39e70d3af58d50ebd7fed049851bf094a2",
+      "published": true,
       "sourceSha256": "5f25959df4da111c2688250fffa87c23c05ab0552cb2708cca7658ef32dbdde1",
       "updatedAt": "2026-03-13T10:19:21.593Z"
     },
     "azure-iot-edgeagent-deployment-1.1.json": {
       "generatedFile": "schemas/azure-iot-edgeagent-deployment-1.1/index.d.ts",
       "generatedSha256": "e603fc904eab8cd05b6980d149fbf06560ab41a05b81b9d1947460edd8bcb37a",
+      "published": true,
       "sourceSha256": "8dda3d356b5063c443711372859907758315574a27e3b7f156b90f81e7d05141",
       "updatedAt": "2026-03-13T10:19:21.793Z"
     },
     "azure-iot-edgehub-deployment-1.0.json": {
       "generatedFile": "schemas/azure-iot-edgehub-deployment-1.0/index.d.ts",
       "generatedSha256": "5907890e60082e91606d63173ad8bfc3514d454a7b41d5f66b97dbdb77ea5ba3",
+      "published": true,
       "sourceSha256": "27254d7522640e1c21c68e01546506447f2eebcc6c51580d218d2b15c7a96c69",
       "updatedAt": "2026-03-13T10:19:21.987Z"
     },
     "azure-iot-edgehub-deployment-1.1.json": {
       "generatedFile": "schemas/azure-iot-edgehub-deployment-1.1/index.d.ts",
       "generatedSha256": "da741a264e38c1dde1847ffa4b43dacdde4c1f55fa60a6e04365e05c468a671d",
+      "published": true,
       "sourceSha256": "d40df59370936519971fff299876786dec78e9adb0aa1dd46bf10f7656fcb1f9",
       "updatedAt": "2026-03-13T10:19:22.179Z"
     },
     "azure-iot-edgehub-deployment-1.2.json": {
       "generatedFile": "schemas/azure-iot-edgehub-deployment-1.2/index.d.ts",
       "generatedSha256": "928246dca65443c817f7a267c52925756642c43961d0952a6773cc2e70c272d8",
+      "published": true,
       "sourceSha256": "6556504630fe6b742dc7708d6833fbb92453636a870e1fb81d976bebba17ce1c",
       "updatedAt": "2026-03-13T10:19:22.387Z"
     },
     "babelrc.json": {
       "generatedFile": "schemas/babelrc/index.d.ts",
       "generatedSha256": "d10d8d23d102465ac3089690e90b3bdafa26938f44312860e0e633cb4b0de224",
+      "published": true,
       "sourceSha256": "e4561c5acb6f5c96c3934840332f2907efe1584f02226cb56fc3bac459d70558",
       "updatedAt": "2026-03-13T10:19:22.580Z"
     },
     "backportrc.json": {
       "generatedFile": "schemas/backportrc/index.d.ts",
       "generatedSha256": "2632eecb13b353be5a4f25061eb07c4824cf3aa30e9facceb39814e11a782fc6",
+      "published": true,
       "sourceSha256": "3a32a30e60d8818a6d50fdca9fb417c9aaa776ee92655dd75ca3bc460f2a35b0",
       "updatedAt": "2026-03-13T10:19:22.767Z"
     },
     "bamboo-spec.json": {
       "generatedFile": "schemas/bamboo-spec/index.d.ts",
       "generatedSha256": "3829456cb8f52c445f5c9ec8f279903189b734452d549a38dee378cac702c376",
+      "published": true,
       "sourceSha256": "03808ea111ee9ccda6ac0b3895ef97af090f74670e06330d8af5bb83fce3edf8",
       "updatedAt": "2026-03-13T10:19:22.967Z"
     },
     "band-manifest.json": {
       "generatedFile": "schemas/band-manifest/index.d.ts",
       "generatedSha256": "8a5ca56b07b3d390790cb098d5843e1e6a5089398c3e9b8a4cb996c25e13c37c",
+      "published": true,
       "sourceSha256": "86011b20eede148293e8c1b8a9a46c9471d3617615948930301c69c493638602",
       "updatedAt": "2026-03-13T10:19:23.158Z"
     },
     "base.json": {
       "generatedFile": "schemas/base/index.d.ts",
       "generatedSha256": "be46517f173e320262af268fa6bbdae990f75ca79f0d869995e68e31d39d3ad1",
+      "published": true,
       "sourceSha256": "0aa71a46d69614ad7fb637efa12245b1498ca2ac74abff90e66b281dd10b9e37",
       "updatedAt": "2026-03-13T10:19:23.351Z"
     },
     "behat.json": {
       "generatedFile": "schemas/behat/index.d.ts",
       "generatedSha256": "34b086c94d7a77f4ac6054ad403581c0d44145afec71ab3f1918090733b9719b",
+      "published": true,
       "sourceSha256": "2dda62597eb626305903b200529abc6693b488347021b0dfef648b094fc42b08",
       "updatedAt": "2026-03-13T10:19:23.569Z"
     },
     "bettercodehub.json": {
       "generatedFile": "schemas/bettercodehub/index.d.ts",
       "generatedSha256": "78649872fedc2731bb7c42d7f6447ab507b02b9db42eb3b69fb59177e7ecc4af",
+      "published": true,
       "sourceSha256": "0c09d70d0f8492e60311bb4fd64000fcb7fd3edc4ebbc61f03010536a412aa22",
       "updatedAt": "2026-03-13T10:19:23.827Z"
     },
     "bigconfig.json": {
       "generatedFile": "schemas/bigconfig/index.d.ts",
       "generatedSha256": "11e8240bbfe709acfc9096da3cea1e022e73c6dc55ef72e0c7c3bd7577e15343",
+      "published": true,
       "sourceSha256": "faa52c7fddd133c4033f5bdfda515faab3f8e351bbdb1fb345e3fccdd3b4ce4c",
       "updatedAt": "2026-03-13T10:19:24.028Z"
     },
     "bigquery-table.json": {
       "generatedFile": "schemas/bigquery-table/index.d.ts",
       "generatedSha256": "14d900644ada6aa43457ff9d1ed0a6610911f369cace73887c27e957dfa50174",
+      "published": true,
       "sourceSha256": "dae1cc0041708f292362ae5d75e4c639e9dc7c06b5bdfc357449286597facd86",
       "updatedAt": "2026-03-13T10:19:24.231Z"
     },
     "BizTalkServerApplicationSchema.json": {
       "generatedFile": "schemas/biztalkserverapplicationschema/index.d.ts",
       "generatedSha256": "8c8acd374a97d35bf552414f9666f8616cde471bf61276afa2ded8812220f8f7",
+      "published": true,
       "sourceSha256": "bafd1d755e033da0cba6d52d11c273f766423306518b26823cbd54a524364f90",
       "updatedAt": "2026-03-13T10:19:24.669Z"
     },
     "block.json": {
       "generatedFile": "schemas/block/index.d.ts",
       "generatedSha256": "bc974771c0d4fa7c34de5abd3a1f7fccf35e60967ad326ae000fc059cafb7b60",
+      "published": true,
       "sourceSha256": "0aa46e28337dd68b4ecd9f1f7dbd29d8dafaf3401f73276e5422ed3b06cc6df0",
       "updatedAt": "2026-03-13T10:19:25.079Z"
     },
     "bmml.json": {
       "generatedFile": "schemas/bmml/index.d.ts",
       "generatedSha256": "23cf8ddc2aa537d0f83f0be28b0d2f6e54643f0a862d14c9eb9fc8adc0e55318",
+      "published": true,
       "sourceSha256": "a7c999ae42a4f86d14f48da2cafdb4123d0eeb353313a2ae592283c3a7aa8ca0",
       "updatedAt": "2026-03-13T10:19:25.285Z"
     },
     "bootstraprc.json": {
       "generatedFile": "schemas/bootstraprc/index.d.ts",
       "generatedSha256": "4b4db8fa328defb3a4f086d586556ec72e3bf4ac459eb0de05416243a5df6991",
+      "published": true,
       "sourceSha256": "d435b63a1c7ef57c9361c85266ac4c5a4fb3bbf408784b84a17e0ce33da42de3",
       "updatedAt": "2026-03-13T10:19:25.477Z"
     },
     "bower.json": {
       "generatedFile": "schemas/bower/index.d.ts",
       "generatedSha256": "8567015f921fb2879bf4d5ac407b2dee9b229b0861ddabb23596996346262a23",
+      "published": true,
       "sourceSha256": "63802169f76ed0609009744819bc26e8996a4881d951da61445d2a7cd58d2c0b",
       "updatedAt": "2026-03-13T10:19:25.678Z"
     },
     "bowerrc.json": {
       "generatedFile": "schemas/bowerrc/index.d.ts",
       "generatedSha256": "cf9c36efbeb884a26f56e2e32253d17fa076ad043d926b9048bfa35b16dfbe72",
+      "published": true,
       "sourceSha256": "18bd23252987a9cf34f2085e27d512f8556f686f693c65cd5f6007d3bd1676c1",
       "updatedAt": "2026-03-13T10:19:25.870Z"
     },
     "boyka-config.json": {
       "generatedFile": "schemas/boyka-config/index.d.ts",
       "generatedSha256": "e9569d2b2ef2756bec9d04179bbc903b4f182bafeff7fccedb3b163cf58f5a3c",
+      "published": true,
       "sourceSha256": "71091f4b3dc86089b7b83ac970dc62126d31f723d3b7dd34014ae7b158ac896c",
       "updatedAt": "2026-03-13T10:19:26.087Z"
     },
     "bozr.json": {
       "generatedFile": "schemas/bozr/index.d.ts",
       "generatedSha256": "ba402fea10fd0e57261a637efc55bab126d4d71ee5410bf92ab66ccdacb5fb6b",
+      "published": true,
       "sourceSha256": "91213487616a515d9388242cee1e4a18fc1ebee6c0520c2cc4f3eaa10ff011df",
       "updatedAt": "2026-03-13T10:19:26.279Z"
     },
     "bpkg.json": {
       "generatedFile": "schemas/bpkg/index.d.ts",
       "generatedSha256": "c9260ea7125d2cdaaf528da155408f94f64d5c2b96107199f2b278c2cd44d23b",
+      "published": true,
       "sourceSha256": "ff2d2e54285ab0772d5743b3c1d46b276f68f50796504927351e255629982afc",
       "updatedAt": "2026-03-13T10:19:26.478Z"
     },
     "browser.i18n.json": {
       "generatedFile": "schemas/browser.i18n/index.d.ts",
       "generatedSha256": "d1d73d6217db5f87723049ca132a26f406e166701d92d682c4f7465682280f13",
+      "published": true,
       "sourceSha256": "a3cbb5d3fa605deaa2e0b7b6da7e11e519f246d99f7be07a51cf7fd22be1b073",
       "updatedAt": "2026-03-13T10:19:26.707Z"
     },
     "buf.gen.json": {
       "generatedFile": "schemas/buf.gen/index.d.ts",
       "generatedSha256": "ea8736e3140c87924af0b50e37c9f73345055de04142b2a5ca8445d490aa84cc",
+      "published": true,
       "sourceSha256": "2e7e8a94fe51db3ec1dea49d73ae73a81ebe4f6df4e78fde8d4d27afa6cfd120",
       "updatedAt": "2026-03-13T10:19:26.906Z"
     },
     "buf.json": {
       "generatedFile": "schemas/buf/index.d.ts",
       "generatedSha256": "8e32007005b531b630a20cae5fb2fadc11a2e499877e44fa276a43d973ca95ae",
+      "published": true,
       "sourceSha256": "af0a5c159a2b0c48da69370806766ed3f389daae774cbe21d86a2fed06bfc620",
       "updatedAt": "2026-03-13T10:19:27.101Z"
     },
     "buf.lock.json": {
       "generatedFile": "schemas/buf.lock/index.d.ts",
       "generatedSha256": "916fd4d7ea6c180f63a438c20e0184f581860417f8a1c7b94de3c95305fe67bf",
+      "published": true,
       "sourceSha256": "1c93c9eb4e29e957727096fa95f589b0f986289f44c64bb5436fc79d066bdb77",
       "updatedAt": "2026-03-13T10:19:27.314Z"
     },
     "buf.plugin.json": {
       "generatedFile": "schemas/buf.plugin/index.d.ts",
       "generatedSha256": "0826dd9b9cb195295c6d152ae49eca224eff06bc6fd975b845b087a8cf4612d1",
+      "published": true,
       "sourceSha256": "da7df2891ab3be328cc1800aa5aa9c5e1ffb2e22193fbbfc3ac1069b9419df84",
       "updatedAt": "2026-03-13T10:19:27.515Z"
     },
     "buf.work.json": {
       "generatedFile": "schemas/buf.work/index.d.ts",
       "generatedSha256": "38bde9fb6031e803d045f8ada8de1e6ea8796c708b06f9ed14680949a3f10695",
+      "published": true,
       "sourceSha256": "7006213028247bb7c08238aafeba52d1b9adc7fe52378a5eaae66969846bd23b",
       "updatedAt": "2026-03-13T10:19:27.706Z"
     },
     "bukkit-plugin.json": {
       "generatedFile": "schemas/bukkit-plugin/index.d.ts",
       "generatedSha256": "af148afaba6463a34b0de400bf07a422a1ee47c1dd1c1257512dfb91b0919593",
+      "published": true,
       "sourceSha256": "60c8d23080460693f108b91c02892200b5b03fc75fe3d4bf3fb78f214153c61e",
       "updatedAt": "2026-03-13T10:19:27.907Z"
     },
     "bun-lock.json": {
       "generatedFile": "schemas/bun-lock/index.d.ts",
       "generatedSha256": "fd2efdf7b6ac13e812b834faaf1beafce370016046866fbdb19508ab7cc1173a",
+      "published": true,
       "sourceSha256": "76f75399699d13b028f9732d9cf4dbd240cc5b0ef0e028844c18c60a3e93741e",
       "updatedAt": "2026-03-13T10:19:28.143Z"
     },
     "bundleconfig.json": {
       "generatedFile": "schemas/bundleconfig/index.d.ts",
       "generatedSha256": "f6cd0dcaca0f1f823c44a7f585afb5cb2afad12cf59779cfb1fd18c8c7dc90bc",
+      "published": true,
       "sourceSha256": "a604efbf200d4d26f1d2bcc3ea810b34bc041c89464930b39019ce91f636d16d",
       "updatedAt": "2026-03-13T10:19:28.342Z"
     },
     "bunfig.json": {
       "generatedFile": "schemas/bunfig/index.d.ts",
       "generatedSha256": "b0db7c053884617cfe41771527a44cdd2812515cae120e063148f8502574b02b",
+      "published": true,
       "sourceSha256": "8e353f2db8352af3358169dad2271d411b71fb9963e5fa2ebd277be589deb1d2",
       "updatedAt": "2026-03-13T10:19:28.535Z"
     },
     "bungee-plugin.json": {
       "generatedFile": "schemas/bungee-plugin/index.d.ts",
       "generatedSha256": "a24ce4da21a86b4016837d6e043d531986ed3bc3ccfdd1da86d7695a5938d953",
+      "published": true,
       "sourceSha256": "3eb79f862dc27e53faf7b5ed3f8ca4ee961ca6a64af37798e8226b74822fd0ae",
       "updatedAt": "2026-03-13T10:19:28.728Z"
     },
     "bxci.schema-1.0.1.json": {
       "generatedFile": "schemas/bxci.schema-1.0.1/index.d.ts",
       "generatedSha256": "127b7266065a09eb07fdd0b82872118dd1ea436874408d3d17ab1d34c727288a",
+      "published": true,
       "sourceSha256": "fd0c9c2e514d0a7b9a322c74e2d0464c458fccc6663b4e36a107ac7c10620e3c",
       "updatedAt": "2026-03-13T10:19:28.942Z"
     },
     "bxci.schema-1.0.json": {
       "generatedFile": "schemas/bxci.schema-1.0/index.d.ts",
       "generatedSha256": "1e1c571494f4bb82ae3430571ef64b51dfa501e51a9a61c6ee5dc4f522231905",
+      "published": true,
       "sourceSha256": "a17aa6871a6803ae9634cdb416cd1de6068cd712c12785de316fbfaa4557799d",
       "updatedAt": "2026-03-13T10:19:29.137Z"
     },
     "bxci.schema-2.0.0.json": {
       "generatedFile": "schemas/bxci.schema-2.0.0/index.d.ts",
       "generatedSha256": "e5c977be881814c488fcb3a09ccf74e0d706d3e64ad3715578efa2d796b60a11",
+      "published": true,
       "sourceSha256": "27cf66d3fdc2b1b03de177d0c5abb679880d31772e2f2b1533baaaa839da7054",
       "updatedAt": "2026-03-13T10:19:29.333Z"
     },

@@ -3,6 +3,8 @@ import os from 'node:os';
 import path from 'node:path';
 import {afterEach, describe, expect, it, vi} from 'vitest';
 
+import type {SchemaLockFile} from '../src/types.ts';
+
 import {publishGeneratedPackages} from '../src/publisher.ts';
 
 const trackedTempDirectories: string[] = [];
@@ -32,6 +34,7 @@ describe('publishGeneratedPackages', () => {
     );
 
     const logFileContent = await readFile(path.join(workspaceDirectory, 'publish-errors.log'), 'utf-8');
+    const lockFile = await readLockFile(workspaceDirectory);
 
     expect(stats).toEqual({
       attempted: 2,
@@ -43,6 +46,8 @@ describe('publishGeneratedPackages', () => {
     });
     expect(publishedDirectories).toEqual(['alpha', 'beta']);
     expect(logFileContent).toBe('No publish errors.\n');
+    expect(lockFile.entries['alpha.json']?.published).toBe(true);
+    expect(lockFile.entries['beta.json']?.published).toBe(true);
     expect(consoleInfoSpy).toHaveBeenCalledWith('Published: @schemastore/alpha@1.0.0');
     expect(consoleInfoSpy).toHaveBeenCalledWith('Published: @schemastore/beta@2.0.0');
   });
@@ -69,6 +74,7 @@ describe('publishGeneratedPackages', () => {
     );
 
     const logFileContent = await readFile(path.join(workspaceDirectory, 'publish-errors.log'), 'utf-8');
+    const lockFile = await readLockFile(workspaceDirectory);
 
     expect(stats).toEqual({
       attempted: 3,
@@ -81,6 +87,9 @@ describe('publishGeneratedPackages', () => {
     expect(publishedDirectories).toEqual(['alpha', 'gamma']);
     expect(logFileContent).toContain('@schemastore/beta@1.0.1');
     expect(logFileContent).toContain('publish failed');
+    expect(lockFile.entries['alpha.json']?.published).toBe(true);
+    expect(lockFile.entries['beta.json']?.published).toBe(false);
+    expect(lockFile.entries['gamma.json']?.published).toBe(true);
   });
 
   it('supports dry-run mode without calling the publish function', async () => {
@@ -100,6 +109,7 @@ describe('publishGeneratedPackages', () => {
     );
 
     const logFileContent = await readFile(path.join(workspaceDirectory, 'publish-errors.log'), 'utf-8');
+    const lockFile = await readLockFile(workspaceDirectory);
 
     expect(stats).toEqual({
       attempted: 2,
@@ -111,6 +121,8 @@ describe('publishGeneratedPackages', () => {
     });
     expect(publishPackage).not.toHaveBeenCalled();
     expect(logFileContent).toBe('No publish errors.\n');
+    expect(lockFile.entries['alpha.json']?.published).toBe(false);
+    expect(lockFile.entries['beta.json']?.published).toBe(false);
   });
 });
 
@@ -119,14 +131,38 @@ async function createWorkspace(schemaPackageFiles: Record<string, string>): Prom
   trackedTempDirectories.push(workspaceDirectory);
 
   const schemasDirectory = path.join(workspaceDirectory, 'schemas');
+  const lockFile: SchemaLockFile = {
+    entries: {},
+    generatedAt: new Date(0).toISOString(),
+    version: 1,
+  };
 
   for (const [relativePath, content] of Object.entries(schemaPackageFiles)) {
     const targetPath = path.join(schemasDirectory, relativePath);
     await mkdir(path.dirname(targetPath), {recursive: true});
     await writeFile(targetPath, content, 'utf-8');
+
+    if (path.basename(targetPath) === 'package.json') {
+      const packageDirectory = path.dirname(targetPath);
+      const packageName = path.basename(packageDirectory);
+      lockFile.entries[`${packageName}.json`] = {
+        generatedFile: path.join('schemas', packageName, 'index.d.ts'),
+        generatedSha256: 'generated-hash',
+        published: false,
+        sourceSha256: 'source-hash',
+        updatedAt: new Date(0).toISOString(),
+      };
+    }
   }
 
+  await writeFile(path.join(workspaceDirectory, 'schema-lock.json'), `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
+
   return workspaceDirectory;
+}
+
+async function readLockFile(workspaceDirectory: string): Promise<SchemaLockFile> {
+  const raw = await readFile(path.join(workspaceDirectory, 'schema-lock.json'), 'utf-8');
+  return JSON.parse(raw) as SchemaLockFile;
 }
 
 async function withWorkingDirectory<T>(targetDirectory: string, action: () => Promise<T>): Promise<T> {

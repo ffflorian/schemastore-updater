@@ -124,6 +124,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       nextEntries[schemaRelativePath] = {
         generatedFile: path.relative(projectRoot, generatedFilePath),
         generatedSha256,
+        published: false,
         sourceSha256,
         updatedAt: new Date().toISOString(),
       };
@@ -296,7 +297,15 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
   const parsed = JSON.parse(content) as SchemaLockFile;
 
   return {
-    entries: parsed.entries ?? {},
+    entries: Object.fromEntries(
+      Object.entries(parsed.entries ?? {}).map(([schemaPath, lockEntry]) => [
+        schemaPath,
+        {
+          ...lockEntry,
+          published: lockEntry.published ?? false,
+        },
+      ])
+    ),
     generatedAt: parsed.generatedAt,
     version: 1,
   };

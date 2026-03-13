@@ -73,6 +73,7 @@ describe('updateSchemas', () => {
     expect(lockEntry?.generatedFile).toBe('schemas/accelerator-schema/index.d.ts');
     // eslint-disable-next-line no-magic-numbers
     expect(lockEntry?.generatedSha256).toHaveLength(64);
+    expect(lockEntry?.published).toBe(false);
     // eslint-disable-next-line no-magic-numbers
     expect(lockEntry?.sourceSha256).toHaveLength(64);
   });

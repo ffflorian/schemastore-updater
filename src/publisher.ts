@@ -3,7 +3,7 @@ import {access, readdir, readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {promisify} from 'node:util';
 
-import type {PublishStats} from './types.js';
+import type {LockEntry, PublishStats, SchemaLockFile} from './types.js';
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
@@ -29,6 +29,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     ? path.resolve(options.logFilePath)
     : path.join(projectRoot, DEFAULT_PUBLISH_LOG_FILE);
   const publishPackage = options.publishPackage ?? publishPackageDirectory;
+  const lockFilePath = path.join(projectRoot, 'schema-lock.json');
 
   const schemasDirectoryExists = await exists(schemasDirectory);
   if (!schemasDirectoryExists) {
@@ -42,6 +43,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     .sort((leftPath, rightPath) => leftPath.localeCompare(rightPath));
 
   const errorMessages: string[] = [];
+  const lockFile = await loadLockFile(lockFilePath);
   const stats: PublishStats = {
     attempted: 0,
     dryRun,
@@ -74,12 +76,15 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
         continue;
       }
 
-      console.info(`Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
+      console.info(`Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'} ...`);
       await publishPackage(packageDirectory);
       stats.published += 1;
+      markPackageAsPublished(lockFile, packageDirectory, projectRoot);
+      await writeLockFile(lockFilePath, lockFile);
       console.info(`Published: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
     } catch (error) {
       stats.failed += 1;
+      console.info(`Publishing failed: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
       errorMessages.push(formatPublishError(packageLabel, error));
     }
 
@@ -110,6 +115,43 @@ function formatPublishError(packageLabel: string, error: unknown): string {
   return `[${new Date().toISOString()}] ${packageLabel}\n${errorMessage}`;
 }
 
+async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
+  if (!(await exists(lockFilePath))) {
+    return {
+      entries: {},
+      generatedAt: new Date(0).toISOString(),
+      version: 1,
+    };
+  }
+
+  const content = await readFile(lockFilePath, 'utf-8');
+  const parsed = JSON.parse(content) as SchemaLockFile;
+
+  return {
+    entries: Object.fromEntries(
+      Object.entries(parsed.entries ?? {}).map(([schemaPath, lockEntry]) => [
+        schemaPath,
+        {
+          ...lockEntry,
+          published: lockEntry.published ?? false,
+        },
+      ])
+    ) as Record<string, LockEntry>,
+    generatedAt: parsed.generatedAt,
+    version: 1,
+  };
+}
+
+function markPackageAsPublished(lockFile: SchemaLockFile, packageDirectory: string, projectRoot: string): void {
+  const generatedFile = path.relative(projectRoot, path.join(packageDirectory, 'index.d.ts'));
+
+  for (const lockEntry of Object.values(lockFile.entries)) {
+    if (lockEntry.generatedFile === generatedFile) {
+      lockEntry.published = true;
+    }
+  }
+}
+
 async function publishPackageDirectory(packageDirectory: string): Promise<void> {
   await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
     cwd: packageDirectory,
@@ -120,6 +162,10 @@ async function publishPackageDirectory(packageDirectory: string): Promise<void> 
 async function readPackageManifest(packageJsonPath: string): Promise<PackageManifest> {
   const packageJsonContent = await readFile(packageJsonPath, 'utf-8');
   return JSON.parse(packageJsonContent) as PackageManifest;
+}
+
+async function writeLockFile(lockFilePath: string, lockFile: SchemaLockFile): Promise<void> {
+  await writeFile(lockFilePath, `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
 }
 
 async function writePublishLog(logFilePath: string, errorMessages: string[]): Promise<void> {

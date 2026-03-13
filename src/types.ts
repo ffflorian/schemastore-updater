@@ -6,6 +6,7 @@ export interface CliOptions {
 export interface LockEntry {
   generatedFile: string;
   generatedSha256: string;
+  published: boolean;
   sourceSha256: string;
   updatedAt: string;
 }
