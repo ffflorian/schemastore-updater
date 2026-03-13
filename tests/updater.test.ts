@@ -136,6 +136,62 @@ describe('updateSchemas', () => {
     expect(secondPackageJson.version).toBe('1.0.1');
   });
 
+  it('resets published to false when regeneration changes the generated sha256', async () => {
+    const context = await createWorkspace({
+      'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
+    });
+
+    await withWorkingDirectory(context.workspaceDir, () => updateSchemas({force: false, sourceDir: context.sourceDir}));
+
+    const initialLockFile = await readLockFile(context.workspaceDir);
+    const initialEntry = initialLockFile.entries['accelerator/schema.json'];
+
+    expect(initialEntry).toBeDefined();
+
+    await writeLockFile(context.workspaceDir, {
+      ...initialLockFile,
+      entries: {
+        ...initialLockFile.entries,
+        'accelerator/schema.json': {
+          ...initialEntry,
+          published: true,
+        },
+      },
+    });
+
+    await writeSchemaFile(
+      context.sourceDir,
+      'accelerator/schema.json',
+      JSON.stringify(
+        {
+          ...createBasicSchema('Accelerator'),
+          properties: {
+            enabled: {type: 'boolean'},
+            name: {type: 'string'},
+          },
+          required: ['name', 'enabled'],
+        },
+        null,
+        2
+      )
+    );
+
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      updateSchemas({force: false, sourceDir: context.sourceDir})
+    );
+    const nextLockFile = await readLockFile(context.workspaceDir);
+    const nextEntry = nextLockFile.entries['accelerator/schema.json'];
+
+    expect(stats).toEqual({
+      failed: 0,
+      generated: 1,
+      skipped: 0,
+      totalSchemas: 1,
+    });
+    expect(nextEntry?.generatedSha256).not.toBe(initialEntry?.generatedSha256);
+    expect(nextEntry?.published).toBe(false);
+  });
+
   it('counts conversion failures and continues without requiring a blocklist', async () => {
     const context = await createWorkspace({
       'broken/schema.json': '{"title": "Broken", "type":',
@@ -219,6 +275,16 @@ async function createWorkspace(schemaFiles: Record<string, string>): Promise<Wor
 async function readLockFile(workspaceDir: string): Promise<SchemaLockFile> {
   const raw = await readFile(path.join(workspaceDir, 'schema-lock.json'), 'utf-8');
   return JSON.parse(raw) as SchemaLockFile;
+}
+
+async function writeLockFile(workspaceDir: string, lockFile: SchemaLockFile): Promise<void> {
+  await writeFile(path.join(workspaceDir, 'schema-lock.json'), `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
+}
+
+async function writeSchemaFile(sourceDir: string, relativePath: string, content: string): Promise<void> {
+  const schemaPath = path.join(sourceDir, 'src', 'schemas', 'json', relativePath);
+  await mkdir(path.dirname(schemaPath), {recursive: true});
+  await writeFile(schemaPath, content, 'utf-8');
 }
 
 async function withWorkingDirectory<T>(targetDirectory: string, action: () => Promise<T>): Promise<T> {

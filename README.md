@@ -62,6 +62,8 @@ yarn publish:schemas
 
 Publishing attempts every generated schema package under `schemas/`. If one package fails to publish, the remaining packages are still attempted. Publish failures are written to `publish-errors.log`.
 
+The publish workflow opens a pull request with an updated `schema-lock.json` after publish attempts so published package versions are tracked in git.
+
 All published schemastore packages are visible under the [@schemastore](https://www.npmjs.com/org/schemastore) npm organization page.
 
 Dry-run mode:

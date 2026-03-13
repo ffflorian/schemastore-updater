@@ -66,6 +66,8 @@ Each generated schema package must contain:
 - Publishing runs only on pushes to the default branch.
 - Publishing is additionally gated to commits whose message is exactly `chore(schemas): weekly schema update`.
 - CI publishing uses `yarn publish:schemas` and should rely on an `NPM_TOKEN` secret.
+- The publish step must continue through per-package failures so successful publishes still update lock state.
+- After publish attempts, the workflow opens a pull request with the updated `schema-lock.json` so published flags stay in sync with git history, then marks the job as failed when publish attempts had errors.
 - Publish failures should be logged to `publish-errors.log`, but publishing must continue for the remaining packages.
 
 ## Tooling and Commands
