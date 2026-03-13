@@ -91,6 +91,10 @@ Use yarn only.
 - Always write `yarn` in lowercase.
 - Always write `vite` in lowercase.
 - Always write `git` in lowercase.
+- Prefer `try/catch` over Promise `.catch(...)` chains in repository TypeScript code.
+- When joining only literal path segments, prefer `path.join('a/b/c')` over `path.join('a', 'b', 'c')`.
+- Do not use dynamic imports in the middle of functions when the module can be imported at the top of the file.
+- Prefer `for (const entry of entries)` loops over `await Promise.all(entries.map(...))` for recursive directory walking in this repository.
 - Follow the repository prettier code style.
 - Run `yarn fix:other` for formatting changes.
 

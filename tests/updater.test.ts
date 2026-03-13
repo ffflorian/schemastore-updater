@@ -39,7 +39,7 @@ describe('updateSchemas', () => {
       totalSchemas: 1,
     });
 
-    const packageDir = path.join(context.workspaceDir, 'schemas', 'accelerator-schema');
+    const packageDir = path.join(context.workspaceDir, 'schemas/accelerator-schema');
     const generatedDts = await readFile(path.join(packageDir, 'index.d.ts'), 'utf-8');
     const generatedLicense = await readFile(path.join(packageDir, 'LICENSE'), 'utf-8');
     const generatedReadme = await readFile(path.join(packageDir, 'README.md'), 'utf-8');
@@ -111,7 +111,7 @@ describe('updateSchemas', () => {
     await withWorkingDirectory(context.workspaceDir, () => updateSchemas({force: false, sourceDir: context.sourceDir}));
     const firstLock = await readLockFile(context.workspaceDir);
     const firstPackageJson = JSON.parse(
-      await readFile(path.join(context.workspaceDir, 'schemas', 'accelerator-schema', 'package.json'), 'utf-8')
+      await readFile(path.join(context.workspaceDir, 'schemas/accelerator-schema/package.json'), 'utf-8')
     ) as {version?: string};
 
     vi.setSystemTime(new Date('2026-03-11T00:00:00Z'));
@@ -120,7 +120,7 @@ describe('updateSchemas', () => {
     );
     const secondLock = await readLockFile(context.workspaceDir);
     const secondPackageJson = JSON.parse(
-      await readFile(path.join(context.workspaceDir, 'schemas', 'accelerator-schema', 'package.json'), 'utf-8')
+      await readFile(path.join(context.workspaceDir, 'schemas/accelerator-schema/package.json'), 'utf-8')
     ) as {version?: string};
 
     expect(forcedStats).toEqual({
@@ -229,7 +229,7 @@ describe('updateSchemas', () => {
     );
     const generatorLog = await readFile(path.join(context.workspaceDir, 'schemagenerator.log'), 'utf-8');
 
-    const brokenPackageDir = path.join(context.workspaceDir, 'schemas', 'broken-schema');
+    const brokenPackageDir = path.join(context.workspaceDir, 'schemas/broken-schema');
 
     expect(stats).toEqual({
       failed: 1,
@@ -259,12 +259,12 @@ async function createWorkspace(schemaFiles: Record<string, string>): Promise<Wor
   const workspaceDir = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-tests-'));
   trackedTempDirs.push(workspaceDir);
 
-  await writeFile(path.join(workspaceDir, 'LICENSE'), 'MIT\n', 'utf-8');
+  await writeFile(path.join(workspaceDir, 'LICENSE'), 'GPL-3.0\n', 'utf-8');
 
   const sourceDir = path.join(workspaceDir, 'source');
 
   for (const [relativePath, content] of Object.entries(schemaFiles)) {
-    const schemaPath = path.join(sourceDir, 'src', 'schemas', 'json', relativePath);
+    const schemaPath = path.join(sourceDir, 'src/schemas/json', relativePath);
     await mkdir(path.dirname(schemaPath), {recursive: true});
     await writeFile(schemaPath, content, 'utf-8');
   }
@@ -293,7 +293,7 @@ async function writeLockFile(workspaceDir: string, lockFile: SchemaLockFile): Pr
 }
 
 async function writeSchemaFile(sourceDir: string, relativePath: string, content: string): Promise<void> {
-  const schemaPath = path.join(sourceDir, 'src', 'schemas', 'json', relativePath);
+  const schemaPath = path.join(sourceDir, 'src/schemas/json', relativePath);
   await mkdir(path.dirname(schemaPath), {recursive: true});
   await writeFile(schemaPath, content, 'utf-8');
 }

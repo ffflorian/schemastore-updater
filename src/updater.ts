@@ -1,7 +1,7 @@
 import {format} from 'date-fns';
 import {compileFromFile} from 'json-schema-to-typescript';
 import {execFile} from 'node:child_process';
-import {access, mkdir, readFile, rename, rm, stat, writeFile} from 'node:fs/promises';
+import {access, mkdir, readdir, readFile, rename, rm, stat, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {promisify} from 'node:util';
 import {inc, valid} from 'semver';
@@ -27,16 +27,25 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   const schemaStoreRoot = options.sourceDir
     ? path.resolve(options.sourceDir)
     : await ensureSchemaStoreRepo(projectRoot);
-  const schemaRoot = path.join(schemaStoreRoot, 'src', 'schemas', 'json');
+  const schemaRoot = path.join(schemaStoreRoot, 'src/schemas/json');
 
-  const schemaRootStats = await stat(schemaRoot).catch(() => null);
+  let schemaRootStats = null;
+  try {
+    schemaRootStats = await stat(schemaRoot);
+  } catch {
+    // no-op
+  }
+
   if (!schemaRootStats || !schemaRootStats.isDirectory()) {
     throw new Error(`SchemaStore path not found: ${schemaRoot}`);
   }
 
-  const rootLicense = await readFile(rootLicensePath, 'utf-8').catch(() => {
+  let rootLicense: string;
+  try {
+    rootLicense = await readFile(rootLicensePath, 'utf-8');
+  } catch {
     throw new Error(`Repository LICENSE not found: ${rootLicensePath}`);
-  });
+  }
 
   await mkdir(outDir, {recursive: true});
 
@@ -175,21 +184,19 @@ async function collectJsonFiles(root: string): Promise<string[]> {
   const outputPaths: string[] = [];
 
   async function walk(current: string): Promise<void> {
-    const entries = await import('node:fs/promises').then(mod => mod.readdir(current, {withFileTypes: true}));
+    const entries = await readdir(current, {withFileTypes: true});
 
-    await Promise.all(
-      entries.map(async entry => {
-        const fullPath = path.join(current, entry.name);
-        if (entry.isDirectory()) {
-          await walk(fullPath);
-          return;
-        }
+    for (const entry of entries) {
+      const fullPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        await walk(fullPath);
+        continue;
+      }
 
-        if (entry.isFile() && entry.name.endsWith('.json')) {
-          outputPaths.push(fullPath);
-        }
-      })
-    );
+      if (entry.isFile() && entry.name.endsWith('.json')) {
+        outputPaths.push(fullPath);
+      }
+    }
   }
 
   await walk(root);
@@ -240,7 +247,7 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 }
 
 async function ensureSchemaStoreRepo(baseDir: string): Promise<string> {
-  const repoDir = path.join(baseDir, '.cache', 'schemastore');
+  const repoDir = path.join(baseDir, '.cache/schemastore');
   const gitDir = path.join(repoDir, '.git');
 
   if (await exists(gitDir)) {
@@ -316,7 +323,13 @@ async function resolveNextPackageVersion(packageJsonPath: string): Promise<strin
     return '1.0.0';
   }
 
-  const packageJsonContent = await readFile(packageJsonPath, 'utf-8').catch(() => '');
+  let packageJsonContent = '';
+  try {
+    packageJsonContent = await readFile(packageJsonPath, 'utf-8');
+  } catch {
+    packageJsonContent = '';
+  }
+
   if (!packageJsonContent) {
     return '1.0.0';
   }
