@@ -1,6 +1,6 @@
 # schemastore-updater
 
-This project updates JSON schemas from [SchemaStore](https://github.com/SchemaStore/schemastore), generates TypeScript definitions for them, and prepares one publishable npm package per schema under the `@schemastore` scope.
+This project updates JSON schemas from [SchemaStore](https://github.com/SchemaStore/schemastore), generates TypeScript definitions for them, and prepares a publishable npm package per schema under the `@schemastore` scope.
 
 ## Agent Notes
 
@@ -71,10 +71,6 @@ yarn publish:schemas:dry-run
 ```
 
 This prints the packages that would be published without sending anything to npm.
-
-## GitHub Actions Publishing
-
-The publish job in `.github/workflows/lint_test_build.yml` requires an `NPM_TOKEN` repository secret with permission to publish the generated `@schemastore/*` packages.
 
 ## Output
 
