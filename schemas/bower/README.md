@@ -5,8 +5,10 @@
 This package contains type definitions for bower.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/bower.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:30 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:19:25 GMT
 * Dependencies: none

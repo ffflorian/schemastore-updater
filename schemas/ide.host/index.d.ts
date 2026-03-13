@@ -1,0 +1,159 @@
+/* eslint-disable */
+
+/**
+ * Determines if the user entered values should be persisted for the next template invocation.
+ */
+export type PersistenceScope = 'none' | 'templateGroup' | 'shared';
+export type SymbolInfo = OverrideInfo & {
+  /**
+   * Should be shown in the IDE. If not specified, defaults value is the value specified by defaultSymbolVisibility.
+   */
+  isVisible?: boolean;
+  /**
+   * If the referenced symbol should be shown in the IDE.
+   */
+  invertBoolean?: boolean;
+  /**
+   * Overrides the default value specified for the
+   */
+  defaultValue?: string;
+  /**
+   * Determines if the user entered value should be persisted and used the next time a template is selected. Default value is the value specified by defaultSymbolVisibility Used starting in Visual Studio 2022 17.3
+   */
+  persistenceScope?: PersistenceScope;
+  /**
+   * Specifies the scope name of the persisted template option. To avoid conflicts with other templates, treat this like a namespace. Used starting in Visual Studio 2022 17.3
+   */
+  persistenceScopeName?: string;
+  /**
+   * Specifies the name and description overrides for individual choice parameters
+   */
+  choices?: OverrideInfo[];
+  [k: string]: unknown | undefined;
+};
+
+export interface JSONSchemaForIDETemplateHostFiles {
+  /**
+   * Name of the template
+   */
+  name?: Text;
+  /**
+   * Description of the template
+   */
+  description?: Text;
+  /**
+   * The order of the template as shown in the New Project dialog
+   */
+  order?: number;
+  /**
+   * The relative file name of the icon to show in the New Project dialog
+   */
+  icon?: string;
+  /**
+   * Determines if the checkbox for adding Docker support in the New Project dialog should be visible
+   */
+  supportsDocker?: boolean;
+  /**
+   * The symbol in the template.json which when set, would cause the template to generate non-https ports and settings
+   */
+  disableHttpsSymbol?: string;
+  /**
+   * Sets the default isVisible for a symbolInfo if not explicitly specified. Controls if the parameter is displayed in the IDE. Defaults to false if not specified
+   */
+  defaultSymbolVisibility?: boolean;
+  /**
+   * The default value for a symbolInfo if not explicitly specified. Determines if the user entered value should be persisted and used the next time a template is selected. Used starting in Visual Studio 2022 17.3
+   */
+  defaultPersistenceScope?: PersistenceScope;
+  /**
+   * The default value for a symbolInfo if not explicitly specified. Specifies the scope name of the persisted template option. To avoid conflicts with other templates, treat this like a namespace. Used starting in Visual Studio 2022 17.3
+   */
+  defaultPersistenceScopeName?: string;
+  /**
+   * Controls display characteristics of symbols declared in template.json
+   */
+  symbolInfo?: SymbolInfo[];
+  /**
+   * Modifigy the project and platform tags displayed in the IDE
+   */
+  tags?: Tags[];
+  /**
+   * Unsupported Hosts. This can be used to suppress the template from being displayed in the new project dialog in Visual Studio.
+   */
+  unsupportedHosts?: UnsupportedHost[];
+  /**
+   * Required components in order to display this template.
+   */
+  requiredComponents?: RequiredComponent[];
+  [k: string]: unknown | undefined;
+}
+export interface Text {
+  text: string;
+  package?: string;
+  id?: string;
+  [k: string]: unknown | undefined;
+}
+export interface OverrideInfo {
+  /**
+   * The id of the symbol from the template.json.
+   */
+  id: string;
+  /**
+   * Overrides the name specified in the template.json
+   */
+  name?: Text;
+  /**
+   * Overrides the name specified in the template.json
+   */
+  description?: Text;
+  [k: string]: unknown | undefined;
+}
+export interface Tags {
+  /**
+   * The tag to modify
+   */
+  type: 'platform' | 'projectType';
+  /**
+   * Tags to add
+   */
+  add?: string[];
+  /**
+   * Tags to remove. * can be specified to remove all tags specified in template.json
+   */
+  remove?: string[];
+  [k: string]: unknown | undefined;
+}
+export interface UnsupportedHost {
+  /**
+   * The host identifier.
+   */
+  id: 'vs';
+  /**
+   * A version range specifying the unsupported host versions. This uses the nuget package format.
+   */
+  version?: {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+/**
+ * To require a particular host version specify the hostId and optionally version only. To require a particular SetupComponent or Extension, specify the ID and set the componentType appropriately. Version range is optional.
+ */
+export interface RequiredComponent {
+  /**
+   * The id of the component
+   */
+  id?: string;
+  /**
+   * The host id that the component applies to
+   */
+  hostId: 'vs';
+  componentType?: 'setupComponent' | 'extension';
+  /**
+   * A version range specifying the required version range. This uses the nuget package format.
+   */
+  version?: {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}

@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for webjobs-list.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/webjobs-list",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/webjobs-list",
-  "scripts": {},
-  "typesPublisherContentHash": "ff5b225c5b44cfd2c4a848abea5929413a43b6cb77bf96fcf69acd1f13936a5e",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

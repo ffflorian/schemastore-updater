@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for schema-org-thing.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/schema-org-thing",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

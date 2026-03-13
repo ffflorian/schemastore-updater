@@ -1,0 +1,514 @@
+/* eslint-disable */
+
+/**
+ * Defines glob patterns and file path to include for compilation.
+ */
+export type Compile = {
+  /**
+   * List of file globbing patterns to be included.
+   */
+  include?: string | string[];
+  /**
+   * List of file globbing patterns to be excluded.
+   */
+  exclude?: string | string[];
+  /**
+   * List of file paths to be included.
+   */
+  includeFiles?: string | string[];
+  /**
+   * List of file paths to be excluded.
+   */
+  excludeFiles?: string | string[];
+  builtIns?:
+    | string
+    | string[]
+    | {
+        /**
+         * List of file globbing patterns to be included.
+         */
+        include?: string | string[];
+        /**
+         * List of file globbing patterns to be included.
+         */
+        exclude?: string | string[];
+        [k: string]: unknown | undefined;
+      };
+  /**
+   * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+   */
+  mappings?: {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+} & (
+  | string
+  | string[]
+  | {
+      /**
+       * List of file globbing patterns to be included.
+       */
+      include?: string | string[];
+      /**
+       * List of file globbing patterns to be excluded.
+       */
+      exclude?: string | string[];
+      /**
+       * List of file paths to be included.
+       */
+      includeFiles?: string | string[];
+      /**
+       * List of file paths to be excluded.
+       */
+      excludeFiles?: string | string[];
+      builtIns?:
+        | string
+        | string[]
+        | {
+            /**
+             * List of file globbing patterns to be included.
+             */
+            include?: string | string[];
+            /**
+             * List of file globbing patterns to be included.
+             */
+            exclude?: string | string[];
+            [k: string]: unknown | undefined;
+          };
+      /**
+       * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+       */
+      mappings?: {
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    }
+);
+export type PublishOptions = Compile & {
+  [k: string]: unknown | undefined;
+};
+export type LibraryIncludeFlags = LibraryIncludeFlag | LibraryIncludeFlag[];
+export type LibraryIncludeFlag =
+  | 'all'
+  | 'runtime'
+  | 'compile'
+  | 'build'
+  | 'contentFiles'
+  | 'native'
+  | 'analyzers'
+  | 'none';
+/**
+ * A command line script or scripts.
+
+Available variables:
+%project:Directory% - The project directory
+%project:Name% - The project name
+%project:Version% - The project version
+ */
+export type Script = string | string[];
+
+export interface JSONSchemaForNETCoreProjectJsonFiles {
+  /**
+   * The author of the application.
+   */
+  authors?: string[];
+  /**
+   * [Deprecated] Pairs of destination folders and glob patterns specifying additional files to include in the output NuGet package. (data type: JSON map). Example: { "tools/": "tools/** /*.*" }. Use 'files' in 'packOptions' instead.
+   */
+  packInclude?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * [Deprecated] Glob pattern to specify files to exclude from publish output. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'publishOptions' instead.
+   */
+  publishExclude?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to specify files to compile. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'compile' in 'buildOptions' instead.
+   */
+  compile?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to specify files to exclude from compilation. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'compile' in 'buildOptions' instead.
+   */
+  compileExclude?: string | string[];
+  /**
+   * [Deprecated] Files to include in compilation (overrides 'compileExclude'). (data type: string or array). Example: [ "Folder1/File1.ext", "Folder2/File2.ext" ]. Use 'compile' in 'buildOptions' instead.
+   */
+  compileFiles?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to specify files to include as content. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'publishOptions' to publish or 'copyToOutput' in 'buildOptions' to copy to build output instead.
+   */
+  content?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to specify files to exclude from the content list. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'publishOptions' to publish or 'copyToOutput' in 'buildOptions' to copy to build output instead.
+   */
+  contentExclude?: string | string[];
+  /**
+   * [Deprecated] Files to include as content (overrides 'contentExclude'). (data type: string or array). Example: [ "Folder1/File1.ext", "Folder2/File2.ext" ]. Use 'publishOptions' to publish or 'copyToOutput' in 'buildOptions' to copy to build output instead.
+   */
+  contentFiles?: string | string[];
+  /**
+   * Glob pattern to specify files to use for preprocessing. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]
+   */
+  preprocess?: string | string[];
+  /**
+   * Glob pattern to specify files to exclude from use for preprocessing. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]
+   */
+  preprocessExclude?: string | string[];
+  /**
+   * Files to include to use for preprocessing (overrides 'preprocessExclude'). (data type: string or array). Example: [ "Folder1/File1.ext", "Folder2/File2.ext" ]
+   */
+  preprocessFiles?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to specify files to include as resources. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'embed' in 'buildOptions' instead.
+   */
+  resource?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to specify files to exclude from the resources list. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'embed' in 'buildOptions' instead.
+   */
+  resourceExclude?: string | string[];
+  /**
+   * [Deprecated] Files to include as resources (overrides 'resourceExclude'). (data type: string or array). Example: [ "Folder1/File1.ext", "Folder2/File2.ext" ]. Use 'embed' in 'buildOptions' instead.
+   */
+  resourceFiles?: string | string[];
+  /**
+   * Glob pattern to specify files to share with dependent projects. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]
+   */
+  shared?: string | string[];
+  /**
+   * Glob pattern to specify files to exclude from sharing with dependent projects. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]
+   */
+  sharedExclude?: string | string[];
+  /**
+   * Files to include for sharing with dependent projects (overrides 'sharedExclude'). (data type: string or array). Example: [ "Folder1/File1.ext", "Folder2/File2.ext" ]
+   */
+  sharedFiles?: string | string[];
+  /**
+   * [Deprecated] Glob pattern to indicate files to exclude from other glob patterns, in addition to the default patterns specified in 'excludeBuiltIn'. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'exclude' within 'compile' or 'embed' instead.
+   */
+  exclude?: string | string[];
+  /**
+   * [Deprecated] Default glob pattern to indicate files to exclude from other glob patterns. (data type: string or array with glob pattern(s)). Example: [ "Folder1/*.ext", "Folder2/*.ext" ]. Use 'exclude' within 'compile' or 'embed' instead.
+   */
+  excludeBuiltIn?: string | string[];
+  /**
+   * The name of the test runner to use with this project
+   */
+  testRunner?: string;
+  commands?: {
+    [k: string]: string | undefined;
+  };
+  compilationOptions?: CompilationOptions;
+  buildOptions?: BuildOptions;
+  packOptions?: PackOptions;
+  runtimeOptions?: RuntimeOptions;
+  publishOptions?: PublishOptions;
+  /**
+   * Configurations are named groups of compilation settings. There are two defaults built into the runtime: 'Debug' and 'Release'.
+   */
+  configurations?: {
+    [k: string]:
+      | {
+          compilationOptions?: CompilationOptions;
+          buildOptions?: BuildOptions;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
+  };
+  dependencies?: Dependencies;
+  /**
+   * Copyright details for the package.
+   */
+  copyright?: string;
+  /**
+   * [Deprecated] A URL for the image to use as the icon for the package. This should be a 32x32-pixel .png file that has a transparent background. Use this in 'packOptions' instead.
+   */
+  iconUrl?: string;
+  /**
+   * [Deprecated] A link to the license for the package. Use this in 'packOptions' instead.
+   */
+  licenseUrl?: string;
+  /**
+   * [Deprecated] A Boolean value that specifies whether the client needs to ensure that the package license (described by licenseUrl) is accepted before the package is installed. Use this in 'packOptions' instead.
+   */
+  requireLicenseAcceptance?: boolean;
+  /**
+   * [Deprecated] List of owners of the package. Use this in 'packOptions' instead.
+   */
+  owners?: string[];
+  /**
+   * A URL for the home page of the package.
+   */
+  projectUrl?: string;
+  /**
+   * [Deprecated] A short description of the package. Use this in 'packOptions' instead.
+   */
+  summary?: string;
+  /**
+   * [Deprecated] A space-delimited list of tags and keywords that describe the package. Use this in 'packOptions' instead.
+   */
+  tags?: string[];
+  /**
+   * The human-friendly title of the package
+   */
+  title?: string;
+  /**
+   * [Deprecated] A description of the changes made in each release of the package. Use this in 'packOptions' instead.
+   */
+  releaseNotes?: string;
+  /**
+   * The locale ID for the package, such as en-us.
+   */
+  language?: string;
+  /**
+   * The description of the project/package.
+   */
+  description?: string;
+  /**
+   * Target frameworks that will be built, and dependencies that are specific to the build of this project for that framework.
+   */
+  frameworks?: {
+    [k: string]: ConfigType | undefined;
+  };
+  /**
+   * Overrides the generated resource names with custom ones.
+   */
+  namedResource?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * [Deprecated] Contains information about the repository where the project is stored. Use this in 'packOptions' instead.
+   */
+  repository?: {
+    type?: 'git';
+    url?: string;
+    [k: string]: string | undefined;
+  };
+  /**
+   * Scripts to execute during the various stages.
+   */
+  scripts?: {
+    precompile?: Script;
+    postcompile?: Script;
+    prepack?: Script;
+    postpack?: Script;
+    prepublish?: Script;
+    postpublish?: Script;
+    prerestore?: Script;
+    postrestore?: Script;
+    prepare?: Script;
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * The version of the project/package. Examples: 1.2.3, 1.2.3-beta, 1.2.3-*
+   */
+  version?: string;
+  /**
+   * Project-specific command line tools accessible when in the project.json directory.
+   */
+  tools?: {
+    [k: string]:
+      | (
+          | string
+          | {
+              version?: string;
+              [k: string]: unknown | undefined;
+            }
+        )
+      | undefined;
+  };
+  /**
+   * List of runtime identifiers supported by this project (used when building standalone applications).
+   */
+  runtimes?: {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+/**
+ * [Deprecated] Options that are passed to the compiler. Use 'buildOptions' instead.
+ */
+export interface CompilationOptions {
+  define?: string[];
+  nowarn?: string[];
+  warningsAsErrors?: boolean;
+  allowUnsafe?: boolean;
+  emitEntryPoint?: boolean;
+  optimize?: boolean;
+  platform?: 'anycpu' | 'anycpu32bitpreferred' | 'ARM' | 'x86' | 'x64' | 'Itanium';
+  languageVersion?: 'csharp1' | 'csharp2' | 'csharp3' | 'csharp4' | 'csharp5' | 'csharp6' | 'experimental';
+  keyFile?: string;
+  delaySign?: boolean;
+  publicSign?: boolean;
+  debugType?: 'portable' | 'full' | 'none';
+  /**
+   * Set this option to preserve reference assemblies and other context data to allow for runtime compilation
+   */
+  preserveCompilationContext?: boolean;
+  outputName?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Options that are passed to the compiler.
+ */
+export interface BuildOptions {
+  define?: string[];
+  nowarn?: string[];
+  warningsAsErrors?: boolean;
+  allowUnsafe?: boolean;
+  emitEntryPoint?: boolean;
+  optimize?: boolean;
+  platform?: 'anycpu' | 'anycpu32bitpreferred' | 'ARM' | 'x86' | 'x64' | 'Itanium';
+  languageVersion?: 'csharp1' | 'csharp2' | 'csharp3' | 'csharp4' | 'csharp5' | 'csharp6' | 'experimental';
+  keyFile?: string;
+  delaySign?: boolean;
+  publicSign?: boolean;
+  debugType?: 'portable' | 'full' | 'none';
+  /**
+   * Set this option to preserve reference assemblies and other context data to allow for runtime compilation.
+   */
+  preserveCompilationContext?: boolean;
+  outputName?: string;
+  compilerName?: string;
+  compile?: Compile;
+  embed?: Compile & {
+    [k: string]: unknown | undefined;
+  };
+  copyToOutput?: Compile & {
+    [k: string]: unknown | undefined;
+  };
+  xmlDoc?: boolean;
+  additionalArguments?: string[];
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines options pertaining to the packaging of the project output into a NuGet package.
+ */
+export interface PackOptions {
+  /**
+   * A short description of the package.
+   */
+  summary?: string;
+  /**
+   * A space-delimited list of tags and keywords that describe the package.
+   */
+  tags?: string[];
+  /**
+   * List of owners of the package.
+   */
+  owners?: string[];
+  /**
+   * A description of the changes made in each release of the package.
+   */
+  releaseNotes?: string;
+  /**
+   * A URL for the image to use as the icon for the package. This should be a 32x32-pixel .png file that has a transparent background.
+   */
+  iconUrl?: string;
+  /**
+   * A link to the license for the package.
+   */
+  licenseUrl?: string;
+  /**
+   * A Boolean value that specifies whether the client needs to ensure that the package license (described by licenseUrl) is accepted before the package is installed.
+   */
+  requireLicenseAcceptance?: boolean;
+  /**
+   * Contains information about the repository where the project is stored.
+   */
+  repository?: {
+    type?: 'git';
+    url?: string;
+    [k: string]: string | undefined;
+  };
+  files?: Compile & {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+export interface RuntimeOptions {
+  configProperties?: {
+    /**
+     * Enables/disables server garbage collection.
+     */
+    'System.GC.Server'?: boolean;
+    /**
+     * Enables/disables concurrent garbage collection.
+     */
+    'System.GC.Concurrent'?: boolean;
+    /**
+     * Limits the number of heaps created by the garbage collector.
+     */
+    'System.GC.HeapCount'?: number;
+    /**
+     * Specifies the exact processors that garbage collector threads should use.
+     */
+    'System.GC.HeapAffinitizeMask'?: number;
+    /**
+     * Specifies the list of processors to use for garbage collector threads.
+     */
+    'System.GC.GCHeapAffinitizeRanges'?: string;
+    /**
+     * Specifies whether to affinitize garbage collection threads with processors. To affinitize a GC thread means that it can only run on its specific CPU. A heap is created for each GC thread.
+     */
+    'System.GC.NoAffinitize'?: boolean;
+    /**
+     * Specifies the maximum commit size, in bytes, for the GC heap and GC bookkeeping.
+     */
+    'System.GC.HeapHardLimit'?: string;
+    /**
+     * Specifies the GC heap usage as a percentage of the total memory.
+     */
+    'System.GC.HeapHardLimitPercent'?: number;
+    /**
+     * Configures whether segments that should be deleted are put on a standby list for future use or are released back to the operating system (OS).
+     */
+    'System.GC.RetainVM'?: boolean;
+    /**
+     * Specifies the threshold size, in bytes, that causes objects to go on the large object heap (LOH).
+     */
+    'System.GC.LOHThreshold'?: number;
+    /**
+     * Sets the minimum number of threads for the thread pool.
+     */
+    'System.Threading.ThreadPool.MinThreads'?: number;
+    /**
+     * Sets the maximum number of threads for the thread pool.
+     */
+    'System.Threading.ThreadPool.MaxThreads'?: number;
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+/**
+ * Each dependency is defined by a name and a version. Dependencies are resolved from NuGet feeds defined by your package sources and projects located in the directories specified by the 'global.json' file.
+ */
+export interface Dependencies {
+  [k: string]:
+    | (
+        | string
+        | {
+            version?: string;
+            type?: 'default' | 'build' | 'platform';
+            /**
+             * Restrict this dependency to matching only a Project or a Package.
+             */
+            target?: 'project' | 'package';
+            include?: LibraryIncludeFlags;
+            exclude?: LibraryIncludeFlags;
+            suppressParent?: LibraryIncludeFlags;
+            [k: string]: unknown | undefined;
+          }
+      )
+    | undefined;
+}
+export interface ConfigType {
+  dependencies?: Dependencies;
+  compilationOptions?: CompilationOptions;
+  buildOptions?: BuildOptions;
+  frameworkAssemblies?: Dependencies;
+  /**
+   * Allow packages supporting these frameworks to be installed in this target, regardless of the compatibility rules.
+   */
+  imports?: string | string[];
+  [k: string]: unknown | undefined;
+}

@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for drupal-links-menu.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/drupal-links-menu",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

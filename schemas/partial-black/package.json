@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for partial-black.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/partial-black",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

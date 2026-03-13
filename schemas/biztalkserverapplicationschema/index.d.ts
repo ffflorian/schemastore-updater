@@ -1,0 +1,112 @@
+/* eslint-disable */
+
+/**
+ * BizTalk Server Application Inventory Schema
+ */
+export interface BizTalkServerApplicationInventorySchema {
+  /**
+   * Array of BizTalk Reference Assemblies to be deployed.
+   */
+  BizTalkAssemblies: {
+    /**
+     * Filename of the BizTalk Referenced Assembly.
+     */
+    Name?: string;
+    /**
+     * Relative output filepath for the Referenced Assembly.
+     * Example: bins\\bts1.dll
+     */
+    Path?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Array of Binding Files used in Deployment.
+   */
+  BindingsFiles: {
+    /**
+     * Filename of the Bindings File.
+     */
+    Name?: string;
+    /**
+     * Relative output filepath for the Bindings File.
+     * Example: bindings\\binding1.xml
+     */
+    Path?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Array of Reference Assemblies to be deployed.
+   */
+  Assemblies?: {
+    /**
+     * Filename of the Referenced Assembly.
+     */
+    Name?: string;
+    /**
+     * Relative output filepath for the Unmanaged Referenced Assembly.
+     * Example: bins\\bts1.dll
+     */
+    Path?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Pre-Processing Scripts used in Deployment.
+   */
+  PreProcessingScripts?: {
+    /**
+     * Filename of the Pre Processing Script.
+     */
+    Name?: string;
+    /**
+     * Relative output filepath for the Pre Processing Script.
+     * Example: bins\\Script1.vbs
+     */
+    Path?: string;
+    /**
+     * Arguments for the Pre Processing Script .
+     * Example: arg1,arg2
+     */
+    Arguments?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Post-Processing Scripts used in Deployment.
+   */
+  PostProcessingScripts?: {
+    /**
+     * Filename of the Post Processing Script.
+     */
+    Name?: string;
+    /**
+     * Relative output filepath for the Post Processing Script.
+     * Example: Script\\Script1.vbs
+     */
+    Path?: string;
+    /**
+     * Arguments for the Post Processing Script .
+     * Example: arg1,arg2
+     */
+    Arguments?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * File used in Deployment.
+   */
+  Files?: {
+    /**
+     * Name of the File
+     */
+    Name?: string;
+    /**
+     * Relative output filepath for the Files.
+     * Example: File\\File.txt
+     */
+    Path?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Sequence of Binding Files, Reference Assemblies, Pre-Processing and Post-Processing Scripts used in Deployment.
+   */
+  DeploymentSequence: string[];
+  [k: string]: unknown | undefined;
+}

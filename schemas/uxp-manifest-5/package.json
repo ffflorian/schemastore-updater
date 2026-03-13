@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for uxp-manifest-5.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/uxp-manifest-5",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for rancher-fleet-0.8.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/rancher-fleet-0.8",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

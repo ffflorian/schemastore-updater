@@ -5,8 +5,10 @@
 This package contains type definitions for sarif-2.0.0-csd.2.beta.2018-10-10.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sarif-2.0.0-csd.2.beta.2018-10-10.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:39 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:23:14 GMT
 * Dependencies: none

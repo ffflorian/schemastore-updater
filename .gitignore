@@ -3,8 +3,7 @@ temp
 package-lock.json
 dist
 node_modules
-schemas/**/LICENSE
-updated_files
+.cache
 
 .pnp.*
 .yarn/*

@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for haxelib.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/haxelib",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/haxelib",
-  "scripts": {},
-  "typeScriptVersion": "2.2",
+  "private": false,
   "types": "index.d.ts",
-  "typesPublisherContentHash": "8ce540eea70f9d8dff32efe95ea06fa4bdb53de2a4b2d8c145127a409e48520f",
-  "version": "0.0.13"
+  "version": "1.0.0"
 }

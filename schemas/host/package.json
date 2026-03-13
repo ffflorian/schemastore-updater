@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for host.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/host",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/host",
-  "scripts": {},
-  "typeScriptVersion": "2.2",
+  "private": false,
   "types": "index.d.ts",
-  "typesPublisherContentHash": "b3d070a7dbc5b5756ce544f2069d6a32727fa09c30d776a8087a08c2ae7b24f4",
-  "version": "0.0.12"
+  "version": "1.0.0"
 }

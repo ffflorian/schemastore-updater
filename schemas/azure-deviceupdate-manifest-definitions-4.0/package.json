@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for azure-deviceupdate-manifest-definitions-4.0.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/azure-deviceupdate-manifest-definitions-4.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-deviceupdate-manifest-definitions-4.0",
-  "scripts": {},
-  "typeScriptVersion": "2.2",
+  "private": false,
   "types": "index.d.ts",
-  "typesPublisherContentHash": "dbe0293fbb83bd462320739a60334c39baa4d36a812e1f91a7ce88662ba514fb",
-  "version": "0.0.4"
+  "version": "1.0.0"
 }

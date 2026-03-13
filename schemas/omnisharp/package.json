@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for omnisharp.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/omnisharp",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/omnisharp",
-  "scripts": {},
-  "typesPublisherContentHash": "80d8be21e7750eb511e6136a6485b76392c2f1292a3a1f24b84c62e0270ef0ca",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

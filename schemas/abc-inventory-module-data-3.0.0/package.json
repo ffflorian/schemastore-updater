@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for abc-inventory-module-data-3.0.0.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/abc-inventory-module-data-3.0.0",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

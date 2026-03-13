@@ -5,8 +5,10 @@
 This package contains type definitions for feed.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/feed.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:33 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:19:58 GMT
 * Dependencies: none

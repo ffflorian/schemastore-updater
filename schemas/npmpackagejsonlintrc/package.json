@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for npmpackagejsonlintrc.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/npmpackagejsonlintrc",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/npmpackagejsonlintrc",
-  "scripts": {},
-  "typesPublisherContentHash": "c57a239925927af70cbf938a30443d6dec3da9e88a9d60e58abdf98c60c93d22",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

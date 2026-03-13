@@ -1,0 +1,5 @@
+name: codeql-config
+
+paths-ignore:
+  - schemas
+  - schemas/**

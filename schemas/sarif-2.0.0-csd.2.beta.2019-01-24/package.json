@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for sarif-2.0.0-csd.2.beta.2019-01-24.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/sarif-2.0.0-csd.2.beta.2019-01-24",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/sarif-2.0.0-csd.2.beta.2019-01-24",
-  "scripts": {},
-  "typesPublisherContentHash": "39ca00baf4e8eab1a72c3bcf9b70eb37958680622a1ac8d17293c9cca4f03163",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

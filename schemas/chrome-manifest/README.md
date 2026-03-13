@@ -5,8 +5,10 @@
 This package contains type definitions for chrome-manifest.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/chrome-manifest.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:31 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:19:33 GMT
 * Dependencies: none

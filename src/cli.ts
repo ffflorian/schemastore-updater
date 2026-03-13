@@ -1,135 +1,99 @@
-import {program as commander} from 'commander';
-import * as fsSync from 'node:fs';
-import * as fs from 'node:fs/promises';
-import * as path from 'node:path';
+#!/usr/bin/env node
 
-interface PackageJson {
-  description: string;
-  name: string;
-  version: string;
+import {Command} from 'commander';
+import {readFile} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+import {publishGeneratedPackages} from './publisher.js';
+import {updateSchemas} from './updater.js';
+
+interface PublishCommandOptions {
+  dryRun?: boolean;
+  logFile?: string;
 }
 
-const packageJsonPath = path.join(__dirname, '../package.json');
+interface UpdateCommandOptions {
+  force?: boolean;
+  sourceDir?: string;
+}
 
-const {description, name, version}: PackageJson = JSON.parse(fsSync.readFileSync(packageJsonPath, 'utf-8'));
-import {SchemaGenerator} from './';
-import {FileSettings, SchemaGeneratorOptions} from './interfaces';
+async function getVersion(): Promise<string> {
+  const currentFilePath = fileURLToPath(import.meta.url);
+  const packageJsonPath = path.resolve(path.dirname(currentFilePath), '../package.json');
+  const packageJsonRaw = await readFile(packageJsonPath, 'utf-8');
+  const packageJson = JSON.parse(packageJsonRaw) as {version?: string};
+  return packageJson.version ?? '0.0.0';
+}
 
-commander.name(name).version(version).description(description);
+async function main(): Promise<void> {
+  const program = new Command();
+  const version = await getVersion();
 
-const commanderOptions: {settings?: string; sourceDir?: string} = commander.opts();
+  program
+    .name('schemastore-updater')
+    .description('Update JSON schemas from SchemaStore and generate TypeScript declarations')
+    .version(version);
 
-commander
-  .option('-s, --settings <file>', 'Specify a settings file', 'settings.json')
-  .option('-d, --source-dir <dir>', 'Specify a source dir (will disable cloning)');
+  program
+    .command('publish')
+    .description('Publish all generated schema packages to npm')
+    .option('--dry-run', 'List packages that would be published without publishing them')
+    .option('--log-file <file>', 'Write publish errors to a specific log file')
+    .action(async (options: PublishCommandOptions) => {
+      await runPublishCommand(options);
+    });
 
-const settingsFile = commanderOptions.settings
-  ? path.resolve(commanderOptions.settings)
-  : path.join(__dirname, '../settings.json');
+  program
+    .command('update')
+    .description('Update and generate all schemas')
+    .option('-f, --force', 'Regenerate all schemas, ignoring source hash matches')
+    .option('--source-dir <dir>', 'Use an existing SchemaStore checkout directory')
+    .action(async (options: UpdateCommandOptions) => {
+      await runUpdateCommand(options);
+    });
 
-commander
-  .command('update')
-  .option('-f, --force', 'Force re-generating schema(s)', false)
-  .option('-k, --schema [schema]', 'Select single schema to update')
-  .action(async (updateOptions: {force?: boolean; schema?: string}) => {
-    try {
-      const settings: FileSettings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
-      await update({
-        ...settings,
-        ...(commanderOptions.sourceDir && {source: commanderOptions.sourceDir}),
-        ...(updateOptions.schema && {schema: updateOptions.schema}),
-        force: !!updateOptions.force,
-      });
-    } catch (error) {
-      console.error(error);
-      process.exit(1);
-    }
+  if (process.argv.length <= 2) {
+    await runUpdateCommand({force: false});
+    return;
+  }
+
+  await program.parseAsync(process.argv);
+}
+
+async function runPublishCommand(options: PublishCommandOptions): Promise<void> {
+  const stats = await publishGeneratedPackages({
+    dryRun: options.dryRun ?? false,
+    ...(options.logFile ? {logFilePath: options.logFile} : {}),
   });
 
-commander.command('check-disabled').action(async () => {
-  try {
-    const settings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
-    await checkDisabled({...settings});
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-});
+  console.info(stats.dryRun ? '\nDry run complete.' : '\nPublish complete.');
+  console.info(`Attempted: ${stats.attempted}`);
+  console.info(`Published: ${stats.published}`);
+  console.info(`Skipped: ${stats.skipped}`);
+  console.info(`Failed: ${stats.failed}`);
+  console.info(`Log file: ${stats.logFilePath}`);
 
-commander.command('check-versions').action(async () => {
-  try {
-    const fileSettings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
-    const generator = new SchemaGenerator({...fileSettings});
-    await generator.checkHashsums();
-    await generator.checkVersions();
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-});
-
-commander.command('fix-lockfile').action(async () => {
-  try {
-    const fileSettings = JSON.parse(await fs.readFile(settingsFile, 'utf-8'));
-    const generator = new SchemaGenerator({...fileSettings});
-    await generator.checkHashsums();
-    await generator.fixLockfile();
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-});
-
-commander.parse(process.argv);
-
-if (!commander.args.length) {
-  commander.outputHelp();
-  process.exit();
-}
-
-async function checkDisabled(settings: FileSettings, versionCheck = true): Promise<void> {
-  const generator = new SchemaGenerator(settings);
-
-  if (versionCheck) {
-    await generator.checkVersions();
-    await generator.checkHashsums();
-  }
-
-  const {enabledSchemas} = await generator.checkDisabled();
-
-  if (enabledSchemas.length) {
-    const enabledSchemaFiles = enabledSchemas.map(schema => `${schema}.json`);
-    settings.disabledSchemas = settings.disabledSchemas.filter(schema => !enabledSchemaFiles.includes(schema)).sort();
-
-    await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
-  } else {
-    console.info('No schemas generated.');
+  if (!stats.dryRun && stats.failed > 0) {
+    process.exitCode = 1;
   }
 }
 
-async function update(
-  settings: Required<Pick<SchemaGeneratorOptions, 'disabledSchemas'>> & SchemaGeneratorOptions
-): Promise<{sourceDir: string}> {
-  const generator = new SchemaGenerator(settings);
-  await generator.checkVersions();
-  await generator.checkHashsums();
+async function runUpdateCommand(options: UpdateCommandOptions): Promise<void> {
+  const stats = await updateSchemas({
+    force: options.force ?? false,
+    ...(options.sourceDir ? {sourceDir: options.sourceDir} : {}),
+  });
 
-  const {disabledSchemas: newDisabledSchemas, generatedSchemas} = await generator.generateAll();
-
-  if (generatedSchemas.length) {
-    console.info('Generated schemas:', generatedSchemas);
-  } else {
-    console.info('No schemas generated.');
-  }
-
-  if (newDisabledSchemas.length) {
-    console.info('These schemas will be disabled:', newDisabledSchemas);
-
-    settings.disabledSchemas = settings.disabledSchemas.concat(newDisabledSchemas).sort();
-    delete settings.force;
-    delete settings.source;
-    await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`);
-  }
-
-  return {sourceDir: generator.options.source};
+  console.info('\nDone.');
+  console.info(`Total: ${stats.totalSchemas}`);
+  console.info(`Generated: ${stats.generated}`);
+  console.info(`Skipped: ${stats.skipped}`);
+  console.info(`Failed: ${stats.failed}`);
 }
+
+main().catch(error => {
+  const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
+  console.error(message);
+  process.exitCode = 1;
+});

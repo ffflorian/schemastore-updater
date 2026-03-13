@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for ksp-ckan.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/ksp-ckan",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/ksp-ckan",
-  "scripts": {},
-  "typesPublisherContentHash": "2cce5784ffa62206c9c4e97879af6fa8440d79b38f53790f48bf4e2fa7f55447",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.7",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

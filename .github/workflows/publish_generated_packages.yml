@@ -1,0 +1,43 @@
+name: Publish Generated Packages
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish_generated_packages:
+    name: Publish generated packages
+    if: |
+      github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'chore(schemas): weekly schema update'
+    needs: lint_test_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Set up Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
+        with:
+          node-version: 24.x
+          cache: yarn
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: yarn --immutable
+
+      - name: Publish generated packages
+        run: yarn publish:schemas
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload publish log
+        if: always()
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+        with:
+          name: publish-errors-log
+          path: publish-errors.log
+          if-no-files-found: ignore

@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for azure-iot-edgehub-deployment-1.2.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/azure-iot-edgehub-deployment-1.2",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/azure-iot-edgehub-deployment-1.2",
-  "scripts": {},
-  "typesPublisherContentHash": "6556504630fe6b742dc7708d6833fbb92453636a870e1fb81d976bebba17ce1c",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.2",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }
