@@ -66,6 +66,7 @@ Each generated schema package must contain:
 - Publishing runs only on pushes to the default branch.
 - Publishing is additionally gated to commits whose message is exactly `chore(schemas): weekly schema update`.
 - CI publishing uses `yarn publish:schemas` and should rely on an `NPM_TOKEN` secret.
+- `yarn publish:schemas` must skip schema packages whose matching `schema-lock.json` entry already has `published: true`.
 - The publish step must continue through per-package failures so successful publishes still update lock state.
 - After publish attempts, the workflow opens a pull request with the updated `schema-lock.json` so published flags stay in sync with git history, then marks the job as failed when publish attempts had errors.
 - Publish failures should be logged to `publish-errors.log`, but publishing must continue for the remaining packages.
@@ -110,6 +111,7 @@ When touching generation logic (`src/updater.ts`), publishing logic (`src/publis
 - Keep Node compatibility at `>=22`.
 - Keep code ESM (`"type": "module"`, NodeNext TS settings).
 - Keep command behavior idempotent for unchanged schemas.
+- Always accept new workspace changes made by the user between requests and adapt to them instead of reverting them.
 
 ## Common Pitfalls
 

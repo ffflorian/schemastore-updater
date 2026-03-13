@@ -63,6 +63,14 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
       continue;
     }
 
+    const matchingLockEntry = findLockEntryForPackage(lockFile, packageDirectory, projectRoot);
+    if (matchingLockEntry?.published) {
+      stats.skipped += 1;
+      console.info(`Skipped (already published): ${path.basename(packageDirectory)}`);
+      await writePublishLog(logFilePath, errorMessages);
+      continue;
+    }
+
     const schemaName = path.basename(packageDirectory);
     const packageManifest = await readPackageManifest(packageJsonPath);
     const packageLabel = formatPackageLabel(packageManifest, schemaName);
@@ -101,6 +109,16 @@ async function exists(filePath: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+function findLockEntryForPackage(
+  lockFile: SchemaLockFile,
+  packageDirectory: string,
+  projectRoot: string
+): LockEntry | undefined {
+  const generatedFile = normalizePath(path.relative(projectRoot, path.join(packageDirectory, 'index.d.ts')));
+
+  return Object.values(lockFile.entries).find(lockEntry => normalizePath(lockEntry.generatedFile) === generatedFile);
 }
 
 function formatPackageLabel(packageManifest: PackageManifest, fallbackName: string): string {
@@ -143,13 +161,17 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
 }
 
 function markPackageAsPublished(lockFile: SchemaLockFile, packageDirectory: string, projectRoot: string): void {
-  const generatedFile = path.relative(projectRoot, path.join(packageDirectory, 'index.d.ts'));
+  const generatedFile = normalizePath(path.relative(projectRoot, path.join(packageDirectory, 'index.d.ts')));
 
   for (const lockEntry of Object.values(lockFile.entries)) {
-    if (lockEntry.generatedFile === generatedFile) {
+    if (normalizePath(lockEntry.generatedFile) === generatedFile) {
       lockEntry.published = true;
     }
   }
+}
+
+function normalizePath(filePath: string): string {
+  return filePath.replaceAll('\\', '/');
 }
 
 async function publishPackageDirectory(packageDirectory: string): Promise<void> {

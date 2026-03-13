@@ -124,9 +124,46 @@ describe('publishGeneratedPackages', () => {
     expect(lockFile.entries['alpha.json']?.published).toBe(false);
     expect(lockFile.entries['beta.json']?.published).toBe(false);
   });
+
+  it('skips packages that are already marked as published in schema-lock.json', async () => {
+    const workspaceDirectory = await createWorkspace(
+      {
+        'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+        'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '1.0.1'}, null, 2),
+      },
+      {
+        'alpha.json': true,
+      }
+    );
+
+    const publishPackage = vi.fn(async (_packageDirectory: string) => undefined);
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      publishGeneratedPackages({
+        publishPackage,
+      })
+    );
+
+    const lockFile = await readLockFile(workspaceDirectory);
+
+    expect(stats).toEqual({
+      attempted: 1,
+      dryRun: false,
+      failed: 0,
+      logFilePath: 'publish-errors.log',
+      published: 1,
+      skipped: 1,
+    });
+    expect(publishPackage).toHaveBeenCalledTimes(1);
+    expect(lockFile.entries['alpha.json']?.published).toBe(true);
+    expect(lockFile.entries['beta.json']?.published).toBe(true);
+  });
 });
 
-async function createWorkspace(schemaPackageFiles: Record<string, string>): Promise<string> {
+async function createWorkspace(
+  schemaPackageFiles: Record<string, string>,
+  publishedOverrides: Record<string, boolean> = {}
+): Promise<string> {
   const workspaceDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-publish-tests-'));
   trackedTempDirectories.push(workspaceDirectory);
 
@@ -148,7 +185,7 @@ async function createWorkspace(schemaPackageFiles: Record<string, string>): Prom
       lockFile.entries[`${packageName}.json`] = {
         generatedFile: path.join('schemas', packageName, 'index.d.ts'),
         generatedSha256: 'generated-hash',
-        published: false,
+        published: publishedOverrides[`${packageName}.json`] ?? false,
         sourceSha256: 'source-hash',
         updatedAt: new Date(0).toISOString(),
       };
