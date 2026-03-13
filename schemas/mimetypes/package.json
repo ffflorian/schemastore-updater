@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for mimetypes.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/mimetypes",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/mimetypes",
-  "scripts": {},
-  "typeScriptVersion": "2.2",
+  "private": false,
   "types": "index.d.ts",
-  "typesPublisherContentHash": "d3448bc2e73ceffbd0347e73f34b6c5495e9ae1326e2b518f07de4d1d2d5957c",
-  "version": "0.0.7"
+  "version": "1.0.0"
 }

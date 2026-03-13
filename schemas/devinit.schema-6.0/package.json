@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for devinit.schema-6.0.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/devinit.schema-6.0",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

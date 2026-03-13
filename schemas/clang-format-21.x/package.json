@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for clang-format-21.x.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/clang-format-21.x",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for pull-request-labeler.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/pull-request-labeler",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

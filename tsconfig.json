@@ -2,21 +2,28 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "declaration": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "declarationMap": true,
+    "exactOptionalPropertyTypes": true,
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noEmitOnError": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "dist",
+    "resolveJsonModule": true,
     "rootDir": "src",
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "strictFunctionTypes": true,
-    "target": "es6"
+    "strictNullChecks": true,
+    "target": "ES2024"
   },
-  "exclude": ["dist", "node_modules", "schemas", "temp", "eslint.config.ts"]
+  "exclude": [".cache/**"],
+  "include": ["src/**/*.ts"]
 }

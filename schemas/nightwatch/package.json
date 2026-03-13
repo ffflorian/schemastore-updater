@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for nightwatch.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/nightwatch",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

@@ -1,0 +1,540 @@
+/* eslint-disable */
+
+/**
+ * Regular expression for validating branch names
+ */
+export type BranchPattern = string;
+/**
+ * Stage name in the Jenkins pipeline
+ *
+ * This interface was referenced by `Stages`'s JSON-Schema definition
+ * via the `patternProperty` "^\w+( \w+)*$".
+ */
+export type Stage = (Stage1 | ParallelStage) & {
+  when?: When;
+  steps?: Steps;
+  fail_fast?: FailFast;
+  parallel?: Parallel;
+};
+/**
+ * List of steps to run
+ */
+export type Steps = unknown[];
+/**
+ * Regular expression for validating branch names
+ */
+export type Branch = string;
+/**
+ * Forces parallel stages to all be aborted when one of them fails
+ */
+export type FailFast = boolean;
+/**
+ * Release channel name
+ */
+export type ReleaseChannel = string;
+/**
+ * Indicates on which branches the artifact will be published
+ */
+export type ReleaseChannelBranch = string;
+/**
+ * Package publish configuration.
+ */
+export type OutputPackagePublish = PackagePublishChannel[];
+export type OutputDockerImage = OutputDockerImage1 & {
+  /**
+   * Docker image name
+   */
+  name: string;
+  /**
+   * Path to Dockerfile used to generate the docker image
+   */
+  dockerfile?: string;
+  /**
+   * Path to the desired docker build context.
+   */
+  context?: string;
+  args?: DockerBuildArgs;
+  vulnerability_scan?: VulnerabilityScan;
+};
+export type OutputDockerImage1 =
+  | {
+      /**
+       * Path to Dockerfile used to generate the docker image
+       */
+      dockerfile: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * Path to the desired docker build context.
+       */
+      context: string;
+      [k: string]: unknown | undefined;
+    };
+export type OutputDockerBuildArgs = {
+  /**
+   * ARG name
+   */
+  key?: string;
+  /**
+   * Environment variable whose value will be used to set the ARG
+   */
+  env?: string;
+  /**
+   * Value of the ARG
+   */
+  value?: string;
+  [k: string]: unknown | undefined;
+} & OutputDockerBuildArgs1;
+export type OutputDockerBuildArgs1 =
+  | {
+      /**
+       * ARG name
+       */
+      key: string;
+      /**
+       * Value of the ARG
+       */
+      value: string;
+      additionalProperties?: never;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * ARG name
+       */
+      key: string;
+      /**
+       * Environment variable whose value will be used to set the ARG
+       */
+      env: string;
+      additionalProperties?: never;
+      [k: string]: unknown | undefined;
+    };
+/**
+ * List of build args (--build-arg) to pass in docker build
+ */
+export type DockerBuildArgs = OutputDockerBuildArgs[];
+/**
+ * Docker publishing information. If not present, no images will be published
+ */
+export type OutputDockerPublish = DockerReleaseChannel[];
+export type OutputHelmUpdatesProperties =
+  | {
+      /**
+       * Yaml property (full path) to be updated
+       */
+      key: string;
+      /**
+       * Environment variable whose value will be used to update the property
+       */
+      env: string;
+      additionalProperties?: never;
+    }
+  | {
+      /**
+       * Yaml property (full path) to be updated
+       */
+      key: string;
+      /**
+       * Value to update the given property
+       */
+      value: string;
+    };
+/**
+ * Helm chart publishing configuration. If not present, no charts will be published
+ */
+export type OutputHelmPublish = HelmReleaseChannel[];
+
+/**
+ * CI configuration for Amdocs Bill Experience projects
+ */
+export interface HttpsJsonSchemastoreOrgBxciSchema3XJson {
+  /**
+   * Project properties
+   */
+  project: {
+    /**
+     * Project's name (used by Jenkins, Docker and Sonar)
+     */
+    name?: string;
+    /**
+     * Project type
+     */
+    type?: 'npm' | 'maven' | 'mvn';
+    /**
+     * ID of a managed maven or npm Jenkins file
+     */
+    settings?: string;
+  };
+  config?: {
+    jenkins_runtime?: {
+      /**
+       * Specifies how to build the Docker container (from an existing image or from a local Dockerfile)
+       */
+      docker: {
+        /**
+         * Prebuilt Docker image (has precedence over dockerfile)
+         */
+        image?: string;
+        /**
+         * Path to a local Dockerfile
+         */
+        dockerfile?: string;
+      };
+    };
+    /**
+     * Describes on which branch names a build will be run
+     */
+    branch?: {
+      branch_pattern?: BranchPattern;
+      /**
+       * Disables branch name validation
+       */
+      disable_validation?: boolean;
+    };
+    build?: {
+      /**
+       * Whether Jenkins workspace should be cleaned after the build
+       */
+      clean_workspace_after_run?: boolean;
+      /**
+       * Commit age threshold. Disables automated builds older than this parameter. When 0, this feature is disabled
+       */
+      commit_time_threshold?: 0 | string;
+      checkmarx?: CheckMarx;
+      static_analysis?: Sonar;
+    };
+    /**
+     * Cache configuration for projects built inside Docker containers
+     */
+    cache?: {
+      repository?: BinaryRepository;
+      /**
+       * List of cache types
+       */
+      items?: CacheItem[];
+    };
+  };
+  /**
+   * Additional services required by the project or application.
+   */
+  services?: ('Postgres' | 'Postgis' | 'Redis' | 'Mssql' | 'Mysql' | 'Mongodb' | 'Elasticsearch')[];
+  /**
+   * Custom environment variables to be added to the pipeline
+   */
+  environment?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Jenkins environment variables that are passed to the Docker container
+   */
+  jenkinsEnvironment?: string[];
+  stages?: Stages;
+  /**
+   * Describes artifacts generated after all the stages have been run
+   */
+  output?: {
+    package?: OutputPackage;
+    docker?: OutputDocker;
+    helm?: OutputHelm;
+  };
+  /**
+   * List of artifacts to archive (wildcards allowed). Check out https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts
+   */
+  archive?: unknown[];
+  /**
+   * Build timeout in seconds
+   */
+  timeout?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Adds a Static Analysis stage for CheckMarx. See https://www.jenkins.io/doc/pipeline/steps/checkmarx/ for all the configuration options.
+ */
+export interface CheckMarx {
+  /**
+   * Sets whether the scan should be run
+   */
+  enabled?: boolean;
+  /**
+   * Specifies in which branches this stage will be executed
+   */
+  branch_pattern?: string;
+  /**
+   * Fully qualified team name for the project
+   */
+  groupId?: string;
+  /**
+   * Scan preset for the project
+   */
+  preset?: string;
+  /**
+   * Language encoding ID associated to the source code character encoding (5: Multi-Language Scan)
+   */
+  sourceEncoding?: string;
+  /**
+   * Checkmarx Server URL or IP address
+   */
+  serverUrl?: string;
+  /**
+   * Jenkins credentials ID
+   */
+  credentialsId?: string;
+  isProxy?: boolean;
+  /**
+   * Enables the use of the default server credentials or disables and provides server and credentials that override the defaults
+   */
+  useOwnServerCredentials?: boolean;
+  /**
+   * Unique project name. Will be inferred from the repository name if not provided
+   */
+  projectName?: string;
+  /**
+   * Specifies which exclusions settings to use: global (Jenkins global settings) or job (current pipeline)
+   */
+  exclusionsSetting?: 'job' | 'global';
+  /**
+   * Comma separated list of folders to be excluded from the CxSAST scan
+   */
+  excludeFolders?: string;
+  /**
+   * Defines the include/exclude wildcard patterns. Does not have effect when "exclusionsSetting" is set to "global"
+   */
+  filterPattern?: string;
+  /**
+   * Sets whether debug logs are visible in the job output
+   */
+  hideDebugLogs?: boolean;
+  /**
+   * Sets whether the scan should be executed synchronously (default). The Synchronous mode allows viewing scan results in Jenkins
+   */
+  waitForResultsEnabled?: boolean;
+  /**
+   * Sets whether the scan should fail if the number of vulnerabilities is above the configured thresholds. This option is only available if the waitForResultsEnabled parameter is enabled
+   */
+  vulnerabilityThresholdEnabled?: boolean;
+  /**
+   * Sets the maximum number of High vulnerabilities allowed
+   */
+  highThreshold?: number;
+  /**
+   * Sets the maximum number of Medium vulnerabilities allowed
+   */
+  mediumThreshold?: number;
+  /**
+   * Sets the maximum number of Low vulnerabilities allowed
+   */
+  lowThreshold?: number;
+}
+/**
+ * Adds a Static Analysis stage for Sonar.
+ */
+export interface Sonar {
+  enabled?: boolean;
+  /**
+   * Waits for analysis result and breaks the build when the project fails for some quality gates
+   */
+  breaks_build?: boolean;
+  /**
+   * Indicates whether sonnar server supports branch analysis, to provide dedicated parameters.
+   */
+  branch_analysis?: boolean;
+  /**
+   * Indicates on which branches static analysis will be performed.
+   */
+  branch_pattern?: string;
+  /**
+   * Prebuilt Docker image for running scan into it. If not specified, it will use the same image used for main build.
+   */
+  image?: string;
+  /**
+   * Seconds to wait for the result of the quality gate. Only applies when breaks_build is set to true
+   */
+  timeout?: number;
+  /**
+   * Comma separated list of wildcard patterns defining files to be excluded from the SonarQube scan
+   */
+  exclusions?: string;
+}
+/**
+ * Binary repository details
+ */
+export interface BinaryRepository {
+  /**
+   * Repository URL
+   */
+  address: string;
+  /**
+   * Jenkins credentials ID for connecting to this repository
+   */
+  credentials: string;
+}
+export interface CacheItem {
+  /**
+   * Cache type
+   */
+  type: 'maven' | 'npm' | 'local';
+  /**
+   * Sets whether this cache type is enabled
+   */
+  enabled: boolean;
+  /**
+   * Location of the cache in the Jenkins workspace
+   */
+  source?: string;
+  /**
+   * Location of the cache directory inside the Docker container
+   */
+  target?: string;
+}
+/**
+ * Defines the stages and steps required to build the project.
+ */
+export interface Stages {
+  [k: string]: Stage;
+}
+/**
+ * This interface was referenced by `Parallel`'s JSON-Schema definition
+ * via the `patternProperty` "^\w+( \w+)*$".
+ */
+export interface Stage1 {
+  steps: Steps;
+  when?: When;
+}
+/**
+ * Condition that should be met to run this step
+ */
+export interface When {
+  branch?: Branch;
+  [k: string]: unknown | undefined;
+}
+export interface ParallelStage {
+  when?: When;
+  fail_fast?: FailFast;
+  /**
+   * List of stages to be executed in parallel
+   */
+  parallel: {
+    [k: string]: Stage2;
+  };
+}
+/**
+ * Stage name in the Jenkins pipeline
+ *
+ * This interface was referenced by `undefined`'s JSON-Schema definition
+ * via the `patternProperty` "^\w+( \w+)*$".
+ */
+export interface Stage2 {
+  steps: Steps;
+  when?: When;
+}
+export interface Parallel {
+  [k: string]: Stage1;
+}
+/**
+ * Configuration for publishing NPM or Maven packages
+ */
+export interface OutputPackage {
+  publish: OutputPackagePublish;
+}
+export interface PackagePublishChannel {
+  channel: ReleaseChannel;
+  branch: ReleaseChannelBranch;
+  /**
+   * NPM registry (env variable or registry URL)
+   */
+  registry?: string;
+  /**
+   * Jenkins credentials ID for publishing into the specified Docker registry
+   */
+  credentials?: string;
+  /**
+   * Maven repository for deploying releases
+   */
+  maven_releases_repo?: string;
+  /**
+   * Maven repository for deploying snapshots
+   */
+  maven_snapshots_repo?: string;
+  /**
+   * Optional params for npm publish or mvn deploy command.
+   */
+  params?: string;
+}
+/**
+ * Configuration for generating a Docker image
+ */
+export interface OutputDocker {
+  images: OutputDockerImage[];
+  publish?: OutputDockerPublish;
+  multiArch?: {
+    /**
+     * Whether the multi-arch build should be enabled
+     */
+    enabled?: boolean;
+    architectures?: string[];
+    [k: string]: unknown | undefined;
+  };
+}
+/**
+ * Configuration for running vulnerability scans on published Docker images
+ */
+export interface VulnerabilityScan {
+  /**
+   * Whether the vulnerability scan step should be run
+   */
+  enabled?: boolean;
+  [k: string]: unknown | undefined;
+}
+export interface DockerReleaseChannel {
+  channel: ReleaseChannel;
+  branch: ReleaseChannelBranch;
+  /**
+   * Docker registry. Must include protocol (http|https) and port
+   */
+  registry: string;
+  /**
+   * Jenkins credentials ID for publishing into the specified Docker registry
+   */
+  credentials: string;
+}
+/**
+ * Configuration for generating a Helm chart
+ */
+export interface OutputHelm {
+  charts?: OutputHelmChart[];
+  publish: OutputHelmPublish;
+}
+export interface OutputHelmChart {
+  /**
+   * Path to the Helm chart directory
+   */
+  path: string;
+  /**
+   * List of files to update
+   */
+  updates?: OutputHelmUpdates[];
+}
+export interface OutputHelmUpdates {
+  /**
+   * Name (including path from Helm object path) of the file to be updated. Only supports yaml files
+   */
+  file: string;
+  /**
+   * A list of properties to update. It can be updated with a fixed value or environment variable
+   */
+  properties: OutputHelmUpdatesProperties[];
+}
+export interface HelmReleaseChannel {
+  channel: ReleaseChannel;
+  branch: ReleaseChannelBranch;
+  /**
+   * Helm chart repository. Must include protocol, host, port (if needed) and path
+   */
+  repository: string;
+  /**
+   * Jenkins credentials Id for this repository for uploading the chart
+   */
+  credentials: string;
+}

@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for package.manifest-7.0.0.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/package.manifest-7.0.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/package.manifest-7.0.0",
-  "scripts": {},
-  "typesPublisherContentHash": "efc911ed3e7b8651020c83b83a52d90af1f2531f3088684e0eeec515a933b3bf",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.6",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

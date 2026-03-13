@@ -5,8 +5,10 @@
 This package contains type definitions for up.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/up.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:41 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:23:47 GMT
 * Dependencies: none

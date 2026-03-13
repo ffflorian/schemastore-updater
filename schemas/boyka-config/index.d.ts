@@ -1,0 +1,767 @@
+/* eslint-disable */
+
+/**
+ * Target Web Browser
+ */
+export type Browser = 'CHROME' | 'EDGE' | 'FIREFOX' | 'NONE' | 'REMOTE' | 'SAFARI';
+/**
+ * Type of Mobile Application
+ */
+export type ApplicationType = 'HYBRID' | 'NATIVE' | 'WEB';
+/**
+ * Target Mobile OS
+ */
+export type OS = 'ANDROID' | 'IOS';
+/**
+ * Permission decision for iOS devices
+ */
+export type PermissionDecision =
+  | ('ALWAYS' | 'CRITICAL' | 'IN_USE' | 'LIMITED' | 'NEVER' | 'NO' | 'UNSET' | 'YES')
+  | undefined;
+/**
+ * Swiping speed for Mobile devices
+ */
+export type Speed = 'FAST' | 'NORMAL' | 'SLOW';
+/**
+ * Type of Target Device
+ */
+export type DeviceType = 'CLOUD' | 'VIRTUAL';
+/**
+ * Video recording quality
+ */
+export type VideoQuality = 'LOW' | 'MEDIUM' | 'HIGH' | 'PHOTO';
+/**
+ * Target Appium Driver
+ */
+export type AutomationType = 'UI_AUTOMATOR' | 'XCUI';
+/**
+ * Log level used to capture the Appium server logging
+ */
+export type LogLevel =
+  | 'DEBUG'
+  | 'DEBUG_DEBUG'
+  | 'DEBUG_ERROR'
+  | 'DEBUG_INFO'
+  | 'DEBUG_WARN'
+  | 'ERROR'
+  | 'ERROR_DEBUG'
+  | 'ERROR_ERROR'
+  | 'ERROR_INFO'
+  | 'ERROR_WARN'
+  | 'INFO'
+  | 'INFO_DEBUG'
+  | 'INFO_ERROR'
+  | 'INFO_INFO'
+  | 'INFO_WARN'
+  | 'WARN'
+  | 'WARN_DEBUG'
+  | 'WARN_ERROR'
+  | 'WARN_INFO'
+  | 'WARN_WARN';
+/**
+ * Protocol for Target server
+ */
+export type Protocol = 'HTTP' | 'HTTPS';
+/**
+ * Target Cloud providers
+ */
+export type TargetProviders = 'BROWSER_STACK' | 'LAMBDA_TEST_MOBILE' | 'LAMBDA_TEST_WEB' | 'LOCAL';
+/**
+ * Page Load strategy for Web application
+ */
+export type PageLoadStrategy = 'NONE' | 'EAGER' | 'NORMAL';
+/**
+ * Window resize type for Web Browser
+ */
+export type WindowResizeType = 'CUSTOM' | 'FULL_SCREEN' | 'MAXIMIZED' | 'MINIMIZED' | 'NORMAL';
+/**
+ * Test data source for test data driven testing
+ */
+export type TestDataSource = 'EXCEL';
+
+export interface HttpsJsonSchemastoreOrgBoykaConfigJson {
+  /**
+   * Collection of API configurations
+   */
+  api?: {
+    /**
+     * API Configuration properties
+     */
+    [k: string]:
+      | {
+          /**
+           * Base path of the API endpoint
+           */
+          base_path?: string;
+          /**
+           * Base URI of the API endpoint
+           */
+          base_uri: string;
+          /**
+           * API Timeout settings
+           */
+          timeout?: {
+            /**
+             * API request connection timeout (in seconds)
+             */
+            connection_timeout?: number;
+            /**
+             * API request read timeout (in seconds)
+             */
+            read_timeout?: number;
+            /**
+             * API request write timeout (in seconds)
+             */
+            write_timeout?: number;
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Logging related settings
+           */
+          logging?: {
+            /**
+             * If false, logging of API request and response will not be captured, default is set to true
+             */
+            enable?: boolean;
+            /**
+             * Log API request related details
+             */
+            request?: boolean;
+            /**
+             * Log API response related details
+             */
+            response?: boolean;
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Port number of API endpoint
+           */
+          port?: number;
+          /**
+           * API response schema files parent directory path
+           */
+          schema_path?: string;
+          /**
+           * If set to false, SSL handshake validation will be skipped, set to true by default
+           */
+          validate_ssl?: boolean;
+          /**
+           * If set to false, Host name verification will be skipped, set to true by default
+           */
+          verify_host_name?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
+  };
+  /**
+   * Package name where all the Boyka listener implementations are placed
+   */
+  listeners_package?: string;
+  /**
+   * UI Configurations for Web and Mobile
+   */
+  ui?: {
+    /**
+     * UI interaction delay settings
+     */
+    delay?: {
+      /**
+       * Delay before clicking on an element (in ms)
+       */
+      before_click?: number;
+      /**
+       * Delay before moving of mouse (in ms)
+       */
+      before_mouse_move?: number;
+      /**
+       * Delay before swiping on the device screen or inside an element (in ms)
+       */
+      before_swipe?: number;
+      /**
+       * Delay before tapping on an element (in ms)
+       */
+      before_tap?: number;
+      /**
+       * Delay before typing any text in an element (in ms)
+       */
+      before_typing?: number;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * UI logging related settings
+     */
+    logging?: {
+      /**
+       * If true, any log files generated by Selenium or Appium would be saved
+       */
+      enable?: boolean;
+      /**
+       * List of type of logs which you want to exclude from
+       */
+      exclude_logs?: string[];
+      /**
+       * Path where the logs should be saved
+       */
+      path?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Mobile related settings
+     */
+    mobile?: {
+      [k: string]:
+        | {
+            /**
+             * Mobile device related settings
+             */
+            device: {
+              /**
+               * Automatically accepts alerts
+               */
+              accept_alerts?: boolean;
+              /**
+               * ADB timeout (in seconds)
+               */
+              adb_timeout?: number;
+              /**
+               * Application related settings
+               */
+              application?: {
+                /**
+                 * Base URL of Web application which will be used to automatically navigate it to
+                 */
+                base_url?: string;
+                browser?: Browser;
+                /**
+                 * iOS Bundle ID
+                 */
+                bundle_id?: string;
+                /**
+                 * Chrome driver port
+                 */
+                chrome_driver_port?: number;
+                /**
+                 * Set to true, if the application path is not under `src/test/resources`
+                 */
+                external?: boolean;
+                /**
+                 * Timeout for waiting until Application is installed on the device (in seconds)
+                 */
+                install_timeout?: number;
+                /**
+                 * Path of the application under `src/test/resources` if `external` property is set to false, or Application URL for Cloud platform
+                 */
+                path?: string;
+                type?: ApplicationType;
+                /**
+                 * Activity name to wait until it is loaded
+                 */
+                wait_activity?: string;
+                /**
+                 * Wait timeout to wait until a package or activity is loaded (in seconds)
+                 */
+                wait_timeout?: number;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * Automatically grant permissions for Android devices
+               */
+              auto_grant_permissions?: boolean;
+              capabilities?: Caps;
+              /**
+               * Set to true to clean up any cached files before starting the test session
+               */
+              clear_files?: boolean;
+              /**
+               * Set to true to clean up any old logs from the device before starting the test session
+               */
+              clear_logs?: boolean;
+              /**
+               * Timeout for new command execution (in seconds)
+               */
+              command_timeout?: number;
+              /**
+               * Set to true to perform full reset of the target device. This will not delete any important files, it will only clear any files or logs which was created by earlier test executions
+               */
+              full_reset?: boolean;
+              /**
+               * Set to true to reduce the element hierarchies to only those elements which are visible to the user
+               */
+              ignore_unimportant_views?: boolean;
+              /**
+               * Target Device name
+               */
+              name?: string;
+              /**
+               * Set to true to avoid Appium to reset previous test executions files or logs
+               */
+              no_reset?: boolean;
+              os?: OS;
+              /**
+               * Permissions for iOS devices
+               */
+              permissions?: {
+                [k: string]: PermissionDecision | undefined;
+              };
+              /**
+               * Timeout to wait until Appium server application is installed on the device
+               */
+              server_install_timeout?: number;
+              /**
+               * Timeout to wait until Appium server application is launched on the device
+               */
+              server_launch_timeout?: number;
+              /**
+               * Swipe related settings
+               */
+              swipe?: {
+                /**
+                 * Distance of finger which will be moved from the starting position to the ending position
+                 */
+                distance?: number;
+                /**
+                 * Maximum number of swipes till the element is visible
+                 */
+                max_swipe_until_found?: number;
+                speed?: Speed;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * Android System port number
+               */
+              system_port?: number;
+              type?: DeviceType;
+              /**
+               * Typing speed while entering the text in the input element. Only for iOS
+               */
+              typing_speed?: number;
+              /**
+               * Device unique ID
+               */
+              unique_id?: string;
+              /**
+               * Device OS version
+               */
+              version?: string;
+              /**
+               * Video recording related settings
+               */
+              video?: {
+                /**
+                 * Android video recording related settings
+                 */
+                android?: {
+                  /**
+                   * Bit rate of the video, higher value results in better quality of video. Value will be internally multiplied by 1000000
+                   */
+                  bit_rate?: number;
+                  [k: string]: unknown | undefined;
+                };
+                /**
+                 * Set it to true to enable video recording of the test
+                 */
+                enabled?: boolean;
+                /**
+                 * iOS video recording related settings
+                 */
+                ios?: {
+                  /**
+                   * Codec type of the video. The type should be one of the result for the command `ffmpeg -codecs`
+                   */
+                  codec?: string;
+                  /**
+                   * Frames per second
+                   */
+                  fps?: number;
+                  quality?: VideoQuality;
+                  [k: string]: unknown | undefined;
+                };
+                /**
+                 * Path where the video to be saved
+                 */
+                path?: string;
+                /**
+                 * Prefix of the video file name
+                 */
+                prefix?: string;
+                /**
+                 * Video resolution size
+                 */
+                size?: string;
+                /**
+                 * Time limit of the video (in seconds)
+                 */
+                time_limit?: number;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * Virtual device related settings
+               */
+              virtual_device?: {
+                /**
+                 * Set to true if you want to connect hardware device. Only for iOS devices
+                 */
+                connect_keyboard?: boolean;
+                /**
+                 * Set to true if you want to run the test in headless mode
+                 */
+                headless?: boolean;
+                /**
+                 * Virtual device launch timeout (in seconds)
+                 */
+                launch_timeout?: number;
+                /**
+                 * Name of the virtual device
+                 */
+                name?: string;
+                /**
+                 * AVD ready timeout. Only for Android
+                 */
+                ready_timeout?: number;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * iOS WebDriverAgent related settings
+               */
+              wda?: {
+                /**
+                 * WDA connection timeout (in seconds)
+                 */
+                connection_timeout?: number;
+                /**
+                 * WDA launch timeout (in seconds)
+                 */
+                launch_timeout?: number;
+                /**
+                 * Port on which WDA is running
+                 */
+                local_port?: number;
+                /**
+                 * XCode signing ID
+                 */
+                signing_id?: string;
+                /**
+                 * WDA startup retries
+                 */
+                startup_retries?: number;
+                /**
+                 * WDA startup retry interval
+                 */
+                startup_retry_interval?: number;
+                /**
+                 * XCode Team or Organization ID
+                 */
+                team_id?: string;
+                /**
+                 * Bundle ID to update WDA before building and launching it
+                 */
+                update_bundle_id?: string;
+                /**
+                 * Set to true, to use new WDA on every run
+                 */
+                use_new?: boolean;
+                /**
+                 * Set to true, if you want to use the existing prebuilt WDA instance
+                 */
+                use_prebuilt?: boolean;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * Number of retries to connect to the web view
+               */
+              web_view_connect_retries?: number;
+              /**
+               * Timeout to wait for web view to connect (in seconds)
+               */
+              web_view_connect_timeout?: number;
+              [k: string]: unknown | undefined;
+            };
+            /**
+             * Appium server related settings
+             */
+            server: {
+              /**
+               * Set to true to allow cors
+               */
+              allow_cors?: boolean;
+              /**
+               * Set list of insecure features which you want to enable
+               */
+              allow_insecure?: string[];
+              /**
+               * Appium executable path
+               */
+              appium_path?: string;
+              /**
+               * Appium server's base path, example `/wd/hub`
+               */
+              base_path?: string;
+              /**
+               * Callback IP address
+               */
+              callback_address?: string;
+              /**
+               * Callback Port number
+               */
+              callback_port?: number;
+              /**
+               * Appium config path
+               */
+              config_path?: string;
+              /**
+               * List of insecure features which you want to deny
+               */
+              deny_insecure?: string[];
+              driver: AutomationType;
+              /**
+               * Set to true, if you have Appium server already running
+               */
+              external?: boolean;
+              /**
+               * Set to true, if the Appium config file is not there in the projects root directory
+               */
+              external_config?: boolean;
+              /**
+               * Appium server's IP address
+               */
+              host?: string;
+              /**
+               * Timeout to keep the Appium server running
+               */
+              keep_alive_timeout?: number;
+              /**
+               * Appium server's logging related settings
+               */
+              logging?: {
+                /**
+                 * Adds extra spaces to logs for ease to view
+                 */
+                debug_spacing?: boolean;
+                level?: LogLevel;
+                /**
+                 * Set to true to use local timezone
+                 */
+                local_timezone?: boolean;
+                /**
+                 * Set to true to display timestamps in the logs
+                 */
+                timestamp?: boolean;
+                [k: string]: unknown | undefined;
+              };
+              /**
+               * Node JS executable path
+               */
+              node_path?: string;
+              other_args?: Args;
+              /**
+               * Your password for Cloud platform. You can also use environment variables in `${env:ENV_VAR_NAME}` format
+               */
+              password?: string;
+              /**
+               * List of Appium plugin names which you want to activate
+               */
+              plugins?: string[];
+              /**
+               * Port on which Appium Server will run
+               */
+              port?: number;
+              protocol?: Protocol;
+              /**
+               * Set to true, to allow relaxed security
+               */
+              relaxed_security?: boolean;
+              /**
+               * Set to true, to allow overriding the Appium session
+               */
+              session_override?: boolean;
+              /**
+               * Set to true, to enforce strict capabilities
+               */
+              strict_capabilities?: boolean;
+              target?: TargetProviders;
+              /**
+               * Appium server timeout (in seconds)
+               */
+              timeout?: number;
+              /**
+               * Your username of the Cloud platform. You can also use environment variables in `${env:ENV_VAR_NAME}` format
+               */
+              user_name?: string;
+              /**
+               * Webhook URL to which you want to send the Appium server logs to
+               */
+              webhook?: string;
+              [k: string]: unknown | undefined;
+            };
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
+    };
+    /**
+     * UI screenshot related settings
+     */
+    screenshot?: {
+      /**
+       * Set to true to enable screenshots
+       */
+      enabled?: boolean;
+      /**
+       * Screenshot file extension
+       */
+      extension?: string;
+      /**
+       * Path where the screenshots will be saved
+       */
+      path?: string;
+      /**
+       * Prefix of the screenshot file name
+       */
+      prefix?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * UI timeout related settings
+     */
+    timeout?: {
+      /**
+       * Explicit wait for the element to wait for a particular condition to succeed (in seconds)
+       */
+      explicit_wait?: number;
+      /**
+       * Delay while Highlighting the element (in ms)
+       */
+      highlight_delay?: number;
+      /**
+       * Implicit wait for Appium to find the element (in seconds)
+       */
+      implicit_wait?: number;
+      /**
+       * Page load timeout (in seconds)
+       */
+      page_load_timeout?: number;
+      /**
+       * Script load timeout (in seconds)
+       */
+      script_timeout?: number;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Web related settings
+     */
+    web?: {
+      [k: string]:
+        | {
+            /**
+             * Base URL to which you want to navigate automatically when the Web session is started
+             */
+            base_url?: string;
+            browser?: Browser;
+            /**
+             * List of Browser driver options
+             */
+            browser_options?: string[];
+            capabilities?: Caps;
+            /**
+             * Custom size when Resize is set as `CUSTOM`
+             */
+            custom_size?: {
+              /**
+               * Height of the Browser window
+               */
+              height?: number;
+              /**
+               * Width of the Browser window
+               */
+              width?: number;
+              [k: string]: unknown | undefined;
+            };
+            /**
+             * Map of experimental options
+             */
+            experimental_options?: {
+              [k: string]:
+                | (
+                    | string
+                    | number
+                    | boolean
+                    | {
+                        [k: string]: unknown | undefined;
+                      }
+                  )
+                | undefined;
+            };
+            /**
+             * Set to true if you want to run the test in headless mode
+             */
+            headless?: boolean;
+            /**
+             * Set to true if you want to see the element interactions being highlighted
+             */
+            highlight?: boolean;
+            /**
+             * Host IP address, if not provided, Target Host will be used
+             */
+            host?: string;
+            page_load_strategy?: PageLoadStrategy;
+            /**
+             * Your cloud platform password. You can also use environment variables in `${env:ENV_VAR_NAME}` format
+             */
+            password?: string;
+            /**
+             * Platform on which the Web browser will be launched
+             */
+            platform?: string;
+            /**
+             * Port number on which Selenium WebDriver will start the session
+             */
+            port?: number;
+            protocol?: Protocol;
+            resize?: WindowResizeType;
+            target?: TargetProviders;
+            /**
+             * Your cloud platform user name or key. You can also use environment variables in `${env:ENV_VAR_NAME}` format
+             */
+            user_name?: string;
+            /**
+             * Browser version of the Browser will be launched
+             */
+            version?: string;
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
+    };
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Test Data related settings
+   */
+  data?: {
+    /**
+     * Data file extension
+     */
+    extension?: string;
+    /**
+     * Is data file external or not
+     */
+    external?: boolean;
+    /**
+     * Test data file path
+     */
+    path?: string;
+    type?: TestDataSource;
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+/**
+ * Capabilities object where you can add any capability based on the Cloud platform supported or Grid supported capabilities
+ */
+export interface Caps {
+  [k: string]: (string | number | boolean) | undefined;
+}
+/**
+ * Arguments object where you can add any arguments
+ */
+export interface Args {
+  [k: string]: (string | number | boolean) | undefined;
+}

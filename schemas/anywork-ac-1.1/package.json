@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for anywork-ac-1.1.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/anywork-ac-1.1",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/anywork-ac-1.1",
-  "scripts": {},
-  "typeScriptVersion": "2.2",
+  "private": false,
   "types": "index.d.ts",
-  "typesPublisherContentHash": "4ba61558cf81584f7f1480ac2214b1186032faf18f600866644f70e800b6200f",
-  "version": "0.0.4"
+  "version": "1.0.0"
 }

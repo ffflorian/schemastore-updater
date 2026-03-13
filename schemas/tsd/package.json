@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for tsd.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/tsd",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/tsd",
-  "scripts": {},
-  "typesPublisherContentHash": "e0de9bc326f2511f3eac87e4a7d108fa0de038721a92dad55d4e0c379da6f4dd",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

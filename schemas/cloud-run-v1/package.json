@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for cloud-run-v1.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/cloud-run-v1",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

@@ -1,0 +1,1173 @@
+/* eslint-disable */
+
+/**
+ * The definition for an entity
+ */
+export type EntityDefinition = BindingEntityDefinition | TextEntityDefinition;
+/**
+ * A conceptual entity or table in the conceptual model to which a linguistic schema object is bound
+ */
+export type ConceptualEntityBinding =
+  | {
+      /**
+       * The name of the table.
+       */
+      Table: string;
+    }
+  | {
+      /**
+       * The name of the conceptual entity (e.g. table or pod)
+       */
+      ConceptualEntity: string;
+    };
+/**
+ * A conceptual property, column, or measure in the conceptual model to which a linguistic schema object is bound.
+ */
+export type ConceptualPropertyBinding =
+  | {
+      /**
+       * The name of the table containing the column or measure
+       */
+      Table: string;
+      /**
+       * The name of the property containing the variation set that contains the column or measure
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the column or measure
+       */
+      VariationSet?: string;
+      /**
+       * The name of the column
+       */
+      Column: string;
+    }
+  | {
+      /**
+       * The name of the table containing the column or measure
+       */
+      Table: string;
+      /**
+       * The name of the property containing the variation set that contains the column or measure
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the column or measure
+       */
+      VariationSet?: string;
+      /**
+       * The name of the measure
+       */
+      Measure: string;
+    }
+  | {
+      /**
+       * The name of the conceptual entity containing the property
+       */
+      ConceptualEntity: string;
+      /**
+       * The name of the property containing the variation set that contains the property
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the property
+       */
+      VariationSet?: string;
+      /**
+       * The name of the property
+       */
+      ConceptualProperty: string;
+    };
+/**
+ * A hierarchy in the conceptual model to which a linguistic schema object is bound
+ */
+export type HierarchyBinding =
+  | {
+      /**
+       * The name of the table containing the hierarchy
+       */
+      Table: string;
+      /**
+       * The name of the property containing the variation set that contains the hierarchy
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the hierarchy
+       */
+      VariationSet?: string;
+      /**
+       * The name of the hierarchy
+       */
+      Hierarchy: string;
+    }
+  | {
+      /**
+       * The name of the conceptual entity containing the hierarchy
+       */
+      ConceptualEntity: string;
+      /**
+       * The name of the property containing the variation set that contains the hierarchy
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the hierarchy
+       */
+      VariationSet?: string;
+      /**
+       * The name of the hierarchy
+       */
+      Hierarchy: string;
+    };
+/**
+ * A hierarchy level in the conceptual model to which a linguistic schema object is bound
+ */
+export type HierarchyLevelBinding =
+  | {
+      /**
+       * The name of the table containing the hierarchy
+       */
+      Table: string;
+      /**
+       * The name of the property containing the variation set that contains the hierarchy
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the hierarchy
+       */
+      VariationSet?: string;
+      /**
+       * The name of the hierarchy
+       */
+      Hierarchy: string;
+      /**
+       * The name of the hierarchy level
+       */
+      HierarchyLevel: string;
+    }
+  | {
+      /**
+       * The name of the conceptual entity containing the hierarchy
+       */
+      ConceptualEntity: string;
+      /**
+       * The name of the property containing the variation set that contains the hierarchy
+       */
+      VariationSource?: string;
+      /**
+       * The name of the variation set that contains the hierarchy
+       */
+      VariationSet?: string;
+      /**
+       * The name of the hierarchy
+       */
+      Hierarchy: string;
+      /**
+       * The name of the hierarchy level
+       */
+      HierarchyLevel: string;
+    };
+/**
+ * Indicates whether the entity is hidden.
+ */
+export type Visibility = 'Visible' | 'Hidden' | 'Children';
+/**
+ * Terms which can be used to refer to this entity
+ *
+ * @minItems 1
+ */
+export type Terms = [Term, ...Term[]];
+/**
+ * A term in the linguistic schema
+ */
+export type Term = NonEmptyString | FullTerm;
+export type NonEmptyString = string;
+/**
+ * Indicates the type of the creator of the object
+ */
+export type SourceType = 'Default' | 'User' | 'Internal' | 'External';
+/**
+ * Nouns which indicate the units represented in this numeric property entity.
+ *
+ * @minItems 1
+ */
+export type Terms1 = [Term, ...Term[]];
+/**
+ * A list of related entities which are used to group the query when this entity is shown
+ *
+ * @minItems 1
+ */
+export type EntityReferences = [EntityReference, ...EntityReference[]];
+/**
+ * A reference to an entity in a linguistic relationship
+ */
+export type EntityReference = Identifier | FullEntityReference;
+/**
+ * Identifier for a linguistic schema object
+ */
+export type Identifier = string;
+/**
+ * A role in a linguistic relationship.
+ */
+export type Role = (Identifier | FullRole) | undefined;
+/**
+ * Nouns which can be used to refer to the entity which is the target of the role, when used in the context of the relationship
+ *
+ * @minItems 1
+ */
+export type Terms2 = [Term, ...Term[]];
+/**
+ * A set of conditions which are required to be true for instances of the relationship represented in the semantic model
+ *
+ * @minItems 1
+ * @maxItems 1
+ */
+export type Conditions = [Condition];
+export type NullableTextValue = string | null;
+export type NullableNumberValue = number | null;
+export type NullableBooleanValue = boolean | null;
+/**
+ * One or more text values to use in a condition
+ */
+export type TextValues = NullableTextValue | [NullableTextValue];
+/**
+ * One or more number values to use in a condition
+ */
+export type NumberValues = NullableNumberValue | [NullableNumberValue];
+/**
+ * One or more Boolean values to use in a condition
+ */
+export type BooleanValues = NullableBooleanValue | [NullableBooleanValue];
+/**
+ * A set of syntactic frames which define the types of language used to describe the relationship
+ *
+ * @minItems 1
+ */
+export type Phrasings = [Phrasing, ...Phrasing[]];
+/**
+ * The phrasings on a linguistic relationship
+ */
+export type Phrasing =
+  | AttributePhrasing
+  | NamePhrasing
+  | AdjectivePhrasing
+  | DynamicAdjectivePhrasing
+  | NounPhrasing
+  | DynamicNounPhrasing
+  | PrepositionPhrasing
+  | VerbPhrasing;
+/**
+ * An attribute phrasing on a linguistic relationship
+ */
+export type AttributePhrasing = {
+  Attribute: AttributePhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * Prepositions used in the prepositional phrase
+ *
+ * @minItems 1
+ */
+export type Terms3 = [Term, ...Term[]];
+/**
+ * A name phrasing on a linguistic relationship
+ */
+export type NamePhrasing = {
+  Name: NamePhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * An adjective phrasing on a linguistic relationship
+ */
+export type AdjectivePhrasing = {
+  Adjective: AdjectivePhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Properties of an adjective phrasing
+ */
+export type AdjectivePhrasingProperties = AdjectivePhrasingProperty | AntonymPhrasingProperty;
+/**
+ * Adjectives used to describe the Subject (with a high measurement)
+ *
+ * @minItems 1
+ */
+export type Terms4 = [Term, ...Term[]];
+/**
+ * Adjectives used to describe the Subject (with a low measurement)
+ *
+ * @minItems 1
+ */
+export type Terms5 = [Term, ...Term[]];
+/**
+ * Additional adverb phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type AdverbPhrases = [AdverbPhrase, ...AdverbPhrase[]];
+/**
+ * An adverb phrase in a linguistic relationship
+ */
+export type AdverbPhrase = AdverbPhraseProperty | AdverbAntonymPhraseProperty;
+/**
+ * Adverbs used to describe the relationship (high measurement)
+ *
+ * @minItems 1
+ */
+export type Terms6 = [Term, ...Term[]];
+/**
+ * Adverbs used to describe the relationship (low measurement)
+ *
+ * @minItems 1
+ */
+export type Terms7 = [Term, ...Term[]];
+/**
+ * Adverbs used to describe the relationship (low measurement)
+ *
+ * @minItems 1
+ */
+export type Terms8 = [Term, ...Term[]];
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases1 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * Adjectives used to describe the Subject (with a low measurement)
+ *
+ * @minItems 1
+ */
+export type Terms9 = [Term, ...Term[]];
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases2 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * A dynamic adjective phrasing on a linguistic relationship
+ */
+export type DynamicAdjectivePhrasing = {
+  DynamicAdjective: DynamicAdjectivePhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases3 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * A noun phrasing on a linguistic relationship
+ */
+export type NounPhrasing = {
+  Noun: NounPhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Nouns used to describe the Subject
+ *
+ * @minItems 1
+ */
+export type Terms10 = [Term, ...Term[]];
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases4 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * A dynamic noun phrasing on a linguistic relationship
+ */
+export type DynamicNounPhrasing = {
+  DynamicNoun: DynamicNounPhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases5 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * A preposition phrasing on a linguistic relationship
+ */
+export type PrepositionPhrasing = {
+  Preposition: PrepositionPhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Prepositions used in the prepositional phrase
+ *
+ * @minItems 1
+ */
+export type Terms11 = [Term, ...Term[]];
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases6 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * A verb phrasing on a linguistic relationship
+ */
+export type VerbPhrasing = {
+  Verb: VerbPhrasingProperties;
+  [k: string]: unknown | undefined;
+} & PhrasingProperties;
+/**
+ * Verbs used to describe the relationship
+ *
+ * @minItems 1
+ */
+export type Terms12 = [Term, ...Term[]];
+/**
+ * Additional adverb phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type AdverbPhrases1 = [AdverbPhrase, ...AdverbPhrase[]];
+/**
+ * Additional prepositional phrases which apply to the phrasing
+ *
+ * @minItems 1
+ */
+export type PrepPhrases7 = [PrepPhrase, ...PrepPhrase[]];
+/**
+ * The global text substitutions in the linguistic schema.
+ *
+ * @minItems 1
+ */
+export type GlobalSubstitutions = [GlobalSubstitution, ...GlobalSubstitution[]];
+export type GlobalSubstitutionProperties = (string | FullGlobalSubstitutionProperties) | undefined;
+/**
+ * Examples associated with the linguistic schema.
+ *
+ * @minItems 1
+ */
+export type Examples = [Example, ...Example[]];
+/**
+ * An example utterance associated with the linguistic schema
+ */
+export type Example = NonEmptyString | FullExample;
+
+/**
+ * Linguistic Schema Definition Language schema
+ */
+export interface LSDLSchema {
+  /**
+   * Version of LSDL
+   */
+  Version: '3.4.0';
+  /**
+   * Target language for the linguistic schema
+   */
+  Language: string;
+  /**
+   * Indicates which heuristics should be run to automatically improve the linguistic schema.
+   */
+  DynamicImprovement?: 'Default' | 'Full' | 'HighConfidence' | 'None';
+  /**
+   * Indicates the confidence score required for an interpretation of an utterance to be returned.
+   */
+  MinResultConfidence?: 'Default' | 'VeryHigh' | 'High' | 'Medium' | 'Low';
+  Namespaces?: Namespaces;
+  Entities?: Entities;
+  Relationships?: Relationships;
+  GlobalSubstitutions?: GlobalSubstitutions;
+  Examples?: Examples;
+  Agents?: Agents;
+}
+/**
+ * Additional linguistic schemas referenced by objects within this linguistic schema
+ */
+export interface Namespaces {
+  [k: string]: LsdlReference | undefined;
+}
+/**
+ * A reference to an additional linguistic schema.
+ */
+export interface LsdlReference {}
+/**
+ * The entities in the linguistic schema.
+ */
+export interface Entities {
+  [k: string]: Entity | undefined;
+}
+/**
+ * An entity in the linguistic schema
+ */
+export interface Entity {
+  Definition: EntityDefinition;
+  /**
+   * The state of the entity
+   */
+  State?: 'Authored' | 'Generated' | 'Suggested' | 'Deleted';
+  /**
+   * Indicates whether the entity is hidden. Hidden entities are ignored for all purposes other than being available nodes along paths between other related entities.
+   */
+  Visibility?: Visibility | FullVisibilityProperty;
+  /**
+   * The weight to apply to this entity
+   */
+  Weight?: number;
+  /**
+   * Identifies the shared template schema from which this entity is derived
+   */
+  TemplateSchema?: string;
+  Terms?: Terms;
+  /**
+   * The overall semantic category of the entity
+   */
+  SemanticType?: 'Person' | 'Animate' | 'Inanimate' | 'Location' | 'Time' | 'Duration';
+  /**
+   * Indicates whether this entity represents the Name or ID of something
+   */
+  NameType?: 'None' | 'Name' | 'Identifier';
+  Units?: Terms1;
+  Instances?: Instances;
+  ImplicitGroupings?: EntityReferences;
+}
+export interface BindingEntityDefinition {
+  /**
+   * The conceptual model object binding
+   */
+  Binding: ConceptualEntityBinding | ConceptualPropertyBinding | HierarchyBinding | HierarchyLevelBinding;
+}
+export interface TextEntityDefinition {
+  /**
+   * The textual definition
+   */
+  Text: string;
+}
+/**
+ * Indicates whether the entity is hidden.
+ */
+export interface FullVisibilityProperty {
+  Value: Visibility;
+  /**
+   * The state of the visibility property
+   */
+  State?: 'Default' | 'Authored' | 'Generated' | 'Suggested';
+  [k: string]: unknown | undefined;
+}
+/**
+ * A term in the linguistic schema
+ */
+export interface FullTerm {
+  [k: string]: TermProperties | undefined;
+}
+/**
+ * Properties of a term in the linguistic schema
+ */
+export interface TermProperties {
+  /**
+   * The part of speech of the term
+   */
+  Type?: 'Noun' | 'Verb' | 'Adverb' | 'Adjective' | 'Preposition';
+  /**
+   * The state of the term
+   */
+  State?: 'Authored' | 'Generated' | 'Suggested' | 'Deleted';
+  /**
+   * The source of the term
+   */
+  Source?: SourceType | FullSource;
+  /**
+   * The weight to apply to the term
+   */
+  Weight?: number;
+  /**
+   * Identifies the shared template schema from which the term is derived
+   */
+  TemplateSchema?: string;
+  /**
+   * Indicates the last date and time (in UTC) that this term was modified.
+   */
+  LastModified?: string;
+}
+/**
+ * Indicates who/what created the object in the linguistic schema.
+ */
+export interface FullSource {
+  Type?: SourceType;
+  /**
+   * Specific name of the agent that created the object.
+   */
+  Agent?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines how instance values from the model are recognized
+ */
+export interface Instances {
+  /**
+   * Indicates whether the values of this entity should be available in the term index, enabling recognition, completion, and suggestions.
+   */
+  Index?: 'Default' | 'All' | 'None';
+  /**
+   * Indicates whether values that appear to be plural should match singular words in the utterance.
+   */
+  PluralNormalization?: 'Default' | 'Normalized' | 'None';
+  Synonyms?: InstanceSynonyms;
+  Weights?: InstanceWeights;
+}
+/**
+ * Defines a set of values which are synonyms of instances of this entity.
+ */
+export interface InstanceSynonyms {
+  /**
+   * A conceptual property, column, or measure in the conceptual model to which a linguistic schema object is bound.
+   */
+  SynonymBinding:
+    | {
+        /**
+         * The name of the table containing the column or measure
+         */
+        Table: string;
+        /**
+         * The name of the property containing the variation set that contains the column or measure
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the column or measure
+         */
+        VariationSet?: string;
+        /**
+         * The name of the column
+         */
+        Column: string;
+      }
+    | {
+        /**
+         * The name of the table containing the column or measure
+         */
+        Table: string;
+        /**
+         * The name of the property containing the variation set that contains the column or measure
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the column or measure
+         */
+        VariationSet?: string;
+        /**
+         * The name of the measure
+         */
+        Measure: string;
+      }
+    | {
+        /**
+         * The name of the conceptual entity containing the property
+         */
+        ConceptualEntity: string;
+        /**
+         * The name of the property containing the variation set that contains the property
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the property
+         */
+        VariationSet?: string;
+        /**
+         * The name of the property
+         */
+        ConceptualProperty: string;
+      };
+  /**
+   * A conceptual property, column, or measure in the conceptual model to which a linguistic schema object is bound.
+   */
+  ValueBinding:
+    | {
+        /**
+         * The name of the table containing the column or measure
+         */
+        Table: string;
+        /**
+         * The name of the property containing the variation set that contains the column or measure
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the column or measure
+         */
+        VariationSet?: string;
+        /**
+         * The name of the column
+         */
+        Column: string;
+      }
+    | {
+        /**
+         * The name of the table containing the column or measure
+         */
+        Table: string;
+        /**
+         * The name of the property containing the variation set that contains the column or measure
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the column or measure
+         */
+        VariationSet?: string;
+        /**
+         * The name of the measure
+         */
+        Measure: string;
+      }
+    | {
+        /**
+         * The name of the conceptual entity containing the property
+         */
+        ConceptualEntity: string;
+        /**
+         * The name of the property containing the variation set that contains the property
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the property
+         */
+        VariationSet?: string;
+        /**
+         * The name of the property
+         */
+        ConceptualProperty: string;
+      };
+  /**
+   * The state of the instance synonyms
+   */
+  State?: 'Authored' | 'Generated' | 'Suggested' | 'Deleted';
+}
+/**
+ * Reference to property in the model which contains the weight to apply to instances of this entity.
+ */
+export interface InstanceWeights {
+  /**
+   * A conceptual property, column, or measure in the conceptual model to which a linguistic schema object is bound.
+   */
+  Binding:
+    | {
+        /**
+         * The name of the table containing the column or measure
+         */
+        Table: string;
+        /**
+         * The name of the property containing the variation set that contains the column or measure
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the column or measure
+         */
+        VariationSet?: string;
+        /**
+         * The name of the column
+         */
+        Column: string;
+      }
+    | {
+        /**
+         * The name of the table containing the column or measure
+         */
+        Table: string;
+        /**
+         * The name of the property containing the variation set that contains the column or measure
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the column or measure
+         */
+        VariationSet?: string;
+        /**
+         * The name of the measure
+         */
+        Measure: string;
+      }
+    | {
+        /**
+         * The name of the conceptual entity containing the property
+         */
+        ConceptualEntity: string;
+        /**
+         * The name of the property containing the variation set that contains the property
+         */
+        VariationSource?: string;
+        /**
+         * The name of the variation set that contains the property
+         */
+        VariationSet?: string;
+        /**
+         * The name of the property
+         */
+        ConceptualProperty: string;
+      };
+}
+/**
+ * A reference to an entity in a linguistic relationship
+ */
+export interface FullEntityReference {
+  /**
+   * Identifier for a linguistic schema object
+   */
+  Entity: string;
+  /**
+   * Identifier for a linguistic schema object
+   */
+  Namespace?: string;
+}
+/**
+ * The relationships in the linguistic schema.
+ */
+export interface Relationships {
+  [k: string]: Relationship | undefined;
+}
+/**
+ * A relationship in the linguistic schema
+ */
+export interface Relationship {
+  /**
+   * The conceptual model object which embodies the relationship
+   */
+  Binding?: ConceptualEntityBinding;
+  /**
+   * The state of the relationship
+   */
+  State?: 'Authored' | 'Generated' | 'Suggested' | 'Deleted';
+  /**
+   * The weight to apply to this relationship
+   */
+  Weight?: number;
+  /**
+   * Identifies the shared template schema from which this relationship is derived
+   */
+  TemplateSchema?: string;
+  Roles?: Roles;
+  SemanticSlots?: SemanticSlots;
+  Conditions?: Conditions;
+  Phrasings?: Phrasings;
+}
+/**
+ * References to linguistic entities which participate in the relationship
+ */
+export interface Roles {
+  [k: string]: Role | undefined;
+}
+/**
+ * A role in a linguistic relationship.
+ */
+export interface FullRole {
+  /**
+   * A reference to an entity in a linguistic relationship
+   */
+  Target: Identifier | FullEntityReference;
+  Nouns?: Terms2;
+  /**
+   * A role which indicates the quantity of this role's entity which participates in the relationship
+   */
+  Quantity?: Identifier | FullRoleReference;
+  /**
+   * A role which indicates the amount of this role's entity which participates in the relationship
+   */
+  Amount?: Identifier | FullRoleReference;
+}
+/**
+ * A reference to a role in a linguistic relationship
+ */
+export interface FullRoleReference {
+  Role: Identifier;
+}
+/**
+ * Defines how roles fill common semantic slots in the relationship
+ */
+export interface SemanticSlots {
+  /**
+   * A role which indicates where the relationship takes place
+   */
+  Where?: Identifier | FullRoleReference;
+  /**
+   * A role which indicates when the relationship takes place
+   */
+  When?: Identifier | FullRoleReference;
+  /**
+   * A role which indicates how long the relationship occurred
+   */
+  Duration?: Identifier | FullRoleReference;
+  /**
+   * A role which indicates the number of times the relationship occurred
+   */
+  Occurrences?: Identifier | FullRoleReference;
+}
+/**
+ * A filter on a relationship that defines the circumstances under which a row in the semantic model represents an instance of the relationship
+ */
+export interface Condition {
+  /**
+   * A role in the relationship to compare to the value
+   */
+  Target: Identifier | FullRoleReference;
+  /**
+   * An aggregate function applied to the role
+   */
+  Aggregation?: 'None' | 'Sum' | 'Average' | 'Count' | 'Min' | 'Max' | 'Median' | 'Variance' | 'StandardDeviation';
+  /**
+   * The operator with which to compare the value and the role
+   */
+  Operator:
+    | 'Equals'
+    | 'NotEquals'
+    | 'GreaterThan'
+    | 'LessThan'
+    | 'GreaterThanOrEquals'
+    | 'LessThanOrEquals'
+    | 'Contains'
+    | 'NotContains'
+    | 'StartsWith'
+    | 'NotStartsWith';
+  /**
+   * The value to which the role is compared
+   */
+  Value:
+    | {
+        /**
+         * A text value to use in a condition
+         */
+        Text: NullableTextValue | [NullableTextValue];
+      }
+    | {
+        /**
+         * A number value to use in a condition
+         */
+        Number: NullableNumberValue | [NullableNumberValue];
+      }
+    | {
+        /**
+         * A Boolean value to use in a condition
+         */
+        Boolean: NullableBooleanValue | [NullableBooleanValue];
+      }
+    | TextValues
+    | NumberValues
+    | BooleanValues
+    | null;
+}
+/**
+ * Properties of an attribute phrasing
+ */
+export interface AttributePhrasingProperties {
+  /**
+   * The entity which is the subject of the phrasing
+   */
+  Subject: Identifier | FullRoleReference;
+  /**
+   * The entity which is the object of the phrasing
+   */
+  Object: Identifier | FullRoleReference;
+  PrepositionalPhrases?: PrepPhrases;
+}
+/**
+ * A prepositional phrase used in a phrasing
+ */
+export interface PrepPhrase {
+  Prepositions: Terms3;
+  /**
+   * The entity which is the object of the prepositional phrase
+   */
+  Object: Identifier | FullRoleReference;
+}
+export interface PhrasingProperties {
+  /**
+   * The state of the phrasing
+   */
+  State?: 'Authored' | 'Generated' | 'Suggested' | 'Deleted';
+  /**
+   * The weight to apply to the phrasing
+   */
+  Weight?: number;
+  /**
+   * Identifies the shared template schema from which the phrasing is derived
+   */
+  TemplateSchema?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Properties of a name phrasing
+ */
+export interface NamePhrasingProperties {
+  /**
+   * The entity which is the subject of the phrasing
+   */
+  Subject: Identifier | FullRoleReference;
+  /**
+   * The entity which is the name of the Subject
+   */
+  Name: Identifier | FullRoleReference;
+}
+export interface AdjectivePhrasingProperty {
+  /**
+   * The entity which is described via an adjective
+   */
+  Subject: Identifier | FullRoleReference;
+  Adjectives: Terms4;
+  Antonyms?: Terms5;
+  /**
+   * The entity which measures the extent to which the Adjectives apply
+   */
+  Measurement?: Identifier | FullRoleReference;
+  AdverbPhrases?: AdverbPhrases;
+  PrepositionalPhrases?: PrepPhrases1;
+}
+export interface AdverbPhraseProperty {
+  Adverbs: Terms6;
+  Antonyms?: Terms7;
+  /**
+   * The measure which the adverb pertains to
+   */
+  Measurement?: Identifier | FullRoleReference;
+}
+export interface AdverbAntonymPhraseProperty {
+  Antonyms: Terms8;
+  /**
+   * The measure which the adverb pertains to
+   */
+  Measurement?: Identifier | FullRoleReference;
+}
+export interface AntonymPhrasingProperty {
+  /**
+   * The entity which is described via an adjective
+   */
+  Subject: Identifier | FullRoleReference;
+  Antonyms: Terms9;
+  /**
+   * The entity which measures the extent to which the Adjectives apply
+   */
+  Measurement?: Identifier | FullRoleReference;
+  PrepositionalPhrases?: PrepPhrases2;
+}
+/**
+ * Properties of a dynamic adjective phrasing
+ */
+export interface DynamicAdjectivePhrasingProperties {
+  /**
+   * The entity which is described via an adjective
+   */
+  Subject: Identifier | FullRoleReference;
+  /**
+   * The column entity (or table entity with a name phrasing) which is used to describe the Subject
+   */
+  Adjective: Identifier | FullRoleReference;
+  PrepositionalPhrases?: PrepPhrases3;
+}
+/**
+ * Properties of a noun phrasing
+ */
+export interface NounPhrasingProperties {
+  /**
+   * The entity which is described via a noun
+   */
+  Subject: Identifier | FullRoleReference;
+  Nouns: Terms10;
+  PrepositionalPhrases?: PrepPhrases4;
+}
+/**
+ * Properties of a dynamic noun phrasing
+ */
+export interface DynamicNounPhrasingProperties {
+  /**
+   * The entity which is described via a noun
+   */
+  Subject: Identifier | FullRoleReference;
+  /**
+   * The column entity (or table entity with a name phrasing) which is the used to describe the Subject
+   */
+  Noun: Identifier | FullRoleReference;
+  PrepositionalPhrases?: PrepPhrases5;
+}
+/**
+ * Properties of a preposition phrasing
+ */
+export interface PrepositionPhrasingProperties {
+  /**
+   * The entity which is the subject of the prepositional phrase
+   */
+  Subject: Identifier | FullRoleReference;
+  Prepositions: Terms11;
+  /**
+   * The entity which is the object of the prepositional phrase
+   */
+  Object: Identifier | FullRoleReference;
+  PrepositionalPhrases?: PrepPhrases6;
+}
+/**
+ * Properties of a verb phrasing
+ */
+export interface VerbPhrasingProperties {
+  /**
+   * The entity which is the subject of the verb
+   */
+  Subject?: Identifier | FullRoleReference;
+  Verbs: Terms12;
+  /**
+   * The entity which is the indirect object of the verb
+   */
+  IndirectObject?: Identifier | FullRoleReference;
+  /**
+   * The entity which is the direct object of the verb
+   */
+  Object?: Identifier | FullRoleReference;
+  AdverbPhrases?: AdverbPhrases1;
+  PrepositionalPhrases?: PrepPhrases7;
+}
+/**
+ * A global text substitution in the linguistic schema.
+ */
+export interface GlobalSubstitution {
+  [k: string]: GlobalSubstitutionProperties | undefined;
+}
+export interface FullGlobalSubstitutionProperties {
+  /**
+   * The sequence of words to substitute into the utterance.
+   */
+  Substitute: string;
+  /**
+   * The state of the global substitution
+   */
+  State?: 'Authored' | 'Generated' | 'Suggested' | 'Deleted';
+  /**
+   * Identifies the shared template schema from which this global substitution is derived
+   */
+  TemplateSchema?: string;
+}
+/**
+ * An example utterance associated with the linguistic schema
+ */
+export interface FullExample {
+  [k: string]: ExampleProperties | undefined;
+}
+/**
+ * Metadata properties about an example utterance
+ */
+export interface ExampleProperties {
+  /**
+   * Identifies the shared template schema from which the example is derived
+   */
+  TemplateSchema?: string;
+}
+/**
+ * A list of agents that have modified this linguistic schema.
+ */
+export interface Agents {
+  [k: string]: AgentProperties | undefined;
+}
+/**
+ * Properties of an agent in the linguistic schema
+ */
+export interface AgentProperties {
+  /**
+   * Indicates the last date and time (in UTC) that this agent modified the linguistic schema.
+   */
+  LastModified?: string;
+}

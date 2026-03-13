@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for sarif-external-property-file-2.1.0-rtm.3.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/sarif-external-property-file-2.1.0-rtm.3",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

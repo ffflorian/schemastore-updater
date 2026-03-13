@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for tizen_workspace.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/tizen_workspace",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

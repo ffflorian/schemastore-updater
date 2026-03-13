@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for pgap_yaml_input_reader.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/pgap_yaml_input_reader",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

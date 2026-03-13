@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for partial-scikit-build.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/partial-scikit-build",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

@@ -1,18 +1,17 @@
 {
-  "author": "Florian Imdahl <git@ffflorian.de>",
-  "bin": "dist/cli.js",
+  "bin": "./dist/cli.js",
   "dependencies": {
-    "commander": "14.0.3",
+    "commander": "14.0.1",
+    "date-fns": "4.1.0",
     "json-schema-to-typescript": "15.0.4",
-    "jsonabc": "2.3.1",
-    "semver": "7.7.4"
+    "semver": "7.7.3",
+    "typescript": "5.9.2"
   },
+  "description": "v3 implementation of schemastore-updater",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@evilmartians/lefthook": "2.1.1",
     "@ffflorian/eslint-config": "0.13.3",
     "@ffflorian/prettier-config": "0.6.3",
-    "@types/jsonabc": "2.3.3",
     "@types/node": "~24",
     "@types/semver": "7.7.1",
     "eslint": "10.0.2",
@@ -20,45 +19,39 @@
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-oxlint": "1.50.0",
     "eslint-plugin-perfectionist": "5.6.0",
-    "logdown": "3.3.1",
-    "oxlint": "1.50.0",
-    "prettier": "3.8.1",
-    "rimraf": "6.1.3",
-    "tsx": "4.21.0",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.56.1"
+    "lefthook": "2.1.4",
+    "oxlint": "1.55.0",
+    "prettier": "3.6.2",
+    "tsx": "4.20.5",
+    "vitest": "4.1.0"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">=22"
   },
-  "files": [
-    "dist",
-    "settings.json"
-  ],
   "license": "GPL-3.0",
-  "main": "dist/index.js",
   "name": "schemastore-updater",
   "packageManager": "yarn@4.13.0",
   "prettier": "@ffflorian/prettier-config",
-  "repository": "https://github.com/ffflorian/schemastore-updater.git",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "clear": "rimraf dist",
-    "check-disabled": "yarn start check-disabled",
-    "fix-lockfile": "yarn start fix-lockfile",
-    "dist": "yarn clear && yarn build",
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist schemas schema-lock.json .cache",
     "fix": "yarn fix:ts && yarn fix:other",
     "fix:other": "yarn prettier --write",
     "fix:ts": "yarn lint:ts:oxlint --fix && yarn lint:ts:eslint --fix",
     "lint": "yarn lint:other && yarn lint:ts",
     "lint:other": "yarn prettier --list-different",
     "lint:ts": "yarn lint:ts:oxlint && yarn lint:ts:eslint",
-    "lint:ts:eslint": "eslint .",
+    "lint:ts:eslint": "eslint src",
     "lint:ts:oxlint": "oxlint --ignore-path .gitignore .",
+    "publish:schemas": "tsx src/cli.ts publish",
+    "publish:schemas:dry-run": "tsx src/cli.ts publish --dry-run",
     "prettier": "prettier \"*.{json,md,yml}\"",
-    "start": "NODE_DEBUG='schemastore-updater/*' tsx src/cli.ts",
-    "test": "exit 0",
-    "update": "yarn start update"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "update": "tsx src/cli.ts update"
   },
-  "version": "2.0.0"
+  "type": "module",
+  "version": "3.0.0"
 }

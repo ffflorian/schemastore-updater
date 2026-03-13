@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for tunnelhub.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/tunnelhub",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for json-api-1.0.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/json-api-1.0",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/json-api-1.0",
-  "scripts": {},
-  "typesPublisherContentHash": "f84ce470995d1468a299be2dc84a6f54dab6607fcddacf85412385b37d18c53c",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

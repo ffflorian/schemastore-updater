@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for datalogic-scan2deploy-ce.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/datalogic-scan2deploy-ce",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/datalogic-scan2deploy-ce",
-  "scripts": {},
-  "typesPublisherContentHash": "010658170ad31851ae104b47d08ef9fd487dd3616a2f242fb230008670b68faf",
+  "private": false,
   "types": "index.d.ts",
-  "version": "0.0.5",
-  "typeScriptVersion": "2.2"
+  "version": "1.0.0"
 }

@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for stylua.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/stylua",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

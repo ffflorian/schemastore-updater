@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for sil-kit-registry-configuration.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/sil-kit-registry-configuration",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

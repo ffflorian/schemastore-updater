@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for ti8m-cdk-environment-definition.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/ti8m-cdk-environment-definition",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

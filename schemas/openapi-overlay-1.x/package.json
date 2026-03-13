@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for openapi-overlay-1.x.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/openapi-overlay-1.x",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

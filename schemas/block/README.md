@@ -5,8 +5,10 @@
 This package contains type definitions for block.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/block.
 
 ## Additional Details
-* Last updated: Thu, Apr 27, 2023, 09:50:34 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:19:25 GMT
 * Dependencies: none

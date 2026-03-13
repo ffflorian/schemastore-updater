@@ -1,14 +1,9 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "dependencies": {},
   "description": "TypeScript definitions for workflows.",
-  "license": "MIT",
-  "main": "index.d.ts",
+  "license": "GPL-3.0",
   "name": "@schemastore/workflows",
-  "repository": "https://github.com/ffflorian/schemastore-updater/tree/main/schemas/workflows",
-  "scripts": {},
-  "typeScriptVersion": "2.2",
+  "private": false,
   "types": "index.d.ts",
-  "typesPublisherContentHash": "c840e2bbe32f356c783e6f0347eb5e8497ecf3d1d7f903f6c7ae10f90aaf29d2",
-  "version": "0.0.7"
+  "version": "1.0.0"
 }

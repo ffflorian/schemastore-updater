@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for specif-1.1.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/specif-1.1",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

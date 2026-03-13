@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for browser.i18n.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/browser.i18n",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

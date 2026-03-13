@@ -5,8 +5,10 @@
 This package contains type definitions for vs-nesting.
 
 ## Details
+
 Files were exported from https://github.com/ffflorian/schemastore-updater/tree/main/schemas/vs-nesting.
 
 ## Additional Details
-* Last updated: Fri, Feb 24, 2023, 11:23:42 GMT
+
+* Last updated: Fri, Mar 13, 2026, 11:23:53 GMT
 * Dependencies: none

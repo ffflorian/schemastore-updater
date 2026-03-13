@@ -1,0 +1,9 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for project-1.0.0-rc1.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/project-1.0.0-rc1",
+  "private": false,
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}
