@@ -24,8 +24,7 @@ Maintain and evolve a TypeScript CLI that:
 - `.cache/schemastore/`: local clone cache of SchemaStore.
 - `schema-lock.json`: lock file with per-schema source and generated hashes.
 - `publish-errors.log`: per-run publish failure log.
-- `.github/workflows/lint_test_build.yml`: main CI for lint/test/build.
-- `.github/workflows/publish_generated_packages.yml`: publishing workflow for generated npm packages.
+- `.github/workflows/lint_test_build.yml`: main CI for lint/test/build and publishing workflow for generated npm packages.
 - `.github/workflows/yarn_update.yml`: scheduled yarn version maintenance.
 - `.github/workflows/weekly_schema_update.yml`: weekly automated schema refresh PR.
 
