@@ -10,7 +10,7 @@ For coding-agent specific workflows, repository conventions, and safety rules, s
 
 - Clones/updates `SchemaStore/schemastore` automatically (or uses `--source-dir`).
 - Converts JSON schemas with `json-schema-to-typescript`.
-- Creates one npm package folder per schema under `schemas/<schema-name>`.
+- Creates an npm package folder per schema under `schemas/<schema-name>`.
 - Generates `index.d.ts`, `README.md`, `package.json`, and `LICENSE` for each schema package.
 - Type-checks each generated schema declaration immediately after generation.
 - Writes a lock file (`schema-lock.json`) with SHA-256 hashes for generated declaration files.
@@ -25,22 +25,13 @@ For coding-agent specific workflows, repository conventions, and safety rules, s
 
 ```bash
 yarn install
-yarn build
-node dist/cli.js update
+yarn update
 ```
 
 Options:
 
 - `-f, --force`: regenerate all schemas.
-- `--source-dir <dir>`: use an existing local SchemaStore checkout.
-
-## Regular execution
-
-Run this on a schedule (for example CI cron or local cron):
-
-```bash
-yarn update
-```
+- `--source-dir <dir>`: use an existing local SchemaStore directory.
 
 ## Testing
 
@@ -62,7 +53,7 @@ yarn publish:schemas
 
 Publishing attempts every generated schema package under `schemas/`. If one package fails to publish, the remaining packages are still attempted. Publish failures are written to `publish-errors.log`.
 
-The publish workflow opens a pull request with an updated `schema-lock.json` after publish attempts so published package versions are tracked in git.
+The publish workflow opens a pull request with an updated `schema-lock.json` file after publish attempts so published package versions are tracked in git.
 
 All published schemastore packages are visible under the [@schemastore](https://www.npmjs.com/org/schemastore) npm organization page.
 
