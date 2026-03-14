@@ -61,6 +61,16 @@ async function main(): Promise<void> {
   await program.parseAsync(process.argv);
 }
 
+async function run(): Promise<void> {
+  try {
+    await main();
+  } catch (error) {
+    const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
+    console.error(message);
+    process.exitCode = 1;
+  }
+}
+
 async function runPublishCommand(options: PublishCommandOptions): Promise<void> {
   const stats = await publishGeneratedPackages({
     dryRun: options.dryRun ?? false,
@@ -90,16 +100,6 @@ async function runUpdateCommand(options: UpdateCommandOptions): Promise<void> {
   console.info(`Generated: ${stats.generated}`);
   console.info(`Skipped: ${stats.skipped}`);
   console.info(`Failed: ${stats.failed}`);
-}
-
-async function run(): Promise<void> {
-  try {
-    await main();
-  } catch (error) {
-    const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
-    console.error(message);
-    process.exitCode = 1;
-  }
 }
 
 void run();
