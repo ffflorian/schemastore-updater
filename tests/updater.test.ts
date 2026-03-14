@@ -51,7 +51,7 @@ describe('updateSchemas', () => {
     const lockFile = await readLockFile(context.workspaceDir);
 
     expect(generatedDts.startsWith('/* eslint-disable */')).toBe(true);
-    expect(generatedLicense).toBe('MIT\n');
+    expect(generatedLicense).toBe('GPL-3.0\n');
     expect(generatedPackageJson).toMatchObject({
       author: 'Florian Imdahl <git@ffflorian.de>',
       description: 'TypeScript definitions for accelerator-schema.',
