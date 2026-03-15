@@ -2137,6 +2137,10 @@ export type DetectsPositionalOnlyParametersPassedAsKeywordArguments = Level;
  * ## Why is this bad?
  * Attempting to access a missing attribute will raise an `AttributeError` at runtime.
  *
+ * ## Rule status
+ * This rule is currently disabled by default because of the number of
+ * false positives it can produce.
+ *
  * ## Examples
  * ```python
  * class A:
@@ -2193,6 +2197,22 @@ export type DetectsImplicitCallsToPossiblyMissingMethods = Level;
  * ```
  */
 export type DetectsPossiblyMissingImports = Level;
+/**
+ * ## What it does
+ * Checks for accesses of submodules that might not've been imported.
+ *
+ * ## Why is this bad?
+ * When module `a` has a submodule `b`, `import a` isn't generally enough to let you access
+ * `a.b.` You either need to explicitly `import a.b`, or else you need the `__init__.py` file
+ * of `a` to include `from . import b`. Without one of those, `a.b` is an `AttributeError`.
+ *
+ * ## Examples
+ * ```python
+ * import html
+ * html.parser  # AttributeError: module 'html' has no attribute 'parser'
+ * ```
+ */
+export type DetectsAccessesOfSubmodulesThatMayNotBeAvailableAsAttributesOnTheirParentModule = Level;
 /**
  * ## What it does
  * Checks for references to names that are possibly not defined.
@@ -3120,6 +3140,7 @@ export interface Rules {
   'possibly-missing-attribute'?: DetectsReferencesToPossiblyMissingAttributes;
   'possibly-missing-implicit-call'?: DetectsImplicitCallsToPossiblyMissingMethods;
   'possibly-missing-import'?: DetectsPossiblyMissingImports;
+  'possibly-missing-submodule'?: DetectsAccessesOfSubmodulesThatMayNotBeAvailableAsAttributesOnTheirParentModule;
   'possibly-unresolved-reference'?: DetectsReferencesToPossiblyUndefinedNames;
   'raw-string-type-annotation'?: DetectsRawStringsInTypeAnnotationPositions;
   'redundant-cast'?: DetectsRedundantCastCalls;
