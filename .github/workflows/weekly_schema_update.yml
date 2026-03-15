@@ -27,6 +27,8 @@ jobs:
         run: yarn install --immutable
 
       - name: Update schema packages
+        id: update
+        continue-on-error: true
         run: yarn update
 
       - name: Validate generated output
@@ -51,3 +53,15 @@ jobs:
             - `yarn update`
             - `yarn check`
             - `yarn test`
+
+      - name: Fail workflow when publishing failed
+        if: steps.update.outcome == 'failure'
+        run: exit 1
+
+      - name: Upload update log
+        if: always()
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+        with:
+          name: schemagenerator-log
+          path: schemagenerator.log
+          if-no-files-found: ignore
