@@ -6,7 +6,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '33 20 * * 0' # Every Sunday at 08:33 PM UTC
+    - cron: '34 19 * * 0' # Every Sunday at 07:34 PM UTC
   workflow_dispatch:
 
 jobs:
