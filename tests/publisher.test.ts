@@ -17,7 +17,6 @@ afterEach(async () => {
 
 describe('publishGeneratedPackages', () => {
   it('publishes every generated package with a package.json', async () => {
-    const consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => undefined);
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
       'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '2.0.0'}, null, 2),
@@ -48,8 +47,6 @@ describe('publishGeneratedPackages', () => {
     expect(logFileContent).toBe('No publish errors.\n');
     expect(lockFile.entries['alpha.json']?.published).toBe(true);
     expect(lockFile.entries['beta.json']?.published).toBe(true);
-    expect(consoleInfoSpy).toHaveBeenCalledWith('✅ Published: @schemastore/alpha@1.0.0');
-    expect(consoleInfoSpy).toHaveBeenCalledWith('✅ Published: @schemastore/beta@2.0.0');
   });
 
   it('continues publishing remaining packages and writes failures to a log file', async () => {

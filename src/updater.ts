@@ -64,6 +64,8 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
   await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
 
+  console.info(`🚀 schemastore-updater will now generate ${files.length} schemas ... `);
+
   for (const schemaFilePath of files) {
     const schemaRelativePath = path.relative(schemaRoot, schemaFilePath);
     const schemaId = getSchemaId(schemaRelativePath);
@@ -92,7 +94,9 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       continue;
     }
 
-    console.info(`⚙️ Generating: ${schemaId} ...`);
+    process.stdout.write(
+      `⚙️ Generating: ${schemaId} (${stats.generated + stats.failed + stats.skipped}/${files.length}) ... `
+    );
 
     try {
       const generatedCode = await compileFromFile(schemaFilePath, {
@@ -112,6 +116,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       if (!typeCheckResult.ok) {
         await rm(tempOutPath, {force: true});
         stats.failed += 1;
+        process.stdout.write('skipped (type-check failed)\n');
         logEntries.push(`Skipped (type-check failed): ${schemaRelativePath}`);
         logEntries.push(typeCheckResult.errors);
         await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
@@ -141,11 +146,12 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       };
 
       stats.generated += 1;
-      console.info(`✅ Generated: ${schemaRelativePath}`);
+      process.stdout.write(`done\n`);
       await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
     } catch (error) {
       stats.failed += 1;
       const errorMessage = error instanceof Error ? error.message : String(error);
+      process.stdout.write('skipped (conversion failed)\n');
       logEntries.push(`Skipped (conversion failed): ${schemaRelativePath}`);
       logEntries.push(errorMessage);
 

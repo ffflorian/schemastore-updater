@@ -55,6 +55,8 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
 
   await writePublishLog(logFilePath, errorMessages);
 
+  console.info(`🚀 schemastore-updater will now publish ${packageDirectories.length} packages ...`);
+
   for (const packageDirectory of packageDirectories) {
     const packageJsonPath = path.join(packageDirectory, 'package.json');
     if (!(await exists(packageJsonPath))) {
@@ -63,16 +65,19 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
       continue;
     }
 
+    const schemaName = path.basename(packageDirectory);
+    const packageManifest = await readPackageManifest(packageJsonPath);
+
+    process.stdout.write(`⏭️ Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'} ... `);
+
     const matchingLockEntry = findLockEntryForPackage(lockFile, packageDirectory, projectRoot);
     if (matchingLockEntry?.published) {
       stats.skipped += 1;
-      console.info(`⏭️ Skipped (already published): ${path.basename(packageDirectory)}`);
+      process.stdout.write('skipped (already published)\n');
       await writePublishLog(logFilePath, errorMessages);
       continue;
     }
 
-    const schemaName = path.basename(packageDirectory);
-    const packageManifest = await readPackageManifest(packageJsonPath);
     const packageLabel = formatPackageLabel(packageManifest, schemaName);
 
     stats.attempted += 1;
@@ -80,19 +85,18 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     try {
       if (dryRun) {
         stats.published += 1;
-        console.info(`🧪 Dry run: ${schemaName}`);
+        process.stdout.write(`dry run\n`);
         continue;
       }
 
-      console.info(`📤 Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'} ...`);
       await publishPackage(packageDirectory);
       stats.published += 1;
       markPackageAsPublished(lockFile, packageDirectory, projectRoot);
       await writeLockFile(lockFilePath, lockFile);
-      console.info(`✅ Published: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
+      process.stdout.write(`done\n`);
     } catch (error) {
       stats.failed += 1;
-      console.info(`❌ Publishing failed: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
+      process.stdout.write(`failed\n`);
       errorMessages.push(formatPublishError(packageLabel, error));
     }
 
