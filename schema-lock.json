@@ -3,7 +3,7 @@
     "abc-clinical-demand-forecast-1.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-1.0.0/index.d.ts",
       "generatedSha256": "8afe712dbf94e7e9ffa099b4e308733a20108b2908211b75bae803f5f380771b",
-      "published": false,
+      "published": true,
       "sourceSha256": "e17835334a79571b53c9316f623f2b5f66c012dbf667c94f6ed623108803a6db",
       "updatedAt": "2026-03-15T20:46:28.528Z"
     },
