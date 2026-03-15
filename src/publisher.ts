@@ -58,6 +58,12 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
   console.info(`🚀 schemastore-updater will now publish ${packageDirectories.length} packages ...`);
 
   for (const packageDirectory of packageDirectories) {
+    // eslint-disable-next-line no-magic-numbers
+    if (stats.failed >= 10) {
+      console.warn(`ℹ️Skipping further packages (already failed publishing 10 packages)`);
+      break;
+    }
+
     const packageJsonPath = path.join(packageDirectory, 'package.json');
     if (!(await exists(packageJsonPath))) {
       stats.skipped += 1;
