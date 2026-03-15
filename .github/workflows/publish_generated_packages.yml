@@ -35,12 +35,8 @@ jobs:
       - name: Publish generated packages
         id: publish
         continue-on-error: true
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           yarn publish:schemas
-          rm ~/.npmrc
 
       - name: Create Pull Request for updated schema lock
         if: always()
