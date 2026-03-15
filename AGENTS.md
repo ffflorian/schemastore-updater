@@ -63,7 +63,7 @@ Each generated schema package must contain:
 - If generation behavior changes, make sure this workflow still matches the required validation steps and committed outputs.
 - npm publishing is defined in `.github/workflows/publish_generated_packages.yml`.
 - Publishing runs only on pushes to the default branch.
-- Publishing is additionally gated to commits whose message is exactly `chore(schemas): weekly schema update`.
+- Publishing is additionally gated to commits whose message starts with `chore(schemas): weekly schema update`.
 - CI publishing uses `yarn publish:schemas` and should rely on an `NPM_TOKEN` secret.
 - `yarn publish:schemas` must skip schema packages whose matching `schema-lock.json` entry already has `published: true`.
 - The publish step must continue through per-package failures so successful publishes still update lock state.
