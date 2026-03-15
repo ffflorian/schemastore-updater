@@ -33,6 +33,7 @@
   "packageManager": "yarn@4.13.0",
   "prettier": "@ffflorian/prettier-config",
   "private": true,
+  "repository": "https://github.com/ffflorian/schemastore-updater",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "tsc -p tsconfig.json --noEmit",

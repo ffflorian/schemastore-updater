@@ -229,6 +229,7 @@ function createSchemaPackageJson(schemaId: string, version: string): Record<stri
     license: 'GPL-3.0',
     name: `@schemastore/${schemaId}`,
     private: false,
+    repository: 'https://github.com/ffflorian/schemastore-updater',
     types: 'index.d.ts',
     version,
   };
