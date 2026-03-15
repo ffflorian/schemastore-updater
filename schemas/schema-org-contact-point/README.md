@@ -10,5 +10,5 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 
 ## Additional Details
 
-* Last updated: Fri, Mar 13, 2026, 11:23:21 GMT
+* Last updated: Sun, Mar 15, 2026, 21:50:19 GMT
 * Dependencies: none
