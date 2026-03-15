@@ -22,7 +22,7 @@ export type HashSetOfString3 = string[];
 export type HashSetOfString4 = string[];
 
 /**
- * GitVersion configuration schema (6.5)
+ * GitVersion configuration schema (6.6)
  */
 export interface GitVersionConfigurationSchema {
   /**

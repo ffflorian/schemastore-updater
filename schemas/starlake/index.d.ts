@@ -847,7 +847,7 @@ export interface AutoTaskDescV1 {
    */
   name?: string | boolean | number | null;
   /**
-   * Main SQL request to execute (do not forget to prefix table names with the database name to avoid conflicts)
+   * Used internally. The SQL should always be written in a separate file named after the transform name. If the transform is named transf.sl.yml then then the sql should be stored in the file transf.sql. It will contain the main SQL request to execute
    */
   sql?: string | boolean | number | null;
   /**
@@ -1183,7 +1183,7 @@ export interface AutoTaskDescV11 {
    */
   name?: string | boolean | number | null;
   /**
-   * Main SQL request to execute (do not forget to prefix table names with the database name to avoid conflicts)
+   * Used internally. The SQL should always be written in a separate file named after the transform name. If the transform is named transf.sl.yml then then the sql should be stored in the file transf.sql. It will contain the main SQL request to execute
    */
   sql?: string | boolean | number | null;
   /**
@@ -1282,7 +1282,7 @@ export interface AutoTaskDescV12 {
    */
   name?: string | boolean | number | null;
   /**
-   * Main SQL request to execute (do not forget to prefix table names with the database name to avoid conflicts)
+   * Used internally. The SQL should always be written in a separate file named after the transform name. If the transform is named transf.sl.yml then then the sql should be stored in the file transf.sql. It will contain the main SQL request to execute
    */
   sql?: string | boolean | number | null;
   /**
@@ -1898,6 +1898,11 @@ export interface AppConfigV1 {
    * Number of retries on transient exceptions
    */
   onExceptionRetries?: number;
+  /**
+   * Directory containing python libraries to use instead of pip install
+   */
+  pythonLibsDir?: string;
+  gizmosql?: GizmoV1;
   [k: string]: unknown | undefined;
 }
 export interface MetricsV1 {
@@ -2409,5 +2414,19 @@ export interface HttpV1 {
    * Port number for the HTTP server. Default is 8080
    */
   port?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Gizmo server configuration
+ */
+export interface GizmoV1 {
+  /**
+   * Gizmo server URL. Default is 'http://localhost:10900'
+   */
+  url?: string;
+  /**
+   * API key for authenticating with the Gizmo server
+   */
+  apiKey?: string;
   [k: string]: unknown | undefined;
 }

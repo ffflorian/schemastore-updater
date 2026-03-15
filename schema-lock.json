@@ -1969,10 +1969,10 @@
     },
     "gitversion.json": {
       "generatedFile": "schemas/gitversion/index.d.ts",
-      "generatedSha256": "aaf3b00eede2c8126b9d19fa98ff905734570a552b971eb1aa44f8676a2666f5",
-      "sourceSha256": "df7212360e075d91d8f376c5c0418f433374e89f94731a69f9bb026c13887f86",
-      "updatedAt": "2026-03-13T10:20:06.420Z",
-      "published": true
+      "generatedSha256": "428f26f8d6232c5fb0981ed27ed5a78d9354b89855f371ab75b48c626836c249",
+      "published": false,
+      "sourceSha256": "17d7052271bbe52d6008cabd0387d7c9033ed2182114d7a746d91613d2e0d41d",
+      "updatedAt": "2026-03-15T19:35:01.207Z"
     },
     "glazewm.json": {
       "generatedFile": "schemas/glazewm/index.d.ts",
@@ -2746,10 +2746,10 @@
     },
     "minecraft-pack-mcmeta.json": {
       "generatedFile": "schemas/minecraft-pack-mcmeta/index.d.ts",
-      "generatedSha256": "ee3f7c538fb5d22d0eab7fc28c6d4d2890c50f8c848ceb1497cbdddf857e3617",
-      "sourceSha256": "050fe920700fff2be6c97c252354bc9f690386b10012da1b4521f3a020942c13",
-      "updatedAt": "2026-03-13T10:22:06.568Z",
-      "published": false
+      "generatedSha256": "ffe4768febcc2335849b535094bc693e24244ab95ba2a6556b5a78810140fe83",
+      "published": false,
+      "sourceSha256": "c238764f221e8eac1275f684698984c771730003938289889167e37cc810291c",
+      "updatedAt": "2026-03-15T19:38:09.667Z"
     },
     "minecraft-particle.json": {
       "generatedFile": "schemas/minecraft-particle/index.d.ts",
@@ -4384,10 +4384,10 @@
     },
     "starlake.json": {
       "generatedFile": "schemas/starlake/index.d.ts",
-      "generatedSha256": "d074a9450ca36f4122ef4f3afdbe34a4c38bff2bca018ea4646d39137879630f",
-      "sourceSha256": "cf097464fe5f053d08a186d76cd94522a37a5c62bb0e9de095df1edbd35cd14e",
-      "updatedAt": "2026-03-13T10:23:30.130Z",
-      "published": false
+      "generatedSha256": "f3c1e9b9c6c8bd171fa2ddaff1d449d144ef5fbd495e9a01b55f281126d05801",
+      "published": false,
+      "sourceSha256": "63c82227fff46ce5ff5f81a5d2de5ab33cab5128cde61854d59307b568612a72",
+      "updatedAt": "2026-03-15T19:38:19.496Z"
     },
     "staticwebapp.config.json": {
       "generatedFile": "schemas/staticwebapp.config/index.d.ts",
@@ -4657,10 +4657,10 @@
     },
     "ty.json": {
       "generatedFile": "schemas/ty/index.d.ts",
-      "generatedSha256": "dfd8fb7802253c11049d9a9aa38b7eb0de05b83fb2273942c7c033a5028dc3d2",
-      "sourceSha256": "1daf83c4e889d1fc97bc4696f99f1d4d361d789a4ad63eceb1d1d21c81f727eb",
-      "updatedAt": "2026-03-13T10:23:46.155Z",
-      "published": false
+      "generatedSha256": "5b5ec24dd8e55a2ee76b0e162f19861615536422f44b52c91d89900be3ed101f",
+      "published": false,
+      "sourceSha256": "e11d40ef70285e731aaaa30c9a5ba3e9d3ff05b15262449a531d021f006b6698",
+      "updatedAt": "2026-03-15T19:38:21.827Z"
     },
     "typewiz.json": {
       "generatedFile": "schemas/typewiz/index.d.ts",
@@ -5041,6 +5041,6 @@
       "published": false
     }
   },
-  "generatedAt": "2026-03-13T10:27:27.428Z",
+  "generatedAt": "2026-03-15T19:38:26.858Z",
   "version": 1
 }
