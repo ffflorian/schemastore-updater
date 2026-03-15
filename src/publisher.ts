@@ -66,7 +66,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     const matchingLockEntry = findLockEntryForPackage(lockFile, packageDirectory, projectRoot);
     if (matchingLockEntry?.published) {
       stats.skipped += 1;
-      console.info(`Skipped (already published): ${path.basename(packageDirectory)}`);
+      console.info(`⏭️ Skipped (already published): ${path.basename(packageDirectory)}`);
       await writePublishLog(logFilePath, errorMessages);
       continue;
     }
@@ -80,19 +80,19 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     try {
       if (dryRun) {
         stats.published += 1;
-        console.info(`Dry run: ${schemaName}`);
+        console.info(`🧪 Dry run: ${schemaName}`);
         continue;
       }
 
-      console.info(`Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'} ...`);
+      console.info(`📤 Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'} ...`);
       await publishPackage(packageDirectory);
       stats.published += 1;
       markPackageAsPublished(lockFile, packageDirectory, projectRoot);
       await writeLockFile(lockFilePath, lockFile);
-      console.info(`Published: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
+      console.info(`✅ Published: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
     } catch (error) {
       stats.failed += 1;
-      console.info(`Publishing failed: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
+      console.info(`❌ Publishing failed: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'}`);
       errorMessages.push(formatPublishError(packageLabel, error));
     }
 

@@ -48,8 +48,8 @@ describe('publishGeneratedPackages', () => {
     expect(logFileContent).toBe('No publish errors.\n');
     expect(lockFile.entries['alpha.json']?.published).toBe(true);
     expect(lockFile.entries['beta.json']?.published).toBe(true);
-    expect(consoleInfoSpy).toHaveBeenCalledWith('Published: @schemastore/alpha@1.0.0');
-    expect(consoleInfoSpy).toHaveBeenCalledWith('Published: @schemastore/beta@2.0.0');
+    expect(consoleInfoSpy).toHaveBeenCalledWith('✅ Published: @schemastore/alpha@1.0.0');
+    expect(consoleInfoSpy).toHaveBeenCalledWith('✅ Published: @schemastore/beta@2.0.0');
   });
 
   it('continues publishing remaining packages and writes failures to a log file', async () => {

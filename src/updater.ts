@@ -92,6 +92,8 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       continue;
     }
 
+    console.info(`⚙️ Generating: ${schemaId} ...`);
+
     try {
       const generatedCode = await compileFromFile(schemaFilePath, {
         bannerComment: '/* eslint-disable */',
@@ -139,7 +141,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       };
 
       stats.generated += 1;
-      console.info(`Generated: ${schemaRelativePath}`);
+      console.info(`✅ Generated: ${schemaRelativePath}`);
       await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
     } catch (error) {
       stats.failed += 1;
