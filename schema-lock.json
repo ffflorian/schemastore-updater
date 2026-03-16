@@ -4105,7 +4105,7 @@
     "sarif-external-property-file-2.1.0-rtm.3.json": {
       "generatedFile": "schemas/sarif-external-property-file-2.1.0-rtm.3/index.d.ts",
       "generatedSha256": "6bb73d6ea08af3f0559bde4ec0060b1a1193981e9c322b66ee8fb53630155e31",
-      "published": false,
+      "published": true,
       "sourceSha256": "651e1271f35acce00c26ca97fa8fc6df4d00dbb8fa479508a78b557dc834bf91",
       "updatedAt": "2026-03-15T20:50:15.812Z"
     },
