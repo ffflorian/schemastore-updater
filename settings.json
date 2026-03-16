@@ -1,5 +1,0 @@
-{
-  "disabledSchemas": ["bitrise-step.json", "block.json", "cargo-make.json", "circleciconfig.json"],
-  "lockFile": "schemas/json-schemas.lock",
-  "schemaStoreRepo": "https://github.com/SchemaStore/schemastore"
-}
