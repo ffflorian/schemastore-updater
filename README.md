@@ -15,6 +15,7 @@ For coding-agent specific workflows, repository conventions, and safety rules, s
 - Type-checks each generated schema declaration immediately after generation.
 - Writes a lock file (`schema-lock.json`) with SHA-256 hashes for generated declaration files.
 - Skips schemas that cannot be converted or do not type-check.
+- Skips non-publishable schemas listed in `schema-blocklist.json` (manually maintained) during both generation and publishing.
 
 ## Prerequisites
 
@@ -52,6 +53,8 @@ yarn publish:schemas
 ```
 
 Publishing attempts every generated schema package under `schemas/`. If one package fails to publish, the remaining packages are still attempted. Publish failures are written to `publish-errors.log`.
+
+Schemas listed in `schema-blocklist.json` are always skipped from publishing.
 
 The publish workflow opens a pull request with an updated `schema-lock.json` file after publish attempts so published package versions are tracked in git.
 
