@@ -10,6 +10,7 @@ import ts from 'typescript';
 import type {CliOptions, LockEntry, SchemaLockFile, UpdateStats} from './types.js';
 
 import {sha256FromBuffer} from './hash.js';
+import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publishable-schemas.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -50,6 +51,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   await mkdir(outDir, {recursive: true});
 
   const lockFile = await loadLockFile(lockFilePath);
+  const nonPublishableSchemaIds = await loadNonPublishableSchemaIds(projectRoot);
   const files = await collectJsonFiles(schemaRoot);
 
   const nextEntries: Record<string, LockEntry> = {};
@@ -69,6 +71,15 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   for (const schemaFilePath of files) {
     const schemaRelativePath = path.relative(schemaRoot, schemaFilePath);
     const schemaId = getSchemaId(schemaRelativePath);
+
+    if (isNonPublishableSchemaId(schemaId, nonPublishableSchemaIds)) {
+      stats.skipped += 1;
+      process.stdout.write(`⏭️ Skipping build for non-publishable schema: ${schemaId}\n`);
+      logEntries.push(`Skipped (non-publishable): ${schemaRelativePath}`);
+      await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
+      continue;
+    }
+
     const packageDirPath = path.join(outDir, schemaId);
     const generatedFilePath = path.join(packageDirPath, 'index.d.ts');
     const packageLicensePath = path.join(packageDirPath, 'LICENSE');

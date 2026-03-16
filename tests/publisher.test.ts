@@ -155,6 +155,30 @@ describe('publishGeneratedPackages', () => {
     expect(lockFile.entries['alpha.json']?.published).toBe(true);
     expect(lockFile.entries['beta.json']?.published).toBe(true);
   });
+
+  it('always skips non-publishable schemas during publishing', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '1.0.1'}, null, 2),
+      'cheatsheets/package.json': JSON.stringify({name: '@schemastore/cheatsheets', version: '1.0.0'}, null, 2),
+    });
+    const publishPackage = vi.fn(async (_packageDirectory: string) => undefined);
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      publishGeneratedPackages({
+        publishPackage,
+      })
+    );
+
+    expect(stats).toEqual({
+      attempted: 1,
+      dryRun: false,
+      failed: 0,
+      logFilePath: 'publish-errors.log',
+      published: 1,
+      skipped: 1,
+    });
+    expect(publishPackage).toHaveBeenCalledTimes(1);
+  });
 });
 
 async function createWorkspace(
@@ -163,6 +187,8 @@ async function createWorkspace(
 ): Promise<string> {
   const workspaceDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-publish-tests-'));
   trackedTempDirectories.push(workspaceDirectory);
+
+  await writeFile(path.join(workspaceDirectory, 'schema-blocklist.json'), JSON.stringify(['cheatsheets']), 'utf-8');
 
   const schemasDirectory = path.join(workspaceDirectory, 'schemas');
   const lockFile: SchemaLockFile = {

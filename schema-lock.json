@@ -3881,7 +3881,7 @@
     "renovate-inherited-schema-42.json": {
       "generatedFile": "schemas/renovate-inherited-schema-42/index.d.ts",
       "generatedSha256": "914b7d30643aa2bafedcdb5a3241f8e8521b51fc0144e9ac41469c2955eebc52",
-      "published": false,
+      "published": true,
       "sourceSha256": "7ce631a5ee2b1933f647226efd193a4b43d1c829fd559e3a3463c3c86086f5aa",
       "updatedAt": "2026-03-15T20:50:04.979Z"
     },
@@ -3902,203 +3902,203 @@
     "replit.json": {
       "generatedFile": "schemas/replit/index.d.ts",
       "generatedSha256": "702245aa89a5117e6b02e9619bb16558e0260bcbd13ed3f7bd52d802f389187e",
-      "published": false,
+      "published": true,
       "sourceSha256": "db08547771fd1d376f6c754f957361b542d3b9e72fd44e04bdb532b75b49f330",
       "updatedAt": "2026-03-15T20:50:07.957Z"
     },
     "resjson.json": {
       "generatedFile": "schemas/resjson/index.d.ts",
       "generatedSha256": "c4ad5f876aa0095e2d343d44d83f18cf7791989f2cd71c3aee9071febd6848c9",
-      "published": false,
+      "published": true,
       "sourceSha256": "486a2dbcf13bc1056fa88496b97063100a0073436448fd416a1ba73f7e2bda73",
       "updatedAt": "2026-03-15T20:50:08.173Z"
     },
     "roomodes.json": {
       "generatedFile": "schemas/roomodes/index.d.ts",
       "generatedSha256": "0dc9074f49f264b997ee91bdbbcd72ab8b33c64af97bfa4db2d1656674fae76b",
-      "published": false,
+      "published": true,
       "sourceSha256": "d3338f34400dfb4fdc627a9f881992e69be21d614a113f29e75f97ce66873234",
       "updatedAt": "2026-03-15T20:50:08.376Z"
     },
     "rudder-techniques.json": {
       "generatedFile": "schemas/rudder-techniques/index.d.ts",
       "generatedSha256": "133ed8cb679f43654da2718764dc73a74d7bdadbba58e50ace90e844f75ee395",
-      "published": false,
+      "published": true,
       "sourceSha256": "6b109dd9497313b445f1a539d29828102b181ef573f5e7595882c6eab3a4145a",
       "updatedAt": "2026-03-15T20:50:08.587Z"
     },
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "7190b36c05bc136845b41717c33afb060cdf9978b42defca2575ae44d00191e7",
-      "published": false,
+      "published": true,
       "sourceSha256": "5ed2bca4644abf1fa7ef25d266c41e2fd52e762b2a51a401f43c5b6b3e5304de",
       "updatedAt": "2026-03-15T20:50:08.822Z"
     },
     "rumdl.json": {
       "generatedFile": "schemas/rumdl/index.d.ts",
       "generatedSha256": "4a5b51d6d9a500ca673a8f0b4bf48f38a76b7f6248ed66225434ab060eebdd28",
-      "published": false,
+      "published": true,
       "sourceSha256": "12cc401678f72e658ad3970835725a482b34cc192d587ba8b7614afd43614187",
       "updatedAt": "2026-03-15T20:50:09.053Z"
     },
     "rust-project.json": {
       "generatedFile": "schemas/rust-project/index.d.ts",
       "generatedSha256": "eb7551cef4b4d92817f258e4148a620912bf168265f17ad9781210022bcac1a0",
-      "published": false,
+      "published": true,
       "sourceSha256": "3be4c57951217a62ab51dc85a894d5584bba2a9b043e68101c558ba6ed1783f7",
       "updatedAt": "2026-03-15T20:50:09.244Z"
     },
     "rust-toolchain.json": {
       "generatedFile": "schemas/rust-toolchain/index.d.ts",
       "generatedSha256": "16fbe4ba35ec644f5f26d7970b228f1a792a2da959f7294e31bc253b6d32c5dd",
-      "published": false,
+      "published": true,
       "sourceSha256": "0997e48e232d9f53e69e21b256b2c6ed1a98597153a702ceb54cc3757b0d8e69",
       "updatedAt": "2026-03-15T20:50:09.479Z"
     },
     "rustfmt.json": {
       "generatedFile": "schemas/rustfmt/index.d.ts",
       "generatedSha256": "92affde2f3058e94f4900181e69f2837d3fc11f76948d0dedf859d1508b38c57",
-      "published": false,
+      "published": true,
       "sourceSha256": "72bc3e87afbbfcd24a21894d7019c2968ef9ea09dbd3436f7f4f0bfcd8ba805b",
       "updatedAt": "2026-03-15T20:50:09.806Z"
     },
     "safebox-schema-v1.0.0.json": {
       "generatedFile": "schemas/safebox-schema-v1.0.0/index.d.ts",
       "generatedSha256": "5bf921e7102b3160bdf81e7986bce11b98912351ce11a4b3bcf7ebf98b142346",
-      "published": false,
+      "published": true,
       "sourceSha256": "7680389414dbdd32694c5596f5f47fceafe52411355ac4d14ff5ea2e4b1e2593",
       "updatedAt": "2026-03-15T20:50:10.014Z"
     },
     "sake.json": {
       "generatedFile": "schemas/sake/index.d.ts",
       "generatedSha256": "cf5ecfe44f65c335b1849d458dc35f60a95a6a37c67fe1d198c12fe22232e754",
-      "published": false,
+      "published": true,
       "sourceSha256": "3084ef8c6dc2ab38c5d2b0c621a202dfa8fd7aec0c5aa4029fab68d47755c824",
       "updatedAt": "2026-03-15T20:50:10.194Z"
     },
     "samt.json": {
       "generatedFile": "schemas/samt/index.d.ts",
       "generatedSha256": "9423e7a1dd7f52b5549f545c79ca4dca16c9d2ceb9b43132133625679472d8f9",
-      "published": false,
+      "published": true,
       "sourceSha256": "688c39646c6bc430aec4ed4f579b2852900c79daae787289fa292f0cf42a287d",
       "updatedAt": "2026-03-15T20:50:10.374Z"
     },
     "samtrc.json": {
       "generatedFile": "schemas/samtrc/index.d.ts",
       "generatedSha256": "1d3444ff2319a739bff6154b1384c53664474520d7617bc597ca5c84e1d839aa",
-      "published": false,
+      "published": true,
       "sourceSha256": "39e434c1d2c45e4bca703c8364549bb9d96ab7af1081b12c2d524c8e6fddb018",
       "updatedAt": "2026-03-15T20:50:10.572Z"
     },
     "sarif-1.0.0.json": {
       "generatedFile": "schemas/sarif-1.0.0/index.d.ts",
       "generatedSha256": "a7f1008a957769cad41aeedc2ef4103413fe071974f7c0dbc455ce2a4fe58596",
-      "published": false,
+      "published": true,
       "sourceSha256": "690b5d0bc5ff39b6f613dcb56df34129893dc12d860eb15858b3ef71f015d425",
       "updatedAt": "2026-03-15T20:50:10.765Z"
     },
     "sarif-2.0.0-csd.2.beta.2018-10-10.json": {
       "generatedFile": "schemas/sarif-2.0.0-csd.2.beta.2018-10-10/index.d.ts",
       "generatedSha256": "eb99842b3b7cc16aaca05c8a9116c493d0268ec980636b6517c2c77f3db09a7d",
-      "published": false,
+      "published": true,
       "sourceSha256": "e094c8cf56858a2ab57135b3a923977182e1f080b82460c691d0ada5e2acd563",
       "updatedAt": "2026-03-15T20:50:10.999Z"
     },
     "sarif-2.0.0-csd.2.beta.2019-01-09.json": {
       "generatedFile": "schemas/sarif-2.0.0-csd.2.beta.2019-01-09/index.d.ts",
       "generatedSha256": "c25c8d4254cac238e0b00a2b1fd5c94006aa584d5f57ee216d491deb45f208dc",
-      "published": false,
+      "published": true,
       "sourceSha256": "c968b164d00e944363dfb2c20f0824529badd07839ef5d86e75bd1815b7f35b0",
       "updatedAt": "2026-03-15T20:50:11.214Z"
     },
     "sarif-2.0.0-csd.2.beta.2019-01-24.json": {
       "generatedFile": "schemas/sarif-2.0.0-csd.2.beta.2019-01-24/index.d.ts",
       "generatedSha256": "f9700d3271b238dd8b2d004227980197c94e1b19b6e9420282faab8dba3bfb67",
-      "published": false,
+      "published": true,
       "sourceSha256": "8fd80d24f949ef0109a2a423a2a8fc1f75a8c42d0de940b401a2cb7249b4eced",
       "updatedAt": "2026-03-15T20:50:11.429Z"
     },
     "sarif-2.0.0.json": {
       "generatedFile": "schemas/sarif-2.0.0/index.d.ts",
       "generatedSha256": "707e25e5f10fddfb7e37d9ef9e2d04c82f0ca8decfc0eda9999cfc5d8b6a6bbe",
-      "published": false,
+      "published": true,
       "sourceSha256": "23ff77f19c9b57508b4689d78610dbd834cdf6cc66e7346cb5e7db4a4e2a0f3d",
       "updatedAt": "2026-03-15T20:50:11.641Z"
     },
     "sarif-2.1.0-rtm.0.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.0/index.d.ts",
       "generatedSha256": "ab2788a247f9aee1f383fadd982bab70e93e9cc569aacb79f8af6603a4e7bc67",
-      "published": false,
+      "published": true,
       "sourceSha256": "356d678ccf22759c7d052db0fb4b73dfb5db34595725be20ffed950f841526c1",
       "updatedAt": "2026-03-15T20:50:11.912Z"
     },
     "sarif-2.1.0-rtm.1.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.1/index.d.ts",
       "generatedSha256": "f4c6a37e30f0bdacbf5de6776caa66aecdb1678e57311999cf4b0ceae1f7cf09",
-      "published": false,
+      "published": true,
       "sourceSha256": "522d34a606b36c55dc8879090af62a6b013def3e7d594632b7d2acc21fee60a5",
       "updatedAt": "2026-03-15T20:50:12.186Z"
     },
     "sarif-2.1.0-rtm.2.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.2/index.d.ts",
       "generatedSha256": "7b86d947bdd91b0e603b9312dd0f3edb07c60313cfa28bdfcfbbd94ee55cac56",
-      "published": false,
+      "published": true,
       "sourceSha256": "fa3491ed5c8319cbe4290c25d24dfc7ef16fa7710cf0ad087f7f606c38b23ea0",
       "updatedAt": "2026-03-15T20:50:12.535Z"
     },
     "sarif-2.1.0-rtm.3.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.3/index.d.ts",
       "generatedSha256": "be8c5a99101591c405cdec6de5c6173a97c8b9cb75ae61d44fc03d2855d18d6f",
-      "published": false,
+      "published": true,
       "sourceSha256": "c4cd010f0e007452e2f44ba78f8c6e83690b14225437c17eca3649cc603f4b81",
       "updatedAt": "2026-03-15T20:50:12.796Z"
     },
     "sarif-2.1.0-rtm.4.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.4/index.d.ts",
       "generatedSha256": "1e01d91053e36ef85729e935d681a9c2707041c18c130218cd4a8a96589a94f7",
-      "published": false,
+      "published": true,
       "sourceSha256": "cbe74aad3de7f1f0503cc09948d0a0a3eb038094dfd4aadf9743ef212f2f14e5",
       "updatedAt": "2026-03-15T20:50:13.038Z"
     },
     "sarif-2.1.0-rtm.5.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.5/index.d.ts",
       "generatedSha256": "1e0a775b601230ad4f48c15e980fa87a9b9989406f1b127c3f02ca88f2b96bb7",
-      "published": false,
+      "published": true,
       "sourceSha256": "19d7206fa840f830294f78c1d306f125260f37f41ed15fc797ee18496b5ad9ae",
       "updatedAt": "2026-03-15T20:50:13.284Z"
     },
     "sarif-2.1.0-rtm.6.json": {
       "generatedFile": "schemas/sarif-2.1.0-rtm.6/index.d.ts",
       "generatedSha256": "227a4ddecd503b683aa64bfc4056eafc0598e96e2775c1475c501bddfd29859b",
-      "published": false,
+      "published": true,
       "sourceSha256": "6fca63652d2544dad5074ed27bc21f08d213c5f33941fe51a192576ed082d915",
       "updatedAt": "2026-03-15T20:50:13.628Z"
     },
     "sarif-2.1.0.json": {
       "generatedFile": "schemas/sarif-2.1.0/index.d.ts",
       "generatedSha256": "e1bf56ef9bba45141f38b465bbd515dc6ea98a3c72db9b1828998f8a4fe5c394",
-      "published": false,
+      "published": true,
       "sourceSha256": "7c9688f0a1c4a4e1649ecc78521087e664729c1dff56ee8212ff195c7b16132a",
       "updatedAt": "2026-03-15T20:50:13.902Z"
     },
     "sarif-external-property-file-2.1.0-rtm.0.json": {
       "generatedFile": "schemas/sarif-external-property-file-2.1.0-rtm.0/index.d.ts",
       "generatedSha256": "69043a457dbb5feb50d6700dc471652b5f0e1283af9a08cdd3557c118a9c8677",
-      "published": false,
+      "published": true,
       "sourceSha256": "a80567bfdb8f67e779429017bfcba978054d13d7d11130503ce43583d2e45346",
       "updatedAt": "2026-03-15T20:50:15.130Z"
     },
     "sarif-external-property-file-2.1.0-rtm.1.json": {
       "generatedFile": "schemas/sarif-external-property-file-2.1.0-rtm.1/index.d.ts",
       "generatedSha256": "cb88edd609ad932d8d9887d9a084e7785a43bd4f17ab3103f1b5933f8eda3234",
-      "published": false,
+      "published": true,
       "sourceSha256": "2aaf79272b32b61f73a0f0b4f7e2a45ae8961b1e69aa85df37f802c174604c75",
       "updatedAt": "2026-03-15T20:50:15.355Z"
     },
     "sarif-external-property-file-2.1.0-rtm.2.json": {
       "generatedFile": "schemas/sarif-external-property-file-2.1.0-rtm.2/index.d.ts",
       "generatedSha256": "4e34b2800524a6bb095fbb8a97066c9eddd774251eec6b0c72a455b8e57a7213",
-      "published": false,
+      "published": true,
       "sourceSha256": "f9d4ce36e8e3517c515c19908309500f282a5adfe9877a9fc0c98e0f20b529ec",
       "updatedAt": "2026-03-15T20:50:15.585Z"
     },
@@ -4126,14 +4126,14 @@
     "sarif-external-property-file.json": {
       "generatedFile": "schemas/sarif-external-property-file/index.d.ts",
       "generatedSha256": "dd19749f64edc7bcb0203371f7ad3b0b4fd7c182d3a97f06cb6995ec7f170a43",
-      "published": false,
+      "published": true,
       "sourceSha256": "ad1f44fa9083040ae1490ba7c86973e7a84c6bf16257fd2b0181f725b146e5ed",
       "updatedAt": "2026-03-15T20:50:16.724Z"
     },
     "sarif.json": {
       "generatedFile": "schemas/sarif/index.d.ts",
       "generatedSha256": "1e0a775b601230ad4f48c15e980fa87a9b9989406f1b127c3f02ca88f2b96bb7",
-      "published": false,
+      "published": true,
       "sourceSha256": "6c8e09c201bd5566cc266eb94bc2c61afa982d49d3d3275c85b6e5a375829bd2",
       "updatedAt": "2026-03-15T20:50:16.974Z"
     },

@@ -53,7 +53,9 @@ Each generated schema package must contain:
 - Preferred command for real updates: `yarn update`.
 - For local smoke tests: `yarn update --source-dir <dir>` where `<dir>` contains `src/schemas/json`.
 - Schemas that cannot be converted or fail type-check are skipped.
-- Do not introduce blocklist/ignore-list behavior for failed schemas.
+- Non-publishable schema IDs must be blocklisted and always skipped during generation and publishing.
+- Source of truth for the non-publishable blocklist is `schema-blocklist.json`.
+- Current non-publishable blocklist includes: `cheatsheets`.
 - The repository also runs a weekly GitHub Actions workflow that opens a PR with refreshed generated schema packages.
 
 ## GitHub Actions Automation
@@ -106,7 +108,8 @@ When touching generation logic (`src/updater.ts`), publishing logic (`src/publis
 2. Update/add tests in `tests/publisher.test.ts` when publishing behavior changes.
 3. Run `yarn test`.
 4. Run `yarn check`.
-5. Run `yarn lint` (or `yarn fix` then `yarn lint`).
+5. Always run `yarn fix` afterwards to remove linting and formatting issues.
+6. Run `yarn lint`.
 
 ## Safety and Consistency Guidelines
 

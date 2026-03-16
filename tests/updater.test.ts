@@ -241,6 +241,31 @@ describe('updateSchemas', () => {
     expect(generatorLog).toContain('Skipped (type-check failed): broken/schema.json');
     await expect(readFile(path.join(brokenPackageDir, 'index.d.ts'), 'utf-8')).rejects.toThrow();
   });
+
+  it('always skips non-publishable schemas during generation', async () => {
+    const context = await createWorkspace({
+      'cheatsheets.json': JSON.stringify(createBasicSchema('Cheatsheets'), null, 2),
+    });
+
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      updateSchemas({force: false, sourceDir: context.sourceDir})
+    );
+
+    const lockFile = await readLockFile(context.workspaceDir);
+    const generatorLog = await readFile(path.join(context.workspaceDir, 'schemagenerator.log'), 'utf-8');
+
+    expect(stats).toEqual({
+      failed: 0,
+      generated: 0,
+      skipped: 1,
+      totalSchemas: 1,
+    });
+    expect(lockFile.entries).toEqual({});
+    expect(generatorLog).toContain('Skipped (non-publishable): cheatsheets.json');
+    await expect(
+      readFile(path.join(context.workspaceDir, 'schemas/cheatsheets/index.d.ts'), 'utf-8')
+    ).rejects.toThrow();
+  });
 });
 
 function createBasicSchema(title: string): Record<string, unknown> {
@@ -260,6 +285,7 @@ async function createWorkspace(schemaFiles: Record<string, string>): Promise<Wor
   const workspaceDir = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-tests-'));
   trackedTempDirs.push(workspaceDir);
 
+  await writeFile(path.join(workspaceDir, 'schema-blocklist.json'), JSON.stringify(['cheatsheets']), 'utf-8');
   await writeFile(path.join(workspaceDir, 'LICENSE'), 'GPL-3.0\n', 'utf-8');
 
   const sourceDir = path.join(workspaceDir, 'source');

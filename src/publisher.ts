@@ -5,6 +5,8 @@ import {promisify} from 'node:util';
 
 import type {LockEntry, PublishStats, SchemaLockFile} from './types.js';
 
+import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publishable-schemas.js';
+
 const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
@@ -44,6 +46,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
 
   const errorMessages: string[] = [];
   const lockFile = await loadLockFile(lockFilePath);
+  const nonPublishableSchemaIds = await loadNonPublishableSchemaIds(projectRoot);
   const stats: PublishStats = {
     attempted: 0,
     dryRun,
@@ -72,6 +75,14 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     }
 
     const schemaName = path.basename(packageDirectory);
+
+    if (isNonPublishableSchemaId(schemaName, nonPublishableSchemaIds)) {
+      stats.skipped += 1;
+      process.stdout.write(`⏭️ Publishing: @schemastore/${schemaName} ... skipped (non-publishable)\n`);
+      await writePublishLog(logFilePath, errorMessages);
+      continue;
+    }
+
     const packageManifest = await readPackageManifest(packageJsonPath);
 
     process.stdout.write(`⏭️ Publishing: @schemastore/${schemaName}@${packageManifest.version ?? 'unknown'} ... `);
