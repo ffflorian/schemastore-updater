@@ -1,10 +1,10 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for github-workflow.",
+  "description": "TypeScript definitions for partial-pixi.",
   "license": "GPL-3.0",
-  "name": "@schemastore/github-workflow",
+  "name": "@schemastore/partial-pixi",
   "private": false,
   "repository": "https://github.com/ffflorian/schemastore-updater",
   "types": "index.d.ts",
-  "version": "1.0.2"
+  "version": "1.0.0"
 }

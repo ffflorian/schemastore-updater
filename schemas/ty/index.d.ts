@@ -1111,9 +1111,9 @@ export type DetectsIgnoreCommentsThatUseInvalidSyntax = Level;
  * alice = Person(name="Alice", age=30)
  * alice["height"]  # KeyError: 'height'
  *
- * bob: Person = { "name": "Bob", "age": 30 }  # typo!
+ * bob: Person = { "namee": "Bob", "age": 30 }  # typo!
  *
- * carol = Person(name="Carol", age=25)  # typo!
+ * carol = Person(name="Carol", aeg=25)  # typo!
  * ```
  */
 export type DetectsInvalidSubscriptAccessesOrTypedDictLiteralKeys = Level;

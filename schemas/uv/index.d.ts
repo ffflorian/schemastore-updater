@@ -94,7 +94,8 @@ export type Requirement = string;
  *
  * Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`), as well as relative durations (e.g., `1 week`, `30 days`, `6 months`). Relative durations are resolved to a timestamp at lock time.
  */
-export type ExcludeNewerTimestamp = string;
+export type ExcludeNewerValue = string;
+export type PackageExcludeNewer = (false | ExcludeNewerValue) | undefined;
 export type ExtraBuildDependency =
   | Requirement
   | {
@@ -103,6 +104,10 @@ export type ExtraBuildDependency =
       [k: string]: unknown | undefined;
     };
 export type ForkStrategy = 'fewest' | 'requires-python';
+/**
+ * A proxy URL (e.g., `http://proxy.example.com:8080`).
+ */
+export type ProxyUrl = string;
 /**
  * When to use authentication.
  */
@@ -159,6 +164,13 @@ export type IndexStrategy = 'first-index' | 'unsafe-first-match' | 'unsafe-best-
  * Keyring provider type to use for credential lookup.
  */
 export type KeyringProviderType = 'disabled' | 'subprocess';
+/**
+ * The method to use when linking.
+ *
+ * Defaults to [`Clone`](LinkMode::Clone) on macOS and Linux (which support copy-on-write on
+ * APFS and btrfs/xfs/bcachefs respectively), and [`Hardlink`](LinkMode::Hardlink) on other
+ * platforms.
+ */
 export type LinkMode = 'clone' | 'copy' | 'hardlink' | 'symlink';
 /**
  * Indicate the style of annotation comments, used to indicate the dependencies that requested each
@@ -259,6 +271,8 @@ export type TorchMode =
   | 'cu91'
   | 'cu90'
   | 'cu80'
+  | 'rocm7.1'
+  | 'rocm7.0'
   | 'rocm6.4'
   | 'rocm6.3'
   | 'rocm6.2.4'
@@ -572,7 +586,7 @@ export interface CombinedOptions {
    * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
    * Calendar units such as months and years are not allowed.
    */
-  'exclude-newer'?: ExcludeNewerTimestamp | null;
+  'exclude-newer'?: ExcludeNewerValue | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the
    * given date.
@@ -642,6 +656,14 @@ export interface CombinedOptions {
    */
   'fork-strategy'?: ForkStrategy | null;
   /**
+   * The URL of the HTTP proxy to use.
+   */
+  'http-proxy'?: ProxyUrl | null;
+  /**
+   * The URL of the HTTPS proxy to use.
+   */
+  'https-proxy'?: ProxyUrl | null;
+  /**
    * The indexes to use when resolving dependencies.
    *
    * Accepts either a repository compliant with [PEP 503](https://peps.python.org/pep-0503/)
@@ -702,7 +724,7 @@ export interface CombinedOptions {
   /**
    * The method to use when installing packages from the global cache.
    *
-   * Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and
+   * Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on
    * Windows.
    *
    * WARNING: The use of symlink link mode is discouraged, as they create tight coupling between
@@ -776,11 +798,19 @@ export interface CombinedOptions {
    */
   'no-index'?: boolean | null;
   /**
+   * A list of hosts to exclude from proxying.
+   */
+  'no-proxy'?: string[] | null;
+  /**
    * Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the
    * standards-compliant, publishable package metadata, as opposed to using any local or Git
    * sources.
    */
   'no-sources'?: boolean | null;
+  /**
+   * Ignore `tool.uv.sources` for the specified packages.
+   */
+  'no-sources-package'?: PackageName[] | null;
   /**
    * Disable network access, relying only on locally cached data and locally available files.
    */
@@ -1109,7 +1139,6 @@ export interface SchemaConflictItem {
   extra?: ExtraName | null;
   group?: GroupName | null;
   package?: PackageName | null;
-  [k: string]: unknown | undefined;
 }
 export interface ToolUvDependencyGroups {
   [k: string]: DependencyGroupSettings | undefined;
@@ -1139,7 +1168,7 @@ export interface StaticMetadata {
   version?: string | null;
 }
 export interface ExcludeNewerPackage {
-  [k: string]: ExcludeNewerTimestamp;
+  [k: string]: PackageExcludeNewer | undefined;
 }
 export interface ExtraBuildDependencies {
   [k: string]: ExtraBuildDependency[] | undefined;
@@ -1392,7 +1421,7 @@ export interface PipOptions {
    * `2006-12-02T02:07:43Z`). A full timestamp is required to ensure that the resolver will
    * behave consistently across timezones.
    */
-  'exclude-newer'?: ExcludeNewerTimestamp | null;
+  'exclude-newer'?: ExcludeNewerValue | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the given date.
    *
@@ -1494,7 +1523,7 @@ export interface PipOptions {
   /**
    * The method to use when installing packages from the global cache.
    *
-   * Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and
+   * Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on
    * Windows.
    *
    * WARNING: The use of symlink link mode is discouraged, as they create tight coupling between
@@ -1571,6 +1600,10 @@ export interface PipOptions {
    * sources.
    */
   'no-sources'?: boolean | null;
+  /**
+   * Ignore `tool.uv.sources` for the specified packages.
+   */
+  'no-sources-package'?: PackageName[] | null;
   /**
    * Include extras in the output file.
    *

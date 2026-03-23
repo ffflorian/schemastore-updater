@@ -359,10 +359,10 @@
     },
     "amplify.json": {
       "generatedFile": "schemas/amplify/index.d.ts",
-      "generatedSha256": "aa3185f32dbc07e35e5f7bcff244f59bc60d08c096b3ee0b881e977c5508f5f2",
-      "published": true,
-      "sourceSha256": "936ef51288e299277612aa91d6df68018dc5877875045b877608ee3d0918e39a",
-      "updatedAt": "2026-03-15T20:46:38.696Z"
+      "generatedSha256": "d47b76c7a0fb79560e22e5d6c2b33d88394cdfd912064695ff672c39befa4052",
+      "published": false,
+      "sourceSha256": "0f618465e14d16e4cd7acd5d21e42158143191b8d2a6a4384133b6a94ea1a161",
+      "updatedAt": "2026-03-23T05:30:02.605Z"
     },
     "amx-muse.json": {
       "generatedFile": "schemas/amx-muse/index.d.ts",
@@ -965,13 +965,6 @@
       "published": true,
       "sourceSha256": "632ece859517b2d133950300c43c6180503a5a83a21fb5389fccc1dfb757f826",
       "updatedAt": "2026-03-15T20:46:58.140Z"
-    },
-    "cheatsheets.json": {
-      "generatedFile": "schemas/cheatsheets/index.d.ts",
-      "generatedSha256": "1b14d249a6a79e2a566d9e04609ff8a2bbd8c424efc08bfe28e9239709fc892e",
-      "published": false,
-      "sourceSha256": "efc627a12f4442355915c2ac6b41162540e9bfbeca631d312b1130c66efa8f38",
-      "updatedAt": "2026-03-15T20:46:58.499Z"
     },
     "chisel-slices.json": {
       "generatedFile": "schemas/chisel-slices/index.d.ts",
@@ -1962,10 +1955,10 @@
     },
     "github-workflow.json": {
       "generatedFile": "schemas/github-workflow/index.d.ts",
-      "generatedSha256": "f0f7aca3a0f38905dd8389cb7dfe5dd946457654f11da2ddbae5c9ea015af5b2",
-      "published": true,
-      "sourceSha256": "ee2e80dc469cdce682e6cda03171201be1a2f2282c72da6e080de9706279fe6d",
-      "updatedAt": "2026-03-15T20:47:26.628Z"
+      "generatedSha256": "4a910acb05277fb4f19934231510aeffc305f3015b1414add514a313ee74ae92",
+      "published": false,
+      "sourceSha256": "940b07f8eb924284eb064f964b8c87ee65b0447fad4044e11a344c0b3ca6472c",
+      "updatedAt": "2026-03-23T05:30:05.870Z"
     },
     "gitversion.json": {
       "generatedFile": "schemas/gitversion/index.d.ts",
@@ -3332,6 +3325,13 @@
       "sourceSha256": "85bb080fdf1abba1be0d41e8d6dd9a0f086345fc9c3a0222ced4eed65578305a",
       "updatedAt": "2026-03-15T20:49:32.376Z"
     },
+    "partial-pixi.json": {
+      "generatedFile": "schemas/partial-pixi/index.d.ts",
+      "generatedSha256": "b6b00a2cc949f1d8533a4e538fc61d29572c53a9a7cac1717647f6326c760cf7",
+      "published": false,
+      "sourceSha256": "0a2f4a5ed7dc00c0ff4aafd2c369b21cc92f27faee7e55105a5d2c9379a2bcc9",
+      "updatedAt": "2026-03-23T05:32:41.607Z"
+    },
     "partial-poe.json": {
       "generatedFile": "schemas/partial-poe/index.d.ts",
       "generatedSha256": "9cd9ab070fcf455908ab3a94fa943de7e10363cc476b98cc1d4c321569f8761a",
@@ -3929,10 +3929,10 @@
     },
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
-      "generatedSha256": "7190b36c05bc136845b41717c33afb060cdf9978b42defca2575ae44d00191e7",
-      "published": true,
-      "sourceSha256": "5ed2bca4644abf1fa7ef25d266c41e2fd52e762b2a51a401f43c5b6b3e5304de",
-      "updatedAt": "2026-03-15T20:50:08.822Z"
+      "generatedSha256": "0c06b86ace7668ececd93dfe656181bc793fd19dbb63df384e92f1d2a5b95a7e",
+      "published": false,
+      "sourceSha256": "a3777a3048521da0dba20eb7bd8ecfe77227c981400d07c9ced69d2ba8542e41",
+      "updatedAt": "2026-03-23T05:32:46.810Z"
     },
     "rumdl.json": {
       "generatedFile": "schemas/rumdl/index.d.ts",
@@ -4545,10 +4545,10 @@
     },
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
-      "generatedSha256": "3022476d9e9a412b5c27b8ab2fdcffb7f4171aac54d4a15994f547734b6e3368",
-      "published": true,
-      "sourceSha256": "115b68742fd123de79f184444bb9f390d5c43a0e2d4c1cdcea279485abd5504a",
-      "updatedAt": "2026-03-15T20:50:33.844Z"
+      "generatedSha256": "5f198e44b1dba99a74e14aa6a87fd283f5746fb43f4366b43c3f36542a5dada1",
+      "published": false,
+      "sourceSha256": "58b452a8dd0eba3c9911aaff2b6b023aee44bc1e06a44261480c1a234a859d60",
+      "updatedAt": "2026-03-23T05:32:50.785Z"
     },
     "traefik-v2-file-provider.json": {
       "generatedFile": "schemas/traefik-v2-file-provider/index.d.ts",
@@ -4657,10 +4657,10 @@
     },
     "ty.json": {
       "generatedFile": "schemas/ty/index.d.ts",
-      "generatedSha256": "5b5ec24dd8e55a2ee76b0e162f19861615536422f44b52c91d89900be3ed101f",
-      "published": true,
-      "sourceSha256": "e11d40ef70285e731aaaa30c9a5ba3e9d3ff05b15262449a531d021f006b6698",
-      "updatedAt": "2026-03-15T20:50:37.673Z"
+      "generatedSha256": "d976417a547df3ae7d3f862b81f7027f7b271dea03e01f1ff7a5006c2cb857cf",
+      "published": false,
+      "sourceSha256": "76881e1c7fa295f549ec7e42db4a91b3c6407855b3e5da38a36791f9c09682fd",
+      "updatedAt": "2026-03-23T05:32:51.844Z"
     },
     "typewiz.json": {
       "generatedFile": "schemas/typewiz/index.d.ts",
@@ -4762,10 +4762,10 @@
     },
     "uv.json": {
       "generatedFile": "schemas/uv/index.d.ts",
-      "generatedSha256": "69e1bd0a8466c5b9d884c7d86c43db5fd864f344358d87af31093e0cb4ef67ed",
-      "published": true,
-      "sourceSha256": "2b9b8c954f944640e7b30a74c9b99cfdbdbb69bb8dec492d2631e71b659b69c0",
-      "updatedAt": "2026-03-15T20:50:40.631Z"
+      "generatedSha256": "9ac4a89b9e4969d8f12d5e347d482b32fd1c559bd06ece1fc2c6a35334eca56c",
+      "published": false,
+      "sourceSha256": "b3b334795a826dc8d4e94e6a91fa447414dc796a6f91ff4c18d1f01474b5d3d0",
+      "updatedAt": "2026-03-23T05:32:52.784Z"
     },
     "uxp-manifest-5.json": {
       "generatedFile": "schemas/uxp-manifest-5/index.d.ts",
@@ -5041,6 +5041,6 @@
       "updatedAt": "2026-03-15T20:50:53.095Z"
     }
   },
-  "generatedAt": "2026-03-16T05:37:57.787Z",
+  "generatedAt": "2026-03-23T05:32:56.919Z",
   "version": 1
 }

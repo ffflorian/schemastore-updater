@@ -360,6 +360,10 @@ export interface EnvRunBase {
    */
   commands_post?: Subs[][];
   /**
+   * run commands_post even after interrupt (SIGINT), allow second interrupt to cancel
+   */
+  interrupt_post_commands?: boolean;
+  /**
    * commands to run before the environment is removed during recreation (e.g. cache cleanup)
    */
   recreate_commands?: Subs[][];
@@ -638,6 +642,10 @@ export interface EnvRunBase1 {
    * the commands to be called after testing
    */
   commands_post?: Subs[][];
+  /**
+   * run commands_post even after interrupt (SIGINT), allow second interrupt to cancel
+   */
+  interrupt_post_commands?: boolean;
   /**
    * commands to run before the environment is removed during recreation (e.g. cache cleanup)
    */
