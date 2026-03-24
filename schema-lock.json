@@ -3328,7 +3328,7 @@
     "partial-pixi.json": {
       "generatedFile": "schemas/partial-pixi/index.d.ts",
       "generatedSha256": "b6b00a2cc949f1d8533a4e538fc61d29572c53a9a7cac1717647f6326c760cf7",
-      "published": false,
+      "published": true,
       "sourceSha256": "0a2f4a5ed7dc00c0ff4aafd2c369b21cc92f27faee7e55105a5d2c9379a2bcc9",
       "updatedAt": "2026-03-23T05:32:41.607Z"
     },
