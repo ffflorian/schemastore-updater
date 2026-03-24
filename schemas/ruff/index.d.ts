@@ -16,11 +16,13 @@ export type RuleSelector =
   | 'AIR00'
   | 'AIR001'
   | 'AIR002'
+  | 'AIR003'
   | 'AIR3'
   | 'AIR30'
   | 'AIR301'
   | 'AIR302'
   | 'AIR303'
+  | 'AIR304'
   | 'AIR31'
   | 'AIR311'
   | 'AIR312'
@@ -117,6 +119,8 @@ export type RuleSelector =
   | 'B034'
   | 'B035'
   | 'B039'
+  | 'B04'
+  | 'B043'
   | 'B9'
   | 'B90'
   | 'B901'
@@ -1126,6 +1130,7 @@ export type RuleSelector =
   | 'RUF069'
   | 'RUF07'
   | 'RUF070'
+  | 'RUF071'
   | 'RUF1'
   | 'RUF10'
   | 'RUF100'
@@ -1319,6 +1324,7 @@ export type RuleSelector =
   | 'TID251'
   | 'TID252'
   | 'TID253'
+  | 'TID254'
   | 'TRY'
   | 'TRY0'
   | 'TRY00'
@@ -1432,6 +1438,9 @@ export type ParametrizeNameType = 'csv' | 'tuple' | 'list';
 export type ParametrizeValuesRowType = 'tuple' | 'list';
 export type ParametrizeValuesType = 'tuple' | 'list';
 export type Quote = 'double' | 'single';
+export type ImportSelector = ImportSelection | ImportSelectorSettings;
+export type ImportSelection = AllImports | string[];
+export type AllImports = 'all';
 export type Strictness = 'parents' | 'all';
 export type DocstringCodeLineWidth = LineWidth | 'dynamic';
 /**
@@ -2553,6 +2562,12 @@ export interface Flake8SelfOptions {
  */
 export interface Flake8TidyImportsOptions {
   /**
+   * Specific modules that may not be imported lazily, or `"all"` to forbid lazy imports except
+   * for any modules excluded from the selector. This rule is only enforced when targeting
+   * Python 3.15 or newer.
+   */
+  'ban-lazy'?: ImportSelector | null;
+  /**
    * Whether to ban all relative imports (`"all"`), or only those imports
    * that extend into the parent module or beyond (`"parents"`).
    */
@@ -2572,6 +2587,18 @@ export interface Flake8TidyImportsOptions {
    * if `banned-module-level-imports` is enabled.
    */
   'banned-module-level-imports'?: string[] | null;
+  /**
+   * Specific modules that must be imported lazily in contexts where `lazy import` is legal, or
+   * `"all"` to require every lazily-convertible import to use the `lazy` keyword. Ruff ignores
+   * contexts where `lazy import` is invalid, such as functions, classes, `try`/`except`
+   * blocks, `__future__` imports, and `from ... import *` statements. This rule is only
+   * enforced when targeting Python 3.15 or newer.
+   */
+  'require-lazy'?: ImportSelector | null;
+}
+export interface ImportSelectorSettings {
+  exclude?: string[];
+  include: ImportSelection;
 }
 export interface ApiBan {
   /**
