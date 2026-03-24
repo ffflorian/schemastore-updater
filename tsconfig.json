@@ -22,7 +22,8 @@
     "strict": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "target": "ES2024"
+    "target": "ES2024",
+    "types": ["node"]
   },
   "exclude": [".cache/**"],
   "include": ["src/**/*.ts"]
