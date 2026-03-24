@@ -360,7 +360,7 @@
     "amplify.json": {
       "generatedFile": "schemas/amplify/index.d.ts",
       "generatedSha256": "d47b76c7a0fb79560e22e5d6c2b33d88394cdfd912064695ff672c39befa4052",
-      "published": false,
+      "published": true,
       "sourceSha256": "0f618465e14d16e4cd7acd5d21e42158143191b8d2a6a4384133b6a94ea1a161",
       "updatedAt": "2026-03-23T05:30:02.605Z"
     },
@@ -1956,7 +1956,7 @@
     "github-workflow.json": {
       "generatedFile": "schemas/github-workflow/index.d.ts",
       "generatedSha256": "4a910acb05277fb4f19934231510aeffc305f3015b1414add514a313ee74ae92",
-      "published": false,
+      "published": true,
       "sourceSha256": "940b07f8eb924284eb064f964b8c87ee65b0447fad4044e11a344c0b3ca6472c",
       "updatedAt": "2026-03-23T05:30:05.870Z"
     },
@@ -3328,7 +3328,7 @@
     "partial-pixi.json": {
       "generatedFile": "schemas/partial-pixi/index.d.ts",
       "generatedSha256": "b6b00a2cc949f1d8533a4e538fc61d29572c53a9a7cac1717647f6326c760cf7",
-      "published": false,
+      "published": true,
       "sourceSha256": "0a2f4a5ed7dc00c0ff4aafd2c369b21cc92f27faee7e55105a5d2c9379a2bcc9",
       "updatedAt": "2026-03-23T05:32:41.607Z"
     },
@@ -3930,7 +3930,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "0c06b86ace7668ececd93dfe656181bc793fd19dbb63df384e92f1d2a5b95a7e",
-      "published": false,
+      "published": true,
       "sourceSha256": "a3777a3048521da0dba20eb7bd8ecfe77227c981400d07c9ced69d2ba8542e41",
       "updatedAt": "2026-03-23T05:32:46.810Z"
     },
@@ -4546,7 +4546,7 @@
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
       "generatedSha256": "5f198e44b1dba99a74e14aa6a87fd283f5746fb43f4366b43c3f36542a5dada1",
-      "published": false,
+      "published": true,
       "sourceSha256": "58b452a8dd0eba3c9911aaff2b6b023aee44bc1e06a44261480c1a234a859d60",
       "updatedAt": "2026-03-23T05:32:50.785Z"
     },
@@ -4658,7 +4658,7 @@
     "ty.json": {
       "generatedFile": "schemas/ty/index.d.ts",
       "generatedSha256": "d976417a547df3ae7d3f862b81f7027f7b271dea03e01f1ff7a5006c2cb857cf",
-      "published": false,
+      "published": true,
       "sourceSha256": "76881e1c7fa295f549ec7e42db4a91b3c6407855b3e5da38a36791f9c09682fd",
       "updatedAt": "2026-03-23T05:32:51.844Z"
     },
@@ -4763,7 +4763,7 @@
     "uv.json": {
       "generatedFile": "schemas/uv/index.d.ts",
       "generatedSha256": "9ac4a89b9e4969d8f12d5e347d482b32fd1c559bd06ece1fc2c6a35334eca56c",
-      "published": false,
+      "published": true,
       "sourceSha256": "b3b334795a826dc8d4e94e6a91fa447414dc796a6f91ff4c18d1f01474b5d3d0",
       "updatedAt": "2026-03-23T05:32:52.784Z"
     },
