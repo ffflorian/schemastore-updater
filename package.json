@@ -1,7 +1,7 @@
 {
   "bin": "./dist/cli.js",
   "dependencies": {
-    "commander": "14.0.1",
+    "commander": "14.0.3",
     "date-fns": "4.1.0",
     "json-schema-to-typescript": "15.0.4",
     "semver": "7.7.3",
