@@ -2078,12 +2078,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-oxlint@npm:1.50.0":
-  version: 1.50.0
-  resolution: "eslint-plugin-oxlint@npm:1.50.0"
+"eslint-plugin-oxlint@npm:1.56.0":
+  version: 1.56.0
+  resolution: "eslint-plugin-oxlint@npm:1.56.0"
   dependencies:
     jsonc-parser: "npm:^3.3.1"
-  checksum: 10c0/f37ebfcc83ccaa9123cb96d963f05ca992fc6e63cdae1734c6f374ea6143c1525a9b9e26d4213bd31a6c64834c60932c019559ee0d17f67d9ecd89edcb19102f
+  checksum: 10c0/dffccf10e8979ff2f2ab3c9b5234b333e6cc06d5e9206b2cb36fa9fdbbeda1df71aff01b5caf59fb8febf386536cf15332b76b0056da4ae4d308cdfe0d9a3491
   languageName: node
   linkType: hard
 
@@ -4054,7 +4054,7 @@ __metadata:
     eslint: "npm:10.0.2"
     eslint-import-resolver-typescript: "npm:4.4.4"
     eslint-plugin-import: "npm:2.32.0"
-    eslint-plugin-oxlint: "npm:1.50.0"
+    eslint-plugin-oxlint: "npm:1.56.0"
     eslint-plugin-perfectionist: "npm:5.6.0"
     json-schema-to-typescript: "npm:15.0.4"
     lefthook: "npm:2.1.4"
