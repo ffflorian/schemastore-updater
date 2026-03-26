@@ -12,9 +12,10 @@ updates:
       - dependency-name: '@types/node'
         versions:
           - '> 24.x'
-      - dependency-name: '@types/eslint'
-        versions:
-          - '> 8.x'
+    cooldown:
+      default-days: 5
+      exclude:
+        - '@ffflorian/*'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
