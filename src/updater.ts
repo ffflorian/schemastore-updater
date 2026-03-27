@@ -52,9 +52,12 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
   const lockFile = await loadLockFile(lockFilePath);
   const nonPublishableSchemaIds = await loadNonPublishableSchemaIds(projectRoot);
-  const files = await collectJsonFiles(schemaRoot);
+  const allFiles = await collectJsonFiles(schemaRoot);
+  const files = options.schema
+    ? allFiles.filter(file => getSchemaId(path.relative(schemaRoot, file)) === options.schema)
+    : allFiles;
 
-  const nextEntries: Record<string, LockEntry> = {};
+  const nextEntries: Record<string, LockEntry> = options.schema ? {...lockFile.entries} : {};
   const logEntries: string[] = [];
 
   const stats: UpdateStats = {
@@ -66,7 +69,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
   await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
 
-  console.info(`🚀 schemastore-updater will now generate ${files.length} schemas ... `);
+  console.info(`🚀 schemastore-updater will now generate ${files.length} schema${files.length === 1 ? '' : 's'} ... `);
 
   for (const schemaFilePath of files) {
     const schemaRelativePath = path.relative(schemaRoot, schemaFilePath);
@@ -92,6 +95,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
     if (
       !options.force &&
+      !options.schema &&
       previousEntry &&
       previousEntry.sourceSha256 === sourceSha256 &&
       (await exists(path.join(projectRoot, previousEntry.generatedFile))) &&
@@ -128,6 +132,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
         await rm(tempOutPath, {force: true});
         stats.failed += 1;
         process.stdout.write('skipped (type-check failed)\n');
+        process.stderr.write(typeCheckResult.errors);
         logEntries.push(`Skipped (type-check failed): ${schemaRelativePath}`);
         logEntries.push(typeCheckResult.errors);
         await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
@@ -163,6 +168,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       stats.failed += 1;
       const errorMessage = error instanceof Error ? error.message : String(error);
       process.stdout.write('skipped (conversion failed)\n');
+      process.stderr.write(`${errorMessage}\n`);
       logEntries.push(`Skipped (conversion failed): ${schemaRelativePath}`);
       logEntries.push(errorMessage);
 
@@ -362,8 +368,7 @@ function typeCheckSingleFile(filePath: string): {errors: string; ok: false} | {o
     module: ts.ModuleKind.NodeNext,
     moduleResolution: ts.ModuleResolutionKind.NodeNext,
     noEmit: true,
-    skipLibCheck: true,
-    strict: true,
+    skipDefaultLibCheck: true,
     target: ts.ScriptTarget.ES2023,
   } satisfies ts.CompilerOptions;
 

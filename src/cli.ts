@@ -15,6 +15,7 @@ interface PublishCommandOptions {
 
 interface UpdateCommandOptions {
   force?: boolean;
+  schema?: string;
   sourceDir?: string;
 }
 
@@ -48,6 +49,7 @@ async function main(): Promise<void> {
     .command('update')
     .description('Update and generate all schemas')
     .option('-f, --force', 'Regenerate all schemas, ignoring source hash matches')
+    .option('--schema <id>', 'Only update the schema with this ID (e.g. "package")')
     .option('--source-dir <dir>', 'Use an existing SchemaStore checkout directory')
     .action(async (options: UpdateCommandOptions) => {
       await runUpdateCommand(options);
@@ -92,6 +94,7 @@ async function runPublishCommand(options: PublishCommandOptions): Promise<void> 
 async function runUpdateCommand(options: UpdateCommandOptions): Promise<void> {
   const stats = await updateSchemas({
     force: options.force ?? false,
+    ...(options.schema ? {schema: options.schema} : {}),
     ...(options.sourceDir ? {sourceDir: options.sourceDir} : {}),
   });
 
