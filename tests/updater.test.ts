@@ -242,6 +242,50 @@ describe('updateSchemas', () => {
     await expect(readFile(path.join(brokenPackageDir, 'index.d.ts'), 'utf-8')).rejects.toThrow();
   });
 
+  it('preserves existing lock file entries for other schemas when schema option is given', async () => {
+    const context = await createWorkspace({
+      'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
+      'other/schema.json': JSON.stringify(createBasicSchema('Other'), null, 2),
+    });
+
+    await withWorkingDirectory(context.workspaceDir, () => updateSchemas({force: false, sourceDir: context.sourceDir}));
+    const fullLock = await readLockFile(context.workspaceDir);
+    expect(Object.keys(fullLock.entries)).toHaveLength(2);
+
+    await withWorkingDirectory(context.workspaceDir, () =>
+      updateSchemas({force: false, schema: 'accelerator-schema', sourceDir: context.sourceDir})
+    );
+    const partialLock = await readLockFile(context.workspaceDir);
+
+    expect(Object.keys(partialLock.entries)).toHaveLength(2);
+    expect(partialLock.entries['other/schema.json']).toEqual(fullLock.entries['other/schema.json']);
+  });
+
+  it('generates only the specified schema when schema option is given', async () => {
+    const context = await createWorkspace({
+      'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
+      'other/schema.json': JSON.stringify(createBasicSchema('Other'), null, 2),
+    });
+
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      updateSchemas({force: false, schema: 'accelerator-schema', sourceDir: context.sourceDir})
+    );
+
+    expect(stats).toEqual({
+      failed: 0,
+      generated: 1,
+      skipped: 0,
+      totalSchemas: 1,
+    });
+
+    await expect(
+      readFile(path.join(context.workspaceDir, 'schemas/accelerator-schema/index.d.ts'), 'utf-8')
+    ).resolves.toBeTruthy();
+    await expect(
+      readFile(path.join(context.workspaceDir, 'schemas/other-schema/index.d.ts'), 'utf-8')
+    ).rejects.toThrow();
+  });
+
   it('always skips non-publishable schemas during generation', async () => {
     const context = await createWorkspace({
       'cheatsheets.json': JSON.stringify(createBasicSchema('Cheatsheets'), null, 2),

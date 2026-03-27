@@ -1,5 +1,6 @@
 export interface CliOptions {
   force: boolean;
+  schema?: string;
   sourceDir?: string;
 }
 
