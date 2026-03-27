@@ -343,12 +343,7 @@ async function resolveNextPackageVersion(packageJsonPath: string): Promise<strin
     return '1.0.0';
   }
 
-  let packageJsonContent = '';
-  try {
-    packageJsonContent = await readFile(packageJsonPath, 'utf-8');
-  } catch {
-    packageJsonContent = '';
-  }
+  const packageJsonContent = await readFile(packageJsonPath, 'utf-8').catch(() => '');
 
   if (!packageJsonContent) {
     return '1.0.0';
