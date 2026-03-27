@@ -140,7 +140,6 @@ export type RewriteHeaderValueDtoNullable1 = {
   };
 } | null;
 export type Provider = string;
-export type Provider1 = string;
 
 export interface HttpsJsonSchemastoreOrgAirlockMicrogateway32Json {
   apps?: Application[];
@@ -164,7 +163,7 @@ export interface HttpsJsonSchemastoreOrgAirlockMicrogateway32Json {
     /**
      * Remote JWKS providers which are fetched according to the jwks_providers.refresh_interval.
      */
-    remote?: string & Provider1[];
+    remote?: string & Provider[];
   } | null;
   /**
    * The encoded license.

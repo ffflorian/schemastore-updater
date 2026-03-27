@@ -26,11 +26,6 @@ export type Conditional = string;
  */
 export type BackoutSeconds = number;
 /**
- * A unit test of the current alias
- * https://github.com/sebglazebrook/aliases#usage
- */
-export type Conditional1 = string;
-/**
  * Whether to display a command before execution of the current alias
  * https://github.com/sebglazebrook/aliases#usage
  */
@@ -56,6 +51,6 @@ export interface Alias1 {
   confirmation_message?: ConfirmationMessage;
   conditional?: Conditional;
   backout_seconds?: BackoutSeconds;
-  unit_test?: Conditional1;
+  unit_test?: Conditional;
   quiet?: Quiet;
 }

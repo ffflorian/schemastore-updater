@@ -25,14 +25,6 @@ export type Method = string;
  */
 export type Uri = string;
 /**
- * The response body
- */
-export type Body1 = string;
-/**
- * The type of content in the response body
- */
-export type BodyContentType1 = string;
-/**
  * The HTTP version
  */
 export type HTTPVersion = string;
@@ -84,8 +76,8 @@ export interface RequestHeaders {
  * The response that was recorded
  */
 export interface Response {
-  Body?: Body1;
-  BodyContentType?: BodyContentType1;
+  Body?: Body;
+  BodyContentType?: BodyContentType;
   ContentHeaders?: ContentHeaders1;
   HttpVersion?: HTTPVersion;
   ResponseHeaders?: ResponseHeaders;

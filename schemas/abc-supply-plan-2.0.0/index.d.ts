@@ -146,17 +146,9 @@ export type FirmOrderName = string;
  */
 export type FirmOrderQuantity = number;
 /**
- * The date the goods are scheduled to be manufactured. Must be the first day of the month and within valid date range.
- */
-export type ManufactureDate1 = string;
-/**
  * The date the goods are scheduled to be released. Must be the first day of the month and within valid date range.
  */
 export type ReleaseDate = string;
-/**
- * The expiration date of the product. Must be the last day of the month and within valid date range.
- */
-export type ExpirationDate1 = string;
 /**
  * List of firm orders with their respective quantities and dates.
  */
@@ -284,9 +276,9 @@ export interface InitialInventory {
 export interface FirmOrder {
   firmOrderName: FirmOrderName;
   firmOrderQuantity: FirmOrderQuantity;
-  manufactureDate: ManufactureDate1;
+  manufactureDate: ManufactureDate;
   releaseDate: ReleaseDate;
-  expirationDate: ExpirationDate1;
+  expirationDate: ExpirationDate;
 }
 /**
  * Map of demand values with specific dates as keys.

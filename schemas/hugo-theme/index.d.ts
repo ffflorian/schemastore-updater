@@ -33,10 +33,6 @@ export type ThemeName = string;
 export type NameOfOriginalAuthor = string;
 export type HisHerWebsite = string;
 /**
- * Link to source code of original theme
- */
-export type AuthorWebsite1 = string;
-/**
  * This info is used by Hugo theme store: https://themes.gohugo.io
  */
 export type ThemeTags = string[];
@@ -78,5 +74,5 @@ export interface ThemeAuthor {
 export interface OriginalTheme {
   author: NameOfOriginalAuthor;
   homepage?: HisHerWebsite;
-  repo: AuthorWebsite1;
+  repo: AuthorWebsite;
 }

@@ -29,7 +29,6 @@ export type TheUsecookiecontainerSchema = boolean;
 export type TheUsetracingSchema = boolean;
 export type TheDangerousacceptanyservercertificatevalidatorSchema = boolean;
 export type TheRoutesSchema = TheItemsSchema[];
-export type TheRequestidkeySchema1 = string;
 
 export interface JSONSchemaForOcelotJson {
   Routes: TheRoutesSchema;
@@ -106,6 +105,6 @@ export interface TheHttphandleroptionsSchema {
   [k: string]: unknown | undefined;
 }
 export interface TheGlobalconfigurationSchema {
-  RequestIdKey?: TheRequestidkeySchema1;
+  RequestIdKey?: TheRequestidkeySchema;
   [k: string]: unknown | undefined;
 }

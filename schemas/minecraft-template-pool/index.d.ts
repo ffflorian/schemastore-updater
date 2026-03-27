@@ -44,11 +44,6 @@ export type ProcessorType = string;
  * A list of processors to use.
  */
 export type Processors1 = Processor[];
-/**
- * The namespaced id of the structure to place.
- */
-export type Location1 = string;
-export type Projection1 = 'rigid' | 'terrain_matching';
 export type ElementType1 =
   | 'minecraft:empty_pool_element'
   | 'minecraft:list_pool_element'
@@ -63,10 +58,6 @@ export type Processors2 =
       processors?: Processors3;
       [k: string]: unknown | undefined;
     };
-/**
- * The namespaced id of the processor to use.
- */
-export type ProcessorType1 = string;
 /**
  * A list of processors to use.
  */
@@ -112,13 +103,13 @@ export interface Processor {
 }
 export interface Element2 {
   weight?: unknown;
-  location?: Location1;
-  projection?: Projection1;
+  location?: Location;
+  projection?: Projection;
   element_type?: ElementType1;
   processors?: Processors2;
   [k: string]: unknown | undefined;
 }
 export interface Processor1 {
-  processor_type?: ProcessorType1;
+  processor_type?: ProcessorType;
   [k: string]: unknown | undefined;
 }

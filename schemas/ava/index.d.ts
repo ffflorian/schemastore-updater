@@ -5,35 +5,15 @@ export type Path = string;
  * An array of glob patterns to select test files. Files with an underscore prefix are ignored. By default only selects files with `cjs`, `mjs` & `js` extensions, even if the pattern matches other files. Specify `extensions` to allow other file extensions
  */
 export type ArrayOfPaths = Path[];
-/**
- * An array of glob patterns to match files that, even if changed, are ignored by the watcher
- */
-export type ArrayOfPaths1 = Path[];
-/**
- * Not typically useful in the `package.json` configuration, but equivalent to specifying `--match` on the CLI
- */
-export type ArrayOfPaths2 = Path[];
 export type ArrayOfStrings = string[];
-/**
- * Extra modules to require before tests are run. Modules are required in the worker processes
- */
-export type ArrayOfPaths3 = Path[];
-/**
- * Configure Node.js arguments used to launch worker processes
- */
-export type ArrayOfStrings1 = string[];
-/**
- * You can configure AVA to recognize additional file extensions as TypeScript (e.g., `["ts", "tsx"]` to add partial JSX support). Note that the preserve mode for JSX is not (yet) supported. See also AVA's `extensions` object
- */
-export type ArrayOfPaths4 = Path[];
 
 /**
  * Configuration Schema for the JavaScript test runner AVA
  */
 export interface AVAConfigSchema {
   files?: ArrayOfPaths;
-  ignoredByWatcher?: ArrayOfPaths1;
-  match?: ArrayOfPaths2;
+  ignoredByWatcher?: ArrayOfPaths;
+  match?: ArrayOfPaths;
   /**
    * Defaults to `true` to cache compiled files under `node_modules/.cache/ava.` If `false`, files are cached in a temporary directory instead
    */
@@ -75,12 +55,12 @@ export interface AVAConfigSchema {
    * Extensions of test files. Setting this overrides the default `["cjs", "mjs", "js"]` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded
    */
   extensions?: ArrayOfStrings | Extensions;
-  require?: ArrayOfPaths3;
+  require?: ArrayOfPaths;
   /**
    * Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options
    */
   timeout?: number | string;
-  nodeArguments?: ArrayOfStrings1;
+  nodeArguments?: ArrayOfStrings;
   /**
    * If `false`, disable parallel builds (default: `true`)
    */
@@ -100,7 +80,7 @@ export interface Extensions {
  * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
  */
 export interface Configuration {
-  extensions?: ArrayOfPaths4;
+  extensions?: ArrayOfPaths;
   rewritePaths?: Paths;
   /**
    * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode

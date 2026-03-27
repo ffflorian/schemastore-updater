@@ -43,7 +43,6 @@ export type Builtins =
   | '$convert.rss';
 export type AdvancedTitle = TitleWithImage | TitleWithLabel;
 export type Color = string;
-export type ImgUrl1 = string;
 export type None = 'none';
 export type BorderColor = string;
 
@@ -106,7 +105,7 @@ export interface $Jason {
       /**
        * setting the background of the view
        */
-      background?: Color | ImgUrl1;
+      background?: Color | ImgUrl;
       /**
        * setting the border color for section items
        */

@@ -47,10 +47,6 @@ export type Path = string;
  */
 export type Terms = [Term, ...Term[]];
 /**
- * The name of the Term.
- */
-export type Name1 = string;
-/**
  * A definition of the Term in this Context.
  */
 export type Definition = string;
@@ -89,7 +85,7 @@ export interface Context {
  * A Term in the Context.
  */
 export interface Term {
-  name: Name1;
+  name: Name;
   definition?: Definition;
   examples?: Examples;
   aliases?: Aliases;

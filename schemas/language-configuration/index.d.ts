@@ -6,10 +6,6 @@
  * @minItems 2
  */
 export type CharPair = [string, string];
-/**
- * @minItems 2
- */
-export type CharPair1 = [string, string];
 
 /**
  * Configuration file for language features in VS Code and Visual Studio.
@@ -29,12 +25,12 @@ export interface LanguageConfiguration {
   /**
    * The language's brackets.
    */
-  brackets?: CharPair1[];
+  brackets?: CharPair[];
   /**
    * The language's auto closing pairs. The 'close' character is automatically inserted with the 'open' character is typed.
    */
   autoClosingPairs?: (
-    | CharPair1
+    | CharPair
     | {
         open: string;
         close: string;
@@ -50,7 +46,7 @@ export interface LanguageConfiguration {
    * The language's surrounding pairs. When the 'open' character is typed on a selection, the selected string is surrounded by the open and close characters.
    */
   surroundingPairs?: (
-    | CharPair1
+    | CharPair
     | {
         open: string;
         close: string;

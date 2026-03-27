@@ -26,23 +26,6 @@ export type SpecifMultiLanguageText = {
   language?: string;
 }[];
 /**
- * A list of items with text and language properties. If the information is be provided in multiple languages, the language must be specified for proper selection; it is however not required by the schema to avoid a lot of overhead in most cases with a single language.
- */
-export type SpecifMultiLanguageText1 = {
-  /**
-   * A string containing some text.
-   */
-  text: string;
-  /**
-   * By default, the format is assumed 'plain'.
-   */
-  format?: 'plain' | 'xhtml';
-  /**
-   * An IETF language tag such as 'en', 'en-US, 'fr' or 'de'.
-   */
-  language?: string;
-}[];
-/**
  * An ISO-8601 dateTime string. For reduced accuracy, any number of values may be dropped, but only from right to left.
  */
 export type SpecifDateTime = string;
@@ -51,7 +34,7 @@ export type SpecifDataType =
       type: DataTypeBoolean;
       id: SpecifId;
       title: SpecifText;
-      description?: SpecifMultiLanguageText2;
+      description?: SpecifMultiLanguageText;
       revision?: SpecifRevision;
       replaces?: SpecifReplaces;
       changedAt: SpecifDateTime;
@@ -61,7 +44,7 @@ export type SpecifDataType =
       type: DataTypeDateTimeDurationOrURI;
       id: SpecifId;
       title: SpecifText;
-      description?: SpecifMultiLanguageText2;
+      description?: SpecifMultiLanguageText;
       enumeration?: EnumeratedValues;
       /**
        * Indicates whether multiple values are allowed; by default the value is 'false'.
@@ -76,10 +59,10 @@ export type SpecifDataType =
       type: DataTypeInteger;
       id: SpecifId;
       title: SpecifText;
-      description?: SpecifMultiLanguageText2;
+      description?: SpecifMultiLanguageText;
       minInclusive?: MinimumValueOfANumber;
       maxInclusive?: MaximumValueOfANumber;
-      enumeration?: EnumeratedValues1;
+      enumeration?: EnumeratedValues;
       /**
        * Indicates whether multiple values are allowed; by default the value is 'false'.
        */
@@ -93,11 +76,11 @@ export type SpecifDataType =
       type: DataTypeDouble;
       id: SpecifId;
       title: SpecifText;
-      description?: SpecifMultiLanguageText2;
+      description?: SpecifMultiLanguageText;
       fractionDigits?: NumberOfFractionDigitsOfADecimalNumber;
-      minInclusive?: MinimumValueOfANumber1;
-      maxInclusive?: MaximumValueOfANumber1;
-      enumeration?: EnumeratedValues2;
+      minInclusive?: MinimumValueOfANumber;
+      maxInclusive?: MaximumValueOfANumber;
+      enumeration?: EnumeratedValues;
       /**
        * Indicates whether multiple values are allowed; by default the value is 'false'.
        */
@@ -111,9 +94,9 @@ export type SpecifDataType =
       type: DataTypeStringWithPlainOrFormattedTextThePropertySTextObjectMAYSpecifyTheFormatAndLanguage;
       id: SpecifId;
       title: SpecifText;
-      description?: SpecifMultiLanguageText2;
+      description?: SpecifMultiLanguageText;
       maxLength?: MaximumStringLength;
-      enumeration?: EnumeratedValues3;
+      enumeration?: EnumeratedValues;
       /**
        * Indicates whether multiple values are allowed; by default the value is 'false'.
        */
@@ -132,23 +115,6 @@ export type DataTypeBoolean = 'xs:boolean';
  */
 export type SpecifText = string;
 /**
- * A list of items with text and language properties. If the information is be provided in multiple languages, the language must be specified for proper selection; it is however not required by the schema to avoid a lot of overhead in most cases with a single language.
- */
-export type SpecifMultiLanguageText2 = {
-  /**
-   * A string containing some text.
-   */
-  text: string;
-  /**
-   * By default, the format is assumed 'plain'.
-   */
-  format?: 'plain' | 'xhtml';
-  /**
-   * An IETF language tag such as 'en', 'en-US, 'fr' or 'de'.
-   */
-  language?: string;
-}[];
-/**
  * For change and configuration management; the first revision has 0 entries, a simple modification has 1 entry and the result of a merge has 2 entries.
  *
  * @maxItems 2
@@ -158,24 +124,7 @@ export type SpecifReplaces = [] | [SpecifRevision] | [SpecifRevision, SpecifRevi
  * The corresponding definition in https://www.w3.org/TR/xmlschema-2/ applies.
  */
 export type DataTypeDateTimeDurationOrURI = 'xs:dateTime' | 'xs:duration' | 'xs:anyURI';
-export type SpecifValue = string | SpecifMultiLanguageText3;
-/**
- * For properties with dataType 'xs:string'.
- */
-export type SpecifMultiLanguageText3 = {
-  /**
-   * A string containing some text.
-   */
-  text: string;
-  /**
-   * By default, the format is assumed 'plain'.
-   */
-  format?: 'plain' | 'xhtml';
-  /**
-   * An IETF language tag such as 'en', 'en-US, 'fr' or 'de'.
-   */
-  language?: string;
-}[];
+export type SpecifValue = string | SpecifMultiLanguageText;
 /**
  * An optional list of values to choose from for a specific instance; multiple values are allowed, if 'multiple' is set to 'true'.
  */
@@ -193,10 +142,6 @@ export type MinimumValueOfANumber = number;
  */
 export type MaximumValueOfANumber = number;
 /**
- * An optional list of values to choose from for a specific instance; multiple values are allowed, if 'multiple' is set to 'true'.
- */
-export type EnumeratedValues1 = SpecifEnumeratedValue[];
-/**
  * The corresponding definition in https://www.w3.org/TR/xmlschema-2/ applies.
  */
 export type DataTypeDouble = 'xs:double';
@@ -205,18 +150,6 @@ export type DataTypeDouble = 'xs:double';
  */
 export type NumberOfFractionDigitsOfADecimalNumber = number;
 /**
- * Optional use by dataTypes 'xs:integer' and 'xs:double'.
- */
-export type MinimumValueOfANumber1 = number;
-/**
- * Optional use by dataTypes 'xs:integer' and 'xs:double'.
- */
-export type MaximumValueOfANumber1 = number;
-/**
- * An optional list of values to choose from for a specific instance; multiple values are allowed, if 'multiple' is set to 'true'.
- */
-export type EnumeratedValues2 = SpecifEnumeratedValue[];
-/**
  * The corresponding definition in https://www.w3.org/TR/xmlschema-2/ applies.
  */
 export type DataTypeStringWithPlainOrFormattedTextThePropertySTextObjectMAYSpecifyTheFormatAndLanguage = 'xs:string';
@@ -224,10 +157,6 @@ export type DataTypeStringWithPlainOrFormattedTextThePropertySTextObjectMAYSpeci
  * Optional use by dataType 'xs:string'.
  */
 export type MaximumStringLength = number;
-/**
- * An optional list of values to choose from for a specific instance; multiple values are allowed, if 'multiple' is set to 'true'.
- */
-export type EnumeratedValues3 = SpecifEnumeratedValue[];
 /**
  * An optional list of default values in case the instantiated resource's or statement's property is missing.
  *
@@ -247,52 +176,13 @@ export type SpecifInstantiation = ('auto' | 'user')[];
  */
 export type SpecifKeys = SpecifKey2[];
 /**
- * A list of keys referencing propertyClasses; a statementClass may exist without propertyClasses.
- */
-export type SpecifKeys1 = SpecifKey2[];
-/**
- * A list of keys referencing eligible resource and statement classes for a statement's subject; if missing, all resource or statement classes are eligible.
- */
-export type SpecifKeys2 = SpecifKey2[];
-/**
- * A list of keys referencing eligible resource and statement classes for a statement's object; if missing, all resource or statement classes are eligible.
- */
-export type SpecifKeys3 = SpecifKey2[];
-/**
  * The list of consolidated items to be used in case a consolidated item shall be updated.
  */
 export type SpecifAlternativeIds = SpecifAlternativeId[];
 /**
- * If 'multiple' of the propertyClass is undefined or false, the array must contain one item. If the value is unknown, omit the whole property. By default, the class' value applies.
- *
- * @minItems 1
- */
-export type SpecifValues1 = [SpecifValue, ...SpecifValue[]];
-/**
  * A list of properties of a resource or statement; the number of properties including any parent's properties must be >0.
  */
 export type SpecifProperties = SpecifProperty[];
-/**
- * A list of items with text and language properties. If the information is be provided in multiple languages, the language must be specified for proper selection; it is however not required by the schema to avoid a lot of overhead in most cases with a single language.
- */
-export type SpecifMultiLanguageText4 = {
-  /**
-   * A string containing some text.
-   */
-  text: string;
-  /**
-   * By default, the format is assumed 'plain'.
-   */
-  format?: 'plain' | 'xhtml';
-  /**
-   * An IETF language tag such as 'en', 'en-US, 'fr' or 'de'.
-   */
-  language?: string;
-}[];
-/**
- * The next hierarchy level.
- */
-export type SpecifNodes1 = SpecifNode[];
 /**
  * A list of hierarchies with pointers to resources; may be nested to build a tree, i.e. a hierarchy of pointers.
  */
@@ -309,7 +199,7 @@ export interface JSONSchemaForSpecIFV11 {
   id: SpecifId;
   revision?: SpecifRevision;
   title?: SpecifMultiLanguageText;
-  description?: SpecifMultiLanguageText1;
+  description?: SpecifMultiLanguageText;
   /**
    * Indicates that the project is not schema-compliant on its own; by default the value is 'false'. Of course, it is expected that once extended the project is schema-compliant.
    */
@@ -381,7 +271,7 @@ export interface SpecifEnumeratedValue {
 export interface SpecifPropertyClass {
   id: SpecifId;
   title: SpecifText;
-  description?: SpecifMultiLanguageText2;
+  description?: SpecifMultiLanguageText;
   dataType: SpecifKey;
   /**
    * Optional use by all propertyClasses. Indicates whether multiple values can be given. If omitted, the 'multiple' property of the dataType applies; by default the value is 'false'.
@@ -414,7 +304,7 @@ export interface SpecifKey {
 export interface SpecifResourceClass {
   id: SpecifId;
   title: SpecifText;
-  description?: SpecifMultiLanguageText2;
+  description?: SpecifMultiLanguageText;
   extends?: SpecifKey1;
   icon?: SpecifIcon;
   isHeading?: boolean;
@@ -448,7 +338,7 @@ export interface SpecifKey2 {
 export interface SpecifStatementClass {
   id: SpecifId;
   title: SpecifText;
-  description?: SpecifMultiLanguageText2;
+  description?: SpecifMultiLanguageText;
   extends?: SpecifKey3;
   icon?: SpecifIcon;
   instantiation?: SpecifInstantiation;
@@ -456,9 +346,9 @@ export interface SpecifStatementClass {
    * Indicates that an instance's subject and object are equivalent and can be exchanged without change in meaning.
    */
   isUndirected?: boolean;
-  propertyClasses?: SpecifKeys1;
-  subjectClasses?: SpecifKeys2;
-  objectClasses?: SpecifKeys3;
+  propertyClasses?: SpecifKeys;
+  subjectClasses?: SpecifKeys;
+  objectClasses?: SpecifKeys;
   revision?: SpecifRevision;
   replaces?: SpecifReplaces;
   changedAt: SpecifDateTime;
@@ -518,7 +408,7 @@ export interface SpecifKey4 {
 }
 export interface SpecifProperty {
   class: SpecifKey5;
-  values: SpecifValues1;
+  values: SpecifValues;
   [k: string]: unknown | undefined;
 }
 /**
@@ -583,10 +473,10 @@ export interface SpecifKey8 {
 }
 export interface SpecifNode {
   id: SpecifId;
-  title?: SpecifMultiLanguageText4;
-  description?: SpecifMultiLanguageText2;
+  title?: SpecifMultiLanguageText;
+  description?: SpecifMultiLanguageText;
   resource: SpecifKey9;
-  nodes?: SpecifNodes1;
+  nodes?: SpecifNodes;
   revision?: SpecifRevision;
   replaces?: SpecifReplaces;
   changedAt: SpecifDateTime;
@@ -609,7 +499,7 @@ export interface SpecifFile {
    * The file's name.
    */
   title: string;
-  description?: SpecifMultiLanguageText2;
+  description?: SpecifMultiLanguageText;
   /**
    * An absolute or relative URL to the file; will be of format 'uri-reference' in future. If missing, the title applies.
    */

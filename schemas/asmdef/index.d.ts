@@ -25,7 +25,7 @@ export type UnityAssemblyDefinition = {
    */
   references?: string[];
   includePlatforms?: PlatformValues;
-  excludePlatforms?: PlatformValues1;
+  excludePlatforms?: PlatformValues;
   /**
    * Allow unsafe code
    */
@@ -78,30 +78,6 @@ export type UnityAssemblyDefinition = {
  * Platforms to target
  */
 export type PlatformValues = (
-  | 'Android'
-  | 'Editor'
-  | 'iOS'
-  | 'LinuxStandalone32'
-  | 'LinuxStandalone64'
-  | 'LinuxStandaloneUniversal'
-  | 'Lumin'
-  | 'macOSStandalone'
-  | 'Nintendo3DS'
-  | 'PS4'
-  | 'PSVita'
-  | 'Stadia'
-  | 'Switch'
-  | 'tvOS'
-  | 'WSA'
-  | 'WebGL'
-  | 'WindowsStandalone32'
-  | 'WindowsStandalone64'
-  | 'XboxOne'
-)[];
-/**
- * Platforms that are explicitly not targeted
- */
-export type PlatformValues1 = (
   | 'Android'
   | 'Editor'
   | 'iOS'

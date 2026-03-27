@@ -28,22 +28,6 @@ export type Labels = {
  * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
  */
 export type LabelValue = string;
-/**
- * Expanded labels and annotations of the expected alert. This also include the labels of the sample associated with the alert (same as what you see in `/alerts`, without series `__name__` and `alertname`).
- */
-export type Labels1 = {
-  [k: string]: LabelValue;
-} & ({
-  [k: string]: LabelValue;
-} | null);
-/**
- * External labels accessible to the alert template.
- */
-export type Labels2 = {
-  [k: string]: LabelValue;
-} & ({
-  [k: string]: LabelValue;
-} | null);
 
 /**
  * Prometheus rules test file. See https://prometheus.io/docs/prometheus/latest/configuration/unit_testing_rules/ for details.
@@ -71,7 +55,7 @@ export interface TestGroup {
    * Unit tests for alerting rules. We only consider the alerting rules from the input files.
    */
   alert_rule_test?: AlertTestCase[];
-  external_labels?: Labels2;
+  external_labels?: Labels;
   /**
    * External URL accessible to the alert template. Usually set using --web.external-url.
    */
@@ -109,7 +93,7 @@ export interface AlertTestCase {
 }
 export interface Alert {
   exp_annotations?: Labels;
-  exp_labels: Labels1;
+  exp_labels: Labels;
   [k: string]: unknown | undefined;
 }
 export interface Series {

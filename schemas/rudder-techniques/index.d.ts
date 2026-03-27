@@ -103,10 +103,6 @@ export type Version = string;
  */
 export type Items = [BlockOrMethodCall, ...BlockOrMethodCall[]];
 export type BlockOrMethodCall = BlockCall | MethodCall;
-/**
- * Block call name
- */
-export type Name1 = string;
 export type BlockCallId = string;
 export type BlockCallPolicyMode = 'audit' | 'enforce' | 'none';
 export type BlockCallCondition = string | boolean;
@@ -174,7 +170,7 @@ export interface TechniqueParameterRegexConstraint {
 }
 export interface BlockCall {
   items: BlockOrMethodCall[];
-  name?: Name1;
+  name?: Name;
   id?: BlockCallId;
   tags?: BlockCallTags;
   policy_mode_override?: BlockCallPolicyMode;

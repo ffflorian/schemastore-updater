@@ -4,22 +4,6 @@
  * The branches that this branch is a source branch.
  */
 export type HashSetOfString = string[];
-/**
- * The source branches for this branch.
- */
-export type HashSetOfString1 = string[];
-/**
- * A sequence of SHAs to be excluded from the version calculations.
- */
-export type HashSetOfString2 = string[];
-/**
- * The branches that this branch is a source branch.
- */
-export type HashSetOfString3 = string[];
-/**
- * The source branches for this branch.
- */
-export type HashSetOfString4 = string[];
 
 /**
  * GitVersion configuration schema (6.6)
@@ -85,7 +69,7 @@ export interface GitVersionConfigurationSchema {
            * The regular expression pattern to use to match this branch.
            */
           regex?: null | string;
-          'source-branches'?: HashSetOfString1;
+          'source-branches'?: HashSetOfString;
           /**
            * This property is a branch related property and gives the user the possibility to control the behavior of whether the merge commit message will be interpreted as a next version or not.
            */
@@ -126,7 +110,7 @@ export interface GitVersionConfigurationSchema {
      * A sequence of file paths to be excluded from the version calculations.
      */
     paths?: string[];
-    sha?: HashSetOfString2;
+    sha?: HashSetOfString;
     [k: string]: unknown | undefined;
   };
   /**
@@ -141,7 +125,7 @@ export interface GitVersionConfigurationSchema {
    * Indicates this branch configuration represents a release branch in GitFlow.
    */
   'is-release-branch'?: null | boolean;
-  'is-source-branch-for'?: HashSetOfString3;
+  'is-source-branch-for'?: HashSetOfString;
   /**
    * The label to use for this branch. Use the value {BranchName} or similar as a placeholder to insert a named capture group from RegularExpression (fx. the branch name).
    */
@@ -185,7 +169,7 @@ export interface GitVersionConfigurationSchema {
    * Specifies the semantic version format that is used when parsing the string. Can be 'Strict' or 'Loose'. Defaults to 'Strict'.
    */
   'semantic-version-format'?: 'Strict' | 'Loose';
-  'source-branches'?: HashSetOfString4;
+  'source-branches'?: HashSetOfString;
   /**
    * A regular expression which is used to trim Git tags before processing. Defaults to '[vV]?'
    */

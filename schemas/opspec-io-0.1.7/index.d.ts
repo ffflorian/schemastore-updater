@@ -14,10 +14,6 @@ export type Call = {
  * Version of the op
  */
 export type SemVer = string;
-/**
- * Version of [opspec](https://opspec.io) used by the op
- */
-export type SemVer1 = string;
 
 /**
  * Defines an op
@@ -32,7 +28,7 @@ export interface OpFile {
   outputs?: Inputs;
   run?: Call;
   version?: SemVer;
-  opspec?: SemVer1;
+  opspec?: SemVer;
 }
 /**
  * Parameter of an op

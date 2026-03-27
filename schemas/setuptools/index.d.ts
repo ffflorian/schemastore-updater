@@ -3,9 +3,8 @@
 /**
  * Valid package name (importable or :pep:`561`).
  */
-export type ValidPackageName = PackageName & PackageName1;
+export type ValidPackageName = PackageName & PackageName;
 export type PackageName = string;
-export type PackageName1 = string;
 export type ArrayOfPythonPackageIdentifiers = ValidPackageName[];
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition

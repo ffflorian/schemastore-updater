@@ -43,104 +43,6 @@ export type Value =
     )
   | undefined;
 /**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value1 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value2 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value3 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value4 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value5 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value6 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value7 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
  * Enum for the data type of a schema.
  */
 export type SchemaDataType = (
@@ -220,20 +122,6 @@ export type Value11 =
 /**
  * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
  */
-export type Value12 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
 export type Value13 =
   | unknown[]
   | boolean
@@ -242,48 +130,6 @@ export type Value13 =
       [k: string]: unknown | undefined;
     }
   | string;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value14 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value15 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value16 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
 /**
  * The Link object represents a possible design-time link for a response. The presence of a link does not guarantee the caller’s ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations. See: https://spec.openapis.org/oas/v3.1.0#link-object
  */
@@ -302,20 +148,6 @@ export type Link =
 /**
  * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
  */
-export type Value17 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
 export type Value18 =
   | unknown[]
   | boolean
@@ -324,132 +156,6 @@ export type Value18 =
       [k: string]: unknown | undefined;
     }
   | string;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value19 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value20 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value21 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value22 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value23 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value24 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value25 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value26 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value27 =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
 
 /**
  * Configuration files for gRPC API Gateway & OpenAPI generation plugin for protobuf (https://github.com/meshapi/grpc-api-gateway)
@@ -521,7 +227,7 @@ export interface Document {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value26 | undefined;
+    [k: string]: Value | undefined;
   };
   config?: DocumentConfiguration;
 }
@@ -555,7 +261,7 @@ export interface Info {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value2 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -601,7 +307,7 @@ export interface License {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value1 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -626,7 +332,7 @@ export interface Server {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value4 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -649,7 +355,7 @@ export interface ServerVariable {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value3 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -684,7 +390,7 @@ export interface Components {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value24 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -697,7 +403,7 @@ export interface Schema {
    * Extra can be used to add any other field in the schema. Since OpenAPI v3.1 arbitrary fields can be used in the schema objects. This field can be utilized to add those extra fields. Some of the JSON schema validation properties or core properties that are not captured as part of the gRPC REST Gateway OpenAPI objects.
    */
   extra?: {
-    [k: string]: Value7 | undefined;
+    [k: string]: Value | undefined;
   };
   /**
    * Ref is used to define an external reference to include in the message. This could be a fully qualified proto message reference and start with a '.', and that type must be available in the proto files or their dependencies. If no message is identified, the Ref will be used verbatim in the output. For example:  `ref: ".google.protobuf.Timestamp"`. NOTE: This reference will only be honored when used in top-level schemas in responses only.
@@ -832,7 +538,7 @@ export interface Discriminator {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value5 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -851,7 +557,7 @@ export interface ExternalDocumentation {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value6 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -901,7 +607,7 @@ export interface Response {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value17 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -968,7 +674,7 @@ export interface Header {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value16 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -993,7 +699,7 @@ export interface Example {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value12 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1018,7 +724,7 @@ export interface MediaType {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value15 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1051,7 +757,7 @@ export interface Encoding {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value14 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1113,7 +819,7 @@ export interface Parameter {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value19 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1139,7 +845,7 @@ export interface RequestBody {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value20 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1180,7 +886,7 @@ export interface SecurityScheme {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value23 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1195,7 +901,7 @@ export interface OAuthFlows {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value22 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1212,7 +918,7 @@ export interface OAuthFlow {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value21 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1242,7 +948,7 @@ export interface Tag {
    * Extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value25 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**
@@ -1319,7 +1025,7 @@ export interface Operation {
    * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
    */
   extensions?: {
-    [k: string]: Value27 | undefined;
+    [k: string]: Value | undefined;
   };
 }
 /**

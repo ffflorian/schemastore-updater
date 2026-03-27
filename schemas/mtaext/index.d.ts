@@ -51,14 +51,6 @@ export type ModuleParametersIdleRoutes = {
   [k: string]: unknown | undefined;
 }[];
 /**
- * [CF/XSA] The domains on which the application will be available later.
- */
-export type ModuleParametersDomains1 = string[];
-/**
- * [CF/XSA] The hostnames or subdomain where an application is available later.
- */
-export type ModuleParametersHosts1 = string[];
-/**
  * [CF/XSA] Restart app if environment variables change.
  */
 export type ModuleParametersRestartOnEnvChange = {
@@ -112,33 +104,6 @@ export type ModuleParametersTasks = {
   [k: string]: unknown | undefined;
 }[];
 /**
- * A list of the existing hooks that will be modified by the extension.
- */
-export type Hooks1 = {
-  /**
-   * The name of the existing hook that will be modified by this extension.
-   */
-  name: string;
-  /**
-   * Configuration parameters that are used when executing the hook to the target runtime environment.
-   */
-  parameters?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * List of the existing required dependencies that will be modified by this extension.
-   */
-  requires?: {
-    /**
-     * The name of the existing required dependencies that will be modified.
-     */
-    name: string;
-    parameters?: HooksParameters;
-    [k: string]: unknown | undefined;
-  }[];
-  [k: string]: unknown | undefined;
-}[];
-/**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
 export type ModuleRequires = {
@@ -188,33 +153,6 @@ export type ModuleProvides = {
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to requiring modules at runtime. Untyped resources cannot have parameters.
  */
 export type ResourceParameters = ResourceParametersCf | ResourceParametersCfXsa | ResourceParametersXsa;
-/**
- * List of existing hooks that will be modified by the extension.
- */
-export type Hooks2 = {
-  /**
-   * The name of the existing hook that will be modified by this extension.
-   */
-  name: string;
-  /**
-   * Configuration parameters that are used when executing the hook to the target runtime environment.
-   */
-  parameters?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * List of the existing required dependencies that will be modified by this extension.
-   */
-  requires?: {
-    /**
-     * The name of the existing required dependencies that will be modified.
-     */
-    name: string;
-    parameters?: HooksParameters;
-    [k: string]: unknown | undefined;
-  }[];
-  [k: string]: unknown | undefined;
-}[];
 
 /**
  * MTA extension descriptor schema v3.3
@@ -257,7 +195,7 @@ export interface MtaextV33 {
       [k: string]: unknown | undefined;
     };
     parameters?: ModuleParameters;
-    hooks?: Hooks1;
+    hooks?: Hooks;
     /**
      * List of the existing required dependencies that will be modified by the extension.
      */
@@ -313,7 +251,7 @@ export interface MtaextV33 {
       [k: string]: unknown | undefined;
     };
     parameters?: ResourceParameters;
-    hooks?: Hooks2;
+    hooks?: Hooks;
     /**
      * List of the existing required dependencies that will be modified by the extension.
      */
@@ -657,7 +595,7 @@ export interface ModuleParametersCfXsa {
    * [CF/XSA] The domain on which the application will be available later.
    */
   domain?: string;
-  domains?: ModuleParametersDomains1;
+  domains?: ModuleParametersDomains;
   /**
    * [CF/XSA] Enables use of SSH within an application.
    */
@@ -674,7 +612,7 @@ export interface ModuleParametersCfXsa {
    * [CF/XSA] The hostname or subdomain where an application is available later.
    */
   host?: string;
-  hosts?: ModuleParametersHosts1;
+  hosts?: ModuleParametersHosts;
   /**
    * [CF/XSA] The number of application instances that will be started during deployment.
    */

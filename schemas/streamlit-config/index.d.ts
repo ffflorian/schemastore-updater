@@ -223,14 +223,6 @@ export type FontWeight = number;
  */
 export type CodeFont = ('sans-serif' | 'serif' | 'monospace') | string;
 /**
- * The font size for code blocks and code text in pixels or rem. Defaults to 0.875rem if not set
- */
-export type FontSize1 = string;
-/**
- * The font weight for code blocks and code text.
- */
-export type FontWeight1 = number;
-/**
  * The radius used as basis for the corners of most UI elements
  */
 export type BaseRadius = ('none' | 'small' | 'medium' | 'large' | 'full') | string;
@@ -271,42 +263,6 @@ export type ChartCategoricalColors = Color[];
  */
 export type ChartSequentialColors = [Color, Color, Color, Color, Color, Color, Color, Color, Color, Color];
 /**
- * Primary accent color for sidebar elements
- */
-export type Color1 = string;
-/**
- * Background color of the sidebar
- */
-export type Color2 = string;
-/**
- * Background color used for most interactive widgets in the sidebar
- */
-export type Color3 = string;
-/**
- * Color used for almost all text in the sidebar
- */
-export type Color4 = string;
-/**
- * Color used for all links in the sidebar
- */
-export type Color5 = string;
-/**
- * Whether or not links should be displayed with an underline in the sidebar
- */
-export type LinkUnderline1 = boolean;
-/**
- * Background color used for code blocks in the sidebar
- */
-export type Color6 = string;
-/**
- * The font family for all text in the sidebar, except code blocks
- */
-export type Font1 = ('sans-serif' | 'serif' | 'monospace') | string;
-/**
- * The font family to use for headings in the sidebar. If this isn't set, Streamlit uses theme.font for headings
- */
-export type HeadingFont1 = ('sans-serif' | 'serif' | 'monospace') | string;
-/**
  * One or more font sizes for h1-h6 headings in the sidebar
  */
 export type HeadingFontSizes1 =
@@ -328,38 +284,6 @@ export type HeadingFontWeights1 =
   | [FontWeight, FontWeight, FontWeight, FontWeight]
   | [FontWeight, FontWeight, FontWeight, FontWeight, FontWeight]
   | [FontWeight, FontWeight, FontWeight, FontWeight, FontWeight, FontWeight];
-/**
- * The font family to use for code (monospace) in the sidebar
- */
-export type CodeFont1 = ('sans-serif' | 'serif' | 'monospace') | string;
-/**
- * The font size (in pixels or rem) for code blocks and code text in the sidebar
- */
-export type FontSize2 = string;
-/**
- * The radius used as basis for the corners of most UI elements in the sidebar
- */
-export type BaseRadius1 = ('none' | 'small' | 'medium' | 'large' | 'full') | string;
-/**
- * The radius used as basis for the corners of buttons in the sidebar. If this isn't set, Streamlit uses theme.baseRadius instead
- */
-export type ButtonRadius1 = ('none' | 'small' | 'medium' | 'large' | 'full') | string;
-/**
- * The color of the border around elements in the sidebar. If this isn't set, Streamlit uses theme.borderColor instead
- */
-export type Color7 = string;
-/**
- * The color of the border around dataframes and tables in the sidebar. If this isn't set, Streamlit uses theme.borderColor instead
- */
-export type Color8 = string;
-/**
- * The background color of the dataframe's header in the sidebar. If this isn't set, Streamlit uses a mix of theme.backgroundColor and theme.secondaryBackgroundColor
- */
-export type Color9 = string;
-/**
- * Whether to show a border around input widgets in the sidebar
- */
-export type ShowWidgetBorder1 = boolean;
 /**
  * An entry can be a path to a TOML file or directory path where Kubernetes style secrets are saved. Order is important, import is first to last, so secrets in later files will take precedence over earlier ones.
  */
@@ -478,8 +402,8 @@ export interface Theme {
   headingFontSizes?: HeadingFontSizes;
   headingFontWeights?: HeadingFontWeights;
   codeFont?: CodeFont;
-  codeFontSize?: FontSize1;
-  codeFontWeight?: FontWeight1;
+  codeFontSize?: FontSize;
+  codeFontWeight?: FontWeight;
   baseRadius?: BaseRadius;
   buttonRadius?: ButtonRadius;
   borderColor?: BorderColor;
@@ -519,25 +443,25 @@ export interface FontFace {
  * Theme configuration specifically for the sidebar
  */
 export interface ThemeSidebar {
-  primaryColor?: Color1;
-  backgroundColor?: Color2;
-  secondaryBackgroundColor?: Color3;
-  textColor?: Color4;
-  linkColor?: Color5;
-  linkUnderline?: LinkUnderline1;
-  codeBackgroundColor?: Color6;
-  font?: Font1;
-  headingFont?: HeadingFont1;
+  primaryColor?: Color;
+  backgroundColor?: Color;
+  secondaryBackgroundColor?: Color;
+  textColor?: Color;
+  linkColor?: Color;
+  linkUnderline?: LinkUnderline;
+  codeBackgroundColor?: Color;
+  font?: Font;
+  headingFont?: HeadingFont;
   headingFontSizes?: HeadingFontSizes1;
   headingFontWeights?: HeadingFontWeights1;
-  codeFont?: CodeFont1;
-  codeFontSize?: FontSize2;
-  baseRadius?: BaseRadius1;
-  buttonRadius?: ButtonRadius1;
-  borderColor?: Color7;
-  dataframeBorderColor?: Color8;
-  dataframeHeaderBackgroundColor?: Color9;
-  showWidgetBorder?: ShowWidgetBorder1;
+  codeFont?: CodeFont;
+  codeFontSize?: FontSize;
+  baseRadius?: BaseRadius;
+  buttonRadius?: ButtonRadius;
+  borderColor?: Color;
+  dataframeBorderColor?: Color;
+  dataframeHeaderBackgroundColor?: Color;
+  showWidgetBorder?: ShowWidgetBorder;
   [k: string]: unknown | undefined;
 }
 /**

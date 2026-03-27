@@ -85,14 +85,6 @@ export type Descriptions = {
   value: Value;
 }[];
 /**
- * The role of this body
- */
-export type Role1 = string;
-/**
- * The IANA (Internet Assigned Numbers Authority) MIME type of the content of this body.
- */
-export type ContentType1 = string;
-/**
  * The total character count in this body excluding figure captions. (Added in version 1.2 according to issue #27.). nar:charcount
  */
 export type CharacterCount = number;
@@ -101,38 +93,22 @@ export type CharacterCount = number;
  */
 export type WordCount = number;
 /**
- * The body text identified with the above role and contenttype.
- */
-export type Value1 = string;
-/**
  * An array of body objects with the content as text or with markup. For a simple body use an array with one object only containing the value property. Role and contenttype are then undefined and it is up to the provider.
  */
 export type Bodies = {
-  role?: Role1;
-  contenttype?: ContentType1;
+  role?: Role;
+  contenttype?: ContentType;
   charcount?: CharacterCount;
   wordcount?: WordCount;
-  value: Value1;
+  value: Value;
 }[];
-/**
- * The role of this headline
- */
-export type Role2 = string;
-/**
- * The IANA (Internet Assigned Numbers Authority) MIME type of the content of this headline.
- */
-export type ContentType2 = string;
-/**
- * The headline identified with the above role and contenttype.
- */
-export type Value2 = string;
 /**
  * An array of objects containing various types of headlines. For a simple headline use an array with one object only containing the value property. Role and contenttype are then undefined and it is up to the provider.
  */
 export type Headlines = {
-  role?: Role2;
-  contenttype?: ContentType2;
-  value: Value2;
+  role?: Role;
+  contenttype?: ContentType;
+  value: Value;
 }[];
 /**
  * The name of a person
@@ -160,22 +136,6 @@ export type People = {
   literal?: Literal;
 }[];
 /**
- * The name of the organisation
- */
-export type Name1 = string;
-/**
- * The relationship of the content of the news object to the organisation
- */
-export type Relationship1 = string;
-/**
- * The identifier of the organisation as a complete uri
- */
-export type URI1 = string;
-/**
- * The code for the organisation as a literal
- */
-export type Literal1 = string;
-/**
  * Ticker symbol used for the financial instrument
  */
 export type Ticker = string;
@@ -194,137 +154,57 @@ export type Symbols = {
  * An array of objects describing administrative and functional structures which may, for example, act as as a business, as a political party or not-for-profit party. nar:subject
  */
 export type Organisations = {
-  name?: Name1;
-  rel?: Relationship1;
-  uri?: URI1;
-  literal?: Literal1;
+  name?: Name;
+  rel?: Relationship;
+  uri?: URI;
+  literal?: Literal;
   symbols?: Symbols;
 }[];
-/**
- * The name of the place
- */
-export type Name2 = string;
-/**
- * The relationship of the content of the news object to the place
- */
-export type Relationship2 = string;
-/**
- * The identifier for the place as a complete uri
- */
-export type URI2 = string;
-/**
- * The code for the place as a literal
- */
-export type Literal2 = string;
 /**
  * An array of named locations. nar:subject
  */
 export type Places = {
-  name?: Name2;
-  rel?: Relationship2;
-  uri?: URI2;
-  literal?: Literal2;
+  name?: Name;
+  rel?: Relationship;
+  uri?: URI;
+  literal?: Literal;
   [k: string]: unknown | undefined;
 }[];
-/**
- * The name of the subject
- */
-export type Name3 = string;
-/**
- * The relationship of the content of the news object to the subject
- */
-export type Relationship3 = string;
-/**
- * The identifier of the subject as a complete uri
- */
-export type URI3 = string;
-/**
- * The code for the subject as a string literal
- */
-export type Literal3 = string;
 /**
  * An array of objects holding concepts with a relationship to the content. nar:subject
  */
 export type Subjects = {
-  name?: Name3;
-  rel?: Relationship3;
-  uri?: URI3;
-  literal?: Literal3;
+  name?: Name;
+  rel?: Relationship;
+  uri?: URI;
+  literal?: Literal;
 }[];
-/**
- * The name of the event
- */
-export type Name4 = string;
-/**
- * The relationship of the content of the news object to the event
- */
-export type Relationship4 = string;
-/**
- * The identifier for the event as a complete uri
- */
-export type URI4 = string;
-/**
- * The code for the event as a string literal
- */
-export type Literal4 = string;
 /**
  * An array of objects describing something which happens in a planned or unplanned manner. nar:?
  */
 export type Events = {
-  name?: Name4;
-  rel?: Relationship4;
-  uri?: URI4;
-  literal?: Literal4;
+  name?: Name;
+  rel?: Relationship;
+  uri?: URI;
+  literal?: Literal;
 }[];
-/**
- * The name of the object
- */
-export type Name5 = string;
-/**
- * The relationship of the content of the news object to the object
- */
-export type Relationship5 = string;
-/**
- * The identifier for the object as a complete uri
- */
-export type URI5 = string;
-/**
- * The code for the object as a string literal
- */
-export type Literal5 = string;
 /**
  * An array of objects describing something material, excluding persons. nar:subject
  */
 export type Objects = {
-  name?: Name5;
-  rel?: Relationship5;
-  uri?: URI5;
-  literal?: Literal5;
+  name?: Name;
+  rel?: Relationship;
+  uri?: URI;
+  literal?: Literal;
 }[];
-/**
- * The name of the infosource
- */
-export type Name6 = string;
-/**
- * The role the infosource in relationship to the content as a uri.
- */
-export type Role3 = string;
-/**
- * The identifier of the infosource as a complete uri
- */
-export type URI6 = string;
-/**
- * The code for the infosource as a string literal
- */
-export type Literal6 = string;
 /**
  * An array of parties (person or organisation) which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content. (Added in version 1.2 according to issue #15.) .  infosource:  nar:infoSource
  */
 export type InfoSources = {
-  name?: Name6;
-  role?: Role3;
-  uri?: URI6;
-  literal?: Literal6;
+  name?: Name;
+  role?: Role;
+  uri?: URI;
+  literal?: Literal;
 }[];
 /**
  * A short natural-language name for the item. Title is metadata, use headlines for publishable headlines. (Added in version 1.2 according to issue #9). nar:itemMeta/title
@@ -343,21 +223,9 @@ export type Slugline = string;
  */
 export type Located = string;
 /**
- * The name of this object in the array of renditions. For example 'thumbnail'
- */
-export type Name7 = string;
-/**
  * The URL for accessing the rendition as a resource. nar:remoteContent@ref
  */
 export type Href = string;
-/**
- * A MIME type which applies to this rendition. nar:remoteContent@contenttype
- */
-export type ContentType3 = string;
-/**
- * A title for the link to the rendition resource
- */
-export type Title1 = string;
 /**
  * For still and moving images: the height of the display area measured in pixels. nar:remoteContent@height
  */
@@ -382,10 +250,10 @@ export type Format = string;
  * An array of objects with different renditions of the news object. nar:remoteContent
  */
 export type Renditions = {
-  name: Name7;
+  name: Name;
   href?: Href;
-  contenttype?: ContentType3;
-  title?: Title1;
+  contenttype?: ContentType;
+  title?: Title;
   height?: Height;
   width?: Width;
   sizeinbytes?: SizeInBytes;
@@ -406,39 +274,19 @@ export type Associations = (
   | IPTCNinjsNewsInJSONVersion20ApprovedAtIPTCStandardsCommitteeOctober2021
 )[];
 /**
- * The role of the alternative id
- */
-export type Role4 = string;
-/**
- * The alternative id value
- */
-export type Value3 = string;
-/**
  * Alternative identifiers assigned to the content. Each alternative id can have a role and a value. nar:altId issue #3.
  */
 export type AlternativeIds = {
-  role?: Role4;
-  value?: Value3;
+  role?: Role;
+  value?: Value;
 }[];
-/**
- * The role of the trust indicator as a complete uri
- */
-export type Role5 = string;
-/**
- * The title of the resource being referenced.
- */
-export type Title2 = string;
-/**
- * The URL for accessing the trust indicator resource.
- */
-export type Href1 = string;
 /**
  * An array of objects to allow links to documents about trust indicators. issue #44. (Added in version 1.3)
  */
 export type TrustIndicators = {
-  role?: Role5;
-  title?: Title2;
-  href?: Href1;
+  role?: Role;
+  title?: Title;
+  href?: Href;
 }[];
 /**
  * For example ninjs. nar:standard
@@ -453,24 +301,12 @@ export type VersionOfStandard = string;
  */
 export type Schema = string;
 /**
- * The name of the genre
- */
-export type Name8 = string;
-/**
- * The identifier of  the genre as a complete uri
- */
-export type URI7 = string;
-/**
- * The code for the genre as a string literal
- */
-export type Literal7 = string;
-/**
  * A nature, intellectual or journalistic form of the content. nar:genre. (Added in version 1.3)
  */
 export type Genres = {
-  name?: Name8;
-  uri?: URI7;
-  literal?: Literal7;
+  name?: Name;
+  uri?: URI;
+  literal?: Literal;
 }[];
 /**
  * Expression of rights to be applied to content. nar:rightsInfo

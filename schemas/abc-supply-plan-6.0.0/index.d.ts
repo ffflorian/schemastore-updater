@@ -114,10 +114,6 @@ export type MinimumInventory = NonNegativeIntegerTimeDependentValue[];
  */
 export type PositiveIntegerTimeDependentValue = TemplateTimeDependentValue & PositiveIntegerConstraints;
 /**
- * An integer value that must be positive, typically representing quantities or counts in contexts where zero is not a valid value.
- */
-export type TimeDependentValue1 = number;
-/**
  * List of Planning Frequency values, each defined for a specific period of time.
  */
 export type PlanningFrequencies = PositiveIntegerTimeDependentValue[];
@@ -158,17 +154,9 @@ export type FirmOrderName = string;
  */
 export type FirmOrderQuantity = number;
 /**
- * The date the goods are scheduled to be manufactured. Must be the first day of the month and within valid date range.
- */
-export type ManufactureDate1 = string;
-/**
  * The date the goods are scheduled to be released. Must be the first day of the month and within valid date range.
  */
 export type ReleaseDate = string;
-/**
- * The expiration date of the product. Must be the last day of the month and within valid date range.
- */
-export type ExpirationDate1 = string;
 /**
  * List of Firm Orders with their respective quantities and dates.
  */
@@ -312,7 +300,7 @@ export interface NonNegativeIntegerConstraints {
  * Defines constraints for integer values to ensure they are positive, used in various configurations where a strictly positive value is required.
  */
 export interface PositiveIntegerConstraints {
-  timeDependentValue: TimeDependentValue1;
+  timeDependentValue: TimeDependentValue;
   [k: string]: unknown | undefined;
 }
 /**
@@ -330,9 +318,9 @@ export interface InitialInventory {
 export interface FirmOrder {
   firmOrderName: FirmOrderName;
   firmOrderQuantity: FirmOrderQuantity;
-  manufactureDate: ManufactureDate1;
+  manufactureDate: ManufactureDate;
   releaseDate: ReleaseDate;
-  expirationDate: ExpirationDate1;
+  expirationDate: ExpirationDate;
 }
 /**
  * Map of Demand values with specific dates as keys.

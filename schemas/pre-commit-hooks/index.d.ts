@@ -57,8 +57,8 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
      */
     exclude?: string;
     types?: FileTypes;
-    types_or?: FileTypes1;
-    exclude_types?: FileTypes2;
+    types_or?: FileTypes;
+    exclude_types?: FileTypes;
     /**
      * (optional) a list of dependencies that will be installed in the environment where this hook gets run. One useful application is to install plugins for hooks such as eslint.
      */
@@ -158,8 +158,8 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
      */
     exclude?: string;
     types?: FileTypes;
-    types_or?: FileTypes1;
-    exclude_types?: FileTypes2;
+    types_or?: FileTypes;
+    exclude_types?: FileTypes;
     /**
      * (optional) a list of dependencies that will be installed in the environment where this hook gets run. One useful application is to install plugins for hooks such as eslint.
      */
@@ -460,14 +460,6 @@ export type FileType =
  * (optional) list of file types to run on (AND).
  */
 export type FileTypes = FileType[];
-/**
- * (optional) list of file types to run on (OR).
- */
-export type FileTypes1 = FileType[];
-/**
- * (optional) pattern of files to exclude.
- */
-export type FileTypes2 = FileType[];
 export type Stage =
   | 'commit'
   | 'merge-commit'

@@ -306,19 +306,10 @@ export type FilesOptionsToOverride = FilesOptionsToOverride1;
  * @minItems 1
  */
 export type FilePatternsToInclude1 = [string, ...string[]];
-/**
- * The file match pattern to exclude from formatting and linting.
- * Supports glob pattern.
- *
- * @minItems 1
- */
-export type FilePatternsToExclude1 = [string, ...string[]] | null;
 export type FormatOptionsToOverride = OverrideFormatOptions | null;
 export type FormatEnabled = BoolDefaultTrue | null;
-export type FormatRules2 = FormatRules1 | null;
 export type LintOptionsToOverride = OverrideLintOptions | null;
 export type LintEnabled = BoolDefaultTrue | null;
-export type LintRules2 = LintRules1 | null;
 
 /**
  * **Tombi** (鳶 `/toɴbi/`) is a toolkit for TOML; providing a formatter/linter and language server.
@@ -428,13 +419,13 @@ export interface OverrideConfigItem {
 }
 export interface FilesOptionsToOverride1 {
   include: FilePatternsToInclude1;
-  exclude?: FilePatternsToExclude1;
+  exclude?: FilePatternsToExclude;
 }
 export interface OverrideFormatOptions {
   enabled?: FormatEnabled;
-  rules?: FormatRules2;
+  rules?: FormatRules;
 }
 export interface OverrideLintOptions {
   enabled?: LintEnabled;
-  rules?: LintRules2;
+  rules?: LintRules;
 }

@@ -13,37 +13,30 @@ export type FailureUrl = string;
 export type Files1 = string | string[];
 export type Final = boolean;
 export type IrrelevantFiles = string | string[];
-export type Name1 = string;
 export type OverrideCheckout = string;
 export type Parent = string;
 export type PostRun = string | string[];
 export type PostTimeout = number;
 export type PreRun = string | string[];
 export type Provides = string[];
-export type Name2 = string;
-export type OverrideCheckout1 = string;
 export type RequiredProjects = (string | RequiredProjectModel)[];
 export type Requires = string[];
 export type Zuul = string;
 export type Roles = ZuulRoleModel[];
 export type Run = string | string[];
 export type Secrets = JobSecretModel | (JobSecretModel | string)[];
-export type Name3 = string;
 export type PassToParent = boolean;
 export type Secret = string;
 export type SemaphoreS = string | JobSemaphoreModel | (JobSemaphoreModel | unknown[]);
-export type Name4 = string;
 export type ResourcesFirst = boolean;
 export type SuccessUrl = string;
 export type Tags = string | string[];
 export type Timeout = number;
 export type Voting = boolean;
 export type WorkspaceScheme = 'flat' | 'golang' | 'unique';
-export type Name5 = string;
 export type Name6 = string | string[];
 export type Label = string;
 export type Nodes = NodesetNodeModel[];
-export type Name7 = string;
 export type Nodes1 = string[];
 export type Groups = NodesetGroupModel[];
 export type Alternatives = (string | NodesetModel)[];
@@ -51,7 +44,6 @@ export type FailFast = boolean;
 export type Jobs = unknown[];
 export type Queue = string;
 export type DefaultBranch = string;
-export type Description1 = string;
 export type MergeMode =
   | 'merge'
   | 'merge-resolve'
@@ -60,14 +52,7 @@ export type MergeMode =
   | 'cherry-pick'
   | 'squash-merge'
   | 'rebase';
-export type Name8 = string;
-export type Queue1 = string;
 export type Templates = string[];
-export type DefaultBranch1 = string;
-export type Description2 = string;
-export type Name9 = string;
-export type Queue2 = string;
-export type Name10 = string;
 export type ZuulConfigSchema = (JobEntry | NodesetEntry | ProjectEntry | ProjectTemplateEntry | SecretEntry)[];
 
 export interface JobEntry {
@@ -87,7 +72,7 @@ export interface JobModel {
   'group-vars'?: GroupVars;
   'host-vars'?: HostVars;
   'irrelevant-files'?: IrrelevantFiles;
-  name: Name1;
+  name: Name;
   nodeset?: Nodeset;
   'override-checkout'?: OverrideCheckout;
   parent?: Parent;
@@ -130,20 +115,20 @@ export interface Nodeset {
   [k: string]: unknown | undefined;
 }
 export interface RequiredProjectModel {
-  name: Name2;
-  'override-checkout'?: OverrideCheckout1;
+  name: Name;
+  'override-checkout'?: OverrideCheckout;
   [k: string]: unknown | undefined;
 }
 export interface ZuulRoleModel {
   zuul: Zuul;
 }
 export interface JobSecretModel {
-  name: Name3;
+  name: Name;
   'pass-to-parent'?: PassToParent;
   secret: Secret;
 }
 export interface JobSemaphoreModel {
-  name: Name4;
+  name: Name;
   'resources-first'?: ResourcesFirst;
 }
 export interface Vars {
@@ -153,7 +138,7 @@ export interface NodesetEntry {
   nodeset: NodesetModel;
 }
 export interface NodesetModel {
-  name: Name5;
+  name: Name;
   nodes?: Nodes;
   groups?: Groups;
   alternatives?: Alternatives;
@@ -163,7 +148,7 @@ export interface NodesetNodeModel {
   label: Label;
 }
 export interface NodesetGroupModel {
-  name: Name7;
+  name: Name;
   nodes: Nodes1;
 }
 export interface ProjectEntry {
@@ -172,14 +157,14 @@ export interface ProjectEntry {
 export interface ProjectModel {
   check?: PipelineModel;
   'default-branch'?: DefaultBranch;
-  description?: Description1;
+  description?: Description;
   gate?: PipelineModel;
   'merge-mode'?: MergeMode;
-  name?: Name8;
+  name?: Name;
   'periodic-weekly'?: PipelineModel;
   post?: PipelineModel;
   promote?: PipelineModel;
-  queue?: Queue1;
+  queue?: Queue;
   release?: PipelineModel;
   templates?: Templates;
   'third-party-check'?: PipelineModel;
@@ -198,14 +183,14 @@ export interface ProjectTemplateEntry {
 }
 export interface ProjectTemplateModel {
   check?: PipelineModel;
-  'default-branch'?: DefaultBranch1;
-  description?: Description2;
+  'default-branch'?: DefaultBranch;
+  description?: Description;
   gate?: PipelineModel;
-  name: Name9;
+  name: Name;
   'periodic-weekly'?: PipelineModel;
   post?: PipelineModel;
   promote?: PipelineModel;
-  queue?: Queue2;
+  queue?: Queue;
   release?: PipelineModel;
   'third-party-check'?: PipelineModel;
   vars?: Vars2;
@@ -218,7 +203,7 @@ export interface SecretEntry {
 }
 export interface SecretModel {
   data: Data;
-  name: Name10;
+  name: Name;
 }
 export interface Data {
   [k: string]: unknown | undefined;

@@ -74,14 +74,6 @@ export type ModuleParametersIdleRoutes = {
   [k: string]: unknown | undefined;
 }[];
 /**
- * [CF/XSA] The domains on which the application will be available later.
- */
-export type ModuleParametersDomains1 = string[];
-/**
- * [CF/XSA] The hostnames or subdomain where an application is available later.
- */
-export type ModuleParametersHosts1 = string[];
-/**
  * [CF/XSA] Restart app if environment variables change.
  */
 export type ModuleParametersRestartOnEnvChange = {
@@ -135,56 +127,6 @@ export type ModuleParametersTasks = {
   [k: string]: unknown | undefined;
 }[];
 /**
- * A list of hooks that will be executed for the module.
- */
-export type Hooks1 = {
-  /**
-   * An internal name which can be used for documentation purposes and shown by the deployer.
-   */
-  name: string;
-  /**
-   * Defines the type of action that should be executed by the deployer.
-   */
-  type: 'task';
-  /**
-   * A list of strings that define the points at which the hook must be executed.
-   */
-  phases?: (
-    | 'deploy.application.before-stop'
-    | 'blue-green.application.before-stop.idle'
-    | 'blue-green.application.before-stop.live'
-    | 'deploy.application.after-stop'
-    | 'blue-green.application.after-stop.idle'
-    | 'blue-green.application.after-stop.live'
-    | 'deploy.application.before-unmap-routes'
-    | 'blue-green.application.before-unmap-routes.live'
-    | 'blue-green.application.before-unmap-routes.idle'
-    | 'deploy.application.before-start'
-    | 'blue-green.application.before-start.idle'
-    | 'blue-green.application.before-start.live'
-  )[];
-  parameters?: HooksParameters;
-  'parameters-metadata'?: PropertiesMetadata1;
-  /**
-   * List of names either matching a resource name or a provided dependency name provided within the same MTA that are required by this hook.
-   */
-  requires?: {
-    /**
-     * An MTA internal name which must match either a provided name, or a resource name within the same MTA.
-     */
-    name: string;
-    /**
-     * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the hook at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
-     */
-    parameters?: {
-      [k: string]: unknown | undefined;
-    };
-    'parameters-metadata'?: PropertiesMetadata2;
-    [k: string]: unknown | undefined;
-  }[];
-  [k: string]: unknown | undefined;
-}[];
-/**
  * List of names either matching a resource name or a name provided by another module within the same MTA that are required by this module.
  */
 export type ModuleRequires = {
@@ -234,56 +176,6 @@ export type ModuleProvides = {
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to requiring modules at runtime. Untyped resources cannot have parameters.
  */
 export type ResourceParameters = ResourceParametersCf | ResourceParametersCfXsa | ResourceParametersXsa;
-/**
- * A list of hooks that will be executed for the resource.
- */
-export type Hooks2 = {
-  /**
-   * An internal name which can be used for documentation purposes and shown by the deployer.
-   */
-  name: string;
-  /**
-   * Defines the type of action that should be executed by the deployer.
-   */
-  type: 'task';
-  /**
-   * A list of strings that define the points at which the hook must be executed.
-   */
-  phases?: (
-    | 'deploy.application.before-stop'
-    | 'blue-green.application.before-stop.idle'
-    | 'blue-green.application.before-stop.live'
-    | 'deploy.application.after-stop'
-    | 'blue-green.application.after-stop.idle'
-    | 'blue-green.application.after-stop.live'
-    | 'deploy.application.before-unmap-routes'
-    | 'blue-green.application.before-unmap-routes.live'
-    | 'blue-green.application.before-unmap-routes.idle'
-    | 'deploy.application.before-start'
-    | 'blue-green.application.before-start.idle'
-    | 'blue-green.application.before-start.live'
-  )[];
-  parameters?: HooksParameters;
-  'parameters-metadata'?: PropertiesMetadata1;
-  /**
-   * List of names either matching a resource name or a provided dependency name provided within the same MTA that are required by this hook.
-   */
-  requires?: {
-    /**
-     * An MTA internal name which must match either a provided name, or a resource name within the same MTA.
-     */
-    name: string;
-    /**
-     * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the hook at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
-     */
-    parameters?: {
-      [k: string]: unknown | undefined;
-    };
-    'parameters-metadata'?: PropertiesMetadata2;
-    [k: string]: unknown | undefined;
-  }[];
-  [k: string]: unknown | undefined;
-}[];
 /**
  * List of names either matching a resource name or a name provided by another resource within the same MTA that are required by this resource.
  */
@@ -437,7 +329,7 @@ export interface MtadYamlV33 {
     'properties-metadata'?: PropertiesMetadata3;
     parameters?: ModuleParameters;
     'parameters-metadata'?: PropertiesMetadata4;
-    hooks?: Hooks1;
+    hooks?: Hooks;
     requires?: ModuleRequires;
     provides?: ModuleProvides;
     [k: string]: unknown | undefined;
@@ -489,7 +381,7 @@ export interface MtadYamlV33 {
     'properties-metadata'?: PropertiesMetadata9;
     parameters?: ResourceParameters;
     'parameters-metadata'?: PropertiesMetadata10;
-    hooks?: Hooks2;
+    hooks?: Hooks;
     requires?: ResourceRequires;
     [k: string]: unknown | undefined;
   }[];
@@ -858,7 +750,7 @@ export interface ModuleParametersCfXsa {
    * [CF/XSA] The domain on which the application will be available later.
    */
   domain?: string;
-  domains?: ModuleParametersDomains1;
+  domains?: ModuleParametersDomains;
   /**
    * [CF/XSA] Enables use of SSH within an application.
    */
@@ -875,7 +767,7 @@ export interface ModuleParametersCfXsa {
    * [CF/XSA] The hostname or subdomain where an application is available later.
    */
   host?: string;
-  hosts?: ModuleParametersHosts1;
+  hosts?: ModuleParametersHosts;
   /**
    * [CF/XSA] The number of application instances that will be started during deployment.
    */

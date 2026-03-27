@@ -82,42 +82,6 @@ export type Default1 =
       | undefined
     )
   | undefined;
-export type Default3 = {
-  target?: string | number;
-  threshold?: string;
-  /**
-   * @deprecated
-   */
-  base?: string;
-  flags?: unknown[];
-  paths?: unknown[] | string;
-  branches?: unknown[];
-  if_not_found?: 'failure' | 'success';
-  informational?: boolean;
-  only_pulls?: boolean;
-  if_ci_failed?: 'error' | 'success';
-  flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-  [k: string]: unknown | undefined;
-} & (
-  | {
-      target?: string | number;
-      threshold?: string;
-      /**
-       * @deprecated
-       */
-      base?: string;
-      flags?: unknown[];
-      paths?: unknown[] | string;
-      branches?: unknown[];
-      if_not_found?: 'failure' | 'success';
-      informational?: boolean;
-      only_pulls?: boolean;
-      if_ci_failed?: 'error' | 'success';
-      flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-      [k: string]: unknown | undefined;
-    }
-  | boolean
-);
 
 /**
  * Schema for codecov.yml files.
@@ -276,7 +240,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
             [k: string]: Default1 | undefined;
           };
           patch?: Default2 | 'off' | boolean;
-          changes?: Default3;
+          changes?: Default;
         };
     [k: string]: unknown | undefined;
   };

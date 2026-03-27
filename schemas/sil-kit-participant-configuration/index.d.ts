@@ -48,14 +48,6 @@ export type FlexrayTxBufferConfigurations = {
  */
 export type FlexrayControllers = FlexrayController[];
 /**
- * Names of trace sinks to use
- */
-export type UseTraceSinks1 = unknown[];
-/**
- * Names of trace sinks to use
- */
-export type UseTraceSinks2 = unknown[];
-/**
  * Name of the endpoint
  */
 export type Name = string;
@@ -136,7 +128,7 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
      * Name of the communication channel between DataPublisher and DataSubscribers
      */
     Topic?: string;
-    UseTraceSinks?: UseTraceSinks1;
+    UseTraceSinks?: UseTraceSinks;
   }[];
   /**
    * Reconfigures the DataSubscribers of the participant
@@ -150,7 +142,7 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
      * Name of the communication channel between DataPublisher and DataSubscribers
      */
     Topic?: string;
-    UseTraceSinks?: UseTraceSinks2;
+    UseTraceSinks?: UseTraceSinks;
   }[];
   /**
    * Reconfigures the RpcClients of the participant

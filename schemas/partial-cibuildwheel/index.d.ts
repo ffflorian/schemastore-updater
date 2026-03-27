@@ -226,14 +226,6 @@ export type CIBW_TEST_RUNTIME =
  * How to inherit the parent's value.
  */
 export type Inherit = 'none' | 'prepend' | 'append';
-/**
- * Execute a shell command to repair each built wheel.
- */
-export type CIBW_REPAIR_WHEEL_COMMAND1 = string | string[];
-/**
- * Execute a shell command to repair each built wheel.
- */
-export type CIBW_REPAIR_WHEEL_COMMAND2 = string | string[];
 
 /**
  * cibuildwheel's settings. Generated with ./bin/generate_schema.py --schemastore from cibuildwheel.
@@ -371,7 +363,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'musllinux-x86_64-image'?: CIBW_MUSLLINUX_X86_64_IMAGE;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
-    'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND1;
+    'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
     'test-extras'?: CIBW_TEST_EXTRAS;
     'test-sources'?: CIBW_TEST_SOURCES;
@@ -413,7 +405,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     environment?: CIBW_ENVIRONMENT;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
-    'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND2;
+    'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
     'test-extras'?: CIBW_TEST_EXTRAS;
     'test-sources'?: CIBW_TEST_SOURCES;

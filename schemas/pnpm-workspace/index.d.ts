@@ -620,6 +620,14 @@ export interface PnpmWorkspaceSpecification {
    * Controls the level of issues reported by `pnpm audit`. When set to 'low', all vulnerabilities are reported. When set to 'moderate', 'high', or 'critical', only vulnerabilities with that severity or higher are reported.
    */
   auditLevel?: 'low' | 'moderate' | 'high' | 'critical';
+  /**
+   * When enabled, peer dependency suffixes use version-only identifiers (`name@version`) instead of full dep paths, eliminating nested suffixes like `(foo@1.0.0(bar@2.0.0))`. This dramatically reduces the number of package instances in projects with many recursive peer dependencies.
+   */
+  dedupePeers?: boolean;
+  /**
+   * Automatically loads a curated list of known-good packages from `@pnpm/plugin-trusted-deps` into `allowBuilds`. User-configured `allowBuilds` entries take precedence over the defaults. Set `allowBuildsOfTrustedDeps: false` to disable this behavior.
+   */
+  allowBuildsOfTrustedDeps?: boolean;
 }
 /**
  * Define dependency version ranges as reusable constants,

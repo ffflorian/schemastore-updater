@@ -42,11 +42,7 @@ export type Name =
  */
 export type Pattern = string;
 export type Include = Pattern[];
-/**
- * A regular expression for the path(s) to exclude.
- */
-export type Pattern1 = string;
-export type Exclude = Pattern1[];
+export type Exclude = Pattern[];
 export type Languages = (
   | SupportedProgrammingLanguage
   | {

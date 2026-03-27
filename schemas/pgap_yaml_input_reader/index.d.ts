@@ -47,9 +47,6 @@ export type City = string;
 export type Country = string;
 export type DepartmentOrDivisionSubmittingTheGenomeAssembly = string;
 export type EmailAddress = string;
-export type FirstName1 = string;
-export type FirstLetterOfMiddleName1 = string;
-export type LastName1 = string;
 export type OrganizationOrConsortiumSubmittingTheGenomeAssembly = string;
 export type PhoneNumber = string;
 export type PostalCode = string;
@@ -68,14 +65,11 @@ export type Strain = string;
  * Binomial name or, if the species is unknown, genus for the sequenced organism. This identifier must be valid in NCBI Taxonomy. See Taxonomy information for how to find out if the name is valid: https://github.com/ncbi/pgap/wiki/Input-Files#Taxonomy-information
  */
 export type GenusAndSpecies = string;
-export type FirstName2 = string;
-export type LastName2 = string;
-export type FirstLetterOfMiddleName2 = string;
 export type AuthorS = {
   author?: {
-    first_name: FirstName2;
-    last_name: LastName2;
-    middle_initial?: FirstLetterOfMiddleName2;
+    first_name: FirstName;
+    last_name: LastName;
+    middle_initial?: FirstLetterOfMiddleName;
   };
 }[];
 /**
@@ -137,9 +131,9 @@ export interface SubmitterContactInformation {
   country: Country;
   department: DepartmentOrDivisionSubmittingTheGenomeAssembly;
   email: EmailAddress;
-  first_name: FirstName1;
-  middle_initial?: FirstLetterOfMiddleName1;
-  last_name: LastName1;
+  first_name: FirstName;
+  middle_initial?: FirstLetterOfMiddleName;
+  last_name: LastName;
   organization: OrganizationOrConsortiumSubmittingTheGenomeAssembly;
   phone?: PhoneNumber;
   postal_code: PostalCode;

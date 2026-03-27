@@ -49,7 +49,7 @@ export type RuleCode =
       set: SetValuesOfElements;
       define?: Define6;
       vars?: Vars6;
-      choices?: Choices2;
+      choices?: Choices;
     };
 /**
  * This interface was referenced by `ValueIntervals`'s JSON-Schema definition
@@ -78,15 +78,7 @@ export type MapValuesForElements = Map[];
  * Define a list of choices from which a random item will be used.
  */
 export type Choices = ChoicesMapEntry[];
-/**
- * Define a list of choices from which a random item will be used.
- */
-export type Choices1 = ChoicesMapEntry[];
 export type SetValuesOfElements = Set[];
-/**
- * Define a list of choices from which a random item will be used.
- */
-export type Choices2 = ChoicesMapEntry[];
 
 /**
  * Mapping for MapEHR.com v0.3.0
@@ -623,7 +615,7 @@ export interface Set {
   elements?: Elements3;
   define?: Define5;
   vars?: Vars5;
-  choices?: Choices1;
+  choices?: Choices;
   value_intervals?: ValueIntervals2;
   interpretation_intervals?: InterpretationIntervals2;
 }

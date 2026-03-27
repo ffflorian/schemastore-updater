@@ -38,14 +38,6 @@ export type SetThirdPartySettings = [] | [SetThirdPartySetting];
  */
 export type HidesAComponentFromAnEntityViewDisplayOrEntityFormDisplay = string;
 /**
- * The same as set, but accepts multiple property/value pairs.
- */
-export type SetMultiple1 = [] | [Set];
-/**
- * The same as setThirdPartySetting, but accepts multiple property/value pairs.
- */
-export type SetThirdPartySettings1 = [] | [SetThirdPartySetting];
-/**
  * The contents are stored in a directory relative to the recipe file.
  */
 export type ListOfContentToBeCreated = [] | [string];
@@ -77,7 +69,7 @@ export interface KeyValue {
   [k: string]:
     | {
         set?: Set1;
-        setMultiple?: SetMultiple1;
+        setMultiple?: SetMultiple;
         /**
          * Creates a clone of any config entity with a new ID.
          */
@@ -87,7 +79,7 @@ export interface KeyValue {
         createForEach?: CreateForEach1;
         createForEachIfNotExists?: CreateForEachIfNotExists1;
         setThirdPartySetting?: SetThirdPartySetting1;
-        setThirdPartySettings?: SetThirdPartySettings1;
+        setThirdPartySettings?: SetThirdPartySettings;
         simpleConfigUpdate?: SimpleConfigUpdate1;
         [k: string]: unknown | undefined;
       }

@@ -21,35 +21,30 @@ export type TheItemsSchema = string;
  * HEMTT will copy the files to the release directory after a successful release build. Supports glob patterns.
  */
 export type TheFilesSchema = TheItemsSchema[];
-export type TheItemsSchema1 = string;
 /**
  * HEMTT will include matching relative or absolute paths when building.
  */
-export type TheIncludeSchema = TheItemsSchema1[];
-export type TheItemsSchema2 = string;
+export type TheIncludeSchema = TheItemsSchema[];
 /**
  * HEMTT will exclude matching files when building.
  */
-export type TheExcludeSchema = TheItemsSchema2[];
-export type TheItemsSchema3 = string;
+export type TheExcludeSchema = TheItemsSchema[];
 /**
  * HEMTT will build the specified addons from the ./optionals folder.
  */
-export type TheOptionalsSchema = TheItemsSchema3[];
+export type TheOptionalsSchema = TheItemsSchema[];
 /**
  * HEMTT will by default build optionals into their own mod folders, which can be directly launched by the user. This can be turned off to build optional PBOs directly into optionals folder.
  */
 export type TheFolderOptionalsSchema = boolean;
-export type TheItemsSchema4 = string;
 /**
  * HEMTT will skip building the specified addons.
  */
-export type TheSkipSchema = TheItemsSchema4[];
-export type TheItemsSchema5 = string;
+export type TheSkipSchema = TheItemsSchema[];
 /**
  * HEMTT will apply specified header extensions to each PBO. Supports templating.
  */
-export type TheHeaderextsSchema = TheItemsSchema5[];
+export type TheHeaderextsSchema = TheItemsSchema[];
 /**
  * HEMTT will use the specified mod name (without @) to form @mod folder. Supports templating.
  */
@@ -70,12 +65,9 @@ export type TheSigversionSchema = number;
  * If set to true, HEMTT will use (and reuse) releases/keys/{keyname}.biprivatekey. It will be generated if it doesn't exist. The default behaviour is to generate a new private key each time and discard it immediately. HEMTT strongly recommends that you only reuse the key if you are making a client-side mod where it will not matter if clients are running different versions of the mod.
  */
 export type TheReusePrivateKeySchema = boolean;
-export type TheItemsSchema6 = string;
-export type ThePostbuildSchema = TheItemsSchema6[];
-export type TheItemsSchema7 = string;
-export type ThePrebuildSchema = TheItemsSchema7[];
-export type TheItemsSchema8 = string;
-export type TheReleasebuildSchema = TheItemsSchema8[];
+export type ThePostbuildSchema = TheItemsSchema[];
+export type ThePrebuildSchema = TheItemsSchema[];
+export type TheReleasebuildSchema = TheItemsSchema[];
 export type TheSchema =
   | (
       | (ParallelRequiresForeachToBeTrue & {
@@ -98,18 +90,15 @@ export type ParallelRequiresForeachToBeTrue =
       foreach: true;
       [k: string]: unknown | undefined;
     };
-export type TheItemsSchema9 = string;
-export type TheStepsSchema = TheItemsSchema9[];
-export type TheItemsSchema10 = string;
+export type TheStepsSchema = TheItemsSchema[];
 /**
  * steps_windows and steps_linux can be used to run different steps on the respective platforms.
  */
-export type TheStepsLinuxSchema = TheItemsSchema10[];
-export type TheItemsSchema11 = string;
+export type TheStepsLinuxSchema = TheItemsSchema[];
 /**
  * steps_windows and steps_linux can be used to run different steps on the respective platforms.
  */
-export type TheStepsWindowsSchema = TheItemsSchema11[];
+export type TheStepsWindowsSchema = TheItemsSchema[];
 /**
  * All output is hidden by default. Setting show_output will display the command being executed and its output.
  */
