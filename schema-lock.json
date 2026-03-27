@@ -3,385 +3,385 @@
     "abc-clinical-demand-forecast-1.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-1.0.0/index.d.ts",
       "generatedSha256": "b26aebabeb066fb3ff09f925d578a7bc9b8cc0b7a432b16178f2fedfff596fd8",
-      "published": false,
+      "published": true,
       "sourceSha256": "e17835334a79571b53c9316f623f2b5f66c012dbf667c94f6ed623108803a6db",
       "updatedAt": "2026-03-27T22:02:25.276Z"
     },
     "abc-inventory-module-data-1.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-1.0.0/index.d.ts",
       "generatedSha256": "03c7dce3ec9fb7683ada33a5daad4ff676536fcac59ad40371c886acfce5ac66",
-      "published": false,
+      "published": true,
       "sourceSha256": "c5e31d4dff8384276609547cc693e823c5f309064c732f4941e69a2d25ccddc0",
       "updatedAt": "2026-03-27T22:02:25.572Z"
     },
     "abc-inventory-module-data-2.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-2.0.0/index.d.ts",
       "generatedSha256": "9e532ef2b5908132599bf543f2af917311fce17d29ede98ab30c907fc77c3e9d",
-      "published": false,
+      "published": true,
       "sourceSha256": "d7de1215940cff88981143e0de42eddc1949fca1f7f69a37cf43b2eac4edb2cd",
       "updatedAt": "2026-03-27T22:02:25.824Z"
     },
     "abc-inventory-module-data-3.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-3.0.0/index.d.ts",
       "generatedSha256": "eac3e74451ec0bd14d7bfc150fc1fbdb7b872156db56aab350820ebdb52aa1fc",
-      "published": false,
+      "published": true,
       "sourceSha256": "ee544629454515a6b70961d1d8f179a177007ac5ae74c305e15a04309fec3cde",
       "updatedAt": "2026-03-27T22:02:26.080Z"
     },
     "abc-inventory-module-data-4.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-4.0.0/index.d.ts",
       "generatedSha256": "27023f896903d8fd943b3680f5c4cb506785ba60bc10cd966cbd046482b04aa2",
-      "published": false,
+      "published": true,
       "sourceSha256": "d71bd49bc682c3d775eac121deb03f9c8069f23cc1c554997e0415f8427ce356",
       "updatedAt": "2026-03-27T22:02:26.321Z"
     },
     "abc-inventory-module-data-5.1.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.1.0/index.d.ts",
       "generatedSha256": "0f66e340ba52f4b9bc54050b960d37adc45e3f9d40b20b32a5649efe7cb4ca3a",
-      "published": false,
+      "published": true,
       "sourceSha256": "f736c91022d828b8f77b555809c1af1f40226a14986316028a2529030bcb51e3",
       "updatedAt": "2026-03-27T22:02:26.526Z"
     },
     "abc-inventory-module-data-5.2.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.2.0/index.d.ts",
       "generatedSha256": "d63c744b128dfc582236e134ae2f1133d32819dfc6a796115311f343b7ee14b6",
-      "published": false,
+      "published": true,
       "sourceSha256": "99e1a2ad86747c348d0d67ea0d088871c6f12e1af8d091eaba3ab312a6487540",
       "updatedAt": "2026-03-27T22:02:26.720Z"
     },
     "abc-supply-plan-1.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-1.0.0/index.d.ts",
       "generatedSha256": "3faa5adf5090f2d6fd14af86236ae11f8a04ea275a21c0ecf277dff7c112b95c",
-      "published": false,
+      "published": true,
       "sourceSha256": "fd8056c4d4d5c2a6c289e1a943c64687d593b648c08f08692088955fa9cd13bc",
       "updatedAt": "2026-03-27T22:02:26.933Z"
     },
     "abc-supply-plan-10.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-10.0.0/index.d.ts",
       "generatedSha256": "0ae426868e93a91a69caf388ab5610a7f9c1bf94c7b9461f9133136920b1ef67",
-      "published": false,
+      "published": true,
       "sourceSha256": "05d9c655eb191891d44788833ee39a65aa5a552a9790e2d055f1d955a59462d9",
       "updatedAt": "2026-03-27T22:02:27.144Z"
     },
     "abc-supply-plan-10.1.0.json": {
       "generatedFile": "schemas/abc-supply-plan-10.1.0/index.d.ts",
       "generatedSha256": "87553c862e11b781572e501d47973bdf4488f3ef2d959b49105c5bcddd38ab6f",
-      "published": false,
+      "published": true,
       "sourceSha256": "2b75cbb1f83844f2f2c05da6dea0ad06c4b9a7ddd2edff545e0e21b4936bf21b",
       "updatedAt": "2026-03-27T22:02:27.347Z"
     },
     "abc-supply-plan-11.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.0.0/index.d.ts",
       "generatedSha256": "c13469c39f86f3ce5872a32867a7e767d1199ba9b12be503f1152794dc396283",
-      "published": false,
+      "published": true,
       "sourceSha256": "2afef01c2b64ef733160d2fafb4769194246a45cbd2442048f0c1220e1fef9fa",
       "updatedAt": "2026-03-27T22:02:27.545Z"
     },
     "abc-supply-plan-11.1.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.1.0/index.d.ts",
       "generatedSha256": "ac876f0eca297e925eb1ef18610c122617d8f13c4231b2c338f17e46b296abc9",
-      "published": false,
+      "published": true,
       "sourceSha256": "6f3e99ecfdc0a17a4bcb7fddffb5a088d987e33829a0b35e7e7a9086485fb1f5",
       "updatedAt": "2026-03-27T22:02:27.768Z"
     },
     "abc-supply-plan-11.2.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.2.0/index.d.ts",
       "generatedSha256": "52202d5837f182eb6043a9555dc1450fc9ae0d77092c0d0333b9a4c8d1f2e180",
-      "published": false,
+      "published": true,
       "sourceSha256": "979add0dee2acce70a8cd703b31075994d7100f0b5b6fb828833b65ac2aed6af",
       "updatedAt": "2026-03-27T22:02:27.985Z"
     },
     "abc-supply-plan-11.3.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.3.0/index.d.ts",
       "generatedSha256": "d07829e191af16b85c1f252f938b5576880d686ac34774007841adefc0a0a215",
-      "published": false,
+      "published": true,
       "sourceSha256": "4de515a1db65886ed9ae0d0abe7f9d37c0b872f4757bed03a29287bc5b0e3f10",
       "updatedAt": "2026-03-27T22:02:28.170Z"
     },
     "abc-supply-plan-11.4.0.json": {
       "generatedFile": "schemas/abc-supply-plan-11.4.0/index.d.ts",
       "generatedSha256": "5bf01c9800fb13f7082b0e489f82acd5677cdc1ec640447a518395b04ae1ea7e",
-      "published": false,
+      "published": true,
       "sourceSha256": "0fbc1d5f60b455b461c9adbb6856e93cf5291f0bc09df3a607e36c632dfa3331",
       "updatedAt": "2026-03-27T22:02:28.351Z"
     },
     "abc-supply-plan-2.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-2.0.0/index.d.ts",
       "generatedSha256": "babebe4093b11dacc464dac68ebcbd67e5228beb632151afdca862b5e960e58d",
-      "published": false,
+      "published": true,
       "sourceSha256": "ebc56977522ed5d1719a491e85d595a85a5ebd424a3b107d3e696b7b62d945e0",
       "updatedAt": "2026-03-27T22:02:28.539Z"
     },
     "abc-supply-plan-3.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-3.0.0/index.d.ts",
       "generatedSha256": "13f5a85fa953b3dbb40a10bc4d90d601e2bf0291af10850e7d3ce27965a42cd4",
-      "published": false,
+      "published": true,
       "sourceSha256": "0f255f22d21daec868786ea5c666c4b9907aa23efda7f9bb8d4fda79ee084b63",
       "updatedAt": "2026-03-27T22:02:28.761Z"
     },
     "abc-supply-plan-4.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-4.0.0/index.d.ts",
       "generatedSha256": "537e44e098f70b83ab9f54d198e0ceb2335122795c2f47af5afa1bea37c70333",
-      "published": false,
+      "published": true,
       "sourceSha256": "ac49ae32d4ce3fa1c44852b8f35e7d36fb69eaaebef2d4ec27953453b1e084ba",
       "updatedAt": "2026-03-27T22:02:28.963Z"
     },
     "abc-supply-plan-5.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-5.0.0/index.d.ts",
       "generatedSha256": "e0733babcffff346259afc842b2e8b7175a683645945d28b4e21d74c79fb0605",
-      "published": false,
+      "published": true,
       "sourceSha256": "c7424627d1f6e3a3e29f8ae8554269245fc11fa5b8207898d9b17e2d0d2f7b08",
       "updatedAt": "2026-03-27T22:02:29.157Z"
     },
     "abc-supply-plan-6.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-6.0.0/index.d.ts",
       "generatedSha256": "9b726a8d95f19658665f0101ea34b46ed493fb7a21dcee4cc6d17e5b95bdcf5f",
-      "published": false,
+      "published": true,
       "sourceSha256": "04f54339045df78684d6ea8425bfb7c53f3697bc0d6b2c8df677f29b56b27cf8",
       "updatedAt": "2026-03-27T22:02:29.349Z"
     },
     "abc-supply-plan-7.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-7.0.0/index.d.ts",
       "generatedSha256": "ab3256b11b5bc553c63a17d3de5d8020952acc7dd9c7c74a37946b2c42ea3d5d",
-      "published": false,
+      "published": true,
       "sourceSha256": "148619fd7499687892bdb990ee0d23e7bb127e9a32f002ac1d394d86c6341461",
       "updatedAt": "2026-03-27T22:02:29.561Z"
     },
     "abc-supply-plan-8.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-8.0.0/index.d.ts",
       "generatedSha256": "ad98997e6ee11dc1d19c9135a0117688d3df853b1cb5a40eb2e750607b29c24e",
-      "published": false,
+      "published": true,
       "sourceSha256": "896eec16f6e51604518675ccddb87fddb550c9079d840284353f671ab9eb581e",
       "updatedAt": "2026-03-27T22:02:29.752Z"
     },
     "abc-supply-plan-9.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-9.0.0/index.d.ts",
       "generatedSha256": "e2641ca3377cd44fd21d7f7a8f8f2ba8e85e74b0ddae786444f290e91bc4e086",
-      "published": false,
+      "published": true,
       "sourceSha256": "37361bd08a52e49473333aeb8ea2a3f040dadfd178489de340d92e12b19d86f2",
       "updatedAt": "2026-03-27T22:02:29.958Z"
     },
     "agripparc-1.2.json": {
       "generatedFile": "schemas/agripparc-1.2/index.d.ts",
       "generatedSha256": "ccdf4f24e25f804e1f261adca92313fe9d8cef78c6859f292ad8435325582d6b",
-      "published": false,
+      "published": true,
       "sourceSha256": "e9de943bd13fed26cac5ae7eaeb914d4c37b8d5b8c9dd4984427d34488ac149b",
       "updatedAt": "2026-03-27T22:02:30.144Z"
     },
     "agripparc-1.3.json": {
       "generatedFile": "schemas/agripparc-1.3/index.d.ts",
       "generatedSha256": "5dca8086b58310cf68e6a5cc0162aa2bd563a4991dfe4794878abf4839678643",
-      "published": false,
+      "published": true,
       "sourceSha256": "d2f30bc8b75fa3bc7107ec8604543868e0397ac20f1baf376e76595ac2ef8358",
       "updatedAt": "2026-03-27T22:02:30.313Z"
     },
     "agripparc-1.4.json": {
       "generatedFile": "schemas/agripparc-1.4/index.d.ts",
       "generatedSha256": "b4d24d3985e6709fe7b08a5029eb63324e1297ec3077bf25efe9141afcc9ae84",
-      "published": false,
+      "published": true,
       "sourceSha256": "2b17ef79e7f140408917b009d600775bb320cb66c6660822ee3eace8ab550409",
       "updatedAt": "2026-03-27T22:02:30.489Z"
     },
     "aiconfig-1.0.json": {
       "generatedFile": "schemas/aiconfig-1.0/index.d.ts",
       "generatedSha256": "bc9dd83b2a05314ce2fc26d1db1c5fc9355b3f3aff66a5b3e11c50fbbce10920",
-      "published": false,
+      "published": true,
       "sourceSha256": "3cd7d77a4aa963d30f185b01751f13974b5c5c689c3d49ff09f72ba88e40ce5c",
       "updatedAt": "2026-03-27T22:02:30.685Z"
     },
     "aider-0.82.json": {
       "generatedFile": "schemas/aider-0.82/index.d.ts",
       "generatedSha256": "b34af4e0309d9d6ed321a71934f6f2b4a056cd096d57a00955964f05bee27518",
-      "published": false,
+      "published": true,
       "sourceSha256": "38a856d268813d59fb762de86f367547a3a791fb870a198efabce7ae8c543e21",
       "updatedAt": "2026-03-27T22:02:30.880Z"
     },
     "aio-wasm-graph-config-1.0.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
       "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
-      "published": false,
+      "published": true,
       "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
       "updatedAt": "2026-03-27T22:02:40.214Z"
     },
     "aio-wasm-graph-config-1.1.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.1.0/index.d.ts",
       "generatedSha256": "a1ab3e37a1fac3d6e353c010fd756e92f97e477b21c249dd345797515a2a40a0",
-      "published": false,
+      "published": true,
       "sourceSha256": "2dc4250c72e0ec908e5ec6347f81f76b1d3e18b3e890060fa95ad9c96e479a98",
       "updatedAt": "2026-03-27T22:02:40.384Z"
     },
     "aiproj-1.0.json": {
       "generatedFile": "schemas/aiproj-1.0/index.d.ts",
       "generatedSha256": "a96ef686aa70ad84864b687b7a0030022ae81bd91d31d8b8bf8495f505fb145a",
-      "published": false,
+      "published": true,
       "sourceSha256": "3c0c1198c3178a3b9e5f61e2ac5aad035c0c522b3389d8b6c29df25ef05b8fd0",
       "updatedAt": "2026-03-27T22:02:40.562Z"
     },
     "aiproj-1.1.json": {
       "generatedFile": "schemas/aiproj-1.1/index.d.ts",
       "generatedSha256": "8cc426dd06e9fbaff01611930bfb7ad9999b093a41cef58126186702ee47845f",
-      "published": false,
+      "published": true,
       "sourceSha256": "403f624664ff294522c452e09bac06c233fa7810d9cb1b0a1d449928d5adc9a8",
       "updatedAt": "2026-03-27T22:02:40.757Z"
     },
     "aiproj-1.2.json": {
       "generatedFile": "schemas/aiproj-1.2/index.d.ts",
       "generatedSha256": "240a530ecacde0c825bfd332fd11671e298cbaa78c802a6b44ea51be5b4f99b2",
-      "published": false,
+      "published": true,
       "sourceSha256": "005721d08845d0781d31c8843515dc19cd77e2388c6ff0eb7ebb93657e684c74",
       "updatedAt": "2026-03-27T22:02:40.987Z"
     },
     "aiproj-1.3.json": {
       "generatedFile": "schemas/aiproj-1.3/index.d.ts",
       "generatedSha256": "3f0b7299aaa3db65a892456b67053f547a94d981aadd3ffc7c4cafaed7ad2074",
-      "published": false,
+      "published": true,
       "sourceSha256": "e01a5d56e28c7a7334b7ef67471cc45f7eb568f70b04580a893067cd76ce167a",
       "updatedAt": "2026-03-27T22:02:41.187Z"
     },
     "aiproj-1.4.json": {
       "generatedFile": "schemas/aiproj-1.4/index.d.ts",
       "generatedSha256": "8bfe10242a45c8d190f64ba3865ae0711a6b3b749d4fa5c91c3ebe2561dc5f9a",
-      "published": false,
+      "published": true,
       "sourceSha256": "b771cc3b96b03443da68ebfd726febcbebbdd82dbae414f29425f5295b6b66a6",
       "updatedAt": "2026-03-27T22:02:41.382Z"
     },
     "aiproj-1.5.json": {
       "generatedFile": "schemas/aiproj-1.5/index.d.ts",
       "generatedSha256": "a093a33629083203265dcd0c2100c3984218237a81d91df3fdcbdeadafa3219a",
-      "published": false,
+      "published": true,
       "sourceSha256": "9df3840fdc2e6d5016bc139105825618df4805977adb0d34b784f3b91d293fed",
       "updatedAt": "2026-03-27T22:02:41.593Z"
     },
     "aiproj-1.6.json": {
       "generatedFile": "schemas/aiproj-1.6/index.d.ts",
       "generatedSha256": "7dba23131702326337c9040e461adc9fcc4e1e64465f170720eec2471357e051",
-      "published": false,
+      "published": true,
       "sourceSha256": "2448cdb36e988c98099d26e2404c8f4be88bae1d9ebcb538d8ae345cf67e052e",
       "updatedAt": "2026-03-27T22:02:41.785Z"
     },
     "aiproj-1.7.json": {
       "generatedFile": "schemas/aiproj-1.7/index.d.ts",
       "generatedSha256": "fdf0afb0c98e02adafff2ea1625d0d75c1fdd37dbdcdecbfcea9df37d36238f6",
-      "published": false,
+      "published": true,
       "sourceSha256": "4773769ed5ff6b70ba1df34e9ebd898fb85c467ee97a2a72361f37755301bab7",
       "updatedAt": "2026-03-27T22:02:41.981Z"
     },
     "aiproj-1.8.json": {
       "generatedFile": "schemas/aiproj-1.8/index.d.ts",
       "generatedSha256": "6c259eb0058a00124e106d94e7b64ff7b466bf48ad1dbac6f811549dfe6d2adc",
-      "published": false,
+      "published": true,
       "sourceSha256": "3217721a3ba2ec53c5e5ffc27e54fda7268d41f309b01bbf38d73b5e1c0c35a0",
       "updatedAt": "2026-03-27T22:02:42.193Z"
     },
     "aiproj-1.9.json": {
       "generatedFile": "schemas/aiproj-1.9/index.d.ts",
       "generatedSha256": "e7c7f95a287760ae8c7d84cbad2ce381dc7319dd42d1ce3a989a57c522fc217c",
-      "published": false,
+      "published": true,
       "sourceSha256": "4ffdb81bbb0417080ec276b9ca283108fcaf248ae70c71763fe721463353cbca",
       "updatedAt": "2026-03-27T22:02:42.392Z"
     },
     "airlock-microgateway-3.0.json": {
       "generatedFile": "schemas/airlock-microgateway-3.0/index.d.ts",
       "generatedSha256": "5da2e65b8edf57fdb8768073cffccb80564fb487ba103a20177b32eff852375b",
-      "published": false,
+      "published": true,
       "sourceSha256": "ce52896adf7ba90f5b26662caee7f2d186c7e60d34466187acc31d26a5b523f3",
       "updatedAt": "2026-03-27T22:02:42.670Z"
     },
     "airlock-microgateway-3.1.json": {
       "generatedFile": "schemas/airlock-microgateway-3.1/index.d.ts",
       "generatedSha256": "be29e4e69241c676c56412962a1c14b0bdf59297bd969e5b28ad94d13f90267f",
-      "published": false,
+      "published": true,
       "sourceSha256": "bc827aad859dcb00e17a3df7b6ddb0a9d76c3b6f7f32028059ef7cbdef0700bc",
       "updatedAt": "2026-03-27T22:02:42.919Z"
     },
     "airlock-microgateway-3.2.json": {
       "generatedFile": "schemas/airlock-microgateway-3.2/index.d.ts",
       "generatedSha256": "6730acba0fa3ce957c73ff5867f944a231dc94f813ff365a64de4f28f0b00569",
-      "published": false,
+      "published": true,
       "sourceSha256": "570ae783869ebb4ad35ef2959a2636af48a55a2edd627c3ac2aa90d32dbca9dd",
       "updatedAt": "2026-03-27T22:02:43.129Z"
     },
     "aliases.json": {
       "generatedFile": "schemas/aliases/index.d.ts",
       "generatedSha256": "09d6cdc38abd550f60752610c1a91efadffd80bb4e333d2aae4aba9520e0bfd4",
-      "published": false,
+      "published": true,
       "sourceSha256": "a1d9b390a17fcc60c741876df6b720d01947ae6df57f718fd4d51ebb78771f2d",
       "updatedAt": "2026-03-27T22:02:43.301Z"
     },
     "all-contributors.json": {
       "generatedFile": "schemas/all-contributors/index.d.ts",
       "generatedSha256": "9b3d8fead51d6c348a4ad3ba999b49175767a266a91f550781e7a541dcaad1e7",
-      "published": false,
+      "published": true,
       "sourceSha256": "a4af0db5bbd907af72eabcb1ff065685bf9264716a17ff75ab08092debe41e17",
       "updatedAt": "2026-03-27T22:02:43.487Z"
     },
     "amplify.json": {
       "generatedFile": "schemas/amplify/index.d.ts",
       "generatedSha256": "d47b76c7a0fb79560e22e5d6c2b33d88394cdfd912064695ff672c39befa4052",
-      "published": false,
+      "published": true,
       "sourceSha256": "0f618465e14d16e4cd7acd5d21e42158143191b8d2a6a4384133b6a94ea1a161",
       "updatedAt": "2026-03-27T22:02:43.676Z"
     },
     "amx-muse.json": {
       "generatedFile": "schemas/amx-muse/index.d.ts",
       "generatedSha256": "ff9eeb983ddfb7f9a263fac0f02c91ad6fb57f8080f63d73d8893e25c86012e6",
-      "published": false,
+      "published": true,
       "sourceSha256": "c35c25e72d190a188b03c7cf3c0ce3abf5aa3a6dc62e78258aae3d490bec8bf5",
       "updatedAt": "2026-03-27T22:02:43.854Z"
     },
     "any.json": {
       "generatedFile": "schemas/any/index.d.ts",
       "generatedSha256": "c7bdba6e3829287a8f7be8bc6931e7c086b42c6ae9a02a4a7304cd95d78a8cdd",
-      "published": false,
+      "published": true,
       "sourceSha256": "1fb157cefd0b47b2e60f349d842c95e40c859914dc3ce334a0c1578e836e63c7",
       "updatedAt": "2026-03-27T22:02:44.042Z"
     },
     "anywork-ac-1.0.json": {
       "generatedFile": "schemas/anywork-ac-1.0/index.d.ts",
       "generatedSha256": "773b0ff18db01ca26d06ae2a6ebaf3ab39802f6dc0df7f94a899e769ee3a7203",
-      "published": false,
+      "published": true,
       "sourceSha256": "907327d2d991978a18ff0171f472e25bd53c9db7d7c9f251210e420bf1968e0f",
       "updatedAt": "2026-03-27T22:02:44.948Z"
     },
     "anywork-ac-1.1.json": {
       "generatedFile": "schemas/anywork-ac-1.1/index.d.ts",
       "generatedSha256": "44e9d4ca2d002574fda9a8cdd4f7e6bc3bea083e6e03a3e5a262ba853d9f6a4c",
-      "published": false,
+      "published": true,
       "sourceSha256": "ae5e7a422810bc3ce182220ed4005338eb4a6205514b3aeeff060a1abccf6f1b",
       "updatedAt": "2026-03-27T22:02:45.120Z"
     },
     "apibuilder.json": {
       "generatedFile": "schemas/apibuilder/index.d.ts",
       "generatedSha256": "a282aee6888cd6455b662c2b1da826810be64bb917d6c16959a3998f77f6d6ac",
-      "published": false,
+      "published": true,
       "sourceSha256": "6d6d30d93739c0b55dcec30d94394c7d3c7c6a2ad17dd08ef8a4278e5681187c",
       "updatedAt": "2026-03-27T22:02:45.307Z"
     },
     "apple-app-site-association.json": {
       "generatedFile": "schemas/apple-app-site-association/index.d.ts",
       "generatedSha256": "e212dd1940d65d33f35671032ca41f3084b9c3b2ae745a2bcc9c1023fd7d019d",
-      "published": false,
+      "published": true,
       "sourceSha256": "f4b8253b9f267442e595c6878cc771f3c7946d2ca0198371430af004ae92e067",
       "updatedAt": "2026-03-27T22:02:47.037Z"
     },
     "appsettings.json": {
       "generatedFile": "schemas/appsettings/index.d.ts",
       "generatedSha256": "1bbe12313eec336069ccbb3decad3c77f6e37805a7bf18f93abcb62c01216014",
-      "published": false,
+      "published": true,
       "sourceSha256": "4b0c62c67a9ede75ae2b157a2f678ef909359db608e768a8614ae18fefd21469",
       "updatedAt": "2026-03-27T22:02:47.237Z"
     },
     "appsscript.json": {
       "generatedFile": "schemas/appsscript/index.d.ts",
       "generatedSha256": "3392759595cf5f3e9c4c05be455622d5dafcb8f391bacb848169061dd230631d",
-      "published": false,
+      "published": true,
       "sourceSha256": "a7a426813ee84fde2b573f88a28f600afd075f55648a007e7a9006d67d10003c",
       "updatedAt": "2026-03-27T22:02:47.422Z"
     },
     "appveyor.json": {
       "generatedFile": "schemas/appveyor/index.d.ts",
       "generatedSha256": "e246b9c12d161feaff995e34806dd4fbcf92dec1df19d5bd0a3edb9c7e0d95e7",
-      "published": false,
+      "published": true,
       "sourceSha256": "c71e0f14379239543731b39ee049287540ad874985e5e36a59c625ca19221780",
       "updatedAt": "2026-03-27T22:02:47.621Z"
     },
