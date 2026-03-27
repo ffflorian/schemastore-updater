@@ -54,7 +54,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   const nonPublishableSchemaIds = await loadNonPublishableSchemaIds(projectRoot);
   const allFiles = await collectJsonFiles(schemaRoot);
   const files = options.schema
-    ? allFiles.filter(f => getSchemaId(path.relative(schemaRoot, f)) === options.schema)
+    ? allFiles.filter(file => getSchemaId(path.relative(schemaRoot, file)) === options.schema)
     : allFiles;
 
   const nextEntries: Record<string, LockEntry> = options.schema ? {...lockFile.entries} : {};
