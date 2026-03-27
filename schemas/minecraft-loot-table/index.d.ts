@@ -63,10 +63,6 @@ export type Functions = {
     | undefined;
 }[];
 /**
- * Namespaced ID of condition.
- */
-export type Condition1 = string;
-/**
  * Determines conditions for this pool to be used. If multiple conditions are specified, all must pass.
  */
 export type Conditions1 = {
@@ -75,24 +71,16 @@ export type Conditions1 = {
    */
   [k: string]:
     | {
-        condition?: Condition1;
+        condition?: Condition;
         [k: string]: unknown | undefined;
       }
     | undefined;
 }[];
 /**
- * Namespaced ID of the function to apply.
- */
-export type Function1 = string;
-/**
- * Namespaced ID of condition.
- */
-export type Condition2 = string;
-/**
  * Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
  */
 export type Conditions2 = {
-  condition?: Condition2;
+  condition?: Condition;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -104,7 +92,7 @@ export type Functions1 = {
    */
   [k: string]:
     | {
-        function?: Function1;
+        function?: Function;
         conditions?: Conditions2;
         [k: string]: unknown | undefined;
       }
@@ -139,10 +127,6 @@ export type BonusRolls = {
     }
 );
 /**
- * Namespaced ID of condition.
- */
-export type Condition3 = string;
-/**
  * Determines conditions for this entry to be used. If multiple conditions are specified, all must pass.
  */
 export type Conditions3 = {
@@ -151,24 +135,16 @@ export type Conditions3 = {
    */
   [k: string]:
     | {
-        condition?: Condition3;
+        condition?: Condition;
         [k: string]: unknown | undefined;
       }
     | undefined;
 }[];
 /**
- * Namespaced ID of the function to apply.
- */
-export type Function2 = string;
-/**
- * Namespaced ID of condition.
- */
-export type Condition4 = string;
-/**
  * Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
  */
 export type Conditions4 = {
-  condition?: Condition4;
+  condition?: Condition;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -180,7 +156,7 @@ export type Functions2 = {
    */
   [k: string]:
     | {
-        function?: Function2;
+        function?: Function;
         conditions?: Conditions4;
         [k: string]: unknown | undefined;
       }

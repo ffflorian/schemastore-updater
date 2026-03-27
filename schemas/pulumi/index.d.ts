@@ -3,11 +3,10 @@
 export type ProjectRuntimeInfo =
   | Name
   | {
-      name?: Name1;
+      name?: Name;
       options?: Options;
     };
 export type Name = string;
-export type Name1 = string;
 export type SimpleConfigType = 'string' | 'integer' | 'boolean' | 'array';
 /**
  * ProjectTemplate is a Pulumi project template manifest.

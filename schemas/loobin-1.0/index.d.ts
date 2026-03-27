@@ -20,7 +20,6 @@ export type FullDescription = string;
  * Date the LOOBin was created
  */
 export type Created = string;
-export type Name1 = string;
 export type Description = string;
 export type Code = string;
 export type Tactics = (
@@ -48,14 +47,11 @@ export type ExampleUseCases = ExampleUseCase[];
  * A list of paths to the LOOBin
  */
 export type Paths = string[];
-export type Name2 = string;
 export type Url = string;
 /**
  * A list of detections for the LOOBin
  */
 export type Detections = Detection[];
-export type Name3 = string;
-export type Url1 = string;
 /**
  * A list of useful resources for the LOOBin
  */
@@ -84,7 +80,7 @@ export interface LOOBin {
  * Use case base class
  */
 export interface ExampleUseCase {
-  name: Name1;
+  name: Name;
   description: Description;
   code?: Code;
   tactics?: Tactics;
@@ -95,7 +91,7 @@ export interface ExampleUseCase {
  * Detection base class
  */
 export interface Detection {
-  name: Name2;
+  name: Name;
   url: Url;
   [k: string]: unknown | undefined;
 }
@@ -103,7 +99,7 @@ export interface Detection {
  * External reference base class
  */
 export interface Resource1 {
-  name: Name3;
-  url: Url1;
+  name: Name;
+  url: Url;
   [k: string]: unknown | undefined;
 }

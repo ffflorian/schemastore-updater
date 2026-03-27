@@ -83,7 +83,7 @@ export type Title =
       /**
        * A list of raw JSON text components to be inserted into slots in the translation text.
        */
-      with?: JsonTextComponent1[];
+      with?: JsonTextComponent[];
       [k: string]: unknown | undefined;
     };
 /**
@@ -163,7 +163,7 @@ export type JsonTextComponent = {
   /**
    * A list of raw JSON text components to be inserted into slots in the translation text.
    */
-  with?: JsonTextComponent1[];
+  with?: JsonTextComponent[];
   [k: string]: unknown | undefined;
 } & (
   | string
@@ -244,169 +244,7 @@ export type JsonTextComponent = {
       /**
        * A list of raw JSON text components to be inserted into slots in the translation text.
        */
-      with?: JsonTextComponent1[];
-      [k: string]: unknown | undefined;
-    }
-);
-/**
- * A raw JSON text component. If no component is provided for a slot, the slot is displayed as no text.
- */
-export type JsonTextComponent1 = {
-  /**
-   * A list of additional raw JSON text components to be displayed after this one.
-   */
-  extra?: JsonTextComponent[];
-  /**
-   * The color to render the content in.
-   */
-  color?: (
-    | (
-        | 'black'
-        | 'dark_blue'
-        | 'dark_green'
-        | 'dark_aqua'
-        | 'dark_red'
-        | 'dark_purple'
-        | 'gold'
-        | 'gray'
-        | 'dark_gray'
-        | 'blue'
-        | 'green'
-        | 'aqua'
-        | 'red'
-        | 'light_purple'
-        | 'yellow'
-        | 'white'
-        | 'reset'
-      )
-    | {
-        [k: string]: unknown | undefined;
-      }
-  ) &
-    string;
-  /**
-   * The resource location of the font for this component in the resource pack within assets/<namespace>/font.
-   */
-  font?: string;
-  /**
-   * Whether to render the content in bold.
-   */
-  bold?: boolean;
-  /**
-   * Whether to render the content in italics. Note that text that is italicized by default, such as custom item names, can be unitalicized by setting this to false.
-   */
-  italic?: boolean;
-  /**
-   * Whether to underline the content.
-   */
-  underlined?: boolean;
-  /**
-   * Whether to strikethrough the content.
-   */
-  strikethrough?: boolean;
-  /**
-   * Whether to render the content obfuscated.
-   */
-  obfuscated?: boolean;
-  /**
-   * When the text is shift-clicked by a player, this string is inserted in their chat input. It does not overwrite any existing text the player was writing. This only works in chat messages.
-   */
-  insertion?: string;
-  clickEvent?: ClickEvent;
-  hoverEvent?: HoverEvent;
-  /**
-   * A string containing plain text to display directly. Can also be a number or boolean that is displayed directly.
-   */
-  text?: string | number | boolean;
-  /**
-   * A translation identifier, corresponding to the identifiers found in loaded language files. Displayed as the corresponding text in the player's selected language. If no corresponding translation can be found, the identifier itself is used as the translated text.
-   */
-  translate?: string;
-  /**
-   * A list of raw JSON text components to be inserted into slots in the translation text.
-   */
-  with?: JsonTextComponent1[];
-  [k: string]: unknown | undefined;
-} & (
-  | string
-  | boolean
-  | number
-  | unknown[]
-  | {
-      /**
-       * A list of additional raw JSON text components to be displayed after this one.
-       */
-      extra?: JsonTextComponent[];
-      /**
-       * The color to render the content in.
-       */
-      color?: (
-        | (
-            | 'black'
-            | 'dark_blue'
-            | 'dark_green'
-            | 'dark_aqua'
-            | 'dark_red'
-            | 'dark_purple'
-            | 'gold'
-            | 'gray'
-            | 'dark_gray'
-            | 'blue'
-            | 'green'
-            | 'aqua'
-            | 'red'
-            | 'light_purple'
-            | 'yellow'
-            | 'white'
-            | 'reset'
-          )
-        | {
-            [k: string]: unknown | undefined;
-          }
-      ) &
-        string;
-      /**
-       * The resource location of the font for this component in the resource pack within assets/<namespace>/font.
-       */
-      font?: string;
-      /**
-       * Whether to render the content in bold.
-       */
-      bold?: boolean;
-      /**
-       * Whether to render the content in italics. Note that text that is italicized by default, such as custom item names, can be unitalicized by setting this to false.
-       */
-      italic?: boolean;
-      /**
-       * Whether to underline the content.
-       */
-      underlined?: boolean;
-      /**
-       * Whether to strikethrough the content.
-       */
-      strikethrough?: boolean;
-      /**
-       * Whether to render the content obfuscated.
-       */
-      obfuscated?: boolean;
-      /**
-       * When the text is shift-clicked by a player, this string is inserted in their chat input. It does not overwrite any existing text the player was writing. This only works in chat messages.
-       */
-      insertion?: string;
-      clickEvent?: ClickEvent;
-      hoverEvent?: HoverEvent;
-      /**
-       * A string containing plain text to display directly. Can also be a number or boolean that is displayed directly.
-       */
-      text?: string | number | boolean;
-      /**
-       * A translation identifier, corresponding to the identifiers found in loaded language files. Displayed as the corresponding text in the player's selected language. If no corresponding translation can be found, the identifier itself is used as the translated text.
-       */
-      translate?: string;
-      /**
-       * A list of raw JSON text components to be inserted into slots in the translation text.
-       */
-      with?: JsonTextComponent1[];
+      with?: JsonTextComponent[];
       [k: string]: unknown | undefined;
     }
 );
@@ -493,7 +331,7 @@ export type Description =
       /**
        * A list of raw JSON text components to be inserted into slots in the translation text.
        */
-      with?: JsonTextComponent1[];
+      with?: JsonTextComponent[];
       [k: string]: unknown | undefined;
     };
 /**

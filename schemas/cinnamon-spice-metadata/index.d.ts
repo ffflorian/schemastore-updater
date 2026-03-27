@@ -31,11 +31,6 @@ export type Website = string;
  */
 export type Url = string;
 /**
- * A site of the extension
- * https://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html
- */
-export type Website1 = string;
-/**
  * Versions of Cinnamon supported by the extension
  * https://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html
  *
@@ -79,7 +74,7 @@ export interface ExtensionMetadata {
   comments?: Comments;
   website?: Website;
   url?: Url;
-  version?: Website1;
+  version?: Website;
   'shell-version'?: ShellVersion;
   author?: Author;
   contributors?: Contributors;

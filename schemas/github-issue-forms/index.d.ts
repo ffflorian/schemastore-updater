@@ -15,6 +15,8 @@ export type FormItem = {
   [k: string]: unknown | undefined;
 } & {
   [k: string]: unknown | undefined;
+} & {
+  [k: string]: unknown | undefined;
 };
 
 export interface GitHubIssueFormsConfigFileSchema {

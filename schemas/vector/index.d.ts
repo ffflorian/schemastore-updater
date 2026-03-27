@@ -126,7 +126,7 @@ export type HttpsJsonSchemastoreOrgVectorJson = {
                 | AuthenticateUsingCredentialsStoredInAFile
                 | {
                     assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                    external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                    external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                     /**
                      * Configuration for authenticating with AWS through IMDS.
                      */
@@ -146,7 +146,7 @@ export type HttpsJsonSchemastoreOrgVectorJson = {
                       [k: string]: unknown | undefined;
                     };
                     load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                    region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                    region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                     [k: string]: unknown | undefined;
                   }
                 | {
@@ -169,7 +169,7 @@ export type HttpsJsonSchemastoreOrgVectorJson = {
                       [k: string]: unknown | undefined;
                     };
                     load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                    region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                    region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                     [k: string]: unknown | undefined;
                   };
               /**
@@ -239,7 +239,7 @@ export type HttpsJsonSchemastoreOrgVectorJson = {
   log_schema?: DefaultLogSchemaForAllEvents;
   proxy?: ProxyConfiguration4;
   telemetry?: TelemetryOptions;
-  timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone1;
+  timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
   [k: string]: unknown | undefined;
 };
 /**
@@ -454,31 +454,13 @@ export type TheCredentialsProfileToUse = string;
  */
 export type TheARNOfAnIAMRoleIamRoleToAssume1 = string;
 /**
- * [external_id]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
- */
-export type TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1 = string | null;
-/**
  * Relevant when the default credentials chain or `assume_role` is used.
  */
 export type TimeoutForAssumingTheRoleInSeconds = number | null;
 /**
- * If not set, this defaults to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo1 = string | null;
-/**
  * Relevant when the default credentials chain or `assume_role` is used.
  */
 export type TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds = number | null;
-/**
- * If not set, this defaults to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo2 = string | null;
 /**
  * TLS configuration.
  */
@@ -505,7 +487,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
         uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo;
         [k: string]: unknown | undefined;
       };
-      healthcheck_uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo1;
+      healthcheck_uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo;
       inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs;
       proxy?: ProxyConfiguration1;
       [k: string]: unknown | undefined;
@@ -548,7 +530,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -568,7 +550,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -591,14 +573,14 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
           /**
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink1;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -609,7 +591,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             timeout_secs?: number | null;
             [k: string]: unknown | undefined;
           };
-          compression?: CompressionConfiguration1;
+          compression?: CompressionConfiguration;
           create_missing_group?: DynamicallyCreateALogGroupLogGroupIfItDoesNotAlreadyExist;
           create_missing_stream?: DynamicallyCreateALogStreamLogStreamIfItDoesNotAlreadyExist;
           /**
@@ -696,7 +678,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             timestamp_format?: null | ('unix' | 'rfc3339' | 'unix_ms' | 'unix_us' | 'unix_ns' | 'unix_float');
             [k: string]: unknown | undefined;
           };
-          group_name: ATemplatedField3;
+          group_name: ATemplatedField;
           /**
            * Outbound HTTP request settings.
            */
@@ -723,7 +705,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             enabled?: boolean;
             [k: string]: unknown | undefined;
           };
-          stream_name: ATemplatedField4;
+          stream_name: ATemplatedField;
           tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
           [k: string]: unknown | undefined;
         } & TheAWSRegionAwsRegionOfTheTargetService1) & {
@@ -735,7 +717,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
         })
       | (({
           acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink3;
-          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup1;
+          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
           /**
            * Configuration of the authentication strategy for interacting with AWS services.
            */
@@ -757,7 +739,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -777,7 +759,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -800,14 +782,14 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
           /**
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink2;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -818,7 +800,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             timeout_secs?: number | null;
             [k: string]: unknown | undefined;
           };
-          compression?: CompressionConfiguration2;
+          compression?: CompressionConfiguration;
           default_namespace: TheDefaultNamespaceNamespaceToUseForMetricsThatDoNotHaveOne;
           request?: MiddlewareSettingsForOutboundRequests2;
           tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
@@ -835,7 +817,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink3;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -870,7 +852,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -890,7 +872,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -913,10 +895,10 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
-          compression?: CompressionConfiguration3;
+          compression?: CompressionConfiguration;
           /**
            * Configures how events are encoded into raw bytes.
            */
@@ -1022,7 +1004,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink4;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1057,7 +1039,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -1077,7 +1059,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -1100,10 +1082,10 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
-          compression?: CompressionConfiguration3;
+          compression?: CompressionConfiguration;
           /**
            * Configures how events are encoded into raw bytes.
            */
@@ -1227,7 +1209,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -1247,7 +1229,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -1270,12 +1252,12 @@ export type VectorConfigSinkSinkOuterAllocStringString =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
           batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings;
           bucket: TheS3BucketName;
-          compression?: CompressionConfiguration4;
+          compression?: CompressionConfiguration;
           filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey;
           filename_extension?: TheFilenameExtensionToUseInTheObjectKey;
           filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey;
@@ -1350,9 +1332,9 @@ export type VectorConfigSinkSinkOuterAllocStringString =
           acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink8;
           batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings1;
           blob_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheBlobKey;
-          blob_prefix?: ATemplatedField5;
+          blob_prefix?: ATemplatedField;
           blob_time_format?: TheTimestampFormatForTheTimeComponentOfTheBlobKey;
-          compression?: CompressionConfiguration6;
+          compression?: CompressionConfiguration;
           connection_string?: TheAzureBlobStorageAccountConnectionString;
           /**
            * The Azure Blob Storage Account container name.
@@ -1423,7 +1405,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink7;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1461,7 +1443,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink8;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1487,7 +1469,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink9;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1520,11 +1502,11 @@ export type VectorConfigSinkSinkOuterAllocStringString =
           /**
            * Compression configuration.
            */
-          compression?: GzipGzipCompression5 | ZstandardZstdCompression4 | 'none';
+          compression?: GzipGzipCompression | ZstandardZstdCompression | 'none';
           idle_timeout_secs?: TheAmountOfTimeThatAFileCanBeIdleAndStayOpen;
           internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig;
-          path: ATemplatedField14;
-          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings2;
+          path: ATemplatedField;
+          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
           [k: string]: unknown | undefined;
         } & VectorCodecsEncodingConfigEncodingConfigWithFraming3) & {
           /**
@@ -1539,7 +1521,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink10;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1649,7 +1631,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
           labels?: {
             [k: string]: string | undefined;
           } | null;
-          log_type: ATemplatedField15;
+          log_type: ATemplatedField;
           namespace?: ATemplatedField16;
           /**
            * The GCP region to use.
@@ -1673,19 +1655,19 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * The GCS bucket name.
            */
           bucket: string;
-          compression?: CompressionConfiguration13;
+          compression?: CompressionConfiguration;
           /**
            * API endpoint for Google Cloud Storage
            */
           endpoint?: string;
-          filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey1;
-          filename_extension?: TheFilenameExtensionToUseInTheObjectKey1;
-          filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey1;
+          filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey;
+          filename_extension?: TheFilenameExtensionToUseInTheObjectKey;
+          filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey;
           key_prefix?: APrefixToApplyToAllObjectKeys1;
           metadata?: TheSetOfMetadataKeyValuePairsForTheCreatedObjects;
           request?: MiddlewareSettingsForOutboundRequests14;
           storage_class?: TheStorageClassForCreatedObjects;
-          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings3;
+          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
           tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
           [k: string]: unknown | undefined;
         } & VectorCodecsEncodingConfigEncodingConfigWithFraming4 &
@@ -1702,7 +1684,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink11;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1823,7 +1805,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
           acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink20;
           batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings5;
           encoding?: VectorCodecsEncodingTransformerTransformer5;
-          log_id: ATemplatedField17;
+          log_id: ATemplatedField;
           request?: MiddlewareSettingsForOutboundRequests16;
           resource: AMonitoredResource;
           severity_key?: TheFieldOfTheLogEventFromWhichToTakeTheOutgoingLogSSeverityField;
@@ -1848,7 +1830,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink12;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -1904,7 +1886,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
           acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink25;
           auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
           batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings6;
-          compression?: CompressionConfiguration16;
+          compression?: CompressionConfiguration;
           /**
            * @deprecated
            * A list of custom headers to add to each request.
@@ -1928,7 +1910,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             [k: string]: unknown | undefined;
           } & MiddlewareSettingsForOutboundRequests1;
           tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
-          uri: TheURIComponentOfARequest3;
+          uri: TheURIComponentOfARequest;
           [k: string]: unknown | undefined;
         } & VectorCodecsEncodingConfigEncodingConfigWithFraming5) & {
           /**
@@ -1947,14 +1929,14 @@ export type VectorConfigSinkSinkOuterAllocStringString =
       | (({
           acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink27;
           batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings1;
-          compression?: CompressionConfiguration18;
-          endpoint?: TheBaseURLOfTheHumioInstance1;
-          event_type?: TheTypeOfEventsSentToThisSinkHumioUsesThisAsTheNameOfTheParserToUseToIngestTheData1;
-          host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio1;
-          index?: OptionalNameOfTheRepositoryToIngestInto1;
-          indexed_fields?: EventFieldsToBeAddedToHumioSExtraFields1;
+          compression?: CompressionConfiguration;
+          endpoint?: TheBaseURLOfTheHumioInstance;
+          event_type?: TheTypeOfEventsSentToThisSinkHumioUsesThisAsTheNameOfTheParserToUseToIngestTheData;
+          host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio;
+          index?: OptionalNameOfTheRepositoryToIngestInto;
+          indexed_fields?: EventFieldsToBeAddedToHumioSExtraFields;
           request?: MiddlewareSettingsForOutboundRequests22;
-          source?: TheSourceOfEventsSentToThisSink1;
+          source?: TheSourceOfEventsSentToThisSink;
           tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
           /**
            * Wrapper for sensitive strings containing credentials
@@ -1974,7 +1956,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink16;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -2013,7 +1995,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink17;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -2024,8 +2006,8 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             timeout_secs?: number | null;
             [k: string]: unknown | undefined;
           };
-          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent1;
-          endpoint: TheEndpointToSendDataTo1;
+          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
+          endpoint: TheEndpointToSendDataTo;
           /**
            * The list of quantiles to calculate when sending distribution metrics.
            */
@@ -2053,7 +2035,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink18;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -2165,7 +2147,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Default timeout, in milliseconds, for network requests.
            */
           socket_timeout_ms?: number;
-          topic: ATemplatedField22;
+          topic: ATemplatedField;
           [k: string]: unknown | undefined;
         } & VectorKafkaKafkaAuthConfig) & {
           /**
@@ -2376,8 +2358,8 @@ export type VectorConfigSinkSinkOuterAllocStringString =
               };
               [k: string]: unknown | undefined;
             } & {
-              address: TheAddressToConnectTo1;
-              send_buffer_bytes?: TheSizeOfTheSocketSSendBuffer1;
+              address: TheAddressToConnectTo;
+              send_buffer_bytes?: TheSizeOfTheSocketSSendBuffer;
               [k: string]: unknown | undefined;
             }) & {
               /**
@@ -2397,7 +2379,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
               [k: string]: unknown | undefined;
             })
           | (({
-              path: TheUnixSocketPath1;
+              path: TheUnixSocketPath;
               [k: string]: unknown | undefined;
             } & VectorCodecsEncodingConfigEncodingConfigWithFraming8) & {
               /**
@@ -2435,7 +2417,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
            * Event batching behavior.
            */
           batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink24;
+            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
             /**
              * The maximum size of a batch before it is flushed.
              */
@@ -2446,13 +2428,13 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             timeout_secs?: number | null;
             [k: string]: unknown | undefined;
           };
-          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent4;
+          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
           [k: string]: unknown | undefined;
         } & (
           | ({
-              address: TheAddressToConnectTo2;
+              address: TheAddressToConnectTo;
               keepalive?: CoreOptionOptionVectorCoreTcpTcpKeepaliveConfig;
-              send_buffer_size?: TheSizeOfTheSocketSSendBuffer2;
+              send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
               tls?: CoreOptionOptionVectorCoreTlsSettingsTlsEnableableConfig;
               [k: string]: unknown | undefined;
             } & {
@@ -2463,8 +2445,8 @@ export type VectorConfigSinkSinkOuterAllocStringString =
               [k: string]: unknown | undefined;
             })
           | ({
-              address: TheAddressToConnectTo3;
-              send_buffer_size?: TheSizeOfTheSocketSSendBuffer3;
+              address: TheAddressToConnectTo;
+              send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
               [k: string]: unknown | undefined;
             } & {
               /**
@@ -2474,8 +2456,8 @@ export type VectorConfigSinkSinkOuterAllocStringString =
               [k: string]: unknown | undefined;
             })
           | ({
-              path: TheUnixSocketPath2;
-              send_buffer_size?: TheSizeOfTheSocketSSendBuffer4;
+              path: TheUnixSocketPath;
+              send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
               /**
                * The Unix socket mode to use.
                */
@@ -2519,7 +2501,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
       | (({
           acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink47;
           batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings3;
-          compression?: CompressionConfiguration24;
+          compression?: CompressionConfiguration;
           endpoint?: AnHDFSClusterConsistsOfASingleNameNodeAMasterServerThatManagesTheFileSystemNamespaceAndRegulatesAccessToFilesByClients;
           prefix?: APrefixToApplyToAllKeys;
           root?: TheRootPathForWebHDFS;
@@ -2587,56 +2569,10 @@ export type TheMaximumSizeOfTheBufferOnDisk = number;
  */
 export type EventsAreBufferedOnDisk1 = 'disk';
 /**
- * This applies backpressure up the topology, signalling that sources should slow down
- * the acceptance/consumption of events. This means that while no data is lost, data will pile
- * up at the edge.
- */
-export type WaitForFreeSpaceInTheBuffer1 = 'block';
-/**
- * The event will be intentionally dropped. This mode is typically used when performance is the
- * highest priority, and it is preferable to temporarily lose events rather than cause a
- * slowdown in the acceptance/consumption of events.
- */
-export type DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer1 = 'drop_newest';
-/**
- * If the current buffer stage is full, attempt to send this event to the next buffer stage.
- * That stage may also be configured overflow, and so on, but ultimately the last stage in a
- * buffer topology must use one of the other handling behaviors. This means that next stage may
- * potentially be able to buffer the event, but it may also block or drop the event.
- *
- * This mode can only be used when two or more buffer stages are configured.
- */
-export type OverflowsToTheNextStageInTheBufferTopology1 = 'overflow';
-/**
  * This is more performant, but less durable. Data will be lost if Vector is restarted
  * forcefully or crashes.
  */
 export type EventsAreBufferedInMemory3 = 'memory';
-/**
- * This applies backpressure up the topology, signalling that sources should slow down
- * the acceptance/consumption of events. This means that while no data is lost, data will pile
- * up at the edge.
- */
-export type WaitForFreeSpaceInTheBuffer2 = 'block';
-/**
- * The event will be intentionally dropped. This mode is typically used when performance is the
- * highest priority, and it is preferable to temporarily lose events rather than cause a
- * slowdown in the acceptance/consumption of events.
- */
-export type DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer2 = 'drop_newest';
-/**
- * If the current buffer stage is full, attempt to send this event to the next buffer stage.
- * That stage may also be configured overflow, and so on, but ultimately the last stage in a
- * buffer topology must use one of the other handling behaviors. This means that next stage may
- * potentially be able to buffer the event, but it may also block or drop the event.
- *
- * This mode can only be used when two or more buffer stages are configured.
- */
-export type OverflowsToTheNextStageInTheBufferTopology2 = 'overflow';
-/**
- * Must be at least ~256 megabytes (268435488 bytes).
- */
-export type TheMaximumSizeOfTheBufferOnDisk1 = number;
 /**
  * This is less performant, but more durable. Data that has been synchronized to disk will not
  * be lost if Vector is restarted forcefully or crashes.
@@ -2645,39 +2581,12 @@ export type TheMaximumSizeOfTheBufferOnDisk1 = number;
  */
 export type EventsAreBufferedOnDisk3 = 'disk';
 /**
- * This applies backpressure up the topology, signalling that sources should slow down
- * the acceptance/consumption of events. This means that while no data is lost, data will pile
- * up at the edge.
- */
-export type WaitForFreeSpaceInTheBuffer3 = 'block';
-/**
- * The event will be intentionally dropped. This mode is typically used when performance is the
- * highest priority, and it is preferable to temporarily lose events rather than cause a
- * slowdown in the acceptance/consumption of events.
- */
-export type DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer3 = 'drop_newest';
-/**
- * If the current buffer stage is full, attempt to send this event to the next buffer stage.
- * That stage may also be configured overflow, and so on, but ultimately the last stage in a
- * buffer topology must use one of the other handling behaviors. This means that next stage may
- * potentially be able to buffer the event, but it may also block or drop the event.
- *
- * This mode can only be used when two or more buffer stages are configured.
- */
-export type OverflowsToTheNextStageInTheBufferTopology3 = 'overflow';
-/**
  * This must be a valid URI, which requires at least the scheme and host. All other
  * components -- port, path, etc -- are allowed as well.
  */
 export type TheFullURIToMakeHTTPHealthcheckRequestsTo = (null | TheURIComponentOfARequest) &
   (((null | TheURIComponentOfARequest) & string) | (null & (null | TheURIComponentOfARequest)));
 export type TheURIComponentOfARequest = string;
-/**
- * This must be a valid URI, which requires at least the scheme and host. All other
- * components -- port, path, etc -- are allowed as well.
- */
-export type TheFullURIToMakeHTTPHealthcheckRequestsTo1 = (null | TheURIComponentOfARequest) &
-  (((null | TheURIComponentOfARequest) & string) | (null & (null | TheURIComponentOfARequest)));
 /**
  * Wildcards (`*`) are supported.
  *
@@ -2936,17 +2845,12 @@ export type NoEncoding1 = 'raw_message';
  * could lead to the encoding emitting empty strings for the given event.
  */
 export type PlainTextEncoding = {
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded1;
+  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
   [k: string]: unknown | undefined;
 } & {
   codec: PlainTextEncoding1;
   [k: string]: unknown | undefined;
 };
-/**
- * When set to `single`, only the last non-bare value of tags are displayed with the
- * metric.  When set to `full`, all metric tags are exposed as separate assignments.
- */
-export type ControlsHowMetricTagValuesAreEncoded1 = 'single' | 'full';
 /**
  * This encoding uses the `message` field of a log event. For metrics, it uses an
  * encoding that resembles the Prometheus export format.
@@ -2973,19 +2877,7 @@ export type ConfigureTheAMQPMessageProperties = null | ConfigureTheAMQPMessagePr
 /**
  * Template used to generate a routing key which corresponds to a queue binding.
  */
-export type ATemplatedField1 = null | ATemplatedField2;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField2 = string;
+export type ATemplatedField1 = null | ATemplatedField;
 /**
  * The URI has the format of
  * `amqp://<user>:<password>@<host>:<port>/<vhost>?timeout=<seconds>`.
@@ -3013,10 +2905,10 @@ export type CompressionConfiguration =
        */
       algorithm:
         | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
+        | GzipGzipCompression
+        | ZlibZlibCompression
+        | ZstandardZstdCompression
+        | SnappySnappyCompression;
       level?: VectorSinksUtilBufferCompressionCompressionLevel;
       [k: string]: unknown | undefined;
     };
@@ -3036,22 +2928,6 @@ export type ZstandardZstdCompression = 'zstd';
  * [snappy]: https://github.com/google/snappy/blob/main/docs/README.md
  */
 export type SnappySnappyCompression = 'snappy';
-/**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression1 = 'gzip';
-/**
- * [zlib]: https://zlib.net/
- */
-export type ZlibZlibCompression1 = 'zlib';
-/**
- * [zstd]: https://facebook.github.io/zstd/
- */
-export type ZstandardZstdCompression1 = 'zstd';
-/**
- * [snappy]: https://github.com/google/snappy/blob/main/docs/README.md
- */
-export type SnappySnappyCompression1 = 'snappy';
 /**
  * Compression level.
  */
@@ -3163,29 +3039,6 @@ export type WhetherOrNotToRequireTLSForIncomingOrOutgoingConnections = boolean |
  */
 export type TheARNOfAnIAMRoleIamRoleToAssumeAtStartup = string | null;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink1 = number | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration1 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
  * This ignores `create_missing_stream` directly after creating the group and creates
  * the first stream.
  *
@@ -3197,104 +3050,12 @@ export type DynamicallyCreateALogGroupLogGroupIfItDoesNotAlreadyExist = boolean;
  */
 export type DynamicallyCreateALogStreamLogStreamIfItDoesNotAlreadyExist = boolean;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField3 = string;
-/**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest1 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted1 = number;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField4 = string;
-/**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
-export type TheARNOfAnIAMRoleIamRoleToAssumeAtStartup1 = string | null;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink2 = number | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration2 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
  * Metrics with the same name can only be differentiated by their namespace, and not all
  * metrics have their own namespace.
  *
  * [namespace]: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Namespace
  */
 export type TheDefaultNamespaceNamespaceToUseForMetricsThatDoNotHaveOne = string;
-/**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest2 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted2 = number;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink3 = number | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration3 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * If not specified, a unique partition key is generated for each Kinesis record.
  */
@@ -3304,40 +3065,9 @@ export type TheLogFieldUsedAsTheKinesisRecordSPartitionKeyValue = null | VectorL
  */
 export type TheStreamNameStreamNameOfTheTargetKinesisFirehoseDeliveryStream = string;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink4 = number | null;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink5 = number | null;
-/**
  * This must not include a leading `s3://` or a trailing `/`.
  */
 export type TheS3BucketName = string;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- *
- * Some cloud storage API clients and browsers handle decompression transparently, so
- * depending on how they are accessed, files may not always appear to be compressed.
- */
-export type CompressionConfiguration4 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * The UUID is appended to the timestamp portion of the object key, such that if the object key
  * generated is `date=2022-07-18/1658176486`, setting this field to `true` results
@@ -3569,10 +3299,6 @@ export type EventDataIsPrefixedWithItsLengthInBytes = {
  */
 export type EventDataIsPrefixedWithItsLengthInBytes1 = 'length_delimited';
 /**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
-export type TheARNOfAnIAMRoleIamRoleToAssumeAtStartup2 = string | null;
-/**
  * This value is a template which should result in a unique string for each event. See the [AWS
  * documentation][deduplication_id_docs] for more about how AWS does message deduplication.
  *
@@ -3583,29 +3309,6 @@ export type TheMessageDeduplicationIDValueToAllowAWSToIdentifyDuplicateMessages 
  * Can be applied only to FIFO queues.
  */
 export type TheTagThatSpecifiesThatAMessageBelongsToASpecificMessageGroup = string | null;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink6 = number | null;
-/**
- * The compression algorithm to use.
- */
-export type CompressionConfiguration5 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * Only required when using personal tokens.
  */
@@ -3629,18 +3332,6 @@ export type URIOfTheAxiomEndpointToSendDataTo = string | null;
  */
 export type WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheBlobKey = boolean | null;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField5 = string;
-/**
  * By default, blob keys are appended with a timestamp that reflects when the blob are sent to
  * Azure Blob Storage, such that the resulting blob key is functionally equivalent to joining
  * the blob prefix with the formatted timestamp, such as `date=2022-07-18/1658176486`.
@@ -3657,27 +3348,6 @@ export type ATemplatedField5 = string;
  * [chrono_strftime_specifiers]: https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
  */
 export type TheTimestampFormatForTheTimeComponentOfTheBlobKey = string | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- *
- * Some cloud storage API clients and browsers handle decompression transparently, so
- * depending on how they are accessed, files may not always appear to be compressed.
- */
-export type CompressionConfiguration6 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * Authentication with an access key or shared access signature (SAS)
  * are supported authentication methods. If using a non-account SAS,
@@ -3709,15 +3379,6 @@ export type VectorCommonSensitiveStringSensitiveString = string;
  * `connection_string`.
  */
 export type TheAzureBlobStorageEndpointURL = string | null;
-/**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest3 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted3 = number;
 /**
  * Attempts to load credentials for the account in the following ways, in order:
  *
@@ -3798,28 +3459,9 @@ export type BasicAuthentication1 = 'basic';
  */
 export type BearerAuthentication1 = 'bearer';
 /**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration7 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
  * The database that contains the table that data is inserted into.
  */
-export type ATemplatedField6 = null | ATemplatedField2;
-export type TheURIComponentOfARequest1 = string;
+export type ATemplatedField6 = null | ATemplatedField;
 /**
  * The format to parse input data.
  */
@@ -3830,18 +3472,6 @@ export type DataFormat = 'json_each_row' | 'json_as_object' | 'json_as_string';
 export type SetsInputFormatSkipUnknownFieldsAllowingClickHouseToDiscardFieldsNotPresentInTheTableSchema =
   | boolean
   | null;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField7 = string;
 /**
  * [standard_streams]: https://en.wikipedia.org/wiki/Standard_streams
  */
@@ -3854,16 +3484,6 @@ export type WriteOutputToSTDOUTStdout = 'stdout';
  * [stderr]: https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)
  */
 export type WriteOutputToSTDERRStderr = 'stderr';
-/**
- * HTTP authentication should be used with HTTPS only, as the authentication credentials are passed as an
- * HTTP header without any additional encryption beyond what is provided by the transport itself.
- */
-export type ConfigurationOfTheAuthenticationStrategyForHTTPRequests2 =
-  null | ConfigurationOfTheAuthenticationStrategyForHTTPRequests1;
-/**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression2 = 'gzip';
 /**
  * This codec must be configured with fields to encode.
  */
@@ -3886,7 +3506,6 @@ export type EncodesAnEventAsJSONJson2 = CodecsEncodingFormatJsonJsonSerializerCo
  * [json]: https://www.json.org/
  */
 export type EncodesAnEventAsJSONJson3 = 'json';
-export type TheURIComponentOfARequest2 = string;
 /**
  * If an event has a Datadog [API key][api_key] set explicitly in its metadata, it takes
  * precedence over this setting.
@@ -3918,11 +3537,6 @@ export type TheEndpointToSendObservabilityDataTo = string | null;
  */
 export type TheDatadogSiteDdSiteToSendObservabilityDataTo = string | null;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink7 = number | null;
-/**
  * All compression algorithms use the default compression level unless otherwise specified.
  */
 export type CompressionConfiguration8 = null | CompressionConfiguration9;
@@ -3930,67 +3544,25 @@ export type CompressionConfiguration8 = null | CompressionConfiguration9;
  * All compression algorithms use the default compression level unless otherwise specified.
  */
 export type CompressionConfiguration9 =
-  | ('none' | GzipGzipCompression3 | ZlibZlibCompression2 | ZstandardZstdCompression2 | SnappySnappyCompression2)
+  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
   | {
       /**
        * Compression algorithm.
        */
       algorithm:
         | 'none'
-        | GzipGzipCompression4
-        | ZlibZlibCompression3
-        | ZstandardZstdCompression3
-        | SnappySnappyCompression3;
+        | GzipGzipCompression
+        | ZlibZlibCompression
+        | ZstandardZstdCompression
+        | SnappySnappyCompression;
       level?: VectorSinksUtilBufferCompressionCompressionLevel;
       [k: string]: unknown | undefined;
     };
-/**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression3 = 'gzip';
-/**
- * [zlib]: https://zlib.net/
- */
-export type ZlibZlibCompression2 = 'zlib';
-/**
- * [zstd]: https://facebook.github.io/zstd/
- */
-export type ZstandardZstdCompression2 = 'zstd';
-/**
- * [snappy]: https://github.com/google/snappy/blob/main/docs/README.md
- */
-export type SnappySnappyCompression2 = 'snappy';
-/**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression4 = 'gzip';
-/**
- * [zlib]: https://zlib.net/
- */
-export type ZlibZlibCompression3 = 'zlib';
-/**
- * [zstd]: https://facebook.github.io/zstd/
- */
-export type ZstandardZstdCompression3 = 'zstd';
-/**
- * [snappy]: https://github.com/google/snappy/blob/main/docs/README.md
- */
-export type SnappySnappyCompression3 = 'snappy';
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink8 = number | null;
 /**
  * This namespace is only used if a metric has no existing namespace. When a namespace is
  * present, it is used as a prefix to the metric name, and separated with a period (`.`).
  */
 export type SetsTheDefaultNamespaceForAnyMetricsSent = string | null;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink9 = number | null;
 /**
  * All compression algorithms use the default compression level unless otherwise specified.
  */
@@ -4012,104 +3584,17 @@ export type AutoDetectTheAPIVersion = 'auto';
 /**
  * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
  */
-export type TheARNOfAnIAMRoleIamRoleToAssume2 = string | null;
-/**
- * [external_id]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
- */
-export type TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume2 = string | null;
-/**
- * If not set, this will default to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo3 = string | null;
-/**
- * Used to select AWS credentials from a provided credentials file.
- */
-export type TheCredentialsProfileToUse1 = string;
-/**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
 export type TheARNOfAnIAMRoleIamRoleToAssume3 = string;
-/**
- * [external_id]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
- */
-export type TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume3 = string | null;
-/**
- * Relevant when the default credentials chain or `assume_role` is used.
- */
-export type TimeoutForAssumingTheRoleInSeconds1 = number | null;
-/**
- * If not set, this defaults to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo4 = string | null;
-/**
- * Relevant when the default credentials chain or `assume_role` is used.
- */
-export type TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds1 = number | null;
-/**
- * If not set, this defaults to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo5 = string | null;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField8 = string;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField9 = string;
 /**
  * Version field value.
  */
-export type ATemplatedField10 = null | ATemplatedField2;
+export type ATemplatedField10 = null | ATemplatedField;
 /**
  * Possible values are `internal`, `external` or `external_gt` and `external_gte`.
  *
  * [es_index_versioning]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#index-versioning
  */
 export type VersionType = 'internal' | 'external' | 'external_gte';
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration11 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * The format of the data stream name is `<type>-<dataset>-<namespace>`, where each value comes
  * from the `data_stream` configuration field of the same name.
@@ -4120,45 +3605,9 @@ export type CompressionConfiguration11 =
  */
 export type AutomaticallyRoutesEventsByDerivingTheDataStreamNameUsingSpecificEventFields = boolean;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField11 = string;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField12 = string;
-/**
  * This ensures that fields match the name of the data stream that is receiving events.
  */
 export type AutomaticallyAddsAndSyncsTheDataStreamEventFieldsIfTheyAreMissingFromTheEvent = boolean;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField13 = string;
 /**
  * This is only relevant for Elasticsearch <= 6.X. If you are using >= 7.0 you do not need to
  * set this option since Elasticsearch has removed it.
@@ -4192,14 +3641,6 @@ export type TheNameOfTheEventKeyThatShouldMapToElasticsearchSIdFieldEsId = null 
  */
 export type NameOfTheTagInTheMetricToUseForTheSourceHost = string | null;
 /**
- * When set to `single`, only the last non-bare value of tags are displayed with the
- * metric.  When set to `full`, all metric tags are exposed as separate assignments as
- * described by [the `native_json` codec][vector_native_json].
- *
- * [vector_native_json]: https://github.com/vectordotdev/vector/blob/master/lib/codecs/tests/data/native_encoding/schema.cue
- */
-export type ControlsHowMetricTagValuesAreEncoded2 = 'single' | 'full';
-/**
  * This overrides the [global `timezone`][global_timezone] option. The time zone name may be
  * any name in the [TZ database][tz_database] or `local` to indicate system local time.
  *
@@ -4223,14 +3664,6 @@ export type WhetherOrNotToRetrySuccessfulRequestsContainingPartialFailures = boo
  */
 export type WhetherOrNotToSendTheTypeFieldToElasticsearch = boolean;
 /**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression5 = 'gzip';
-/**
- * [zstd]: https://facebook.github.io/zstd/
- */
-export type ZstandardZstdCompression4 = 'zstd';
-/**
  * After not receiving any events in this amount of time, the file is flushed and closed.
  */
 export type TheAmountOfTimeThatAFileCanBeIdleAndStayOpen = number;
@@ -4240,75 +3673,22 @@ export type TheAmountOfTimeThatAFileCanBeIdleAndStayOpen = number;
  */
 export type WhetherOrNotToIncludeTheFileTagOnTheComponentSCorrespondingInternalMetrics = boolean;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField14 = string;
-/**
- * This can refer to any valid timezone as defined in the [TZ database][tzdb], or "local" which refers to the system local timezone. It will default to the [globally configured timezone](https://vector.dev/docs/reference/configuration/global-options/#timezone).
- *
- * [tzdb]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
- */
-export type TimezoneToUseForAnyDateSpecifiersInTemplateStrings2 =
-  null | TimezoneToUseForAnyDateSpecifiersInTemplateStrings1;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink10 = number | null;
-/**
  * All compression algorithms use the default compression level unless otherwise specified.
  */
 export type CompressionConfiguration12 =
-  | ('none' | GzipGzipCompression6)
+  | ('none' | GzipGzipCompression)
   | {
       /**
        * Compression algorithm.
        */
-      algorithm: 'none' | GzipGzipCompression7;
+      algorithm: 'none' | GzipGzipCompression;
       level?: VectorSinksUtilBufferCompressionCompressionLevel;
       [k: string]: unknown | undefined;
     };
 /**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression6 = 'gzip';
-/**
- * [gzip]: https://www.gzip.org/
- */
-export type GzipGzipCompression7 = 'gzip';
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField15 = string;
-/**
  * User-configured environment namespace to identify the data domain the logs originated from.
  */
-export type ATemplatedField16 = null | ATemplatedField2;
-/**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest4 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted4 = number;
+export type ATemplatedField16 = null | ATemplatedField;
 /**
  * Either an API key or a path to a service account credentials JSON file can be specified.
  *
@@ -4343,37 +3723,12 @@ export type ThePredefinedACLToApplyToCreatedObjects = null | GCSPredefinedACLs;
  * [predefined_acls]: https://cloud.google.com/storage/docs/access-control/lists#predefined-acl
  */
 export type GCSPredefinedACLs =
-  | BucketObjectCanBeReadByAuthenticatedUsers1
-  | ObjectIsSemiPrivate1
-  | ObjectIsPrivateExceptToTheBucketOwner1
-  | BucketObjectArePrivate1
+  | BucketObjectCanBeReadByAuthenticatedUsers
+  | ObjectIsSemiPrivate
+  | ObjectIsPrivateExceptToTheBucketOwner
+  | BucketObjectArePrivate
   | BucketObjectArePrivateWithinTheProject
-  | BucketObjectCanBeReadPublicly1;
-/**
- * The bucket/object owner is granted the `OWNER` permission, and anyone authenticated Google
- * account holder is granted the `READER` permission.
- */
-export type BucketObjectCanBeReadByAuthenticatedUsers1 = 'authenticated-read';
-/**
- * Both the object owner and bucket owner are granted the `OWNER` permission.
- *
- * Only relevant when specified for an object: this predefined ACL is otherwise ignored when
- * specified for a bucket.
- */
-export type ObjectIsSemiPrivate1 = 'bucket-owner-full-control';
-/**
- * The object owner is granted the `OWNER` permission, and the bucket owner is granted the
- * `READER` permission.
- *
- * Only relevant when specified for an object: this predefined ACL is otherwise ignored when
- * specified for a bucket.
- */
-export type ObjectIsPrivateExceptToTheBucketOwner1 = 'bucket-owner-read';
-/**
- * The bucket/object owner is granted the `OWNER` permission, and no one else has
- * access.
- */
-export type BucketObjectArePrivate1 = 'private';
+  | BucketObjectCanBeReadPublicly;
 /**
  * Project owners and project editors are granted the `OWNER` permission, and anyone who is
  * part of the project team is granted the `READER` permission.
@@ -4381,62 +3736,6 @@ export type BucketObjectArePrivate1 = 'private';
  * This is the default.
  */
 export type BucketObjectArePrivateWithinTheProject = 'project-private';
-/**
- * The bucket/object owner is granted the `OWNER` permission, and all other users, whether
- * authenticated or anonymous, are granted the `READER` permission.
- */
-export type BucketObjectCanBeReadPublicly1 = 'public-read';
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- *
- * Some cloud storage API clients and browsers handle decompression transparently, so
- * depending on how they are accessed, files may not always appear to be compressed.
- */
-export type CompressionConfiguration13 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
- * The UUID is appended to the timestamp portion of the object key, such that if the object key
- * generated is `date=2022-07-18/1658176486`, setting this field to `true` results
- * in an object key that looks like `date=2022-07-18/1658176486-30f6652c-71da-4f9f-800d-a1189c47c547`.
- *
- * This ensures there are no name collisions, and can be useful in high-volume workloads where
- * object keys must be unique.
- */
-export type WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey1 = boolean;
-/**
- * If not specified, the extension is determined by the compression scheme used.
- */
-export type TheFilenameExtensionToUseInTheObjectKey1 = string | null;
-/**
- * By default, object keys are appended with a timestamp that reflects when the objects are
- * sent to S3, such that the resulting object key is functionally equivalent to joining the key
- * prefix with the formatted timestamp, such as `date=2022-07-18/1658176486`.
- *
- * This would represent a `key_prefix` set to `date=%F/` and the timestamp of Mon Jul 18 2022
- * 20:34:44 GMT+0000, with the `filename_time_format` being set to `%s`, which renders
- * timestamps in seconds since the Unix epoch.
- *
- * Supports the common [`strftime`][chrono_strftime_specifiers] specifiers found in most
- * languages.
- *
- * When set to an empty string, no timestamp is appended to the key prefix.
- *
- * [chrono_strftime_specifiers]: https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
- */
-export type TheTimestampFormatForTheTimeComponentOfTheObjectKey1 = string;
 /**
  * Prefixes are useful for partitioning objects, such as by creating an object key that
  * stores objects under a particular directory. If using a prefix for this purpose, it must end
@@ -4451,15 +3750,6 @@ export type APrefixToApplyToAllObjectKeys1 = string | null;
 export type TheSetOfMetadataKeyValuePairsForTheCreatedObjects = {
   [k: string]: string | undefined;
 } | null;
-/**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest5 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted5 = number;
 /**
  * For more information, see the [storage classes][storage_classes] documentation.
  *
@@ -4477,18 +3767,6 @@ export type GCSStorageClasses = StandardStorage | 'NEARLINE' | 'COLDLINE' | 'ARC
  */
 export type StandardStorage = 'STANDARD';
 /**
- * This can refer to any valid timezone as defined in the [TZ database][tzdb], or "local" which refers to the system local timezone. It will default to the [globally configured timezone](https://vector.dev/docs/reference/configuration/global-options/#timezone).
- *
- * [tzdb]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
- */
-export type TimezoneToUseForAnyDateSpecifiersInTemplateStrings3 =
-  null | TimezoneToUseForAnyDateSpecifiersInTemplateStrings1;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink11 = number | null;
-/**
  * The scheme (`http` or `https`) must be specified. No path should be included since the paths defined
  * by the [`GCP Pub/Sub`][pubsub_api] API are used.
  *
@@ -4498,34 +3776,13 @@ export type TheMaximumSizeOfABatchThatIsProcessedByASink11 = number | null;
  */
 export type TheEndpointToWhichToPublishEvents = string;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField17 = string;
-/**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest6 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted6 = number;
-/**
  * The monitored resource to associate the logs with.
  */
 export type AMonitoredResource = {
   type: TheMonitoredResourceType;
   [k: string]: unknown | undefined;
 } & {
-  [k: string]: ATemplatedField2;
+  [k: string]: ATemplatedField;
 };
 /**
  * For example, the type of a Compute Engine VM instance is `gce_instance`.
@@ -4551,11 +3808,6 @@ export type TheMonitoredResourceType = string;
 export type TheFieldOfTheLogEventFromWhichToTakeTheOutgoingLogSSeverityField =
   null | VectorLookupLookupV2ConfigValuePath;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink12 = number | null;
-/**
  * Metrics with the same name can only be differentiated by their namespace, and not all
  * metrics have their own namespace.
  */
@@ -4567,32 +3819,14 @@ export type TheDefaultNamespaceToUseForMetricsThatDoNotHaveOne = string;
  */
 export type TheProjectIDToWhichToPublishMetrics = string;
 /**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest7 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted7 = number;
-/**
  * The monitored resource to associate the metrics with.
  */
 export type AMonitoredResource1 = {
-  type: TheMonitoredResourceType1;
+  type: TheMonitoredResourceType;
   [k: string]: unknown | undefined;
 } & {
   [k: string]: string | undefined;
 };
-/**
- * For example, the type of a Compute Engine VM instance is `gce_instance`.
- */
-export type TheMonitoredResourceType1 = string;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink13 = number | null;
 /**
  * Default to `public`, the default database of GreptimeDB.
  *
@@ -4636,113 +3870,9 @@ export type ThePasswordForYourGreptimeDBInstance = null | VectorCommonSensitiveS
  */
 export type TheUsernameForYourGreptimeDBInstance = string | null;
 /**
- * Set http compression encoding for the request
- * Default to none, `gzip` or `zstd` is supported.
- */
-export type CompressionConfiguration14 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField18 = string;
-/**
- * This is required if your instance has authentication enabled.
- */
-export type ThePasswordForYourGreptimeDBInstance1 = null | VectorCommonSensitiveStringSensitiveString;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField19 = string;
-/**
  * Pipeline version to be used for the logs.
  */
-export type ATemplatedField20 = null | ATemplatedField2;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField21 = string;
-/**
- * This is required if your instance has authentication enabled.
- */
-export type TheUsernameForYourGreptimeDBInstance1 = string | null;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink14 = number | null;
-/**
- * The compression algorithm to use.
- */
-export type CompressionConfiguration15 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration16 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
+export type ATemplatedField20 = null | ATemplatedField;
 /**
  * The HTTP method to use when making the request.
  */
@@ -4759,30 +3889,6 @@ export type AStringToPrefixThePayloadWith = string;
  * If specified, the `payload_prefix` must also be specified and together they must produce a valid JSON object.
  */
 export type AStringToSuffixThePayloadWith = string;
-export type TheURIComponentOfARequest3 = string;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink15 = number | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration17 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * The scheme (`http` or `https`) must be specified. No path should be included since the paths defined
  * by the [`Splunk`][splunk] API are used.
@@ -4794,7 +3900,7 @@ export type TheBaseURLOfTheHumioInstance = string;
  * If unset, Humio defaults it to none.
  */
 export type TheTypeOfEventsSentToThisSinkHumioUsesThisAsTheNameOfTheParserToUseToIngestTheData =
-  null | ATemplatedField2;
+  null | ATemplatedField;
 /**
  * By default, the [global `log_schema.host_key` option][global_host_key] is used if log
  * events are Legacy namespaced, or the semantic meaning of "host" is used, if defined.
@@ -4811,7 +3917,7 @@ export type OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio 
  *
  * [humio_data_format]: https://docs.humio.com/integrations/data-shippers/hec/#format-of-data
  */
-export type OptionalNameOfTheRepositoryToIngestInto = null | ATemplatedField2;
+export type OptionalNameOfTheRepositoryToIngestInto = null | ATemplatedField;
 /**
  * Can be used to tag events by specifying fields starting with `#`.
  *
@@ -4823,7 +3929,7 @@ export type EventFieldsToBeAddedToHumioSExtraFields = VectorLookupLookupV2Config
 /**
  * Typically the filename the logs originated from. Maps to `@source` in Humio.
  */
-export type TheSourceOfEventsSentToThisSink = null | ATemplatedField2;
+export type TheSourceOfEventsSentToThisSink = null | ATemplatedField;
 /**
  * By default, either the [global `log_schema.timestamp_key` option][global_timestamp_key] is used
  * if log events are Legacy namespaced, or the semantic meaning of "timestamp" is used, if defined.
@@ -4832,67 +3938,6 @@ export type TheSourceOfEventsSentToThisSink = null | ATemplatedField2;
  */
 export type OverridesTheNameOfTheLogFieldUsedToRetrieveTheTimestampToSendToHumioWhenSetToATimestampIsNotSetInTheEventsSentToHumio =
   string;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration18 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
- * The scheme (`http` or `https`) must be specified. No path should be included since the paths defined
- * by the [`Splunk`][splunk] API are used.
- *
- * [splunk]: https://docs.splunk.com/Documentation/Splunk/8.0.0/Data/HECRESTendpoints
- */
-export type TheBaseURLOfTheHumioInstance1 = string;
-/**
- * If unset, Humio defaults it to none.
- */
-export type TheTypeOfEventsSentToThisSinkHumioUsesThisAsTheNameOfTheParserToUseToIngestTheData1 =
-  null | ATemplatedField2;
-/**
- * An optional path that deserializes an empty string to `None`.
- */
-export type OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio1 = string;
-/**
- * In public-facing APIs, this must (if present) be equal to the repository used to create the ingest token used for authentication.
- *
- * In private cluster setups, Humio can be configured to allow these to be different.
- *
- * For more information, see [Humio’s Format of Data][humio_data_format].
- *
- * [humio_data_format]: https://docs.humio.com/integrations/data-shippers/hec/#format-of-data
- */
-export type OptionalNameOfTheRepositoryToIngestInto1 = null | ATemplatedField2;
-/**
- * Can be used to tag events by specifying fields starting with `#`.
- *
- * For more information, see [Humio’s Format of Data][humio_data_format].
- *
- * [humio_data_format]: https://docs.humio.com/integrations/data-shippers/hec/#format-of-data
- */
-export type EventFieldsToBeAddedToHumioSExtraFields1 = VectorLookupLookupV2ConfigValuePath[];
-/**
- * Typically the filename the metrics originated from. Maps to `@source` in Humio.
- */
-export type TheSourceOfEventsSentToThisSink1 = null | ATemplatedField2;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink16 = number | null;
 /**
  * This should be a full HTTP URI, including the scheme, host, and port.
  */
@@ -4974,25 +4019,6 @@ export type TheNameOfTheOrganizationToWriteInto = string;
  */
 export type TheTokenTokenDocsToAuthenticateWith = string;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink17 = number | null;
-/**
- * This namespace is only used if a metric has no existing namespace. When a namespace is
- * present, it is used as a prefix to the metric name, and separated with a period (`.`).
- */
-export type SetsTheDefaultNamespaceForAnyMetricsSent1 = string | null;
-/**
- * This should be a full HTTP URI, including the scheme, host, and port.
- */
-export type TheEndpointToSendDataTo1 = string;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink18 = number | null;
-/**
  * These are the servers in a Kafka cluster that a client should use to bootstrap its
  * connection to the cluster, allowing discovery of all the other hosts in the cluster.
  *
@@ -5017,18 +4043,6 @@ export type TheTopicNameToUseForHealthcheckIfOmittedTopicIsUsedThisOptionHelpsPr
  */
 export type TheLogFieldNameOrTagKeyToUseForTheTopicKey = null | string;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField22 = string;
-/**
  * Only `PLAIN`- and `SCRAM`-based mechanisms are supported when configuring SASL authentication using `sasl.*`. For
  * other mechanisms, `librdkafka_options.*` must be used directly to configure other `librdkafka`-specific values.
  * If using `sasl.kerberos.*` as an example, where `*` is `service.name`, `principal`, `kinit.md`, etc., then
@@ -5040,44 +4054,6 @@ export type ATemplatedField22 = string;
  * SASL authentication is not supported on Windows.
  */
 export type EnablesSASLAuthentication = boolean | null;
-export type TheURIComponentOfARequest4 = string;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField23 = string;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink19 = number | null;
-/**
- * Compression configuration.
- * Snappy compression implies sending push requests as Protocol Buffers.
- */
-export type CompressionConfiguration19 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-export type TheURIComponentOfARequest5 = string;
 /**
  * Some sources may generate events with timestamps that aren't in chronological order. Even though the
  * sink sorts the events before sending them to Loki, there is a chance that another event could come in
@@ -5104,19 +4080,7 @@ export type WhetherOrNotToRemoveTheTimestampFromTheEventPayload = boolean;
  *
  * [tenant_id]: https://grafana.com/docs/loki/latest/operations/multi-tenancy/
  */
-export type TheTenantIDTenantIdToSpecifyInRequestsToLoki = null | ATemplatedField2;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField24 = string;
+export type TheTenantIDTenantIdToSpecifyInRequestsToLoki = null | ATemplatedField;
 /**
  * Configuration of the authentication strategy when interacting with NATS.
  */
@@ -5213,57 +4177,12 @@ export type ANATSNameNatsConnectionNameAssignedToTheNATSConnection = string;
  */
 export type SendMessagesUsingJetstreamJetstream = boolean;
 /**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest8 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted8 = number;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField25 = string;
-/**
  * The URL must take the form of `nats://server:port`.
  * If the port is not specified it defaults to 4222.
  *
  * [nats_url]: https://docs.nats.io/using-nats/developer/connecting#nats-url
  */
 export type TheNATSURLNatsUrlToConnectTo = string;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink20 = number | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration20 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-export type TheURIComponentOfARequest6 = string;
 /**
  * TCP keepalive settings for socket-based components.
  */
@@ -5274,18 +4193,6 @@ export type CoreOptionOptionVectorCoreTcpTcpKeepaliveConfig = null | {
   time_secs?: number | null;
   [k: string]: unknown | undefined;
 };
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField26 = string;
 /**
  * The metrics are exposed at the typical Prometheus exporter path, `/metrics`.
  */
@@ -5338,106 +4245,17 @@ export type BearerAuthentication3 = 'bearer';
 /**
  * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
  */
-export type TheARNOfAnIAMRoleIamRoleToAssume4 = string | null;
-/**
- * [external_id]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
- */
-export type TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume4 = string | null;
-/**
- * If not set, this will default to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo6 = string | null;
-/**
- * Used to select AWS credentials from a provided credentials file.
- */
-export type TheCredentialsProfileToUse2 = string;
-/**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
 export type TheARNOfAnIAMRoleIamRoleToAssume5 = string;
-/**
- * [external_id]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
- */
-export type TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume5 = string | null;
-/**
- * Relevant when the default credentials chain or `assume_role` is used.
- */
-export type TimeoutForAssumingTheRoleInSeconds2 = number | null;
-/**
- * If not set, this defaults to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo7 = string | null;
-/**
- * Relevant when the default credentials chain or `assume_role` is used.
- */
-export type TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds2 = number | null;
-/**
- * If not set, this defaults to the configured region
- * for the service itself.
- *
- * [aws_region]: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
- */
-export type TheAWSRegionAwsRegionToSendSTSRequestsTo8 = string | null;
 /**
  * Configuration of the region/endpoint to use when interacting with an AWS service.
  */
 export type CoreOptionOptionVectorAwsRegionRegionOrEndpoint = null | VectorAwsRegionRegionOrEndpoint5;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink21 = number | null;
-/**
- * [dist_metric_docs]: https://vector.dev/docs/about/under-the-hood/architecture/data-model/metric/#distribution
- */
-export type DefaultBucketsToUseForAggregatingDistributionDistMetricDocsMetricsIntoHistograms1 = number[];
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration21 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
- * This namespace is only used if a metric has no existing namespace. When a namespace is
- * present, it is used as a prefix to the metric name, and separated with an underscore (`_`).
- *
- * It should follow the Prometheus [naming conventions][prom_naming_docs].
- *
- * [prom_naming_docs]: https://prometheus.io/docs/practices/naming/#metric-names
- */
-export type TheDefaultNamespaceForAnyMetricsSent1 = string | null;
-/**
- * The endpoint should include the scheme and the path to write to.
- */
-export type TheEndpointToSendDataTo2 = string;
-/**
- * [dist_metric_docs]: https://vector.dev/docs/about/under-the-hood/architecture/data-model/metric/#distribution
- */
-export type QuantilesToUseForAggregatingDistributionDistMetricDocsMetricsIntoASummary1 = number[];
-/**
  * If set, a header named `X-Scope-OrgID` is added to outgoing requests with the value of this setting.
  *
  * This may be used by Cortex or other remote services to identify the tenant making the request.
  */
-export type TheTenantIDToSend = null | ATemplatedField2;
+export type TheTenantIDToSend = null | ATemplatedField;
 /**
  * This can be used either for basic authentication (username/password) or JWT authentication.
  * When used for JWT, the value should be `token`.
@@ -5478,23 +4296,6 @@ export type VectorLookupLookupV2OptionalPathOptionalTargetPath = string;
  */
 export type TheLogFieldNameToUseForThePulsarPropertiesKey = null | VectorLookupLookupV2OptionalPathOptionalTargetPath;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField27 = string;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink22 = number | null;
-/**
  * This resembles a deque, where messages can be popped and pushed from either end.
  *
  * This is the default.
@@ -5510,18 +4311,6 @@ export type TheRedisChannelType = 'channel';
  */
 export type TheURLOfTheRedisEndpointToConnectTo = string;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField28 = string;
-/**
  * This pushes messages onto the tail of the list.
  *
  * This is the default.
@@ -5532,23 +4321,9 @@ export type UseTheRpushMethod = 'rpush';
  */
 export type UseTheLpushMethod = 'lpush';
 /**
- * After the first retry has failed, the fibonacci sequence is used to select future backoffs.
- */
-export type TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest9 = number;
-/**
- * Datadog highly recommends that you do not lower this value below the service's internal timeout, as this could
- * create orphaned requests, pile on retries, and result in duplicate data downstream.
- */
-export type TheTimeARequestCanTakeBeforeBeingAborted9 = number;
-/**
  * Setting this option overrides the `region` option.
  */
 export type TheEndpointToSendDataTo3 = string | null;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink23 = number | null;
 /**
  * This namespace is only used if a metric has no existing namespace. When a namespace is
  * present, it is used as a prefix to the metric name, and separated with a period (`.`).
@@ -5569,23 +4344,9 @@ export type TheAddressToConnectTo = string;
  */
 export type TheSizeOfTheSocketSSendBuffer = number | null;
 /**
- * Both IP address and hostname are accepted formats.
- *
- * The address _must_ include a port.
- */
-export type TheAddressToConnectTo1 = string;
-/**
- * If set, the value of the setting is passed via the `SO_SNDBUF` option.
- */
-export type TheSizeOfTheSocketSSendBuffer1 = number | null;
-/**
  * A file path.
  */
 export type TheUnixSocketPath = string;
-/**
- * A file path.
- */
-export type TheUnixSocketPath1 = string;
 /**
  * [splunk_indexer_ack_docs]: https://docs.splunk.com/Documentation/Splunk/8.2.3/Data/AboutHECIDXAck
  */
@@ -5596,17 +4357,6 @@ export type ControlsIfTheSinkIntegratesWithSplunkHECIndexerAcknowledgementsSplun
  */
 export type TheMaximumNumberOfPendingAcknowledgementsFromEventsSentToTheSplunkHECCollector = number;
 /**
- * When enabled for a sink, any source connected to that sink, where the source supports
- * end-to-end acknowledgements as well, waits for events to be acknowledged by **all
- * connected** sinks before acknowledging them at the source.
- *
- * Enabling or disabling acknowledgements at the sink level takes precedence over any global
- * [`acknowledgements`][global_acks] configuration.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- */
-export type WhetherOrNotEndToEndAcknowledgementsAreEnabled1 = boolean | null;
-/**
  * This option is only relevant to Splunk v8.x and above, and is only applied when
  * `endpoint_target` is set to `event`.
  *
@@ -5615,24 +4365,6 @@ export type WhetherOrNotEndToEndAcknowledgementsAreEnabled1 = boolean | null;
  * `yyyy-mm-dd hh:mm:ss`.
  */
 export type PassesTheAutoExtractTimestampOptionToSplunk = boolean | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration22 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * Wrapper for sensitive strings containing credentials
  */
@@ -5671,21 +4403,15 @@ export type OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToSplunk
 /**
  * If not specified, the default index defined within Splunk is used.
  */
-export type TheNameOfTheIndexToSendEventsTo = null | ATemplatedField2;
+export type TheNameOfTheIndexToSendEventsTo = null | ATemplatedField;
 /**
  * [splunk_field_index_docs]: https://docs.splunk.com/Documentation/Splunk/8.0.0/Data/IFXandHEC
  */
 export type FieldsToBeAddedToSplunkIndexSplunkFieldIndexDocs = VectorLookupLookupV2ConfigValuePath[];
 /**
- * This is typically the filename the logs originated from.
- *
- * If unset, the Splunk collector sets it.
- */
-export type TheSourceOfEventsSentToThisSink2 = null | ATemplatedField2;
-/**
  * If unset, Splunk defaults to `httpevent`.
  */
-export type TheSourcetypeOfEventsSentToThisSink = null | ATemplatedField2;
+export type TheSourcetypeOfEventsSentToThisSink = null | ATemplatedField;
 /**
  * By default, either the [global `log_schema.timestamp_key` option][global_timestamp_key] is used
  * if log events are Legacy namespaced, or the semantic meaning of "timestamp" is used, if defined.
@@ -5695,95 +4421,13 @@ export type TheSourcetypeOfEventsSentToThisSink = null | ATemplatedField2;
 export type OverridesTheNameOfTheLogFieldUsedToRetrieveTheTimestampToSendToSplunkHECWhenSetToATimestampIsNotSetInTheEventsSentToSplunkHEC =
   null | VectorLookupLookupV2OptionalPathOptionalTargetPath;
 /**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration23 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
-/**
- * This namespace is only used if a metric has no existing namespace. When a namespace is
- * present, it is used as a prefix to the metric name, and separated with a period (`.`).
- */
-export type SetsTheDefaultNamespaceForAnyMetricsSent3 = string | null;
-/**
- * Wrapper for sensitive strings containing credentials
- */
-export type DefaultSplunkHECToken1 = string;
-/**
- * The scheme (`http` or `https`) must be specified. No path should be included since the paths defined
- * by the [`Splunk`][splunk] API are used.
- *
- * [splunk]: https://docs.splunk.com/Documentation/Splunk/8.0.0/Data/HECRESTendpoints
- */
-export type TheBaseURLOfTheSplunkInstance1 = string;
-/**
  * An optional path that deserializes an empty string to `None`.
  */
 export type OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToSplunkHEC1 = string;
 /**
  * If not specified, the default index defined within Splunk is used.
  */
-export type TheNameOfTheIndexWhereToSendTheEventsTo = null | ATemplatedField2;
-/**
- * This is typically the filename the logs originated from.
- *
- * If unset, the Splunk collector sets it.
- */
-export type TheSourceOfEventsSentToThisSink3 = null | ATemplatedField2;
-/**
- * If unset, Splunk defaults to `httpevent`.
- */
-export type TheSourcetypeOfEventsSentToThisSink1 = null | ATemplatedField2;
-/**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink24 = number | null;
-/**
- * This namespace is only used if a metric has no existing namespace. When a namespace is
- * present, it is used as a prefix to the metric name, and separated with a period (`.`).
- */
-export type SetsTheDefaultNamespaceForAnyMetricsSent4 = string | null;
-/**
- * Both IP addresses and hostnames/fully qualified domain names (FQDNs) are accepted formats.
- *
- * The address _must_ include a port.
- */
-export type TheAddressToConnectTo2 = string;
-/**
- * If set, the value of the setting is passed via the `SO_SNDBUF` option.
- */
-export type TheSizeOfTheSocketSSendBuffer2 = number | null;
-/**
- * Both IP addresses and hostnames/fully qualified domain names (FQDNs) are accepted formats.
- *
- * The address _must_ include a port.
- */
-export type TheAddressToConnectTo3 = string;
-/**
- * If set, the value of the setting is passed via the `SO_SNDBUF` option.
- */
-export type TheSizeOfTheSocketSSendBuffer3 = number | null;
-/**
- * A file path.
- */
-export type TheUnixSocketPath2 = string;
-/**
- * If set, the value of the setting is passed via the `SO_SNDBUF` option.
- */
-export type TheSizeOfTheSocketSSendBuffer4 = number | null;
+export type TheNameOfTheIndexWhereToSendTheEventsTo = null | ATemplatedField;
 /**
  * Both IP address and hostname are accepted formats.
  *
@@ -5791,34 +4435,11 @@ export type TheSizeOfTheSocketSSendBuffer4 = number | null;
  */
 export type TheDownstreamVectorAddressToWhichToConnect = string;
 /**
- * This is based on the uncompressed size of the batched events, before they are
- * serialized/compressed.
- */
-export type TheMaximumSizeOfABatchThatIsProcessedByASink25 = number | null;
-/**
  * If set to `true`, requests are compressed with [`gzip`][gzip_docs].
  *
  * [gzip_docs]: https://www.gzip.org/
  */
 export type WhetherOrNotToCompressRequests = boolean;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration24 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression1
-        | ZlibZlibCompression1
-        | ZstandardZstdCompression1
-        | SnappySnappyCompression1;
-      level?: VectorSinksUtilBufferCompressionCompressionLevel;
-      [k: string]: unknown | undefined;
-    };
 /**
  * The endpoint is the HDFS's web restful HTTP API endpoint.
  *
@@ -5900,7 +4521,7 @@ export type VectorConfigSourceSourceOuter =
         })
       | (({
           acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource2;
-          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup3;
+          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
           /**
            * Configuration of the authentication strategy for interacting with AWS services.
            */
@@ -5922,7 +4543,7 @@ export type VectorConfigSourceSourceOuter =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -5942,7 +4563,7 @@ export type VectorConfigSourceSourceOuter =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -5965,13 +4586,13 @@ export type VectorConfigSourceSourceOuter =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
           /**
            * The compression scheme used for decompressing objects retrieved from S3.
            */
-          compression?: AutomaticallyAttemptToDetermineTheCompressionScheme1 | 'none' | 'gzip' | 'zstd';
+          compression?: AutomaticallyAttemptToDetermineTheCompressionScheme | 'none' | 'gzip' | 'zstd';
           /**
            * Configures how events are decoded from raw bytes.
            */
@@ -5992,7 +4613,7 @@ export type VectorConfigSourceSourceOuter =
             | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
             | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
             | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          framing?: FramingConfiguration2;
+          framing?: FramingConfiguration;
           /**
            * The namespace to use for logs. This overrides the global setting.
            */
@@ -6061,7 +4682,7 @@ export type VectorConfigSourceSourceOuter =
             | AuthenticateUsingCredentialsStoredInAFile
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -6081,7 +4702,7 @@ export type VectorConfigSourceSourceOuter =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -6104,10 +4725,10 @@ export type VectorConfigSourceSourceOuter =
                   [k: string]: unknown | undefined;
                 };
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               };
-          client_concurrency?: NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages1;
+          client_concurrency?: NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages;
           /**
            * Configures how events are decoded from raw bytes.
            */
@@ -6128,19 +4749,19 @@ export type VectorConfigSourceSourceOuter =
             | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
             | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
             | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          delete_message?: WhetherToDeleteTheMessageOnceItIsProcessed1;
-          framing?: FramingConfiguration3;
+          delete_message?: WhetherToDeleteTheMessageOnceItIsProcessed;
+          framing?: FramingConfiguration;
           /**
            * The namespace to use for logs. This overrides the global setting.
            */
           log_namespace?: boolean | null;
-          poll_secs?: HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds1;
+          poll_secs?: HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds;
           /**
            * The URL of the SQS queue to poll for messages.
            */
           queue_url: string;
           tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
-          visibility_timeout_secs?: TheVisibilityTimeoutToUseForMessagesInSeconds1;
+          visibility_timeout_secs?: TheVisibilityTimeoutToUseForMessagesInSeconds;
           [k: string]: unknown | undefined;
         } & VectorAwsRegionRegionOrEndpoint7) & {
           /**
@@ -6178,7 +4799,7 @@ export type VectorConfigSourceSourceOuter =
             | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
             | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
             | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          framing?: FramingConfiguration5;
+          framing?: FramingConfiguration;
           interval?: TheAmountOfTimeInSecondsToPauseBetweenEachBatchOfOutputLines;
           /**
            * The namespace to use for logs. This overrides the global setting.
@@ -6352,7 +4973,7 @@ export type VectorConfigSourceSourceOuter =
            * The endpoint from which to pull data.
            */
           endpoint?: string;
-          framing?: FramingConfiguration8;
+          framing?: FramingConfiguration;
           full_response_size?: TheNumberOfMessagesInAResponseToMarkAStreamAsBusyThisIsUsedToDetermineIfMoreStreamsShouldBeStarted;
           /**
            * The amount of time, in seconds, with no received activity
@@ -6458,7 +5079,7 @@ export type VectorConfigSourceSourceOuter =
       | (({
           acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource11;
           auto_offset_reset?: IfOffsetsForConsumerGroupDoNotExistSetThemUsingThisStrategy;
-          bootstrap_servers: ACommaSeparatedListOfKafkaBootstrapServers1;
+          bootstrap_servers: ACommaSeparatedListOfKafkaBootstrapServers;
           /**
            * The frequency that the consumer offsets are committed (written) to offset storage.
            */
@@ -6488,7 +5109,7 @@ export type VectorConfigSourceSourceOuter =
            * Maximum time the broker may wait to fill the response.
            */
           fetch_wait_max_ms?: number;
-          framing?: FramingConfiguration11;
+          framing?: FramingConfiguration;
           /**
            * The consumer group name to be used to consume events from Kafka.
            */
@@ -6616,7 +5237,7 @@ export type VectorConfigSourceSourceOuter =
         })
       | ((
           | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation3;
+              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
               /**
                * The maximum number of TCP connections that are allowed at any given time.
                */
@@ -6648,9 +5269,9 @@ export type VectorConfigSourceSourceOuter =
                * The namespace to use for logs. This overrides the global setting.
                */
               log_namespace?: boolean | null;
-              max_connection_duration_secs?: MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed1;
+              max_connection_duration_secs?: MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed;
               permit_origin?: CoreOptionOptionVectorCoreIpallowlistIpAllowlistConfig;
-              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent1;
+              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
               /**
                * The size of the receive buffer used for each connection.
                */
@@ -6669,7 +5290,7 @@ export type VectorConfigSourceSourceOuter =
               [k: string]: unknown | undefined;
             })
           | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation4;
+              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
               /**
                * Configures how events are decoded from raw bytes.
                */
@@ -6691,13 +5312,13 @@ export type VectorConfigSourceSourceOuter =
                 | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
                 | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
               framing?: FramingConfiguration6;
-              host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent1;
+              host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
               /**
                * The namespace to use for logs. This overrides the global setting.
                */
               log_namespace?: boolean | null;
               max_length?: TheMaximumBufferSizeOfIncomingMessages;
-              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent2;
+              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
               /**
                * The size of the receive buffer used for the listening socket.
                */
@@ -6737,8 +5358,8 @@ export type VectorConfigSourceSourceOuter =
                * The namespace to use for logs. This overrides the global setting.
                */
               log_namespace?: boolean | null;
-              path: TheUnixSocketPath3;
-              socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions1;
+              path: TheUnixSocketPath;
+              socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
               [k: string]: unknown | undefined;
             } & {
               /**
@@ -6774,8 +5395,8 @@ export type VectorConfigSourceSourceOuter =
                * The namespace to use for logs. This overrides the global setting.
                */
               log_namespace?: boolean | null;
-              path: TheUnixSocketPath4;
-              socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions2;
+              path: TheUnixSocketPath;
+              socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
               [k: string]: unknown | undefined;
             } & {
               /**
@@ -6807,7 +5428,7 @@ export type VectorConfigSourceSourceOuter =
         })
       | ((
           | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation5;
+              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
               /**
                * The maximum number of TCP connections that are allowed at any given time.
                */
@@ -6853,7 +5474,7 @@ export type VectorConfigSourceSourceOuter =
               [k: string]: unknown | undefined;
             })
           | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation6;
+              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
               /**
                * The size of the receive buffer used for each connection.
                */
@@ -6868,7 +5489,7 @@ export type VectorConfigSourceSourceOuter =
               [k: string]: unknown | undefined;
             })
           | ({
-              path: TheUnixSocketPath5;
+              path: TheUnixSocketPath;
               sanitize?: boolean;
               [k: string]: unknown | undefined;
             } & {
@@ -6893,7 +5514,7 @@ export type VectorConfigSourceSourceOuter =
           [k: string]: unknown | undefined;
         })
       | (({
-          host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent4;
+          host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
           /**
            * The namespace to use for logs. This overrides the global setting.
            */
@@ -6902,7 +5523,7 @@ export type VectorConfigSourceSourceOuter =
           [k: string]: unknown | undefined;
         } & (
           | {
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation7;
+              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
               /**
                * The maximum number of TCP connections that are allowed at any given time.
                */
@@ -6913,12 +5534,12 @@ export type VectorConfigSourceSourceOuter =
                */
               mode: 'tcp';
               permit_origin?: CoreOptionOptionVectorCoreIpallowlistIpAllowlistConfig;
-              receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForEachConnection1;
+              receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForEachConnection;
               tls?: CoreOptionOptionVectorCoreTlsSettingsTlsSourceConfig;
               [k: string]: unknown | undefined;
             }
           | {
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation8;
+              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
               /**
                * Listen on UDP.
                */
@@ -7074,7 +5695,7 @@ export type DecodesTheRawBytesAsASyslogMessage = {
    * Syslog-specific decoding options.
    */
   syslog?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing1;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -7082,12 +5703,6 @@ export type DecodesTheRawBytesAsASyslogMessage = {
   codec: DecodesTheRawBytesAsASyslogMessage1;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing1 = boolean;
 /**
  * Decodes either as the [RFC 3164][rfc3164]-style format ("old" style) or the
  * [RFC 5424][rfc5424]-style format ("new" style, includes structured data).
@@ -7114,7 +5729,7 @@ export type DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson = {
    * Vector's native JSON-specific decoding options.
    */
   native_json?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing2;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -7122,12 +5737,6 @@ export type DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson = {
   codec: DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson1;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing2 = boolean;
 /**
  * This codec is **[experimental][experimental]**.
  *
@@ -7156,7 +5765,7 @@ export type DecodesTheRawBytesAsAGELFGelfMessage = {
    * GELF-specific decoding options.
    */
   gelf?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing3;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -7164,12 +5773,6 @@ export type DecodesTheRawBytesAsAGELFGelfMessage = {
   codec: DecodesTheRawBytesAsAGELFGelfMessage1;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing3 = boolean;
 /**
  * This codec is experimental for the following reason:
  *
@@ -7195,7 +5798,7 @@ export type DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage = {
    * Influxdb-specific decoding options.
    */
   influxdb?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing4;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -7203,12 +5806,6 @@ export type DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage = {
   codec: DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage1;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing4 = boolean;
 /**
  * [influxdb]: https://docs.influxdata.com/influxdb/cloud/reference/syntax/line-protocol
  */
@@ -7298,7 +5895,7 @@ export type FramingConfiguration =
        * Options for the newline delimited decoder.
        */
       newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
+        max_length?: TheMaximumLengthOfTheByteBuffer;
         [k: string]: unknown | undefined;
       };
       [k: string]: unknown | undefined;
@@ -7323,18 +5920,6 @@ export type FramingConfiguration =
  * ensures that processing is not actually unbounded.
  */
 export type TheMaximumLengthOfTheByteBuffer = number | null;
-/**
- * This length does *not* include the trailing delimiter.
- *
- * By default, there is no maximum length enforced. If events are malformed, this can lead to
- * additional resource usage as events continue to be buffered in memory, and can potentially
- * lead to memory exhaustion in extreme cases.
- *
- * If there is a risk of processing malformed data, such as logs with user-controlled input,
- * consider setting the maximum length to a reasonably large value as a safety net. This
- * ensures that processing is not actually unbounded.
- */
-export type TheMaximumLengthOfTheByteBuffer1 = number | null;
 /**
  * [octet_counting]: https://tools.ietf.org/html/rfc6587#section-3.4.1
  */
@@ -7417,10 +6002,6 @@ export type TheNamespaceOfTheMetric = string;
  */
 export type BaseURIOfTheTaskMetadataEndpoint = string;
 /**
- * Disabled if empty.
- */
-export type TheNamespaceOfTheMetric1 = string;
-/**
  * If empty, the version is automatically discovered based on environment variables.
  *
  * By default:
@@ -7459,67 +6040,6 @@ export type AnAccessKeyToAuthenticateRequestsAgainst = null | VectorCommonSensit
  * configured, `access_keys` should be set to the same value. Otherwise, all requests are allowed.
  */
 export type AListOfAccessKeysToAuthenticateRequestsAgainst = VectorCommonSensitiveStringSensitiveString[] | null;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration1 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * A value of 0.1 means that the actual duration will be between 90% and 110% of the
  * specified maximum duration.
@@ -7564,78 +6084,6 @@ export type AutomaticallyAttemptToDetermineTheCompressionScheme = 'auto';
  * event secrets as "aws_kinesis_firehose_access_key".
  */
 export type WhetherOrNotToStoreTheAWSFirehoseAccessKeyInEventSecrets = boolean;
-/**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
-export type TheARNOfAnIAMRoleIamRoleToAssumeAtStartup3 = string | null;
-/**
- * The compression scheme of the object is determined from its `Content-Encoding` and
- * `Content-Type` metadata, as well as the key suffix (for example, `.gz`).
- *
- * It is set to `none` if the compression scheme cannot be determined.
- */
-export type AutomaticallyAttemptToDetermineTheCompressionScheme1 = 'auto';
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration2 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * If not specified, multiline aggregation is disabled.
  */
@@ -7744,157 +6192,9 @@ export type TheReadTimeoutForAWSRequests = number | null;
  */
 export type ConsumesObjectsByProcessingBucketNotificationEventsSentToAnAWSSQSQueueAwsSqs = 'sqs';
 /**
- * Defaults to the number of available CPUs on the system.
- *
- * Should not typically need to be changed, but it can sometimes be beneficial to raise this
- * value when there is a high rate of messages being pushed into the queue and the messages
- * being fetched are small. In these cases, system resources may not be fully utilized without
- * fetching more messages per second, as it spends more time fetching the messages than
- * processing them.
- */
-export type NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages1 = number | null;
-/**
- * It can be useful to set this to `false` for debugging or during the initial setup.
- */
-export type WhetherToDeleteTheMessageOnceItIsProcessed1 = boolean;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration3 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
-/**
- * Generally, this should not be changed unless instructed to do so, as if messages are available,
- * they are always consumed, regardless of the value of `poll_secs`.
- */
-export type HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds1 = number;
-/**
- * This controls how long a message is left unavailable after it is received. If a message is received, and
- * takes longer than `visibility_timeout_secs` to process and delete the message from the queue, it is made available again for another consumer.
- *
- * This can happen if there is an issue between consuming a message and deleting it.
- */
-export type TheVisibilityTimeoutToUseForMessagesInSeconds1 = number;
-/**
  * It _must_ include a port.
  */
 export type TheSocketAddressToAcceptConnectionsOn = string;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration4 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * For a source component named `agent`, the received logs, metrics (beta), and traces (alpha) can then be
  * configured as input to other components by specifying `agent.logs`, `agent.metrics`, and
@@ -7905,67 +6205,6 @@ export type IfThisIsSetToTrueLogsMetricsBetaAndTracesAlphaAreSentToDifferentOutp
  * By default, the source continuously prints logs (infinitely).
  */
 export type TheTotalNumberOfLinesToOutput = number;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration5 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * The default is one batch per second. To remove the delay and output batches as quickly as possible, set
  * `interval` to `0.0`.
@@ -8103,19 +6342,6 @@ export type AListOfImageNamesToMatchAgainst = string[] | null;
  */
 export type AListOfContainerObjectLabelsToMatchAgainstWhenFilteringRunningContainers = string[] | null;
 /**
- * If not specified, multiline aggregation is disabled.
- */
-export type MultilineAggregationConfiguration1 = null | {
-  condition_pattern: RegularExpressionPatternThatIsUsedToDetermineWhetherOrNotMoreLinesShouldBeRead;
-  mode: AggregationMode;
-  /**
-   * Regular expression pattern that is used to match the start of a new message.
-   */
-  start_pattern: string;
-  timeout_ms: TheMaximumAmountOfTimeToWaitForTheNextAdditionalLineInMilliseconds;
-  [k: string]: unknown | undefined;
-};
-/**
  * If `auto_partial_merge` is disabled, partial events are emitted with a log field, set by this
  * configuration value, indicating that the event is not complete.
  */
@@ -8159,7 +6385,7 @@ export type FramingConfiguration7 =
          * The character that delimits byte sequences.
          */
         delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer2;
+        max_length?: TheMaximumLengthOfTheByteBuffer;
         [k: string]: unknown | undefined;
       };
       [k: string]: unknown | undefined;
@@ -8185,7 +6411,7 @@ export type FramingConfiguration7 =
        * Options for the newline delimited decoder.
        */
       newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer3;
+        max_length?: TheMaximumLengthOfTheByteBuffer;
         [k: string]: unknown | undefined;
       };
       [k: string]: unknown | undefined;
@@ -8198,30 +6424,6 @@ export type FramingConfiguration7 =
     })
   | ByteFramesAccordingToTheOctetCountingOctetCountingFormat2
   | ByteFramesWhichAreChunkedGELFMessages2;
-/**
- * This length does *not* include the trailing delimiter.
- *
- * By default, there is no maximum length enforced. If events are malformed, this can lead to
- * additional resource usage as events continue to be buffered in memory, and can potentially
- * lead to memory exhaustion in extreme cases.
- *
- * If there is a risk of processing malformed data, such as logs with user-controlled input,
- * consider setting the maximum length to a reasonably large value as a safety net. This
- * ensures that processing is not actually unbounded.
- */
-export type TheMaximumLengthOfTheByteBuffer2 = number | null;
-/**
- * This length does *not* include the trailing delimiter.
- *
- * By default, there is no maximum length enforced. If events are malformed, this can lead to
- * additional resource usage as events continue to be buffered in memory, and can potentially
- * lead to memory exhaustion in extreme cases.
- *
- * If there is a risk of processing malformed data, such as logs with user-controlled input,
- * consider setting the maximum length to a reasonably large value as a safety net. This
- * ensures that processing is not actually unbounded.
- */
-export type TheMaximumLengthOfTheByteBuffer3 = number | null;
 /**
  * [octet_counting]: https://tools.ietf.org/html/rfc6587#section-3.4.1
  */
@@ -8257,7 +6459,7 @@ export type ByteFramesWhichAreChunkedGELFMessages2 = {
      * Decompression configuration for GELF messages.
      */
     decompression?: 'Auto' | 'Gzip' | 'Zlib' | 'None';
-    max_length?: TheMaximumLengthOfASingleGELFMessageInBytesMessagesLongerThanThisLengthWillBeDroppedIfThisOptionIsNotSetTheDecoderDoesNotLimitTheLengthOfMessagesAndThePerMessageMemoryIsUnbounded1;
+    max_length?: TheMaximumLengthOfASingleGELFMessageInBytesMessagesLongerThanThisLengthWillBeDroppedIfThisOptionIsNotSetTheDecoderDoesNotLimitTheLengthOfMessagesAndThePerMessageMemoryIsUnbounded;
     /**
      * The maximum number of pending incomplete messages. If this limit is reached, the decoder starts
      * dropping chunks of new messages, ensuring the memory usage of the decoder's state is bounded.
@@ -8277,15 +6479,6 @@ export type ByteFramesWhichAreChunkedGELFMessages2 = {
   method: ByteFramesWhichAreChunkedGELFMessages3;
   [k: string]: unknown | undefined;
 };
-/**
- * Note that a message can be composed of multiple chunks and this limit is applied to the whole
- * message, not to individual chunks.
- *
- * This limit takes only into account the message's payload and the GELF header bytes are excluded from the calculation.
- * The message's payload is the concatenation of all the chunks' payloads.
- */
-export type TheMaximumLengthOfASingleGELFMessageInBytesMessagesLongerThanThisLengthWillBeDroppedIfThisOptionIsNotSetTheDecoderDoesNotLimitTheLengthOfMessagesAndThePerMessageMemoryIsUnbounded1 =
-  number | null;
 /**
  * [chunked_gelf]: https://go2docs.graylog.org/current/getting_in_log_data/gelf.html
  */
@@ -8367,15 +6560,6 @@ export type UseTheDeviceAndInodeInodeAsTheIdentifier1 = 'device_and_inode';
  */
 export type TheDelayBetweenFileDiscoveryCalls = number;
 /**
- * By default, the [global `log_schema.host_key` option][global_host_key] is used.
- *
- * Set to `""` to suppress this key.
- *
- * [global_host_key]: https://vector.dev/docs/reference/configuration/global-options/#log_schema.host_key
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent1 =
-  null | VectorLookupLookupV2OptionalPathOptionalValuePath;
-/**
  * Checkpoints are still written normally.
  */
 export type WhetherOrNotToIgnoreExistingCheckpointsWhenDeterminingWhereToStartReadingAFile = boolean | null;
@@ -8394,19 +6578,6 @@ export type TheMaximumSizeOfALineBeforeItIsDiscarded = number;
 export type MaxAmountOfBytesToReadFromASingleFileBeforeSwitchingOverToTheNextFileNoteThisDoesNotApplyWhenOldestFirstIsTrue =
   number;
 /**
- * If not specified, multiline aggregation is disabled.
- */
-export type MultilineAggregationConfiguration2 = null | {
-  condition_pattern: RegularExpressionPatternThatIsUsedToDetermineWhetherOrNotMoreLinesShouldBeRead;
-  mode: AggregationMode;
-  /**
-   * Regular expression pattern that is used to match the start of a new message.
-   */
-  start_pattern: string;
-  timeout_ms: TheMaximumAmountOfTimeToWaitForTheNextAdditionalLineInMilliseconds;
-  [k: string]: unknown | undefined;
-};
-/**
  * The value is the byte offset of the start of the line within the file.
  *
  * Off by default, the offset is only added to the event if this is set.
@@ -8418,19 +6589,9 @@ export type EnablesAddingTheFileOffsetToEachEventAndSetsTheNameOfTheLogFieldUsed
  */
 export type AfterReachingEOFTheNumberOfSecondsToWaitBeforeRemovingTheFileUnlessNewDataIsWritten = number | null;
 /**
- * By default, the [global `host_key` option](https://vector.dev/docs/reference/configuration//global-options#log_schema.host_key) is used.
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent2 =
-  null | VectorLookupLookupV2OptionalPathOptionalValuePath;
-/**
  * Messages larger than this are truncated.
  */
 export type TheMaximumBufferSizeInBytesOfIncomingMessages = number;
-/**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation1 =
-  string;
 /**
  * This generally should not need to be changed.
  */
@@ -8443,67 +6604,6 @@ export type TheAcknowledgementDeadlineInSecondsToUseForThisStream = number | nul
  * Messages that are not acknowledged when this deadline expires may be retransmitted.
  */
 export type TheAcknowledgementDeadlineInSecondsToUseForThisStream1 = number;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration8 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * The GCP Pub/Sub servers send responses with 100 or more messages when
  * the subscription is busy.
@@ -8523,67 +6623,6 @@ export type CoreOptionOptionVectorSourcesUtilHttpAuthHttpSourceAuthConfig = null
   username: string;
   [k: string]: unknown | undefined;
 };
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration9 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * Accepts the wildcard (`*`) character for query parameters matching a specified pattern.
  *
@@ -8621,24 +6660,7 @@ export type ACompiledUnixShellStylePattern = string;
 /**
  * The patterns are matched using globbing.
  */
-export type AnyPatternsWhichShouldBeIncluded = ACompiledUnixShellStylePattern1[] | null;
-/**
- * - `?` matches any single character.
- * - `*` matches any (possibly empty) sequence of characters.
- * - `**` matches the current directory and arbitrary subdirectories. This sequence must form a single path component,
- *   so both `**a` and `b**` are invalid and will result in an error. A sequence of more than two consecutive `*`
- *   characters is also invalid.
- * - `[...]` matches any character inside the brackets. Character sequences can also specify ranges of characters, as
- *   ordered by Unicode, so e.g. `[0-9]` specifies any character between 0 and 9 inclusive. An unclosed bracket is
- *   invalid.
- * - `[!...]` is the negation of `[...]`, i.e. it matches any characters not in the brackets.
- *
- * The metacharacters `?`, `*`, `[`, `]` can be matched by using brackets (e.g. `[?]`). When a `]` occurs immediately
- * following `[` or `[!` then it is interpreted as being part of, rather then ending, the character set, so `]` and NOT
- * `]` can be matched by `[]]` and `[!]]` respectively. The `-` character can be specified inside a character sequence
- * pattern by placing it at the start or the end, e.g. `[abc-]`.
- */
-export type ACompiledUnixShellStylePattern1 = string;
+export type AnyPatternsWhichShouldBeIncluded = ACompiledUnixShellStylePattern[] | null;
 /**
  * A value of `1` means the root or named cgroup.
  */
@@ -8675,7 +6697,7 @@ export type DecodesTheRawBytesAsJSONJson2 = {
    * JSON-specific decoding options.
    */
   json?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing5;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -8683,12 +6705,6 @@ export type DecodesTheRawBytesAsJSONJson2 = {
   codec: DecodesTheRawBytesAsJSONJson3;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing5 = boolean;
 /**
  * [json]: https://www.json.org/
  */
@@ -8732,7 +6748,7 @@ export type DecodesTheRawBytesAsASyslogMessage2 = {
    * Syslog-specific decoding options.
    */
   syslog?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing6;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -8740,12 +6756,6 @@ export type DecodesTheRawBytesAsASyslogMessage2 = {
   codec: DecodesTheRawBytesAsASyslogMessage3;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing6 = boolean;
 /**
  * Decodes either as the [RFC 3164][rfc3164]-style format ("old" style) or the
  * [RFC 5424][rfc5424]-style format ("new" style, includes structured data).
@@ -8772,7 +6782,7 @@ export type DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson2 = {
    * Vector's native JSON-specific decoding options.
    */
   native_json?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing7;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -8780,12 +6790,6 @@ export type DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson2 = {
   codec: DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson3;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing7 = boolean;
 /**
  * This codec is **[experimental][experimental]**.
  *
@@ -8814,7 +6818,7 @@ export type DecodesTheRawBytesAsAGELFGelfMessage2 = {
    * GELF-specific decoding options.
    */
   gelf?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing8;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -8822,12 +6826,6 @@ export type DecodesTheRawBytesAsAGELFGelfMessage2 = {
   codec: DecodesTheRawBytesAsAGELFGelfMessage3;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing8 = boolean;
 /**
  * This codec is experimental for the following reason:
  *
@@ -8853,7 +6851,7 @@ export type DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage2 = {
    * Influxdb-specific decoding options.
    */
   influxdb?: {
-    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing9;
+    lossy?: DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -8861,12 +6859,6 @@ export type DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage2 = {
   codec: DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage3;
   [k: string]: unknown | undefined;
 };
-/**
- * When true, invalid UTF-8 sequences are replaced with the [`U+FFFD REPLACEMENT CHARACTER`][U+FFFD].
- *
- * [U+FFFD]: https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character
- */
-export type DeterminesWhetherOrNotToReplaceInvalidUTF8SequencesInsteadOfFailing9 = boolean;
 /**
  * [influxdb]: https://docs.influxdata.com/influxdb/cloud/reference/syntax/line-protocol
  */
@@ -8883,8 +6875,8 @@ export type DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram2 = {
    * VRL-specific decoding options.
    */
   vrl: {
-    source: TheVectorRemapLanguageVrlVRLProgramToExecuteForEachEventNoteThatTheFinalContentsOfTheTargetWillBeUsedAsTheDecodingResultCompilationErrorOrUseOfAbortInAProgramWillResultInADecodingError1;
-    timezone?: TheNameOfTheTimezoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZoneTheTimeZoneNameMayBeAnyNameInTheTZDatabaseTzDatabaseOrLocalToIndicateSystemLocalTime1;
+    source: TheVectorRemapLanguageVrlVRLProgramToExecuteForEachEventNoteThatTheFinalContentsOfTheTargetWillBeUsedAsTheDecodingResultCompilationErrorOrUseOfAbortInAProgramWillResultInADecodingError;
+    timezone?: TheNameOfTheTimezoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZoneTheTimeZoneNameMayBeAnyNameInTheTZDatabaseTzDatabaseOrLocalToIndicateSystemLocalTime;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -8892,18 +6884,6 @@ export type DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram2 = {
   codec: DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram3;
   [k: string]: unknown | undefined;
 };
-/**
- * [vrl]: https://vector.dev/docs/reference/vrl
- */
-export type TheVectorRemapLanguageVrlVRLProgramToExecuteForEachEventNoteThatTheFinalContentsOfTheTargetWillBeUsedAsTheDecodingResultCompilationErrorOrUseOfAbortInAProgramWillResultInADecodingError1 =
-  string;
-/**
- * If not set, `local` will be used.
- *
- * [tz_database]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
- */
-export type TheNameOfTheTimezoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZoneTheTimeZoneNameMayBeAnyNameInTheTZDatabaseTzDatabaseOrLocalToIndicateSystemLocalTime1 =
-  null | TimezoneToUseForAnyDateSpecifiersInTemplateStrings1;
 /**
  * [vrl]: https://vector.dev/docs/reference/vrl
  */
@@ -8921,14 +6901,6 @@ export type TheExpectedEncodingOfReceivedData = null | ('text' | 'ndjson' | 'jso
  */
 export type AListOfHTTPHeadersToIncludeInTheLogEvent = string[];
 /**
- * Accepts the wildcard (`*`) character for query parameters matching a specified pattern.
- *
- * Specifying "*" results in all query parameters included in the log event.
- *
- * These override any values included in the body with conflicting names.
- */
-export type AListOfURLQueryParametersToIncludeInTheLogEvent1 = string[];
-/**
  * If set to `true`, only requests using the exact URL path specified in `path` are accepted. Otherwise,
  * requests sent to a URL path that starts with the value of `path` are accepted.
  *
@@ -8937,83 +6909,9 @@ export type AListOfURLQueryParametersToIncludeInTheLogEvent1 = string[];
  */
 export type WhetherOrNotToTreatTheConfiguredPathAsAnAbsolutePath = boolean;
 /**
- * HTTP authentication should be used with HTTPS only, as the authentication credentials are passed as an
- * HTTP header without any additional encryption beyond what is provided by the transport itself.
- */
-export type ConfigurationOfTheAuthenticationStrategyForHTTPRequests3 =
-  null | ConfigurationOfTheAuthenticationStrategyForHTTPRequests1;
-/**
  * The full path must be specified.
  */
 export type TheHTTPEndpointToCollectEventsFrom = string;
-/**
- * Framing to use in the decoding.
- */
-export type FramingConfiguration10 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
-/**
- * By default, the [global `log_schema.host_key` option][global_host_key] is used.
- *
- * Set to `""` to suppress this key.
- *
- * [global_host_key]: https://vector.dev/docs/reference/configuration/global-options/#log_schema.host_key
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent3 =
-  null | VectorLookupLookupV2OptionalPathOptionalValuePath;
 /**
  * An optional path that deserializes an empty string to `None`.
  */
@@ -9037,15 +6935,6 @@ export type SetsTheNameOfTheTagToUseToAddTheCurrentProcessIDToEachMetric = strin
  * This option limits the size of the batch.
  */
 export type TheSystemdJournalIsReadInBatchesAndACheckpointIsSetAtTheEndOfEachBatch = number;
-/**
- * By default, the [global `data_dir` option][global_data_dir] is used.
- * Make sure the running user has write permissions to this directory.
- *
- * If this directory is specified, then Vector will attempt to create it.
- *
- * [global_data_dir]: https://vector.dev/docs/reference/configuration/global-options/#data_dir
- */
-export type TheDirectoryUsedToPersistFileCheckpointPositions1 = null | StdlibPathBuf;
 /**
  * [cursor]: https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html#Address%20Fields
  * [get_cursor]: https://www.freedesktop.org/software/systemd/man/latest/sd_journal_get_cursor.html
@@ -9091,13 +6980,6 @@ export type EnablesRemappingThePRIORITYFieldFromAnIntegerToStringValue = boolean
  */
 export type IfOffsetsForConsumerGroupDoNotExistSetThemUsingThisStrategy = string;
 /**
- * These are the servers in a Kafka cluster that a client should use to bootstrap its connection to the cluster,
- * allowing discovery of all the other hosts in the cluster.
- *
- * Must be in the form of `host:port`, and comma-separated.
- */
-export type ACommaSeparatedListOfKafkaBootstrapServers1 = string;
-/**
  * When Vector shuts down or the Kafka consumer group revokes partitions from this
  * consumer, wait a maximum of `drain_timeout_ms` for the source to
  * process pending acknowledgements. Must be less than `session_timeout_ms`
@@ -9106,67 +6988,6 @@ export type ACommaSeparatedListOfKafkaBootstrapServers1 = string;
  * Default value is half of `session_timeout_ms`.
  */
 export type TimeoutToDrainPendingAcknowledgementsDuringShutdownOrAKafkaConsumerGroupRebalance = number | null;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration11 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * An optional path that deserializes an empty string to `None`.
  */
@@ -9203,15 +7024,6 @@ export type TheKafkaTopicsNamesToReadEventsFrom = string[];
  */
 export type WhetherOrNotToAutomaticallyMergePartialEvents = boolean;
 /**
- * By default, the [global `data_dir` option][global_data_dir] is used.
- * Make sure the running user has write permissions to this directory.
- *
- * If this directory is specified, then Vector will attempt to create it.
- *
- * [global_data_dir]: https://vector.dev/docs/reference/configuration/global-options/#data_dir
- */
-export type TheDirectoryUsedToPersistFileCheckpointPositions2 = null | StdlibPathBuf;
-/**
  * A longer delay allows for continued enrichment of logs after the originating Pod is
  * removed. If relevant metadata has been removed, the log is forwarded un-enriched and a
  * warning is emitted.
@@ -9240,12 +7052,6 @@ export type SpecifiesTheLabelSelectorLabelSelectorToFilterPodsPodsWithToBeUsedIn
 export type SpecifiesTheLabelSelectorLabelSelectorToFilterNamespacesNamespacesWithToBeUsedInAdditionToTheBuiltInExcludeExcludeFilter =
   string;
 /**
- * If your files share a common header that is not always a fixed size,
- *
- * If the file has less than this amount of lines, it won’t be read at all.
- */
-export type TheNumberOfLinesToReadForGeneratingTheChecksum1 = number;
-/**
  * This is quite efficient, yet might still create some load on the
  * file system; in addition, it is currently coupled with checksum dumping
  * in the underlying file server, so setting it too low may introduce
@@ -9269,12 +7075,6 @@ export type OptionalPathToAReadableKubeconfigKubeconfigFile = null | StdlibPathB
  * This protects against malformed lines or tailing incorrect files.
  */
 export type TheMaximumNumberOfBytesALineCanContainBeforeBeingDiscarded = number;
-/**
- * This allows distributing the reads more or less evenly across
- * the files.
- */
-export type MaxAmountOfBytesToReadFromASingleFileBeforeSwitchingOverToTheNextFileNoteThisDoesNotApplyWhenOldestFirstIsTrue1 =
-  number;
 /**
  * An optional path that deserializes an empty string to `None`.
  */
@@ -9343,16 +7143,6 @@ export type EventFieldForThePodSUID = string;
  */
 export type TheNameOfTheKubernetesNodeNodeThatIsRunning = string;
 /**
- * The default time zone for timestamps without an explicit zone.
- */
-export type TimezoneToUseForAnyDateSpecifiersInTemplateStrings4 =
-  null | TimezoneToUseForAnyDateSpecifiersInTemplateStrings1;
-/**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation2 =
-  string;
-/**
  * Each endpoint must be in the [Connection String URI Format](https://www.mongodb.com/docs/manual/reference/connection-string/).
  */
 export type AListOfMongoDBInstancesToScrape = string[];
@@ -9366,67 +7156,6 @@ export type OverridesTheDefaultNamespaceForTheMetricsEmittedByTheSource1 = strin
  * [nats_connection_name]: https://docs.nats.io/using-nats/developer/connecting/name
  */
 export type ANameNatsConnectionNameAssignedToTheNATSConnection = string;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration12 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * [nats_subject]: https://docs.nats.io/nats-concepts/subjects
  */
@@ -9457,22 +7186,6 @@ export type AListOfNGINXInstancesToScrape = string[];
  */
 export type OverridesTheDefaultNamespaceForTheMetricsEmittedByTheSource2 = string;
 /**
- * It _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOn1 = string;
-/**
- * It _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOn2 = string;
-/**
- * Accepts the wildcard (`*`) character for headers matching a specified pattern.
- *
- * Specifying "*" results in all headers included in the log event.
- *
- * These headers are not included in the JSON payload if a field with a conflicting name exists.
- */
-export type AListOfHTTPHeadersToIncludeInTheLogEvent1 = string[];
-/**
  * Each endpoint must be in the [Connection URI
  * format](https://www.postgresql.org/docs/current/libpq-connect.html#id-1.7.3.8.3.6).
  */
@@ -9497,18 +7210,10 @@ export type AListOfDatabasesToMatchByUsingPOSIXRegularExpressionsHttpsWwwPostgre
  */
 export type AbsolutePathToAnAdditionalCACertificateFile1 = string;
 /**
- * The address _must_ include a port.
- */
-export type TheSocketAddressToAcceptConnectionsOn1 = string;
-/**
  * Only applies to counters and histograms as gauges and summaries can't be
  * meaningfully aggregated.
  */
 export type WhetherToAggregateValuesAcrossPushes = boolean;
-/**
- * The address _must_ include a port.
- */
-export type TheSocketAddressToAcceptConnectionsOn2 = string;
 /**
  * The tag value is the endpoint of the scraped instance.
  */
@@ -9534,71 +7239,6 @@ export type BasicAuthenticationNameUsername1 = string;
  */
 export type BasicAuthenticationPasswordToken1 = string;
 /**
- * A data URL is also supported.
- */
-export type TheCredentialsURL1 = string;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration13 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
-/**
  * The broker follows descending priorities. For example, 0=max-priority, 1, 2,...
  *
  * In Shared subscription type, the broker first dispatches messages to the max priority level consumers if they have permits. Otherwise, the broker considers next priority level consumers.
@@ -9608,67 +7248,6 @@ export type TheConsumerSPriorityLevel = number | null;
  * This is based on Redis' Pub/Sub capabilities.
  */
 export type TheChannelDataType = 'channel';
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration14 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | ({
-      /**
-       * Options for the character delimited decoder.
-       */
-      character_delimited: {
-        /**
-         * The character that delimits byte sequences.
-         */
-        delimiter: number;
-        max_length?: TheMaximumLengthOfTheByteBuffer;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ({
-      /**
-       * Options for the newline delimited decoder.
-       */
-      newline_delimited?: {
-        max_length?: TheMaximumLengthOfTheByteBuffer1;
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    } & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat
-  | ByteFramesWhichAreChunkedGELFMessages;
 /**
  * The value is the Redis key that the event was read from.
  *
@@ -9681,11 +7260,6 @@ export type SetsTheNameOfTheLogFieldToUseToAddTheKeyToEachEvent =
  */
 export type TheRedisURLToConnectTo = string;
 /**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation3 =
-  string;
-/**
  * The value will be the peer host's address, including the port i.e. `1.2.3.4:9000`.
  *
  * By default, the [global `log_schema.host_key` option][global_host_key] is used.
@@ -9697,37 +7271,9 @@ export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketP
 export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent =
   null | VectorLookupLookupV2OptionalPathOptionalValuePath;
 /**
- * This is helpful for load balancing long-lived connections.
- */
-export type MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed1 = number | null;
-/**
- * An optional path that deserializes an empty string to `None`.
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent1 = string;
-/**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation4 =
-  string;
-/**
- * The value will be the peer host's address, including the port i.e. `1.2.3.4:9000`.
- *
- * By default, the [global `log_schema.host_key` option][global_host_key] is used.
- *
- * Set to `""` to suppress this key.
- *
- * [global_host_key]: https://vector.dev/docs/reference/configuration/global-options/#log_schema.host_key
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent1 =
-  null | VectorLookupLookupV2OptionalPathOptionalValuePath;
-/**
  * Messages larger than this are truncated.
  */
 export type TheMaximumBufferSizeOfIncomingMessages = number;
-/**
- * An optional path that deserializes an empty string to `None`.
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent2 = string;
 /**
  * Framing handles how events are separated when encoded in a raw byte form, where each event is
  * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
@@ -9739,15 +7285,6 @@ export type FramingConfiguration15 = null | FramingConfiguration7;
  */
 export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent2 = string;
 /**
- * A file path.
- */
-export type TheUnixSocketPath3 = string;
-/**
- * Note: The file mode value can be specified in any numeric format supported by your configuration
- * language, but it is most intuitive to use an octal number.
- */
-export type UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions1 = number | null;
-/**
  * Framing handles how events are separated when encoded in a raw byte form, where each event is
  * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
  * ends within the byte stream.
@@ -9757,15 +7294,6 @@ export type FramingConfiguration16 = null | FramingConfiguration7;
  * An optional path that deserializes an empty string to `None`.
  */
 export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent3 = string;
-/**
- * A file path.
- */
-export type TheUnixSocketPath4 = string;
-/**
- * Note: The file mode value can be specified in any numeric format supported by your configuration
- * language, but it is most intuitive to use an octal number.
- */
-export type UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions2 = number | null;
 /**
  * A channel is idling if it is not used for sending data or querying acknowledgement statuses.
  */
@@ -9792,10 +7320,6 @@ export type TheMaximumNumberOfAcknowledgementStatusesPendingQueryAcrossAllChanne
  * Minimum of `1`.
  */
 export type TheMaximumNumberOfAcknowledgementStatusesPendingQueryForASingleChannel = number;
-/**
- * The address _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOn3 = string;
 /**
  * If set to `true`, when incoming requests contain a Splunk HEC token, the token used is kept in the
  * event metadata and preferentially used if the event is sent to a Splunk HEC sink.
@@ -9832,58 +7356,9 @@ export type TheValueOfTheQuantile = number;
  */
 export type ASingleQuantileObservation = ASingleQuantileObservation1[];
 /**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation5 =
-  string;
-/**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation6 =
-  string;
-/**
- * A file path.
- */
-export type TheUnixSocketPath5 = string;
-/**
- * By default, the [global `log_schema.host_key` option][global_host_key] is used.
- *
- * [global_host_key]: https://vector.dev/docs/reference/configuration/global-options/#log_schema.host_key
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent4 =
-  null | VectorLookupLookupV2OptionalPathOptionalValuePath;
-/**
- * Messages larger than this are truncated.
- */
-export type TheMaximumBufferSizeInBytesOfIncomingMessages1 = number;
-/**
- * If using TCP or UDP, the value is the peer host's address, including the port. For example, `1.2.3.4:9000`. If using
- * UDS, the value is the socket path itself.
- *
- * By default, the [global `log_schema.host_key` option][global_host_key] is used.
- *
- * [global_host_key]: https://vector.dev/docs/reference/configuration/global-options/#log_schema.host_key
- */
-export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent4 =
-  null | VectorLookupLookupV2OptionalPathOptionalValuePath;
-/**
  * Messages larger than this are truncated.
  */
 export type TheMaximumBufferSizeOfIncomingMessagesInBytes = number;
-/**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation7 =
-  string;
-/**
- * This should not typically needed to be changed.
- */
-export type TheSizeOfTheReceiveBufferUsedForEachConnection1 = number | null;
-/**
- * If a socket address is used, it _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation8 =
-  string;
 /**
  * This should not typically needed to be changed.
  */
@@ -9892,19 +7367,6 @@ export type TheSizeOfTheReceiveBufferUsedForTheListeningSocket = number | null;
  * For Unix datagram sockets, use the `socket` source instead.
  */
 export type ListenOnUDSUnixDomainSocketThisOnlySupportsUnixStreamSockets1 = 'unix';
-/**
- * A file path.
- */
-export type TheUnixSocketPath6 = string;
-/**
- * The file mode value can be specified in any numeric format supported by your configuration
- * language, but it is most intuitive to use an octal number.
- */
-export type UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions3 = number | null;
-/**
- * It _must_ include a port.
- */
-export type TheSocketAddressToListenForConnectionsOn4 = string;
 /**
  * An input event to test against.
  */
@@ -9956,7 +7418,7 @@ export type TheMetricToUseAsAnInputEvent =
       [k: string]: unknown | undefined;
     }) &
       ({
-        kind: MetricKind1;
+        kind: MetricKind;
         [k: string]: unknown | undefined;
       } & {
         interval_ms?: TheIntervalInMillisecondsOfThisMetric;
@@ -10035,16 +7497,6 @@ export type TheNameOfTheMetric = string;
  * to Vector, and so on.
  */
 export type TheNamespaceOfTheMetric2 = string | null;
-/**
- * Metrics can be either absolute or incremental. Absolute metrics represent a sort of "last write wins" scenario,
- * where the latest absolute value seen is meant to be the actual metric value.  In contrast, and perhaps intuitively,
- * incremental metrics are meant to be additive, such that we don't know what total value of the metric is, but we know
- * that we'll be adding or subtracting the given value from it.
- *
- * Generally speaking, most metrics storage systems deal with incremental updates. A notable exception is Prometheus,
- * which deals with, and expects, absolute values from clients.
- */
-export type MetricKind1 = 'incremental' | 'absolute';
 /**
  * Intervals represent the time window over which this metric applies, and is generally only
  * used for tracking rates (change over time) on counters.
@@ -10157,7 +7609,7 @@ export type AUnitTestOutput = AUnitTestOutput1[];
 export type VectorConfigTransformTransformOuterAllocStringString =
   | ({
       graph?: ExtraGraphConfiguration2;
-      inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs1;
+      inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs;
       [k: string]: unknown | undefined;
     } & (
       | (VectorTransformsAggregateAggregateConfig & {
@@ -10305,16 +7757,6 @@ export type VectorConfigTransformTransformOuterAllocStringString =
     ))
   | undefined;
 /**
- * Wildcards (`*`) are supported.
- *
- * See [configuration][configuration] for more info.
- *
- * [sources]: https://vector.dev/docs/reference/configuration/sources/
- * [transforms]: https://vector.dev/docs/reference/configuration/transforms/
- * [configuration]: https://vector.dev/docs/reference/configuration/
- */
-export type AListOfUpstreamSourceSourcesOrTransformTransformsIDs1 = string[];
-/**
  * During this time frame, metrics (beta) with the same series data (name, namespace, tags, and so on) are aggregated.
  */
 export type TheIntervalBetweenFlushesInMilliseconds = number;
@@ -10364,25 +7806,6 @@ export type OptionsToControlWhatFieldsToMatchAgainst1 =
       [k: string]: unknown | undefined;
     };
 /**
- * Many methods exist for matching events, such as using a VRL expression, a Datadog Search query string,
- * or hard-coded matchers like "must be a metric" or "fields A, B, and C must match these constraints".
- *
- * As VRL is the most common way to apply conditions to events, this type provides a shortcut to define VRL expressions
- * directly in the configuration by passing the VRL expression as a string:
- *
- * ```toml
- * condition = '.message == "hooray"'
- * ```
- *
- * When other condition types are required, they can be specified with an enum-style notation:
- *
- * ```toml
- * condition.type = 'datadog_search'
- * condition.source = 'NOT "foo"'
- * ```
- */
-export type AnEventMatchingCondition2 = string | AnEventMatchingCondition1;
-/**
  * The `_unmatched` name is reserved and thus cannot be used as route ID.
  *
  * Each route can then be referenced as an input by other components with the name
@@ -10390,25 +7813,6 @@ export type AnEventMatchingCondition2 = string | AnEventMatchingCondition1;
  * it is sent to the `<transform_name>._unmatched` output.
  */
 export type TheNameOfTheRouteIsAlsoTheNameOfTheTransformPort = string;
-/**
- * Many methods exist for matching events, such as using a VRL expression, a Datadog Search query string,
- * or hard-coded matchers like "must be a metric" or "fields A, B, and C must match these constraints".
- *
- * As VRL is the most common way to apply conditions to events, this type provides a shortcut to define VRL expressions
- * directly in the configuration by passing the VRL expression as a string:
- *
- * ```toml
- * condition = '.message == "hooray"'
- * ```
- *
- * When other condition types are required, they can be specified with an enum-style notation:
- *
- * ```toml
- * condition.type = 'datadog_search'
- * condition.source = 'NOT "foo"'
- * ```
- */
-export type AnEventMatchingCondition3 = string | AnEventMatchingCondition1;
 /**
  * This is an example JSON representation of a counter with the following properties:
  *
@@ -10422,25 +7826,13 @@ export type AnEventMatchingCondition3 = string | AnEventMatchingCondition1;
 export type SettingThisFlagChangesTheBehaviorOfThisTransformationBrPNotablyTheMetricsFieldWillBeIgnoredPPAllIncomingEventsWillBeProcessedAndIfPossibleTheyWillBeConvertedToLogEventsOtherwiseOnlyItemsSpecifiedInTheMetricsFieldWillBeProcessedPPreClassChromaCodeClassLanguageTomlDataLangTomlUseSerdeJsonJsonLetJsonEventJsonCounterValue100KindIncrementalNameTestTransformCounterTagsEnvTestEnvHostLocalhostCodePre =
   boolean | null;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField29 = string;
-/**
  * If not specified, `field` is used as the name of the metric.
  */
-export type OverridesTheNameOfTheCounter = null | ATemplatedField2;
+export type OverridesTheNameOfTheCounter = null | ATemplatedField;
 /**
  * Sets the namespace for the metric.
  */
-export type ATemplatedField30 = null | ATemplatedField2;
+export type ATemplatedField30 = null | ATemplatedField;
 /**
  * Both keys and values can be templated, allowing you to attach dynamic tags to events.
  */
@@ -10454,7 +7846,7 @@ export type SpecificationOfTheValueOfACreatedTag = (ATemplatedField31 | ATemplat
 /**
  * A single tag value.
  */
-export type ATemplatedField31 = null | ATemplatedField2;
+export type ATemplatedField31 = null | ATemplatedField;
 /**
  * In many cases, components can be configured so that part of the component's functionality can be
  * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
@@ -10466,17 +7858,7 @@ export type ATemplatedField31 = null | ATemplatedField2;
  * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
  * is the key's value when the template is rendered into a string.
  */
-export type ATemplatedField32 = null | ATemplatedField2;
-/**
- * Metrics can be either absolute or incremental. Absolute metrics represent a sort of "last write wins" scenario,
- * where the latest absolute value seen is meant to be the actual metric value.  In contrast, and perhaps intuitively,
- * incremental metrics are meant to be additive, such that we don't know what total value of the metric is, but we know
- * that we'll be adding or subtracting the given value from it.
- *
- * Generally speaking, most metrics storage systems deal with incremental updates. A notable exception is Prometheus,
- * which deals with, and expects, absolute values from clients.
- */
-export type MetricKind2 = 'incremental' | 'absolute';
+export type ATemplatedField32 = null | ATemplatedField;
 /**
  * Specifying this version ensures that backward compatibility is not broken.
  */
@@ -10675,12 +8057,6 @@ export type FilePathToTheVectorRemapLanguageVrlVRLProgramToExecuteForEachEvent =
  */
 export type FilePathsToTheVectorRemapLanguageVrlVRLProgramsToExecuteForEachEvent = StdlibPathBuf[] | null;
 /**
- * When set to `full`, all metric tags are exposed as arrays of either string or null
- * values.
- */
-export type WhenSetToSingleMetricTagValuesAreExposedAsSingleStringsTheSameAsTheyWereBeforeThisConfigOptionTagsWithMultipleValuesShowTheLastAssignedValueAndNullValuesAreIgnored1 =
-  'single' | 'full';
-/**
  * When using `drop_on_error` or `drop_on_abort`, events that are "dropped" are processed no
  * further. In some cases, it may be desirable to keep the events around for further analysis,
  * debugging, or retrying.
@@ -10729,7 +8105,7 @@ export type AnEventMatchingCondition6 = null | AnEventMatchingCondition4;
  * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
  * is the key's value when the template is rendered into a string.
  */
-export type ATemplatedField33 = null | ATemplatedField2;
+export type ATemplatedField33 = null | ATemplatedField;
 /**
  * Each unique value for the key creates a bucket of related events to be sampled together
  * and the rate is applied to the buckets themselves to sample `1/N` buckets.  The overall rate
@@ -10801,7 +8177,7 @@ export type WhetherOrNotToEmitTheEventsDiscardedTotalInternalMetricWithTheKeyTag
  * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
  * is the key's value when the template is rendered into a string.
  */
-export type ATemplatedField34 = null | ATemplatedField2;
+export type ATemplatedField34 = null | ATemplatedField;
 /**
  * Each unique key has its own `threshold`.
  */
@@ -10844,16 +8220,6 @@ export type TheNameOfTheEventFieldToSetTheEventMetadataIn = string;
  * An optional path that deserializes an empty string to `None`.
  */
 export type TheNameOfTheEventFieldToSetTheSourceIdentifierIn = string;
-/**
- * The time zone name may be any name in the [TZ database][tzdb] or `local` to indicate system
- * local time.
- *
- * Note that in Vector/VRL all timestamps are represented in UTC.
- *
- * [tzdb]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
- */
-export type TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone1 =
-  null | TimezoneToUseForAnyDateSpecifiersInTemplateStrings1;
 
 /**
  * Configuration for the `file` enrichment table.
@@ -11078,9 +8444,9 @@ export interface EventsAreBufferedOnDisk {
    * Event handling behavior when a buffer is full.
    */
   when_full?:
-    | WaitForFreeSpaceInTheBuffer1
-    | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer1
-    | OverflowsToTheNextStageInTheBufferTopology1;
+    | WaitForFreeSpaceInTheBuffer
+    | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer
+    | OverflowsToTheNextStageInTheBufferTopology;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11097,9 +8463,9 @@ export interface EventsAreBufferedInMemory2 {
    * Event handling behavior when a buffer is full.
    */
   when_full?:
-    | WaitForFreeSpaceInTheBuffer2
-    | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer2
-    | OverflowsToTheNextStageInTheBufferTopology2;
+    | WaitForFreeSpaceInTheBuffer
+    | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer
+    | OverflowsToTheNextStageInTheBufferTopology;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11109,15 +8475,15 @@ export interface EventsAreBufferedInMemory2 {
  * Data is synchronized to disk every 500ms.
  */
 export interface EventsAreBufferedOnDisk2 {
-  max_size: TheMaximumSizeOfTheBufferOnDisk1;
+  max_size: TheMaximumSizeOfTheBufferOnDisk;
   type: EventsAreBufferedOnDisk3;
   /**
    * Event handling behavior when a buffer is full.
    */
   when_full?:
-    | WaitForFreeSpaceInTheBuffer3
-    | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer3
-    | OverflowsToTheNextStageInTheBufferTopology3;
+    | WaitForFreeSpaceInTheBuffer
+    | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer
+    | OverflowsToTheNextStageInTheBufferTopology;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11469,7 +8835,7 @@ export interface MiddlewareSettingsForOutboundRequests1 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest1;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -11478,7 +8844,7 @@ export interface MiddlewareSettingsForOutboundRequests1 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted1;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11539,7 +8905,7 @@ export interface MiddlewareSettingsForOutboundRequests2 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest2;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -11548,7 +8914,7 @@ export interface MiddlewareSettingsForOutboundRequests2 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted2;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11645,7 +9011,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink5 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink5;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -11874,7 +9240,7 @@ export interface VectorAwsRegionRegionOrEndpoint3 {
  */
 export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink6;
-  assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup2;
+  assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
   /**
    * Configuration of the authentication strategy for interacting with AWS services.
    */
@@ -11896,7 +9262,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
     | AuthenticateUsingCredentialsStoredInAFile
     | {
         assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-        external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+        external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
         /**
          * Configuration for authenticating with AWS through IMDS.
          */
@@ -11916,7 +9282,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
           [k: string]: unknown | undefined;
         };
         load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
         [k: string]: unknown | undefined;
       }
     | {
@@ -11939,7 +9305,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
           [k: string]: unknown | undefined;
         };
         load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
         [k: string]: unknown | undefined;
       };
   /**
@@ -12095,7 +9461,7 @@ export interface VectorAwsRegionRegionOrEndpoint4 {
  */
 export interface VectorSinksAwsSSConfigBaseSSSinkConfig1 {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink6;
-  assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup2;
+  assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
   /**
    * Configuration of the authentication strategy for interacting with AWS services.
    */
@@ -12117,7 +9483,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig1 {
     | AuthenticateUsingCredentialsStoredInAFile
     | {
         assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-        external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume1;
+        external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
         /**
          * Configuration for authenticating with AWS through IMDS.
          */
@@ -12137,7 +9503,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig1 {
           [k: string]: unknown | undefined;
         };
         load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo1;
+        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
         [k: string]: unknown | undefined;
       }
     | {
@@ -12160,7 +9526,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig1 {
           [k: string]: unknown | undefined;
         };
         load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo2;
+        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
         [k: string]: unknown | undefined;
       };
   /**
@@ -12259,7 +9625,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig1 {
 export interface VectorSinksAxiomAxiomConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink7;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
-  compression?: CompressionConfiguration5;
+  compression?: CompressionConfiguration;
   /**
    * The Axiom dataset to write to.
    */
@@ -12296,7 +9662,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink7 {
  * The batch settings for the sink.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -12320,7 +9686,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink8 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink5;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -12357,7 +9723,7 @@ export interface MiddlewareSettingsForOutboundRequests6 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest3;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -12366,7 +9732,7 @@ export interface MiddlewareSettingsForOutboundRequests6 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted3;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -12542,7 +9908,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink9 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -12634,14 +10000,14 @@ export interface VectorSinksClickhouseConfigClickhouseConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink11;
   auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings2;
-  compression?: CompressionConfiguration7;
+  compression?: CompressionConfiguration;
   database?: ATemplatedField6;
   /**
    * Sets `date_time_input_format` to `best_effort`, allowing ClickHouse to properly parse RFC3339/ISO 8601.
    */
   date_time_best_effort?: boolean;
   encoding?: VectorCodecsEncodingTransformerTransformer2;
-  endpoint: TheURIComponentOfARequest1;
+  endpoint: TheURIComponentOfARequest;
   format?: DataFormat;
   /**
    * Sets `insert_distributed_one_random_shard`, allowing ClickHouse to insert data into a random shard when using Distributed Table Engine.
@@ -12649,7 +10015,7 @@ export interface VectorSinksClickhouseConfigClickhouseConfig {
   insert_random_shard?: boolean;
   request?: MiddlewareSettingsForOutboundRequests8;
   skip_unknown_fields?: SetsInputFormatSkipUnknownFieldsAllowingClickHouseToDiscardFieldsNotPresentInTheTableSchema;
-  table: ATemplatedField7;
+  table: ATemplatedField;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
   [k: string]: unknown | undefined;
 }
@@ -12694,7 +10060,7 @@ export interface BearerAuthentication {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings2 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -12906,12 +10272,12 @@ export interface VectorCodecsEncodingConfigEncodingConfigWithFraming2 {
  */
 export interface VectorSinksDatabendConfigDatabendConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink13;
-  auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests2;
+  auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings3;
   /**
    * Compression configuration.
    */
-  compression?: 'none' | GzipGzipCompression2;
+  compression?: 'none' | GzipGzipCompression;
   /**
    * The database that contains the table that data is inserted into. Overrides the database in DSN.
    */
@@ -12934,7 +10300,7 @@ export interface VectorSinksDatabendConfigDatabendConfig {
     timestamp_format?: null | ('unix' | 'rfc3339' | 'unix_ms' | 'unix_us' | 'unix_ns' | 'unix_float');
     [k: string]: unknown | undefined;
   };
-  endpoint: TheURIComponentOfARequest2;
+  endpoint: TheURIComponentOfARequest;
   /**
    * Defines how missing fields are handled for NDJson.
    * Refer to https://docs.databend.com/sql/sql-reference/file-format-options#null_field_as
@@ -12965,7 +10331,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink13 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings3 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -13297,9 +10663,9 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
                  * Wrapper for sensitive strings containing credentials
                  */
                 access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume2;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume2;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo3;
+                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 /**
                  * Wrapper for sensitive strings containing credentials
                  */
@@ -13309,7 +10675,7 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
             | AuthenticateUsingCredentialsStoredInAFile1
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume3;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume3;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -13328,8 +10694,8 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
                   read_timeout_seconds?: number;
                   [k: string]: unknown | undefined;
                 };
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds1;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo4;
+                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -13351,8 +10717,8 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
                   read_timeout_seconds?: number;
                   [k: string]: unknown | undefined;
                 };
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds1;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo5;
+                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
           ) & {
@@ -13372,8 +10738,8 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
    * Elasticsearch bulk mode configuration.
    */
   bulk?: {
-    action?: ATemplatedField8;
-    index?: ATemplatedField9;
+    action?: ATemplatedField;
+    index?: ATemplatedField;
     /**
      * The default index to write events to if the template in `bulk.index` cannot be resolved
      */
@@ -13382,16 +10748,16 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
     version_type?: VersionType;
     [k: string]: unknown | undefined;
   };
-  compression?: CompressionConfiguration11;
+  compression?: CompressionConfiguration;
   /**
    * Elasticsearch data stream mode configuration.
    */
   data_stream?: null | {
     auto_routing?: AutomaticallyRoutesEventsByDerivingTheDataStreamNameUsingSpecificEventFields;
-    dataset?: ATemplatedField11;
-    namespace?: ATemplatedField12;
+    dataset?: ATemplatedField;
+    namespace?: ATemplatedField;
     sync_fields?: AutomaticallyAddsAndSyncsTheDataStreamEventFieldsIfTheyAreMissingFromTheEvent;
-    type?: ATemplatedField13;
+    type?: ATemplatedField;
     [k: string]: unknown | undefined;
   };
   /**
@@ -13474,7 +10840,7 @@ export interface AuthenticateUsingCredentialsStoredInAFile1 {
    * Path to the credentials file.
    */
   credentials_file: string;
-  profile?: TheCredentialsProfileToUse1;
+  profile?: TheCredentialsProfileToUse;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13492,7 +10858,7 @@ export interface VectorAwsRegionRegionOrEndpoint5 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings4 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -13530,7 +10896,7 @@ export interface VectorTransformsMetricToLogMetricToLogConfig {
    * The namespace to use for logs. This overrides the global setting.
    */
   log_namespace?: boolean | null;
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded2;
+  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
   timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
   [k: string]: unknown | undefined;
 }
@@ -13716,7 +11082,7 @@ export interface MiddlewareSettingsForOutboundRequests13 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest4;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -13725,7 +11091,7 @@ export interface MiddlewareSettingsForOutboundRequests13 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted4;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13765,7 +11131,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink18 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings2 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink5;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -13802,7 +11168,7 @@ export interface MiddlewareSettingsForOutboundRequests14 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest5;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -13811,7 +11177,7 @@ export interface MiddlewareSettingsForOutboundRequests14 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted5;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14041,7 +11407,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink20 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings5 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -14096,7 +11462,7 @@ export interface MiddlewareSettingsForOutboundRequests16 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest6;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -14105,7 +11471,7 @@ export interface MiddlewareSettingsForOutboundRequests16 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted6;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14205,7 +11571,7 @@ export interface MiddlewareSettingsForOutboundRequests17 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest7;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -14214,7 +11580,7 @@ export interface MiddlewareSettingsForOutboundRequests17 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted7;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14274,7 +11640,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink22 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink13;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -14329,8 +11695,8 @@ export interface MiddlewareSettingsForOutboundRequests18 {
 export interface VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink23;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings1;
-  compression?: CompressionConfiguration14;
-  dbname?: ATemplatedField18;
+  compression?: CompressionConfiguration;
+  dbname?: ATemplatedField;
   encoding?: VectorCodecsEncodingTransformerTransformer6;
   /**
    * The endpoint of the GreptimeDB server.
@@ -14342,13 +11708,13 @@ export interface VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig {
   extra_params?: {
     [k: string]: string | undefined;
   } | null;
-  password?: ThePasswordForYourGreptimeDBInstance1;
-  pipeline_name?: ATemplatedField19;
+  password?: ThePasswordForYourGreptimeDBInstance;
+  pipeline_name?: ATemplatedField;
   pipeline_version?: ATemplatedField20;
   request?: MiddlewareSettingsForOutboundRequests19;
-  table: ATemplatedField21;
+  table: ATemplatedField;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
-  username?: TheUsernameForYourGreptimeDBInstance1;
+  username?: TheUsernameForYourGreptimeDBInstance;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14364,7 +11730,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink23 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink13;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -14464,7 +11830,7 @@ export interface VectorSinksHoneycombConfigHoneycombConfig {
    * Event batching behavior.
    */
   batch?: {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink14;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -14475,7 +11841,7 @@ export interface VectorSinksHoneycombConfigHoneycombConfig {
     timeout_secs?: number | null;
     [k: string]: unknown | undefined;
   };
-  compression?: CompressionConfiguration15;
+  compression?: CompressionConfiguration;
   /**
    * The dataset to which logs are sent.
    */
@@ -14566,7 +11932,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink25 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings6 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -14714,7 +12080,7 @@ export interface VectorCodecsEncodingConfigEncodingConfigWithFraming5 {
 export interface VectorSinksHumioLogsHumioLogsConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink26;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings;
-  compression?: CompressionConfiguration17;
+  compression?: CompressionConfiguration;
   /**
    * Configures how events are encoded into raw bytes.
    */
@@ -14831,7 +12197,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink26 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink15;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -14893,7 +12259,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink27 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink15;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -14951,7 +12317,7 @@ export interface VectorTransformsMetricToLogMetricToLogConfig1 {
    * The namespace to use for logs. This overrides the global setting.
    */
   log_namespace?: boolean | null;
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded2;
+  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
   timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
   [k: string]: unknown | undefined;
 }
@@ -15129,8 +12495,8 @@ export interface VectorSinksMezmoLogdnaConfig {
    */
   default_env?: string;
   encoding?: VectorCodecsEncodingTransformerTransformer9;
-  endpoint?: TheURIComponentOfARequest4;
-  hostname: ATemplatedField23;
+  endpoint?: TheURIComponentOfARequest;
+  hostname: ATemplatedField;
   /**
    * The IP address that is attached to each batch of events.
    */
@@ -15143,7 +12509,7 @@ export interface VectorSinksMezmoLogdnaConfig {
   /**
    * The tags that are attached to each batch of events.
    */
-  tags?: ATemplatedField2[] | null;
+  tags?: ATemplatedField[] | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -15159,7 +12525,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink31 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings7 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -15236,7 +12602,7 @@ export interface VectorSinksLokiConfigLokiConfig {
    * Event batching behavior.
    */
   batch?: {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink19;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -15247,7 +12613,7 @@ export interface VectorSinksLokiConfigLokiConfig {
     timeout_secs?: number | null;
     [k: string]: unknown | undefined;
   };
-  compression?: CompressionConfiguration19;
+  compression?: CompressionConfiguration;
   /**
    * Configures how events are encoded into raw bytes.
    */
@@ -15332,7 +12698,7 @@ export interface VectorSinksLokiConfigLokiConfig {
     timestamp_format?: null | ('unix' | 'rfc3339' | 'unix_ms' | 'unix_us' | 'unix_ns' | 'unix_float');
     [k: string]: unknown | undefined;
   };
-  endpoint: TheURIComponentOfARequest5;
+  endpoint: TheURIComponentOfARequest;
   labels?: ASetOfLabelsThatAreAttachedToEachBatchOfEvents;
   out_of_order_action?: OutOfOrderEventBehavior;
   /**
@@ -15376,7 +12742,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink32 {
  * [label_expansion]: https://vector.dev/docs/reference/configuration/sinks/loki/#label-expansion
  */
 export interface ASetOfLabelsThatAreAttachedToEachBatchOfEvents {
-  [k: string]: ATemplatedField2;
+  [k: string]: ATemplatedField;
 }
 /**
  * Various settings can be configured, such as concurrency and rate limits, timeouts, retry behavior, etc.
@@ -15425,7 +12791,7 @@ export interface MiddlewareSettingsForOutboundRequests26 {
  * [label_expansion]: https://vector.dev/docs/reference/configuration/sinks/loki/#label-expansion
  */
 export interface StructuredMetadataThatIsAttachedToEachBatchOfEvents {
-  [k: string]: ATemplatedField2;
+  [k: string]: ATemplatedField;
 }
 /**
  * Configuration for the `mezmo` (formerly `logdna`) sink.
@@ -15446,8 +12812,8 @@ export interface VectorSinksMezmoMezmoConfig {
    */
   default_env?: string;
   encoding?: VectorCodecsEncodingTransformerTransformer9;
-  endpoint?: TheURIComponentOfARequest4;
-  hostname: ATemplatedField23;
+  endpoint?: TheURIComponentOfARequest;
+  hostname: ATemplatedField;
   /**
    * The IP address that is attached to each batch of events.
    */
@@ -15460,7 +12826,7 @@ export interface VectorSinksMezmoMezmoConfig {
   /**
    * The tags that are attached to each batch of events.
    */
-  tags?: ATemplatedField2[] | null;
+  tags?: ATemplatedField[] | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -15585,7 +12951,7 @@ export interface VectorSinksMqttConfigMqttSinkConfig {
    */
   retain?: boolean;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsEnableableConfig;
-  topic: ATemplatedField24;
+  topic: ATemplatedField;
   /**
    * MQTT username.
    */
@@ -15694,7 +13060,7 @@ export interface VectorSinksNatsConfigNatsSinkConfig {
   };
   jetstream?: SendMessagesUsingJetstreamJetstream;
   request?: MiddlewareSettingsForOutboundRequests27;
-  subject: ATemplatedField25;
+  subject: ATemplatedField;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsEnableableConfig;
   url: TheNATSURLNatsUrlToConnectTo;
   [k: string]: unknown | undefined;
@@ -15734,7 +13100,7 @@ export interface MiddlewareSettingsForOutboundRequests27 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest8;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -15743,7 +13109,7 @@ export interface MiddlewareSettingsForOutboundRequests27 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted8;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -15775,7 +13141,7 @@ export interface VectorSinksNewRelicConfigNewRelicConfig {
    * Event batching behavior.
    */
   batch?: {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink20;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -15786,7 +13152,7 @@ export interface VectorSinksNewRelicConfigNewRelicConfig {
     timeout_secs?: number | null;
     [k: string]: unknown | undefined;
   };
-  compression?: CompressionConfiguration20;
+  compression?: CompressionConfiguration;
   encoding?: VectorCodecsEncodingTransformerTransformer10;
   /**
    * Wrapper for sensitive strings containing credentials
@@ -15875,7 +13241,7 @@ export interface VectorSinksOpentelemetryOpenTelemetryConfig {
     acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink25;
     auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
     batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings6;
-    compression?: CompressionConfiguration16;
+    compression?: CompressionConfiguration;
     /**
      * @deprecated
      * A list of custom headers to add to each request.
@@ -15899,7 +13265,7 @@ export interface VectorSinksOpentelemetryOpenTelemetryConfig {
       [k: string]: unknown | undefined;
     } & MiddlewareSettingsForOutboundRequests1;
     tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
-    uri: TheURIComponentOfARequest3;
+    uri: TheURIComponentOfARequest;
     [k: string]: unknown | undefined;
   } & VectorCodecsEncodingConfigEncodingConfigWithFraming5) & {
     /**
@@ -15999,9 +13365,9 @@ export interface VectorSinksPapertrailPapertrailConfig {
     timestamp_format?: null | ('unix' | 'rfc3339' | 'unix_ms' | 'unix_us' | 'unix_ns' | 'unix_float');
     [k: string]: unknown | undefined;
   };
-  endpoint: TheURIComponentOfARequest6;
+  endpoint: TheURIComponentOfARequest;
   keepalive?: CoreOptionOptionVectorCoreTcpTcpKeepaliveConfig;
-  process?: ATemplatedField26;
+  process?: ATemplatedField;
   /**
    * Configures the send buffer size using the `SO_SNDBUF` option on the socket.
    */
@@ -16076,9 +13442,9 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
                  * Wrapper for sensitive strings containing credentials
                  */
                 access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume4;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume4;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo6;
+                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 /**
                  * Wrapper for sensitive strings containing credentials
                  */
@@ -16088,7 +13454,7 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
             | AuthenticateUsingCredentialsStoredInAFile2
             | {
                 assume_role: TheARNOfAnIAMRoleIamRoleToAssume5;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume5;
+                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
                 /**
                  * Configuration for authenticating with AWS through IMDS.
                  */
@@ -16107,8 +13473,8 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
                   read_timeout_seconds?: number;
                   [k: string]: unknown | undefined;
                 };
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds2;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo7;
+                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
             | {
@@ -16130,8 +13496,8 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
                   read_timeout_seconds?: number;
                   [k: string]: unknown | undefined;
                 };
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds2;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo8;
+                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
               }
           ) & {
@@ -16153,7 +13519,7 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
     aggregate?: boolean;
     [k: string]: unknown | undefined;
   } & {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink21;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -16164,11 +13530,11 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
     timeout_secs?: number | null;
     [k: string]: unknown | undefined;
   };
-  buckets?: DefaultBucketsToUseForAggregatingDistributionDistMetricDocsMetricsIntoHistograms1;
-  compression?: CompressionConfiguration21;
-  default_namespace?: TheDefaultNamespaceForAnyMetricsSent1;
-  endpoint: TheEndpointToSendDataTo2;
-  quantiles?: QuantilesToUseForAggregatingDistributionDistMetricDocsMetricsIntoASummary1;
+  buckets?: DefaultBucketsToUseForAggregatingDistributionDistMetricDocsMetricsIntoHistograms;
+  compression?: CompressionConfiguration;
+  default_namespace?: TheDefaultNamespaceForAnyMetricsSent;
+  endpoint: TheEndpointToSendDataTo;
+  quantiles?: QuantilesToUseForAggregatingDistributionDistMetricDocsMetricsIntoASummary;
   request?: MiddlewareSettingsForOutboundRequests29;
   tenant_id?: TheTenantIDToSend;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
@@ -16204,7 +13570,7 @@ export interface AuthenticateUsingCredentialsStoredInAFile2 {
    * Path to the credentials file.
    */
   credentials_file: string;
-  profile?: TheCredentialsProfileToUse2;
+  profile?: TheCredentialsProfileToUse;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16409,7 +13775,7 @@ export interface VectorSinksPulsarConfigPulsarSinkConfig {
    */
   producer_name?: string | null;
   properties_key?: TheLogFieldNameToUseForThePulsarPropertiesKey;
-  topic: ATemplatedField27;
+  topic: ATemplatedField;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16430,7 +13796,7 @@ export interface VectorSinksRedisConfigRedisSinkConfig {
    * Event batching behavior.
    */
   batch?: {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink22;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -16530,7 +13896,7 @@ export interface VectorSinksRedisConfigRedisSinkConfig {
     [k: string]: unknown | undefined;
   };
   endpoint: TheURLOfTheRedisEndpointToConnectTo;
-  key: ATemplatedField28;
+  key: ATemplatedField;
   /**
    * List-specific options.
    */
@@ -16579,7 +13945,7 @@ export interface MiddlewareSettingsForOutboundRequests30 {
    * The maximum number of retries to make for failed requests.
    */
   retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest9;
+  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
   /**
    * The jitter mode to use for retry backoff behavior.
    */
@@ -16588,7 +13954,7 @@ export interface MiddlewareSettingsForOutboundRequests30 {
    * The maximum amount of time to wait between retries.
    */
   retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted9;
+  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16635,7 +14001,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink41 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings8 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink6;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -16711,7 +14077,7 @@ export interface VectorSinksSematextMetricsSematextMetricsConfig {
    * Event batching behavior.
    */
   batch?: {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink23;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -17206,7 +14572,7 @@ export interface VectorSinksSplunkHecLogsConfigHecLogsSinkConfig {
   } & ControlsHowAcknowledgementsAreHandledForThisSink44;
   auto_extract_timestamp?: PassesTheAutoExtractTimestampOptionToSplunk;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings2;
-  compression?: CompressionConfiguration22;
+  compression?: CompressionConfiguration;
   default_token: DefaultSplunkHECToken;
   /**
    * Configures how events are encoded into raw bytes.
@@ -17301,7 +14667,7 @@ export interface VectorSinksSplunkHecLogsConfigHecLogsSinkConfig {
   index?: TheNameOfTheIndexToSendEventsTo;
   indexed_fields?: FieldsToBeAddedToSplunkIndexSplunkFieldIndexDocs;
   request?: MiddlewareSettingsForOutboundRequests33;
-  source?: TheSourceOfEventsSentToThisSink2;
+  source?: TheSourceOfEventsSentToThisSink;
   sourcetype?: TheSourcetypeOfEventsSentToThisSink;
   timestamp_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheTimestampToSendToSplunkHECWhenSetToATimestampIsNotSetInTheEventsSentToSplunkHEC;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
@@ -17313,14 +14679,14 @@ export interface VectorSinksSplunkHecLogsConfigHecLogsSinkConfig {
  * [e2e_acks]: https://vector.dev/docs/about/under-the-hood/architecture/end-to-end-acknowledgements/
  */
 export interface ControlsHowAcknowledgementsAreHandledForThisSink44 {
-  enabled?: WhetherOrNotEndToEndAcknowledgementsAreEnabled1;
+  enabled?: WhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings2 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink15;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -17390,15 +14756,15 @@ export interface VectorSinksSplunkHecMetricsConfigHecMetricsSinkConfig {
     [k: string]: unknown | undefined;
   } & ControlsHowAcknowledgementsAreHandledForThisSink44;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings3;
-  compression?: CompressionConfiguration23;
-  default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent3;
-  default_token: DefaultSplunkHECToken1;
-  endpoint: TheBaseURLOfTheSplunkInstance1;
+  compression?: CompressionConfiguration;
+  default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
+  default_token: DefaultSplunkHECToken;
+  endpoint: TheBaseURLOfTheSplunkInstance;
   host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToSplunkHEC1;
   index?: TheNameOfTheIndexWhereToSendTheEventsTo;
   request?: MiddlewareSettingsForOutboundRequests34;
-  source?: TheSourceOfEventsSentToThisSink3;
-  sourcetype?: TheSourcetypeOfEventsSentToThisSink1;
+  source?: TheSourceOfEventsSentToThisSink;
+  sourcetype?: TheSourcetypeOfEventsSentToThisSink;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsConfig;
   [k: string]: unknown | undefined;
 }
@@ -17406,7 +14772,7 @@ export interface VectorSinksSplunkHecMetricsConfigHecMetricsSinkConfig {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings3 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink15;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -17494,7 +14860,7 @@ export interface VectorSinksVectorConfigVectorConfig {
    * Event batching behavior.
    */
   batch?: {
-    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink25;
+    max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
     /**
      * The maximum size of a batch before it is flushed.
      */
@@ -17577,7 +14943,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink47 {
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings3 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink5;
+  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
   /**
    * The maximum size of a batch before it is flushed.
    */
@@ -17954,7 +15320,7 @@ export interface VectorSourcesApacheMetricsApacheMetricsConfig {
  */
 export interface VectorSourcesAwsEcsMetricsAwsEcsMetricsSourceConfig {
   endpoint?: BaseURIOfTheTaskMetadataEndpoint;
-  namespace?: TheNamespaceOfTheMetric1;
+  namespace?: TheNamespaceOfTheMetric;
   /**
    * The interval between scrapes, in seconds.
    */
@@ -17993,7 +15359,7 @@ export interface VectorSourcesAwsKinesisFirehoseAwsKinesisFirehoseConfig {
     | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration1;
+  framing?: FramingConfiguration;
   keepalive?: VectorHttpKeepaliveConfig;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -18126,7 +15492,7 @@ export interface VectorSourcesDatadogAgentDatadogAgentConfig {
    * If this is set to `true`, traces (alpha) are not accepted by the component.
    */
   disable_traces?: boolean;
-  framing?: FramingConfiguration4;
+  framing?: FramingConfiguration;
   keepalive?: VectorHttpKeepaliveConfig1;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -18225,7 +15591,7 @@ export interface VectorSourcesDockerLogsDockerLogsConfig {
    * The namespace to use for logs. This overrides the global setting.
    */
   log_namespace?: boolean | null;
-  multiline?: MultilineAggregationConfiguration1;
+  multiline?: MultilineAggregationConfiguration;
   partial_event_marker_field?: OverridesTheNameOfTheLogFieldUsedToMarkAnEventAsPartial;
   /**
    * The amount of time to wait before retrying after an error.
@@ -18391,7 +15757,7 @@ export interface VectorSourcesFileFileConfig {
   file_key?: OverridesTheNameOfTheLogFieldUsedToAddTheFilePathToEachEvent;
   fingerprint?: ConfigurationForHowFilesShouldBeIdentified;
   glob_minimum_cooldown_ms?: TheDelayBetweenFileDiscoveryCalls;
-  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent1;
+  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent;
   ignore_checkpoints?: WhetherOrNotToIgnoreExistingCheckpointsWhenDeterminingWhereToStartReadingAFile;
   ignore_not_found?: IgnoreMissingFilesWhenFingerprinting;
   /**
@@ -18423,7 +15789,7 @@ export interface VectorSourcesFileFileConfig {
    * How long to wait for more data when aggregating a multi-line message, in milliseconds.
    */
   multi_line_timeout?: number;
-  multiline?: MultilineAggregationConfiguration2;
+  multiline?: MultilineAggregationConfiguration;
   offset_key?: EnablesAddingTheFileOffsetToEachEventAndSetsTheNameOfTheLogFieldUsed;
   /**
    * Instead of balancing read capacity fairly across all watched files, prioritize draining the oldest files before moving on to read data from more recent files.
@@ -18507,7 +15873,7 @@ export interface VectorSourcesFileDescriptorsFileDescriptorFileDescriptorSourceC
    */
   fd: number;
   framing?: FramingConfiguration6;
-  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent2;
+  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -18520,7 +15886,7 @@ export interface VectorSourcesFileDescriptorsFileDescriptorFileDescriptorSourceC
  */
 export interface VectorSourcesFluentFluentConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource6;
-  address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation1;
+  address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
   /**
    * The maximum number of TCP connections that are allowed at any given time.
    */
@@ -18613,7 +15979,7 @@ export interface VectorSourcesHerokuLogsLogplexConfig {
     | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration9;
+  framing?: FramingConfiguration;
   keepalive?: VectorHttpKeepaliveConfig2;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -18827,7 +16193,7 @@ export interface VectorSourcesHttpServerHttpConfig {
    * An optional path that deserializes an empty string to `None`.
    */
   path_key?: string;
-  query_parameters?: AListOfURLQueryParametersToIncludeInTheLogEvent1;
+  query_parameters?: AListOfURLQueryParametersToIncludeInTheLogEvent;
   /**
    * Specifies the HTTP response status code that will be returned on successful requests.
    */
@@ -18904,7 +16270,7 @@ export interface VectorHttpKeepaliveConfig3 {
  * Configuration for the `http_client` source.
  */
 export interface VectorSourcesHttpClientClientHttpClientConfig {
-  auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests3;
+  auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
   /**
    * Decoder to use on the HTTP responses.
    */
@@ -18926,7 +16292,7 @@ export interface VectorSourcesHttpClientClientHttpClientConfig {
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
   endpoint: TheHTTPEndpointToCollectEventsFrom;
-  framing?: FramingConfiguration10;
+  framing?: FramingConfiguration;
   headers?: HeadersToApplyToTheHTTPRequests;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -19022,7 +16388,7 @@ export interface VectorSourcesHttpServerSimpleHttpConfig {
    * An optional path that deserializes an empty string to `None`.
    */
   path_key?: string;
-  query_parameters?: AListOfURLQueryParametersToIncludeInTheLogEvent1;
+  query_parameters?: AListOfURLQueryParametersToIncludeInTheLogEvent;
   /**
    * Specifies the HTTP response status code that will be returned on successful requests.
    */
@@ -19035,7 +16401,7 @@ export interface VectorSourcesHttpServerSimpleHttpConfig {
  * Configuration for the `internal_logs` source.
  */
 export interface VectorSourcesInternalLogsInternalLogsConfig {
-  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent3;
+  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -19075,7 +16441,7 @@ export interface VectorSourcesJournaldJournaldConfig {
    * Only include entries that occurred after the current boot of the system.
    */
   current_boot_only?: boolean;
-  data_dir?: TheDirectoryUsedToPersistFileCheckpointPositions1;
+  data_dir?: TheDirectoryUsedToPersistFileCheckpointPositions;
   emit_cursor?: WhetherToEmitThe__CURSORFieldCursorSeeAlsoSdJournalGetCursorGetCursor;
   exclude_matches?: AListOfSetsOfFieldValuePairsThatIfAnyArePresentInAJournalEntryExcludesTheEntryFromThisSource;
   exclude_units?: AListOfUnitNamesToExcludeFromMonitoring;
@@ -19177,7 +16543,7 @@ export interface VectorKafkaKafkaAuthConfig1 {
  */
 export interface VectorSourcesKubernetesLogsConfig {
   auto_partial_merge?: WhetherOrNotToAutomaticallyMergePartialEvents;
-  data_dir?: TheDirectoryUsedToPersistFileCheckpointPositions2;
+  data_dir?: TheDirectoryUsedToPersistFileCheckpointPositions;
   delay_deletion_ms?: HowLongToDelayRemovingMetadataEntriesFromTheCacheWhenAPodDeletionEventEventIsReceivedFromTheWatchStream;
   /**
    * A list of glob patterns to exclude from reading the files.
@@ -19186,7 +16552,7 @@ export interface VectorSourcesKubernetesLogsConfig {
   extra_field_selector?: SpecifiesTheFieldSelectorFieldSelectorToFilterPodsWithToBeUsedInAdditionToTheBuiltInNodeNodeFilter;
   extra_label_selector?: SpecifiesTheLabelSelectorLabelSelectorToFilterPodsPodsWithToBeUsedInAdditionToTheBuiltInExcludeExcludeFilter;
   extra_namespace_label_selector?: SpecifiesTheLabelSelectorLabelSelectorToFilterNamespacesNamespacesWithToBeUsedInAdditionToTheBuiltInExcludeExcludeFilter;
-  fingerprint_lines?: TheNumberOfLinesToReadForGeneratingTheChecksum1;
+  fingerprint_lines?: TheNumberOfLinesToReadForGeneratingTheChecksum;
   glob_minimum_cooldown_ms?: TheIntervalAtWhichTheFileSystemIsPolledToIdentifyNewFilesToReadFrom;
   /**
    * Ignore files with a data modification date older than the specified number of seconds.
@@ -19204,7 +16570,7 @@ export interface VectorSourcesKubernetesLogsConfig {
    */
   log_namespace?: boolean | null;
   max_line_bytes?: TheMaximumNumberOfBytesALineCanContainBeforeBeingDiscarded;
-  max_read_bytes?: MaxAmountOfBytesToReadFromASingleFileBeforeSwitchingOverToTheNextFileNoteThisDoesNotApplyWhenOldestFirstIsTrue1;
+  max_read_bytes?: MaxAmountOfBytesToReadFromASingleFileBeforeSwitchingOverToTheNextFileNoteThisDoesNotApplyWhenOldestFirstIsTrue;
   /**
    * Configuration for how the events are enriched with Namespace metadata.
    */
@@ -19252,7 +16618,7 @@ export interface VectorSourcesKubernetesLogsConfig {
    */
   rotate_wait_secs?: number;
   self_node_name?: TheNameOfTheKubernetesNodeNodeThatIsRunning;
-  timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings4;
+  timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
   /**
    * Determines if requests to the kube-apiserver can be served by a cache.
    */
@@ -19271,7 +16637,7 @@ export interface VectorInternalEventsFileFileInternalMetricsConfig2 {
  */
 export interface VectorSourcesLogstashLogstashConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource12;
-  address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation2;
+  address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
   /**
    * The maximum number of TCP connections that are allowed at any given time.
    */
@@ -19345,7 +16711,7 @@ export interface VectorSourcesNatsNatsSourceConfig {
     | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration12;
+  framing?: FramingConfiguration;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -19387,7 +16753,7 @@ export interface VectorSourcesOpentelemetryOpentelemetryConfig {
    * Configuration for the `opentelemetry` gRPC server.
    */
   grpc: {
-    address: TheSocketAddressToListenForConnectionsOn1;
+    address: TheSocketAddressToListenForConnectionsOn;
     /**
      * Configures the TLS options for incoming/outgoing connections.
      */
@@ -19398,8 +16764,8 @@ export interface VectorSourcesOpentelemetryOpentelemetryConfig {
    * Configuration for the `opentelemetry` HTTP server.
    */
   http: {
-    address: TheSocketAddressToListenForConnectionsOn2;
-    headers?: AListOfHTTPHeadersToIncludeInTheLogEvent1;
+    address: TheSocketAddressToListenForConnectionsOn;
+    headers?: AListOfHTTPHeadersToIncludeInTheLogEvent;
     keepalive?: VectorHttpKeepaliveConfig4;
     /**
      * Configures the TLS options for incoming/outgoing connections.
@@ -19468,7 +16834,7 @@ export interface VectorSourcesPostgresqlMetricsPostgresqlMetricsConfig {
  */
 export interface VectorSourcesPrometheusPushgatewayPrometheusPushgatewayConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource14;
-  address: TheSocketAddressToAcceptConnectionsOn1;
+  address: TheSocketAddressToAcceptConnectionsOn;
   aggregate_metrics?: WhetherToAggregateValuesAcrossPushes;
   auth?: CoreOptionOptionVectorSourcesUtilHttpAuthHttpSourceAuthConfig;
   keepalive?: VectorHttpKeepaliveConfig5;
@@ -19506,7 +16872,7 @@ export interface VectorHttpKeepaliveConfig5 {
  */
 export interface VectorSourcesPrometheusRemoteWritePrometheusRemoteWriteConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource15;
-  address: TheSocketAddressToAcceptConnectionsOn2;
+  address: TheSocketAddressToAcceptConnectionsOn;
   auth?: CoreOptionOptionVectorSourcesUtilHttpAuthHttpSourceAuthConfig;
   keepalive?: VectorHttpKeepaliveConfig6;
   tls?: CoreOptionOptionVectorCoreTlsSettingsTlsEnableableConfig;
@@ -19597,7 +16963,7 @@ export interface VectorSourcesPulsarPulsarSourceConfig {
                * The OAuth2 audience.
                */
               audience?: string | null;
-              credentials_url: TheCredentialsURL1;
+              credentials_url: TheCredentialsURL;
               /**
                * The issuer URL.
                */
@@ -19657,7 +17023,7 @@ export interface VectorSourcesPulsarPulsarSourceConfig {
    * The endpoint to which the Pulsar client should connect to.
    */
   endpoint: string;
-  framing?: FramingConfiguration13;
+  framing?: FramingConfiguration;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -19719,7 +17085,7 @@ export interface VectorSourcesRedisRedisSourceConfig {
     | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration14;
+  framing?: FramingConfiguration;
   /**
    * The Redis key to read messages from.
    */
@@ -19761,7 +17127,7 @@ export interface VectorSourcesSplunkHecSplunkConfig {
     max_pending_acks_per_channel?: TheMaximumNumberOfAcknowledgementStatusesPendingQueryForASingleChannel;
     [k: string]: unknown | undefined;
   };
-  address?: TheSocketAddressToListenForConnectionsOn3;
+  address?: TheSocketAddressToListenForConnectionsOn;
   keepalive?: VectorHttpKeepaliveConfig7;
   /**
    * The namespace to use for logs. This overrides the global settings.
@@ -20060,12 +17426,12 @@ export interface VectorSourcesFileDescriptorsStdinStdinConfig {
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
   framing?: FramingConfiguration6;
-  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent4;
+  host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
   log_namespace?: boolean | null;
-  max_length?: TheMaximumBufferSizeInBytesOfIncomingMessages1;
+  max_length?: TheMaximumBufferSizeInBytesOfIncomingMessages;
   [k: string]: unknown | undefined;
 }
 /**
@@ -20073,8 +17439,8 @@ export interface VectorSourcesFileDescriptorsStdinStdinConfig {
  */
 export interface ListenOnUDSUnixDomainSocketThisOnlySupportsUnixStreamSockets {
   mode: ListenOnUDSUnixDomainSocketThisOnlySupportsUnixStreamSockets1;
-  path: TheUnixSocketPath6;
-  socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions3;
+  path: TheUnixSocketPath;
+  socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
   [k: string]: unknown | undefined;
 }
 /**
@@ -20094,7 +17460,7 @@ export interface VectorConfigUnitTestUnitTestComponentsUnitTestStreamSourceConfi
  */
 export interface VectorSourcesVectorVectorConfig {
   acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource17;
-  address: TheSocketAddressToListenForConnectionsOn4;
+  address: TheSocketAddressToListenForConnectionsOn;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -20250,7 +17616,7 @@ export interface VectorTransformsExclusiveRouteConfigExclusiveRouteConfig {
    * An array of named routes. The route names are expected to be unique.
    */
   routes: {
-    condition: AnEventMatchingCondition2;
+    condition: AnEventMatchingCondition;
     name: TheNameOfTheRouteIsAlsoTheNameOfTheTransformPort;
     [k: string]: unknown | undefined;
   }[];
@@ -20260,7 +17626,7 @@ export interface VectorTransformsExclusiveRouteConfigExclusiveRouteConfig {
  * Configuration for the `filter` transform.
  */
 export interface VectorTransformsFilterFilterConfig {
-  condition: AnEventMatchingCondition3;
+  condition: AnEventMatchingCondition;
   [k: string]: unknown | undefined;
 }
 /**
@@ -20272,7 +17638,7 @@ export interface VectorTransformsLogToMetricLogToMetricConfig {
    * A list of metrics to generate.
    */
   metrics: ({
-    field: ATemplatedField29;
+    field: ATemplatedField;
     name?: OverridesTheNameOfTheCounter;
     namespace?: ATemplatedField30;
     tags?: TagsToApplyToTheMetric;
@@ -20283,7 +17649,7 @@ export interface VectorTransformsLogToMetricLogToMetricConfig {
          * Increments the counter by the value in `field`, instead of only by `1`.
          */
         increment_by_value?: boolean;
-        kind?: MetricKind2;
+        kind?: MetricKind;
         [k: string]: unknown | undefined;
       } & {
         /**
@@ -20341,7 +17707,7 @@ export interface VectorTransformsMetricToLogMetricToLogConfig2 {
    * The namespace to use for logs. This overrides the global setting.
    */
   log_namespace?: boolean | null;
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded2;
+  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
   timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
   [k: string]: unknown | undefined;
 }
@@ -20414,7 +17780,7 @@ export interface VectorTransformsRemapRemapConfig {
   drop_on_error?: DropsAnyEventThatEncountersAnErrorDuringProcessing;
   file?: FilePathToTheVectorRemapLanguageVrlVRLProgramToExecuteForEachEvent;
   files?: FilePathsToTheVectorRemapLanguageVrlVRLProgramsToExecuteForEachEvent;
-  metric_tag_values?: WhenSetToSingleMetricTagValuesAreExposedAsSingleStringsTheSameAsTheyWereBeforeThisConfigOptionTagsWithMultipleValuesShowTheLastAssignedValueAndNullValuesAreIgnored1;
+  metric_tag_values?: WhenSetToSingleMetricTagValuesAreExposedAsSingleStringsTheSameAsTheyWereBeforeThisConfigOptionTagsWithMultipleValuesShowTheLastAssignedValueAndNullValuesAreIgnored;
   reroute_dropped?: ReroutesDroppedEventsToANamedOutputInsteadOfHaltingProcessingOnThem;
   /**
    * The runtime to use for executing VRL code.

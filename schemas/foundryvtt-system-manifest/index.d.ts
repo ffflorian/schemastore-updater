@@ -32,14 +32,6 @@ export type JSONSchemaForFoundryVTTSystemFilesSystemJson =
  * A less common way of including Javascript with the increasing adoption of ESModules, this field allows you to define an array of JavaScript file paths which should be included whenever this package is being used. Each listed script path should be relative to the package root directory. All scripts which exist will be automatically included in the game session and loaded in their listed order.
  */
 export type FileArray = string[];
-/**
- * The preferred method for including Javascript with your project. This field allows you to define an array of JS files which use the newer ES6 modules specification. As with scripts, this should be declared as an array. These files are identified separately in the manifest so they may be correctly loaded as a module rather than a script.
- */
-export type FileArray1 = string[];
-/**
- * You can designate an array of CSS files which should be included in the game session whenever this package is used. Each listed stylesheet path should be relative to the package root directory. All stylesheets which exist will be automatically included in the game session and loaded in their listed order.
- */
-export type FileArray2 = string[];
 
 export interface JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorldJsonThisIsTheBaseFromWhichOthersInherit {
   /**
@@ -144,8 +136,8 @@ export interface JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorld
    */
   compatibleCoreVersion?: string | number;
   scripts?: FileArray;
-  esmodules?: FileArray1;
-  styles?: FileArray2;
+  esmodules?: FileArray;
+  styles?: FileArray;
   /**
    * A list of localization files that Foundry can use to translate strings.
    */

@@ -39,18 +39,6 @@ export type Icon1 =
        */
       [k: string]: string;
     };
-/**
- * Sometimes you want to package resources—for example, images, HTML, CSS, or JavaScript—with your extension and make them available to web pages and other extensions.
- *
- * With the web_accessible_resources key, you list all the packaged resources that you want to make available to web pages. You specify them as paths relative to the manifest.json file.
- *
- * Note that content scripts don't need to be listed as web accessible resources.
- *
- * If an extension wants to use webRequest or declarativeNetRequest to redirect a public URL (e.g., HTTPS) to a page that's packaged in the extension, then the extension must list the page in the web_accessible_resources key.
- *
- * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/web_accessible_resources
- */
-export type Scripts1 = string[];
 
 /**
  * The manifest.json file is the only file that every extension using WebExtension APIs must contain.
@@ -303,7 +291,7 @@ export interface JSONSchemaForWebExtensionsManifestFiles {
    * If no version_name is present, the version field will be used for display purposes as well.https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version_name
    */
   version_name?: string;
-  web_accessible_resources?: Scripts1;
+  web_accessible_resources?: Scripts;
   [k: string]: unknown | undefined;
 }
 /**

@@ -9,7 +9,6 @@ export type PathToResourcesLikeIconOrTemplate = string;
 export type TheAssetLibrary = string;
 export type ThePathToThePreviewImage = string;
 export type TheIconMap = string[][];
-export type TheHumanReadableName1 = string;
 export type TheDefaultRegion = string;
 export type PluginClass = string;
 
@@ -34,7 +33,7 @@ export interface JSONSchemaForDrupalLayoutsFile {
 export interface ListOfRegionsInThisLayout {
   [k: string]:
     | {
-        label?: TheHumanReadableName1;
+        label?: TheHumanReadableName;
         [k: string]: unknown | undefined;
       }
     | undefined;

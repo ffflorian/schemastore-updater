@@ -24,14 +24,6 @@ export type ModuleParametersIdleRoutes = {
   [k: string]: unknown | undefined;
 }[];
 /**
- * [CF/XSA] The domains on which the application will be available later.
- */
-export type ModuleParametersDomains1 = string[];
-/**
- * [CF/XSA] The hostnames or subdomain where an application is available later.
- */
-export type ModuleParametersHosts1 = string[];
-/**
  * [CF/XSA] Restart app if environment variables change.
  */
 export type ModuleParametersRestartOnEnvChange = {
@@ -587,7 +579,7 @@ export interface ModuleParametersCfXsa {
    * [CF/XSA] The domain on which the application will be available later.
    */
   domain?: string;
-  domains?: ModuleParametersDomains1;
+  domains?: ModuleParametersDomains;
   /**
    * [CF/XSA] Enables use of SSH within an application.
    */
@@ -604,7 +596,7 @@ export interface ModuleParametersCfXsa {
    * [CF/XSA] The hostname or subdomain where an application is available later.
    */
   host?: string;
-  hosts?: ModuleParametersHosts1;
+  hosts?: ModuleParametersHosts;
   /**
    * [CF/XSA] The number of application instances that will be started during deployment.
    */

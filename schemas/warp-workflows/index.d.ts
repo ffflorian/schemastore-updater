@@ -41,16 +41,6 @@ export type AuthorUrl = string | null;
  */
 export type Shells = ('Zsh' | 'zsh' | 'Bash' | 'bash' | 'Fish' | 'fish')[];
 /**
- * A name of the current argument
- * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#argumentsname
- */
-export type Name1 = string;
-/**
- * A description of the current argument
- * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#argumentsdescription
- */
-export type Description1 = string | null;
-/**
  * A default value of the current argument
  * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#argumentsdefault_value
  */
@@ -60,8 +50,8 @@ export type DefaultValue = boolean | number | string | null;
  * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#arguments
  */
 export type Arguments = {
-  name: Name1;
-  description?: Description1;
+  name: Name;
+  description?: Description;
   default_value?: DefaultValue;
 }[];
 

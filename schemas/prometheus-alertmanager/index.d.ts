@@ -129,14 +129,6 @@ export type Regex = string | undefined;
  * A list of matchers that an alert has to fulfill to match the node
  */
 export type Matcher = string[];
-/**
- * A list of matchers that have to be fulfilled by the target alerts to be muted
- */
-export type Matcher1 = string[];
-/**
- * A list of matchers for which one or more alerts have to exist for the inhibition to take effect
- */
-export type Matcher2 = string[];
 
 /**
  * The default TLS configuration for SMTP receivers
@@ -2189,7 +2181,7 @@ export interface InhibitRule {
   target_match_re?: {
     [k: string]: Regex | undefined;
   };
-  target_matchers?: Matcher1;
+  target_matchers?: Matcher;
   /**
    * DEPRECATED. Matchers for which one or more alerts have to exist for the inhibition to take effect. Use source_matchers
    */
@@ -2202,7 +2194,7 @@ export interface InhibitRule {
   source_match_re?: {
     [k: string]: Regex | undefined;
   };
-  source_matchers?: Matcher2;
+  source_matchers?: Matcher;
   /**
    * Labels that must have an equal value in the source and target alert for the inhibition to take effect
    */

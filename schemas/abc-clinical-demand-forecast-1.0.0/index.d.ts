@@ -99,10 +99,6 @@ export type Ordering = number;
  */
 export type NodeType1 = 'item';
 /**
- * Name of the item.
- */
-export type Name1 = string;
-/**
  * Type of pharmaceutical item.
  */
 export type DeliveryForm1 = 'tablet' | 'capsule' | 'vial' | 'syringe' | 'sachet';
@@ -118,14 +114,6 @@ export type Dosage = number;
  * Units of dosage (e.g., mg, ml).
  */
 export type Units = string;
-/**
- * Display order of this node within its parent. Lower numbers appear first.
- */
-export type Ordering1 = number;
-/**
- * Name of the dosing regimen.
- */
-export type Name2 = string;
 /**
  * Description of the dosing regimen.
  */
@@ -190,10 +178,6 @@ export type FirstDoseEscalationLevel = DoseEscalationLevelBase & {
   ordering?: unknown;
 };
 /**
- * Display order of this level within the escalation sequence. Lower numbers appear first.
- */
-export type Ordering2 = number;
-/**
  * Must be true for first level.
  */
 export type IsFirstLevel = true;
@@ -214,24 +198,12 @@ export type DurationUnit = 'days' | 'weeks' | 'months' | 'years';
  */
 export type IntermediateDoseEscalationLevel = DoseEscalationLevelBase & {
   kitItemQuantities?: unknown;
-  isFinalLevel: IsFinalLevel1;
-  duration: Duration1;
-  durationUnit: DurationUnit1;
+  isFinalLevel: IsFinalLevel;
+  duration: Duration;
+  durationUnit: DurationUnit;
   adverseEventRate: AdverseEventRate;
   ordering?: unknown;
 };
-/**
- * Must be false for intermediate level.
- */
-export type IsFinalLevel1 = false;
-/**
- * Duration of this escalation level.
- */
-export type Duration1 = number;
-/**
- * Unit of duration for this level.
- */
-export type DurationUnit1 = 'days' | 'weeks' | 'months' | 'years';
 /**
  * Percentage of subjects who experience adverse events when TRIALING THIS level from the previous level.
  */
@@ -242,17 +214,13 @@ export type AdverseEventRate = number;
 export type FinalDoseEscalationLevel = DoseEscalationLevelBase & {
   kitItemQuantities?: unknown;
   isFinalLevel: IsFinalLevel2;
-  adverseEventRate: AdverseEventRate1;
+  adverseEventRate: AdverseEventRate;
   ordering?: unknown;
 };
 /**
  * Must be true for final level.
  */
 export type IsFinalLevel2 = true;
-/**
- * Percentage of subjects who experience adverse events when TRIALING THIS level from the previous level.
- */
-export type AdverseEventRate1 = number;
 /**
  * Configuration for weight-based dosing regimens. Null if using another regimen type.
  */
@@ -274,10 +242,6 @@ export type ToWeight = number | null;
  */
 export type ExpectedPercentage = number;
 /**
- * Display order of this range. Lower numbers appear first.
- */
-export type Ordering3 = number;
-/**
  * Configuration for age-based dosing regimens. Null if using another regimen type.
  */
 export type AgeBasedConfiguration = AgeBasedConfiguration1 | null;
@@ -294,14 +258,6 @@ export type FromAge = number | null;
  */
 export type ToAge = number | null;
 /**
- * Expected percentage of subjects in this age range.
- */
-export type ExpectedPercentage1 = number;
-/**
- * Display order of this range. Lower numbers appear first.
- */
-export type Ordering4 = number;
-/**
  * Discriminator: true for placebo regimens.
  */
 export type IsPlacebo1 = true;
@@ -309,10 +265,6 @@ export type IsPlacebo1 = true;
  * ID of the active dosing regimen this placebo references. Placebo inherits all dosing configuration from the active regimen.
  */
 export type PlaceboOf = string;
-/**
- * Name of the treatment arm.
- */
-export type Name3 = string;
 /**
  * Percentage of subjects allocated to this arm.
  */
@@ -331,34 +283,14 @@ export type PeriodType = 'treatment';
  */
 export type DosingRegimenID = string;
 /**
- * Order position of this period in the sequence.
- */
-export type Ordering5 = number;
-/**
  * Discriminator identifying this as a washout period.
  */
 export type PeriodType1 = 'washout';
-/**
- * Duration of the washout period.
- */
-export type Duration2 = number;
-/**
- * Unit of washout duration.
- */
-export type DurationUnit2 = 'days' | 'weeks' | 'months' | 'years';
-/**
- * Order position of this period in the sequence.
- */
-export type Ordering6 = number;
 /**
  * This interface was referenced by `Countries`'s JSON-Schema definition
  * via the `patternProperty` ".*".
  */
 export type RegionConfig = RegionContainer | RegionLeaf;
-/**
- * Discriminator identifying this as a container node.
- */
-export type NodeType2 = 'container';
 /**
  * Name of the region container.
  */
@@ -390,35 +322,9 @@ export type SiteSeeding = null | {
  */
 export type NodeType3 = 'region';
 /**
- * Name of the region.
- */
-export type RegionName1 = string;
-/**
  * Total number of sites in this region.
  */
 export type NumberOfSites = number;
-/**
- * Date when site activation begins. Null inherits from parent container.
- */
-export type ActivationStartDate1 = string | null;
-/**
- * Number of subjects screened per site per month. Null inherits from parent container.
- */
-export type ScreenRate1 = number | null;
-/**
- * Number of sites activated per month. Null inherits from parent container.
- */
-export type SiteActivationRate1 = number | null;
-/**
- * Maximum number of patients that can be enrolled per site. Null for unlimited or inherited.
- */
-export type MaximumEnrollmentPerSite1 = number | null;
-/**
- * Site seeding quantity per kit. Map of kitId to quantity, or null to inherit from parent.
- */
-export type SiteSeeding1 = null | {
-  [k: string]: number | undefined;
-};
 /**
  * Total subjects enrolled for this region and month.
  */
@@ -658,12 +564,12 @@ export interface Children {
  */
 export interface KitItem {
   nodeType: NodeType1;
-  name: Name1;
+  name: Name;
   deliveryForm: DeliveryForm1;
   quantity: Quantity;
   dosage: Dosage;
   units: Units;
-  ordering: Ordering1;
+  ordering: Ordering;
 }
 /**
  * Available dosing regimens for the study, keyed by ID.
@@ -678,7 +584,7 @@ export interface DosingRegimens {
  * via the `patternProperty` ".*".
  */
 export interface DosingRegimen {
-  name: Name2;
+  name: Name;
   description: Description;
   dosingRegimenDefinition: DosingRegimenDefinition;
 }
@@ -728,7 +634,7 @@ export interface EscalationLevels {
  */
 export interface DoseEscalationLevelBase {
   kitItemQuantities: KitItemQuantities1;
-  ordering: Ordering2;
+  ordering: Ordering;
   [k: string]: unknown | undefined;
 }
 /**
@@ -765,7 +671,7 @@ export interface WeightRange {
   fromWeight: FromWeight;
   toWeight: ToWeight;
   expectedPercentage: ExpectedPercentage;
-  ordering: Ordering3;
+  ordering: Ordering;
 }
 /**
  * Mapping of kit item IDs to quantities consumed per dose for subjects in THIS weight range. Each value represents the number of units (e.g., tablets) of that item required for a single dose. Different weight ranges can specify different quantities for the same item.
@@ -800,8 +706,8 @@ export interface AgeRange {
   kitItemQuantities: KitItemQuantities3;
   fromAge: FromAge;
   toAge: ToAge;
-  expectedPercentage: ExpectedPercentage1;
-  ordering: Ordering4;
+  expectedPercentage: ExpectedPercentage;
+  ordering: Ordering;
 }
 /**
  * Mapping of kit item IDs to quantities consumed per dose for subjects in THIS age range. Each value represents the number of units (e.g., tablets) of that item required for a single dose. Different age ranges can specify different quantities for the same item.
@@ -833,7 +739,7 @@ export interface TreatmentArms {
  * via the `patternProperty` ".*".
  */
 export interface TreatmentArm {
-  name: Name3;
+  name: Name;
   allocationPercentage: AllocationPercentage;
   dosingRegimenSequence: DosingRegimenSequence;
 }
@@ -849,16 +755,16 @@ export interface DosingRegimenSequence {
 export interface TreatmentPeriod {
   periodType: PeriodType;
   dosingRegimenId: DosingRegimenID;
-  ordering: Ordering5;
+  ordering: Ordering;
 }
 /**
  * Washout period (no dosing) in a dosing regimen sequence.
  */
 export interface WashoutPeriod {
   periodType: PeriodType1;
-  duration: Duration2;
-  durationUnit: DurationUnit2;
-  ordering: Ordering6;
+  duration: Duration;
+  durationUnit: DurationUnit;
+  ordering: Ordering;
 }
 /**
  * Site supply and region configuration.
@@ -876,7 +782,7 @@ export interface Countries {
  * Container node for grouping regions. Has subregions but no sites.
  */
 export interface RegionContainer {
-  nodeType: NodeType2;
+  nodeType: NodeType;
   regionName: RegionName;
   subregions: Subregions;
   activationStartDate?: ActivationStartDate;
@@ -896,13 +802,13 @@ export interface Subregions {
  */
 export interface RegionLeaf {
   nodeType: NodeType3;
-  regionName: RegionName1;
+  regionName: RegionName;
   numberOfSites: NumberOfSites;
-  activationStartDate?: ActivationStartDate1;
-  screenRate?: ScreenRate1;
-  siteActivationRate?: SiteActivationRate1;
-  maxEnrollmentPerSite?: MaximumEnrollmentPerSite1;
-  siteSeeding?: SiteSeeding1;
+  activationStartDate?: ActivationStartDate;
+  screenRate?: ScreenRate;
+  siteActivationRate?: SiteActivationRate;
+  maxEnrollmentPerSite?: MaximumEnrollmentPerSite;
+  siteSeeding?: SiteSeeding;
 }
 /**
  * Actual enrollment data entered by users to reconcile with forecast.

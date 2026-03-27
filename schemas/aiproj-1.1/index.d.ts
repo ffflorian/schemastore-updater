@@ -47,19 +47,11 @@ export type AddressFormat = 'Wildcard' | 'ExactMatch' | 'RegExp';
  */
 export type BlacklistedAddresses =
   | {
-      Address?: Address1;
-      Format?: AddressFormat1;
+      Address?: Address;
+      Format?: AddressFormat;
       [k: string]: unknown | undefined;
     }[]
   | null;
-/**
- * Address value
- */
-export type Address1 = string;
-/**
- * Type of address
- */
-export type AddressFormat1 = 'Wildcard' | 'ExactMatch' | 'RegExp';
 export type AuthenticationOptions = (
   | {
       Type: 'RawCookie';

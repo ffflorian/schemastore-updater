@@ -103,10 +103,10 @@ export type CKANJSONSchema = {
    */
   localizations?: string[];
   depends?: Relationship;
-  recommends?: Relationship2;
-  suggests?: Relationship3;
-  supports?: Relationship4;
-  conflicts?: Relationship5;
+  recommends?: Relationship;
+  suggests?: Relationship;
+  supports?: Relationship;
+  conflicts?: Relationship;
   /**
    * A list of virtual packages this mod provides
    */
@@ -316,46 +316,6 @@ export type License =
   | 'unrestricted'
   | 'unknown';
 /**
- * List of modules that can satisfy this relationship
- */
-export type Relationship1 = (
-  | {
-      /**
-       * Identifier of the mod
-       */
-      name: string;
-      /**
-       * Optional version
-       */
-      version?: string;
-      /**
-       * Optional minimum version
-       */
-      min_version?: string;
-      /**
-       * Optional maximum version
-       */
-      max_version?: string;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      /**
-       * If true, don't check this mod or its dependencies for recommendations or suggestions
-       */
-      suppress_recommendations?: boolean;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      any_of: Relationship1;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      [k: string]: unknown | undefined;
-    }
-)[];
-/**
  * Optional list of dependencies
  */
 export type Relationship = (
@@ -387,167 +347,7 @@ export type Relationship = (
       [k: string]: unknown | undefined;
     }
   | {
-      any_of: Relationship1;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      [k: string]: unknown | undefined;
-    }
-)[];
-/**
- * Optional list of recommended mods
- */
-export type Relationship2 = (
-  | {
-      /**
-       * Identifier of the mod
-       */
-      name: string;
-      /**
-       * Optional version
-       */
-      version?: string;
-      /**
-       * Optional minimum version
-       */
-      min_version?: string;
-      /**
-       * Optional maximum version
-       */
-      max_version?: string;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      /**
-       * If true, don't check this mod or its dependencies for recommendations or suggestions
-       */
-      suppress_recommendations?: boolean;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      any_of: Relationship1;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      [k: string]: unknown | undefined;
-    }
-)[];
-/**
- * Optional list of recommended, but not essential mods
- */
-export type Relationship3 = (
-  | {
-      /**
-       * Identifier of the mod
-       */
-      name: string;
-      /**
-       * Optional version
-       */
-      version?: string;
-      /**
-       * Optional minimum version
-       */
-      min_version?: string;
-      /**
-       * Optional maximum version
-       */
-      max_version?: string;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      /**
-       * If true, don't check this mod or its dependencies for recommendations or suggestions
-       */
-      suppress_recommendations?: boolean;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      any_of: Relationship1;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      [k: string]: unknown | undefined;
-    }
-)[];
-/**
- * Optional list of supported mods
- */
-export type Relationship4 = (
-  | {
-      /**
-       * Identifier of the mod
-       */
-      name: string;
-      /**
-       * Optional version
-       */
-      version?: string;
-      /**
-       * Optional minimum version
-       */
-      min_version?: string;
-      /**
-       * Optional maximum version
-       */
-      max_version?: string;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      /**
-       * If true, don't check this mod or its dependencies for recommendations or suggestions
-       */
-      suppress_recommendations?: boolean;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      any_of: Relationship1;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      [k: string]: unknown | undefined;
-    }
-)[];
-/**
- * Optional list of conflicting mods
- */
-export type Relationship5 = (
-  | {
-      /**
-       * Identifier of the mod
-       */
-      name: string;
-      /**
-       * Optional version
-       */
-      version?: string;
-      /**
-       * Optional minimum version
-       */
-      min_version?: string;
-      /**
-       * Optional maximum version
-       */
-      max_version?: string;
-      /**
-       * Optional help text shown when user has to choose among multiple modules
-       */
-      choice_help_text?: string;
-      /**
-       * If true, don't check this mod or its dependencies for recommendations or suggestions
-       */
-      suppress_recommendations?: boolean;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      any_of: Relationship1;
+      any_of: Relationship;
       /**
        * Optional help text shown when user has to choose among multiple modules
        */

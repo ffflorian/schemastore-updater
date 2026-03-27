@@ -10,7 +10,6 @@ export type TheNameOfTheMenuForThisLink = string;
 export type TheExternalURLIfThisLinkHasOne = string;
 export type TheWeightOfTheLink = number;
 export type ClassForTaskImplementations = string;
-export type ClassForTaskImplementations1 = string;
 export type TheNameOfTheModuleProvidingThisLink = string;
 export type ShowTheLinkAsExpanded = boolean | number;
 export type TheStatusOfTheLink = boolean | number;
@@ -32,7 +31,7 @@ export interface JSONSchemaForDrupalMenuLinksFile {
         weight?: TheWeightOfTheLink;
         options?: ArrayOfLinkOptions;
         class?: ClassForTaskImplementations;
-        form_class?: ClassForTaskImplementations1;
+        form_class?: ClassForTaskImplementations;
         provider?: TheNameOfTheModuleProvidingThisLink;
         metadata?: {
           [k: string]: unknown | undefined;

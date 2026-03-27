@@ -79,22 +79,6 @@ export type Labels = {
  */
 export type LabelValue = string;
 /**
- * Labels to add or overwrite before storing the result.
- */
-export type Labels1 = {
-  [k: string]: LabelValue;
-} & ({
-  [k: string]: LabelValue;
-} | null);
-/**
- * Labels to add or overwrite for each alert.
- */
-export type Labels2 = {
-  [k: string]: LabelValue;
-} & ({
-  [k: string]: LabelValue;
-} | null);
-/**
  * Annotations to add to each alert.
  */
 export type Annotations = {
@@ -122,7 +106,7 @@ export interface RecordingRule {
    * The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and the result recorded as a new set of time series with the metric name as given by 'record'.
    */
   expr: string | number;
-  labels?: Labels1;
+  labels?: Labels;
 }
 export interface AlertingRule {
   /**
@@ -141,6 +125,6 @@ export interface AlertingRule {
    * How long an alert will continue firing after the condition that triggered it has cleared.
    */
   keep_firing_for?: string | null;
-  labels?: Labels2;
+  labels?: Labels;
   annotations?: Annotations;
 }

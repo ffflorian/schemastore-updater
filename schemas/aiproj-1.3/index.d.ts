@@ -47,19 +47,11 @@ export type AddressFormat = 'Wildcard' | 'ExactMatch' | 'RegExp';
  */
 export type BlacklistedAddresses =
   | {
-      Address?: Address1;
-      Format?: AddressFormat1;
+      Address?: Address;
+      Format?: AddressFormat;
       [k: string]: unknown | undefined;
     }[]
   | null;
-/**
- * Address value
- */
-export type Address1 = string;
-/**
- * Type of address
- */
-export type AddressFormat1 = 'Wildcard' | 'ExactMatch' | 'RegExp';
 export type AuthenticationOptions = (
   | {
       Type: 'RawCookie';
@@ -191,97 +183,52 @@ export type DownloadDependencies = null | boolean;
  */
 export type CustomParameters = null | string;
 export type NETScanOptions1 = {
-  ProjectType?: TypeOfApplication1;
-  SolutionFile?: SolutionFile1;
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod1;
-  DownloadDependencies?: DownloadDependencies1;
-  CustomParameters?: CustomParameters1;
+  ProjectType?: TypeOfApplication;
+  SolutionFile?: SolutionFile;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  DownloadDependencies?: DownloadDependencies;
+  CustomParameters?: CustomParameters;
 } | null;
-export type TypeOfApplication1 = 'None' | 'Solution' | 'WebSite';
-/**
- * Path to a solution or project
- */
-export type SolutionFile1 = null | string;
-export type UsePublicAnalysisMethod1 = null | boolean;
-export type DownloadDependencies1 = null | boolean;
-/**
- * Custom DotNet kernel startup parameters
- */
-export type CustomParameters1 = null | string;
 export type GoScanOptions = {
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod2;
-  CustomParameters?: CustomParameters2;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  CustomParameters?: CustomParameters;
 } | null;
-export type UsePublicAnalysisMethod2 = null | boolean;
-/**
- * Custom Go kernel startup parameters
- */
-export type CustomParameters2 = null | string;
 export type JavaScanOptions = {
   Parameters?: JVMStartOptions;
   UnpackUserPackages?: UnpackCustomJARFiles;
   UserPackagePrefixes?: PrefixesOfCustomPackages;
   Version?: JDKVersion;
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod3;
-  DownloadDependencies?: DownloadDependencies2;
-  CustomParameters?: CustomParameters3;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  DownloadDependencies?: DownloadDependencies;
+  CustomParameters?: CustomParameters;
 } | null;
 export type JVMStartOptions = null | string;
 export type UnpackCustomJARFiles = boolean;
 export type PrefixesOfCustomPackages = null | string;
 export type JDKVersion = '8' | '11' | '17';
-export type UsePublicAnalysisMethod3 = null | boolean;
-export type DownloadDependencies2 = null | boolean;
-/**
- * Custom Java kernel startup parameters
- */
-export type CustomParameters3 = null | string;
 export type JavaScriptScanOptions = {
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod4;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
   UseTaintAnalysis?: UseTaintAnalysisMethod;
   UseJsaAnalysis?: UseJsaCoreForAnalysis;
-  DownloadDependencies?: DownloadDependencies3;
-  CustomParameters?: CustomParameters4;
+  DownloadDependencies?: DownloadDependencies;
+  CustomParameters?: CustomParameters;
 } | null;
-export type UsePublicAnalysisMethod4 = null | boolean;
 export type UseTaintAnalysisMethod = null | boolean;
 export type UseJsaCoreForAnalysis = null | boolean;
-export type DownloadDependencies3 = null | boolean;
-/**
- * Custom JavaScript kernel startup parameters
- */
-export type CustomParameters4 = null | string;
 export type PhpScanOptions = {
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod5;
-  DownloadDependencies?: DownloadDependencies4;
-  CustomParameters?: CustomParameters5;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  DownloadDependencies?: DownloadDependencies;
+  CustomParameters?: CustomParameters;
 } | null;
-export type UsePublicAnalysisMethod5 = null | boolean;
-export type DownloadDependencies4 = null | boolean;
-/**
- * Custom Php kernel startup parameters
- */
-export type CustomParameters5 = null | string;
 export type PmTaintScanOptions = {
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod6;
-  CustomParameters?: CustomParameters6;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  CustomParameters?: CustomParameters;
 } | null;
-export type UsePublicAnalysisMethod6 = null | boolean;
-/**
- * Custom PmTaint kernel startup parameters
- */
-export type CustomParameters6 = null | string;
 export type PythonScanOptions = {
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod7;
-  DownloadDependencies?: DownloadDependencies5;
-  CustomParameters?: CustomParameters7;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  DownloadDependencies?: DownloadDependencies;
+  CustomParameters?: CustomParameters;
 } | null;
-export type UsePublicAnalysisMethod7 = null | boolean;
-export type DownloadDependencies5 = null | boolean;
-/**
- * Custom Python kernel startup parameters
- */
-export type CustomParameters7 = null | string;
 /**
  * Report mailing options
  */
@@ -418,14 +365,9 @@ export type MailSettings = (
         ))
   );
 export type RubyScanOptions = {
-  UsePublicAnalysisMethod?: UsePublicAnalysisMethod8;
-  CustomParameters?: CustomParameters8;
+  UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
+  CustomParameters?: CustomParameters;
 } | null;
-export type UsePublicAnalysisMethod8 = null | boolean;
-/**
- * Custom Ruby kernel startup parameters
- */
-export type CustomParameters8 = null | string;
 export type ActiveScanningLanguages = (
   | 'Java'
   | 'CSharp (Windows, Linux)'

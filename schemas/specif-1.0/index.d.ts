@@ -58,14 +58,6 @@ export type DataTypeDouble = 'xs:double';
  */
 export type NumberOfFractionDigitsOfADecimalNumber = number;
 /**
- * Optional use by dataTypes 'xs:integer' and 'xs:double'.
- */
-export type MinimumValueOfANumber1 = number;
-/**
- * Optional use by dataTypes 'xs:integer' and 'xs:double'.
- */
-export type MaximumValueOfANumber1 = number;
-/**
  * The corresponding definition in https://www.w3.org/TR/xmlschema-2/ resp. https://www.w3.org/TR/xhtml1/ applies.
  */
 export type DataTypeStringOrFormattedText = 'xs:string' | 'xhtml';
@@ -213,44 +205,6 @@ export type AlternativeIds = (
     }
 )[];
 /**
- * The next hierarchy level.
- */
-export type Nodes1 = {
-  id: Id;
-  /**
-   * The node's label; if missing, the title of the referenced resource is applied.
-   */
-  title?:
-    | string
-    | {
-        /**
-         * A string containing some text.
-         */
-        text: string;
-        /**
-         * An IETF language tag such as 'en', 'en-US, 'fr' or 'de'.
-         */
-        language: string;
-      }[];
-  description?: Value;
-  /**
-   * The pointer to the resource to be displayed at this position.
-   */
-  resource:
-    | string
-    | {
-        id: Id;
-        revision?: Revision;
-        [k: string]: unknown | undefined;
-      };
-  nodes?: Nodes1;
-  revision?: Revision;
-  replaces?: Replaces;
-  changedAt: DateTime;
-  changedBy?: string;
-  [k: string]: unknown | undefined;
-}[];
-/**
  * A list of hierarchies with pointers to resources; may be nested to build a tree, i.e. a hierarchy of pointers.
  */
 export type Nodes = {
@@ -281,7 +235,7 @@ export type Nodes = {
         revision?: Revision;
         [k: string]: unknown | undefined;
       };
-  nodes?: Nodes1;
+  nodes?: Nodes;
   revision?: Revision;
   replaces?: Replaces;
   changedAt: DateTime;
@@ -366,8 +320,8 @@ export interface JSONSchemaForSpecIFV10 {
         title: Value;
         description?: Value;
         fractionDigits?: NumberOfFractionDigitsOfADecimalNumber;
-        minInclusive?: MinimumValueOfANumber1;
-        maxInclusive?: MaximumValueOfANumber1;
+        minInclusive?: MinimumValueOfANumber;
+        maxInclusive?: MaximumValueOfANumber;
         revision?: Revision;
         replaces?: Replaces;
         changedAt: DateTime;

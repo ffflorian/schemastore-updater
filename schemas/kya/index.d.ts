@@ -35,13 +35,9 @@ export type AgentName = string;
  */
 export type AgentLabel = string;
 /**
- * A URI value.
- */
-export type URI1 = string;
-/**
  * URIs (often DIDs or fragments) identifying authorities overseeing the agent’s operation.
  */
-export type GoverningAuthority = URI1[];
+export type GoverningAuthority = URI[];
 /**
  * Inventory of public keys (verification methods) used by the agent and its governance.
  *
@@ -49,31 +45,27 @@ export type GoverningAuthority = URI1[];
  */
 export type VerificationMethods = [VerificationMethod, ...VerificationMethod[]];
 /**
- * A DID string per the DID URI scheme.
- */
-export type DecentralizedIdentifier1 = string;
-/**
  * Verification method URIs authorized for authentication.
  *
  * @minItems 1
  */
-export type AuthenticationKeys = [URI1, ...URI1[]];
+export type AuthenticationKeys = [URI, ...URI[]];
 /**
  * Verification method URIs authorized to assert statements (e.g., sign agent actions).
  *
  * @minItems 1
  */
-export type AssertionKeys = [URI1, ...URI1[]];
+export type AssertionKeys = [URI, ...URI[]];
 /**
  * Verification method URIs authorized to invoke governance capabilities, including manifest updates.
  *
  * @minItems 1
  */
-export type GovernanceKeys = [URI1, ...URI1[]];
+export type GovernanceKeys = [URI, ...URI[]];
 /**
  * Verification method URIs used for key agreement (e.g., encrypted channels).
  */
-export type KeyAgreementKeys = URI1[];
+export type KeyAgreementKeys = URI[];
 /**
  * Minimum number of valid governance proofs expected for the manifest (policy-level threshold).
  */
@@ -198,9 +190,9 @@ export interface KYAManifest {
  * A DID verification method entry (key material and controller).
  */
 export interface VerificationMethod {
-  id: URI1;
+  id: URI;
   type: string;
-  controller: DecentralizedIdentifier1;
+  controller: DecentralizedIdentifier;
   publicKeyMultibase: string;
   [k: string]: unknown | undefined;
 }
@@ -208,7 +200,7 @@ export interface VerificationMethod {
  * Optional legal terms and dispute resolution metadata.
  */
 export interface LegalTerms {
-  termsUri?: URI1;
+  termsUri?: URI;
   termsHash?: SHA256HexDigest;
   disputeResolution?: DisputeResolutionPath[];
   [k: string]: unknown | undefined;
@@ -265,13 +257,13 @@ export interface SigningConstraint {
  * Optional governance endpoints, visibility, and oracle references.
  */
 export interface Governance {
-  controlUri: URI1;
+  controlUri: URI;
   validFrom?: DateTime;
   validUntil?: DateTime;
   pulseInterval?: number;
   visibility?: 'public' | 'private' | 'permissioned';
-  statusUri?: URI1;
-  telemetryUri?: URI1;
+  statusUri?: URI;
+  telemetryUri?: URI;
   oracles?: Oracle[];
   [k: string]: unknown | undefined;
 }
@@ -283,8 +275,8 @@ export interface Oracle {
   /**
    * @minItems 1
    */
-  serviceEndpoint: [URI1, ...URI1[]];
-  providerDid?: DecentralizedIdentifier1;
+  serviceEndpoint: [URI, ...URI[]];
+  providerDid?: DecentralizedIdentifier;
   /**
    * @minItems 1
    */
@@ -307,7 +299,7 @@ export interface OracleSafetyBounds {
  * A treasury identifier and its intended operational usage.
  */
 export interface TreasuryItem {
-  id: URI1;
+  id: URI;
   /**
    * @minItems 1
    */
@@ -323,14 +315,14 @@ export interface TreasuryItem {
  * A VC referenced by digest (and optionally a retrievable location).
  */
 export interface ReferencedVerifiableCredential {
-  id: URI1;
+  id: URI;
   /**
    * @minItems 1
    */
   type: [string, ...string[]];
-  issuer: DecentralizedIdentifier1;
+  issuer: DecentralizedIdentifier;
   digestMultibase: string;
-  location?: URI1;
+  location?: URI;
   [k: string]: unknown | undefined;
 }
 /**
@@ -339,7 +331,7 @@ export interface ReferencedVerifiableCredential {
 export interface ManifestProof {
   type: string;
   cryptosuite?: string;
-  verificationMethod: URI1;
+  verificationMethod: URI;
   proofPurpose: 'capabilityInvocation';
   proofValue: string;
   [k: string]: unknown | undefined;

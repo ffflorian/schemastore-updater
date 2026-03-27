@@ -106,14 +106,6 @@ export type Memory =
  */
 export type DomainName = string;
 /**
- * Domain hostname for the stage.
- */
-export type DomainName1 = string;
-/**
- * Domain hostname for the stage.
- */
-export type DomainName2 = string;
-/**
  * Hook command(s) to run.
  */
 export type BuildHook = string;
@@ -186,10 +178,6 @@ export type Jitter = boolean;
  */
 export type DisableErrorPages = boolean;
 /**
- * Path to directory from which error pages are served.
- */
-export type DirectoryPath1 = string;
-/**
  * Support email for contact link.
  */
 export type SupportEmail = string;
@@ -254,10 +242,6 @@ export type StatisticsName = 'min' | 'max' | 'avg' | 'sum' | 'count';
  */
 export type ValueThreshold = number;
 /**
- * Name of the action to perform.
- */
-export type ActionName1 = string;
-/**
  * Period is the alert query time-span.
  */
 export type Period = number | string;
@@ -307,11 +291,11 @@ export interface JSONSchemaForApexUpConfigurationFiles {
       [k: string]: unknown | undefined;
     };
     staging?: {
-      domain?: DomainName1;
+      domain?: DomainName;
       [k: string]: unknown | undefined;
     };
     development?: {
-      domain?: DomainName2;
+      domain?: DomainName;
       [k: string]: unknown | undefined;
     };
     [k: string]: unknown | undefined;
@@ -356,7 +340,7 @@ export interface JSONSchemaForApexUpConfigurationFiles {
   };
   error_pages?: {
     disable?: DisableErrorPages;
-    dir?: DirectoryPath1;
+    dir?: DirectoryPath;
     variables?: {
       support_email?: SupportEmail;
       color?: Color;
@@ -391,7 +375,7 @@ export interface JSONSchemaForApexUpConfigurationFiles {
     metric: MetricName;
     statistic: StatisticsName;
     threshold: ValueThreshold;
-    action: ActionName1;
+    action: ActionName;
     period?: Period;
     evaluation_periods?: EvaluationPeriods;
     operator?: Operator;

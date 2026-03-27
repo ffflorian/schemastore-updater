@@ -22,14 +22,13 @@ export type File = DefinitionsVariablesGeneric & {
   column_names?: [] | [string];
   is_first_line_column_names?: boolean;
   start_from_line?: number;
-  delimiter?: Text1;
+  delimiter?: Text;
   path?: Text;
   scope?: 'local' | 'global' | 'unique';
   order?: 'sequential' | 'random' | 'any';
   out_of_value?: 'cycle' | 'stop_test' | 'no_value_code';
   [k: string]: unknown | undefined;
 };
-export type Text1 = string;
 export type Counter = DefinitionsVariablesGeneric & {
   start?: number;
   end?: number;
@@ -97,27 +96,6 @@ export type UserPaths = [UserPath, ...UserPath[]];
  * @minItems 1
  */
 export type Steps = [
-  {
-    transaction?: ActionTransaction;
-    request?: ActionHTTPSRequest;
-    delay?: ActionDelay;
-    think_time?: ActionThinkTime;
-    javascript?: ActionJavascript;
-    if?: ActionIf;
-  },
-  ...{
-    transaction?: ActionTransaction;
-    request?: ActionHTTPSRequest;
-    delay?: ActionDelay;
-    think_time?: ActionThinkTime;
-    javascript?: ActionJavascript;
-    if?: ActionIf;
-  }[]
-];
-/**
- * @minItems 1
- */
-export type Steps1 = [
   {
     transaction?: ActionTransaction;
     request?: ActionHTTPSRequest;
@@ -258,7 +236,7 @@ export interface Containers {
 export interface ActionTransaction {
   name: Text;
   description?: Text;
-  steps: Steps1;
+  steps: Steps;
 }
 export interface ActionHTTPSRequest {
   url: Text;

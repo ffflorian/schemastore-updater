@@ -12,14 +12,6 @@ export type Prepare = {
   [k: string]: unknown | undefined;
 }[];
 export type Threshold = number | null;
-export type Threshold1 = number | null;
-export type Threshold2 = number | null;
-export type Threshold3 = number | null;
-export type Threshold4 = number | null;
-export type Threshold5 = number | null;
-export type Threshold6 = number | null;
-export type Threshold7 = number | null;
-export type Threshold8 = number | null;
 export type Enabled1 = boolean;
 export type ExcludePattern = string;
 export type ExcludePatterns = ExcludePattern[];
@@ -61,7 +53,7 @@ export interface ComplexLogic {
   [k: string]: unknown | undefined;
 }
 export interface Config1 {
-  threshold?: Threshold1;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface FileLines {
@@ -69,7 +61,7 @@ export interface FileLines {
   [k: string]: unknown | undefined;
 }
 export interface Config2 {
-  threshold?: Threshold2;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface MethodComplexity {
@@ -77,7 +69,7 @@ export interface MethodComplexity {
   [k: string]: unknown | undefined;
 }
 export interface Config3 {
-  threshold?: Threshold3;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface MethodCount {
@@ -85,7 +77,7 @@ export interface MethodCount {
   [k: string]: unknown | undefined;
 }
 export interface Config4 {
-  threshold?: Threshold4;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface MethodLines {
@@ -93,7 +85,7 @@ export interface MethodLines {
   [k: string]: unknown | undefined;
 }
 export interface Config5 {
-  threshold?: Threshold5;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface NestedControlFlow {
@@ -101,7 +93,7 @@ export interface NestedControlFlow {
   [k: string]: unknown | undefined;
 }
 export interface Config6 {
-  threshold?: Threshold6;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface ReturnStatements {
@@ -109,7 +101,7 @@ export interface ReturnStatements {
   [k: string]: unknown | undefined;
 }
 export interface Config7 {
-  threshold?: Threshold7;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface SimilarCode {
@@ -117,7 +109,7 @@ export interface SimilarCode {
   [k: string]: unknown | undefined;
 }
 export interface Config8 {
-  threshold?: Threshold8;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 export interface IdenticalCode {
@@ -125,7 +117,7 @@ export interface IdenticalCode {
   [k: string]: unknown | undefined;
 }
 export interface Config9 {
-  threshold?: Threshold8;
+  threshold?: Threshold;
   [k: string]: unknown | undefined;
 }
 /**

@@ -178,12 +178,6 @@ export type NonEmptyString = string;
  */
 export type SourceType = 'Default' | 'User' | 'Internal' | 'External';
 /**
- * Nouns which indicate the units represented in this numeric property entity.
- *
- * @minItems 1
- */
-export type Terms1 = [Term, ...Term[]];
-/**
  * A role in a linguistic relationship.
  *
  * This interface was referenced by `Roles`'s JSON-Schema definition
@@ -194,12 +188,6 @@ export type Role = Identifier | FullRole;
  * Identifier for a linguistic schema object
  */
 export type Identifier = string;
-/**
- * Nouns which can be used to refer to the entity which is the target of the role, when used in the context of the relationship
- *
- * @minItems 1
- */
-export type Terms2 = [Term, ...Term[]];
 /**
  * A set of conditions which are required to be true for instances of the relationship represented in the semantic model
  *
@@ -256,12 +244,6 @@ export type AttributePhrasing = {
  */
 export type PrepPhrases = [PrepPhrase, ...PrepPhrase[]];
 /**
- * Prepositions used in the prepositional phrase
- *
- * @minItems 1
- */
-export type Terms3 = [Term, ...Term[]];
-/**
  * A name phrasing on a linguistic relationship
  */
 export type NamePhrasing = {
@@ -288,56 +270,26 @@ export type AdjectivePhrasingProperties =
        * The entity which is described via an adjective
        */
       Subject: Identifier | FullRoleReference;
-      Adjectives: Terms4;
-      Antonyms?: Terms5;
+      Adjectives: Terms;
+      Antonyms?: Terms;
       /**
        * The entity which measures the extent to which the Adjectives apply
        */
       Measurement?: Identifier | FullRoleReference;
-      PrepositionalPhrases?: PrepPhrases1;
+      PrepositionalPhrases?: PrepPhrases;
     }
   | {
       /**
        * The entity which is described via an adjective
        */
       Subject: Identifier | FullRoleReference;
-      Antonyms: Terms6;
+      Antonyms: Terms;
       /**
        * The entity which measures the extent to which the Adjectives apply
        */
       Measurement?: Identifier | FullRoleReference;
-      PrepositionalPhrases?: PrepPhrases2;
+      PrepositionalPhrases?: PrepPhrases;
     };
-/**
- * Adjectives used to describe the Subject (with a high measurement)
- *
- * @minItems 1
- */
-export type Terms4 = [Term, ...Term[]];
-/**
- * Adjectives used to describe the Subject (with a low measurement)
- *
- * @minItems 1
- */
-export type Terms5 = [Term, ...Term[]];
-/**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases1 = [PrepPhrase, ...PrepPhrase[]];
-/**
- * Adjectives used to describe the Subject (with a low measurement)
- *
- * @minItems 1
- */
-export type Terms6 = [Term, ...Term[]];
-/**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases2 = [PrepPhrase, ...PrepPhrase[]];
 /**
  * A dynamic adjective phrasing on a linguistic relationship
  */
@@ -348,12 +300,6 @@ export type DynamicAdjectivePhrasing = {
   TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases3 = [PrepPhrase, ...PrepPhrase[]];
-/**
  * A noun phrasing on a linguistic relationship
  */
 export type NounPhrasing = {
@@ -362,18 +308,6 @@ export type NounPhrasing = {
   Weight?: unknown;
   TemplateSchema?: unknown;
 } & PhrasingProperties;
-/**
- * Nouns used to describe the Subject
- *
- * @minItems 1
- */
-export type Terms7 = [Term, ...Term[]];
-/**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases4 = [PrepPhrase, ...PrepPhrase[]];
 /**
  * A dynamic noun phrasing on a linguistic relationship
  */
@@ -384,12 +318,6 @@ export type DynamicNounPhrasing = {
   TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases5 = [PrepPhrase, ...PrepPhrase[]];
-/**
  * A preposition phrasing on a linguistic relationship
  */
 export type PrepositionPhrasing = {
@@ -399,18 +327,6 @@ export type PrepositionPhrasing = {
   TemplateSchema?: unknown;
 } & PhrasingProperties;
 /**
- * Prepositions used in the prepositional phrase
- *
- * @minItems 1
- */
-export type Terms8 = [Term, ...Term[]];
-/**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases6 = [PrepPhrase, ...PrepPhrase[]];
-/**
  * A verb phrasing on a linguistic relationship
  */
 export type VerbPhrasing = {
@@ -419,18 +335,6 @@ export type VerbPhrasing = {
   Weight?: unknown;
   TemplateSchema?: unknown;
 } & PhrasingProperties;
-/**
- * Verbs used to describe the relationship
- *
- * @minItems 1
- */
-export type Terms9 = [Term, ...Term[]];
-/**
- * Additional prepositional phrases which apply to the phrasing
- *
- * @minItems 1
- */
-export type PrepPhrases7 = [PrepPhrase, ...PrepPhrase[]];
 /**
  * The global text substitutions in the linguistic schema.
  *
@@ -527,7 +431,7 @@ export interface Entity {
    * The overall semantic category of the entity
    */
   SemanticType?: 'Person' | 'Animate' | 'Inanimate' | 'Location' | 'Time' | 'Duration';
-  Units?: Terms1;
+  Units?: Terms;
   Instances?: Instances;
 }
 /**
@@ -839,7 +743,7 @@ export interface FullRole {
    * The linguistic entity which is the target of the role
    */
   Target: Identifier | FullEntityReference;
-  Nouns?: Terms2;
+  Nouns?: Terms;
   /**
    * A role which indicates the quantity of this role's entity which participates in the relationship
    */
@@ -960,7 +864,7 @@ export interface AttributePhrasingProperties {
  * A prepositional phrase used in a phrasing
  */
 export interface PrepPhrase {
-  Prepositions: Terms3;
+  Prepositions: Terms;
   /**
    * The entity which is the object of the prepositional phrase
    */
@@ -1006,7 +910,7 @@ export interface DynamicAdjectivePhrasingProperties {
    * The column entity (or table entity with a name phrasing) which is used to describe the Subject
    */
   Adjective: Identifier | FullRoleReference;
-  PrepositionalPhrases?: PrepPhrases3;
+  PrepositionalPhrases?: PrepPhrases;
 }
 /**
  * Properties of a noun phrasing
@@ -1016,8 +920,8 @@ export interface NounPhrasingProperties {
    * The entity which is described via a noun
    */
   Subject: Identifier | FullRoleReference;
-  Nouns: Terms7;
-  PrepositionalPhrases?: PrepPhrases4;
+  Nouns: Terms;
+  PrepositionalPhrases?: PrepPhrases;
 }
 /**
  * Properties of a dynamic noun phrasing
@@ -1031,7 +935,7 @@ export interface DynamicNounPhrasingProperties {
    * The column entity (or table entity with a name phrasing) which is the used to describe the Subject
    */
   Noun: Identifier | FullRoleReference;
-  PrepositionalPhrases?: PrepPhrases5;
+  PrepositionalPhrases?: PrepPhrases;
 }
 /**
  * Properties of a preposition phrasing
@@ -1041,12 +945,12 @@ export interface PrepositionPhrasingProperties {
    * The entity which is the subject of the prepositional phrase
    */
   Subject: Identifier | FullRoleReference;
-  Prepositions: Terms8;
+  Prepositions: Terms;
   /**
    * The entity which is the object of the prepositional phrase
    */
   Object: Identifier | FullRoleReference;
-  PrepositionalPhrases?: PrepPhrases6;
+  PrepositionalPhrases?: PrepPhrases;
 }
 /**
  * Properties of a verb phrasing
@@ -1056,7 +960,7 @@ export interface VerbPhrasingProperties {
    * The entity which is the subject of the verb
    */
   Subject?: Identifier | FullRoleReference;
-  Verbs: Terms9;
+  Verbs: Terms;
   /**
    * The entity which is the indirect object of the verb
    */
@@ -1065,7 +969,7 @@ export interface VerbPhrasingProperties {
    * The entity which is the direct object of the verb
    */
   Object?: Identifier | FullRoleReference;
-  PrepositionalPhrases?: PrepPhrases7;
+  PrepositionalPhrases?: PrepPhrases;
 }
 /**
  * A global text substitution in the linguistic schema.

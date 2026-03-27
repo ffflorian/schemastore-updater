@@ -17,7 +17,7 @@ export type GoogleCloudWorkflows =
       };
       [k: string]: Subworkflow | undefined;
     }
-  | StepArray6;
+  | StepArray;
 /**
  * An array of objects with a single step.
  *
@@ -67,20 +67,6 @@ export type Next = string | 'end' | 'continue' | 'break';
  */
 export type Switch = [Condition, ...Condition[]];
 /**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray1 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
  * Iterates over a sequence of numbers or through a collection of data, such as a list or map.
  */
 export type For = {
@@ -100,7 +86,7 @@ export type For = {
    * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
    */
   range?: [number, number] | string;
-  steps: StepArray2;
+  steps: StepArray;
 } & For1 & {
     /**
      * A loop variable name. Contains the value of the currently iterated element.
@@ -118,7 +104,7 @@ export type For = {
      * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
      */
     range?: [number, number] | string;
-    steps: StepArray2;
+    steps: StepArray;
   } & For1 & {
     /**
      * A loop variable name. Contains the value of the currently iterated element.
@@ -136,22 +122,8 @@ export type For = {
      * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
      */
     range?: [number, number] | string;
-    steps: StepArray2;
+    steps: StepArray;
   } & For1;
-/**
- * Each iteration the steps will be executed.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray2 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
 export type For1 =
   | {
       [k: string]: unknown | undefined;
@@ -415,7 +387,7 @@ export type For2 = {
    * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
    */
   range?: [number, number] | string;
-  steps: StepArray2;
+  steps: StepArray;
 } & (
   | {
       [k: string]: unknown | undefined;
@@ -450,7 +422,7 @@ export type Raise =
 /**
  * A try/except structure for error handling.
  */
-export type Try = Step1 | StepArray4;
+export type Try = Step1 | StepArray;
 /**
  * Define a retry policy to retry steps that return a specific error code.
  */
@@ -483,62 +455,6 @@ export type Retry =
       };
     }
   | string;
-/**
- * A list of steps.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray3 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
- * A list of steps.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray4 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray5 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
-/**
- * An array of objects with a single step.
- *
- * @minItems 1
- * @maxItems 100000
- */
-export type StepArray6 = [
-  {
-    [k: string]: Step;
-  },
-  ...{
-    [k: string]: Step;
-  }[]
-];
 
 /**
  * A single workflow step.
@@ -560,7 +476,7 @@ export interface Step {
   retry?: Retry;
   except?: Except;
   return?: Return;
-  steps?: StepArray1;
+  steps?: StepArray;
 }
 /**
  * Pass arguments and their values when calling a function that accepts parameters.
@@ -672,7 +588,7 @@ export interface Condition {
    * An expression to switch on.
    */
   condition: string | boolean;
-  steps?: StepArray1;
+  steps?: StepArray;
   assign?: Assign;
   call?: Call;
   args?: Args;
@@ -705,7 +621,7 @@ export interface Step1 {
   retry?: Retry;
   except?: Except;
   return?: Return;
-  steps?: StepArray1;
+  steps?: StepArray;
 }
 /**
  * A try/except structure for error handling.
@@ -715,7 +631,7 @@ export interface Except {
    * The name of a map variable that contains the error message.
    */
   as?: string;
-  steps?: StepArray3;
+  steps?: StepArray;
 }
 /**
  * Stop a workflow's execution and return a value, variable, or expression.
@@ -745,5 +661,5 @@ export interface Subworkflow {
     | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
     | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
     | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown];
-  steps?: StepArray5;
+  steps?: StepArray;
 }

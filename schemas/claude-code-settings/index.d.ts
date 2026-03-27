@@ -131,6 +131,10 @@ export interface ClaudeCodeSettings {
    */
   awsAuthRefresh?: string;
   /**
+   * Glob patterns for CLAUDE.md files to exclude from loading. Useful in monorepos to skip irrelevant instructions from other teams. Patterns match against absolute file paths. Arrays merge across settings layers. Managed policy CLAUDE.md files cannot be excluded. See https://code.claude.com/docs/en/memory#exclude-specific-claudemd-files
+   */
+  claudeMdExcludes?: string[];
+  /**
    * Number of days to retain chat transcripts (0 to disable cleanup)
    */
   cleanupPeriodDays?: number;
@@ -228,7 +232,13 @@ export interface ClaudeCodeSettings {
    */
   availableModels?: string[];
   /**
-   * Control Opus 4.6 adaptive reasoning effort. Lower effort is faster and cheaper for straightforward tasks, higher effort provides deeper reasoning. Opus 4.6 defaults to medium effort for Max and Team subscribers. Also configurable via CLAUDE_CODE_EFFORT_LEVEL environment variable. See https://code.claude.com/docs/en/model-config#adjust-effort-level
+   * Map Anthropic model IDs to provider-specific model IDs such as Bedrock inference profile ARNs, Vertex AI version names, or Foundry deployment names. Each model picker entry uses its mapped value when calling the provider API. Unknown keys are ignored. See https://code.claude.com/docs/en/model-config#override-model-ids-per-version
+   */
+  modelOverrides?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * Control Opus 4.6 adaptive reasoning effort. Lower effort is faster and cheaper for straightforward tasks, higher effort provides deeper reasoning. Defaults vary by model and plan (Opus 4.6 defaults to medium for Max and Team subscribers). Use /effort auto to reset to model default. Also configurable via CLAUDE_CODE_EFFORT_LEVEL environment variable. See https://code.claude.com/docs/en/model-config#adjust-effort-level
    */
   effortLevel?: 'low' | 'medium' | 'high';
   /**
@@ -239,6 +249,10 @@ export interface ClaudeCodeSettings {
    * Require per-session opt-in for fast mode. When true, fast mode does not persist across sessions and users must enable it with /fast each session. Useful for controlling costs. See https://code.claude.com/docs/en/fast-mode
    */
   fastModePerSessionOptIn?: boolean;
+  /**
+   * Probability (0–1) that the session quality survey appears when eligible. A value of 0.05 means 5% of eligible sessions. See https://code.claude.com/docs/en/settings
+   */
+  feedbackSurveyRate?: number;
   /**
    * Whether to automatically approve all MCP servers in the project. See https://code.claude.com/docs/en/mcp
    */
@@ -298,6 +312,10 @@ export interface ClaudeCodeSettings {
       }
   )[];
   /**
+   * Allowlist of environment variable names HTTP hooks may interpolate into headers. When set, each hook's effective allowedEnvVars is the intersection with this list. Undefined = no restriction. Arrays merge across settings sources. See https://code.claude.com/docs/en/settings#hook-configuration
+   */
+  httpHookAllowedEnvVars?: string[];
+  /**
    * Custom commands to run before/after tool executions. See https://code.claude.com/docs/en/hooks
    */
   hooks?: {
@@ -342,6 +360,18 @@ export interface ClaudeCodeSettings {
      */
     PreCompact?: HookMatcher[];
     /**
+     * Hooks that run after the context is compacted. See https://code.claude.com/docs/en/hooks
+     */
+    PostCompact?: HookMatcher[];
+    /**
+     * Hooks that run when an MCP server requests user input during a tool call. See https://code.claude.com/docs/en/hooks
+     */
+    Elicitation?: HookMatcher[];
+    /**
+     * Hooks that run after a user responds to an MCP elicitation, before the response is sent back to the server. See https://code.claude.com/docs/en/hooks
+     */
+    ElicitationResult?: HookMatcher[];
+    /**
      * Hooks that run when an agent team teammate is about to go idle. Exit code 2 sends feedback and keeps the teammate working. Does not support matchers. Agent teams are experimental. See https://code.claude.com/docs/en/hooks#teammateidle
      */
     TeammateIdle?: HookMatcher[];
@@ -382,6 +412,10 @@ export interface ClaudeCodeSettings {
    * Disable all hooks and statusLine execution. When true in managed settings, user and project-level disableAllHooks cannot override it. See https://code.claude.com/docs/en/hooks#disable-or-remove-hooks
    */
   disableAllHooks?: boolean;
+  /**
+   * Allowlist of URL patterns that HTTP hooks may target. Supports * as a wildcard. When set, hooks with non-matching URLs are blocked. Undefined = no restriction, empty array = block all HTTP hooks. Arrays merge across settings sources. See https://code.claude.com/docs/en/settings#hook-configuration
+   */
+  allowedHttpHookUrls?: string[];
   /**
    * (Managed settings only) Prevent loading of user, project, and plugin hooks. Only allows managed hooks and SDK hooks. See https://code.claude.com/docs/en/settings#hook-configuration
    */
@@ -665,7 +699,7 @@ export interface ClaudeCodeSettings {
    */
   otelHeadersHelper?: string;
   /**
-   * Controls the output style for assistant responses. See https://code.claude.com/docs/en/output-styles
+   * Controls the output style for assistant responses. Built-in styles: default, Explanatory, Learning. Custom styles can be added in ~/.claude/output-styles/ or .claude/output-styles/. See https://code.claude.com/docs/en/output-styles
    */
   outputStyle?: string;
   /**
@@ -705,7 +739,7 @@ export interface ClaudeCodeSettings {
        */
       allowedDomains?: string[];
       /**
-       * (Managed settings only) Only allowedDomains and WebFetch(domain:...) allow rules from managed settings are respected. User, project, local, and flag settings domains are ignored. Denied domains are still respected from all sources.
+       * (Managed settings only) Only allowedDomains and WebFetch(domain:...) allow rules from managed settings are respected. User, project, local, and flag settings domains are ignored. Denied domains are still respected from all sources. Non-allowed domains are automatically blocked without user prompts.
        */
       allowManagedDomainsOnly?: boolean;
     };
@@ -818,6 +852,15 @@ export interface ClaudeCodeSettings {
    * How agent team teammates display: "auto" picks split panes in tmux or iTerm2, in-process otherwise. Agent teams are experimental and disabled by default. Enable them by adding CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS to your settings.json or environment. See https://code.claude.com/docs/en/agent-teams
    */
   teammateMode?: 'auto' | 'in-process' | 'tmux';
+  /**
+   * Configuration for --worktree sessions. See https://code.claude.com/docs/en/settings
+   */
+  worktree?: {
+    /**
+     * Directories to check out in each worktree via git sparse-checkout (cone mode). Only the listed paths are written to disk, which is faster in large monorepos.
+     */
+    sparsePaths?: string[];
+  };
   /**
    * (Managed settings only) Custom message appended to the plugin trust warning shown before installation. Use to provide organization-specific context about approved plugins. See https://code.claude.com/docs/en/settings#plugin-settings
    */

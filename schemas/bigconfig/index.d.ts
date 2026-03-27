@@ -23,7 +23,6 @@ export type ColumnSelectors = ColumnSelector[];
 export type TagDefinitions = TagDefinition[];
 export type RowCreationTimes = RowCreationTimes1;
 export type TagIds = string[];
-export type ColumnSelectors1 = ColumnSelector[];
 export type SavedMetricId = string;
 export type PredefinedMetric =
   | 'PERCENT_NULL'
@@ -99,14 +98,10 @@ export type PredefinedMetric =
   | 'FRESHNESS'
   | 'VOLUME';
 export type Metrics = SimpleMetricDefinition[];
-export type ColumnSelectors2 = ColumnSelector[];
-export type Metrics1 = SimpleMetricDefinition[];
-export type TagId1 = string;
 export type Deployments = TagDeployment[];
 export type TagDeployments = TagDeploymentSuite[];
 export type FqTableName = string;
 export type ColumnName = string;
-export type Metrics2 = SimpleMetricDefinition[];
 export type Columns = ColumnMetricDeployment[];
 export type TableMetrics = SimpleMetricDefinition[];
 export type RowCreationTime = string;
@@ -140,7 +135,7 @@ export interface ColumnSelector {
 }
 export interface RowCreationTimes1 {
   tag_ids?: TagIds;
-  column_selectors?: ColumnSelectors1;
+  column_selectors?: ColumnSelectors;
   [k: string]: unknown | undefined;
 }
 export interface SavedMetricDefinitions {
@@ -251,9 +246,9 @@ export interface SimpleCollection {
   [k: string]: unknown | undefined;
 }
 export interface TagDeployment {
-  column_selectors?: ColumnSelectors2;
-  metrics: Metrics1;
-  tag_id?: TagId1;
+  column_selectors?: ColumnSelectors;
+  metrics: Metrics;
+  tag_id?: TagId;
   [k: string]: unknown | undefined;
 }
 export interface TableDeploymentSuite {
@@ -270,6 +265,6 @@ export interface TableDeployment {
 }
 export interface ColumnMetricDeployment {
   column_name: ColumnName;
-  metrics: Metrics2;
+  metrics: Metrics;
   [k: string]: unknown | undefined;
 }

@@ -74,11 +74,10 @@ export type ToolchainsFile = string;
  * Specify the required Maven version.
  */
 export type Version2 = string | number;
-export type Argument1 = string;
 /**
  * Specify a list of additional arguments to MSBuild.
  */
-export type Arguments1 = Argument1[];
+export type Arguments1 = Argument[];
 /**
  * Specify the MSBuild configuration to use, for example, debug or release.
  */
@@ -115,16 +114,14 @@ export type XMLMode = 'all' | 'default' | 'disabled';
  * Override the default process by specifying a list of commands to run to generate the build configuration.
  */
 export type Command = string[] | null;
-export type Package1 = string;
 /**
  * Specify packages to exclude from extraction/analysis.
  */
-export type ExcludeRequirements = Package1[];
-export type Package2 = string;
+export type ExcludeRequirements = Package[];
 /**
  * Specify a list of pip packages to install. If any of these packages cannot be installed, the extraction will fail.
  */
-export type Requirements = Package2[];
+export type Requirements = Package[];
 /**
  * Specify a list of requirements text files to use to set up the environment, or false for none.
  */

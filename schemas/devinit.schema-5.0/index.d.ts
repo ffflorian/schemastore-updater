@@ -49,15 +49,11 @@ export type Comments = string | null;
  * 'devinit.exe init' runs this list of tools sequentially. See also 'devinit.exe run'.
  */
 export type TheListOfToolsToRun = RunObject[];
-/**
- * Comments for this file. For documentation only; ignored by the tool.
- */
-export type Comments1 = string | null;
 
 export interface CodespacesDevInitConfiguration {
   $schema?: string;
   run: TheListOfToolsToRun;
-  comments?: Comments1;
+  comments?: Comments;
 }
 export interface RunObject {
   tool: TheToolName;

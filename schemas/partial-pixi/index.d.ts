@@ -69,41 +69,13 @@ export type Url = string;
  */
 export type Version = string;
 /**
- * A git branch to use
- */
-export type Branch1 = string;
-/**
- * The git URL to the source repo
- */
-export type Git1 = string;
-/**
  * The md5 hash of the source package
  */
 export type Md51 = string;
 /**
- * The path to the source package
- */
-export type Path1 = string;
-/**
- * A git SHA revision to use
- */
-export type Rev1 = string;
-/**
  * The sha256 hash of the source package
  */
 export type Sha2561 = string;
-/**
- * A subdirectory to use in the repo
- */
-export type Subdirectory1 = string;
-/**
- * A git tag to use
- */
-export type Tag1 = string;
-/**
- * The URL to the source package
- */
-export type Url1 = string;
 /**
  * The features that define the environment
  */
@@ -122,10 +94,6 @@ export type SolveGroup = string;
  * - 'disabled': group all dependencies together as if there is no channel difference.
  */
 export type ChannelPriority = 'disabled' | 'strict';
-/**
- * The channel the packages needs to be fetched from
- */
-export type Channel1 = string;
 /**
  * The priority of the channel
  */
@@ -171,93 +139,13 @@ export type Extras = string[];
  */
 export type Index = string;
 /**
- * The version of the package in [PEP 440](https://www.python.org/dev/peps/pep-0440/) format
- */
-export type Version1 = string;
-/**
- * A `git` branch to use
- */
-export type Branch2 = string;
-/**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras1 = string[];
-/**
- * The `git` URL to the repo e.g https://github.com/prefix-dev/pixi
- */
-export type Git2 = string;
-/**
- * The subdirectory in the repo, a path from the root of the repo.
- */
-export type Subdirectory2 = string;
-/**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras2 = string[];
-/**
- * The `git` URL to the repo e.g https://github.com/prefix-dev/pixi
- */
-export type Git3 = string;
-/**
- * The subdirectory in the repo, a path from the root of the repo.
- */
-export type Subdirectory3 = string;
-/**
- * A `git` tag to use
- */
-export type Tag2 = string;
-/**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras3 = string[];
-/**
- * The `git` URL to the repo e.g https://github.com/prefix-dev/pixi
- */
-export type Git4 = string;
-/**
- * A `git` SHA revision to use
- */
-export type Rev2 = string;
-/**
- * The subdirectory in the repo, a path from the root of the repo.
- */
-export type Subdirectory4 = string;
-/**
  * If `true` the package will be installed as editable
  */
 export type Editable = boolean;
 /**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras4 = string[];
-/**
- * A path to a local source or wheel
- */
-export type Path2 = string;
-/**
- * The subdirectory in the repo, a path from the root of the repo.
- */
-export type Subdirectory5 = string;
-/**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras5 = string[];
-/**
- * A URL to a remote source or wheel
- */
-export type Url2 = string;
-/**
  * Additional PyPI registries that should be used as extra indexes
  */
 export type ExtraIndexUrls = string[];
-/**
- * Path to the directory of packages
- */
-export type Path3 = string;
-/**
- * URL to html file with href-links to packages
- */
-export type Url3 = string;
 /**
  * Paths to directory containing
  */
@@ -413,38 +301,6 @@ export type Authors = string[] | WorkspaceInheritance;
  */
 export type Workspace = true;
 /**
- * A git branch to use
- */
-export type Branch3 = string;
-/**
- * The build string of the package
- */
-export type Build2 = string;
-/**
- * The build number of the package, can be a spec like `>=1` or `<=10` or `1`
- */
-export type BuildNumber1 = string;
-/**
- * The channel the packages needs to be fetched from
- */
-export type Channel2 = string;
-/**
- * The `conda` channels that are used to fetch the build backend from
- */
-export type Channels1 = (string | ChannelInlineTable)[];
-/**
- * The file name of the package
- */
-export type FileName1 = string;
-/**
- * The git URL to the repo
- */
-export type Git5 = string;
-/**
- * The license of the package
- */
-export type License1 = string;
-/**
  * The md5 hash of the package
  */
 export type Md52 = string;
@@ -453,65 +309,9 @@ export type Md52 = string;
  */
 export type Name = string;
 /**
- * The path to the package
- */
-export type Path4 = string;
-/**
- * A git SHA revision to use
- */
-export type Rev3 = string;
-/**
  * The sha256 hash of the package
  */
 export type Sha2562 = string;
-/**
- * The subdir of the package, also known as platform
- */
-export type Subdir1 = string;
-/**
- * A subdirectory to use in the repo
- */
-export type Subdirectory6 = string;
-/**
- * A git tag to use
- */
-export type Tag3 = string;
-/**
- * The URL to the package
- */
-export type Url4 = string;
-/**
- * The version of the package in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export type Version3 = string;
-/**
- * The `conda` channels that are used to fetch the build backend from
- */
-export type Channels2 = (string | ChannelInlineTable)[];
-/**
- * A git branch to use
- */
-export type Branch4 = string;
-/**
- * The git URL to the source repo
- */
-export type Git6 = string;
-/**
- * The path to the source
- */
-export type Path5 = string;
-/**
- * A git SHA revision to use
- */
-export type Rev4 = string;
-/**
- * A subdirectory to use in the repo
- */
-export type Subdirectory7 = string;
-/**
- * A git tag to use
- */
-export type Tag4 = string;
 /**
  * A short description of the project. Can be a string or { workspace = true } to inherit from workspace
  */
@@ -557,20 +357,6 @@ export type Authors1 = string[];
  */
 export type BuildVariantsFiles = string[];
 /**
- * The type of channel priority that is used in the solve.
- * - 'strict': only take the package from the channel it exist in first.
- * - 'disabled': group all dependencies together as if there is no channel difference.
- */
-export type ChannelPriority1 = 'disabled' | 'strict';
-/**
- * The `conda` channels that can be used in the project. Unless overridden by `priority`, the first channel listed will be preferred.
- */
-export type Channels3 = (string | ChannelInlineTable)[];
-/**
- * A short description of the project
- */
-export type Description2 = string;
-/**
  * The URL of the documentation of the project
  */
 export type Documentation1 = string;
@@ -583,21 +369,9 @@ export type ExcludeNewer = string;
  */
 export type Homepage1 = string;
 /**
- * The license of the project; we advise using an [SPDX](https://spdx.org/licenses/) identifier.
- */
-export type License3 = string;
-/**
  * The path to the license file of the project
  */
 export type LicenseFile1 = string;
-/**
- * The name of the project; we advise use of the name of the repository
- */
-export type Name2 = string;
-/**
- * The platforms that the project supports
- */
-export type Platforms1 = Platform[];
 /**
  * Defines the enabling of preview features of the project
  */
@@ -626,17 +400,6 @@ export type ForcePathStyle = boolean;
  * The region to use for the S3 client
  */
 export type Region = string;
-/**
- * The strategy that is used in the solve.
- * - 'highest': solve all packages to the highest compatible version.
- * - 'lowest': solve all packages to the lowest compatible version.
- * - 'lowest-direct': solve direct dependencies to the lowest compatible version and transitive ones to the highest compatible version.
- */
-export type SolveStrategy1 = 'highest' | 'lowest' | 'lowest-direct';
-/**
- * The version of the project; we advise use of [SemVer](https://semver.org)
- */
-export type Version5 = string;
 
 /**
  * The `[tool.pixi]` section of a `pyproject.toml`.
@@ -723,15 +486,15 @@ export interface Dev {
  * A precise description of a source package location.
  */
 export interface SourceSpecTable {
-  branch?: Branch1;
-  git?: Git1;
+  branch?: Branch;
+  git?: Git;
   md5?: Md51;
-  path?: Path1;
-  rev?: Rev1;
+  path?: Path;
+  rev?: Rev;
   sha256?: Sha2561;
-  subdirectory?: Subdirectory1;
-  tag?: Tag1;
-  url?: Url1;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+  url?: Url;
 }
 /**
  * The environments of the project, defined as a full object or a list of feature names.
@@ -794,7 +557,7 @@ export interface BuildDependencies1 {
  * A precise description of a `conda` channel, with an optional priority.
  */
 export interface ChannelInlineTable {
-  channel: Channel1;
+  channel: Channel;
   priority?: Priority;
 }
 /**
@@ -840,35 +603,35 @@ export interface PypiDependencies {
 export interface PyPIVersion {
   extras?: Extras;
   index?: Index;
-  version?: Version1;
+  version?: Version;
 }
 export interface PyPIGitBranchRequirement {
-  branch?: Branch2;
-  extras?: Extras1;
-  git?: Git2;
-  subdirectory?: Subdirectory2;
+  branch?: Branch;
+  extras?: Extras;
+  git?: Git;
+  subdirectory?: Subdirectory;
 }
 export interface PyPIGitTagRequirement {
-  extras?: Extras2;
-  git?: Git3;
-  subdirectory?: Subdirectory3;
-  tag?: Tag2;
+  extras?: Extras;
+  git?: Git;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
 }
 export interface PyPIGitRevRequirement {
-  extras?: Extras3;
-  git?: Git4;
-  rev?: Rev2;
-  subdirectory?: Subdirectory4;
+  extras?: Extras;
+  git?: Git;
+  rev?: Rev;
+  subdirectory?: Subdirectory;
 }
 export interface PyPIPathRequirement {
   editable?: Editable;
-  extras?: Extras4;
-  path?: Path2;
-  subdirectory?: Subdirectory5;
+  extras?: Extras;
+  path?: Path;
+  subdirectory?: Subdirectory;
 }
 export interface PyPIUrlRequirement {
-  extras?: Extras5;
-  url?: Url2;
+  extras?: Extras;
+  url?: Url;
 }
 /**
  * Options related to PyPI indexes for this feature
@@ -905,13 +668,13 @@ export interface DependencyOverrides {
  * The path to the directory containing packages
  */
 export interface FindLinksPath {
-  path?: Path3;
+  path?: Path;
 }
 /**
  * The URL to the html file containing href-links to packages
  */
 export interface FindLinksURL {
-  url?: Url3;
+  url?: Url;
 }
 /**
  * The system requirements of this feature
@@ -1096,7 +859,7 @@ export interface WorkspaceInheritance {
 export interface Build1 {
   'additional-dependencies'?: AdditionalDependencies;
   backend: BuildBackend;
-  channels?: Channels2;
+  channels?: Channels;
   config?: Config;
   source?: SourceLocation;
   target?: Target2;
@@ -1112,24 +875,24 @@ export interface AdditionalDependencies {
  */
 export interface BuildBackend {
   'additional-dependencies'?: AdditionalDependencies1;
-  branch?: Branch3;
-  build?: Build2;
-  'build-number'?: BuildNumber1;
-  channel?: Channel2;
-  channels?: Channels1;
-  'file-name'?: FileName1;
-  git?: Git5;
-  license?: License1;
+  branch?: Branch;
+  build?: Build;
+  'build-number'?: BuildNumber;
+  channel?: Channel;
+  channels?: Channels;
+  'file-name'?: FileName;
+  git?: Git;
+  license?: License;
   md5?: Md52;
   name?: Name;
-  path?: Path4;
-  rev?: Rev3;
+  path?: Path;
+  rev?: Rev;
   sha256?: Sha2562;
-  subdir?: Subdir1;
-  subdirectory?: Subdirectory6;
-  tag?: Tag3;
-  url?: Url4;
-  version?: Version3;
+  subdir?: Subdir;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+  url?: Url;
+  version?: Version;
 }
 /**
  * Additional dependencies to install alongside the build backend
@@ -1147,12 +910,12 @@ export interface Config {
  * The source from which to build the package
  */
 export interface SourceLocation {
-  branch?: Branch4;
-  git?: Git6;
-  path?: Path5;
-  rev?: Rev4;
-  subdirectory?: Subdirectory7;
-  tag?: Tag4;
+  branch?: Branch;
+  git?: Git;
+  path?: Path;
+  rev?: Rev;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
 }
 /**
  * Target-specific build configuration for different platforms
@@ -1203,26 +966,26 @@ export interface Workspace1 {
   authors?: Authors1;
   'build-variants'?: BuildVariants;
   'build-variants-files'?: BuildVariantsFiles;
-  'channel-priority'?: ChannelPriority1;
-  channels: Channels3;
+  'channel-priority'?: ChannelPriority;
+  channels: Channels;
   'conda-pypi-map'?: CondaPypiMap;
-  description?: Description2;
+  description?: Description;
   documentation?: Documentation1;
   'exclude-newer'?: ExcludeNewer;
   homepage?: Homepage1;
-  license?: License3;
+  license?: License;
   'license-file'?: LicenseFile1;
-  name?: Name2;
-  platforms?: Platforms1;
+  name?: Name;
+  platforms?: Platforms;
   preview?: Preview;
   'pypi-options'?: PyPIOptions1;
   readme?: Readme1;
   repository?: Repository1;
   'requires-pixi'?: RequiresPixi;
   's3-options'?: S3Options;
-  'solve-strategy'?: SolveStrategy1;
+  'solve-strategy'?: SolveStrategy;
   target?: Target4;
-  version?: Version5;
+  version?: Version;
 }
 /**
  * The build variants of the project
@@ -1354,24 +1117,24 @@ export interface Workspace2 {
   authors?: Authors1;
   'build-variants'?: BuildVariants;
   'build-variants-files'?: BuildVariantsFiles;
-  'channel-priority'?: ChannelPriority1;
-  channels: Channels3;
+  'channel-priority'?: ChannelPriority;
+  channels: Channels;
   'conda-pypi-map'?: CondaPypiMap;
-  description?: Description2;
+  description?: Description;
   documentation?: Documentation1;
   'exclude-newer'?: ExcludeNewer;
   homepage?: Homepage1;
-  license?: License3;
+  license?: License;
   'license-file'?: LicenseFile1;
-  name?: Name2;
-  platforms?: Platforms1;
+  name?: Name;
+  platforms?: Platforms;
   preview?: Preview;
   'pypi-options'?: PyPIOptions1;
   readme?: Readme1;
   repository?: Repository1;
   'requires-pixi'?: RequiresPixi;
   's3-options'?: S3Options;
-  'solve-strategy'?: SolveStrategy1;
+  'solve-strategy'?: SolveStrategy;
   target?: Target4;
-  version?: Version5;
+  version?: Version;
 }

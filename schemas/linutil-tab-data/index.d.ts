@@ -15,10 +15,6 @@ export type MultiSelectable = boolean;
  */
 export type Data = [DataEntry, ...DataEntry[]];
 /**
- * The name of a tab entry
- */
-export type Name1 = string;
-/**
  * The script run of a tab entry
  */
 export type Script = string;
@@ -68,26 +64,6 @@ export type Entry = string;
  * @minItems 1
  */
 export type Entries = [Entry1, ...Entry1[]];
-/**
- * The name of a tab entry
- */
-export type Name2 = string;
-/**
- * The script run of a tab entry
- */
-export type Script1 = string;
-/**
- * Whether to require the condition to match or not for an entry
- */
-export type Matches1 = boolean;
-/**
- * Description of the tab entry
- */
-export type Description1 = string;
-/**
- * The task list of a tab entry
- */
-export type TaskList1 = string;
 
 /**
  * Tab data
@@ -101,7 +77,7 @@ export interface TabData {
  * The data entry of a tab
  */
 export interface DataEntry {
-  name?: Name1;
+  name?: Name;
   script?: Script;
   description?: Description;
   task_list?: TaskList;
@@ -128,9 +104,9 @@ export interface Data1 {
  * The entry
  */
 export interface Entry1 {
-  name?: Name2;
-  script?: Script1;
-  matches?: Matches1;
-  description?: Description1;
-  task_list?: TaskList1;
+  name?: Name;
+  script?: Script;
+  matches?: Matches;
+  description?: Description;
+  task_list?: TaskList;
 }

@@ -19,7 +19,7 @@ export interface DockerBakeJSONSchema {
    */
   group?: {
     default?: Group;
-    [k: string]: Group;
+    [k: string]: Group | undefined;
   };
   /**
    * The HCL file format supports variable block definitions. You can use variables as build arguments in your Dockerfile, or interpolate them in attribute values in your Bake file.

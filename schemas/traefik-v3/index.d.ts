@@ -25,6 +25,7 @@ export interface TraefikV3StaticConfiguration {
 }
 export interface TypesAccessLog {
   addInternals?: boolean;
+  dualOutput?: boolean;
   bufferingSize?: number;
   fields?: TypesAccessLogFields;
   filePath?: string;

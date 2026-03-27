@@ -11,10 +11,6 @@ export type TaskCommand = Command | TaskCommandWithPathExtension;
  */
 export type Command = string;
 /**
- * Command to be executed for the task
- */
-export type Command1 = string;
-/**
  * Path below build file path
  */
 export type CommandPath = string;
@@ -130,7 +126,7 @@ export interface ContainerTask {
  * Command to be executed in sub directory for the current task
  */
 export interface TaskCommandWithPathExtension {
-  cmd: Command1;
+  cmd: Command;
   path?: CommandPath;
 }
 /**

@@ -61,11 +61,6 @@ export type Icon = string;
  */
 export type Engine = string;
 /**
- * An entry icon
- * https://github.com/yamnikov-oleg/projektor#configuration
- */
-export type Icon1 = string;
-/**
  * A width
  * https://github.com/yamnikov-oleg/projektor#configuration
  */
@@ -122,7 +117,7 @@ export interface Url1 {
  */
 export interface Websearch {
   engine?: Engine;
-  icon?: Icon1;
+  icon?: Icon;
 }
 /**
  * Global UI settings

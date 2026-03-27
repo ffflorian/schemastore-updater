@@ -94,91 +94,6 @@ export type Permissions = (
     )
   | string
 )[];
-/**
- * Permissions help to limit damage if your extension or app is compromised by malware. Some permissions are also displayed to users before installation, as detailed in Permission Warnings.
- */
-export type Permissions1 = (
-  | (
-      | 'accessibilityFeatures.modify'
-      | 'accessibilityFeatures.read'
-      | 'activeTab'
-      | 'alarms'
-      | 'audio'
-      | 'background'
-      | 'bookmarks'
-      | 'browsingData'
-      | 'certificateProvider'
-      | 'clipboardRead'
-      | 'clipboardWrite'
-      | 'contentSettings'
-      | 'contextMenus'
-      | 'cookies'
-      | 'debugger'
-      | 'declarativeContent'
-      | 'declarativeNetRequest'
-      | 'declarativeNetRequestWithHostAccess'
-      | 'declarativeNetRequestFeedback'
-      | 'dns'
-      | 'desktopCapture'
-      | 'documentScan'
-      | 'downloads'
-      | 'downloads.open'
-      | 'downloads.ui'
-      | 'enterprise.deviceAttributes'
-      | 'enterprise.hardwarePlatform'
-      | 'enterprise.networkingAttributes'
-      | 'enterprise.platformKeys'
-      | 'favicon'
-      | 'fileBrowserHandler'
-      | 'fileSystemProvider'
-      | 'fontSettings'
-      | 'gcm'
-      | 'geolocation'
-      | 'history'
-      | 'identity'
-      | 'identity.email'
-      | 'idle'
-      | 'loginState'
-      | 'management'
-      | 'nativeMessaging'
-      | 'notifications'
-      | 'offscreen'
-      | 'pageCapture'
-      | 'platformKeys'
-      | 'power'
-      | 'printerProvider'
-      | 'printing'
-      | 'printingMetrics'
-      | 'privacy'
-      | 'processes'
-      | 'proxy'
-      | 'readingList'
-      | 'runtime'
-      | 'scripting'
-      | 'search'
-      | 'sessions'
-      | 'sidePanel'
-      | 'storage'
-      | 'system.cpu'
-      | 'system.display'
-      | 'system.memory'
-      | 'system.storage'
-      | 'tabCapture'
-      | 'tabGroups'
-      | 'tabs'
-      | 'topSites'
-      | 'tts'
-      | 'ttsEngine'
-      | 'unlimitedStorage'
-      | 'vpnProvider'
-      | 'wallpaper'
-      | 'webAuthenticationProxy'
-      | 'webNavigation'
-      | 'webRequest'
-      | 'webRequestBlocking'
-    )
-  | string
-)[];
 
 export interface JSONSchemaForGoogleChromeExtensionManifestFiles {
   /**
@@ -492,7 +407,7 @@ export interface JSONSchemaForGoogleChromeExtensionManifestFiles {
     open_in_tab?: boolean;
     [k: string]: unknown | undefined;
   };
-  permissions?: Permissions1;
+  permissions?: Permissions;
   /**
    * Technologies required by the app or extension. Hosting sites such as the Chrome Web Store may use this list to dissuade users from installing apps or extensions that will not work on their computer.
    */

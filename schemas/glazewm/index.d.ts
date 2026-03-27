@@ -114,16 +114,6 @@ export type Enabled = boolean;
  */
 export type Color = string;
 /**
- * Whether to enable the inactive border
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
- */
-export type Enabled1 = boolean;
-/**
- * A color of the active border
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
- */
-export type Color1 = string;
-/**
  * An inner gap
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#gap-configuration
  */
@@ -500,8 +490,8 @@ export interface Active {
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
  */
 export interface Inactive {
-  enabled?: Enabled1;
-  color?: Color1;
+  enabled?: Enabled;
+  color?: Color;
 }
 /**
  * Gap settings

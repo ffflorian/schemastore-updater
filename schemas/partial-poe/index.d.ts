@@ -111,13 +111,9 @@ export type ParallelTask = StandardOptions & {
    * Specifies a template for how the prefix is applied after truncating it to the prefix_max length.
    */
   prefix_template?: string;
-  parallel: TasksArray1;
+  parallel: TasksArray;
   [k: string]: unknown | undefined;
 };
-/**
- * A subtask is defined by an array of tasks or command names to be run multiple tasks concurrently. Each subtask can be a command name, a command, script, reference to another task, or another sequence.
- */
-export type TasksArray1 = OneOfTasks[];
 export type ExprTask = StandardOptions &
   CaptureStdoutOption &
   UseExecOption & {
@@ -171,7 +167,6 @@ export type OneOfTasks1 = {
   case?: string | string[];
   [k: string]: unknown | undefined;
 } & (string | CmdTask | ScriptTask | ShellTask | SequenceTask | ParallelTask | ExprTask | SwitchTask | RefTask);
-export type TasksArray2 = OneOfTasks[];
 
 /**
  * Poe the Poet is a task runner and build tool that uses simple configuration to define project tasks. It can work as a standalone tool or as a plugin for Poetry.
@@ -239,7 +234,7 @@ export interface PoeThePoetConfiguration {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^\w[\w\d\-_\+:]*$".
      */
-    [k: string]: OneOfTasks | TasksArray2;
+    [k: string]: OneOfTasks | TasksArray;
   };
   /**
    * Sets the default verbosity level for all commands. '-1' is quieter, '0' is the default level, and '1' is more verbose. The command line arguments are incremental, with '--quiet' or '-q' decreasing verbosity, and '--verbose' or '-v' increasing it.

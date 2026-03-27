@@ -4,11 +4,10 @@
  * List of file and directory patterns to manually exclude from the analysis.
  */
 export type FilePatternList = string[];
-export type FilePatternList1 = string[];
 export type ComponentList = {
   name?: string;
-  include?: FilePatternList1;
-  exclude?: FilePatternList1;
+  include?: FilePatternList;
+  exclude?: FilePatternList;
 }[];
 /**
  * A list of technologies that should be included as part of the analysis.
@@ -27,39 +26,19 @@ export type Language =
   | LanguageName;
 export type LanguageName = string;
 export type Component = null | {
-  include?: FilePatternList1;
-  exclude?: FilePatternList1;
+  include?: FilePatternList;
+  exclude?: FilePatternList;
   override?: boolean;
 };
 export type DependencyCheckerSource = 'all' | 'sbom';
-/**
- * List of exclude patterns that applies only to Architecture Quality, not globally.
- */
-export type FilePatternList2 = string[];
-/**
- * List of directory names that should be flattened and not considered as components during the analysis.
- */
-export type FilePatternList3 = string[];
 /**
  * List of system elements that are manually defined and added to the architecture graph.
  */
 export type SystemElementList = SystemElement[];
 /**
- * List of system elements to manually remove from the architecture graph.
- */
-export type SystemElementList1 = SystemElement[];
-/**
  * List of manually added dependencies on top of the ones detected automatically by the analysis.
  */
 export type DependencyList = Dependency[];
-/**
- * List of dependencies that manually overrides the analysis and removes them from the results.
- */
-export type DependencyList1 = Dependency[];
-/**
- * List of dependencies considered undesirable, and should therefore be highlighted in the visualization.
- */
-export type DependencyList2 = Dependency[];
 /**
  * Annotate all top-level components matching the pattern, in order to divide them into logical groups.
  */
@@ -76,18 +55,6 @@ export type ArchitecturePatterns = ArchitecturePattern[];
  * List of third-party analyzers that should not be ran.
  */
 export type AnalyzerList = string[];
-/**
- * List of third-party analyzer names that should be ran even though they are disabled by default.
- */
-export type AnalyzerList1 = string[];
-/**
- * List of file/directory patterns that should be included in the third party findings analysis beyond the maintainability scope and production configuration files.
- */
-export type FilePatternList4 = string[];
-/**
- * List of file/directory patterns that should be excluded from the third party findings analysis.
- */
-export type FilePatternList5 = string[];
 
 /**
  * Analysis scope configuration file used by Sigrid (sigrid-says.com)
@@ -102,7 +69,7 @@ export interface SigridScopeConfigurationFile {
    * Directory depth that will be used to define components.
    */
   component_depth?: number;
-  component_base_dirs?: FilePatternList1;
+  component_base_dirs?: FilePatternList;
   components?: ComponentList;
   /**
    * Enable experimental analysis features.
@@ -187,7 +154,7 @@ export interface SigridScopeConfigurationFile {
      * SIG Architecture Quality Model that should be used for the analysis, defaults to latest.
      */
     model?: string | number;
-    exclude?: FilePatternList2;
+    exclude?: FilePatternList;
     /**
      * Deprecated. This option is obsolete.
      */
@@ -196,12 +163,12 @@ export interface SigridScopeConfigurationFile {
      * Automatic componentization based on @sigrid:component annotations in source files.
      */
     file_annotation_components?: boolean;
-    flatten_directories?: FilePatternList3;
+    flatten_directories?: FilePatternList;
     add_system_elements?: SystemElementList;
-    remove_system_elements?: SystemElementList1;
+    remove_system_elements?: SystemElementList;
     add_dependencies?: DependencyList;
-    remove_dependencies?: DependencyList1;
-    undesirable_dependencies?: DependencyList2;
+    remove_dependencies?: DependencyList;
+    undesirable_dependencies?: DependencyList;
     /**
      * Map of system elements for which to manually override the name.
      */
@@ -270,13 +237,13 @@ export interface SigridScopeConfigurationFile {
      * List of rule IDs that should not be reported by Sigrid.
      */
     disabled_rules?: string[];
-    enabled_analyzers?: AnalyzerList1;
+    enabled_analyzers?: AnalyzerList;
     /**
      * List of rule IDs that should be reported by Sigrid, even though they are disabled by default.
      */
     enabled_rules?: string[];
-    include?: FilePatternList4;
-    exclude?: FilePatternList5;
+    include?: FilePatternList;
+    exclude?: FilePatternList;
   };
   checkmarx?: never;
   [k: string]: unknown | undefined;
@@ -296,13 +263,13 @@ export interface Dependency {
 export interface ArchitectureGroup {
   name: string;
   annotation?: string;
-  include: FilePatternList1;
-  exclude?: FilePatternList1;
+  include: FilePatternList;
+  exclude?: FilePatternList;
 }
 export interface ArchitectureComponentRole {
   role: string;
-  include: FilePatternList1;
-  exclude?: FilePatternList1;
+  include: FilePatternList;
+  exclude?: FilePatternList;
 }
 export interface ArchitecturePattern {
   description: string;
