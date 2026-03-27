@@ -22,7 +22,7 @@
     "lefthook": "2.1.4",
     "oxlint": "1.56.0",
     "prettier": "3.8.1",
-    "tsx": "4.20.5",
+    "tsx": "4.21.0",
     "vitest": "4.1.0"
   },
   "engines": {
