@@ -20,7 +20,7 @@
     "eslint-plugin-oxlint": "1.56.0",
     "eslint-plugin-perfectionist": "5.7.0",
     "lefthook": "2.1.4",
-    "oxlint": "1.55.0",
+    "oxlint": "1.56.0",
     "prettier": "3.8.1",
     "tsx": "4.20.5",
     "vitest": "4.1.0"
