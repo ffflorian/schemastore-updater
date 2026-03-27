@@ -242,6 +242,78 @@ describe('updateSchemas', () => {
     await expect(readFile(path.join(brokenPackageDir, 'index.d.ts'), 'utf-8')).rejects.toThrow();
   });
 
+  it('fixes index signature incompatibility with optional properties', async () => {
+    const context = await createWorkspace({
+      'schema/test.json': JSON.stringify(createBasicSchema('Test'), null, 2),
+    });
+
+    vi.resetModules();
+    vi.doMock('json-schema-to-typescript', () => ({
+      compileFromFile: vi.fn(async () =>
+        [
+          '/* eslint-disable */',
+          '',
+          'export type Test = {',
+          "  '.'?: string;",
+          '  [k: string]: string;',
+          '};',
+          '',
+        ].join('\n')
+      ),
+    }));
+
+    const mockedUpdater = await import('../src/updater.ts');
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      mockedUpdater.updateSchemas({force: false, sourceDir: context.sourceDir})
+    );
+
+    expect(stats.generated).toBe(1);
+    expect(stats.failed).toBe(0);
+
+    const generatedDts = await readFile(path.join(context.workspaceDir, 'schemas/schema-test/index.d.ts'), 'utf-8');
+
+    expect(generatedDts).toContain('[k: string]: string | undefined;');
+  });
+
+  it('deduplicates identical numbered type variants in generated declarations', async () => {
+    const context = await createWorkspace({
+      'schema/test.json': JSON.stringify(createBasicSchema('Test'), null, 2),
+    });
+
+    vi.resetModules();
+    vi.doMock('json-schema-to-typescript', () => ({
+      compileFromFile: vi.fn(async () =>
+        [
+          '/* eslint-disable */',
+          '',
+          'export type Foo = string;',
+          '',
+          'export type Wrapper = {',
+          '  value: Foo;',
+          '};',
+          '',
+          'export type Wrapper1 = {',
+          '  value: Foo;',
+          '};',
+          '',
+          'export type Root = Wrapper | Wrapper1;',
+          '',
+        ].join('\n')
+      ),
+    }));
+
+    const mockedUpdater = await import('../src/updater.ts');
+    await withWorkingDirectory(context.workspaceDir, () =>
+      mockedUpdater.updateSchemas({force: false, sourceDir: context.sourceDir})
+    );
+
+    const generatedDts = await readFile(path.join(context.workspaceDir, 'schemas/schema-test/index.d.ts'), 'utf-8');
+
+    expect(generatedDts).not.toContain('Wrapper1');
+    expect(generatedDts).toContain('export type Wrapper = {');
+    expect(generatedDts).toContain('Root = Wrapper | Wrapper');
+  });
+
   it('preserves existing lock file entries for other schemas when schema option is given', async () => {
     const context = await createWorkspace({
       'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
