@@ -114,13 +114,17 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
     );
 
     try {
-      const generatedCode = await compileFromFile(schemaFilePath, {
-        bannerComment: '/* eslint-disable */',
-        strictIndexSignatures: true,
-        style: {
-          singleQuote: true,
-        },
-      });
+      const generatedCode = fixIndexSignatureCompatibility(
+        deduplicateGeneratedTypes(
+          await compileFromFile(schemaFilePath, {
+            bannerComment: '/* eslint-disable */',
+            strictIndexSignatures: true,
+            style: {
+              singleQuote: true,
+            },
+          })
+        )
+      );
 
       await mkdir(packageDirPath, {recursive: true});
 
@@ -272,6 +276,66 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 `;
 }
 
+function deduplicateGeneratedTypes(code: string): string {
+  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
+
+  const typeBodyTexts = new Map<string, string>();
+
+  for (const statement of sourceFile.statements) {
+    if (!ts.isTypeAliasDeclaration(statement)) {
+      continue;
+    }
+    typeBodyTexts.set(statement.name.text, statement.type.getText(sourceFile));
+  }
+
+  // Map TypeNameN -> TypeName where both exist and have identical bodies
+  const renames = new Map<string, string>();
+
+  for (const [name, bodyText] of typeBodyTexts) {
+    const match = name.match(/^(.*\D)(\d+)$/);
+    if (!match) {
+      continue;
+    }
+    const [, baseName] = match;
+    if (!baseName) {
+      continue;
+    }
+    if (typeBodyTexts.get(baseName) === bodyText) {
+      renames.set(name, baseName);
+    }
+  }
+
+  if (renames.size === 0) {
+    return code;
+  }
+
+  // Collect declaration ranges to remove, descending so earlier positions stay valid
+  const rangesToRemove: Array<{end: number; start: number}> = [];
+
+  for (const statement of sourceFile.statements) {
+    if (!ts.isTypeAliasDeclaration(statement)) {
+      continue;
+    }
+    if (renames.has(statement.name.text)) {
+      rangesToRemove.push({end: statement.getEnd(), start: statement.getFullStart()});
+    }
+  }
+
+  rangesToRemove.sort((rangeA, rangeB) => rangeB.start - rangeA.start);
+
+  let result = code;
+
+  for (const {end, start} of rangesToRemove) {
+    result = result.slice(0, start) + result.slice(end);
+  }
+
+  for (const [from, to] of renames) {
+    result = result.replace(new RegExp(`\\b${from}\\b`, 'g'), to);
+  }
+
+  return result;
+}
+
 async function ensureSchemaStoreRepo(baseDir: string): Promise<string> {
   const repoDir = path.join(baseDir, '.cache/schemastore');
   const gitDir = path.join(repoDir, '.git');
@@ -294,6 +358,50 @@ async function exists(filePath: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+function fixIndexSignatureCompatibility(code: string): string {
+  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
+
+  const offsets: number[] = [];
+
+  function visit(node: ts.Node): void {
+    if (ts.isTypeLiteralNode(node)) {
+      const hasOptionalProp = node.members.some(
+        member => ts.isPropertySignature(member) && member.questionToken !== undefined
+      );
+
+      if (hasOptionalProp) {
+        for (const member of node.members) {
+          if (!ts.isIndexSignatureDeclaration(member) || !member.type) {
+            continue;
+          }
+          if (/\bundefined\b/.test(member.type.getText(sourceFile))) {
+            continue;
+          }
+          offsets.push(member.type.getEnd());
+        }
+      }
+    }
+
+    ts.forEachChild(node, visit);
+  }
+
+  visit(sourceFile);
+
+  if (offsets.length === 0) {
+    return code;
+  }
+
+  offsets.sort((offsetA, offsetB) => offsetB - offsetA);
+
+  let result = code;
+
+  for (const offset of offsets) {
+    result = `${result.slice(0, offset)} | undefined${result.slice(offset)}`;
+  }
+
+  return result;
 }
 
 function formatDiagnostics(diagnostics: readonly ts.Diagnostic[]): string {
