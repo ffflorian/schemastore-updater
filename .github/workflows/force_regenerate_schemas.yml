@@ -1,0 +1,66 @@
+name: Force Regenerate All Schemas
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+
+jobs:
+  force-regenerate:
+    name: Force regenerate all schema packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Set up Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
+        with:
+          node-version: 24.x
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Force regenerate all schema packages
+        id: update
+        continue-on-error: true
+        run: yarn update --force
+
+      - name: Validate generated output
+        run: |
+          yarn check
+          yarn test
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
+        with:
+          author: Florian Imdahl <git@ffflorian.de>
+          committer: Florian Imdahl <git@ffflorian.de>
+          base: ${{ github.event.repository.default_branch }}
+          branch: chore/force-regenerate-schemas
+          delete-branch: true
+          commit-message: 'chore(schemas): force regenerate all schemas'
+          title: 'chore(schemas): force regenerate all schemas'
+          body: |
+            Full schema regeneration triggered manually via the **Force Regenerate All Schemas** workflow.
+
+            This PR was created after running:
+
+            - `yarn update --force`
+            - `yarn check`
+            - `yarn test`
+
+      - name: Fail workflow when regeneration failed
+        if: steps.update.outcome == 'failure'
+        run: exit 1
+
+      - name: Upload update log
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: schemagenerator-log
+          path: schemagenerator.log
+          if-no-files-found: ignore
