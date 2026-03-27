@@ -10,7 +10,7 @@
   "description": "SchemaStore schema updater",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@ffflorian/eslint-config": "0.13.3",
+    "@ffflorian/eslint-config": "0.13.7",
     "@ffflorian/prettier-config": "0.6.7",
     "@types/node": "~24",
     "@types/semver": "7.7.1",
