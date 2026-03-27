@@ -28,6 +28,7 @@ Maintain and evolve a TypeScript CLI that:
 - `.github/workflows/publish_generated_packages.yml`: publishing workflow for generated npm packages.
 - `.github/workflows/yarn_update.yml`: scheduled yarn version maintenance.
 - `.github/workflows/weekly_schema_update.yml`: weekly automated schema refresh PR.
+- `.github/workflows/force_regenerate_schemas.yml`: manual workflow to force-regenerate all schemas.
 
 ## Output Contract (Per Schema)
 
@@ -52,7 +53,11 @@ Each generated schema package must contain:
 
 - Preferred command for real updates: `yarn update`.
 - For local smoke tests: `yarn update --source-dir <dir>` where `<dir>` contains `src/schemas/json`.
-- Schemas that cannot be converted or fail type-check are skipped.
+- To regenerate a single schema: `yarn update --schema <id>` (e.g. `yarn update --schema package`).
+  - The `--schema` option always regenerates — it bypasses the hash-based skip check so errors are surfaced even when the source hasn't changed.
+  - All other `schema-lock.json` entries are preserved; only the targeted entry is updated.
+- To force-regenerate all schemas ignoring source hash matches: `yarn update --force`.
+- Schemas that cannot be converted or fail type-check are skipped; errors are written to stderr and to `schemagenerator.log`.
 - Non-publishable schema IDs must be blocklisted and always skipped during generation and publishing.
 - Source of truth for the non-publishable blocklist is `schema-blocklist.json`.
 - Current non-publishable blocklist includes: `cheatsheets`.
@@ -61,9 +66,14 @@ Each generated schema package must contain:
 ## GitHub Actions Automation
 
 - Weekly schema refresh is defined in `.github/workflows/weekly_schema_update.yml`.
-- It runs `yarn update`, then validates with `yarn check` and `yarn test`.
-- Changes are proposed via an automated pull request instead of pushing directly to the default branch.
-- If generation behavior changes, make sure this workflow still matches the required validation steps and committed outputs.
+  - Runs `yarn update`, then validates with `yarn check` and `yarn test`.
+  - Changes are proposed via an automated pull request instead of pushing directly to the default branch.
+  - If generation behavior changes, make sure this workflow still matches the required validation steps and committed outputs.
+- Force regeneration is defined in `.github/workflows/force_regenerate_schemas.yml`.
+  - `workflow_dispatch` only — never scheduled.
+  - Runs `yarn update --force`, then validates with `yarn check` and `yarn test`.
+  - Opens a PR on branch `chore/force-regenerate-schemas` with the result.
+  - Use this when the generation pipeline itself changes (e.g. new post-processing steps) and all schemas need to be rebuilt.
 - npm publishing is defined in `.github/workflows/publish_generated_packages.yml`.
 - Publishing runs only on pushes to the default branch.
 - Publishing is additionally gated to commits whose message starts with `chore(schemas): weekly schema update`.
