@@ -57,7 +57,10 @@ describe('updateSchemas', () => {
       description: 'TypeScript definitions for accelerator-schema.',
       name: '@schemastore/accelerator-schema',
       private: false,
-      repository: 'https://github.com/ffflorian/schemastore-updater',
+      repository: {
+        type: 'git',
+        url: 'git+https://github.com/ffflorian/schemastore-updater.git',
+      },
       types: 'index.d.ts',
       version: '1.0.0',
     });
