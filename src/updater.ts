@@ -30,12 +30,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
     : await ensureSchemaStoreRepo(projectRoot);
   const schemaRoot = path.join(schemaStoreRoot, 'src/schemas/json');
 
-  let schemaRootStats = null;
-  try {
-    schemaRootStats = await stat(schemaRoot);
-  } catch {
-    // no-op
-  }
+  const schemaRootStats = await stat(schemaRoot).catch(() => null);
 
   if (!schemaRootStats || !schemaRootStats.isDirectory()) {
     throw new Error(`SchemaStore path not found: ${schemaRoot}`);
