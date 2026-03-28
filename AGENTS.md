@@ -168,4 +168,4 @@ Key compiler options:
 - Keep the generator deterministic where possible.
 - Extend tests before/with implementation.
 - Update root `README.md` when behavior or commands change.
-- Always update `AGENTS.md` when user feedback adds or changes repository rules.
+- Always update `AGENTS.md` **and** `CLAUDE.md` when user feedback adds or changes repository rules.
