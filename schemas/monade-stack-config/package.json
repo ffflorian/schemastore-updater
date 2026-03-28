@@ -4,7 +4,10 @@
   "license": "GPL-3.0",
   "name": "@schemastore/monade-stack-config",
   "private": false,
-  "repository": "https://github.com/ffflorian/schemastore-updater",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffflorian/schemastore-updater.git"
+  },
   "types": "index.d.ts",
   "version": "1.0.2"
 }

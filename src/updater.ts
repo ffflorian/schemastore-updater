@@ -245,14 +245,20 @@ function createGeneratorLog(entries: string[]): string {
   return [`[${timestamp}] Schema generation log`, '', ...entries, ''].join('\n');
 }
 
-function createSchemaPackageJson(schemaId: string, version: string): Record<string, boolean | string> {
+function createSchemaPackageJson(
+  schemaId: string,
+  version: string
+): Record<string, boolean | string | Record<string, string>> {
   return {
     author: 'Florian Imdahl <git@ffflorian.de>',
     description: `TypeScript definitions for ${schemaId}.`,
     license: 'GPL-3.0',
     name: `@schemastore/${schemaId}`,
     private: false,
-    repository: 'https://github.com/ffflorian/schemastore-updater',
+    repository: {
+      type: 'git',
+      url: 'git+https://github.com/ffflorian/schemastore-updater.git',
+    },
     types: 'index.d.ts',
     version,
   };
