@@ -248,7 +248,7 @@ function createGeneratorLog(entries: string[]): string {
 function createSchemaPackageJson(
   schemaId: string,
   version: string
-): Record<string, boolean | string | Record<string, string>> {
+): Record<string, boolean | Record<string, string> | string> {
   return {
     author: 'Florian Imdahl <git@ffflorian.de>',
     description: `TypeScript definitions for ${schemaId}.`,
