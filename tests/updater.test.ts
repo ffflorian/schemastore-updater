@@ -242,6 +242,52 @@ describe('updateSchemas', () => {
     await expect(readFile(path.join(brokenPackageDir, 'index.d.ts'), 'utf-8')).rejects.toThrow();
   });
 
+  it('preserves existing lock entry when conversion fails', async () => {
+    const context = await createWorkspace({
+      'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
+    });
+
+    await withWorkingDirectory(context.workspaceDir, () => updateSchemas({force: false, sourceDir: context.sourceDir}));
+    const firstLock = await readLockFile(context.workspaceDir);
+    const firstEntry = firstLock.entries['accelerator/schema.json'];
+    expect(firstEntry).toBeDefined();
+
+    await writeSchemaFile(context.sourceDir, 'accelerator/schema.json', '{"title": "Broken", "type":');
+
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      updateSchemas({force: false, sourceDir: context.sourceDir})
+    );
+    const secondLock = await readLockFile(context.workspaceDir);
+
+    expect(stats).toEqual({failed: 1, generated: 0, skipped: 0, totalSchemas: 1});
+    expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
+  });
+
+  it('preserves existing lock entry when type-check fails', async () => {
+    const context = await createWorkspace({
+      'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
+    });
+
+    await withWorkingDirectory(context.workspaceDir, () => updateSchemas({force: false, sourceDir: context.sourceDir}));
+    const firstLock = await readLockFile(context.workspaceDir);
+    const firstEntry = firstLock.entries['accelerator/schema.json'];
+    expect(firstEntry).toBeDefined();
+
+    vi.resetModules();
+    vi.doMock('json-schema-to-typescript', () => ({
+      compileFromFile: vi.fn(async () => '/* eslint-disable */\nexport interface Broken { value: ; }\n'),
+    }));
+
+    const mockedUpdater = await import('../src/updater.ts');
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      mockedUpdater.updateSchemas({force: true, sourceDir: context.sourceDir})
+    );
+    const secondLock = await readLockFile(context.workspaceDir);
+
+    expect(stats).toEqual({failed: 1, generated: 0, skipped: 0, totalSchemas: 1});
+    expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
+  });
+
   it('fixes index signature incompatibility with optional properties', async () => {
     const context = await createWorkspace({
       'schema/test.json': JSON.stringify(createBasicSchema('Test'), null, 2),

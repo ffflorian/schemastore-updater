@@ -58,6 +58,7 @@ Each generated schema package must contain:
   - All other `schema-lock.json` entries are preserved; only the targeted entry is updated.
 - To force-regenerate all schemas ignoring source hash matches: `yarn update --force`.
 - Schemas that cannot be converted or fail type-check are skipped; errors are written to stderr and to `schemagenerator.log`.
+- When a schema fails to build (conversion error or type-check failure), its **previous** `schema-lock.json` entry is preserved unchanged. The lock file must never silently drop entries for schemas that already had a valid generated package.
 - Non-publishable schema IDs must be blocklisted and always skipped during generation and publishing.
 - Source of truth for the non-publishable blocklist is `schema-blocklist.json`.
 - Current non-publishable blocklist includes: `cheatsheets`.

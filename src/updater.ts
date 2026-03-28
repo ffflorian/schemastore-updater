@@ -140,6 +140,9 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
         logEntries.push(`Skipped (type-check failed): ${schemaRelativePath}`);
         logEntries.push(typeCheckResult.errors);
         await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
+        if (previousEntry) {
+          nextEntries[schemaRelativePath] = previousEntry;
+        }
         continue;
       }
 
@@ -181,6 +184,10 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       }
 
       await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
+
+      if (previousEntry) {
+        nextEntries[schemaRelativePath] = previousEntry;
+      }
     }
   }
 
