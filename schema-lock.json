@@ -2593,7 +2593,7 @@
     "maestro-flow.json": {
       "generatedFile": "schemas/maestro-flow/index.d.ts",
       "generatedSha256": "67fe35df7fae6ab113dfb6f2d31e72f3f58a43e6867bcd601c985ccef7b47c78",
-      "published": false,
+      "published": true,
       "sourceSha256": "468b4f2b431820001fc94fe2c0c20d609739ea81adc1cc8965e6c1cbfe6abe71",
       "updatedAt": "2026-03-27T22:07:14.578Z"
     },
