@@ -3,6 +3,8 @@ pre-commit:
   commands:
     format:
       glob: '*.{json,md,yml,ts}'
+      exclude:
+        - CLAUDE.md
       run: npx prettier --write {staged_files} && git add {staged_files}
     lint:
       glob: 'src/*.ts'
