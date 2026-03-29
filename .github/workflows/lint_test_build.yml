@@ -1,7 +1,10 @@
 name: Build, lint, test, publish
 
 permissions:
-  contents: read
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
 
 on:
   push:
@@ -16,6 +19,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
@@ -31,5 +37,7 @@ jobs:
           yarn build
 
       - name: Publish release to GitHub
-        run: |
-          yarn release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
