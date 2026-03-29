@@ -24,7 +24,7 @@ Maintain and evolve a TypeScript CLI that:
 - `.cache/schemastore/`: local clone cache of SchemaStore.
 - `schema-lock.json`: lock file with per-schema source and generated hashes.
 - `publish-errors.log`: per-run publish failure log.
-- `.github/workflows/lint_test_build.yml`: main CI for lint/test/build
+- `.github/workflows/lint_test_build.yml`: main CI for lint/test/build/release
 - `.github/workflows/publish_generated_packages.yml`: publishing workflow for generated npm packages.
 - `.github/workflows/yarn_update.yml`: scheduled yarn version maintenance.
 - `.github/workflows/weekly_schema_update.yml`: weekly automated schema refresh PR.
@@ -66,6 +66,11 @@ Each generated schema package must contain:
 
 ## GitHub Actions Automation
 
+- Release publishing is handled inside `.github/workflows/lint_test_build.yml` via `yarn release` (semantic-release).
+  - Runs on every push to `main` as part of the CI job.
+  - Configuration lives in `.releaserc.json`; uses commit-analyzer, release-notes-generator, changelog, github (PR/issue commenting disabled), and git plugins.
+  - The git plugin commits updated `package.json` and `CHANGELOG.md` back to `main` with a `chore(release): <version> [skip ci]` message.
+  - Requires `GITHUB_TOKEN` (GitHub release + git push).
 - Weekly schema refresh is defined in `.github/workflows/weekly_schema_update.yml`.
   - Runs `yarn update`, then validates with `yarn check` and `yarn test`.
   - Changes are proposed via an automated pull request instead of pushing directly to the default branch.
@@ -97,6 +102,7 @@ Use yarn only.
 - Test watch: `yarn test:watch`
 - Publish generated schema packages: `yarn publish:schemas`
 - Dry-run publish: `yarn publish:schemas:dry-run`
+- Run semantic-release: `yarn release`
 
 ## Writing Conventions
 
