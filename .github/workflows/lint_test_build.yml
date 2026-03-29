@@ -2,9 +2,6 @@ name: Build, lint, test, publish
 
 permissions:
   contents: write
-  issues: write
-  pull-requests: write
-  id-token: write
 
 on:
   push:
