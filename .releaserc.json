@@ -1,0 +1,3 @@
+{
+  "extends": "@ffflorian/semantic-release-config"
+}

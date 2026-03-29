@@ -12,6 +12,9 @@
     "@eslint/js": "10.0.1",
     "@ffflorian/eslint-config": "0.13.7",
     "@ffflorian/prettier-config": "0.6.7",
+    "@ffflorian/semantic-release-config": "0.10.7",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
     "@types/node": "~24",
     "@types/semver": "7.7.1",
     "eslint": "10.1.0",
@@ -22,6 +25,7 @@
     "lefthook": "2.1.4",
     "oxlint": "1.56.0",
     "prettier": "3.8.1",
+    "semantic-release": "25.0.3",
     "tsx": "4.21.0",
     "vitest": "4.1.0"
   },
@@ -49,6 +53,7 @@
     "publish:schemas": "tsx src/cli.ts publish",
     "publish:schemas:dry-run": "tsx src/cli.ts publish --dry-run",
     "prettier": "prettier \"*.{json,md,yml}\"",
+    "release": "semantic-release",
     "test": "vitest run",
     "test:watch": "vitest",
     "update": "tsx src/cli.ts update"
