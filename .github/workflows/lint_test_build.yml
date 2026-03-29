@@ -1,4 +1,4 @@
-name: Build
+name: Build, lint, test, publish
 
 permissions:
   contents: read
@@ -23,9 +23,13 @@ jobs:
           node-version: 24.x
           cache: yarn
 
-      - name: Build, lint and test
+      - name: Build, lint, and test
         run: |
           yarn --immutable
           yarn lint
           yarn test
           yarn build
+
+      - name: Publish release to GitHub
+        run: |
+          yarn release
