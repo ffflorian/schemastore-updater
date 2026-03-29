@@ -461,17 +461,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/semantic-release-config@npm:0.10.7":
-  version: 0.10.7
-  resolution: "@ffflorian/semantic-release-config@npm:0.10.7"
-  peerDependencies:
-    "@semantic-release/changelog": ">= 3.0.0"
-    "@semantic-release/git": ">= 7.0.0"
-    semantic-release: ">= 15.13.0"
-  checksum: 10c0/370ac85661623ad31b323f6a71e537773acaad70e3c5c1ca695c5199a527f3208632550dda8c92621adb88cafb7bb143b4087cb8b30298f1bddb9c538ef007a0
-  languageName: node
-  linkType: hard
-
 "@gar/promise-retry@npm:^1.0.0":
   version: 1.0.2
   resolution: "@gar/promise-retry@npm:1.0.2"
@@ -6778,7 +6767,6 @@ __metadata:
     "@eslint/js": "npm:10.0.1"
     "@ffflorian/eslint-config": "npm:0.13.7"
     "@ffflorian/prettier-config": "npm:0.6.7"
-    "@ffflorian/semantic-release-config": "npm:0.10.7"
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/git": "npm:10.0.1"
     "@types/node": "npm:~24"
