@@ -245,13 +245,6 @@
       "sourceSha256": "5a33023be7e0c565295ce2a02af48a0fddf6c106ece2e1e785d0fa469fe7efdb",
       "updatedAt": "2026-03-15T20:46:35.850Z"
     },
-    "aio-wasm-graph-config-1.0.0.json": {
-      "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
-      "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
-      "published": true,
-      "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
-      "updatedAt": "2026-03-27T22:02:40.214Z"
-    },
     "aio-wasm-graph-config-1.1.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.1.0/index.d.ts",
       "generatedSha256": "a1ab3e37a1fac3d6e353c010fd756e92f97e477b21c249dd345797515a2a40a0",
@@ -871,7 +864,7 @@
     "bunfig.json": {
       "generatedFile": "schemas/bunfig/index.d.ts",
       "generatedSha256": "e382a3ffea4169ff8a912642a51e76b9a8f6612a20293a5871576777c056c7e2",
-      "published": false,
+      "published": true,
       "sourceSha256": "61a6b506bad0005597b17091dd84d712ebd8e6d28a0be46f78584abbceb704d7",
       "updatedAt": "2026-03-30T05:40:51.517Z"
     },
@@ -3349,7 +3342,7 @@
     "partial-poe.json": {
       "generatedFile": "schemas/partial-poe/index.d.ts",
       "generatedSha256": "2d8a7984f61ad82aecf1a0f93747e9bdb37988c55d180fc317b27f0adf587171",
-      "published": false,
+      "published": true,
       "sourceSha256": "9a29e1730c79e9275c276c0286c5aa0c70607d5483e689a0977faa35410c3c1b",
       "updatedAt": "2026-03-30T05:44:08.034Z"
     },
@@ -3482,7 +3475,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "b732adb304eeee80587f7f0d4fac9696861ccbf4e4a8fcc5827cc77d6184db51",
-      "published": false,
+      "published": true,
       "sourceSha256": "708fe099f1528e1614218ce4a847ea93af151b094e189a553af28143152ca79f",
       "updatedAt": "2026-03-30T05:44:09.534Z"
     },
@@ -4441,7 +4434,7 @@
     "sublime-syntax.json": {
       "generatedFile": "schemas/sublime-syntax/index.d.ts",
       "generatedSha256": "d2dbae90b65b117e9866cdc1144b9f3d527bf6f0ba7250cce06df10fa56a1462",
-      "published": false,
+      "published": true,
       "sourceSha256": "03496283901a87709c7c21b6cd03c60470d87adfd775e1bfb81f3e482f0716e3",
       "updatedAt": "2026-03-30T05:44:14.753Z"
     },
