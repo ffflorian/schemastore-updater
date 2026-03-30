@@ -39,9 +39,9 @@ export interface SublimeSyntax {
   scope: string;
   version?: 1 | 2;
   /**
-   * A string of a base syntax this syntax should inherit from. The base syntax must be specified using its package path, e.g. Packages/JavaScript/JavaScript.sublime-syntax. See Inheritance for an overview of syntax inheritance.
+   * A base syntax (or list of syntaxes) to inherit from, specified using its package path, e.g. Packages/JavaScript/JavaScript.sublime-syntax. When using multiple inheritance, parent syntaxes are processed top to bottom and must share the same base. See Inheritance for an overview of syntax inheritance.
    */
-  extends?: string;
+  extends?: string | [string, string, ...string[]];
   /**
    * Hidden syntax definitions won’t be shown in the menu, but can still be assigned by plugins, or included by other syntax definitions.
    */
