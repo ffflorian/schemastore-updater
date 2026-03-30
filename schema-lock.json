@@ -196,13 +196,6 @@
       "sourceSha256": "38a856d268813d59fb762de86f367547a3a791fb870a198efabce7ae8c543e21",
       "updatedAt": "2026-03-27T22:02:30.880Z"
     },
-    "aio-wasm-graph-config-1.0.0.json": {
-      "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
-      "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
-      "published": true,
-      "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
-      "updatedAt": "2026-03-27T22:02:40.214Z"
-    },
     "aio-connector-metadata-10.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-10.0-preview/index.d.ts",
       "generatedSha256": "f74e3c92b5f477395f8485251d38d7bfc6ddfa20e984f7a1bb5132ad44e559f8",
@@ -244,6 +237,13 @@
       "published": true,
       "sourceSha256": "5a33023be7e0c565295ce2a02af48a0fddf6c106ece2e1e785d0fa469fe7efdb",
       "updatedAt": "2026-03-15T20:46:35.850Z"
+    },
+    "aio-wasm-graph-config-1.0.0.json": {
+      "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
+      "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
+      "published": true,
+      "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
+      "updatedAt": "2026-03-27T22:02:40.214Z"
     },
     "aio-wasm-graph-config-1.1.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.1.0/index.d.ts",
