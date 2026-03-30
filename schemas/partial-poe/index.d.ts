@@ -179,7 +179,7 @@ export interface PoeThePoetConfiguration {
   /**
    * When a task is declared as an array (instead of a table), then it is interpreted as the default array task type, which will be 'sequence' unless otherwise specified.
    */
-  default_array_task_type?: string;
+  default_array_task_type?: 'sequence' | 'parallel';
   /**
    * Sets the default task type for tasks defined as strings. By default, tasks are interpreted as shell commands ('cmd'). This can be overridden to 'script' or other supported types.
    */

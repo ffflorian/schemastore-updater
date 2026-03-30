@@ -76,6 +76,30 @@ export interface BunConfiguration {
    */
   telemetry?: boolean;
   /**
+   * Configure automatic `.env` file loading. By default, Bun automatically loads `.env` files.
+   * https://bun.sh/docs/runtime/bunfig#env
+   */
+  env?:
+    | boolean
+    | {
+        /**
+         * Enable or disable automatic default `.env` file loading.
+         * https://bun.sh/docs/runtime/bunfig#env
+         */
+        file?: boolean;
+      };
+  /**
+   * Configure console output behavior.
+   * https://bun.sh/docs/runtime/bunfig#console
+   */
+  console?: {
+    /**
+     * Set the default depth for `console.log()` object inspection. Default `2`
+     * https://bun.sh/docs/runtime/bunfig#console-depth
+     */
+    depth?: number;
+  };
+  /**
    * Test runner
    * https://bun.sh/docs/runtime/bunfig#test-runner
    */
@@ -90,6 +114,11 @@ export interface BunConfiguration {
      * https://bun.sh/docs/runtime/bunfig#test-preload
      */
     preload?: string[] | string;
+    /**
+     * Exclude files and directories from test discovery using glob patterns. Can be a single string pattern or an array of patterns.
+     * https://bun.sh/docs/runtime/bunfig#test-pathignorepatterns
+     */
+    pathIgnorePatterns?: string | string[];
     /**
      * Same as the top-level `smol` field, but only applies to `bun test`
      * https://bun.sh/docs/runtime/bunfig#test-smol
@@ -129,6 +158,52 @@ export interface BunConfiguration {
      * https://bun.sh/docs/runtime/bunfig#test-coveragedir
      */
     coverageDir?: string;
+    /**
+     * Run tests in random order. Default `false`
+     * https://bun.sh/docs/runtime/bunfig#test-randomize
+     */
+    randomize?: boolean;
+    /**
+     * Set the random seed for test randomization. This requires `randomize` to be `true`.
+     * https://bun.sh/docs/runtime/bunfig#test-seed
+     */
+    seed?: number;
+    /**
+     * Re-run each test file a specified number of times. Default `0` (run once).
+     * https://bun.sh/docs/runtime/bunfig#test-reruneach
+     */
+    rerunEach?: number;
+    /**
+     * Default retry count for all tests. Failed tests will be retried up to this many times. Default `0` (no retries).
+     * https://bun.sh/docs/runtime/bunfig#test-retry
+     */
+    retry?: number;
+    /**
+     * Glob pattern for test files that should run with concurrent test execution enabled.
+     * https://bun.sh/docs/runtime/bunfig#test-concurrenttestglob
+     */
+    concurrentTestGlob?: string;
+    /**
+     * When enabled, only failed tests are displayed in the output. Default `false`
+     * https://bun.sh/docs/runtime/bunfig#test-onlyfailures
+     */
+    onlyFailures?: boolean;
+    /**
+     * Configure the test reporter settings.
+     * https://bun.sh/docs/runtime/bunfig#test-reporter
+     */
+    reporter?: {
+      /**
+       * Enable the dots reporter. Default `false`
+       * https://bun.sh/docs/runtime/bunfig#test-reporter-dots
+       */
+      dots?: boolean;
+      /**
+       * Enable JUnit XML reporting and set the output file path.
+       * https://bun.sh/docs/runtime/bunfig#test-reporter-junit
+       */
+      junit?: string;
+    };
     /**
      * Set the default timeout in milliseconds for all tests. This can be overridden by individual tests. Default `5000`
      * https://bun.com/docs/test/configuration#default-timeout
@@ -218,6 +293,11 @@ export interface BunConfiguration {
            */
           token?: string;
         };
+    /**
+     * Whether to link workspace packages from the monorepo root to their respective `node_modules` directories. Default `true`
+     * https://bun.sh/docs/runtime/bunfig#install-linkworkspacepackages
+     */
+    linkWorkspacePackages?: boolean;
     /**
      * To configure a registry for a particular scope (e.g. `@myorg/<package>`) use `install.scopes`. You can reference environment variables with `$variable` notation
      * https://bun.sh/docs/runtime/bunfig#install-scopes

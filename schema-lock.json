@@ -196,13 +196,6 @@
       "sourceSha256": "38a856d268813d59fb762de86f367547a3a791fb870a198efabce7ae8c543e21",
       "updatedAt": "2026-03-27T22:02:30.880Z"
     },
-    "aio-wasm-graph-config-1.0.0.json": {
-      "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
-      "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
-      "published": true,
-      "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
-      "updatedAt": "2026-03-27T22:02:40.214Z"
-    },
     "aio-connector-metadata-10.0-preview.json": {
       "generatedFile": "schemas/aio-connector-metadata-10.0-preview/index.d.ts",
       "generatedSha256": "f74e3c92b5f477395f8485251d38d7bfc6ddfa20e984f7a1bb5132ad44e559f8",
@@ -244,6 +237,13 @@
       "published": true,
       "sourceSha256": "5a33023be7e0c565295ce2a02af48a0fddf6c106ece2e1e785d0fa469fe7efdb",
       "updatedAt": "2026-03-15T20:46:35.850Z"
+    },
+    "aio-wasm-graph-config-1.0.0.json": {
+      "generatedFile": "schemas/aio-wasm-graph-config-1.0.0/index.d.ts",
+      "generatedSha256": "d204064a2b4856954140a693e48432c4d07e09b82b54afbba86ea07b9f4fe7af",
+      "published": true,
+      "sourceSha256": "919bd7b5ba35ad80ecc9459461c66f4d374579dd998a660a436a560c9920885f",
+      "updatedAt": "2026-03-27T22:02:40.214Z"
     },
     "aio-wasm-graph-config-1.1.0.json": {
       "generatedFile": "schemas/aio-wasm-graph-config-1.1.0/index.d.ts",
@@ -863,10 +863,10 @@
     },
     "bunfig.json": {
       "generatedFile": "schemas/bunfig/index.d.ts",
-      "generatedSha256": "b0db7c053884617cfe41771527a44cdd2812515cae120e063148f8502574b02b",
-      "published": true,
-      "sourceSha256": "8e353f2db8352af3358169dad2271d411b71fb9963e5fa2ebd277be589deb1d2",
-      "updatedAt": "2026-03-27T22:02:59.977Z"
+      "generatedSha256": "e382a3ffea4169ff8a912642a51e76b9a8f6612a20293a5871576777c056c7e2",
+      "published": false,
+      "sourceSha256": "61a6b506bad0005597b17091dd84d712ebd8e6d28a0be46f78584abbceb704d7",
+      "updatedAt": "2026-03-30T05:40:51.517Z"
     },
     "bungee-plugin.json": {
       "generatedFile": "schemas/bungee-plugin/index.d.ts",
@@ -3341,10 +3341,10 @@
     },
     "partial-poe.json": {
       "generatedFile": "schemas/partial-poe/index.d.ts",
-      "generatedSha256": "46007c6000fc3e470ff595cf3b5c63378d48c0d94f35d97036a3104504a570c2",
-      "published": true,
-      "sourceSha256": "e0d0cb5e20e2dd25f28a92a1a8a053ec097c450bd8afa8b9aafd366b7682ee5c",
-      "updatedAt": "2026-03-27T22:07:45.417Z"
+      "generatedSha256": "2d8a7984f61ad82aecf1a0f93747e9bdb37988c55d180fc317b27f0adf587171",
+      "published": false,
+      "sourceSha256": "9a29e1730c79e9275c276c0286c5aa0c70607d5483e689a0977faa35410c3c1b",
+      "updatedAt": "2026-03-30T05:44:08.034Z"
     },
     "partial-poetry.json": {
       "generatedFile": "schemas/partial-poetry/index.d.ts",
@@ -3474,10 +3474,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "95d46eb34eef86ff3f84c8dd2c26f6467f508aa7c8ee160f15e3ff7df12dc87b",
-      "published": true,
-      "sourceSha256": "3a61239d7711c00f78ab2493886e63bd4544fb0d181788199d0085d2e258998d",
-      "updatedAt": "2026-03-27T22:07:49.889Z"
+      "generatedSha256": "b732adb304eeee80587f7f0d4fac9696861ccbf4e4a8fcc5827cc77d6184db51",
+      "published": false,
+      "sourceSha256": "708fe099f1528e1614218ce4a847ea93af151b094e189a553af28143152ca79f",
+      "updatedAt": "2026-03-30T05:44:09.534Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -4433,10 +4433,10 @@
     },
     "sublime-syntax.json": {
       "generatedFile": "schemas/sublime-syntax/index.d.ts",
-      "generatedSha256": "4af1155f822695b998d832676551c7da6cc24bbe1e3779637e0c2d0e07d8a9fc",
-      "published": true,
-      "sourceSha256": "c4ece354bbca390e7e702658f693d86fdb903b44ce0e9eff628a0c203966012e",
-      "updatedAt": "2026-03-27T22:09:15.744Z"
+      "generatedSha256": "d2dbae90b65b117e9866cdc1144b9f3d527bf6f0ba7250cce06df10fa56a1462",
+      "published": false,
+      "sourceSha256": "03496283901a87709c7c21b6cd03c60470d87adfd775e1bfb81f3e482f0716e3",
+      "updatedAt": "2026-03-30T05:44:14.753Z"
     },
     "swa-cli.config.json": {
       "generatedFile": "schemas/swa-cli.config/index.d.ts",
@@ -5048,6 +5048,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-03-27T22:09:45.852Z",
+  "generatedAt": "2026-03-30T05:44:21.149Z",
   "version": 1
 }
