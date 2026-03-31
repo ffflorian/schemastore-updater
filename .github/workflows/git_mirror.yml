@@ -1,4 +1,5 @@
 name: Mirror to Codeberg and GitLab
+
 permissions:
   contents: read
 
@@ -10,25 +11,11 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: ffflorian/actions/git-mirror@baf8fb2e65ebe6564870f56315a09bc01ab7e0f7
         with:
-          fetch-depth: 0
-
-      - name: Mirror to GitLab
-        uses: cynicsketch/mirror-action@b1e3c960aead673763e5ccb22007129401a15917
-        with:
-          REMOTE: 'git@gitlab.com:ffflorian/schemastore-updater.git'
-          REMOTE_NAME: 'gitlab-mirror'
-          GIT_SSH_KNOWN_HOSTS: 'gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf'
-          GIT_SSH_PRIVATE_KEY: ${{ secrets.GITLAB_SECRET }}
-          PUSH_ALL_REFS: 'false'
-
-      - name: Mirror to Codeberg
-        uses: cynicsketch/mirror-action@b1e3c960aead673763e5ccb22007129401a15917
-        with:
-          REMOTE: 'git@codeberg.org:ffflorian/schemastore-updater.git'
-          REMOTE_NAME: 'codeberg-mirror'
-          GIT_SSH_KNOWN_HOSTS: 'codeberg.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVIC02vnjFyL+I4RHfvIGNtOgJMe769VTF1VR4EB3ZB'
-          GIT_SSH_PRIVATE_KEY: ${{ secrets.CODEBERG_SECRET }}
-          PUSH_ALL_REFS: 'false'
+          GITLAB_REMOTE: 'git@gitlab.com:ffflorian/schemastore-updater.git'
+          GITLAB_SECRET: ${{ secrets.GITLAB_SECRET }}
+          GITLAB_PUSH_ALL_REFS: 'false'
+          CODEBERG_REMOTE: 'git@codeberg.org:ffflorian/schemastore-updater.git'
+          CODEBERG_SECRET: ${{ secrets.CODEBERG_SECRET }}
+          CODEBERG_PUSH_ALL_REFS: 'false'
