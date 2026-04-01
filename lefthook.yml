@@ -5,7 +5,7 @@ pre-commit:
       glob: '*.{json,md,yml,ts}'
       exclude:
         - CLAUDE.md
-      run: npx --no-install prettier --write {staged_files} && git add {staged_files}
+      run: npx --no prettier --write {staged_files} && git add {staged_files}
     lint:
       glob: 'src/*.ts'
-      run: npx --no-install oxlint --fix {staged_files} && git add {staged_files}
+      run: npx --no oxlint --fix {staged_files} && git add {staged_files}
