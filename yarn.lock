@@ -452,12 +452,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/prettier-config@npm:0.6.7":
-  version: 0.6.7
-  resolution: "@ffflorian/prettier-config@npm:0.6.7"
+"@ffflorian/prettier-config@npm:0.8.2":
+  version: 0.8.2
+  resolution: "@ffflorian/prettier-config@npm:0.8.2"
   peerDependencies:
     prettier: ">= 1.17.0"
-  checksum: 10c0/8ff33be36fe14b3aeb04af47fc98c61abb877e6f64c7b3f52fd6ac10d5658c0e5547a75255ad62e9f73712831a7fcf1e24884f59ab93aca3d7973b05f8d36a51
+  checksum: 10c0/e61193a1b7c1689e1851e809f7073447b827322b879c67aab25fc50e1489a28d40ea6ed4bf90d2edba9e81ebaabc89c3a56574c3370aa76b795cc8b078498ead
   languageName: node
   linkType: hard
 
@@ -6761,7 +6761,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:10.0.1"
     "@ffflorian/eslint-config": "npm:0.13.7"
-    "@ffflorian/prettier-config": "npm:0.6.7"
+    "@ffflorian/prettier-config": "npm:0.8.2"
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/git": "npm:10.0.1"
     "@types/node": "npm:~24"
