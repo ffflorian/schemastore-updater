@@ -19,7 +19,7 @@ For coding-agent specific workflows, repository conventions, and safety rules, s
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) > 24
+- [Node.js](https://nodejs.org/) >= 24
 - [yarn](https://yarnpkg.com/)
 
 ## Usage
