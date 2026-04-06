@@ -42,6 +42,8 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
           | 'pygrep'
           | 'script'
           | 'system'
+          | 'unsupported'
+          | 'unsupported_script'
         )
       | string;
     /**
@@ -143,6 +145,8 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
           | 'pygrep'
           | 'script'
           | 'system'
+          | 'unsupported'
+          | 'unsupported_script'
         )
       | string;
     /**

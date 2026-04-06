@@ -384,6 +384,17 @@ export interface HttpsJsonSchemastoreOrgClangdJson {
      */
     DisabledModifiers?: string[];
   };
+  /**
+   * Specify server side documentation code comment interpretation. Affects the format of the documentation string sent to the client for hover and code completions.
+   * https://clangd.llvm.org/config.html#documentation
+   */
+  Documentation?: {
+    /**
+     * Determines the comment format of code documentation.
+     * https://clangd.llvm.org/config.html#commentformat
+     */
+    CommentFormat?: 'Plaintext' | 'Markdown' | 'Doxygen';
+  };
   [k: string]: unknown | undefined;
 }
 /**
@@ -555,6 +566,11 @@ export interface CompletionOptions {
    * Change how completion will suggest code snippets and code patterns.
    */
   CodePatterns?: 'All' | 'None';
+  /**
+   * Controls whether exact or fuzzy matching is used to decide which macro symbols to offer during code completion.
+   * https://clangd.llvm.org/config.html#macrofilter
+   */
+  MacroFilter?: 'ExactPrefix' | 'FuzzyMatch';
 }
 /**
  * Inlay-hints options
@@ -607,4 +623,9 @@ export interface HoverOptions {
    * https://clangd.llvm.org/config.html#showaka
    */
   ShowAKA?: boolean;
+  /**
+   * Character limit for hovered macro expansions. Expansions that would be longer are not shown.
+   * https://clangd.llvm.org/config.html#macrocontentslimit
+   */
+  MacroContentsLimit?: number;
 }

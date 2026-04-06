@@ -1,13 +1,13 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for pnpm-workspace.",
+  "description": "TypeScript definitions for ethereum-erc721.",
   "license": "GPL-3.0",
-  "name": "@schemastore/pnpm-workspace",
+  "name": "@schemastore/ethereum-erc721",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.4"
+  "version": "1.0.0"
 }

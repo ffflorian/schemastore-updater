@@ -105,6 +105,13 @@
       "sourceSha256": "0fbc1d5f60b455b461c9adbb6856e93cf5291f0bc09df3a607e36c632dfa3331",
       "updatedAt": "2026-03-27T22:02:28.351Z"
     },
+    "abc-supply-plan-12.0.0.json": {
+      "generatedFile": "schemas/abc-supply-plan-12.0.0/index.d.ts",
+      "generatedSha256": "d1490b606ac9d59a5dda1e94457079a34221ff5baf6218381bf669683e923084",
+      "published": false,
+      "sourceSha256": "90361bff05cf6ed7f95bb35f857aa4c6918e8d2c23b8709a56129554fa94141d",
+      "updatedAt": "2026-04-06T05:41:04.885Z"
+    },
     "abc-supply-plan-2.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-2.0.0/index.d.ts",
       "generatedSha256": "babebe4093b11dacc464dac68ebcbd67e5228beb632151afdca862b5e960e58d",
@@ -1052,10 +1059,10 @@
     },
     "clangd.json": {
       "generatedFile": "schemas/clangd/index.d.ts",
-      "generatedSha256": "da89795643cc8791144b3623f6c79a17b1f0b1883976c400297c42a95cf73996",
-      "published": true,
-      "sourceSha256": "26f114b91b62f5433db642e5197d03e577bbba311cfa3a43d5a66fab448a0578",
-      "updatedAt": "2026-03-27T22:03:06.240Z"
+      "generatedSha256": "765ea59067f2c299e442333f0a7860b92a0fbd3eb0b126411288782729ade352",
+      "published": false,
+      "sourceSha256": "c73f4c7b3db17c979f22e79644df2d3edee6abe3ddbfec07399ff5dc27bfb1e0",
+      "updatedAt": "2026-04-06T05:41:06.665Z"
     },
     "claude-code-keybindings.json": {
       "generatedFile": "schemas/claude-code-keybindings/index.d.ts",
@@ -1066,10 +1073,10 @@
     },
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
-      "generatedSha256": "2cb0ea086d788c0a616790a3c829765b93050f726bd35bbff4eb94f28423524c",
-      "published": true,
-      "sourceSha256": "e57f5edfaa997026ee84972a02db24202f0ccaaf88de7cb2e0d8a36c4fa6d2da",
-      "updatedAt": "2026-03-27T22:03:06.862Z"
+      "generatedSha256": "80c2ba47612584a628902d0c27b1ea2f0b7645c46c60205e0ac0b9d2c4cf1e3e",
+      "published": false,
+      "sourceSha256": "9fc4c41635c76605bc6206210f5bae6bbb1885c57a322b37e80a399bb513590b",
+      "updatedAt": "2026-04-06T05:41:07.503Z"
     },
     "clib.json": {
       "generatedFile": "schemas/clib/index.d.ts",
@@ -1659,6 +1666,20 @@
       "sourceSha256": "b2a9b1328b879d6e45d41518513b65bd28ac28460fdc6c72828346fc3fd6698e",
       "updatedAt": "2026-03-27T22:03:24.296Z"
     },
+    "ethereum-erc1155.json": {
+      "generatedFile": "schemas/ethereum-erc1155/index.d.ts",
+      "generatedSha256": "8e17c67d2056f527da958ff10a1c7d7b6e43543ccb44271161f57b9fb6fcb71f",
+      "published": false,
+      "sourceSha256": "2025d530e1c262e7713d14fe4badd8de819ebbcb09d35252f58de1e3cc7ce0de",
+      "updatedAt": "2026-04-06T05:41:07.897Z"
+    },
+    "ethereum-erc721.json": {
+      "generatedFile": "schemas/ethereum-erc721/index.d.ts",
+      "generatedSha256": "c0e94dd76b84e3da1fb0fe44cdc56d455dcbddaff5b8b991b9c62d10c007e4a7",
+      "published": false,
+      "sourceSha256": "22b62e0ca20952d7b54d7ff2d59672d24d6f641908a268a5b72bf6b0b4208b7e",
+      "updatedAt": "2026-04-06T05:41:08.072Z"
+    },
     "evolving-resolutive-process-notation-1.0.json": {
       "generatedFile": "schemas/evolving-resolutive-process-notation-1.0/index.d.ts",
       "generatedSha256": "664909e2161720d161669b2e16d4506f59ceec3eed46aedbfa222212ad29c775",
@@ -1739,9 +1760,9 @@
     "fabric.mod.json": {
       "generatedFile": "schemas/fabric.mod/index.d.ts",
       "generatedSha256": "3647229064dcf72dd601d85362523742260ed30e04f9bd502d0ca3af3be5dcbb",
-      "published": true,
-      "sourceSha256": "3ab2a509ae1b55b2e608a6fbb037c43e0df13126d86826438fe462b1866d732a",
-      "updatedAt": "2026-03-27T22:03:26.735Z"
+      "published": false,
+      "sourceSha256": "7f83f1c2fbd18c8d1a8976cf0ffc83971dc6637d2787aa0835c2717c6ee42802",
+      "updatedAt": "2026-04-06T05:41:08.272Z"
     },
     "feed-1.json": {
       "generatedFile": "schemas/feed-1/index.d.ts",
@@ -3090,9 +3111,9 @@
     "openapi-overlay-1.X.json": {
       "generatedFile": "schemas/openapi-overlay-1.x/index.d.ts",
       "generatedSha256": "7ae97ae9672e06a2b80f1bedb46e905656877b0090654af70e06b4bc415035a9",
-      "published": true,
-      "sourceSha256": "10b713d8f4f3bc9a7a62bc5f976fd6ddf1b5000a9cb9b0d6c423bdd983c2e843",
-      "updatedAt": "2026-03-27T22:07:33.253Z"
+      "published": false,
+      "sourceSha256": "e69f09b9370de2f3d88454bf42d6c1d32af25b6416a9bf3e3ba1e44bc89adc14",
+      "updatedAt": "2026-04-06T05:44:23.903Z"
     },
     "openfin.json": {
       "generatedFile": "schemas/openfin/index.d.ts",
@@ -3474,10 +3495,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "b732adb304eeee80587f7f0d4fac9696861ccbf4e4a8fcc5827cc77d6184db51",
-      "published": true,
-      "sourceSha256": "708fe099f1528e1614218ce4a847ea93af151b094e189a553af28143152ca79f",
-      "updatedAt": "2026-03-30T05:44:09.534Z"
+      "generatedSha256": "7675daa73262a0f1159bf17a81cf059b631825736764125a448a3bfd26f2660e",
+      "published": false,
+      "sourceSha256": "1fcf05eab7fedb51440228d0475d897b9504e59b600f06291d7007f054be0497",
+      "updatedAt": "2026-04-06T05:44:26.343Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -3537,10 +3558,10 @@
     },
     "pre-commit-hooks.json": {
       "generatedFile": "schemas/pre-commit-hooks/index.d.ts",
-      "generatedSha256": "6766530f89c048960d56af4cc013dafa883147e89cebfd8306374ab0465fd420",
-      "published": true,
-      "sourceSha256": "1646fe99ce3d2e8977a7ddd0727beada6f95e350f0b2191cc6c3f0587e9335ea",
-      "updatedAt": "2026-03-27T22:07:52.164Z"
+      "generatedSha256": "a0b41522508d2ebe78032fc807c02899a81ed75501a69804f49d92a411e7a979",
+      "published": false,
+      "sourceSha256": "5bcbbd11044facc322693987b55c30abbdec0e7c107a1605140a143fe7c51652",
+      "updatedAt": "2026-04-06T05:44:26.851Z"
     },
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
@@ -4144,6 +4165,13 @@
       "sourceSha256": "6c8e09c201bd5566cc266eb94bc2c61afa982d49d3d3275c85b6e5a375829bd2",
       "updatedAt": "2026-03-27T22:09:03.433Z"
     },
+    "scarb.json": {
+      "generatedFile": "schemas/scarb/index.d.ts",
+      "generatedSha256": "03cf2290305caf618e1b82068b015db82e2c00ddb74865df5a5bab96ce4eac6b",
+      "published": false,
+      "sourceSha256": "6e3ff1580099a433d1455b50cf8772a261df0598dfb708f142843f8beed6121f",
+      "updatedAt": "2026-04-06T05:44:31.127Z"
+    },
     "schema-catalog.json": {
       "generatedFile": "schemas/schema-catalog/index.d.ts",
       "generatedSha256": "386413152113971b1456dd172a8e7c7721b3b7ae30f5b2135410879b4327f0c9",
@@ -4552,10 +4580,10 @@
     },
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
-      "generatedSha256": "5f198e44b1dba99a74e14aa6a87fd283f5746fb43f4366b43c3f36542a5dada1",
-      "published": true,
-      "sourceSha256": "58b452a8dd0eba3c9911aaff2b6b023aee44bc1e06a44261480c1a234a859d60",
-      "updatedAt": "2026-03-27T22:09:21.430Z"
+      "generatedSha256": "c1e6c0e1eabdf22783599e6765cae8ab3cd0ab232f91f3d7c6bae35fa070b9c3",
+      "published": false,
+      "sourceSha256": "fdaf613650a365828cf48a84a8173f74991dee1433198324e6db29de86e201bd",
+      "updatedAt": "2026-04-06T05:44:33.818Z"
     },
     "traefik-v2-file-provider.json": {
       "generatedFile": "schemas/traefik-v2-file-provider/index.d.ts",
@@ -4615,10 +4643,10 @@
     },
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
-      "generatedSha256": "699139b7dbd724b7d0ece0df86d968a92dc8cf603185b13c8ee4a01cd0ba0d92",
-      "published": true,
-      "sourceSha256": "a4b541a90cefd4ff6d96560bcb51f814c9ddbaa01412e1c8d00f4b2434205e13",
-      "updatedAt": "2026-03-27T22:09:23.846Z"
+      "generatedSha256": "11617f16a2c6c58d0bd1cdcb9fbfa96926b740d330f0b57b70d1a83156d881d5",
+      "published": false,
+      "sourceSha256": "1a0477cd15d7d75c6242384d7a6e8286a2dcd3f32624961fda5ffb6bdce1e35c",
+      "updatedAt": "2026-04-06T05:44:34.408Z"
     },
     "tsd.json": {
       "generatedFile": "schemas/tsd/index.d.ts",
@@ -5048,6 +5076,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-03-30T05:44:21.149Z",
+  "generatedAt": "2026-04-06T05:44:39.594Z",
   "version": 1
 }

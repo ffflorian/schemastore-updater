@@ -373,6 +373,7 @@ export type CompilerOptions = {
         | 'es2022'
         | 'es2023'
         | 'es2024'
+        | 'es2025'
         | 'esnext'
       )
     | {
@@ -395,6 +396,7 @@ export type CompilerOptions = {
               | 'es2022'
               | 'es2023'
               | 'es2024'
+              | 'es2025'
               | 'esnext'
             )
           | {
@@ -417,6 +419,7 @@ export type CompilerOptions = {
               | 'es2022'
               | 'es2023'
               | 'es2024'
+              | 'es2025'
               | 'esnext'
             )
           | {
@@ -1155,6 +1158,7 @@ export type CompilerOptions = {
         | 'es2022'
         | 'es2023'
         | 'es2024'
+        | 'es2025'
         | 'esnext'
       )
     | {
@@ -1177,6 +1181,7 @@ export type CompilerOptions = {
               | 'es2022'
               | 'es2023'
               | 'es2024'
+              | 'es2025'
               | 'esnext'
             )
           | {
@@ -1199,6 +1204,7 @@ export type CompilerOptions = {
               | 'es2022'
               | 'es2023'
               | 'es2024'
+              | 'es2025'
               | 'esnext'
             )
           | {
