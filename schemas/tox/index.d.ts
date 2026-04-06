@@ -401,6 +401,10 @@ export interface EnvRunBase {
    */
   default_base_python?: Subs[] | string;
   /**
+   * file(s) containing the Python version to use (e.g. .python-version), first one found wins; used when base_python is not explicitly set and the env name has no Python factor
+   */
+  base_python_file?: Subs[] | string;
+  /**
    * environment identifier for python, first one found wins
    */
   base_python?: Subs[] | string;
@@ -683,6 +687,10 @@ export interface EnvRunBase1 {
    * fallback python interpreter used when no factor or explicit base_python is defined
    */
   default_base_python?: Subs[] | string;
+  /**
+   * file(s) containing the Python version to use (e.g. .python-version), first one found wins; used when base_python is not explicitly set and the env name has no Python factor
+   */
+  base_python_file?: Subs[] | string;
   /**
    * environment identifier for python, first one found wins
    */

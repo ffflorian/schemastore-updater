@@ -792,6 +792,14 @@ export interface ClaudeCodeSettings {
        * Paths where subprocesses are explicitly denied read access
        */
       denyRead?: string[];
+      /**
+       * Paths to re-allow reading within denyRead regions. Takes precedence over denyRead for matching paths
+       */
+      allowRead?: string[];
+      /**
+       * When true (managed settings only), only allowRead paths from managed settings are used
+       */
+      allowManagedReadPathsOnly?: boolean;
     };
   };
   /**

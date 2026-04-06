@@ -351,6 +351,11 @@ export interface PnpmWorkspaceSpecification {
    */
   loglevel?: 'debug' | 'info' | 'warn' | 'error';
   /**
+   * Allows you to customize the output style of the logs.
+   * https://pnpm.io/cli/install#--reportername
+   */
+  reporter?: 'silent' | 'default' | 'append-only' | 'ndjson';
+  /**
    * Experimental option that enables beta features of the CLI.
    */
   useBetaCli?: boolean;
