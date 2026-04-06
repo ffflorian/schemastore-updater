@@ -1060,7 +1060,7 @@
     "clangd.json": {
       "generatedFile": "schemas/clangd/index.d.ts",
       "generatedSha256": "765ea59067f2c299e442333f0a7860b92a0fbd3eb0b126411288782729ade352",
-      "published": false,
+      "published": true,
       "sourceSha256": "c73f4c7b3db17c979f22e79644df2d3edee6abe3ddbfec07399ff5dc27bfb1e0",
       "updatedAt": "2026-04-06T05:41:06.665Z"
     },
@@ -1074,7 +1074,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "80c2ba47612584a628902d0c27b1ea2f0b7645c46c60205e0ac0b9d2c4cf1e3e",
-      "published": false,
+      "published": true,
       "sourceSha256": "9fc4c41635c76605bc6206210f5bae6bbb1885c57a322b37e80a399bb513590b",
       "updatedAt": "2026-04-06T05:41:07.503Z"
     },
@@ -1760,7 +1760,7 @@
     "fabric.mod.json": {
       "generatedFile": "schemas/fabric.mod/index.d.ts",
       "generatedSha256": "3647229064dcf72dd601d85362523742260ed30e04f9bd502d0ca3af3be5dcbb",
-      "published": false,
+      "published": true,
       "sourceSha256": "7f83f1c2fbd18c8d1a8976cf0ffc83971dc6637d2787aa0835c2717c6ee42802",
       "updatedAt": "2026-04-06T05:41:08.272Z"
     },
@@ -3111,7 +3111,7 @@
     "openapi-overlay-1.X.json": {
       "generatedFile": "schemas/openapi-overlay-1.x/index.d.ts",
       "generatedSha256": "7ae97ae9672e06a2b80f1bedb46e905656877b0090654af70e06b4bc415035a9",
-      "published": false,
+      "published": true,
       "sourceSha256": "e69f09b9370de2f3d88454bf42d6c1d32af25b6416a9bf3e3ba1e44bc89adc14",
       "updatedAt": "2026-04-06T05:44:23.903Z"
     },
@@ -3496,7 +3496,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "7675daa73262a0f1159bf17a81cf059b631825736764125a448a3bfd26f2660e",
-      "published": false,
+      "published": true,
       "sourceSha256": "1fcf05eab7fedb51440228d0475d897b9504e59b600f06291d7007f054be0497",
       "updatedAt": "2026-04-06T05:44:26.343Z"
     },
@@ -3559,7 +3559,7 @@
     "pre-commit-hooks.json": {
       "generatedFile": "schemas/pre-commit-hooks/index.d.ts",
       "generatedSha256": "a0b41522508d2ebe78032fc807c02899a81ed75501a69804f49d92a411e7a979",
-      "published": false,
+      "published": true,
       "sourceSha256": "5bcbbd11044facc322693987b55c30abbdec0e7c107a1605140a143fe7c51652",
       "updatedAt": "2026-04-06T05:44:26.851Z"
     },
@@ -4581,7 +4581,7 @@
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
       "generatedSha256": "c1e6c0e1eabdf22783599e6765cae8ab3cd0ab232f91f3d7c6bae35fa070b9c3",
-      "published": false,
+      "published": true,
       "sourceSha256": "fdaf613650a365828cf48a84a8173f74991dee1433198324e6db29de86e201bd",
       "updatedAt": "2026-04-06T05:44:33.818Z"
     },
@@ -4644,7 +4644,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "11617f16a2c6c58d0bd1cdcb9fbfa96926b740d330f0b57b70d1a83156d881d5",
-      "published": false,
+      "published": true,
       "sourceSha256": "1a0477cd15d7d75c6242384d7a6e8286a2dcd3f32624961fda5ffb6bdce1e35c",
       "updatedAt": "2026-04-06T05:44:34.408Z"
     },
