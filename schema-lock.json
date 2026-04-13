@@ -815,28 +815,28 @@
     "buf.gen.json": {
       "generatedFile": "schemas/buf.gen/index.d.ts",
       "generatedSha256": "ea8736e3140c87924af0b50e37c9f73345055de04142b2a5ca8445d490aa84cc",
-      "published": false,
+      "published": true,
       "sourceSha256": "c7df4920608ec2c759546898ad6b4a5b7bd83953d4c95e9c753f4f718d17eb4b",
       "updatedAt": "2026-04-13T05:51:32.020Z"
     },
     "buf.json": {
       "generatedFile": "schemas/buf/index.d.ts",
       "generatedSha256": "8e32007005b531b630a20cae5fb2fadc11a2e499877e44fa276a43d973ca95ae",
-      "published": false,
+      "published": true,
       "sourceSha256": "53c6908884b71f1dc4ed31620547339a79c0dc2f673b3fe5dd3d7a21885b4fde",
       "updatedAt": "2026-04-13T05:51:32.307Z"
     },
     "buf.lock.json": {
       "generatedFile": "schemas/buf.lock/index.d.ts",
       "generatedSha256": "fc4416fe83bd591d9cea933b2819e34d63d753d78667f98ce905b59e4dcba0d6",
-      "published": false,
+      "published": true,
       "sourceSha256": "663bb44e55bf339133312abdad2b8addaada12882f72aa3eae77a2ac79c88cc7",
       "updatedAt": "2026-04-13T05:51:32.512Z"
     },
     "buf.plugin.json": {
       "generatedFile": "schemas/buf.plugin/index.d.ts",
       "generatedSha256": "bfb151d97ccc5789418589163cd39bc7f14429f38b07fbf5a75bfe21296f8fa4",
-      "published": false,
+      "published": true,
       "sourceSha256": "ca99b2a898106306426ad69f94e1788dbdea08458a240335aeda69f7a1556e86",
       "updatedAt": "2026-04-13T05:51:32.722Z"
     },
@@ -850,7 +850,7 @@
     "buf.work.json": {
       "generatedFile": "schemas/buf.work/index.d.ts",
       "generatedSha256": "070f047ca4dfba26b4a1d6043a2dfbd91a4e0811a6b50a344f35b4f55044ad5d",
-      "published": false,
+      "published": true,
       "sourceSha256": "c677853debf2dd121a191d18152fadab6144a64cfca34d6352a5cd95c3db1df8",
       "updatedAt": "2026-04-13T05:51:33.124Z"
     },
@@ -1109,7 +1109,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "1363be66bd27a533df25eb877f9fcf29d07a440239f926399c2a1df17bf27663",
-      "published": false,
+      "published": true,
       "sourceSha256": "2bb8a0381dd96c9c68b08d23074afa938db21d8a82ad5985556ab6e2056ca234",
       "updatedAt": "2026-04-13T05:51:36.072Z"
     },
@@ -1354,7 +1354,7 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": false,
+      "published": true,
       "sourceSha256": "06d19ccb3162ffc47a0c474a75b853c9833671b88ae0c0018de105065b7c8155",
       "updatedAt": "2026-04-13T05:51:36.451Z"
     },
@@ -1592,7 +1592,7 @@
     "drupal-recipe.json": {
       "generatedFile": "schemas/drupal-recipe/index.d.ts",
       "generatedSha256": "8aee57dd5b42512ca36dd03afa16f054e662eb930d6f6c68834777c00b88fd7c",
-      "published": false,
+      "published": true,
       "sourceSha256": "2efa5d9e9362858ddd8f7ef144be5bbc9724308d6b700ba2b0cacf2de01439e9",
       "updatedAt": "2026-04-13T05:51:36.683Z"
     },
@@ -2019,7 +2019,7 @@
     "gitversion.json": {
       "generatedFile": "schemas/gitversion/index.d.ts",
       "generatedSha256": "3fc48497cc9242f95cb6edafb7b2546c70a330e0e4e00f5feeb40b2b82675949",
-      "published": false,
+      "published": true,
       "sourceSha256": "1a110788882a893d28b128be2087984390893d57beb4142afcc36f49d6e310da",
       "updatedAt": "2026-04-13T05:51:37.180Z"
     },
@@ -2299,7 +2299,7 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "d897b79a1d84847e6543dd1c90b535a25d703978d43abf089d2cd2920a7f8bf3",
-      "published": false,
+      "published": true,
       "sourceSha256": "23b255f2710d1db60c826e856eebc530f0f15ddec79e7b5499d95999c4c83508",
       "updatedAt": "2026-04-13T05:51:45.365Z"
     },
@@ -3034,7 +3034,7 @@
     "nodemon.json": {
       "generatedFile": "schemas/nodemon/index.d.ts",
       "generatedSha256": "c8b9d39436667f824ddb46a34f7ce2c182454b58311c041bf692024d83641f2e",
-      "published": false,
+      "published": true,
       "sourceSha256": "44a58d109c8f5967ec4154a6612793fd3ca40aaa917f69e604b6367784ca6973",
       "updatedAt": "2026-04-13T05:54:53.176Z"
     },
@@ -3216,7 +3216,7 @@
     "package.json": {
       "generatedFile": "schemas/package/index.d.ts",
       "generatedSha256": "c4cc1daebad8e006d72e721b8e1b1bcbebe7bc87b116812303d9227324317d35",
-      "published": false,
+      "published": true,
       "sourceSha256": "1420c43c501ace476d21a74339241c531a63edef2745fdeeda5ebd7eaf010432",
       "updatedAt": "2026-04-13T05:54:56.951Z"
     },
@@ -3342,7 +3342,7 @@
     "paper-plugin.json": {
       "generatedFile": "schemas/paper-plugin/index.d.ts",
       "generatedSha256": "e6fd07d7392d960343eeae797e226ed91132f0f837c771a1b384473042689b55",
-      "published": false,
+      "published": true,
       "sourceSha256": "034ff374a19de3d3cd03b7091cbdb186203a9ac221da66da6ad8c37e26b1407d",
       "updatedAt": "2026-04-13T05:54:57.886Z"
     },
@@ -3412,7 +3412,7 @@
     "partial-poe.json": {
       "generatedFile": "schemas/partial-poe/index.d.ts",
       "generatedSha256": "aa120bc1a0c2dffe0222b3405a5e6f5aca6aa0ae4042ea206aff37bd9184a139",
-      "published": false,
+      "published": true,
       "sourceSha256": "55cea32d9cde25d326e4e9592ff79e9052184332d1a1a3d34769a0accc5886b7",
       "updatedAt": "2026-04-13T05:54:58.378Z"
     },
@@ -3615,7 +3615,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "856324bd30ac3e66e745a056b681de516ec1f029d923f4da3398fab375bdcb2a",
-      "published": false,
+      "published": true,
       "sourceSha256": "0e0a383adefcc3a531a462fbdf9015ab810891cb6842dea25f58386cd589f74e",
       "updatedAt": "2026-04-13T05:54:59.819Z"
     },
@@ -3636,7 +3636,7 @@
     "prettierrc.json": {
       "generatedFile": "schemas/prettierrc/index.d.ts",
       "generatedSha256": "005b2dc5e2618c0f78fcaeb0f2482c874f23bc9b26952dd1c4e9916c55dfd72e",
-      "published": false,
+      "published": true,
       "sourceSha256": "297c04f47ef41685f5955138224cc0e9fd3c046c7b9854e3343a31c34578e35d",
       "updatedAt": "2026-04-13T05:55:00.086Z"
     },
@@ -4014,7 +4014,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "d52a931098dfa2ecfa34d502a484ccc43cbab313493c8956aa5e282a93466df7",
-      "published": false,
+      "published": true,
       "sourceSha256": "2c4ec3d38f1ea65508947d5b99308d5ce598cc7130ed487e853df8dc79aef9e8",
       "updatedAt": "2026-04-13T05:55:03.074Z"
     },
@@ -4329,7 +4329,7 @@
     "sigrid-scope-file.schema.json": {
       "generatedFile": "schemas/sigrid-scope-file.schema/index.d.ts",
       "generatedSha256": "7863ceb3e3c5fcfeb4eed5e87e261a5bbdaf23ade1df997c392151cfabd2f400",
-      "published": false,
+      "published": true,
       "sourceSha256": "f516c35a253f3fa9a40b426b744ae1da1d72e9e9a70d6feb4701379ebd6f4dd2",
       "updatedAt": "2026-04-13T05:55:05.220Z"
     },
@@ -4441,7 +4441,7 @@
     "specmatic.json": {
       "generatedFile": "schemas/specmatic/index.d.ts",
       "generatedSha256": "c57730dd7b4e775a7b833147c4929e31f1ec7af6f374ea01f10d0353e2fdfc5a",
-      "published": false,
+      "published": true,
       "sourceSha256": "d4402289830bc87e9c9b20a1278b5774db45f4f5a8bbc3cbb8977ae2bbf73e5d",
       "updatedAt": "2026-04-13T05:55:05.949Z"
     },
@@ -4700,7 +4700,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "e3ad801894fff5e2108aab89ce5e8b624ae34732291fcdd4f795a61888ce6b36",
-      "published": false,
+      "published": true,
       "sourceSha256": "ff3f4343a82919f1f4e33a32029c474e9822c13abd7666e0ab89f757b15a5a75",
       "updatedAt": "2026-04-13T05:55:07.611Z"
     },
