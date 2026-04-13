@@ -34,6 +34,23 @@ jobs:
           yarn check
           yarn test
 
+      - name: Compose PR body
+        if: always()
+        run: |
+          {
+            echo "Full schema regeneration triggered manually via the **Force Regenerate All Schemas** workflow."
+            echo ""
+            echo "This PR was created after running:"
+            echo ""
+            echo "- \`yarn update --force\`"
+            echo "- \`yarn check\`"
+            echo "- \`yarn test\`"
+            if [ -f update-summary.md ]; then
+              echo ""
+              cat update-summary.md
+            fi
+          } > pr-body.md
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
         with:
@@ -44,14 +61,7 @@ jobs:
           delete-branch: true
           commit-message: 'chore(schemas): force regenerate all schemas'
           title: 'chore(schemas): force regenerate all schemas'
-          body: |
-            Full schema regeneration triggered manually via the **Force Regenerate All Schemas** workflow.
-
-            This PR was created after running:
-
-            - `yarn update --force`
-            - `yarn check`
-            - `yarn test`
+          body-path: pr-body.md
 
       - name: Fail workflow when regeneration failed
         if: steps.update.outcome == 'failure'

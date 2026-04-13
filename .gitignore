@@ -4,6 +4,8 @@ package-lock.json
 dist
 node_modules
 .cache
+update-summary.md
+publish-summary.md
 
 .pnp.*
 .yarn/*

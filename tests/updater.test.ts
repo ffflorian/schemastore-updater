@@ -34,7 +34,9 @@ describe('updateSchemas', () => {
 
     expect(stats).toEqual({
       failed: 0,
+      failedSchemas: [],
       generated: 1,
+      generatedSchemas: ['accelerator-schema'],
       skipped: 0,
       totalSchemas: 1,
     });
@@ -72,6 +74,11 @@ describe('updateSchemas', () => {
     );
     expect(generatorLog).toContain('No schema generation or type-check errors.');
 
+    const updateSummary = await readFile(path.join(context.workspaceDir, 'update-summary.md'), 'utf-8');
+    expect(updateSummary).toContain('## Schema Update Summary');
+    expect(updateSummary).toContain('**Generated:** 1');
+    expect(updateSummary).toContain('`accelerator-schema`');
+
     const lockEntry = lockFile.entries['accelerator/schema.json'];
     expect(lockEntry).toBeDefined();
     expect(lockEntry?.generatedFile).toBe('schemas/accelerator-schema/index.d.ts');
@@ -97,7 +104,9 @@ describe('updateSchemas', () => {
 
     expect(secondStats).toEqual({
       failed: 0,
+      failedSchemas: [],
       generated: 0,
+      generatedSchemas: [],
       skipped: 1,
       totalSchemas: 1,
     });
@@ -129,7 +138,9 @@ describe('updateSchemas', () => {
 
     expect(forcedStats).toEqual({
       failed: 0,
+      failedSchemas: [],
       generated: 1,
+      generatedSchemas: ['accelerator-schema'],
       skipped: 0,
       totalSchemas: 1,
     });
@@ -188,7 +199,9 @@ describe('updateSchemas', () => {
 
     expect(stats).toEqual({
       failed: 0,
+      failedSchemas: [],
       generated: 1,
+      generatedSchemas: ['accelerator-schema'],
       skipped: 0,
       totalSchemas: 1,
     });
@@ -209,12 +222,18 @@ describe('updateSchemas', () => {
 
     expect(stats).toEqual({
       failed: 1,
+      failedSchemas: ['broken-schema'],
       generated: 0,
+      generatedSchemas: [],
       skipped: 0,
       totalSchemas: 1,
     });
     expect(generatorLog).toContain('Skipped (conversion failed): broken/schema.json');
     expect(lockFile.entries).toEqual({});
+
+    const updateSummary = await readFile(path.join(context.workspaceDir, 'update-summary.md'), 'utf-8');
+    expect(updateSummary).toContain('**Failed:** 1');
+    expect(updateSummary).toContain('`broken-schema`');
   });
 
   it('counts type-check failures and skips invalid generated declarations', async () => {
@@ -237,7 +256,9 @@ describe('updateSchemas', () => {
 
     expect(stats).toEqual({
       failed: 1,
+      failedSchemas: ['broken-schema'],
       generated: 0,
+      generatedSchemas: [],
       skipped: 0,
       totalSchemas: 1,
     });
@@ -262,7 +283,7 @@ describe('updateSchemas', () => {
     );
     const secondLock = await readLockFile(context.workspaceDir);
 
-    expect(stats).toEqual({failed: 1, generated: 0, skipped: 0, totalSchemas: 1});
+    expect(stats).toEqual({failed: 1, failedSchemas: ['accelerator-schema'], generated: 0, generatedSchemas: [], skipped: 0, totalSchemas: 1});
     expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
   });
 
@@ -287,7 +308,7 @@ describe('updateSchemas', () => {
     );
     const secondLock = await readLockFile(context.workspaceDir);
 
-    expect(stats).toEqual({failed: 1, generated: 0, skipped: 0, totalSchemas: 1});
+    expect(stats).toEqual({failed: 1, failedSchemas: ['accelerator-schema'], generated: 0, generatedSchemas: [], skipped: 0, totalSchemas: 1});
     expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
   });
 
@@ -394,7 +415,9 @@ describe('updateSchemas', () => {
 
     expect(stats).toEqual({
       failed: 0,
+      failedSchemas: [],
       generated: 1,
+      generatedSchemas: ['accelerator-schema'],
       skipped: 0,
       totalSchemas: 1,
     });
@@ -421,7 +444,9 @@ describe('updateSchemas', () => {
 
     expect(stats).toEqual({
       failed: 0,
+      failedSchemas: [],
       generated: 0,
+      generatedSchemas: [],
       skipped: 1,
       totalSchemas: 1,
     });

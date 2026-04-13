@@ -39,6 +39,19 @@ jobs:
         run: |
           yarn publish:schemas
 
+      - name: Compose PR body
+        if: always()
+        run: |
+          {
+            echo "Update published flags in \`schema-lock.json\` after npm publish attempts."
+            echo ""
+            echo "This PR is created by the publish workflow."
+            if [ -f publish-summary.md ]; then
+              echo ""
+              cat publish-summary.md
+            fi
+          } > pr-body.md
+
       - name: Create Pull Request for updated schema lock
         if: always()
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
@@ -51,10 +64,7 @@ jobs:
           delete-branch: true
           commit-message: 'chore(schema-lock): update published flags'
           title: 'chore(schema-lock): update published flags'
-          body: |
-            Update published flags in `schema-lock.json` after npm publish attempts.
-
-            This PR is created by the publish workflow.
+          body-path: pr-body.md
 
       - name: Fail workflow when publishing failed
         if: steps.publish.outcome == 'failure'

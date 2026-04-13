@@ -17,10 +17,12 @@ const execFileAsync = promisify(execFile);
 const SCHEMASTORE_GIT_URL = 'https://github.com/SchemaStore/schemastore.git';
 const LOG_FILE_NAME = 'schemagenerator.log';
 const LOCK_FILE_NAME = 'schema-lock.json';
+const UPDATE_SUMMARY_FILE_NAME = 'update-summary.md';
 
 export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   const projectRoot = process.cwd();
   const logFilePath = path.join(projectRoot, LOG_FILE_NAME);
+  const summaryFilePath = path.join(projectRoot, UPDATE_SUMMARY_FILE_NAME);
   const outDir = path.join(projectRoot, 'schemas');
   const lockFilePath = path.join(projectRoot, LOCK_FILE_NAME);
   const rootLicensePath = path.join(projectRoot, 'LICENSE');
@@ -57,7 +59,9 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
   const stats: UpdateStats = {
     failed: 0,
+    failedSchemas: [],
     generated: 0,
+    generatedSchemas: [],
     skipped: 0,
     totalSchemas: files.length,
   };
@@ -130,6 +134,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       if (!typeCheckResult.ok) {
         await rm(tempOutPath, {force: true});
         stats.failed += 1;
+        stats.failedSchemas.push(schemaId);
         process.stdout.write('skipped (type-check failed)\n');
         process.stderr.write(typeCheckResult.errors);
         logEntries.push(`Skipped (type-check failed): ${schemaRelativePath}`);
@@ -164,10 +169,12 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
       };
 
       stats.generated += 1;
+      stats.generatedSchemas.push(schemaId);
       process.stdout.write(`done\n`);
       await writeFile(logFilePath, createGeneratorLog(logEntries), 'utf-8');
     } catch (error) {
       stats.failed += 1;
+      stats.failedSchemas.push(schemaId);
       const errorMessage = error instanceof Error ? error.message : String(error);
       process.stdout.write('skipped (conversion failed)\n');
       process.stderr.write(`${errorMessage}\n`);
@@ -193,6 +200,7 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   } satisfies SchemaLockFile;
 
   await writeFile(lockFilePath, `${JSON.stringify(nextLockFile, null, 2)}\n`, 'utf-8');
+  await writeFile(summaryFilePath, createUpdateSummary(stats), 'utf-8');
 
   return stats;
 }
@@ -282,6 +290,34 @@ Files were exported from https://github.com/ffflorian/schemastore-updater/tree/m
 * Last updated: ${formattedUpdatedAt}
 * Dependencies: none
 `;
+}
+
+function createUpdateSummary(stats: UpdateStats): string {
+  const lines: string[] = [
+    '## Schema Update Summary',
+    '',
+    `- **Total:** ${stats.totalSchemas}`,
+    `- **Generated:** ${stats.generated}`,
+    `- **Skipped:** ${stats.skipped}`,
+    `- **Failed:** ${stats.failed}`,
+  ];
+
+  if (stats.generatedSchemas.length > 0) {
+    lines.push('', `### Updated Schemas (${stats.generatedSchemas.length})`, '');
+    for (const schema of stats.generatedSchemas) {
+      lines.push(`- \`${schema}\``);
+    }
+  }
+
+  if (stats.failedSchemas.length > 0) {
+    lines.push('', `### Failed Schemas (${stats.failedSchemas.length})`, '');
+    for (const schema of stats.failedSchemas) {
+      lines.push(`- \`${schema}\``);
+    }
+  }
+
+  lines.push('');
+  return lines.join('\n');
 }
 
 function deduplicateGeneratedTypes(code: string): string {

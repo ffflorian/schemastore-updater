@@ -86,6 +86,14 @@ async function runPublishCommand(options: PublishCommandOptions): Promise<void> 
   console.info(`Failed: ${stats.failed}`);
   console.info(`Log file: ${stats.logFilePath}`);
 
+  if (stats.publishedPackages.length > 0) {
+    console.info(`\nPublished packages:\n${stats.publishedPackages.map(label => `  - ${label}`).join('\n')}`);
+  }
+
+  if (stats.failedPackages.length > 0) {
+    console.info(`\nFailed packages:\n${stats.failedPackages.map(label => `  - ${label}`).join('\n')}`);
+  }
+
   if (!stats.dryRun && stats.failed > 0) {
     process.exitCode = 1;
   }
@@ -103,6 +111,14 @@ async function runUpdateCommand(options: UpdateCommandOptions): Promise<void> {
   console.info(`Generated: ${stats.generated}`);
   console.info(`Skipped: ${stats.skipped}`);
   console.info(`Failed: ${stats.failed}`);
+
+  if (stats.generatedSchemas.length > 0) {
+    console.info(`\nGenerated schemas:\n${stats.generatedSchemas.map(name => `  - ${name}`).join('\n')}`);
+  }
+
+  if (stats.failedSchemas.length > 0) {
+    console.info(`\nFailed schemas:\n${stats.failedSchemas.map(name => `  - ${name}`).join('\n')}`);
+  }
 }
 
 void run();
