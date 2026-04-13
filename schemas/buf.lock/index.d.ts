@@ -8,22 +8,5 @@ export interface BufLock {
    * Buf configuration version.
    */
   version: 'v2' | 'v1' | 'v1beta1';
-  /**
-   * Module pins, each uniquely representing a specific snapshot of a module, protected with a cryptographic digest.
-   */
-  deps?: {
-    /**
-     * Module name.
-     */
-    name: string;
-    /**
-     * Commit that uniquely identifies this snapshot of the module.
-     */
-    commit: string;
-    /**
-     * Digest of the module contents.
-     */
-    digest: string;
-  }[];
   [k: string]: unknown | undefined;
 }

@@ -21,18 +21,25 @@ export type BuiltinHooks =
   | 'check-added-large-files'
   | 'check-case-conflict'
   | 'check-executables-have-shebangs'
+  | 'check-illegal-windows-names'
   | 'check-json'
   | 'check-json5'
   | 'check-merge-conflict'
+  | 'check-shebang-scripts-are-executable'
   | 'check-symlinks'
   | 'check-toml'
+  | 'check-vcs-permalinks'
   | 'check-xml'
   | 'check-yaml'
+  | 'destroyed-symlinks'
   | 'detect-private-key'
   | 'end-of-file-fixer'
+  | 'file-contents-sorter'
   | 'fix-byte-order-marker'
+  | 'forbid-new-submodules'
   | 'mixed-line-ending'
   | 'no-commit-to-branch'
+  | 'pretty-format-json'
   | 'trailing-whitespace';
 export type HookType =
   | 'commit-msg'
@@ -64,6 +71,7 @@ export interface PrekToml {
     conda?: string;
     coursier?: string;
     dart?: string;
+    deno?: string;
     docker?: string;
     docker_image?: string;
     dotnet?: string;
@@ -160,6 +168,7 @@ export interface RemoteHook {
     | 'conda'
     | 'coursier'
     | 'dart'
+    | 'deno'
     | 'docker'
     | 'docker_image'
     | 'dotnet'
@@ -252,7 +261,7 @@ export interface RemoteHook {
    * Append filenames that would be checked to the hook entry as arguments.
    * Default is true.
    */
-  pass_filenames?: boolean;
+  pass_filenames?: boolean | number;
   /**
    * A description of the hook. For metadata only.
    */
@@ -273,7 +282,7 @@ export interface RemoteHook {
    */
   require_serial?: boolean;
   /**
-   * Select which git hook(s) to run for.
+   * Select which Git hook stages this hook runs for.
    * Default all stages are selected.
    * See <https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>.
    */
@@ -323,6 +332,7 @@ export interface LocalHook {
     | 'conda'
     | 'coursier'
     | 'dart'
+    | 'deno'
     | 'docker'
     | 'docker_image'
     | 'dotnet'
@@ -412,7 +422,7 @@ export interface LocalHook {
    * Append filenames that would be checked to the hook entry as arguments.
    * Default is true.
    */
-  pass_filenames?: boolean;
+  pass_filenames?: boolean | number;
   /**
    * A description of the hook. For metadata only.
    */
@@ -433,7 +443,7 @@ export interface LocalHook {
    */
   require_serial?: boolean;
   /**
-   * Select which git hook(s) to run for.
+   * Select which Git hook stages this hook runs for.
    * Default all stages are selected.
    * See <https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>.
    */
@@ -548,7 +558,7 @@ export interface MetaHook {
    * Append filenames that would be checked to the hook entry as arguments.
    * Default is true.
    */
-  pass_filenames?: boolean;
+  pass_filenames?: boolean | number;
   /**
    * A description of the hook. For metadata only.
    */
@@ -569,7 +579,7 @@ export interface MetaHook {
    */
   require_serial?: boolean;
   /**
-   * Select which git hook(s) to run for.
+   * Select which Git hook stages this hook runs for.
    * Default all stages are selected.
    * See <https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>.
    */
@@ -684,7 +694,7 @@ export interface BuiltinHook {
    * Append filenames that would be checked to the hook entry as arguments.
    * Default is true.
    */
-  pass_filenames?: boolean;
+  pass_filenames?: boolean | number;
   /**
    * A description of the hook. For metadata only.
    */
@@ -705,7 +715,7 @@ export interface BuiltinHook {
    */
   require_serial?: boolean;
   /**
-   * Select which git hook(s) to run for.
+   * Select which Git hook stages this hook runs for.
    * Default all stages are selected.
    * See <https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>.
    */

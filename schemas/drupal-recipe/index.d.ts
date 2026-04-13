@@ -38,6 +38,15 @@ export type SetThirdPartySettings = [] | [SetThirdPartySetting];
  */
 export type HidesAComponentFromAnEntityViewDisplayOrEntityFormDisplay = string;
 /**
+ * Value: The list of component ids
+ */
+export type HideComponents = [] | [string];
+/**
+ * Allows adding adding the configuration for multiple fields.
+ */
+export type SetComponents = [] | [SetComponent];
+export type SetsWhetherLayoutBuilderOverridesAreAllowed = boolean;
+/**
  * The contents are stored in a directory relative to the recipe file.
  */
 export type ListOfContentToBeCreated = [] | [string];
@@ -220,21 +229,12 @@ export interface SimpleConfigUpdate {
 /**
  * This interface was referenced by `KeyValue`'s JSON-Schema definition
  * via the `patternProperty` "core.entity_form_display.*.*.*".
- *
- * This interface was referenced by `KeyValue`'s JSON-Schema definition
- * via the `patternProperty` "core.entity_view_display.*.*.*".
  */
-export interface FormViewDisplay {
+export interface FormDisplay {
   hideComponent?: HidesAComponentFromAnEntityViewDisplayOrEntityFormDisplay;
-  /**
-   * Value: The list of component ids
-   */
-  hideComponents?: [] | [string];
+  hideComponents?: HideComponents;
   setComponent?: SetComponent;
-  /**
-   * Allows adding adding the configuration for multiple fields.
-   */
-  setComponents?: [] | [SetComponent];
+  setComponents?: SetComponents;
   /**
    * Creates a clone of any config entity with a new ID.
    */
@@ -289,6 +289,30 @@ export interface SetComponent {
       | 'breadcrumb';
     [k: string]: unknown | undefined;
   };
+}
+/**
+ * This interface was referenced by `KeyValue`'s JSON-Schema definition
+ * via the `patternProperty` "core.entity_view_display.*.*.*".
+ */
+export interface FormDisplay1 {
+  allowLayoutOverrides?: SetsWhetherLayoutBuilderOverridesAreAllowed;
+  hideComponent?: HidesAComponentFromAnEntityViewDisplayOrEntityFormDisplay;
+  hideComponents?: HideComponents;
+  setComponent?: SetComponent;
+  setComponents?: SetComponents;
+  /**
+   * Creates a clone of any config entity with a new ID.
+   */
+  cloneAs?: string;
+  create?: Create;
+  createIfNotExists?: CreateIfNotExists;
+  createForEach?: CreateForEach;
+  createForEachIfNotExists?: CreateForEachIfNotExists;
+  set?: Set;
+  setMultiple?: SetMultiple;
+  setThirdPartySetting?: SetThirdPartySetting;
+  setThirdPartySettings?: SetThirdPartySettings;
+  simpleConfigUpdate?: SimpleConfigUpdate;
 }
 /**
  * This interface was referenced by `KeyValue`'s JSON-Schema definition

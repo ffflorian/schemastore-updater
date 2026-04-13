@@ -207,9 +207,10 @@ export interface ClaudeCodeSettings {
      * UNDOCUMENTED. "delegate": coordination-only for agent team leads (agent teams are experimental; enable via CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS).
      * "dontAsk": auto-denies unless pre-approved via permissions.
      * "bypassPermissions": skips all prompts (use only in isolated environments).
+     * "auto": auto-approves tool calls with background safety checks that verify actions align with your request.
      * See https://code.claude.com/docs/en/permissions
      */
-    defaultMode?: 'acceptEdits' | 'bypassPermissions' | 'default' | 'delegate' | 'dontAsk' | 'plan';
+    defaultMode?: 'acceptEdits' | 'bypassPermissions' | 'default' | 'delegate' | 'dontAsk' | 'plan' | 'auto';
     /**
      * Disable the ability to bypass permission prompts
      */

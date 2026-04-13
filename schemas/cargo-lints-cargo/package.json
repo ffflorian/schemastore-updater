@@ -1,0 +1,13 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for cargo-lints-cargo.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/cargo-lints-cargo",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffflorian/schemastore-updater.git"
+  },
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

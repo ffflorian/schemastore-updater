@@ -12,5 +12,4 @@ export interface BufWorkYaml {
    * Required. Lists the directories that define modules to be included in the workspace. The directory paths must be relative to the buf.work.yaml, and can't point to a location outside of the directory where your buf.work.yaml is.
    */
   directories: string[];
-  [k: string]: unknown | undefined;
 }

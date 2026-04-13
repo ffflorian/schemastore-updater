@@ -1,5 +1,11 @@
 /* eslint-disable */
 
+export type PathPattern =
+  | string
+  | {
+      re: string;
+    };
+
 export interface JSONSchemaForNodemonConfig {
   /**
    * set to false to disable color output
@@ -20,7 +26,7 @@ export interface JSONSchemaForNodemonConfig {
   /**
    * execute script with "app", ie. -x "python -v".  May use variables.
    */
-  exec?: string;
+  exec?: string | string[];
   /**
    * The global config file is useful for setting up default executables
    */
@@ -38,12 +44,14 @@ export interface JSONSchemaForNodemonConfig {
   /**
    * Ignore directory or file.  One entry per ignored value.  Wildcards are allowed.
    */
-  ignore?: (
-    | string
-    | {
-        re: string;
-      }
-  )[];
+  ignore?:
+    | PathPattern
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )[];
   /**
    * root paths to ignore
    */
@@ -91,11 +99,13 @@ export interface JSONSchemaForNodemonConfig {
   /**
    * Watch directory or file.  One entry per watched value.  Wildcards are allowed.
    */
-  watch?: (
-    | string
-    | {
-        re: string;
-      }
-  )[];
+  watch?:
+    | PathPattern
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )[];
   [k: string]: unknown | undefined;
 }

@@ -75,7 +75,7 @@ export interface SigridScopeConfigurationFile {
    * Enable experimental analysis features.
    */
   experimental?: boolean;
-  languages: LanguageList;
+  languages?: LanguageList;
   /**
    * SIG Maintainability Model that should be used for the analysis, defaults to latest.
    */
@@ -118,14 +118,28 @@ export interface SigridScopeConfigurationFile {
         }
       | {
           /**
-           * Excludes license risks identified in dependencies with the specified name.
+           * Excludes license risks in dependencies matching the specified regular expression.
            */
           license: string;
           [k: string]: unknown | undefined;
         }
       | {
           /**
-           * Excludes activity risks identified in dependencies with the specified name.
+           * Excludes freshness risks in dependencies matching the specified regular expression.
+           */
+          freshness: string;
+          [k: string]: unknown | undefined;
+        }
+      | {
+          /**
+           * Excludes management risks in dependencies matching the specified regular expression.
+           */
+          management: string;
+          [k: string]: unknown | undefined;
+        }
+      | {
+          /**
+           * Excludes activity risks in dependencies matching the specified regular expression.
            */
           activity: string;
           [k: string]: unknown | undefined;

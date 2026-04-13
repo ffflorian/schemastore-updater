@@ -413,6 +413,7 @@ export type JSONSchemaForNPMPackageJsonFiles = {
   ava?: AVAConfigSchema;
   release?: SemanticReleaseSchema;
   jscpd?: HttpsJsonSchemastoreOrgJscpdJson;
+  nodemonConfig?: JSONSchemaForNodemonConfig;
   /**
    * Defines pnpm specific configuration.
    */
@@ -23188,4 +23189,117 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    * exit code to use when at least one duplicate code block is detected but threshold is not exceeded
    */
   exitCode?: number;
+}
+export interface JSONSchemaForNodemonConfig {
+  /**
+   * set to false to disable color output
+   */
+  colours?: boolean;
+  /**
+   * change into <dir> before running the script
+   */
+  cwd?: string;
+  /**
+   * debounce restart for a number of milliseconds
+   */
+  delay?: number;
+  /**
+   * print full debug configuration
+   */
+  dump?: boolean;
+  /**
+   * execute script with "app", ie. -x "python -v".  May use variables.
+   */
+  exec?: string | string[];
+  /**
+   * The global config file is useful for setting up default executables
+   */
+  execMap?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Exit nodemon after crash
+   */
+  exitcrash?: boolean;
+  /**
+   * extensions to look for, ie. "js,jade,hbs"
+   */
+  ext?: string;
+  /**
+   * Ignore directory or file.  One entry per ignored value.  Wildcards are allowed.
+   */
+  ignore?:
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )[];
+  /**
+   * root paths to ignore
+   */
+  ignoreRoot?: string[];
+  /**
+   * use polling to watch for changes (typically needed when watching over a network/Docker)
+   */
+  legacyWatch?: boolean;
+  /**
+   * opt-out of update version check
+   */
+  noUpdateNotifier?: boolean;
+  /**
+   * arguments to pass to node if exec is "node"
+   */
+  nodeArgs?: unknown[];
+  /**
+   * combined with legacyWatch, milliseconds to poll for (default 100)
+   */
+  pollingInterval?: number;
+  /**
+   * minimise nodemon messages to start/stop only
+   */
+  quiet?: boolean;
+  /**
+   * execute script on change only, not startup
+   */
+  runOnChangeOnly?: boolean;
+  /**
+   * use specified kill signal instead of default (ex. SIGTERM)
+   */
+  signal?: ('SIGTERM' | 'SIGINT' | 'SIGQUIT' | 'SIGKILL' | 'SIGHUP') & string;
+  /**
+   * force nodemon to use spawn (over fork) [node only]
+   */
+  spawn?: boolean;
+  /**
+   * set to false to have nodemon pass stdin directly to child process
+   */
+  stdin?: boolean;
+  /**
+   * show detail on what is causing restarts
+   */
+  verbose?: boolean;
+  /**
+   * Watch directory or file.  One entry per watched value.  Wildcards are allowed.
+   */
+  watch?:
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )[];
+  [k: string]: unknown | undefined;
 }

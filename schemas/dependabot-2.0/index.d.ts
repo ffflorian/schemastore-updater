@@ -32,103 +32,101 @@ export type PackageEcosystem = {
  * The top-level registries key is optional. It allows you to specify authentication details that Dependabot can use to access private package registries.
  */
 export interface Registry {
-  /**
-   * This interface was referenced by `Registry`'s JSON-Schema definition
-   * via the `patternProperty` ".+".
-   */
-  [k: string]: {
-    /**
-     * Identifies the type of registry.
-     */
-    type:
-      | 'cargo-registry'
-      | 'composer-repository'
-      | 'docker-registry'
-      | 'git'
-      | 'goproxy-server'
-      | 'hex-organization'
-      | 'hex-repository'
-      | 'helm-registry'
-      | 'maven-repository'
-      | 'npm-registry'
-      | 'nuget-feed'
-      | 'pub-repository'
-      | 'python-index'
-      | 'rubygems-server'
-      | 'terraform-registry';
-    /**
-     * The URL to use to access the dependencies in this registry. The protocol is optional. If not specified, 'https://' is assumed. Dependabot adds or ignores trailing slashes as required.
-     */
-    url: string;
-    /**
-     * The username that Dependabot uses to access the registry.
-     */
-    username?: string;
-    /**
-     * A reference to a Dependabot secret containing the password for the specified user.
-     */
-    password?: string;
-    /**
-     * A reference to a Dependabot secret containing an access key for this registry.
-     */
-    key?: string;
-    /**
-     * A reference to a Dependabot secret containing an access token for this registry.
-     */
-    token?: string;
-    /**
-     * For registries with type: python-index, if the boolean value is true, pip resolves dependencies by using the specified URL rather than the base URL of the Python Package Index (by default https://pypi.org/simple).
-     */
-    'replaces-base'?: boolean;
-    organization?: string;
-    repo?: string;
-    'auth-key'?: string;
-    'public-key-fingerprint'?: string;
-    /**
-     * The name of the cargo registry.
-     */
-    registry?: string;
-    /**
-     * The tenant ID for Azure OIDC authentication.
-     */
-    'tenant-id'?: string;
-    /**
-     * The client ID for Azure OIDC authentication.
-     */
-    'client-id'?: string;
-    /**
-     * The JFrog OIDC provider name for authentication.
-     */
-    'jfrog-oidc-provider-name'?: string;
-    /**
-     * The identity mapping name for JFrog OIDC authentication.
-     */
-    'identity-mapping-name'?: string;
-    /**
-     * The audience for OIDC or AWS authentication.
-     */
-    audience?: string;
-    /**
-     * The AWS region for AWS CodeArtifact authentication.
-     */
-    'aws-region'?: string;
-    /**
-     * The AWS account ID for AWS CodeArtifact authentication.
-     */
-    'account-id'?: string;
-    /**
-     * The AWS role name for AWS CodeArtifact authentication.
-     */
-    'role-name'?: string;
-    /**
-     * The domain for AWS CodeArtifact authentication.
-     */
-    domain?: string;
-    /**
-     * The domain owner for AWS CodeArtifact authentication.
-     */
-    'domain-owner'?: string;
-  };
+  [k: string]:
+    | {
+        /**
+         * Identifies the type of registry.
+         */
+        type:
+          | 'cargo-registry'
+          | 'composer-repository'
+          | 'docker-registry'
+          | 'git'
+          | 'goproxy-server'
+          | 'hex-organization'
+          | 'hex-repository'
+          | 'helm-registry'
+          | 'maven-repository'
+          | 'npm-registry'
+          | 'nuget-feed'
+          | 'pub-repository'
+          | 'python-index'
+          | 'rubygems-server'
+          | 'terraform-registry';
+        /**
+         * The URL to use to access the dependencies in this registry. The protocol is optional. If not specified, 'https://' is assumed. Dependabot adds or ignores trailing slashes as required.
+         */
+        url: string;
+        /**
+         * The username that Dependabot uses to access the registry.
+         */
+        username?: string;
+        /**
+         * A reference to a Dependabot secret containing the password for the specified user.
+         */
+        password?: string;
+        /**
+         * A reference to a Dependabot secret containing an access key for this registry.
+         */
+        key?: string;
+        /**
+         * A reference to a Dependabot secret containing an access token for this registry.
+         */
+        token?: string;
+        /**
+         * For registries with type: python-index, if the boolean value is true, pip resolves dependencies by using the specified URL rather than the base URL of the Python Package Index (by default https://pypi.org/simple).
+         */
+        'replaces-base'?: boolean;
+        organization?: string;
+        repo?: string;
+        'auth-key'?: string;
+        'public-key-fingerprint'?: string;
+        /**
+         * The name of the cargo registry.
+         */
+        registry?: string;
+        /**
+         * The tenant ID for Azure OIDC authentication.
+         */
+        'tenant-id'?: string;
+        /**
+         * The client ID for Azure OIDC authentication.
+         */
+        'client-id'?: string;
+        /**
+         * The JFrog OIDC provider name for authentication.
+         */
+        'jfrog-oidc-provider-name'?: string;
+        /**
+         * The identity mapping name for JFrog OIDC authentication.
+         */
+        'identity-mapping-name'?: string;
+        /**
+         * The audience for OIDC or AWS authentication.
+         */
+        audience?: string;
+        /**
+         * The AWS region for AWS CodeArtifact authentication.
+         */
+        'aws-region'?: string;
+        /**
+         * The AWS account ID for AWS CodeArtifact authentication.
+         */
+        'account-id'?: string;
+        /**
+         * The AWS role name for AWS CodeArtifact authentication.
+         */
+        'role-name'?: string;
+        /**
+         * The domain for AWS CodeArtifact authentication.
+         */
+        domain?: string;
+        /**
+         * The domain owner for AWS CodeArtifact authentication.
+         */
+        'domain-owner'?: string;
+      }
+    | undefined;
 }
 /**
  * Define a group that spans multiple package ecosystems, allowing consolidated pull requests across different ecosystems

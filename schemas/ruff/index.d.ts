@@ -1109,6 +1109,7 @@ export type RuleSelector =
   | 'RUF048'
   | 'RUF049'
   | 'RUF05'
+  | 'RUF050'
   | 'RUF051'
   | 'RUF052'
   | 'RUF053'
@@ -1131,6 +1132,8 @@ export type RuleSelector =
   | 'RUF07'
   | 'RUF070'
   | 'RUF071'
+  | 'RUF072'
+  | 'RUF073'
   | 'RUF1'
   | 'RUF10'
   | 'RUF100'
@@ -1449,6 +1452,7 @@ export type DocstringCodeLineWidth = LineWidth | 'dynamic';
 export type LineWidth = number;
 export type IndentStyle = 'tab' | 'space';
 export type LineEnding = 'auto' | 'lf' | 'cr-lf' | 'native';
+export type NestedStringQuoteStyle = 'alternating' | 'preferred';
 export type QuoteStyle = 'single' | 'double' | 'preserve';
 /**
  * The size of a tab.
@@ -1590,6 +1594,14 @@ export interface Options {
    * @deprecated
    * A list of rule codes or prefixes to ignore, in addition to those
    * specified by `ignore`.
+   *
+   * This option is deprecated because it is now interchangeable with
+   * [`ignore`](#lint_ignore). In earlier versions of Ruff, `ignore` would
+   * _replace_ the set of ignored rules when using configuration inheritance
+   * (via the top-level [`extend`](https://docs.astral.sh/ruff/settings/#extend)
+   * setting), while `extend-ignore` would _add_ to the inherited set. Ruff
+   * now merges both `ignore` and `extend-ignore` into a single set, so the
+   * distinction no longer applies. Use [`ignore`](#lint_ignore) instead.
    */
   'extend-ignore'?: RuleSelector[] | null;
   /**
@@ -1620,6 +1632,23 @@ export interface Options {
    * @deprecated
    * A list of rule codes or prefixes to enable, in addition to those
    * specified by [`select`](#lint_select).
+   *
+   * Unlike [`select`](#lint_select), which _replaces_ the default rule set
+   * when specified, `extend-select` _adds_ to whatever rules are already
+   * active. This makes `extend-select` the preferred option when you want
+   * to enable additional rules on top of the defaults without having to
+   * enumerate them.
+   *
+   * For example, to enable the defaults plus flake8-bugbear:
+   *
+   * ```toml
+   * [tool.ruff.lint]
+   * # Adds flake8-bugbear on top of the default rules (E4, E7, E9, F).
+   * extend-select = ["B"]
+   * ```
+   *
+   * Using `select = ["B"]` instead would _replace_ the defaults, enabling
+   * only flake8-bugbear.
    */
   'extend-select'?: RuleSelector[] | null;
   /**
@@ -2901,6 +2930,20 @@ export interface FormatOptions {
    */
   'line-ending'?: LineEnding | null;
   /**
+   * Controls the quote style for nested strings inside interpolated string expressions.
+   *
+   * - `alternating` (default): Use alternating quotes.
+   * - `preferred`: Use the configured [`quote-style`](#format_quote-style).
+   *
+   * ```python
+   * f"{data['key']}"  # alternating (default)
+   * f"{data["key"]}"  # preferred
+   * ```
+   *
+   * Note: This setting has no effect when targeting Python versions below 3.12.
+   */
+  'nested-string-quote-style'?: NestedStringQuoteStyle | null;
+  /**
    * Whether to enable the unstable preview style formatting.
    */
   preview?: boolean | null;
@@ -3308,6 +3351,14 @@ export interface LintOptions {
    * @deprecated
    * A list of rule codes or prefixes to ignore, in addition to those
    * specified by `ignore`.
+   *
+   * This option is deprecated because it is now interchangeable with
+   * [`ignore`](#lint_ignore). In earlier versions of Ruff, `ignore` would
+   * _replace_ the set of ignored rules when using configuration inheritance
+   * (via the top-level [`extend`](https://docs.astral.sh/ruff/settings/#extend)
+   * setting), while `extend-ignore` would _add_ to the inherited set. Ruff
+   * now merges both `ignore` and `extend-ignore` into a single set, so the
+   * distinction no longer applies. Use [`ignore`](#lint_ignore) instead.
    */
   'extend-ignore'?: RuleSelector[] | null;
   /**
@@ -3325,6 +3376,23 @@ export interface LintOptions {
   /**
    * A list of rule codes or prefixes to enable, in addition to those
    * specified by [`select`](#lint_select).
+   *
+   * Unlike [`select`](#lint_select), which _replaces_ the default rule set
+   * when specified, `extend-select` _adds_ to whatever rules are already
+   * active. This makes `extend-select` the preferred option when you want
+   * to enable additional rules on top of the defaults without having to
+   * enumerate them.
+   *
+   * For example, to enable the defaults plus flake8-bugbear:
+   *
+   * ```toml
+   * [tool.ruff.lint]
+   * # Adds flake8-bugbear on top of the default rules (E4, E7, E9, F).
+   * extend-select = ["B"]
+   * ```
+   *
+   * Using `select = ["B"]` instead would _replace_ the defaults, enabling
+   * only flake8-bugbear.
    */
   'extend-select'?: RuleSelector[] | null;
   /**

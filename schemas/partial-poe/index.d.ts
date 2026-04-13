@@ -16,6 +16,68 @@ export type EnvfileOption =
       optional?: string | string[];
       [k: string]: unknown | undefined;
     };
+/**
+ * Configure the executor type for running tasks. Can be 'auto', 'poetry', 'virtualenv', or 'simple', with 'auto' being the default.
+ */
+export type ExecutorOption =
+  | (
+      | {
+          /**
+           * Include optional dependencies from the specified extra name.
+           */
+          extra?: string | string[];
+          /**
+           * Include dependencies from the specified dependency group.
+           */
+          group?: string | string[];
+          /**
+           * Disable the specified dependency group.
+           */
+          'no-group'?: string | string[];
+          /**
+           * Run with the given packages installed.
+           */
+          with?: string | string[];
+          /**
+           * Run the command in an isolated virtual environment.
+           */
+          isolated?: boolean;
+          /**
+           * Avoid syncing the virtual environment.
+           */
+          'no-sync'?: boolean;
+          /**
+           * Run without updating the uv.lock file.
+           */
+          locked?: boolean;
+          /**
+           * Run without updating the uv.lock file.
+           */
+          frozen?: boolean;
+          /**
+           * Avoid discovering the project or workspace.
+           */
+          'no-project'?: boolean;
+          /**
+           * The Python interpreter to use for the run environment.
+           */
+          python?: string;
+          type?: 'uv';
+          [k: string]: unknown | undefined;
+        }
+      | {
+          /**
+           * Specifies the location of the virtualenv relative to the parent directory. Relevant when 'type' is set to 'virtualenv'.
+           */
+          location?: string;
+          type?: 'virtualenv';
+          [k: string]: unknown | undefined;
+        }
+      | {
+          [k: string]: unknown | undefined;
+        }
+    )
+  | ('auto' | 'poetry' | 'uv' | 'virtualenv' | 'simple');
 export type OneOfTasks =
   | string
   | CmdTask
@@ -37,10 +99,6 @@ export type CmdTask = StandardOptions &
     cmd: CommandToExecute;
     [k: string]: unknown | undefined;
   };
-/**
- * Configure the executor type for running tasks. Can be 'auto', 'poetry', 'virtualenv', or 'simple', with 'auto' being the default.
- */
-export type ExecutorOption = unknown | ('auto' | 'poetry' | 'uv' | 'virtualenv' | 'simple');
 /**
  * Return exit code 0 even if the task fails, or specify a list of task exit codes to ignore.
  */
@@ -186,7 +244,7 @@ export interface PoeThePoetConfiguration {
   default_task_type?: 'cmd' | 'expr' | 'ref' | 'script' | 'shell';
   env?: EnvOption;
   envfile?: EnvfileOption;
-  executor?: unknown;
+  executor?: ExecutorOption;
   /**
    * Specify one or more other toml or json files to load tasks from.
    */
@@ -235,6 +293,32 @@ export interface PoeThePoetConfiguration {
      * via the `patternProperty` "^\w[\w\d\-_\+:]*$".
      */
     [k: string]: OneOfTasks | TasksArray;
+  };
+  /**
+   * Define groups of tasks to be displayed together in the help output.
+   */
+  groups?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^\w[\w\d\-_]*$".
+     */
+    [k: string]: {
+      /**
+       * A human-readable name for the group displayed in the help output.
+       */
+      heading?: string;
+      executor?: ExecutorOption;
+      /**
+       * The tasks defined within this group.
+       */
+      tasks?: {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^\w[\w\d\-_\+:]*$".
+         */
+        [k: string]: OneOfTasks | TasksArray;
+      };
+    };
   };
   /**
    * Sets the default verbosity level for all commands. '-1' is quieter, '0' is the default level, and '1' is more verbose. The command line arguments are incremental, with '--quiet' or '-q' decreasing verbosity, and '--verbose' or '-v' increasing it.
