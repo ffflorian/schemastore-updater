@@ -16,8 +16,10 @@ export interface PublishStats {
   attempted: number;
   dryRun: boolean;
   failed: number;
+  failedPackages: string[];
   logFilePath: string;
   published: number;
+  publishedPackages: string[];
   skipped: number;
 }
 
@@ -29,7 +31,9 @@ export interface SchemaLockFile {
 
 export interface UpdateStats {
   failed: number;
+  failedSchemas: string[];
   generated: number;
+  generatedSchemas: string[];
   skipped: number;
   totalSchemas: number;
 }

@@ -10,6 +10,7 @@ import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publi
 const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
+const PUBLISH_SUMMARY_FILE_NAME = 'publish-summary.md';
 
 interface PackageManifest {
   name?: string;
@@ -30,6 +31,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
   const logFilePath = options.logFilePath
     ? path.resolve(options.logFilePath)
     : path.join(projectRoot, DEFAULT_PUBLISH_LOG_FILE);
+  const summaryFilePath = path.join(projectRoot, PUBLISH_SUMMARY_FILE_NAME);
   const publishPackage = options.publishPackage ?? publishPackageDirectory;
   const lockFilePath = path.join(projectRoot, 'schema-lock.json');
 
@@ -51,8 +53,10 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     attempted: 0,
     dryRun,
     failed: 0,
+    failedPackages: [],
     logFilePath: path.relative(projectRoot, logFilePath),
     published: 0,
+    publishedPackages: [],
     skipped: 0,
   };
 
@@ -102,17 +106,20 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     try {
       if (dryRun) {
         stats.published += 1;
+        stats.publishedPackages.push(packageLabel);
         process.stdout.write(`dry run\n`);
         continue;
       }
 
       await publishPackage(packageDirectory);
       stats.published += 1;
+      stats.publishedPackages.push(packageLabel);
       markPackageAsPublished(lockFile, packageDirectory, projectRoot);
       await writeLockFile(lockFilePath, lockFile);
       process.stdout.write(`done\n`);
     } catch (error) {
       stats.failed += 1;
+      stats.failedPackages.push(packageLabel);
       process.stdout.write(`failed\n`);
       errorMessages.push(formatPublishError(packageLabel, error));
     }
@@ -120,7 +127,37 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     await writePublishLog(logFilePath, errorMessages);
   }
 
+  await writeFile(summaryFilePath, createPublishSummary(stats), 'utf-8');
+
   return stats;
+}
+
+function createPublishSummary(stats: PublishStats): string {
+  const lines: string[] = [
+    '## Publish Summary',
+    '',
+    `- **Attempted:** ${stats.attempted}`,
+    `- **Published:** ${stats.published}`,
+    `- **Skipped:** ${stats.skipped}`,
+    `- **Failed:** ${stats.failed}`,
+  ];
+
+  if (stats.publishedPackages.length > 0) {
+    lines.push('', `### Published Packages (${stats.publishedPackages.length})`, '');
+    for (const packageLabel of stats.publishedPackages) {
+      lines.push(`- \`${packageLabel}\``);
+    }
+  }
+
+  if (stats.failedPackages.length > 0) {
+    lines.push('', `### Failed Packages (${stats.failedPackages.length})`, '');
+    for (const packageLabel of stats.failedPackages) {
+      lines.push(`- \`${packageLabel}\``);
+    }
+  }
+
+  lines.push('');
+  return lines.join('\n');
 }
 
 async function exists(filePath: string): Promise<boolean> {

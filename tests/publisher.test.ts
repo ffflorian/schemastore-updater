@@ -39,14 +39,22 @@ describe('publishGeneratedPackages', () => {
       attempted: 2,
       dryRun: false,
       failed: 0,
+      failedPackages: [],
       logFilePath: 'publish-errors.log',
       published: 2,
+      publishedPackages: ['@schemastore/alpha@1.0.0', '@schemastore/beta@2.0.0'],
       skipped: 1,
     });
     expect(publishedDirectories).toEqual(['alpha', 'beta']);
     expect(logFileContent).toBe('No publish errors.\n');
     expect(lockFile.entries['alpha.json']?.published).toBe(true);
     expect(lockFile.entries['beta.json']?.published).toBe(true);
+
+    const publishSummary = await readFile(path.join(workspaceDirectory, 'publish-summary.md'), 'utf-8');
+    expect(publishSummary).toContain('## Publish Summary');
+    expect(publishSummary).toContain('**Published:** 2');
+    expect(publishSummary).toContain('`@schemastore/alpha@1.0.0`');
+    expect(publishSummary).toContain('`@schemastore/beta@2.0.0`');
   });
 
   it('continues publishing remaining packages and writes failures to a log file', async () => {
@@ -77,8 +85,10 @@ describe('publishGeneratedPackages', () => {
       attempted: 3,
       dryRun: false,
       failed: 1,
+      failedPackages: ['@schemastore/beta@1.0.1'],
       logFilePath: 'publish-errors.log',
       published: 2,
+      publishedPackages: ['@schemastore/alpha@1.0.0', '@schemastore/gamma@1.0.2'],
       skipped: 0,
     });
     expect(publishedDirectories).toEqual(['alpha', 'gamma']);
@@ -112,8 +122,10 @@ describe('publishGeneratedPackages', () => {
       attempted: 2,
       dryRun: true,
       failed: 0,
+      failedPackages: [],
       logFilePath: 'publish-errors.log',
       published: 2,
+      publishedPackages: ['@schemastore/alpha@1.0.0', '@schemastore/beta@1.0.1'],
       skipped: 0,
     });
     expect(publishPackage).not.toHaveBeenCalled();
@@ -147,8 +159,10 @@ describe('publishGeneratedPackages', () => {
       attempted: 1,
       dryRun: false,
       failed: 0,
+      failedPackages: [],
       logFilePath: 'publish-errors.log',
       published: 1,
+      publishedPackages: ['@schemastore/beta@1.0.1'],
       skipped: 1,
     });
     expect(publishPackage).toHaveBeenCalledTimes(1);
@@ -173,8 +187,10 @@ describe('publishGeneratedPackages', () => {
       attempted: 1,
       dryRun: false,
       failed: 0,
+      failedPackages: [],
       logFilePath: 'publish-errors.log',
       published: 1,
+      publishedPackages: ['@schemastore/beta@1.0.1'],
       skipped: 1,
     });
     expect(publishPackage).toHaveBeenCalledTimes(1);
