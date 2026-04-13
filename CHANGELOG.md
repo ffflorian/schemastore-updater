@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/ffflorian/schemastore-updater/compare/v3.1.0...v3.2.0) (2026-04-13)
+
+
+### Features
+
+* add detailed context to schema update, force-regenerate, and publish PRs ([#1428](https://github.com/ffflorian/schemastore-updater/issues/1428)) ([bd18c90](https://github.com/ffflorian/schemastore-updater/commit/bd18c90161344bc4fe4938e7c37329d50cf79582))
+
 # [3.1.0](https://github.com/ffflorian/schemastore-updater/compare/v3.0.0...v3.1.0) (2026-03-29)
 
 
