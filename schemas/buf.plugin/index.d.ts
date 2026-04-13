@@ -13,9 +13,13 @@ export interface BufPluginYaml {
    */
   name: string;
   /**
-   * The plugin version with format`v{semver}`, the `v` prefix is required and the version must be valid [semantic versioning](https://semver.org/).
+   * The plugin version with format `v{semver}`, the `v` prefix is required and the version must be valid [semantic versioning](https://semver.org/).
    */
   plugin_version: string;
+  /**
+   * URL to the license of the plugin source code.
+   */
+  license_url?: string;
   /**
    * URL to the source code of the Protobuf plugin.
    */

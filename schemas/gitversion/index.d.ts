@@ -6,7 +6,7 @@
 export type HashSetOfString = string[];
 
 /**
- * GitVersion configuration schema (6.6)
+ * GitVersion configuration schema (6.7)
  */
 export interface GitVersionConfigurationSchema {
   /**
