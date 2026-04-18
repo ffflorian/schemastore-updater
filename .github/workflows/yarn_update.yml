@@ -8,6 +8,8 @@ on:
   schedule:
     - cron: '0 5 1 * *'
   push:
+    branches:
+      - main
     paths:
       - '.github/workflows/yarn_update.yml'
   workflow_dispatch:
