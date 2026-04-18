@@ -1,8 +1,5 @@
 name: Force Regenerate All Schemas
 
-permissions:
-  contents: write
-  pull-requests: write
 
 on:
   workflow_dispatch:
@@ -11,6 +8,8 @@ jobs:
   force-regenerate:
     name: Force regenerate all schema packages
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd

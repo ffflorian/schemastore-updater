@@ -1,7 +1,5 @@
 name: Mirror to Codeberg and GitLab
 
-permissions:
-  contents: read
 
 on:
   push:
@@ -10,6 +8,8 @@ on:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: ffflorian/actions/git-mirror@baf8fb2e65ebe6564870f56315a09bc01ab7e0f7
         with:
