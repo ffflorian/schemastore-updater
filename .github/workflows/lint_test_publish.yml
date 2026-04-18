@@ -1,16 +1,16 @@
 name: Build, lint, test, publish
 
-permissions:
-  contents: write
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
+permissions: {}
 jobs:
   lint_test_build:
+    permissions:
+      contents: read
     name: Lint, test and build
     runs-on: ubuntu-latest
     steps:

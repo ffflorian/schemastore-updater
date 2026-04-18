@@ -1,16 +1,15 @@
 name: Weekly Schema Update
 
-permissions:
-  contents: write
-  pull-requests: write
-
 on:
   schedule:
     - cron: '0 5 * * 1' # Every Monday at 05:00 AM UTC
   workflow_dispatch:
 
+permissions: {}
 jobs:
   update-schemas:
+    permissions:
+      contents: read
     name: Update generated schema packages
     runs-on: ubuntu-latest
     steps:

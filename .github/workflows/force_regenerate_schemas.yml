@@ -1,14 +1,13 @@
 name: Force Regenerate All Schemas
 
-permissions:
-  contents: write
-  pull-requests: write
-
 on:
   workflow_dispatch:
 
+permissions: {}
 jobs:
   force-regenerate:
+    permissions:
+      contents: read
     name: Force regenerate all schema packages
     runs-on: ubuntu-latest
     steps:

@@ -1,9 +1,5 @@
 name: Check for yarn updates
 
-permissions:
-  contents: write
-  pull-requests: write
-
 on:
   schedule:
     - cron: '0 5 1 * *'
@@ -14,8 +10,11 @@ on:
       - '.github/workflows/yarn_update.yml'
   workflow_dispatch:
 
+permissions: {}
 jobs:
   yarn-update-check:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Update yarn

@@ -1,17 +1,15 @@
 name: Publish Generated Packages
 
-permissions:
-  id-token: write
-  contents: write
-  pull-requests: write
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+permissions: {}
 jobs:
   publish_generated_packages:
+    permissions:
+      contents: read
     name: Publish generated packages
     if: |
       github.event_name == 'workflow_dispatch' ||
