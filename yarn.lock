@@ -6375,7 +6375,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.8.1, prettier@npm:^3.2.5":
+"prettier@npm:3.8.2":
+  version: 3.8.2
+  resolution: "prettier@npm:3.8.2"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10c0/2d64bd01d269c8dd6d8c423a2a2e1fb88230a53aac523204b327de40059ccf8bd8e6fe70b8ce6154b97ed4442e9fd878504ff8a5330f3a4f64bd13d1576f7652
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.2.5":
   version: 3.8.1
   resolution: "prettier@npm:3.8.1"
   bin:
@@ -6780,7 +6789,7 @@ __metadata:
     json-schema-to-typescript: "npm:15.0.4"
     lefthook: "npm:2.1.5"
     oxlint: "npm:1.60.0"
-    prettier: "npm:3.8.1"
+    prettier: "npm:3.8.2"
     semantic-release: "npm:25.0.3"
     semver: "npm:7.7.4"
     tsx: "npm:4.21.0"
