@@ -1,8 +1,6 @@
 name: Weekly Schema Update
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 on:
   schedule:
@@ -11,6 +9,9 @@ on:
 
 jobs:
   update-schemas:
+    permissions:
+      contents: write
+      pull-requests: write
     name: Update generated schema packages
     runs-on: ubuntu-latest
     steps:

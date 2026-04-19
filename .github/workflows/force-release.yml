@@ -1,13 +1,13 @@
 name: Force Release
 
-permissions:
-  contents: write
-
+permissions: {}
 on:
   workflow_dispatch:
 
 jobs:
   force-release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
