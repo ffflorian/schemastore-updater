@@ -1108,10 +1108,10 @@
     },
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
-      "generatedSha256": "1363be66bd27a533df25eb877f9fcf29d07a440239f926399c2a1df17bf27663",
-      "published": true,
-      "sourceSha256": "2bb8a0381dd96c9c68b08d23074afa938db21d8a82ad5985556ab6e2056ca234",
-      "updatedAt": "2026-04-13T05:51:36.072Z"
+      "generatedSha256": "75930bc41f108c85a20be067b7c3d966fc51196794825d4c9dd3d396c502794a",
+      "published": false,
+      "sourceSha256": "ff959499a29b9b35828b929687178992e04ad5ad69cc5b7561324fb7f41b7db1",
+      "updatedAt": "2026-04-20T05:50:48.605Z"
     },
     "clib.json": {
       "generatedFile": "schemas/clib/index.d.ts",
@@ -1354,9 +1354,9 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": true,
-      "sourceSha256": "06d19ccb3162ffc47a0c474a75b853c9833671b88ae0c0018de105065b7c8155",
-      "updatedAt": "2026-04-13T05:51:36.451Z"
+      "published": false,
+      "sourceSha256": "08eb632bbf270e961fa462f3bb95db332337c14b455fd858b220777dd181ba3a",
+      "updatedAt": "2026-04-20T05:50:49.026Z"
     },
     "dependabot.json": {
       "generatedFile": "schemas/dependabot/index.d.ts",
@@ -2151,10 +2151,10 @@
     },
     "host.json": {
       "generatedFile": "schemas/host/index.d.ts",
-      "generatedSha256": "dcb9efc2742afbd8b122256fc46669e5f967a57ca2cd885cf351cfde0c995378",
-      "published": true,
-      "sourceSha256": "c0b28bae0858591013f9ff5c176dcc5f45b0edd5c57b6fe48963549556f55d84",
-      "updatedAt": "2026-03-27T22:03:38.609Z"
+      "generatedSha256": "ba734b0a3ae7230407e5c1bf8a26c08c0c90033a17764e8dacbb0d144773b12a",
+      "published": false,
+      "sourceSha256": "bbb95cf5358a512330f78a69b32cdf8a2925a84fdc108ed82b6ef637483ec15d",
+      "updatedAt": "2026-04-20T05:50:49.453Z"
     },
     "htmlhint.json": {
       "generatedFile": "schemas/htmlhint/index.d.ts",
@@ -3360,12 +3360,26 @@
       "sourceSha256": "474847f3366162e4a1127253bb9d5ade6f8addf20800f3ef337f46d2c7c446da",
       "updatedAt": "2026-03-27T22:07:42.737Z"
     },
+    "partial-dfc.json": {
+      "generatedFile": "schemas/partial-dfc/index.d.ts",
+      "generatedSha256": "6f0869c47f8231eb289b0bfae4ec5e5d72d92167a2d99a1bb8c13a69cee0f832",
+      "published": false,
+      "sourceSha256": "f6f2eaa18662960fac3041813e1e297e5f651c76b584c235772b776ff84899e3",
+      "updatedAt": "2026-04-20T05:54:04.938Z"
+    },
     "partial-eslint-plugins.json": {
       "generatedFile": "schemas/partial-eslint-plugins/index.d.ts",
       "generatedSha256": "863dcc5bdd0d4eb1e6fe400ac2de2b2b5eab8be5acec21b6c7f8195389eccdbd",
       "published": true,
       "sourceSha256": "f5445abc730a65ae8752a24ea1cd0d1843da3e49e1ce1e90e8e5573fecb645e7",
       "updatedAt": "2026-03-27T22:07:43.229Z"
+    },
+    "partial-fastapi.json": {
+      "generatedFile": "schemas/partial-fastapi/index.d.ts",
+      "generatedSha256": "2c85951dd5b71d992ecc92b117f6f2048f2973f31a3f0a1ac786287097de9092",
+      "published": false,
+      "sourceSha256": "6d4cd6eba604582362aa05a711c64252627f99bbe3c8749ba1295629e7ab92e6",
+      "updatedAt": "2026-04-20T05:54:05.178Z"
     },
     "partial-fusion-pack-metadata.json": {
       "generatedFile": "schemas/partial-fusion-pack-metadata/index.d.ts",
@@ -3425,10 +3439,10 @@
     },
     "partial-pyright.json": {
       "generatedFile": "schemas/partial-pyright/index.d.ts",
-      "generatedSha256": "34891e88302cf6efadbf360071b437df39875c248d0137b28f054af9ebd990d9",
-      "published": true,
-      "sourceSha256": "b1bd26faea6e167a0abcab3ac7284d4d8fdb8e7c7b47f027db7ad0b475ff4254",
-      "updatedAt": "2026-03-27T22:07:45.861Z"
+      "generatedSha256": "612b84e5e6e7e4bc7dde0e19c24abcacf6fa708ac39d5f39af72445af1c95783",
+      "published": false,
+      "sourceSha256": "3e8d294c9fe60e1adc3fc5e181dcfac54918d9a91dbd7517ca342d4e1d457737",
+      "updatedAt": "2026-04-20T05:54:05.687Z"
     },
     "partial-pytest.json": {
       "generatedFile": "schemas/partial-pytest/index.d.ts",
@@ -4874,10 +4888,10 @@
     },
     "vector.json": {
       "generatedFile": "schemas/vector/index.d.ts",
-      "generatedSha256": "3bac68056d053551cae7bd9177cf814a6feb4a3d342cff203f97ebc708f7a024",
-      "published": true,
-      "sourceSha256": "31dcb42d1a3e9771cb759a7fdfea79d0c0df6880863718daa985fcb64aa0ea5c",
-      "updatedAt": "2026-03-27T22:09:32.037Z"
+      "generatedSha256": "d9b253b932f78e808d15aef177d08223a5e2384defb5904834488fe583c71749",
+      "published": false,
+      "sourceSha256": "f86c31ca14a27ca38f9547f6fc15eb27b65350f5adb1f2e2bf3ebbadd773bc7f",
+      "updatedAt": "2026-04-20T05:54:16.428Z"
     },
     "vega.json": {
       "generatedFile": "schemas/vega/index.d.ts",
@@ -5132,6 +5146,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-04-13T05:55:12.787Z",
+  "generatedAt": "2026-04-20T05:54:20.605Z",
   "version": 1
 }

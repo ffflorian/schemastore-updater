@@ -675,6 +675,19 @@ export interface Version2 {
      * Proxy HttpTrigger request to the custom handler
      */
     enableProxyingHttpRequest?: boolean;
+    /**
+     * HTTP configuration for the custom handler
+     */
+    http?: {
+      /**
+       * The default authorization level for HTTP-triggered functions
+       */
+      defaultAuthorizationLevel?: 'anonymous' | 'function' | 'admin';
+    };
+    /**
+     * The port on which the custom handler process listens
+     */
+    port?: number;
   };
   singleton?: Singleton;
   watchDirectories?: WatchDirectories;

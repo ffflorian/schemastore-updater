@@ -1,13 +1,13 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for host.",
+  "description": "TypeScript definitions for partial-dfc.",
   "license": "GPL-3.0",
-  "name": "@schemastore/host",
+  "name": "@schemastore/partial-dfc",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.3"
+  "version": "1.0.0"
 }

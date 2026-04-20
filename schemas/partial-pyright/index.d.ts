@@ -866,9 +866,9 @@ export type AdditionalImportSearchResolutionPaths = AdditionalImportSearchResolu
  */
 export type PythonVersionToAssumeDuringTypeAnalysis = string;
 /**
- * Specifies the target platform that will be used to execute the source code. Should be one of `Windows`, `Darwin`, `Linux`, or `All`. If specified, pyright will tailor its use of type stub files, which conditionalize type definitions based on the platform. If no platform is specified, pyright will use the current platform.
+ * Specifies the target platform that will be used to execute the source code. Should be one of `Windows`, `Darwin`, `Linux`, `iOS`, `Android`, or `All`. If specified, pyright will tailor its use of type stub files, which conditionalize type definitions based on the platform. If no platform is specified, pyright will use the current platform.
  */
-export type PythonPlatformToAssumeDuringTypeAnalysis = 'Windows' | 'Darwin' | 'Linux' | 'All';
+export type PythonPlatformToAssumeDuringTypeAnalysis = 'Windows' | 'Darwin' | 'Linux' | 'iOS' | 'Android' | 'All';
 /**
  * Path to a directory containing one or more subdirectories, each of which contains a virtual environment. When used in conjunction with a `venv` setting, pyright will search for imports in the virtual environment's site-packages directory rather than the paths specified by the default Python interpreter. If you are working on a project with other developers, it is best not to specify this setting in the config file, since this path will typically differ for each developer. Instead, it can be specified on the command line or in a per-user setting.
  */
