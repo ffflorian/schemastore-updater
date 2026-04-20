@@ -1109,7 +1109,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "75930bc41f108c85a20be067b7c3d966fc51196794825d4c9dd3d396c502794a",
-      "published": false,
+      "published": true,
       "sourceSha256": "ff959499a29b9b35828b929687178992e04ad5ad69cc5b7561324fb7f41b7db1",
       "updatedAt": "2026-04-20T05:50:48.605Z"
     },
@@ -1354,7 +1354,7 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": false,
+      "published": true,
       "sourceSha256": "08eb632bbf270e961fa462f3bb95db332337c14b455fd858b220777dd181ba3a",
       "updatedAt": "2026-04-20T05:50:49.026Z"
     },
@@ -2152,7 +2152,7 @@
     "host.json": {
       "generatedFile": "schemas/host/index.d.ts",
       "generatedSha256": "ba734b0a3ae7230407e5c1bf8a26c08c0c90033a17764e8dacbb0d144773b12a",
-      "published": false,
+      "published": true,
       "sourceSha256": "bbb95cf5358a512330f78a69b32cdf8a2925a84fdc108ed82b6ef637483ec15d",
       "updatedAt": "2026-04-20T05:50:49.453Z"
     },
@@ -3440,7 +3440,7 @@
     "partial-pyright.json": {
       "generatedFile": "schemas/partial-pyright/index.d.ts",
       "generatedSha256": "612b84e5e6e7e4bc7dde0e19c24abcacf6fa708ac39d5f39af72445af1c95783",
-      "published": false,
+      "published": true,
       "sourceSha256": "3e8d294c9fe60e1adc3fc5e181dcfac54918d9a91dbd7517ca342d4e1d457737",
       "updatedAt": "2026-04-20T05:54:05.687Z"
     },
