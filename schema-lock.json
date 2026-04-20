@@ -843,7 +843,7 @@
     "buf.policy.json": {
       "generatedFile": "schemas/buf.policy/index.d.ts",
       "generatedSha256": "f9d3f8f31877f0e30655ec54ff1680fe86df4f9f42d50cafe9fff009154f9923",
-      "published": false,
+      "published": true,
       "sourceSha256": "3a03ac7daaa0c1477a9e41e88a2e066a8d62517c760f8a8df46a8511597114c5",
       "updatedAt": "2026-04-13T05:51:32.937Z"
     },
@@ -927,28 +927,28 @@
     "cargo-lints-cargo.json": {
       "generatedFile": "schemas/cargo-lints-cargo/index.d.ts",
       "generatedSha256": "64032784ac7d3a27a128f6190de6664f316365b6808e40ef82fb069d0e5e7564",
-      "published": false,
+      "published": true,
       "sourceSha256": "e4c740358d80c1b55813f46f1c2efb2be3b2d601faf225eb84fb967602bb878f",
       "updatedAt": "2026-04-13T05:51:33.319Z"
     },
     "cargo-lints-clippy.json": {
       "generatedFile": "schemas/cargo-lints-clippy/index.d.ts",
       "generatedSha256": "23f621ff44bfeaf37a5c1c199d773bd963250c67d5c5e810c4a1ecb460d7b70f",
-      "published": false,
+      "published": true,
       "sourceSha256": "23d40eee1e800ef7b992d5f6465e3287bfda03752789f0d75404faa06634d49b",
       "updatedAt": "2026-04-13T05:51:33.970Z"
     },
     "cargo-lints-rust.json": {
       "generatedFile": "schemas/cargo-lints-rust/index.d.ts",
       "generatedSha256": "94c75604414715fe2e62b9499ad5b85895b11b2318206189fc4f7ac2c51d7196",
-      "published": false,
+      "published": true,
       "sourceSha256": "d3c94f65ad1a78b5ba59c8286c79448f622f4cfbc5bbef591fc328e8546a7885",
       "updatedAt": "2026-04-13T05:51:34.242Z"
     },
     "cargo-lints-rustdoc.json": {
       "generatedFile": "schemas/cargo-lints-rustdoc/index.d.ts",
       "generatedSha256": "2011856e073fbd164f126549962ce5c593dc3a5604382d46282c5dc2fe8fe17c",
-      "published": false,
+      "published": true,
       "sourceSha256": "afbdec4e0c762fc72a0100923ed0f7a6bcc618acba15b7bbcbe600be55a9d31d",
       "updatedAt": "2026-04-13T05:51:34.455Z"
     },
@@ -2369,7 +2369,7 @@
     "knowledge-unit.json": {
       "generatedFile": "schemas/knowledge-unit/index.d.ts",
       "generatedSha256": "50c6a5119abb60b638a697bee1b8ec7d074b0a225b5c9c736923612b26e45d04",
-      "published": false,
+      "published": true,
       "sourceSha256": "eca318be68c12c07a0cc55c455ed9afa94e5a312e6b9be945e132e8c532099e2",
       "updatedAt": "2026-04-13T05:54:49.634Z"
     },
@@ -3251,7 +3251,7 @@
     "pactspec.json": {
       "generatedFile": "schemas/pactspec/index.d.ts",
       "generatedSha256": "75beba5bf4281fa980b3df9dfb20cb6c9f25d9757d5f8aac4bda87752d779b8e",
-      "published": false,
+      "published": true,
       "sourceSha256": "59e3154a0dc5fd29c44fa6356f7d64cc6b18d8900ff11964fb4870f5ea61ebc5",
       "updatedAt": "2026-04-13T05:54:57.297Z"
     },
@@ -3363,7 +3363,7 @@
     "partial-dfc.json": {
       "generatedFile": "schemas/partial-dfc/index.d.ts",
       "generatedSha256": "6f0869c47f8231eb289b0bfae4ec5e5d72d92167a2d99a1bb8c13a69cee0f832",
-      "published": false,
+      "published": true,
       "sourceSha256": "f6f2eaa18662960fac3041813e1e297e5f651c76b584c235772b776ff84899e3",
       "updatedAt": "2026-04-20T05:54:04.938Z"
     },
@@ -3377,7 +3377,7 @@
     "partial-fastapi.json": {
       "generatedFile": "schemas/partial-fastapi/index.d.ts",
       "generatedSha256": "2c85951dd5b71d992ecc92b117f6f2048f2973f31a3f0a1ac786287097de9092",
-      "published": false,
+      "published": true,
       "sourceSha256": "6d4cd6eba604582362aa05a711c64252627f99bbe3c8749ba1295629e7ab92e6",
       "updatedAt": "2026-04-20T05:54:05.178Z"
     },
@@ -3846,7 +3846,7 @@
     "qwen-code-settings.json": {
       "generatedFile": "schemas/qwen-code-settings/index.d.ts",
       "generatedSha256": "a04fe7809fd75709ffd000f1b7db133735d5177f43290b3ce98de90c9fcf8903",
-      "published": false,
+      "published": true,
       "sourceSha256": "6450f6420fd567d1915e79d0240d491973540885718e48289910824f97def196",
       "updatedAt": "2026-04-13T05:55:01.884Z"
     },
@@ -4889,7 +4889,7 @@
     "vector.json": {
       "generatedFile": "schemas/vector/index.d.ts",
       "generatedSha256": "d9b253b932f78e808d15aef177d08223a5e2384defb5904834488fe583c71749",
-      "published": false,
+      "published": true,
       "sourceSha256": "f86c31ca14a27ca38f9547f6fc15eb27b65350f5adb1f2e2bf3ebbadd773bc7f",
       "updatedAt": "2026-04-20T05:54:16.428Z"
     },
