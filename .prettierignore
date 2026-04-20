@@ -7,3 +7,6 @@ CHANGELOG.md
 .yarn
 .yarnrc.yml
 CLAUDE.md
+update-summary.md
+publish-summary.md
+pr-body.md

@@ -6,6 +6,7 @@ node_modules
 .cache
 update-summary.md
 publish-summary.md
+pr-body.md
 
 .pnp.*
 .yarn/*

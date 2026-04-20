@@ -303,17 +303,21 @@ function createUpdateSummary(stats: UpdateStats): string {
   ];
 
   if (stats.generatedSchemas.length > 0) {
-    lines.push('', `### Updated Schemas (${stats.generatedSchemas.length})`, '');
+    lines.push('', '<details>');
+    lines.push('', `<summary>### Updated Schemas (${stats.generatedSchemas.length})</summary>`, '');
     for (const schema of stats.generatedSchemas) {
       lines.push(`- \`${schema}\``);
     }
+    lines.push('', '</details>');
   }
 
   if (stats.failedSchemas.length > 0) {
-    lines.push('', `### Failed Schemas (${stats.failedSchemas.length})`, '');
+    lines.push('', '<details>');
+    lines.push('', `<summary>### Failed Schemas (${stats.failedSchemas.length})</summary>`, '');
     for (const schema of stats.failedSchemas) {
       lines.push(`- \`${schema}\``);
     }
+    lines.push('', '</details>');
   }
 
   lines.push('');
