@@ -389,6 +389,14 @@ export interface ClaudeCodeSettings {
      */
     InstructionsLoaded?: HookMatcher[];
     /**
+     * Hooks that run when the working directory changes. Provides cwd (new directory) and previous_cwd. Matchers are ignored; fires on every directory change. See https://code.claude.com/docs/en/hooks#cwdchanged
+     */
+    CwdChanged?: HookMatcher[];
+    /**
+     * Hooks that run when a watched file is created, modified, or deleted. Supports filename matchers. Provides file_path and file_event_type (created, modified, deleted). See https://code.claude.com/docs/en/hooks#filechanged
+     */
+    FileChanged?: HookMatcher[];
+    /**
      * Hooks that run when settings, managed settings, or skill files change during a session. Supports matchers: user_settings, project_settings, local_settings, policy_settings, skills. Command handlers only. Exit code 2 blocks the change (except policy_settings which is audit-only). See https://code.claude.com/docs/en/hooks#configchange
      */
     ConfigChange?: HookMatcher[];
