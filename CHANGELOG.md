@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/ffflorian/schemastore-updater/compare/v3.2.0...v3.3.0) (2026-04-20)
+
+
+### Features
+
+* Add details tag to markdown summary ([6e706c2](https://github.com/ffflorian/schemastore-updater/commit/6e706c2312cff132d5dff1237eec8746f52196e1))
+
 # [3.2.0](https://github.com/ffflorian/schemastore-updater/compare/v3.1.0...v3.2.0) (2026-04-13)
 
 
