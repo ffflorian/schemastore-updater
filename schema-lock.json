@@ -1109,14 +1109,14 @@
     "claude-code-marketplace.json": {
       "generatedFile": "schemas/claude-code-marketplace/index.d.ts",
       "generatedSha256": "ea97c640d75ea1feb9013be510b881f90283436fc6c41623ce12766386b3f4a7",
-      "published": false,
+      "published": true,
       "sourceSha256": "42c3f80413638e93a420256d942f409104b651379b9ac2451cc636f581de2ffc",
       "updatedAt": "2026-04-27T05:59:04.739Z"
     },
     "claude-code-plugin-manifest.json": {
       "generatedFile": "schemas/claude-code-plugin-manifest/index.d.ts",
       "generatedSha256": "5a6614c2ad66a62be578c58ec71938e11e7eeaffd298c1074a7b4d19ce7eef74",
-      "published": false,
+      "published": true,
       "sourceSha256": "3f69938d71a47a72fa60050b2050dd620054708911defc1c1dcd7188dcb169f5",
       "updatedAt": "2026-04-27T05:59:04.984Z"
     },
