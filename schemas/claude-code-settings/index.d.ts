@@ -241,7 +241,7 @@ export interface ClaudeCodeSettings {
   /**
    * Control Opus 4.6 adaptive reasoning effort. Lower effort is faster and cheaper for straightforward tasks, higher effort provides deeper reasoning. Defaults vary by model and plan (Opus 4.6 defaults to medium for Max and Team subscribers). Use /effort auto to reset to model default. Also configurable via CLAUDE_CODE_EFFORT_LEVEL environment variable. See https://code.claude.com/docs/en/model-config#adjust-effort-level
    */
-  effortLevel?: 'low' | 'medium' | 'high';
+  effortLevel?: 'low' | 'medium' | 'high' | 'xhigh';
   /**
    * Enable fast mode for Opus 4.6 (research preview). Fast mode uses the same model with 2.5x faster output at higher per-token cost. Requires extra usage enabled. Alternatively, toggle with /fast command. See https://code.claude.com/docs/en/fast-mode
    */
@@ -577,6 +577,14 @@ export interface ClaudeCodeSettings {
            * Local cache path where marketplace manifest is stored (auto-generated if not provided)
            */
           installLocation?: string;
+          /**
+           * Whether to automatically update this marketplace on Claude Code startup. Written automatically by Claude Code when you toggle auto-update for a marketplace
+           */
+          autoUpdate?: boolean;
+          /**
+           * ISO 8601 timestamp of the last marketplace refresh. Written automatically by Claude Code
+           */
+          lastUpdated?: string;
         }
       | undefined;
   };

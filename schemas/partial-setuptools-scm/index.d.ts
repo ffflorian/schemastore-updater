@@ -17,7 +17,7 @@ export interface SetuptoolsScmConfigurationInPyprojectToml {
    */
   local_scheme?: string;
   /**
-   * A path to a file that gets replaced with a file containing the current version. It is ideal for creating a `_version.py` file within the package, typically used to avoid using `pkg_resources.get_distribution` (which adds some overhead). Only files with `.py` and `.txt` extensions have builtin templates, for other file types it is necessary to provide version_file_template.
+   * A path to a file that gets replaced with a file containing the current version. It is ideal for creating a `_version.py` file within the package, typically used to avoid using `importlib.metadata` (which adds some overhead). Only files with `.py` and `.txt` extensions have builtin templates, for other file types it is necessary to provide version_file_template.
    */
   version_file?: string;
   /**
@@ -48,7 +48,30 @@ export interface SetuptoolsScmConfigurationInPyprojectToml {
    */
   fallback_version?: string;
   /**
-   * This command will be used instead the default `git describe --long` command.
+   * The directory to use when SCM metadata is not available (e.g., in extracted archives like PyPI tarballs). When SCM metadata is present, `root` is used; when it is not available, `fallback_root` is used instead. This allows the same configuration to work in both scenarios without modification.
+   */
+  fallback_root?: string;
+  /**
+   * SCM-specific configuration.
+   */
+  scm?: {
+    /**
+     * Git-specific configuration.
+     */
+    git?: {
+      /**
+       * This command will be used instead of the default `git describe --long` command.
+       */
+      describe_command?: string[];
+      /**
+       * A string specifying which git pre-parse function to use before parsing version information. `warn_on_shallow` (default) warns when the repository is shallow; `fail_on_shallow` raises an error; `fetch_on_shallow` automatically fetches to rectify shallow repositories; `fail_on_missing_submodules` fails when submodules are defined but not initialised.
+       */
+      pre_parse?: 'warn_on_shallow' | 'fail_on_shallow' | 'fetch_on_shallow' | 'fail_on_missing_submodules';
+    };
+  };
+  /**
+   * @deprecated
+   * Deprecated since 8.4.0: use `scm.git.describe_command` instead. This command will be used instead of the default `git describe --long` command.
    */
   git_describe_command?: string[];
   /**

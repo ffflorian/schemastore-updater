@@ -1106,12 +1106,26 @@
       "sourceSha256": "ca5685639e03916ed696cb81c70c7ab4afcec2db70e80a02d46c76bf6b0f1f54",
       "updatedAt": "2026-03-27T22:03:06.632Z"
     },
+    "claude-code-marketplace.json": {
+      "generatedFile": "schemas/claude-code-marketplace/index.d.ts",
+      "generatedSha256": "ea97c640d75ea1feb9013be510b881f90283436fc6c41623ce12766386b3f4a7",
+      "published": false,
+      "sourceSha256": "42c3f80413638e93a420256d942f409104b651379b9ac2451cc636f581de2ffc",
+      "updatedAt": "2026-04-27T05:59:04.739Z"
+    },
+    "claude-code-plugin-manifest.json": {
+      "generatedFile": "schemas/claude-code-plugin-manifest/index.d.ts",
+      "generatedSha256": "5a6614c2ad66a62be578c58ec71938e11e7eeaffd298c1074a7b4d19ce7eef74",
+      "published": false,
+      "sourceSha256": "3f69938d71a47a72fa60050b2050dd620054708911defc1c1dcd7188dcb169f5",
+      "updatedAt": "2026-04-27T05:59:04.984Z"
+    },
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
-      "generatedSha256": "75930bc41f108c85a20be067b7c3d966fc51196794825d4c9dd3d396c502794a",
-      "published": true,
-      "sourceSha256": "ff959499a29b9b35828b929687178992e04ad5ad69cc5b7561324fb7f41b7db1",
-      "updatedAt": "2026-04-20T05:50:48.605Z"
+      "generatedSha256": "6094ada5b3ccf65b0924b64c14d7fa7d05bbb2131fcf64f69cd4d388f120ff15",
+      "published": false,
+      "sourceSha256": "c0cad62e97da42de5372b212240be8b5859783a33e74f96a4c0f13c10201b792",
+      "updatedAt": "2026-04-27T05:59:05.214Z"
     },
     "clib.json": {
       "generatedFile": "schemas/clib/index.d.ts",
@@ -1354,9 +1368,9 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": true,
-      "sourceSha256": "08eb632bbf270e961fa462f3bb95db332337c14b455fd858b220777dd181ba3a",
-      "updatedAt": "2026-04-20T05:50:49.026Z"
+      "published": false,
+      "sourceSha256": "1f61eb228202e5f7a394ce295eebf602b8b676dff0d51dbe489a9a9434263c51",
+      "updatedAt": "2026-04-27T05:59:05.785Z"
     },
     "dependabot.json": {
       "generatedFile": "schemas/dependabot/index.d.ts",
@@ -1963,9 +1977,9 @@
     "github-action.json": {
       "generatedFile": "schemas/github-action/index.d.ts",
       "generatedSha256": "d20c29c45ba6f7a49285193fd1ba7b9fda2df7367f15a62c357a7e1f416949d9",
-      "published": true,
-      "sourceSha256": "9447acdfbaa0c2033a15e90dcd86e48c91ea548b845d4c30efda4100cb85bdd9",
-      "updatedAt": "2026-03-27T22:03:32.048Z"
+      "published": false,
+      "sourceSha256": "83bd3bf0c4122ceb764927bc189d9e3794931306b53cdf89816f6f3472cadf88",
+      "updatedAt": "2026-04-27T05:59:06.102Z"
     },
     "github-discussion.json": {
       "generatedFile": "schemas/github-discussion/index.d.ts",
@@ -2299,9 +2313,9 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "d897b79a1d84847e6543dd1c90b535a25d703978d43abf089d2cd2920a7f8bf3",
-      "published": true,
-      "sourceSha256": "23b255f2710d1db60c826e856eebc530f0f15ddec79e7b5499d95999c4c83508",
-      "updatedAt": "2026-04-13T05:51:45.365Z"
+      "published": false,
+      "sourceSha256": "7ccfd87cae01858b8338e47f72438dff75dbc2f12e7bf1ea94b52cd7d3909701",
+      "updatedAt": "2026-04-27T05:59:14.120Z"
     },
     "jscpd.json": {
       "generatedFile": "schemas/jscpd/index.d.ts",
@@ -3215,10 +3229,10 @@
     },
     "package.json": {
       "generatedFile": "schemas/package/index.d.ts",
-      "generatedSha256": "c4cc1daebad8e006d72e721b8e1b1bcbebe7bc87b116812303d9227324317d35",
-      "published": true,
-      "sourceSha256": "1420c43c501ace476d21a74339241c531a63edef2745fdeeda5ebd7eaf010432",
-      "updatedAt": "2026-04-13T05:54:56.951Z"
+      "generatedSha256": "ca72b7d3e1b16aa1e990d5d49612063dbc7af336c2db53ce87f610c8734e0eb4",
+      "published": false,
+      "sourceSha256": "bb822fd1eeacb470050f5de226b5a5030419fca0837d4d9c6b49f0c6224cc982",
+      "updatedAt": "2026-04-27T06:01:43.783Z"
     },
     "package.manifest-7.0.0.json": {
       "generatedFile": "schemas/package.manifest-7.0.0/index.d.ts",
@@ -3467,10 +3481,10 @@
     },
     "partial-setuptools-scm.json": {
       "generatedFile": "schemas/partial-setuptools-scm/index.d.ts",
-      "generatedSha256": "39b7be12c6845b9491b142ba6724a937e2afd40247b9845959e15729cd9b8e7e",
-      "published": true,
-      "sourceSha256": "b78b30881b64fece76dd0c991a769bd942ed4f699571a8d6f84f1e60c3acbe22",
-      "updatedAt": "2026-03-27T22:07:46.693Z"
+      "generatedSha256": "b1dbe5d41c8fbe99b0534d29dd67e7568ca0fca3ac2ccd85b0b0c0475680073b",
+      "published": false,
+      "sourceSha256": "a476e542b199405d0149a5c6c62de5baf355af09f1ec32d72570abef40346561",
+      "updatedAt": "2026-04-27T06:01:45.180Z"
     },
     "partial-setuptools.json": {
       "generatedFile": "schemas/partial-setuptools/index.d.ts",
@@ -3628,10 +3642,10 @@
     },
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
-      "generatedSha256": "856324bd30ac3e66e745a056b681de516ec1f029d923f4da3398fab375bdcb2a",
-      "published": true,
-      "sourceSha256": "0e0a383adefcc3a531a462fbdf9015ab810891cb6842dea25f58386cd589f74e",
-      "updatedAt": "2026-04-13T05:54:59.819Z"
+      "generatedSha256": "a0f2ff94f9def7ccbf6e033643dc98c65598826e3fdecdf2a67cdf9a31d432f5",
+      "published": false,
+      "sourceSha256": "6385cae3225a43b863463faeb53a2cf8a90baac2a97a59195ffd5fb0472a7465",
+      "updatedAt": "2026-04-27T06:01:46.343Z"
     },
     "prettierrc-1.8.2.json": {
       "generatedFile": "schemas/prettierrc-1.8.2/index.d.ts",
@@ -4489,10 +4503,10 @@
     },
     "starlake.json": {
       "generatedFile": "schemas/starlake/index.d.ts",
-      "generatedSha256": "f3c1e9b9c6c8bd171fa2ddaff1d449d144ef5fbd495e9a01b55f281126d05801",
-      "published": true,
-      "sourceSha256": "63c82227fff46ce5ff5f81a5d2de5ab33cab5128cde61854d59307b568612a72",
-      "updatedAt": "2026-03-27T22:09:13.016Z"
+      "generatedSha256": "a85d52e161462a2f91613b1e238dadbed1aba8fbc01ac39ad7b757f20d7a230b",
+      "published": false,
+      "sourceSha256": "37aa355d518c536f2a2d31d3bf500f6bbcd50b2d7cfaa0b79da9af8f28a6f66c",
+      "updatedAt": "2026-04-27T06:01:51.988Z"
     },
     "staticwebapp.config.json": {
       "generatedFile": "schemas/staticwebapp.config/index.d.ts",
@@ -4643,10 +4657,10 @@
     },
     "tombi.json": {
       "generatedFile": "schemas/tombi/index.d.ts",
-      "generatedSha256": "87727bc266faa1b7e2a6f5c9172965667c4057af907e5968c59afb68404fcb75",
-      "published": true,
-      "sourceSha256": "eb79c013643f514f87afb5df23e1692108bc909bccd9f250b58624150dccb8b8",
-      "updatedAt": "2026-03-27T22:09:20.541Z"
+      "generatedSha256": "6c7d36bd437fe7ae4c645b7f78f370aa16790a6c7fa7e3e8595b26b220aea998",
+      "published": false,
+      "sourceSha256": "860f7205d050ec8df559c58c44ea753f05b3c065d29d32b1705635b9d08d8603",
+      "updatedAt": "2026-04-27T06:01:52.956Z"
     },
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
@@ -4692,10 +4706,10 @@
     },
     "treefmt.json": {
       "generatedFile": "schemas/treefmt/index.d.ts",
-      "generatedSha256": "13feedf78a240c8d179f87e435abe700e72ec4c6f7196efdb59309a09be4555c",
-      "published": true,
-      "sourceSha256": "fb7504508d75181f46e82fcf63d3433fbd7277e0705a90a2cb8cb6b2af56c80a",
-      "updatedAt": "2026-03-27T22:09:23.133Z"
+      "generatedSha256": "5529ef24db11df6aa1bcc37fb528b31328f5d754b77b01fee7ec19872337854b",
+      "published": false,
+      "sourceSha256": "f7acf1600da15a01eb241f218466e5240ed003d17ec5ebb7f91992d4d2be5544",
+      "updatedAt": "2026-04-27T06:01:54.059Z"
     },
     "truescript.json": {
       "generatedFile": "schemas/truescript/index.d.ts",
@@ -4714,9 +4728,9 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "e3ad801894fff5e2108aab89ce5e8b624ae34732291fcdd4f795a61888ce6b36",
-      "published": true,
-      "sourceSha256": "ff3f4343a82919f1f4e33a32029c474e9822c13abd7666e0ab89f757b15a5a75",
-      "updatedAt": "2026-04-13T05:55:07.611Z"
+      "published": false,
+      "sourceSha256": "55ef8326057055e723554c2a541dac78c65ab34b2a77d42e2467a1e3093f8b89",
+      "updatedAt": "2026-04-27T06:01:54.448Z"
     },
     "tsd.json": {
       "generatedFile": "schemas/tsd/index.d.ts",
@@ -5146,6 +5160,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-04-20T05:54:20.605Z",
+  "generatedAt": "2026-04-27T06:01:59.611Z",
   "version": 1
 }

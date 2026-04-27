@@ -301,7 +301,13 @@ export type JSONSchemaForNPMPackageJsonFiles = {
   /**
    * Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html
    */
-  packageManager?: string;
+  packageManager?: (
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'bun'
+  ) &
+    string;
   engines?: {
     node?: string;
     [k: string]: string | undefined;

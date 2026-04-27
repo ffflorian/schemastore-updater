@@ -277,6 +277,10 @@ export interface RemoteHook {
    */
   log_file?: string;
   /**
+   * Run the hook entry through a predefined shell adapter.
+   */
+  shell?: 'sh' | 'bash' | 'pwsh' | 'powershell' | 'cmd';
+  /**
    * This hook will execute using a single process instead of in parallel.
    * Default is false.
    */
@@ -304,6 +308,7 @@ export interface LocalRepo {
    */
   repo: 'local';
   hooks: LocalHook[];
+  rev?: never;
   [k: string]: unknown | undefined;
 }
 /**
@@ -438,6 +443,10 @@ export interface LocalHook {
    */
   log_file?: string;
   /**
+   * Run the hook entry through a predefined shell adapter.
+   */
+  shell?: 'sh' | 'bash' | 'pwsh' | 'powershell' | 'cmd';
+  /**
    * This hook will execute using a single process instead of in parallel.
    * Default is false.
    */
@@ -465,6 +474,7 @@ export interface MetaRepo {
    */
   repo: 'meta';
   hooks: MetaHook[];
+  rev?: never;
   [k: string]: unknown | undefined;
 }
 /**
@@ -574,6 +584,10 @@ export interface MetaHook {
    */
   log_file?: string;
   /**
+   * Run the hook entry through a predefined shell adapter.
+   */
+  shell?: 'sh' | 'bash' | 'pwsh' | 'powershell' | 'cmd';
+  /**
    * This hook will execute using a single process instead of in parallel.
    * Default is false.
    */
@@ -601,6 +615,7 @@ export interface BuiltinRepo {
    */
   repo: 'builtin';
   hooks: BuiltinHook[];
+  rev?: never;
   [k: string]: unknown | undefined;
 }
 /**
@@ -709,6 +724,10 @@ export interface BuiltinHook {
    * Write the output of the hook to a file when the hook fails or verbose is enabled.
    */
   log_file?: string;
+  /**
+   * Run the hook entry through a predefined shell adapter.
+   */
+  shell?: 'sh' | 'bash' | 'pwsh' | 'powershell' | 'cmd';
   /**
    * This hook will execute using a single process instead of in parallel.
    * Default is false.
