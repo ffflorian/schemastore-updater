@@ -1123,7 +1123,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "6094ada5b3ccf65b0924b64c14d7fa7d05bbb2131fcf64f69cd4d388f120ff15",
-      "published": false,
+      "published": true,
       "sourceSha256": "c0cad62e97da42de5372b212240be8b5859783a33e74f96a4c0f13c10201b792",
       "updatedAt": "2026-04-27T05:59:05.214Z"
     },
@@ -1368,7 +1368,7 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": false,
+      "published": true,
       "sourceSha256": "1f61eb228202e5f7a394ce295eebf602b8b676dff0d51dbe489a9a9434263c51",
       "updatedAt": "2026-04-27T05:59:05.785Z"
     },
@@ -1977,7 +1977,7 @@
     "github-action.json": {
       "generatedFile": "schemas/github-action/index.d.ts",
       "generatedSha256": "d20c29c45ba6f7a49285193fd1ba7b9fda2df7367f15a62c357a7e1f416949d9",
-      "published": false,
+      "published": true,
       "sourceSha256": "83bd3bf0c4122ceb764927bc189d9e3794931306b53cdf89816f6f3472cadf88",
       "updatedAt": "2026-04-27T05:59:06.102Z"
     },
@@ -2313,7 +2313,7 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "d897b79a1d84847e6543dd1c90b535a25d703978d43abf089d2cd2920a7f8bf3",
-      "published": false,
+      "published": true,
       "sourceSha256": "7ccfd87cae01858b8338e47f72438dff75dbc2f12e7bf1ea94b52cd7d3909701",
       "updatedAt": "2026-04-27T05:59:14.120Z"
     },
@@ -3230,7 +3230,7 @@
     "package.json": {
       "generatedFile": "schemas/package/index.d.ts",
       "generatedSha256": "ca72b7d3e1b16aa1e990d5d49612063dbc7af336c2db53ce87f610c8734e0eb4",
-      "published": false,
+      "published": true,
       "sourceSha256": "bb822fd1eeacb470050f5de226b5a5030419fca0837d4d9c6b49f0c6224cc982",
       "updatedAt": "2026-04-27T06:01:43.783Z"
     },
@@ -3482,7 +3482,7 @@
     "partial-setuptools-scm.json": {
       "generatedFile": "schemas/partial-setuptools-scm/index.d.ts",
       "generatedSha256": "b1dbe5d41c8fbe99b0534d29dd67e7568ca0fca3ac2ccd85b0b0c0475680073b",
-      "published": false,
+      "published": true,
       "sourceSha256": "a476e542b199405d0149a5c6c62de5baf355af09f1ec32d72570abef40346561",
       "updatedAt": "2026-04-27T06:01:45.180Z"
     },
@@ -3643,7 +3643,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "a0f2ff94f9def7ccbf6e033643dc98c65598826e3fdecdf2a67cdf9a31d432f5",
-      "published": false,
+      "published": true,
       "sourceSha256": "6385cae3225a43b863463faeb53a2cf8a90baac2a97a59195ffd5fb0472a7465",
       "updatedAt": "2026-04-27T06:01:46.343Z"
     },
@@ -4504,7 +4504,7 @@
     "starlake.json": {
       "generatedFile": "schemas/starlake/index.d.ts",
       "generatedSha256": "a85d52e161462a2f91613b1e238dadbed1aba8fbc01ac39ad7b757f20d7a230b",
-      "published": false,
+      "published": true,
       "sourceSha256": "37aa355d518c536f2a2d31d3bf500f6bbcd50b2d7cfaa0b79da9af8f28a6f66c",
       "updatedAt": "2026-04-27T06:01:51.988Z"
     },
@@ -4658,7 +4658,7 @@
     "tombi.json": {
       "generatedFile": "schemas/tombi/index.d.ts",
       "generatedSha256": "6c7d36bd437fe7ae4c645b7f78f370aa16790a6c7fa7e3e8595b26b220aea998",
-      "published": false,
+      "published": true,
       "sourceSha256": "860f7205d050ec8df559c58c44ea753f05b3c065d29d32b1705635b9d08d8603",
       "updatedAt": "2026-04-27T06:01:52.956Z"
     },
@@ -4707,7 +4707,7 @@
     "treefmt.json": {
       "generatedFile": "schemas/treefmt/index.d.ts",
       "generatedSha256": "5529ef24db11df6aa1bcc37fb528b31328f5d754b77b01fee7ec19872337854b",
-      "published": false,
+      "published": true,
       "sourceSha256": "f7acf1600da15a01eb241f218466e5240ed003d17ec5ebb7f91992d4d2be5544",
       "updatedAt": "2026-04-27T06:01:54.059Z"
     },
@@ -4728,7 +4728,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "e3ad801894fff5e2108aab89ce5e8b624ae34732291fcdd4f795a61888ce6b36",
-      "published": false,
+      "published": true,
       "sourceSha256": "55ef8326057055e723554c2a541dac78c65ab34b2a77d42e2467a1e3093f8b89",
       "updatedAt": "2026-04-27T06:01:54.448Z"
     },
