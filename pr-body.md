@@ -8,22 +8,34 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 821
-- **Generated:** 7
-- **Skipped:** 726
-- **Failed:** 88
+- **Total:** 824
+- **Generated:** 13
+- **Skipped:** 721
+- **Failed:** 90
 
-### Updated Schemas (7)
+<details>
 
+<summary>### Updated Schemas (13)</summary>
+
+- `claude-code-marketplace`
+- `claude-code-plugin-manifest`
 - `claude-code-settings`
 - `dependabot-2.0`
-- `host`
-- `partial-dfc`
-- `partial-fastapi`
-- `partial-pyright`
-- `vector`
+- `github-action`
+- `jsconfig`
+- `package`
+- `partial-setuptools-scm`
+- `prek`
+- `starlake`
+- `tombi`
+- `treefmt`
+- `tsconfig`
 
-### Failed Schemas (88)
+</details>
+
+<details>
+
+<summary>### Failed Schemas (90)</summary>
 
 - `accelerator`
 - `app-config`
@@ -42,8 +54,10 @@ This PR was created by the scheduled workflow after running:
 - `dart-build`
 - `dart-test`
 - `databricks-asset-bundles`
+- `declarative-automation-bundles`
 - `factorial-drupal-breakpoints-css-0.2.0`
 - `gcp-blueprint-metadata`
+- `github-workflow`
 - `jfrog-pipelines`
 - `jreleaser-1.10.0`
 - `jreleaser-1.11.0`
@@ -113,3 +127,5 @@ This PR was created by the scheduled workflow after running:
 - `vtestunit-schema`
 - `web-types`
 - `yamllint`
+
+</details>

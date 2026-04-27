@@ -59,6 +59,7 @@ export interface JSONSchemaForTreefmtConfigurationFiles {
       includes?: string[];
       excludes?: string[];
       priority?: number;
+      'no-positional-arg-support'?: boolean;
     };
   };
   [k: string]: unknown | undefined;
