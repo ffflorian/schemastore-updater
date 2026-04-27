@@ -118,6 +118,9 @@ export type InlineTableCommaSpaceWidth = number;
  * ```
  */
 export type WhetherToAlignTheEqualsSignInTheKeyValuePairs = boolean | null;
+/**
+ * Choose which quote style the formatter prefers for basic strings.
+ */
 export type ThePreferredQuoteCharacterForStrings = StringQuoteStyle | null;
 /**
  * The preferred quote character for strings.
@@ -288,6 +291,47 @@ export type TheSchemaPath = string;
  * @minItems 1
  */
 export type TheFileMatchPatternOfTheSchema = [string, ...string[]];
+export type SchemaSpecificFormatOptions = SchemaSpecificFormatOptions1 | null;
+export type SchemaSpecificFormatRules = SchemaSpecificFormatRules1 | null;
+export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled = SchemaDefinedArrayValuesOrdering | null;
+export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled1 = BoolDefaultTrue | null;
+export type WhetherSchemaDefinedTableKeyOrderingIsEnabled = SchemaDefinedTableKeyOrdering | null;
+export type WhetherSchemaDefinedTableKeyOrderingIsEnabled1 = BoolDefaultTrue | null;
+export type SchemaSpecificLintOptions = SchemaSpecificLintOptions1 | null;
+export type SchemaSpecificLintRules = SchemaSpecificLintRules1 | null;
+/**
+ * Override the deprecated diagnostic level for this schema.
+ */
+export type Deprecated = (SeverityLevel & SeverityLevelDefaultWarn) | null;
+export type SchemaSpecificOverrides = SchemaSpecificOverrideItem[] | null;
+/**
+ * @minItems 1
+ */
+export type AccessorPatternsToOverride = [AccessorPattern, ...AccessorPattern[]];
+/**
+ * To apply it to the Root Table, use `""`.
+ *
+ * Array indices are matched as wildcards. That means `[*]` and numeric
+ * indices such as `[0]` are treated the same and will match any array
+ * element, so `items[0].name` behaves like `items[*].name`.
+ *
+ * **Example**:
+ *   - `""`
+ *   - `"tool.*"`
+ *   - `"items[*].name"`
+ */
+export type AccessorPattern = string;
+export type FormatOptionsToOverride = SchemaSpecificOverrideFormatOptions | null;
+export type SchemaSpecificOverrideFormatRules = SchemaSpecificOverrideFormatRules1 | null;
+export type OverrideArrayValuesOrderingForMatchedRoots = OverrideArrayValuesOrderingForMatchedRoots1 | null;
+export type OverrideArrayValuesOrderingForMatchedRoots1 = ArrayValuesOrder | SchemaDefinedArrayValuesOrdering;
+export type ArrayValuesOrder = 'ascending' | 'descending' | 'version-sort';
+export type OverrideTableKeyOrderingForMatchedRoots = OverrideTableKeyOrderingForMatchedRoots1 | null;
+export type OverrideTableKeyOrderingForMatchedRoots1 = TableKeysOrder | SchemaDefinedTableKeyOrdering;
+export type TableKeysOrder = 'ascending' | 'descending' | 'schema' | 'version-sort';
+export type LintOptionsToOverride = SchemaSpecificOverrideLintOptions | null;
+export type SchemaSpecificOverrideLintRules = SchemaSpecificOverrideLintRules1 | null;
+export type OverrideDeprecatedDiagnosticsForMatchedRoots = (SeverityLevel & SeverityLevelDefaultWarn) | null;
 export type TheAccessorsToApplyTheSubSchema = string;
 export type TheSubSchemaPath = string;
 /**
@@ -306,10 +350,207 @@ export type FilesOptionsToOverride = FilesOptionsToOverride1;
  * @minItems 1
  */
 export type FilePatternsToInclude1 = [string, ...string[]];
-export type FormatOptionsToOverride = OverrideFormatOptions | null;
+export type FormatOptionsToOverride1 = OverrideFormatOptions | null;
 export type FormatEnabled = BoolDefaultTrue | null;
-export type LintOptionsToOverride = OverrideLintOptions | null;
+export type LintOptionsToOverride1 = OverrideLintOptions | null;
 export type LintEnabled = BoolDefaultTrue | null;
+/**
+ * Configure built-in support for `Cargo.toml`.
+ */
+export type CargoExtension = CargoExtensionFeatures | null;
+export type CargoExtensionFeatures = EnabledOnly | CargoExtensionFeatureTree;
+/**
+ * Whether this feature is enabled.
+ */
+export type EnableFeature = BoolDefaultTrue;
+export type CargoLSPFeatureOptions = CargoLspFeatures | null;
+export type CargoLspFeatures = EnabledOnly | CargoLspFeatureTree;
+export type CompletionFeatureOptions1 = CargoCompletionFeatures | null;
+export type CargoCompletionFeatures = EnabledOnly | CargoCompletionFeatureTree;
+/**
+ * Whether completion suggests dependency versions.
+ */
+export type DependencyVersionCompletionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether this nested feature is enabled.
+ */
+export type EnableFeature1 = BoolDefaultTrue | null;
+/**
+ * Whether completion suggests dependency features.
+ */
+export type DependencyFeatureCompletionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether completion suggests filesystem paths.
+ */
+export type PathCompletionFeature = ToggleFeatureDefaultTrue | null;
+export type InlayHintFeatureOptions = CargoInlayHintFeatures | null;
+export type CargoInlayHintFeatures = EnabledOnly | CargoInlayHintFeatureTree;
+/**
+ * Whether inlay hints show dependency versions.
+ */
+export type DependencyVersionInlayHintFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether inlay hints show `default-features` values.
+ */
+export type DefaultFeaturesInlayHintFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether inlay hints show values inherited from the Cargo workspace.
+ */
+export type WorkspaceValueInlayHintFeature = ToggleFeatureDefaultTrue | null;
+export type GotoDefinitionFeatureOptions1 = CargoNavigationFeatures | null;
+export type CargoNavigationFeatures = EnabledOnly | CargoNavigationFeatureTree;
+/**
+ * Whether navigation resolves dependency definitions and declarations.
+ */
+export type DependencyNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether navigation resolves workspace member targets.
+ */
+export type MemberNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether navigation resolves filesystem paths.
+ */
+export type PathNavigationFeature = ToggleFeatureDefaultTrue | null;
+export type GotoDeclarationFeatureOptions1 = CargoNavigationFeatures | null;
+export type DocumentLinkFeatureOptions1 = CargoDocumentLinkFeatures | null;
+export type CargoDocumentLinkFeatures = EnabledOnly | CargoDocumentLinkFeatureTree;
+/**
+ * Whether document links are created for `Cargo.toml` references.
+ */
+export type CargoTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Whether this nested feature is enabled.
+ */
+export type EnableFeature2 = BoolDefaultFalse | null;
+export type BoolDefaultFalse = boolean;
+/**
+ * Whether document links are created for crates.io package references.
+ */
+export type CratesIoDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether document links are created for Git references.
+ */
+export type GitDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Whether document links are created for filesystem paths.
+ */
+export type PathDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Whether document links are created for `workspace = true` references.
+ */
+export type WorkspaceDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+export type HoverFeatureOptions1 = CargoHoverFeatures | null;
+export type CargoHoverFeatures = EnabledOnly | CargoHoverFeatureTree;
+/**
+ * Whether hover shows detailed dependency metadata.
+ */
+export type DependencyDetailHoverFeature = ToggleFeatureDefaultTrue | null;
+export type CodeActionFeatureOptions1 = CargoCodeActionFeatures | null;
+export type CargoCodeActionFeatures = EnabledOnly | CargoCodeActionFeatureTree;
+/**
+ * Whether code actions can replace a value with `workspace = true`.
+ */
+export type InheritFromWorkspaceCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can inherit dependency settings from the workspace.
+ */
+export type InheritDependencyFromWorkspaceCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can rewrite inline dependencies to table format.
+ */
+export type ConvertDependencyToTableFormatCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can add a dependency to the workspace and inherit it.
+ */
+export type AddToWorkspaceAndInheritDependencyCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Configure built-in support for `pyproject.toml`.
+ */
+export type PyprojectExtension = PyprojectExtensionFeatures | null;
+export type PyprojectExtensionFeatures = EnabledOnly | PyprojectExtensionFeatureTree;
+export type PyprojectLSPFeatureOptions = PyprojectLspFeatures | null;
+export type PyprojectLspFeatures = EnabledOnly | PyprojectLspFeatureTree;
+/**
+ * Configure pyproject completion features.
+ */
+export type CompletionFeatureOptions2 = PyprojectCompletionFeatures | null;
+export type PyprojectCompletionFeatures = EnabledOnly | PyprojectCompletionFeatureTree;
+/**
+ * Configure pyproject inlay hint features.
+ */
+export type InlayHintFeatureOptions1 = PyprojectInlayHintFeatures | null;
+export type PyprojectInlayHintFeatures = EnabledOnly | PyprojectInlayHintFeatureTree;
+/**
+ * Configure pyproject go-to-definition features.
+ */
+export type GotoDefinitionFeatureOptions2 = PyprojectNavigationFeatures | null;
+export type PyprojectNavigationFeatures = EnabledOnly | PyprojectNavigationFeatureTree;
+/**
+ * Configure pyproject go-to-declaration features.
+ */
+export type GotoDeclarationFeatureOptions2 = PyprojectNavigationFeatures | null;
+/**
+ * Configure pyproject document link features.
+ */
+export type DocumentLinkFeatureOptions2 = PyprojectDocumentLinkFeatures | null;
+export type PyprojectDocumentLinkFeatures = EnabledOnly | PyprojectDocumentLinkFeatureTree;
+/**
+ * Whether document links are created for `pyproject.toml` references.
+ */
+export type PyprojectTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Whether document links are created for `pypi.org` package references.
+ */
+export type PyPIDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Configure pyproject hover features.
+ */
+export type HoverFeatureOptions2 = PyprojectHoverFeatures | null;
+export type PyprojectHoverFeatures = EnabledOnly | PyprojectHoverFeatureTree;
+/**
+ * Configure pyproject code action features.
+ */
+export type CodeActionFeatureOptions2 = PyprojectCodeActionFeatures | null;
+export type PyprojectCodeActionFeatures = EnabledOnly | PyprojectCodeActionFeatureTree;
+/**
+ * Whether code actions can reuse a dependency declared in the workspace.
+ */
+export type UseWorkspaceDependencyCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can add a dependency to the workspace and reuse it.
+ */
+export type AddToWorkspaceAndUseWorkspaceDependencyCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Configure built-in support for `tombi.toml`.
+ */
+export type TombiExtension = TombiExtensionFeatures | null;
+export type TombiExtensionFeatures = EnabledOnly | TombiExtensionFeatureTree;
+export type TombiLSPFeatureOptions = TombiLspFeatures | null;
+export type TombiLspFeatures = EnabledOnly | TombiLspFeatureTree;
+/**
+ * Configure Tombi completion features.
+ */
+export type CompletionFeatureOptions3 = TombiCompletionFeatures | null;
+export type TombiCompletionFeatures = EnabledOnly | TombiCompletionFeatureTree;
+/**
+ * Configure Tombi go-to-definition features.
+ */
+export type GotoDefinitionFeatureOptions3 = TombiGotoDefinitionFeatures | null;
+export type TombiGotoDefinitionFeatures = EnabledOnly | TombiGotoDefinitionFeatureTree;
+/**
+ * Whether go-to-definition resolves filesystem paths.
+ */
+export type PathGotoDefinitionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Configure Tombi document link features.
+ */
+export type DocumentLinkFeatureOptions3 = TombiDocumentLinkFeatures | null;
+export type TombiDocumentLinkFeatures = EnabledOnly | TombiDocumentLinkFeatureTree;
+/**
+ * Configure Tombi hover features.
+ */
+export type HoverFeatureOptions3 = TombiHoverFeatures | null;
+export type TombiHoverFeatures = EnabledOnly | TombiHoverFeatureTree;
 
 /**
  * **Tombi** (鳶 `/toɴbi/`) is a toolkit for TOML; providing a formatter/linter and language server.
@@ -324,6 +565,7 @@ export interface Tombi {
   schema?: SchemaOverviewOptions | null;
   schemas?: SchemaItems;
   overrides?: OverrideConfigItems;
+  extensions?: ExtensionOptions | null;
 }
 export interface FilesOptions {
   include?: FilePatternsToInclude;
@@ -406,16 +648,59 @@ export interface TheSchemaForTheRootTable {
   'toml-version'?: TheTOMLVersionThatTheSchemaIsAvailable;
   path: TheSchemaPath;
   include: TheFileMatchPatternOfTheSchema;
+  format?: SchemaSpecificFormatOptions;
+  lint?: SchemaSpecificLintOptions;
+  overrides?: SchemaSpecificOverrides;
+}
+export interface SchemaSpecificFormatOptions1 {
+  rules?: SchemaSpecificFormatRules;
+}
+export interface SchemaSpecificFormatRules1 {
+  'array-values-order'?: WhetherSchemaDefinedArrayValuesOrderingIsEnabled;
+  'table-keys-order'?: WhetherSchemaDefinedTableKeyOrderingIsEnabled;
+}
+export interface SchemaDefinedArrayValuesOrdering {
+  enabled?: WhetherSchemaDefinedArrayValuesOrderingIsEnabled1;
+}
+export interface SchemaDefinedTableKeyOrdering {
+  enabled?: WhetherSchemaDefinedTableKeyOrderingIsEnabled1;
+}
+export interface SchemaSpecificLintOptions1 {
+  rules?: SchemaSpecificLintRules;
+}
+export interface SchemaSpecificLintRules1 {
+  deprecated?: Deprecated;
+}
+export interface SchemaSpecificOverrideItem {
+  targets: AccessorPatternsToOverride;
+  format?: FormatOptionsToOverride;
+  lint?: LintOptionsToOverride;
+}
+export interface SchemaSpecificOverrideFormatOptions {
+  rules?: SchemaSpecificOverrideFormatRules;
+}
+export interface SchemaSpecificOverrideFormatRules1 {
+  'array-values-order'?: OverrideArrayValuesOrderingForMatchedRoots;
+  'table-keys-order'?: OverrideTableKeyOrderingForMatchedRoots;
+}
+export interface SchemaSpecificOverrideLintOptions {
+  rules?: SchemaSpecificOverrideLintRules;
+}
+export interface SchemaSpecificOverrideLintRules1 {
+  deprecated?: OverrideDeprecatedDiagnosticsForMatchedRoots;
 }
 export interface TheSchemaForTheSubValue {
   root: TheAccessorsToApplyTheSubSchema;
   path: TheSubSchemaPath;
   include: TheFileMatchPatternOfTheSubSchema;
+  format?: SchemaSpecificFormatOptions;
+  lint?: SchemaSpecificLintOptions;
+  overrides?: SchemaSpecificOverrides;
 }
 export interface OverrideConfigItem {
   files: FilesOptionsToOverride;
-  format?: FormatOptionsToOverride;
-  lint?: LintOptionsToOverride;
+  format?: FormatOptionsToOverride1;
+  lint?: LintOptionsToOverride1;
 }
 export interface FilesOptionsToOverride1 {
   include: FilePatternsToInclude1;
@@ -429,3 +714,117 @@ export interface OverrideLintOptions {
   enabled?: LintEnabled;
   rules?: LintRules;
 }
+/**
+ * 🚧 Currently, third-party extensions are not supported,
+ * and only built-in extensions are provided. 🚧
+ */
+export interface ExtensionOptions {
+  'tombi-toml/cargo'?: CargoExtension;
+  'tombi-toml/pyproject'?: PyprojectExtension;
+  'tombi-toml/tombi'?: TombiExtension;
+}
+export interface EnabledOnly {
+  enabled: EnableFeature;
+}
+export interface CargoExtensionFeatureTree {
+  lsp?: CargoLSPFeatureOptions;
+}
+export interface CargoLspFeatureTree {
+  completion?: CompletionFeatureOptions1;
+  'inlay-hint'?: InlayHintFeatureOptions;
+  'goto-definition'?: GotoDefinitionFeatureOptions1;
+  'goto-declaration'?: GotoDeclarationFeatureOptions1;
+  'document-link'?: DocumentLinkFeatureOptions1;
+  hover?: HoverFeatureOptions1;
+  'code-action'?: CodeActionFeatureOptions1;
+}
+export interface CargoCompletionFeatureTree {
+  'dependency-version'?: DependencyVersionCompletionFeature;
+  'dependency-feature'?: DependencyFeatureCompletionFeature;
+  path?: PathCompletionFeature;
+}
+export interface ToggleFeatureDefaultTrue {
+  enabled?: EnableFeature1;
+}
+export interface CargoInlayHintFeatureTree {
+  'dependency-version'?: DependencyVersionInlayHintFeature;
+  'default-features'?: DefaultFeaturesInlayHintFeature;
+  'workspace-value'?: WorkspaceValueInlayHintFeature;
+}
+export interface CargoNavigationFeatureTree {
+  dependency?: DependencyNavigationFeature;
+  member?: MemberNavigationFeature;
+  path?: PathNavigationFeature;
+}
+export interface CargoDocumentLinkFeatureTree {
+  'cargo-toml'?: CargoTomlDocumentLinkFeature;
+  'crates-io'?: CratesIoDocumentLinkFeature;
+  git?: GitDocumentLinkFeature;
+  path?: PathDocumentLinkFeature;
+  workspace?: WorkspaceDocumentLinkFeature;
+}
+export interface ToggleFeatureDefaultFalse {
+  enabled?: EnableFeature2;
+}
+export interface CargoHoverFeatureTree {
+  'dependency-detail'?: DependencyDetailHoverFeature;
+}
+export interface CargoCodeActionFeatureTree {
+  'inherit-from-workspace'?: InheritFromWorkspaceCodeActionFeature;
+  'inherit-dependency-from-workspace'?: InheritDependencyFromWorkspaceCodeActionFeature;
+  'convert-dependency-to-table-format'?: ConvertDependencyToTableFormatCodeActionFeature;
+  'add-to-workspace-and-inherit-dependency'?: AddToWorkspaceAndInheritDependencyCodeActionFeature;
+}
+export interface PyprojectExtensionFeatureTree {
+  lsp?: PyprojectLSPFeatureOptions;
+}
+export interface PyprojectLspFeatureTree {
+  completion?: CompletionFeatureOptions2;
+  'inlay-hint'?: InlayHintFeatureOptions1;
+  'goto-definition'?: GotoDefinitionFeatureOptions2;
+  'goto-declaration'?: GotoDeclarationFeatureOptions2;
+  'document-link'?: DocumentLinkFeatureOptions2;
+  hover?: HoverFeatureOptions2;
+  'code-action'?: CodeActionFeatureOptions2;
+}
+export interface PyprojectCompletionFeatureTree {
+  path?: PathCompletionFeature;
+}
+export interface PyprojectInlayHintFeatureTree {
+  'dependency-version'?: DependencyVersionInlayHintFeature;
+}
+export interface PyprojectNavigationFeatureTree {
+  dependency?: DependencyNavigationFeature;
+  member?: MemberNavigationFeature;
+  path?: PathNavigationFeature;
+}
+export interface PyprojectDocumentLinkFeatureTree {
+  'pyproject-toml'?: PyprojectTomlDocumentLinkFeature;
+  'pypi-org'?: PyPIDocumentLinkFeature;
+}
+export interface PyprojectHoverFeatureTree {
+  'dependency-detail'?: DependencyDetailHoverFeature;
+}
+export interface PyprojectCodeActionFeatureTree {
+  'use-workspace-dependency'?: UseWorkspaceDependencyCodeActionFeature;
+  'add-to-workspace-and-use-workspace-dependency'?: AddToWorkspaceAndUseWorkspaceDependencyCodeActionFeature;
+}
+export interface TombiExtensionFeatureTree {
+  lsp?: TombiLSPFeatureOptions;
+}
+export interface TombiLspFeatureTree {
+  completion?: CompletionFeatureOptions3;
+  'goto-definition'?: GotoDefinitionFeatureOptions3;
+  'document-link'?: DocumentLinkFeatureOptions3;
+  hover?: HoverFeatureOptions3;
+}
+export interface TombiCompletionFeatureTree {
+  path?: PathCompletionFeature;
+}
+export interface TombiGotoDefinitionFeatureTree {
+  path?: PathGotoDefinitionFeature;
+}
+export interface TombiDocumentLinkFeatureTree {
+  path?: PathDocumentLinkFeature;
+}
+export interface TombiHoverFeatureTree {}

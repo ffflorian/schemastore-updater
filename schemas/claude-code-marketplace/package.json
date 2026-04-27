@@ -1,13 +1,13 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for tsconfig.",
+  "description": "TypeScript definitions for claude-code-marketplace.",
   "license": "GPL-3.0",
-  "name": "@schemastore/tsconfig",
+  "name": "@schemastore/claude-code-marketplace",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.5"
+  "version": "1.0.0"
 }

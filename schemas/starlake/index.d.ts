@@ -10,11 +10,11 @@ export type StarlakeDataPipeline = StarlakeV1Base & {
 export type StarlakeV1Base = {
   types?: TypeV1[];
   dag?: DagGenerationConfigV1;
-  extract?: JDBCSchemasV1 | OpenAPIsV1;
+  extract?: JDBCSchemasV1 | OpenAPIsV1 | RestAPIsV1;
   load?: DomainV1;
   transform?: AutoJobDescV1;
   task?: AutoTaskDescV12;
-  env?: MapString7;
+  env?: MapString12;
   table?: TableV1;
   refs?: RefV1[];
   application?: AppConfigV1;
@@ -57,6 +57,13 @@ export type RetainOperationOfTypePOSTInOpenAPI = 'POST';
 export type KeepPropertiesOfTypeObjectOrArray = 'ALL';
 export type KeepPropertiesOfTypeObjectDonTDiveOnArrayType = 'OBJECT';
 export type KeepPropertiesOfTypeArrayIfEncountersAnObjectDiveDeeper = 'ARRAY';
+/**
+ * Defines REST API data extraction
+ */
+export type RestAPIsV1 = ExtractV1Base & {
+  restAPI: RestAPIV1;
+  [k: string]: unknown | undefined;
+};
 export type StarlakeV1Base1 = {
   [k: string]: unknown | undefined;
 };
@@ -540,6 +547,234 @@ export interface OpenAPIRouteObjectExplosionV1 {
   [k: string]: unknown | undefined;
 }
 /**
+ * Describe how to extract data from REST API endpoints
+ */
+export interface RestAPIV1 {
+  /**
+   * Base URL of the REST API (e.g. https://api.example.com/v2).
+   */
+  baseUrl: string | boolean | number | null;
+  auth?: RestAPIAuthV1;
+  headers?: MapString5;
+  rateLimit?: RestAPIRateLimitV1;
+  defaults?: RestAPIDefaultsV1;
+  /**
+   * List of API endpoints to extract data from.
+   *
+   * @minItems 1
+   */
+  endpoints: [RestAPIEndpointV1, ...RestAPIEndpointV1[]];
+  [k: string]: unknown | undefined;
+}
+/**
+ * Authentication configuration.
+ */
+export interface RestAPIAuthV1 {
+  /**
+   * Authentication type
+   */
+  type: 'bearer' | 'api_key' | 'basic' | 'oauth2_client_credentials';
+  /**
+   * Bearer token value. Supports {{ENV_VAR}} syntax.
+   */
+  token?: string | boolean | number | null;
+  /**
+   * API key value for api_key auth.
+   */
+  key?: string | boolean | number | null;
+  /**
+   * Header name for api_key auth. Defaults to X-API-Key.
+   */
+  header?: string | boolean | number | null;
+  /**
+   * Username for basic auth.
+   */
+  username?: string | boolean | number | null;
+  /**
+   * Password for basic auth.
+   */
+  password?: string | boolean | number | null;
+  /**
+   * Token endpoint URL for OAuth2 client credentials.
+   */
+  tokenUrl?: string | boolean | number | null;
+  /**
+   * Client ID for OAuth2.
+   */
+  clientId?: string | boolean | number | null;
+  /**
+   * Client secret for OAuth2.
+   */
+  clientSecret?: string | boolean | number | null;
+  /**
+   * OAuth2 scope (optional).
+   */
+  scope?: string | boolean | number | null;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Global HTTP headers applied to all requests.
+ */
+export interface MapString5 {
+  [k: string]: ConvertibleToString | undefined;
+}
+/**
+ * Rate limiting configuration.
+ */
+export interface RestAPIRateLimitV1 {
+  /**
+   * Maximum number of requests per second. Defaults to 10.
+   */
+  requestsPerSecond?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Default settings applied to all endpoints.
+ */
+export interface RestAPIDefaultsV1 {
+  pagination?: RestAPIPaginationV1;
+  headers?: MapString6;
+  queryParams?: MapString7;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Default pagination strategy for all endpoints.
+ */
+export interface RestAPIPaginationV1 {
+  /**
+   * Pagination strategy type
+   */
+  type: 'offset' | 'cursor' | 'link_header' | 'page_number';
+  /**
+   * Query parameter name for page size limit.
+   */
+  limitParam?: string | boolean | number | null;
+  /**
+   * Query parameter name for offset (offset pagination).
+   */
+  offsetParam?: string | boolean | number | null;
+  /**
+   * Query parameter name for cursor value (cursor pagination).
+   */
+  cursorParam?: string | boolean | number | null;
+  /**
+   * JSONPath to extract cursor from response (e.g. $.meta.next_cursor).
+   */
+  cursorPath?: string | boolean | number | null;
+  /**
+   * Query parameter name for page number (page_number pagination).
+   */
+  pageParam?: string | boolean | number | null;
+  /**
+   * Number of records per page. Defaults to 100.
+   */
+  pageSize?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Default headers applied to all endpoints.
+ */
+export interface MapString6 {
+  [k: string]: ConvertibleToString | undefined;
+}
+/**
+ * Default query parameters applied to all endpoints.
+ */
+export interface MapString7 {
+  [k: string]: ConvertibleToString | undefined;
+}
+/**
+ * REST API endpoint definition for data extraction
+ */
+export interface RestAPIEndpointV1 {
+  /**
+   * API endpoint path (e.g. /api/v2/customers).
+   */
+  path: string | boolean | number | number | null;
+  /**
+   * HTTP method. Defaults to GET.
+   */
+  method?: 'GET' | 'POST';
+  /**
+   * Table name override. If not set, derived from the last path segment.
+   */
+  as?: string | boolean | number | number | null;
+  /**
+   * Domain name to group this endpoint under. Defaults to 'default'.
+   */
+  domain?: string | boolean | number | number | null;
+  headers?: MapString8;
+  queryParams?: MapString9;
+  /**
+   * JSON request body for POST endpoints.
+   */
+  requestBody?: string | boolean | number | number | null;
+  pagination?: RestAPIPaginationV11;
+  /**
+   * JSONPath to the data array in the response (e.g. $.data or $.results).
+   */
+  responsePath?: string | boolean | number | number | null;
+  /**
+   * Field name used for incremental extraction. The max value is saved between runs.
+   */
+  incrementalField?: string | boolean | number | number | null;
+  /**
+   * Child endpoints that depend on parent records. Use {parent.fieldName} in path.
+   */
+  children?: RestAPIEndpointV1[];
+  /**
+   * List of regex patterns to exclude fields from extraction.
+   */
+  excludeFields?: ConvertibleToString | undefined[];
+  [k: string]: unknown | undefined;
+}
+/**
+ * Additional HTTP headers for this endpoint.
+ */
+export interface MapString8 {
+  [k: string]: ConvertibleToString | undefined;
+}
+/**
+ * Additional query parameters for this endpoint.
+ */
+export interface MapString9 {
+  [k: string]: ConvertibleToString | undefined;
+}
+/**
+ * Pagination strategy for this endpoint. Overrides defaults.
+ */
+export interface RestAPIPaginationV11 {
+  /**
+   * Pagination strategy type
+   */
+  type: 'offset' | 'cursor' | 'link_header' | 'page_number';
+  /**
+   * Query parameter name for page size limit.
+   */
+  limitParam?: string | boolean | number | null;
+  /**
+   * Query parameter name for offset (offset pagination).
+   */
+  offsetParam?: string | boolean | number | null;
+  /**
+   * Query parameter name for cursor value (cursor pagination).
+   */
+  cursorParam?: string | boolean | number | null;
+  /**
+   * JSONPath to extract cursor from response (e.g. $.meta.next_cursor).
+   */
+  cursorPath?: string | boolean | number | null;
+  /**
+   * Query parameter name for page number (page_number pagination).
+   */
+  pageParam?: string | boolean | number | null;
+  /**
+   * Number of records per page. Defaults to 100.
+   */
+  pageSize?: number;
+  [k: string]: unknown | undefined;
+}
+/**
  * A schema in JDBC database or a folder in HDFS or a dataset in BigQuery.
  */
 export interface DomainV1 {
@@ -633,7 +868,7 @@ export interface MetadataV1 {
    * To move a file without requiring an ack file to be present, set explicitly this property to the empty string value "".
    */
   ack?: string | boolean | number | null;
-  options?: MapString6;
+  options?: MapString11;
   /**
    * Loader to use, 'spark' or 'native'. Default to 'spark' of SL_LOADER env variable is set to 'native'
    */
@@ -715,19 +950,19 @@ export interface AllSinksV1 {
    * Optional path attribute if you want to save the file outside of the default location (datasets folder)
    */
   path?: string;
-  options?: MapString5;
+  options?: MapString10;
   [k: string]: unknown | undefined;
 }
 /**
  * Additional Spark writer options (e.g., compression, partitionOverwriteMode)
  */
-export interface MapString5 {
+export interface MapString10 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Options to add to the spark reader
  */
-export interface MapString6 {
+export interface MapString11 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
@@ -1378,7 +1613,7 @@ export interface AutoTaskDescV12 {
 /**
  * Map of string
  */
-export interface MapString7 {
+export interface MapString12 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
@@ -1522,7 +1757,7 @@ export interface MetadataV11 {
    * To move a file without requiring an ack file to be present, set explicitly this property to the empty string value "".
    */
   ack?: string | boolean | number | null;
-  options?: MapString6;
+  options?: MapString11;
   /**
    * Loader to use, 'spark' or 'native'. Default to 'spark' of SL_LOADER env variable is set to 'native'
    */
@@ -1713,7 +1948,7 @@ export interface AppConfigV1 {
    */
   scd2EndTimestamp?: string | boolean | number | null;
   area?: AreaV1;
-  hadoop?: MapString8;
+  hadoop?: MapString13;
   connections?: MapConnectionV1;
   jdbcEngines?: MapJdbcEngineV1;
   privacy?: PrivacyV1;
@@ -1746,7 +1981,7 @@ export interface AppConfigV1 {
    */
   maxParCopy?: number;
   kafka?: KafkaConfigV1;
-  dsvOptions?: MapString15;
+  dsvOptions?: MapString20;
   /**
    * reserved
    */
@@ -1795,7 +2030,7 @@ export interface AppConfigV1 {
    * Default connection to use when loading / transforming data
    */
   transformConnectionRef?: string | boolean | number | null;
-  schedulePresets?: MapString16;
+  schedulePresets?: MapString21;
   /**
    * How many job to run simultaneously in dev mode (experimental)
    */
@@ -2020,7 +2255,7 @@ export interface AllSinksV11 {
    * Optional path attribute if you want to save the file outside of the default location (datasets folder)
    */
   path?: string;
-  options?: MapString5;
+  options?: MapString10;
   [k: string]: unknown | undefined;
 }
 export interface LockV1 {
@@ -2079,7 +2314,7 @@ export interface AreaV1 {
 /**
  * Map of string
  */
-export interface MapString8 {
+export interface MapString13 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
@@ -2112,13 +2347,13 @@ export interface ConnectionV1 {
    * Catalog/schema separator character used in fully qualified table names. Default is '.'
    */
   separator?: string | boolean | number | null;
-  options?: MapString9;
+  options?: MapString14;
   [k: string]: unknown | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString9 {
+export interface MapString14 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
@@ -2198,13 +2433,13 @@ export interface TableDdlV1 {
  * Privacy algorithms
  */
 export interface PrivacyV1 {
-  options?: MapString10;
+  options?: MapString15;
   [k: string]: unknown | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString10 {
+export interface MapString15 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
@@ -2307,7 +2542,7 @@ export interface ExpectationsConfigV1 {
  * Kafka configuration for streaming ingestion and message processing
  */
 export interface KafkaConfigV1 {
-  serverOptions?: MapString11;
+  serverOptions?: MapString16;
   /**
    * Map of topic name to topic configuration
    */
@@ -2318,13 +2553,13 @@ export interface KafkaConfigV1 {
    * Offset management mode: 'STREAM' for Spark streaming checkpoints or 'FILE' for file-based offset tracking
    */
   cometOffsetsMode?: string | boolean | number | null;
-  customDeserializers?: MapString14;
+  customDeserializers?: MapString19;
   [k: string]: unknown | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString11 {
+export interface MapString16 {
   [k: string]: ConvertibleToString | undefined;
 }
 export interface KafkaTopicConfigV1 {
@@ -2348,44 +2583,44 @@ export interface KafkaTopicConfigV1 {
    * Replication factor for the Kafka topic when creating it
    */
   replicationFactor?: number;
-  createOptions?: MapString12;
-  accessOptions?: MapString13;
+  createOptions?: MapString17;
+  accessOptions?: MapString18;
   /**
    * HTTP headers to include when accessing Kafka via HTTP proxy
    */
   headers?: {
-    [k: string]: MapString7;
+    [k: string]: MapString12;
   };
   [k: string]: unknown | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString12 {
+export interface MapString17 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString13 {
+export interface MapString18 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString14 {
+export interface MapString19 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString15 {
+export interface MapString20 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Map of string
  */
-export interface MapString16 {
+export interface MapString21 {
   [k: string]: ConvertibleToString | undefined;
 }
 /**
