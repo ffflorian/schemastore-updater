@@ -5,7 +5,7 @@
     "date-fns": "4.1.0",
     "json-schema-to-typescript": "15.0.4",
     "semver": "7.7.4",
-    "typescript": "6.0.2"
+    "typescript": "6.0.3"
   },
   "description": "SchemaStore schema updater",
   "devDependencies": {
