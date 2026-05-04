@@ -143,12 +143,8 @@ function createPublishSummary(stats: PublishStats): string {
   ];
 
   if (stats.publishedPackages.length > 0) {
-    lines.push(
-      '',
-      `<details>`,
-      `<summary><h3>Published Packages (${stats.publishedPackages.length})</h3></summary>`,
-      ''
-    );
+    lines.push('', `<details>`);
+    lines.push(`<summary><h3>Published Packages (${stats.publishedPackages.length})</h3></summary>`, '');
     for (const packageLabel of stats.publishedPackages) {
       lines.push(`- \`${packageLabel}\``);
     }
@@ -156,7 +152,8 @@ function createPublishSummary(stats: PublishStats): string {
   }
 
   if (stats.failedPackages.length > 0) {
-    lines.push('', `<details>`, `<summary><h3>Failed Packages (${stats.failedPackages.length})</h3></summary>`, '');
+    lines.push('', `<details>`);
+    lines.push(`<summary><h3>Failed Packages (${stats.failedPackages.length})</h3></summary>`, '');
     for (const packageLabel of stats.failedPackages) {
       lines.push(`- \`${packageLabel}\``);
     }
