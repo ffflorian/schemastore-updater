@@ -304,7 +304,7 @@ function createUpdateSummary(stats: UpdateStats): string {
 
   if (stats.generatedSchemas.length > 0) {
     lines.push('', '<details>');
-    lines.push('', `<summary>### Updated Schemas (${stats.generatedSchemas.length})</summary>`, '');
+    lines.push('', `<summary><h3>Updated Schemas (${stats.generatedSchemas.length})</h3></summary>`, '');
     for (const schema of stats.generatedSchemas) {
       lines.push(`- \`${schema}\``);
     }
@@ -313,7 +313,7 @@ function createUpdateSummary(stats: UpdateStats): string {
 
   if (stats.failedSchemas.length > 0) {
     lines.push('', '<details>');
-    lines.push('', `<summary>### Failed Schemas (${stats.failedSchemas.length})</summary>`, '');
+    lines.push('', `<summary><h3>Failed Schemas (${stats.failedSchemas.length})</h3></summary>`, '');
     for (const schema of stats.failedSchemas) {
       lines.push(`- \`${schema}\``);
     }

@@ -143,17 +143,24 @@ function createPublishSummary(stats: PublishStats): string {
   ];
 
   if (stats.publishedPackages.length > 0) {
-    lines.push('', `### Published Packages (${stats.publishedPackages.length})`, '');
+    lines.push(
+      '',
+      `<details>`,
+      `<summary><h3>Published Packages (${stats.publishedPackages.length})</h3></summary>`,
+      ''
+    );
     for (const packageLabel of stats.publishedPackages) {
       lines.push(`- \`${packageLabel}\``);
     }
+    lines.push('', '</details>');
   }
 
   if (stats.failedPackages.length > 0) {
-    lines.push('', `### Failed Packages (${stats.failedPackages.length})`, '');
+    lines.push('', `<details>`, `<summary><h3>Failed Packages (${stats.failedPackages.length})</h3></summary>`, '');
     for (const packageLabel of stats.failedPackages) {
       lines.push(`- \`${packageLabel}\``);
     }
+    lines.push('', '</details>');
   }
 
   lines.push('');
