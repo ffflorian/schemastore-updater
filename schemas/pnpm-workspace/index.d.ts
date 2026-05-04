@@ -629,6 +629,38 @@ export interface PnpmWorkspaceSpecification {
    * When enabled, peer dependency suffixes use version-only identifiers (`name@version`) instead of full dep paths, eliminating nested suffixes like `(foo@1.0.0(bar@2.0.0))`. This dramatically reduces the number of package instances in projects with many recursive peer dependencies.
    */
   dedupePeers?: boolean;
+  /**
+   * The path to a file containing registry authentication tokens. By default, pnpm reads auth tokens from ~/.npmrc as a fallback for registry authentication. Use this setting to point to a different file instead.
+   */
+  npmrcAuthFile?: string;
+  /**
+   * When `true`, pnpm skips the `minimumReleaseAge` check for a package whose registry metadata does not include the time field (some private registries and mirrors omit it). Set to `false` to fail resolution in that case instead of installing the package.
+   */
+  minimumReleaseAgeIgnoreMissingTime?: boolean;
+  /**
+   * Configure registries for scoped packages in `pnpm-workspace.yaml`. The `default` key sets the main registry (equivalent to the `registry` `.npmrc` setting). Scoped keys configure registries for specific package scopes.
+   */
+  registries?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * When set to true, pnpm populates the virtual store without creating importer symlinks, hoisting, bin links, or running lifecycle scripts. This is useful for pre-populating a store (e.g., in Nix builds) without creating unnecessary project-level artifacts. pnpm fetch uses this mode internally.
+   */
+  virtualStoreOnly?: boolean;
+  /**
+   * Overrides the `onFail` behavior of both the `packageManager` field and `devEngines.packageManager` when the running pnpm version does not match the declared one.
+   */
+  pmOnFail?: 'download' | 'error' | 'warn' | 'ignore';
+  /**
+   * Overrides the `onFail` field of `devEngines.runtime` (and `engines.runtime`) in the root project's `package.json`. This is useful when you want a different local behavior than what is written in the manifest — for instance, forcing pnpm to download the declared runtime even when the manifest sets `onFail: "warn"`.
+   */
+  runtimeOnFail?: 'download' | 'error' | 'warn' | 'ignore';
+  /**
+   * Configure custom Node.js download mirrors in `pnpm-workspace.yaml`. The keys are release channels (`release`, `rc`, `nightly`, `v8-canary`, etc.) and the values are base URLs.
+   */
+  nodeDownloadMirrors?: {
+    [k: string]: string | undefined;
+  };
 }
 /**
  * Define dependency version ranges as reusable constants,
