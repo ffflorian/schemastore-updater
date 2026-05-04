@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/ffflorian/schemastore-updater/compare/v3.3.0...v3.4.0) (2026-05-04)
+
+
+### Features
+
+* Add summary tag to updater PRs ([863fa70](https://github.com/ffflorian/schemastore-updater/commit/863fa7065e0df1daec0f54d58e9b3769b9c3d326))
+
 # [3.3.0](https://github.com/ffflorian/schemastore-updater/compare/v3.2.0...v3.3.0) (2026-04-20)
 
 
