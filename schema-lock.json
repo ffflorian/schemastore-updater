@@ -4028,7 +4028,7 @@
     "revola.json": {
       "generatedFile": "schemas/revola/index.d.ts",
       "generatedSha256": "3ceabda577610d4ca218a5fa1d43d0b38cc089df0bc5670cdf9445ae84b7f41d",
-      "published": false,
+      "published": true,
       "sourceSha256": "c49b168e7a948557eb9d07f184cd6df707d4047eb40607adc91f6149ca171e3f",
       "updatedAt": "2026-05-04T06:04:01.109Z"
     },
@@ -4084,7 +4084,7 @@
     "ryl.json": {
       "generatedFile": "schemas/ryl/index.d.ts",
       "generatedSha256": "24eddc43d25d1327a4a17d15b44bc17719886a3a0051c8bbc1ae627c839b6f53",
-      "published": false,
+      "published": true,
       "sourceSha256": "189c5335ceac973e25ba6c83a950e8ebd32b6d9b193e68a232d7efdd14bf89e4",
       "updatedAt": "2026-05-04T06:04:01.737Z"
     },
@@ -5155,7 +5155,7 @@
     "yamlfmt.json": {
       "generatedFile": "schemas/yamlfmt/index.d.ts",
       "generatedSha256": "0f0a1ed11f074ac6c3441d8afe76e6ba6fd3c88f5190355f56741614a036c14a",
-      "published": false,
+      "published": true,
       "sourceSha256": "12af42ab0c875d2ceb7fbe4abe9a54664f18349c7c43e3a4538cb7e57870292c",
       "updatedAt": "2026-05-04T06:04:14.063Z"
     },
