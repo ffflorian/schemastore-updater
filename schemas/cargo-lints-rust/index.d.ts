@@ -101,6 +101,10 @@ export type ConfusableIdents = LintLevel | DetailedLint;
  */
 export type ConstEvaluatableUnchecked = LintLevel | DetailedLint;
 /**
+ * The `const_item_interior_mutations` lint checks for calls which mutates an interior mutable const-item.
+ */
+export type ConstItemInteriorMutations = LintLevel | DetailedLint;
+/**
  * The `const_item_mutation` lint detects attempts to mutate a `const` item.
  */
 export type ConstItemMutation = LintLevel | DetailedLint;
@@ -220,6 +224,10 @@ export type ForgettingCopyTypes = LintLevel | DetailedLint;
  * The `forgetting_references` lint checks for calls to `std::mem::forget` with a reference instead of an owned value.
  */
 export type ForgettingReferences = LintLevel | DetailedLint;
+/**
+ * The `function_casts_as_integer` lint detects cases where a function item is cast to an integer.
+ */
+export type FunctionCastsAsInteger = LintLevel | DetailedLint;
 /**
  * The `function_item_references` lint detects function references that are formatted with `fmt::Pointer` or transmuted.
  */
@@ -861,6 +869,10 @@ export type UnusedUnsafe = LintLevel | DetailedLint;
  */
 export type UnusedVariables = LintLevel | DetailedLint;
 /**
+ * The `unused_visibilities` lint detects visibility qualifiers (like `pub`) on a `const _` item.
+ */
+export type UnusedVisibilities = LintLevel | DetailedLint;
+/**
  * The `useless_deprecated` lint detects deprecation attributes with no effect.
  */
 export type UselessDeprecated = LintLevel | DetailedLint;
@@ -966,6 +978,7 @@ export interface RustCompilerLints {
   conflicting_repr_hints?: ConflictingReprHints;
   confusable_idents?: ConfusableIdents;
   const_evaluatable_unchecked?: ConstEvaluatableUnchecked;
+  const_item_interior_mutations?: ConstItemInteriorMutations;
   const_item_mutation?: ConstItemMutation;
   dangerous_implicit_autorefs?: DangerousImplicitAutorefs;
   dangling_pointers_from_temporaries?: DanglingPointersFromTemporaries;
@@ -997,6 +1010,7 @@ export interface RustCompilerLints {
   forbidden_lint_groups?: ForbiddenLintGroups;
   forgetting_copy_types?: ForgettingCopyTypes;
   forgetting_references?: ForgettingReferences;
+  function_casts_as_integer?: FunctionCastsAsInteger;
   function_item_references?: FunctionItemReferences;
   fuzzy_provenance_casts?: FuzzyProvenanceCasts;
   hidden_glob_reexports?: HiddenGlobReexports;
@@ -1159,6 +1173,7 @@ export interface RustCompilerLints {
   unused_results?: UnusedResults;
   unused_unsafe?: UnusedUnsafe;
   unused_variables?: UnusedVariables;
+  unused_visibilities?: UnusedVisibilities;
   useless_deprecated?: UselessDeprecated;
   useless_ptr_null_checks?: UselessPtrNullChecks;
   uses_power_alignment?: UsesPowerAlignment;

@@ -465,6 +465,8 @@ export interface HookDefinition {
         | 'pygrep'
         | 'script'
         | 'system'
+        | 'unsupported'
+        | 'unsupported_script'
       )
     | string;
   /**
@@ -582,6 +584,8 @@ export interface HookDefinition1 {
         | 'pygrep'
         | 'script'
         | 'system'
+        | 'unsupported'
+        | 'unsupported_script'
       )
     | string;
   /**

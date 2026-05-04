@@ -3,7 +3,7 @@
 /**
  * Auditwheel mode
  */
-export type AuditWheelMode = 'repair' | 'check' | 'skip';
+export type AuditWheelMode = 'repair' | 'check' | 'warn' | 'skip';
 /**
  * Decides how to handle manylinux and musllinux compliance
  */
@@ -13,11 +13,11 @@ export type PlatformTag =
         /**
          * GLIBC version major
          */
-        x: number;
+        major: number;
         /**
          * GLIBC version minor
          */
-        y: number;
+        minor: number;
         [k: string]: unknown | undefined;
       };
     }
@@ -26,15 +26,16 @@ export type PlatformTag =
         /**
          * musl libc version major
          */
-        x: number;
+        major: number;
         /**
          * musl libc version minor
          */
-        y: number;
+        minor: number;
         [k: string]: unknown | undefined;
       };
     }
-  | 'Linux';
+  | 'Linux'
+  | 'Pypi';
 /**
  * A glob pattern for the include and exclude configuration.
  *
@@ -48,17 +49,32 @@ export type GlobPattern =
       /**
        * One or more [Format] values
        */
-      format: Formats;
+      format: ('sdist' | 'wheel') | Format[];
       /**
        * A glob
        */
       path: string;
       [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * Optional crate name (defaults to the root crate)
+       */
+      crate_name?: string | null;
+      /**
+       * Source: must be "out-dir"
+       */
+      from: 'out-dir';
+      /**
+       * A glob pattern relative to OUT_DIR
+       */
+      path: string;
+      /**
+       * Target path in wheel (e.g. "my_package/")
+       */
+      to: string;
+      [k: string]: unknown | undefined;
     };
-/**
- * A single [Format] or multiple [Format] values for a [GlobPattern].
- */
-export type Formats = Format | Format[];
 /**
  * The target format for the include or exclude [GlobPattern].
  *
@@ -77,6 +93,8 @@ export type Format = 'sdist' | 'wheel';
  *   "some-feature",
  *   { feature = "pyo3/abi3-py311", python-version = ">=3.11" },
  *   { feature = "pyo3/abi3-py38", python-version = "<3.11" },
+ *   { feature = "pyo3/abi3-py311", python-version = ">=3.11", python-implementation = "cpython" },
+ *   { feature = "pypy-compat", python-implementation = "pypy" },
  * ]
  * ```
  */
@@ -88,15 +106,15 @@ export type FeatureSpec =
        */
       feature: string;
       /**
+       * Python implementation name, e.g. "cpython", "pypy", "graalpy"
+       */
+      'python-implementation'?: string | null;
+      /**
        * PEP 440 version specifier for the target Python version, e.g. ">=3.11"
        */
-      'python-version': string;
+      'python-version'?: string | null;
       [k: string]: unknown | undefined;
     };
-/**
- * Source distribution generator
- */
-export type SdistGenerator = 'cargo' | 'git';
 /**
  * Supported cargo crate types
  */
@@ -131,7 +149,12 @@ export interface ToolMaturin {
    */
   data?: string | null;
   /**
-   * Exclude files matching the given glob pattern(s)
+   * Same as `profile` but for "editable" builds
+   */
+  'editable-profile'?: string | null;
+  /**
+   * Exclude files matching the given glob pattern(s).
+   * Patterns are resolved relative to the directory containing `pyproject.toml`.
    */
   exclude?: GlobPattern[] | null;
   /**
@@ -145,9 +168,20 @@ export interface ToolMaturin {
    */
   frozen?: boolean | null;
   /**
-   * Include files matching the given glob pattern(s)
+   * CI generation configuration
+   */
+  'generate-ci'?: GenerateCIConfig | null;
+  /**
+   * Include files matching the given glob pattern(s).
+   * Patterns are resolved relative to the directory containing `pyproject.toml`.
+   * When `python-source` is configured, patterns are also tried relative to
+   * that directory if no matches are found.
    */
   include?: GlobPattern[] | null;
+  /**
+   * Include the import library (.dll.lib) in the wheel on Windows
+   */
+  'include-import-lib'?: boolean;
   /**
    * Require Cargo.lock is up to date
    */
@@ -181,9 +215,13 @@ export interface ToolMaturin {
    */
   'rustc-args'?: string[] | null;
   /**
+   * SBOM configuration
+   */
+  sbom?: SbomConfig | null;
+  /**
    * Source distribution generator
    */
-  'sdist-generator'?: SdistGenerator & string;
+  'sdist-generator'?: 'cargo' | 'git';
   /**
    * Skip audit wheel
    */
@@ -206,6 +244,177 @@ export interface ToolMaturin {
    * Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details
    */
   'unstable-flags'?: string[] | null;
+  /**
+   * Use base Python executable instead of venv Python executable in PEP 517 build.
+   */
+  'use-base-python'?: boolean;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The `[tool.maturin.generate-ci]` section
+ */
+export interface GenerateCIConfig {
+  /**
+   * GitHub Actions configuration
+   */
+  github?: GitHubCIConfig | null;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The `[tool.maturin.generate-ci.github]` section
+ */
+export interface GitHubCIConfig {
+  /**
+   * Android platform configuration
+   */
+  android?: PlatformCIConfig | null;
+  /**
+   * Extra arguments to pass to maturin (applies to all platforms)
+   */
+  args?: string | null;
+  /**
+   * Emscripten platform configuration
+   */
+  emscripten?: PlatformCIConfig | null;
+  /**
+   * Linux (manylinux) platform configuration
+   */
+  linux?: PlatformCIConfig | null;
+  /**
+   * macOS platform configuration
+   */
+  macos?: PlatformCIConfig | null;
+  /**
+   * Musllinux platform configuration
+   */
+  musllinux?: PlatformCIConfig | null;
+  /**
+   * Enable pytest
+   */
+  pytest?: boolean | null;
+  /**
+   * Skip artifact attestation
+   */
+  'skip-attestation'?: boolean | null;
+  /**
+   * Windows platform configuration
+   */
+  windows?: PlatformCIConfig | null;
+  /**
+   * Use zig for cross compilation
+   */
+  zig?: boolean | null;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Per-platform CI configuration
+ */
+export interface PlatformCIConfig {
+  /**
+   * Extra arguments to pass to maturin
+   */
+  args?: string | null;
+  /**
+   * Script to run before build on Linux
+   */
+  'before-script-linux'?: string | null;
+  /**
+   * Container image to use
+   */
+  container?: string | null;
+  /**
+   * Docker options
+   */
+  'docker-options'?: string | null;
+  /**
+   * Manylinux version (e.g. "auto", "2_28", "musllinux_1_2")
+   */
+  manylinux?: string | null;
+  /**
+   * Default runner for this platform
+   */
+  runner?: string | null;
+  /**
+   * Rust toolchain (e.g. "nightly", "stable")
+   */
+  'rust-toolchain'?: string | null;
+  /**
+   * Rustup components to install
+   */
+  'rustup-components'?: string | null;
+  /**
+   * Detailed per-target configuration (mutually exclusive with `targets`)
+   */
+  target?: TargetCIConfig[] | null;
+  /**
+   * Simple list of target architectures (mutually exclusive with `target`)
+   */
+  targets?: string[] | null;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Per-target CI configuration within a platform
+ */
+export interface TargetCIConfig {
+  /**
+   * Target architecture (e.g. "x86_64", "aarch64")
+   */
+  arch: string;
+  /**
+   * Extra arguments to pass to maturin
+   */
+  args?: string | null;
+  /**
+   * Before-script-linux override
+   */
+  'before-script-linux'?: string | null;
+  /**
+   * Container image override
+   */
+  container?: string | null;
+  /**
+   * Docker options override
+   */
+  'docker-options'?: string | null;
+  /**
+   * Manylinux version override
+   */
+  manylinux?: string | null;
+  /**
+   * Runner override for this target
+   */
+  runner?: string | null;
+  /**
+   * Rust toolchain override
+   */
+  'rust-toolchain'?: string | null;
+  /**
+   * Rustup components override
+   */
+  'rustup-components'?: string | null;
+  [k: string]: unknown | undefined;
+}
+/**
+ * SBOM configuration
+ */
+export interface SbomConfig {
+  /**
+   * Generate a CycloneDX SBOM for external shared libraries grafted during
+   * auditwheel repair. Defaults to `true` when repair copies libraries.
+   *
+   * The SBOM is written to `<dist-info>/sboms/auditwheel.cdx.json` and
+   * records which OS packages (deb, rpm, apk) provided the grafted
+   * libraries, following the same convention as Python's auditwheel.
+   */
+  auditwheel?: boolean | null;
+  /**
+   * Additional SBOM files to include in the `.dist-info/sboms` directory.
+   */
+  include?: string[] | null;
+  /**
+   * Generate an SBOM for Rust crates. Defaults to `true`.
+   */
+  rust?: boolean | null;
   [k: string]: unknown | undefined;
 }
 /**

@@ -2,9 +2,9 @@
 
 export interface JSONSchemaForSchemaStoreOrgCatalogFiles {
   /**
-   * Link to https://json.schemastore.org/schema-catalog.json
+   * Link to https://www.schemastore.org/schema-catalog.json
    */
-  $schema: 'https://json.schemastore.org/schema-catalog.json';
+  $schema: 'https://www.schemastore.org/schema-catalog.json' | 'https://json.schemastore.org/schema-catalog.json';
   /**
    * A list of JSON schema references.
    */
