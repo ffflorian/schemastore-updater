@@ -1368,7 +1368,7 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": false,
+      "published": true,
       "sourceSha256": "153c5e2ddc4547db6df13d435c4b7928409742f7c8667d43c422edf96eb49b11",
       "updatedAt": "2026-05-11T06:14:24.809Z"
     },
@@ -2313,7 +2313,7 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "070eba7b14d153be65e811b5999e874050e4f373b22b9005743306ebc0745fa5",
-      "published": false,
+      "published": true,
       "sourceSha256": "9447e4ebf40394cd53b74ccef5b0e3f6f7c071f26e79518a595bfedc42817b43",
       "updatedAt": "2026-05-11T06:14:33.908Z"
     },
@@ -3643,7 +3643,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "7d10bf7c778bf37a6735b525d4b8f67be8fad3c897f888c9568fae758191bbcf",
-      "published": false,
+      "published": true,
       "sourceSha256": "e70086fb50ad8747726e478c733b5a088c2b49c357ba7e81599cfcc5cd391dc4",
       "updatedAt": "2026-05-11T06:17:43.518Z"
     },
@@ -4679,7 +4679,7 @@
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
       "generatedSha256": "37c23b246997db6eed479b9f22539328e169ca7b8cf45d2acbab873debd0d8a6",
-      "published": false,
+      "published": true,
       "sourceSha256": "591892776678ee1646088bce4ea6a5ccbe93f0814dc6208dfaf92c9600cb5be3",
       "updatedAt": "2026-05-11T06:17:51.400Z"
     },
@@ -5162,7 +5162,7 @@
     "youtrack-app.json": {
       "generatedFile": "schemas/youtrack-app/index.d.ts",
       "generatedSha256": "c66136b4ad6c4ad39ddb19131ea10420919fb91bb8cf9518a8fb4dfa33c81030",
-      "published": false,
+      "published": true,
       "sourceSha256": "b2901e8f3c310d719d937553209d47bf44357923e1ccb33dc846586c4340b44b",
       "updatedAt": "2026-05-11T06:17:56.973Z"
     },
