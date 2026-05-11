@@ -416,7 +416,7 @@ export interface EnvRunBase {
   /**
    * python dependencies with optional version specifiers, as specified by PEP-440
    */
-  deps?: string;
+  deps?: string | Subs[];
   /**
    * dependency groups to install of the target package
    */
@@ -703,7 +703,7 @@ export interface EnvRunBase1 {
   /**
    * python dependencies with optional version specifiers, as specified by PEP-440
    */
-  deps?: string;
+  deps?: string | Subs[];
   /**
    * dependency groups to install of the target package
    */

@@ -374,6 +374,7 @@ export interface CompilerOptionsDefinition {
           | 'es2022'
           | 'es2023'
           | 'es2024'
+          | 'es2025'
           | 'esnext'
         )
       | {
@@ -396,6 +397,7 @@ export interface CompilerOptionsDefinition {
                 | 'es2022'
                 | 'es2023'
                 | 'es2024'
+                | 'es2025'
                 | 'esnext'
               )
             | {
@@ -418,6 +420,7 @@ export interface CompilerOptionsDefinition {
                 | 'es2022'
                 | 'es2023'
                 | 'es2024'
+                | 'es2025'
                 | 'esnext'
               )
             | {
