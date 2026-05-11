@@ -9,71 +9,25 @@ This PR was created by the scheduled workflow after running:
 ## Schema Update Summary
 
 - **Total:** 828
-- **Generated:** 51
-- **Skipped:** 670
+- **Generated:** 5
+- **Skipped:** 716
 - **Failed:** 107
 
 <details>
 
-<summary>### Updated Schemas (51)</summary>
+<summary><h3>Updated Schemas (5)</h3></summary>
 
-- `anywork-ac-1.0`
-- `azure-iot-edge-deployment-template-1.0`
-- `azure-iot-edge-deployment-template-2.0`
-- `azure-iot-edge-deployment-template-3.0`
-- `azure-iot-edge-deployment-template-4.0`
-- `cargo-lints-rust`
-- `cibuildwheel`
-- `cinnamon-spice.info`
-- `clang-format`
-- `clangd`
-- `claude-code-settings`
-- `compilerconfig`
-- `drone`
-- `eslintrc`
-- `foundryvtt-module-manifest`
-- `foundryvtt-system-manifest`
-- `foundryvtt-world-manifest`
-- `gematik-test-hcpis`
-- `gematik-test-hcps`
-- `hammerkit`
-- `jekyll`
+- `dependabot-2.0`
 - `jsconfig`
-- `lsdlschema`
-- `maturin`
-- `minecraft-advancement`
-- `minecraft-pack-mcmeta`
-- `minecraft-texture-mcmeta`
-- `mta`
-- `mtaext`
-- `package`
-- `pnpm-workspace`
-- `poetry`
-- `pre-commit-config`
-- `prisma`
-- `rancher-fleet-0.5`
-- `rancher-fleet-0.8`
-- `rc3-collection-0.0.3`
-- `rc3-folder-0.0.3`
-- `rc3-request-0.0.3`
-- `revola`
-- `ryl`
-- `sarif-external-property-file-2.1.0-rtm.0`
-- `schema-catalog`
-- `scikit-build`
-- `setuptools`
-- `tsconfig`
-- `tunnelhub`
-- `vs-2017.3.host`
-- `web-manifest-app-info`
-- `web-manifest-combined`
-- `yamlfmt`
+- `prek`
+- `tox`
+- `youtrack-app`
 
 </details>
 
 <details>
 
-<summary>### Failed Schemas (107)</summary>
+<summary><h3>Failed Schemas (107)</h3></summary>
 
 - `accelerator`
 - `app-config`

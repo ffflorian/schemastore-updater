@@ -57,6 +57,7 @@ export type HookType =
  * The configuration file for prek, a git hook manager written in Rust.
  */
 export interface PrekToml {
+  auto_update?: AutoUpdateOptions;
   repos: Repo[];
   /**
    * A list of `--hook-types` which will be used by default when running `prek install`.
@@ -131,6 +132,13 @@ export interface PrekToml {
    * any parent projects that contain them.
    */
   orphan?: boolean;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Default settings for `prek auto-update` in this project.
+ */
+export interface AutoUpdateOptions {
+  cooldown_days?: number;
   [k: string]: unknown | undefined;
 }
 export interface RemoteRepo {
