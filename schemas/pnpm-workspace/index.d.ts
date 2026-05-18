@@ -596,6 +596,11 @@ export interface PnpmWorkspaceSpecification {
    */
   minimumReleaseAgeExclude?: string[];
   /**
+   * Controls how pnpm behaves when no version of a dependency satisfies the minimumReleaseAge constraint within the requested range.
+   * https://pnpm.io/settings#minimumreleaseagestrict
+   */
+  minimumReleaseAgeStrict?: boolean;
+  /**
    * Bypass staleness checks for cached data. Missing data will still be requested from the server.
    */
   preferOffline?: boolean;

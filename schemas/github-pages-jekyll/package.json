@@ -1,13 +1,13 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for partial-pytest.",
+  "description": "TypeScript definitions for github-pages-jekyll.",
   "license": "GPL-3.0",
-  "name": "@schemastore/partial-pytest",
+  "name": "@schemastore/github-pages-jekyll",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.3"
+  "version": "1.0.0"
 }

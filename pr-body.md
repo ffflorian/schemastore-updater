@@ -8,20 +8,30 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 828
-- **Generated:** 5
-- **Skipped:** 716
+- **Total:** 835
+- **Generated:** 15
+- **Skipped:** 713
 - **Failed:** 107
 
 <details>
 
-<summary><h3>Updated Schemas (5)</h3></summary>
+<summary><h3>Updated Schemas (15)</h3></summary>
 
+- `abc-clinical-demand-forecast-2.0.0`
+- `abc-clinical-demand-forecast-3.0.0`
+- `abc-clinical-demand-forecast-4.0.0`
+- `abc-supply-plan-13.0.0`
+- `bunfig`
+- `codex-hooks`
 - `dependabot-2.0`
-- `jsconfig`
-- `prek`
+- `github-pages-jekyll`
+- `partial-pytest`
+- `partial-scheduled`
+- `partial-tox`
+- `pnpm-workspace`
+- `ruff`
 - `tox`
-- `youtrack-app`
+- `uv`
 
 </details>
 
@@ -90,8 +100,8 @@ This PR was created by the scheduled workflow after running:
 - `metaschema-draft-07-unofficial-strict`
 - `one-service-descriptor-schema-0.1`
 - `openapi-3.x`
+- `package`
 - `partial-pdm`
-- `partial-tox`
 - `pep-723`
 - `petstore-v1.0`
 - `phrase`

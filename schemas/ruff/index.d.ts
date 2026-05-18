@@ -17,6 +17,10 @@ export type RuleSelector =
   | 'AIR001'
   | 'AIR002'
   | 'AIR003'
+  | 'AIR004'
+  | 'AIR2'
+  | 'AIR20'
+  | 'AIR201'
   | 'AIR3'
   | 'AIR30'
   | 'AIR301'
@@ -1328,6 +1332,7 @@ export type RuleSelector =
   | 'TID252'
   | 'TID253'
   | 'TID254'
+  | 'TID255'
   | 'TRY'
   | 'TRY0'
   | 'TRY00'
@@ -1465,7 +1470,7 @@ export type NameImports = string;
 /**
  * The length of a line of text that is considered too long.
  *
- * The allowed range of values is 1..=320
+ * The allowed range of values is 1..=65535
  */
 export type LineLength = number;
 export type Convention = 'google' | 'numpy' | 'pep257';
@@ -1862,7 +1867,7 @@ export interface Options {
    * The length is determined by the number of characters per line, except for lines containing East Asian characters or emojis.
    * For these lines, the [unicode width](https://unicode.org/reports/tr11/) of each character is added up to determine the length.
    *
-   * The value must be greater than `0` and less than or equal to `320`.
+   * The value must be greater than `0`.
    *
    * Note: While the formatter will attempt to format lines such that they remain
    * within the `line-length`, it isn't a hard upper bound, and formatted lines may
