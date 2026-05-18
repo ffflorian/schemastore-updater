@@ -10,21 +10,21 @@
     "abc-clinical-demand-forecast-2.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-2.0.0/index.d.ts",
       "generatedSha256": "725b90c03b7d9d14cdf85a2c1f2298e3e135fabea1fb4aab402ecc5d4210e1cc",
-      "published": false,
+      "published": true,
       "sourceSha256": "5505016e7daee3d4bb7fcb02ff9a0ca03de43c45192ebc0dd371c02c16daddd0",
       "updatedAt": "2026-05-18T06:24:19.691Z"
     },
     "abc-clinical-demand-forecast-3.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-3.0.0/index.d.ts",
       "generatedSha256": "c06fc4cbb2c7268ad09b569716c3a2def08ce8d3b47db135f230011297ea1dd8",
-      "published": false,
+      "published": true,
       "sourceSha256": "4d4f658476f6b0a2d6c318a5bdd565bb540094f6038d80c31d97a6ced4a51318",
       "updatedAt": "2026-05-18T06:24:20.081Z"
     },
     "abc-clinical-demand-forecast-4.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-4.0.0/index.d.ts",
       "generatedSha256": "375baad14646c2b24bd2a8dc39b6f21fa9c1f166289e47d9452afd5b8173dde6",
-      "published": false,
+      "published": true,
       "sourceSha256": "9b729deb0695df362e046a33de30b80ae36b6399365ab6a3fbc3ec4d3fb95409",
       "updatedAt": "2026-05-18T06:24:20.389Z"
     },
@@ -136,7 +136,7 @@
     "abc-supply-plan-13.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-13.0.0/index.d.ts",
       "generatedSha256": "7eb314842624670128aa17b2381259678d8b79255ddbe1d50ae4a3565bb814aa",
-      "published": false,
+      "published": true,
       "sourceSha256": "652d8c40e2eb3eebd33049e1aaa6ee82dc4c24d8404b91e4a79baed100017656",
       "updatedAt": "2026-05-18T06:24:20.623Z"
     },
@@ -1221,7 +1221,7 @@
     "codex-hooks.json": {
       "generatedFile": "schemas/codex-hooks/index.d.ts",
       "generatedSha256": "6f2a0a9bccc4e9b7a000ee33285d6088117009b4696509cf2844bb2ca3ec08a4",
-      "published": false,
+      "published": true,
       "sourceSha256": "2f5e32a5c058819a90d1063e1a7e3bb940fcbc21f0df2078b8e8a0caefa16cb4",
       "updatedAt": "2026-05-18T06:24:22.522Z"
     },
@@ -2047,7 +2047,7 @@
     "github-pages-jekyll.json": {
       "generatedFile": "schemas/github-pages-jekyll/index.d.ts",
       "generatedSha256": "ed8ac11a1ef53aa723cd0c262c2da4c45d45d3f14b5af29f863feca1de5a27ee",
-      "published": false,
+      "published": true,
       "sourceSha256": "896d9f7be3f44ffa92ccb42f50234f23e5a2376a850ac5baeb8bef0429818a64",
       "updatedAt": "2026-05-18T06:24:23.669Z"
     },
@@ -3517,7 +3517,7 @@
     "partial-scheduled.json": {
       "generatedFile": "schemas/partial-scheduled/index.d.ts",
       "generatedSha256": "18f63cb277a2e0f0a24cb24ea5f5e54662e6b66573e7d0a02c77f16432c21066",
-      "published": false,
+      "published": true,
       "sourceSha256": "65551f1f43e92f1e686ff7997d7ac4db6785db046c294e9919a578431df10d10",
       "updatedAt": "2026-05-18T06:27:44.570Z"
     },
@@ -3552,7 +3552,7 @@
     "partial-tox.json": {
       "generatedFile": "schemas/partial-tox/index.d.ts",
       "generatedSha256": "977acf90223d7fcf23217fb37de343b44e60d9537c247771898ccf67e2a718fe",
-      "published": false,
+      "published": true,
       "sourceSha256": "cda5988fd8519da4e3710598d7c4c9e51215207374eed1cdd30900148d67ec6d",
       "updatedAt": "2026-05-18T06:27:44.975Z"
     },
