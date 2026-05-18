@@ -11,7 +11,7 @@ updates:
     ignore:
       - dependency-name: '@types/node'
         versions:
-          - '> 24.x'
+          - '> 26'
     cooldown:
       default-days: 5
       exclude:
