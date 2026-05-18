@@ -12,7 +12,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: ffflorian/actions/git-mirror@e572b82b99ef6e385a524011ab2ff665bc837a10
+      - uses: ffflorian/actions/git-mirror@12699773e34f53c9703737c98f53c2b923a6bfe8
         with:
           GITLAB_REMOTE: 'git@gitlab.com:ffflorian/schemastore-updater.git'
           GITLAB_SECRET: ${{ secrets.GITLAB_SECRET }}
