@@ -1,33 +1,31 @@
 /* eslint-disable */
 
-export type EnvListItem =
-  | Subs
+/**
+ * Schema for the [tool.tox] section in pyproject.toml
+ */
+export type ToxConfigurationInPyprojectToml = ToxConfiguration;
+/**
+ * Deprecated: use 'env_list' instead
+ */
+export type EnvList = (
+  | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
   | {
       /**
        * factor groups for cartesian product expansion
        */
-      product: ProductFactorGroup[];
+      product: (string[] | FactorRangeDict | FactorLabeledDict)[];
       /**
        * environment names to exclude from product
        */
       exclude?: string[];
     }
   | FactorRangeDict
-  | FactorLabeledDict;
-export type Subs = string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf;
-export type ProductFactorGroup = string[] | FactorRangeDict | FactorLabeledDict;
-/**
- * Deprecated: use 'env_list' instead
- */
-export type EnvList = EnvListItem[];
+  | FactorLabeledDict
+)[];
 /**
  * Deprecated: use 'pass_env' instead
  */
-export type PassEnv = Subs[];
-/**
- * any of the table-form replacements; usable wherever a list item can be a replacement
- */
-export type ReplaceObject = ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf;
+export type PassEnv = (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
 
 /**
  * tox configuration file (tox.toml or [tool.tox] in pyproject.toml)
@@ -58,12 +56,26 @@ export interface ToxConfiguration {
   /**
    * define environments to automatically run
    */
-  env_list?: EnvListItem[];
+  env_list?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+    | {
+        /**
+         * factor groups for cartesian product expansion
+         */
+        product: (string[] | FactorRangeDict | FactorLabeledDict)[];
+        /**
+         * environment names to exclude from product
+         */
+        exclude?: string[];
+      }
+    | FactorRangeDict
+    | FactorLabeledDict
+  )[];
   envlist?: EnvList;
   /**
    * inherit missing keys from these sections
    */
-  base?: Subs[];
+  base?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * Define the minimal tox version required to run
    */
@@ -80,12 +92,28 @@ export interface ToxConfiguration {
   /**
    * Name of the virtual environment used to provision a tox.
    */
-  requires?: Subs[];
+  requires?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * core labels
    */
   labels?: {
-    [k: string]: EnvListItem[] | undefined;
+    [k: string]:
+      | (
+          | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+          | {
+              /**
+               * factor groups for cartesian product expansion
+               */
+              product: (string[] | FactorRangeDict | FactorLabeledDict)[];
+              /**
+               * environment names to exclude from product
+               */
+              exclude?: string[];
+            }
+          | FactorRangeDict
+          | FactorLabeledDict
+        )[]
+      | undefined;
   };
   /**
    * do not raise error if the environment name conflicts with base python
@@ -147,7 +175,7 @@ export interface ToxConfiguration {
 export interface ReplaceEnv {
   replace: 'env';
   name: string;
-  default?: string | Subs[];
+  default?: string | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   extend?: boolean;
   marker?: string;
 }
@@ -159,7 +187,7 @@ export interface ReplaceRef {
   of?: string[];
   env?: string;
   key?: string;
-  default?: string | Subs[];
+  default?: string | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   extend?: boolean;
   marker?: string;
 }
@@ -168,7 +196,7 @@ export interface ReplaceRef {
  */
 export interface ReplacePosargs {
   replace: 'posargs';
-  default?: Subs[];
+  default?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   extend?: boolean;
   marker?: string;
 }
@@ -178,7 +206,7 @@ export interface ReplacePosargs {
 export interface ReplaceGlob {
   replace: 'glob';
   pattern: string;
-  default?: string | Subs[];
+  default?: string | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   extend?: boolean;
   marker?: string;
 }
@@ -218,13 +246,13 @@ export interface EnvRunBase {
    * environment variables to set when running commands in the tox environment
    */
   set_env?: {
-    [k: string]: Subs;
+    [k: string]: string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf;
   };
   setenv?: SetEnv;
   /**
    * inherit missing keys from these sections
    */
-  base?: Subs[];
+  base?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * the tox execute used to evaluate this environment
    */
@@ -236,11 +264,25 @@ export interface EnvRunBase {
   /**
    * tox environments that this environment depends on (must be run after those)
    */
-  depends?: EnvListItem[];
+  depends?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+    | {
+        /**
+         * factor groups for cartesian product expansion
+         */
+        product: (string[] | FactorRangeDict | FactorLabeledDict)[];
+        /**
+         * environment names to exclude from product
+         */
+        exclude?: string[];
+      }
+    | FactorRangeDict
+    | FactorLabeledDict
+  )[];
   /**
    * labels attached to the tox environment
    */
-  labels?: Subs[];
+  labels?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * directory assigned to the tox environment
    */
@@ -287,12 +329,12 @@ export interface EnvRunBase {
   /**
    * environment variables to pass on to the tox environment
    */
-  pass_env?: Subs[];
+  pass_env?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   passenv?: PassEnv;
   /**
    * environment variable patterns to exclude after pass_env glob expansion
    */
-  disallow_pass_env?: Subs[];
+  disallow_pass_env?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * if set to True the content of the output will always be shown  when running in parallel mode
    */
@@ -304,11 +346,11 @@ export interface EnvRunBase {
   /**
    * external command glob to allow calling
    */
-  allowlist_externals?: Subs[];
+  allowlist_externals?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * command used to list installed packages
    */
-  list_dependencies_command?: Subs[];
+  list_dependencies_command?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * install the latest available pre-release (alpha/beta/rc) of dependencies without a specified version
    */
@@ -316,7 +358,7 @@ export interface EnvRunBase {
   /**
    * command used to install packages
    */
-  install_command?: Subs[];
+  install_command?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * constraints to apply to installed python dependencies
    */
@@ -332,15 +374,24 @@ export interface EnvRunBase {
   /**
    * the commands to be called before testing
    */
-  commands_pre?: (Subs[] | ReplaceObject)[];
+  commands_pre?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * the commands to be called for testing
    */
-  commands?: (Subs[] | ReplaceObject)[];
+  commands?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * the commands to be called after testing
    */
-  commands_post?: (Subs[] | ReplaceObject)[];
+  commands_post?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * run commands_post even after interrupt (SIGINT), allow second interrupt to cancel
    */
@@ -348,7 +399,10 @@ export interface EnvRunBase {
   /**
    * commands to run before the environment is removed during recreation (e.g. cache cleanup)
    */
-  recreate_commands?: (Subs[] | ReplaceObject)[];
+  recreate_commands?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * change to this working directory when executing the test command
    */
@@ -381,32 +435,32 @@ export interface EnvRunBase {
   /**
    * fallback python interpreter used when no factor or explicit base_python is defined
    */
-  default_base_python?: Subs[] | string;
+  default_base_python?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * file(s) containing the Python version to use (e.g. .python-version), first one found wins; used when base_python is not explicitly set and the env name has no Python factor
    */
-  base_python_file?: Subs[] | string;
+  base_python_file?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * environment identifier for python, first one found wins
    */
-  base_python?: Subs[] | string;
+  base_python?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * @deprecated
    * Deprecated: use 'base_python' instead
    */
-  basepython?: Subs[] | string;
+  basepython?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * python dependencies with optional version specifiers, as specified by PEP-440
    */
-  deps?: string | Subs[];
+  deps?: string | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * dependency groups to install of the target package
    */
-  dependency_groups?: Subs[];
+  dependency_groups?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * extras to install of the target package
    */
-  extras?: Subs[];
+  extras?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * PEP 751 pylock.toml lock file path to install locked dependencies from
    */
@@ -414,7 +468,10 @@ export interface EnvRunBase {
   /**
    * commands to execute after setup (deps and package install) but before test commands
    */
-  extra_setup_commands?: (Subs[] | ReplaceObject)[];
+  extra_setup_commands?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * override core skip_missing_interpreters for this environment
    */
@@ -473,7 +530,7 @@ export interface EnvRunBase {
  * Deprecated: use 'set_env' instead
  */
 export interface SetEnv {
-  [k: string]: Subs;
+  [k: string]: string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf;
 }
 /**
  * base configuration for packaging environments
@@ -483,13 +540,13 @@ export interface EnvRunBase1 {
    * environment variables to set when running commands in the tox environment
    */
   set_env?: {
-    [k: string]: Subs;
+    [k: string]: string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf;
   };
   setenv?: SetEnv;
   /**
    * inherit missing keys from these sections
    */
-  base?: Subs[];
+  base?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * the tox execute used to evaluate this environment
    */
@@ -501,11 +558,25 @@ export interface EnvRunBase1 {
   /**
    * tox environments that this environment depends on (must be run after those)
    */
-  depends?: EnvListItem[];
+  depends?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+    | {
+        /**
+         * factor groups for cartesian product expansion
+         */
+        product: (string[] | FactorRangeDict | FactorLabeledDict)[];
+        /**
+         * environment names to exclude from product
+         */
+        exclude?: string[];
+      }
+    | FactorRangeDict
+    | FactorLabeledDict
+  )[];
   /**
    * labels attached to the tox environment
    */
-  labels?: Subs[];
+  labels?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * directory assigned to the tox environment
    */
@@ -552,12 +623,12 @@ export interface EnvRunBase1 {
   /**
    * environment variables to pass on to the tox environment
    */
-  pass_env?: Subs[];
+  pass_env?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   passenv?: PassEnv;
   /**
    * environment variable patterns to exclude after pass_env glob expansion
    */
-  disallow_pass_env?: Subs[];
+  disallow_pass_env?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * if set to True the content of the output will always be shown  when running in parallel mode
    */
@@ -569,11 +640,11 @@ export interface EnvRunBase1 {
   /**
    * external command glob to allow calling
    */
-  allowlist_externals?: Subs[];
+  allowlist_externals?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * command used to list installed packages
    */
-  list_dependencies_command?: Subs[];
+  list_dependencies_command?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * install the latest available pre-release (alpha/beta/rc) of dependencies without a specified version
    */
@@ -581,7 +652,7 @@ export interface EnvRunBase1 {
   /**
    * command used to install packages
    */
-  install_command?: Subs[];
+  install_command?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * constraints to apply to installed python dependencies
    */
@@ -597,15 +668,24 @@ export interface EnvRunBase1 {
   /**
    * the commands to be called before testing
    */
-  commands_pre?: (Subs[] | ReplaceObject)[];
+  commands_pre?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * the commands to be called for testing
    */
-  commands?: (Subs[] | ReplaceObject)[];
+  commands?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * the commands to be called after testing
    */
-  commands_post?: (Subs[] | ReplaceObject)[];
+  commands_post?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * run commands_post even after interrupt (SIGINT), allow second interrupt to cancel
    */
@@ -613,7 +693,10 @@ export interface EnvRunBase1 {
   /**
    * commands to run before the environment is removed during recreation (e.g. cache cleanup)
    */
-  recreate_commands?: (Subs[] | ReplaceObject)[];
+  recreate_commands?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * change to this working directory when executing the test command
    */
@@ -646,32 +729,32 @@ export interface EnvRunBase1 {
   /**
    * fallback python interpreter used when no factor or explicit base_python is defined
    */
-  default_base_python?: Subs[] | string;
+  default_base_python?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * file(s) containing the Python version to use (e.g. .python-version), first one found wins; used when base_python is not explicitly set and the env name has no Python factor
    */
-  base_python_file?: Subs[] | string;
+  base_python_file?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * environment identifier for python, first one found wins
    */
-  base_python?: Subs[] | string;
+  base_python?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * @deprecated
    * Deprecated: use 'base_python' instead
    */
-  basepython?: Subs[] | string;
+  basepython?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
   /**
    * python dependencies with optional version specifiers, as specified by PEP-440
    */
-  deps?: string | Subs[];
+  deps?: string | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * dependency groups to install of the target package
    */
-  dependency_groups?: Subs[];
+  dependency_groups?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * extras to install of the target package
    */
-  extras?: Subs[];
+  extras?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
   /**
    * PEP 751 pylock.toml lock file path to install locked dependencies from
    */
@@ -679,7 +762,10 @@ export interface EnvRunBase1 {
   /**
    * commands to execute after setup (deps and package install) but before test commands
    */
-  extra_setup_commands?: (Subs[] | ReplaceObject)[];
+  extra_setup_commands?: (
+    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
+    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
+  )[];
   /**
    * override core skip_missing_interpreters for this environment
    */

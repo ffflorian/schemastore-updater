@@ -100,6 +100,17 @@ export interface BunConfiguration {
     depth?: number;
   };
   /**
+   * Options for `Bun.serve` and `bun run` when serving HTTP.
+   * https://bun.com/docs/runtime/bunfig#serve
+   */
+  serve?: {
+    /**
+     * The default port for `Bun.serve` to listen on. Default `3000`. Can also be set via the `BUN_PORT` or `PORT` environment variables, or the `--port` flag.
+     * https://bun.com/docs/runtime/bunfig#serve-port
+     */
+    port?: number;
+  };
+  /**
    * Test runner
    * https://bun.sh/docs/runtime/bunfig#test-runner
    */
@@ -148,6 +159,11 @@ export interface BunConfiguration {
      * https://bun.sh/docs/runtime/bunfig#test-coverageskiptestfiles
      */
     coverageSkipTestFiles?: boolean;
+    /**
+     * Whether to report coverage against transpiled output instead of remapping line numbers through sourcemaps back to the original source. Default `false`. Primarily useful for debugging.
+     * https://bun.com/docs/runtime/bunfig#test-coverageignoresourcemaps
+     */
+    coverageIgnoreSourcemaps?: boolean;
     /**
      * By default, coverage reports will be printed to the console. For persistent code coverage reports in CI environments and for other tools use `lcov`
      * https://bun.sh/docs/runtime/bunfig#test-coveragereporter
@@ -245,6 +261,18 @@ export interface BunConfiguration {
      */
     exact?: boolean;
     /**
+     * Whether to skip lifecycle scripts during install. Default `false`. Equivalent to the `--ignore-scripts` flag.
+     *
+     * When `true`, Bun will not run any `preinstall` / `install` / `postinstall` / `prepare` scripts — both for your project and for packages in `trustedDependencies`.
+     * https://bun.com/docs/runtime/bunfig#install-ignorescripts
+     */
+    ignoreScripts?: boolean;
+    /**
+     * The maximum number of concurrent lifecycle scripts to run at once. Defaults to two times the number of CPU cores. Equivalent to the `--concurrent-scripts` flag.
+     * https://bun.com/docs/runtime/bunfig#install-concurrentscripts
+     */
+    concurrentScripts?: number;
+    /**
      * If false, generate a binary `bun.lockb` instead of a text-based `bun.lock` file when running `bun install` and no lockfile is present
      * Default `true` (since Bun v1.2)
      * https://bun.sh/docs/runtime/bunfig#install-savetextlockfile
@@ -255,6 +283,15 @@ export interface BunConfiguration {
      * https://bun.sh/docs/runtime/bunfig#install-auto
      */
     auto?: 'auto' | 'force' | 'disable' | 'fallback';
+    /**
+     * Configure how Bun resolves package versions against the npm registry when running scripts. Default `"online"`.
+     *
+     * - `"online"` — Check the registry for stale packages as needed.
+     * - `"offline"` — Skip staleness checks and resolve packages from the local cache. Equivalent to `--prefer-offline`.
+     * - `"latest"` — Always check npm for the latest matching versions. Equivalent to `--prefer-latest`.
+     * https://bun.com/docs/runtime/bunfig#install-prefer
+     */
+    prefer?: 'online' | 'offline' | 'latest';
     /**
      * When true, `bun install` will not update `bun.lock`. Default `false`. If `package.json` and the existing `bun.lock` are not in agreement, this will error
      * https://bun.sh/docs/runtime/bunfig#install-frozenlockfile
@@ -360,6 +397,26 @@ export interface BunConfiguration {
      */
     linker?: 'hoisted' | 'isolated';
     /**
+     * When using the `"isolated"` linker, share package installations across projects in a global virtual store at `<cache>/links/` and link `node_modules/.bun/<pkg>@<ver>` into it instead of materializing each package into the project. Default `false`. Can also be set with the `BUN_INSTALL_GLOBAL_STORE` environment variable.
+     * https://bun.com/docs/runtime/bunfig#install-globalstore
+     */
+    globalStore?: boolean;
+    /**
+     * When using the `"isolated"` linker, packages matching these glob patterns are hoisted to the root `node_modules` directory so they can be resolved by any package in the project. Default `[]`. Similar to pnpm's `public-hoist-pattern`.
+     * https://bun.com/docs/runtime/bunfig#install-publichoistpattern
+     */
+    publicHoistPattern?: string[];
+    /**
+     * When using the `"isolated"` linker, packages matching these glob patterns are hoisted to the virtual store root (`node_modules/.bun`) so they can be resolved by other packages in the virtual store. Default `[]`. Similar to pnpm's `hoist-pattern`.
+     * https://bun.com/docs/runtime/bunfig#install-hoistpattern
+     */
+    hoistPattern?: string[];
+    /**
+     * Set the log level for `bun install`. This can be one of `"debug"`, `"warn"`, or `"error"`.
+     * https://bun.com/docs/runtime/bunfig#install-loglevel
+     */
+    logLevel?: 'debug' | 'warn' | 'error';
+    /**
      * Security configuration for package installation
      * https://bun.sh/docs/runtime/bunfig#install-security-scanner
      */
@@ -407,6 +464,18 @@ export interface BunConfiguration {
      * https://bun.sh/docs/runtime/bunfig#run-silent-suppress-reporting-the-command-being-run
      */
     silent?: boolean;
+    /**
+     * The number of lines of script output shown per script when using `--filter`. Default `10`. Set to `0` to show all lines. Equivalent to the `--elide-lines` flag.
+     * https://bun.com/docs/runtime/bunfig#run-elide-lines-truncate-filtered-output
+     */
+    'elide-lines'?: number;
+    /**
+     * When `true`, Bun watches the process that spawned it and exits as soon as that parent goes away — even if the parent was `SIGKILL`ed and never got a chance to forward a signal. On its own exit, Bun also recursively `SIGKILL`s every descendant process so nothing it spawned outlives it. Useful when Bun is launched by a supervisor (Electron, a CI runner, a thin shim) that may be force-killed.
+     *
+     * Linux and macOS only (no-op on Windows and other platforms). Equivalent to the `--no-orphans` CLI flag or the `BUN_FEATURE_FLAG_NO_ORPHANS=1` environment variable.
+     * https://bun.com/docs/runtime/bunfig#run-noorphans-don-t-leave-orphan-processes-behind
+     */
+    noOrphans?: boolean;
   };
   [k: string]: unknown | undefined;
 }

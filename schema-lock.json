@@ -7,6 +7,27 @@
       "sourceSha256": "e17835334a79571b53c9316f623f2b5f66c012dbf667c94f6ed623108803a6db",
       "updatedAt": "2026-03-27T22:02:25.276Z"
     },
+    "abc-clinical-demand-forecast-2.0.0.json": {
+      "generatedFile": "schemas/abc-clinical-demand-forecast-2.0.0/index.d.ts",
+      "generatedSha256": "725b90c03b7d9d14cdf85a2c1f2298e3e135fabea1fb4aab402ecc5d4210e1cc",
+      "published": false,
+      "sourceSha256": "5505016e7daee3d4bb7fcb02ff9a0ca03de43c45192ebc0dd371c02c16daddd0",
+      "updatedAt": "2026-05-18T06:24:19.691Z"
+    },
+    "abc-clinical-demand-forecast-3.0.0.json": {
+      "generatedFile": "schemas/abc-clinical-demand-forecast-3.0.0/index.d.ts",
+      "generatedSha256": "c06fc4cbb2c7268ad09b569716c3a2def08ce8d3b47db135f230011297ea1dd8",
+      "published": false,
+      "sourceSha256": "4d4f658476f6b0a2d6c318a5bdd565bb540094f6038d80c31d97a6ced4a51318",
+      "updatedAt": "2026-05-18T06:24:20.081Z"
+    },
+    "abc-clinical-demand-forecast-4.0.0.json": {
+      "generatedFile": "schemas/abc-clinical-demand-forecast-4.0.0/index.d.ts",
+      "generatedSha256": "375baad14646c2b24bd2a8dc39b6f21fa9c1f166289e47d9452afd5b8173dde6",
+      "published": false,
+      "sourceSha256": "9b729deb0695df362e046a33de30b80ae36b6399365ab6a3fbc3ec4d3fb95409",
+      "updatedAt": "2026-05-18T06:24:20.389Z"
+    },
     "abc-inventory-module-data-1.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-1.0.0/index.d.ts",
       "generatedSha256": "03c7dce3ec9fb7683ada33a5daad4ff676536fcac59ad40371c886acfce5ac66",
@@ -111,6 +132,13 @@
       "published": true,
       "sourceSha256": "90361bff05cf6ed7f95bb35f857aa4c6918e8d2c23b8709a56129554fa94141d",
       "updatedAt": "2026-04-06T05:41:04.885Z"
+    },
+    "abc-supply-plan-13.0.0.json": {
+      "generatedFile": "schemas/abc-supply-plan-13.0.0/index.d.ts",
+      "generatedSha256": "7eb314842624670128aa17b2381259678d8b79255ddbe1d50ae4a3565bb814aa",
+      "published": false,
+      "sourceSha256": "652d8c40e2eb3eebd33049e1aaa6ee82dc4c24d8404b91e4a79baed100017656",
+      "updatedAt": "2026-05-18T06:24:20.623Z"
     },
     "abc-supply-plan-2.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-2.0.0/index.d.ts",
@@ -877,10 +905,10 @@
     },
     "bunfig.json": {
       "generatedFile": "schemas/bunfig/index.d.ts",
-      "generatedSha256": "e382a3ffea4169ff8a912642a51e76b9a8f6612a20293a5871576777c056c7e2",
-      "published": true,
-      "sourceSha256": "61a6b506bad0005597b17091dd84d712ebd8e6d28a0be46f78584abbceb704d7",
-      "updatedAt": "2026-03-30T05:40:51.517Z"
+      "generatedSha256": "d323dfe5c61b8a164a5f03209375f35d52697e030b3b404c2e36e25ecc3f52f0",
+      "published": false,
+      "sourceSha256": "27f6bd4f9d7cf1d1151aa5cd5f9141a7638e55b6d955179342eb76254d70d239",
+      "updatedAt": "2026-05-18T06:24:20.996Z"
     },
     "bungee-plugin.json": {
       "generatedFile": "schemas/bungee-plugin/index.d.ts",
@@ -1190,6 +1218,13 @@
       "sourceSha256": "aecc8d1de5e0cdbdac6102b4c2b0ac7b4f829ee70754715ccb3d9e7566aa82dc",
       "updatedAt": "2026-03-27T22:03:08.695Z"
     },
+    "codex-hooks.json": {
+      "generatedFile": "schemas/codex-hooks/index.d.ts",
+      "generatedSha256": "6f2a0a9bccc4e9b7a000ee33285d6088117009b4696509cf2844bb2ca3ec08a4",
+      "published": false,
+      "sourceSha256": "2f5e32a5c058819a90d1063e1a7e3bb940fcbc21f0df2078b8e8a0caefa16cb4",
+      "updatedAt": "2026-05-18T06:24:22.522Z"
+    },
     "coffeelint.json": {
       "generatedFile": "schemas/coffeelint/index.d.ts",
       "generatedSha256": "d4341dbb16046bbc09917228f9db7880bf542e25e342f1278c8e17e0a9f2bd5c",
@@ -1368,9 +1403,9 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "43bab1b431d4c97c25a905dd6fd69b60ff32d028102df012c1777960eba7f740",
-      "published": true,
-      "sourceSha256": "153c5e2ddc4547db6df13d435c4b7928409742f7c8667d43c422edf96eb49b11",
-      "updatedAt": "2026-05-11T06:14:24.809Z"
+      "published": false,
+      "sourceSha256": "02285d6a056356921ef03aae69add8a57b13691fdaa0ab1f2cf7eaec9763e662",
+      "updatedAt": "2026-05-18T06:24:23.334Z"
     },
     "dependabot.json": {
       "generatedFile": "schemas/dependabot/index.d.ts",
@@ -2008,6 +2043,13 @@
       "published": true,
       "sourceSha256": "c2722dbf00334ce4fdeffa960b8c9047caf4f1cbb8f3809663f4d604b1d3ae76",
       "updatedAt": "2026-03-27T22:03:32.743Z"
+    },
+    "github-pages-jekyll.json": {
+      "generatedFile": "schemas/github-pages-jekyll/index.d.ts",
+      "generatedSha256": "ed8ac11a1ef53aa723cd0c262c2da4c45d45d3f14b5af29f863feca1de5a27ee",
+      "published": false,
+      "sourceSha256": "896d9f7be3f44ffa92ccb42f50234f23e5a2376a850ac5baeb8bef0429818a64",
+      "updatedAt": "2026-05-18T06:24:23.669Z"
     },
     "github-release-config.json": {
       "generatedFile": "schemas/github-release-config/index.d.ts",
@@ -3460,10 +3502,10 @@
     },
     "partial-pytest.json": {
       "generatedFile": "schemas/partial-pytest/index.d.ts",
-      "generatedSha256": "e5df64fe544fdeef2f16e76e9336767847d2129b2f0b5c5056b6ca1c0e596442",
-      "published": true,
-      "sourceSha256": "365bcb71dc30be57c9fb69ff6f59505499e61c7c2b3c3816dc37175e5b49cb4d",
-      "updatedAt": "2026-03-27T22:07:46.094Z"
+      "generatedSha256": "29455e2ea7c9ec60402fa828a86eef857a3ab43e22bcdc4bdaf72731d28c3601",
+      "published": false,
+      "sourceSha256": "2e57dea99029efae98c4aa6c6e658b645287a5c4318f367bdd7bc09b8a3513ed",
+      "updatedAt": "2026-05-18T06:27:44.334Z"
     },
     "partial-repo-review.json": {
       "generatedFile": "schemas/partial-repo-review/index.d.ts",
@@ -3471,6 +3513,13 @@
       "published": true,
       "sourceSha256": "feca8050cacdb3fb5c7df79eafc81acbb71223e6ea9fa9ef360a491151f98677",
       "updatedAt": "2026-03-27T22:07:46.292Z"
+    },
+    "partial-scheduled.json": {
+      "generatedFile": "schemas/partial-scheduled/index.d.ts",
+      "generatedSha256": "18f63cb277a2e0f0a24cb24ea5f5e54662e6b66573e7d0a02c77f16432c21066",
+      "published": false,
+      "sourceSha256": "65551f1f43e92f1e686ff7997d7ac4db6785db046c294e9919a578431df10d10",
+      "updatedAt": "2026-05-18T06:27:44.570Z"
     },
     "partial-scikit-build.json": {
       "generatedFile": "schemas/partial-scikit-build/index.d.ts",
@@ -3499,6 +3548,13 @@
       "published": true,
       "sourceSha256": "bb10884869742046f2f89c04df989c808163d07cd27f94a14f073f58af4f050e",
       "updatedAt": "2026-03-27T22:07:47.105Z"
+    },
+    "partial-tox.json": {
+      "generatedFile": "schemas/partial-tox/index.d.ts",
+      "generatedSha256": "977acf90223d7fcf23217fb37de343b44e60d9537c247771898ccf67e2a718fe",
+      "published": false,
+      "sourceSha256": "cda5988fd8519da4e3710598d7c4c9e51215207374eed1cdd30900148d67ec6d",
+      "updatedAt": "2026-05-18T06:27:44.975Z"
     },
     "pattern.json": {
       "generatedFile": "schemas/pattern/index.d.ts",
@@ -3572,10 +3628,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "a942841ab5d21505081a126c987a6a4b981156f3a100fa38e524c3ce22863220",
-      "published": true,
-      "sourceSha256": "2c8f16d972e9a28484acf570e1ed4539e3362ff368531cae713aef26425087ae",
-      "updatedAt": "2026-05-04T06:03:56.613Z"
+      "generatedSha256": "b7c4549c736429cc5b47c6974f85c6f363a60db41be36fe14f1722eadb812258",
+      "published": false,
+      "sourceSha256": "a9a4ae58d3d232638e5065796cc8b5afe575d56e31e65f1af1f64c5d0d6a6bd8",
+      "updatedAt": "2026-05-18T06:27:45.755Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -4048,10 +4104,10 @@
     },
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
-      "generatedSha256": "d52a931098dfa2ecfa34d502a484ccc43cbab313493c8956aa5e282a93466df7",
-      "published": true,
-      "sourceSha256": "2c4ec3d38f1ea65508947d5b99308d5ce598cc7130ed487e853df8dc79aef9e8",
-      "updatedAt": "2026-04-13T05:55:03.074Z"
+      "generatedSha256": "92bb4a45aabd3ae2da26df7ad5190c1e91bee7a548a15627d0331109c11c77bc",
+      "published": false,
+      "sourceSha256": "c7431df3a3cbbed4f30a16fe62506dfbf65e9e3d2ecc3563fa0e576a68811c8b",
+      "updatedAt": "2026-05-18T06:27:48.463Z"
     },
     "rumdl.json": {
       "generatedFile": "schemas/rumdl/index.d.ts",
@@ -4678,10 +4734,10 @@
     },
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
-      "generatedSha256": "37c23b246997db6eed479b9f22539328e169ca7b8cf45d2acbab873debd0d8a6",
-      "published": true,
-      "sourceSha256": "591892776678ee1646088bce4ea6a5ccbe93f0814dc6208dfaf92c9600cb5be3",
-      "updatedAt": "2026-05-11T06:17:51.400Z"
+      "generatedSha256": "cd836fd1773ef9b9cba48cccea22e0b60fbd77d5ef1837c41e374abf0340cebe",
+      "published": false,
+      "sourceSha256": "6c0826eb38787ba49ff8ca74ae02061a3efb5126422c8295a093f72431c42aa2",
+      "updatedAt": "2026-05-18T06:27:53.269Z"
     },
     "traefik-v2-file-provider.json": {
       "generatedFile": "schemas/traefik-v2-file-provider/index.d.ts",
@@ -4895,10 +4951,10 @@
     },
     "uv.json": {
       "generatedFile": "schemas/uv/index.d.ts",
-      "generatedSha256": "9ac4a89b9e4969d8f12d5e347d482b32fd1c559bd06ece1fc2c6a35334eca56c",
-      "published": true,
-      "sourceSha256": "b3b334795a826dc8d4e94e6a91fa447414dc796a6f91ff4c18d1f01474b5d3d0",
-      "updatedAt": "2026-03-27T22:09:30.077Z"
+      "generatedSha256": "3cba70bd15f04e40e5a3717902127cd15f571ba22b21e00dfa43ac0151adde51",
+      "published": false,
+      "sourceSha256": "6a79a50bd5ac720f33f1d324cdbd164d613213f785c64ef948884a686f2e5bb5",
+      "updatedAt": "2026-05-18T06:27:54.588Z"
     },
     "uxp-manifest-5.json": {
       "generatedFile": "schemas/uxp-manifest-5/index.d.ts",
@@ -5181,6 +5237,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-05-11T06:17:57.064Z",
+  "generatedAt": "2026-05-18T06:27:58.625Z",
   "version": 1
 }

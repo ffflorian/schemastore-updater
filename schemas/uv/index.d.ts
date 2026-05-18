@@ -749,6 +749,18 @@ export interface CombinedOptions {
    * especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's
    * included in your system's certificate store.
    */
+  'system-certs'?: boolean | null;
+  /**
+   * (Deprecated: use `system-certs` instead.) Whether to load TLS certificates from the platform's native certificate store.
+   *
+   * By default, uv loads certificates from the bundled `webpki-roots` crate. The
+   * `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv
+   * improves portability and performance (especially on macOS).
+   *
+   * However, in some cases, you may want to use the platform's native certificate store,
+   * especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's
+   * included in your system's certificate store.
+   */
   'native-tls'?: boolean | null;
   /**
    * Don't install pre-built wheels.

@@ -5,9 +5,9 @@
  */
 export type HttpsJsonSchemastoreOrgPartialPytestJson = LegacyConfig | Config;
 /**
- * The `ini_options` table is used as a bridge between the existing `pytest.ini` configuration system and future configuration formats. `pytest.ini` takes precedence over `[tool.pytest.ini_options]` in `pyproject.toml`.
+ * Use `[tool.pytest.ini_options]` for INI-style pytest configuration in `pyproject.toml` (supported since pytest 6.0). `pytest.ini` takes precedence over `[tool.pytest.ini_options]` in `pyproject.toml`.
  */
-export type BridgeConfigurationOptionsForPytestIniFile = IniOptionsPytest & IniOptionsAsyncio;
+export type INIStylePytestConfigurationOptions = IniOptionsPytest & IniOptionsAsyncio;
 /**
  * Direct key configuration with proper TOML types (pytest >=9)
  * https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
@@ -15,16 +15,12 @@ export type BridgeConfigurationOptionsForPytestIniFile = IniOptionsPytest & IniO
 export type Config = ConfigOptionsPytest & ConfigOptionsAsyncio;
 
 /**
- * @deprecated
- * Legacy configuration using ini_options table (pytest <9)
+ * INI-style configuration using the ini_options table (pytest >=6)
  */
 export interface LegacyConfig {
-  ini_options: BridgeConfigurationOptionsForPytestIniFile;
+  ini_options: INIStylePytestConfigurationOptions;
   [k: string]: unknown | undefined;
 }
-/**
- * @deprecated
- */
 export interface IniOptionsPytest {
   /**
    * Add the specified OPTS to the set of command line arguments as if they had been specified by the user.
@@ -245,11 +241,6 @@ export interface IniOptionsPytest {
   xfail_strict?: ('true' | 'false') | boolean;
   [k: string]: unknown | undefined;
 }
-/**
- * @deprecated
- * Configuration options for pytest-asyncio.
- * https://pytest-asyncio.readthedocs.io/en/latest/reference/configuration.html
- */
 export interface IniOptionsAsyncio {
   /**
    * Default event loop scope of asynchronous fixtures. When this configuration option is unset, it defaults to the fixture scope. In future versions of pytest-asyncio, the value will default to function when unset
@@ -489,10 +480,6 @@ export interface ConfigOptionsPytest {
   xfail_strict?: boolean;
   [k: string]: unknown | undefined;
 }
-/**
- * Configuration options for pytest-asyncio.
- * https://pytest-asyncio.readthedocs.io/en/latest/reference/configuration.html
- */
 export interface ConfigOptionsAsyncio {
   /**
    * Default event loop scope of asynchronous fixtures. When this configuration option is unset, it defaults to the fixture scope. In future versions of pytest-asyncio, the value will default to function when unset
