@@ -8,36 +8,47 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 835
-- **Generated:** 15
-- **Skipped:** 713
-- **Failed:** 107
+- **Total:** 857
+- **Generated:** 26
+- **Skipped:** 723
+- **Failed:** 108
 
 <details>
 
-<summary><h3>Updated Schemas (15)</h3></summary>
+<summary><h3>Updated Schemas (26)</h3></summary>
 
-- `abc-clinical-demand-forecast-2.0.0`
-- `abc-clinical-demand-forecast-3.0.0`
-- `abc-clinical-demand-forecast-4.0.0`
-- `abc-supply-plan-13.0.0`
-- `bunfig`
-- `codex-hooks`
-- `dependabot-2.0`
-- `github-pages-jekyll`
-- `partial-pytest`
-- `partial-scheduled`
-- `partial-tox`
-- `pnpm-workspace`
+- `algovoi-compliance-receipt-v1`
+- `claude-code-settings`
+- `enonic-xp-admin-extension-8.0.0-b4`
+- `enonic-xp-admin-tool-8.0.0-b4`
+- `enonic-xp-api-8.0.0-b4`
+- `enonic-xp-application-8.0.0-b4`
+- `enonic-xp-cms-8.0.0-b4`
+- `enonic-xp-content-type-8.0.0-b4`
+- `enonic-xp-form-fragment-8.0.0-b4`
+- `enonic-xp-idprovider-8.0.0-b4`
+- `enonic-xp-layout-8.0.0-b4`
+- `enonic-xp-macro-8.0.0-b4`
+- `enonic-xp-mixin-8.0.0-b4`
+- `enonic-xp-page-8.0.0-b4`
+- `enonic-xp-part-8.0.0-b4`
+- `enonic-xp-service-8.0.0-b4`
+- `enonic-xp-site-8.0.0-b4`
+- `enonic-xp-style-8.0.0-b4`
+- `enonic-xp-task-8.0.0-b4`
+- `enonic-xp-webapp-8.0.0-b4`
+- `jsconfig`
+- `pgrls`
 - `ruff`
-- `tox`
-- `uv`
+- `ryl`
+- `solarxy-config`
+- `tsconfig`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (107)</h3></summary>
+<summary><h3>Failed Schemas (108)</h3></summary>
 
 - `accelerator`
 - `app-config`
@@ -107,6 +118,7 @@ This PR was created by the scheduled workflow after running:
 - `phrase`
 - `problem_package_generators`
 - `pyproject`
+- `quikrun`
 - `rumdl`
 - `sarif-external-property-file-2.1.0`
 - `schema-org-action`

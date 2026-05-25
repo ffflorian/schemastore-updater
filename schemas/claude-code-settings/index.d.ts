@@ -40,6 +40,10 @@ export type HookCommand =
        * Custom spinner message displayed while the hook runs
        */
       statusMessage?: string;
+      /**
+       * Argument list for exec form. When present, spawns the command directly without shell interpretation — each element is passed as-is, so path placeholders never need quoting. See https://code.claude.com/docs/en/hooks#command-hook-fields
+       */
+      args?: string[];
     }
   | {
       /**
@@ -66,6 +70,10 @@ export type HookCommand =
        * Custom spinner message displayed while the hook runs
        */
       statusMessage?: string;
+      /**
+       * When the prompt returns ok: false, feed the reason back to Claude and continue the turn instead of stopping. Implemented as continue: true on the resulting decision: "block". See https://code.claude.com/docs/en/hooks#prompt-hook-configuration
+       */
+      continueOnBlock?: boolean;
     }
   | {
       /**
@@ -287,6 +295,10 @@ export interface ClaudeCodeSettings {
      */
     ANTHROPIC_VERTEX_PROJECT_ID?: string;
     /**
+     * Workspace ID for workload identity federation. Scopes the minted token to a specific workspace when the federation rule covers more than one. See https://code.claude.com/docs/en/env-vars
+     */
+    ANTHROPIC_WORKSPACE_ID?: string;
+    /**
      * API request timeout in milliseconds (default: 600000)
      */
     API_TIMEOUT_MS?: string;
@@ -387,6 +399,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING?: '0' | '1';
     /**
+     * Disable alternate screen buffer rendering. When set to 1, keeps conversation in native scrollback instead of fullscreen renderer
+     */
+    CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN?: '0' | '1';
+    /**
      * Disable attachment processing
      */
     CLAUDE_CODE_DISABLE_ATTACHMENTS?: '0' | '1';
@@ -475,9 +491,17 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH?: '0' | '1';
     /**
+     * Enable feedback survey collection via OpenTelemetry for enterprises
+     */
+    CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL?: '0' | '1';
+    /**
      * Force fine-grained tool output streaming
      */
     CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING?: '0' | '1';
+    /**
+     * Enable model discovery from LLM gateway /v1/models endpoint when ANTHROPIC_BASE_URL points at an Anthropic-compatible gateway
+     */
+    CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY?: '0' | '1';
     /**
      * Enable prompt suggestions
      */
@@ -506,6 +530,10 @@ export interface ClaudeCodeSettings {
      * Token limit for file read operations
      */
     CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS?: string;
+    /**
+     * Force synchronous output flushing. When set to 1, forces synchronized output on terminals that auto-detection misses (e.g., Emacs eat)
+     */
+    CLAUDE_CODE_FORCE_SYNC_OUTPUT?: '0' | '1';
     /**
      * Fork subagent processes in non-interactive sessions. See https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#21120
      */
@@ -583,6 +611,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_OAUTH_TOKEN?: string;
     /**
+     * Set to 1 to pin fast mode to Claude Opus 4.6 instead of the default Opus 4.7. With this set, /fast runs on Opus 4.6. Without it, /fast runs on Opus 4.7. See https://code.claude.com/docs/en/fast-mode and https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE?: '0' | '1';
+    /**
      * OpenTelemetry span flush timeout in milliseconds (default: 5000)
      */
     CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS?: string;
@@ -594,6 +626,10 @@ export interface ClaudeCodeSettings {
      * OpenTelemetry shutdown timeout in milliseconds (default: 2000)
      */
     CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS?: string;
+    /**
+     * Enable automatic package manager updates. When set, Claude Code runs the upgrade command in background on Homebrew/WinGet and prompts to restart
+     */
+    CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE?: '0' | '1';
     /**
      * Enable Perforce write protection mode
      */
@@ -611,9 +647,17 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE?: '0' | '1';
     /**
+     * Set to 1 to clone GitHub owner/repo plugin sources over HTTPS instead of SSH. Useful in CI runners, containers, or environments without a configured SSH key for github.com. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_PLUGIN_PREFER_HTTPS?: '0' | '1';
+    /**
      * Path(s) to pre-populated plugin directories
      */
     CLAUDE_CODE_PLUGIN_SEED_DIR?: string;
+    /**
+     * Set to 1 to stop Claude Code from passing -ExecutionPolicy Bypass when spawning PowerShell for tool calls, hooks, and status line commands. By default Claude Code bypasses execution policy so .ps1 scripts work on default-Restricted Windows installs. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_POWERSHELL_RESPECT_EXECUTION_POLICY?: '0' | '1';
     /**
      * Indicate that the host application manages provider routing
      */
@@ -682,6 +726,10 @@ export interface ClaudeCodeSettings {
      * Skip Google authentication for Vertex AI
      */
     CLAUDE_CODE_SKIP_VERTEX_AUTH?: '0' | '1';
+    /**
+     * Override the default maximum consecutive Stop hook blocks (default: 8) before the turn ends with a warning. Raise this when a stop hook legitimately needs more than 8 iterations to converge. See https://code.claude.com/docs/en/hooks-guide
+     */
+    CLAUDE_CODE_STOP_HOOK_BLOCK_CAP?: string;
     /**
      * Override model used by subagents
      */
@@ -878,7 +926,7 @@ export interface ClaudeCodeSettings {
    */
   effortLevel?: 'low' | 'medium' | 'high' | 'xhigh' | 'max';
   /**
-   * Enable fast mode for Opus 4.6 (research preview). Fast mode uses the same model with 2.5x faster output at higher per-token cost. Requires extra usage enabled. Alternatively, toggle with /fast command. See https://code.claude.com/docs/en/fast-mode
+   * Enable fast mode, which uses Claude Opus 4.7 by default for 2.5x faster output at higher per-token cost. Requires extra usage enabled. Toggle with /fast command. Set CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1 to pin fast mode to Opus 4.6. See https://code.claude.com/docs/en/fast-mode
    */
   fastMode?: boolean;
   /**
@@ -1112,6 +1160,10 @@ export interface ClaudeCodeSettings {
      * Re-run the status line command every N seconds in addition to event-driven updates. Leave unset to run only on events. Useful for time-based data like clocks, or when background subagents change git state while the main session is idle. See https://code.claude.com/docs/en/statusline
      */
     refreshInterval?: number;
+    /**
+     * Set to true when your status line script renders the vim mode indicator itself, to suppress the built-in vim mode display. See https://code.claude.com/docs/en/statusline#manually-configure-a-status-line
+     */
+    hideVimModeIndicator?: boolean;
   };
   /**
    * Configure a custom script for @ file autocomplete. See https://code.claude.com/docs/en/settings#file-suggestion-settings
@@ -1502,6 +1554,18 @@ export interface ClaudeCodeSettings {
        */
       args?: string[];
     };
+    /**
+     * (Managed setting only) Path to custom bubblewrap (bwrap) binary for Linux/WSL sandbox. Overrides default. See https://code.claude.com/docs/en/server-managed-settings
+     */
+    bwrapPath?: string;
+    /**
+     * (Managed setting only) Path to custom socat binary for Linux/WSL network proxying. Overrides default. See https://code.claude.com/docs/en/server-managed-settings
+     */
+    socatPath?: string;
+    /**
+     * When true, make sandbox startup a hard failure if required sandbox dependencies are missing. Default: false (sandbox is skipped with a warning). See https://code.claude.com/docs/en/sandboxing#enable-sandboxing
+     */
+    failIfUnavailable?: boolean;
   };
   /**
    * Customize the verbs shown in spinner progress messages
@@ -1546,6 +1610,12 @@ export interface ClaudeCodeSettings {
    */
   showTurnDuration?: boolean;
   /**
+   * Per-skill visibility overrides. Controls whether skills appear to Claude and in the / picker. Values: 'on' (name and description shown, default), 'name-only' (name only), 'user-invocable-only' (hidden from Claude, visible in /), 'off' (hidden everywhere). Plugin skills are not affected by this setting. See https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings
+   */
+  skillOverrides?: {
+    [k: string]: ('on' | 'name-only' | 'user-invocable-only' | 'off') | undefined;
+  };
+  /**
    * Reduce or disable UI animations (spinners, shimmer, flash effects) for accessibility
    */
   prefersReducedMotion?: boolean;
@@ -1573,7 +1643,19 @@ export interface ClaudeCodeSettings {
      * Directories to check out in each worktree via git sparse-checkout (cone mode). Only the listed paths are written to disk, which is faster in large monorepos. See https://code.claude.com/docs/en/settings#worktree-settings
      */
     sparsePaths?: string[];
+    /**
+     * Whether to branch worktrees from origin/<default> (fresh) or local HEAD (head). Default: fresh. Set to 'head' to preserve unpushed commits in new worktrees. See https://code.claude.com/docs/en/settings#worktree-settings
+     */
+    baseRef?: 'fresh' | 'head';
+    /**
+     * Isolation mode for background sessions. "worktree" blocks Edit/Write in main checkout until EnterWorktree is called; "none" lets background jobs edit the working copy directly without EnterWorktree, for repos where worktrees are impractical. See https://code.claude.com/docs/en/settings#worktree-settings
+     */
+    bgIsolation?: 'worktree' | 'none';
   };
+  /**
+   * (Admin/managed settings only) Controls how SDK managedSettings (parent tier) merge with inherited settings. 'first-wins': first non-empty value applies (default). 'merge': merge arrays and objects. See https://code.claude.com/docs/en/server-managed-settings
+   */
+  parentSettingsBehavior?: 'first-wins' | 'merge';
   /**
    * (Managed settings only) Custom message appended to the plugin trust warning shown before installation. Use to provide organization-specific context about approved plugins. See https://code.claude.com/docs/en/settings#plugin-settings
    */
@@ -1738,6 +1820,10 @@ export interface ClaudeCodeSettings {
      * Entries for the auto mode classifier environment section. Replaces the built-in environment context entirely unless the literal string "$defaults" is included as an entry, which splices the built-in defaults in at that position.
      */
     environment?: string[];
+    /**
+     * Rules for the auto mode classifier hard-deny section. Hard-deny rules block unconditionally regardless of user intent. Replaces the built-in hard-deny rules entirely unless the literal string "$defaults" is included as an entry, which splices the built-in defaults in at that position. See https://code.claude.com/docs/en/permissions
+     */
+    hard_deny?: string[];
   };
   /**
    * (Teams/Enterprise) Opt-in for channel notifications — MCP servers with the claude/channel capability pushing inbound messages. Default off. When true, users can select servers via --channels. See https://code.claude.com/docs/en/mcp
@@ -1799,6 +1885,19 @@ export interface ClaudeCodeSettings {
    * (Windows managed settings only) When true, Claude Code on WSL reads managed settings from the Windows policy chain in addition to /etc/claude-code, with Windows sources taking priority. Only honored when set in the HKLM registry key or C:\Program Files\ClaudeCode\managed-settings.json, both of which require Windows admin to write. For HKCU policy to also apply on WSL, the flag must additionally be set in HKCU itself. Has no effect on native Windows. See https://code.claude.com/docs/en/settings#available-settings
    */
   wslInheritsWindowsSettings?: boolean;
+  /**
+   * Status line configuration for subagent sessions. See https://code.claude.com/docs/en/statusline#subagent-status-lines
+   */
+  subagentStatusLine?: {
+    /**
+     * Must be "command"
+     */
+    type: 'command';
+    /**
+     * Shell command to run for the subagent status line
+     */
+    command: string;
+  };
   [k: string]: unknown | undefined;
 }
 /**

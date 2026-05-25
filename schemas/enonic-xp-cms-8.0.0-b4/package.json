@@ -1,0 +1,13 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for enonic-xp-cms-8.0.0-b4.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/enonic-xp-cms-8.0.0-b4",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffflorian/schemastore-updater.git"
+  },
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}
