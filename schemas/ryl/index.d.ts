@@ -10,9 +10,13 @@ export type FixableRuleSelector =
   | 'commas'
   | 'comments'
   | 'comments-indentation'
+  | 'document-end'
+  | 'document-start'
+  | 'empty-lines'
   | 'new-line-at-end-of-file'
   | 'new-lines'
-  | 'quoted-strings';
+  | 'quoted-strings'
+  | 'trailing-spaces';
 /**
  * A fixable rule name accepted by `fix.unfixable`.
  */
@@ -22,9 +26,13 @@ export type FixRuleName =
   | 'commas'
   | 'comments'
   | 'comments-indentation'
+  | 'document-end'
+  | 'document-start'
+  | 'empty-lines'
   | 'new-line-at-end-of-file'
   | 'new-lines'
-  | 'quoted-strings';
+  | 'quoted-strings'
+  | 'trailing-spaces';
 /**
  * A TOML field that accepts either one string or a list of strings.
  */

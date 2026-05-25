@@ -78,6 +78,10 @@ export interface CompilerOptionsDefinition {
      */
     tsBuildInfoFile?: string | null;
     /**
+     * Can be used to silence deprecation warnings about features, that are slated for removal in a future release. For example, if you are using a feature that is deprecated in TypeScript 6.0 but you want to continue using it without seeing warnings until it is removed in TypeScript 7.0, you can set `ignoreDeprecations` to `6.0`.
+     */
+    ignoreDeprecations?: '5.0' | '6.0';
+    /**
      * Include sourcemap files inside the emitted JavaScript.
      */
     inlineSourceMap?: boolean | null;
@@ -114,7 +118,7 @@ export interface CompilerOptionsDefinition {
      */
     mapRoot?: string | null;
     /**
-     * Specify what module code is generated.
+     * Specify what module code is generated. As of TypeScript 6.0, the default is `esnext`.
      */
     module?: (
       | (
@@ -329,7 +333,7 @@ export interface CompilerOptionsDefinition {
      */
     rewriteRelativeImportExtensions?: boolean | null;
     /**
-     * Specify the root folder within your source files.
+     * Specify the root folder within your source files. As of TypeScript 6.0, the default is `.` (the directory containing the jsconfig.json file).
      */
     rootDir?: string | null;
     /**
@@ -357,7 +361,7 @@ export interface CompilerOptionsDefinition {
      */
     stripInternal?: boolean | null;
     /**
-     * Set the JavaScript language version for emitted JavaScript and include compatible library declarations.
+     * Set the JavaScript language version for emitted JavaScript and include compatible library declarations. As of TypeScript 6.0, the default is `es2025`.
      */
     target?: (
       | (
@@ -533,7 +537,7 @@ export interface CompilerOptionsDefinition {
      */
     typeRoots?: string[] | null;
     /**
-     * Specify type package names to be included without being referenced in a source file.
+     * Specify type package names to be included without being referenced in a source file. As of TypeScript 6.0, the default is `[]` (empty array), meaning no `@types` packages are included in the global scope automatically.
      */
     types?: string[] | null;
     /**
@@ -584,6 +588,7 @@ export interface CompilerOptionsDefinition {
               | 'ES2015.Symbol'
               | 'ES2016'
               | 'ES2016.Array.Include'
+              | 'ES2016.Intl'
               | 'ES2017'
               | 'ES2017.Intl'
               | 'ES2017.Object'
@@ -673,7 +678,11 @@ export interface CompilerOptionsDefinition {
               | 'ESNext.Decorators'
               | 'ESNext.Disposable'
               | 'ESNext.Error'
-              | 'ESNext.Sharedmemory'
+              | 'ESNext.Float16'
+              | 'ESNext.SharedMemory'
+              | 'ESNext.Date'
+              | 'ESNext.Temporal'
+              | 'ESNext.TypedArrays'
             )
           | {
               [k: string]: unknown | undefined;
@@ -682,7 +691,7 @@ export interface CompilerOptionsDefinition {
           string)[]
       | null;
     /**
-     * Enable lib replacement.
+     * Allow substituting the default lib files with custom ones. As of TypeScript 6.0, lib replacement is disabled by default; use `--libReplacement true` to enable it.
      */
     libReplacement?: boolean | null;
     /**
@@ -706,7 +715,7 @@ export interface CompilerOptionsDefinition {
      */
     alwaysStrict?: boolean | null;
     /**
-     * Enable all strict type-checking options.
+     * Enable all strict type-checking options. As of TypeScript 6.0, `strict` defaults to `true`.
      */
     strict?: boolean | null;
     /**
@@ -794,7 +803,7 @@ export interface CompilerOptionsDefinition {
      */
     isolatedDeclarations?: boolean | null;
     /**
-     * Check side effect imports.
+     * Check side effect imports. As of TypeScript 6.0, this option defaults to `true`.
      */
     noUncheckedSideEffectImports?: boolean | null;
     /**

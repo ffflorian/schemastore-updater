@@ -21,6 +21,7 @@ export type RuleSelector =
   | 'AIR2'
   | 'AIR20'
   | 'AIR201'
+  | 'AIR202'
   | 'AIR3'
   | 'AIR30'
   | 'AIR301'
@@ -871,6 +872,7 @@ export type RuleSelector =
   | 'PLW07'
   | 'PLW071'
   | 'PLW0711'
+  | 'PLW0717'
   | 'PLW1'
   | 'PLW15'
   | 'PLW150'
@@ -1138,6 +1140,8 @@ export type RuleSelector =
   | 'RUF071'
   | 'RUF072'
   | 'RUF073'
+  | 'RUF074'
+  | 'RUF075'
   | 'RUF1'
   | 'RUF10'
   | 'RUF100'
@@ -3896,6 +3900,10 @@ export interface PylintOptions {
    * Maximum number of statements allowed for a function or method body (see `PLR0915`).
    */
   'max-statements'?: number | null;
+  /**
+   * Maximum number of statements allowed for a try clause body (see `W0717`).
+   */
+  'max-statements-in-try'?: number | null;
 }
 /**
  * Options for the `pyupgrade` plugin.

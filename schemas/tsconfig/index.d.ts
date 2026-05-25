@@ -211,14 +211,14 @@ export type CompilerOptions = {
    *
    * const settings = getSettings();
    * settings.speed;
-   * //       ^?
+   * //       ^ (property) GameSettings.speed: "fast" | "medium" | "slow"
    * settings.quality;
-   * //       ^?
+   * //       ^ (property) GameSettings.quality: "high" | "low"
    *
    * // Unknown key accessors are allowed on
    * // this object, and are `string`
    * settings.username;
-   * //       ^?
+   * //       ^ (index) GameSettings[string]: string
    * ```
    *
    * Turning the flag on will raise an error because the unknown field uses dot syntax instead of indexed syntax.
@@ -239,7 +239,7 @@ export type CompilerOptions = {
    *
    * // This would need to be settings["username"];
    * settings.username;
-   * //       ^?
+   * //       ^ (index) GameSettings[string]: string
    * ```
    *
    * The goal of this flag is to signal intent in your calling syntax about how certain you are this property exists.
@@ -378,6 +378,10 @@ export type CompilerOptions = {
    * - Otherwise, the default is `<config name>.tsbuildInfo`
    */
   tsBuildInfoFile?: string | null;
+  /**
+   * Can be used to silence deprecation warnings about features, that are slated for removal in a future release. For example, if you are using a feature that is deprecated in TypeScript 6.0 but you want to continue using it without seeing warnings until it is removed in TypeScript 7.0, you can set `ignoreDeprecations` to `6.0`.
+   */
+  ignoreDeprecations?: '5.0' | '6.0';
   /**
    * When set, instead of writing out a `.js.map` file to provide source maps, TypeScript will embed the source map content in the `.js` files.
    * Although this results in larger JS files, it can be convenient in some scenarios.
@@ -936,6 +940,8 @@ export type CompilerOptions = {
    *
    * export const twoPi = valueOfPi * 2;
    * ```
+   *
+   * As of TypeScript 6.0, the default is `esnext`.
    */
   module?: (
     | (
@@ -1453,7 +1459,7 @@ export type CompilerOptions = {
    */
   rewriteRelativeImportExtensions?: boolean | null;
   /**
-   * **Default**: The longest common path of all non-declaration input files. If [`composite`](https://typescriptlang.org/tsconfig/#composite) is set, the default is instead the directory containing the `tsconfig.json` file.
+   * **Default**: The directory containing the `tsconfig.json` file.
    *
    * When TypeScript compiles files, it keeps the same directory structure in the output directory as exists in the input directory.
    *
@@ -1753,6 +1759,8 @@ export type CompilerOptions = {
    *
    * The special `ESNext` value refers to the highest version your version of TypeScript supports.
    * This setting should be used with caution, since it doesn't mean the same thing between different TypeScript versions and can make upgrades less predictable.
+   *
+   * As of TypeScript 6.0, the default is `es2025`, which advances alongside the ECMAScript standard.
    */
   target?: (
     | (
@@ -2001,12 +2009,12 @@ export type CompilerOptions = {
    * // Declared as existing
    * const sysName = env.NAME;
    * const os = env.OS;
-   * //    ^?
+   * //    ^ const os: string
    *
    * // Not declared, but because of the index
    * // signature, then it is considered a string
    * const nodeEnv = env.NODE_ENV;
-   * //    ^?
+   * //    ^ const nodeEnv: string
    * ```
    *
    * Turning on `noUncheckedIndexedAccess` will add `undefined` to any un-declared field in the type.
@@ -2026,12 +2034,12 @@ export type CompilerOptions = {
    * // Declared as existing
    * const sysName = env.NAME;
    * const os = env.OS;
-   * //    ^?
+   * //    ^ const os: string
    *
    * // Not declared, but because of the index
    * // signature, then it is considered a string
    * const nodeEnv = env.NODE_ENV;
-   * //    ^?
+   * //    ^ const nodeEnv: string | undefined
    * ```
    */
   noUncheckedIndexedAccess?: boolean | null;
@@ -2383,6 +2391,8 @@ export type CompilerOptions = {
    * - Will not have exports appear as auto-import recommendations
    *
    * This feature differs from [`typeRoots`](https://typescriptlang.org/tsconfig/#typeRoots) in that it is about specifying only the exact types you want included, whereas [`typeRoots`](https://typescriptlang.org/tsconfig/#typeRoots) supports saying you want particular folders.
+   *
+   * As of TypeScript 6.0, the default is `[]` (empty array), meaning no `@types` packages are included in the global scope automatically.
    */
   types?: string[] | null;
   /**
@@ -2663,6 +2673,7 @@ export type CompilerOptions = {
             | 'ES2015.Symbol'
             | 'ES2016'
             | 'ES2016.Array.Include'
+            | 'ES2016.Intl'
             | 'ES2017'
             | 'ES2017.Intl'
             | 'ES2017.Object'
@@ -2726,7 +2737,6 @@ export type CompilerOptions = {
             | 'ES2022.Regexp'
             | 'ES2022.String'
             | 'ES2022.SharedMemory'
-            | 'ES2022.RegExp'
             | 'ES2023'
             | 'ES2023.Array'
             | 'ES2024'
@@ -2752,7 +2762,11 @@ export type CompilerOptions = {
             | 'ESNext.Decorators'
             | 'ESNext.Disposable'
             | 'ESNext.Error'
-            | 'ESNext.Sharedmemory'
+            | 'ESNext.Float16'
+            | 'ESNext.SharedMemory'
+            | 'ESNext.Date'
+            | 'ESNext.Temporal'
+            | 'ESNext.TypedArrays'
           )
         | {
             [k: string]: unknown | undefined;
@@ -2777,7 +2791,7 @@ export type CompilerOptions = {
    *
    * The `--libReplacement` flag allows you to disable this behavior.
    * If you're not using any `@typescript/lib-*` packages, you can now disable those package lookups with `--libReplacement false`.
-   * In the future, `--libReplacement false` may become the default, so if you currently rely on the behavior you should consider explicitly enabling it with `--libReplacement true`.
+   * As of TypeScript 6.0, `--libReplacement false` is the default. If you rely on `@typescript/lib-*` substitution, explicitly enable it with `--libReplacement true`.
    */
   libReplacement?: boolean | null;
   /**
@@ -2929,6 +2943,8 @@ export type CompilerOptions = {
    *
    * Future versions of TypeScript may introduce additional stricter checking under this flag, so upgrades of TypeScript might result in new type errors in your program.
    * When appropriate and possible, a corresponding flag will be added to disable that behavior.
+   *
+   * As of TypeScript 6.0, `strict` defaults to `true`.
    */
   strict?: boolean | null;
   /**
@@ -3562,6 +3578,8 @@ export type CompilerOptions = {
    *
    * In fact, you might already have a file like this in your project!
    * For example, running something like `vite init` might create a similar `vite-env.d.ts`.
+   *
+   * As of TypeScript 6.0, this option defaults to `true`.
    */
   noUncheckedSideEffectImports?: boolean | null;
   /**
@@ -3769,14 +3787,14 @@ export type CompilerOptions = {
    *
    * const settings = getSettings();
    * settings.speed;
-   * //       ^?
+   * //       ^ (property) GameSettings.speed: "fast" | "medium" | "slow"
    * settings.quality;
-   * //       ^?
+   * //       ^ (property) GameSettings.quality: "high" | "low"
    *
    * // Unknown key accessors are allowed on
    * // this object, and are `string`
    * settings.username;
-   * //       ^?
+   * //       ^ (index) GameSettings[string]: string
    * ```
    *
    * Turning the flag on will raise an error because the unknown field uses dot syntax instead of indexed syntax.
@@ -3797,7 +3815,7 @@ export type CompilerOptions = {
    *
    * // This would need to be settings["username"];
    * settings.username;
-   * //       ^?
+   * //       ^ (index) GameSettings[string]: string
    * ```
    *
    * The goal of this flag is to signal intent in your calling syntax about how certain you are this property exists.
@@ -3936,6 +3954,10 @@ export type CompilerOptions = {
    * - Otherwise, the default is `<config name>.tsbuildInfo`
    */
   tsBuildInfoFile?: string | null;
+  /**
+   * Can be used to silence deprecation warnings about features, that are slated for removal in a future release. For example, if you are using a feature that is deprecated in TypeScript 6.0 but you want to continue using it without seeing warnings until it is removed in TypeScript 7.0, you can set `ignoreDeprecations` to `6.0`.
+   */
+  ignoreDeprecations?: '5.0' | '6.0';
   /**
    * When set, instead of writing out a `.js.map` file to provide source maps, TypeScript will embed the source map content in the `.js` files.
    * Although this results in larger JS files, it can be convenient in some scenarios.
@@ -4494,6 +4516,8 @@ export type CompilerOptions = {
    *
    * export const twoPi = valueOfPi * 2;
    * ```
+   *
+   * As of TypeScript 6.0, the default is `esnext`.
    */
   module?: (
     | (
@@ -5011,7 +5035,7 @@ export type CompilerOptions = {
    */
   rewriteRelativeImportExtensions?: boolean | null;
   /**
-   * **Default**: The longest common path of all non-declaration input files. If [`composite`](https://typescriptlang.org/tsconfig/#composite) is set, the default is instead the directory containing the `tsconfig.json` file.
+   * **Default**: The directory containing the `tsconfig.json` file.
    *
    * When TypeScript compiles files, it keeps the same directory structure in the output directory as exists in the input directory.
    *
@@ -5311,6 +5335,8 @@ export type CompilerOptions = {
    *
    * The special `ESNext` value refers to the highest version your version of TypeScript supports.
    * This setting should be used with caution, since it doesn't mean the same thing between different TypeScript versions and can make upgrades less predictable.
+   *
+   * As of TypeScript 6.0, the default is `es2025`, which advances alongside the ECMAScript standard.
    */
   target?: (
     | (
@@ -5559,12 +5585,12 @@ export type CompilerOptions = {
    * // Declared as existing
    * const sysName = env.NAME;
    * const os = env.OS;
-   * //    ^?
+   * //    ^ const os: string
    *
    * // Not declared, but because of the index
    * // signature, then it is considered a string
    * const nodeEnv = env.NODE_ENV;
-   * //    ^?
+   * //    ^ const nodeEnv: string
    * ```
    *
    * Turning on `noUncheckedIndexedAccess` will add `undefined` to any un-declared field in the type.
@@ -5584,12 +5610,12 @@ export type CompilerOptions = {
    * // Declared as existing
    * const sysName = env.NAME;
    * const os = env.OS;
-   * //    ^?
+   * //    ^ const os: string
    *
    * // Not declared, but because of the index
    * // signature, then it is considered a string
    * const nodeEnv = env.NODE_ENV;
-   * //    ^?
+   * //    ^ const nodeEnv: string | undefined
    * ```
    */
   noUncheckedIndexedAccess?: boolean | null;
@@ -5941,6 +5967,8 @@ export type CompilerOptions = {
    * - Will not have exports appear as auto-import recommendations
    *
    * This feature differs from [`typeRoots`](https://typescriptlang.org/tsconfig/#typeRoots) in that it is about specifying only the exact types you want included, whereas [`typeRoots`](https://typescriptlang.org/tsconfig/#typeRoots) supports saying you want particular folders.
+   *
+   * As of TypeScript 6.0, the default is `[]` (empty array), meaning no `@types` packages are included in the global scope automatically.
    */
   types?: string[] | null;
   /**
@@ -6221,6 +6249,7 @@ export type CompilerOptions = {
             | 'ES2015.Symbol'
             | 'ES2016'
             | 'ES2016.Array.Include'
+            | 'ES2016.Intl'
             | 'ES2017'
             | 'ES2017.Intl'
             | 'ES2017.Object'
@@ -6284,7 +6313,6 @@ export type CompilerOptions = {
             | 'ES2022.Regexp'
             | 'ES2022.String'
             | 'ES2022.SharedMemory'
-            | 'ES2022.RegExp'
             | 'ES2023'
             | 'ES2023.Array'
             | 'ES2024'
@@ -6310,7 +6338,11 @@ export type CompilerOptions = {
             | 'ESNext.Decorators'
             | 'ESNext.Disposable'
             | 'ESNext.Error'
-            | 'ESNext.Sharedmemory'
+            | 'ESNext.Float16'
+            | 'ESNext.SharedMemory'
+            | 'ESNext.Date'
+            | 'ESNext.Temporal'
+            | 'ESNext.TypedArrays'
           )
         | {
             [k: string]: unknown | undefined;
@@ -6335,7 +6367,7 @@ export type CompilerOptions = {
    *
    * The `--libReplacement` flag allows you to disable this behavior.
    * If you're not using any `@typescript/lib-*` packages, you can now disable those package lookups with `--libReplacement false`.
-   * In the future, `--libReplacement false` may become the default, so if you currently rely on the behavior you should consider explicitly enabling it with `--libReplacement true`.
+   * As of TypeScript 6.0, `--libReplacement false` is the default. If you rely on `@typescript/lib-*` substitution, explicitly enable it with `--libReplacement true`.
    */
   libReplacement?: boolean | null;
   /**
@@ -6487,6 +6519,8 @@ export type CompilerOptions = {
    *
    * Future versions of TypeScript may introduce additional stricter checking under this flag, so upgrades of TypeScript might result in new type errors in your program.
    * When appropriate and possible, a corresponding flag will be added to disable that behavior.
+   *
+   * As of TypeScript 6.0, `strict` defaults to `true`.
    */
   strict?: boolean | null;
   /**
@@ -7120,6 +7154,8 @@ export type CompilerOptions = {
    *
    * In fact, you might already have a file like this in your project!
    * For example, running something like `vite init` might create a similar `vite-env.d.ts`.
+   *
+   * As of TypeScript 6.0, this option defaults to `true`.
    */
   noUncheckedSideEffectImports?: boolean | null;
   /**
