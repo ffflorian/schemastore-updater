@@ -381,7 +381,7 @@
     "algovoi-compliance-receipt-v1.json": {
       "generatedFile": "schemas/algovoi-compliance-receipt-v1/index.d.ts",
       "generatedSha256": "0b6bc0eb84dce9601ff5815b149fa6c82838b8f650ac9081644d2aea09ddcf6d",
-      "published": false,
+      "published": true,
       "sourceSha256": "3ff3c2040f8e31be2e9d08847a764dfc0f6775fa866bff687ddc34a0dc59646c",
       "updatedAt": "2026-05-25T06:29:30.810Z"
     },
@@ -1725,126 +1725,126 @@
     "enonic-xp-admin-extension-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-admin-extension-8.0.0-b4/index.d.ts",
       "generatedSha256": "321ef77c4ce75ffa9c6d34cdc190029dfbd500768727cdf30eabc93ecb4cec87",
-      "published": false,
+      "published": true,
       "sourceSha256": "b3417a678a1254a42f0b80c9f8e18825d9dac9f6ebe9d2de9e3b53189a6f22e9",
       "updatedAt": "2026-05-25T06:29:32.827Z"
     },
     "enonic-xp-admin-tool-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-admin-tool-8.0.0-b4/index.d.ts",
       "generatedSha256": "8c25a1dcbd9a085dca92b881d5f2bf03d77a72d0a4d7f8732fa212297ff32ba0",
-      "published": false,
+      "published": true,
       "sourceSha256": "746bc5aa3200f88f5bd1c8907b3f5cf9bb1d14ca1dcc5ca709f482e65a205398",
       "updatedAt": "2026-05-25T06:29:33.022Z"
     },
     "enonic-xp-api-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-api-8.0.0-b4/index.d.ts",
       "generatedSha256": "7e2787a140555be8c935be848aae502cebdd42facf1575e55e278a6aadf192fe",
-      "published": false,
+      "published": true,
       "sourceSha256": "3e50863b86cbbf67711026223ede3666735b1c79e8b27b6f4acaa4ce6799e81d",
       "updatedAt": "2026-05-25T06:29:33.237Z"
     },
     "enonic-xp-application-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-application-8.0.0-b4/index.d.ts",
       "generatedSha256": "7d0d53905b1f242b0ffc04cd161cb34b365e10ec0c9ae97b04caab52e9c7babe",
-      "published": false,
+      "published": true,
       "sourceSha256": "54480db8cc1501dcf992ca63adbde6e6657e674bc11c85da1730388ced301feb",
       "updatedAt": "2026-05-25T06:29:33.432Z"
     },
     "enonic-xp-cms-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-cms-8.0.0-b4/index.d.ts",
       "generatedSha256": "d1de84ed619221239f0c95a3e95e487e67e156a4d4961817010039721731283b",
-      "published": false,
+      "published": true,
       "sourceSha256": "58c74c443b0a4a8462acc8f47f8a6e69290278c0f6c7975242f3fe81ebc1185d",
       "updatedAt": "2026-05-25T06:29:33.644Z"
     },
     "enonic-xp-content-type-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-content-type-8.0.0-b4/index.d.ts",
       "generatedSha256": "d6d124243f19125bbdd79cb12505e000dbc241cbc519a4e86c59c23d5ae1cb1f",
-      "published": false,
+      "published": true,
       "sourceSha256": "ea7919f70e67d984d822b802838f9cecb8229446f4f637604f9437f5e94e907d",
       "updatedAt": "2026-05-25T06:29:33.853Z"
     },
     "enonic-xp-form-fragment-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-form-fragment-8.0.0-b4/index.d.ts",
       "generatedSha256": "1a7c4bfd6279cef85b629749c382c276be8cadf9cf46d22b528be5b2eca74aab",
-      "published": false,
+      "published": true,
       "sourceSha256": "007a6318bd56300da6341593acbf0d4c21c1925d93ab6e7f62be85e60a3220fc",
       "updatedAt": "2026-05-25T06:29:34.053Z"
     },
     "enonic-xp-idprovider-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-idprovider-8.0.0-b4/index.d.ts",
       "generatedSha256": "6402fb3ae0f440775b7004e522e66de6caba0d57f1d30fbc1e3a9346a7ae4080",
-      "published": false,
+      "published": true,
       "sourceSha256": "90b08f48ab27c92b02b5dc3880707898118f981307bcf17bfe8160ce6fba155c",
       "updatedAt": "2026-05-25T06:29:34.261Z"
     },
     "enonic-xp-layout-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-layout-8.0.0-b4/index.d.ts",
       "generatedSha256": "de795a115f212eb859459b7ef784f8c60708ff30c774e8487bca405eb62a3222",
-      "published": false,
+      "published": true,
       "sourceSha256": "c0c2fd880a41ffc0b7715d1e631d24a38e19349c6e517fe2e7e5f79493cd8b26",
       "updatedAt": "2026-05-25T06:29:34.495Z"
     },
     "enonic-xp-macro-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-macro-8.0.0-b4/index.d.ts",
       "generatedSha256": "41e35dc975084c188909cf02461220803b22d6f2eabf50487dfd23b9353d37f5",
-      "published": false,
+      "published": true,
       "sourceSha256": "167caced4b0bd14168c0ce089be5c3d668ae252e0054d21136f3e511fe787d73",
       "updatedAt": "2026-05-25T06:29:34.683Z"
     },
     "enonic-xp-mixin-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-mixin-8.0.0-b4/index.d.ts",
       "generatedSha256": "3ba52e5768c001b1725794a9ed5a827438aaca58e9b1cf8bbf96bc71da921404",
-      "published": false,
+      "published": true,
       "sourceSha256": "ebc6f605c5ef1f338306aefe80e7aab090b002e47019a0467057b80547d8e22f",
       "updatedAt": "2026-05-25T06:29:34.885Z"
     },
     "enonic-xp-page-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-page-8.0.0-b4/index.d.ts",
       "generatedSha256": "96aaaa39b1e7892b536935da05c5431c7e0271293428f585d4605ccb0e467c8a",
-      "published": false,
+      "published": true,
       "sourceSha256": "dc6a534fd48ea52a10c23c0782bb8390317cb95777e46a8403b31a1c9dfd2d47",
       "updatedAt": "2026-05-25T06:29:35.075Z"
     },
     "enonic-xp-part-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-part-8.0.0-b4/index.d.ts",
       "generatedSha256": "2e42c4a1b4bb865dca60632e315ff44a7e7bfd6a11658acd2c512c015df14b18",
-      "published": false,
+      "published": true,
       "sourceSha256": "d8bb4ce3dce81ba36771d1888997c0a2902155e12c4d69dcb255734d32737025",
       "updatedAt": "2026-05-25T06:29:35.277Z"
     },
     "enonic-xp-service-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-service-8.0.0-b4/index.d.ts",
       "generatedSha256": "5cf9f693905a12f913be441c5c8f49591c565db324c6ecd7d7dc627ea0d9e4e0",
-      "published": false,
+      "published": true,
       "sourceSha256": "c9f9779a3f0523a65d19d56f78ef81a44455ebbac9ba45ad563adca7ded2e35a",
       "updatedAt": "2026-05-25T06:29:35.460Z"
     },
     "enonic-xp-site-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-site-8.0.0-b4/index.d.ts",
       "generatedSha256": "cca555d2db2ff7829e8617ffabdbddab0d02dc25f94bedfc0b1099ac8608f19e",
-      "published": false,
+      "published": true,
       "sourceSha256": "eef38c156e5214dc0f5ea6b2da3e7084d995a66cce79e71b566411b1cd05acc0",
       "updatedAt": "2026-05-25T06:29:35.647Z"
     },
     "enonic-xp-style-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-style-8.0.0-b4/index.d.ts",
       "generatedSha256": "1102679079059335d6935d062a25db30a6be9f9de46d6ebda3afa8f3b00aa68c",
-      "published": false,
+      "published": true,
       "sourceSha256": "6ba0e8cbe4842d543858ef11d76c3928a45e8e9e367bf43a709aae1b9d50c814",
       "updatedAt": "2026-05-25T06:29:35.853Z"
     },
     "enonic-xp-task-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-task-8.0.0-b4/index.d.ts",
       "generatedSha256": "c82eda81ab180fef82e19d86a5a46eaf9cf3ba66e4d3f4dc2f3553acfd48fa5b",
-      "published": false,
+      "published": true,
       "sourceSha256": "1c47ec1cdc4a7a7f39bb49e8416d4de5b0d960be059bcab2f06bc357dd1c8b79",
       "updatedAt": "2026-05-25T06:29:36.133Z"
     },
     "enonic-xp-webapp-8.0.0-B4.json": {
       "generatedFile": "schemas/enonic-xp-webapp-8.0.0-b4/index.d.ts",
       "generatedSha256": "c00dbf15aba4eba6e94e8aad816a1f8b7b3ac4f675beb44020a54aaf97dfe7e8",
-      "published": false,
+      "published": true,
       "sourceSha256": "ea39ba85950a780837f1d0a6904a996bd2d252258ccee1c4bcb9dd56e7edfe45",
       "updatedAt": "2026-05-25T06:29:36.315Z"
     },
