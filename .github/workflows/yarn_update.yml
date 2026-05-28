@@ -14,6 +14,7 @@ on:
 
 jobs:
   yarn-update-check:
+    name: Yarn update check
     permissions:
       contents: write
       pull-requests: write
@@ -23,7 +24,9 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Update yarn
-        uses: ffflorian/actions/yarn-update@1e18e0151098ada365eb82a7e79efdadfd19a86e
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ffflorian/actions/yarn-update@4405e0d723a90f03f13aaf0b454f541a77fd66a3
         with:
           git_authorship: 'Florian Imdahl <git@ffflorian.de>'
           release_cooldown_days: '5'
