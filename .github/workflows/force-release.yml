@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
-      - uses: ffflorian/actions/force-release@1e18e0151098ada365eb82a7e79efdadfd19a86e
+      - uses: ffflorian/actions/force-release@395dd69a8fe27cbaaf9ee09ebfaeefaf92dfdda5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           git_authorship: 'Florian Imdahl <git@ffflorian.de>'
