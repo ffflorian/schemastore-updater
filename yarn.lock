@@ -2801,10 +2801,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:4.2.1":
-  version: 4.2.1
-  resolution: "date-fns@npm:4.2.1"
-  checksum: 10c0/1694c57a180a76c1001401fde85925cebb3b89594d37625063be0a571eddde278a87d3c76ecad5759c3dbeabcc34a5c5757eb6b3487d89a9a61ef48571791166
+"date-fns@npm:4.3.0":
+  version: 4.3.0
+  resolution: "date-fns@npm:4.3.0"
+  checksum: 10c0/f1e8ec36270dd4c9e32d93195fb02a109ff46b397690a68f4a0c3bea0a1882e38a67969004db0a28f890b15bcdd6b323faa2f07cde3b67a2edfacc3fe078f95e
   languageName: node
   linkType: hard
 
@@ -6875,7 +6875,7 @@ __metadata:
     "@types/node": "npm:~25"
     "@types/semver": "npm:7.7.1"
     commander: "npm:14.0.3"
-    date-fns: "npm:4.2.1"
+    date-fns: "npm:4.3.0"
     eslint: "npm:10.4.0"
     eslint-import-resolver-typescript: "npm:4.4.4"
     eslint-plugin-import: "npm:2.32.0"
