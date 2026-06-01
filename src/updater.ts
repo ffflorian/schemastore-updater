@@ -1,4 +1,3 @@
-import {format} from 'date-fns';
 import {compileFromFile} from 'json-schema-to-typescript';
 import {execFile} from 'node:child_process';
 import {access, mkdir, readdir, readFile, rename, rm, stat, writeFile} from 'node:fs/promises';
@@ -463,7 +462,21 @@ function formatDiagnostics(diagnostics: readonly ts.Diagnostic[]): string {
 }
 
 function formatReadmeDate(date: Date): string {
-  return format(date, "EEE, MMM d, yyyy, HH:mm:ss 'GMT'");
+  const parts = new Intl.DateTimeFormat('en-US', {
+    day: 'numeric',
+    hour: '2-digit',
+    hourCycle: 'h23',
+    minute: '2-digit',
+    month: 'short',
+    second: '2-digit',
+    timeZone: 'UTC',
+    weekday: 'short',
+    year: 'numeric',
+  }).formatToParts(date);
+
+  const get = (type: string) => parts.find(part => part.type === type)?.value ?? '';
+
+  return `${get('weekday')}, ${get('month')} ${get('day')}, ${get('year')}, ${get('hour')}:${get('minute')}:${get('second')} GMT`;
 }
 
 function getSchemaId(schemaRelativePath: string): string {

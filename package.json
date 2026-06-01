@@ -2,7 +2,6 @@
   "bin": "./dist/cli.js",
   "dependencies": {
     "commander": "14.0.3",
-    "date-fns": "4.3.0",
     "json-schema-to-typescript": "15.0.4",
     "semver": "7.8.1",
     "typescript": "6.0.3"
