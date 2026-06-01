@@ -3720,7 +3720,7 @@
     "pgrls.json": {
       "generatedFile": "schemas/pgrls/index.d.ts",
       "generatedSha256": "8bd3c7aa75b1fab2e4a3730602a0af7ee5d007312d88a0f574d0b312b24a968a",
-      "published": false,
+      "published": true,
       "sourceSha256": "0d3fa48cb928fe16a6a34a01ef7654c03770be65013c7f8808e186828c06fc98",
       "updatedAt": "2026-05-25T06:32:48.003Z"
     },
@@ -4280,7 +4280,7 @@
     "ryl.json": {
       "generatedFile": "schemas/ryl/index.d.ts",
       "generatedSha256": "4caa55c756dfe2840b93b0a15b135ef37c7822e18dfcb3bd3822e1f925c428a7",
-      "published": false,
+      "published": true,
       "sourceSha256": "17ef967504f01cf0a81ed01a0a48aded86a9826330c76f21c64c926352fd5bbf",
       "updatedAt": "2026-05-25T06:32:51.232Z"
     },
@@ -4623,7 +4623,7 @@
     "solarxy-config.json": {
       "generatedFile": "schemas/solarxy-config/index.d.ts",
       "generatedSha256": "e8a7b1882ce317b0603a520923a0caec88e5197a716f9bbd1fd876d3479cbb07",
-      "published": false,
+      "published": true,
       "sourceSha256": "60ce98ce4ee8ec587c049d4eca16b8756b1702b3347e4c07489ef6a5dcfda51e",
       "updatedAt": "2026-05-25T06:32:53.405Z"
     },
