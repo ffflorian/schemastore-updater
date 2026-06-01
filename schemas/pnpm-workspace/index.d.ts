@@ -666,6 +666,14 @@ export interface PnpmWorkspaceSpecification {
   nodeDownloadMirrors?: {
     [k: string]: string | undefined;
   };
+  /**
+   * A new trustLockfile setting controls whether pnpm install re-applies the `minimumReleaseAge` / `trustPolicy: 'no-downgrade'` checks to every entry in the loaded lockfile. When true, the install treats the lockfile as already-trusted and skips the verification pass — useful for closed-source projects where every commit comes from a trusted author. The default is false, so verification stays on by default.
+   */
+  trustLockfile?: boolean;
+  /**
+   * Added a new hoistingLimits setting for `nodeLinker: hoisted` installs, mirroring yarn's `nmHoistingLimits`. It accepts `none` (the default — hoist as far as possible), workspaces (hoist only as far as each workspace package), or dependencies (hoist only up to each workspace package's direct dependencies).
+   */
+  hoistingLimits?: 'node' | 'workspaces' | 'dependencies';
 }
 /**
  * Define dependency version ranges as reusable constants,

@@ -9,40 +9,17 @@ This PR was created by the scheduled workflow after running:
 ## Schema Update Summary
 
 - **Total:** 857
-- **Generated:** 26
-- **Skipped:** 723
+- **Generated:** 3
+- **Skipped:** 746
 - **Failed:** 108
 
 <details>
 
-<summary><h3>Updated Schemas (26)</h3></summary>
+<summary><h3>Updated Schemas (3)</h3></summary>
 
-- `algovoi-compliance-receipt-v1`
-- `claude-code-settings`
-- `enonic-xp-admin-extension-8.0.0-b4`
-- `enonic-xp-admin-tool-8.0.0-b4`
-- `enonic-xp-api-8.0.0-b4`
-- `enonic-xp-application-8.0.0-b4`
-- `enonic-xp-cms-8.0.0-b4`
-- `enonic-xp-content-type-8.0.0-b4`
-- `enonic-xp-form-fragment-8.0.0-b4`
-- `enonic-xp-idprovider-8.0.0-b4`
-- `enonic-xp-layout-8.0.0-b4`
-- `enonic-xp-macro-8.0.0-b4`
-- `enonic-xp-mixin-8.0.0-b4`
-- `enonic-xp-page-8.0.0-b4`
-- `enonic-xp-part-8.0.0-b4`
-- `enonic-xp-service-8.0.0-b4`
-- `enonic-xp-site-8.0.0-b4`
-- `enonic-xp-style-8.0.0-b4`
-- `enonic-xp-task-8.0.0-b4`
-- `enonic-xp-webapp-8.0.0-b4`
-- `jsconfig`
-- `pgrls`
-- `ruff`
-- `ryl`
-- `solarxy-config`
-- `tsconfig`
+- `claude-code-keybindings`
+- `pnpm-workspace`
+- `uv`
 
 </details>
 

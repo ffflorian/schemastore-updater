@@ -1136,10 +1136,10 @@
     },
     "claude-code-keybindings.json": {
       "generatedFile": "schemas/claude-code-keybindings/index.d.ts",
-      "generatedSha256": "1438cc5eb1b8d5119bc275f70bbb68bbe5af9ee7c05aaa0ae52f0df3456b8af4",
-      "published": true,
-      "sourceSha256": "ca5685639e03916ed696cb81c70c7ab4afcec2db70e80a02d46c76bf6b0f1f54",
-      "updatedAt": "2026-03-27T22:03:06.632Z"
+      "generatedSha256": "17078c7a66494dc9edaab1d94b3b55b6c1b8af0581e25190ce00bdb274d4036f",
+      "published": false,
+      "sourceSha256": "93d4f2926fa9f116287dbb90904901e01aa243012c7a84ee0c95c874835d9e3a",
+      "updatedAt": "2026-06-01T06:34:51.525Z"
     },
     "claude-code-marketplace.json": {
       "generatedFile": "schemas/claude-code-marketplace/index.d.ts",
@@ -3768,10 +3768,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "b7c4549c736429cc5b47c6974f85c6f363a60db41be36fe14f1722eadb812258",
-      "published": true,
-      "sourceSha256": "a9a4ae58d3d232638e5065796cc8b5afe575d56e31e65f1af1f64c5d0d6a6bd8",
-      "updatedAt": "2026-05-18T06:27:45.755Z"
+      "generatedSha256": "cddce909b850710ecee1add549f44dd6a3d62ca95d59a2731189d1a061f3c17b",
+      "published": false,
+      "sourceSha256": "488b653782afdc139479adb9d108d5b0bb9caa9651b12d15022ce091df59fad0",
+      "updatedAt": "2026-06-01T06:37:27.901Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -5098,10 +5098,10 @@
     },
     "uv.json": {
       "generatedFile": "schemas/uv/index.d.ts",
-      "generatedSha256": "3cba70bd15f04e40e5a3717902127cd15f571ba22b21e00dfa43ac0151adde51",
-      "published": true,
-      "sourceSha256": "6a79a50bd5ac720f33f1d324cdbd164d613213f785c64ef948884a686f2e5bb5",
-      "updatedAt": "2026-05-18T06:27:54.588Z"
+      "generatedSha256": "6e32cc0bc95488b160b214b74fb802825e1702007f4ba3fb99d054247a592572",
+      "published": false,
+      "sourceSha256": "c5a5e9dcc9dfda39aa31eb7b07d30a224ab7f532d2cc38f55c1f06c242a4a706",
+      "updatedAt": "2026-06-01T06:37:36.052Z"
     },
     "uxp-manifest-5.json": {
       "generatedFile": "schemas/uxp-manifest-5/index.d.ts",
@@ -5384,6 +5384,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-05-25T06:32:59.912Z",
+  "generatedAt": "2026-06-01T06:37:39.809Z",
   "version": 1
 }

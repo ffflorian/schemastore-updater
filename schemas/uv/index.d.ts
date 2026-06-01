@@ -95,7 +95,7 @@ export type Requirement = string;
  * Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`), as well as relative durations (e.g., `1 week`, `30 days`, `6 months`). Relative durations are resolved to a timestamp at lock time.
  */
 export type ExcludeNewerValue = string;
-export type PackageExcludeNewer = (false | ExcludeNewerValue) | undefined;
+export type ExcludeNewerOverride = (false | ExcludeNewerValue) | undefined;
 export type ExtraBuildDependency =
   | Requirement
   | {
@@ -124,7 +124,7 @@ export type StatusCode = number;
  */
 export type IndexName = string;
 /**
- * A [`Url`] wrapper that redacts credentials when displaying the URL.
+ * A [`Url`] wrapper that redacts credentials and sensitive query parameters when displaying the URL.
  *
  * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
  * secrets by default when the URL is displayed or logged. This helps prevent accidental
@@ -167,8 +167,8 @@ export type KeyringProviderType = 'disabled' | 'subprocess';
 /**
  * The method to use when linking.
  *
- * Defaults to [`Clone`](LinkMode::Clone) on macOS and Linux (which support copy-on-write on
- * APFS and btrfs/xfs/bcachefs respectively), and [`Hardlink`](LinkMode::Hardlink) on other
+ * Defaults to [`LinkMode::Clone`] on macOS and Linux (which support copy-on-write on
+ * APFS and btrfs/xfs/bcachefs respectively), and [`LinkMode::Hardlink`] on other
  * platforms.
  */
 export type LinkMode = 'clone' | 'copy' | 'hardlink' | 'symlink';
@@ -271,6 +271,7 @@ export type TorchMode =
   | 'cu91'
   | 'cu90'
   | 'cu80'
+  | 'rocm7.2'
   | 'rocm7.1'
   | 'rocm7.0'
   | 'rocm6.4'
@@ -315,9 +316,13 @@ export type Source =
        */
       lfs?: boolean | null;
       marker?: MarkerTree;
+      /**
+       * The path to the archive within the repository.
+       */
+      path?: PortablePathBuf | null;
       rev?: string | null;
       /**
-       * The path to the directory with the `pyproject.toml`, if it's not in the archive root.
+       * The path to the directory with the `pyproject.toml`, if it's not in the repository root.
        */
       subdirectory?: PortablePathBuf | null;
       tag?: string | null;
@@ -408,6 +413,7 @@ export interface CombinedOptions {
    * bypasses SSL verification and could expose you to MITM attacks.
    */
   'allow-insecure-host'?: TrustedHost[] | null;
+  audit?: AuditOptions | null;
   /**
    * Configuration for the uv build backend.
    *
@@ -579,6 +585,10 @@ export interface CombinedOptions {
   /**
    * Limit candidate packages to those that were uploaded prior to the given date.
    *
+   * The date is compared against the upload time of each individual distribution artifact
+   * (i.e., when each file was uploaded to the package index), not the release date of the
+   * package version.
+   *
    * Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g.,
    * `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
    *
@@ -598,6 +608,9 @@ export interface CombinedOptions {
    * Durations do not respect semantics of the local time zone and are always resolved to a fixed
    * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
    * Calendar units such as months and years are not allowed.
+   *
+   * Set a package to `false` to exempt it from the global [`exclude-newer`](#exclude-newer)
+   * constraint entirely.
    */
   'exclude-newer-package'?: ExcludeNewerPackage | null;
   /**
@@ -681,7 +694,7 @@ export interface CombinedOptions {
    * ```toml
    * [[tool.uv.index]]
    * name = "pytorch"
-   * url = "https://download.pytorch.org/whl/cu121"
+   * url = "https://download.pytorch.org/whl/cu130"
    * explicit = true
    *
    * [tool.uv.sources]
@@ -741,25 +754,10 @@ export interface CombinedOptions {
   /**
    * Whether to load TLS certificates from the platform's native certificate store.
    *
-   * By default, uv loads certificates from the bundled `webpki-roots` crate. The
-   * `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv
-   * improves portability and performance (especially on macOS).
+   * By default, uv uses bundled Mozilla root certificates. When enabled, this loads
+   * certificates from the platform's native certificate store instead.
    *
-   * However, in some cases, you may want to use the platform's native certificate store,
-   * especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's
-   * included in your system's certificate store.
-   */
-  'system-certs'?: boolean | null;
-  /**
-   * (Deprecated: use `system-certs` instead.) Whether to load TLS certificates from the platform's native certificate store.
-   *
-   * By default, uv loads certificates from the bundled `webpki-roots` crate. The
-   * `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv
-   * improves portability and performance (especially on macOS).
-   *
-   * However, in some cases, you may want to use the platform's native certificate store,
-   * especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's
-   * included in your system's certificate store.
+   * (Deprecated: use `system-certs` instead.)
    */
   'native-tls'?: boolean | null;
   /**
@@ -936,6 +934,13 @@ export interface CombinedOptions {
    */
   sources?: ToolUvSources | null;
   /**
+   * Whether to load TLS certificates from the platform's native certificate store.
+   *
+   * By default, uv uses bundled Mozilla root certificates. When enabled, this loads
+   * certificates from the platform's native certificate store instead.
+   */
+  'system-certs'?: boolean | null;
+  /**
    * The backend to use when fetching packages in the PyTorch ecosystem.
    *
    * When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem,
@@ -976,6 +981,24 @@ export interface CombinedOptions {
    * The workspace definition for the project, if any.
    */
   workspace?: ToolUvWorkspace | null;
+}
+export interface AuditOptions {
+  /**
+   * A list of vulnerability IDs to ignore during auditing.
+   *
+   * Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from
+   * the audit results.
+   */
+  ignore?: string[] | null;
+  /**
+   * A list of vulnerability IDs to ignore during auditing, but only while no fix is available.
+   *
+   * Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from
+   * the audit results as long as they have no known fix versions. Once a fix version becomes
+   * available, the vulnerability will be reported again.
+   */
+  'ignore-until-fixed'?: string[] | null;
+  [k: string]: unknown | undefined;
 }
 /**
  * Settings for the uv build backend (`uv_build`).
@@ -1180,7 +1203,7 @@ export interface StaticMetadata {
   version?: string | null;
 }
 export interface ExcludeNewerPackage {
-  [k: string]: PackageExcludeNewer | undefined;
+  [k: string]: ExcludeNewerOverride | undefined;
 }
 export interface ExtraBuildDependencies {
   [k: string]: ExtraBuildDependency[] | undefined;
@@ -1234,6 +1257,29 @@ export interface Index {
    */
   default?: boolean;
   /**
+   * An index-specific `exclude-newer` cutoff.
+   *
+   * Accepts the same date, timestamp, and duration values as the global `exclude-newer`
+   * setting. Set this to `false` to disable `exclude-newer` for this index entirely.
+   *
+   * When set to a value, packages resolved from this index will use that cutoff instead of the
+   * globally-specified value, unless a package-specific `exclude-newer-package` override is
+   * present.
+   *
+   * This option is in preview and may change in any future release.
+   *
+   * ```toml
+   * [tool.uv]
+   * exclude-newer = "2025-01-01T00:00:00Z"
+   *
+   * [[tool.uv.index]]
+   * name = "internal"
+   * url = "https://internal.example.com/simple"
+   * exclude-newer = "7 days"
+   * ```
+   */
+  'exclude-newer'?: ExcludeNewerOverride | undefined;
+  /**
    * Mark the index as explicit.
    *
    * Explicit indexes will _only_ be used when explicitly requested via a `[tool.uv.sources]`
@@ -1242,7 +1288,7 @@ export interface Index {
    * ```toml
    * [[tool.uv.index]]
    * name = "pytorch"
-   * url = "https://download.pytorch.org/whl/cu121"
+   * url = "https://download.pytorch.org/whl/cu130"
    * explicit = true
    *
    * [tool.uv.sources]
@@ -1279,7 +1325,7 @@ export interface Index {
    * ```toml
    * [[tool.uv.index]]
    * name = "pytorch"
-   * url = "https://download.pytorch.org/whl/cu121"
+   * url = "https://download.pytorch.org/whl/cu130"
    *
    * [tool.uv.sources]
    * torch = { index = "pytorch" }
@@ -1429,15 +1475,31 @@ export interface PipOptions {
   /**
    * Limit candidate packages to those that were uploaded prior to a given point in time.
    *
-   * Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e.g.,
-   * `2006-12-02T02:07:43Z`). A full timestamp is required to ensure that the resolver will
-   * behave consistently across timezones.
+   * The date is compared against the upload time of each individual distribution artifact
+   * (i.e., when each file was uploaded to the package index), not the release date of the
+   * package version.
+   *
+   * Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g.,
+   * `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+   *
+   * Durations do not respect semantics of the local time zone and are always resolved to a fixed
+   * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
+   * Calendar units such as months and years are not allowed.
    */
   'exclude-newer'?: ExcludeNewerValue | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the given date.
    *
-   * Accepts package-date pairs in a dictionary format.
+   * Accepts a dictionary format of `PACKAGE = "DATE"` pairs, where `DATE` is an RFC 3339
+   * timestamp (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g., `24 hours`, `1 week`,
+   * `30 days`), or a ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+   *
+   * Durations do not respect semantics of the local time zone and are always resolved to a fixed
+   * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
+   * Calendar units such as months and years are not allowed.
+   *
+   * Set a package to `false` to exempt it from the global [`exclude-newer`](#exclude-newer)
+   * constraint entirely.
    */
   'exclude-newer-package'?: ExcludeNewerPackage | null;
   /**
