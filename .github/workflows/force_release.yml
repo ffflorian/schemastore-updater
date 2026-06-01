@@ -6,6 +6,7 @@ on:
 
 jobs:
   force-release:
+    name: Force release
     permissions:
       contents: write
     runs-on: ubuntu-latest
