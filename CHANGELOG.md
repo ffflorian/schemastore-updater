@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/ffflorian/schemastore-updater/compare/v3.4.0...v3.4.1) (2026-06-01)
+
+
+### Bug Fixes
+
+* replace date-fns with Intl.DateTimeFormat, remove dependency ([#1492](https://github.com/ffflorian/schemastore-updater/issues/1492)) ([34002c8](https://github.com/ffflorian/schemastore-updater/commit/34002c8e2375f4a40b2b2674674b83b425b44bd5))
+
 # [3.4.0](https://github.com/ffflorian/schemastore-updater/compare/v3.3.0...v3.4.0) (2026-05-04)
 
 
