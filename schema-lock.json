@@ -1137,7 +1137,7 @@
     "claude-code-keybindings.json": {
       "generatedFile": "schemas/claude-code-keybindings/index.d.ts",
       "generatedSha256": "17078c7a66494dc9edaab1d94b3b55b6c1b8af0581e25190ce00bdb274d4036f",
-      "published": false,
+      "published": true,
       "sourceSha256": "93d4f2926fa9f116287dbb90904901e01aa243012c7a84ee0c95c874835d9e3a",
       "updatedAt": "2026-06-01T06:34:51.525Z"
     },
@@ -2488,7 +2488,7 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "fad96b47ed35ee7aac85ecdb6c63a39b30987b0de5d3aa9dbc2545a668b5b7cc",
-      "published": false,
+      "published": true,
       "sourceSha256": "731b38b35d783205869fbb891d7cb869824c3614515969f853d085157d59e133",
       "updatedAt": "2026-05-25T06:29:45.307Z"
     },
@@ -3769,7 +3769,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "cddce909b850710ecee1add549f44dd6a3d62ca95d59a2731189d1a061f3c17b",
-      "published": false,
+      "published": true,
       "sourceSha256": "488b653782afdc139479adb9d108d5b0bb9caa9651b12d15022ce091df59fad0",
       "updatedAt": "2026-06-01T06:37:27.901Z"
     },
@@ -4245,7 +4245,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "0e03b190290f34a016a861d1426d991f06500b5e8b2082972099c421a8fbd8ac",
-      "published": false,
+      "published": true,
       "sourceSha256": "d6bc7d0e9decf259d031a649553d0e79ad60fa6a198f657aa85ebeb1b45fc1d5",
       "updatedAt": "2026-05-25T06:32:50.728Z"
     },
@@ -4945,7 +4945,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "f568390dc7872ad2113ff9bffb1983d8b465ea2c2eec9abfd8d7b1f0d54ba851",
-      "published": false,
+      "published": true,
       "sourceSha256": "2101a4c13fb7559ee4e968c3876c65ed7c5183ec3c1a727a32520794724b2432",
       "updatedAt": "2026-05-25T06:32:55.422Z"
     },
@@ -5099,7 +5099,7 @@
     "uv.json": {
       "generatedFile": "schemas/uv/index.d.ts",
       "generatedSha256": "6e32cc0bc95488b160b214b74fb802825e1702007f4ba3fb99d054247a592572",
-      "published": false,
+      "published": true,
       "sourceSha256": "c5a5e9dcc9dfda39aa31eb7b07d30a224ab7f532d2cc38f55c1f06c242a4a706",
       "updatedAt": "2026-06-01T06:37:36.052Z"
     },
