@@ -1,6 +1,7 @@
 name: Force Release
 
 permissions: {}
+
 on:
   workflow_dispatch:
 
@@ -8,6 +9,7 @@ jobs:
   force-release:
     name: Force release
     permissions:
+      issues: write
       contents: write
     runs-on: ubuntu-latest
     steps:
