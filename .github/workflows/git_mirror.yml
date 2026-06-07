@@ -5,18 +5,20 @@ permissions: {}
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   mirror:
+    name: Mirror to Codeberg and GitLab
     permissions:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: ffflorian/actions/git-mirror@9c7842ec0251a5890f0ca9ef22deed8dbc4ea9fa
+      - uses: ffflorian/actions/git-mirror@abeafb743ac9afb2adefc0fc15b207029d1bc633
         with:
-          GITLAB_REMOTE: 'git@gitlab.com:ffflorian/schemastore-updater.git'
+          GITLAB_REMOTE: 'git@gitlab.com:${{ github.repository }}.git'
           GITLAB_SECRET: ${{ secrets.GITLAB_SECRET }}
           GITLAB_PUSH_ALL_REFS: 'false'
-          CODEBERG_REMOTE: 'git@codeberg.org:ffflorian/schemastore-updater.git'
+          CODEBERG_REMOTE: 'git@codeberg.org:${{ github.repository }}.git'
           CODEBERG_SECRET: ${{ secrets.CODEBERG_SECRET }}
           CODEBERG_PUSH_ALL_REFS: 'false'
