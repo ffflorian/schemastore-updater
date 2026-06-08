@@ -62,6 +62,7 @@ export type RuleName =
   | 'new-lines'
   | 'octal-values'
   | 'quoted-strings'
+  | 'tags'
   | 'trailing-spaces'
   | 'truthy';
 /**
@@ -157,6 +158,10 @@ export type QuotedStringsRequiredMode = 'only-when-needed';
 /**
  * Common rule entry shape used by TOML config.
  */
+export type RuleEntryForTagsOptions = boolean | RuleSwitch | RuleOptionsForTagsOptions;
+/**
+ * Common rule entry shape used by TOML config.
+ */
 export type RuleEntryForTruthyOptions = boolean | RuleSwitch | RuleOptionsForTruthyOptions;
 export type TruthyAllowedValue =
   | 'YES'
@@ -183,6 +188,10 @@ export type TruthyAllowedValue =
  */
 export interface RylTOMLConfig {
   /**
+   * Glob patterns assigning files to source kinds (`yaml`, `markdown`).
+   */
+  files?: FilesTable | null;
+  /**
    * Native fix policy.
    */
   fix?: FixTable | null;
@@ -199,6 +208,10 @@ export interface RylTOMLConfig {
    */
   locale?: string | null;
   /**
+   * Behaviour for YAML embedded in markdown (front matter and fenced blocks).
+   */
+  markdown?: MarkdownTable | null;
+  /**
    * Per-file rule ignores.
    */
   'per-file-ignores'?: {
@@ -208,11 +221,21 @@ export interface RylTOMLConfig {
    * Rule configuration table.
    */
   rules?: RulesTable | null;
-  /**
-   * Glob patterns used to identify YAML files while scanning directories.
-   */
-  'yaml-files'?: string[] | null;
   [k: string]: unknown | undefined;
+}
+/**
+ * File-to-source-kind glob mapping (ryl-only; TOML). Each kind selects which
+ * files are linted as that kind. A file matching more than one kind is an error.
+ */
+export interface FilesTable {
+  /**
+   * Glob patterns for markdown files whose embedded YAML is linted.
+   */
+  markdown?: string[] | null;
+  /**
+   * Glob patterns for files linted directly as YAML.
+   */
+  yaml?: string[] | null;
 }
 /**
  * TOML `[fix]` table.
@@ -220,6 +243,19 @@ export interface RylTOMLConfig {
 export interface FixTable {
   fixable?: FixableRuleSelector[] | null;
   unfixable?: FixRuleName[] | null;
+}
+/**
+ * Markdown embedding behaviour. ryl-only (TOML); yamllint has no equivalent.
+ */
+export interface MarkdownTable {
+  /**
+   * Lint fenced `yaml`/`yml` code blocks. Defaults to `true`.
+   */
+  'fenced-blocks'?: boolean | null;
+  /**
+   * Lint the leading YAML front matter block. Defaults to `true`.
+   */
+  'front-matter'?: boolean | null;
 }
 /**
  * Built-in rule table for TOML config.
@@ -246,6 +282,7 @@ export interface RulesTable {
   'new-lines'?: RuleEntryForNewLinesOptions | null;
   'octal-values'?: RuleEntryForOctalValuesOptions | null;
   'quoted-strings'?: RuleEntryForTomlQuotedStringsOptions | null;
+  tags?: RuleEntryForTagsOptions | null;
   'trailing-spaces'?: RuleEntryForNoOptions | null;
   truthy?: RuleEntryForTruthyOptions | null;
   [k: string]: unknown | undefined;
@@ -439,6 +476,17 @@ export interface RuleOptionsForTomlQuotedStringsOptions {
   level?: RuleLevel | null;
   'quote-type'?: QuoteType | null;
   required?: QuotedStringsRequired | null;
+}
+/**
+ * Common rule fields plus rule-specific options.
+ */
+export interface RuleOptionsForTagsOptions {
+  'allowed-tags'?: string[] | null;
+  'forbid-removed-types'?: boolean | null;
+  'forbid-unsafe-tags'?: boolean | null;
+  ignore?: StringOrVec | null;
+  'ignore-from-file'?: StringOrVec | null;
+  level?: RuleLevel | null;
 }
 /**
  * Common rule fields plus rule-specific options.
