@@ -204,6 +204,11 @@ export interface RemoteHook {
    */
   priority?: number;
   /**
+   * User-defined hook groups used by `prek run --group` and `--no-group`.
+   * Group names cannot be empty or contain whitespace.
+   */
+  groups?: string[];
+  /**
    * Not documented in the official docs.
    */
   alias?: string;
@@ -370,6 +375,11 @@ export interface LocalHook {
    */
   priority?: number;
   /**
+   * User-defined hook groups used by `prek run --group` and `--no-group`.
+   * Group names cannot be empty or contain whitespace.
+   */
+  groups?: string[];
+  /**
    * Not documented in the official docs.
    */
   alias?: string;
@@ -511,6 +521,11 @@ export interface MetaHook {
    */
   priority?: number;
   /**
+   * User-defined hook groups used by `prek run --group` and `--no-group`.
+   * Group names cannot be empty or contain whitespace.
+   */
+  groups?: string[];
+  /**
    * Not documented in the official docs.
    */
   alias?: string;
@@ -651,6 +666,11 @@ export interface BuiltinHook {
    * It is not allowed in manifests (e.g. `.pre-commit-hooks.yaml`).
    */
   priority?: number;
+  /**
+   * User-defined hook groups used by `prek run --group` and `--no-group`.
+   * Group names cannot be empty or contain whitespace.
+   */
+  groups?: string[];
   /**
    * Not documented in the official docs.
    */

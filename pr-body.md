@@ -8,26 +8,68 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 857
-- **Generated:** 3
-- **Skipped:** 746
-- **Failed:** 108
+- **Total:** 896
+- **Generated:** 44
+- **Skipped:** 743
+- **Failed:** 109
 
 <details>
 
-<summary><h3>Updated Schemas (3)</h3></summary>
+<summary><h3>Updated Schemas (44)</h3></summary>
 
-- `claude-code-keybindings`
-- `pnpm-workspace`
-- `uv`
+- `claude-code-settings`
+- `enonic-xp-admin-extension-8.0.0-b5`
+- `enonic-xp-admin-extension-8.0.0`
+- `enonic-xp-admin-tool-8.0.0-b5`
+- `enonic-xp-admin-tool-8.0.0`
+- `enonic-xp-api-8.0.0-b5`
+- `enonic-xp-api-8.0.0`
+- `enonic-xp-application-8.0.0-b5`
+- `enonic-xp-application-8.0.0`
+- `enonic-xp-cms-8.0.0-b5`
+- `enonic-xp-cms-8.0.0`
+- `enonic-xp-content-type-8.0.0-b5`
+- `enonic-xp-content-type-8.0.0`
+- `enonic-xp-form-fragment-8.0.0-b5`
+- `enonic-xp-form-fragment-8.0.0`
+- `enonic-xp-idprovider-8.0.0-b5`
+- `enonic-xp-idprovider-8.0.0`
+- `enonic-xp-layout-8.0.0-b5`
+- `enonic-xp-layout-8.0.0`
+- `enonic-xp-macro-8.0.0-b5`
+- `enonic-xp-macro-8.0.0`
+- `enonic-xp-mixin-8.0.0-b5`
+- `enonic-xp-mixin-8.0.0`
+- `enonic-xp-page-8.0.0-b5`
+- `enonic-xp-page-8.0.0`
+- `enonic-xp-part-8.0.0-b5`
+- `enonic-xp-part-8.0.0`
+- `enonic-xp-service-8.0.0-b5`
+- `enonic-xp-service-8.0.0`
+- `enonic-xp-site-8.0.0-b5`
+- `enonic-xp-site-8.0.0`
+- `enonic-xp-style-8.0.0-b5`
+- `enonic-xp-style-8.0.0`
+- `enonic-xp-task-8.0.0-b5`
+- `enonic-xp-task-8.0.0`
+- `enonic-xp-webapp-8.0.0-b5`
+- `enonic-xp-webapp-8.0.0`
+- `host`
+- `intlayer`
+- `partial-poe`
+- `prek`
+- `ruff`
+- `ryl`
+- `yap`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (108)</h3></summary>
+<summary><h3>Failed Schemas (109)</h3></summary>
 
 - `accelerator`
+- `aio-connector-metadata-11.0-preview`
 - `app-config`
 - `base-04`
 - `bitrise-step`

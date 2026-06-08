@@ -1566,6 +1566,10 @@ export interface ClaudeCodeSettings {
      * When true, make sandbox startup a hard failure if required sandbox dependencies are missing. Default: false (sandbox is skipped with a warning). See https://code.claude.com/docs/en/sandboxing#enable-sandboxing
      */
     failIfUnavailable?: boolean;
+    /**
+     * Limit the entire sandbox configuration to the listed platforms. On platforms not in the list the sandbox config is inert: no sandbox, no auto-allow, no startup warning, and no failIfUnavailable exit. When omitted, all supported platforms are included. Only honored from managed (policy) settings.
+     */
+    enabledPlatforms?: ('macos' | 'linux' | 'wsl' | 'windows')[];
   };
   /**
    * Customize the verbs shown in spinner progress messages
