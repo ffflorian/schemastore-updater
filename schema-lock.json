@@ -1158,7 +1158,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "f4a009a782c5527174c117e3152e31193fdacecbd5aee30708898e4ec90e472e",
-      "published": false,
+      "published": true,
       "sourceSha256": "22ffdfc7013b40b9fefdfd9df4af889a096ed0c5bf23607484526f291439b8f8",
       "updatedAt": "2026-06-08T06:30:51.820Z"
     },
