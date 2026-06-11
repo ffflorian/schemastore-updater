@@ -6905,7 +6905,7 @@ __metadata:
     oxlint: "npm:1.68.0"
     prettier: "npm:3.8.3"
     semantic-release: "npm:25.0.3"
-    semver: "npm:7.8.1"
+    semver: "npm:7.8.2"
     tsx: "npm:4.22.4"
     typescript: "npm:6.0.3"
     vitest: "npm:4.1.8"
@@ -6959,12 +6959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.8.1":
-  version: 7.8.1
-  resolution: "semver@npm:7.8.1"
+"semver@npm:7.8.2":
+  version: 7.8.2
+  resolution: "semver@npm:7.8.2"
   bin:
     semver: bin/semver.js
-  checksum: 10c0/92d6871d6347e1f99d0ba396a70f2545ccf2a032cda3d378fa0699edf7506b5c6d266aed55c8b88e72bd91a30d2351e4f39db479375374430fcdc4b58f4e3c1a
+  checksum: 10c0/8e8c193fa75b938e5b3ccf6707c6447e4b34f73e493e72b03f3185393489f45e049144052f624217c346d6c6e0a301dda8eeab2f14413e337218ecb1cbd2de16
   languageName: node
   linkType: hard
 
