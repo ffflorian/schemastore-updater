@@ -1,3 +1,10 @@
+## [3.4.2](https://github.com/ffflorian/schemastore-updater/compare/v3.4.1...v3.4.2) (2026-06-11)
+
+
+### Bug Fixes
+
+* **deps:** bump semver from 7.8.1 to 7.8.2 ([#1506](https://github.com/ffflorian/schemastore-updater/issues/1506)) ([f197216](https://github.com/ffflorian/schemastore-updater/commit/f197216ffd900c0e9084fcac93df0a96333a31f3))
+
 ## [3.4.1](https://github.com/ffflorian/schemastore-updater/compare/v3.4.0...v3.4.1) (2026-06-01)
 
 
