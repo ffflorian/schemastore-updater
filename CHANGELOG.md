@@ -1,3 +1,10 @@
+## [3.4.3](https://github.com/ffflorian/schemastore-updater/compare/v3.4.2...v3.4.3) (2026-06-13)
+
+
+### Bug Fixes
+
+* **deps:** bump esbuild from 0.28.0 to 0.28.1 ([#1510](https://github.com/ffflorian/schemastore-updater/issues/1510)) ([8d3ecf8](https://github.com/ffflorian/schemastore-updater/commit/8d3ecf83db1d1af023cb3b73a4dd30648b095f7d))
+
 ## [3.4.2](https://github.com/ffflorian/schemastore-updater/compare/v3.4.1...v3.4.2) (2026-06-11)
 
 
