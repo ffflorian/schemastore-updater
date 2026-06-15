@@ -1,13 +1,13 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for chrome-manifest.",
+  "description": "TypeScript definitions for eslint-suppressions.",
   "license": "GPL-3.0",
-  "name": "@schemastore/chrome-manifest",
+  "name": "@schemastore/eslint-suppressions",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.3"
+  "version": "1.0.0"
 }

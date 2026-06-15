@@ -420,8 +420,11 @@ export interface Job {
    * The operating system to run the job on
    */
   os?:
-    | ('osx' | 'linux' | 'linux-ppc64le' | 'windows')
-    | ['osx' | 'linux' | 'linux-ppc64le' | 'windows', ...('osx' | 'linux' | 'linux-ppc64le' | 'windows')[]];
+    | ('osx' | 'linux' | 'linux-ppc64le' | 'windows' | 'freebsd')
+    | [
+        'osx' | 'linux' | 'linux-ppc64le' | 'windows' | 'freebsd',
+        ...('osx' | 'linux' | 'linux-ppc64le' | 'windows' | 'freebsd')[]
+      ];
   osx_image?: XcodeVersions | [XcodeVersions, ...XcodeVersions[]];
   /**
    * The Ubuntu distribution to use

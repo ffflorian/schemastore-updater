@@ -42,6 +42,7 @@ export type StringOrVec = string | string[];
  */
 export type RuleName =
   | 'anchors'
+  | 'block-scalar-chomping'
   | 'braces'
   | 'brackets'
   | 'colons'
@@ -58,17 +59,28 @@ export type RuleName =
   | 'key-duplicates'
   | 'key-ordering'
   | 'line-length'
+  | 'merge-keys'
   | 'new-line-at-end-of-file'
   | 'new-lines'
   | 'octal-values'
   | 'quoted-strings'
   | 'tags'
   | 'trailing-spaces'
-  | 'truthy';
+  | 'truthy'
+  | 'unicode-line-breaks';
+/**
+ * A `per-line-ignores` rule selector: a built-in rule name, or `ALL` to suppress
+ * every rule on a matching line. Untagged so `"ALL"` and rule names share one list.
+ */
+export type PerLineRule = AllRulesSelector | RuleName;
+/**
+ * The `ALL` keyword accepted in a `per-line-ignores` `rules` list.
+ */
+export type AllRulesSelector = 'ALL';
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForAnchorsOptions = boolean | RuleSwitch | RuleOptionsForAnchorsOptions;
+export type RuleEntryForTomlAnchorsOptions = boolean | RuleSwitch | RuleOptionsForTomlAnchorsOptions;
 /**
  * Shorthand rule enable/disable syntax.
  */
@@ -77,6 +89,10 @@ export type RuleSwitch = 'enable' | 'disable';
  * Rule severity override.
  */
 export type RuleLevel = 'error' | 'warning';
+/**
+ * Common rule entry shape used by TOML config.
+ */
+export type RuleEntryForNoOptions = boolean | RuleSwitch | RuleOptionsForNoOptions;
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -98,7 +114,7 @@ export type RuleEntryForCommentsOptions = boolean | RuleSwitch | RuleOptionsForC
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForNoOptions = boolean | RuleSwitch | RuleOptionsForNoOptions;
+export type RuleEntryForCommentsIndentationOptions = boolean | RuleSwitch | RuleOptionsForCommentsIndentationOptions;
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -118,7 +134,7 @@ export type RuleEntryForFloatValuesOptions = boolean | RuleSwitch | RuleOptionsF
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForHyphensOptions = boolean | RuleSwitch | RuleOptionsForHyphensOptions;
+export type RuleEntryForTomlHyphensOptions = boolean | RuleSwitch | RuleOptionsForTomlHyphensOptions;
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -130,7 +146,7 @@ export type SpacesMode = 'consistent';
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForKeyDuplicatesOptions = boolean | RuleSwitch | RuleOptionsForKeyDuplicatesOptions;
+export type RuleEntryForTomlKeyDuplicatesOptions = boolean | RuleSwitch | RuleOptionsForTomlKeyDuplicatesOptions;
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -212,16 +228,23 @@ export interface RylTOMLConfig {
    */
   markdown?: MarkdownTable | null;
   /**
+   * Output targets: which format goes to which destination (file/stdout/stderr).
+   */
+  output?: OutputTable | null;
+  /**
    * Per-file rule ignores.
    */
   'per-file-ignores'?: {
     [k: string]: RuleName[] | undefined;
   } | null;
   /**
+   * Per-line rule ignores: suppress rules on lines/files matching a pattern.
+   */
+  'per-line-ignores'?: PerLineIgnore[] | null;
+  /**
    * Rule configuration table.
    */
   rules?: RulesTable | null;
-  [k: string]: unknown | undefined;
 }
 /**
  * File-to-source-kind glob mapping (ryl-only; TOML). Each kind selects which
@@ -258,26 +281,84 @@ export interface MarkdownTable {
   'front-matter'?: boolean | null;
 }
 /**
+ * Output targets (ryl-only; TOML). Each format present is rendered to its destination,
+ * so several formats produce several outputs in one run (e.g. console plus a report
+ * file). A CLI `--format` overrides this table wholesale. yamllint has no equivalent;
+ * see `docs/output-formats.md`.
+ */
+export interface OutputTable {
+  /**
+   * Auto-detected console format (GitHub annotations in CI, otherwise colored/plain).
+   */
+  auto?: OutputDestination | null;
+  /**
+   * Plain text with ANSI colors.
+   */
+  colored?: OutputDestination | null;
+  /**
+   * GitHub Actions workflow commands.
+   */
+  github?: OutputDestination | null;
+  /**
+   * `GitLab` Code Quality JSON report.
+   */
+  gitlab?: OutputDestination | null;
+  /**
+   * `JUnit` XML test report.
+   */
+  junit?: OutputDestination | null;
+  /**
+   * One `path:line:col: [level] message (rule)` line per diagnostic.
+   */
+  parsable?: OutputDestination | null;
+  /**
+   * Plain text grouped per file.
+   */
+  standard?: OutputDestination | null;
+}
+/**
+ * Where one format's output goes. An absent `path` means the format's default stream
+ * (stderr for the console formats, stdout for `junit`/`gitlab`); `"-"` means stdout; any
+ * other value is a file path.
+ */
+export interface OutputDestination {
+  path?: string | null;
+}
+/**
+ * A single `per-line-ignores` entry. Suppresses `rules` on source lines matching
+ * `regex` (the whole physical line, unanchored) within files matching `path` (a
+ * glob). All present fields must match (logical AND); at least one of `regex`/`path`
+ * is required (validated in `validate_toml_config`), so an entry can't disable a rule
+ * globally.
+ */
+export interface PerLineIgnore {
+  path?: string | null;
+  regex?: string | null;
+  rules: PerLineRule[];
+}
+/**
  * Built-in rule table for TOML config.
  */
 export interface RulesTable {
-  anchors?: RuleEntryForAnchorsOptions | null;
+  anchors?: RuleEntryForTomlAnchorsOptions | null;
+  'block-scalar-chomping'?: RuleEntryForNoOptions | null;
   braces?: RuleEntryForBraceLikeOptions | null;
   brackets?: RuleEntryForBraceLikeOptions | null;
   colons?: RuleEntryForColonsOptions | null;
   commas?: RuleEntryForCommasOptions | null;
   comments?: RuleEntryForCommentsOptions | null;
-  'comments-indentation'?: RuleEntryForNoOptions | null;
+  'comments-indentation'?: RuleEntryForCommentsIndentationOptions | null;
   'document-end'?: RuleEntryForDocumentPresenceOptions | null;
   'document-start'?: RuleEntryForDocumentPresenceOptions | null;
   'empty-lines'?: RuleEntryForEmptyLinesOptions | null;
   'empty-values'?: RuleEntryForEmptyValuesOptions | null;
   'float-values'?: RuleEntryForFloatValuesOptions | null;
-  hyphens?: RuleEntryForHyphensOptions | null;
+  hyphens?: RuleEntryForTomlHyphensOptions | null;
   indentation?: RuleEntryForIndentationOptions | null;
-  'key-duplicates'?: RuleEntryForKeyDuplicatesOptions | null;
+  'key-duplicates'?: RuleEntryForTomlKeyDuplicatesOptions | null;
   'key-ordering'?: RuleEntryForKeyOrderingOptions | null;
   'line-length'?: RuleEntryForLineLengthOptions | null;
+  'merge-keys'?: RuleEntryForNoOptions | null;
   'new-line-at-end-of-file'?: RuleEntryForNoOptions | null;
   'new-lines'?: RuleEntryForNewLinesOptions | null;
   'octal-values'?: RuleEntryForOctalValuesOptions | null;
@@ -285,15 +366,25 @@ export interface RulesTable {
   tags?: RuleEntryForTagsOptions | null;
   'trailing-spaces'?: RuleEntryForNoOptions | null;
   truthy?: RuleEntryForTruthyOptions | null;
+  'unicode-line-breaks'?: RuleEntryForNoOptions | null;
   [k: string]: unknown | undefined;
 }
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForAnchorsOptions {
+export interface RuleOptionsForTomlAnchorsOptions {
+  'forbid-ambiguous-anchor-alias-names'?: boolean | null;
   'forbid-duplicated-anchors'?: boolean | null;
   'forbid-undeclared-aliases'?: boolean | null;
   'forbid-unused-anchors'?: boolean | null;
+  ignore?: StringOrVec | null;
+  'ignore-from-file'?: StringOrVec | null;
+  level?: RuleLevel | null;
+}
+/**
+ * Common rule fields plus rule-specific options.
+ */
+export interface RuleOptionsForNoOptions {
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   level?: RuleLevel | null;
@@ -346,7 +437,8 @@ export interface RuleOptionsForCommentsOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForNoOptions {
+export interface RuleOptionsForCommentsIndentationOptions {
+  'allow-any-open-indent'?: boolean | null;
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   level?: RuleLevel | null;
@@ -397,7 +489,8 @@ export interface RuleOptionsForFloatValuesOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForHyphensOptions {
+export interface RuleOptionsForTomlHyphensOptions {
+  'dash-on-own-line'?: boolean | null;
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   level?: RuleLevel | null;
@@ -417,8 +510,10 @@ export interface RuleOptionsForIndentationOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForKeyDuplicatesOptions {
+export interface RuleOptionsForTomlKeyDuplicatesOptions {
+  'check-canonical'?: boolean | null;
   'forbid-duplicated-merge-keys'?: boolean | null;
+  'forbid-merge-key-shadowing'?: boolean | null;
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   level?: RuleLevel | null;

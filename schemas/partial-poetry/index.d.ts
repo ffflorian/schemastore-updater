@@ -252,7 +252,7 @@ export interface HttpsJsonSchemastoreOrgPartialPoetryJson {
   [k: string]: unknown | undefined;
 }
 export interface PoetryLongDependency {
-  version: PoetryPep440Version;
+  version?: PoetryPep440Version;
   /**
    * The python versions for which the dependency should be installed.
    */

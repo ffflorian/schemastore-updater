@@ -552,9 +552,17 @@ export interface PnpmWorkspaceSpecification {
    */
   gitChecks?: boolean;
   /**
+   * UNDOCUMENTED. When `true`, `pnpm publish` writes the README file's content into the published package.json (the `readme` field), so registries such as npmjs.com render the package's README. Added in pnpm 6.28.0; pnpm does not embed the README unless this is enabled. It also won't override a `readme` field already set in the package.json
+   */
+  embedReadme?: boolean;
+  /**
    * The primary branch of the repository which is used for publishing the latest changes.
    */
   publishBranch?: string;
+  /**
+   * When publishing from a supported cloud CI/CD system, the package will be publicly linked to where it was built and published from.
+   */
+  provenance?: boolean;
   /**
    * The location of the local pnpmfile.
    */
