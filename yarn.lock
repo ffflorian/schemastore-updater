@@ -6904,7 +6904,7 @@ __metadata:
     lefthook: "npm:2.1.9"
     oxlint: "npm:1.69.0"
     prettier: "npm:3.8.3"
-    semantic-release: "npm:25.0.3"
+    semantic-release: "npm:25.0.4"
     semver: "npm:7.8.2"
     tsx: "npm:4.22.4"
     typescript: "npm:6.0.3"
@@ -6914,9 +6914,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"semantic-release@npm:25.0.3":
-  version: 25.0.3
-  resolution: "semantic-release@npm:25.0.3"
+"semantic-release@npm:25.0.4":
+  version: 25.0.4
+  resolution: "semantic-release@npm:25.0.4"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^13.0.1"
     "@semantic-release/error": "npm:^4.0.0"
@@ -6948,7 +6948,7 @@ __metadata:
     yargs: "npm:^18.0.0"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 10c0/ca961722c61c44e90c419aa6ad812411203f6ff972947733febbc93433b91b526af2095051935816d70242ebc044efb70338f5f05b66bab4907c1be8b093ac12
+  checksum: 10c0/1409c9bb0320ee4e72f362282e38b6775d78c8ca9297842613c1ec64e2c95bc5ef94d8d148c8dda683231fd0854179e9c36fa293e68c592cfd5eac68fe6e930b
   languageName: node
   linkType: hard
 
