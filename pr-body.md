@@ -8,65 +8,38 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 896
-- **Generated:** 44
-- **Skipped:** 743
-- **Failed:** 109
+- **Total:** 906
+- **Generated:** 17
+- **Skipped:** 774
+- **Failed:** 115
 
 <details>
 
-<summary><h3>Updated Schemas (44)</h3></summary>
+<summary><h3>Updated Schemas (17)</h3></summary>
 
-- `claude-code-settings`
-- `enonic-xp-admin-extension-8.0.0-b5`
-- `enonic-xp-admin-extension-8.0.0`
-- `enonic-xp-admin-tool-8.0.0-b5`
-- `enonic-xp-admin-tool-8.0.0`
-- `enonic-xp-api-8.0.0-b5`
-- `enonic-xp-api-8.0.0`
-- `enonic-xp-application-8.0.0-b5`
-- `enonic-xp-application-8.0.0`
-- `enonic-xp-cms-8.0.0-b5`
-- `enonic-xp-cms-8.0.0`
-- `enonic-xp-content-type-8.0.0-b5`
-- `enonic-xp-content-type-8.0.0`
-- `enonic-xp-form-fragment-8.0.0-b5`
-- `enonic-xp-form-fragment-8.0.0`
-- `enonic-xp-idprovider-8.0.0-b5`
-- `enonic-xp-idprovider-8.0.0`
-- `enonic-xp-layout-8.0.0-b5`
-- `enonic-xp-layout-8.0.0`
-- `enonic-xp-macro-8.0.0-b5`
-- `enonic-xp-macro-8.0.0`
-- `enonic-xp-mixin-8.0.0-b5`
-- `enonic-xp-mixin-8.0.0`
-- `enonic-xp-page-8.0.0-b5`
-- `enonic-xp-page-8.0.0`
-- `enonic-xp-part-8.0.0-b5`
-- `enonic-xp-part-8.0.0`
-- `enonic-xp-service-8.0.0-b5`
-- `enonic-xp-service-8.0.0`
-- `enonic-xp-site-8.0.0-b5`
-- `enonic-xp-site-8.0.0`
-- `enonic-xp-style-8.0.0-b5`
-- `enonic-xp-style-8.0.0`
-- `enonic-xp-task-8.0.0-b5`
-- `enonic-xp-task-8.0.0`
-- `enonic-xp-webapp-8.0.0-b5`
-- `enonic-xp-webapp-8.0.0`
+- `aiproj-1.10`
+- `chrome-manifest`
+- `codex-skill-metadata`
+- `eslint-suppressions`
 - `host`
-- `intlayer`
-- `partial-poe`
-- `prek`
+- `launchsettings`
+- `partial-cibuildwheel`
+- `partial-poetry`
+- `partial-scheduled`
+- `partial-setuptools`
+- `pnpm-workspace`
+- `prometheus`
 - `ruff`
 - `ryl`
-- `yap`
+- `sigmacv`
+- `traefik-v3`
+- `travis`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (109)</h3></summary>
+<summary><h3>Failed Schemas (115)</h3></summary>
 
 - `accelerator`
 - `aio-connector-metadata-11.0-preview`
@@ -88,10 +61,12 @@ This PR was created by the scheduled workflow after running:
 - `dart-test`
 - `databricks-asset-bundles`
 - `declarative-automation-bundles`
+- `emmet`
 - `factorial-drupal-breakpoints-css-0.2.0`
 - `feed`
 - `gcp-blueprint-metadata`
 - `github-workflow`
+- `glamour-style`
 - `grunt-clean-task`
 - `grunt-copy-task`
 - `grunt-cssmin-task`
@@ -135,6 +110,8 @@ This PR was created by the scheduled workflow after running:
 - `pep-723`
 - `petstore-v1.0`
 - `phrase`
+- `podman-desktop-extension-1.27`
+- `podman-desktop-extension`
 - `problem_package_generators`
 - `pyproject`
 - `quikrun`
@@ -164,7 +141,9 @@ This PR was created by the scheduled workflow after running:
 - `venvironment-schema-v4.0.0`
 - `venvironment-schema-v4.1.0`
 - `venvironment-schema-v4.2.0`
+- `venvironment-schema-v5.0.0`
 - `venvplus-schema-v1.0.0`
+- `venvplus-schema-v1.1.0`
 - `vhwdebugger-binding-schema`
 - `vss-extension`
 - `vtcfg-v19.0.0`

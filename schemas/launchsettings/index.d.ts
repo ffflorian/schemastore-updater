@@ -29,6 +29,7 @@ export interface ProfileContent {
     | 'DockerCompose'
     | 'MsixPackage'
     | 'SdkContainer'
+    | 'WSL'
     | 'WSL2';
   /**
    * The arguments to pass to the target being run.

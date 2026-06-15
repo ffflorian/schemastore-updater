@@ -175,6 +175,7 @@ export interface StaticForwardedHeaders {
   connection?: string[] | null;
   insecure?: boolean;
   trustedIPs?: string[] | null;
+  notAppendXForwardedFor?: boolean;
 }
 export interface StaticHTTPConfig {
   encodedCharacters?: StaticEncodedCharacters;

@@ -1143,6 +1143,7 @@ export type RuleSelector =
   | 'RUF073'
   | 'RUF074'
   | 'RUF075'
+  | 'RUF076'
   | 'RUF1'
   | 'RUF10'
   | 'RUF100'

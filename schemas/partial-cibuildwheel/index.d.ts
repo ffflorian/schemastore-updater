@@ -1,6 +1,14 @@
 /* eslint-disable */
 
 /**
+ * Execute a shell command to audit each wheel after it is repaired. Use {wheel} for each wheel path, or {abi3_wheel} to only audit abi3 wheels.
+ */
+export type CIBW_AUDIT_COMMAND = string | string[];
+/**
+ * Install Python dependencies for the audit step.
+ */
+export type CIBW_AUDIT_REQUIRES = string | string[];
+/**
  * Change the architectures built on your machine by default.
  */
 export type CIBW_ARCHS = string | string[];
@@ -70,13 +78,7 @@ export type CIBW_DEPENDENCY_VERSIONS =
  * Enable or disable certain builds.
  */
 export type CIBW_ENABLE = Enable | Enable[];
-export type Enable =
-  | 'cpython-freethreading'
-  | 'cpython-prerelease'
-  | 'graalpy'
-  | 'pyodide-prerelease'
-  | 'pypy'
-  | 'pypy-eol';
+export type Enable = 'cpython-prerelease' | 'graalpy' | 'pyodide-prerelease' | 'pypy' | 'pypy-eol';
 /**
  * Set environment variables needed during the build.
  */
@@ -166,6 +168,18 @@ export type CIBW_MUSLLINUX_X86_64_IMAGE = string;
  */
 export type CIBW_XBUILD_TOOLS = string | string[];
 /**
+ * Platform-specific files in the build environment
+ */
+export type CIBW_XBUILD_FILES =
+  | string
+  | {
+      /**
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` ".+".
+       */
+      [k: string]: string | string[];
+    };
+/**
  * Specify the version of Pyodide to use
  */
 export type CIBW_PYODIDE_VERSION = string;
@@ -231,6 +245,8 @@ export type Inherit = 'none' | 'prepend' | 'append';
  * cibuildwheel's settings. Generated with ./bin/generate_schema.py --schemastore from cibuildwheel.
  */
 export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
+  'audit-command'?: CIBW_AUDIT_COMMAND;
+  'audit-requires'?: CIBW_AUDIT_REQUIRES;
   archs?: CIBW_ARCHS;
   'before-all'?: CIBW_BEFORE_ALL;
   'before-build'?: CIBW_BEFORE_BUILD;
@@ -262,6 +278,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
   'musllinux-s390x-image'?: CIBW_MUSLLINUX_S390X_IMAGE;
   'musllinux-x86_64-image'?: CIBW_MUSLLINUX_X86_64_IMAGE;
   'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+  'xbuild-files'?: CIBW_XBUILD_FILES;
   'pyodide-version'?: CIBW_PYODIDE_VERSION;
   'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
   skip?: CIBW_SKIP;
@@ -279,9 +296,12 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
   overrides?: {
     select: string | string[];
     inherit?: {
+      'audit-command'?: Inherit;
+      'audit-requires'?: Inherit;
       'before-all'?: Inherit;
       'before-build'?: Inherit;
       'xbuild-tools'?: Inherit;
+      'xbuild-files'?: Inherit;
       'before-test'?: Inherit;
       'config-settings'?: Inherit;
       'container-engine'?: Inherit;
@@ -295,6 +315,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
       'test-environment'?: Inherit;
       'test-runtime'?: Inherit;
     };
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
     'before-test'?: CIBW_BEFORE_TEST;
@@ -323,6 +345,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'musllinux-s390x-image'?: CIBW_MUSLLINUX_S390X_IMAGE;
     'musllinux-x86_64-image'?: CIBW_MUSLLINUX_X86_64_IMAGE;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
@@ -334,6 +357,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'test-runtime'?: CIBW_TEST_RUNTIME;
   }[];
   linux?: {
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     archs?: CIBW_ARCHS;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
@@ -362,6 +387,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'musllinux-s390x-image'?: CIBW_MUSLLINUX_S390X_IMAGE;
     'musllinux-x86_64-image'?: CIBW_MUSLLINUX_X86_64_IMAGE;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
@@ -373,6 +399,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'test-runtime'?: CIBW_TEST_RUNTIME;
   };
   windows?: {
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     archs?: CIBW_ARCHS;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
@@ -383,6 +411,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'dependency-versions'?: CIBW_DEPENDENCY_VERSIONS;
     environment?: CIBW_ENVIRONMENT;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
@@ -394,6 +423,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'test-runtime'?: CIBW_TEST_RUNTIME;
   };
   macos?: {
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     archs?: CIBW_ARCHS;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
@@ -404,6 +435,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'dependency-versions'?: CIBW_DEPENDENCY_VERSIONS;
     environment?: CIBW_ENVIRONMENT;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
@@ -415,6 +447,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'test-runtime'?: CIBW_TEST_RUNTIME;
   };
   pyodide?: {
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     archs?: CIBW_ARCHS;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
@@ -425,6 +459,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'dependency-versions'?: CIBW_DEPENDENCY_VERSIONS;
     environment?: CIBW_ENVIRONMENT;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
@@ -436,6 +471,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'test-runtime'?: CIBW_TEST_RUNTIME;
   };
   android?: {
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     archs?: CIBW_ARCHS;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
@@ -446,6 +483,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'dependency-versions'?: CIBW_DEPENDENCY_VERSIONS;
     environment?: CIBW_ENVIRONMENT;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;
@@ -457,6 +495,8 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'test-runtime'?: CIBW_TEST_RUNTIME;
   };
   ios?: {
+    'audit-command'?: CIBW_AUDIT_COMMAND;
+    'audit-requires'?: CIBW_AUDIT_REQUIRES;
     archs?: CIBW_ARCHS;
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
@@ -467,6 +507,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'dependency-versions'?: CIBW_DEPENDENCY_VERSIONS;
     environment?: CIBW_ENVIRONMENT;
     'xbuild-tools'?: CIBW_XBUILD_TOOLS;
+    'xbuild-files'?: CIBW_XBUILD_FILES;
     'pyodide-version'?: CIBW_PYODIDE_VERSION;
     'repair-wheel-command'?: CIBW_REPAIR_WHEEL_COMMAND;
     'test-command'?: CIBW_TEST_COMMAND;

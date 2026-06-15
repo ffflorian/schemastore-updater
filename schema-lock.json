@@ -301,6 +301,13 @@
       "sourceSha256": "403f624664ff294522c452e09bac06c233fa7810d9cb1b0a1d449928d5adc9a8",
       "updatedAt": "2026-03-27T22:02:40.757Z"
     },
+    "aiproj-1.10.json": {
+      "generatedFile": "schemas/aiproj-1.10/index.d.ts",
+      "generatedSha256": "b4d82e45fc5eaf1b7f89dc98bf99007b9e7c2911acfe16b1d352df9c62c22f12",
+      "published": false,
+      "sourceSha256": "6ba43596aec03d1aa57bf3ac1ef6fbd540cdf6d124c65c1091166f197c611d14",
+      "updatedAt": "2026-06-15T06:45:36.735Z"
+    },
     "aiproj-1.2.json": {
       "generatedFile": "schemas/aiproj-1.2/index.d.ts",
       "generatedSha256": "240a530ecacde0c825bfd332fd11671e298cbaa78c802a6b44ea51be5b4f99b2",
@@ -1060,9 +1067,9 @@
     "chrome-manifest.json": {
       "generatedFile": "schemas/chrome-manifest/index.d.ts",
       "generatedSha256": "3c23b047fdc934862b8e05a53e8063e53833f7b0c0ecafff055b4d5d7b9ad4da",
-      "published": true,
-      "sourceSha256": "6fbcebb595b3c32e46236774dd12b4eff630a53ab2504ec10ceaf35e41b397ad",
-      "updatedAt": "2026-03-27T22:03:03.872Z"
+      "published": false,
+      "sourceSha256": "31a3f823f961b1ce8ac5225d23d0ee146ffe4b3becc67a2d2382f9de9226fbfc",
+      "updatedAt": "2026-06-15T06:45:37.950Z"
     },
     "chutzpah.json": {
       "generatedFile": "schemas/chutzpah/index.d.ts",
@@ -1231,6 +1238,13 @@
       "published": true,
       "sourceSha256": "2f5e32a5c058819a90d1063e1a7e3bb940fcbc21f0df2078b8e8a0caefa16cb4",
       "updatedAt": "2026-05-18T06:24:22.522Z"
+    },
+    "codex-skill-metadata.json": {
+      "generatedFile": "schemas/codex-skill-metadata/index.d.ts",
+      "generatedSha256": "1c93b47b9721c603facc80301f587fb77f6520f4c7bfd651312d5f6ed7410610",
+      "published": false,
+      "sourceSha256": "512803fcf05ff56d00109a1e885088718a13f682bb8fb08ff3e45058040bf406",
+      "updatedAt": "2026-06-15T06:45:38.320Z"
     },
     "coffeelint.json": {
       "generatedFile": "schemas/coffeelint/index.d.ts",
@@ -2114,6 +2128,13 @@
       "sourceSha256": "abeca0b9ae5b6a29d04e18e45e4509dc48287c9b0ac5f44cd7cc76ebf1a4c9a1",
       "updatedAt": "2026-03-27T22:03:23.029Z"
     },
+    "eslint-suppressions.json": {
+      "generatedFile": "schemas/eslint-suppressions/index.d.ts",
+      "generatedSha256": "a07b70648eec09775513d0c93246b91c8a9828f3e3a507077b8cc1a2c3ecf9f8",
+      "published": false,
+      "sourceSha256": "4850a7864e1a63b4f8847d4a79d62e32236bb7b4bbc940d1ddefa70e57f84429",
+      "updatedAt": "2026-06-15T06:45:39.650Z"
+    },
     "eslintrc.json": {
       "generatedFile": "schemas/eslintrc/index.d.ts",
       "generatedSha256": "00ec8dd46bdc85183e7a67d6b8631da16d78dc6593fb9e3bdca99219468cc949",
@@ -2592,10 +2613,10 @@
     },
     "host.json": {
       "generatedFile": "schemas/host/index.d.ts",
-      "generatedSha256": "ba734b0a3ae7230407e5c1bf8a26c08c0c90033a17764e8dacbb0d144773b12a",
-      "published": true,
-      "sourceSha256": "1d7f34e7c46908fec933ffc2055790eabac5ca12c5b241e4db7f2bdf1d2ae8b2",
-      "updatedAt": "2026-06-08T06:31:20.514Z"
+      "generatedSha256": "1c8df0b43056aacd53c132327f196aa82b005eed8b3bec41153ba95c925f9143",
+      "published": false,
+      "sourceSha256": "ed8f29e9959d17726339eb0cc0f7c790ec9a9efff3a4577ecf468c6ebd171729",
+      "updatedAt": "2026-06-15T06:45:40.446Z"
     },
     "htmlhint.json": {
       "generatedFile": "schemas/htmlhint/index.d.ts",
@@ -2879,10 +2900,10 @@
     },
     "launchsettings.json": {
       "generatedFile": "schemas/launchsettings/index.d.ts",
-      "generatedSha256": "e82dc816adc8ed7b9769210387662b10539e07625bcec6050fe8016c1208e424",
-      "published": true,
-      "sourceSha256": "2004b8ab5461698e35ca49a94deee3e132a616b12449ee5a28c9aff53e57fb35",
-      "updatedAt": "2026-03-27T22:07:05.178Z"
+      "generatedSha256": "5ed84290da98b444b79540357ecf3b423b0054fabe569e5615add88da8c959fc",
+      "published": false,
+      "sourceSha256": "d6866a9d0d5d5f167eb4766cc941678f796a312b065b859f01466768fa25ee9f",
+      "updatedAt": "2026-06-15T06:48:50.121Z"
     },
     "lazydocker.json": {
       "generatedFile": "schemas/lazydocker/index.d.ts",
@@ -3803,10 +3824,10 @@
     },
     "partial-cibuildwheel.json": {
       "generatedFile": "schemas/partial-cibuildwheel/index.d.ts",
-      "generatedSha256": "a6fd9554bd3b35d42373bd03d092e98c1e72b29e86a85f244576024e95fd2208",
-      "published": true,
-      "sourceSha256": "474847f3366162e4a1127253bb9d5ade6f8addf20800f3ef337f46d2c7c446da",
-      "updatedAt": "2026-03-27T22:07:42.737Z"
+      "generatedSha256": "0e427ccfe7012438c56d384b8736f384352d7f213e7cc3f196466fddf65be738",
+      "published": false,
+      "sourceSha256": "d7bd450d6e5aa4619f3957d760d1bdc282f1123d84ea4b1a9b64120f08120abc",
+      "updatedAt": "2026-06-15T06:48:54.164Z"
     },
     "partial-dfc.json": {
       "generatedFile": "schemas/partial-dfc/index.d.ts",
@@ -3880,10 +3901,10 @@
     },
     "partial-poetry.json": {
       "generatedFile": "schemas/partial-poetry/index.d.ts",
-      "generatedSha256": "b4373951f2cb9c6fbdd1371c7d7cfd2457df5e326df96b10a7d4a82d3273d864",
-      "published": true,
-      "sourceSha256": "93210a5fcedde5eab21c784b38ed663c649eb474908d94da39ba27a0110e79c4",
-      "updatedAt": "2026-03-27T22:07:45.628Z"
+      "generatedSha256": "739d05c8172925e02abe24ed46b433cf322986a03e92bea10fef3b44e38ee829",
+      "published": false,
+      "sourceSha256": "987e12b5b84863fb51772da33bd4c09f73bef200d6d5592590a98bb8e194105f",
+      "updatedAt": "2026-06-15T06:48:54.817Z"
     },
     "partial-pyright.json": {
       "generatedFile": "schemas/partial-pyright/index.d.ts",
@@ -3909,9 +3930,9 @@
     "partial-scheduled.json": {
       "generatedFile": "schemas/partial-scheduled/index.d.ts",
       "generatedSha256": "18f63cb277a2e0f0a24cb24ea5f5e54662e6b66573e7d0a02c77f16432c21066",
-      "published": true,
-      "sourceSha256": "65551f1f43e92f1e686ff7997d7ac4db6785db046c294e9919a578431df10d10",
-      "updatedAt": "2026-05-18T06:27:44.570Z"
+      "published": false,
+      "sourceSha256": "f560f9b2c59e8482e965f461fcb2004778892b84b1a60500fbadab03868488b6",
+      "updatedAt": "2026-06-15T06:48:55.095Z"
     },
     "partial-scikit-build.json": {
       "generatedFile": "schemas/partial-scikit-build/index.d.ts",
@@ -3929,10 +3950,10 @@
     },
     "partial-setuptools.json": {
       "generatedFile": "schemas/partial-setuptools/index.d.ts",
-      "generatedSha256": "51ba4c9929618d9fb3494e4435d30d8a853ef7b4c55279da3bd6c41dfc273841",
-      "published": true,
-      "sourceSha256": "5be1198f06620e98d8652429d15f5d0438838fb1415511647784b8df7c9d79d7",
-      "updatedAt": "2026-03-27T22:07:46.892Z"
+      "generatedSha256": "5134741184bbd44c3812ecac61ac42ee2c7f3d3587b4666d433d287525a0777a",
+      "published": false,
+      "sourceSha256": "75dc49c82aba11d2e27110d315fb4e79984941c34582458bc64cfa8237c0ca1b",
+      "updatedAt": "2026-06-15T06:48:55.383Z"
     },
     "partial-taskipy.json": {
       "generatedFile": "schemas/partial-taskipy/index.d.ts",
@@ -4027,10 +4048,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "cddce909b850710ecee1add549f44dd6a3d62ca95d59a2731189d1a061f3c17b",
-      "published": true,
-      "sourceSha256": "488b653782afdc139479adb9d108d5b0bb9caa9651b12d15022ce091df59fad0",
-      "updatedAt": "2026-06-01T06:37:27.901Z"
+      "generatedSha256": "e841899d5f65516cb0fdeb9c83fba4d4539a8ae11f6aedde01267d1dfee35a19",
+      "published": false,
+      "sourceSha256": "75f49f1f58c7a93fb29213736345b21e7b7dd1170c55c1d92c3f41d7791ca53b",
+      "updatedAt": "2026-06-15T06:48:56.224Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -4210,9 +4231,9 @@
     "prometheus.json": {
       "generatedFile": "schemas/prometheus/index.d.ts",
       "generatedSha256": "948c91e2cb3ba59c5ac07ed4add3676e23c6b47fd8954e6806fe6f0c794c0567",
-      "published": true,
-      "sourceSha256": "ffbd0e28c9485c23e29708559a1de5cd074806bcde38cb376e84e749dcef194e",
-      "updatedAt": "2026-03-27T22:07:56.082Z"
+      "published": false,
+      "sourceSha256": "c2de435f3050e9a1fc6dac749fa581ff098d54940dd2f2a6ccddfd7d15672656",
+      "updatedAt": "2026-06-15T06:48:58.210Z"
     },
     "prometheus.rules.json": {
       "generatedFile": "schemas/prometheus.rules/index.d.ts",
@@ -4503,10 +4524,10 @@
     },
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
-      "generatedSha256": "41f2721b42e25de84802f2ddf9873b319092d21353d482cd818fad1773f28b60",
-      "published": true,
-      "sourceSha256": "3abb13e0821f595ef85e837138d7d2011d36ba74f4f47ac46af76cdc07a2ef88",
-      "updatedAt": "2026-06-08T06:34:01.431Z"
+      "generatedSha256": "79bd815ac756bf68b6dd374a2b8ee64e7fede9d933eefd762d530a78b8b86420",
+      "published": false,
+      "sourceSha256": "3ff5ec84680cfd8e59a92650734c1d57c909da844412984b2e2d8cce71076f79",
+      "updatedAt": "2026-06-15T06:48:59.950Z"
     },
     "rumdl.json": {
       "generatedFile": "schemas/rumdl/index.d.ts",
@@ -4538,10 +4559,10 @@
     },
     "ryl.json": {
       "generatedFile": "schemas/ryl/index.d.ts",
-      "generatedSha256": "74a3b1b702c81fcdacca994c6bdd2fb88231db4ceb09d4ebcadc9d03f575a555",
-      "published": true,
-      "sourceSha256": "7768f3609190035133f31e62cdd146a0847bb1374dd98b509e62f539b7eb85c2",
-      "updatedAt": "2026-06-08T06:34:01.944Z"
+      "generatedSha256": "ab9f2f60f9208576ef74d3a03e6a5129f3cf7c8e6f01e820bd8bb9498941d9d6",
+      "published": false,
+      "sourceSha256": "0ff5005807363abeda6afaf0cbd6bf34355701838a2fcb02857b97c2d6fb0098",
+      "updatedAt": "2026-06-15T06:49:00.472Z"
     },
     "safebox-schema-v1.0.0.json": {
       "generatedFile": "schemas/safebox-schema-v1.0.0/index.d.ts",
@@ -4822,6 +4843,13 @@
       "published": true,
       "sourceSha256": "d38840c6b8b9713fd92cade034ef7029d19ef432d2a147b02023f6f441a3610c",
       "updatedAt": "2026-05-04T06:04:04.975Z"
+    },
+    "sigmacv.json": {
+      "generatedFile": "schemas/sigmacv/index.d.ts",
+      "generatedSha256": "59419fe3b65d7b2c36a7615d91e3d6c6c13e0217e2babffd8f5f5ca9b458e016",
+      "published": false,
+      "sourceSha256": "49e3bb4f76cbb646c15fba6902b566e73d891efebd2bf9fec6a351b8664c5b92",
+      "updatedAt": "2026-06-15T06:49:02.950Z"
     },
     "sigrid-scope-file.schema.json": {
       "generatedFile": "schemas/sigrid-scope-file.schema/index.d.ts",
@@ -5168,17 +5196,17 @@
     },
     "traefik-v3.json": {
       "generatedFile": "schemas/traefik-v3/index.d.ts",
-      "generatedSha256": "9b77baa7e8cf822b8339e92195cacd858b43c21ade85f54a9ca9217acdda3981",
-      "published": true,
-      "sourceSha256": "8d2837a39334259aa58cd5b90eefda4b56792cc2a47a7e7db2ac6069fc4aa6f6",
-      "updatedAt": "2026-03-27T22:09:22.471Z"
+      "generatedSha256": "72e60f1a2cb2fa0a5a02acf73bc7f9bd2cbf9a62dd70718318de395b6ee3f7da",
+      "published": false,
+      "sourceSha256": "232690820ab8483ed97fbdfb368065b9ce3182e59d30b63f6e141978ddb07ea0",
+      "updatedAt": "2026-06-15T06:49:05.385Z"
     },
     "travis.json": {
       "generatedFile": "schemas/travis/index.d.ts",
-      "generatedSha256": "50be6708fc90e225e6cf1956b5188da857d2d4c7cfdffb8de52b3710363eca66",
-      "published": true,
-      "sourceSha256": "042035967d075c4134e66035c2cd9ca2f31843a53ff75f68a70b13cfe5a32526",
-      "updatedAt": "2026-03-27T22:09:22.914Z"
+      "generatedSha256": "84582ecf3f548d08db954ac8343d367e195fa59cfd7c02998f7e3665bd69780c",
+      "published": false,
+      "sourceSha256": "82988e7d946686b4910a9cff5f9288cd3d448bf122f76d37955dcbc162a94a39",
+      "updatedAt": "2026-06-15T06:49:05.644Z"
     },
     "treefmt.json": {
       "generatedFile": "schemas/treefmt/index.d.ts",
@@ -5650,6 +5678,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-06-08T06:34:11.249Z",
+  "generatedAt": "2026-06-15T06:49:10.775Z",
   "version": 1
 }

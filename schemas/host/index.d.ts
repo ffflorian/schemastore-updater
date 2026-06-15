@@ -824,6 +824,10 @@ export interface Version2 {
            */
           maxMessageBatchSize?: number;
           /**
+           * The minimum number of messages desired in a batch. This setting only applies when the function is receiving multiple messages and must be less than maxMessageBatchSize. Using this setting requires Microsoft.Azure.WebJobs.Extensions.ServiceBus 5.10.0 or later.
+           */
+          minMessageBatchSize?: number;
+          /**
            * The maximum interval that the trigger should wait to fill a batch before invoking the function. The wait time is only considered when minMessageBatchSize is larger than 1 and is ignored otherwise. If less than minMessageBatchSize messages were available before the wait time elapses, the function is invoked with a partial batch. The longest allowed wait time is 50% of the entity message lock duration, meaning the maximum allowed is 2 minutes and 30 seconds. Otherwise, you may get lock exceptions. NOTE: This interval is not a strict guarantee for the exact timing on which the function is invoked. There is a small margin of error due to timer precision.
            */
           maxBatchWaitTime?: string;
@@ -849,6 +853,14 @@ export interface Version2 {
            * The maximum number of events that will be included in a batch for a single invocation.
            */
           maxEventBatchSize?: number;
+          /**
+           * The minimum number of events desired in a batch. The minimum applies only when the function is receiving multiple events and must be less than maxEventBatchSize.
+           */
+          minEventBatchSize?: number;
+          /**
+           * The maximum interval that the trigger should wait to fill a batch before invoking the function.
+           */
+          maxWaitTime?: string;
           /**
            * The number of batches to process before creating a checkpoint for the Event Hub.
            */
