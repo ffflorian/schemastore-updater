@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
 
       - name: Update yarn
-        uses: ffflorian/actions/yarn-update@19c9eb3c05c3d1445f442abeb22109175d531293
+        uses: ffflorian/actions/yarn-update@4c122eeb3b90a673d33573e7a688a099433b59bd
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           git_authorship: 'Florian Imdahl <git@ffflorian.de>'
