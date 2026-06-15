@@ -1,3 +1,10 @@
+## [3.4.5](https://github.com/ffflorian/schemastore-updater/compare/v3.4.4...v3.4.5) (2026-06-15)
+
+
+### Bug Fixes
+
+* Do not cancel publishing after 10 packages ([3b9afd6](https://github.com/ffflorian/schemastore-updater/commit/3b9afd6f487bbc10a4fef28ebae12c00c7ff8a55))
+
 ## [3.4.4](https://github.com/ffflorian/schemastore-updater/compare/v3.4.3...v3.4.4) (2026-06-15)
 
 
