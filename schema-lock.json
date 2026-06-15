@@ -304,7 +304,7 @@
     "aiproj-1.10.json": {
       "generatedFile": "schemas/aiproj-1.10/index.d.ts",
       "generatedSha256": "b4d82e45fc5eaf1b7f89dc98bf99007b9e7c2911acfe16b1d352df9c62c22f12",
-      "published": false,
+      "published": true,
       "sourceSha256": "6ba43596aec03d1aa57bf3ac1ef6fbd540cdf6d124c65c1091166f197c611d14",
       "updatedAt": "2026-06-15T06:45:36.735Z"
     },
@@ -1242,7 +1242,7 @@
     "codex-skill-metadata.json": {
       "generatedFile": "schemas/codex-skill-metadata/index.d.ts",
       "generatedSha256": "1c93b47b9721c603facc80301f587fb77f6520f4c7bfd651312d5f6ed7410610",
-      "published": false,
+      "published": true,
       "sourceSha256": "512803fcf05ff56d00109a1e885088718a13f682bb8fb08ff3e45058040bf406",
       "updatedAt": "2026-06-15T06:45:38.320Z"
     },
@@ -2131,7 +2131,7 @@
     "eslint-suppressions.json": {
       "generatedFile": "schemas/eslint-suppressions/index.d.ts",
       "generatedSha256": "a07b70648eec09775513d0c93246b91c8a9828f3e3a507077b8cc1a2c3ecf9f8",
-      "published": false,
+      "published": true,
       "sourceSha256": "4850a7864e1a63b4f8847d4a79d62e32236bb7b4bbc940d1ddefa70e57f84429",
       "updatedAt": "2026-06-15T06:45:39.650Z"
     },
@@ -3930,7 +3930,7 @@
     "partial-scheduled.json": {
       "generatedFile": "schemas/partial-scheduled/index.d.ts",
       "generatedSha256": "18f63cb277a2e0f0a24cb24ea5f5e54662e6b66573e7d0a02c77f16432c21066",
-      "published": false,
+      "published": true,
       "sourceSha256": "f560f9b2c59e8482e965f461fcb2004778892b84b1a60500fbadab03868488b6",
       "updatedAt": "2026-06-15T06:48:55.095Z"
     },
@@ -4560,7 +4560,7 @@
     "ryl.json": {
       "generatedFile": "schemas/ryl/index.d.ts",
       "generatedSha256": "ab9f2f60f9208576ef74d3a03e6a5129f3cf7c8e6f01e820bd8bb9498941d9d6",
-      "published": false,
+      "published": true,
       "sourceSha256": "0ff5005807363abeda6afaf0cbd6bf34355701838a2fcb02857b97c2d6fb0098",
       "updatedAt": "2026-06-15T06:49:00.472Z"
     },
@@ -4847,7 +4847,7 @@
     "sigmacv.json": {
       "generatedFile": "schemas/sigmacv/index.d.ts",
       "generatedSha256": "59419fe3b65d7b2c36a7615d91e3d6c6c13e0217e2babffd8f5f5ca9b458e016",
-      "published": false,
+      "published": true,
       "sourceSha256": "49e3bb4f76cbb646c15fba6902b566e73d891efebd2bf9fec6a351b8664c5b92",
       "updatedAt": "2026-06-15T06:49:02.950Z"
     },
