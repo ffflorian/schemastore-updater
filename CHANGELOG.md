@@ -1,3 +1,11 @@
+## [3.4.7](https://github.com/ffflorian/schemastore-updater/compare/v3.4.6...v3.4.7) (2026-06-16)
+
+
+### Bug Fixes
+
+* **deps:** bump js-yaml from 4.1.1 to 4.2.0 ([#1521](https://github.com/ffflorian/schemastore-updater/issues/1521)) [ci skip] ([7bee0b1](https://github.com/ffflorian/schemastore-updater/commit/7bee0b15e29ce2710f41f4f4033b5941532dc74d))
+* **deps:** bump tar from 7.5.11 to 7.5.16 ([#1520](https://github.com/ffflorian/schemastore-updater/issues/1520)) ([26922d5](https://github.com/ffflorian/schemastore-updater/commit/26922d5ed5f01421ad53dd01581fe013459e3e34))
+
 ## [3.4.6](https://github.com/ffflorian/schemastore-updater/compare/v3.4.5...v3.4.6) (2026-06-16)
 
 
