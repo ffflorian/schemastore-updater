@@ -1,3 +1,10 @@
+## [3.4.6](https://github.com/ffflorian/schemastore-updater/compare/v3.4.5...v3.4.6) (2026-06-16)
+
+
+### Bug Fixes
+
+* **deps:** bump vite from 8.0.5 to 8.0.16 ([#1519](https://github.com/ffflorian/schemastore-updater/issues/1519)) ([c8a2647](https://github.com/ffflorian/schemastore-updater/commit/c8a2647c506ceb4884430ec480130282da2ea4f6))
+
 ## [3.4.5](https://github.com/ffflorian/schemastore-updater/compare/v3.4.4...v3.4.5) (2026-06-15)
 
 
