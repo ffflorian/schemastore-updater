@@ -16,8 +16,8 @@ updates:
           - eslint-plugin-oxlint
     ignore:
       - dependency-name: '@types/node'
-        versions:
-          - '> 26'
+        update-types:
+          - version-update:semver-major
     open-pull-requests-limit: 99
     package-ecosystem: npm
     schedule:
