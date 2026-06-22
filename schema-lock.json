@@ -5274,7 +5274,7 @@
     "tunnelhub.json": {
       "generatedFile": "schemas/tunnelhub/index.d.ts",
       "generatedSha256": "4609d5914f94526e41c55a64a5fabf1b5b9c415fe56a6b9711f345629317390c",
-      "published": false,
+      "published": true,
       "sourceSha256": "f9165e1d45f075259c9955f84c2ce7b39380c1b8e34f0afa1a3e9add9bbabbf8",
       "updatedAt": "2026-06-22T06:49:29.227Z"
     },
