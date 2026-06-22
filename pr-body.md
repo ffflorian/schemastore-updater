@@ -8,38 +8,24 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 906
-- **Generated:** 17
-- **Skipped:** 774
-- **Failed:** 115
+- **Total:** 909
+- **Generated:** 3
+- **Skipped:** 789
+- **Failed:** 117
 
 <details>
 
-<summary><h3>Updated Schemas (17)</h3></summary>
+<summary><h3>Updated Schemas (3)</h3></summary>
 
-- `aiproj-1.10`
-- `chrome-manifest`
-- `codex-skill-metadata`
-- `eslint-suppressions`
-- `host`
-- `launchsettings`
-- `partial-cibuildwheel`
-- `partial-poetry`
-- `partial-scheduled`
-- `partial-setuptools`
-- `pnpm-workspace`
-- `prometheus`
-- `ruff`
-- `ryl`
-- `sigmacv`
-- `traefik-v3`
-- `travis`
+- `codex-hooks`
+- `commit-check`
+- `tunnelhub`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (115)</h3></summary>
+<summary><h3>Failed Schemas (117)</h3></summary>
 
 - `accelerator`
 - `aio-connector-metadata-11.0-preview`
@@ -47,6 +33,7 @@ This PR was created by the scheduled workflow after running:
 - `base-04`
 - `bitrise-step`
 - `bitrise`
+- `bosh-bpm-config`
 - `bosh-cpi-config`
 - `bosh-deploy-config`
 - `cargo-make`
@@ -103,6 +90,7 @@ This PR was created by the scheduled workflow after running:
 - `mboats-config-0.1`
 - `mboats-config-0.2`
 - `metaschema-draft-07-unofficial-strict`
+- `modelparams`
 - `one-service-descriptor-schema-0.1`
 - `openapi-3.x`
 - `package`

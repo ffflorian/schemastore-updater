@@ -1234,10 +1234,10 @@
     },
     "codex-hooks.json": {
       "generatedFile": "schemas/codex-hooks/index.d.ts",
-      "generatedSha256": "6f2a0a9bccc4e9b7a000ee33285d6088117009b4696509cf2844bb2ca3ec08a4",
-      "published": true,
-      "sourceSha256": "2f5e32a5c058819a90d1063e1a7e3bb940fcbc21f0df2078b8e8a0caefa16cb4",
-      "updatedAt": "2026-05-18T06:24:22.522Z"
+      "generatedSha256": "f2344f11759ee842b69e76a52e61f8add1f5322d8a68fd51b5e04bb08fc09a48",
+      "published": false,
+      "sourceSha256": "427fb2f56736f26045527a0c7418e7f2d23ae7cc7d3545cbb7d957644ee94d0e",
+      "updatedAt": "2026-06-22T06:46:02.289Z"
     },
     "codex-skill-metadata.json": {
       "generatedFile": "schemas/codex-skill-metadata/index.d.ts",
@@ -1259,6 +1259,13 @@
       "published": true,
       "sourceSha256": "8934fa9ded8019fc0f31a234947879dec39bcd8c2342f8b30636d1fe1a252bce",
       "updatedAt": "2026-03-27T22:03:09.040Z"
+    },
+    "commit-check.json": {
+      "generatedFile": "schemas/commit-check/index.d.ts",
+      "generatedSha256": "ce7d5e37b6357b249f4194d97ff96c8086c6db68617093410164af8a69fd90c4",
+      "published": false,
+      "sourceSha256": "8613875d8108bd3825b94816985369bee992842472558ce75fab3fd836b74d7f",
+      "updatedAt": "2026-06-22T06:46:02.498Z"
     },
     "commitlintrc.json": {
       "generatedFile": "schemas/commitlintrc/index.d.ts",
@@ -5266,10 +5273,10 @@
     },
     "tunnelhub.json": {
       "generatedFile": "schemas/tunnelhub/index.d.ts",
-      "generatedSha256": "7d83f11cfc96494b09bee212bc6f3af728821ae9d5da305ddacd02995268aa2d",
-      "published": true,
-      "sourceSha256": "851b537cc5f9b4981e1aceccd737c9cb9a3a8203c46398c5837d3224e30aefd4",
-      "updatedAt": "2026-05-04T06:04:08.292Z"
+      "generatedSha256": "4609d5914f94526e41c55a64a5fabf1b5b9c415fe56a6b9711f345629317390c",
+      "published": false,
+      "sourceSha256": "f9165e1d45f075259c9955f84c2ce7b39380c1b8e34f0afa1a3e9add9bbabbf8",
+      "updatedAt": "2026-06-22T06:49:29.227Z"
     },
     "twee-ts.config.json": {
       "generatedFile": "schemas/twee-ts.config/index.d.ts",
@@ -5678,6 +5685,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-06-15T06:49:10.775Z",
+  "generatedAt": "2026-06-22T06:49:34.118Z",
   "version": 1
 }

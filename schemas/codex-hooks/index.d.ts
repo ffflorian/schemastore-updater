@@ -20,14 +20,6 @@ export type MatcherGroups6 = [MatcherGroup, ...MatcherGroup[]] | undefined;
  */
 export interface CodexHooksConfiguration {
   /**
-   * JSON Schema reference for Codex hooks configuration.
-   */
-  $schema?: string;
-  /**
-   * Human-readable description of the hooks file.
-   */
-  description?: string;
-  /**
    * Hook event registrations grouped by Codex lifecycle event.
    */
   hooks: {
@@ -39,7 +31,6 @@ export interface CodexHooksConfiguration {
     Stop?: MatcherGroups;
     [k: string]: MatcherGroups6 | undefined;
   };
-  [k: string]: unknown | undefined;
 }
 /**
  * Matcher group that decides when one or more hook handlers run.
