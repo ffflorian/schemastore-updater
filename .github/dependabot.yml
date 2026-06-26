@@ -32,6 +32,10 @@ updates:
       exclude:
         - ffflorian/*
     directory: /
+    groups:
+      ffflorian:
+        patterns:
+          - ffflorian/actions/*
     open-pull-requests-limit: 99
     package-ecosystem: github-actions
     schedule:
