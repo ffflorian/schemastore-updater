@@ -43,9 +43,7 @@ async function main(): Promise<void> {
     .description('Publish all generated schema packages to npm')
     .option('--dry-run', 'List packages that would be published without publishing them')
     .option('--log-file <file>', 'Write publish errors to a specific log file')
-    .action(async (options: PublishCommandOptions) => {
-      await runPublishCommand(options);
-    });
+    .action((options: PublishCommandOptions) => runPublishCommand(options));
 
   program
     .command('update')
@@ -53,16 +51,12 @@ async function main(): Promise<void> {
     .option('-f, --force', 'Regenerate all schemas, ignoring source hash matches')
     .option('--schema <id>', 'Only update the schema with this ID (e.g. "package")')
     .option('--source-dir <dir>', 'Use an existing SchemaStore checkout directory')
-    .action(async (options: UpdateCommandOptions) => {
-      await runUpdateCommand(options);
-    });
+    .action((options: UpdateCommandOptions) => runUpdateCommand(options));
 
   program
     .command('mark-published <schema>')
     .description(`Set the published flag to true for a schema entry in ${LOCK_FILE_NAME}`)
-    .action(async (schema: string) => {
-      await runMarkPublishedCommand(schema);
-    });
+    .action((schema: string) => runMarkPublishedCommand(schema));
 
   if (process.argv.length <= 2) {
     await runUpdateCommand({force: false});
