@@ -8,24 +8,43 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 909
-- **Generated:** 3
-- **Skipped:** 789
-- **Failed:** 117
+- **Total:** 915
+- **Generated:** 22
+- **Skipped:** 775
+- **Failed:** 118
 
 <details>
 
-<summary><h3>Updated Schemas (3)</h3></summary>
+<summary><h3>Updated Schemas (22)</h3></summary>
 
-- `codex-hooks`
-- `commit-check`
-- `tunnelhub`
+- `abc-clinical-demand-forecast-5.0.0`
+- `abc-inventory-module-data-5.3.0`
+- `abc-supply-plan-14.0.0`
+- `actionlint`
+- `aiproj-1.0`
+- `aiproj-1.1`
+- `aiproj-1.10`
+- `aiproj-1.2`
+- `aiproj-1.3`
+- `aiproj-1.4`
+- `aiproj-1.5`
+- `aiproj-1.6`
+- `aiproj-1.7`
+- `aiproj-1.8`
+- `aiproj-1.9`
+- `all-contributors`
+- `codex-plugin-manifest`
+- `pantsbuild-2.32.0`
+- `partial-mypy`
+- `ruff`
+- `stylintrc`
+- `tox`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (117)</h3></summary>
+<summary><h3>Failed Schemas (118)</h3></summary>
 
 - `accelerator`
 - `aio-connector-metadata-11.0-preview`
@@ -58,6 +77,7 @@ This PR was created by the scheduled workflow after running:
 - `grunt-copy-task`
 - `grunt-cssmin-task`
 - `grunt-jshint-task`
+- `hugo`
 - `jfrog-pipelines`
 - `jreleaser-1.10.0`
 - `jreleaser-1.11.0`
