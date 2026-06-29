@@ -8,7 +8,7 @@ import {fileURLToPath} from 'node:url';
 import type {SchemaLockFile} from './types.js';
 
 import {publishGeneratedPackages} from './publisher.js';
-import {updateSchemas} from './updater.js';
+import {LOCK_FILE_NAME, updateSchemas} from './updater.js';
 
 interface PublishCommandOptions {
   dryRun?: boolean;
@@ -59,7 +59,7 @@ async function main(): Promise<void> {
 
   program
     .command('mark-published <schema>')
-    .description('Set the published flag to true for a schema entry in schema-lock.json')
+    .description(`Set the published flag to true for a schema entry in ${LOCK_FILE_NAME}`)
     .action(async (schema: string) => {
       await runMarkPublishedCommand(schema);
     });
@@ -83,7 +83,7 @@ async function run(): Promise<void> {
 }
 
 async function runMarkPublishedCommand(schema: string): Promise<void> {
-  const lockFilePath = path.join(process.cwd(), 'schema-lock.json');
+  const lockFilePath = path.join(process.cwd(), LOCK_FILE_NAME);
   const raw = await readFile(lockFilePath, 'utf-8');
   const lockFile = JSON.parse(raw) as SchemaLockFile;
 
@@ -97,7 +97,7 @@ async function runMarkPublishedCommand(schema: string): Promise<void> {
   );
 
   if (matchingKeys.length === 0) {
-    throw new Error(`No schema-lock.json entry found for schema ID: ${schemaId}`);
+    throw new Error(`No ${LOCK_FILE_NAME} entry found for schema ID: ${schemaId}`);
   }
 
   for (const key of matchingKeys) {
