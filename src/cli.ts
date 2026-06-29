@@ -83,8 +83,8 @@ async function runMarkPublishedCommand(schema: string): Promise<void> {
 
   const schemaId = schema.replace(/\.json$/i, '').toLowerCase();
   const matchingKeys = Object.keys(lockFile.entries).filter(
-    key =>
-      key
+    entry =>
+      entry
         .replace(/\.json$/i, '')
         .replace(/[\\/]+/g, '-')
         .toLowerCase() === schemaId
@@ -94,8 +94,8 @@ async function runMarkPublishedCommand(schema: string): Promise<void> {
     throw new Error(`No ${LOCK_FILE_NAME} entry found for schema ID: ${schemaId}`);
   }
 
-  for (const key of matchingKeys) {
-    const entry = lockFile.entries[key];
+  for (const matchingKey of matchingKeys) {
+    const entry = lockFile.entries[matchingKey];
     if (entry) {
       entry.published = true;
     }
