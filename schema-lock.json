@@ -318,14 +318,14 @@
     "aiproj-1.0.json": {
       "generatedFile": "schemas/aiproj-1.0/index.d.ts",
       "generatedSha256": "a96ef686aa70ad84864b687b7a0030022ae81bd91d31d8b8bf8495f505fb145a",
-      "published": false,
+      "published": true,
       "sourceSha256": "bfb978eb1a5fa9f22963f0fe828958505f14075b17d42a0943651b9e2dedf3d1",
       "updatedAt": "2026-06-29T06:31:08.494Z"
     },
     "aiproj-1.1.json": {
       "generatedFile": "schemas/aiproj-1.1/index.d.ts",
       "generatedSha256": "8cc426dd06e9fbaff01611930bfb7ad9999b093a41cef58126186702ee47845f",
-      "published": false,
+      "published": true,
       "sourceSha256": "01cb263d3337b722649b4e0028f631d2c46286b01a7967e353f6fe792abcdade",
       "updatedAt": "2026-06-29T06:31:08.719Z"
     },
@@ -339,56 +339,56 @@
     "aiproj-1.2.json": {
       "generatedFile": "schemas/aiproj-1.2/index.d.ts",
       "generatedSha256": "240a530ecacde0c825bfd332fd11671e298cbaa78c802a6b44ea51be5b4f99b2",
-      "published": false,
+      "published": true,
       "sourceSha256": "f8bd4465b8327874835737d2dcf625da4a537b5e46ae85eb2769ef2cd3a93c9c",
       "updatedAt": "2026-06-29T06:31:09.263Z"
     },
     "aiproj-1.3.json": {
       "generatedFile": "schemas/aiproj-1.3/index.d.ts",
       "generatedSha256": "3f0b7299aaa3db65a892456b67053f547a94d981aadd3ffc7c4cafaed7ad2074",
-      "published": false,
+      "published": true,
       "sourceSha256": "b8d4bfcb9d2c802994b4e610e2a3fa43c8ecf69884c2a5db70e6d055525074c1",
       "updatedAt": "2026-06-29T06:31:09.475Z"
     },
     "aiproj-1.4.json": {
       "generatedFile": "schemas/aiproj-1.4/index.d.ts",
       "generatedSha256": "8bfe10242a45c8d190f64ba3865ae0711a6b3b749d4fa5c91c3ebe2561dc5f9a",
-      "published": false,
+      "published": true,
       "sourceSha256": "d24d2ee060e0bf95a37d7e56f2a7844c32b86a4b6178fcd3d8b8cd757f9d7ae8",
       "updatedAt": "2026-06-29T06:31:09.708Z"
     },
     "aiproj-1.5.json": {
       "generatedFile": "schemas/aiproj-1.5/index.d.ts",
       "generatedSha256": "a093a33629083203265dcd0c2100c3984218237a81d91df3fdcbdeadafa3219a",
-      "published": false,
+      "published": true,
       "sourceSha256": "8c47a15fc183cd048acc18ec57877f47dbb6f998939f853cbeb08efdfc79c91e",
       "updatedAt": "2026-06-29T06:31:09.992Z"
     },
     "aiproj-1.6.json": {
       "generatedFile": "schemas/aiproj-1.6/index.d.ts",
       "generatedSha256": "7dba23131702326337c9040e461adc9fcc4e1e64465f170720eec2471357e051",
-      "published": false,
+      "published": true,
       "sourceSha256": "1e894c8a1a029912abc7a3c3fe9c3e0119054cce60d69b863754a2edaae152ab",
       "updatedAt": "2026-06-29T06:31:10.221Z"
     },
     "aiproj-1.7.json": {
       "generatedFile": "schemas/aiproj-1.7/index.d.ts",
       "generatedSha256": "fdf0afb0c98e02adafff2ea1625d0d75c1fdd37dbdcdecbfcea9df37d36238f6",
-      "published": false,
+      "published": true,
       "sourceSha256": "eaeed4b63dc2bf38a242e7c115ce59a2d5cd174be2dbe08822ccaebbd0a9851f",
       "updatedAt": "2026-06-29T06:31:10.436Z"
     },
     "aiproj-1.8.json": {
       "generatedFile": "schemas/aiproj-1.8/index.d.ts",
       "generatedSha256": "6c259eb0058a00124e106d94e7b64ff7b466bf48ad1dbac6f811549dfe6d2adc",
-      "published": false,
+      "published": true,
       "sourceSha256": "ba85c98bb81dcac60540aed39ddef4e7be918906e8074ce6bacd18e77f86c9ab",
       "updatedAt": "2026-06-29T06:31:10.660Z"
     },
     "aiproj-1.9.json": {
       "generatedFile": "schemas/aiproj-1.9/index.d.ts",
       "generatedSha256": "e7c7f95a287760ae8c7d84cbad2ce381dc7319dd42d1ce3a989a57c522fc217c",
-      "published": false,
+      "published": true,
       "sourceSha256": "930f47da097e90e4361dcadb28bc6ea5c5ae53c8b8b93847d64b4993caeed66c",
       "updatedAt": "2026-06-29T06:31:10.951Z"
     },
@@ -430,7 +430,7 @@
     "all-contributors.json": {
       "generatedFile": "schemas/all-contributors/index.d.ts",
       "generatedSha256": "9b3d8fead51d6c348a4ad3ba999b49175767a266a91f550781e7a541dcaad1e7",
-      "published": false,
+      "published": true,
       "sourceSha256": "2593e671f91d38b7baf32ec4173d9bc3788e1f183f508dc8f98a55caf8030339",
       "updatedAt": "2026-06-29T06:31:11.156Z"
     },
@@ -3916,7 +3916,7 @@
     "partial-mypy.json": {
       "generatedFile": "schemas/partial-mypy/index.d.ts",
       "generatedSha256": "25460e86ee0b4baf3bebba1b4188995f30a9a75a822a51c0c3cf684ad88fe04f",
-      "published": false,
+      "published": true,
       "sourceSha256": "3b99ca2d9b9a4ac95a0a6456b3b47c52591f2882e077872076254dcad437d2b7",
       "updatedAt": "2026-06-29T06:34:33.686Z"
     },
@@ -4574,7 +4574,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "47aba3db7411d4f74f0202a392c109b6c30b31c84819a920b4b1392c421e8097",
-      "published": false,
+      "published": true,
       "sourceSha256": "7dd19f360b5a8a11e5378f68fe2444cab012dabeafbe830054162fd3f72f796c",
       "updatedAt": "2026-06-29T06:34:38.424Z"
     },
@@ -5085,7 +5085,7 @@
     "stylintrc.json": {
       "generatedFile": "schemas/stylintrc/index.d.ts",
       "generatedSha256": "3fc8a906482f3f720c2e393db595f61cd9564639fd4609ecbd6f18895487c85e",
-      "published": false,
+      "published": true,
       "sourceSha256": "1f649c58c0dfea424428f631438fd528a4d8e2a92272cce3caba5f092de2770c",
       "updatedAt": "2026-06-29T06:34:41.505Z"
     },
@@ -5218,7 +5218,7 @@
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
       "generatedSha256": "c498f02904548047d3ebfa101a22a28fe4de4c5a3bddef656dffce129cc4c1ac",
-      "published": false,
+      "published": true,
       "sourceSha256": "ecd85a6b996d89843a03c4b1c7f1eb972f21307941d605504ab5824adf4abddd",
       "updatedAt": "2026-06-29T06:34:43.449Z"
     },
