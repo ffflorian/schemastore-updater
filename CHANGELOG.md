@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/ffflorian/schemastore-updater/compare/v3.5.0...v3.5.1) (2026-06-29)
+
+
+### Bug Fixes
+
+* Mark only one key as published ([2a332af](https://github.com/ffflorian/schemastore-updater/commit/2a332af4598b318bfbc3db2f3b486683fe04cdce))
+
 # [3.5.0](https://github.com/ffflorian/schemastore-updater/compare/v3.4.11...v3.5.0) (2026-06-29)
 
 
