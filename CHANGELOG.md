@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/ffflorian/schemastore-updater/compare/v3.4.11...v3.5.0) (2026-06-29)
+
+
+### Features
+
+* Add mark-published command ([#1540](https://github.com/ffflorian/schemastore-updater/issues/1540)) ([ac41d54](https://github.com/ffflorian/schemastore-updater/commit/ac41d5461aa79b7a69dc3d040f288550059ddf0b))
+
 ## [3.4.11](https://github.com/ffflorian/schemastore-updater/compare/v3.4.10...v3.4.11) (2026-06-29)
 
 
