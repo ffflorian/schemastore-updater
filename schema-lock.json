@@ -31,7 +31,7 @@
     "abc-clinical-demand-forecast-5.0.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-5.0.0/index.d.ts",
       "generatedSha256": "754627e4581ce5a6b71aa7944b4f025c77709286706a0aa12aed5c7259bac887",
-      "published": false,
+      "published": true,
       "sourceSha256": "fede23cbf3ae8d00d7476f0b1402cb2ebbc28e75888b2df4f76c92bc964105d8",
       "updatedAt": "2026-06-29T06:31:05.780Z"
     },
@@ -80,7 +80,7 @@
     "abc-inventory-module-data-5.3.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.3.0/index.d.ts",
       "generatedSha256": "c12de6ef0f88b6dd5107d9c9d5c84a888aaa628ed583765dd4a8d276416ad009",
-      "published": false,
+      "published": true,
       "sourceSha256": "a8216539943f982a7c2747b3bd1ea7a1ac0f274e7c50712e48da5c076f4235f6",
       "updatedAt": "2026-06-29T06:31:06.115Z"
     },
@@ -157,7 +157,7 @@
     "abc-supply-plan-14.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-14.0.0/index.d.ts",
       "generatedSha256": "8e86fcc678f55626e77954b9d338ad0f03f6ebe09e552621d7e379394efe9b6d",
-      "published": false,
+      "published": true,
       "sourceSha256": "702fad02cd411422f6b708f4df10076d917af5584cea20538795e214d663a11b",
       "updatedAt": "2026-06-29T06:31:06.389Z"
     },
@@ -220,7 +220,7 @@
     "actionlint.json": {
       "generatedFile": "schemas/actionlint/index.d.ts",
       "generatedSha256": "19bb1ac919c4c83f6d0ac73c2bad7012cb62f0eceb452fec9477e59d792e7719",
-      "published": false,
+      "published": true,
       "sourceSha256": "ca85d127aa23341bc0e6f4dd2a37140f4db2d781fb10872fb5d863274de9fd22",
       "updatedAt": "2026-06-29T06:31:06.608Z"
     },
@@ -332,7 +332,7 @@
     "aiproj-1.10.json": {
       "generatedFile": "schemas/aiproj-1.10/index.d.ts",
       "generatedSha256": "b4d82e45fc5eaf1b7f89dc98bf99007b9e7c2911acfe16b1d352df9c62c22f12",
-      "published": false,
+      "published": true,
       "sourceSha256": "8abc56baae5a8b4d502d2a35b74cfbabd206ea2612b5e089cce2d2db84767204",
       "updatedAt": "2026-06-29T06:31:08.985Z"
     },
@@ -1270,7 +1270,7 @@
     "codex-plugin-manifest.json": {
       "generatedFile": "schemas/codex-plugin-manifest/index.d.ts",
       "generatedSha256": "85c59dd3094be1cbb92bd4c4598115f8b8677ffed05841fe3711ebe76b34413d",
-      "published": false,
+      "published": true,
       "sourceSha256": "f3c36715830c238954dbbaf2d4bedc1fe0eb8a56ed9a784f2129b843db9e43ef",
       "updatedAt": "2026-06-29T06:31:12.484Z"
     },
@@ -3853,7 +3853,7 @@
     "pantsbuild-2.32.0.json": {
       "generatedFile": "schemas/pantsbuild-2.32.0/index.d.ts",
       "generatedSha256": "b8e78a28e434ed6cc3587f6e46cc516a897102095bbc8aa0016f5ce6702040f1",
-      "published": false,
+      "published": true,
       "sourceSha256": "348be5b5392582dc6a64c3168142b2f564322528bebd25cc9ecc94ba851f8524",
       "updatedAt": "2026-06-29T06:34:33.277Z"
     },
