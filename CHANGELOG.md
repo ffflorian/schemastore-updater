@@ -1,3 +1,10 @@
+## [3.4.11](https://github.com/ffflorian/schemastore-updater/compare/v3.4.10...v3.4.11) (2026-06-29)
+
+
+### Bug Fixes
+
+* **deps:** bump @sigstore/core from 3.2.0 to 3.2.1 ([#1537](https://github.com/ffflorian/schemastore-updater/issues/1537)) ([f04b209](https://github.com/ffflorian/schemastore-updater/commit/f04b209e88af32cd6e687270c1ddfbfd31136dbf))
+
 ## [3.4.10](https://github.com/ffflorian/schemastore-updater/compare/v3.4.9...v3.4.10) (2026-06-26)
 
 
