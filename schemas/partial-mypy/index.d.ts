@@ -354,6 +354,10 @@ export interface HttpsJsonSchemastoreOrgPartialMypyJson {
    */
   verbosity?: number;
   /**
+   * Use the specified number of worker processes to type check in parallel. This is an experimental feature added in mypy 2.0, equivalent to the --num-workers (-n) command line flag. A value of 0 disables parallel checking.
+   */
+  num_workers?: number;
+  /**
    * @deprecated
    * DEPRECATED and UNDOCUMENTED: Now defaults to true, use `hide_error_codes` if you need to disable error codes instead.
    */

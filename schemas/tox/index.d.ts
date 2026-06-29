@@ -442,7 +442,7 @@ export interface EnvRunBase {
    */
   download?: boolean;
   /**
-   * PEP 440 version spec for virtualenv (e.g. virtualenv<20.22.0). When set, tox bootstraps this version in an isolated environment and runs it via subprocess, enabling Python versions incompatible with the installed virtualenv.
+   * PEP 440 version spec for virtualenv (e.g. virtualenv<20.22.0). When set, tox bootstraps this version in an isolated environment and runs it via subprocess, enabling Python versions incompatible with the installed virtualenv. Left empty it is derived automatically: tox pins an older virtualenv only when the installed one can no longer create the targeted Python version.
    */
   virtualenv_spec?: string;
   /**
@@ -707,7 +707,7 @@ export interface EnvRunBase1 {
    */
   download?: boolean;
   /**
-   * PEP 440 version spec for virtualenv (e.g. virtualenv<20.22.0). When set, tox bootstraps this version in an isolated environment and runs it via subprocess, enabling Python versions incompatible with the installed virtualenv.
+   * PEP 440 version spec for virtualenv (e.g. virtualenv<20.22.0). When set, tox bootstraps this version in an isolated environment and runs it via subprocess, enabling Python versions incompatible with the installed virtualenv. Left empty it is derived automatically: tox pins an older virtualenv only when the installed one can no longer create the targeted Python version.
    */
   virtualenv_spec?: string;
   /**

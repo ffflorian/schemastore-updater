@@ -3,31 +3,31 @@
 /**
  * Expect the @block keyword when defining block variables.
  */
-export type BlockKeywordPreference = false | 'never' | 'always';
+export type BlockKeywordPreference = ('never' | 'always') | false;
 /**
  * Expect {} when declaring a selector.
  */
-export type BracketsPreference = false | 'never' | 'always';
+export type BracketsPreference = ('never' | 'always') | false;
 /**
  * Expect : when declaring a property.
  */
-export type ColonPreference = false | 'never' | 'always';
+export type ColonPreference = ('never' | 'always') | false;
 /**
  * Enforce variables when defining hex values
  */
-export type ColorsPreference = false | 'always';
+export type ColorsPreference = 'always' | false;
 /**
  * Enforce or disallow spaces after commas.
  */
-export type CommaSpacePreference = false | 'never' | 'always';
+export type CommaSpacePreference = ('never' | 'always') | false;
 /**
  * Enforce or disallow spaces after line comments ('// comment' vs '//comment').
  */
-export type CommentSpacePreference = false | 'never' | 'always';
+export type CommentSpacePreference = ('never' | 'always') | false;
 /**
  * By default Stylint ignores @css blocks. If set to true however, it will throw a warning if @css is used.
  */
-export type CssLiteralPreference = false | 'never';
+export type CssLiteralPreference = 'never' | false;
 /**
  * In Stylus you have the option of using mixins transparently, like css properties. Because of how Stylus' syntax works, this rule also allows you to add adhoc support for custom properties as needed by just added the name of the property to this array.
  */
@@ -43,7 +43,7 @@ export type DuplicatesPreference = boolean;
 /**
  * Check for places where properties can be written more efficiently. (Example: prefer margin 0 over margin 0 0)
  */
-export type PropertyEfficiencyPreference = false | 'never' | 'always';
+export type PropertyEfficiencyPreference = ('never' | 'always') | false;
 /**
  * Exclude certain file patterns from linting. (Example: ['vendor/** /*', 'node_modules/** /*'])
  */
@@ -51,7 +51,7 @@ export type ExcludeFilesPreference = unknown[];
 /**
  * Pass in either @extend or @extends to enforce one, or false to enforce neither.
  */
-export type ExtendSPreference = false | '@extend' | '@extends';
+export type ExtendSPreference = ('@extend' | '@extends') | false;
 /**
  * Works in conjunction with duplicates. Does nothing on its own. If false, duplicates will check for dupes within individual files only. If true, duplicates will check for dupes across all files.
  */
@@ -67,7 +67,7 @@ export type IndentPrefPreference = boolean | number;
 /**
  * Enforce or disallow unnecessary leading zeroes on decimal points.
  */
-export type LeadingZeroPreference = false | 'never' | 'always';
+export type LeadingZeroPreference = ('never' | 'always') | false;
 /**
  * Set 'max' number of Errors.
  */
@@ -87,7 +87,7 @@ export type Mixins = unknown[];
 /**
  * Enforce a particular naming convention when declaring classes, ids, and variables. Throws a warning if you don't follow the convention.
  */
-export type NamingConvention = false | 'lowercase-dash' | 'lowercase_underscore' | 'camelCase' | 'BEM';
+export type NamingConvention = ('lowercase-dash' | 'lowercase_underscore' | 'camelCase' | 'BEM') | false;
 /**
  * By default, namingConvention only looks at variable names. If namingConventionStrict is set to true, namingConvention will also look at class and id names. If you have a lot of 3rd party css you can't change you might want to leave this off.
  */
@@ -95,7 +95,7 @@ export type NamingConventionStrictSchema = boolean;
 /**
  * If 'always' check for places where none used instead of 0. If 'never' check for places where 0 could be used instead of none.
  */
-export type NonePreference = false | 'always' | 'never';
+export type NonePreference = ('never' | 'always') | false;
 /**
  * If true, show warning when !important is found.
  */
@@ -103,19 +103,19 @@ export type NoImportantPreference = boolean;
 /**
  * Enforce or disallow use of extra spaces inside parens.
  */
-export type ParenSpacePreference = false | 'always' | 'never';
+export type ParenSpacePreference = ('never' | 'always') | false;
 /**
  * Enforce extending placeholder vars when using @extend(s) (prefer @extends $placeholder over $extends .some-class)
  */
-export type PlaceholdersPreference = false | 'always' | 'never';
+export type PlaceholdersPreference = ('never' | 'always') | false;
 /**
  * Enforce use of $ when defining a variable. In Stylus using a $ when defining a variable is optional, but is a good idea if you want to prevent ambiguity. Not including the $ sets up situations where you wonder: 'Is this a variable or a value?' For instance: padding $default is easier to understand than padding default.
  */
-export type PrefixVarsWithDollarPreference = false | 'always' | 'never';
+export type PrefixVarsWithDollarPreference = ('never' | 'always') | false;
 /**
  * Enforce consistent quotation style.
  */
-export type QuoteStylePreference = false | 'single' | 'double';
+export type QuoteStylePreference = ('single' | 'double') | false;
 export type Schema = string;
 export type ColumnsSchema = Schema[];
 export type ColumnSplitterSchema = boolean | string;
@@ -124,7 +124,7 @@ export type TruncateSchema = boolean;
 /**
  * Enforce or disallow semicolons
  */
-export type SemicolonPreference = false | 'always' | 'never';
+export type SemicolonPreference = ('never' | 'always') | false;
 /**
  * Enforce a particular sort order when declaring properties. Throws a warning if you don't follow the order.
  */
@@ -132,15 +132,15 @@ export type PropertySortingOrderPreference = boolean | string | unknown[];
 /**
  * Enforce putting properties on new lines.
  */
-export type OneLinersPreference = false | 'always' | 'never';
+export type OneLinersPreference = ('never' | 'always') | false;
 /**
  * An explanation about the purpose of this instance.
  */
-export type TrailingWhitespacePreference = false | 'never';
+export type TrailingWhitespacePreference = 'never' | false;
 /**
  * Looks for instances of the inefficient * selector. Lots of resets use this, for good reason (resetting box model), but past that you really don't need this selector, and you should avoid it if possible.
  */
-export type UniversalPreference = false | 'never';
+export type UniversalPreference = 'never' | false;
 /**
  * Check that a property is valid CSS or HTML.
  */
@@ -148,7 +148,7 @@ export type ValidPreference = boolean;
 /**
  * Looks for instances of 0px. You don't need the px. Checks all units, not just px.
  */
-export type ZeroUnitsPreference = false | 'never';
+export type ZeroUnitsPreference = 'never' | false;
 /**
  * Enforce some (very) basic z-index sanity. Any number passed in will be used as the base for your z-index values. Throws an error if your value is not normalized.
  */
