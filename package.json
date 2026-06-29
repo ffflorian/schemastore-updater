@@ -48,6 +48,7 @@
     "lint:ts": "yarn lint:ts:oxlint && yarn lint:ts:eslint",
     "lint:ts:eslint": "eslint src",
     "lint:ts:oxlint": "oxlint --ignore-path .gitignore .",
+    "mark-published": "tsx src/cli.ts mark-published",
     "publish:schemas": "tsx src/cli.ts publish",
     "publish:schemas:dry-run": "tsx src/cli.ts publish --dry-run",
     "prettier": "prettier \"*.{json,md,yml}\"",

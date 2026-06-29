@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
 import {Command} from 'commander';
-import {readFile} from 'node:fs/promises';
+import {readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
+import type {SchemaLockFile} from './types.js';
+
 import {publishGeneratedPackages} from './publisher.js';
-import {updateSchemas} from './updater.js';
+import {LOCK_FILE_NAME, updateSchemas} from './updater.js';
 
 interface PublishCommandOptions {
   dryRun?: boolean;
@@ -41,9 +43,7 @@ async function main(): Promise<void> {
     .description('Publish all generated schema packages to npm')
     .option('--dry-run', 'List packages that would be published without publishing them')
     .option('--log-file <file>', 'Write publish errors to a specific log file')
-    .action(async (options: PublishCommandOptions) => {
-      await runPublishCommand(options);
-    });
+    .action((options: PublishCommandOptions) => runPublishCommand(options));
 
   program
     .command('update')
@@ -51,9 +51,12 @@ async function main(): Promise<void> {
     .option('-f, --force', 'Regenerate all schemas, ignoring source hash matches')
     .option('--schema <id>', 'Only update the schema with this ID (e.g. "package")')
     .option('--source-dir <dir>', 'Use an existing SchemaStore checkout directory')
-    .action(async (options: UpdateCommandOptions) => {
-      await runUpdateCommand(options);
-    });
+    .action((options: UpdateCommandOptions) => runUpdateCommand(options));
+
+  program
+    .command('mark-published <schema>')
+    .description(`Set the published flag to true for a schema entry in ${LOCK_FILE_NAME}`)
+    .action((schema: string) => runMarkPublishedCommand(schema));
 
   if (process.argv.length <= 2) {
     await runUpdateCommand({force: false});
@@ -71,6 +74,35 @@ async function run(): Promise<void> {
     console.error(message);
     process.exitCode = 1;
   }
+}
+
+async function runMarkPublishedCommand(schema: string): Promise<void> {
+  const lockFilePath = path.join(process.cwd(), LOCK_FILE_NAME);
+  const raw = await readFile(lockFilePath, 'utf-8');
+  const lockFile = JSON.parse(raw) as SchemaLockFile;
+
+  const schemaId = schema.replace(/\.json$/i, '').toLowerCase();
+  const matchingKeys = Object.keys(lockFile.entries).filter(
+    entry =>
+      entry
+        .replace(/\.json$/i, '')
+        .replace(/[\\/]+/g, '-')
+        .toLowerCase() === schemaId
+  );
+
+  if (matchingKeys.length === 0) {
+    throw new Error(`No ${LOCK_FILE_NAME} entry found for schema ID: ${schemaId}`);
+  }
+
+  for (const matchingKey of matchingKeys) {
+    const entry = lockFile.entries[matchingKey];
+    if (entry) {
+      entry.published = true;
+    }
+  }
+
+  await writeFile(lockFilePath, `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
+  console.info(`Marked as published: ${matchingKeys.join(', ')}`);
 }
 
 async function runPublishCommand(options: PublishCommandOptions): Promise<void> {

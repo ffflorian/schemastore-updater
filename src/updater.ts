@@ -13,9 +13,9 @@ import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publi
 
 const execFileAsync = promisify(execFile);
 
+export const LOCK_FILE_NAME = 'schema-lock.json';
 const SCHEMASTORE_GIT_URL = 'https://github.com/SchemaStore/schemastore.git';
 const LOG_FILE_NAME = 'schemagenerator.log';
-const LOCK_FILE_NAME = 'schema-lock.json';
 const UPDATE_SUMMARY_FILE_NAME = 'update-summary.md';
 
 export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
