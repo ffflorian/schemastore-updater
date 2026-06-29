@@ -82,7 +82,7 @@ async function runMarkPublishedCommand(schema: string): Promise<void> {
   const lockFile = JSON.parse(raw) as SchemaLockFile;
 
   const schemaId = schema.replace(/\.json$/i, '').toLowerCase();
-  const matchingKeys = Object.keys(lockFile.entries).filter(
+  const matchingKey = Object.keys(lockFile.entries).filter(
     entry =>
       entry
         .replace(/\.json$/i, '')
@@ -90,19 +90,21 @@ async function runMarkPublishedCommand(schema: string): Promise<void> {
         .toLowerCase() === schemaId
   );
 
-  if (matchingKeys.length === 0) {
+  if (matchingKey.length === 0 || !matchingKey[0]) {
     throw new Error(`No ${LOCK_FILE_NAME} entry found for schema ID: ${schemaId}`);
   }
 
-  for (const matchingKey of matchingKeys) {
-    const entry = lockFile.entries[matchingKey];
-    if (entry) {
-      entry.published = true;
-    }
+  if (matchingKey.length > 1) {
+    throw new Error(`Multiple ${LOCK_FILE_NAME} entry found for schema ID: ${schemaId}`);
+  }
+
+  const entry = lockFile.entries[matchingKey[0]];
+  if (entry) {
+    entry.published = true;
   }
 
   await writeFile(lockFilePath, `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
-  console.info(`Marked as published: ${matchingKeys.join(', ')}`);
+  console.info(`Marked as published: ${matchingKey[0]}`);
 }
 
 async function runPublishCommand(options: PublishCommandOptions): Promise<void> {
