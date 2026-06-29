@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 import {Command} from 'commander';
-import {readFile} from 'node:fs/promises';
+import {readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+
+import type {SchemaLockFile} from './types.js';
 
 import {publishGeneratedPackages} from './publisher.js';
 import {updateSchemas} from './updater.js';
@@ -55,6 +57,13 @@ async function main(): Promise<void> {
       await runUpdateCommand(options);
     });
 
+  program
+    .command('mark-published <schema>')
+    .description('Set the published flag to true for a schema entry in schema-lock.json')
+    .action(async (schema: string) => {
+      await runMarkPublishedCommand(schema);
+    });
+
   if (process.argv.length <= 2) {
     await runUpdateCommand({force: false});
     return;
@@ -71,6 +80,35 @@ async function run(): Promise<void> {
     console.error(message);
     process.exitCode = 1;
   }
+}
+
+async function runMarkPublishedCommand(schema: string): Promise<void> {
+  const lockFilePath = path.join(process.cwd(), 'schema-lock.json');
+  const raw = await readFile(lockFilePath, 'utf-8');
+  const lockFile = JSON.parse(raw) as SchemaLockFile;
+
+  const schemaId = schema.replace(/\.json$/i, '').toLowerCase();
+  const matchingKeys = Object.keys(lockFile.entries).filter(
+    key =>
+      key
+        .replace(/\.json$/i, '')
+        .replace(/[\\/]+/g, '-')
+        .toLowerCase() === schemaId
+  );
+
+  if (matchingKeys.length === 0) {
+    throw new Error(`No schema-lock.json entry found for schema ID: ${schemaId}`);
+  }
+
+  for (const key of matchingKeys) {
+    const entry = lockFile.entries[key];
+    if (entry) {
+      entry.published = true;
+    }
+  }
+
+  await writeFile(lockFilePath, `${JSON.stringify(lockFile, null, 2)}\n`, 'utf-8');
+  console.info(`Marked as published: ${matchingKeys.join(', ')}`);
 }
 
 async function runPublishCommand(options: PublishCommandOptions): Promise<void> {
