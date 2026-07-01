@@ -32,7 +32,7 @@
   },
   "license": "GPL-3.0",
   "name": "schemastore-updater",
-  "packageManager": "yarn@4.16.0",
+  "packageManager": "yarn@4.17.0",
   "prettier": "@ffflorian/prettier-config",
   "private": true,
   "repository": "https://github.com/ffflorian/schemastore-updater",
