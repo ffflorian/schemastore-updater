@@ -1,3 +1,10 @@
+## [3.5.3](https://github.com/ffflorian/schemastore-updater/compare/v3.5.2...v3.5.3) (2026-07-02)
+
+
+### Bug Fixes
+
+* **deps:** bump @sigstore/verify from 3.1.0 to 3.1.1 ([#1542](https://github.com/ffflorian/schemastore-updater/issues/1542)) ([c861b95](https://github.com/ffflorian/schemastore-updater/commit/c861b95351a74ba6cbb05ea00eae45a876bd3913))
+
 ## [3.5.2](https://github.com/ffflorian/schemastore-updater/compare/v3.5.1...v3.5.2) (2026-06-30)
 
 
