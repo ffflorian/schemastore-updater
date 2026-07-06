@@ -598,7 +598,7 @@
     "aurora-2.0.json": {
       "generatedFile": "schemas/aurora-2.0/index.d.ts",
       "generatedSha256": "fda55e154da02535cc6eff1b55e21e67fd03cf8f110ea8caf770adbe8179cf19",
-      "published": false,
+      "published": true,
       "sourceSha256": "c5657212723f429d3ef20732f2021f4b0083cfa2616ec48ce034c6933a00b440",
       "updatedAt": "2026-07-06T06:29:14.200Z"
     },
@@ -1270,7 +1270,7 @@
     "codex-hooks.json": {
       "generatedFile": "schemas/codex-hooks/index.d.ts",
       "generatedSha256": "57a5f0b3bac199f4220afe51813b406b433b694f76ba99c694c0698e573ccda9",
-      "published": false,
+      "published": true,
       "sourceSha256": "3833ef241453facf45f941caff9e246d74eb8c85d7796d2e099dbebb8fe8ed37",
       "updatedAt": "2026-07-06T06:29:15.616Z"
     },
@@ -2222,7 +2222,7 @@
     "evidence-bundle.json": {
       "generatedFile": "schemas/evidence-bundle/index.d.ts",
       "generatedSha256": "3685078f52f5c74e0f713bc0f0fbd8370593441783df0db58808711e4f232f4e",
-      "published": false,
+      "published": true,
       "sourceSha256": "7dd1345482b44c1e77c4c4d2fdfc2c08b6f1462d853820ff9d0f954eeb8781d8",
       "updatedAt": "2026-07-06T06:29:16.694Z"
     },
@@ -4217,7 +4217,7 @@
     "problem_package_generators.json": {
       "generatedFile": "schemas/problem_package_generators/index.d.ts",
       "generatedSha256": "12fc01bed65f83112b6643113bcd9d24b3dbffd760a132cde315c45ed824f4bf",
-      "published": false,
+      "published": true,
       "sourceSha256": "fbd574de7769c1f39321d88daf9c2299bc6b5b8d20285bda0f14714d03115760",
       "updatedAt": "2026-07-06T06:32:34.737Z"
     },
