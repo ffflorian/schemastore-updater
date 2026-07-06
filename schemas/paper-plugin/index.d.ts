@@ -61,7 +61,7 @@ export interface PaperPaperPluginYml {
   /**
    * Default value for permissions. Defaults to 'op'
    */
-  'default-perm'?: 'true' | 'false' | 'op' | 'not op';
+  'default-perm'?: 'true' | true | 'false' | false | 'op' | 'not op';
   /**
    * Permissions for this plugin
    */
@@ -88,7 +88,7 @@ export interface Permission {
   /**
    * Default for this permission
    */
-  default?: 'true' | 'false' | 'op' | 'not op';
+  default?: 'true' | true | 'false' | false | 'op' | 'not op';
   description?: string;
   children?:
     | string[]

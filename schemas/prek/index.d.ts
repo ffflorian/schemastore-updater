@@ -57,7 +57,7 @@ export type HookType =
  * The configuration file for prek, a git hook manager written in Rust.
  */
 export interface PrekToml {
-  auto_update?: AutoUpdateOptions;
+  update?: UpdateOptions;
   repos: Repo[];
   /**
    * A list of `--hook-types` which will be used by default when running `prek install`.
@@ -98,6 +98,12 @@ export interface PrekToml {
    */
   default_stages?: Stage[];
   /**
+   * Default runtime environment variables for hooks.
+   */
+  default_env?: {
+    [k: string]: string | undefined;
+  };
+  /**
    * Global file include pattern.
    */
   files?:
@@ -132,12 +138,13 @@ export interface PrekToml {
    * any parent projects that contain them.
    */
   orphan?: boolean;
+  auto_update?: UpdateOptions1;
   [k: string]: unknown | undefined;
 }
 /**
- * Default settings for `prek auto-update` in this project.
+ * Default settings for `prek update` in this project.
  */
-export interface AutoUpdateOptions {
+export interface UpdateOptions {
   cooldown_days?: number;
   [k: string]: unknown | undefined;
 }
@@ -776,5 +783,12 @@ export interface BuiltinHook {
    * The minimum version of prek required to run this hook.
    */
   minimum_prek_version?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Compatibility alias for `update`. Prefer `update` in new configs.
+ */
+export interface UpdateOptions1 {
+  cooldown_days?: number;
   [k: string]: unknown | undefined;
 }

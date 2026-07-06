@@ -8,37 +8,26 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 915
-- **Generated:** 22
-- **Skipped:** 775
+- **Total:** 918
+- **Generated:** 11
+- **Skipped:** 789
 - **Failed:** 118
 
 <details>
 
-<summary><h3>Updated Schemas (22)</h3></summary>
+<summary><h3>Updated Schemas (11)</h3></summary>
 
-- `abc-clinical-demand-forecast-5.0.0`
-- `abc-inventory-module-data-5.3.0`
-- `abc-supply-plan-14.0.0`
-- `actionlint`
-- `aiproj-1.0`
-- `aiproj-1.1`
-- `aiproj-1.10`
-- `aiproj-1.2`
-- `aiproj-1.3`
-- `aiproj-1.4`
-- `aiproj-1.5`
-- `aiproj-1.6`
-- `aiproj-1.7`
-- `aiproj-1.8`
-- `aiproj-1.9`
-- `all-contributors`
-- `codex-plugin-manifest`
-- `pantsbuild-2.32.0`
-- `partial-mypy`
-- `ruff`
-- `stylintrc`
-- `tox`
+- `aurora-2.0`
+- `claude-code-keybindings`
+- `claude-code-settings`
+- `codex-hooks`
+- `evidence-bundle`
+- `jsconfig`
+- `paper-plugin`
+- `partial-poe`
+- `prek`
+- `problem_package_generators`
+- `tsconfig`
 
 </details>
 
@@ -95,6 +84,7 @@ This PR was created by the scheduled workflow after running:
 - `jreleaser-1.22.0`
 - `jreleaser-1.23.0`
 - `jreleaser-1.24.0`
+- `jreleaser-1.25.0`
 - `jreleaser-1.6.0`
 - `jreleaser-1.7.0`
 - `jreleaser-1.8.0`
@@ -120,7 +110,6 @@ This PR was created by the scheduled workflow after running:
 - `phrase`
 - `podman-desktop-extension-1.27`
 - `podman-desktop-extension`
-- `problem_package_generators`
 - `pyproject`
 - `quikrun`
 - `rumdl`
