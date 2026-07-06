@@ -106,9 +106,9 @@ export interface CompilerOptionsDefinition {
      */
     jsxFragmentFactory?: string | null;
     /**
-     * Specify module specifier used to import the JSX factory functions when using `jsx: react-jsx*`.
+     * Specify module specifier used to import the JSX factory functions when using `jsx: react-jsx*`. When using @vitejs/plugin-vue-jsx, you can set this to `"vue"` for Vue JSX support.
      */
-    jsxImportSource?: string | null;
+    jsxImportSource?: ('react' | 'preact' | 'vue') | string | null;
     /**
      * Print all of the files read during the compilation.
      */

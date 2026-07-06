@@ -12,7 +12,7 @@ export type HookHandler = CommandHandler | SkippedHandler;
  *
  * @minItems 1
  */
-export type MatcherGroups6 = [MatcherGroup, ...MatcherGroup[]] | undefined;
+export type MatcherGroups10 = [MatcherGroup, ...MatcherGroup[]] | undefined;
 
 /**
  * Configuration for OpenAI Codex lifecycle hooks.
@@ -27,9 +27,13 @@ export interface CodexHooksConfiguration {
     PreToolUse?: MatcherGroups;
     PermissionRequest?: MatcherGroups;
     PostToolUse?: MatcherGroups;
+    PreCompact?: MatcherGroups;
+    PostCompact?: MatcherGroups;
     UserPromptSubmit?: MatcherGroups;
+    SubagentStart?: MatcherGroups;
+    SubagentStop?: MatcherGroups;
     Stop?: MatcherGroups;
-    [k: string]: MatcherGroups6 | undefined;
+    [k: string]: MatcherGroups10 | undefined;
   };
 }
 /**
@@ -60,6 +64,10 @@ export interface CommandHandler {
    * Command to execute.
    */
   command: string;
+  /**
+   * Optional Windows-only command override.
+   */
+  commandWindows?: string;
   /**
    * Timeout in seconds. Codex uses 600 seconds when omitted.
    */

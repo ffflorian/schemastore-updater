@@ -48,6 +48,93 @@ export type ArgsOption =
   | {
       [k: string]: ArgsItemNoName | undefined;
     };
+export type ArgsItem = {
+  [k: string]: unknown | undefined;
+} & {
+  /**
+   * Constrain the accepted values for an argument to a fixed set.
+   */
+  choices?: string[] | number[];
+  /**
+   * The default value for the argument when not provided.
+   */
+  default?: string | number | boolean;
+  /**
+   * A short description of the argument to include in the documentation of the
+   * task.
+   */
+  help?: string;
+  /**
+   * Indicates if multiple values are allowed for the argument. If an integer is
+   * given, exactly that many values are expected.
+   */
+  multiple?: boolean | number;
+  /**
+   * The name of the argument.
+   */
+  name: string;
+  /**
+   * A list of options to be provided along with the argument.
+   */
+  options?: string[];
+  /**
+   * Indicates if the argument is positional. If a string is provided, it is used
+   * as the dest name for the argument in argparse.
+   */
+  positional?: boolean | string;
+  /**
+   * Indicates if the argument is required.
+   */
+  required?: boolean;
+  /**
+   * The type of the argument.
+   */
+  type?: 'string' | 'float' | 'integer' | 'boolean';
+};
+export type ArgsItemNoName =
+  | (
+      | ({
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Constrain the accepted values for an argument to a fixed set.
+           */
+          choices?: string[] | number[];
+          /**
+           * The default value for the argument when not provided.
+           */
+          default?: string | number | boolean;
+          /**
+           * A short description of the argument to include in the documentation of the
+           * task.
+           */
+          help?: string;
+          /**
+           * Indicates if multiple values are allowed for the argument. If an integer is
+           * given, exactly that many values are expected.
+           */
+          multiple?: boolean | number;
+          /**
+           * A list of options to be provided along with the argument.
+           */
+          options?: string[];
+          /**
+           * Indicates if the argument is positional. If a string is provided, it is used
+           * as the dest name for the argument in argparse.
+           */
+          positional?: boolean | string;
+          /**
+           * Indicates if the argument is required.
+           */
+          required?: boolean;
+          /**
+           * The type of the argument.
+           */
+          type?: 'string' | 'float' | 'integer' | 'boolean';
+        })
+      | undefined
+    )
+  | undefined;
 /**
  * Executes a single command as a subprocess without a shell. Supports glob
  * patterns for filesystem paths, parameter expansion of environment variable
@@ -55,6 +142,72 @@ export type ArgsOption =
  */
 export type CommandToExecute = string;
 export type EnvfileOption = string | EnvfileFull | (string | EnvfileFull)[];
+export type ScriptTask = {
+  [k: string]: unknown | undefined;
+} & {
+  args?: ArgsOption;
+  /**
+   * Redirects the task output to a file with the given path. Supports
+   * environment variable interpolation.
+   */
+  capture_stdout?: string;
+  /**
+   * Specify the current working directory that this task should run with. This
+   * can be a relative path from the project root or an absolute path, and
+   * environment variables can be used in the format ${VAR_NAME}.
+   */
+  cwd?: string;
+  /**
+   * A list of task invocations that will be executed before this one. Each item
+   * in the list is a reference to another task defined within the tasks object.
+   */
+  deps?: string[];
+  env?: EnvOption1;
+  envfile?: EnvfileOption;
+  executor?: ExecutorTaskOption;
+  /**
+   * Help text to be displayed next to the task name in the documentation when
+   * poe is run without specifying a task.
+   */
+  help?: string;
+  /**
+   * Return exit code 0 even if the task fails, or specify a list of task exit
+   * codes to ignore.
+   */
+  ignore_fail?: boolean | number[];
+  /**
+   * If true then the return value of the Python callable will be output to
+   * stdout, unless it is None.
+   */
+  print_result?: boolean;
+  /**
+   * Invokes a Python callable or module, optionally with values or expressions
+   * passed as arguments.
+   */
+  script: string;
+  /**
+   * Specify that this task should be executed in the same process, instead of
+   * as a subprocess. Note: This feature has limitations, such as not being
+   * compatible with tasks that are referenced by other tasks and not working on
+   * Windows.
+   */
+  use_exec?: boolean;
+  /**
+   * Allows this task to use the output of other tasks which are executed first.
+   * The values are references to the names of the tasks, and the keys are
+   * environment variables by which the results of those tasks will be
+   * accessible in this task.
+   */
+  uses?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * Specify the verbosity level for this task, from -2 (least verbose) to 2
+   * (most verbose), overriding the project level verbosity setting, which
+   * defaults to 0.
+   */
+  verbosity?: -2 | -1 | 0 | 1 | 2;
+};
 export type TaskDefWithCase =
   | CmdTaskWithCase
   | ExprTaskWithCase
@@ -75,6 +228,73 @@ export type TaskDefWithCase =
       switch?: never;
       [k: string]: unknown | undefined;
     };
+export type ScriptTaskWithCase = {
+  [k: string]: unknown | undefined;
+} & {
+  args?: ArgsOption;
+  /**
+   * Redirects the task output to a file with the given path. Supports
+   * environment variable interpolation.
+   */
+  capture_stdout?: string;
+  case?: (string | number | boolean) | (string | number | boolean)[];
+  /**
+   * Specify the current working directory that this task should run with. This
+   * can be a relative path from the project root or an absolute path, and
+   * environment variables can be used in the format ${VAR_NAME}.
+   */
+  cwd?: string;
+  /**
+   * A list of task invocations that will be executed before this one. Each item
+   * in the list is a reference to another task defined within the tasks object.
+   */
+  deps?: string[];
+  env?: EnvOption1;
+  envfile?: EnvfileOption;
+  executor?: ExecutorTaskOption;
+  /**
+   * Help text to be displayed next to the task name in the documentation when
+   * poe is run without specifying a task.
+   */
+  help?: string;
+  /**
+   * Return exit code 0 even if the task fails, or specify a list of task exit
+   * codes to ignore.
+   */
+  ignore_fail?: boolean | number[];
+  /**
+   * If true then the return value of the Python callable will be output to
+   * stdout, unless it is None.
+   */
+  print_result?: boolean;
+  /**
+   * Invokes a Python callable or module, optionally with values or expressions
+   * passed as arguments.
+   */
+  script: string;
+  /**
+   * Specify that this task should be executed in the same process, instead of
+   * as a subprocess. Note: This feature has limitations, such as not being
+   * compatible with tasks that are referenced by other tasks and not working on
+   * Windows.
+   */
+  use_exec?: boolean;
+  /**
+   * Allows this task to use the output of other tasks which are executed first.
+   * The values are references to the names of the tasks, and the keys are
+   * environment variables by which the results of those tasks will be
+   * accessible in this task.
+   */
+  uses?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * Specify the verbosity level for this task, from -2 (least verbose) to 2
+   * (most verbose), overriding the project level verbosity setting, which
+   * defaults to 0.
+   */
+  verbosity?: -2 | -1 | 0 | 1 | 2;
+};
 
 /**
  * Poe the Poet is a task runner that integrates well with uv, poetry, or any project using pyproject.toml
@@ -404,84 +624,6 @@ export interface CmdTask {
    */
   verbosity?: -2 | -1 | 0 | 1 | 2;
 }
-export interface ArgsItem {
-  /**
-   * Constrain the accepted values for an argument to a fixed set.
-   */
-  choices?: string[] | number[];
-  /**
-   * The default value for the argument when not provided.
-   */
-  default?: string | number | boolean;
-  /**
-   * A short description of the argument to include in the documentation of the
-   * task.
-   */
-  help?: string;
-  /**
-   * Indicates if multiple values are allowed for the argument. If an integer is
-   * given, exactly that many values are expected.
-   */
-  multiple?: boolean | number;
-  /**
-   * The name of the argument.
-   */
-  name: string;
-  /**
-   * A list of options to be provided along with the argument.
-   */
-  options?: string[];
-  /**
-   * Indicates if the argument is positional. If a string is provided, it is used
-   * as the dest name for the argument in argparse.
-   */
-  positional?: boolean | string;
-  /**
-   * Indicates if the argument is required.
-   */
-  required?: boolean;
-  /**
-   * The type of the argument.
-   */
-  type?: 'string' | 'float' | 'integer' | 'boolean';
-}
-export interface ArgsItemNoName {
-  /**
-   * Constrain the accepted values for an argument to a fixed set.
-   */
-  choices?: string[] | number[];
-  /**
-   * The default value for the argument when not provided.
-   */
-  default?: string | number | boolean;
-  /**
-   * A short description of the argument to include in the documentation of the
-   * task.
-   */
-  help?: string;
-  /**
-   * Indicates if multiple values are allowed for the argument. If an integer is
-   * given, exactly that many values are expected.
-   */
-  multiple?: boolean | number;
-  /**
-   * A list of options to be provided along with the argument.
-   */
-  options?: string[];
-  /**
-   * Indicates if the argument is positional. If a string is provided, it is used
-   * as the dest name for the argument in argparse.
-   */
-  positional?: boolean | string;
-  /**
-   * Indicates if the argument is required.
-   */
-  required?: boolean;
-  /**
-   * The type of the argument.
-   */
-  type?: 'string' | 'float' | 'integer' | 'boolean';
-}
 export interface EnvOption1 {
   [k: string]: (string | EnvDefault) | undefined;
 }
@@ -587,6 +729,11 @@ export interface ParallelTask {
    */
   ignore_fail?: true | false | 'return_zero' | 'return_non_zero';
   /**
+   * Controls how leaf-task stdout is emitted: either streamed line-by-line
+   * or buffered output on task completion.
+   */
+  output_mode?: 'stream' | 'buffer';
+  /**
    * Runs an array of subtasks concurrently. Each subtask runs in its own
    * subprocess; output lines are interleaved and prefixed with the subtask
    * name by default.
@@ -658,70 +805,6 @@ export interface RefTask {
    * Invokes another task by name, with or without arguments.
    */
   ref: string;
-  /**
-   * Allows this task to use the output of other tasks which are executed first.
-   * The values are references to the names of the tasks, and the keys are
-   * environment variables by which the results of those tasks will be
-   * accessible in this task.
-   */
-  uses?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * Specify the verbosity level for this task, from -2 (least verbose) to 2
-   * (most verbose), overriding the project level verbosity setting, which
-   * defaults to 0.
-   */
-  verbosity?: -2 | -1 | 0 | 1 | 2;
-}
-export interface ScriptTask {
-  args?: ArgsOption;
-  /**
-   * Redirects the task output to a file with the given path. Supports
-   * environment variable interpolation.
-   */
-  capture_stdout?: string;
-  /**
-   * Specify the current working directory that this task should run with. This
-   * can be a relative path from the project root or an absolute path, and
-   * environment variables can be used in the format ${VAR_NAME}.
-   */
-  cwd?: string;
-  /**
-   * A list of task invocations that will be executed before this one. Each item
-   * in the list is a reference to another task defined within the tasks object.
-   */
-  deps?: string[];
-  env?: EnvOption1;
-  envfile?: EnvfileOption;
-  executor?: ExecutorTaskOption;
-  /**
-   * Help text to be displayed next to the task name in the documentation when
-   * poe is run without specifying a task.
-   */
-  help?: string;
-  /**
-   * Return exit code 0 even if the task fails, or specify a list of task exit
-   * codes to ignore.
-   */
-  ignore_fail?: boolean | number[];
-  /**
-   * If true then the return value of the Python callable will be output to
-   * stdout, unless it is None.
-   */
-  print_result?: boolean;
-  /**
-   * Invokes a Python callable or module, optionally with values or expressions
-   * passed as arguments.
-   */
-  script: string;
-  /**
-   * Specify that this task should be executed in the same process, instead of
-   * as a subprocess. Note: This feature has limitations, such as not being
-   * compatible with tasks that are referenced by other tasks and not working on
-   * Windows.
-   */
-  use_exec?: boolean;
   /**
    * Allows this task to use the output of other tasks which are executed first.
    * The values are references to the names of the tasks, and the keys are
@@ -1082,6 +1165,11 @@ export interface ParallelTaskWithCase {
    */
   ignore_fail?: true | false | 'return_zero' | 'return_non_zero';
   /**
+   * Controls how leaf-task stdout is emitted: either streamed line-by-line
+   * or buffered output on task completion.
+   */
+  output_mode?: 'stream' | 'buffer';
+  /**
    * Runs an array of subtasks concurrently. Each subtask runs in its own
    * subprocess; output lines are interleaved and prefixed with the subtask
    * name by default.
@@ -1154,71 +1242,6 @@ export interface RefTaskWithCase {
    * Invokes another task by name, with or without arguments.
    */
   ref: string;
-  /**
-   * Allows this task to use the output of other tasks which are executed first.
-   * The values are references to the names of the tasks, and the keys are
-   * environment variables by which the results of those tasks will be
-   * accessible in this task.
-   */
-  uses?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * Specify the verbosity level for this task, from -2 (least verbose) to 2
-   * (most verbose), overriding the project level verbosity setting, which
-   * defaults to 0.
-   */
-  verbosity?: -2 | -1 | 0 | 1 | 2;
-}
-export interface ScriptTaskWithCase {
-  args?: ArgsOption;
-  /**
-   * Redirects the task output to a file with the given path. Supports
-   * environment variable interpolation.
-   */
-  capture_stdout?: string;
-  case?: (string | number | boolean) | (string | number | boolean)[];
-  /**
-   * Specify the current working directory that this task should run with. This
-   * can be a relative path from the project root or an absolute path, and
-   * environment variables can be used in the format ${VAR_NAME}.
-   */
-  cwd?: string;
-  /**
-   * A list of task invocations that will be executed before this one. Each item
-   * in the list is a reference to another task defined within the tasks object.
-   */
-  deps?: string[];
-  env?: EnvOption1;
-  envfile?: EnvfileOption;
-  executor?: ExecutorTaskOption;
-  /**
-   * Help text to be displayed next to the task name in the documentation when
-   * poe is run without specifying a task.
-   */
-  help?: string;
-  /**
-   * Return exit code 0 even if the task fails, or specify a list of task exit
-   * codes to ignore.
-   */
-  ignore_fail?: boolean | number[];
-  /**
-   * If true then the return value of the Python callable will be output to
-   * stdout, unless it is None.
-   */
-  print_result?: boolean;
-  /**
-   * Invokes a Python callable or module, optionally with values or expressions
-   * passed as arguments.
-   */
-  script: string;
-  /**
-   * Specify that this task should be executed in the same process, instead of
-   * as a subprocess. Note: This feature has limitations, such as not being
-   * compatible with tasks that are referenced by other tasks and not working on
-   * Windows.
-   */
-  use_exec?: boolean;
   /**
    * Allows this task to use the output of other tasks which are executed first.
    * The values are references to the names of the tasks, and the keys are
