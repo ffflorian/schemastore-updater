@@ -1179,7 +1179,7 @@
     "claude-code-keybindings.json": {
       "generatedFile": "schemas/claude-code-keybindings/index.d.ts",
       "generatedSha256": "85208a71a80ee5cc67c3876904de7caa3ddd6e8c2c10719fdfa7253274ded1a7",
-      "published": false,
+      "published": true,
       "sourceSha256": "db32046cab25126331c6116ec790ab5944a8e4fba663dd0fd1e94cdceefa77b1",
       "updatedAt": "2026-07-06T06:29:15.085Z"
     },
@@ -1200,7 +1200,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "281b42cdd96e0b13ba9750d3895e71f42490ca00b34d9eac52e1067fa7028a23",
-      "published": false,
+      "published": true,
       "sourceSha256": "2b4004b2af619ce16bd6dafc0a8f1f03974f45740f4212a1f85f236364057d28",
       "updatedAt": "2026-07-06T06:29:15.419Z"
     },
@@ -2824,7 +2824,7 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "3f0d1ec0b3cf7d22537a073489e7718b45dc86ab62084905aada328d2cd69561",
-      "published": false,
+      "published": true,
       "sourceSha256": "ca14591c0dac5aa9e5a496a14b3fccfafdb0c96fb42a8b2e828e2df75098a28c",
       "updatedAt": "2026-07-06T06:29:26.704Z"
     },
@@ -3874,7 +3874,7 @@
     "paper-plugin.json": {
       "generatedFile": "schemas/paper-plugin/index.d.ts",
       "generatedSha256": "cee6b293ad6f2a8cec61c177ee42eef08f5d8616a6b2f03aca57f71e8712cb70",
-      "published": false,
+      "published": true,
       "sourceSha256": "1ca2941d1a9b3475bf338d86b374ffce65c2ac948a468954a314812e283e6728",
       "updatedAt": "2026-07-06T06:32:31.126Z"
     },
@@ -3958,7 +3958,7 @@
     "partial-poe.json": {
       "generatedFile": "schemas/partial-poe/index.d.ts",
       "generatedSha256": "ede8838f946631b6713fa20d1415041867ea807ad00cfd47e8c733173c0a1004",
-      "published": false,
+      "published": true,
       "sourceSha256": "6865c6aea3dd45fce22dcc2adf63d30af1e98381d2259c7c564c76893b2edae7",
       "updatedAt": "2026-07-06T06:32:31.853Z"
     },
@@ -4182,7 +4182,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "47bcf7c07fdd743220d7a4bac024e3235cdb4dc8bd9fa5d6fe150841f9f69de0",
-      "published": false,
+      "published": true,
       "sourceSha256": "238856e6d16331fef20c48a21991c70245220f3f23eb701e5d66fdbc9d0c739b",
       "updatedAt": "2026-07-06T06:32:34.327Z"
     },
@@ -5302,7 +5302,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "83e2cfef58bef2660cf7d16e11bd27ffbc28baf1cfd85a340988ee2f69ea6819",
-      "published": false,
+      "published": true,
       "sourceSha256": "c975e07ea2c93aa448f360f88dbab345f7f38131d35a5285cc25b0027b7f1fcd",
       "updatedAt": "2026-07-06T06:32:40.870Z"
     },
