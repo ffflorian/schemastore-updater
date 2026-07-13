@@ -184,6 +184,7 @@ export interface StaticHTTPConfig {
   middlewares?: string[] | null;
   redirections?: StaticRedirections;
   tls?: StaticTLSConfig;
+  underscoreHeadersStrategy?: string;
 }
 export interface StaticEncodedCharacters {
   allowEncodedSlash?: boolean;
@@ -252,7 +253,7 @@ export interface StaticExperimental {
   localPlugins?: {
     [k: string]: PluginsLocalDescriptor | undefined;
   };
-  otlplogs?: boolean;
+  otlpLogs?: boolean;
   plugins?: {
     [k: string]: PluginsDescriptor | undefined;
   };

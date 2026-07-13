@@ -8,32 +8,43 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 918
-- **Generated:** 11
-- **Skipped:** 789
-- **Failed:** 118
+- **Total:** 931
+- **Generated:** 22
+- **Skipped:** 790
+- **Failed:** 119
 
 <details>
 
-<summary><h3>Updated Schemas (11)</h3></summary>
+<summary><h3>Updated Schemas (22)</h3></summary>
 
-- `aurora-2.0`
-- `claude-code-keybindings`
-- `claude-code-settings`
-- `codex-hooks`
-- `evidence-bundle`
+- `abtop`
+- `aih-config`
+- `aih-org-policy`
+- `aiproj-1.11`
+- `gama`
+- `git-cliff`
+- `gitleaks`
+- `gitversion`
+- `gollama`
 - `jsconfig`
-- `paper-plugin`
-- `partial-poe`
-- `prek`
-- `problem_package_generators`
+- `lychee`
+- `modelsdev`
+- `packwiz-index`
+- `packwiz-mod`
+- `packwiz-pack`
+- `partial-eslint-plugins`
+- `specmatic`
+- `traefik-v3`
 - `tsconfig`
+- `web-manifest`
+- `webextension`
+- `youtrack-app`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (118)</h3></summary>
+<summary><h3>Failed Schemas (119)</h3></summary>
 
 - `accelerator`
 - `aio-connector-metadata-11.0-preview`
@@ -66,6 +77,7 @@ This PR was created by the scheduled workflow after running:
 - `grunt-copy-task`
 - `grunt-cssmin-task`
 - `grunt-jshint-task`
+- `hatch`
 - `hugo`
 - `jfrog-pipelines`
 - `jreleaser-1.10.0`

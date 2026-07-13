@@ -6,7 +6,7 @@
 export type HashSetOfString = string[];
 
 /**
- * GitVersion configuration schema (6.7)
+ * GitVersion configuration schema (6.8)
  */
 export interface GitVersionConfigurationSchema {
   /**
@@ -106,10 +106,7 @@ export interface GitVersionConfigurationSchema {
      * Commits before this date will be ignored. Format: yyyy-MM-ddTHH:mm:ss.
      */
     'commits-before'?: null | string;
-    /**
-     * A sequence of file paths to be excluded from the version calculations.
-     */
-    paths?: string[];
+    paths?: HashSetOfString;
     sha?: HashSetOfString;
     [k: string]: unknown | undefined;
   };
