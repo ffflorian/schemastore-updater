@@ -2443,7 +2443,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
           /**
            * @minItems 0
            */
-          allow?: [] | [string];
+          allow?: string[];
           [k: string]: unknown | undefined;
         }
       ];
@@ -7129,32 +7129,34 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
         }
       ];
   /**
-   * Enforce the consistent use of either backticks, double, or single quotes
+   * DEPRECATED. Enforce the consistent use of either backticks, double, or single quotes
    * https://typescript-eslint.io/rules/quotes
    */
   '@typescript-eslint/quotes'?:
     | RuleNumber
     | RuleString
-    | [RuleNumber | RuleString, 'double' | 'single' | 'backtick']
-    | [
-        RuleNumber | RuleString,
-        'double' | 'single' | 'backtick',
-        {
-          /**
-           * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
-           */
-          avoidEscape?: boolean;
-          /**
-           * allows strings to use backticks
-           */
-          allowTemplateLiterals?: boolean;
-          /**
-           * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
-           */
-          'avoid-escape'?: boolean;
-          [k: string]: unknown | undefined;
-        }
-      ];
+    | (
+        | [RuleNumber | RuleString, 'double' | 'single' | 'backtick']
+        | [
+            RuleNumber | RuleString,
+            'double' | 'single' | 'backtick',
+            {
+              /**
+               * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
+               */
+              avoidEscape?: boolean;
+              /**
+               * allows strings to use backticks
+               */
+              allowTemplateLiterals?: boolean;
+              /**
+               * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
+               */
+              'avoid-escape'?: boolean;
+              [k: string]: unknown | undefined;
+            }
+          ]
+      );
   /**
    * Require `Array#sort` and `Array#toSorted` calls to always provide a `compareFunction`
    * https://typescript-eslint.io/rules/require-array-sort-compare

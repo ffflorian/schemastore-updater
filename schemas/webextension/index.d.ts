@@ -291,7 +291,6 @@ export interface JSONSchemaForWebExtensionsManifestFiles {
    * If no version_name is present, the version field will be used for display purposes as well.https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version_name
    */
   version_name?: string;
-  web_accessible_resources?: Scripts;
   [k: string]: unknown | undefined;
 }
 /**
