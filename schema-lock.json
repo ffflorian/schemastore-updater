@@ -2586,7 +2586,7 @@
     "gitversion.json": {
       "generatedFile": "schemas/gitversion/index.d.ts",
       "generatedSha256": "27241d82b28c936b1fe3c37590ec0ea83571e82d641b5d52908e49611b3c7df8",
-      "published": false,
+      "published": true,
       "sourceSha256": "86108bd0b830fb62011ce039ab2f4b4ce500ad631fe6ab29fe4aceacd67f5b12",
       "updatedAt": "2026-07-13T06:00:41.907Z"
     },
@@ -2880,7 +2880,7 @@
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "3f0d1ec0b3cf7d22537a073489e7718b45dc86ab62084905aada328d2cd69561",
-      "published": false,
+      "published": true,
       "sourceSha256": "1196925aa9aa46c8b5850353390a23431fce75395c58bf96f791fcc0c826cf81",
       "updatedAt": "2026-07-13T06:00:52.031Z"
     },
@@ -3993,7 +3993,7 @@
     "partial-eslint-plugins.json": {
       "generatedFile": "schemas/partial-eslint-plugins/index.d.ts",
       "generatedSha256": "eaf1f48f1053a3fc8657d67fae5b580d253647c29d279ac5bdbb174075b5249c",
-      "published": false,
+      "published": true,
       "sourceSha256": "64cb0d70799fccd67e24ae1befd7643a4808c78e383f361b820932aa80a5cf16",
       "updatedAt": "2026-07-13T06:03:57.029Z"
     },
@@ -5134,7 +5134,7 @@
     "specmatic.json": {
       "generatedFile": "schemas/specmatic/index.d.ts",
       "generatedSha256": "c57730dd7b4e775a7b833147c4929e31f1ec7af6f374ea01f10d0353e2fdfc5a",
-      "published": false,
+      "published": true,
       "sourceSha256": "5893785728b1590a697eda89ce002f574dcb8d861b02b9431151e28b233d0c71",
       "updatedAt": "2026-07-13T06:04:04.631Z"
     },
@@ -5358,7 +5358,7 @@
     "traefik-v3.json": {
       "generatedFile": "schemas/traefik-v3/index.d.ts",
       "generatedSha256": "bd6c1a0d123349c76bf1a8dbe0611bbf4ba44d41defdbccf312dc44c702d963f",
-      "published": false,
+      "published": true,
       "sourceSha256": "bb3fd9028607956e2b22541c11591cd47320eb69d75701537c0b1b45c2e268fc",
       "updatedAt": "2026-07-13T06:04:06.146Z"
     },
@@ -5393,7 +5393,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "83e2cfef58bef2660cf7d16e11bd27ffbc28baf1cfd85a340988ee2f69ea6819",
-      "published": false,
+      "published": true,
       "sourceSha256": "428fda18db7955815d93b9b5266798baaa638c9fac5959d00efc6fceeaabc5bf",
       "updatedAt": "2026-07-13T06:04:06.556Z"
     },
@@ -5701,14 +5701,14 @@
     "web-manifest.json": {
       "generatedFile": "schemas/web-manifest/index.d.ts",
       "generatedSha256": "6c77f2152a19709c4562b324cb8dfe257301e962c4455ccc5816e87df1d08dc8",
-      "published": false,
+      "published": true,
       "sourceSha256": "c6e7588e5e71c95af583f4f91aeaf6bb32f1df1fe7d3b86f4c10b570103a0d17",
       "updatedAt": "2026-07-13T06:04:11.207Z"
     },
     "webextension.json": {
       "generatedFile": "schemas/webextension/index.d.ts",
       "generatedSha256": "1ce8679be249fad5a5e0c0dc28e1f9364c11e63489a7901d917cfe0ced80d8cb",
-      "published": false,
+      "published": true,
       "sourceSha256": "ca57a092f00370dc3a22ef9b3d373d3a96adfbf5373de05276c0101fd1961b42",
       "updatedAt": "2026-07-13T06:04:11.488Z"
     },
@@ -5820,7 +5820,7 @@
     "youtrack-app.json": {
       "generatedFile": "schemas/youtrack-app/index.d.ts",
       "generatedSha256": "c66136b4ad6c4ad39ddb19131ea10420919fb91bb8cf9518a8fb4dfa33c81030",
-      "published": false,
+      "published": true,
       "sourceSha256": "2eb6568d56586834de6e87da9257b92d818f595f19cc640e15e75c59769af5b2",
       "updatedAt": "2026-07-13T06:04:12.109Z"
     },
