@@ -1,4 +1,4 @@
-name: Build, lint, test, publish
+name: Main
 
 permissions: {}
 
