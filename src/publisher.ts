@@ -1,5 +1,6 @@
 import {execFile} from 'node:child_process';
-import {access, readdir, readFile, writeFile} from 'node:fs/promises';
+import {access, mkdtemp, readdir, readFile, rm, writeFile} from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
 
@@ -32,7 +33,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     ? path.resolve(options.logFilePath)
     : path.join(projectRoot, DEFAULT_PUBLISH_LOG_FILE);
   const summaryFilePath = path.join(projectRoot, PUBLISH_SUMMARY_FILE_NAME);
-  const publishPackage = options.publishPackage ?? publishPackageDirectory;
+  const publishPackage = options.publishPackage ?? stagePackageDirectory;
   const lockFilePath = path.join(projectRoot, 'schema-lock.json');
 
   const schemasDirectoryExists = await exists(schemasDirectory);
@@ -131,14 +132,14 @@ function createPublishSummary(stats: PublishStats): string {
     '## Publish Summary',
     '',
     `- **Attempted:** ${stats.attempted}`,
-    `- **Published:** ${stats.published}`,
+    `- **Staged (pending 2FA approval):** ${stats.published}`,
     `- **Skipped:** ${stats.skipped}`,
     `- **Failed:** ${stats.failed}`,
   ];
 
   if (stats.publishedPackages.length > 0) {
     lines.push('', `<details>`);
-    lines.push(`<summary><h3>Published Packages (${stats.publishedPackages.length})</h3></summary>`, '');
+    lines.push(`<summary><h3>Staged Packages (${stats.publishedPackages.length})</h3></summary>`, '');
     for (const packageLabel of stats.publishedPackages) {
       lines.push(`- \`${packageLabel}\``);
     }
@@ -230,16 +231,47 @@ function normalizePath(filePath: string): string {
   return filePath.replaceAll('\\', '/');
 }
 
-async function publishPackageDirectory(packageDirectory: string): Promise<void> {
-  await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
-    cwd: packageDirectory,
-    env: process.env,
-  });
-}
-
 async function readPackageManifest(packageJsonPath: string): Promise<PackageManifest> {
   const packageJsonContent = await readFile(packageJsonPath, 'utf-8');
   return JSON.parse(packageJsonContent) as PackageManifest;
+}
+
+async function stagePackageDirectory(packageDirectory: string): Promise<void> {
+  try {
+    await execFileAsync('npm', ['stage', 'publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
+      cwd: packageDirectory,
+      env: process.env,
+    });
+  } catch (error) {
+    // Falls back to a token only when OIDC has no trusted publisher for this package yet
+    // (e.g. a schema that has never been published before - npm requires a package to
+    // already exist before a Trusted Publisher can be configured for it).
+    const fallbackToken = process.env.NPM_TOKEN;
+    if (!fallbackToken) {
+      throw error;
+    }
+
+    await stageWithFallbackToken(packageDirectory, fallbackToken);
+  }
+}
+
+async function stageWithFallbackToken(packageDirectory: string, npmToken: string): Promise<void> {
+  const configDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-npm-'));
+  const userConfigPath = path.join(configDirectory, '.npmrc');
+
+  try {
+    await writeFile(userConfigPath, `//registry.npmjs.org/:_authToken=${npmToken}\n`, 'utf-8');
+    await execFileAsync(
+      'npm',
+      ['stage', 'publish', '--access', 'public', '--registry', NPM_REGISTRY_URL, '--userconfig', userConfigPath],
+      {
+        cwd: packageDirectory,
+        env: process.env,
+      }
+    );
+  } finally {
+    await rm(configDirectory, {force: true, recursive: true});
+  }
 }
 
 async function writeLockFile(lockFilePath: string, lockFile: SchemaLockFile): Promise<void> {

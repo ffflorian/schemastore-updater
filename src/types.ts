@@ -7,6 +7,12 @@ export interface CliOptions {
 export interface LockEntry {
   generatedFile: string;
   generatedSha256: string;
+  /**
+   * True once this package version has been successfully submitted to npm via
+   * `npm stage publish`. This means the version is pending a maintainer's 2FA
+   * approval on npmjs.com (or `npm stage approve`) - not that it is live yet.
+   * It still means "do not attempt to publish this version again".
+   */
   published: boolean;
   sourceSha256: string;
   updatedAt: string;

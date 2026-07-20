@@ -30,12 +30,19 @@ jobs:
           node-version: 26
           cache: yarn
 
+      - name: Ensure npm supports staged publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
+
       - name: Install dependencies
         run: yarn --immutable
 
       - name: Publish generated packages
         id: publish
         continue-on-error: true
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn publish:schemas
 
