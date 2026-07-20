@@ -243,9 +243,11 @@ async function stagePackageDirectory(packageDirectory: string): Promise<void> {
       env: process.env,
     });
   } catch (error) {
-    // Falls back to a token only when OIDC has no trusted publisher for this package yet
-    // (e.g. a schema that has never been published before - npm requires a package to
-    // already exist before a Trusted Publisher can be configured for it).
+    // Falls back to a token when OIDC has no trusted publisher for this package yet.
+    // This only helps packages that already exist on npm without trust configured -
+    // `npm stage publish` cannot create a package for the first time (it 404s), so a
+    // schema's very first version must still be published manually by a maintainer
+    // before this schema can ever succeed here, staged or not.
     const fallbackToken = process.env.NPM_TOKEN;
     if (!fallbackToken) {
       throw error;

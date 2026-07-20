@@ -54,7 +54,9 @@ yarn publish:schemas
 
 Publishing attempts every generated schema package under `schemas/`. If one package fails to publish, the remaining packages are still attempted. Publish failures are written to `publish-errors.log`.
 
-Each package version is submitted with `npm stage publish` rather than published live immediately. A maintainer must separately approve each staged version with 2FA (`npm stage approve`, or via the npmjs.com UI) before it becomes publicly installable. Already-trusted packages authenticate via npm OIDC Trusted Publishing (no npm token involved); an `NPM_TOKEN` secret is used only as a fallback for schemas that have never been published before, since npm requires a package to already exist before a Trusted Publisher can be configured for it.
+Each package version is submitted with `npm stage publish` rather than published live immediately. A maintainer must separately approve each staged version with 2FA (`npm stage approve`, or via the npmjs.com UI) before it becomes publicly installable. Already-trusted packages authenticate via npm OIDC Trusted Publishing (no npm token involved); an `NPM_TOKEN` secret is used only as a fallback for packages that already exist on npm but have no Trusted Publisher configured yet.
+
+`npm stage publish` cannot create a package for the first time - it fails for any schema that has never been published before, regardless of OIDC or token auth, since npm requires a package to already exist before it can be staged or trusted. A maintainer must publish a brand-new schema's very first version manually (outside this pipeline) before npm Trusted Publishing can be configured for it and this pipeline can take over automatically.
 
 Schemas listed in `schema-blocklist.json` are always skipped from publishing.
 
