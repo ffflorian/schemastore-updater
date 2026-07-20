@@ -458,7 +458,7 @@
     "all-contributors.json": {
       "generatedFile": "schemas/all-contributors/index.d.ts",
       "generatedSha256": "9b3d8fead51d6c348a4ad3ba999b49175767a266a91f550781e7a541dcaad1e7",
-      "published": false,
+      "published": true,
       "sourceSha256": "4df7ade55bb82581f417f4456da7c23e990a15e183dca595268f81b075bc5b6f",
       "updatedAt": "2026-07-20T06:01:48.618Z"
     },
@@ -500,7 +500,7 @@
     "apibuilder.json": {
       "generatedFile": "schemas/apibuilder/index.d.ts",
       "generatedSha256": "a6efbbd2e2a605f4f56ce508b97df26485f7078ceeaf3f7b854b21bfc13c209e",
-      "published": false,
+      "published": true,
       "sourceSha256": "644140e05e0686ef33ecf5bc7049a33ae1f44cdedde3db91f7176bdcb88cb7fb",
       "updatedAt": "2026-07-20T06:01:48.905Z"
     },
@@ -549,7 +549,7 @@
     "appveyor.json": {
       "generatedFile": "schemas/appveyor/index.d.ts",
       "generatedSha256": "1e75fbdbfe6ca8552150ef76aace1bc435a6964960b5b562d807e63bf1aa0663",
-      "published": false,
+      "published": true,
       "sourceSha256": "cbdefdd5b8b4ae5f820a45bb73fb6d15d3fefc3a7be8d67fbbed2ea614b6694e",
       "updatedAt": "2026-07-20T06:01:49.162Z"
     },
@@ -563,14 +563,14 @@
     "artifacthub-repo.json": {
       "generatedFile": "schemas/artifacthub-repo/index.d.ts",
       "generatedSha256": "82c5f25847a3af08180976adf58a8d9d04a63fb5113cc168aec9eda6fdb6255c",
-      "published": false,
+      "published": true,
       "sourceSha256": "dd041740340c5540c91f33541f9141f30e18819e16dbbac4cac102ba0b4c7d84",
       "updatedAt": "2026-07-20T06:01:49.355Z"
     },
     "asconfig-schema.json": {
       "generatedFile": "schemas/asconfig-schema/index.d.ts",
       "generatedSha256": "602b64f45e1c7e376d8eba82249dfd3ddb273686e4c56377b3cdf75dd23ce31d",
-      "published": false,
+      "published": true,
       "sourceSha256": "3fa828517d60361a1eb95bbf692cd136a995f0a7095513f71ac380d1a7f18f43",
       "updatedAt": "2026-07-20T06:01:49.548Z"
     },
@@ -787,7 +787,7 @@
     "babelrc.json": {
       "generatedFile": "schemas/babelrc/index.d.ts",
       "generatedSha256": "ebefcca063f25d1e70fd2b54d2878575088b4d7f6bd41567c5ff6a7c699638c2",
-      "published": false,
+      "published": true,
       "sourceSha256": "2e4ff24f430107befd518a87bbc6fbbbe35f8e23de1cb7994775939df8fd492c",
       "updatedAt": "2026-07-20T06:01:49.811Z"
     },
@@ -808,7 +808,7 @@
     "band-manifest.json": {
       "generatedFile": "schemas/band-manifest/index.d.ts",
       "generatedSha256": "8a5ca56b07b3d390790cb098d5843e1e6a5089398c3e9b8a4cb996c25e13c37c",
-      "published": false,
+      "published": true,
       "sourceSha256": "35b0324fef25c14e184364bf2c03ff55bfe082f43bff3ad95c28c1537cf0b4ab",
       "updatedAt": "2026-07-20T06:01:50.011Z"
     },
@@ -871,7 +871,7 @@
     "bootstraprc.json": {
       "generatedFile": "schemas/bootstraprc/index.d.ts",
       "generatedSha256": "4b4db8fa328defb3a4f086d586556ec72e3bf4ac459eb0de05416243a5df6991",
-      "published": false,
+      "published": true,
       "sourceSha256": "276aa6c48a31891c8b9f6d9d4dbeab325015b8eb8e0d0d8be1b8adde7a05c381",
       "updatedAt": "2026-07-20T06:01:50.279Z"
     },
@@ -885,7 +885,7 @@
     "bowerrc.json": {
       "generatedFile": "schemas/bowerrc/index.d.ts",
       "generatedSha256": "fbde6a21b354304a27432d15150fa8f645acd7a3d11b269a82cc21e324276d29",
-      "published": false,
+      "published": true,
       "sourceSha256": "eead691cf898566950e315e0863a68ce0e0292fe0f666ff934fd441877521545",
       "updatedAt": "2026-07-20T06:01:50.700Z"
     },
@@ -899,7 +899,7 @@
     "bozr.json": {
       "generatedFile": "schemas/bozr/index.d.ts",
       "generatedSha256": "ba402fea10fd0e57261a637efc55bab126d4d71ee5410bf92ab66ccdacb5fb6b",
-      "published": false,
+      "published": true,
       "sourceSha256": "9cd1c4c14b815dd13dcbc252e8eecdb08814fc4adcdf465cb66ecee531e7f309",
       "updatedAt": "2026-07-20T06:01:50.892Z"
     },
@@ -976,7 +976,7 @@
     "bundleconfig.json": {
       "generatedFile": "schemas/bundleconfig/index.d.ts",
       "generatedSha256": "68bdb0846c91ec8e09e5463d834feaed29bb15284def13496ec6defde3d80abe",
-      "published": false,
+      "published": true,
       "sourceSha256": "2ad81345179e8705982eea5ce8f7e1a4962bc5e2fabaf5f19114415e3d0e65a2",
       "updatedAt": "2026-07-20T06:01:51.088Z"
     },
@@ -1137,7 +1137,7 @@
     "chutzpah.json": {
       "generatedFile": "schemas/chutzpah/index.d.ts",
       "generatedSha256": "56e37f73f412dab9cddaa39b3430be0ddd54f0595ea21364dfd6e59e6f3a6b68",
-      "published": false,
+      "published": true,
       "sourceSha256": "8eca623d67180ba903058b53ce7bc519a96898af62c27f15819fb0688b695b10",
       "updatedAt": "2026-07-20T06:01:51.967Z"
     },
@@ -1501,14 +1501,14 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "cbdad3a3f3b0b9e221d53c8329ac44f7bd5f65d52443982000288a427d58bae6",
-      "published": false,
+      "published": true,
       "sourceSha256": "46255f692a8d661325e9d044b50f4b687aff68633b716420b64e460fb212b471",
       "updatedAt": "2026-07-20T06:01:53.038Z"
     },
     "dependabot.json": {
       "generatedFile": "schemas/dependabot/index.d.ts",
       "generatedSha256": "43da0cc772a0b20159f6ca90ac5541ca96348390ab06da7c069acf9001251268",
-      "published": false,
+      "published": true,
       "sourceSha256": "e3d658a4164995f4fa9f566e34631cfb13325ce7d0227503316640a701922e57",
       "updatedAt": "2026-07-20T06:01:53.231Z"
     },
@@ -2201,7 +2201,7 @@
     "es6importsorterrc.json": {
       "generatedFile": "schemas/es6importsorterrc/index.d.ts",
       "generatedSha256": "13e3b7590a918378c68251071025ae5bae8b61a3bf440bcfa1809b4e846cf597",
-      "published": false,
+      "published": true,
       "sourceSha256": "775c41d8c5df53bd7ce03c833d9cb63d663ed184259ac07967754996f7617b23",
       "updatedAt": "2026-07-20T06:01:53.682Z"
     },
@@ -2593,7 +2593,7 @@
     "glazewm.json": {
       "generatedFile": "schemas/glazewm/index.d.ts",
       "generatedSha256": "85bbd164bc5917ff3538d0617927bcb552ae9876f5188348583086c87aecae44",
-      "published": false,
+      "published": true,
       "sourceSha256": "4ef4ce75295cf57a236f36b2ab3b98379f6942c944a97b5b47477fb5a4f7269f",
       "updatedAt": "2026-07-20T06:01:54.448Z"
     },
@@ -2621,7 +2621,7 @@
     "gpc.json": {
       "generatedFile": "schemas/gpc/index.d.ts",
       "generatedSha256": "af1cf2667342547c46f720189c069b50c205e3d38b4529029a212edf07f8a574",
-      "published": false,
+      "published": true,
       "sourceSha256": "38191f062623ecfc4ebafa76eff217d9721793ffd560c3b1d06ba2650d9a680d",
       "updatedAt": "2026-07-20T06:01:54.675Z"
     },
@@ -2670,7 +2670,7 @@
     "grunt-task.json": {
       "generatedFile": "schemas/grunt-task/index.d.ts",
       "generatedSha256": "6ce100b871e07f1fd74752a5121aad3f65f1f60fffa6cd8daf822422f8b8b617",
-      "published": false,
+      "published": true,
       "sourceSha256": "1cab53525a83a816b589d3d7c1a5da508cd5264ad6753f8cf2afa2b95293e20d",
       "updatedAt": "2026-07-20T06:01:54.862Z"
     },
@@ -2726,21 +2726,21 @@
     "host-meta.json": {
       "generatedFile": "schemas/host-meta/index.d.ts",
       "generatedSha256": "e1724e0af7b4f3402e3cd61482f0b3c6340cd7374657cecb13c616f86b1d35bc",
-      "published": false,
+      "published": true,
       "sourceSha256": "9c16259bd895434b1549b1ebd42b818fb97ae37c6b9114c4df919893d66e6711",
       "updatedAt": "2026-07-20T06:01:55.795Z"
     },
     "host.json": {
       "generatedFile": "schemas/host/index.d.ts",
       "generatedSha256": "fd9f7714faa66c2ccc37e4de0f5db8223e7fc2c92ed63363cc65794815b0d8cf",
-      "published": false,
+      "published": true,
       "sourceSha256": "976546fb6959a5950d5c13119dc91ef2403be7648f6c65870c422e3c4ab1006c",
       "updatedAt": "2026-07-20T06:01:56.036Z"
     },
     "htmlhint.json": {
       "generatedFile": "schemas/htmlhint/index.d.ts",
       "generatedSha256": "1c54ebd2d0420a740dbadf237fd5fe9a2bf41dc0b701e4cc013aaca4ddf78a20",
-      "published": false,
+      "published": true,
       "sourceSha256": "9706b9273802e7ca88d00a7d89e62bc4793dc03395875af80440a937e047323e",
       "updatedAt": "2026-07-20T06:01:56.234Z"
     },
@@ -2775,21 +2775,21 @@
     "hws-config.json": {
       "generatedFile": "schemas/hws-config/index.d.ts",
       "generatedSha256": "39c5d95f5bdaa51c4e8955c86931dd8d5e5efea75487f749eb90318541b0cce7",
-      "published": false,
+      "published": true,
       "sourceSha256": "c139289ded5a7ab7fd9e0c670ebbbc8d280f53e468b0773ec7a85c8012d48d64",
       "updatedAt": "2026-07-20T06:01:56.892Z"
     },
     "ide.host.json": {
       "generatedFile": "schemas/ide.host/index.d.ts",
       "generatedSha256": "42858968ce73c96a209e13869c1927f9874996c0c95af8e6b460ef5439d858c8",
-      "published": false,
+      "published": true,
       "sourceSha256": "691624b9e0dc8c9d5846cf071deb009745057d9f3198910c0052023337d0bba5",
       "updatedAt": "2026-07-20T06:01:57.075Z"
     },
     "imageoptimizer.json": {
       "generatedFile": "schemas/imageoptimizer/index.d.ts",
       "generatedSha256": "499771474587102086b841f836b5b04d6b0baeaafd4ca8d12d311825c07d549f",
-      "published": false,
+      "published": true,
       "sourceSha256": "045976650c8b69e289241e6d05640e9b1b15a590af5dd8e66e3544dc78a29d22",
       "updatedAt": "2026-07-20T06:01:57.245Z"
     },
@@ -2803,14 +2803,14 @@
     "imgbotconfig.json": {
       "generatedFile": "schemas/imgbotconfig/index.d.ts",
       "generatedSha256": "93954925a8353d9272aeec301558b4afda998b95679fede566a6eb9264312ab1",
-      "published": false,
+      "published": true,
       "sourceSha256": "6bc04eb58dc5c8e2d157000a7296dde933cda4c44a23a2ecb6c5fc0b7033a756",
       "updatedAt": "2026-07-20T06:01:57.418Z"
     },
     "importmap.json": {
       "generatedFile": "schemas/importmap/index.d.ts",
       "generatedSha256": "21bee3f21e6c792cf83f0512c0e454a5727e9b7c23637316a2748557e416ab41",
-      "published": false,
+      "published": true,
       "sourceSha256": "205460ea80db20460b5f8b7fae48f6ba69a522c2aa0672e1803c1847f8d032d1",
       "updatedAt": "2026-07-20T06:01:57.607Z"
     },
@@ -2831,14 +2831,14 @@
     "jasmine.json": {
       "generatedFile": "schemas/jasmine/index.d.ts",
       "generatedSha256": "a1f555a859c13235927eef39135ad12de477af38b68e81c5bf7da607ebda564f",
-      "published": false,
+      "published": true,
       "sourceSha256": "a51c830c52dbb71ef7284a09316401355aac541c051e65accc34d34d3f86c949",
       "updatedAt": "2026-07-20T06:01:57.816Z"
     },
     "jasonette.json": {
       "generatedFile": "schemas/jasonette/index.d.ts",
       "generatedSha256": "aeacc998d0e9f173d593d0cbfdfc0695421a3b8de1c13f76d3d9399230845227",
-      "published": false,
+      "published": true,
       "sourceSha256": "b9df4938d6d6586f2793e88a684130ad1ad649379ab33965acdb39243fa08034",
       "updatedAt": "2026-07-20T06:01:58.003Z"
     },
@@ -2880,28 +2880,28 @@
     "jsbeautifyrc.json": {
       "generatedFile": "schemas/jsbeautifyrc/index.d.ts",
       "generatedSha256": "0a02241e7c0940bf9b1d3da02cf68e88a77dddea861869dd444312565b0b068d",
-      "published": false,
+      "published": true,
       "sourceSha256": "471e5f800bf4006dfeab5f0c2ce7782421ed9c65d3babfbe96866ebaa0937a08",
       "updatedAt": "2026-07-20T06:02:07.232Z"
     },
     "jsconfig.json": {
       "generatedFile": "schemas/jsconfig/index.d.ts",
       "generatedSha256": "d5488324d388bd3a3124a43f463ef01d1c2e1177d88d79a96d0df647e1485dc2",
-      "published": false,
+      "published": true,
       "sourceSha256": "586309622e0a5651303183e893f3bcee46192f27f0817ad78d0b2ae6e04c0e38",
       "updatedAt": "2026-07-20T06:02:07.520Z"
     },
     "jscpd.json": {
       "generatedFile": "schemas/jscpd/index.d.ts",
       "generatedSha256": "f93dbeab24fad0e7feb6fb0a550f0c4e8154e403e6b780add4340603dd7d93b8",
-      "published": false,
+      "published": true,
       "sourceSha256": "c4451c972dd7c5040375d01279d1e777f1cf672f0e227e2ea92e3ac4b106cfd7",
       "updatedAt": "2026-07-20T06:02:07.713Z"
     },
     "jscsrc.json": {
       "generatedFile": "schemas/jscsrc/index.d.ts",
       "generatedSha256": "fca153626424247337dabedad24a33cf3e175c3b96175ccc7d08242763a83591",
-      "published": false,
+      "published": true,
       "sourceSha256": "18065b4f9a8e58ae5c2b6f3dc6d7cdeb1745d5ade788b1a3e57cf2e503bd1bad",
       "updatedAt": "2026-07-20T06:02:07.986Z"
     },
@@ -2915,28 +2915,28 @@
     "jshintrc.json": {
       "generatedFile": "schemas/jshintrc/index.d.ts",
       "generatedSha256": "1495defcb04dd03f5b95401caa9a613253daee292f9353c931cccad81921cf30",
-      "published": false,
+      "published": true,
       "sourceSha256": "4c5d15478a78cf00d53b7628d4415d8e8714b8338f823027684c7d8f5f392762",
       "updatedAt": "2026-07-20T06:02:08.181Z"
     },
     "jsinspectrc.json": {
       "generatedFile": "schemas/jsinspectrc/index.d.ts",
       "generatedSha256": "dafad06f1b05d11e082b5b29853044d70865b31e122838c8934336bab364a996",
-      "published": false,
+      "published": true,
       "sourceSha256": "edb830d1f33b758b00bbf8d5c17e07aa3f9b12727ec6d35af82fa3a773d558c1",
       "updatedAt": "2026-07-20T06:02:08.366Z"
     },
     "json-api-1.0.json": {
       "generatedFile": "schemas/json-api-1.0/index.d.ts",
       "generatedSha256": "5f19194bb2a21e2d233a08a86f4424739322dd069c650b1b853bf0437f3754b4",
-      "published": false,
+      "published": true,
       "sourceSha256": "4b4c06f1eda2db2422c4cbbd4cce01fd1dc6bdbcda1e794d49719c40fa666c2f",
       "updatedAt": "2026-07-20T06:02:08.570Z"
     },
     "json-patch.json": {
       "generatedFile": "schemas/json-patch/index.d.ts",
       "generatedSha256": "f0084b8c4f1f992afc9705041f5c15095b62a8efa94143fca5a75c1412df3887",
-      "published": false,
+      "published": true,
       "sourceSha256": "d5d876ba8857b5678dfde44037be8ae64589e82c3418ec724d714a939b2c9bdf",
       "updatedAt": "2026-07-20T06:02:08.758Z"
     },
@@ -2978,7 +2978,7 @@
     "kong_json_schema.json": {
       "generatedFile": "schemas/kong_json_schema/index.d.ts",
       "generatedSha256": "97561a8d90e66de997f50cb39db304ddb9ec173b3e79623a46a3ede9752043a1",
-      "published": false,
+      "published": true,
       "sourceSha256": "3496217dd23268a8e4db8e48137eb29e5567b42b94f88d854cf1cd6b9824bb16",
       "updatedAt": "2026-07-20T06:05:08.731Z"
     },
@@ -3286,7 +3286,7 @@
     "markdown-link-check.json": {
       "generatedFile": "schemas/markdown-link-check/index.d.ts",
       "generatedSha256": "f6f597bbd9fe88e3e5998de8dbe56eb63ff41cbbed466afd74e4d434aa5c2efd",
-      "published": false,
+      "published": true,
       "sourceSha256": "981f0a893c5cec87082c03cf97dfff2cf678c3640329fe8a5d2f9e0669c65ee9",
       "updatedAt": "2026-07-20T06:05:10.413Z"
     },
@@ -4049,7 +4049,7 @@
     "partial-mypy.json": {
       "generatedFile": "schemas/partial-mypy/index.d.ts",
       "generatedSha256": "70aff891547afb3f3be651c21c51326b1f2caa987e8f670584a4a4993a06de0d",
-      "published": false,
+      "published": true,
       "sourceSha256": "5a7c3769bebd74d61d3348b6040f5e392e2a904c1b4383554ddd0ae03d3388ce",
       "updatedAt": "2026-07-20T06:05:14.327Z"
     },
@@ -4301,7 +4301,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "87fe78ca4f6425b29c0bfded7f1709fe5ca1b2a6ef657e233f3e629f8c3b995f",
-      "published": false,
+      "published": true,
       "sourceSha256": "9301989222e4336bd8981797115c7284c0520b3c2a34361db53dea1f8ce2a232",
       "updatedAt": "2026-07-20T06:05:16.908Z"
     },
@@ -4714,7 +4714,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "a964a43229d3e5139289f8b09aeeb7ffdaaffce10be6a5a660901ecf3d8797da",
-      "published": false,
+      "published": true,
       "sourceSha256": "d66b01a441085a4725849e0fe3928cca1d664fc7cfc2d0daca7195b984520553",
       "updatedAt": "2026-07-20T06:05:19.123Z"
     },
@@ -5057,7 +5057,7 @@
     "sil-kit-participant-configuration.json": {
       "generatedFile": "schemas/sil-kit-participant-configuration/index.d.ts",
       "generatedSha256": "2116100032a84414d44f255a706330f31537c3f286b47d8b24581ade64c70675",
-      "published": false,
+      "published": true,
       "sourceSha256": "3157de371b97a1fcdd6a617c5f8512c8718fb355d10dab2ee4bac9a2c5a5a3e3",
       "updatedAt": "2026-07-20T06:05:21.938Z"
     },
@@ -5505,7 +5505,7 @@
     "typo3.json": {
       "generatedFile": "schemas/typo3/index.d.ts",
       "generatedSha256": "5dae242d99ebdfa2f02c129745a0cda36a46e89f59c9519f0e634616b126c7a7",
-      "published": false,
+      "published": true,
       "sourceSha256": "a00f482e1cc9d33c0709b45e99c34e8f97670b3662acc5416f891ef23ae7fbab",
       "updatedAt": "2026-07-20T06:05:25.091Z"
     },
@@ -5582,7 +5582,7 @@
     "uv.json": {
       "generatedFile": "schemas/uv/index.d.ts",
       "generatedSha256": "7076c115072ef6a4ea2f4b5b28ebca2bb198a973e6f8fff72938d84d761cb45f",
-      "published": false,
+      "published": true,
       "sourceSha256": "7bbc3c50810a097efdcd8be3981b2c73c91b06eaabbdf3b9729462b636d4d99a",
       "updatedAt": "2026-07-20T06:05:25.599Z"
     },
@@ -5645,7 +5645,7 @@
     "vs-2017.3.host.json": {
       "generatedFile": "schemas/vs-2017.3.host/index.d.ts",
       "generatedSha256": "42858968ce73c96a209e13869c1927f9874996c0c95af8e6b460ef5439d858c8",
-      "published": false,
+      "published": true,
       "sourceSha256": "0bf2d51fb984c549aed50383dc320774f5b7910eb69f242051f8d631a1bbe1c9",
       "updatedAt": "2026-07-20T06:05:28.601Z"
     },
