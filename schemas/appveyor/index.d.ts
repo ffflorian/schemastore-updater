@@ -56,9 +56,6 @@ export type Command =
       sh?: string;
     };
 export type PossiblySecretString = (string | number | SecretString) | undefined;
-export type JobScalars = {
-  [k: string]: unknown | undefined;
-};
 export type Platform = 'x86' | 'x64' | 'ARM' | 'ARM64' | 'Win32' | 'Any CPU';
 export type Configuration = string;
 
@@ -314,6 +311,17 @@ export interface MatrixOptions {
    * Exclude configuration from the matrix. Works similarly to 'allow_failures' but build not even being started for excluded combination.
    */
   exclude?: Job[];
+}
+export interface JobScalars {
+  image?: Image;
+  /**
+   * Build platform, i.e. x86, x64, Any CPU. This setting is optional
+   */
+  platform?: Platform | Platform[];
+  /**
+   * Build Configuration, i.e. Debug, Release, etc.
+   */
+  configuration?: Configuration | Configuration[];
 }
 /**
  * Enable patching of AssemblyInfo.* files

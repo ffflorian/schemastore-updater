@@ -90,12 +90,16 @@ export type DefaultGroups = 'all' | GroupName[];
  */
 export type Requirement = string;
 /**
+ * An exclusion, either global or scoped to a specific package version.
+ */
+export type ExcludeDependency = PackageExclusion | PackageName;
+export type ExcludeNewerOverride = false | ExcludeNewerValue;
+/**
  * Exclude distributions uploaded after the given timestamp.
  *
  * Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`), as well as relative durations (e.g., `1 week`, `30 days`, `6 months`). Relative durations are resolved to a timestamp at lock time.
  */
 export type ExcludeNewerValue = string;
-export type ExcludeNewerOverride = (false | ExcludeNewerValue) | undefined;
 export type ExtraBuildDependency =
   | Requirement
   | {
@@ -173,6 +177,10 @@ export type KeyringProviderType = 'disabled' | 'subprocess';
  */
 export type LinkMode = 'clone' | 'copy' | 'hardlink' | 'symlink';
 /**
+ * An override, either global or scoped to a specific package version.
+ */
+export type Override = PackageOverride | Requirement;
+/**
  * Indicate the style of annotation comments, used to indicate the dependencies that requested each
  * package.
  */
@@ -231,6 +239,7 @@ export type TargetTriple =
   | 'aarch64-linux-android'
   | 'x86_64-linux-android'
   | 'wasm32-pyodide2024'
+  | 'wasm32-pyodide2025'
   | 'arm64-apple-ios'
   | 'arm64-apple-ios-simulator'
   | 'x86_64-apple-ios-simulator';
@@ -245,6 +254,7 @@ export type ResolutionMode = 'highest' | 'lowest' | 'lowest-direct';
 export type TorchMode =
   | 'auto'
   | 'cpu'
+  | 'cu132'
   | 'cu130'
   | 'cu129'
   | 'cu128'
@@ -292,6 +302,56 @@ export type TorchMode =
   | 'rocm4.1'
   | 'rocm4.0.1'
   | 'xpu';
+/**
+ * Represents the `preview-features` configuration option.
+ */
+export type PreviewFeaturesOption = boolean | (PreviewFeature & PreviewFeature1)[];
+export type PreviewFeature =
+  | (
+      | 'python-install-default'
+      | 'python-upgrade'
+      | 'json-output'
+      | 'pylock'
+      | 'add-bounds'
+      | 'package-conflicts'
+      | 'extra-build-dependencies'
+      | 'detect-module-conflicts'
+      | 'format-command'
+      | 'native-auth'
+      | 's3-endpoint'
+      | 'cache-size'
+      | 'init-project-flag'
+      | 'workspace-metadata'
+      | 'workspace-dir'
+      | 'workspace-list'
+      | 'sbom-export'
+      | 'auth-helper'
+      | 'direct-publish'
+      | 'target-workspace-discovery'
+      | 'metadata-json'
+      | 'gcs-endpoint'
+      | 'adjust-ulimit'
+      | 'special-conda-env-names'
+      | 'relocatable-envs-default'
+      | 'publish-require-normalized'
+      | 'audit-command'
+      | 'project-directory-must-exist'
+      | 'index-exclude-newer'
+      | 'azure-endpoint'
+      | 'toml-backwards-compatibility'
+      | 'malware-check'
+      | 'venv-safe-clear'
+      | 'check-command'
+      | 'packaged-init'
+      | 'centralized-project-envs'
+      | 'tool-install-locks'
+      | 'workspace-list-scripts'
+      | 'no-distutils-patch'
+    )
+  | {
+      [k: string]: unknown | undefined;
+    };
+export type PreviewFeature1 = string;
 export type PythonDownloads = 'automatic' | 'manual' | 'never';
 export type PythonPreference = 'only-managed' | 'managed' | 'system' | 'only-system';
 /**
@@ -579,9 +639,28 @@ export interface CombinedOptions {
    */
   environments?: string[] | null;
   /**
-   * Package names to exclude, e.g., `werkzeug`, `numpy`.
+   * Dependencies to exclude when resolving the project's dependencies.
+   *
+   * Excludes are used to prevent a package from being selected during resolution,
+   * regardless of whether it's requested by any other package. When a package is excluded,
+   * it will be omitted from the dependency list entirely.
+   *
+   * Including a package as an exclusion will prevent it from being installed, even if
+   * it's requested by transitive dependencies. This can be useful for removing optional
+   * dependencies or working around packages with broken dependencies.
+   *
+   * Exclusions can be limited to the dependencies declared by a specific package version by
+   * using a table with `package` and `dependencies`. The `package` table identifies the package
+   * whose dependencies will be excluded by `name` and, optionally, `version`. If `version` is
+   * omitted, the exclusions apply to all versions of that package. A version-specific entry
+   * takes precedence over an all-versions entry.
+   *
+   * !!! note
+   *     In `uv lock`, `uv sync`, and `uv run`, uv will only read `exclude-dependencies` from
+   *     the `pyproject.toml` at the workspace root, and will ignore any declarations in other
+   *     workspace members or `uv.toml` files.
    */
-  'exclude-dependencies'?: string[] | null;
+  'exclude-dependencies'?: ExcludeDependency[] | null;
   /**
    * Limit candidate packages to those that were uploaded prior to the given date.
    *
@@ -595,8 +674,10 @@ export interface CombinedOptions {
    * Durations do not respect semantics of the local time zone and are always resolved to a fixed
    * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
    * Calendar units such as months and years are not allowed.
+   *
+   * Set to `false` to disable `exclude-newer`.
    */
-  'exclude-newer'?: ExcludeNewerValue | null;
+  'exclude-newer'?: ExcludeNewerOverride | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the
    * given date.
@@ -752,6 +833,7 @@ export interface CombinedOptions {
    */
   managed?: boolean | null;
   /**
+   * @deprecated
    * Whether to load TLS certificates from the platform's native certificate store.
    *
    * By default, uv uses bundled Mozilla root certificates. When enabled, this loads
@@ -774,9 +856,9 @@ export interface CombinedOptions {
   /**
    * Don't build source distributions.
    *
-   * When enabled, resolving will not run arbitrary Python code. The cached wheels of
-   * already-built source distributions will be reused, but operations that require building
-   * distributions will exit with an error.
+   * When enabled, uv will reuse cached wheels from previously built source distributions, but
+   * operations that require building a source distribution will exit with an error. uv may
+   * still build editable requirements, and their build backends may run arbitrary Python code.
    */
   'no-build'?: boolean | null;
   /**
@@ -826,9 +908,36 @@ export interface CombinedOptions {
    */
   offline?: boolean | null;
   /**
-   * PEP 508-style requirements, e.g., `ruff==0.5.0`, or `ruff @ https://...`.
+   * Overrides to apply when resolving the project's dependencies.
+   *
+   * Overrides are used to force selection of a specific version of a package, regardless of the
+   * version requested by any other package, and regardless of whether choosing that version
+   * would typically constitute an invalid resolution.
+   *
+   * While constraints are _additive_, in that they're combined with the requirements of the
+   * constituent packages, overrides are _absolute_, in that they completely replace the
+   * requirements of any constituent packages.
+   *
+   * Including a package as an override will _not_ trigger installation of the package on its
+   * own; instead, the package must be requested elsewhere in the project's first-party or
+   * transitive dependencies.
+   *
+   * Overrides can be limited to the dependencies declared by a specific package version by
+   * using a table with `package` and `dependencies`. The `package` table identifies the package
+   * whose dependencies will be overridden by `name` and, optionally, `version`. If `version` is
+   * omitted, the overrides apply to all versions of that package. Requirements in `dependencies`
+   * replace dependencies with the same name and add dependencies that are not declared by the
+   * package. Dependencies not listed in `dependencies` are left unchanged.
+   *
+   * Scoped overrides currently support registry version specifiers only. Direct URL and path
+   * sources, including Git sources, and explicit indexes are not supported.
+   *
+   * !!! note
+   *     In `uv lock`, `uv sync`, and `uv run`, uv will only read `override-dependencies` from
+   *     the `pyproject.toml` at the workspace root, and will ignore any declarations in other
+   *     workspace members or `uv.toml` files.
    */
-  'override-dependencies'?: string[] | null;
+  'override-dependencies'?: Override[] | null;
   /**
    * Whether the project should be considered a Python package, or a non-package ("virtual")
    * project.
@@ -852,9 +961,18 @@ export interface CombinedOptions {
    */
   prerelease?: PrereleaseMode | null;
   /**
-   * Whether to enable experimental, preview features.
+   * @deprecated
+   * Whether to enable all experimental, preview features.
+   *
+   * Use `preview-features` instead.
    */
   preview?: boolean | null;
+  /**
+   * Whether to enable specific or all experimental preview features.
+   *
+   * Unknown feature names are ignored with a warning.
+   */
+  'preview-features'?: PreviewFeaturesOption | null;
   /**
    * The URL for publishing packages to the Python package index (by default:
    * <https://upload.pypi.org/legacy/>).
@@ -1202,8 +1320,25 @@ export interface StaticMetadata {
    */
   version?: string | null;
 }
+/**
+ * A set of exclusions that applies to the dependencies of a specific package version.
+ */
+export interface PackageExclusion {
+  dependencies: PackageName[];
+  package: PackageExclusionTarget;
+}
+/**
+ * The package and optional version selected by a [`PackageExclusion`].
+ */
+export interface PackageExclusionTarget {
+  name: PackageName;
+  /**
+   * PEP 440-style package version, e.g., `1.2.3`
+   */
+  version?: string | null;
+}
 export interface ExcludeNewerPackage {
-  [k: string]: ExcludeNewerOverride | undefined;
+  [k: string]: ExcludeNewerOverride;
 }
 export interface ExtraBuildDependencies {
   [k: string]: ExtraBuildDependency[] | undefined;
@@ -1278,7 +1413,7 @@ export interface Index {
    * exclude-newer = "7 days"
    * ```
    */
-  'exclude-newer'?: ExcludeNewerOverride | undefined;
+  'exclude-newer'?: ExcludeNewerOverride;
   /**
    * Mark the index as explicit.
    *
@@ -1305,8 +1440,8 @@ export interface Index {
    */
   format?: IndexFormat & string;
   /**
-   * Status codes that uv should ignore when deciding whether
-   * to continue searching in the next index after a failure.
+   * Status codes that uv should ignore when deciding whether to continue resolution after a
+   * request to this index fails.
    *
    * ```toml
    * [[tool.uv.index]]
@@ -1368,6 +1503,23 @@ export interface IndexCacheControl {
    */
   files?: string | null;
   [k: string]: unknown | undefined;
+}
+/**
+ * An override that applies to the dependencies of a specific package version.
+ */
+export interface PackageOverride {
+  dependencies: Requirement[];
+  package: PackageOverrideTarget;
+}
+/**
+ * The package and optional version selected by a [`PackageOverride`].
+ */
+export interface PackageOverrideTarget {
+  name: PackageName;
+  /**
+   * PEP 440-style package version, e.g., `1.2.3`
+   */
+  version?: string | null;
 }
 /**
  * Settings that are specific to the `uv pip` command-line interface.
@@ -1485,8 +1637,10 @@ export interface PipOptions {
    * Durations do not respect semantics of the local time zone and are always resolved to a fixed
    * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
    * Calendar units such as months and years are not allowed.
+   *
+   * Set to `false` to disable `exclude-newer`.
    */
-  'exclude-newer'?: ExcludeNewerValue | null;
+  'exclude-newer'?: ExcludeNewerOverride | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the given date.
    *
@@ -1624,9 +1778,9 @@ export interface PipOptions {
   /**
    * Don't build source distributions.
    *
-   * When enabled, resolving will not run arbitrary Python code. The cached wheels of
-   * already-built source distributions will be reused, but operations that require building
-   * distributions will exit with an error.
+   * When enabled, uv will reuse cached wheels from previously built source distributions, but
+   * operations that require building a source distribution will exit with an error. uv may
+   * still build editable requirements, and their build backends may run arbitrary Python code.
    *
    * Alias for `--only-binary :all:`.
    */
@@ -1696,9 +1850,10 @@ export interface PipOptions {
   /**
    * Only use pre-built wheels; don't build source distributions.
    *
-   * When enabled, resolving will not run code from the given packages. The cached wheels of already-built
-   * source distributions will be reused, but operations that require building distributions will
-   * exit with an error.
+   * When enabled, uv will reuse cached wheels from previously built source distributions, but
+   * operations that require building a source distribution for the given packages will exit
+   * with an error. uv may still build editable requirements, and their build backends may run
+   * arbitrary Python code.
    *
    * Multiple packages may be provided. Disable binaries for all packages with `:all:`.
    * Clear previously specified packages with `:none:`.

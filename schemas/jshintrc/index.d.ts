@@ -96,7 +96,7 @@ export interface JSONSchemaForJSHintConfigurationFiles {
   /**
    * Suppresses warnings about variable shadowing. i.e. declaring a variable that had been already declared somewhere in the outer scope
    */
-  shadow?: true | false | 'inner' | 'outer';
+  shadow?: boolean | ('inner' | 'outer');
   /**
    * Prohibits the use of the grouping operator when it is not strictly required.
    */
@@ -104,7 +104,7 @@ export interface JSONSchemaForJSHintConfigurationFiles {
   /**
    * Requires all code to run in ES5 strict mode
    */
-  strict?: true | false | 'implied' | 'global' | 'func';
+  strict?: boolean | ('implied' | 'global' | 'func');
   /**
    * Warns when a comma is not placed after the last element in an array or object literal
    */
@@ -116,7 +116,7 @@ export interface JSONSchemaForJSHintConfigurationFiles {
   /**
    * Warns when you define and never use your variables
    */
-  unused?: true | false | 'vars' | 'strict';
+  unused?: boolean | ('vars' | 'strict');
   /**
    * Forbids the use of VariableStatements (`var`) in favor of `let` and `const`
    */

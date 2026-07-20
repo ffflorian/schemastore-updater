@@ -120,7 +120,7 @@ export interface CompilerOptionsDefinition {
     /**
      * Specify what module code is generated. As of TypeScript 6.0, the default is `esnext`.
      */
-    module?: (
+    module?:
       | (
           | 'commonjs'
           | 'amd'
@@ -138,83 +138,12 @@ export interface CompilerOptionsDefinition {
           | 'nodenext'
           | 'preserve'
         )
-      | {
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | ((
-            | (
-                | 'commonjs'
-                | 'amd'
-                | 'system'
-                | 'umd'
-                | 'es6'
-                | 'es2015'
-                | 'es2020'
-                | 'esnext'
-                | 'none'
-                | 'es2022'
-                | 'node16'
-                | 'node18'
-                | 'node20'
-                | 'nodenext'
-                | 'preserve'
-              )
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            string)
-        | ((
-            | (
-                | 'commonjs'
-                | 'amd'
-                | 'system'
-                | 'umd'
-                | 'es6'
-                | 'es2015'
-                | 'es2020'
-                | 'esnext'
-                | 'none'
-                | 'es2022'
-                | 'node16'
-                | 'node18'
-                | 'node20'
-                | 'nodenext'
-                | 'preserve'
-              )
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            null)
-      );
+      | string
+      | null;
     /**
      * Specify how TypeScript looks up a file from a given module specifier.
      */
-    moduleResolution?: (
-      | ('classic' | 'node' | 'node10' | 'node16' | 'nodenext' | 'bundler')
-      | {
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | ((
-            | ('classic' | 'node' | 'node10' | 'node16' | 'nodenext' | 'bundler')
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            string)
-        | ((
-            | ('classic' | 'node' | 'node10' | 'node16' | 'nodenext' | 'bundler')
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            null)
-      );
+    moduleResolution?: ('classic' | 'node' | 'node10' | 'node16' | 'nodenext' | 'bundler') | string | null;
     /**
      * List of file name suffixes to search when resolving a module.
      */
@@ -222,28 +151,7 @@ export interface CompilerOptionsDefinition {
     /**
      * Set the newline character for emitting files.
      */
-    newLine?: (
-      | ('crlf' | 'lf')
-      | {
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | ((
-            | ('crlf' | 'lf')
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            string)
-        | ((
-            | ('crlf' | 'lf')
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            null)
-      );
+    newLine?: ('crlf' | 'lf') | string | null;
     /**
      * Disable emitting files from a compilation.
      */
@@ -363,7 +271,7 @@ export interface CompilerOptionsDefinition {
     /**
      * Set the JavaScript language version for emitted JavaScript and include compatible library declarations. As of TypeScript 6.0, the default is `es2025`.
      */
-    target?: (
+    target?:
       | (
           | 'es3'
           | 'es5'
@@ -381,58 +289,8 @@ export interface CompilerOptionsDefinition {
           | 'es2025'
           | 'esnext'
         )
-      | {
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | ((
-            | (
-                | 'es3'
-                | 'es5'
-                | 'es6'
-                | 'es2015'
-                | 'es2016'
-                | 'es2017'
-                | 'es2018'
-                | 'es2019'
-                | 'es2020'
-                | 'es2021'
-                | 'es2022'
-                | 'es2023'
-                | 'es2024'
-                | 'es2025'
-                | 'esnext'
-              )
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            string)
-        | ((
-            | (
-                | 'es3'
-                | 'es5'
-                | 'es6'
-                | 'es2015'
-                | 'es2016'
-                | 'es2017'
-                | 'es2018'
-                | 'es2019'
-                | 'es2020'
-                | 'es2021'
-                | 'es2022'
-                | 'es2023'
-                | 'es2024'
-                | 'es2025'
-                | 'esnext'
-              )
-            | {
-                [k: string]: unknown | undefined;
-              }
-          ) &
-            null)
-      );
+      | string
+      | null;
     /**
      * Default catch clause variables as `unknown` instead of `any`.
      */

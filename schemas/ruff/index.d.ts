@@ -1151,9 +1151,12 @@ export type RuleSelector =
   | 'RUF102'
   | 'RUF103'
   | 'RUF104'
+  | 'RUF105'
+  | 'RUF106'
   | 'RUF2'
   | 'RUF20'
   | 'RUF200'
+  | 'RUF201'
   | 'S'
   | 'S1'
   | 'S10'
@@ -1410,6 +1413,7 @@ export type RuleSelector =
   | 'UP049'
   | 'UP05'
   | 'UP050'
+  | 'UP051'
   | 'W'
   | 'W1'
   | 'W19'
@@ -1583,6 +1587,7 @@ export type RuleSelector =
   | 'default-factory-kwarg'
   | 'del-attr-with-constant'
   | 'delete-full-slice'
+  | 'deprecated-abc-decorator'
   | 'deprecated-c-element-tree'
   | 'deprecated-import'
   | 'deprecated-mock-import'
@@ -1921,6 +1926,7 @@ export type RuleSelector =
   | 'none-not-at-end-of-union'
   | 'nonlocal-and-global'
   | 'nonlocal-without-binding'
+  | 'noqa-comments'
   | 'not-in-test'
   | 'not-is-test'
   | 'numeric-literal-too-long'
@@ -2090,6 +2096,8 @@ export type RuleSelector =
   | 'return-outside-function'
   | 'reuse-of-groupby-generator'
   | 'root-logger-call'
+  | 'rule-codes-in-selectors'
+  | 'rule-codes-in-suppression-comments'
   | 'run-process-in-async-function'
   | 'runtime-cast-value'
   | 'runtime-import-in-type-checking-block'
@@ -2786,9 +2794,10 @@ export interface Options {
    * A list of file patterns to include when linting.
    *
    * Inclusion are based on globs, and should be single-path patterns, like
-   * `*.pyw`, to include any file with the `.pyw` extension. `pyproject.toml` is
-   * included here not for configuration but because we lint whether e.g. the
-   * `[project]` matches the schema.
+   * `*.pyw`, to include any file with the `.pyw` extension.
+   * `pyproject.toml`, `ruff.toml`, and `.ruff.toml` are included here not for
+   * configuration but because we lint whether e.g. the `[project]` matches
+   * the schema in `pyproject.toml` or that rule names are used as selectors.
    *
    * Notebook files (`.ipynb` extension) are included by default on Ruff 0.6.0+.
    *

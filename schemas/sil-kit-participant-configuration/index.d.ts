@@ -8,10 +8,6 @@ export type Description = string;
  * Names of trace sinks to use
  */
 export type UseTraceSinks = unknown[];
-/**
- * Name of the network. Optional; Defaults to the endpoint name
- */
-export type Network = string;
 export type FlexrayTxBufferConfigurations = {
   /**
    * Channel(s)
@@ -48,13 +44,40 @@ export type FlexrayTxBufferConfigurations = {
  */
 export type FlexrayControllers = FlexrayController[];
 /**
- * Name of the endpoint
+ * Override the matching labels assigned to the controller
  */
-export type Name = string;
+export type Labels = MatchingLabel[];
 /**
- * Name of the RPC function called by RpcClients on RpcServers
+ * Override the history length (must be `0` or `1`)
  */
-export type RpcFunctionName = string;
+export type History = number;
+/**
+ * Name of a logging topic used to filter log messages
+ */
+export type LoggingTopic =
+  | 'None'
+  | 'User'
+  | 'LifeCycle'
+  | 'SystemState'
+  | 'MessageTracing'
+  | 'ServiceDiscovery'
+  | 'Asio'
+  | 'TimeSync'
+  | 'Participant'
+  | 'TimeConfig'
+  | 'RequestReply'
+  | 'SystemMonitor'
+  | 'Can'
+  | 'Ethernet'
+  | 'Flexray'
+  | 'Lin'
+  | 'Metrics'
+  | 'Pubsub'
+  | 'Rpc'
+  | 'Tracing'
+  | 'Dashboard'
+  | 'NetSim'
+  | 'Extension';
 
 /**
  * JSON schema for SIL Kit Participant configuration files
@@ -67,7 +90,11 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
   /**
    * Version of the schema used to validate this document
    */
-  schemaVersion?: number | string;
+  SchemaVersion?: 1 | '1';
+  /**
+   * Legacy lowercase alias for SchemaVersion, kept for backwards compatibility. Prefer 'SchemaVersion'
+   */
+  schemaVersion?: 1 | '1';
   Description?: Description;
   /**
    * Name of the participant
@@ -112,7 +139,10 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
      * Name of the endpoint
      */
     Name: string;
-    Network?: Network;
+    /**
+     * Name of the network. Optional; Defaults to the endpoint name
+     */
+    Network?: string;
     UseTraceSinks?: UseTraceSinks;
     Replay?: Replay;
   }[];
@@ -128,7 +158,10 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
      * Name of the communication channel between DataPublisher and DataSubscribers
      */
     Topic?: string;
+    Labels?: Labels;
+    History?: History;
     UseTraceSinks?: UseTraceSinks;
+    Replay?: Replay;
   }[];
   /**
    * Reconfigures the DataSubscribers of the participant
@@ -142,15 +175,25 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
      * Name of the communication channel between DataPublisher and DataSubscribers
      */
     Topic?: string;
+    Labels?: Labels;
     UseTraceSinks?: UseTraceSinks;
+    Replay?: Replay;
   }[];
   /**
    * Reconfigures the RpcClients of the participant
    */
   RpcClients?: {
-    Name: Name;
-    FunctionName?: RpcFunctionName;
+    /**
+     * Name of the endpoint
+     */
+    Name: string;
+    /**
+     * Name of the RPC function called by RpcClients on RpcServers
+     */
+    FunctionName?: string;
+    Labels?: Labels;
     UseTraceSinks?: UseTraceSinks;
+    Replay?: Replay;
   }[];
   /**
    * Reconfigures the RpcServers of the participant
@@ -164,7 +207,9 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
      * Name of the RPC function called by RpcClients on RpcServers
      */
     FunctionName?: string;
+    Labels?: Labels;
     UseTraceSinks?: UseTraceSinks;
+    Replay?: Replay;
   }[];
   Logging?: Logging;
   /**
@@ -238,6 +283,39 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
     TcpQuickAck?: boolean;
     TcpSendBufferSize?: number;
     TcpReceiveBufferSize?: number;
+    EnableDomainSockets?: boolean;
+    /**
+     * Explicit list of endpoints this participant will accept connections on
+     */
+    AcceptorUris?: string[];
+    /**
+     * Enables communication with other participants using the registry as a proxy
+     */
+    RegistryAsFallbackProxy?: boolean;
+    ConnectTimeoutSeconds?: number;
+    /**
+     * By default, requesting connection of other participants, and honoring these requests by other participants is enabled
+     */
+    ExperimentalRemoteParticipantConnection?: boolean;
+  };
+  /**
+   * Experimental configuration
+   */
+  Experimental?: {
+    /**
+     * Configuration related to time synchronization
+     */
+    TimeSynchronization?: {
+      /**
+       * The animation factor describes how fast the simulation is allowed to run, relative to the local wall clock. For example, if the value is 0.1, SIL Kit will try to run the simulation 10 times faster than the wall clock. The default value 0.0 runs the simulation as fast as possible, i.e., the current behavior.
+       */
+      AnimationFactor?: number;
+      /**
+       * Decide for simulations with time synchronization, if a message aggregation is performed. In case of the Auto mode, the message aggregation is enabled for simulations using the synchronous simulation step handler.
+       */
+      EnableMessageAggregation?: 'Off' | 'On' | 'Auto';
+    };
+    Metrics?: Metrics;
   };
 }
 export interface Replay {
@@ -283,7 +361,10 @@ export interface FlexrayController {
    * Name of the endpoint
    */
   Name: string;
-  Network?: Network;
+  /**
+   * Name of the network. Optional; Defaults to the endpoint name
+   */
+  Network?: string;
   UseTraceSinks?: UseTraceSinks;
   Replay?: Replay;
   ClusterParameters?: FlexrayClusterParameters;
@@ -466,6 +547,29 @@ export interface FlexrayNodeParameters {
    * Number of samples per microtick (values 1, 2)
    */
   pSamplesPerMicrotick?: number;
+  /**
+   * Second Key Slot ID of the key slot (range 0-1023, value 0 means that there is no key slot)
+   */
+  pSecondKeySlotId?: number;
+  /**
+   * Second Key slot is used for startup with a single cold start node (range 0, 1)
+   */
+  pTwoKeySlotMode?: number;
+  [k: string]: unknown | undefined;
+}
+export interface MatchingLabel {
+  /**
+   * Label key
+   */
+  Key?: string;
+  /**
+   * Label value
+   */
+  Value?: string;
+  /**
+   * Label kind
+   */
+  Kind?: 'Mandatory' | 'Optional';
   [k: string]: unknown | undefined;
 }
 /**
@@ -479,10 +583,54 @@ export interface Logging {
   FlushLevel?: 'Critical' | 'Error' | 'Warn' | 'Info' | 'Debug' | 'Trace' | 'Off';
   Sinks: {
     Type: 'Remote' | 'File' | 'Stdout';
+    Format?: 'Simple' | 'Json';
     Level?: 'Critical' | 'Error' | 'Warn' | 'Info' | 'Debug' | 'Trace' | 'Off';
     /**
      * Log name; Results in the following filename: <LogName>_%y-%m-%dT%h-%m-%s.txt
      */
     LogName?: string;
+    /**
+     * Experimental settings to filter log messages of this sink by topic
+     */
+    Experimental?: {
+      /**
+       * Only log messages of these topics are passed to this sink. Optional; if empty, all topics except those in DisabledTopics are passed
+       */
+      EnabledTopics?: LoggingTopic[];
+      /**
+       * Log messages of these topics are not passed to this sink
+       */
+      DisabledTopics?: LoggingTopic[];
+    };
   }[];
+}
+/**
+ * Configures the collection and publication of participant metrics
+ */
+export interface Metrics {
+  /**
+   * Sinks to which collected metrics are written
+   */
+  Sinks?: MetricsSink[];
+  /**
+   * Enables collecting metrics from other participants. Cannot be combined with a 'Remote' metrics sink
+   */
+  CollectFromRemote?: boolean;
+  /**
+   * Interval in seconds at which metrics are updated
+   */
+  UpdateInterval?: number;
+}
+/**
+ * Configures a sink to which collected metrics are written
+ */
+export interface MetricsSink {
+  /**
+   * Type of the metrics sink
+   */
+  Type: 'JsonFile' | 'Remote';
+  /**
+   * Name of the metrics sink; used e.g. as the output file name for a JsonFile sink
+   */
+  Name?: string;
 }

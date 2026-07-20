@@ -23,7 +23,7 @@ export interface JSONSchemaForBowerrcFiles {
         /**
          * An array of URLs pointing to read-only Bower registries. A string means only one. When looking into the registry for an endpoint, Bower will query these registries by the specified order.
          */
-        search?: unknown[] | string;
+        search?: string | string[];
         /**
          * The URL to use when registering packages.
          */

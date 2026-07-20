@@ -57,9 +57,71 @@ export interface HardwareSentryConfigurationFile {
   /**
    * Configures the hosts to monitor.
    */
-  hosts?: {
-    [k: string]: unknown | undefined;
-  }[];
+  hosts?: (
+    | {
+        /**
+         * Configures a new host to be monitored.
+         */
+        host: {
+          /**
+           * Configures the hostname of the host to be monitored.
+           */
+          hostname: string;
+          /**
+           * Configures the identifier of the host to be monitored (Optional). By default, the host identifier is the hostname property value.
+           */
+          id?: string;
+          /**
+           * Configures the type of the host to be monitored.
+           */
+          type: (
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | ('win' | 'linux' | 'network' | 'oob' | 'storage' | 'aix' | 'hpux' | 'solaris' | 'tru64' | 'vmx')
+          ) &
+            string;
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+    | {
+        /**
+         * Configures several hosts which share the same characteristics.
+         */
+        hostGroup: {
+          /**
+           * Configures the hostnames of the hosts to be monitored.
+           */
+          hostnames:
+            | string[]
+            | {
+                /**
+                 * Configures the hostname of the host to be monitored.
+                 *
+                 * This interface was referenced by `undefined`'s JSON-Schema definition
+                 * via the `patternProperty` "^[A-Za-z0-9.\-_:]+$".
+                 */
+                [k: string]: {
+                  extraLabels?: KeyValuePairVariables1;
+                  [k: string]: unknown | undefined;
+                };
+              };
+          /**
+           * Configures the type of the hosts to be monitored.
+           */
+          type: (
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | ('win' | 'linux' | 'network' | 'oob' | 'storage' | 'aix' | 'hpux' | 'solaris' | 'tru64' | 'vmx')
+          ) &
+            string;
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+  )[];
   /**
    * Sets the number of jobs that Hardware Sentry can run simultaneously (Default: 20).
    */
@@ -76,7 +138,7 @@ export interface HardwareSentryConfigurationFile {
      * Overrides the OpenTelemetry Collector command line.
      */
     commandLine?: string[];
-    environment?: KeyValuePairVariables1;
+    environment?: KeyValuePairVariables2;
     /**
      * Configures where to print the OpenTelemetry Collector's output (Default: log).
      */
@@ -114,11 +176,14 @@ export interface KeyValuePairVariables {
    *
    * This interface was referenced by `KeyValuePairVariables1`'s JSON-Schema definition
    * via the `patternProperty` ".*".
+   *
+   * This interface was referenced by `KeyValuePairVariables2`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
    */
   [k: string]: number | string | boolean;
 }
 /**
- * Configures the OpenTelemetry Collector environment variables.
+ * Adds or overrides the attributes of the monitored host.
  */
 export interface KeyValuePairVariables1 {
   /**
@@ -126,6 +191,25 @@ export interface KeyValuePairVariables1 {
    * via the `patternProperty` ".*".
    *
    * This interface was referenced by `KeyValuePairVariables1`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
+   *
+   * This interface was referenced by `KeyValuePairVariables2`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
+   */
+  [k: string]: number | string | boolean;
+}
+/**
+ * Configures the OpenTelemetry Collector environment variables.
+ */
+export interface KeyValuePairVariables2 {
+  /**
+   * This interface was referenced by `KeyValuePairVariables`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
+   *
+   * This interface was referenced by `KeyValuePairVariables1`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
+   *
+   * This interface was referenced by `KeyValuePairVariables2`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
   [k: string]: number | string | boolean;

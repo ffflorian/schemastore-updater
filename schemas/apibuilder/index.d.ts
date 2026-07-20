@@ -83,7 +83,7 @@ export interface ContactInformation1 {
  */
 export interface License {
   /**
-   * Name of the license - e.g. MIT
+   * Name of the license
    */
   name: string;
   /**
@@ -159,7 +159,7 @@ export interface Enumeration {
  * The name of the enum. Names must be alphanumeric and must start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, models, or unions types.
  *
  * This interface was referenced by `Enumeration`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
+ * via the `patternProperty` "^[a-zA-Z][a-zA-Z0-9_]*$".
  */
 export interface Name {
   /**
@@ -206,7 +206,7 @@ export interface Interface {
  * Name specifies the name of the interface. Names must be alphanumeric and start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, or models. Note you may define an interface and a union of the same name.
  *
  * This interface was referenced by `Interface`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
+ * via the `patternProperty` "^[a-zA-Z][a-zA-Z0-9_]*$".
  */
 export interface Name1 {
   /**
@@ -280,7 +280,7 @@ export interface Model {
 }
 /**
  * This interface was referenced by `Model`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z0-9_]*$".
+ * via the `patternProperty` "^[a-zA-Z][a-zA-Z0-9_]*$".
  */
 export interface Model1 {
   /**
@@ -305,7 +305,7 @@ export interface Union {
    * Name specifies the name of the interface. Names must be alphanumeric and start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, unions, or models. Note you may define an interface and a union of the same name, but in this case it is required to list that interface in the interfaces field.
    *
    * This interface was referenced by `Union`'s JSON-Schema definition
-   * via the `patternProperty` "^[a-zA-Z0-9_]*$".
+   * via the `patternProperty` "^[a-zA-Z][a-zA-Z0-9_]*$".
    */
   [k: string]: {
     /**

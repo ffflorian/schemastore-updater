@@ -9,6 +9,18 @@ export type JSONAPISchema = Success | Failure | Info;
  */
 export type Data = Resource | Resource[] | null;
 /**
+ * References to other resource objects in a to-one ("relationship"). Relationships can be specified by including a member in a resource's links object.
+ */
+export type RelationshipToOne = Empty | Linkage;
+/**
+ * Describes an empty to-one relationship.
+ */
+export type Empty = null;
+/**
+ * An array of objects each containing "type" and "id" members for to-many relationships.
+ */
+export type RelationshipToMany = Linkage[];
+/**
  * A link **MUST** be represented as either: a string containing the link's URL or a link object.
  */
 export type Link =
@@ -56,9 +68,15 @@ export interface Attributes {
    * This interface was referenced by `Attributes`'s JSON-Schema definition
    * via the `patternProperty` "^(?!relationships$|links$)\w[-\w_]*$".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | unknown[]
+    | boolean
+    | number
+    | null
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | string;
 }
 /**
  * Members of the relationships object ("relationships") represent references from the resource object in which it's defined to other resource objects.
@@ -68,9 +86,36 @@ export interface Relationships {
    * This interface was referenced by `Relationships`'s JSON-Schema definition
    * via the `patternProperty` "^\w[-\w_]*$".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        /**
+         * Member, whose value represents "resource linkage".
+         */
+        data: RelationshipToOne | RelationshipToMany;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        meta: Meta;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        links: Links;
+        [k: string]: unknown | undefined;
+      };
+}
+/**
+ * The "type" and "id" to non-empty members.
+ */
+export interface Linkage {
+  type: string;
+  id: string;
+  meta?: Meta;
+}
+/**
+ * Non-standard meta-information that can not be represented as an attribute or relationship.
+ */
+export interface Meta {
+  [k: string]: unknown | undefined;
 }
 /**
  * A resource object **MAY** contain references to other resource objects ("relationships"). Relationships may be to-one or to-many. Relationships can be specified by including a member in a resource's links object.
@@ -81,12 +126,6 @@ export interface Links {
    */
   self?: string;
   related?: Link;
-  [k: string]: unknown | undefined;
-}
-/**
- * Non-standard meta-information that can not be represented as an attribute or relationship.
- */
-export interface Meta {
   [k: string]: unknown | undefined;
 }
 export interface Pagination {

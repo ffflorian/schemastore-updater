@@ -26,7 +26,25 @@ export type ConfigFileVersion = 2;
  */
 export type PackageEcosystem = {
   [k: string]: unknown | undefined;
-};
+} & (
+  | {
+      directories: Directories;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * Location of package manifests
+       */
+      directory: string;
+      [k: string]: unknown | undefined;
+    }
+);
+/**
+ * Locations of package manifests
+ *
+ * @minItems 1
+ */
+export type Directories = [string, ...string[]];
 
 /**
  * The top-level registries key is optional. It allows you to specify authentication details that Dependabot can use to access private package registries.
@@ -77,6 +95,10 @@ export interface Registry {
          * For registries with type: python-index, if the boolean value is true, pip resolves dependencies by using the specified URL rather than the base URL of the Python Package Index (by default https://pypi.org/simple).
          */
         'replaces-base'?: boolean;
+        /**
+         * For registries with type: npm-registry, the npm scope or scopes served by this registry, for example '@my-org'. Dependabot binds only the listed scopes to this registry when generating the .npmrc, so packages outside those scopes continue to resolve from the base registry. This value takes precedence over scope inference from an existing .npmrc or from the lockfile.
+         */
+        scope?: [string, ...string[]] | string;
         organization?: string;
         repo?: string;
         'auth-key'?: string;
@@ -161,9 +183,28 @@ export interface MultiEcosystemGroup {
   /**
    * Commit message preferences for the group
    */
-  'commit-message'?: {
-    [k: string]: unknown | undefined;
-  };
+  'commit-message'?:
+    | {
+        /**
+         * A prefix for all commit messages
+         */
+        prefix: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        /**
+         * A separate prefix for all commit messages that update dependencies in the Development dependency group
+         */
+        'prefix-development': string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        /**
+         * Specifies that any prefix is followed by a list of the dependencies updated in the commit
+         */
+        include: 'scope';
+        [k: string]: unknown | undefined;
+      };
   /**
    * Pull request branch name preferences for the group
    */

@@ -33,9 +33,7 @@ export type Bundle1 = JsBundle | CssBundle | HtmlBundle;
 export type HttpsJsonSchemastoreOrgBundleconfigJson = Bundle[];
 
 export interface JsBundle {
-  outputFileName?: {
-    [k: string]: unknown | undefined;
-  };
+  outputFileName?: string;
   /**
    * JavaScript only. Set to true to produce a source map.
    */
@@ -59,16 +57,12 @@ export interface AjaxminBaseSettings {
   [k: string]: unknown | undefined;
 }
 export interface CssBundle {
-  outputFileName?: {
-    [k: string]: unknown | undefined;
-  };
+  outputFileName?: string;
   minify?: AjaxminBaseSettings;
   [k: string]: unknown | undefined;
 }
 export interface HtmlBundle {
-  outputFileName?: {
-    [k: string]: unknown | undefined;
-  };
+  outputFileName?: string;
   minify?: {
     /**
      * HTML only. Remove values from boolean attributes.

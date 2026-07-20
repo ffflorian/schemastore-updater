@@ -4,8 +4,6 @@
  * Removes the rule.
  */
 export type NullRule = null;
-export type Keywords2 = Keywords21 & Keywords22;
-export type Keywords21 = Keywords | boolean;
 export type Keywords =
   | (
       | 'break'
@@ -36,132 +34,10 @@ export type Keywords =
       | 'with'
     )[]
   | null;
-export type Keywords22 =
-  | ((Keywords | boolean) & unknown[])
-  | (boolean & (Keywords | boolean))
-  | (null & (Keywords | boolean));
 export type BlockKeywords =
   | ('catch' | 'do' | 'else' | 'finally' | 'for' | 'function' | 'if' | 'try' | 'while')[]
   | null;
-export type EsprimaNodeTypes =
-  | (
-      | 'ArrayExpression'
-      | 'ArrayPattern'
-      | 'ArrowFunctionExpression'
-      | 'AssignmentExpression'
-      | 'AssignmentPattern'
-      | 'BinaryExpression'
-      | 'BlockStatement'
-      | 'BreakStatement'
-      | 'CallExpression'
-      | 'CatchClause'
-      | 'ClassBody'
-      | 'ClassDeclaration'
-      | 'ClassExpression'
-      | 'ConditionalExpression'
-      | 'ContinueStatement'
-      | 'DebuggerStatement'
-      | 'DoWhileStatement'
-      | 'EmptyStatement'
-      | 'ExportAllDeclaration'
-      | 'ExportDefaultDeclaration'
-      | 'ExportNamedDeclaration'
-      | 'ExportSpecifier'
-      | 'ExpressionStatement'
-      | 'ForInStatement'
-      | 'ForStatement'
-      | 'FunctionDeclaration'
-      | 'FunctionExpression'
-      | 'Identifier'
-      | 'IfStatement'
-      | 'ImportDeclaration'
-      | 'ImportDefaultSpecifier'
-      | 'ImportNamespaceSpecifier'
-      | 'ImportSpecifier'
-      | 'LabeledStatement'
-      | 'Literal'
-      | 'LogicalExpression'
-      | 'MemberExpression'
-      | 'MethodDefinition'
-      | 'NewExpression'
-      | 'ObjectExpression'
-      | 'ObjectPattern'
-      | 'Program'
-      | 'Property'
-      | 'RestElement'
-      | 'ReturnStatement'
-      | 'SequenceExpression'
-      | 'SpreadElement'
-      | 'Super'
-      | 'SwitchCase'
-      | 'SwitchStatement'
-      | 'TaggedTemplateExpression'
-      | 'TemplateElement'
-      | 'TemplateLiteral'
-      | 'ThisExpression'
-      | 'ThrowStatement'
-      | 'TryStatement'
-      | 'UnaryExpression'
-      | 'UpdateExpression'
-      | 'VariableDeclaration'
-      | 'VariableDeclarator'
-      | 'WhileStatement'
-      | 'WithStatement'
-    )[]
-  | null;
-export type Operators =
-  | (
-      | ','
-      | ':'
-      | '?'
-      | '^'
-      | '^='
-      | '|'
-      | '||'
-      | '|='
-      | '&'
-      | '&&'
-      | '&='
-      | '+'
-      | '+='
-      | '-'
-      | '-='
-      | '%'
-      | '%='
-      | '/'
-      | '/='
-      | '*'
-      | '*='
-      | '='
-      | '=='
-      | '==='
-      | '!='
-      | '!=='
-      | '>'
-      | '>>'
-      | '>>>'
-      | '>='
-      | '>>='
-      | '>>>='
-      | '<'
-      | '<<'
-      | '<='
-      | '<<='
-      | null
-    )[]
-  | boolean
-  | null;
-export type UnaryOperators = ('++' | '--' | '+' | '-' | '~' | '!')[] | boolean | null;
-export type BraceRules = {
-  beforeOpeningRoundBrace?: boolean | null;
-  beforeOpeningCurlyBrace?: boolean | null;
-  [k: string]: unknown | undefined;
-} & BraceRules1;
-export type BraceRules1 = null | {
-  beforeOpeningRoundBrace?: boolean | null;
-  beforeOpeningCurlyBrace?: boolean | null;
-  [k: string]: unknown | undefined;
-};
+export type Keywords2 = Keywords | boolean;
 export type EqualityOperators = ('==' | '===' | '!=' | '!==' | null)[] | boolean | null;
 
 export interface JSONSchemaForJSCSConfigurationFiles {
@@ -184,7 +60,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows commas as last token on a line in lists.
    */
-  disallowCommaBeforeLineBreak?: (
+  disallowCommaBeforeLineBreak?:
     | boolean
     | NullRule
     | {
@@ -195,59 +71,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: 'function'[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'function'[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'function'[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: 'function'[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows curly braces after statements.
    */
-  disallowCurlyBraces?: Keywords2 & ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  disallowCurlyBraces?: Keywords | boolean;
   /**
    * Disallows identifiers that start or end in _.  Some popular identifiers are automatically listed as exceptions:  __proto__ (javascript), _ (underscore.js), __filename (node.js global), __dirname (node.js global), super_ (node.js, used by util.inherits).
    */
-  disallowDanglingUnderscores?: (
+  disallowDanglingUnderscores?:
     | boolean
     | NullRule
     | {
@@ -258,55 +90,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows empty blocks (except for catch blocks).
    */
-  disallowEmptyBlocks?: (
+  disallowEmptyBlocks?:
     | boolean
     | NullRule
     | {
@@ -317,51 +105,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: 'comments'[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.  Blocks containing only comments would not be considered empty.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'comments'[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.  Blocks containing only comments would not be considered empty.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'comments'[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.  Blocks containing only comments would not be considered empty.
-               *
-               * @minItems 0
-               */
-              allExcept?: 'comments'[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows function declarations.
    */
@@ -373,8 +117,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows a specified set of identifier names.
    */
-  disallowIdentifierNames?: (string[] | NullRule) &
-    (((string[] | NullRule) & unknown[]) | (null & (string[] | NullRule)));
+  disallowIdentifierNames?: string[] | NullRule;
   /**
    * Disallows implicit type conversion.
    */
@@ -382,25 +125,77 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows one or more keywords in comments.
    */
-  disallowKeywordsInComments?: (string[] | boolean | NullRule | string) &
-    (
-      | ((string[] | boolean | NullRule | string) & unknown[])
-      | (boolean & (string[] | boolean | NullRule | string))
-      | (null & (string[] | boolean | NullRule | string))
-      | ((string[] | boolean | NullRule | string) & string)
-    );
+  disallowKeywordsInComments?: string[] | boolean | NullRule | string;
   /**
    * Disallows placing the specified keywords on a new line.
    */
-  disallowKeywordsOnNewLine?: Keywords & ((Keywords & unknown[]) | (null & Keywords));
+  disallowKeywordsOnNewLine?:
+    | (
+        | 'break'
+        | 'case'
+        | 'catch'
+        | 'continue'
+        | 'debugger'
+        | 'default'
+        | 'delete'
+        | 'do'
+        | 'else'
+        | 'finally'
+        | 'for'
+        | 'function'
+        | 'if'
+        | 'in'
+        | 'instanceof'
+        | 'new'
+        | 'return'
+        | 'switch'
+        | 'this'
+        | 'throw'
+        | 'try'
+        | 'typeof'
+        | 'var'
+        | 'void'
+        | 'while'
+        | 'with'
+      )[]
+    | null;
   /**
    * Disallows usage of the specified keywords.
    */
-  disallowKeywords?: Keywords & ((Keywords & unknown[]) | (null & Keywords));
+  disallowKeywords?:
+    | (
+        | 'break'
+        | 'case'
+        | 'catch'
+        | 'continue'
+        | 'debugger'
+        | 'default'
+        | 'delete'
+        | 'do'
+        | 'else'
+        | 'finally'
+        | 'for'
+        | 'function'
+        | 'if'
+        | 'in'
+        | 'instanceof'
+        | 'new'
+        | 'return'
+        | 'switch'
+        | 'this'
+        | 'throw'
+        | 'try'
+        | 'typeof'
+        | 'var'
+        | 'void'
+        | 'while'
+        | 'with'
+      )[]
+    | null;
   /**
    * Requires lines to not contain both spaces and tabs consecutively, or spaces after tabs only for alignment if "smart
    */
-  disallowMixedSpacesAndTabs?: true | false | null | 'smart';
+  disallowMixedSpacesAndTabs?: boolean | null | 'smart';
   /**
    * Disallows the test, consequent and alternate to be on separate lines when using the ternary operator.
    */
@@ -416,46 +211,17 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows multiple indentation characters (tabs or spaces) between identifiers, keywords, and any other token.
    */
-  disallowMultipleSpaces?: (
+  disallowMultipleSpaces?:
     | boolean
     | NullRule
     | {
         allowEOLComments?: boolean | null;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                allowEOLComments?: boolean | null;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                allowEOLComments?: boolean | null;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              allowEOLComments?: boolean | null;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows multiple `var` declaration (except for-loop).
    */
-  disallowMultipleVarDecl?: (
+  disallowMultipleVarDecl?:
     | boolean
     | NullRule
     | {
@@ -467,54 +233,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('require' | 'undefined') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                strict?: boolean | null;
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('require' | 'undefined') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                strict?: boolean | null;
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('require' | 'undefined') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              strict?: boolean | null;
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('require' | 'undefined') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows unassigned functions to be named inline.
    */
@@ -522,7 +241,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows nested ternaries.
    */
-  disallowNestedTernaries?: (
+  disallowNestedTernaries?:
     | boolean
     | NullRule
     | {
@@ -531,49 +250,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         maxLevel?: number;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * The maximum levels of ternary nesting to be allowed.
-                 */
-                maxLevel?: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * The maximum levels of ternary nesting to be allowed.
-                 */
-                maxLevel?: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * The maximum levels of ternary nesting to be allowed.
-               */
-              maxLevel?: number;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows newline before opening curly brace of all block statements.
    */
-  disallowNewlineBeforeBlockStatements?: (
+  disallowNewlineBeforeBlockStatements?:
     | BlockKeywords
     | boolean
     | NullRule
@@ -586,77 +267,76 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (string | 'multiline')[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | ((
-          | BlockKeywords
-          | boolean
-          | NullRule
-          | {
-              value?: unknown[] | boolean;
-              /**
-               * Array of quoted keywords to exempt.  If `multiline` is specified, when the conditions span on multiple lines, require a new line before the curly brace.
-               *
-               * @minItems 0
-               */
-              allExcept?: (string | 'multiline')[];
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          unknown[])
-      | (boolean &
-          (
-            | BlockKeywords
-            | boolean
-            | NullRule
-            | {
-                value?: unknown[] | boolean;
-                /**
-                 * Array of quoted keywords to exempt.  If `multiline` is specified, when the conditions span on multiple lines, require a new line before the curly brace.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (string | 'multiline')[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | BlockKeywords
-            | boolean
-            | NullRule
-            | {
-                value?: unknown[] | boolean;
-                /**
-                 * Array of quoted keywords to exempt.  If `multiline` is specified, when the conditions span on multiple lines, require a new line before the curly brace.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (string | 'multiline')[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | BlockKeywords
-          | boolean
-          | NullRule
-          | {
-              value?: unknown[] | boolean;
-              /**
-               * Array of quoted keywords to exempt.  If `multiline` is specified, when the conditions span on multiple lines, require a new line before the curly brace.
-               *
-               * @minItems 0
-               */
-              allExcept?: (string | 'multiline')[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallow use of certain node types (from Esprima/ESTree).  Value equals an array of parser node types to be disallowed.
    */
-  disallowNodeTypes?: EsprimaNodeTypes & ((EsprimaNodeTypes & unknown[]) | (null & EsprimaNodeTypes));
+  disallowNodeTypes?:
+    | (
+        | 'ArrayExpression'
+        | 'ArrayPattern'
+        | 'ArrowFunctionExpression'
+        | 'AssignmentExpression'
+        | 'AssignmentPattern'
+        | 'BinaryExpression'
+        | 'BlockStatement'
+        | 'BreakStatement'
+        | 'CallExpression'
+        | 'CatchClause'
+        | 'ClassBody'
+        | 'ClassDeclaration'
+        | 'ClassExpression'
+        | 'ConditionalExpression'
+        | 'ContinueStatement'
+        | 'DebuggerStatement'
+        | 'DoWhileStatement'
+        | 'EmptyStatement'
+        | 'ExportAllDeclaration'
+        | 'ExportDefaultDeclaration'
+        | 'ExportNamedDeclaration'
+        | 'ExportSpecifier'
+        | 'ExpressionStatement'
+        | 'ForInStatement'
+        | 'ForStatement'
+        | 'FunctionDeclaration'
+        | 'FunctionExpression'
+        | 'Identifier'
+        | 'IfStatement'
+        | 'ImportDeclaration'
+        | 'ImportDefaultSpecifier'
+        | 'ImportNamespaceSpecifier'
+        | 'ImportSpecifier'
+        | 'LabeledStatement'
+        | 'Literal'
+        | 'LogicalExpression'
+        | 'MemberExpression'
+        | 'MethodDefinition'
+        | 'NewExpression'
+        | 'ObjectExpression'
+        | 'ObjectPattern'
+        | 'Program'
+        | 'Property'
+        | 'RestElement'
+        | 'ReturnStatement'
+        | 'SequenceExpression'
+        | 'SpreadElement'
+        | 'Super'
+        | 'SwitchCase'
+        | 'SwitchStatement'
+        | 'TaggedTemplateExpression'
+        | 'TemplateElement'
+        | 'TemplateLiteral'
+        | 'ThisExpression'
+        | 'ThrowStatement'
+        | 'TryStatement'
+        | 'UnaryExpression'
+        | 'UpdateExpression'
+        | 'VariableDeclaration'
+        | 'VariableDeclarator'
+        | 'WhileStatement'
+        | 'WithStatement'
+      )[]
+    | null;
   /**
    * Disallows the not, not equals, and strict not equals operators in conditionals.
    */
@@ -668,7 +348,48 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Requires putting certain operators on the next line rather than on the current line before a line break.
    */
-  disallowOperatorBeforeLineBreak?: Operators & ((Operators & unknown[]) | (boolean & Operators) | (null & Operators));
+  disallowOperatorBeforeLineBreak?:
+    | (
+        | ','
+        | ':'
+        | '?'
+        | '^'
+        | '^='
+        | '|'
+        | '||'
+        | '|='
+        | '&'
+        | '&&'
+        | '&='
+        | '+'
+        | '+='
+        | '-'
+        | '-='
+        | '%'
+        | '%='
+        | '/'
+        | '/='
+        | '*'
+        | '*='
+        | '='
+        | '=='
+        | '==='
+        | '!='
+        | '!=='
+        | '>'
+        | '>>'
+        | '>>>'
+        | '>='
+        | '>>='
+        | '>>>='
+        | '<'
+        | '<<'
+        | '<='
+        | '<<='
+        | null
+      )[]
+    | boolean
+    | null;
   /**
    * Disallow a newline after blocks.
    */
@@ -684,17 +405,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallow an empty line above the specified keywords.
    */
-  disallowPaddingNewlinesBeforeKeywords?: Keywords2 &
-    ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  disallowPaddingNewlinesBeforeKeywords?: Keywords | boolean;
   /**
    * Disallows newline before line comments.
    */
-  disallowPaddingNewLinesBeforeLineComments?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  disallowPaddingNewLinesBeforeLineComments?: boolean | NullRule;
   /**
    * Disallows blocks from beginning or ending with 2 newlines.
    */
-  disallowPaddingNewlinesInBlocks?: (
+  disallowPaddingNewlinesInBlocks?:
     | boolean
     | NullRule
     | {
@@ -713,75 +432,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('conditionals' | 'functions')[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * A value of true validates that there is a newline before the closing brace in a block.  A value of false ignores the newline validation before the closing brace in a block.
-                 */
-                close?: boolean;
-                /**
-                 * A value of true validates that there is a newline after the opening brace in a block.  A value of false ignores the newline validation after the opening brace in a block.
-                 */
-                open?: boolean;
-                /**
-                 * Array of quoted keywords to exempt.  If `conditionals` is specified, conditionals (if, else if, else) blocks are ignored.  If `functions` is specified, function blocks are ignored.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('conditionals' | 'functions')[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * A value of true validates that there is a newline before the closing brace in a block.  A value of false ignores the newline validation before the closing brace in a block.
-                 */
-                close?: boolean;
-                /**
-                 * A value of true validates that there is a newline after the opening brace in a block.  A value of false ignores the newline validation after the opening brace in a block.
-                 */
-                open?: boolean;
-                /**
-                 * Array of quoted keywords to exempt.  If `conditionals` is specified, conditionals (if, else if, else) blocks are ignored.  If `functions` is specified, function blocks are ignored.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('conditionals' | 'functions')[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * A value of true validates that there is a newline before the closing brace in a block.  A value of false ignores the newline validation before the closing brace in a block.
-               */
-              close?: boolean;
-              /**
-               * A value of true validates that there is a newline after the opening brace in a block.  A value of false ignores the newline validation after the opening brace in a block.
-               */
-              open?: boolean;
-              /**
-               * Array of quoted keywords to exempt.  If `conditionals` is specified, conditionals (if, else if, else) blocks are ignored.  If `functions` is specified, function blocks are ignored.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('conditionals' | 'functions')[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows newlines adjacent to curly braces in all object literals.
    */
@@ -793,7 +444,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows quoted keys in object if possible.
    */
-  disallowQuotedKeysInObjects?: (
+  disallowQuotedKeysInObjects?:
     | boolean
     | NullRule
     | {
@@ -805,69 +456,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: (string | 'reserved')[];
         [k: string]: unknown | undefined;
       }
-    | ('allButReserved' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (string | 'reserved')[];
-                [k: string]: unknown | undefined;
-              }
-            | ('allButReserved' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (string | 'reserved')[];
-                [k: string]: unknown | undefined;
-              }
-            | ('allButReserved' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (string | 'reserved')[];
-              [k: string]: unknown | undefined;
-            }
-          | ('allButReserved' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (string | 'reserved')[];
-              [k: string]: unknown | undefined;
-            }
-          | ('allButReserved' & string)
-        ) &
-          string)
-    );
+    | 'allButReserved';
   /**
    * Disallows lines from ending in a semicolon.
    */
@@ -879,12 +468,52 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Requires sticking binary operators to the right.
    */
-  disallowSpaceAfterBinaryOperators?: Operators &
-    ((Operators & unknown[]) | (boolean & Operators) | (null & Operators));
+  disallowSpaceAfterBinaryOperators?:
+    | (
+        | ','
+        | ':'
+        | '?'
+        | '^'
+        | '^='
+        | '|'
+        | '||'
+        | '|='
+        | '&'
+        | '&&'
+        | '&='
+        | '+'
+        | '+='
+        | '-'
+        | '-='
+        | '%'
+        | '%='
+        | '/'
+        | '/='
+        | '*'
+        | '*='
+        | '='
+        | '=='
+        | '==='
+        | '!='
+        | '!=='
+        | '>'
+        | '>>'
+        | '>>>'
+        | '>='
+        | '>>='
+        | '>>>='
+        | '<'
+        | '<<'
+        | '<='
+        | '<<='
+        | null
+      )[]
+    | boolean
+    | null;
   /**
    * Disallows spaces after commas.
    */
-  disallowSpaceAfterComma?: (
+  disallowSpaceAfterComma?:
     | boolean
     | NullRule
     | {
@@ -895,55 +524,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('sparseArrays' & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('sparseArrays' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('sparseArrays' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('sparseArrays' & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows space after the specified keywords.  A value of true will require spaces after all possible keywords.
    */
-  disallowSpaceAfterKeywords?: Keywords2 & ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  disallowSpaceAfterKeywords?: Keywords | boolean;
   /**
    * Requires that a line comment (//) not be followed by a space.
    */
@@ -951,7 +536,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows space after object keys.
    */
-  disallowSpaceAfterObjectKeys?: (
+  disallowSpaceAfterObjectKeys?:
     | boolean
     | NullRule
     | {
@@ -963,79 +548,56 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: (('singleline' | 'multiline' | 'aligned' | 'method') & string)[];
         [k: string]: unknown | undefined;
       }
-    | (('ignoreSingleLine' | 'ignoreMultiLine') & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('singleline' | 'multiline' | 'aligned' | 'method') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | (('ignoreSingleLine' | 'ignoreMultiLine') & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('singleline' | 'multiline' | 'aligned' | 'method') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | (('ignoreSingleLine' | 'ignoreMultiLine') & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('singleline' | 'multiline' | 'aligned' | 'method') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('ignoreSingleLine' | 'ignoreMultiLine') & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('singleline' | 'multiline' | 'aligned' | 'method') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('ignoreSingleLine' | 'ignoreMultiLine') & string)
-        ) &
-          string)
-    );
+    | (('ignoreSingleLine' | 'ignoreMultiLine') & string);
   /**
    * Requires sticking unary operators to the right.
    */
-  disallowSpaceAfterPrefixUnaryOperators?: UnaryOperators &
-    ((UnaryOperators & unknown[]) | (boolean & UnaryOperators) | (null & UnaryOperators));
+  disallowSpaceAfterPrefixUnaryOperators?: ('++' | '--' | '+' | '-' | '~' | '!')[] | boolean | null;
   /**
    * Requires sticking binary operators to the left.
    */
-  disallowSpaceBeforeBinaryOperators?: Operators &
-    ((Operators & unknown[]) | (boolean & Operators) | (null & Operators));
+  disallowSpaceBeforeBinaryOperators?:
+    | (
+        | ','
+        | ':'
+        | '?'
+        | '^'
+        | '^='
+        | '|'
+        | '||'
+        | '|='
+        | '&'
+        | '&&'
+        | '&='
+        | '+'
+        | '+='
+        | '-'
+        | '-='
+        | '%'
+        | '%='
+        | '/'
+        | '/='
+        | '*'
+        | '*='
+        | '='
+        | '=='
+        | '==='
+        | '!='
+        | '!=='
+        | '>'
+        | '>>'
+        | '>>>'
+        | '>='
+        | '>>='
+        | '>>>='
+        | '<'
+        | '<<'
+        | '<='
+        | '<<='
+        | null
+      )[]
+    | boolean
+    | null;
   /**
    * Disallows space before block statements (for loops, control structures).
    */
@@ -1043,7 +605,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows spaces before commas.
    */
-  disallowSpaceBeforeComma?: (
+  disallowSpaceBeforeComma?:
     | boolean
     | NullRule
     | {
@@ -1055,73 +617,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: ('sparseArrays' & string)[];
         [k: string]: unknown | undefined;
       }
-    | ('exceptExports' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('sparseArrays' & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('exceptExports' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('sparseArrays' & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('exceptExports' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('sparseArrays' & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('exceptExports' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('sparseArrays' & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('exceptExports' & string)
-        ) &
-          string)
-    );
+    | ('exceptExports' & string);
   /**
    * Disallows space before keyword.
    */
-  disallowSpaceBeforeKeywords?: Keywords2 & ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  disallowSpaceBeforeKeywords?: Keywords | boolean;
   /**
    * Disallows space before object values.
    */
@@ -1129,12 +629,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Requires sticking unary operators to the left.
    */
-  disallowSpaceBeforePostfixUnaryOperators?: UnaryOperators &
-    ((UnaryOperators & unknown[]) | (boolean & UnaryOperators) | (null & UnaryOperators));
+  disallowSpaceBeforePostfixUnaryOperators?: ('++' | '--' | '+' | '-' | '~' | '!')[] | boolean | null;
   /**
    * Disallows spaces before semicolons.
    */
-  disallowSpaceBeforeSemicolon?: (
+  disallowSpaceBeforeSemicolon?:
     | boolean
     | NullRule
     | {
@@ -1145,51 +644,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('(' | string) & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt (allows whitespace before semicolon if preceded by the specified token).
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | string) & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt (allows whitespace before semicolon if preceded by the specified token).
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | string) & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens to exempt (allows whitespace before semicolon if preceded by the specified token).
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | string) & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Ensure there are no spaces after argument separators in call expressions.
    */
@@ -1197,7 +652,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows space before () or {} in anonymous function expressions.
    */
-  disallowSpacesInAnonymousFunctionExpression?: BraceRules & ((null & BraceRules) | BraceRules);
+  disallowSpacesInAnonymousFunctionExpression?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Disallows space before () in call expressions.
    */
@@ -1205,7 +664,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows space before and/or after ? or : in conditional expressions.
    */
-  disallowSpacesInConditionalExpression?: (
+  disallowSpacesInConditionalExpression?:
     | boolean
     | NullRule
     | {
@@ -1214,45 +673,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         beforeAlternate?: boolean;
         beforeConsequent?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | ((
-          | boolean
-          | NullRule
-          | {
-              afterConsequent?: boolean;
-              afterTest?: boolean;
-              beforeAlternate?: boolean;
-              beforeConsequent?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          boolean)
-      | ((
-          | boolean
-          | NullRule
-          | {
-              afterConsequent?: boolean;
-              afterTest?: boolean;
-              beforeAlternate?: boolean;
-              beforeConsequent?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          null)
-      | (
-          | boolean
-          | NullRule
-          | {
-              afterConsequent?: boolean;
-              afterTest?: boolean;
-              beforeAlternate?: boolean;
-              beforeConsequent?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallow spaces in between for statement.
    */
@@ -1260,19 +681,31 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Disallows space before `()` or `{}` in function expressions (both named and anonymous) and function declarations.
    */
-  disallowSpacesInFunction?: BraceRules & ((null & BraceRules) | BraceRules);
+  disallowSpacesInFunction?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Disallows space before () or {} in function declarations.
    */
-  disallowSpacesInFunctionDeclaration?: BraceRules & ((null & BraceRules) | BraceRules);
+  disallowSpacesInFunctionDeclaration?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Disallows space before `()` or `{}` in function expressions (both named and anonymous).
    */
-  disallowSpacesInFunctionExpression?: BraceRules & ((null & BraceRules) | BraceRules);
+  disallowSpacesInFunctionExpression?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Disallow space before or after * in generator functions.
    */
-  disallowSpacesInGenerator?: (
+  disallowSpacesInGenerator?:
     | NullRule
     | {
         /**
@@ -1284,48 +717,20 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         afterStar?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                /**
-                 * A value of true disallows space before *.
-                 */
-                beforeStar?: boolean;
-                /**
-                 * A value of true disallows space after *.
-                 */
-                afterStar?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | NullRule
-          | {
-              /**
-               * A value of true disallows space before *.
-               */
-              beforeStar?: boolean;
-              /**
-               * A value of true disallows space after *.
-               */
-              afterStar?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows space before () or {} in named function expressions
    */
-  disallowSpacesInNamedFunctionExpression?: BraceRules & ((null & BraceRules) | BraceRules);
+  disallowSpacesInNamedFunctionExpression?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Disallows space after opening array square bracket and before closing.  Reports only on arrays, not on property accessors.  Use disallowSpacesInsideBrackets to report on all brackets.
    */
-  disallowSpacesInsideArrayBrackets?: (
-    | (true | false | 'all')
+  disallowSpacesInsideArrayBrackets?:
+    | (boolean | 'all')
     | NullRule
     | {
         /**
@@ -1336,73 +741,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
         [k: string]: unknown | undefined;
       }
-    | ('nested' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | (true | false | 'all')
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('nested' & string)
-          ))
-      | (null &
-          (
-            | (true | false | 'all')
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('nested' & string)
-          ))
-      | (
-          | (true | false | 'all')
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('nested' & string)
-        )
-      | ((
-          | (true | false | 'all')
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('nested' & string)
-        ) &
-          string)
-    );
+    | ('nested' & string);
   /**
    * Disallows space after opening square bracket and before closing.  Reports on all on brackets, even on property accessors.  Use disallowSpacesInsideArrayBrackets to exclude property accessors.
    */
-  disallowSpacesInsideBrackets?: (
+  disallowSpacesInsideBrackets?:
     | boolean
     | NullRule
     | {
@@ -1413,56 +756,12 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens to exempt.  Tokens should consist of an opener with a matching closer () {} [] etc.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows space after opening object curly brace and before closing.
    */
-  disallowSpacesInsideObjectBrackets?: (
-    | (true | false | 'all')
+  disallowSpacesInsideObjectBrackets?:
+    | (boolean | 'all')
     | NullRule
     | {
         /**
@@ -1473,74 +772,12 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: ((')' | '}' | ']') & string)[];
         [k: string]: unknown | undefined;
       }
-    | ('nested' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | (true | false | 'all')
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt.  Applies only to closer tokens:  e.g. ) } ].  If a (closer) token is specified, the rule ignores contiguous (closer) tokens.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ((')' | '}' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('nested' & string)
-          ))
-      | (null &
-          (
-            | (true | false | 'all')
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens to exempt.  Applies only to closer tokens:  e.g. ) } ].  If a (closer) token is specified, the rule ignores contiguous (closer) tokens.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ((')' | '}' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('nested' & string)
-          ))
-      | (
-          | (true | false | 'all')
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens to exempt.  Applies only to closer tokens:  e.g. ) } ].  If a (closer) token is specified, the rule ignores contiguous (closer) tokens.
-               *
-               * @minItems 0
-               */
-              allExcept?: ((')' | '}' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('nested' & string)
-        )
-      | ((
-          | (true | false | 'all')
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens to exempt.  Applies only to closer tokens:  e.g. ) } ].  If a (closer) token is specified, the rule ignores contiguous (closer) tokens.
-               *
-               * @minItems 0
-               */
-              allExcept?: ((')' | '}' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('nested' & string)
-        ) &
-          string)
-    );
+    | ('nested' & string);
   /**
    * Disallows space after opening round bracket and before closing.
    */
-  disallowSpacesInsideParentheses?: (
-    | (true | false | 'all')
+  disallowSpacesInsideParentheses?:
+    | (boolean | 'all')
     | NullRule
     | {
         /**
@@ -1550,69 +787,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         only?: ((('(' | ')' | '{' | '}' | '[' | ']' | 'function') | string) & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | (true | false | 'all')
-            | NullRule
-            | {
-                /**
-                 * Array of quoted values to target.
-                 *
-                 * @minItems 0
-                 */
-                only?: ((('(' | ')' | '{' | '}' | '[' | ']' | 'function') | string) & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | (true | false | 'all')
-            | NullRule
-            | {
-                /**
-                 * Array of quoted values to target.
-                 *
-                 * @minItems 0
-                 */
-                only?: ((('(' | ')' | '{' | '}' | '[' | ']' | 'function') | string) & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | ((
-          | (true | false | 'all')
-          | NullRule
-          | {
-              /**
-               * Array of quoted values to target.
-               *
-               * @minItems 0
-               */
-              only?: ((('(' | ')' | '{' | '}' | '[' | ']' | 'function') | string) & string)[];
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          string)
-      | (
-          | (true | false | 'all')
-          | NullRule
-          | {
-              /**
-               * Array of quoted values to target.
-               *
-               * @minItems 0
-               */
-              only?: ((('(' | ')' | '{' | '}' | '[' | ']' | 'function') | string) & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows space after opening and before closing grouping parentheses.
    */
-  disallowSpacesInsideParenthesizedExpression?: (
+  disallowSpacesInsideParenthesizedExpression?:
     | boolean
     | NullRule
     | {
@@ -1623,77 +802,27 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('(' | ')' | '{' | '}' | '[' | ']' | 'function') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens or items to exempt.  Tokens should consist of an opener with a matching closer () {} [] or `function`.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']' | 'function') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens or items to exempt.  Tokens should consist of an opener with a matching closer () {} [] or `function`.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']' | 'function') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens or items to exempt.  Tokens should consist of an opener with a matching closer () {} [] or `function`.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | ')' | '{' | '}' | '[' | ']' | 'function') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows spaces before and after curly brace inside template string placeholders.
    */
-  disallowSpacesInsideTemplateStringPlaceholders?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  disallowSpacesInsideTemplateStringPlaceholders?: boolean | NullRule;
   /**
    * Disallows tabs everywhere.
    */
-  disallowTabs?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  disallowTabs?: boolean | NullRule;
   /**
    * Disallows an extra comma following the final element of an array or object literal.
    */
-  disallowTrailingComma?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  disallowTrailingComma?: boolean | NullRule;
   /**
-   * Requires all lines to end on a non-whitespace character.
+   * Requires all lines to end on a non-whitespace character. Use "ignoreEmptyLines" to allow whitespace on empty lines (default is false).
    */
-  disallowTrailingWhitespace?: ((true | false | 'ignoreEmptyLines') | NullRule) &
-    (
-      | (boolean & ((true | false | 'ignoreEmptyLines') | NullRule))
-      | (null & ((true | false | 'ignoreEmptyLines') | NullRule))
-      | (((true | false | 'ignoreEmptyLines') | NullRule) & string)
-    );
+  disallowTrailingWhitespace?: boolean | 'ignoreEmptyLines' | NullRule;
   /**
    * Disallows unused params in function expression and function declaration.
    */
-  disallowUnusedParams?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  disallowUnusedParams?: boolean | NullRule;
   /**
    * Disallows declaring variables with var.
    */
@@ -1701,8 +830,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Requires the variable to be the left hand operator when doing a boolean comparison.  Array of quoted operators or true to disallow yoda conditions for most possible comparison operators.
    */
-  disallowYodaConditions?: EqualityOperators &
-    ((EqualityOperators & unknown[]) | (boolean & EqualityOperators) | (null & EqualityOperators));
+  disallowYodaConditions?: ('==' | '===' | '!=' | '!==' | null)[] | boolean | null;
   /**
    * Disables style checking for specified paths.
    */
@@ -1711,7 +839,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Requires all lines to be at most the number of characters specified.
    */
-  maximumLineLength?: (
+  maximumLineLength?:
     | number
     | NullRule
     | {
@@ -1730,79 +858,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         value: number;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (number &
-          (
-            | number
-            | NullRule
-            | {
-                /**
-                 * Array of conditions that will exempt a line.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('comments' | 'functionSignature' | 'regex' | 'require' | 'urlComments')[];
-                /**
-                 * Considered the tab character as number of specified spaces.
-                 */
-                tabSize?: number;
-                /**
-                 * Lines should be at most the number of characters specified.
-                 */
-                value: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | number
-            | NullRule
-            | {
-                /**
-                 * Array of conditions that will exempt a line.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('comments' | 'functionSignature' | 'regex' | 'require' | 'urlComments')[];
-                /**
-                 * Considered the tab character as number of specified spaces.
-                 */
-                tabSize?: number;
-                /**
-                 * Lines should be at most the number of characters specified.
-                 */
-                value: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | number
-          | NullRule
-          | {
-              /**
-               * Array of conditions that will exempt a line.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('comments' | 'functionSignature' | 'regex' | 'require' | 'urlComments')[];
-              /**
-               * Considered the tab character as number of specified spaces.
-               */
-              tabSize?: number;
-              /**
-               * Lines should be at most the number of characters specified.
-               */
-              value: number;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires the file to be at most the number of lines specified.
    */
-  maximumNumberOfLines?: (
+  maximumNumberOfLines?:
     | number
     | NullRule
     | {
@@ -1817,63 +877,7 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         value: number;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (number &
-          (
-            | number
-            | NullRule
-            | {
-                /**
-                 * Array of conditions that will exempt a line.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'comments'[];
-                /**
-                 * Lines should be at most the number of characters specified.
-                 */
-                value: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | number
-            | NullRule
-            | {
-                /**
-                 * Array of conditions that will exempt a line.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'comments'[];
-                /**
-                 * Lines should be at most the number of characters specified.
-                 */
-                value: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | number
-          | NullRule
-          | {
-              /**
-               * Array of conditions that will exempt a line.
-               *
-               * @minItems 0
-               */
-              allExcept?: 'comments'[];
-              /**
-               * Lines should be at most the number of characters specified.
-               */
-              value: number;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Extends defined rules with preset rules.
    */
@@ -1892,25 +896,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
   /**
    * Enforces indentation of parameters in multiline functions.
    */
-  requireAlignedMultilineParams?: (boolean | number | NullRule | 'firstParam') &
-    (
-      | (boolean & (boolean | number | NullRule | 'firstParam'))
-      | (number & (boolean | number | NullRule | 'firstParam'))
-      | (null & (boolean | number | NullRule | 'firstParam'))
-      | ((boolean | number | NullRule | 'firstParam') & string)
-    );
+  requireAlignedMultilineParams?: boolean | number | NullRule | 'firstParam';
   /**
    * Requires proper alignment in object literals.
    */
-  requireAlignedObjectValues?: (NullRule | (('all' | 'ignoreFunction' | 'ignoreLineBreak') & string)) &
-    (
-      | (null & (NullRule | (('all' | 'ignoreFunction' | 'ignoreLineBreak') & string)))
-      | ((NullRule | (('all' | 'ignoreFunction' | 'ignoreLineBreak') & string)) & string)
-    );
+  requireAlignedObjectValues?: NullRule | (('all' | 'ignoreFunction' | 'ignoreLineBreak') & string);
   /**
    * Requires that a function expression be anonymous.
    */
-  requireAnonymousFunctions?: (
+  requireAnonymousFunctions?:
     | boolean
     | NullRule
     | {
@@ -1921,63 +915,19 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: 'declarations'[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'declarations'[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: 'declarations'[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: 'declarations'[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires that variable assignment from array values are * destructured.
    */
-  requireArrayDestructuring?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireArrayDestructuring?: boolean | NullRule;
   /**
    * Requires that arrow functions are used instead of anonymous function expressions in callbacks.
    */
-  requireArrowFunctions?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireArrowFunctions?: boolean | NullRule;
   /**
    * Requires blocks to begin and end with a newline.
    */
-  requireBlocksOnNewline?: (
+  requireBlocksOnNewline?:
     | boolean
     | number
     | NullRule
@@ -1991,81 +941,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         minLines?: number;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                /**
-                 * If true, includes comments as part of the validation.
-                 */
-                includeComments?: boolean;
-                /**
-                 * Specifies a minimum number of lines containing elements in the block before validating.
-                 */
-                minLines?: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (number &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                /**
-                 * If true, includes comments as part of the validation.
-                 */
-                includeComments?: boolean;
-                /**
-                 * Specifies a minimum number of lines containing elements in the block before validating.
-                 */
-                minLines?: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                /**
-                 * If true, includes comments as part of the validation.
-                 */
-                includeComments?: boolean;
-                /**
-                 * Specifies a minimum number of lines containing elements in the block before validating.
-                 */
-                minLines?: number;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | number
-          | NullRule
-          | {
-              /**
-               * If true, includes comments as part of the validation.
-               */
-              includeComments?: boolean;
-              /**
-               * Specifies a minimum number of lines containing elements in the block before validating.
-               */
-              minLines?: number;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires identifiers to be camelCased or UPPERCASE_WITH_UNDERSCORES.
    */
-  requireCamelCaseOrUpperCaseIdentifiers?: (
+  requireCamelCaseOrUpperCaseIdentifiers?:
     | boolean
     | NullRule
     | {
@@ -2097,153 +977,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         strict?: boolean;
         [k: string]: unknown | undefined;
       }
-    | ('ignoreProperties' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of String, RegExp, or ESTree RegExpLiteral values permitted as exceptions.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                /**
-                 * Array of String, RegExp, or ESTree RegExpLiteral values permitted as prefixes.
-                 *
-                 * @minItems 0
-                 */
-                allowedPrefixes?: string[];
-                /**
-                 * Array of String, RegExp, or ESTree RegExpLiteral values permitted as suffixes.
-                 *
-                 * @minItems 0
-                 */
-                allowedSuffixes?: string[];
-                /**
-                 * If true, allows an exception for object property names.
-                 */
-                ignoreProperties?: boolean;
-                /**
-                 * If true, forces the first character to not be capitalized.
-                 */
-                strict?: boolean;
-                [k: string]: unknown | undefined;
-              }
-            | ('ignoreProperties' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of String, RegExp, or ESTree RegExpLiteral values permitted as exceptions.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                /**
-                 * Array of String, RegExp, or ESTree RegExpLiteral values permitted as prefixes.
-                 *
-                 * @minItems 0
-                 */
-                allowedPrefixes?: string[];
-                /**
-                 * Array of String, RegExp, or ESTree RegExpLiteral values permitted as suffixes.
-                 *
-                 * @minItems 0
-                 */
-                allowedSuffixes?: string[];
-                /**
-                 * If true, allows an exception for object property names.
-                 */
-                ignoreProperties?: boolean;
-                /**
-                 * If true, forces the first character to not be capitalized.
-                 */
-                strict?: boolean;
-                [k: string]: unknown | undefined;
-              }
-            | ('ignoreProperties' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of String, RegExp, or ESTree RegExpLiteral values permitted as exceptions.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              /**
-               * Array of String, RegExp, or ESTree RegExpLiteral values permitted as prefixes.
-               *
-               * @minItems 0
-               */
-              allowedPrefixes?: string[];
-              /**
-               * Array of String, RegExp, or ESTree RegExpLiteral values permitted as suffixes.
-               *
-               * @minItems 0
-               */
-              allowedSuffixes?: string[];
-              /**
-               * If true, allows an exception for object property names.
-               */
-              ignoreProperties?: boolean;
-              /**
-               * If true, forces the first character to not be capitalized.
-               */
-              strict?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | ('ignoreProperties' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of String, RegExp, or ESTree RegExpLiteral values permitted as exceptions.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              /**
-               * Array of String, RegExp, or ESTree RegExpLiteral values permitted as prefixes.
-               *
-               * @minItems 0
-               */
-              allowedPrefixes?: string[];
-              /**
-               * Array of String, RegExp, or ESTree RegExpLiteral values permitted as suffixes.
-               *
-               * @minItems 0
-               */
-              allowedSuffixes?: string[];
-              /**
-               * If true, allows an exception for object property names.
-               */
-              ignoreProperties?: boolean;
-              /**
-               * If true, forces the first character to not be capitalized.
-               */
-              strict?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | ('ignoreProperties' & string)
-        ) &
-          string)
-    );
+    | 'ignoreProperties';
   /**
    * Requires the first alphabetical character of a comment to be uppercase, unless it is part of a multi-line textblock.  This rule automatically ignores jscs, jshint, eslint, and istanbul specific comments.
    */
-  requireCapitalizedComments?: (
+  requireCapitalizedComments?:
     | boolean
     | NullRule
     | {
@@ -2258,67 +996,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         inlined?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                /**
-                 * If true, ignore comments in the middle of the code line.
-                 */
-                inlined?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                /**
-                 * If true, ignore comments in the middle of the code line.
-                 */
-                inlined?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              /**
-               * If true, ignore comments in the middle of the code line.
-               */
-              inlined?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires capitalized constructors to to use the new keyword.
    */
-  requireCapitalizedConstructorsNew?: (
+  requireCapitalizedConstructorsNew?:
     | boolean
     | NullRule
     | {
@@ -2329,55 +1011,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires constructors to be capitalized (except for "this")
    */
-  requireCapitalizedConstructors?: (
+  requireCapitalizedConstructors?:
     | boolean
     | NullRule
     | {
@@ -2388,60 +1026,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires commas as last token on a line in lists.
    */
-  requireCommaBeforeLineBreak?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireCommaBeforeLineBreak?: boolean | NullRule;
   /**
    * Requires curly braces after statements.  A value of true will require curly braces for all the necessary keywords:  if, else, for, while do, try, catch, case, and default.
    */
-  requireCurlyBraces?: (
+  requireCurlyBraces?:
     | Keywords2
     | {
         /**
@@ -2457,98 +1050,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | ((
-          | Keywords2
-          | {
-              /**
-               * Array of quoted keywords that would require curly braces.
-               *
-               * @minItems 0
-               */
-              keywords?: string[];
-              /**
-               * Array of quoted keywords to exempt.  Allows not using braces in some instances; ex.  /*allowed:* / if (x) return; /* not allowed* / if (x) i++; given "allExcept": ["return", "continue", "break", ...],
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          unknown[])
-      | (boolean &
-          (
-            | Keywords2
-            | {
-                /**
-                 * Array of quoted keywords that would require curly braces.
-                 *
-                 * @minItems 0
-                 */
-                keywords?: string[];
-                /**
-                 * Array of quoted keywords to exempt.  Allows not using braces in some instances; ex.  /*allowed:* / if (x) return; /* not allowed* / if (x) i++; given "allExcept": ["return", "continue", "break", ...],
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | Keywords2
-            | {
-                /**
-                 * Array of quoted keywords that would require curly braces.
-                 *
-                 * @minItems 0
-                 */
-                keywords?: string[];
-                /**
-                 * Array of quoted keywords to exempt.  Allows not using braces in some instances; ex.  /*allowed:* / if (x) return; /* not allowed* / if (x) i++; given "allExcept": ["return", "continue", "break", ...],
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | Keywords2
-          | {
-              /**
-               * Array of quoted keywords that would require curly braces.
-               *
-               * @minItems 0
-               */
-              keywords?: string[];
-              /**
-               * Array of quoted keywords to exempt.  Allows not using braces in some instances; ex.  /*allowed:* / if (x) return; /* not allowed* / if (x) i++; given "allExcept": ["return", "continue", "break", ...],
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Require a $ before variable names that are jquery assignments.
    */
-  requireDollarBeforejQueryAssignment?: ((true | false | 'ignoreProperties') | NullRule) &
-    (
-      | (boolean & ((true | false | 'ignoreProperties') | NullRule))
-      | (null & ((true | false | 'ignoreProperties') | NullRule))
-      | (((true | false | 'ignoreProperties') | NullRule) & string)
-    );
+  requireDollarBeforejQueryAssignment?: boolean | 'ignoreProperties' | NullRule;
   /**
    * Requires member expressions to use dot notation when possible.
    */
-  requireDotNotation?: (
+  requireDotNotation?:
     | boolean
     | NullRule
     | {
@@ -2560,147 +1070,82 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: (('keywords' | 'snake_case') & string)[];
         [k: string]: unknown | undefined;
       }
-    | ('except_snake_case' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('keywords' | 'snake_case') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('except_snake_case' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('keywords' | 'snake_case') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('except_snake_case' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('keywords' | 'snake_case') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('except_snake_case' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('keywords' | 'snake_case') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('except_snake_case' & string)
-        ) &
-          string)
-    );
+    | ('except_snake_case' & string);
   /**
    * Requires early return in a function.
    */
-  requireEarlyReturn?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireEarlyReturn?: boolean | NullRule;
   /**
    * Requires declaring objects via ES6 enhanced object literals.
    */
-  requireEnhancedObjectLiterals?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireEnhancedObjectLiterals?: boolean | NullRule;
   /**
    * Requires function declarations by disallowing assignment of functions expressions to variables. Function expressions are allowed in all other contexts, including when passed as function arguments or immediately invoked.  Assignment of function expressions to object members is also permitted, since these can't be declared.
    */
-  requireFunctionDeclarations?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireFunctionDeclarations?: boolean | NullRule;
   /**
    * Requires imports to be alphabetized (A-Z).
    */
-  requireImportAlphabetized?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireImportAlphabetized?: boolean | NullRule;
   /**
    * Requires placing the specified keywords on a new line.
    */
-  requireKeywordsOnNewLine?: Keywords & ((Keywords & unknown[]) | (null & Keywords));
+  requireKeywordsOnNewLine?:
+    | (
+        | 'break'
+        | 'case'
+        | 'catch'
+        | 'continue'
+        | 'debugger'
+        | 'default'
+        | 'delete'
+        | 'do'
+        | 'else'
+        | 'finally'
+        | 'for'
+        | 'function'
+        | 'if'
+        | 'in'
+        | 'instanceof'
+        | 'new'
+        | 'return'
+        | 'switch'
+        | 'this'
+        | 'throw'
+        | 'try'
+        | 'typeof'
+        | 'var'
+        | 'void'
+        | 'while'
+        | 'with'
+      )[]
+    | null;
   /**
    * Requires placing line feed after assigning a variable.
    */
-  requireLineBreakAfterVariableAssignment?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireLineBreakAfterVariableAssignment?: boolean | NullRule;
   /**
    * Requires placing line feed at file end.
    */
-  requireLineFeedAtFileEnd?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireLineFeedAtFileEnd?: boolean | NullRule;
   /**
    * Requires function names to match member and property names.  It doesn't affect anonymous functions nor functions assigned to members or properties named with a reserved word.  Assigning to module.exports is also ignored, unless includeModuleExports: true is configured.
    */
-  requireMatchingFunctionName?: (
+  requireMatchingFunctionName?:
     | boolean
     | NullRule
     | {
         includeModuleExports?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                includeModuleExports?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                includeModuleExports?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              includeModuleExports?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires the test, consequent and alternate to be on separate lines when using the ternary operator.
    */
-  requireMultiLineTernary?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireMultiLineTernary?: boolean | NullRule;
   /**
    * Requires multiple `var` declaration.
    */
-  requireMultipleVarDecl?: (
+  requireMultipleVarDecl?:
     | boolean
     | NullRule
     | {
@@ -2712,73 +1157,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: ('require' & string)[];
         [k: string]: unknown | undefined;
       }
-    | ('onevar' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('require' & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('onevar' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('require' & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('onevar' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('require' & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('onevar' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('require' & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('onevar' & string)
-        ) &
-          string)
-    );
+    | 'onevar';
   /**
    * Require unassigned functions to be named inline.
    */
-  requireNamedUnassignedFunctions?: (
+  requireNamedUnassignedFunctions?:
     | boolean
     | NullRule
     | {
@@ -2789,69 +1172,23 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires newline before opening curly brace of all block statements.  If true, always requires newline before curly brace of block statements.  Array specifies block-type keywords after which newlines are required before curly brace.
    */
-  requireNewlineBeforeBlockStatements?: Keywords2 &
-    ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  requireNewlineBeforeBlockStatements?: Keywords | boolean;
   /**
    * Requires use of binary, hexadecimal, and octal literals instead of parseInt.
    */
-  requireNumericLiterals?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireNumericLiterals?: boolean | NullRule;
   /**
    * Requires variable declarations from objects via destructuring.
    */
-  requireObjectDestructuring?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireObjectDestructuring?: boolean | NullRule;
   /**
    * Requires placing object keys on new line.
    */
-  requireObjectKeysOnNewLine?: (
+  requireObjectKeysOnNewLine?:
     | boolean
     | NullRule
     | {
@@ -2862,64 +1199,60 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('sameLine' & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('sameLine' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('sameLine' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('sameLine' & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires operators to appear before line breaks and not after.
    */
-  requireOperatorBeforeLineBreak?: Operators & ((Operators & unknown[]) | (boolean & Operators) | (null & Operators));
+  requireOperatorBeforeLineBreak?:
+    | (
+        | ','
+        | ':'
+        | '?'
+        | '^'
+        | '^='
+        | '|'
+        | '||'
+        | '|='
+        | '&'
+        | '&&'
+        | '&='
+        | '+'
+        | '+='
+        | '-'
+        | '-='
+        | '%'
+        | '%='
+        | '/'
+        | '/='
+        | '*'
+        | '*='
+        | '='
+        | '=='
+        | '==='
+        | '!='
+        | '!=='
+        | '>'
+        | '>>'
+        | '>>>'
+        | '>='
+        | '>>='
+        | '>>>='
+        | '<'
+        | '<<'
+        | '<='
+        | '<<='
+        | null
+      )[]
+    | boolean
+    | null;
   /**
    * Requires an extra blank newline after var declarations, as long as it is not the last expression in the current block.
    */
-  requirePaddingNewLineAfterVariableDeclaration?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requirePaddingNewLineAfterVariableDeclaration?: boolean | NullRule;
   /**
    * Requires newline after blocks.
    */
-  requirePaddingNewLinesAfterBlocks?: (
+  requirePaddingNewLinesAfterBlocks?:
     | boolean
     | NullRule
     | {
@@ -2930,58 +1263,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('inCallExpressions' | 'inNewExpressions' | 'inArrayExpressions' | 'inProperties') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('inCallExpressions' | 'inNewExpressions' | 'inArrayExpressions' | 'inProperties') &
-                  string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('inCallExpressions' | 'inNewExpressions' | 'inArrayExpressions' | 'inProperties') &
-                  string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('inCallExpressions' | 'inNewExpressions' | 'inArrayExpressions' | 'inProperties') &
-                string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires a blank line after 'use strict'; statements.
    */
-  requirePaddingNewLinesAfterUseStrict?: (
+  requirePaddingNewLinesAfterUseStrict?:
     | boolean
     | NullRule
     | {
@@ -2992,65 +1278,19 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('require' & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('require' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('require' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('require' & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires newline before module.exports.
    */
-  requirePaddingNewLinesBeforeExport?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requirePaddingNewLinesBeforeExport?: boolean | NullRule;
   /**
    * Requires an empty line above the specified keywords unless the keyword is the first expression in a block.  If true, specifies that the spacedKeywords found in the utils module require an empty line above it.  Array values indicate keywords that require an empty line above it.
    */
-  requirePaddingNewlinesBeforeKeywords?: Keywords2 &
-    ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  requirePaddingNewlinesBeforeKeywords?: Keywords | boolean;
   /**
    * Requires newline before line comments.
    */
-  requirePaddingNewLinesBeforeLineComments?: (
+  requirePaddingNewLinesBeforeLineComments?:
     | boolean
     | NullRule
     | {
@@ -3061,55 +1301,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('firstAfterCurly' & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('firstAfterCurly' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('firstAfterCurly' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('firstAfterCurly' & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires blocks to begin and end with 2 newlines.
    */
-  requirePaddingNewlinesInBlocks?: (
+  requirePaddingNewlinesInBlocks?:
     | boolean
     | number
     | NullRule
@@ -3129,138 +1325,80 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('conditionals' | 'functions') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                /**
-                 * If true, validates that there is a newline after the opening brace in a block.
-                 */
-                open?: boolean;
-                /**
-                 * If true, validates that there is a newline before the closing brace in a block.
-                 */
-                close?: boolean;
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('conditionals' | 'functions') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (number &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                /**
-                 * If true, validates that there is a newline after the opening brace in a block.
-                 */
-                open?: boolean;
-                /**
-                 * If true, validates that there is a newline before the closing brace in a block.
-                 */
-                close?: boolean;
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('conditionals' | 'functions') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                /**
-                 * If true, validates that there is a newline after the opening brace in a block.
-                 */
-                open?: boolean;
-                /**
-                 * If true, validates that there is a newline before the closing brace in a block.
-                 */
-                close?: boolean;
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('conditionals' | 'functions') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | number
-          | NullRule
-          | {
-              /**
-               * If true, validates that there is a newline after the opening brace in a block.
-               */
-              open?: boolean;
-              /**
-               * If true, validates that there is a newline before the closing brace in a block.
-               */
-              close?: boolean;
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('conditionals' | 'functions') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires newline inside curly braces of all objects.
    */
-  requirePaddingNewLinesInObjects?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requirePaddingNewLinesInObjects?: boolean | NullRule;
   /**
    * Requires parentheses around arrow function expressions with a single parameter.
    */
-  requireParenthesesAroundArrowParam?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireParenthesesAroundArrowParam?: boolean | NullRule;
   /**
    * Requires parentheses around immediately invoked function expressions.
    */
-  requireParenthesesAroundIIFE?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireParenthesesAroundIIFE?: boolean | NullRule;
   /**
    * Requires quoted keys in objects.
    */
-  requireQuotedKeysInObjects?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireQuotedKeysInObjects?: boolean | NullRule;
   /**
    * Requires semicolon after:  var declaration, expression statement, return, throw, break, continue, do-while.
    */
-  requireSemicolons?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSemicolons?: boolean | NullRule;
   /**
    * Require arrow functions to use an expression body when returning a single statement (no block statement, implicit return).
    */
-  requireShorthandArrowFunctions?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireShorthandArrowFunctions?: boolean | NullRule;
   /**
    * Disallows sticking binary operators to the right.
    */
-  requireSpaceAfterBinaryOperators?: Operators & ((Operators & unknown[]) | (boolean & Operators) | (null & Operators));
+  requireSpaceAfterBinaryOperators?:
+    | (
+        | ','
+        | ':'
+        | '?'
+        | '^'
+        | '^='
+        | '|'
+        | '||'
+        | '|='
+        | '&'
+        | '&&'
+        | '&='
+        | '+'
+        | '+='
+        | '-'
+        | '-='
+        | '%'
+        | '%='
+        | '/'
+        | '/='
+        | '*'
+        | '*='
+        | '='
+        | '=='
+        | '==='
+        | '!='
+        | '!=='
+        | '>'
+        | '>>'
+        | '>>>'
+        | '>='
+        | '>>='
+        | '>>>='
+        | '<'
+        | '<<'
+        | '<='
+        | '<<='
+        | null
+      )[]
+    | boolean
+    | null;
   /**
    * Requires space after comma.
    */
-  requireSpaceAfterComma?: (
+  requireSpaceAfterComma?:
     | boolean
     | NullRule
     | {
@@ -3271,59 +1409,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('trailing' & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('trailing' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('trailing' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('trailing' & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires space after the specified keywords.  A value of true will disallow spaces after all possible keywords.
    */
-  requireSpaceAfterKeywords?: Keywords2 & ((Keywords2 & unknown[]) | (boolean & Keywords2) | (null & Keywords2));
+  requireSpaceAfterKeywords?: Keywords | boolean;
   /**
    * Requires that a line comment (`//`) be followed by a space.
    */
-  requireSpaceAfterLineComment?: (
+  requireSpaceAfterLineComment?:
     | boolean
     | NullRule
     | {
@@ -3335,101 +1429,72 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: string[];
         [k: string]: unknown | undefined;
       }
-    | ('allowSlash' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of allowed strings before space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-            | ('allowSlash' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of allowed strings before space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-            | ('allowSlash' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of allowed strings before space.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-          | ('allowSlash' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of allowed strings before space.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-          | ('allowSlash' & string)
-        ) &
-          string)
-    );
+    | ('allowSlash' & string);
   /**
    * Requires space after object keys.
    */
-  requireSpaceAfterObjectKeys?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpaceAfterObjectKeys?: boolean | NullRule;
   /**
    * Disallows sticking unary operators to the right.
    */
-  requireSpaceAfterPrefixUnaryOperators?: UnaryOperators &
-    ((UnaryOperators & unknown[]) | (boolean & UnaryOperators) | (null & UnaryOperators));
+  requireSpaceAfterPrefixUnaryOperators?: ('++' | '--' | '+' | '-' | '~' | '!')[] | boolean | null;
   /**
    * Disallows sticking binary operators to the left.
    */
-  requireSpaceBeforeBinaryOperators?: Operators &
-    ((Operators & unknown[]) | (boolean & Operators) | (null & Operators));
+  requireSpaceBeforeBinaryOperators?:
+    | (
+        | ','
+        | ':'
+        | '?'
+        | '^'
+        | '^='
+        | '|'
+        | '||'
+        | '|='
+        | '&'
+        | '&&'
+        | '&='
+        | '+'
+        | '+='
+        | '-'
+        | '-='
+        | '%'
+        | '%='
+        | '/'
+        | '/='
+        | '*'
+        | '*='
+        | '='
+        | '=='
+        | '==='
+        | '!='
+        | '!=='
+        | '>'
+        | '>>'
+        | '>>>'
+        | '>='
+        | '>>='
+        | '>>>='
+        | '<'
+        | '<<'
+        | '<='
+        | '<<='
+        | null
+      )[]
+    | boolean
+    | null;
   /**
    * Requires space before block statements (for loops, control structures).
    */
-  requireSpaceBeforeBlockStatements?: (boolean | NullRule | number) &
-    (
-      | (boolean & (boolean | NullRule | number))
-      | (null & (boolean | NullRule | number))
-      | (number & (boolean | NullRule | number))
-    );
+  requireSpaceBeforeBlockStatements?: boolean | NullRule | number;
   /**
    * Requires a space before a comma.
    */
-  requireSpaceBeforeComma?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpaceBeforeComma?: boolean | NullRule;
   /**
    * Requires a space before a keyword.
    */
-  requireSpaceBeforeKeywords?: (
+  requireSpaceBeforeKeywords?:
     | BlockKeywords
     | boolean
     | NullRule
@@ -3441,84 +1506,19 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | ((
-          | BlockKeywords
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of allowed strings before space.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          unknown[])
-      | (boolean &
-          (
-            | BlockKeywords
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of allowed strings before space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | BlockKeywords
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of allowed strings before space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | BlockKeywords
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of allowed strings before space.
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires space after object keys.
    */
-  requireSpaceBeforeObjectValues?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpaceBeforeObjectValues?: boolean | NullRule;
   /**
    * Disallows sticking unary operators to the left.
    */
-  requireSpaceBeforePostfixUnaryOperators?: UnaryOperators &
-    ((UnaryOperators & unknown[]) | (boolean & UnaryOperators) | (null & UnaryOperators));
+  requireSpaceBeforePostfixUnaryOperators?: ('++' | '--' | '+' | '-' | '~' | '!')[] | boolean | null;
   /**
    * Ensure there are spaces after argument separators in call expressions.
    */
-  requireSpaceBetweenArguments?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpaceBetweenArguments?: boolean | NullRule;
   /**
    * Requires space before `()` or `{}` in function expressions (both named and anonymous).
    */
@@ -3528,52 +1528,17 @@ export interface JSONSchemaForJSCSConfigurationFiles {
     /**
      * A boolean or an array of quoted exceptions.
      */
-    allExcept?: (boolean | NullRule | ('shorthand' & string)[]) &
-      (
-        | (boolean & (boolean | NullRule | ('shorthand' & string)[]))
-        | (null & (boolean | NullRule | ('shorthand' & string)[]))
-        | ((boolean | NullRule | ('shorthand' & string)[]) & unknown[])
-      );
+    allExcept?: boolean | NullRule | ('shorthand' & string)[];
     [k: string]: unknown | undefined;
-  } & (
-    | (null & {
-        beforeOpeningRoundBrace?: boolean | null;
-        beforeOpeningCurlyBrace?: boolean | null;
-        /**
-         * A boolean or an array of quoted exceptions.
-         */
-        allExcept?: (boolean | NullRule | ('shorthand' & string)[]) &
-          (
-            | (boolean & (boolean | NullRule | ('shorthand' & string)[]))
-            | (null & (boolean | NullRule | ('shorthand' & string)[]))
-            | ((boolean | NullRule | ('shorthand' & string)[]) & unknown[])
-          );
-        [k: string]: unknown | undefined;
-      })
-    | {
-        beforeOpeningRoundBrace?: boolean | null;
-        beforeOpeningCurlyBrace?: boolean | null;
-        /**
-         * A boolean or an array of quoted exceptions.
-         */
-        allExcept?: (boolean | NullRule | ('shorthand' & string)[]) &
-          (
-            | (boolean & (boolean | NullRule | ('shorthand' & string)[]))
-            | (null & (boolean | NullRule | ('shorthand' & string)[]))
-            | ((boolean | NullRule | ('shorthand' & string)[]) & unknown[])
-          );
-        [k: string]: unknown | undefined;
-      }
-  );
+  } | null;
   /**
    * Requires space before `()` in call expressions.
    */
-  requireSpacesInCallExpression?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpacesInCallExpression?: boolean | NullRule;
   /**
    * Requires space before and/or after `?` or `:` in conditional expressions.
    */
-  requireSpacesInConditionalExpression?: (
+  requireSpacesInConditionalExpression?:
     | boolean
     | NullRule
     | {
@@ -3582,66 +1547,39 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         afterConsequent?: boolean;
         beforeAlternate?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                afterTest?: boolean;
-                beforeConsequent?: boolean;
-                afterConsequent?: boolean;
-                beforeAlternate?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                afterTest?: boolean;
-                beforeConsequent?: boolean;
-                afterConsequent?: boolean;
-                beforeAlternate?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              afterTest?: boolean;
-              beforeConsequent?: boolean;
-              afterConsequent?: boolean;
-              beforeAlternate?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires spaces in between `for` statement.
    */
-  requireSpacesInForStatement?: (boolean | NullRule) &
-    ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpacesInForStatement?: boolean | NullRule;
   /**
    * Requires space before `()` or `{}` in function expressions (both named and anonymous) and function declarations.
    */
-  requireSpacesInFunction?: BraceRules & ((null & BraceRules) | BraceRules);
+  requireSpacesInFunction?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Requires space before `()` or `{}` in function declarations.
    */
-  requireSpacesInFunctionDeclaration?: BraceRules & ((null & BraceRules) | BraceRules);
+  requireSpacesInFunctionDeclaration?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Requires space before `()` or `{}` in function expressions (both named and anonymous).
    */
-  requireSpacesInFunctionExpression?: BraceRules & ((null & BraceRules) | BraceRules);
+  requireSpacesInFunctionExpression?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Requires space before and after `*` in generator functions.
    */
-  requireSpacesInGenerator?: (
+  requireSpacesInGenerator?:
     | NullRule
     | {
         /**
@@ -3653,47 +1591,19 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         afterStar?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                /**
-                 * If true, validates that there is a space before `*`.
-                 */
-                beforeStar?: boolean;
-                /**
-                 * If true, validates that there is a space after `*`.
-                 */
-                afterStar?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | NullRule
-          | {
-              /**
-               * If true, validates that there is a space before `*`.
-               */
-              beforeStar?: boolean;
-              /**
-               * If true, validates that there is a space after `*`.
-               */
-              afterStar?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires space before `()` or `{}` in named function expressions.
    */
-  requireSpacesInNamedFunctionExpression?: BraceRules & ((null & BraceRules) | BraceRules);
+  requireSpacesInNamedFunctionExpression?: {
+    beforeOpeningRoundBrace?: boolean | null;
+    beforeOpeningCurlyBrace?: boolean | null;
+    [k: string]: unknown | undefined;
+  } | null;
   /**
    * Requires space after opening array square bracket and before closing.  Reports only on arrays, not on property accessors.  Use requireSpacesInsideBrackets to report on all brackets.
    */
-  requireSpacesInsideArrayBrackets?: (
+  requireSpacesInsideArrayBrackets?:
     | NullRule
     | {
         /**
@@ -3704,55 +1614,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: (('{' | '}' | '[' | ']') & string)[];
         [k: string]: unknown | undefined;
       }
-    | (('all' | 'allButNested') & string)
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | (('all' | 'allButNested') & string)
-          ))
-      | (
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('all' | 'allButNested') & string)
-        )
-      | ((
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('all' | 'allButNested') & string)
-        ) &
-          string)
-    );
+    | (('all' | 'allButNested') & string);
   /**
    * Requires space after opening square bracket and before closing.  Reports on all on brackets, even on property accessors.  Use requireSpacesInsideArrayBrackets to exclude property accessors.
    */
-  requireSpacesInsideBrackets?: (
+  requireSpacesInsideBrackets?:
     | boolean
     | NullRule
     | {
@@ -3763,55 +1629,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('{' | '}' | '[' | ']') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens that can occur after an opening square bracket or before a closing square bracket without a space.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires space after opening object curly brace and before closing.
    */
-  requireSpacesInsideObjectBrackets?: (
+  requireSpacesInsideObjectBrackets?:
     | NullRule
     | {
         /**
@@ -3822,55 +1644,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
         [k: string]: unknown | undefined;
       }
-    | (('all' | 'allButNested') & string)
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                /**
-                 * Array of quoted tokens that can occur after an opening object brace or before a closing object brace without a space.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | (('all' | 'allButNested') & string)
-          ))
-      | (
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens that can occur after an opening object brace or before a closing object brace without a space.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('all' | 'allButNested') & string)
-        )
-      | ((
-          | NullRule
-          | {
-              /**
-               * Array of quoted tokens that can occur after an opening object brace or before a closing object brace without a space.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('(' | ')' | '{' | '}' | '[' | ']') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('all' | 'allButNested') & string)
-        ) &
-          string)
-    );
+    | (('all' | 'allButNested') & string);
   /**
    * Requires space after opening round bracket and before closing.
    */
-  requireSpacesInsideParentheses?: (
+  requireSpacesInsideParentheses?:
     | NullRule
     | {
         all?: boolean;
@@ -3883,61 +1661,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         except?: ((('(' | ')' | '{' | '}' | '[' | ']') | string) & string)[];
         [k: string]: unknown | undefined;
       }
-    | (('all' | 'allButNested') & string)
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                all?: boolean;
-                ignoreParenthesizedExpression?: boolean;
-                /**
-                 * Array of quoted tokens that can occur after an opening bracket or before a closing bracket without a space.
-                 *
-                 * @minItems 0
-                 */
-                except?: ((('(' | ')' | '{' | '}' | '[' | ']') | string) & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | (('all' | 'allButNested') & string)
-          ))
-      | (
-          | NullRule
-          | {
-              all?: boolean;
-              ignoreParenthesizedExpression?: boolean;
-              /**
-               * Array of quoted tokens that can occur after an opening bracket or before a closing bracket without a space.
-               *
-               * @minItems 0
-               */
-              except?: ((('(' | ')' | '{' | '}' | '[' | ']') | string) & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('all' | 'allButNested') & string)
-        )
-      | ((
-          | NullRule
-          | {
-              all?: boolean;
-              ignoreParenthesizedExpression?: boolean;
-              /**
-               * Array of quoted tokens that can occur after an opening bracket or before a closing bracket without a space.
-               *
-               * @minItems 0
-               */
-              except?: ((('(' | ')' | '{' | '}' | '[' | ']') | string) & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | (('all' | 'allButNested') & string)
-        ) &
-          string)
-    );
+    | (('all' | 'allButNested') & string);
   /**
    * Requires space after opening and before closing grouping parentheses.
    */
-  requireSpacesInsideParenthesizedExpression?: (
+  requireSpacesInsideParenthesizedExpression?:
     | boolean
     | NullRule
     | {
@@ -3948,59 +1676,15 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('{' | '}' | 'function') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('{' | '}' | 'function') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('{' | '}' | 'function') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('{' | '}' | 'function') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Disallows using `.apply` in favor of the spread operator.
    */
-  requireSpread?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireSpread?: boolean | NullRule;
   /**
    * Requires the use of template strings instead of string concatenation.
    */
-  requireTemplateStrings?: (
+  requireTemplateStrings?:
     | boolean
     | NullRule
     | {
@@ -4011,55 +1695,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: ('stringConcatenation' & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('stringConcatenation' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: ('stringConcatenation' & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: ('stringConcatenation' & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires an extra comma following the final element of an array or object literal.
    */
-  requireTrailingComma?: (
+  requireTrailingComma?:
     | boolean
     | NullRule
     | {
@@ -4072,83 +1712,23 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         ignoreSingleLine?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * If true, allows single property objects and single element arrays to not require a trailing comma.
-                 */
-                ignoreSingleValue?: boolean;
-                /**
-                 * If true, allows objects and arrays on a single line to not require a trailing comma.
-                 */
-                ignoreSingleLine?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * If true, allows single property objects and single element arrays to not require a trailing comma.
-                 */
-                ignoreSingleValue?: boolean;
-                /**
-                 * If true, allows objects and arrays on a single line to not require a trailing comma.
-                 */
-                ignoreSingleLine?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * If true, allows single property objects and single element arrays to not require a trailing comma.
-               */
-              ignoreSingleValue?: boolean;
-              /**
-               * If true, allows objects and arrays on a single line to not require a trailing comma.
-               */
-              ignoreSingleLine?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Requires `var` declaration to be on the top of an enclosing scope.
    */
-  requireVarDeclFirst?: (boolean | NullRule) & ((boolean & (boolean | NullRule)) | (null & (boolean | NullRule)));
+  requireVarDeclFirst?: boolean | NullRule;
   /**
    * Requires the variable to be the right hand operator when doing a boolean comparison.  An array of quoted operators can be supplied to indicate which operators requires yoda conditions.
    */
-  requireYodaConditions?: (EqualityOperators | boolean | NullRule) &
-    (
-      | ((EqualityOperators | boolean | NullRule) & unknown[])
-      | (boolean & (EqualityOperators | boolean | NullRule))
-      | (null & (EqualityOperators | boolean | NullRule))
-    );
+  requireYodaConditions?: EqualityOperators | boolean | NullRule;
   /**
    * Option to check `var that = this` expressions.
    */
-  safeContextKeyword?: (string[] | NullRule | string) &
-    (
-      | ((string[] | NullRule | string) & unknown[])
-      | (null & (string[] | NullRule | string))
-      | ((string[] | NullRule | string) & string)
-    );
+  safeContextKeyword?: string[] | NullRule | string;
   /**
    * Validates proper alignment of function parameters.
    */
-  validateAlignedFunctionParameters?: (
+  validateAlignedFunctionParameters?:
     | boolean
     | NullRule
     | {
@@ -4161,61 +1741,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         lineBreakBeforeClosingBrace?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * If true, specifies that the first function parameter must not be on the same line as the opening parenthesis `(` of the function parameters list.
-                 */
-                lineBreakAfterOpeningBrace?: boolean;
-                /**
-                 * If true, specifies that the last function parameter must not be on the same line as the closing parenthesis `)` of the function parameters list.
-                 */
-                lineBreakBeforeClosingBrace?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * If true, specifies that the first function parameter must not be on the same line as the opening parenthesis `(` of the function parameters list.
-                 */
-                lineBreakAfterOpeningBrace?: boolean;
-                /**
-                 * If true, specifies that the last function parameter must not be on the same line as the closing parenthesis `)` of the function parameters list.
-                 */
-                lineBreakBeforeClosingBrace?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * If true, specifies that the first function parameter must not be on the same line as the opening parenthesis `(` of the function parameters list.
-               */
-              lineBreakAfterOpeningBrace?: boolean;
-              /**
-               * If true, specifies that the last function parameter must not be on the same line as the closing parenthesis `)` of the function parameters list.
-               */
-              lineBreakBeforeClosingBrace?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * This rule is for validating the positioning of line comments.  Block comments are ignored.  Comments that start with the following keywords are also ignored:  `eslint`, `jshint`, `jslint`, `istanbul`, `global`, `exported`, `jscs`, `falls through` eg. // jshint strict: true
    */
-  validateCommentPosition?: (
+  validateCommentPosition?:
     | NullRule
     | {
         position?: 'above' | 'beside';
@@ -4226,45 +1756,16 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: string[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                position?: 'above' | 'beside';
-                /**
-                 * Array of quoted exceptions (comments that start with these values will be excepted).
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: string[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | NullRule
-          | {
-              position?: 'above' | 'beside';
-              /**
-               * Array of quoted exceptions (comments that start with these values will be excepted).
-               *
-               * @minItems 0
-               */
-              allExcept?: string[];
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Validates indentation for switch statements and block statements.
    */
-  validateIndentation?: (
+  validateIndentation?:
+    | string
     | number
     | NullRule
     | {
-        value: (number | string) & ((number & (number | string)) | ((number | string) & string));
+        value: number | string;
         /**
          * Deprecated.  Require empty lines to be indented.
          */
@@ -4276,89 +1777,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         allExcept?: (('comments' | 'emptyLines') & string)[];
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (number &
-          (
-            | number
-            | NullRule
-            | {
-                value: (number | string) & ((number & (number | string)) | ((number | string) & string));
-                /**
-                 * Deprecated.  Require empty lines to be indented.
-                 */
-                includeEmptyLines?: boolean;
-                /**
-                 * Array of quoted exceptions.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('comments' | 'emptyLines') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | number
-            | NullRule
-            | {
-                value: (number | string) & ((number & (number | string)) | ((number | string) & string));
-                /**
-                 * Deprecated.  Require empty lines to be indented.
-                 */
-                includeEmptyLines?: boolean;
-                /**
-                 * Array of quoted exceptions.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('comments' | 'emptyLines') & string)[];
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | number
-          | NullRule
-          | {
-              value: (number | string) & ((number & (number | string)) | ((number | string) & string));
-              /**
-               * Deprecated.  Require empty lines to be indented.
-               */
-              includeEmptyLines?: boolean;
-              /**
-               * Array of quoted exceptions.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('comments' | 'emptyLines') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        )
-      | ((
-          | number
-          | NullRule
-          | {
-              value: (number | string) & ((number & (number | string)) | ((number | string) & string));
-              /**
-               * Deprecated.  Require empty lines to be indented.
-               */
-              includeEmptyLines?: boolean;
-              /**
-               * Array of quoted exceptions.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('comments' | 'emptyLines') & string)[];
-              [k: string]: unknown | undefined;
-            }
-        ) &
-          string)
-    );
+      };
   /**
    * Option to check line break characters.
    */
-  validateLineBreaks?: (
+  validateLineBreaks?:
     | NullRule
     | {
         character?: 'CR' | 'LF' | 'CRLF';
@@ -4368,52 +1791,11 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         reportOncePerFile?: boolean;
         [k: string]: unknown | undefined;
       }
-    | ('CR' | 'LF' | 'CRLF')
-  ) &
-    (
-      | (null &
-          (
-            | NullRule
-            | {
-                character?: 'CR' | 'LF' | 'CRLF';
-                /**
-                 * If true, specifies that validation for the file should stop running upon encountering the first rule violation and return the details of that violation in the report.
-                 */
-                reportOncePerFile?: boolean;
-                [k: string]: unknown | undefined;
-              }
-            | ('CR' | 'LF' | 'CRLF')
-          ))
-      | (
-          | NullRule
-          | {
-              character?: 'CR' | 'LF' | 'CRLF';
-              /**
-               * If true, specifies that validation for the file should stop running upon encountering the first rule violation and return the details of that violation in the report.
-               */
-              reportOncePerFile?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | ('CR' | 'LF' | 'CRLF')
-        )
-      | ((
-          | NullRule
-          | {
-              character?: 'CR' | 'LF' | 'CRLF';
-              /**
-               * If true, specifies that validation for the file should stop running upon encountering the first rule violation and return the details of that violation in the report.
-               */
-              reportOncePerFile?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | ('CR' | 'LF' | 'CRLF')
-        ) &
-          string)
-    );
+    | ('CR' | 'LF' | 'CRLF');
   /**
    * Requires each element in array on a single line when array length is more than passed maximum number or array fills more than one line.
    */
-  validateNewlineAfterArrayElements?: (
+  validateNewlineAfterArrayElements?:
     | boolean
     | number
     | NullRule
@@ -4424,105 +1806,22 @@ export interface JSONSchemaForJSCSConfigurationFiles {
          */
         ignoreBrackets?: boolean;
         [k: string]: unknown | undefined;
-      }
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                maximum?: number;
-                /**
-                 * If true, specifies that the `[` and `]` brackets can be placed on the same line as the array elements.
-                 */
-                ignoreBrackets?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (number &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                maximum?: number;
-                /**
-                 * If true, specifies that the `[` and `]` brackets can be placed on the same line as the array elements.
-                 */
-                ignoreBrackets?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (null &
-          (
-            | boolean
-            | number
-            | NullRule
-            | {
-                maximum?: number;
-                /**
-                 * If true, specifies that the `[` and `]` brackets can be placed on the same line as the array elements.
-                 */
-                ignoreBrackets?: boolean;
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | (
-          | boolean
-          | number
-          | NullRule
-          | {
-              maximum?: number;
-              /**
-               * If true, specifies that the `[` and `]` brackets can be placed on the same line as the array elements.
-               */
-              ignoreBrackets?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
-    );
+      };
   /**
    * Validates the order in object keys.
    */
-  validateOrderInObjectKeys?: (
+  validateOrderInObjectKeys?:
     | boolean
     | NullRule
-    | (('asc' | 'asc-insensitive' | 'asc-natural' | 'desc' | 'desc-insensitive' | 'desc-natural') & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | (('asc' | 'asc-insensitive' | 'asc-natural' | 'desc' | 'desc-insensitive' | 'desc-natural') & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | (('asc' | 'asc-insensitive' | 'asc-natural' | 'desc' | 'desc-insensitive' | 'desc-natural') & string)
-          ))
-      | ((
-          | boolean
-          | NullRule
-          | (('asc' | 'asc-insensitive' | 'asc-natural' | 'desc' | 'desc-insensitive' | 'desc-natural') & string)
-        ) &
-          string)
-    );
+    | (('asc' | 'asc-insensitive' | 'asc-natural' | 'desc' | 'desc-insensitive' | 'desc-natural') & string);
   /**
    * Enable validation of separators between function parameters.  Will ignore newlines.
    */
-  validateParameterSeparator?: (NullRule | ((',' | ', ' | ' ,' | ' , ') & string)) &
-    (
-      | (null & (NullRule | ((',' | ', ' | ' ,' | ' , ') & string)))
-      | ((NullRule | ((',' | ', ' | ' ,' | ' , ') & string)) & string)
-    );
+  validateParameterSeparator?: NullRule | ((',' | ', ' | ' ,' | ' , ') & string);
   /**
    * Requires all quote marks to be either the supplied value, or consistent if `true`.
    */
-  validateQuoteMarks?: (
+  validateQuoteMarks?:
     | boolean
     | NullRule
     | {
@@ -4533,100 +1832,14 @@ export interface JSONSchemaForJSCSConfigurationFiles {
         /**
          * The same effect as the non-object values.
          */
-        mark?: '' & string;
+        mark?: ('"' | "'") & string;
         /**
          * Ignore JSX nodes.
          */
         ignoreJSX?: boolean;
         [k: string]: unknown | undefined;
       }
-    | (('"' | "'") & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Allow the "other" quote mark to be used, but only to avoid having to escape.
-                 */
-                escape?: boolean;
-                /**
-                 * The same effect as the non-object values.
-                 */
-                mark?: '' & string;
-                /**
-                 * Ignore JSX nodes.
-                 */
-                ignoreJSX?: boolean;
-                [k: string]: unknown | undefined;
-              }
-            | (('"' | "'") & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Allow the "other" quote mark to be used, but only to avoid having to escape.
-                 */
-                escape?: boolean;
-                /**
-                 * The same effect as the non-object values.
-                 */
-                mark?: '' & string;
-                /**
-                 * Ignore JSX nodes.
-                 */
-                ignoreJSX?: boolean;
-                [k: string]: unknown | undefined;
-              }
-            | (('"' | "'") & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Allow the "other" quote mark to be used, but only to avoid having to escape.
-               */
-              escape?: boolean;
-              /**
-               * The same effect as the non-object values.
-               */
-              mark?: '' & string;
-              /**
-               * Ignore JSX nodes.
-               */
-              ignoreJSX?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | (('"' | "'") & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Allow the "other" quote mark to be used, but only to avoid having to escape.
-               */
-              escape?: boolean;
-              /**
-               * The same effect as the non-object values.
-               */
-              mark?: '' & string;
-              /**
-               * Ignore JSX nodes.
-               */
-              ignoreJSX?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | (('"' | "'") & string)
-        ) &
-          string)
-    );
+    | (('"' | "'") & string);
   [k: string]: unknown | undefined;
 }
 /**
@@ -4636,7 +1849,7 @@ export interface JsDoc {
   /**
    * Checks whether tag names are valid.
    */
-  checkAnnotations?: (
+  checkAnnotations?:
     | boolean
     | NullRule
     | {
@@ -4645,77 +1858,11 @@ export interface JsDoc {
          * Add custom tags with the extra field.  The extra field should contain tags in keys with true, false, or "some" for the values.
          */
         extra?: {
-          [k: string]: (true | false | 'some') | undefined;
+          [k: string]: (boolean | 'some') | undefined;
         };
         [k: string]: unknown | undefined;
       }
-    | (('closurecompiler' | 'jsdoc3' | 'jsduck5') & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                preset?: ('closurecompiler' | 'jsdoc3' | 'jsduck5') & string;
-                /**
-                 * Add custom tags with the extra field.  The extra field should contain tags in keys with true, false, or "some" for the values.
-                 */
-                extra?: {
-                  [k: string]: (true | false | 'some') | undefined;
-                };
-                [k: string]: unknown | undefined;
-              }
-            | (('closurecompiler' | 'jsdoc3' | 'jsduck5') & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                preset?: ('closurecompiler' | 'jsdoc3' | 'jsduck5') & string;
-                /**
-                 * Add custom tags with the extra field.  The extra field should contain tags in keys with true, false, or "some" for the values.
-                 */
-                extra?: {
-                  [k: string]: (true | false | 'some') | undefined;
-                };
-                [k: string]: unknown | undefined;
-              }
-            | (('closurecompiler' | 'jsdoc3' | 'jsduck5') & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              preset?: ('closurecompiler' | 'jsdoc3' | 'jsduck5') & string;
-              /**
-               * Add custom tags with the extra field.  The extra field should contain tags in keys with true, false, or "some" for the values.
-               */
-              extra?: {
-                [k: string]: (true | false | 'some') | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | (('closurecompiler' | 'jsdoc3' | 'jsduck5') & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              preset?: ('closurecompiler' | 'jsdoc3' | 'jsduck5') & string;
-              /**
-               * Add custom tags with the extra field.  The extra field should contain tags in keys with true, false, or "some" for the values.
-               */
-              extra?: {
-                [k: string]: (true | false | 'some') | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | (('closurecompiler' | 'jsdoc3' | 'jsduck5') & string)
-        ) &
-          string)
-    );
+    | (('closurecompiler' | 'jsdoc3' | 'jsduck5') & string);
   /**
    * Checks whether all parameters are documented.
    */
@@ -4747,34 +1894,19 @@ export interface JsDoc {
   /**
    * Reports invalid types for bunch of tags.
    */
-  checkTypes?: (boolean | NullRule | (('strictNativeCase' | 'capitalizedNativeCase') & string)) &
-    (
-      | (boolean & (boolean | NullRule | (('strictNativeCase' | 'capitalizedNativeCase') & string)))
-      | (null & (boolean | NullRule | (('strictNativeCase' | 'capitalizedNativeCase') & string)))
-      | ((boolean | NullRule | (('strictNativeCase' | 'capitalizedNativeCase') & string)) & string)
-    );
+  checkTypes?: boolean | NullRule | (('strictNativeCase' | 'capitalizedNativeCase') & string);
   /**
    * Reports redundant access declarations.
    */
-  checkRedundantAccess?: (boolean | NullRule | (('enforceLeadingUnderscore' | 'enforceTrailingUnderscore') & string)) &
-    (
-      | (boolean & (boolean | NullRule | (('enforceLeadingUnderscore' | 'enforceTrailingUnderscore') & string)))
-      | (null & (boolean | NullRule | (('enforceLeadingUnderscore' | 'enforceTrailingUnderscore') & string)))
-      | ((boolean | NullRule | (('enforceLeadingUnderscore' | 'enforceTrailingUnderscore') & string)) & string)
-    );
+  checkRedundantAccess?: boolean | NullRule | (('enforceLeadingUnderscore' | 'enforceTrailingUnderscore') & string);
   /**
    * Checks whether access declaration is set for _underscored function names.  Ignores a bunch of popular identifiers: __filename, __dirname, __proto__, __defineGetter__, super_, __constructor, etc.
    */
-  leadingUnderscoreAccess?: (boolean | NullRule | (('private' | 'protected') & string)) &
-    (
-      | (boolean & (boolean | NullRule | (('private' | 'protected') & string)))
-      | (null & (boolean | NullRule | (('private' | 'protected') & string)))
-      | ((boolean | NullRule | (('private' | 'protected') & string)) & string)
-    );
+  leadingUnderscoreAccess?: boolean | NullRule | (('private' | 'protected') & string);
   /**
    * Checks whether jsdoc block exists.
    */
-  enforceExistence?: (
+  enforceExistence?:
     | boolean
     | NullRule
     | {
@@ -4786,69 +1918,7 @@ export interface JsDoc {
         allExcept?: (('expressions' | 'exports' | 'paramless-procedures') & string)[];
         [k: string]: unknown | undefined;
       }
-    | ('exceptExports' & string)
-  ) &
-    (
-      | (boolean &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('expressions' | 'exports' | 'paramless-procedures') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('exceptExports' & string)
-          ))
-      | (null &
-          (
-            | boolean
-            | NullRule
-            | {
-                /**
-                 * Array of quoted keywords to exempt.
-                 *
-                 * @minItems 0
-                 */
-                allExcept?: (('expressions' | 'exports' | 'paramless-procedures') & string)[];
-                [k: string]: unknown | undefined;
-              }
-            | ('exceptExports' & string)
-          ))
-      | (
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('expressions' | 'exports' | 'paramless-procedures') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('exceptExports' & string)
-        )
-      | ((
-          | boolean
-          | NullRule
-          | {
-              /**
-               * Array of quoted keywords to exempt.
-               *
-               * @minItems 0
-               */
-              allExcept?: (('expressions' | 'exports' | 'paramless-procedures') & string)[];
-              [k: string]: unknown | undefined;
-            }
-          | ('exceptExports' & string)
-        ) &
-          string)
-    );
+    | ('exceptExports' & string);
   /**
    * Checks whether a jsdoc param description has a hyphen before it (checks for -).
    */

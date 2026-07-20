@@ -378,6 +378,10 @@ export interface HttpsJsonSchemastoreOrgPartialMypyJson {
    * Enable a preview of incomplete features that are not yet enabled by default by the current version of mypy. Note that it is not guaranteed that all features will be ultimately enabled by default.
    */
   enable_incomplete_feature?: string | string[];
+  /**
+   * This enables fast Rust-based parser that parses directly to mypy AST. It will become the default parser in one of the next mypy releases.
+   */
+  native_parser?: boolean;
   overrides?: {
     module: string | [string, ...string[]];
     /**
