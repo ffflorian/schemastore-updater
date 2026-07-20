@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/ffflorian/schemastore-updater/compare/v3.5.4...v3.6.0) (2026-07-20)
+
+
+### Features
+
+* **publisher:** switch to npm stage publish with OIDC-first, token-fallback auth ([#1570](https://github.com/ffflorian/schemastore-updater/issues/1570)) ([892f82f](https://github.com/ffflorian/schemastore-updater/commit/892f82ff7364518b1e2478d495f39d9f3afd0c4c))
+
 ## [3.5.4](https://github.com/ffflorian/schemastore-updater/compare/v3.5.3...v3.5.4) (2026-07-02)
 
 
