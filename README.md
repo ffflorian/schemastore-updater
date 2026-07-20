@@ -54,9 +54,11 @@ yarn publish:schemas
 
 Publishing attempts every generated schema package under `schemas/`. If one package fails to publish, the remaining packages are still attempted. Publish failures are written to `publish-errors.log`.
 
+Each package version is submitted with `npm stage publish` rather than published live immediately. A maintainer must separately approve each staged version with 2FA (`npm stage approve`, or via the npmjs.com UI) before it becomes publicly installable. Already-trusted packages authenticate via npm OIDC Trusted Publishing (no npm token involved); an `NPM_TOKEN` secret is used only as a fallback for schemas that have never been published before, since npm requires a package to already exist before a Trusted Publisher can be configured for it.
+
 Schemas listed in `schema-blocklist.json` are always skipped from publishing.
 
-The publish workflow opens a pull request with an updated `schema-lock.json` file after publish attempts so published package versions are tracked in git.
+The publish workflow opens a pull request with an updated `schema-lock.json` file after publish attempts so staged/published package versions are tracked in git.
 
 All published schemastore packages are visible under the [@schemastore](https://www.npmjs.com/org/schemastore) npm organization page.
 

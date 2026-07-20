@@ -52,7 +52,7 @@ describe('publishGeneratedPackages', () => {
 
     const publishSummary = await readFile(path.join(workspaceDirectory, 'publish-summary.md'), 'utf-8');
     expect(publishSummary).toContain('## Publish Summary');
-    expect(publishSummary).toContain('**Published:** 2');
+    expect(publishSummary).toContain('**Staged (pending 2FA approval):** 2');
     expect(publishSummary).toContain('`@schemastore/alpha@1.0.0`');
     expect(publishSummary).toContain('`@schemastore/beta@2.0.0`');
   });

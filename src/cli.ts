@@ -55,7 +55,7 @@ async function main(): Promise<void> {
 
   program
     .command('mark-published <schema>')
-    .description(`Set the published flag to true for a schema entry in ${LOCK_FILE_NAME}`)
+    .description(`Set the published/staged flag to true for a schema entry in ${LOCK_FILE_NAME}`)
     .action((schema: string) => runMarkPublishedCommand(schema));
 
   if (process.argv.length <= 2) {
@@ -113,15 +113,17 @@ async function runPublishCommand(options: PublishCommandOptions): Promise<void> 
     ...(options.logFile ? {logFilePath: options.logFile} : {}),
   });
 
-  console.info(stats.dryRun ? '\nDry run complete.' : '\nPublish complete.');
+  console.info(
+    stats.dryRun ? '\nDry run complete.' : '\nStaging complete. Versions are pending 2FA approval on npmjs.com before they go live.'
+  );
   console.info(`Attempted: ${stats.attempted}`);
-  console.info(`Published: ${stats.published}`);
+  console.info(`Staged: ${stats.published}`);
   console.info(`Skipped: ${stats.skipped}`);
   console.info(`Failed: ${stats.failed}`);
   console.info(`Log file: ${stats.logFilePath}`);
 
   if (stats.publishedPackages.length > 0) {
-    console.info(`\nPublished packages:\n${stats.publishedPackages.map(label => `  - ${label}`).join('\n')}`);
+    console.info(`\nStaged packages:\n${stats.publishedPackages.map(label => `  - ${label}`).join('\n')}`);
   }
 
   if (stats.failedPackages.length > 0) {

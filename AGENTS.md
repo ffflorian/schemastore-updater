@@ -137,10 +137,14 @@ Each generated schema package must contain:
 - npm publishing is defined in `.github/workflows/publish_generated_packages.yml`.
 - Publishing runs only on pushes to the default branch.
 - Publishing is additionally gated to commits whose message starts with `chore(schemas): weekly schema update`.
-- CI publishing uses `yarn publish:schemas` and should rely on an `NPM_TOKEN` secret.
-- `yarn publish:schemas` must skip schema packages whose matching `schema-lock.json` entry already has `published: true`.
+- CI publishing uses `yarn publish:schemas`, which runs `npm stage publish` (not `npm publish`) per package.
+- Authentication is npm OIDC Trusted Publishing (workflow has `permissions: id-token: write`); no npm token is stored or needed for packages that already have a Trusted Publisher configured on npmjs.com.
+- An `NPM_TOKEN` secret exists solely as a fallback for packages with no Trusted Publisher configured yet (schemas that have never been published before - npm requires a package to already exist before a Trusted Publisher can be registered for it). It is only used when the OIDC-only attempt fails, and it can never bypass 2FA since `npm stage publish` never requires 2FA regardless of auth method.
+- Every staged version requires a maintainer to separately approve it with 2FA on npmjs.com (or `npm stage approve`) before it becomes publicly installable. This is intentional, not a bug.
+- A package's npm Trusted Publisher configuration must permit the `--allow-stage-publish` action for CI's `npm stage publish` calls to succeed.
+- `yarn publish:schemas` must skip schema packages whose matching `schema-lock.json` entry already has `published: true` (meaning "already staged or published" - see the `LockEntry.published` doc-comment in `src/types.ts`).
 - The publish step must continue through per-package failures so successful publishes still update lock state.
-- After publish attempts, the workflow opens a pull request with the updated `schema-lock.json` so published flags stay in sync with git history, then marks the job as failed when publish attempts had errors.
+- After publish attempts, the workflow opens a pull request with the updated `schema-lock.json` so published/staged flags stay in sync with git history, then marks the job as failed when publish attempts had errors.
 - The publish PR body is dynamically composed from static header text plus `publish-summary.md` (listing published and failed packages).
 - `publishGeneratedPackages()` returns `PublishStats` which includes `publishedPackages` and `failedPackages` arrays listing the package labels.
 - `publishGeneratedPackages()` writes `publish-summary.md` with a markdown summary of results (used by the publish workflow PR body).
