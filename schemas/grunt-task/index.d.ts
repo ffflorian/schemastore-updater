@@ -9,9 +9,6 @@ export interface JSONSchemaForAnyGruntTask {
 export interface FileFormat {
   files?:
     | {
-        /**
-         * @minItems 1
-         */
         [k: string]: ([string, ...string[]] | string) | undefined;
       }
     | Dynamic[];

@@ -68,11 +68,11 @@ export interface JSONSchemaForHTMLHintConfigurationFiles {
   /**
    * The script tag cannot be used in head.
    */
-  'head-script-disabled'?: false | true | 'allow-non-blocking';
+  'head-script-disabled'?: boolean | 'allow-non-blocking';
   /**
    * Href must be absolute or relative.
    */
-  'href-abs-or-rel'?: false | 'abs' | 'rel';
+  'href-abs-or-rel'?: false | ('abs' | 'rel');
   /**
    * The lang attribute of an <html> element must be present and should be valid.
    */
@@ -84,7 +84,7 @@ export interface JSONSchemaForHTMLHintConfigurationFiles {
   /**
    * Id and class value must meet some rules: underline, dash, hump.
    */
-  'id-class-value'?: false | 'underline' | 'dash' | 'hump';
+  'id-class-value'?: false | ('underline' | 'dash' | 'hump');
   /**
    * ID attributes must be unique in the document.
    */
@@ -120,7 +120,7 @@ export interface JSONSchemaForHTMLHintConfigurationFiles {
   /**
    * Spaces and tabs cannot be mixed in front of line.
    */
-  'space-tab-mixed-disabled'?: false | 'space' | 'tab';
+  'space-tab-mixed-disabled'?: false | ('space' | 'tab');
   /**
    * Special characters must be escaped.
    */

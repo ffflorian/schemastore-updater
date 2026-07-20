@@ -34,7 +34,7 @@ export interface Options {
   /**
    * Do not include superfluous whitespace characters and line terminators. When set to "auto" compact is set to true on input sizes of >500KB.
    */
-  compact?: 'auto' | true | false;
+  compact?: ['auto'] | boolean;
   /**
    * A path to a .babelrc file to extend
    */
@@ -88,8 +88,6 @@ export interface Options {
    */
   plugins?: (
     | string
-    | []
-    | [string]
     | [
         string,
         {
@@ -102,8 +100,6 @@ export interface Options {
    */
   presets?: (
     | string
-    | []
-    | [string]
     | [
         string,
         {
@@ -122,7 +118,7 @@ export interface Options {
   /**
    * If truthy, adds a map property to returned output. If set to "inline", a comment with a sourceMappingURL directive is added to the bottom of the returned code. If set to "both" then a map property is returned as well as a source map comment appended.
    */
-  sourceMaps?: 'both' | 'inline' | true | false;
+  sourceMaps?: ('both' | 'inline') | boolean;
   /**
    * Set file on returned source map. (defaults to "filenameRelative")
    */

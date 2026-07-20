@@ -148,8 +148,8 @@ export interface TitleWithImage {
   type: 'image';
   url: ImgUrl;
   style?: {
-    width?: number;
-    height?: number;
+    width: number;
+    height: number;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;

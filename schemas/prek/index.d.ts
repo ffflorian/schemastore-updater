@@ -1,6 +1,10 @@
 /* eslint-disable */
 
 /**
+ * A configuration value that accepts either one string or a list of strings.
+ */
+export type StringOrList = string | string[];
+/**
  * A repository of hooks, which can be remote, local, meta, or builtin.
  */
 export type Repo = RemoteRepo | LocalRepo | MetaRepo | BuiltinRepo;
@@ -83,6 +87,7 @@ export interface PrekToml {
     lua?: string;
     node?: string;
     perl?: string;
+    php?: string;
     pygrep?: string;
     python?: string;
     r?: string;
@@ -146,6 +151,20 @@ export interface PrekToml {
  */
 export interface UpdateOptions {
   cooldown_days?: number;
+  freeze?: boolean;
+  include_tags?: StringOrList;
+  exclude_tags?: StringOrList;
+  repos?: {
+    [k: string]: RepoTagFilterOptions | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+/**
+ * Overrides tag selection for one repository during `prek update`.
+ */
+export interface RepoTagFilterOptions {
+  include_tags?: StringOrList;
+  exclude_tags?: StringOrList;
   [k: string]: unknown | undefined;
 }
 export interface RemoteRepo {
@@ -194,6 +213,7 @@ export interface RemoteHook {
     | 'lua'
     | 'node'
     | 'perl'
+    | 'php'
     | 'pygrep'
     | 'python'
     | 'r'
@@ -368,6 +388,7 @@ export interface LocalHook {
     | 'lua'
     | 'node'
     | 'perl'
+    | 'php'
     | 'pygrep'
     | 'python'
     | 'r'
@@ -790,5 +811,11 @@ export interface BuiltinHook {
  */
 export interface UpdateOptions1 {
   cooldown_days?: number;
+  freeze?: boolean;
+  include_tags?: StringOrList;
+  exclude_tags?: StringOrList;
+  repos?: {
+    [k: string]: RepoTagFilterOptions | undefined;
+  };
   [k: string]: unknown | undefined;
 }

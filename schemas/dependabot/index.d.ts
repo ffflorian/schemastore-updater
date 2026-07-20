@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 export interface DependabotConfigurationFile {
-  version: number;
+  version: 1;
   update_configs: {
     /**
      * What package manager to use

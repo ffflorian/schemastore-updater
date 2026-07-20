@@ -659,6 +659,14 @@ export interface StaticRoutes {
    * Route Type
    */
   type: 'uri' | 'staticText';
+  /**
+   * Page, File or URL
+   */
+  source?: string;
+  /**
+   * Static Text
+   */
+  content?: string;
 }
 export interface Redirects {
   /**

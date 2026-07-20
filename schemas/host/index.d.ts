@@ -177,9 +177,7 @@ export interface Singleton {
   /**
    * The interval between lock acquisition attempts.
    */
-  lockAcquisitionPollingInterval?: {
-    [k: string]: unknown | undefined;
-  };
+  lockAcquisitionPollingInterval?: string;
 }
 /**
  * Configuration settings for 'http' triggers.

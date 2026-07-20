@@ -1,43 +1,8 @@
 /* eslint-disable */
 
-export type JSONSchemaForIDETemplateHostFiles = JSONSchemaForIDETemplateHostFiles1;
-export type SymbolInfo = OverrideInfo & {
-  /**
-   * Should be shown in the IDE. If not specified, defaults value is the value specified by defaultSymbolVisibility.
-   */
-  isVisible?: boolean;
-  /**
-   * If the referenced symbol should be shown in the IDE.
-   */
-  invertBoolean?: boolean;
-  /**
-   * Overrides the default value specified for the
-   */
-  defaultValue?: string;
-  /**
-   * Determines if the user entered value should be persisted and used the next time a template is selected. Default value is the value specified by defaultSymbolVisibility Used starting in Visual Studio 2022 17.3
-   */
-  persistenceScope?: 'none' | 'templateGroup' | 'shared';
-  /**
-   * Specifies the scope name of the persisted template option. To avoid conflicts with other templates, treat this like a namespace. Used starting in Visual Studio 2022 17.3
-   */
-  persistenceScopeName?: string;
-  /**
-   * Specifies the name and description overrides for individual choice parameters
-   */
-  choices?: OverrideInfo[];
-  [k: string]: unknown | undefined;
-};
-
-export interface JSONSchemaForIDETemplateHostFiles1 {
-  /**
-   * Name of the template
-   */
+export interface JSONSchemaForIDETemplateHostFiles {
   name?: Text;
-  /**
-   * Description of the template
-   */
-  description?: Text;
+  description?: Text1;
   /**
    * The order of the template as shown in the New Project dialog
    */
@@ -84,10 +49,49 @@ export interface JSONSchemaForIDETemplateHostFiles1 {
   requiredComponents?: RequiredComponent[];
   [k: string]: unknown | undefined;
 }
+/**
+ * Name of the template
+ */
 export interface Text {
   text: string;
   package?: string;
   id?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Description of the template
+ */
+export interface Text1 {
+  text: string;
+  package?: string;
+  id?: string;
+  [k: string]: unknown | undefined;
+}
+export interface SymbolInfo {
+  /**
+   * Should be shown in the IDE. If not specified, defaults value is the value specified by defaultSymbolVisibility.
+   */
+  isVisible?: boolean;
+  /**
+   * If the referenced symbol should be shown in the IDE.
+   */
+  invertBoolean?: boolean;
+  /**
+   * Overrides the default value specified for the
+   */
+  defaultValue?: string;
+  /**
+   * Determines if the user entered value should be persisted and used the next time a template is selected. Default value is the value specified by defaultSymbolVisibility Used starting in Visual Studio 2022 17.3
+   */
+  persistenceScope?: 'none' | 'templateGroup' | 'shared';
+  /**
+   * Specifies the scope name of the persisted template option. To avoid conflicts with other templates, treat this like a namespace. Used starting in Visual Studio 2022 17.3
+   */
+  persistenceScopeName?: string;
+  /**
+   * Specifies the name and description overrides for individual choice parameters
+   */
+  choices?: OverrideInfo[];
   [k: string]: unknown | undefined;
 }
 export interface OverrideInfo {
@@ -95,14 +99,26 @@ export interface OverrideInfo {
    * The id of the symbol from the template.json.
    */
   id: string;
-  /**
-   * Overrides the name specified in the template.json
-   */
-  name?: Text;
-  /**
-   * Overrides the name specified in the template.json
-   */
-  description?: Text;
+  name?: Text2;
+  description?: Text3;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Overrides the name specified in the template.json
+ */
+export interface Text2 {
+  text: string;
+  package?: string;
+  id?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Overrides the name specified in the template.json
+ */
+export interface Text3 {
+  text: string;
+  package?: string;
+  id?: string;
   [k: string]: unknown | undefined;
 }
 export interface Tags {

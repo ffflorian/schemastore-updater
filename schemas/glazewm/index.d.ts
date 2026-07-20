@@ -1,193 +1,97 @@
 /* eslint-disable */
 
 /**
- * Whether to automatically focus windows underneath the cursor
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type FocusFollowsCursor = boolean;
-/**
- * Whether to jump the cursor between windows focused by the WM
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type CursorFollowsFocus = boolean;
-/**
- * Whether to switch back and forth between the previously focused workspace when focusing the current workspace
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type ToggleWorkspaceOnRefocus = boolean;
-/**
- * Whether to show floating windows as always on top
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type ShowFloatingOnTop = boolean;
-/**
- * An amount to move floating windows by
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type FloatingWindowMoveAmount = string;
-/**
- * Whether to center new floating windows
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type CenterNewFloatingWindows = boolean;
-/**
- * Whether to enable window transition animations
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
- */
-export type WindowAnimations = boolean | 'unchanged';
-/**
- * Keybindings
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#keybindings
- *
- * @minItems 1
- */
-export type Keybindings = [
-  (
-    | {
-        binding?: Binding;
-        command?: Command;
-      }
-    | {
-        bindings?: Bindings;
-        command?: Command;
-      }
-    | {
-        binding?: Binding;
-        commands?: Commands;
-      }
-    | {
-        bindings?: Bindings;
-        commands?: Commands;
-      }
-  ),
-  ...(
-    | {
-        binding?: Binding;
-        command?: Command;
-      }
-    | {
-        bindings?: Bindings;
-        command?: Command;
-      }
-    | {
-        binding?: Binding;
-        commands?: Commands;
-      }
-    | {
-        bindings?: Bindings;
-        commands?: Commands;
-      }
-  )[]
-];
-/**
- * A binding
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#keybindings
- */
-export type Binding = string;
-/**
  * A command
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#available-commands
  */
 export type Command = string;
 /**
- * Bindings
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#keybindings
- *
- * @minItems 2
- */
-export type Bindings = [Binding, Binding, ...Binding[]];
-/**
- * Commands
+ * Commands to execute
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#available-commands
- *
- * @minItems 2
  */
-export type Commands = [Command, Command, ...Command[]];
+export type Commands = Command[];
 /**
- * Whether to enable the active border
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
+ * Whether to automatically focus windows underneath the cursor
+ */
+export type FocusFollowsCursor = boolean;
+/**
+ * Whether to switch back and forth between the previously focused workspace when focusing the current workspace
+ */
+export type ToggleWorkspaceOnRefocus = boolean;
+/**
+ * Whether to automatically move the cursor on the specified trigger
  */
 export type Enabled = boolean;
 /**
- * A color of the active border
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
+ * Trigger for cursor jump
  */
-export type Color = string;
+export type Trigger = 'monitor_focus' | 'window_focus';
 /**
- * An inner gap
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#gap-configuration
+ * How windows should be hidden when switching workspaces
+ */
+export type HideMethod = 'cloak' | 'hide' | 'place_in_corner';
+/**
+ * Affects which windows get shown in the native Windows taskbar. Has no effect if hide_method is 'hide'
+ */
+export type ShowAllInTaskbar = boolean;
+/**
+ * Whether to scale the gaps with the DPI of the monitor
+ */
+export type ScaleWithDpi = boolean;
+/**
+ * Gap between adjacent windows
  */
 export type InnerGap = string;
 /**
- * An outer gap
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#gap-configuration
+ * Gap between windows and the screen edge. Can be a single string or an object with per-edge values
  */
-export type OuterGap = string;
+export type OuterGap =
+  | string
+  | {
+      top?: Top;
+      right?: Right;
+      bottom?: Bottom;
+      left?: Left;
+    };
+export type Top = string;
+export type Right = string;
+export type Bottom = string;
+export type Left = string;
 /**
- * Workspace settings
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#workspaces-configuration
- *
- * @minItems 1
+ * Gap between a single window and the screen edge when it's the only window in the workspace. Same format as outer_gap
  */
-export type Workspaces = [
-  {
-    name?: Name;
-    display_name?: DisplayName;
-    bind_to_monitor?: BindToMonitor;
-    keep_alive?: KeepAlive;
-  },
-  ...{
-    name?: Name;
-    display_name?: DisplayName;
-    bind_to_monitor?: BindToMonitor;
-    keep_alive?: KeepAlive;
-  }[]
-];
+export type SingleWindowOuterGap =
+  | string
+  | {
+      top?: Top;
+      right?: Right;
+      bottom?: Bottom;
+      left?: Left;
+    };
+export type Color = string;
+export type Style = 'square' | 'rounded' | 'small_rounded';
+export type Opacity = string;
 /**
- * A unique name of the workspace
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#workspaces-configuration
+ * New windows are created in this state whenever possible
  */
-export type Name = string;
+export type InitialState = 'tiling' | 'floating';
 /**
- * A display name of the workspace
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#workspaces-configuration
+ * Whether to center floating windows by default
  */
-export type DisplayName = string;
+export type Centered = boolean;
 /**
- * Whether to bind the workspace to a specific monitor
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#workspaces-configuration
+ * Whether to show floating windows as always on top
  */
-export type BindToMonitor = boolean;
+export type ShownOnTop = boolean;
 /**
- * Whether not to destroy the workspace when it's empty
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#workspaces-configuration
+ * Maximize the window if possible
  */
-export type KeepAlive = boolean;
-/**
- * Whether to enable the bar
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
- */
-export type Title = boolean;
+export type Maximized = boolean;
 /**
  * A height of the bar
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
  */
 export type Height = string;
-/**
- * A position of the bar
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
- */
-export type Position = 'top' | 'bottom';
-/**
- * Whether to keep the bar above other windows
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
- */
-export type AlwaysOnTop = boolean;
-/**
- * An opacity of the bar
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
- */
-export type Opacity = number;
 /**
  * A background of the bar
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
@@ -272,12 +176,8 @@ export type ComponentsLeft = [
     [k: string]: unknown | undefined;
   } & {
     [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
   },
   ...({
-    [k: string]: unknown | undefined;
-  } & {
     [k: string]: unknown | undefined;
   } & {
     [k: string]: unknown | undefined;
@@ -330,12 +230,8 @@ export type ComponentsCenter = [
     [k: string]: unknown | undefined;
   } & {
     [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
   },
   ...({
-    [k: string]: unknown | undefined;
-  } & {
     [k: string]: unknown | undefined;
   } & {
     [k: string]: unknown | undefined;
@@ -388,12 +284,8 @@ export type ComponentsRight = [
     [k: string]: unknown | undefined;
   } & {
     [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
   },
   ...({
-    [k: string]: unknown | undefined;
-  } & {
     [k: string]: unknown | undefined;
   } & {
     [k: string]: unknown | undefined;
@@ -418,98 +310,243 @@ export type ComponentsRight = [
   })[]
 ];
 /**
- * A process name to match
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-rules
+ * The name of the workspace
  */
-export type MatchProcessName = string;
+export type Name = string;
 /**
- * A window title to match
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-rules
+ * Whether to keep the workspace alive when it has no windows
  */
-export type MatchTitle = string;
+export type KeepAlive = boolean;
 /**
- * A class name to match
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-rules
+ * Optional display name for the workspace, used in 3rd-party apps like Zebar
  */
-export type MatchClassName = string;
+export type DisplayName = string;
 /**
- * Windows rule settings
+ * Bind the workspace to a specific monitor index
+ */
+export type BindToMonitor = number;
+/**
+ * Workspace settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#workspaces
+ */
+export type Workspaces = {
+  name: Name;
+  keep_alive?: KeepAlive;
+  display_name?: DisplayName;
+  bind_to_monitor?: BindToMonitor;
+}[];
+/**
+ * Match criteria for this window rule. All criteria within a match item are ANDed together. Multiple match items are ORed together
+ *
+ * @minItems 1
+ */
+export type Match = [MatchCriterion, ...MatchCriterion[]];
+/**
+ * Window events that trigger this rule. Defaults to [Manage, TitleChange]
+ *
+ * @minItems 1
+ */
+export type On = ['focus' | 'manage' | 'title_change', ...('focus' | 'manage' | 'title_change')[]];
+/**
+ * Whether to only run this rule once per window
+ */
+export type RunOnce = boolean;
+/**
+ * Window rule settings
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-rules
  */
-export type WindowsRules = {
-  command?: Command;
-  match_process_name?: MatchProcessName;
-  match_title?: MatchTitle;
-  match_class_name?: MatchClassName;
+export type WindowRules = {
+  commands: Commands;
+  match: Match;
+  on?: On;
+  run_once?: RunOnce;
+}[];
+/**
+ * Keybindings for this binding mode
+ *
+ * @minItems 1
+ */
+export type Keybindings = [Keybinding, ...Keybinding[]];
+/**
+ * Keybindings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#keybindings
+ *
+ * @minItems 1
+ */
+export type Bindings = [Binding, ...Binding[]];
+/**
+ * A keybinding
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#keybindings
+ */
+export type Binding = string;
+/**
+ * Binding mode settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#binding-modes
+ */
+export type BindingModes = {
+  name: Name;
+  display_name?: DisplayName;
+  keybindings: Keybindings;
 }[];
 
-/**
- * GlazeWM settings
- */
-export interface GlazeWMSettings {
+export interface HttpsJsonSchemastoreOrgGlazewmJson {
   general?: General;
-  keybindings?: Keybindings;
-  focus_borders?: FocusBorders;
   gaps?: Gaps;
-  workspaces?: Workspaces;
+  window_effects?: WindowEffects;
+  window_behavior?: WindowBehavior;
   bar?: Bar;
-  window_rules?: WindowsRules;
+  workspaces?: Workspaces;
+  window_rules?: WindowRules;
+  binding_modes?: BindingModes;
+  keybindings?: Keybindings;
   [k: string]: unknown | undefined;
 }
 /**
  * General settings
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#general-configuration
  */
 export interface General {
+  startup_commands?: Commands;
+  shutdown_commands?: Commands;
+  config_reload_commands?: Commands;
   focus_follows_cursor?: FocusFollowsCursor;
-  cursor_follows_focus?: CursorFollowsFocus;
   toggle_workspace_on_refocus?: ToggleWorkspaceOnRefocus;
-  show_floating_on_top?: ShowFloatingOnTop;
-  floating_window_move_amount?: FloatingWindowMoveAmount;
-  center_new_floating_windows?: CenterNewFloatingWindows;
-  window_animations?: WindowAnimations;
+  cursor_jump?: CursorJump;
+  hide_method?: HideMethod;
+  show_all_in_taskbar?: ShowAllInTaskbar;
 }
 /**
- * Focus settings
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
+ * Cursor jump settings
  */
-export interface FocusBorders {
-  active?: Active;
-  inactive?: Inactive;
-}
-/**
- * An active border
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
- */
-export interface Active {
+export interface CursorJump {
   enabled?: Enabled;
-  color?: Color;
-}
-/**
- * An inactive border
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#focus-window-border-configuration
- */
-export interface Inactive {
-  enabled?: Enabled;
-  color?: Color;
+  trigger?: Trigger;
 }
 /**
  * Gap settings
- * https://github.com/glzr-io/glazewm?tab=readme-ov-file#gap-configuration
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#gaps
  */
 export interface Gaps {
+  scale_with_dpi?: ScaleWithDpi;
   inner_gap?: InnerGap;
   outer_gap?: OuterGap;
+  single_window_outer_gap?: SingleWindowOuterGap;
+}
+/**
+ * Window effect settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-effects
+ */
+export interface WindowEffects {
+  focused_window?: FocusedWindow;
+  other_windows?: OtherWindows;
+}
+/**
+ * Visual effects to apply to the focused window
+ */
+export interface FocusedWindow {
+  border?: Border;
+  hide_title_bar?: HideTitleBar;
+  corner_style?: CornerStyle;
+  transparency?: Transparency;
+}
+/**
+ * Highlight the window with a colored border. Exclusive to Windows 11 due to API limitations
+ */
+export interface Border {
+  enabled?: Enabled;
+  color?: Color;
+}
+/**
+ * Remove the title bar from the window's frame
+ */
+export interface HideTitleBar {
+  enabled?: Enabled;
+}
+/**
+ * Change the corner style of the window's frame. Exclusive to Windows 11 due to API limitations
+ */
+export interface CornerStyle {
+  enabled?: Enabled;
+  style?: Style;
+}
+/**
+ * Change the transparency of the window
+ */
+export interface Transparency {
+  enabled?: Enabled;
+  opacity?: Opacity;
+}
+/**
+ * Visual effects to apply to non-focused windows
+ */
+export interface OtherWindows {
+  border?: Border1;
+  hide_title_bar?: HideTitleBar1;
+  corner_style?: CornerStyle1;
+  transparency?: Transparency1;
+}
+/**
+ * Highlight the window with a colored border
+ */
+export interface Border1 {
+  enabled?: Enabled;
+  color?: Color;
+}
+/**
+ * Remove the title bar from the window's frame
+ */
+export interface HideTitleBar1 {
+  enabled?: Enabled;
+}
+/**
+ * Change the corner style of the window's frame
+ */
+export interface CornerStyle1 {
+  enabled?: Enabled;
+  style?: Style;
+}
+/**
+ * Change the transparency of the window
+ */
+export interface Transparency1 {
+  enabled?: Enabled;
+  opacity?: Opacity;
+}
+/**
+ * Window behavior settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-behavior
+ */
+export interface WindowBehavior {
+  initial_state?: InitialState;
+  state_defaults?: StateDefaults;
+}
+/**
+ * Default options for when a new window is created
+ */
+export interface StateDefaults {
+  floating?: Floating;
+  fullscreen?: Fullscreen;
+}
+/**
+ * Default options for floating windows
+ */
+export interface Floating {
+  centered?: Centered;
+  shown_on_top?: ShownOnTop;
+}
+/**
+ * Default options for fullscreen windows
+ */
+export interface Fullscreen {
+  maximized?: Maximized;
+  shown_on_top?: ShownOnTop;
 }
 /**
  * Bar settings
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
  */
 export interface Bar {
-  enabled?: Title;
   height?: Height;
-  position?: Position;
-  always_on_top?: AlwaysOnTop;
   opacity?: Opacity;
   background?: Background;
   foreground?: Foreground;
@@ -525,4 +562,96 @@ export interface Bar {
   components_left?: ComponentsLeft;
   components_center?: ComponentsCenter;
   components_right?: ComponentsRight;
+}
+/**
+ * A match criterion for window rules
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#window-rules
+ */
+export interface MatchCriterion {
+  window_process?: WindowProcess;
+  window_title?: WindowTitle;
+  window_class?: WindowClass;
+}
+/**
+ * Match by window process name
+ */
+export interface WindowProcess {
+  /**
+   * Exact match for the window process name
+   */
+  equals?: string;
+  /**
+   * Substring match for the window process name
+   */
+  includes?: string;
+  /**
+   * Regex match for the window process name
+   */
+  regex?: string;
+  /**
+   * Negative exact match for the window process name
+   */
+  not_equals?: string;
+  /**
+   * Negative regex match for the window process name
+   */
+  not_regex?: string;
+}
+/**
+ * Match by window title
+ */
+export interface WindowTitle {
+  /**
+   * Exact match for the window title
+   */
+  equals?: string;
+  /**
+   * Substring match for the window title
+   */
+  includes?: string;
+  /**
+   * Regex match for the window title
+   */
+  regex?: string;
+  /**
+   * Negative exact match for the window title
+   */
+  not_equals?: string;
+  /**
+   * Negative regex match for the window title
+   */
+  not_regex?: string;
+}
+/**
+ * Match by window class name
+ */
+export interface WindowClass {
+  /**
+   * Exact match for the window class name
+   */
+  equals?: string;
+  /**
+   * Substring match for the window class name
+   */
+  includes?: string;
+  /**
+   * Regex match for the window class name
+   */
+  regex?: string;
+  /**
+   * Negative exact match for the window class name
+   */
+  not_equals?: string;
+  /**
+   * Negative regex match for the window class name
+   */
+  not_regex?: string;
+}
+/**
+ * A keybinding object
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#keybindings
+ */
+export interface Keybinding {
+  commands: Commands;
+  bindings: Bindings;
 }

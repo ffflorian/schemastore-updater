@@ -1,13 +1,11 @@
 /* eslint-disable */
 
-export type FConsumer = {
-  [k: string]: unknown | undefined;
-} & {
+export type FConsumer = FConsumer1 & {
   acls?: ACLGroup[];
   basicauth_credentials?: BasicAuth[];
   created_at?: number;
   custom_id?: string;
-  groups?: ConsumerGroup1[];
+  groups?: ConsumerGroup[];
   hmacauth_credentials?: HMACAuth[];
   id?: string;
   jwt_secrets?: JWTAuth[];
@@ -18,6 +16,15 @@ export type FConsumer = {
   tags?: string[];
   username?: string;
 };
+export type FConsumer1 =
+  | {
+      username: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      id: string;
+      [k: string]: unknown | undefined;
+    };
 export type FRoute = FRoute1 & {
   created_at?: number;
   destinations?: CIDRPort[];
@@ -36,7 +43,7 @@ export type FRoute = FRoute1 & {
   name?: string;
   path_handling?: string;
   paths?: string[];
-  plugins?: FPlugin1[];
+  plugins?: FPlugin[];
   preserve_host?: boolean;
   priority?: number;
   protocols?: string[];
@@ -50,9 +57,15 @@ export type FRoute = FRoute1 & {
   tags?: string[];
   updated_at?: number;
 };
-export type FRoute1 = {
-  [k: string]: unknown | undefined;
-};
+export type FRoute1 =
+  | {
+      name: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      id: string;
+      [k: string]: unknown | undefined;
+    };
 export type FService = FService1 & {
   ca_certificates?: string[];
   client_certificate?: string;
@@ -68,7 +81,7 @@ export type FService = FService1 & {
   protocol?: string;
   read_timeout?: number;
   retries?: number;
-  routes?: FRoute2[];
+  routes?: FRoute[];
   tags?: string[];
   tls_verify?: boolean;
   tls_verify_depth?: number;
@@ -76,68 +89,15 @@ export type FService = FService1 & {
   url?: string;
   write_timeout?: number;
 };
-export type FService1 = {
-  [k: string]: unknown | undefined;
-};
-export type FRoute2 = {
-  [k: string]: unknown | undefined;
-} & {
-  created_at?: number;
-  destinations?: CIDRPort[];
-  expression?: string;
-  headers?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: string[];
-  };
-  hosts?: string[];
-  https_redirect_status_code?: number;
-  id?: string;
-  methods?: string[];
-  name?: string;
-  path_handling?: string;
-  paths?: string[];
-  plugins?: FPlugin1[];
-  preserve_host?: boolean;
-  priority?: number;
-  protocols?: string[];
-  regex_priority?: number;
-  request_buffering?: boolean;
-  response_buffering?: boolean;
-  service?: Service;
-  snis?: string[];
-  sources?: CIDRPort[];
-  strip_path?: boolean;
-  tags?: string[];
-  updated_at?: number;
-};
-export type FService2 = {
-  [k: string]: unknown | undefined;
-} & {
-  ca_certificates?: string[];
-  client_certificate?: string;
-  connect_timeout?: number;
-  created_at?: number;
-  enabled?: boolean;
-  host?: string;
-  id?: string;
-  name?: string;
-  path?: string;
-  plugins?: FPlugin[];
-  port?: number;
-  protocol?: string;
-  read_timeout?: number;
-  retries?: number;
-  routes?: FRoute2[];
-  tags?: string[];
-  tls_verify?: boolean;
-  tls_verify_depth?: number;
-  updated_at?: number;
-  url?: string;
-  write_timeout?: number;
-};
+export type FService1 =
+  | {
+      name: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      id: string;
+      [k: string]: unknown | undefined;
+    };
 
 export interface HttpsJsonSchemastoreOrgKongJsonSchemaJson {
   _format_version?: string;
@@ -162,7 +122,7 @@ export interface HttpsJsonSchemastoreOrgKongJsonSchemaJson {
   rbac_roles?: FRBACRole[];
   routes?: FRoute[];
   service_packages?: FServicePackage[];
-  services?: FService2[];
+  services?: FService[];
   upstreams?: FUpstream[];
   vaults?: FVault[];
 }
@@ -172,9 +132,9 @@ export interface Info {
 }
 export interface KongDefaults {
   route?: Route;
-  service?: Service1;
+  service?: Service;
   target?: Target;
-  upstream?: Upstream1;
+  upstream?: Upstream;
 }
 export interface Route {
   created_at?: number;
@@ -202,7 +162,7 @@ export interface Route {
   response_buffering?: boolean;
   service?: Service;
   snis?: string[];
-  sources?: CIDRPort1[];
+  sources?: CIDRPort[];
   strip_path?: boolean;
   tags?: string[];
   updated_at?: number;
@@ -242,31 +202,6 @@ export interface Certificate {
   snis?: string[];
   tags?: string[];
 }
-export interface CIDRPort1 {
-  ip?: string;
-  port?: number;
-}
-export interface Service1 {
-  ca_certificates?: string[];
-  client_certificate?: Certificate;
-  connect_timeout?: number;
-  created_at?: number;
-  enabled?: boolean;
-  host?: string;
-  id?: string;
-  name?: string;
-  path?: string;
-  port?: number;
-  protocol?: string;
-  read_timeout?: number;
-  retries?: number;
-  tags?: string[];
-  tls_verify?: boolean;
-  tls_verify_depth?: number;
-  updated_at?: number;
-  url?: string;
-  write_timeout?: number;
-}
 export interface Target {
   created_at?: number;
   id?: string;
@@ -277,7 +212,7 @@ export interface Target {
 }
 export interface Upstream {
   algorithm?: string;
-  client_certificate?: Certificate1;
+  client_certificate?: Certificate;
   created_at?: number;
   hash_fallback?: string;
   hash_fallback_header?: string;
@@ -294,16 +229,6 @@ export interface Upstream {
   id?: string;
   name?: string;
   slots?: number;
-  tags?: string[];
-}
-export interface Certificate1 {
-  cert?: string;
-  cert_alt?: string;
-  created_at?: number;
-  id?: string;
-  key?: string;
-  key_alt?: string;
-  snis?: string[];
   tags?: string[];
 }
 export interface Healthcheck {
@@ -334,42 +259,9 @@ export interface Unhealthy {
   timeouts?: number;
 }
 export interface PassiveHealthcheck {
-  healthy?: Healthy1;
+  healthy?: Healthy;
   type?: string;
-  unhealthy?: Unhealthy1;
-}
-export interface Healthy1 {
-  http_statuses?: number[];
-  interval?: number;
-  successes?: number;
-}
-export interface Unhealthy1 {
-  http_failures?: number;
-  http_statuses?: number[];
-  interval?: number;
-  tcp_failures?: number;
-  timeouts?: number;
-}
-export interface Upstream1 {
-  algorithm?: string;
-  client_certificate?: Certificate1;
-  created_at?: number;
-  hash_fallback?: string;
-  hash_fallback_header?: string;
-  hash_fallback_query_arg?: string;
-  hash_fallback_uri_capture?: string;
-  hash_on?: string;
-  hash_on_cookie?: string;
-  hash_on_cookie_path?: string;
-  hash_on_header?: string;
-  hash_on_query_arg?: string;
-  hash_on_uri_capture?: string;
-  healthchecks?: Healthcheck;
-  host_header?: string;
-  id?: string;
-  name?: string;
-  slots?: number;
-  tags?: string[];
+  unhealthy?: Unhealthy;
 }
 export interface Konnect {
   control_plane_name?: string;
@@ -437,12 +329,6 @@ export interface BasicAuth {
   password: string;
   tags?: string[];
   username: string;
-}
-export interface ConsumerGroup1 {
-  created_at?: number;
-  id?: string;
-  name?: string;
-  tags?: string[];
 }
 export interface HMACAuth {
   consumer?: Consumer;
@@ -554,23 +440,6 @@ export interface RBACRole {
   is_default?: boolean;
   name?: string;
 }
-export interface FPlugin1 {
-  _config?: string;
-  config?: {
-    [k: string]: unknown | undefined;
-  };
-  consumer?: string;
-  created_at?: number;
-  enabled?: boolean;
-  id?: string;
-  name: string;
-  ordering?: PluginOrdering;
-  protocols?: string[];
-  route?: string;
-  run_on?: string;
-  service?: string;
-  tags?: string[];
-}
 export interface FServicePackage {
   description?: string;
   document?: FDocument;
@@ -584,15 +453,10 @@ export interface FDocument {
   published?: boolean;
 }
 export interface FServiceVersion {
-  document?: FDocument1;
+  document?: FDocument;
   id?: string;
   implementation?: Implementation;
   version: string;
-}
-export interface FDocument1 {
-  id?: string;
-  path?: string;
-  published?: boolean;
 }
 export interface Implementation {
   kong: Kong;
@@ -603,7 +467,7 @@ export interface Kong {
 }
 export interface FUpstream {
   algorithm?: string;
-  client_certificate?: Certificate1;
+  client_certificate?: Certificate;
   created_at?: number;
   hash_fallback?: string;
   hash_fallback_header?: string;
@@ -615,18 +479,13 @@ export interface FUpstream {
   hash_on_header?: string;
   hash_on_query_arg?: string;
   hash_on_uri_capture?: string;
-  healthchecks?: Healthcheck1;
+  healthchecks?: Healthcheck;
   host_header?: string;
   id?: string;
   name: string;
   slots?: number;
   tags?: string[];
   targets?: FTarget[];
-}
-export interface Healthcheck1 {
-  active?: ActiveHealthcheck;
-  passive?: PassiveHealthcheck;
-  threshold?: number;
 }
 export interface FTarget {
   created_at?: number;

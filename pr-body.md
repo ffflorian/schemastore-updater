@@ -8,43 +8,71 @@ This PR was created by the scheduled workflow after running:
 
 ## Schema Update Summary
 
-- **Total:** 931
-- **Generated:** 22
-- **Skipped:** 790
-- **Failed:** 119
+- **Total:** 936
+- **Generated:** 50
+- **Skipped:** 763
+- **Failed:** 123
 
 <details>
 
-<summary><h3>Updated Schemas (22)</h3></summary>
+<summary><h3>Updated Schemas (50)</h3></summary>
 
-- `abtop`
-- `aih-config`
-- `aih-org-policy`
-- `aiproj-1.11`
-- `gama`
-- `git-cliff`
-- `gitleaks`
-- `gitversion`
-- `gollama`
+- `all-contributors`
+- `apibuilder`
+- `appveyor`
+- `artifacthub-repo`
+- `asconfig-schema`
+- `babelrc`
+- `band-manifest`
+- `bootstraprc`
+- `bowerrc`
+- `bozr`
+- `bundleconfig`
+- `chutzpah`
+- `dependabot-2.0`
+- `dependabot`
+- `es6importsorterrc`
+- `glazewm`
+- `gpc`
+- `grunt-task`
+- `heloisa-marketplace`
+- `host-meta`
+- `host`
+- `htmlhint`
+- `hws-config`
+- `ide.host`
+- `imageoptimizer`
+- `imgbotconfig`
+- `importmap`
+- `jasmine`
+- `jasonette`
+- `jsbeautifyrc`
 - `jsconfig`
-- `lychee`
-- `modelsdev`
-- `packwiz-index`
-- `packwiz-mod`
-- `packwiz-pack`
-- `partial-eslint-plugins`
-- `specmatic`
-- `traefik-v3`
-- `tsconfig`
-- `web-manifest`
-- `webextension`
-- `youtrack-app`
+- `jscpd`
+- `jscsrc`
+- `jshintrc`
+- `jsinspectrc`
+- `json-api-1.0`
+- `json-patch`
+- `kind-cluster`
+- `kong_json_schema`
+- `madge`
+- `markdown-link-check`
+- `okf-0.1`
+- `partial-mypy`
+- `prek`
+- `ruff`
+- `s3-bucket-cors`
+- `sil-kit-participant-configuration`
+- `typo3`
+- `uv`
+- `vs-2017.3.host`
 
 </details>
 
 <details>
 
-<summary><h3>Failed Schemas (119)</h3></summary>
+<summary><h3>Failed Schemas (123)</h3></summary>
 
 - `accelerator`
 - `aio-connector-metadata-11.0-preview`
@@ -55,6 +83,7 @@ This PR was created by the scheduled workflow after running:
 - `bosh-bpm-config`
 - `bosh-cpi-config`
 - `bosh-deploy-config`
+- `bower`
 - `cargo-make`
 - `cargo`
 - `catalog-info`
@@ -77,8 +106,10 @@ This PR was created by the scheduled workflow after running:
 - `grunt-copy-task`
 - `grunt-cssmin-task`
 - `grunt-jshint-task`
+- `grunt-watch-task`
 - `hatch`
 - `hugo`
+- `jdt`
 - `jfrog-pipelines`
 - `jreleaser-1.10.0`
 - `jreleaser-1.11.0`
@@ -102,6 +133,7 @@ This PR was created by the scheduled workflow after running:
 - `jreleaser-1.8.0`
 - `jreleaser-1.9.0`
 - `jsbeautifyrc-nested`
+- `jsonld`
 - `kestra-0.18.0`
 - `kestra-0.18.1`
 - `kestra-0.18.2`
