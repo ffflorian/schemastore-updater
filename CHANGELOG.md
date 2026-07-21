@@ -1,3 +1,10 @@
+## [3.7.3](https://github.com/ffflorian/schemastore-updater/compare/v3.7.2...v3.7.3) (2026-07-21)
+
+
+### Bug Fixes
+
+* **publisher:** stream npm login output live instead of buffering it ([#1577](https://github.com/ffflorian/schemastore-updater/issues/1577)) ([d9c84ef](https://github.com/ffflorian/schemastore-updater/commit/d9c84ef9ec3ccc7a12f01d49b44c145672089242))
+
 ## [3.7.2](https://github.com/ffflorian/schemastore-updater/compare/v3.7.1...v3.7.2) (2026-07-21)
 
 
