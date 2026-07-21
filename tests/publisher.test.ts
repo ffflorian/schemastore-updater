@@ -264,6 +264,37 @@ describe('bootstrapNewPackages', () => {
     expect(lockFile.entries['beta.json']?.published).toBe(true);
   });
 
+  it('continues checking remaining packages when an existence check fails or times out', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+      'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '1.0.0'}, null, 2),
+    });
+    const loginToNpm = vi.fn(async () => undefined);
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists: async packageName => {
+          if (packageName === '@schemastore/alpha') {
+            throw new Error('registry request timed out');
+          }
+          return false;
+        },
+        loginToNpm,
+        publishNewPackage: async () => undefined,
+      })
+    );
+
+    expect(stats).toEqual({
+      attempted: 1,
+      bootstrapped: 1,
+      bootstrappedPackages: ['@schemastore/beta@1.0.0'],
+      failed: 1,
+      failedPackages: ['@schemastore/alpha@1.0.0'],
+      skippedAlreadyExists: 0,
+    });
+    expect(loginToNpm).toHaveBeenCalledTimes(1);
+  });
+
   it('skips packages already marked as published in schema-lock.json without logging in', async () => {
     const workspaceDirectory = await createWorkspace(
       {
