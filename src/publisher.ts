@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
 
-import type {LockEntry, PublishStats, SchemaLockFile} from './types.js';
+import type {BootstrapStats, LockEntry, PublishStats, SchemaLockFile} from './types.js';
 
 import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publishable-schemas.js';
 
@@ -12,6 +12,12 @@ const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
 const PUBLISH_SUMMARY_FILE_NAME = 'publish-summary.md';
+
+interface BootstrapOptions {
+  checkPackageExists?: (packageName: string) => Promise<boolean>;
+  publishNewPackage?: (packageDirectory: string) => Promise<void>;
+  schemasDir?: string;
+}
 
 interface PackageManifest {
   name?: string;
@@ -23,6 +29,83 @@ interface PublishOptions {
   logFilePath?: string;
   publishPackage?: (packageDirectory: string) => Promise<void>;
   schemasDir?: string;
+}
+
+export async function bootstrapNewPackages(options: BootstrapOptions = {}): Promise<BootstrapStats> {
+  const projectRoot = process.cwd();
+  const schemasDirectory = options.schemasDir ? path.resolve(options.schemasDir) : path.join(projectRoot, 'schemas');
+  const checkPackageExists = options.checkPackageExists ?? packageExistsOnNpm;
+  const publishNewPackage = options.publishNewPackage ?? publishNewPackageDirectory;
+  const lockFilePath = path.join(projectRoot, 'schema-lock.json');
+
+  const schemasDirectoryExists = await exists(schemasDirectory);
+  if (!schemasDirectoryExists) {
+    throw new Error(`Schemas directory not found: ${schemasDirectory}`);
+  }
+
+  const directoryEntries = await readdir(schemasDirectory, {withFileTypes: true});
+  const packageDirectories = directoryEntries
+    .filter(directoryEntry => directoryEntry.isDirectory())
+    .map(directoryEntry => path.join(schemasDirectory, directoryEntry.name))
+    .sort((leftPath, rightPath) => leftPath.localeCompare(rightPath));
+
+  const lockFile = await loadLockFile(lockFilePath);
+  const nonPublishableSchemaIds = await loadNonPublishableSchemaIds(projectRoot);
+  const stats: BootstrapStats = {
+    attempted: 0,
+    bootstrapped: 0,
+    bootstrappedPackages: [],
+    failed: 0,
+    failedPackages: [],
+    skippedAlreadyExists: 0,
+  };
+
+  for (const packageDirectory of packageDirectories) {
+    const packageJsonPath = path.join(packageDirectory, 'package.json');
+    if (!(await exists(packageJsonPath))) {
+      continue;
+    }
+
+    const schemaName = path.basename(packageDirectory);
+    if (isNonPublishableSchemaId(schemaName, nonPublishableSchemaIds)) {
+      continue;
+    }
+
+    const matchingLockEntry = findLockEntryForPackage(lockFile, packageDirectory, projectRoot);
+    if (matchingLockEntry?.published) {
+      continue;
+    }
+
+    const packageManifest = await readPackageManifest(packageJsonPath);
+    const packageLabel = formatPackageLabel(packageManifest, schemaName);
+    const packageName = packageManifest.name ?? `@schemastore/${schemaName}`;
+
+    try {
+      if (await checkPackageExists(packageName)) {
+        // Already exists on npm - just a pending new version, not a first-ever
+        // publish. Leave it for the normal staged-publish pipeline to handle.
+        stats.skippedAlreadyExists += 1;
+        continue;
+      }
+
+      stats.attempted += 1;
+      process.stdout.write(`🌱 Bootstrapping ${packageLabel} - watch for an npm login URL to open on your phone ... `);
+
+      await publishNewPackage(packageDirectory);
+      markPackageAsPublished(lockFile, packageDirectory, projectRoot);
+      await writeLockFile(lockFilePath, lockFile);
+      stats.bootstrapped += 1;
+      stats.bootstrappedPackages.push(packageLabel);
+      process.stdout.write('done\n');
+    } catch (error) {
+      stats.failed += 1;
+      stats.failedPackages.push(packageLabel);
+      process.stdout.write('failed\n');
+      console.error(error instanceof Error ? (error.stack ?? error.message) : String(error));
+    }
+  }
+
+  return stats;
 }
 
 export async function publishGeneratedPackages(options: PublishOptions = {}): Promise<PublishStats> {
@@ -229,6 +312,18 @@ function markPackageAsPublished(lockFile: SchemaLockFile, packageDirectory: stri
 
 function normalizePath(filePath: string): string {
   return filePath.replaceAll('\\', '/');
+}
+
+async function packageExistsOnNpm(packageName: string): Promise<boolean> {
+  const response = await fetch(`${NPM_REGISTRY_URL}${packageName}`);
+  return response.ok;
+}
+
+async function publishNewPackageDirectory(packageDirectory: string): Promise<void> {
+  await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL, '--auth-type=web'], {
+    cwd: packageDirectory,
+    env: process.env,
+  });
 }
 
 async function readPackageManifest(packageJsonPath: string): Promise<PackageManifest> {
