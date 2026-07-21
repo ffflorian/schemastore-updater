@@ -336,25 +336,7 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
 }
 
 async function loginToNpmWithBrowser(): Promise<void> {
-  // `execFile` always buffers the child's output for its callback, even when
-  // asked to inherit stdio, so the login URL never reaches the terminal/CI log
-  // while the process is still running - only `spawn` streams it live, which
-  // is required here since a human needs to see and open that URL in time.
-  await new Promise<void>((resolve, reject) => {
-    const child = spawn('npm', ['login', '--auth-type=web', '--registry', NPM_REGISTRY_URL], {
-      env: process.env,
-      stdio: 'inherit',
-    });
-
-    child.on('error', reject);
-    child.on('exit', (code, signal) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(new Error(`npm login exited with code ${code ?? 'null'} (signal ${signal ?? 'none'})`));
-      }
-    });
-  });
+  await spawnNpmWithInheritedStdio(['login', '--auth-type=web', '--registry', NPM_REGISTRY_URL]);
 }
 
 function markPackageAsPublished(lockFile: SchemaLockFile, packageDirectory: string, projectRoot: string): void {
@@ -379,15 +361,41 @@ async function packageExistsOnNpm(packageName: string): Promise<boolean> {
 }
 
 async function publishNewPackageDirectory(packageDirectory: string): Promise<void> {
-  await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
+  // --auth-type=web here handles the one-time-password challenge for accounts
+  // that require 2FA to publish - without it, npm just errors out with EOTP
+  // and prints a URL instead of actively opening a browser flow to approve it.
+  await spawnNpmWithInheritedStdio(['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL, '--auth-type=web'], {
     cwd: packageDirectory,
-    env: process.env,
   });
 }
 
 async function readPackageManifest(packageJsonPath: string): Promise<PackageManifest> {
   const packageJsonContent = await readFile(packageJsonPath, 'utf-8');
   return JSON.parse(packageJsonContent) as PackageManifest;
+}
+
+// `execFile` always buffers a child's output for its callback, even when
+// asked to inherit stdio, so a live browser-approval URL (npm login, or an
+// OTP prompt during npm publish under an account that requires 2FA to
+// publish) would never reach the terminal/CI log while the process is still
+// running and waiting for that approval - only `spawn` streams it live.
+async function spawnNpmWithInheritedStdio(args: string[], spawnOptions: {cwd?: string} = {}): Promise<void> {
+  await new Promise<void>((resolve, reject) => {
+    const child = spawn('npm', args, {
+      cwd: spawnOptions.cwd,
+      env: process.env,
+      stdio: 'inherit',
+    });
+
+    child.on('error', reject);
+    child.on('exit', (code, signal) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`npm ${args[0]} exited with code ${code ?? 'null'} (signal ${signal ?? 'none'})`));
+      }
+    });
+  });
 }
 
 async function stagePackageDirectory(packageDirectory: string): Promise<void> {
