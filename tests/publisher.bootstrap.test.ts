@@ -99,7 +99,7 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     fetchMock.mockImplementation(async (url: string) => {
       if (url.includes('/-/v1/done')) {
         if (fetchMock.mock.calls.filter(call => (call[0] as string).includes('/-/v1/done')).length === 1) {
-          return {headers: new Headers({'retry-after': '0'}), status: 202};
+          return {headers: new Headers({'retry-after': '0'}), json: async () => ({}), status: 202};
         }
 
         return {json: async () => ({token: 'freshly-approved-token'}), status: 200};

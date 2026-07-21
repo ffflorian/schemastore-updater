@@ -390,15 +390,20 @@ async function pollForWebAuthToken(doneUrl: string): Promise<string> {
   const deadline = Date.now() + NPM_WEB_AUTH_POLL_TIMEOUT_MS;
 
   while (Date.now() < deadline) {
+    // npm-profile's own webAuthCheckLogin (the code this poll loop mirrors)
+    // reads the response body unconditionally, before branching on status -
+    // matching that here so a non-200/202 status still surfaces whatever
+    // diagnostic the registry sent, instead of just a bare status code.
     const response = await fetch(doneUrl, {headers: {accept: 'application/json'}});
+    const body: unknown = await response.json().catch(() => undefined);
 
     if (response.status === NPM_WEB_AUTH_STATUS_DONE) {
-      const body = (await response.json()) as {token?: string};
-      if (!body.token) {
-        throw new Error('npm one-time-password approval completed but no token was returned');
+      const token = (body as {token?: string} | undefined)?.token;
+      if (!token) {
+        throw new Error(`npm one-time-password approval completed but no token was returned: ${JSON.stringify(body)}`);
       }
 
-      return body.token;
+      return token;
     }
 
     if (response.status === NPM_WEB_AUTH_STATUS_PENDING) {
@@ -408,7 +413,7 @@ async function pollForWebAuthToken(doneUrl: string): Promise<string> {
       continue;
     }
 
-    throw new Error(`npm one-time-password check failed with status ${response.status}`);
+    throw new Error(`npm one-time-password check failed with status ${response.status}: ${JSON.stringify(body)}`);
   }
 
   throw new Error('Timed out waiting for npm one-time-password approval');
