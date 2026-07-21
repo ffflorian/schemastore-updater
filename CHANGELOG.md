@@ -1,3 +1,10 @@
+## [3.6.1](https://github.com/ffflorian/schemastore-updater/compare/v3.6.0...v3.6.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion from 1.1.12 to 1.1.16 ([#1572](https://github.com/ffflorian/schemastore-updater/issues/1572)) ([4761c7d](https://github.com/ffflorian/schemastore-updater/commit/4761c7da8c04332d01bb495efb6c57990330e331))
+
 # [3.6.0](https://github.com/ffflorian/schemastore-updater/compare/v3.5.4...v3.6.0) (2026-07-20)
 
 
