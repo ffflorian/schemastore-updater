@@ -1,4 +1,5 @@
-import {execFile} from 'node:child_process';
+import {execFile, spawn} from 'node:child_process';
+import {EventEmitter} from 'node:events';
 import {mkdir, mkdtemp, rm, writeFile} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -10,9 +11,11 @@ import {bootstrapNewPackages} from '../src/publisher.ts';
 
 vi.mock('node:child_process', () => ({
   execFile: vi.fn(),
+  spawn: vi.fn(),
 }));
 
 const execFileMock = vi.mocked(execFile);
+const spawnMock = vi.mocked(spawn);
 const fetchMock = vi.fn();
 const trackedTempDirectories: string[] = [];
 
@@ -20,6 +23,7 @@ vi.stubGlobal('fetch', fetchMock);
 
 afterEach(async () => {
   execFileMock.mockReset();
+  spawnMock.mockReset();
   fetchMock.mockReset();
   await Promise.all(trackedTempDirectories.map(tempDirectory => rm(tempDirectory, {force: true, recursive: true})));
   trackedTempDirectories.length = 0;
@@ -28,6 +32,11 @@ afterEach(async () => {
 describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirectory (default bootstrap wiring)', () => {
   it('logs in via browser once, then checks the registry and publishes only packages that do not exist yet', async () => {
     fetchMock.mockResolvedValue({ok: false});
+    spawnMock.mockImplementation(() => {
+      const child = new EventEmitter();
+      queueMicrotask(() => child.emit('exit', 0, null));
+      return child as ReturnType<typeof spawn>;
+    });
     execFileMock.mockImplementation((_command, _args, _options, callback) => {
       (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {stderr: '', stdout: ''});
       return {} as ReturnType<typeof execFile>;
@@ -40,22 +49,40 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     const stats = await withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages());
 
     expect(stats.bootstrapped).toBe(1);
-    expect(fetchMock).toHaveBeenCalledWith('https://registry.npmjs.org/@schemastore/alpha');
-    expect(execFileMock).toHaveBeenCalledTimes(2);
-    expect(execFileMock).toHaveBeenNthCalledWith(
-      1,
+    expect(fetchMock).toHaveBeenCalledWith('https://registry.npmjs.org/@schemastore/alpha', {
+      signal: expect.any(AbortSignal),
+    });
+    expect(spawnMock).toHaveBeenCalledTimes(1);
+    expect(spawnMock).toHaveBeenCalledWith(
       'npm',
       ['login', '--auth-type=web', '--registry', 'https://registry.npmjs.org/'],
-      expect.anything(),
-      expect.any(Function)
+      expect.objectContaining({stdio: 'inherit'})
     );
-    expect(execFileMock).toHaveBeenNthCalledWith(
-      2,
+    expect(execFileMock).toHaveBeenCalledTimes(1);
+    expect(execFileMock).toHaveBeenCalledWith(
       'npm',
       ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
       expect.objectContaining({cwd: expect.stringContaining('alpha')}),
       expect.any(Function)
     );
+  });
+
+  it('fails the batch without publishing anything when the npm login itself fails', async () => {
+    fetchMock.mockResolvedValue({ok: false});
+    spawnMock.mockImplementation(() => {
+      const child = new EventEmitter();
+      queueMicrotask(() => child.emit('exit', 1, null));
+      return child as ReturnType<typeof spawn>;
+    });
+
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+    });
+
+    await expect(withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages())).rejects.toThrow(
+      'npm login exited with code 1'
+    );
+    expect(execFileMock).not.toHaveBeenCalled();
   });
 
   it('skips publishing when the registry already has the package', async () => {

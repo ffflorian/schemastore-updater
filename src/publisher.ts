@@ -1,4 +1,4 @@
-import {execFile} from 'node:child_process';
+import {execFile, spawn} from 'node:child_process';
 import {access, mkdtemp, readdir, readFile, rm, writeFile} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -10,6 +10,7 @@ import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publi
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
+const NPM_REGISTRY_CHECK_TIMEOUT_MS = 10_000;
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
 const PUBLISH_SUMMARY_FILE_NAME = 'publish-summary.md';
 
@@ -84,13 +85,28 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
     const packageLabel = formatPackageLabel(packageManifest, schemaName);
     const packageName = packageManifest.name ?? `@schemastore/${schemaName}`;
 
-    if (await checkPackageExists(packageName)) {
-      // Already exists on npm - just a pending new version, not a first-ever
-      // publish. Leave it for the normal staged-publish pipeline to handle.
-      stats.skippedAlreadyExists += 1;
+    process.stdout.write(`🔍 Checking ${packageLabel} on npm ... `);
+
+    let alreadyExists: boolean;
+    try {
+      alreadyExists = await checkPackageExists(packageName);
+    } catch (error) {
+      stats.failed += 1;
+      stats.failedPackages.push(packageLabel);
+      process.stdout.write('failed\n');
+      console.error(error instanceof Error ? (error.stack ?? error.message) : String(error));
       continue;
     }
 
+    if (alreadyExists) {
+      // Already exists on npm - just a pending new version, not a first-ever
+      // publish. Leave it for the normal staged-publish pipeline to handle.
+      stats.skippedAlreadyExists += 1;
+      process.stdout.write('already exists\n');
+      continue;
+    }
+
+    process.stdout.write('not found, will bootstrap\n');
     candidates.push({packageDirectory, packageLabel});
   }
 
@@ -320,8 +336,24 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
 }
 
 async function loginToNpmWithBrowser(): Promise<void> {
-  await execFileAsync('npm', ['login', '--auth-type=web', '--registry', NPM_REGISTRY_URL], {
-    env: process.env,
+  // `execFile` always buffers the child's output for its callback, even when
+  // asked to inherit stdio, so the login URL never reaches the terminal/CI log
+  // while the process is still running - only `spawn` streams it live, which
+  // is required here since a human needs to see and open that URL in time.
+  await new Promise<void>((resolve, reject) => {
+    const child = spawn('npm', ['login', '--auth-type=web', '--registry', NPM_REGISTRY_URL], {
+      env: process.env,
+      stdio: 'inherit',
+    });
+
+    child.on('error', reject);
+    child.on('exit', (code, signal) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`npm login exited with code ${code ?? 'null'} (signal ${signal ?? 'none'})`));
+      }
+    });
   });
 }
 
@@ -340,7 +372,9 @@ function normalizePath(filePath: string): string {
 }
 
 async function packageExistsOnNpm(packageName: string): Promise<boolean> {
-  const response = await fetch(`${NPM_REGISTRY_URL}${packageName}`);
+  const response = await fetch(`${NPM_REGISTRY_URL}${packageName}`, {
+    signal: AbortSignal.timeout(NPM_REGISTRY_CHECK_TIMEOUT_MS),
+  });
   return response.ok;
 }
 
