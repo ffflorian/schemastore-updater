@@ -1,4 +1,4 @@
-import {execFile, spawn} from 'node:child_process';
+import {spawn} from 'node:child_process';
 import {EventEmitter} from 'node:events';
 import {mkdir, mkdtemp, rm, writeFile} from 'node:fs/promises';
 import os from 'node:os';
@@ -10,11 +10,14 @@ import type {SchemaLockFile} from '../src/types.ts';
 import {bootstrapNewPackages} from '../src/publisher.ts';
 
 vi.mock('node:child_process', () => ({
+  // publisher.ts also imports execFile at module scope (used by the regular
+  // staged-publish path, not exercised here) - promisify(execFile) needs a
+  // real function to bind to at import time even though this file never
+  // asserts on it directly.
   execFile: vi.fn(),
   spawn: vi.fn(),
 }));
 
-const execFileMock = vi.mocked(execFile);
 const spawnMock = vi.mocked(spawn);
 const fetchMock = vi.fn();
 const trackedTempDirectories: string[] = [];
@@ -22,25 +25,24 @@ const trackedTempDirectories: string[] = [];
 vi.stubGlobal('fetch', fetchMock);
 
 afterEach(async () => {
-  execFileMock.mockReset();
   spawnMock.mockReset();
   fetchMock.mockReset();
   await Promise.all(trackedTempDirectories.map(tempDirectory => rm(tempDirectory, {force: true, recursive: true})));
   trackedTempDirectories.length = 0;
 });
 
+function mockSpawnExit(exitCode: number): void {
+  spawnMock.mockImplementation(() => {
+    const child = new EventEmitter();
+    queueMicrotask(() => child.emit('exit', exitCode, null));
+    return child as ReturnType<typeof spawn>;
+  });
+}
+
 describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirectory (default bootstrap wiring)', () => {
   it('logs in via browser once, then checks the registry and publishes only packages that do not exist yet', async () => {
     fetchMock.mockResolvedValue({ok: false});
-    spawnMock.mockImplementation(() => {
-      const child = new EventEmitter();
-      queueMicrotask(() => child.emit('exit', 0, null));
-      return child as ReturnType<typeof spawn>;
-    });
-    execFileMock.mockImplementation((_command, _args, _options, callback) => {
-      (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {stderr: '', stdout: ''});
-      return {} as ReturnType<typeof execFile>;
-    });
+    mockSpawnExit(0);
 
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
@@ -52,28 +54,24 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     expect(fetchMock).toHaveBeenCalledWith('https://registry.npmjs.org/@schemastore/alpha', {
       signal: expect.any(AbortSignal),
     });
-    expect(spawnMock).toHaveBeenCalledTimes(1);
-    expect(spawnMock).toHaveBeenCalledWith(
+    expect(spawnMock).toHaveBeenCalledTimes(2);
+    expect(spawnMock).toHaveBeenNthCalledWith(
+      1,
       'npm',
       ['login', '--auth-type=web', '--registry', 'https://registry.npmjs.org/'],
       expect.objectContaining({stdio: 'inherit'})
     );
-    expect(execFileMock).toHaveBeenCalledTimes(1);
-    expect(execFileMock).toHaveBeenCalledWith(
+    expect(spawnMock).toHaveBeenNthCalledWith(
+      2,
       'npm',
-      ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
-      expect.objectContaining({cwd: expect.stringContaining('alpha')}),
-      expect.any(Function)
+      ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/', '--auth-type=web'],
+      expect.objectContaining({cwd: expect.stringContaining('alpha'), stdio: 'inherit'})
     );
   });
 
   it('fails the batch without publishing anything when the npm login itself fails', async () => {
     fetchMock.mockResolvedValue({ok: false});
-    spawnMock.mockImplementation(() => {
-      const child = new EventEmitter();
-      queueMicrotask(() => child.emit('exit', 1, null));
-      return child as ReturnType<typeof spawn>;
-    });
+    mockSpawnExit(1);
 
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
@@ -82,7 +80,7 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     await expect(withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages())).rejects.toThrow(
       'npm login exited with code 1'
     );
-    expect(execFileMock).not.toHaveBeenCalled();
+    expect(spawnMock).toHaveBeenCalledTimes(1);
   });
 
   it('skips publishing when the registry already has the package', async () => {
@@ -95,7 +93,7 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     const stats = await withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages());
 
     expect(stats).toMatchObject({attempted: 0, bootstrapped: 0, skippedAlreadyExists: 1});
-    expect(execFileMock).not.toHaveBeenCalled();
+    expect(spawnMock).not.toHaveBeenCalled();
   });
 });
 
