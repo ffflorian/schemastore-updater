@@ -85,7 +85,7 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     expect(execFileMock).not.toHaveBeenCalled();
   });
 
-  it('recovers from a one-time-password challenge by polling doneUrl and retrying with the resulting token', async () => {
+  it('recovers from a one-time-password challenge by polling doneUrl (authenticated as the logged-in session) and retrying with the resulting token', async () => {
     const eotpStderr = [
       'npm error code EOTP',
       'npm error This operation requires a one-time password.',
@@ -96,8 +96,15 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
       'npm error   https://registry.npmjs.org/-/v1/done?authId=test-auth-id',
     ].join('\n');
 
-    fetchMock.mockImplementation(async (url: string) => {
+    const npmrcDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-npmrc-'));
+    trackedTempDirectories.push(npmrcDirectory);
+    const npmrcPath = path.join(npmrcDirectory, '.npmrc');
+    await writeFile(npmrcPath, '//registry.npmjs.org/:_authToken=current-session-token\n', 'utf-8');
+
+    fetchMock.mockImplementation(async (url: string, init?: {headers?: Record<string, string>}) => {
       if (url.includes('/-/v1/done')) {
+        expect(init?.headers?.authorization).toBe('Bearer current-session-token');
+
         if (fetchMock.mock.calls.filter(call => (call[0] as string).includes('/-/v1/done')).length === 1) {
           return {headers: new Headers({'retry-after': '0'}), json: async () => ({}), status: 202};
         }
@@ -108,8 +115,19 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
       return {ok: false};
     });
     mockSpawnSequence([{code: 0}, {code: 1, stderr: eotpStderr}]);
-    execFileMock.mockImplementation((_command, _args, _options, callback) => {
-      (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {stderr: '', stdout: ''});
+    execFileMock.mockImplementation((_command, args, ...rest) => {
+      // `execFileAsync('npm', [...])` (no options) puts the callback in the 3rd
+      // slot, while calls that pass an options object put it in the 4th - grab
+      // whichever trailing argument is actually a function instead of assuming
+      // a fixed position.
+      const cb = rest.find((argument): argument is (error: null, result: {stderr: string; stdout: string}) => void =>
+        typeof argument === 'function'
+      );
+      if (Array.isArray(args) && args.join(' ') === 'config get userconfig') {
+        cb?.(null, {stderr: '', stdout: npmrcPath});
+      } else {
+        cb?.(null, {stderr: '', stdout: ''});
+      }
       return {} as ReturnType<typeof execFile>;
     });
 
@@ -120,7 +138,8 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     const stats = await withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages());
 
     expect(stats).toMatchObject({bootstrapped: 1, failed: 0});
-    expect(execFileMock).toHaveBeenCalledTimes(1);
+    expect(execFileMock).toHaveBeenCalledTimes(2);
+    expect(execFileMock).toHaveBeenCalledWith('npm', ['config', 'get', 'userconfig'], expect.any(Function));
     expect(execFileMock).toHaveBeenCalledWith(
       'npm',
       [
