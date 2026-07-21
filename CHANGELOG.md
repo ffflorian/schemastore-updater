@@ -1,3 +1,10 @@
+## [3.7.4](https://github.com/ffflorian/schemastore-updater/compare/v3.7.3...v3.7.4) (2026-07-21)
+
+
+### Bug Fixes
+
+* **publisher:** use --auth-type=web for npm publish, not just npm login ([#1578](https://github.com/ffflorian/schemastore-updater/issues/1578)) ([3c2c211](https://github.com/ffflorian/schemastore-updater/commit/3c2c21170c9658c71429686340869e1230f182cb))
+
 ## [3.7.3](https://github.com/ffflorian/schemastore-updater/compare/v3.7.2...v3.7.3) (2026-07-21)
 
 
