@@ -15,6 +15,7 @@ const PUBLISH_SUMMARY_FILE_NAME = 'publish-summary.md';
 
 interface BootstrapOptions {
   checkPackageExists?: (packageName: string) => Promise<boolean>;
+  loginToNpm?: () => Promise<void>;
   publishNewPackage?: (packageDirectory: string) => Promise<void>;
   schemasDir?: string;
 }
@@ -35,6 +36,7 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
   const projectRoot = process.cwd();
   const schemasDirectory = options.schemasDir ? path.resolve(options.schemasDir) : path.join(projectRoot, 'schemas');
   const checkPackageExists = options.checkPackageExists ?? packageExistsOnNpm;
+  const loginToNpm = options.loginToNpm ?? loginToNpmWithBrowser;
   const publishNewPackage = options.publishNewPackage ?? publishNewPackageDirectory;
   const lockFilePath = path.join(projectRoot, 'schema-lock.json');
 
@@ -60,6 +62,8 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
     skippedAlreadyExists: 0,
   };
 
+  const candidates: Array<{packageDirectory: string; packageLabel: string}> = [];
+
   for (const packageDirectory of packageDirectories) {
     const packageJsonPath = path.join(packageDirectory, 'package.json');
     if (!(await exists(packageJsonPath))) {
@@ -80,17 +84,32 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
     const packageLabel = formatPackageLabel(packageManifest, schemaName);
     const packageName = packageManifest.name ?? `@schemastore/${schemaName}`;
 
+    if (await checkPackageExists(packageName)) {
+      // Already exists on npm - just a pending new version, not a first-ever
+      // publish. Leave it for the normal staged-publish pipeline to handle.
+      stats.skippedAlreadyExists += 1;
+      continue;
+    }
+
+    candidates.push({packageDirectory, packageLabel});
+  }
+
+  if (candidates.length === 0) {
+    return stats;
+  }
+
+  // A single browser-based login covers every candidate below - `npm publish`
+  // does not fall back to a web login from a fully unauthenticated state on
+  // its own, only `npm login` does, so login has to happen as its own step.
+  process.stdout.write('🔑 Logging in to npm - watch for a login URL to open on your phone ... ');
+  await loginToNpm();
+  process.stdout.write('done\n');
+
+  for (const {packageDirectory, packageLabel} of candidates) {
+    stats.attempted += 1;
+    process.stdout.write(`🌱 Bootstrapping ${packageLabel} ... `);
+
     try {
-      if (await checkPackageExists(packageName)) {
-        // Already exists on npm - just a pending new version, not a first-ever
-        // publish. Leave it for the normal staged-publish pipeline to handle.
-        stats.skippedAlreadyExists += 1;
-        continue;
-      }
-
-      stats.attempted += 1;
-      process.stdout.write(`🌱 Bootstrapping ${packageLabel} - watch for an npm login URL to open on your phone ... `);
-
       await publishNewPackage(packageDirectory);
       markPackageAsPublished(lockFile, packageDirectory, projectRoot);
       await writeLockFile(lockFilePath, lockFile);
@@ -300,6 +319,12 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
   };
 }
 
+async function loginToNpmWithBrowser(): Promise<void> {
+  await execFileAsync('npm', ['login', '--auth-type=web', '--registry', NPM_REGISTRY_URL], {
+    env: process.env,
+  });
+}
+
 function markPackageAsPublished(lockFile: SchemaLockFile, packageDirectory: string, projectRoot: string): void {
   const generatedFile = normalizePath(path.relative(projectRoot, path.join(packageDirectory, 'index.d.ts')));
 
@@ -320,7 +345,7 @@ async function packageExistsOnNpm(packageName: string): Promise<boolean> {
 }
 
 async function publishNewPackageDirectory(packageDirectory: string): Promise<void> {
-  await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL, '--auth-type=web'], {
+  await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
     cwd: packageDirectory,
     env: process.env,
   });

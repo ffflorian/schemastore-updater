@@ -25,8 +25,8 @@ afterEach(async () => {
   trackedTempDirectories.length = 0;
 });
 
-describe('packageExistsOnNpm / publishNewPackageDirectory (default bootstrap wiring)', () => {
-  it('checks the public registry and only publishes packages that do not exist yet', async () => {
+describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirectory (default bootstrap wiring)', () => {
+  it('logs in via browser once, then checks the registry and publishes only packages that do not exist yet', async () => {
     fetchMock.mockResolvedValue({ok: false});
     execFileMock.mockImplementation((_command, _args, _options, callback) => {
       (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {stderr: '', stdout: ''});
@@ -41,9 +41,18 @@ describe('packageExistsOnNpm / publishNewPackageDirectory (default bootstrap wir
 
     expect(stats.bootstrapped).toBe(1);
     expect(fetchMock).toHaveBeenCalledWith('https://registry.npmjs.org/@schemastore/alpha');
-    expect(execFileMock).toHaveBeenCalledWith(
+    expect(execFileMock).toHaveBeenCalledTimes(2);
+    expect(execFileMock).toHaveBeenNthCalledWith(
+      1,
       'npm',
-      ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/', '--auth-type=web'],
+      ['login', '--auth-type=web', '--registry', 'https://registry.npmjs.org/'],
+      expect.anything(),
+      expect.any(Function)
+    );
+    expect(execFileMock).toHaveBeenNthCalledWith(
+      2,
+      'npm',
+      ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
       expect.objectContaining({cwd: expect.stringContaining('alpha')}),
       expect.any(Function)
     );

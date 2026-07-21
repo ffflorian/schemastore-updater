@@ -198,16 +198,18 @@ describe('publishGeneratedPackages', () => {
 });
 
 describe('bootstrapNewPackages', () => {
-  it('publishes only packages that do not already exist on npm', async () => {
+  it('logs in once via browser then publishes only packages that do not already exist on npm', async () => {
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
       'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '1.0.0'}, null, 2),
     });
     const publishedDirectories: string[] = [];
+    const loginToNpm = vi.fn(async () => undefined);
 
     const stats = await withWorkingDirectory(workspaceDirectory, () =>
       bootstrapNewPackages({
         checkPackageExists: async packageName => packageName === '@schemastore/alpha',
+        loginToNpm,
         publishNewPackage: async packageDirectory => {
           publishedDirectories.push(path.basename(packageDirectory));
         },
@@ -224,6 +226,7 @@ describe('bootstrapNewPackages', () => {
       failedPackages: [],
       skippedAlreadyExists: 1,
     });
+    expect(loginToNpm).toHaveBeenCalledTimes(1);
     expect(publishedDirectories).toEqual(['beta']);
     expect(lockFile.entries['alpha.json']?.published).toBe(false);
     expect(lockFile.entries['beta.json']?.published).toBe(true);
@@ -238,9 +241,10 @@ describe('bootstrapNewPackages', () => {
     const stats = await withWorkingDirectory(workspaceDirectory, () =>
       bootstrapNewPackages({
         checkPackageExists: async () => false,
+        loginToNpm: async () => undefined,
         publishNewPackage: async packageDirectory => {
           if (path.basename(packageDirectory) === 'alpha') {
-            throw new Error('login timed out');
+            throw new Error('publish failed');
           }
         },
       })
@@ -260,7 +264,7 @@ describe('bootstrapNewPackages', () => {
     expect(lockFile.entries['beta.json']?.published).toBe(true);
   });
 
-  it('skips packages already marked as published in schema-lock.json', async () => {
+  it('skips packages already marked as published in schema-lock.json without logging in', async () => {
     const workspaceDirectory = await createWorkspace(
       {
         'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
@@ -270,10 +274,12 @@ describe('bootstrapNewPackages', () => {
       }
     );
     const checkPackageExists = vi.fn(async () => false);
+    const loginToNpm = vi.fn(async () => undefined);
 
     const stats = await withWorkingDirectory(workspaceDirectory, () =>
       bootstrapNewPackages({
         checkPackageExists,
+        loginToNpm,
         publishNewPackage: async () => undefined,
       })
     );
@@ -287,6 +293,7 @@ describe('bootstrapNewPackages', () => {
       skippedAlreadyExists: 0,
     });
     expect(checkPackageExists).not.toHaveBeenCalled();
+    expect(loginToNpm).not.toHaveBeenCalled();
   });
 
   it('always skips non-publishable schemas', async () => {
