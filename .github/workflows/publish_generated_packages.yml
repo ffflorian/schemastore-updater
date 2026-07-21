@@ -7,14 +7,17 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
-      bootstrap_packages:
+      bootstrap_new_packages:
         description: >-
-          Schema IDs to bootstrap (first-ever npm publish), space or comma separated.
-          Leave empty for a normal run. Each one needs a package directory under
-          schemas/ but no existing npm package - npm has no cached credentials for
-          this job, so publishing will print a login URL in this log; open it on
-          your phone and approve with 2FA to let the publish continue.
+          If true, first publish any schema packages that have never existed on npm
+          before (npm stage publish cannot create a package for the first time).
+          Existing packages with just a pending new version are left to the normal
+          staged-publish step below. No credentials are configured for this step, so
+          npm will print a login URL in this log; open it on your phone and approve
+          with 2FA to let each publish continue.
         required: false
+        type: boolean
+        default: false
 
 jobs:
   publish_generated_packages:
@@ -48,25 +51,9 @@ jobs:
         run: yarn --immutable
 
       - name: Bootstrap brand-new packages via npm browser login
-        if: github.event_name == 'workflow_dispatch' && inputs.bootstrap_packages != ''
+        if: github.event_name == 'workflow_dispatch' && inputs.bootstrap_new_packages == true
         timeout-minutes: 15
-        env:
-          BOOTSTRAP_PACKAGES: ${{ inputs.bootstrap_packages }}
-        run: |
-          for schema_id in $(echo "$BOOTSTRAP_PACKAGES" | tr ',' ' '); do
-            package_dir="schemas/$schema_id"
-            if [ ! -d "$package_dir" ]; then
-              echo "::error::No package directory found at $package_dir, skipping."
-              continue
-            fi
-
-            echo "Bootstrapping $schema_id - watch this log for an npm login URL and open it on your phone."
-            if (cd "$package_dir" && npm publish --access public --registry https://registry.npmjs.org/ --auth-type=web); then
-              yarn mark-published "$schema_id"
-            else
-              echo "::error::Failed to bootstrap $schema_id"
-            fi
-          done
+        run: yarn bootstrap:new-packages
 
       - name: Publish generated packages
         id: publish

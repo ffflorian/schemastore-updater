@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 
 import type {SchemaLockFile} from './types.js';
 
-import {publishGeneratedPackages} from './publisher.js';
+import {bootstrapNewPackages, publishGeneratedPackages} from './publisher.js';
 import {LOCK_FILE_NAME, updateSchemas} from './updater.js';
 
 interface PublishCommandOptions {
@@ -46,6 +46,13 @@ async function main(): Promise<void> {
     .action((options: PublishCommandOptions) => runPublishCommand(options));
 
   program
+    .command('bootstrap')
+    .description(
+      'Publish schema packages that have never existed on npm before, via a direct npm publish with browser-based login (`npm stage publish` cannot create a package for the first time)'
+    )
+    .action(() => runBootstrapCommand());
+
+  program
     .command('update')
     .description('Update and generate all schemas')
     .option('-f, --force', 'Regenerate all schemas, ignoring source hash matches')
@@ -72,6 +79,28 @@ async function run(): Promise<void> {
   } catch (error) {
     const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
     console.error(message);
+    process.exitCode = 1;
+  }
+}
+
+async function runBootstrapCommand(): Promise<void> {
+  const stats = await bootstrapNewPackages();
+
+  console.info('\nBootstrap complete.');
+  console.info(`Attempted: ${stats.attempted}`);
+  console.info(`Bootstrapped: ${stats.bootstrapped}`);
+  console.info(`Already existed on npm: ${stats.skippedAlreadyExists}`);
+  console.info(`Failed: ${stats.failed}`);
+
+  if (stats.bootstrappedPackages.length > 0) {
+    console.info(`\nBootstrapped packages:\n${stats.bootstrappedPackages.map(label => `  - ${label}`).join('\n')}`);
+  }
+
+  if (stats.failedPackages.length > 0) {
+    console.info(`\nFailed packages:\n${stats.failedPackages.map(label => `  - ${label}`).join('\n')}`);
+  }
+
+  if (stats.failed > 0) {
     process.exitCode = 1;
   }
 }

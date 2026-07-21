@@ -1,3 +1,12 @@
+export interface BootstrapStats {
+  attempted: number;
+  bootstrapped: number;
+  bootstrappedPackages: string[];
+  failed: number;
+  failedPackages: string[];
+  skippedAlreadyExists: number;
+}
+
 export interface CliOptions {
   force: boolean;
   schema?: string;

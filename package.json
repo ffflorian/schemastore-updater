@@ -37,6 +37,7 @@
   "private": true,
   "repository": "https://github.com/ffflorian/schemastore-updater",
   "scripts": {
+    "bootstrap:new-packages": "tsx src/cli.ts bootstrap",
     "build": "tsc -p tsconfig.json",
     "check": "tsc -p tsconfig.json --noEmit",
     "clean": "rm -rf dist schemas schema-lock.json .cache",

@@ -5,7 +5,7 @@ import {afterEach, describe, expect, it, vi} from 'vitest';
 
 import type {SchemaLockFile} from '../src/types.ts';
 
-import {publishGeneratedPackages} from '../src/publisher.ts';
+import {bootstrapNewPackages, publishGeneratedPackages} from '../src/publisher.ts';
 
 const trackedTempDirectories: string[] = [];
 
@@ -194,6 +194,116 @@ describe('publishGeneratedPackages', () => {
       skipped: 1,
     });
     expect(publishPackage).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('bootstrapNewPackages', () => {
+  it('publishes only packages that do not already exist on npm', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+      'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '1.0.0'}, null, 2),
+    });
+    const publishedDirectories: string[] = [];
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists: async packageName => packageName === '@schemastore/alpha',
+        publishNewPackage: async packageDirectory => {
+          publishedDirectories.push(path.basename(packageDirectory));
+        },
+      })
+    );
+
+    const lockFile = await readLockFile(workspaceDirectory);
+
+    expect(stats).toEqual({
+      attempted: 1,
+      bootstrapped: 1,
+      bootstrappedPackages: ['@schemastore/beta@1.0.0'],
+      failed: 0,
+      failedPackages: [],
+      skippedAlreadyExists: 1,
+    });
+    expect(publishedDirectories).toEqual(['beta']);
+    expect(lockFile.entries['alpha.json']?.published).toBe(false);
+    expect(lockFile.entries['beta.json']?.published).toBe(true);
+  });
+
+  it('continues past a failed bootstrap and records the error', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+      'beta/package.json': JSON.stringify({name: '@schemastore/beta', version: '1.0.0'}, null, 2),
+    });
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists: async () => false,
+        publishNewPackage: async packageDirectory => {
+          if (path.basename(packageDirectory) === 'alpha') {
+            throw new Error('login timed out');
+          }
+        },
+      })
+    );
+
+    const lockFile = await readLockFile(workspaceDirectory);
+
+    expect(stats).toEqual({
+      attempted: 2,
+      bootstrapped: 1,
+      bootstrappedPackages: ['@schemastore/beta@1.0.0'],
+      failed: 1,
+      failedPackages: ['@schemastore/alpha@1.0.0'],
+      skippedAlreadyExists: 0,
+    });
+    expect(lockFile.entries['alpha.json']?.published).toBe(false);
+    expect(lockFile.entries['beta.json']?.published).toBe(true);
+  });
+
+  it('skips packages already marked as published in schema-lock.json', async () => {
+    const workspaceDirectory = await createWorkspace(
+      {
+        'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+      },
+      {
+        'alpha.json': true,
+      }
+    );
+    const checkPackageExists = vi.fn(async () => false);
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists,
+        publishNewPackage: async () => undefined,
+      })
+    );
+
+    expect(stats).toEqual({
+      attempted: 0,
+      bootstrapped: 0,
+      bootstrappedPackages: [],
+      failed: 0,
+      failedPackages: [],
+      skippedAlreadyExists: 0,
+    });
+    expect(checkPackageExists).not.toHaveBeenCalled();
+  });
+
+  it('always skips non-publishable schemas', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'cheatsheets/package.json': JSON.stringify({name: '@schemastore/cheatsheets', version: '1.0.0'}, null, 2),
+    });
+    const checkPackageExists = vi.fn(async () => false);
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists,
+        publishNewPackage: async () => undefined,
+      })
+    );
+
+    expect(stats.attempted).toBe(0);
+    expect(checkPackageExists).not.toHaveBeenCalled();
   });
 });
 
