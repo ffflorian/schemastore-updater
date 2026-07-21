@@ -1,3 +1,10 @@
+## [3.7.6](https://github.com/ffflorian/schemastore-updater/compare/v3.7.5...v3.7.6) (2026-07-21)
+
+
+### Bug Fixes
+
+* **publisher:** authenticate the OTP doneUrl poll as the logged-in npm session ([#1582](https://github.com/ffflorian/schemastore-updater/issues/1582)) ([5db5491](https://github.com/ffflorian/schemastore-updater/commit/5db5491ac8756265559a9193b25db824f13f74e5))
+
 ## [3.7.5](https://github.com/ffflorian/schemastore-updater/compare/v3.7.4...v3.7.5) (2026-07-21)
 
 
