@@ -318,6 +318,24 @@ function formatPublishError(packageLabel: string, error: unknown): string {
   return `[${new Date().toISOString()}] ${packageLabel}\n${errorMessage}`;
 }
 
+// The doneUrl check for an EOTP challenge returned a bare 404 with no other
+// diagnostic when polled anonymously. Best remaining theory: it needs to be
+// authenticated as the identity that's currently logged in (the session
+// `npm login --auth-type=web` just cached), not an anonymous request.
+async function getCurrentNpmAuthToken(): Promise<string | undefined> {
+  try {
+    // `npm config get //registry.npmjs.org/:_authToken` refuses to return this
+    // value at all ("this option is protected, and can not be retrieved in
+    // this way"), so read the userconfig file `npm login` wrote it to directly.
+    const {stdout: userConfigPath} = await execFileAsync('npm', ['config', 'get', 'userconfig']);
+    const userConfigContent = await readFile(userConfigPath.trim(), 'utf-8');
+    const tokenMatch = /^\/\/registry\.npmjs\.org\/:_authToken=(\S+)$/m.exec(userConfigContent);
+    return tokenMatch?.[1];
+  } catch {
+    return undefined;
+  }
+}
+
 async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
   if (!(await exists(lockFilePath))) {
     return {
@@ -387,6 +405,12 @@ function parseWebAuthUrls(npmStderr: string): {authUrl: string; doneUrl: string}
 }
 
 async function pollForWebAuthToken(doneUrl: string): Promise<string> {
+  const authToken = await getCurrentNpmAuthToken();
+  const headers: Record<string, string> = {accept: 'application/json'};
+  if (authToken) {
+    headers.authorization = `Bearer ${authToken}`;
+  }
+
   const deadline = Date.now() + NPM_WEB_AUTH_POLL_TIMEOUT_MS;
 
   while (Date.now() < deadline) {
@@ -394,7 +418,7 @@ async function pollForWebAuthToken(doneUrl: string): Promise<string> {
     // reads the response body unconditionally, before branching on status -
     // matching that here so a non-200/202 status still surfaces whatever
     // diagnostic the registry sent, instead of just a bare status code.
-    const response = await fetch(doneUrl, {headers: {accept: 'application/json'}});
+    const response = await fetch(doneUrl, {headers});
     const body: unknown = await response.json().catch(() => undefined);
 
     if (response.status === NPM_WEB_AUTH_STATUS_DONE) {
