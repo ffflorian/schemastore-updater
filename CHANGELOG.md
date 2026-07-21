@@ -1,3 +1,10 @@
+## [3.7.7](https://github.com/ffflorian/schemastore-updater/compare/v3.7.6...v3.7.7) (2026-07-21)
+
+
+### Bug Fixes
+
+* **publisher:** drop CI-side OTP polling, bootstrap new packages locally instead ([#1583](https://github.com/ffflorian/schemastore-updater/issues/1583)) ([a271a65](https://github.com/ffflorian/schemastore-updater/commit/a271a65f52dd5888d2391e854dd70a041e83b8c0))
+
 ## [3.7.6](https://github.com/ffflorian/schemastore-updater/compare/v3.7.5...v3.7.6) (2026-07-21)
 
 
