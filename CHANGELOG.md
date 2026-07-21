@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/ffflorian/schemastore-updater/compare/v3.7.0...v3.7.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* **publisher:** explicitly npm login before publishing brand-new packages ([#1576](https://github.com/ffflorian/schemastore-updater/issues/1576)) ([0062ebe](https://github.com/ffflorian/schemastore-updater/commit/0062ebe21a5f00bceb2f7a6136bddd9ba274eb56))
+
 # [3.7.0](https://github.com/ffflorian/schemastore-updater/compare/v3.6.1...v3.7.0) (2026-07-21)
 
 
