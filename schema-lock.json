@@ -276,7 +276,7 @@
     "aih-org-policy.json": {
       "generatedFile": "schemas/aih-org-policy/index.d.ts",
       "generatedSha256": "21a8e86ba55c617ff2baf3bf8b3086a8899c32b5069f9b0313b29549afe98572",
-      "published": false,
+      "published": true,
       "sourceSha256": "1b376c570f6e96f06de57f2fe776604ea2c3156eeba90d976e7a94998639a7b7",
       "updatedAt": "2026-07-13T06:00:36.779Z"
     },
@@ -2712,7 +2712,7 @@
     "heloisa-marketplace.json": {
       "generatedFile": "schemas/heloisa-marketplace/index.d.ts",
       "generatedSha256": "c32090ad243e5f373bb2bc60b5728ff7c1dabef22be5c7eb0806bffbacc0f3e6",
-      "published": false,
+      "published": true,
       "sourceSha256": "abbe23b48d5a2ea100d98321c80aea8711c72010ed3fecab1b44e5fc3a14aa0e",
       "updatedAt": "2026-07-20T06:01:55.550Z"
     },
@@ -2957,7 +2957,7 @@
     "kind-cluster.json": {
       "generatedFile": "schemas/kind-cluster/index.d.ts",
       "generatedSha256": "431279f492b6b40c425ae7c33dd555e37d3bfbe71851db9f4e9430e8b7c788b2",
-      "published": false,
+      "published": true,
       "sourceSha256": "eee1fc448ed70f35f190fd5a5e7f249ddb585798298633f21fba464bc4f6e97f",
       "updatedAt": "2026-07-20T06:05:08.433Z"
     },
@@ -3258,7 +3258,7 @@
     "madge.json": {
       "generatedFile": "schemas/madge/index.d.ts",
       "generatedSha256": "623776214cb8a7ca0c81b6344c53c4bf5c58647d8608fc28d0ada3019085a7c9",
-      "published": false,
+      "published": true,
       "sourceSha256": "b6e5ae0126cdfd73dcc1592bc91de0a8f246fde16fe9b7d0c0ad9c8b46b4a034",
       "updatedAt": "2026-07-20T06:05:10.127Z"
     },
@@ -3734,7 +3734,7 @@
     "okf-0.1.json": {
       "generatedFile": "schemas/okf-0.1/index.d.ts",
       "generatedSha256": "d1b8049bcaa45c536f79c67c82d10c5e6baebba1e3160791b50a35102fe95fe7",
-      "published": false,
+      "published": true,
       "sourceSha256": "8717b666e063743e468cfb12a9e693839057c32695df502e2ff9c499519c5bce",
       "updatedAt": "2026-07-20T06:05:12.282Z"
     },
@@ -4756,7 +4756,7 @@
     "s3-bucket-cors.json": {
       "generatedFile": "schemas/s3-bucket-cors/index.d.ts",
       "generatedSha256": "d2a6c858030ddca87e6168678b00803db11406946e354ff8320308683b6a99bc",
-      "published": false,
+      "published": true,
       "sourceSha256": "93de041f116375c3b4de4f50888b1e556294a80f6e32950fbea492caad907300",
       "updatedAt": "2026-07-20T06:05:19.651Z"
     },
