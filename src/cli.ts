@@ -48,7 +48,7 @@ async function main(): Promise<void> {
   program
     .command('bootstrap')
     .description(
-      'Publish schema packages that have never existed on npm before, via a direct npm publish with browser-based login (`npm stage publish` cannot create a package for the first time)'
+      'Publish schema packages that have never existed on npm before (`npm stage publish` cannot create a package for the first time). Run this from a real terminal - it prompts for 2FA/passkey approval interactively and cannot complete in CI.'
     )
     .action(() => runBootstrapCommand());
 

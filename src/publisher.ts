@@ -12,12 +12,6 @@ const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
 const NPM_REGISTRY_CHECK_TIMEOUT_MS = 10_000;
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
-const NPM_WEB_AUTH_POLL_MAX_DELAY_MS = 30_000;
-const MILLISECONDS_PER_SECOND = 1000;
-const NPM_WEB_AUTH_DEFAULT_RETRY_SECONDS = 5;
-const NPM_WEB_AUTH_POLL_TIMEOUT_MS = 600_000;
-const NPM_WEB_AUTH_STATUS_DONE = 200;
-const NPM_WEB_AUTH_STATUS_PENDING = 202;
 const PUBLISH_SUMMARY_FILE_NAME = 'publish-summary.md';
 
 interface BootstrapOptions {
@@ -283,10 +277,6 @@ function createPublishSummary(stats: PublishStats): string {
   return lines.join('\n');
 }
 
-function delay(milliseconds: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
-
 async function exists(filePath: string): Promise<boolean> {
   try {
     await access(filePath);
@@ -316,24 +306,6 @@ function formatPackageLabel(packageManifest: PackageManifest, fallbackName: stri
 function formatPublishError(packageLabel: string, error: unknown): string {
   const errorMessage = error instanceof Error ? (error.stack ?? error.message) : String(error);
   return `[${new Date().toISOString()}] ${packageLabel}\n${errorMessage}`;
-}
-
-// The doneUrl check for an EOTP challenge returned a bare 404 with no other
-// diagnostic when polled anonymously. Best remaining theory: it needs to be
-// authenticated as the identity that's currently logged in (the session
-// `npm login --auth-type=web` just cached), not an anonymous request.
-async function getCurrentNpmAuthToken(): Promise<string | undefined> {
-  try {
-    // `npm config get //registry.npmjs.org/:_authToken` refuses to return this
-    // value at all ("this option is protected, and can not be retrieved in
-    // this way"), so read the userconfig file `npm login` wrote it to directly.
-    const {stdout: userConfigPath} = await execFileAsync('npm', ['config', 'get', 'userconfig']);
-    const userConfigContent = await readFile(userConfigPath.trim(), 'utf-8');
-    const tokenMatch = /^\/\/registry\.npmjs\.org\/:_authToken=(\S+)$/m.exec(userConfigContent);
-    return tokenMatch?.[1];
-  } catch {
-    return undefined;
-  }
 }
 
 async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
@@ -388,90 +360,20 @@ async function packageExistsOnNpm(packageName: string): Promise<boolean> {
   return response.ok;
 }
 
-function parseWebAuthUrls(npmStderr: string): {authUrl: string; doneUrl: string} | undefined {
-  // Every continuation line of npm's error output is itself prefixed with
-  // "npm error ", so anchoring on the preceding label text (e.g. "authenticate:")
-  // would only ever capture that literal prefix, never the URL after it.
-  // Matching the distinctive URL shapes directly is robust regardless of
-  // whatever text/prefix formatting surrounds them.
-  const authUrlMatch = /(https:\/\/www\.npmjs\.com\/auth\/cli\/\S+)/.exec(npmStderr);
-  const doneUrlMatch = /(https:\/\/registry\.npmjs\.org\/-\/v1\/done\?\S+)/.exec(npmStderr);
-
-  if (!authUrlMatch?.[1] || !doneUrlMatch?.[1]) {
-    return undefined;
-  }
-
-  return {authUrl: authUrlMatch[1], doneUrl: doneUrlMatch[1]};
-}
-
-async function pollForWebAuthToken(doneUrl: string): Promise<string> {
-  const authToken = await getCurrentNpmAuthToken();
-  const headers: Record<string, string> = {accept: 'application/json'};
-  if (authToken) {
-    headers.authorization = `Bearer ${authToken}`;
-  }
-
-  const deadline = Date.now() + NPM_WEB_AUTH_POLL_TIMEOUT_MS;
-
-  while (Date.now() < deadline) {
-    // npm-profile's own webAuthCheckLogin (the code this poll loop mirrors)
-    // reads the response body unconditionally, before branching on status -
-    // matching that here so a non-200/202 status still surfaces whatever
-    // diagnostic the registry sent, instead of just a bare status code.
-    const response = await fetch(doneUrl, {headers});
-    const body: unknown = await response.json().catch(() => undefined);
-
-    if (response.status === NPM_WEB_AUTH_STATUS_DONE) {
-      const token = (body as {token?: string} | undefined)?.token;
-      if (!token) {
-        throw new Error(`npm one-time-password approval completed but no token was returned: ${JSON.stringify(body)}`);
-      }
-
-      return token;
-    }
-
-    if (response.status === NPM_WEB_AUTH_STATUS_PENDING) {
-      const parsedRetryAfter = Number(response.headers.get('retry-after'));
-      const retryAfterSeconds = Number.isNaN(parsedRetryAfter) ? NPM_WEB_AUTH_DEFAULT_RETRY_SECONDS : parsedRetryAfter;
-      await delay(Math.min(retryAfterSeconds * MILLISECONDS_PER_SECOND, NPM_WEB_AUTH_POLL_MAX_DELAY_MS));
-      continue;
-    }
-
-    throw new Error(`npm one-time-password check failed with status ${response.status}: ${JSON.stringify(body)}`);
-  }
-
-  throw new Error('Timed out waiting for npm one-time-password approval');
-}
-
-// npm publish does not auto-poll for OTP approval the way `npm login --auth-type=web`
-// does - in a non-TTY environment it just prints an auth URL and a doneUrl to poll,
-// then exits with EOTP. We replicate the poll ourselves: GET doneUrl, 202 means still
-// pending (wait `retry-after` seconds), 200 carries the resulting token in its JSON
-// body. That token is then used for a one-off retry via a temporary --userconfig.
+// `npm publish` only attempts to resolve an OTP/2FA challenge interactively -
+// in a non-TTY environment (e.g. CI) it just prints the challenge and exits.
+// There is no working way to complete that challenge from a second, wrapping
+// process: npm's own web-based OTP flow (required for WebAuthn/passkey
+// accounts, since there's no typed code to fall back to) has no known working
+// implementation for non-interactive callers - even changesets, the tool
+// npm's own CLI cites as the reason it surfaces these URLs at all, has this as
+// an open, unimplemented feature request (changesets/changesets#1773).
+// Bootstrapping a brand-new package must therefore be run from a real
+// terminal by a maintainer, where npm's native OTP/passkey prompt works.
 async function publishNewPackageDirectory(packageDirectory: string): Promise<void> {
-  const {code, stderr} = await spawnNpmCapturingStderr(
-    ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL],
-    {cwd: packageDirectory}
-  );
-
-  if (code === 0) {
-    return;
-  }
-
-  const webAuthUrls = parseWebAuthUrls(stderr);
-  if (!webAuthUrls) {
-    throw new Error(`npm publish exited with code ${code ?? 'null'}`);
-  }
-
-  process.stdout.write(
-    `\n🔐 This publish needs a one-time password - open this URL on your phone and approve: ${webAuthUrls.authUrl}\n`
-  );
-  const token = await pollForWebAuthToken(webAuthUrls.doneUrl);
-  await runNpmWithTemporaryToken(
-    ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL],
-    packageDirectory,
-    token
-  );
+  await spawnNpmWithInheritedStdio(['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
+    cwd: packageDirectory,
+  });
 }
 
 async function readPackageManifest(packageJsonPath: string): Promise<PackageManifest> {
@@ -495,39 +397,11 @@ async function runNpmWithTemporaryToken(args: string[], packageDirectory: string
 }
 
 // Same live-streaming rationale as `spawnNpmWithInheritedStdio`, but stderr is
-// also captured (while still being forwarded to our own stderr as it arrives)
-// so the caller can inspect it afterward - specifically to pull the one-time-
-// password approval URLs out of an EOTP failure, which npm only ever prints
-// as plain error text rather than exposing programmatically over a CLI call.
-async function spawnNpmCapturingStderr(
-  args: string[],
-  spawnOptions: {cwd?: string} = {}
-): Promise<{code: null | number; stderr: string}> {
-  return new Promise((resolve, reject) => {
-    const child = spawn('npm', args, {
-      cwd: spawnOptions.cwd,
-      env: process.env,
-      stdio: ['inherit', 'inherit', 'pipe'],
-    });
-
-    let stderr = '';
-    child.stderr?.on('data', (chunk: Buffer) => {
-      process.stderr.write(chunk);
-      stderr += chunk.toString();
-    });
-
-    child.on('error', reject);
-    child.on('exit', code => {
-      resolve({code, stderr});
-    });
-  });
-}
-
 // `execFile` always buffers a child's output for its callback, even when
-// asked to inherit stdio, so a live browser-approval URL (npm login, or an
-// OTP prompt during npm publish under an account that requires 2FA to
-// publish) would never reach the terminal/CI log while the process is still
-// running and waiting for that approval - only `spawn` streams it live.
+// asked to inherit stdio, so a live browser-approval URL (npm login) or an
+// interactive OTP/passkey prompt (npm publish, run from a real terminal)
+// would never reach the terminal while the process is still running and
+// waiting for that approval - only `spawn` streams it live.
 async function spawnNpmWithInheritedStdio(args: string[], spawnOptions: {cwd?: string} = {}): Promise<void> {
   await new Promise<void>((resolve, reject) => {
     const child = spawn('npm', args, {

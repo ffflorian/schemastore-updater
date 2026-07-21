@@ -31,7 +31,6 @@ afterEach(async () => {
 
 interface SpawnResult {
   code: number;
-  stderr?: string;
 }
 
 function mockSpawnSequence(results: SpawnResult[]): void {
@@ -40,13 +39,9 @@ function mockSpawnSequence(results: SpawnResult[]): void {
     const result = results[callIndex] ?? {code: 0};
     callIndex += 1;
 
-    const child = new EventEmitter() as EventEmitter & {stderr: EventEmitter};
-    child.stderr = new EventEmitter();
+    const child = new EventEmitter();
 
     queueMicrotask(() => {
-      if (result.stderr) {
-        child.stderr.emit('data', Buffer.from(result.stderr));
-      }
       child.emit('exit', result.code, null);
     });
 
@@ -80,85 +75,14 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
       2,
       'npm',
       ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
-      expect.objectContaining({cwd: expect.stringContaining('alpha'), stdio: ['inherit', 'inherit', 'pipe']})
+      expect.objectContaining({cwd: expect.stringContaining('alpha'), stdio: 'inherit'})
     );
     expect(execFileMock).not.toHaveBeenCalled();
   });
 
-  it('recovers from a one-time-password challenge by polling doneUrl (authenticated as the logged-in session) and retrying with the resulting token', async () => {
-    const eotpStderr = [
-      'npm error code EOTP',
-      'npm error This operation requires a one-time password.',
-      'npm error Open this URL in your browser to authenticate:',
-      'npm error   https://www.npmjs.com/auth/cli/test-auth-id',
-      'npm error',
-      'npm error After authenticating, your token can be retrieved from:',
-      'npm error   https://registry.npmjs.org/-/v1/done?authId=test-auth-id',
-    ].join('\n');
-
-    const npmrcDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-npmrc-'));
-    trackedTempDirectories.push(npmrcDirectory);
-    const npmrcPath = path.join(npmrcDirectory, '.npmrc');
-    await writeFile(npmrcPath, '//registry.npmjs.org/:_authToken=current-session-token\n', 'utf-8');
-
-    fetchMock.mockImplementation(async (url: string, init?: {headers?: Record<string, string>}) => {
-      if (url.includes('/-/v1/done')) {
-        expect(init?.headers?.authorization).toBe('Bearer current-session-token');
-
-        if (fetchMock.mock.calls.filter(call => (call[0] as string).includes('/-/v1/done')).length === 1) {
-          return {headers: new Headers({'retry-after': '0'}), json: async () => ({}), status: 202};
-        }
-
-        return {json: async () => ({token: 'freshly-approved-token'}), status: 200};
-      }
-
-      return {ok: false};
-    });
-    mockSpawnSequence([{code: 0}, {code: 1, stderr: eotpStderr}]);
-    execFileMock.mockImplementation((_command, args, ...rest) => {
-      // `execFileAsync('npm', [...])` (no options) puts the callback in the 3rd
-      // slot, while calls that pass an options object put it in the 4th - grab
-      // whichever trailing argument is actually a function instead of assuming
-      // a fixed position.
-      const cb = rest.find((argument): argument is (error: null, result: {stderr: string; stdout: string}) => void =>
-        typeof argument === 'function'
-      );
-      if (Array.isArray(args) && args.join(' ') === 'config get userconfig') {
-        cb?.(null, {stderr: '', stdout: npmrcPath});
-      } else {
-        cb?.(null, {stderr: '', stdout: ''});
-      }
-      return {} as ReturnType<typeof execFile>;
-    });
-
-    const workspaceDirectory = await createWorkspace({
-      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
-    });
-
-    const stats = await withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages());
-
-    expect(stats).toMatchObject({bootstrapped: 1, failed: 0});
-    expect(execFileMock).toHaveBeenCalledTimes(2);
-    expect(execFileMock).toHaveBeenCalledWith('npm', ['config', 'get', 'userconfig'], expect.any(Function));
-    expect(execFileMock).toHaveBeenCalledWith(
-      'npm',
-      [
-        'publish',
-        '--access',
-        'public',
-        '--registry',
-        'https://registry.npmjs.org/',
-        '--userconfig',
-        expect.stringContaining('.npmrc'),
-      ],
-      expect.objectContaining({cwd: expect.stringContaining('alpha')}),
-      expect.any(Function)
-    );
-  });
-
-  it('fails the package when publish fails without a recognizable one-time-password challenge', async () => {
+  it('fails the package when npm publish exits non-zero (e.g. an OTP/passkey challenge it cannot resolve non-interactively)', async () => {
     fetchMock.mockResolvedValue({ok: false});
-    mockSpawnSequence([{code: 0}, {code: 1, stderr: 'npm error 403 Forbidden'}]);
+    mockSpawnSequence([{code: 0}, {code: 1}]);
 
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
