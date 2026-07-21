@@ -51,7 +51,9 @@ jobs:
         run: yarn --immutable
 
       - name: Bootstrap brand-new packages via npm browser login
+        id: bootstrap
         if: github.event_name == 'workflow_dispatch' && inputs.bootstrap_new_packages == true
+        continue-on-error: true
         timeout-minutes: 15
         run: yarn bootstrap:new-packages
 
@@ -91,7 +93,7 @@ jobs:
           body-path: pr-body.md
 
       - name: Fail workflow when publishing failed
-        if: steps.publish.outcome == 'failure'
+        if: steps.publish.outcome == 'failure' || steps.bootstrap.outcome == 'failure'
         run: exit 1
 
       - name: Upload publish log
