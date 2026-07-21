@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/ffflorian/schemastore-updater/compare/v3.6.1...v3.7.0) (2026-07-21)
+
+
+### Features
+
+* **publisher:** auto-detect and bootstrap brand-new packages via npm browser login ([#1573](https://github.com/ffflorian/schemastore-updater/issues/1573)) ([06c9ac7](https://github.com/ffflorian/schemastore-updater/commit/06c9ac73e2201d972ebbb535bf5e4ec01851ef9e))
+
 ## [3.6.1](https://github.com/ffflorian/schemastore-updater/compare/v3.6.0...v3.6.1) (2026-07-21)
 
 
