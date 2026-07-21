@@ -1,3 +1,10 @@
+## [3.7.5](https://github.com/ffflorian/schemastore-updater/compare/v3.7.4...v3.7.5) (2026-07-21)
+
+
+### Bug Fixes
+
+* **publisher:** implement npm's web-auth OTP polling for publish ([#1579](https://github.com/ffflorian/schemastore-updater/issues/1579)) ([c557cad](https://github.com/ffflorian/schemastore-updater/commit/c557cadc45243c79af123d0e987200467537b8ea))
+
 ## [3.7.4](https://github.com/ffflorian/schemastore-updater/compare/v3.7.3...v3.7.4) (2026-07-21)
 
 
