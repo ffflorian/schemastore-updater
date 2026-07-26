@@ -12,7 +12,7 @@
     "@ffflorian/eslint-config": "1.0.4",
     "@ffflorian/prettier-config": "1.0.0",
     "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/git": "10.0.1",
+    "@semantic-release/git": "11.0.0",
     "@types/node": "~26",
     "@types/semver": "7.7.1",
     "eslint": "10.7.0",
