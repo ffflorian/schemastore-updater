@@ -1,3 +1,10 @@
+## [3.7.8](https://github.com/ffflorian/schemastore-updater/compare/v3.7.7...v3.7.8) (2026-07-26)
+
+
+### Bug Fixes
+
+* **deps:** bump postcss from 8.5.16 to 8.5.23 ([#1591](https://github.com/ffflorian/schemastore-updater/issues/1591)) ([a74a539](https://github.com/ffflorian/schemastore-updater/commit/a74a539ac203b1a06f4ca5a07ba4ab5c059c46b6))
+
 ## [3.7.7](https://github.com/ffflorian/schemastore-updater/compare/v3.7.6...v3.7.7) (2026-07-21)
 
 
