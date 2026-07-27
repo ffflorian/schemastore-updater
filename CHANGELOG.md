@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/ffflorian/schemastore-updater/compare/v3.7.8...v3.8.0) (2026-07-27)
+
+
+### Features
+
+* **publisher:** configure npm trusted publisher automatically after bootstrap ([#1594](https://github.com/ffflorian/schemastore-updater/issues/1594)) ([f26f2d1](https://github.com/ffflorian/schemastore-updater/commit/f26f2d1ba0de6541b66a01e1f9bbee94ea99f63f))
+
 ## [3.7.8](https://github.com/ffflorian/schemastore-updater/compare/v3.7.7...v3.7.8) (2026-07-26)
 
 
