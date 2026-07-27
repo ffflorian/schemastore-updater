@@ -864,7 +864,7 @@
     "BizTalkServerApplicationSchema.json": {
       "generatedFile": "schemas/biztalkserverapplicationschema/index.d.ts",
       "generatedSha256": "8c8acd374a97d35bf552414f9666f8616cde471bf61276afa2ded8812220f8f7",
-      "published": false,
+      "published": true,
       "sourceSha256": "a703faa64fa6eef9c1d53e8aa545293cb3ded3314d7bb0b2e26220eb88afa327",
       "updatedAt": "2026-07-27T06:07:13.081Z"
     },
@@ -1102,7 +1102,7 @@
     "cdk.json": {
       "generatedFile": "schemas/cdk/index.d.ts",
       "generatedSha256": "45d4084568219a2d55dd12c3e96a7a1b48b7e05ccc393479921ae2b5fe5e88c8",
-      "published": false,
+      "published": true,
       "sourceSha256": "f5d6f4bd5bcd59249ac84264dfc52a0ffb6adcd8c3fa7463cadf7f3af70b319e",
       "updatedAt": "2026-07-27T06:07:13.993Z"
     },
@@ -1291,7 +1291,7 @@
     "codecov.json": {
       "generatedFile": "schemas/codecov/index.d.ts",
       "generatedSha256": "bc587071cace7221520fb2aa7c352ab9db1659a7cf43fb2020b3cc1ac7e92df6",
-      "published": false,
+      "published": true,
       "sourceSha256": "b1c166a4d737b85a58c6e20a0063f85a0e279fd0787f1aad2d7926b7e5d49c2c",
       "updatedAt": "2026-07-27T06:07:14.366Z"
     },
@@ -1480,7 +1480,7 @@
     "csslintrc.json": {
       "generatedFile": "schemas/csslintrc/index.d.ts",
       "generatedSha256": "7c6109cb53b377383a66363e34b62b505381adc3a73fb1dab5e3586669e3623d",
-      "published": false,
+      "published": true,
       "sourceSha256": "6f66202c63c162f3a036a22dcd9aea17c39a22a1c28f2742c081e10049ac27cf",
       "updatedAt": "2026-07-27T06:07:14.579Z"
     },
@@ -3076,7 +3076,7 @@
     "lego.json": {
       "generatedFile": "schemas/lego/index.d.ts",
       "generatedSha256": "92dc2ad223304baf306b2536b9f16b577c0297af976b534366b2607f6c284226",
-      "published": false,
+      "published": true,
       "sourceSha256": "35f45b0cad4d21d62ed2a111f3022b2a5783898cd326f1038c7fe190b5fba486",
       "updatedAt": "2026-07-27T06:10:27.361Z"
     },
@@ -3090,7 +3090,7 @@
     "lgtm.json": {
       "generatedFile": "schemas/lgtm/index.d.ts",
       "generatedSha256": "115b7851b3092d793eeb5b642fb673162466bdba58eecfbb0aab0bc32cd5259c",
-      "published": false,
+      "published": true,
       "sourceSha256": "dbb106199e5009438ecb3a1b43fd532a47003b1d2a302a99beede22d659299e9",
       "updatedAt": "2026-07-27T06:10:27.605Z"
     },
@@ -3111,7 +3111,7 @@
     "licenses.1.json": {
       "generatedFile": "schemas/licenses.1/index.d.ts",
       "generatedSha256": "d57f573ecfdc3de3f12f2daf983b70d8712ec3139c3016c9cbfa962953c57e2b",
-      "published": false,
+      "published": true,
       "sourceSha256": "f1e162170acba0eb9d1302b0c758e1fcd2c2e377cd02b1e19778c19955ca5dd9",
       "updatedAt": "2026-07-27T06:10:27.873Z"
     },
@@ -3559,7 +3559,7 @@
     "modernizrrc.json": {
       "generatedFile": "schemas/modernizrrc/index.d.ts",
       "generatedSha256": "5efb799ab88d47bcf5c6685e93289158467d366161e75f7cf2ee8b950052a5ce",
-      "published": false,
+      "published": true,
       "sourceSha256": "285f85d26ea99cbf7925004ab3df841b14d071017871809e0731d4b9704c135c",
       "updatedAt": "2026-07-27T06:10:30.184Z"
     },
@@ -3615,7 +3615,7 @@
     "mycode.json": {
       "generatedFile": "schemas/mycode/index.d.ts",
       "generatedSha256": "334a38ccef45ae3adebe17c461f4b298d4cfb8d799dbe7173fa8fdd1dbc19685",
-      "published": false,
+      "published": true,
       "sourceSha256": "0f27204d3b73ca5546341f36c58939b260bcc4763afd11ad66f6d61ecc5068c3",
       "updatedAt": "2026-07-27T06:10:30.542Z"
     },
@@ -4371,7 +4371,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "84eadd056fdf2f41a949b486743e05e888fd2e235fd8cfde45600d0cf09e8657",
-      "published": false,
+      "published": true,
       "sourceSha256": "f0cdca526cdaf96012c9389355f5a62c13e8ceb82129ab74335a7f3c8e48dbdd",
       "updatedAt": "2026-07-27T06:10:36.124Z"
     },
