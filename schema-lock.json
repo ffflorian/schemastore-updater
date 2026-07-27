@@ -227,7 +227,7 @@
     "act3.json": {
       "generatedFile": "schemas/act3/index.d.ts",
       "generatedSha256": "d2b1f37ff591139627435fd36acc2179d66b73cb47e6955dc59faf2c0314615f",
-      "published": false,
+      "published": true,
       "sourceSha256": "28d2cd33c97aa762f5625969b7c809ed08a4c7eadddb30e2dd0f47412da0444e",
       "updatedAt": "2026-07-27T06:07:10.914Z"
     },
@@ -605,7 +605,7 @@
     "attw.json": {
       "generatedFile": "schemas/attw/index.d.ts",
       "generatedSha256": "d037662ba3833a1968810715b3772211daedbff1fafee77386806e8e60208da0",
-      "published": false,
+      "published": true,
       "sourceSha256": "35eb4a116e18ad1ce8dd859bc2c9b3b96b12de55356ab2c19bca435556f88476",
       "updatedAt": "2026-07-27T06:07:12.781Z"
     },
@@ -2572,7 +2572,7 @@
     "github-prompt.json": {
       "generatedFile": "schemas/github-prompt/index.d.ts",
       "generatedSha256": "89daa710c509ed67ada85926c50f33310110119cb3dac7ab776eba224e08de4a",
-      "published": false,
+      "published": true,
       "sourceSha256": "07acb80a254562ab23a000beeac67b37e8a6fa27711c34b09e79fc36e114c02f",
       "updatedAt": "2026-07-27T06:07:15.971Z"
     },
@@ -2586,7 +2586,7 @@
     "github-secret-scanning.json": {
       "generatedFile": "schemas/github-secret-scanning/index.d.ts",
       "generatedSha256": "735107136f15882f4a0e991a06af873e1ce120a843e7a433a3596ae402698253",
-      "published": false,
+      "published": true,
       "sourceSha256": "b61831fc93bfcb9d6798e13a74e929e003be1a3ed4821c55fffd9ccc88c4479d",
       "updatedAt": "2026-07-27T06:07:16.148Z"
     },
@@ -3181,21 +3181,21 @@
     "lsd-colors.json": {
       "generatedFile": "schemas/lsd-colors/index.d.ts",
       "generatedSha256": "fecde9af022c4fb238050e4fd4718ac35e1451a45e364c043277313b453cf82b",
-      "published": false,
+      "published": true,
       "sourceSha256": "7ccfe4cc290ca67099ed7ad24bf6a6a2e0c686cdff2cade3c592dec7f37ed8f7",
       "updatedAt": "2026-07-27T06:10:28.284Z"
     },
     "lsd-config.json": {
       "generatedFile": "schemas/lsd-config/index.d.ts",
       "generatedSha256": "9fd2fbf1b962a37808a9760bccc9bb4ae4e74b77ff428d3df0f9df1e14256a58",
-      "published": false,
+      "published": true,
       "sourceSha256": "46a93d59daf7f78e6a1fe10595ebf48067abcb5643f7b2b4fde790d0a176604c",
       "updatedAt": "2026-07-27T06:10:28.489Z"
     },
     "lsd-icons.json": {
       "generatedFile": "schemas/lsd-icons/index.d.ts",
       "generatedSha256": "0a7211e11151ff5f7a626639ad0c9cb5e420eadadbf4a9892c5307aa7b8cfadf",
-      "published": false,
+      "published": true,
       "sourceSha256": "cdb6b0882b9ee3ad5886a0b594c02f5d573b71e4c714d5aa5bc8a22def69aa4a",
       "updatedAt": "2026-07-27T06:10:28.687Z"
     },
@@ -3776,21 +3776,21 @@
     "odgs-data-rules.json": {
       "generatedFile": "schemas/odgs-data-rules/index.d.ts",
       "generatedSha256": "54caa8249dc2b97cf2a4b12c50134672b2291d2f3e22bb25ba38e846319e1290",
-      "published": false,
+      "published": true,
       "sourceSha256": "f3394da868c1f90b21f2ff49d4aea26bd5ec6bfa8fb6b5d2c348f2708df2e355",
       "updatedAt": "2026-07-27T06:10:31.245Z"
     },
     "odgs-ontology-graph.json": {
       "generatedFile": "schemas/odgs-ontology-graph/index.d.ts",
       "generatedSha256": "282cce3e13e6760dc6a02283a5cf63927f3d74365400495fc3770c1fdf713f7d",
-      "published": false,
+      "published": true,
       "sourceSha256": "eaa1e1b10d2e10dcea1e116c100a27b1b2719d54693bb32b94f8bc8e6cf1491f",
       "updatedAt": "2026-07-27T06:10:31.448Z"
     },
     "odgs-standard-metrics.json": {
       "generatedFile": "schemas/odgs-standard-metrics/index.d.ts",
       "generatedSha256": "066c2517e90f9a694dbd7cc92ea9af95bba7634f4f5796ae91a1b5bed096d80a",
-      "published": false,
+      "published": true,
       "sourceSha256": "e95eca02847404c4e780403f3f840765300bfa6d8442f8db72d21534f80af10f",
       "updatedAt": "2026-07-27T06:10:31.647Z"
     },
@@ -4539,7 +4539,7 @@
     "pull-request-labeler-4.json": {
       "generatedFile": "schemas/pull-request-labeler-4/index.d.ts",
       "generatedSha256": "cc51c3656245b6354685270bab6cf117df817c3f2ea33164b37fcf0fabaf60a9",
-      "published": false,
+      "published": true,
       "sourceSha256": "48179192d36c9ec0b55dedd2bd9bdd70dde9e7e7b7f1db6bce59228ceb8db6b0",
       "updatedAt": "2026-07-27T06:10:36.851Z"
     },
