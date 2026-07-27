@@ -10,12 +10,16 @@ import {isNonPublishableSchemaId, loadNonPublishableSchemaIds} from './non-publi
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_PUBLISH_LOG_FILE = 'publish-errors.log';
+const NPM_OTP_COMMAND_ENV_VAR = 'NPM_OTP_COMMAND';
 const NPM_REGISTRY_CHECK_TIMEOUT_MS = 10_000;
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/';
 const PUBLISH_SUMMARY_FILE_NAME = 'publish-summary.md';
+const TRUSTED_PUBLISHER_REPO = 'ffflorian/schemastore-updater';
+const TRUSTED_PUBLISHER_WORKFLOW_FILENAME = 'publish_generated_packages.yml';
 
 interface BootstrapOptions {
   checkPackageExists?: (packageName: string) => Promise<boolean>;
+  configureTrustedPublisher?: (packageName: string) => Promise<void>;
   loginToNpm?: () => Promise<void>;
   publishNewPackage?: (packageDirectory: string) => Promise<void>;
   schemasDir?: string;
@@ -37,6 +41,7 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
   const projectRoot = process.cwd();
   const schemasDirectory = options.schemasDir ? path.resolve(options.schemasDir) : path.join(projectRoot, 'schemas');
   const checkPackageExists = options.checkPackageExists ?? packageExistsOnNpm;
+  const configureTrustedPublisher = options.configureTrustedPublisher ?? configureNpmTrustedPublisher;
   const loginToNpm = options.loginToNpm ?? loginToNpmWithBrowser;
   const publishNewPackage = options.publishNewPackage ?? publishNewPackageDirectory;
   const lockFilePath = path.join(projectRoot, 'schema-lock.json');
@@ -63,7 +68,7 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
     skippedAlreadyExists: 0,
   };
 
-  const candidates: Array<{packageDirectory: string; packageLabel: string}> = [];
+  const candidates: Array<{packageDirectory: string; packageLabel: string; packageName: string}> = [];
 
   for (const packageDirectory of packageDirectories) {
     const packageJsonPath = path.join(packageDirectory, 'package.json');
@@ -107,7 +112,7 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
     }
 
     process.stdout.write('not found, will bootstrap\n');
-    candidates.push({packageDirectory, packageLabel});
+    candidates.push({packageDirectory, packageLabel, packageName});
   }
 
   if (candidates.length === 0) {
@@ -121,7 +126,7 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
   await loginToNpm();
   process.stdout.write('done\n');
 
-  for (const {packageDirectory, packageLabel} of candidates) {
+  for (const {packageDirectory, packageLabel, packageName} of candidates) {
     stats.attempted += 1;
     process.stdout.write(`🌱 Bootstrapping ${packageLabel} ... `);
 
@@ -136,6 +141,19 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
       stats.failed += 1;
       stats.failedPackages.push(packageLabel);
       process.stdout.write('failed\n');
+      console.error(error instanceof Error ? (error.stack ?? error.message) : String(error));
+      continue;
+    }
+
+    process.stdout.write(`🔒 Configuring npm trusted publisher for ${packageLabel} ... `);
+    try {
+      await configureTrustedPublisher(packageName);
+      process.stdout.write('done\n');
+    } catch (error) {
+      process.stdout.write('failed\n');
+      console.error(
+        `⚠️  Published ${packageLabel} but automatic trusted-publisher setup failed - configure it manually on npmjs.com (package Settings → Trusted Publisher, and Settings → Publishing access → "Require two-factor authentication and disallow tokens"):`
+      );
       console.error(error instanceof Error ? (error.stack ?? error.message) : String(error));
     }
   }
@@ -245,6 +263,39 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
   return stats;
 }
 
+// Grants CI's OIDC identity (see .github/workflows/publish_generated_packages.yml)
+// only `npm stage publish`, never a direct `npm publish` - every automated
+// version still needs a maintainer's 2FA approval. Disabling token-based
+// publish afterward means this package can no longer be published with a
+// leaked/long-lived npm token, only via this trusted GitHub Actions workflow
+// or an interactive `npm publish` from a maintainer's own account.
+async function configureNpmTrustedPublisher(packageName: string): Promise<void> {
+  await spawnNpmWithInheritedStdio([
+    'trust',
+    'github',
+    packageName,
+    '--allow-stage-publish',
+    '--repo',
+    TRUSTED_PUBLISHER_REPO,
+    '--file',
+    TRUSTED_PUBLISHER_WORKFLOW_FILENAME,
+    '--registry',
+    NPM_REGISTRY_URL,
+    '--yes',
+    ...(await getNpmOtpArgs()),
+  ]);
+
+  await spawnNpmWithInheritedStdio([
+    'access',
+    'set',
+    'mfa=publish',
+    packageName,
+    '--registry',
+    NPM_REGISTRY_URL,
+    ...(await getNpmOtpArgs()),
+  ]);
+}
+
 function createPublishSummary(stats: PublishStats): string {
   const lines: string[] = [
     '## Publish Summary',
@@ -306,6 +357,20 @@ function formatPackageLabel(packageManifest: PackageManifest, fallbackName: stri
 function formatPublishError(packageLabel: string, error: unknown): string {
   const errorMessage = error instanceof Error ? (error.stack ?? error.message) : String(error);
   return `[${new Date().toISOString()}] ${packageLabel}\n${errorMessage}`;
+}
+
+// A fresh OTP is generated per npm call (not cached and reused) since each
+// code is a one-time value. NPM_OTP_COMMAND is left unset by default so npm
+// falls back to its normal interactive terminal prompt; maintainers who use
+// a local TOTP tool can set it to a shell command that prints the current code.
+async function getNpmOtpArgs(): Promise<string[]> {
+  const otpCommand = process.env[NPM_OTP_COMMAND_ENV_VAR];
+  if (!otpCommand) {
+    return [];
+  }
+
+  const {stdout} = await execFileAsync('sh', ['-c', otpCommand]);
+  return [`--otp=${stdout.trim()}`];
 }
 
 async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {

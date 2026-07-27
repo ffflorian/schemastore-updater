@@ -18,6 +18,7 @@ const execFileMock = vi.mocked(execFile);
 const spawnMock = vi.mocked(spawn);
 const fetchMock = vi.fn();
 const trackedTempDirectories: string[] = [];
+const previousNpmOtpCommand = process.env.NPM_OTP_COMMAND;
 
 vi.stubGlobal('fetch', fetchMock);
 
@@ -25,6 +26,12 @@ afterEach(async () => {
   execFileMock.mockReset();
   spawnMock.mockReset();
   fetchMock.mockReset();
+  if (previousNpmOtpCommand === undefined) {
+    delete process.env.NPM_OTP_COMMAND;
+  } else {
+    process.env.NPM_OTP_COMMAND = previousNpmOtpCommand;
+  }
+
   await Promise.all(trackedTempDirectories.map(tempDirectory => rm(tempDirectory, {force: true, recursive: true})));
   trackedTempDirectories.length = 0;
 });
@@ -50,9 +57,9 @@ function mockSpawnSequence(results: SpawnResult[]): void {
 }
 
 describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirectory (default bootstrap wiring)', () => {
-  it('logs in via browser once, then checks the registry and publishes only packages that do not exist yet', async () => {
+  it('logs in via browser once, then checks the registry, publishes, and configures a trusted publisher', async () => {
     fetchMock.mockResolvedValue({ok: false});
-    mockSpawnSequence([{code: 0}, {code: 0}]);
+    mockSpawnSequence([{code: 0}, {code: 0}, {code: 0}, {code: 0}]);
 
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
@@ -64,7 +71,7 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
     expect(fetchMock).toHaveBeenCalledWith('https://registry.npmjs.org/@schemastore/alpha', {
       signal: expect.any(AbortSignal),
     });
-    expect(spawnMock).toHaveBeenCalledTimes(2);
+    expect(spawnMock).toHaveBeenCalledTimes(4);
     expect(spawnMock).toHaveBeenNthCalledWith(
       1,
       'npm',
@@ -77,7 +84,65 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
       ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
       expect.objectContaining({cwd: expect.stringContaining('alpha'), stdio: 'inherit'})
     );
+    expect(spawnMock).toHaveBeenNthCalledWith(
+      3,
+      'npm',
+      [
+        'trust',
+        'github',
+        '@schemastore/alpha',
+        '--allow-stage-publish',
+        '--repo',
+        'ffflorian/schemastore-updater',
+        '--file',
+        'publish_generated_packages.yml',
+        '--registry',
+        'https://registry.npmjs.org/',
+        '--yes',
+      ],
+      expect.objectContaining({stdio: 'inherit'})
+    );
+    expect(spawnMock).toHaveBeenNthCalledWith(
+      4,
+      'npm',
+      ['access', 'set', 'mfa=publish', '@schemastore/alpha', '--registry', 'https://registry.npmjs.org/'],
+      expect.objectContaining({stdio: 'inherit'})
+    );
     expect(execFileMock).not.toHaveBeenCalled();
+  });
+
+  it('includes a one-time password from NPM_OTP_COMMAND when configuring the trusted publisher', async () => {
+    fetchMock.mockResolvedValue({ok: false});
+    mockSpawnSequence([{code: 0}, {code: 0}, {code: 0}, {code: 0}]);
+    execFileMock.mockImplementation((_command, _args, callback) => {
+      (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {
+        stderr: '',
+        stdout: '123456\n',
+      });
+      return {} as ReturnType<typeof execFile>;
+    });
+    process.env.NPM_OTP_COMMAND = 'totp-cli g florian npm';
+
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+    });
+
+    await withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages());
+
+    expect(execFileMock).toHaveBeenCalledTimes(2);
+    expect(execFileMock).toHaveBeenNthCalledWith(1, 'sh', ['-c', 'totp-cli g florian npm'], expect.any(Function));
+    expect(spawnMock).toHaveBeenNthCalledWith(
+      3,
+      'npm',
+      expect.arrayContaining(['--otp=123456']),
+      expect.objectContaining({stdio: 'inherit'})
+    );
+    expect(spawnMock).toHaveBeenNthCalledWith(
+      4,
+      'npm',
+      expect.arrayContaining(['--otp=123456']),
+      expect.objectContaining({stdio: 'inherit'})
+    );
   });
 
   it('fails the package when npm publish exits non-zero (e.g. an OTP/passkey challenge it cannot resolve non-interactively)', async () => {

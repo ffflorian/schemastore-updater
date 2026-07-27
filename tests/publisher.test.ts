@@ -209,6 +209,7 @@ describe('bootstrapNewPackages', () => {
     const stats = await withWorkingDirectory(workspaceDirectory, () =>
       bootstrapNewPackages({
         checkPackageExists: async packageName => packageName === '@schemastore/alpha',
+        configureTrustedPublisher: async () => undefined,
         loginToNpm,
         publishNewPackage: async packageDirectory => {
           publishedDirectories.push(path.basename(packageDirectory));
@@ -241,6 +242,7 @@ describe('bootstrapNewPackages', () => {
     const stats = await withWorkingDirectory(workspaceDirectory, () =>
       bootstrapNewPackages({
         checkPackageExists: async () => false,
+        configureTrustedPublisher: async () => undefined,
         loginToNpm: async () => undefined,
         publishNewPackage: async packageDirectory => {
           if (path.basename(packageDirectory) === 'alpha') {
@@ -264,6 +266,57 @@ describe('bootstrapNewPackages', () => {
     expect(lockFile.entries['beta.json']?.published).toBe(true);
   });
 
+  it('configures a trusted publisher for each newly bootstrapped package', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+    });
+    const configureTrustedPublisher = vi.fn(async (_packageName: string) => undefined);
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists: async () => false,
+        configureTrustedPublisher,
+        loginToNpm: async () => undefined,
+        publishNewPackage: async () => undefined,
+      })
+    );
+
+    expect(configureTrustedPublisher).toHaveBeenCalledTimes(1);
+    expect(configureTrustedPublisher).toHaveBeenCalledWith('@schemastore/alpha');
+    expect(stats.bootstrapped).toBe(1);
+    expect(stats.bootstrappedPackages).toEqual(['@schemastore/alpha@1.0.0']);
+    expect(stats.failed).toBe(0);
+  });
+
+  it('still marks a package as bootstrapped when trusted-publisher configuration fails', async () => {
+    const workspaceDirectory = await createWorkspace({
+      'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
+    });
+
+    const stats = await withWorkingDirectory(workspaceDirectory, () =>
+      bootstrapNewPackages({
+        checkPackageExists: async () => false,
+        configureTrustedPublisher: async () => {
+          throw new Error('trust config failed');
+        },
+        loginToNpm: async () => undefined,
+        publishNewPackage: async () => undefined,
+      })
+    );
+
+    const lockFile = await readLockFile(workspaceDirectory);
+
+    expect(stats).toEqual({
+      attempted: 1,
+      bootstrapped: 1,
+      bootstrappedPackages: ['@schemastore/alpha@1.0.0'],
+      failed: 0,
+      failedPackages: [],
+      skippedAlreadyExists: 0,
+    });
+    expect(lockFile.entries['alpha.json']?.published).toBe(true);
+  });
+
   it('continues checking remaining packages when an existence check fails or times out', async () => {
     const workspaceDirectory = await createWorkspace({
       'alpha/package.json': JSON.stringify({name: '@schemastore/alpha', version: '1.0.0'}, null, 2),
@@ -279,6 +332,7 @@ describe('bootstrapNewPackages', () => {
           }
           return false;
         },
+        configureTrustedPublisher: async () => undefined,
         loginToNpm,
         publishNewPackage: async () => undefined,
       })
