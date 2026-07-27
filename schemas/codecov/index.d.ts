@@ -3,7 +3,12 @@
 export type Layout =
   | unknown
   | ('header' | 'footer' | 'diff' | 'file' | 'files' | 'flag' | 'flags' | 'reach' | 'sunburst' | 'uncovered');
-export type Default = {
+export type Default3 = (
+  | boolean
+  | {
+      [k: string]: unknown | undefined;
+    }
+) & {
   target?: string | number;
   threshold?: string;
   /**
@@ -19,69 +24,7 @@ export type Default = {
   if_ci_failed?: 'error' | 'success';
   flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
   [k: string]: unknown | undefined;
-} & (
-  | {
-      target?: string | number;
-      threshold?: string;
-      /**
-       * @deprecated
-       */
-      base?: string;
-      flags?: unknown[];
-      paths?: unknown[] | string;
-      branches?: unknown[];
-      if_not_found?: 'failure' | 'success';
-      informational?: boolean;
-      only_pulls?: boolean;
-      if_ci_failed?: 'error' | 'success';
-      flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-      [k: string]: unknown | undefined;
-    }
-  | boolean
-);
-export type Default1 =
-  | (
-      | {
-          target?: string | number;
-          threshold?: string;
-          /**
-           * @deprecated
-           */
-          base?: string;
-          flags?: unknown[];
-          paths?: unknown[] | string;
-          branches?: unknown[];
-          if_not_found?: 'failure' | 'success';
-          informational?: boolean;
-          only_pulls?: boolean;
-          if_ci_failed?: 'error' | 'success';
-          flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-          [k: string]: unknown | undefined;
-        }
-      | (undefined &
-          (
-            | {
-                target?: string | number;
-                threshold?: string;
-                /**
-                 * @deprecated
-                 */
-                base?: string;
-                flags?: unknown[];
-                paths?: unknown[] | string;
-                branches?: unknown[];
-                if_not_found?: 'failure' | 'success';
-                informational?: boolean;
-                only_pulls?: boolean;
-                if_ci_failed?: 'error' | 'success';
-                flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-                [k: string]: unknown | undefined;
-              }
-            | boolean
-          ))
-      | undefined
-    )
-  | undefined;
+};
 
 /**
  * Schema for codecov.yml files.
@@ -236,11 +179,11 @@ export interface JSONSchemaForCodecovConfigurationFiles {
             [k: string]: unknown | undefined;
           };
           project?: {
-            default?: Default;
-            [k: string]: Default1 | undefined;
+            default?: boolean | Default;
+            [k: string]: (boolean | Default1) | undefined;
           };
           patch?: Default2 | 'off' | boolean;
-          changes?: Default;
+          changes?: Default3;
         };
     [k: string]: unknown | undefined;
   };
@@ -286,6 +229,40 @@ export interface JSONSchemaForCodecovConfigurationFiles {
       }
     | boolean
     | 'off';
+  [k: string]: unknown | undefined;
+}
+export interface Default {
+  target?: string | number;
+  threshold?: string;
+  /**
+   * @deprecated
+   */
+  base?: string;
+  flags?: unknown[];
+  paths?: unknown[] | string;
+  branches?: unknown[];
+  if_not_found?: 'failure' | 'success';
+  informational?: boolean;
+  only_pulls?: boolean;
+  if_ci_failed?: 'error' | 'success';
+  flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
+  [k: string]: unknown | undefined;
+}
+export interface Default1 {
+  target?: string | number;
+  threshold?: string;
+  /**
+   * @deprecated
+   */
+  base?: string;
+  flags?: unknown[];
+  paths?: unknown[] | string;
+  branches?: unknown[];
+  if_not_found?: 'failure' | 'success';
+  informational?: boolean;
+  only_pulls?: boolean;
+  if_ci_failed?: 'error' | 'success';
+  flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
   [k: string]: unknown | undefined;
 }
 export interface Default2 {
