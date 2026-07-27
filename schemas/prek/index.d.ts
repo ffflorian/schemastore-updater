@@ -8,6 +8,7 @@ export type StringOrList = string | string[];
  * A repository of hooks, which can be remote, local, meta, or builtin.
  */
 export type Repo = RemoteRepo | LocalRepo | MetaRepo | BuiltinRepo;
+export type PriorityAlias = string;
 export type Stage =
   | 'manual'
   | 'commit-msg'
@@ -35,6 +36,7 @@ export type BuiltinHooks =
   | 'check-vcs-permalinks'
   | 'check-xml'
   | 'check-yaml'
+  | 'deny-pattern'
   | 'destroyed-symlinks'
   | 'detect-private-key'
   | 'end-of-file-fixer'
@@ -44,6 +46,8 @@ export type BuiltinHooks =
   | 'mixed-line-ending'
   | 'no-commit-to-branch'
   | 'pretty-format-json'
+  | 'require-pattern'
+  | 'requirements-txt-fixer'
   | 'trailing-whitespace';
 export type HookType =
   | 'commit-msg'
@@ -62,6 +66,16 @@ export type HookType =
  */
 export interface PrekToml {
   update?: UpdateOptions;
+  /**
+   * Configuration-local aliases for numeric hook priorities.
+   */
+  priorities?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^\S+$".
+     */
+    [k: string]: number;
+  };
   repos: Repo[];
   /**
    * A list of `--hook-types` which will be used by default when running `prek install`.
@@ -229,7 +243,7 @@ export interface RemoteHook {
    * This is only allowed in project config files (e.g. `.pre-commit-config.yaml`).
    * It is not allowed in manifests (e.g. `.pre-commit-hooks.yaml`).
    */
-  priority?: number;
+  priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
    * Group names cannot be empty or contain whitespace.
@@ -401,7 +415,7 @@ export interface LocalHook {
    * Priority used by the scheduler to determine ordering and concurrency.
    * Hooks with the same priority can run in parallel.
    */
-  priority?: number;
+  priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
    * Group names cannot be empty or contain whitespace.
@@ -547,7 +561,7 @@ export interface MetaHook {
    * This is only allowed in project config files (e.g. `.pre-commit-config.yaml`).
    * It is not allowed in manifests (e.g. `.pre-commit-hooks.yaml`).
    */
-  priority?: number;
+  priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
    * Group names cannot be empty or contain whitespace.
@@ -693,7 +707,7 @@ export interface BuiltinHook {
    * This is only allowed in project config files (e.g. `.pre-commit-config.yaml`).
    * It is not allowed in manifests (e.g. `.pre-commit-hooks.yaml`).
    */
-  priority?: number;
+  priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
    * Group names cannot be empty or contain whitespace.
