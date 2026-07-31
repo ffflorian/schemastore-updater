@@ -5,6 +5,7 @@ pre-commit:
       glob: '*.{json,md,yml,ts}'
       exclude:
         - CLAUDE.md
+        - .claude
       run: npx --no prettier -- --write {staged_files} && git add {staged_files}
     lint:
       glob: 'src/*.ts'

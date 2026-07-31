@@ -9,11 +9,6 @@ updates:
       exclude:
         - '@ffflorian/*'
     directory: /
-    groups:
-      oxlint:
-        patterns:
-          - oxlint
-          - eslint-plugin-oxlint
     ignore:
       - dependency-name: '@types/node'
         update-types:
