@@ -13,6 +13,9 @@ updates:
       - dependency-name: '@types/node'
         update-types:
           - version-update:semver-major
+      - dependency-name: 'typescript'
+        update-types:
+          - version-update:semver-major
     open-pull-requests-limit: 99
     package-ecosystem: npm
     schedule:
