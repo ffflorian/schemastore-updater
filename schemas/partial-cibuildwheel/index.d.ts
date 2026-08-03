@@ -240,6 +240,16 @@ export type CIBW_TEST_RUNTIME =
  * How to inherit the parent's value.
  */
 export type Inherit = 'none' | 'prepend' | 'append';
+/**
+ * On the pyodide platform, the build frontend must be "pyodide-build"
+ */
+export type CIBW_BUILD_FRONTEND1 =
+  | 'pyodide-build'
+  | string
+  | {
+      name: 'pyodide-build';
+      args?: string[];
+    };
 
 /**
  * cibuildwheel's settings. Generated with ./bin/generate_schema.py --schemastore from cibuildwheel.
@@ -453,7 +463,7 @@ export interface HttpsJsonSchemastoreOrgPartialCibuildwheelJson {
     'before-all'?: CIBW_BEFORE_ALL;
     'before-build'?: CIBW_BEFORE_BUILD;
     'before-test'?: CIBW_BEFORE_TEST;
-    'build-frontend'?: CIBW_BUILD_FRONTEND;
+    'build-frontend'?: CIBW_BUILD_FRONTEND1;
     'build-verbosity'?: CIBW_BUILD_VERBOSITY;
     'config-settings'?: CIBW_CONFIG_SETTINGS;
     'dependency-versions'?: CIBW_DEPENDENCY_VERSIONS;

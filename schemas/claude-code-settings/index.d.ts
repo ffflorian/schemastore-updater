@@ -179,7 +179,7 @@ export interface ClaudeCodeSettings {
    */
   apiKeyHelper?: string;
   /**
-   * Enable automatic memory saves that capture useful context to .claude/memory/. Also configurable via CLAUDE_CODE_DISABLE_AUTO_MEMORY environment variable (set to 1 to disable, 0 to enable). See https://code.claude.com/docs/en/memory#auto-memory
+   * Enable automatic memory saves that capture useful context to ~/.claude/projects/<project>/memory/ (derived from the git repository, shared across worktrees). Also configurable via CLAUDE_CODE_DISABLE_AUTO_MEMORY environment variable (set to 1 to disable, 0 to enable). See https://code.claude.com/docs/en/memory#storage-location
    */
   autoMemoryEnabled?: boolean;
   /**
@@ -239,7 +239,7 @@ export interface ClaudeCodeSettings {
      */
     ANTHROPIC_BEDROCK_MANTLE_BASE_URL?: string;
     /**
-     * Select Bedrock service tier; sent as X-Amzn-Bedrock-Service-Tier header. See https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#21122
+     * Select Bedrock service tier; sent as X-Amzn-Bedrock-Service-Tier header. See https://code.claude.com/docs/en/amazon-bedrock#service-tiers
      */
     ANTHROPIC_BEDROCK_SERVICE_TIER?: 'default' | 'flex' | 'priority';
     /**
@@ -335,6 +335,10 @@ export interface ClaudeCodeSettings {
      */
     ANTHROPIC_FOUNDRY_API_KEY?: string;
     /**
+     * Bearer token for Microsoft Foundry authentication, such as a Microsoft Entra access token. Claude Code sends it as the Authorization: Bearer header. Takes precedence over ANTHROPIC_FOUNDRY_API_KEY and over the Azure default credential chain. Requires Claude Code v2.1.203 or later. See https://code.claude.com/docs/en/microsoft-foundry
+     */
+    ANTHROPIC_FOUNDRY_AUTH_TOKEN?: string;
+    /**
      * Microsoft Foundry resource URL
      */
     ANTHROPIC_FOUNDRY_BASE_URL?: string;
@@ -355,11 +359,11 @@ export interface ClaudeCodeSettings {
      */
     ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION?: string;
     /**
-     * Override Google Vertex AI endpoint URL
+     * Override Google Cloud's Agent Platform (formerly Vertex AI) endpoint URL. Use for custom endpoints or when routing through an LLM gateway
      */
     ANTHROPIC_VERTEX_BASE_URL?: string;
     /**
-     * Google Vertex AI project ID
+     * GCP project ID for Google Cloud's Agent Platform (formerly Vertex AI) requests. Overridden by GCLOUD_PROJECT, GOOGLE_CLOUD_PROJECT, or the project in your GOOGLE_APPLICATION_CREDENTIALS credential file
      */
     ANTHROPIC_VERTEX_PROJECT_ID?: string;
     /**
@@ -371,7 +375,7 @@ export interface ClaudeCodeSettings {
      */
     API_FORCE_IDLE_TIMEOUT?: string;
     /**
-     * API request timeout in milliseconds (default: 600000)
+     * Timeout for API requests in milliseconds (default: 600000, or 10 minutes; maximum: 2147483647). Increase this when requests time out on slow networks or when routing through a proxy. Values above the maximum overflow the underlying timer and cause requests to fail immediately.
      */
     API_TIMEOUT_MS?: string;
     /**
@@ -406,6 +410,14 @@ export interface ClaudeCodeSettings {
      * Set to 1 in subprocesses Claude Code spawns (Bash and PowerShell tools, tmux sessions, hook commands, status line commands, stdio MCP server subprocesses). IDE extensions also set this in their integrated terminals. To distinguish a direct tool/hook subprocess from a stdio MCP server subprocess, use CLAUDE_CODE_CHILD_SESSION instead. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDECODE?: '0' | '1';
+    /**
+     * How many milliseconds before auto-continue the on-screen countdown appears on an unanswered AskUserQuestion dialog. Default 20000 (20 seconds). See CLAUDE_AFK_TIMEOUT_MS. Requires Claude Code v2.1.198 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_AFK_COUNTDOWN_MS?: string;
+    /**
+     * How many milliseconds of idle time before an unanswered AskUserQuestion dialog auto-continues without you. Default 60000 (60 seconds). Requires Claude Code v2.1.198 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_AFK_TIMEOUT_MS?: string;
     /**
      * Disable built-in subagent types in Agent SDK
      */
@@ -475,6 +487,14 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_AUTO_CONNECT_IDE?: 'true' | 'false';
     /**
+     * Time in milliseconds Claude Code waits for the AWS default credential provider chain to produce credentials before the request fails with "AWS default-chain credential resolve timed out" (default: 60000). Raise it when a step in your chain legitimately needs longer, such as a browser-based SSO sign-in with MFA through a wrapper like aws-vault. Applies wherever Claude Code signs with the default chain. Requires Claude Code v2.1.207 or later. See https://code.claude.com/docs/en/amazon-bedrock#credential-caching-and-resolution-timeout
+     */
+    CLAUDE_CODE_AWS_CHAIN_RESOLVE_TIMEOUT_MS?: string;
+    /**
+     * Set automatically in Bash tool and hook command subprocesses while the session has an active Remote Control connection, and removed when the connection ends. The value is the session's ID in session_ form, the same identifier that appears in the session's claude.ai/code URL, so a script can link back to the session that ran it. Requires Claude Code v2.1.199 or later. See https://code.claude.com/docs/en/remote-control
+     */
+    CLAUDE_CODE_BRIDGE_SESSION_ID?: string;
+    /**
      * CA certificate sources (comma-separated: 'bundled', 'system')
      */
     CLAUDE_CODE_CERT_STORE?: string;
@@ -495,7 +515,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_CLIENT_KEY_PASSPHRASE?: string;
     /**
-     * Directory path for debug log files
+     * Override the debug log file path. Despite the name, this is a file path, not a directory.
      */
     CLAUDE_CODE_DEBUG_LOGS_DIR?: string;
     /**
@@ -539,6 +559,14 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_DISABLE_BACKGROUND_TASKS?: '0' | '1';
     /**
+     * Set to 1 to skip the check that an Amazon Bedrock streaming response carries the application/vnd.amazon.eventstream content-type. Without this variable, a response with a different content-type fails with an error naming that content-type, which means a gateway or proxy is transforming the response. Set it only when the gateway rewrites the Content-Type header but passes the binary event-stream body through unmodified; if the body itself was transformed, requests fail with "Truncated event message received" instead. Requires Claude Code v2.1.208 or later. See https://code.claude.com/docs/en/amazon-bedrock#streaming-errors-behind-a-gateway-or-proxy
+     */
+    CLAUDE_CODE_DISABLE_BEDROCK_CONTENT_TYPE_GUARD?: '0' | '1';
+    /**
+     * Set to 1 to stop a background session's running background shell commands, dynamic workflows, and (as of v2.1.198) background subagents when the supervisor stops, restarts, or updates that session's process, instead of handing them off to the session's next process. Affects only that handoff; CLAUDE_DISABLE_ADOPT turns off both. Requires Claude Code v2.1.196 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_DISABLE_BG_EXIT_HANDOFF?: '0' | '1';
+    /**
      * UNDOCUMENTED. Disable automatic memory-pressure reaping of idle background shell commands (added v2.1.193).
      */
     CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP?: '0' | '1';
@@ -558,6 +586,10 @@ export interface ClaudeCodeSettings {
      * Strip anthropic-beta headers from API requests. See https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#21123
      */
     CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS?: '0' | '1';
+    /**
+     * Set to 1 to disable the built-in Explore and Plan subagents. Requires Claude Code v2.1.198 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_DISABLE_EXPLORE_PLAN_AGENTS?: '0' | '1';
     /**
      * Disable fast mode toggle
      */
@@ -579,11 +611,11 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP?: '0' | '1';
     /**
-     * Disable mouse tracking in fullscreen mode
+     * Disable mouse tracking in fullscreen mode. See https://code.claude.com/docs/en/fullscreen#keep-native-text-selection
      */
     CLAUDE_CODE_DISABLE_MOUSE?: '0' | '1';
     /**
-     * UNDOCUMENTED. Disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll (added v2.1.195).
+     * Disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll (requires v2.1.195+). CLAUDE_CODE_DISABLE_MOUSE takes precedence when both variables are set. See https://code.claude.com/docs/en/fullscreen#keep-native-text-selection
      */
     CLAUDE_CODE_DISABLE_MOUSE_CLICKS?: '0' | '1';
     /**
@@ -595,11 +627,15 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK?: '0' | '1';
     /**
-     * Skip automatic installation of official marketplace plugins
+     * Set to 1 to send desktop notifications from the PushNotification tool even while focused on the terminal. Requires Claude Code v2.1.193 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_DISABLE_NOTIFICATION_PRESENCE_CHECK?: '0' | '1';
+    /**
+     * Skip automatic installation of official marketplace plugins. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL?: '0' | '1';
     /**
-     * Skip loading system-wide policy skills
+     * Skip loading system-wide policy skills. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CODE_DISABLE_POLICY_SKILLS?: '0' | '1';
     /**
@@ -623,6 +659,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_EFFORT_LEVEL?: 'low' | 'medium' | 'high' | 'xhigh' | 'max' | 'auto';
     /**
+     * Set to 1 to enable appending extra text to the end of every subagent's system prompt. The --append-subagent-system-prompt flag supplies the appended text and sets this variable automatically, so you do not need to set it yourself. Requires Claude Code v2.1.205 or later. See https://code.claude.com/docs/en/sub-agents
+     */
+    CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT?: '0' | '1';
+    /**
      * Set to 1 to make auto mode available on Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry (requires v2.1.158+; no effect on the Anthropic API where auto mode is available by default). See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CODE_ENABLE_AUTO_MODE?: '0' | '1';
@@ -631,7 +671,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_ENABLE_AWAY_SUMMARY?: '0' | '1';
     /**
-     * Refresh plugins at turn boundaries
+     * Refresh plugins at turn boundaries. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH?: '0' | '1';
     /**
@@ -650,6 +690,10 @@ export interface ClaudeCodeSettings {
      * Enable prompt suggestions
      */
     CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION?: 'true' | 'false';
+    /**
+     * Enable file checkpointing for a non-interactive CLI run, so `claude -p --resume <session-id> --rewind-files <checkpoint-uuid>` can rewind files. The Agent SDK sets this internally when enable_file_checkpointing (Python) or enableFileCheckpointing (TypeScript) is enabled; the bare CLI never sets it. Without it, a non-interactive rewind fails with "File rewinding is not enabled". See https://code.claude.com/docs/en/agent-sdk/file-checkpointing
+     */
+    CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING?: string;
     /**
      * Enable task tracking in non-interactive mode
      */
@@ -695,6 +739,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_FORK_SUBAGENT?: '0' | '1';
     /**
+     * Set to 1 to emit subagent text and thinking blocks in claude -p --output-format stream-json output, the same behavior as the --forward-subagent-text flag. Use the variable when a harness invokes claude and cannot pass the flag itself. Unlike the flag, which exits with an error outside non-interactive mode with stream-json output, the variable is ignored there so that nested invocations keep working when it is set process-wide. Requires Claude Code v2.1.211 or later. See https://code.claude.com/docs/en/sub-agents
+     */
+    CLAUDE_CODE_FORWARD_SUBAGENT_TEXT?: '0' | '1';
+    /**
      * Path to Git Bash executable (Windows only)
      */
     CLAUDE_CODE_GIT_BASH_PATH?: string;
@@ -727,6 +775,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_IDE_SKIP_VALID_CHECK?: '0' | '1';
     /**
+     * How many subagents can be running in one session before the Agent tool refuses to spawn another (default: 20). Accepts a positive whole number in plain digits; anything else is ignored, so the variable can adjust the cap but cannot disable it. Requires Claude Code v2.1.217 or later. See https://code.claude.com/docs/en/sub-agents#concurrent-subagent-limit
+     */
+    CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS?: string;
+    /**
      * Override context window size in tokens
      */
     CLAUDE_CODE_MAX_CONTEXT_TOKENS?: string;
@@ -739,6 +791,14 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_MAX_RETRIES?: string;
     /**
+     * Cap on the number of subagents one session can spawn with the Agent tool (default: 200). When Claude reaches the cap, spawning another subagent fails with an error telling Claude to finish the remaining work directly. Accepts a positive whole number in plain digits with no upper bound; this variable does not take the scientific notation or digit-separator spellings. Anything else is ignored and the default applies, so the cap can be raised but not turned off. Requires Claude Code v2.1.212 or later. See https://code.claude.com/docs/en/sub-agents#session-subagent-limit
+     */
+    CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION?: string;
+    /**
+     * Number of subagent layers allowed below the main conversation (default: 1). At the default, subagents cannot spawn their own subagents; set 2 or higher to allow it. Accepts a positive whole number in plain digits; anything else is ignored, so the limit can be raised but not turned off. Requires Claude Code v2.1.217 or later. See https://code.claude.com/docs/en/sub-agents#let-subagents-spawn-their-own-subagents
+     */
+    CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH?: string;
+    /**
      * Maximum parallel tool executions (default: 10)
      */
     CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY?: string;
@@ -747,11 +807,19 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_MAX_TURNS?: string;
     /**
+     * Cap on the total number of WebSearch calls one session can make (default: 200). When Claude reaches the cap, further WebSearch calls return a notice telling it to continue with the information it already gathered. Accepts a positive whole number with no upper bound. Anything else is ignored and the default applies, so the cap can be raised but not turned off. Requires Claude Code v2.1.212 or later. See https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior
+     */
+    CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION?: string;
+    /**
      * Isolate MCP server environments to allowlisted variables
      */
     CLAUDE_CODE_MCP_ALLOWLIST_ENV?: '0' | '1';
     /**
-     * Idle timeout in milliseconds for remote MCP tool calls (default: 300000, about 5 minutes). When an HTTP, SSE, WebSocket, or claude.ai connector MCP server sends no response and no progress notification for this long, the tool call aborts with an error instead of waiting for the overall MCP_TOOL_TIMEOUT. Set to 0 to disable the idle check. Values below 1000 are raised to one second, and the value is capped at the effective MCP_TOOL_TIMEOUT. Does not apply to stdio or IDE servers. Requires Claude Code v2.1.187 or later. See https://code.claude.com/docs/en/mcp
+     * Elapsed time in milliseconds before a still-running MCP tool call moves to a background task (default: 120000, or 2 minutes). Set to 0 to turn automatic backgrounding off. Requires Claude Code v2.1.212 or later. See https://code.claude.com/docs/en/mcp#automatic-backgrounding-of-long-tool-calls
+     */
+    CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS?: string;
+    /**
+     * Idle timeout in milliseconds for MCP tool calls. When a stdio, HTTP, SSE, WebSocket, or claude.ai connector MCP server sends no response and no progress notification for this long, the tool call aborts with an error instead of waiting for the overall MCP_TOOL_TIMEOUT. Overrides the per-transport defaults of 300000 (5 minutes) for network servers and 1800000 (30 minutes) for stdio servers. Set to 0 to disable the idle check. Values below 1000 are raised to one second, and the value is capped at the effective MCP_TOOL_TIMEOUT. A per-server timeout in .mcp.json of at least 1000 raises that server's idle window to at least the timeout value. Does not apply to IDE servers or SDK in-process servers. Requires Claude Code v2.1.187 or later. Before v2.1.203, stdio servers were exempt from the idle timeout. See https://code.claude.com/docs/en/mcp
      */
     CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT?: string;
     /**
@@ -779,9 +847,9 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_OAUTH_TOKEN?: string;
     /**
-     * Set to 1 to pin fast mode to Claude Opus 4.6 instead of the default Opus 4.8 (the fast-mode default since v2.1.154). With this set, /fast runs on Opus 4.6. See https://code.claude.com/docs/en/fast-mode
+     * Maximum length of content-bearing OpenTelemetry attributes (model responses, tool content, system prompts, raw API bodies), truncation marker included, in UTF-16 code units (default: 61440, i.e. 60 KB). Raise it only if your telemetry backend accepts attribute values larger than 64 KB, or lower it to cut telemetry volume. Requires Claude Code v2.1.214 or later. See https://code.claude.com/docs/en/monitoring-usage#common-configuration-variables
      */
-    CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE?: '0' | '1';
+    CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH?: string;
     /**
      * Set to 1 to write OpenTelemetry exporter diagnostic errors to stderr (otherwise shown only with --debug). Requires v2.1.179+. See https://code.claude.com/docs/en/env-vars
      */
@@ -807,7 +875,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_PERFORCE_MODE?: '0' | '1';
     /**
-     * Root directory for plugin cache
+     * Override the plugins root directory. Despite the name, this sets the parent directory, not the cache itself: marketplaces and the plugin cache live in subdirectories under this path. Defaults to ~/.claude/plugins. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CODE_PLUGIN_CACHE_DIR?: string;
     /**
@@ -823,7 +891,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_PLUGIN_PREFER_HTTPS?: '0' | '1';
     /**
-     * Path(s) to pre-populated plugin directories
+     * Path(s) to pre-populated plugin directories. See https://code.claude.com/docs/en/plugin-marketplaces#pre-populate-plugins-for-containers
      */
     CLAUDE_CODE_PLUGIN_SEED_DIR?: string;
     /**
@@ -834,6 +902,10 @@ export interface ClaudeCodeSettings {
      * Cap, in milliseconds, on how long `claude -p` waits for background subagents at exit (default 10 minutes; set to 0 to wait without limit, added v2.1.182). See https://code.claude.com/docs/en/headless#background-tasks-at-exit
      */
     CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS?: string;
+    /**
+     * Launch the processes Claude Code starts from its own binary, such as the background service that hosts agent view sessions, through a corporate launcher given as an argv prefix like /opt/corp/launcher. Set it in the env block of user or managed settings, not as a shell export, so the detached background service inherits it; project and local settings cannot set it. Equivalent to the processWrapper setting, which requires Claude Code v2.1.210 or later; this variable takes precedence when both are set. The VS Code extension configures its own launcher separately through its claudeProcessWrapper setting. Ignored on Windows. Requires Claude Code v2.1.208 or later. See https://code.claude.com/docs/en/corporate-launcher
+     */
+    CLAUDE_CODE_PROCESS_WRAPPER?: string;
     /**
      * Propagate the W3C traceparent header on API requests when using a custom ANTHROPIC_BASE_URL. See https://code.claude.com/docs/en/monitoring-usage#traces-beta
      */
@@ -859,6 +931,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_RESUME_INTERRUPTED_TURN?: '0' | '1';
     /**
+     * Maximum age in milliseconds of the last transcript message for a session that ended mid-turn to continue automatically on resume. When the last message is older than this bound, Claude Code skips both the CLAUDE_CODE_RESUME_INTERRUPTED_TURN automatic resume and the injected CLAUDE_CODE_RESUME_PROMPT continuation message, and the session starts idle so you continue explicitly. Unset or 0 means no bound; a negative or non-numeric value applies a one-hour bound. Spawn scripts for long-running agents can set this so a restart against an old transcript does not re-run a stale prompt. Claude Code sets a one-hour bound itself when it restarts a crashed agent view session that inherited its conversation from an interactive session. Requires Claude Code v2.1.211 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_CODE_RESUME_INTERRUPTED_TURN_MAX_AGE_MS?: string;
+    /**
      * Override the continuation message injected when resuming a session that ended mid-turn (default "Continue from where you left off."). An empty string uses the default. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CODE_RESUME_PROMPT?: string;
@@ -875,7 +951,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_SCRIPT_CAPS?: string;
     /**
-     * Mouse wheel scroll speed multiplier (1-20)
+     * Set the mouse wheel scroll multiplier in fullscreen rendering. Accepts any positive value up to 20, including fractional values below 1 such as 0.5 to slow accelerated trackpad and wheel scrolling in terminals that already amplify wheel events. Set to 3 to match vim if your terminal sends one wheel event per notch without amplification. See https://code.claude.com/docs/en/fullscreen#mouse-wheel-scrolling
      */
     CLAUDE_CODE_SCROLL_SPEED?: string;
     /**
@@ -907,9 +983,21 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_SKIP_ANTHROPIC_AWS_AUTH?: '0' | '1';
     /**
+     * Set to 1 to turn off the in-process cache of credentials resolved from the AWS default credential provider chain, so Claude Code resolves the chain on every API request. With the cache off, an SSO-backed profile requests credentials from IAM Identity Center on every request. Requires Claude Code v2.1.207 or later. See https://code.claude.com/docs/en/amazon-bedrock#credential-caching-and-resolution-timeout
+     */
+    CLAUDE_CODE_SKIP_AWS_CRED_CACHE?: '0' | '1';
+    /**
      * Skip AWS authentication for Bedrock
      */
     CLAUDE_CODE_SKIP_BEDROCK_AUTH?: '0' | '1';
+    /**
+     * Set to 1 to treat a failed fast mode availability check as available, for networks that block the check's direct request to api.anthropic.com. Claude Code still honors a "disabled by your organization" response. See https://code.claude.com/docs/en/fast-mode#use-fast-mode-behind-proxies-and-llm-gateways
+     */
+    CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS?: '0' | '1';
+    /**
+     * Set to 1 to skip the client-side fast mode availability check, for proxies that intercept the check's request rather than refuse it. The API still rejects fast mode requests when your organization has fast mode disabled. See https://code.claude.com/docs/en/fast-mode#use-fast-mode-behind-proxies-and-llm-gateways
+     */
+    CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK?: '0' | '1';
     /**
      * Skip Azure authentication for Foundry
      */
@@ -923,7 +1011,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_SKIP_PROMPT_HISTORY?: '0' | '1';
     /**
-     * Skip Google authentication for Vertex AI
+     * Skip Google authentication for Google Cloud's Agent Platform
      */
     CLAUDE_CODE_SKIP_VERTEX_AUTH?: '0' | '1';
     /**
@@ -971,6 +1059,10 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_TEAM_NAME?: string;
     /**
+     * Override, in milliseconds, how long a non-interactive session waits at exit for its agent team to finish tearing down. Accepts 1000 to 60000; an out-of-range value is ignored and the default of 10000 applies. Requires Claude Code v2.1.206 or later. See https://code.claude.com/docs/en/agent-teams
+     */
+    CLAUDE_CODE_TEAM_TEARDOWN_PARK_TIMEOUT_MS?: string;
+    /**
      * Override temp directory path
      */
     CLAUDE_CODE_TMPDIR?: string;
@@ -1003,13 +1095,17 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_CODE_USE_POWERSHELL_TOOL?: '0' | '1';
     /**
-     * Enable Google Vertex AI as the API provider. See https://code.claude.com/docs/en/google-vertex-ai#4-configure-claude-code
+     * Enable Google Cloud's Agent Platform as the API provider. See https://code.claude.com/docs/en/google-vertex-ai#4-configure-claude-code
      */
     CLAUDE_CODE_USE_VERTEX?: '0' | '1';
     /**
      * Override the configuration directory (default ~/.claude) where settings, credentials, session history, and plugins are stored. Useful for running multiple accounts side by side. See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_CONFIG_DIR?: string;
+    /**
+     * Set to 1 to stop in-flight background work instead of carrying it over when you background a session by pressing ← or with /background. Claude Code asks you to confirm before backgrounding, then stops the tasks that would otherwise carry over. Requires Claude Code v2.1.195 or later. See https://code.claude.com/docs/en/env-vars
+     */
+    CLAUDE_DISABLE_ADOPT?: '0' | '1';
     /**
      * Set automatically in Bash tool subprocesses and hook commands to the active effort level for the turn (low, medium, high, xhigh, or max; ultracode reports as xhigh). Read-only. See https://code.claude.com/docs/en/env-vars
      */
@@ -1023,13 +1119,17 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_ENABLE_BYTE_WATCHDOG_BEDROCK?: '0' | '1';
     /**
-     * Set to 1 to force-enable, or 0 to force-disable, the event-level streaming idle watchdog. When unset, server-controlled on the direct Anthropic API and off on other providers. See https://code.claude.com/docs/en/env-vars
+     * Set to 1 to force-enable, or 0 to force-disable, the event-level streaming idle watchdog. When unset, the watchdog is on by default for all providers (as of v2.1.196; before that the unset default was server-controlled on the direct Anthropic API and off on other providers). See https://code.claude.com/docs/en/env-vars
      */
     CLAUDE_ENABLE_STREAM_WATCHDOG?: '0' | '1';
     /**
      * File path for persisting environment variables across Bash commands
      */
     CLAUDE_ENV_FILE?: string;
+    /**
+     * Claude Code sets this to its own process ID in the subprocesses it spawns: Bash and PowerShell tool commands and hook commands. On Linux, the Bash tool's shell integration uses it to refuse a pkill pattern that would match the Claude Code process itself. Read it from your own scripts to identify or signal the parent Claude Code process deliberately. Requires Claude Code v2.1.214 or later. See https://code.claude.com/docs/en/errors#pkill-pattern-matches-the-claude-code-process
+     */
+    CLAUDE_PID?: string;
     /**
      * Project root directory path (also provided to hooks)
      */
@@ -1043,7 +1143,7 @@ export interface ClaudeCodeSettings {
      */
     CLAUDE_STREAM_IDLE_TIMEOUT_MS?: string;
     /**
-     * Vertex AI region: global, a multi-region location (eu, us), or a specific region (e.g. us-east5). See https://code.claude.com/docs/en/google-vertex-ai#region-configuration
+     * Google Cloud's Agent Platform region: global, a multi-region location (eu, us), or a specific region (e.g. us-east5). See https://code.claude.com/docs/en/google-vertex-ai#region-configuration
      */
     CLOUD_ML_REGION?: string;
     /**
@@ -1155,7 +1255,7 @@ export interface ClaudeCodeSettings {
      */
     ENABLE_PROMPT_CACHING_1H?: '0' | '1';
     /**
-     * Control MCP tool search: "true" always defers and sends the beta header (requests fail on Vertex AI models earlier than Sonnet 4.5/Opus 4.5 or on proxies that do not support tool_reference); "auto" loads tools upfront if they fit within 10% of context; "auto:N" sets a custom threshold percentage (e.g. auto:5); "false" loads all tools upfront. Also applies when ANTHROPIC_BASE_URL points to a non-first-party host. See https://code.claude.com/docs/en/google-vertex-ai#4-configure-claude-code
+     * Control MCP tool search: "true" always defers and sends the beta header (requests fail on Google Cloud's Agent Platform models earlier than Sonnet 4.5/Opus 4.5 or on proxies that do not support tool_reference); "auto" loads tools upfront if they fit within 10% of context; "auto:N" sets a custom threshold percentage (e.g. auto:5); "false" loads all tools upfront. Also applies when ANTHROPIC_BASE_URL points to a non-first-party host. See https://code.claude.com/docs/en/google-vertex-ai#4-configure-claude-code
      */
     ENABLE_TOOL_SEARCH?: string;
     /**
@@ -1167,11 +1267,15 @@ export interface ClaudeCodeSettings {
      */
     FORCE_AUTOUPDATE_PLUGINS?: '0' | '1';
     /**
+     * Set to 1 to enable clickable OSC 8 hyperlinks when your terminal supports them but is not auto-detected, or 0 to disable them
+     */
+    FORCE_HYPERLINK?: '0' | '1';
+    /**
      * Force a 5-minute cache TTL regardless of authentication method; overrides ENABLE_PROMPT_CACHING_1H or a managed-settings TTL. See https://code.claude.com/docs/en/prompt-caching#override-the-ttl
      */
     FORCE_PROMPT_CACHING_5M?: '0' | '1';
     /**
-     * Path to a GCP credential configuration file (service account key or workload identity federation config) used for Vertex AI authentication. See https://code.claude.com/docs/en/google-vertex-ai#3-configure-gcp-credentials
+     * Path to a GCP credential configuration file (service account key or workload identity federation config) used for Google Cloud's Agent Platform authentication. See https://code.claude.com/docs/en/google-vertex-ai#3-configure-gcp-credentials
      */
     GOOGLE_APPLICATION_CREDENTIALS?: string;
     /**
@@ -1239,6 +1343,10 @@ export interface ClaudeCodeSettings {
      */
     NO_PROXY?: string;
     /**
+     * Standard OpenTelemetry SDK limit on attribute value length. Claude Code caps content-bearing telemetry attributes at the smaller of this and CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH, so the truncation marker stays within the SDK limit. Claude Code reads the OTEL_LOGRECORD_ATTRIBUTE_VALUE_LENGTH_LIMIT and OTEL_SPAN_ATTRIBUTE_VALUE_LENGTH_LIMIT variants the same way, and the smallest set value applies to all signals. Requires Claude Code v2.1.214 or later. See https://code.claude.com/docs/en/monitoring-usage#common-configuration-variables
+     */
+    OTEL_ATTRIBUTE_VALUE_LENGTH_LIMIT?: string;
+    /**
      * Path to the CA certificate for gRPC OTLP mTLS. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
      */
     OTEL_EXPORTER_OTLP_CERTIFICATE?: string;
@@ -1259,6 +1367,14 @@ export interface ClaudeCodeSettings {
      */
     OTEL_EXPORTER_OTLP_HEADERS?: string;
     /**
+     * Path to the client certificate for gRPC OTLP mTLS, overriding OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE for logs only. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
+     */
+    OTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE?: string;
+    /**
+     * Path to the client private key for gRPC OTLP mTLS, overriding OTEL_EXPORTER_OTLP_CLIENT_KEY for logs only. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
+     */
+    OTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY?: string;
+    /**
      * OTLP exporter endpoint override for logs. See https://code.claude.com/docs/en/monitoring-usage#common-configuration-variables
      */
     OTEL_EXPORTER_OTLP_LOGS_ENDPOINT?: string;
@@ -1266,6 +1382,14 @@ export interface ClaudeCodeSettings {
      * OTLP protocol override for logs: grpc, http/json, or http/protobuf. See https://code.claude.com/docs/en/monitoring-usage#common-configuration-variables
      */
     OTEL_EXPORTER_OTLP_LOGS_PROTOCOL?: 'grpc' | 'http/json' | 'http/protobuf';
+    /**
+     * Path to the client certificate for gRPC OTLP mTLS, overriding OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE for metrics only. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
+     */
+    OTEL_EXPORTER_OTLP_METRICS_CLIENT_CERTIFICATE?: string;
+    /**
+     * Path to the client private key for gRPC OTLP mTLS, overriding OTEL_EXPORTER_OTLP_CLIENT_KEY for metrics only. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
+     */
+    OTEL_EXPORTER_OTLP_METRICS_CLIENT_KEY?: string;
     /**
      * OTLP exporter endpoint override for metrics. See https://code.claude.com/docs/en/monitoring-usage#common-configuration-variables
      */
@@ -1282,6 +1406,14 @@ export interface ClaudeCodeSettings {
      * OTLP exporter protocol for all signals: grpc, http/json, or http/protobuf. See https://code.claude.com/docs/en/monitoring-usage#common-configuration-variables
      */
     OTEL_EXPORTER_OTLP_PROTOCOL?: 'grpc' | 'http/json' | 'http/protobuf';
+    /**
+     * Path to the client certificate for gRPC OTLP mTLS, overriding OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE for traces only. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
+     */
+    OTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE?: string;
+    /**
+     * Path to the client private key for gRPC OTLP mTLS, overriding OTEL_EXPORTER_OTLP_CLIENT_KEY for traces only. See https://code.claude.com/docs/en/monitoring-usage#mtls-authentication
+     */
+    OTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY?: string;
     /**
      * OTLP exporter endpoint override for traces. See https://code.claude.com/docs/en/monitoring-usage#traces-beta
      */
@@ -1419,6 +1551,14 @@ export interface ClaudeCodeSettings {
      */
     VERTEX_REGION_CLAUDE_4_8_OPUS?: string;
     /**
+     * Override region for Claude Opus 5 when using Google Cloud's Agent Platform (formerly Vertex AI). Added in v2.1.219. See https://code.claude.com/docs/en/google-vertex-ai
+     */
+    VERTEX_REGION_CLAUDE_5_OPUS?: string;
+    /**
+     * Override region for Claude Sonnet 5 when using Google Cloud's Agent Platform (formerly Vertex AI). Added in v2.1.197. See https://code.claude.com/docs/en/google-vertex-ai
+     */
+    VERTEX_REGION_CLAUDE_5_SONNET?: string;
+    /**
      * Override the Vertex AI region for Claude Fable 5 (used when CLOUD_ML_REGION=global). See https://code.claude.com/docs/en/env-vars
      */
     VERTEX_REGION_CLAUDE_FABLE_5?: string;
@@ -1443,6 +1583,10 @@ export interface ClaudeCodeSettings {
      * Attribution for pull request descriptions. Empty string hides pull request attribution
      */
     pr?: string;
+    /**
+     * Whether to append the claude.ai session link as a Claude-Session trailer on commits and a link in pull request descriptions when running from a web or Remote Control session. Defaults to true; set to false to omit the link. See https://code.claude.com/docs/en/settings#attribution-settings
+     */
+    sessionUrl?: boolean;
   };
   /**
    * Include built-in git commit and PR workflow instructions in Claude's system prompt. Also configurable via CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS environment variable (set to 1 to disable). See https://code.claude.com/docs/en/settings#available-settings
@@ -1481,6 +1625,7 @@ export interface ClaudeCodeSettings {
     /**
      * Default permission mode.
      * "default": prompts on first use.
+     * UNDOCUMENTED. "manual": accepted alias for "default" (the CLI/VS Code/JetBrains UI now labels this mode "Manual" as of v2.1.200; permission-modes.md has not yet been updated to mention it).
      * "acceptEdits": auto-accepts file edits.
      * "plan": read-only, no modifications.
      * UNDOCUMENTED. "delegate": coordination-only for agent team leads (agent teams are experimental; enable via CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS).
@@ -1489,7 +1634,7 @@ export interface ClaudeCodeSettings {
      * "auto": auto-approves tool calls with background safety checks that verify actions align with your request.
      * See https://code.claude.com/docs/en/permissions
      */
-    defaultMode?: 'acceptEdits' | 'bypassPermissions' | 'default' | 'delegate' | 'dontAsk' | 'plan' | 'auto';
+    defaultMode?: 'acceptEdits' | 'bypassPermissions' | 'default' | 'delegate' | 'dontAsk' | 'plan' | 'auto' | 'manual';
     /**
      * Disable the ability to bypass permission prompts
      */
@@ -1526,7 +1671,7 @@ export interface ClaudeCodeSettings {
    */
   effortLevel?: 'low' | 'medium' | 'high' | 'xhigh';
   /**
-   * Enable fast mode, which uses Claude Opus 4.8 by default (since v2.1.154) for faster output at higher per-token cost without downgrading to a smaller model. Requires extra usage enabled. Toggle with the /fast command. Available on Opus 4.8 and Opus 4.7 (Opus 4.7 fast mode deprecated June 2026). See https://code.claude.com/docs/en/fast-mode
+   * Enable fast mode, which uses Claude Opus 5 by default (since v2.1.219) for faster output at higher per-token cost without downgrading to a smaller model. Requires extra usage enabled. Toggle with the /fast command. Supported on Opus 5 and Opus 4.8; fast mode for Opus 4.7 was deprecated on June 25, 2026 and removed on July 24, 2026. Before v2.1.219 fast mode defaulted to Opus 4.8 (v2.1.154 through v2.1.218) and to Opus 4.7 (v2.1.142 through v2.1.153). See https://code.claude.com/docs/en/fast-mode
    */
   fastMode?: boolean;
   /**
@@ -1723,6 +1868,10 @@ export interface ClaudeCodeSettings {
      * Hooks that run while assistant message text is displayed
      */
     MessageDisplay?: HookMatcher[];
+    /**
+     * UNDOCUMENTED. Hooks that run after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session (added v2.1.219)
+     */
+    DirectoryAdded?: HookMatcher[];
   };
   /**
    * Disable all hooks and statusLine execution. When true in managed settings, user and project-level disableAllHooks cannot override it. See https://code.claude.com/docs/en/hooks#disable-or-remove-hooks
@@ -1852,6 +2001,10 @@ export interface ClaudeCodeSettings {
                  * Path to marketplace.json within repo (defaults to .claude-plugin/marketplace.json)
                  */
                 path?: string;
+                /**
+                 * Skip Git LFS downloads when Claude Code clones or updates the marketplace repository. LFS pointer files remain as pointers instead of downloading their content. Use this when the repository contains large LFS objects unrelated to plugin content. Requires Claude Code v2.1.153 or later
+                 */
+                skipLfs?: boolean;
               }
             | {
                 /**
@@ -1870,6 +2023,10 @@ export interface ClaudeCodeSettings {
                  * Path to marketplace.json within repo (defaults to .claude-plugin/marketplace.json)
                  */
                 path?: string;
+                /**
+                 * Skip Git LFS downloads when Claude Code clones or updates the marketplace repository. LFS pointer files remain as pointers instead of downloading their content. Use this when the repository contains large LFS objects unrelated to plugin content. Requires Claude Code v2.1.153 or later
+                 */
+                skipLfs?: boolean;
               }
             | {
                 /**
@@ -1900,6 +2057,105 @@ export interface ClaudeCodeSettings {
                  * Local directory containing .claude-plugin/marketplace.json
                  */
                 path: string;
+              }
+            | {
+                /**
+                 * Identifies the marketplace source type
+                 */
+                source: 'settings';
+                /**
+                 * Name of the inline marketplace
+                 */
+                name: string;
+                /**
+                 * Plugins declared inline. Each must reference an external source such as GitHub or npm. You still need to enable each plugin separately in enabledPlugins
+                 */
+                plugins: {
+                  /**
+                   * Plugin name
+                   */
+                  name: string;
+                  /**
+                   * External source the plugin is fetched from. Inline plugins must reference external sources such as GitHub or npm, not relative paths
+                   */
+                  source:
+                    | {
+                        /**
+                         * Identifies the plugin source type
+                         */
+                        source: 'github';
+                        /**
+                         * GitHub repository in owner/repo format
+                         */
+                        repo: string;
+                        /**
+                         * Git branch or tag
+                         */
+                        ref?: string;
+                        /**
+                         * Exact commit SHA to pin the plugin to
+                         */
+                        sha?: string;
+                      }
+                    | {
+                        /**
+                         * Identifies the plugin source type
+                         */
+                        source: 'url';
+                        /**
+                         * Git URL source
+                         */
+                        url: string;
+                        /**
+                         * Git branch or tag
+                         */
+                        ref?: string;
+                        /**
+                         * Exact commit SHA to pin the plugin to
+                         */
+                        sha?: string;
+                      }
+                    | {
+                        /**
+                         * Identifies the plugin source type
+                         */
+                        source: 'git-subdir';
+                        /**
+                         * Git repository URL
+                         */
+                        url: string;
+                        /**
+                         * Subdirectory within the git repo. Clones sparsely to minimize bandwidth for monorepos
+                         */
+                        path: string;
+                        /**
+                         * Git branch or tag
+                         */
+                        ref?: string;
+                        /**
+                         * Exact commit SHA to pin the plugin to
+                         */
+                        sha?: string;
+                      }
+                    | {
+                        /**
+                         * Identifies the plugin source type
+                         */
+                        source: 'npm';
+                        /**
+                         * npm package name (supports scoped packages)
+                         */
+                        package: string;
+                        /**
+                         * Package version
+                         */
+                        version?: string;
+                        /**
+                         * npm registry URL
+                         */
+                        registry?: string;
+                      };
+                }[];
               };
           /**
            * Local cache path where marketplace manifest is stored (auto-generated if not provided)
@@ -2024,27 +2280,27 @@ export interface ClaudeCodeSettings {
       }
   )[];
   /**
-   * List of marketplace names the user has chosen not to install when prompted
+   * List of marketplace names the user has chosen not to install when prompted. See https://code.claude.com/docs/en/discover-plugins
    */
   skippedMarketplaces?: string[];
   /**
-   * List of plugin IDs (plugin@marketplace format) the user has chosen not to install when prompted
+   * List of plugin IDs (plugin@marketplace format) the user has chosen not to install when prompted. See https://code.claude.com/docs/en/discover-plugins
    */
   skippedPlugins?: string[];
   /**
-   * Force a specific login method: "claudeai" for Claude Pro/Max, "console" for Console billing
+   * Use "claudeai" to restrict login to Claude.ai accounts, "console" to restrict login to Claude Console accounts, or "gateway" to restrict login to a cloud gateway. On Claude Code v2.1.212 or later, every first-party login path enforces the restriction, including the VS Code extension, the Agent SDK, `claude setup-token`, and /install-github-app; before v2.1.212, only terminal logins enforced it. See https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization
    */
-  forceLoginMethod?: 'claudeai' | 'console';
+  forceLoginMethod?: 'claudeai' | 'console' | 'gateway';
   /**
-   * Organization UUID to use for OAuth login
+   * Organization UUID to use for OAuth login, or an array of UUIDs to allow several organizations. An empty array fails closed and blocks every login. See https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization
    */
-  forceLoginOrgUUID?: string;
+  forceLoginOrgUUID?: string | string[];
   /**
    * Path to an executable, or a shell command line with arguments, that outputs OpenTelemetry headers as a JSON object. Runs at startup and re-runs on the interval set by CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS. Requires CLAUDE_CODE_ENABLE_TELEMETRY=1. See https://code.claude.com/docs/en/monitoring-usage#dynamic-headers
    */
   otelHeadersHelper?: string;
   /**
-   * Controls the output style for assistant responses. Built-in styles: default, Explanatory, Learning. Custom styles can be added in ~/.claude/output-styles/ or .claude/output-styles/. See https://code.claude.com/docs/en/output-styles
+   * Controls the output style for assistant responses. Built-in styles: default, Proactive, Explanatory, Learning. Custom styles can be added in ~/.claude/output-styles/ or .claude/output-styles/. See https://code.claude.com/docs/en/output-styles
    */
   outputStyle?: string;
   /**
@@ -2095,6 +2351,23 @@ export interface ClaudeCodeSettings {
        * macOS only. Additional XPC/Mach service names the sandbox may look up. Supports a single trailing * for prefix matching. Needed for tools that communicate via XPC such as the iOS Simulator or Playwright. See https://code.claude.com/docs/en/sandboxing#network-isolation
        */
       allowMachLookup?: string[];
+      /**
+       * Experimental. Terminate TLS inside the sandbox proxy so it can read the contents of HTTPS requests. Required for mask credential substitution. Set {} to generate an ephemeral certificate authority for the session, or set caCertPath and caKeyPath to use your own. Only honored from user, managed, or CLI --settings settings, not from .claude/settings.json or .claude/settings.local.json. Requires Claude Code v2.1.199 or later. See https://code.claude.com/docs/en/sandboxing#protect-credentials
+       */
+      tlsTerminate?: {
+        /**
+         * Path to your own certificate authority certificate
+         */
+        caCertPath?: string;
+        /**
+         * Path to your own certificate authority private key
+         */
+        caKeyPath?: string;
+      };
+      /**
+       * UNDOCUMENTED. Deny non-allowlisted hosts for sandboxed commands without prompting (added v2.1.219). See https://code.claude.com/docs/en/sandboxing#network-isolation
+       */
+      strictAllowlist?: boolean;
     };
     /**
      * Map of command patterns to filesystem paths to ignore violations for. Use "*" to match all commands
@@ -2114,7 +2387,7 @@ export interface ClaudeCodeSettings {
      */
     autoAllowBashIfSandboxed?: boolean;
     /**
-     * macOS only. Allow access to the system TLS trust service (com.apple.trustd.agent) in the sandbox. Required for Go-based tools like gh, gcloud, and terraform to verify TLS certificates when using httpProxyPort with a MITM proxy and custom CA. Reduces security by opening a potential data exfiltration path. Default: false. See https://code.claude.com/docs/en/settings#sandbox-settings
+     * macOS only. Allow access to the system TLS trust service (com.apple.trustd.agent) in the sandbox. Required for Go-based tools like gh, gcloud, and terraform to verify TLS certificates when using httpProxyPort with a MITM proxy and custom CA. Reduces security by opening a potential data exfiltration path. Default: false. See https://code.claude.com/docs/en/sandboxing
      */
     enableWeakerNetworkIsolation?: boolean;
     /**
@@ -2153,6 +2426,10 @@ export interface ClaudeCodeSettings {
        * (Managed settings only) When true, only allowRead paths from managed settings are used; user, project, and local allowRead entries are ignored. denyRead still merges from all sources. See https://code.claude.com/docs/en/sandboxing#filesystem-isolation
        */
       allowManagedReadPathsOnly?: boolean;
+      /**
+       * Skip filesystem isolation while keeping network isolation: sandboxed commands get unrestricted read and write access to the host filesystem, and network egress stays confined to network.allowedDomains. Only honored from user, managed, or CLI --settings settings (default: false). Requires Claude Code v2.1.216 or later. See https://code.claude.com/docs/en/sandboxing#disable-filesystem-isolation
+       */
+      disabled?: boolean;
     };
     /**
      * Custom ripgrep configuration for Claude Code's bundled ripgrep support. Overrides the bundled binary and arguments.
@@ -2213,6 +2490,10 @@ export interface ClaudeCodeSettings {
          */
         mode: 'deny';
       }[];
+      /**
+       * Allow mask substitution on plain HTTP requests as well as TLS-terminated HTTPS. On plain HTTP the upstream identity is unverified and the credential travels in cleartext, so leave this off outside trusted test networks. Only honored from user, managed, or CLI --settings settings, not from .claude/settings.json or .claude/settings.local.json (default: false). Requires Claude Code v2.1.199 or later. See https://code.claude.com/docs/en/sandboxing#protect-credentials
+       */
+      allowPlaintextInject?: boolean;
     };
     /**
      * Allow sandboxed commands to send Apple Events on macOS (v2.1.181+). Honored only from user, managed, or CLI settings; project settings cannot enable it. See https://code.claude.com/docs/en/sandboxing#limitations
@@ -2494,7 +2775,7 @@ export interface ClaudeCodeSettings {
    */
   defaultShell?: 'bash' | 'powershell';
   /**
-   * Set to "disable" to prevent Claude Code from registering the `claude://` deep-link protocol handler on startup. Most useful in managed settings where users cannot override it. See https://code.claude.com/docs/en/settings#available-settings
+   * Set to "disable" to prevent Claude Code from registering the `claude-cli://` deep-link protocol handler on startup. Most useful in managed settings where users cannot override it. See https://code.claude.com/docs/en/settings#available-settings
    */
   disableDeepLinkRegistration?: 'disable';
   /**
@@ -2601,7 +2882,7 @@ export interface ClaudeCodeSettings {
   /**
    * Per-skill character cap on the combined description and when_to_use text in the skill listing Claude sees each turn. Text longer than this is truncated. See https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short
    */
-  maxSkillDescriptionChars?: number;
+  skillListingMaxDescChars?: number;
   /**
    * Method for task-complete and permission-prompt notifications. "auto" (default) sends a desktop notification in iTerm2, Ghostty, and Kitty and does nothing in other terminals; "terminal_bell" rings the bell in any terminal; "notifications_disabled" turns them off. See https://code.claude.com/docs/en/terminal-config#get-a-terminal-bell-or-notification
    */
@@ -2801,6 +3082,83 @@ export interface ClaudeCodeSettings {
    * Whether the Left arrow key at the start of an empty prompt opens the agents view. Turn it off in /config (the leftArrowOpensAgents setting). See https://code.claude.com/docs/en/agent-view
    */
   leftArrowOpensAgents?: boolean;
+  /**
+   * Idle time before an unanswered AskUserQuestion dialog auto-continues with whatever options you had already selected. Accepts "60s", "5m", "10m", or "never" (default: "never", which waits until you answer). Appears in /config as Question auto-continue timeout, which writes this key to user settings. Not read from project or local settings. Requires Claude Code v2.1.200 or later. See https://code.claude.com/docs/en/settings#available-settings
+   */
+  askUserQuestionTimeout?: '60s' | '5m' | '10m' | 'never';
+  /**
+   * Default model for agent team teammates when the spawn prompt does not specify one. Set to a model alias such as "sonnet", or null to inherit the lead's current /model selection. Appears in /config as Default teammate model. See https://code.claude.com/docs/en/agent-teams
+   */
+  teammateDefaultModel?: string | null;
+  /**
+   * Sets the agent count Claude aims for in the dynamic workflows it writes. Claude Code sends the value to Claude as advice, not an enforced cap. Accepts "unrestricted" (default, which sends no guideline), "small", "medium", or "large". Appears in /config as Dynamic workflow size, and can be set with /config workflowSizeGuideline=small. Requires Claude Code v2.1.202 or later. On v2.1.203 or later the guideline's agent count also replaces the default threshold for the Large workflow warning. See https://code.claude.com/docs/en/workflows#set-a-size-guideline
+   */
+  workflowSizeGuideline?: 'unrestricted' | 'small' | 'medium' | 'large';
+  /**
+   * Enable or disable the Artifact tool for this user. When unset, the default follows the feature's availability for your account. The Artifacts row in /config writes this key. A managed disableArtifact and your organization's admin setting take precedence, and the key is ignored in project and local settings (.claude/settings.json, .claude/settings.local.json), which a repository could otherwise commit. Requires Claude Code v2.1.196 or later. See https://code.claude.com/docs/en/artifacts
+   */
+  enableArtifact?: boolean;
+  /**
+   * Show a model-generated explanation of the command when you press Ctrl+E on a Bash or PowerShell permission prompt (default: true). Set to false to turn the shortcut off. See https://code.claude.com/docs/en/permissions#permission-system
+   */
+  permissionExplainerEnabled?: boolean;
+  /**
+   * Where to display file diffs when an IDE is connected: "auto" (default) opens diffs in the IDE's diff viewer, "terminal" keeps them in the terminal. Appears in /config as Diff tool only when Claude Code is connected to a VS Code or JetBrains IDE. See https://code.claude.com/docs/en/settings#global-config-settings
+   */
+  diffTool?: 'auto' | 'terminal';
+  /**
+   * Prepend Claude's previous response as #-commented context when you open the external editor with Ctrl+G (default: false). Appears in /config as Show last response in external editor. See https://code.claude.com/docs/en/settings#global-config-settings
+   */
+  externalEditorContext?: boolean;
+  /**
+   * Automatically connect to a running IDE when Claude Code starts from an external terminal (default: false). Appears in /config as Auto-connect to IDE (external terminal) when running outside a VS Code or JetBrains terminal. Also configurable via the CLAUDE_CODE_AUTO_CONNECT_IDE environment variable, which overrides this when set. See https://code.claude.com/docs/en/settings#global-config-settings
+   */
+  autoConnectIde?: boolean;
+  /**
+   * Automatically install the Claude Code IDE extension when running from a VS Code terminal (default: true). Appears in /config as Auto-install IDE extension when running inside a VS Code or JetBrains terminal. You can also set the CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL environment variable to 1. See https://code.claude.com/docs/en/settings#global-config-settings
+   */
+  autoInstallIdeExtension?: boolean;
+  /**
+   * Show emoji suggestions when you type : plus a shortcode in the prompt input, and replace a completed shortcode such as :heart: with its emoji (default: true). Set to false to disable both. Requires Claude Code v2.1.217 or later. See https://code.claude.com/docs/en/interactive-mode#emoji-shortcodes
+   */
+  emojiCompletionEnabled?: boolean;
+  /**
+   * Map two-key INSERT-mode sequences to Escape in vim editor mode. Each key is exactly two printable characters typed in sequence, and "<Esc>" is the only supported target; other entries are ignored. Read from user, --settings flag, and managed settings only, so a repository's checked-in settings cannot remap your keystrokes. Has no effect unless editorMode is "vim". Requires Claude Code v2.1.208 or later. See https://code.claude.com/docs/en/interactive-mode#remap-insert-mode-key-sequences
+   */
+  vimInsertModeRemaps?: {
+    /**
+     * Remap target. "<Esc>" is the only supported value; other values are ignored
+     */
+    [k: string]: string | undefined;
+  };
+  /**
+   * Corporate launcher command placed in front of the background processes Claude Code starts. Honored from managed settings, a --settings file, and user settings only; the CLAUDE_CODE_PROCESS_WRAPPER environment variable takes precedence when both are set. Requires Claude Code v2.1.210 or later. See https://code.claude.com/docs/en/corporate-launcher
+   */
+  processWrapper?: string;
+  /**
+   * Pre-fills and locks the gateway URL on the /login Cloud gateway screen. Either this key or forceLoginMethod: "gateway" surfaces that screen; set both so the URL is filled in. Honored only at the managed policy tier; ignored in user and project settings. See https://code.claude.com/docs/en/claude-apps-gateway#set-the-gateway-url
+   */
+  forceLoginGatewayUrl?: string;
+  /**
+   * (Managed settings only) Reject the --plugin-dir, --plugin-url, --agents, and --mcp-config CLI flags at startup, which users could otherwise pass to bypass strictKnownMarketplaces for a single run. Also rejects these flags from any surface that spawns the CLI with them internally, currently Cowork local sessions in the desktop app. A --mcp-config whose servers are all in-process type: "sdk" entries is still accepted, so the Agent SDK and VS Code extension keep working. Does not block claude mcp add, .mcp.json, or SDK setMcpServers(); pair with allowedMcpServers for per-server MCP control. Requires Claude Code v2.1.193 or later. See https://code.claude.com/docs/en/settings#available-settings
+   */
+  disableSideloadFlags?: boolean;
+  /**
+   * (Managed settings only) Set to "disabled" to prevent Claude from using tools to read or act on external pages in the desktop app's Browser pane. Users can still navigate to external sites themselves, and local dev server previews are unaffected. See https://code.claude.com/docs/en/desktop#browse-external-sites
+   */
+  browserExternalPageTools?: 'disabled';
+  /**
+   * (Managed settings only) Set to true to turn off external browsing in the desktop app's Browser pane. Neither users nor Claude can navigate to external sites, and localhost dev server previews are unaffected. The value must be the JSON boolean true; the string "true" is ignored. See https://code.claude.com/docs/en/desktop#browse-external-sites
+   */
+  disableBrowserExternalNavigation?: boolean;
+  /**
+   * (Managed settings only) Set to true to block Claude's tools for the desktop app's iOS Simulator pane. Users keep manual use of the pane; only Claude's access is removed. The value must be the JSON boolean true; any other value is ignored, and a malformed value such as "true" or 1 logs a warning. See https://code.claude.com/docs/en/desktop-ios-simulator#turn-off-simulator-access
+   */
+  disableMobileSimulatorTools?: boolean;
+  /**
+   * (Managed settings only) Run Claude's tools inside an isolated virtual machine instead of on your Mac. Disables the desktop app's iOS Simulator pane and Claude's simulator tools entirely, so the pane cannot attach a device while it is set. See https://code.claude.com/docs/en/desktop-ios-simulator#turn-off-simulator-access
+   */
+  requireCoworkFullVmSandbox?: boolean;
   [k: string]: unknown | undefined;
 }
 /**

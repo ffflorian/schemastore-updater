@@ -1127,6 +1127,13 @@
       "sourceSha256": "632ece859517b2d133950300c43c6180503a5a83a21fb5389fccc1dfb757f826",
       "updatedAt": "2026-03-27T22:03:03.247Z"
     },
+    "chezmoi.json": {
+      "generatedFile": "schemas/chezmoi/index.d.ts",
+      "generatedSha256": "7a223744443980ef72333e8ad19a3eb5313a7bba2082c6a888a99fa4a9770386",
+      "published": false,
+      "sourceSha256": "2a1c97fc6a4efd4a8dda4fadcf24940c1f112284090528b1cde118a14aefeb51",
+      "updatedAt": "2026-08-03T06:01:45.656Z"
+    },
     "chisel-slices.json": {
       "generatedFile": "schemas/chisel-slices/index.d.ts",
       "generatedSha256": "07117ec893b43a04fae89192bf5e64096c29669d5bd5df424f7205efa0c02504",
@@ -1220,10 +1227,17 @@
     },
     "claude-code-keybindings.json": {
       "generatedFile": "schemas/claude-code-keybindings/index.d.ts",
-      "generatedSha256": "85208a71a80ee5cc67c3876904de7caa3ddd6e8c2c10719fdfa7253274ded1a7",
-      "published": true,
-      "sourceSha256": "db32046cab25126331c6116ec790ab5944a8e4fba663dd0fd1e94cdceefa77b1",
-      "updatedAt": "2026-07-06T06:29:15.085Z"
+      "generatedSha256": "8359b0659a9a0ec0cc205860d20e0683184be9d7b80aaa9cdfb6b623e9932b6d",
+      "published": false,
+      "sourceSha256": "16b00dffe07ed2aba786a962aec24180e1785ec141153e26cc3e7f75c0dfa27d",
+      "updatedAt": "2026-08-03T06:01:45.965Z"
+    },
+    "claude-code-launch.json": {
+      "generatedFile": "schemas/claude-code-launch/index.d.ts",
+      "generatedSha256": "fc21363d654dcd55a2e53f7e9434de5c2cc691af2ac356215376621c176d1eeb",
+      "published": false,
+      "sourceSha256": "0a8f7bedfc41cdbe80e692a9a7b8deda6f98b24e18bc8ad3cc4651846190c82d",
+      "updatedAt": "2026-08-03T06:01:46.154Z"
     },
     "claude-code-marketplace.json": {
       "generatedFile": "schemas/claude-code-marketplace/index.d.ts",
@@ -1241,10 +1255,10 @@
     },
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
-      "generatedSha256": "281b42cdd96e0b13ba9750d3895e71f42490ca00b34d9eac52e1067fa7028a23",
-      "published": true,
-      "sourceSha256": "2b4004b2af619ce16bd6dafc0a8f1f03974f45740f4212a1f85f236364057d28",
-      "updatedAt": "2026-07-06T06:29:15.419Z"
+      "generatedSha256": "1885efa875e7b20079fc175714e1c9f857d1b493a4aaa708e4271bfe0a2b92ef",
+      "published": false,
+      "sourceSha256": "f4879ad00d7af0162388d818f6578e938bb5489a0eddb08dd85f26e213e4da1d",
+      "updatedAt": "2026-08-03T06:01:46.484Z"
     },
     "clib.json": {
       "generatedFile": "schemas/clib/index.d.ts",
@@ -1791,6 +1805,13 @@
       "published": true,
       "sourceSha256": "2c703ab409c8f8f150f905e1e653a4cb42d5bdb0c33dad4d1144dd515777ca2e",
       "updatedAt": "2026-03-27T22:03:21.591Z"
+    },
+    "dust.json": {
+      "generatedFile": "schemas/dust/index.d.ts",
+      "generatedSha256": "e4dd6d56a64536b37c428c9ef6763800a0c4fb88555826c70359ae8d4d9edac4",
+      "published": false,
+      "sourceSha256": "876e6a683c9bf905c104038b561f6f6f94db06b2d5fb6858c2b73a201f2e5384",
+      "updatedAt": "2026-08-03T06:01:47.357Z"
     },
     "easyvcr-net.json": {
       "generatedFile": "schemas/easyvcr-net/index.d.ts",
@@ -2533,6 +2554,20 @@
       "published": true,
       "sourceSha256": "83bd3bf0c4122ceb764927bc189d9e3794931306b53cdf89816f6f3472cadf88",
       "updatedAt": "2026-04-27T05:59:06.102Z"
+    },
+    "github-cli-config.json": {
+      "generatedFile": "schemas/github-cli-config/index.d.ts",
+      "generatedSha256": "eb9af6b59bc5465b61efc6a67e4f25175ddd53d240923905a5eea79790154f76",
+      "published": false,
+      "sourceSha256": "44aa388ed0766927cd36d1a0b3b2a521a73bd09ecee9013ce9f0b6fca768f7e9",
+      "updatedAt": "2026-08-03T06:01:47.815Z"
+    },
+    "github-cli-hosts.json": {
+      "generatedFile": "schemas/github-cli-hosts/index.d.ts",
+      "generatedSha256": "dca95102a3d685cacf04a7c46529805c23af61f199b55a3a43c7133f496ed1ad",
+      "published": false,
+      "sourceSha256": "1b6a4e2785c702246dd9670cb4ce4da4bb53505d14cb47cda3aaef92c9e0b220",
+      "updatedAt": "2026-08-03T06:01:48.019Z"
     },
     "github-discussion.json": {
       "generatedFile": "schemas/github-discussion/index.d.ts",
@@ -4076,10 +4111,10 @@
     },
     "partial-cibuildwheel.json": {
       "generatedFile": "schemas/partial-cibuildwheel/index.d.ts",
-      "generatedSha256": "0e427ccfe7012438c56d384b8736f384352d7f213e7cc3f196466fddf65be738",
-      "published": true,
-      "sourceSha256": "d7bd450d6e5aa4619f3957d760d1bdc282f1123d84ea4b1a9b64120f08120abc",
-      "updatedAt": "2026-06-15T06:48:54.164Z"
+      "generatedSha256": "587449ce6f1c4ded0663496336c5ef255c28d05375b710a42c253d9496f0e8e8",
+      "published": false,
+      "sourceSha256": "6d9833b19682eb5d60958a37a0e6effe6f97b47f684c35d36f0085477723a5e6",
+      "updatedAt": "2026-08-03T06:05:09.697Z"
     },
     "partial-dfc.json": {
       "generatedFile": "schemas/partial-dfc/index.d.ts",
@@ -4168,9 +4203,9 @@
     "partial-pytest.json": {
       "generatedFile": "schemas/partial-pytest/index.d.ts",
       "generatedSha256": "29455e2ea7c9ec60402fa828a86eef857a3ab43e22bcdc4bdaf72731d28c3601",
-      "published": true,
-      "sourceSha256": "2e57dea99029efae98c4aa6c6e658b645287a5c4318f367bdd7bc09b8a3513ed",
-      "updatedAt": "2026-05-18T06:27:44.334Z"
+      "published": false,
+      "sourceSha256": "15894b3b37e0ae60b79869da43b9e26790bc1198d645586ca8447246c23f9ac4",
+      "updatedAt": "2026-08-03T06:05:10.428Z"
     },
     "partial-repo-review.json": {
       "generatedFile": "schemas/partial-repo-review/index.d.ts",
@@ -4300,10 +4335,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "e841899d5f65516cb0fdeb9c83fba4d4539a8ae11f6aedde01267d1dfee35a19",
-      "published": true,
-      "sourceSha256": "75f49f1f58c7a93fb29213736345b21e7b7dd1170c55c1d92c3f41d7791ca53b",
-      "updatedAt": "2026-06-15T06:48:56.224Z"
+      "generatedSha256": "282a45f3ba7b21b8638018c2a76e8aec97ab830e98e799d899283df00385f424",
+      "published": false,
+      "sourceSha256": "af04ed56dc908e6733570f75d64d2a197d292edd06ef455ab5e8cd0062eece74",
+      "updatedAt": "2026-08-03T06:05:11.395Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -4790,10 +4825,10 @@
     },
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
-      "generatedSha256": "a964a43229d3e5139289f8b09aeeb7ffdaaffce10be6a5a660901ecf3d8797da",
-      "published": true,
-      "sourceSha256": "d66b01a441085a4725849e0fe3928cca1d664fc7cfc2d0daca7195b984520553",
-      "updatedAt": "2026-07-20T06:05:19.123Z"
+      "generatedSha256": "071eaa82231e358efa8115ad44458ddf842be04e65aad180203bfdde3ea1020e",
+      "published": false,
+      "sourceSha256": "faf59b1a52c65b3af2025b4e672b1be9b4e25b81e1c684cc42b6ccc5092cc967",
+      "updatedAt": "2026-08-03T06:05:23.859Z"
     },
     "rumdl.json": {
       "generatedFile": "schemas/rumdl/index.d.ts",
@@ -5502,6 +5537,13 @@
       "sourceSha256": "9df4c3b93d27d3131680d032c1dada7cd73f4a268ace562db500a24629a3a007",
       "updatedAt": "2026-03-27T22:09:23.564Z"
     },
+    "tsbuild.json": {
+      "generatedFile": "schemas/tsbuild/index.d.ts",
+      "generatedSha256": "fb0fd74616f6f770a7dc4f87bb92259cbe8737da235464bf4886fc53e2777971",
+      "published": false,
+      "sourceSha256": "600d487e6459e58767788c209f8a4e937a7d07881c3295ad044f8932a091a910",
+      "updatedAt": "2026-08-03T06:05:28.696Z"
+    },
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "83e2cfef58bef2660cf7d16e11bd27ffbc28baf1cfd85a340988ee2f69ea6819",
@@ -5951,6 +5993,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-07-27T06:10:48.540Z",
+  "generatedAt": "2026-08-03T06:05:33.897Z",
   "version": 1
 }
