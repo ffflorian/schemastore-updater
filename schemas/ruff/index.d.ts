@@ -2400,6 +2400,33 @@ export type RuleSelector =
   | 'zip-instead-of-pairwise'
   | 'zip-without-explicit-strict';
 export type Language = ('python' | 'pyi' | 'ipynb' | 'markdown') | undefined;
+/**
+ * An immutable name.
+ *
+ * # Choosing a string representation
+ *
+ * On 64-bit targets, [`CharStr`] occupies 16 bytes and stores up to 16 UTF-8 bytes inline. Longer
+ * values use an exactly-sized, reference-counted allocation, so cloning a heap-backed value
+ * reuses its allocation. [`compact_str::CompactString`] occupies 24 bytes, stores up to 24 bytes
+ * inline, and remains mutable; cloning a heap-backed value copies its contents into a new
+ * allocation.
+ *
+ * Prefer `CharStr` for immutable text that is retained densely or passed between owners, when
+ * either the smaller handle or structural sharing offsets the extra heap allocations for values
+ * between 17 and 24 bytes. Prefer `CompactString` for uniquely owned text, especially when it is
+ * built incrementally, mutated, or commonly falls in that 17-to-24-byte range.
+ *
+ * `Name` uses `CharStr` because names appear throughout the AST and repeated heap-backed parser
+ * names share an allocation. By contrast, [`crate::DebugText`] uses `CompactString` because it
+ * builds a uniquely owned buffer incrementally, and `ty_module_resolver::ModuleName` uses
+ * `CompactString` because module names can be extended in place.
+ *
+ * Converting a borrowed `&str` into `CharStr` creates a new value and does not preserve structural
+ * sharing. When an API retains text already held in a `CharStr` (including a `Name`), pass or clone
+ * the owned value rather than converting it through `&str`. This is especially relevant at Salsa
+ * interning boundaries.
+ */
+export type Name = string;
 export type Alias = string | undefined;
 export type BannedAliases = string[] | undefined;
 export type ParametrizeNameType = 'csv' | 'tuple' | 'list';
@@ -2608,7 +2635,7 @@ export interface Options {
    *
    * ```toml
    * [tool.ruff.lint]
-   * # Adds flake8-bugbear on top of the default rules (E4, E7, E9, F).
+   * # Adds flake8-bugbear on top of the default rules.
    * extend-select = ["B"]
    * ```
    *
@@ -2879,6 +2906,23 @@ export interface Options {
    * `"pylint"` (Pylint text format) or `"azure"` (Azure Pipeline logging commands).
    */
   'output-format'?: OutputFormat | null;
+  /**
+   * Whether to prefer rule codes over human-readable rule names in diagnostic output, even
+   * when preview mode is enabled.
+   *
+   * Diagnostics without rule codes, such as syntax errors and formatting diagnostics, will
+   * continue to use the human-readable name, but those corresponding to lint rules will use the
+   * rule's code. For example, the concise diagnostic for an unused import will use the code
+   * `F401` instead of the name `unused-import`:
+   *
+   * ```console
+   * $ ruff check --preview --config 'output-prefer-rule-codes = true' --output-format=concise example.py
+   * example.py:1:8: F401 [*] `math` imported but unused
+   * $ ruff check --preview --config 'output-prefer-rule-codes = false' --output-format=concise example.py
+   * example.py:1:8: unused-import: [*] `math` imported but unused
+   * ```
+   */
+  'output-prefer-rule-codes'?: boolean | null;
   /**
    * @deprecated
    * Options for the `pep8-naming` plugin.
@@ -3351,11 +3395,11 @@ export interface Flake8GetTextOptions {
    * Additional function names to consider as internationalization calls, in addition to those
    * included in [`function-names`](#lint_flake8-gettext_function-names).
    */
-  'extend-function-names'?: string[] | null;
+  'extend-function-names'?: Name[] | null;
   /**
    * The function names to consider as internationalization calls.
    */
-  'function-names'?: string[] | null;
+  'function-names'?: Name[] | null;
 }
 /**
  * Options for the `flake8-implicit-str-concat` plugin
@@ -3402,7 +3446,8 @@ export interface Flake8ImportConventionsOptions {
   'banned-from'?: string[] | null;
   /**
    * A mapping from module to conventional import alias. These aliases will
-   * be added to the [`aliases`](#lint_flake8-import-conventions_aliases) mapping.
+   * be added to the [`aliases`](#lint_flake8-import-conventions_aliases) mapping
+   * and will override any existing `aliases` if the two settings overlap.
    */
   'extend-aliases'?: {
     [k: string]: Alias | undefined;
@@ -3546,11 +3591,11 @@ export interface Flake8SelfOptions {
    * Additional names to ignore when considering `flake8-self` violations,
    * in addition to those included in [`ignore-names`](#lint_flake8-self_ignore-names).
    */
-  'extend-ignore-names'?: string[] | null;
+  'extend-ignore-names'?: Name[] | null;
   /**
    * A list of names to ignore when considering `flake8-self` violations.
    */
-  'ignore-names'?: string[] | null;
+  'ignore-names'?: Name[] | null;
 }
 /**
  * Options for the `flake8-tidy-imports` plugin
@@ -4353,7 +4398,7 @@ export interface LintOptions {
    *
    * ```toml
    * [tool.ruff.lint]
-   * # Adds flake8-bugbear on top of the default rules (E4, E7, E9, F).
+   * # Adds flake8-bugbear on top of the default rules.
    * extend-select = ["B"]
    * ```
    *

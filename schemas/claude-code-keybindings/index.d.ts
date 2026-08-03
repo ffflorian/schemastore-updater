@@ -23,8 +23,7 @@ export type Context =
   | 'ModelPicker'
   | 'Select'
   | 'Plugin'
-  | 'Scroll'
-  | 'Doctor';
+  | 'Scroll';
 /**
  * Action to trigger, command to invoke, or null to unbind a default shortcut
  */
@@ -41,6 +40,8 @@ export type BuiltinAction =
   | 'app:toggleTranscript'
   | 'app:toggleBrief'
   | 'app:openArtifact'
+  | 'app:diffFileListUp'
+  | 'app:diffFileListDown'
   | 'history:search'
   | 'history:previous'
   | 'history:next'
@@ -96,6 +97,7 @@ export type BuiltinAction =
   | 'footer:openSelected'
   | 'footer:clearSelection'
   | 'footer:close'
+  | 'footer:dismiss'
   | 'messageSelector:up'
   | 'messageSelector:down'
   | 'messageSelector:top'
@@ -128,7 +130,6 @@ export type BuiltinAction =
   | 'settings:periodDay'
   | 'settings:periodWeek'
   | 'settings:sortByTokens'
-  | 'doctor:fix'
   | 'voice:pushToTalk'
   | 'scroll:lineUp'
   | 'scroll:lineDown'

@@ -482,7 +482,7 @@ export interface PnpmWorkspaceSpecification {
   /**
    * Configure how versions of packages installed to a package.json file get prefixed.
    */
-  savePrefix?: '^' | '~' | '';
+  savePrefix?: '^' | '~' | '' | '=';
   /**
    * If you pnpm add a package and you don't provide a specific version, then it will install the package at the version registered under the tag from this setting.
    */
