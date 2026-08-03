@@ -1228,7 +1228,7 @@
     "claude-code-keybindings.json": {
       "generatedFile": "schemas/claude-code-keybindings/index.d.ts",
       "generatedSha256": "8359b0659a9a0ec0cc205860d20e0683184be9d7b80aaa9cdfb6b623e9932b6d",
-      "published": false,
+      "published": true,
       "sourceSha256": "16b00dffe07ed2aba786a962aec24180e1785ec141153e26cc3e7f75c0dfa27d",
       "updatedAt": "2026-08-03T06:01:45.965Z"
     },
@@ -1256,7 +1256,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "1885efa875e7b20079fc175714e1c9f857d1b493a4aaa708e4271bfe0a2b92ef",
-      "published": false,
+      "published": true,
       "sourceSha256": "f4879ad00d7af0162388d818f6578e938bb5489a0eddb08dd85f26e213e4da1d",
       "updatedAt": "2026-08-03T06:01:46.484Z"
     },
@@ -4112,7 +4112,7 @@
     "partial-cibuildwheel.json": {
       "generatedFile": "schemas/partial-cibuildwheel/index.d.ts",
       "generatedSha256": "587449ce6f1c4ded0663496336c5ef255c28d05375b710a42c253d9496f0e8e8",
-      "published": false,
+      "published": true,
       "sourceSha256": "6d9833b19682eb5d60958a37a0e6effe6f97b47f684c35d36f0085477723a5e6",
       "updatedAt": "2026-08-03T06:05:09.697Z"
     },
@@ -4203,7 +4203,7 @@
     "partial-pytest.json": {
       "generatedFile": "schemas/partial-pytest/index.d.ts",
       "generatedSha256": "29455e2ea7c9ec60402fa828a86eef857a3ab43e22bcdc4bdaf72731d28c3601",
-      "published": false,
+      "published": true,
       "sourceSha256": "15894b3b37e0ae60b79869da43b9e26790bc1198d645586ca8447246c23f9ac4",
       "updatedAt": "2026-08-03T06:05:10.428Z"
     },
@@ -4336,7 +4336,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "282a45f3ba7b21b8638018c2a76e8aec97ab830e98e799d899283df00385f424",
-      "published": false,
+      "published": true,
       "sourceSha256": "af04ed56dc908e6733570f75d64d2a197d292edd06ef455ab5e8cd0062eece74",
       "updatedAt": "2026-08-03T06:05:11.395Z"
     },
@@ -4826,7 +4826,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "071eaa82231e358efa8115ad44458ddf842be04e65aad180203bfdde3ea1020e",
-      "published": false,
+      "published": true,
       "sourceSha256": "faf59b1a52c65b3af2025b4e672b1be9b4e25b81e1c684cc42b6ccc5092cc967",
       "updatedAt": "2026-08-03T06:05:23.859Z"
     },
