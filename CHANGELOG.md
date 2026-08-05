@@ -1,3 +1,10 @@
+## [3.8.1](https://github.com/ffflorian/schemastore-updater/compare/v3.8.0...v3.8.1) (2026-08-05)
+
+
+### Bug Fixes
+
+* **deps:** bump the npm_and_yarn group across 1 directory with 2 updates ([#1606](https://github.com/ffflorian/schemastore-updater/issues/1606)) ([04d4cab](https://github.com/ffflorian/schemastore-updater/commit/04d4cab7d4cd38b1582c97dbc3460886ea3cbc86))
+
 # [3.8.0](https://github.com/ffflorian/schemastore-updater/compare/v3.7.8...v3.8.0) (2026-07-27)
 
 
