@@ -1,3 +1,10 @@
+## [3.8.2](https://github.com/ffflorian/schemastore-updater/compare/v3.8.1...v3.8.2) (2026-08-05)
+
+
+### Bug Fixes
+
+* **deps:** bump undici in the npm_and_yarn group across 1 directory ([#1607](https://github.com/ffflorian/schemastore-updater/issues/1607)) ([6c8fb2b](https://github.com/ffflorian/schemastore-updater/commit/6c8fb2bf1194abf462e90eedfdef4c1b9a9a57de))
+
 ## [3.8.1](https://github.com/ffflorian/schemastore-updater/compare/v3.8.0...v3.8.1) (2026-08-05)
 
 
