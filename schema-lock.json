@@ -1256,7 +1256,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "6eae812379ce57c2d8f299debb9fc7b9ce57f21efa02fc3f9d5ee436adf54d5a",
-      "published": false,
+      "published": true,
       "sourceSha256": "6d4a6e3c7adedffce8079ccaef0a4bab5f5718b054421b4475c788a0ae4bedfe",
       "updatedAt": "2026-08-10T05:29:12.132Z"
     },
@@ -2488,7 +2488,7 @@
     "gematik-test-hcpis.json": {
       "generatedFile": "schemas/gematik-test-hcpis/index.d.ts",
       "generatedSha256": "09796a975a597e62e11b9f0c5cc6eb3441906136384866a9c4c66cba52f6b00e",
-      "published": false,
+      "published": true,
       "sourceSha256": "f89a8299029e43c29beb890df117540d9ec3875784265f6564618aa25247f443",
       "updatedAt": "2026-08-10T05:29:13.622Z"
     },
@@ -2663,7 +2663,7 @@
     "global.json": {
       "generatedFile": "schemas/global/index.d.ts",
       "generatedSha256": "118b1bc53ff736bb34890160ea33bb1a73b95f5b665983939dce43018c7d3b74",
-      "published": false,
+      "published": true,
       "sourceSha256": "69c1148ed8d236a79fd0acdf9eb7f48596e00345351f90129f2b158781623b91",
       "updatedAt": "2026-08-10T05:29:14.390Z"
     },
@@ -4336,7 +4336,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "3db6f9a700b33699cb3bbe2415790ab5dd1d1f30ce0eb575211e71274b6df8d3",
-      "published": false,
+      "published": true,
       "sourceSha256": "0afdf4cc4589c1e6873b2ab7b6352607f7421c2bfb190b81a22e9ab303f1226d",
       "updatedAt": "2026-08-10T05:32:29.993Z"
     },
@@ -5470,7 +5470,7 @@
     "tombi.json": {
       "generatedFile": "schemas/tombi/index.d.ts",
       "generatedSha256": "6f33922c992826c0274e20b45a2fd908c0a8b9af127793e08ed0d3faf013955d",
-      "published": false,
+      "published": true,
       "sourceSha256": "0e69c503995e278d046f37d1ed5c819658ffb4b00ba0163f4a89e1cc80a05a92",
       "updatedAt": "2026-08-10T05:32:46.439Z"
     },
