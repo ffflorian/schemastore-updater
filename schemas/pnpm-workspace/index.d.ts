@@ -114,6 +114,24 @@ export interface PnpmWorkspaceSpecification {
    * Default is undefined. Errors out when a patch with an exact version or version range fails. Ignores failures from name-only patches. When true, prints a warning instead of failing when any patch cannot be applied. When false, errors out for any patch failure.
    */
   ignorePatchFailures?: boolean;
+  update?: {
+    /**
+     * A list of dependency name patterns that pnpm update and pnpm outdated should skip.
+     */
+    ignoreDeps?: string[];
+    /**
+     * When true, pnpm update writes a change intent after updating workspace manifests.
+     */
+    changeset?: boolean;
+    /**
+     * When true, pnpm update and pnpm outdated also check the GitHub Actions referenced by the repository's workflow files.
+     */
+    githubActions?: boolean;
+    /**
+     * The base URL of the GitHub server that hosts the repositories of the GitHub Actions referenced by the workflow files.
+     */
+    githubActionsServer?: string;
+  };
   updateConfig?: {
     /**
      * A list of packages that should be ignored when running "pnpm outdated" or "pnpm update --latest".
@@ -125,6 +143,16 @@ export interface PnpmWorkspaceSpecification {
    */
   configDependencies?: {
     [k: string]: unknown | undefined;
+  };
+  audit?: {
+    /**
+     * Only print advisories with severity greater than or equal to this level.
+     */
+    level?: 'low' | 'moderate' | 'high' | 'critical';
+    /**
+     * A list of GHSA codes that will be ignored by pnpm audit.
+     */
+    ignore?: string[];
   };
   auditConfig?: {
     /**
@@ -283,7 +311,11 @@ export interface PnpmWorkspaceSpecification {
    */
   httpsProxy?: string;
   /**
-   * A proxy to use for outgoing http requests. If the HTTP_PROXY or http_proxy environment variables are set, proxy settings will be honored by the underlying request library.
+   * A proxy to use for outgoing HTTP requests. If the HTTP_PROXY or http_proxy environment variables are set, proxy settings will be honored by the underlying request library.
+   */
+  httpProxy?: string;
+  /**
+   * npm's legacy proxy setting, used as the fallback for both httpsProxy and httpProxy. If the HTTP_PROXY or http_proxy environment variables are set, proxy settings will be honored by the underlying request library.
    */
   proxy?: string;
   /**
@@ -297,7 +329,7 @@ export interface PnpmWorkspaceSpecification {
   /**
    * A comma-separated string of domain extensions that a proxy should not be used for.
    */
-  noproxy?: string;
+  noProxy?: string;
   /**
    * Whether or not to do SSL key validation when making requests to the registry via HTTPS.
    */
@@ -326,6 +358,14 @@ export interface PnpmWorkspaceSpecification {
    * The maximum amount of time to wait for HTTP requests to complete.
    */
   fetchTimeout?: number;
+  /**
+   * A warning message is displayed if a metadata request to the registry takes longer than the specified threshold (in milliseconds). Added in pnpm v10.18.0.
+   */
+  fetchWarnTimeoutMs?: number;
+  /**
+   * A warning message is displayed if the download speed of a tarball from the registry falls below the specified threshold (in KiB/s). Added in pnpm v10.18.0.
+   */
+  fetchMinSpeedKiBps?: number;
   /**
    * When true, any missing non-optional peer dependencies are automatically installed.
    */
@@ -560,6 +600,51 @@ export interface PnpmWorkspaceSpecification {
    */
   publishBranch?: string;
   /**
+   * Versioning settings for pnpm's native workspace release management, used by `pnpm change` and recursive `pnpm version`.
+   */
+  versioning?: {
+    /**
+     * Groups of workspace projects that always release together at one shared version. The shared version is the highest current version in the group, bumped by the largest bump any member needs.
+     */
+    fixed?: string[][];
+    /**
+     * Workspace projects permanently excluded from versioning and dependent propagation.
+     */
+    ignore?: string[];
+    /**
+     * Caps the bump that a release from the current checkout may apply, after dependent propagation and fixed-group resolution.
+     */
+    maxBump?: 'patch' | 'minor' | 'major';
+    /**
+     * Maps a workspace project to a release lane. Unlisted projects are on the reserved `main` lane and release stable versions.
+     */
+    lanes?: {
+      [k: string]: string | undefined;
+    };
+    /**
+     * Ties member projects to a lead project and constrains their major versions to the lead's major-version band.
+     */
+    epics?: {
+      /**
+       * Lead workspace project name or a `./`-prefixed workspace-relative directory.
+       */
+      lead: string;
+      /**
+       * Project selectors matched in order, supporting name globs, `./`-prefixed directory globs, and `!`-prefixed negations.
+       */
+      packages: string[];
+    }[];
+    /**
+     * Controls where release changelog content is stored.
+     */
+    changelog?: {
+      /**
+       * Changelog storage mode. `registry` composes changelog entries at publish time, while `repository` commits CHANGELOG.md files in packages.
+       */
+      storage?: 'registry' | 'repository';
+    };
+  };
+  /**
    * When publishing from a supported cloud CI/CD system, the package will be publicly linked to where it was built and published from.
    */
   provenance?: boolean;
@@ -654,6 +739,12 @@ export interface PnpmWorkspaceSpecification {
    * Configure registries for scoped packages in `pnpm-workspace.yaml`. The `default` key sets the main registry (equivalent to the `registry` `.npmrc` setting). Scoped keys configure registries for specific package scopes.
    */
   registries?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * Defines named registry aliases that can be used as a prefix when installing packages, e.g. `pnpm add work:@corp/lib@^2.0.0` resolves `@corp/lib@^2.0.0` against the configured URL. Built-in aliases `gh:` (https://npm.pkg.github.com/) and `npmjs:` (https://registry.npmjs.org/) work without any configuration and can be overridden. An alias must start with a letter and contain only letters, digits, `.`, `_`, and `-`. Added in pnpm 11.1.0.
+   */
+  namedRegistries?: {
     [k: string]: string | undefined;
   };
   /**
