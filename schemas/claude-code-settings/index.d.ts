@@ -3079,10 +3079,6 @@ export interface ClaudeCodeSettings {
    */
   workflowKeywordTriggerEnabled?: boolean;
   /**
-   * Whether the Left arrow key at the start of an empty prompt opens the agents view. Turn it off in /config (the leftArrowOpensAgents setting). See https://code.claude.com/docs/en/agent-view
-   */
-  leftArrowOpensAgents?: boolean;
-  /**
    * Idle time before an unanswered AskUserQuestion dialog auto-continues with whatever options you had already selected. Accepts "60s", "5m", "10m", or "never" (default: "never", which waits until you answer). Appears in /config as Question auto-continue timeout, which writes this key to user settings. Not read from project or local settings. Requires Claude Code v2.1.200 or later. See https://code.claude.com/docs/en/settings#available-settings
    */
   askUserQuestionTimeout?: '60s' | '5m' | '10m' | 'never';

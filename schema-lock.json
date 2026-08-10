@@ -1255,10 +1255,10 @@
     },
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
-      "generatedSha256": "1885efa875e7b20079fc175714e1c9f857d1b493a4aaa708e4271bfe0a2b92ef",
-      "published": true,
-      "sourceSha256": "f4879ad00d7af0162388d818f6578e938bb5489a0eddb08dd85f26e213e4da1d",
-      "updatedAt": "2026-08-03T06:01:46.484Z"
+      "generatedSha256": "6eae812379ce57c2d8f299debb9fc7b9ce57f21efa02fc3f9d5ee436adf54d5a",
+      "published": false,
+      "sourceSha256": "6d4a6e3c7adedffce8079ccaef0a4bab5f5718b054421b4475c788a0ae4bedfe",
+      "updatedAt": "2026-08-10T05:29:12.132Z"
     },
     "clib.json": {
       "generatedFile": "schemas/clib/index.d.ts",
@@ -2488,9 +2488,9 @@
     "gematik-test-hcpis.json": {
       "generatedFile": "schemas/gematik-test-hcpis/index.d.ts",
       "generatedSha256": "09796a975a597e62e11b9f0c5cc6eb3441906136384866a9c4c66cba52f6b00e",
-      "published": true,
-      "sourceSha256": "e6bc673d373ab091f6dfad36e111edb44f141b4bf932484b82ab13bb16cf291e",
-      "updatedAt": "2026-05-04T06:00:36.262Z"
+      "published": false,
+      "sourceSha256": "f89a8299029e43c29beb890df117540d9ec3875784265f6564618aa25247f443",
+      "updatedAt": "2026-08-10T05:29:13.622Z"
     },
     "gematik-test-hcps.json": {
       "generatedFile": "schemas/gematik-test-hcps/index.d.ts",
@@ -2662,10 +2662,10 @@
     },
     "global.json": {
       "generatedFile": "schemas/global/index.d.ts",
-      "generatedSha256": "d23bdb5105dd1a1456200f395e835dee4e597eb021a1d05bd38c960bb925e274",
-      "published": true,
-      "sourceSha256": "6d26b193f15485932ec0349f3ad02f5c28653ad25e5d4ea4ed762256fab011d2",
-      "updatedAt": "2026-03-27T22:03:34.059Z"
+      "generatedSha256": "118b1bc53ff736bb34890160ea33bb1a73b95f5b665983939dce43018c7d3b74",
+      "published": false,
+      "sourceSha256": "69c1148ed8d236a79fd0acdf9eb7f48596e00345351f90129f2b158781623b91",
+      "updatedAt": "2026-08-10T05:29:14.390Z"
     },
     "golangci-lint.json": {
       "generatedFile": "schemas/golangci-lint/index.d.ts",
@@ -4335,10 +4335,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "282a45f3ba7b21b8638018c2a76e8aec97ab830e98e799d899283df00385f424",
-      "published": true,
-      "sourceSha256": "af04ed56dc908e6733570f75d64d2a197d292edd06ef455ab5e8cd0062eece74",
-      "updatedAt": "2026-08-03T06:05:11.395Z"
+      "generatedSha256": "3db6f9a700b33699cb3bbe2415790ab5dd1d1f30ce0eb575211e71274b6df8d3",
+      "published": false,
+      "sourceSha256": "0afdf4cc4589c1e6873b2ab7b6352607f7421c2bfb190b81a22e9ab303f1226d",
+      "updatedAt": "2026-08-10T05:32:29.993Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -5469,10 +5469,10 @@
     },
     "tombi.json": {
       "generatedFile": "schemas/tombi/index.d.ts",
-      "generatedSha256": "6c7d36bd437fe7ae4c645b7f78f370aa16790a6c7fa7e3e8595b26b220aea998",
-      "published": true,
-      "sourceSha256": "860f7205d050ec8df559c58c44ea753f05b3c065d29d32b1705635b9d08d8603",
-      "updatedAt": "2026-04-27T06:01:52.956Z"
+      "generatedSha256": "6f33922c992826c0274e20b45a2fd908c0a8b9af127793e08ed0d3faf013955d",
+      "published": false,
+      "sourceSha256": "0e69c503995e278d046f37d1ed5c819658ffb4b00ba0163f4a89e1cc80a05a92",
+      "updatedAt": "2026-08-10T05:32:46.439Z"
     },
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
@@ -5993,6 +5993,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-08-03T06:05:33.897Z",
+  "generatedAt": "2026-08-10T05:32:52.297Z",
   "version": 1
 }

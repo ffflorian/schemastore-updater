@@ -11,14 +11,21 @@ export type TOMLVersion1 = ('v1.0.0' | 'v1.1.0') | 'v1.1.0-preview';
  *
  * @minItems 1
  */
-export type FilePatternsToInclude = [string, ...string[]] | null;
+export type FilePatternsToInclude = [GlobPattern, ...GlobPattern[]] | null;
+/**
+ * Glob pattern used by config include/exclude lists.
+ */
+export type GlobPattern = string;
 /**
  * The file match pattern to exclude from formatting and linting.
  * Supports glob pattern.
- *
- * @minItems 1
  */
-export type FilePatternsToExclude = [string, ...string[]] | null;
+export type FilePatternsToExclude = GlobPattern[] | null;
+/**
+ * Whether to respect `.ignore`, `.gitignore`, and `.git/info/exclude` while discovering files.
+ */
+export type RespectRepositoryIgnoreFiles = BoolDefaultTrue;
+export type BoolDefaultTrue = boolean;
 export type FormatRules = FormatRules1 | null;
 /**
  * ```toml
@@ -48,6 +55,31 @@ export type TheDelimiterBetweenDateAndTime = DateTimeDelimiter | null;
  * DateTime delimiter
  */
 export type DateTimeDelimiter = 'T' | 'space' | 'preserve';
+/**
+ * Consecutive groups remain separate for sorting purposes,
+ * and existing blank lines between them are preserved up to this limit.
+ *
+ * ```toml
+ * # BEFORE
+ * key1 = "value1"
+ * key2 = "value2"
+ *
+ * key3 = "value3"
+ *
+ *
+ * key4 = "value4"
+ *
+ * # AFTER (`group-blank-lines-limit = 1`)
+ * key1 = "value1"
+ * key2 = "value2"
+ *
+ * key3 = "value3"
+ *
+ * key4 = "value4"
+ * ```
+ */
+export type TheBlankLinesLimitBetweenGroups = BlankLinesLimit | null;
+export type BlankLinesLimit = number;
 /**
  * Whether to use spaces or tabs for indentation.
  *
@@ -119,13 +151,18 @@ export type InlineTableCommaSpaceWidth = number;
  */
 export type WhetherToAlignTheEqualsSignInTheKeyValuePairs = boolean | null;
 /**
- * Choose which quote style the formatter prefers for basic strings.
+ * Choose which quote style the formatter prefers for quoted keys.
+ * If unspecified, `string-quote-style` is used.
  */
-export type ThePreferredQuoteCharacterForStrings = StringQuoteStyle | null;
+export type ThePreferredQuoteCharacterForKeys = StringQuoteStyle | null;
 /**
  * The preferred quote character for strings.
  */
 export type StringQuoteStyle = 'double' | 'single' | 'preserve';
+/**
+ * Choose which quote style the formatter prefers for basic strings.
+ */
+export type ThePreferredQuoteCharacterForStrings = StringQuoteStyle | null;
 /**
  * If `true`, the trailing comments in value/key-value pairs will be aligned.
  *
@@ -166,6 +203,41 @@ export type LineEnding = ('lf' | 'crlf') | 'auto';
  */
 export type TheMaximumLineWidth = LineWidth | null;
 export type LineWidth = number;
+/**
+ * This applies when the formatter inserts spacing between table or array-of-table blocks.
+ *
+ * ```toml
+ * # BEFORE
+ * [aaa]
+ * key1 = "value1"
+ * [bbb]
+ * key2 = "value2"
+ *
+ * # AFTER (`table-blank-lines = 2`)
+ * [aaa]
+ * key1 = "value1"
+ *
+ *
+ * [bbb]
+ * key2 = "value2"
+ * ```
+ *
+ * Tight parent/child table adjacency is controlled separately, so this does not apply
+ * when a child table follows a parent table that has no key-value pairs.
+ *
+ * ```toml
+ * # BEFORE
+ * [aaa]
+ *
+ * [aaa.bbb]
+ *
+ * # AFTER
+ * [aaa]
+ * [aaa.bbb]
+ * ```
+ */
+export type TheNumberOfBlankLinesBetweenTables = BlankLines | null;
+export type BlankLines = number;
 /**
  * ```toml
  * key = "value"  # trailing comment
@@ -225,7 +297,6 @@ export type CodeActionFeatureOptions = LspCodeAction | null;
  * Whether to enable code action.
  */
 export type EnableCodeActionFeature = BoolDefaultTrue | null;
-export type BoolDefaultTrue = boolean;
 export type CompletionFeatureOptions = LspCompletion | null;
 /**
  * Whether to enable completion.
@@ -252,6 +323,11 @@ export type GotoDeclarationFeatureOptions = LspGotoDefinition | null;
  */
 export type EnableGotoDefinitionFeature = BoolDefaultTrue | null;
 export type GotoDefinitionFeatureOptions = LspGotoDefinition | null;
+export type ReferencesFeatureOptions = LspReferences | null;
+/**
+ * Whether to enable references.
+ */
+export type EnableReferencesFeature = BoolDefaultTrue | null;
 export type GotoTypeDefinitionFeatureOptions = LspGotoDefinition | null;
 export type HoverFeatureOptions = LspHover | null;
 /**
@@ -277,7 +353,7 @@ export type SchemaCatalogOptions = SchemaCatalog | null;
  */
 export type TheSchemaCatalogPathUrlArray = SchemaCatalogPath[] | null;
 /**
- * Generic value that can be either single or multiple
+ * Schema catalog path or URL
  */
 export type SchemaCatalogPath = string;
 export type SchemaItems = SchemaItem[] | null;
@@ -290,7 +366,12 @@ export type TheSchemaPath = string;
  *
  * @minItems 1
  */
-export type TheFileMatchPatternOfTheSchema = [string, ...string[]];
+export type TheFileMatchPatternOfTheSchema = [GlobPattern, ...GlobPattern[]];
+/**
+ * The file match pattern to exclude the target from applying the schema.
+ * Supports glob pattern.
+ */
+export type TheFileMatchPatternToExcludeTheSchema = GlobPattern[] | null;
 export type SchemaSpecificFormatOptions = SchemaSpecificFormatOptions1 | null;
 export type SchemaSpecificFormatRules = SchemaSpecificFormatRules1 | null;
 export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled = SchemaDefinedArrayValuesOrdering | null;
@@ -311,14 +392,14 @@ export type AccessorPatternsToOverride = [AccessorPattern, ...AccessorPattern[]]
 /**
  * To apply it to the Root Table, use `""`.
  *
- * Array indices are matched as wildcards. That means `[*]` and numeric
- * indices such as `[0]` are treated the same and will match any array
- * element, so `items[0].name` behaves like `items[*].name`.
+ * Use `[*]` to match any array element, or a numeric index such as `[1]`
+ * to match a specific tuple position.
  *
  * **Example**:
  *   - `""`
  *   - `"tool.*"`
  *   - `"items[*].name"`
+ *   - `"items[1].name"`
  */
 export type AccessorPattern = string;
 export type FormatOptionsToOverride = SchemaSpecificOverrideFormatOptions | null;
@@ -340,7 +421,12 @@ export type TheSubSchemaPath = string;
  *
  * @minItems 1
  */
-export type TheFileMatchPatternOfTheSubSchema = [string, ...string[]];
+export type TheFileMatchPatternOfTheSubSchema = [GlobPattern, ...GlobPattern[]];
+/**
+ * The file match pattern to exclude the target from applying the sub schema.
+ * Supports glob pattern.
+ */
+export type TheFileMatchPatternToExcludeTheSubSchema = GlobPattern[] | null;
 export type OverrideConfigItems = OverrideConfigItem[] | null;
 export type FilesOptionsToOverride = FilesOptionsToOverride1;
 /**
@@ -349,7 +435,7 @@ export type FilesOptionsToOverride = FilesOptionsToOverride1;
  *
  * @minItems 1
  */
-export type FilePatternsToInclude1 = [string, ...string[]];
+export type FilePatternsToInclude1 = [GlobPattern, ...GlobPattern[]];
 export type FormatOptionsToOverride1 = OverrideFormatOptions | null;
 export type FormatEnabled = BoolDefaultTrue | null;
 export type LintOptionsToOverride1 = OverrideLintOptions | null;
@@ -365,16 +451,38 @@ export type CargoExtensionFeatures = EnabledOnly | CargoExtensionFeatureTree;
 export type EnableFeature = BoolDefaultTrue;
 export type CargoLSPFeatureOptions = CargoLspFeatures | null;
 export type CargoLspFeatures = EnabledOnly | CargoLspFeatureTree;
+export type CodeActionFeatureOptions1 = CargoCodeActionFeatures | null;
+export type CargoCodeActionFeatures = EnabledOnly | CargoCodeActionFeatureTree;
+/**
+ * Whether code actions can replace a value with `workspace = true`.
+ */
+export type InheritFromWorkspaceCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether this nested feature is enabled.
+ */
+export type EnableFeature1 = BoolDefaultTrue | null;
+/**
+ * Whether code actions can inherit dependency settings from the workspace.
+ */
+export type InheritDependencyFromWorkspaceCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can rewrite inline dependencies to table format.
+ */
+export type ConvertDependencyToTableFormatCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can add a dependency to the workspace and inherit it.
+ */
+export type AddToWorkspaceAndInheritDependencyCodeActionFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether code actions can rewrite dependency versions to the latest published version.
+ */
+export type UpdateDependencyToLatestVersionCodeActionFeature = ToggleFeatureDefaultTrue | null;
 export type CompletionFeatureOptions1 = CargoCompletionFeatures | null;
 export type CargoCompletionFeatures = EnabledOnly | CargoCompletionFeatureTree;
 /**
  * Whether completion suggests dependency versions.
  */
 export type DependencyVersionCompletionFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether this nested feature is enabled.
- */
-export type EnableFeature1 = BoolDefaultTrue | null;
 /**
  * Whether completion suggests dependency features.
  */
@@ -383,6 +491,75 @@ export type DependencyFeatureCompletionFeature = ToggleFeatureDefaultTrue | null
  * Whether completion suggests filesystem paths.
  */
 export type PathCompletionFeature = ToggleFeatureDefaultTrue | null;
+export type DocumentLinkFeatureOptions1 = CargoDocumentLinkFeatures | null;
+export type CargoDocumentLinkFeatures = EnabledOnly | CargoDocumentLinkFeatureTree;
+/**
+ * Deprecated. This setting is accepted for backward compatibility and will be removed in a future release.
+ */
+export type DeprecatedCargoTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Whether this nested feature is enabled.
+ */
+export type EnableFeature2 = BoolDefaultFalse | null;
+export type BoolDefaultFalse = boolean;
+/**
+ * Whether document links are created for crates.io package references.
+ */
+export type CratesIoDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Deprecated. This setting is accepted for backward compatibility and will be removed in a future release.
+ */
+export type DeprecatedGitDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Deprecated. This setting is accepted for backward compatibility and will be removed in a future release.
+ */
+export type DeprecatedPathDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Deprecated. This setting is accepted for backward compatibility and will be removed in a future release.
+ */
+export type DeprecatedWorkspaceDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+export type GotoDeclarationFeatureOptions1 = CargoGotoDeclarationFeatures | null;
+export type CargoGotoDeclarationFeatures = EnabledOnly | CargoGotoDeclarationFeatureTree;
+/**
+ * Whether declaration navigation resolves dependency declarations.
+ */
+export type DependencyDeclarationNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Deprecated. This setting is accepted for backward compatibility but ignored.
+ */
+export type DeprecatedMemberDeclarationNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Deprecated. This setting is accepted for backward compatibility but ignored.
+ */
+export type DeprecatedPathDeclarationNavigationFeature = ToggleFeatureDefaultTrue | null;
+export type GotoDefinitionFeatureOptions1 = CargoGotoDefinitionFeatures | null;
+export type CargoGotoDefinitionFeatures = EnabledOnly | CargoGotoDefinitionFeatureTree;
+/**
+ * Whether definition navigation resolves dependency targets.
+ */
+export type DependencyDefinitionNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether definition navigation resolves workspace member targets.
+ */
+export type MemberDefinitionNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether definition navigation resolves filesystem paths.
+ */
+export type PathDefinitionNavigationFeature = ToggleFeatureDefaultTrue | null;
+export type HoverFeatureOptions1 = CargoHoverFeatures | null;
+export type CargoHoverFeatures = EnabledOnly | CargoHoverFeatureTree;
+/**
+ * Whether hover shows detailed dependency metadata.
+ */
+export type DependencyDetailHoverFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether hover shows default Cargo dependency features.
+ */
+export type DefaultFeaturesHoverFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Whether hover shows dependencies of the selected Cargo feature.
+ */
+export type FeatureDependenciesHoverFeature = ToggleFeatureDefaultTrue | null;
 export type InlayHintFeatureOptions = CargoInlayHintFeatures | null;
 export type CargoInlayHintFeatures = EnabledOnly | CargoInlayHintFeatureTree;
 /**
@@ -397,72 +574,12 @@ export type DefaultFeaturesInlayHintFeature = ToggleFeatureDefaultTrue | null;
  * Whether inlay hints show values inherited from the Cargo workspace.
  */
 export type WorkspaceValueInlayHintFeature = ToggleFeatureDefaultTrue | null;
-export type GotoDefinitionFeatureOptions1 = CargoNavigationFeatures | null;
-export type CargoNavigationFeatures = EnabledOnly | CargoNavigationFeatureTree;
+export type ReferencesFeatureOptions1 = CargoReferencesFeatures | null;
+export type CargoReferencesFeatures = EnabledOnly | CargoReferencesFeatureTree;
 /**
- * Whether navigation resolves dependency definitions and declarations.
+ * Whether references list dependency-related usages.
  */
-export type DependencyNavigationFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether navigation resolves workspace member targets.
- */
-export type MemberNavigationFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether navigation resolves filesystem paths.
- */
-export type PathNavigationFeature = ToggleFeatureDefaultTrue | null;
-export type GotoDeclarationFeatureOptions1 = CargoNavigationFeatures | null;
-export type DocumentLinkFeatureOptions1 = CargoDocumentLinkFeatures | null;
-export type CargoDocumentLinkFeatures = EnabledOnly | CargoDocumentLinkFeatureTree;
-/**
- * Whether document links are created for `Cargo.toml` references.
- */
-export type CargoTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
-/**
- * Whether this nested feature is enabled.
- */
-export type EnableFeature2 = BoolDefaultFalse | null;
-export type BoolDefaultFalse = boolean;
-/**
- * Whether document links are created for crates.io package references.
- */
-export type CratesIoDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether document links are created for Git references.
- */
-export type GitDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
-/**
- * Whether document links are created for filesystem paths.
- */
-export type PathDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
-/**
- * Whether document links are created for `workspace = true` references.
- */
-export type WorkspaceDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
-export type HoverFeatureOptions1 = CargoHoverFeatures | null;
-export type CargoHoverFeatures = EnabledOnly | CargoHoverFeatureTree;
-/**
- * Whether hover shows detailed dependency metadata.
- */
-export type DependencyDetailHoverFeature = ToggleFeatureDefaultTrue | null;
-export type CodeActionFeatureOptions1 = CargoCodeActionFeatures | null;
-export type CargoCodeActionFeatures = EnabledOnly | CargoCodeActionFeatureTree;
-/**
- * Whether code actions can replace a value with `workspace = true`.
- */
-export type InheritFromWorkspaceCodeActionFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether code actions can inherit dependency settings from the workspace.
- */
-export type InheritDependencyFromWorkspaceCodeActionFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether code actions can rewrite inline dependencies to table format.
- */
-export type ConvertDependencyToTableFormatCodeActionFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Whether code actions can add a dependency to the workspace and inherit it.
- */
-export type AddToWorkspaceAndInheritDependencyCodeActionFeature = ToggleFeatureDefaultTrue | null;
+export type DependencyReferencesFeature = ToggleFeatureDefaultTrue | null;
 /**
  * Configure built-in support for `pyproject.toml`.
  */
@@ -470,43 +587,6 @@ export type PyprojectExtension = PyprojectExtensionFeatures | null;
 export type PyprojectExtensionFeatures = EnabledOnly | PyprojectExtensionFeatureTree;
 export type PyprojectLSPFeatureOptions = PyprojectLspFeatures | null;
 export type PyprojectLspFeatures = EnabledOnly | PyprojectLspFeatureTree;
-/**
- * Configure pyproject completion features.
- */
-export type CompletionFeatureOptions2 = PyprojectCompletionFeatures | null;
-export type PyprojectCompletionFeatures = EnabledOnly | PyprojectCompletionFeatureTree;
-/**
- * Configure pyproject inlay hint features.
- */
-export type InlayHintFeatureOptions1 = PyprojectInlayHintFeatures | null;
-export type PyprojectInlayHintFeatures = EnabledOnly | PyprojectInlayHintFeatureTree;
-/**
- * Configure pyproject go-to-definition features.
- */
-export type GotoDefinitionFeatureOptions2 = PyprojectNavigationFeatures | null;
-export type PyprojectNavigationFeatures = EnabledOnly | PyprojectNavigationFeatureTree;
-/**
- * Configure pyproject go-to-declaration features.
- */
-export type GotoDeclarationFeatureOptions2 = PyprojectNavigationFeatures | null;
-/**
- * Configure pyproject document link features.
- */
-export type DocumentLinkFeatureOptions2 = PyprojectDocumentLinkFeatures | null;
-export type PyprojectDocumentLinkFeatures = EnabledOnly | PyprojectDocumentLinkFeatureTree;
-/**
- * Whether document links are created for `pyproject.toml` references.
- */
-export type PyprojectTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
-/**
- * Whether document links are created for `pypi.org` package references.
- */
-export type PyPIDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Configure pyproject hover features.
- */
-export type HoverFeatureOptions2 = PyprojectHoverFeatures | null;
-export type PyprojectHoverFeatures = EnabledOnly | PyprojectHoverFeatureTree;
 /**
  * Configure pyproject code action features.
  */
@@ -521,6 +601,53 @@ export type UseWorkspaceDependencyCodeActionFeature = ToggleFeatureDefaultTrue |
  */
 export type AddToWorkspaceAndUseWorkspaceDependencyCodeActionFeature = ToggleFeatureDefaultTrue | null;
 /**
+ * Configure pyproject completion features.
+ */
+export type CompletionFeatureOptions2 = PyprojectCompletionFeatures | null;
+export type PyprojectCompletionFeatures = EnabledOnly | PyprojectCompletionFeatureTree;
+/**
+ * Configure pyproject document link features.
+ */
+export type DocumentLinkFeatureOptions2 = PyprojectDocumentLinkFeatures | null;
+export type PyprojectDocumentLinkFeatures = EnabledOnly | PyprojectDocumentLinkFeatureTree;
+/**
+ * Deprecated. This setting is accepted for backward compatibility and will be removed in a future release.
+ */
+export type DeprecatedPyprojectTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
+/**
+ * Whether document links are created for `pypi.org` package references.
+ */
+export type PyPIDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Configure pyproject go-to-declaration features.
+ */
+export type GotoDeclarationFeatureOptions2 = PyprojectGotoDeclarationFeatures | null;
+export type PyprojectGotoDeclarationFeatures = EnabledOnly | PyprojectGotoDeclarationFeatureTree;
+/**
+ * Whether declaration navigation resolves workspace member declarations.
+ */
+export type MemberDeclarationNavigationFeature = ToggleFeatureDefaultTrue | null;
+/**
+ * Configure pyproject go-to-definition features.
+ */
+export type GotoDefinitionFeatureOptions2 = PyprojectGotoDefinitionFeatures | null;
+export type PyprojectGotoDefinitionFeatures = EnabledOnly | PyprojectGotoDefinitionFeatureTree;
+/**
+ * Configure pyproject hover features.
+ */
+export type HoverFeatureOptions2 = PyprojectHoverFeatures | null;
+export type PyprojectHoverFeatures = EnabledOnly | PyprojectHoverFeatureTree;
+/**
+ * Configure pyproject inlay hint features.
+ */
+export type InlayHintFeatureOptions1 = PyprojectInlayHintFeatures | null;
+export type PyprojectInlayHintFeatures = EnabledOnly | PyprojectInlayHintFeatureTree;
+/**
+ * Configure pyproject references features.
+ */
+export type ReferencesFeatureOptions2 = PyprojectReferencesFeatures | null;
+export type PyprojectReferencesFeatures = EnabledOnly | PyprojectReferencesFeatureTree;
+/**
  * Configure built-in support for `tombi.toml`.
  */
 export type TombiExtension = TombiExtensionFeatures | null;
@@ -533,6 +660,11 @@ export type TombiLspFeatures = EnabledOnly | TombiLspFeatureTree;
 export type CompletionFeatureOptions3 = TombiCompletionFeatures | null;
 export type TombiCompletionFeatures = EnabledOnly | TombiCompletionFeatureTree;
 /**
+ * Configure Tombi document link features.
+ */
+export type DocumentLinkFeatureOptions3 = TombiDocumentLinkFeatures | null;
+export type TombiDocumentLinkFeatures = EnabledOnly | TombiDocumentLinkFeatureTree;
+/**
  * Configure Tombi go-to-definition features.
  */
 export type GotoDefinitionFeatureOptions3 = TombiGotoDefinitionFeatures | null;
@@ -541,11 +673,6 @@ export type TombiGotoDefinitionFeatures = EnabledOnly | TombiGotoDefinitionFeatu
  * Whether go-to-definition resolves filesystem paths.
  */
 export type PathGotoDefinitionFeature = ToggleFeatureDefaultTrue | null;
-/**
- * Configure Tombi document link features.
- */
-export type DocumentLinkFeatureOptions3 = TombiDocumentLinkFeatures | null;
-export type TombiDocumentLinkFeatures = EnabledOnly | TombiDocumentLinkFeatureTree;
 /**
  * Configure Tombi hover features.
  */
@@ -570,6 +697,7 @@ export interface Tombi {
 export interface FilesOptions {
   include?: FilePatternsToInclude;
   exclude?: FilePatternsToExclude;
+  'respect-ignore-files'?: RespectRepositoryIgnoreFiles;
 }
 export interface FormatterOptions {
   rules?: FormatRules;
@@ -578,6 +706,7 @@ export interface FormatRules1 {
   'array-bracket-space-width'?: TheNumberOfSpacesInsideTheBracketsOfASingleLineArray;
   'array-comma-space-width'?: TheNumberOfSpacesAfterTheCommaInASingleLineArray;
   'date-time-delimiter'?: TheDelimiterBetweenDateAndTime;
+  'group-blank-lines-limit'?: TheBlankLinesLimitBetweenGroups;
   'indent-style'?: TheStyleOfIndentation;
   'indent-sub-tables'?: WhetherToIndentTheSubTables;
   'indent-table-key-value-pairs'?: WhetherToIndentTheTableKeyValuePairs;
@@ -585,11 +714,13 @@ export interface FormatRules1 {
   'inline-table-brace-space-width'?: TheNumberOfSpacesInsideTheBracketsOfASingleLineInlineTable;
   'inline-table-comma-space-width'?: TheNumberOfSpacesAfterTheCommaInASingleLineInlineTable;
   'key-value-equals-sign-alignment'?: WhetherToAlignTheEqualsSignInTheKeyValuePairs;
+  'key-quote-style'?: ThePreferredQuoteCharacterForKeys;
   'string-quote-style'?: ThePreferredQuoteCharacterForStrings;
   'trailing-comment-alignment'?: WhetherToAlignTheTrailingCommentsInTheKeyValuePairs;
   'key-value-equals-sign-space-width'?: TheNumberOfSpacesAroundTheEqualsSignInAKeyValuePair;
   'line-ending'?: TheTypeOfLineEnding;
   'line-width'?: TheMaximumLineWidth;
+  'table-blank-lines'?: TheNumberOfBlankLinesBetweenTables;
   'trailing-comment-space-width'?: TheNumberOfSpacesBeforeTheTrailingComment;
 }
 export interface LinterOptions {
@@ -608,6 +739,7 @@ export interface LanguageServerOptions {
   formatting?: FormattingFeatureOptions;
   'goto-declaration'?: GotoDeclarationFeatureOptions;
   'goto-definition'?: GotoDefinitionFeatureOptions;
+  references?: ReferencesFeatureOptions;
   'goto-type-definition'?: GotoTypeDefinitionFeatureOptions;
   hover?: HoverFeatureOptions;
   'workspace-diagnostic'?: WorkspaceDiagnosticsFeatureOptions;
@@ -630,6 +762,9 @@ export interface LspFormatting {
 export interface LspGotoDefinition {
   enabled?: EnableGotoDefinitionFeature;
 }
+export interface LspReferences {
+  enabled?: EnableReferencesFeature;
+}
 export interface LspHover {
   enabled?: EnableHoverFeature;
 }
@@ -648,6 +783,7 @@ export interface TheSchemaForTheRootTable {
   'toml-version'?: TheTOMLVersionThatTheSchemaIsAvailable;
   path: TheSchemaPath;
   include: TheFileMatchPatternOfTheSchema;
+  exclude?: TheFileMatchPatternToExcludeTheSchema;
   format?: SchemaSpecificFormatOptions;
   lint?: SchemaSpecificLintOptions;
   overrides?: SchemaSpecificOverrides;
@@ -693,6 +829,7 @@ export interface TheSchemaForTheSubValue {
   root: TheAccessorsToApplyTheSubSchema;
   path: TheSubSchemaPath;
   include: TheFileMatchPatternOfTheSubSchema;
+  exclude?: TheFileMatchPatternToExcludeTheSubSchema;
   format?: SchemaSpecificFormatOptions;
   lint?: SchemaSpecificLintOptions;
   overrides?: SchemaSpecificOverrides;
@@ -730,101 +867,123 @@ export interface CargoExtensionFeatureTree {
   lsp?: CargoLSPFeatureOptions;
 }
 export interface CargoLspFeatureTree {
-  completion?: CompletionFeatureOptions1;
-  'inlay-hint'?: InlayHintFeatureOptions;
-  'goto-definition'?: GotoDefinitionFeatureOptions1;
-  'goto-declaration'?: GotoDeclarationFeatureOptions1;
-  'document-link'?: DocumentLinkFeatureOptions1;
-  hover?: HoverFeatureOptions1;
   'code-action'?: CodeActionFeatureOptions1;
-}
-export interface CargoCompletionFeatureTree {
-  'dependency-version'?: DependencyVersionCompletionFeature;
-  'dependency-feature'?: DependencyFeatureCompletionFeature;
-  path?: PathCompletionFeature;
-}
-export interface ToggleFeatureDefaultTrue {
-  enabled?: EnableFeature1;
-}
-export interface CargoInlayHintFeatureTree {
-  'dependency-version'?: DependencyVersionInlayHintFeature;
-  'default-features'?: DefaultFeaturesInlayHintFeature;
-  'workspace-value'?: WorkspaceValueInlayHintFeature;
-}
-export interface CargoNavigationFeatureTree {
-  dependency?: DependencyNavigationFeature;
-  member?: MemberNavigationFeature;
-  path?: PathNavigationFeature;
-}
-export interface CargoDocumentLinkFeatureTree {
-  'cargo-toml'?: CargoTomlDocumentLinkFeature;
-  'crates-io'?: CratesIoDocumentLinkFeature;
-  git?: GitDocumentLinkFeature;
-  path?: PathDocumentLinkFeature;
-  workspace?: WorkspaceDocumentLinkFeature;
-}
-export interface ToggleFeatureDefaultFalse {
-  enabled?: EnableFeature2;
-}
-export interface CargoHoverFeatureTree {
-  'dependency-detail'?: DependencyDetailHoverFeature;
+  completion?: CompletionFeatureOptions1;
+  'document-link'?: DocumentLinkFeatureOptions1;
+  'goto-declaration'?: GotoDeclarationFeatureOptions1;
+  'goto-definition'?: GotoDefinitionFeatureOptions1;
+  hover?: HoverFeatureOptions1;
+  'inlay-hint'?: InlayHintFeatureOptions;
+  references?: ReferencesFeatureOptions1;
 }
 export interface CargoCodeActionFeatureTree {
   'inherit-from-workspace'?: InheritFromWorkspaceCodeActionFeature;
   'inherit-dependency-from-workspace'?: InheritDependencyFromWorkspaceCodeActionFeature;
   'convert-dependency-to-table-format'?: ConvertDependencyToTableFormatCodeActionFeature;
   'add-to-workspace-and-inherit-dependency'?: AddToWorkspaceAndInheritDependencyCodeActionFeature;
+  'update-dependency-to-latest-version'?: UpdateDependencyToLatestVersionCodeActionFeature;
+}
+export interface ToggleFeatureDefaultTrue {
+  enabled?: EnableFeature1;
+}
+export interface CargoCompletionFeatureTree {
+  'dependency-version'?: DependencyVersionCompletionFeature;
+  'dependency-feature'?: DependencyFeatureCompletionFeature;
+  path?: PathCompletionFeature;
+}
+export interface CargoDocumentLinkFeatureTree {
+  'cargo-toml'?: DeprecatedCargoTomlDocumentLinkFeature;
+  'crates-io'?: CratesIoDocumentLinkFeature;
+  git?: DeprecatedGitDocumentLinkFeature;
+  path?: DeprecatedPathDocumentLinkFeature;
+  workspace?: DeprecatedWorkspaceDocumentLinkFeature;
+}
+export interface ToggleFeatureDefaultFalse {
+  enabled?: EnableFeature2;
+}
+export interface CargoGotoDeclarationFeatureTree {
+  dependency?: DependencyDeclarationNavigationFeature;
+  member?: DeprecatedMemberDeclarationNavigationFeature;
+  path?: DeprecatedPathDeclarationNavigationFeature;
+}
+export interface CargoGotoDefinitionFeatureTree {
+  dependency?: DependencyDefinitionNavigationFeature;
+  member?: MemberDefinitionNavigationFeature;
+  path?: PathDefinitionNavigationFeature;
+}
+export interface CargoHoverFeatureTree {
+  'dependency-detail'?: DependencyDetailHoverFeature;
+  'default-features'?: DefaultFeaturesHoverFeature;
+  'feature-dependencies'?: FeatureDependenciesHoverFeature;
+}
+export interface CargoInlayHintFeatureTree {
+  'dependency-version'?: DependencyVersionInlayHintFeature;
+  'default-features'?: DefaultFeaturesInlayHintFeature;
+  'workspace-value'?: WorkspaceValueInlayHintFeature;
+}
+export interface CargoReferencesFeatureTree {
+  dependency?: DependencyReferencesFeature;
 }
 export interface PyprojectExtensionFeatureTree {
   lsp?: PyprojectLSPFeatureOptions;
 }
 export interface PyprojectLspFeatureTree {
-  completion?: CompletionFeatureOptions2;
-  'inlay-hint'?: InlayHintFeatureOptions1;
-  'goto-definition'?: GotoDefinitionFeatureOptions2;
-  'goto-declaration'?: GotoDeclarationFeatureOptions2;
-  'document-link'?: DocumentLinkFeatureOptions2;
-  hover?: HoverFeatureOptions2;
   'code-action'?: CodeActionFeatureOptions2;
-}
-export interface PyprojectCompletionFeatureTree {
-  path?: PathCompletionFeature;
-}
-export interface PyprojectInlayHintFeatureTree {
-  'dependency-version'?: DependencyVersionInlayHintFeature;
-}
-export interface PyprojectNavigationFeatureTree {
-  dependency?: DependencyNavigationFeature;
-  member?: MemberNavigationFeature;
-  path?: PathNavigationFeature;
-}
-export interface PyprojectDocumentLinkFeatureTree {
-  'pyproject-toml'?: PyprojectTomlDocumentLinkFeature;
-  'pypi-org'?: PyPIDocumentLinkFeature;
-}
-export interface PyprojectHoverFeatureTree {
-  'dependency-detail'?: DependencyDetailHoverFeature;
+  completion?: CompletionFeatureOptions2;
+  'document-link'?: DocumentLinkFeatureOptions2;
+  'goto-declaration'?: GotoDeclarationFeatureOptions2;
+  'goto-definition'?: GotoDefinitionFeatureOptions2;
+  hover?: HoverFeatureOptions2;
+  'inlay-hint'?: InlayHintFeatureOptions1;
+  references?: ReferencesFeatureOptions2;
 }
 export interface PyprojectCodeActionFeatureTree {
   'use-workspace-dependency'?: UseWorkspaceDependencyCodeActionFeature;
   'add-to-workspace-and-use-workspace-dependency'?: AddToWorkspaceAndUseWorkspaceDependencyCodeActionFeature;
+  'update-dependency-to-latest-version'?: UpdateDependencyToLatestVersionCodeActionFeature;
+}
+export interface PyprojectCompletionFeatureTree {
+  path?: PathCompletionFeature;
+}
+export interface PyprojectDocumentLinkFeatureTree {
+  'pyproject-toml'?: DeprecatedPyprojectTomlDocumentLinkFeature;
+  'pypi-org'?: PyPIDocumentLinkFeature;
+}
+export interface PyprojectGotoDeclarationFeatureTree {
+  dependency?: DependencyDeclarationNavigationFeature;
+  member?: MemberDeclarationNavigationFeature;
+  path?: DeprecatedPathDeclarationNavigationFeature;
+}
+export interface PyprojectGotoDefinitionFeatureTree {
+  dependency?: DependencyDefinitionNavigationFeature;
+  member?: MemberDefinitionNavigationFeature;
+  path?: PathDefinitionNavigationFeature;
+}
+export interface PyprojectHoverFeatureTree {
+  'dependency-detail'?: DependencyDetailHoverFeature;
+}
+export interface PyprojectInlayHintFeatureTree {
+  'dependency-version'?: DependencyVersionInlayHintFeature;
+}
+export interface PyprojectReferencesFeatureTree {
+  dependency?: DependencyReferencesFeature;
 }
 export interface TombiExtensionFeatureTree {
   lsp?: TombiLSPFeatureOptions;
 }
 export interface TombiLspFeatureTree {
   completion?: CompletionFeatureOptions3;
-  'goto-definition'?: GotoDefinitionFeatureOptions3;
   'document-link'?: DocumentLinkFeatureOptions3;
+  'goto-definition'?: GotoDefinitionFeatureOptions3;
   hover?: HoverFeatureOptions3;
 }
 export interface TombiCompletionFeatureTree {
   path?: PathCompletionFeature;
 }
+export interface TombiDocumentLinkFeatureTree {
+  path?: DeprecatedPathDocumentLinkFeature;
+}
 export interface TombiGotoDefinitionFeatureTree {
   path?: PathGotoDefinitionFeature;
-}
-export interface TombiDocumentLinkFeatureTree {
-  path?: PathDocumentLinkFeature;
 }
 export interface TombiHoverFeatureTree {}
