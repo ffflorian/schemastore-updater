@@ -3020,7 +3020,7 @@
     "jsontron-0.1.json": {
       "generatedFile": "schemas/jsontron-0.1/index.d.ts",
       "generatedSha256": "ee0b2e105eaf094e8a12ed067a186bd9680980955367e4cb9cc12ec1656669f1",
-      "published": false,
+      "published": true,
       "sourceSha256": "9faf79191f3c9e1281ce1d634e229e02ccebee48a2bc05f24b30665f5be8d785",
       "updatedAt": "2026-08-17T05:24:37.449Z"
     },
@@ -3853,7 +3853,7 @@
     "okf-0.2.json": {
       "generatedFile": "schemas/okf-0.2/index.d.ts",
       "generatedSha256": "9d6ed1b204c732dbacdcc2a90db8bc1ce3d51cceec693247c4f4f417c88fb104",
-      "published": false,
+      "published": true,
       "sourceSha256": "69d27cf86163bef199692580601637c433c078d0b4a657ce9e457100f7e4f38d",
       "updatedAt": "2026-08-17T05:27:42.957Z"
     },
