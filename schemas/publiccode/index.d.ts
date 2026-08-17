@@ -1,81 +1,91 @@
 /* eslint-disable */
 
 /**
- * publiccode.yml is a metadata standard for repositories containing software developed or acquired by the Public Administration, aimed at making them easily discoverabile and thus reusable by other entities.
+ * publiccode.yml is a metadata standard for repositories containing software developed or acquired by the Public Administration, aimed at making them easily discoverable and thus reusable by other entities.
  *
- * By including a publiccode.yml file in the root of a repository, and populating it with information about the software, technicians and civil servants can evaluate it. Automatic indexing tools can also be built, since the format is easily readable by both humans and machines.
+ * By including a publiccode.yml file in the root of a repository and populating it with information about the software, technicians and civil servants can evaluate it. Automatic indexing tools can also be built, since the format is easily readable by both humans and machines.
  *
- * publiccode.yml is mandatory for all public software developed in Italy, according to the national guidelines: this enables the Developers Italia crawler to build the national software catalog. The standard is designed to be interoperable internationally, thus the country-specific keys are separated by the core part and are defined in specific sections that each government can rule.
+ * publiccode.yml is mandatory for all public software developed in Italy according to the national guidelines; this enables the Developers Italia crawler to build the national software catalog. The standard is designed to be interoperable internationally. Country-specific sections are deprecated in version 0.7 in favour of the generic supports and organisation keys.
  */
 export interface JSONSchemaForPubliccodeYml {
   /**
-   * This key specifies the version to which the current publiccode.yml adheres to, for forward compatibility.
+   * The publiccode.yml specification version this file adheres to.
    */
-  publiccodeYmlVersion: '0' | '0.2' | '0.2.0' | '0.2.1' | '0.2.2' | '0.3' | '0.3.0' | '0.4' | '0.4.0' | '0.5' | '0.5.0';
+  publiccodeYmlVersion:
+    | '0'
+    | '0.2'
+    | '0.2.0'
+    | '0.2.1'
+    | '0.2.2'
+    | '0.3'
+    | '0.3.0'
+    | '0.4'
+    | '0.4.0'
+    | '0.5'
+    | '0.5.0'
+    | '0.6'
+    | '0.6.0'
+    | '0.7'
+    | '0.7.0';
   /**
-   * This key contains the name of the software. It contains the (short) public name of the product, which can be localised in the specific localisation section. It should be the name most people usually refer to the software. In case the software has both an internal "code" name and a commercial name, use the commercial name.
+   * The (short) public name of the software, as most people usually refer to it. If the software has both an internal code name and a commercial name, use the commercial name. It can be localised in the description section.
    */
   name: string;
   /**
-   * This key contains the name of the "suite" to which the software belongs.
+   * The name of the suite to which the software belongs.
    */
   applicationSuite?: string;
   /**
-   * A unique identifier for this software. This string must be a URL to the source code repository (git, svn, …) in which the software is published. If the repository is available under multiple protocols, prefer HTTP/HTTPS URLs which don't require user authentication.
+   * A unique identifier for this software: a URL to the source code repository (git, svn, ...) where it is published. Prefer HTTP/HTTPS URLs that do not require authentication, if the repository supports multiple protocols.
    *
-   * Forks created for the purpose of contributing upstream should not modify this file; this helps software parsing publiccode.yml to immediately skip technical forks. On the contrary, a complete fork that is meant to be maintained separately from the original software should modify this line, to give themselves the status of a different project.
-   *
-   *
+   * Forks meant to contribute upstream should not change this value, so parsers can skip technical forks. A fork meant to be maintained separately from the original should change it, to become a distinct project.
    */
   url: string;
   /**
-   * If the url parameter does not serve a human readable or browsable page, but only serves source code to a source control client, with this key you have an option to specify a landing page. This page, ideally, is where your users will land when they will click a button labeled something like "Go to the application source code". In case the product provides an automated graphical installer, this URL can point to a page which contains a reference to the source code but also offers the download of such an installer.
+   * A human-readable landing page, useful when url only serves source code to a source control client rather than a browsable page. Ideally where a "Go to the application source code" button would lead. Can also point to a page offering an automated installer download.
    */
   landingURL?: string;
   /**
-   * In case this software is a variant or a fork of another software, which might or might not contain a publiccode.yml file, this key will contain the url of the original project(s).
-   *
-   * The existence of this key identifies the fork as a software variant, descending from the specified repositories.
+   * The URL(s) of the original project(s), if this software is a variant or fork of another software. Its presence identifies this software as descending from the specified repositories.
    */
   isBasedOn?: string | string[];
   /**
-   * This key contains the latest stable version number of the software. The version number is a string that is not meant to be interpreted and parsed but just displayed; parsers should not assume semantic versioning or any other specific version format.
-   *
-   * The key can be omitted if the software is currently in initial development and has never been released yet.
+   * The latest stable version number of the software. It is a display only string; parsers should not assume semantic versioning or any other specific format.
    */
   softwareVersion?: string;
   /**
-   * This key contains the date at which the latest version was released. This date is mandatory if the software has been released at least once and thus the version number is present.
+   * The date the latest version was released.
    */
   releaseDate?: string;
   /**
-   * This key contains the path to the logo of the software. Logos should be in vector format; raster formats are only allowed as a fallback. In this case, they should be transparent PNGs, minimum 1000px of width. The key value can be the relative path to the file starting from the root of the repository, or it can be an absolute URL pointing to the logo in raw version. In both cases, the file must reside inside the same repository where the publiccode.yml file is stored.
+   * The path to the logo of the software. Vector formats (SVG or SVGZ) are preferred, but PNG is also accepted. It can be a relative path from the repository root or an absolute URL to the raw file, but the file must reside in the same repository as this publiccode.yml.
    */
   logo?: string;
   /**
-   * A monochromatic (black) logo. The logo should be in vector format; raster formats are only allowed as a fallback. In this case, they should be transparent PNGs, minimum 1000px of width. The key value can be the relative path to the file starting from the root of the repository, or it can be an absolute URL pointing to the logo in raw version. In both cases, the file must reside inside the same repository where the publiccode.yml file is stored.
+   * @deprecated
+   * DEPRECATED. A monochromatic (black) logo. The logo should be in vector format; raster formats are only allowed as a fallback. In this case, they should be transparent PNGs, minimum 1000px wide. The key value can be the relative path to the file starting from the root of the repository, or it can be an absolute URL pointing to the raw logo. In both cases, the file must reside inside the same repository where the publiccode.yml file is stored.
    */
   monochromeLogo?: string;
   /**
-   * A list of Media Types (MIME Types) as mandated in RFC 6838 which the application can handle as input.
+   * @deprecated
+   * DEPRECATED. A list of Media Types (MIME Types) as mandated in RFC 6838 which the application can handle as input.
    *
    * In case the software does not support any input, you can skip this field or use application/x.empty.
    */
   inputTypes?: string[];
   /**
-   * A list of Media Types (MIME Types) as mandated in RFC 6838 which the application can handle as output.
+   * @deprecated
+   * DEPRECATED. A list of Media Types (MIME Types) as mandated in RFC 6838 which the application can handle as output.
    *
    * In case the software does not support any output, you can skip this field or use application/x.empty.
    */
   outputTypes?: string[];
   /**
-   * This key specifies which platform the software runs on. It is meant to describe the platforms that users will use to access and operate the software, rather than the platform the software itself runs on.
-   *
-   * Use the predefined values if possible. If the software runs on a platform for which a predefined value is not available, a different value can be used.
+   * The platforms that users use to access and operate the software, rather than the platform the software itself runs on. Use predefined values if possible.
    */
-  platforms: string[];
+  platforms: string | [string, ...string[]];
   /**
-   * A list of words that can be used to describe the software and can help building catalogs of open software.
+   * A list of categories that can be used to describe the software and can help build catalogs of open software.
    */
   categories?: (
     | 'accounting'
@@ -186,9 +196,7 @@ export interface JSONSchemaForPubliccodeYml {
     | 'other'
   )[];
   /**
-   * A list of the names of prominent public administrations (that will serve as "testimonials") that are currently known to the software maintainer to be using this software.
-   *
-   * Parsers are encouraged to enhance this list also with other information that can obtain independently; for instance, a fork of a software, owned by an administration, could be used as a signal of usage of the software.
+   * The names of prominent public administrations known to be using this software, serving as testimonials. Parsers are encouraged to enrich this list with independently obtained signals of usage, such as forks owned by an administration.
    */
   usedBy?: string[];
   /**
@@ -206,17 +214,46 @@ export interface JSONSchemaForPubliccodeYml {
     | 'addon'
     | 'library'
     | 'configurationFiles';
+  /**
+   * A list of standards, regulations, frameworks or systems that the software supports or complies with.
+   */
+  supports?: {
+    /**
+     * An identifier for the supported standard, regulation, framework or system. It is either a known alias in the form alias:<name>, or any other valid URI referencing the resource directly.
+     */
+    id: (
+      | (
+          | 'alias:gdpr'
+          | 'alias:eidas'
+          | 'alias:nis2'
+          | 'alias:cra'
+          | 'alias:spid'
+          | 'alias:cie'
+          | 'alias:anpr'
+          | 'alias:pagopa'
+          | 'alias:io'
+        )
+      | {
+          [k: string]: unknown | undefined;
+        }
+    ) &
+      string;
+  }[];
   intendedAudience?: {
     /**
-     * This key explicitly includes certain countries in the intended audience, i.e. the software explicitly claims compliance with specific processes, technologies or laws. All countries are specified using ISO 3166-1 alpha-2 two-letter country codes.
+     * Countries explicitly included in the intended audience, i.e. whose processes, technologies or laws the software explicitly claims compliance with. Uses uppercase ISO 3166-1 alpha-2 codes; lowercase codes are deprecated but still accepted.
      */
-    countries?: string[];
+    countries?: ({
+      [k: string]: unknown | undefined;
+    } & string)[];
     /**
-     * This key explicitly marks countries as NOT supported. This might be the case if there is a conflict between how software is working and a specific law, process or technology. All countries are specified using ISO 3166-1 alpha-2 two-letter country codes.
+     * Countries explicitly marked as NOT supported, for instance when the software conflicts with a specific law, process or technology. Uses uppercase ISO 3166-1 alpha-2 codes; lowercase codes are deprecated but still accepted.
      */
-    unsupportedCountries?: string[];
+    unsupportedCountries?: ({
+      [k: string]: unknown | undefined;
+    } & string)[];
     /**
-     * This key contains a list of tags related to the field of application of the software.
+     * Tags related to the field of application of the software.
      */
     scope?: (
       | 'agriculture'
@@ -246,148 +283,66 @@ export interface JSONSchemaForPubliccodeYml {
     )[];
   };
   /**
-   * This section contains a general description of the software. Parsers can use this section for instance to create a web page describing the software.,
-   *
-   * Note: since all the strings contained in this section are user-visible and written in a specific language, you must specify the language you are editing the text in (using the IETF BCP 47 specifications) by creating a sub-section with that name. The primary language subtag cannot be omitted, as mandated by the BCP 47.
+   * A general, user-visible description of the software, for instance to build a web page describing it. Since the content is written in a specific language, specify the language as the subsection name, using an IETF BCP 47 language tag. The primary language subtag cannot be omitted.
    */
   description: {
-    [k: string]:
-      | {
-          /**
-           * This key is an opportunity to localise the name in a specific language. It contains the (short) public name of the product. It should be the name most people usually refer to the software. In case the software has both an internal "code" name and a commercial name, use the commercial name.
-           */
-          localisedName?: string;
-          /**
-           * This key is the "Generic name", which refers to the specific category to which the software belongs. You can usually find the generic name in the presentation of the software, when you write: "Software xxx is a yyy". Notable examples include "Text Editor", "Word Processor", "Web Browser", "Chat" and so on… The generic name can be up to 35 characters long.
-           */
-          genericName?: string;
-          /**
-           * This key contains a short description of the software. It should be a single line containing a single sentence. Maximum 150 characters are allowed.
-           */
-          shortDescription: string;
-          /**
-           * This key contains a longer description of the software, between 500 and 10000 chars. It is meant to provide an overview of the capabilities of the software for a potential user. The audience for this text should be that of users of the software, not developers. You can think of this text as the description of the software that would be in its website (if the software had one).
-           *
-           * This description can contain some basic markdown: *italic*, **bold**, bullet points and [links](#).
-           */
-          longDescription?: string;
-          /**
-           * This key contains a reference to the user-level (not developer-level) documentation of the software. The value must be a URL to a hosted version of the documentation.
-           *
-           * It is suggested that the URL points to a hosted version of the documentation that is immediately readable through a common web browser in both desktop and mobile format. The documentation should be rendered in HTML and browsable like a website (with a navigation index, a search bar, etc.).
-           *
-           * If the documentation is instead available only as a document, put a direct view/download link as URL in this key. You should commit the document as part of the source code repository, and then link to it using the code hosting source browser URL (e.g.: GitHub URL to the file). Prefer using open formats like PDF or ODT for maximum interoperability.
-           *
-           * Whichever the format for the documentation, remember to make its source files available under an open license, possibly by committing them as part of the repository itself.
-           */
-          documentation?: string;
-          /**
-           * This key contains a reference to the API documentation of the software. The value must be a URL to a hosted version of the documentation.
-           *
-           * It is suggested that the URL points to a hosted version of the documentation that is immediately readable through a common web browser. The documentation should be rendered in HTML and browsable like a website (with a navigation index, a search bar, etc.), and if there is a reference or test deployment, possibly offer an interactive interface (e.g. Swagger).
-           *
-           * If the documentation is instead available only as a document, put a direct view/download link as URL in this key. You should commit the document as part of the source code repository, and then link to it using the code hosting source browser URL (e.g.: GitHub URL to the file). Prefer using open formats like PDF or ODT for maximum interoperability.
-           *
-           * Whichever the format for the documentation, remember to make its source files available under an open license, possibly by committing them as part of the repository itself.
-           */
-          apiDocumentation?: string;
-          /**
-           * This key contains a list of software features, describing what capabilities the software allows to do. The audience for this text should be that of public decision makers who will be commissioning the software. The features should thus not target developers; instead of listing technical features referring to implementation details, prefer listing user-visible functionalities of the software.
-           *
-           * While the key is mandatory, there is no mandatory minimum or maximum number of features that should be listed in this key. Each feature must use a maximum of 100 characters.
-           *
-           * The suggested number of features to list is between 5 and 20, depending on the software size and complexity. There is no need for exhaustiveness, as users can always read the documentation for additional information.
-           */
-          features?: string[];
-          /**
-           * This key contains one or multiple paths to files showing screenshots of the software. They are meant to give a quick idea on how the software looks like and how it works. The key value can be the relative path to the file starting from the root of the repository, or it can be an absolute URL pointing to the screenshot in raw version. In both cases, the file must reside inside the same repository where the publiccode.yml file is stored.
-           */
-          screenshots?: string[];
-          /**
-           * This key contains one or multiple URLs of videos showing how the software works. Like screenshots, videos should be used to give a quick overview on how the software looks like and how it works. Videos must be hosted on a video sharing website that supports the oEmbed standard; popular options are YouTube and Vimeo.
-           *
-           * Since videos are an integral part of the documentation, it is recommended to publish them with an open license.
-           */
-          videos?: string[];
-          /**
-           * A list of awards won by the software.
-           */
-          awards?: string[];
-        }
-      | undefined;
+    [k: string]: unknown | undefined;
   };
   legal: {
     /**
-     * This string describes the license under which the software is distributed. The string must contain a valid SPDX expression, referring to one (or multiple) open-source license. Please refer to the SPDX documentation for further information.
+     * The license under which the software is distributed, as a valid SPDX expression referring to one or more open source licenses.
      */
     license: string;
     /**
-     * This string describes the entity that owns the copyright on "most" of the code in the repository. Normally, this is the line that is reported with the copyright symbol at the top of most files in the repo.
-     *
-     * It is possible to list multiple owners if required so, using an English sentence. It is also possible to informally refer to a community of group of people like "Linus Torvalds and all Linux contributors".
-     *
-     * In case it is not possible to name a main copyright owner, it is possible to omit this key; in those cases, if the repo has a authors file, you can point to it through legal/authorsFile.
+     * The entity that owns the copyright on most of the code in the repository, normally the one reported at the top of most files. Multiple owners, or an informal group (e.g. "Linus Torvalds and all Linux contributors"), can be listed as an English sentence. Omit if there is no main copyright owner; point to legal/authorsFile instead if the repo has an authors file.
      */
     mainCopyrightOwner?: string;
     /**
-     * This string describes the entity that owns this repository; this might or might not be the same entity who owns the copyright on the code itself. For instance, in case of a fork of the original software, the repoOwner is probably different from the mainCopyrightOwner.
+     * @deprecated
+     * DEPRECATED. This string describes the entity that owns this repository; this might or might not be the same entity who owns the copyright on the code itself. Use organisation/name instead.
      */
     repoOwner?: string;
     /**
-     * Some open-source software adopt a convention of identify the copyright holders through a file that lists all the entities that own the copyright. This is common in projects strongly backed by a community where there are many external contributors and no clear single/main copyright owner. In such cases, this key can be used to refer to the authors file, using a path relative to the root of the repository.
+     * @deprecated
+     * DEPRECATED. Some open-source software identify copyright holders through a file listing all entities that own the copyright. This key refers to that file using a path relative to the root of the repository.
      */
     authorsFile?: string;
   };
   /**
-   * This section provides information on the maintenance status of the software, useful to evaluate whether the software is actively developed or not.
+   * Information on the maintenance status of the software, useful to evaluate whether it is actively developed.
    */
   maintenance: {
-    /**
-     * This key describes how the software is currently maintained.
-     */
-    type: 'internal' | 'contract' | 'community' | 'none';
-    /**
-     * This key describes the entity or entities, if any, that are currently contracted for maintaining the software. They can be companies, organizations, or other collective names.
-     */
-    contractors?: Contractor[];
-    /**
-     * One or more contacts maintaining this software.
-     *
-     * This key describes the technical people currently responsible for maintaining the software. All contacts need to be a physical person, not a company or an organisation. If somebody is acting as a representative of an institution, it must be listed within the affiliation of the contact.
-     *
-     * In case of a commercial agreement (or a chain of such agreements), specify the final entities actually contracted to deliver the maintenance. Do not specify the software owner unless it is technically involved with the maintenance of the product as well.
-     */
-    contacts?: Contact[];
+    [k: string]: unknown | undefined;
   };
   /**
-   * This section provides an overview of the localization features of the software.
+   * An overview of the localisation features of the software.
    */
   localisation: {
     /**
-     * If yes, the software has infrastructure in place or is otherwise designed to be multilingual. It does not need to be available in more than one language.
+     * If true, the software has infrastructure in place or is otherwise designed to be multilingual. It does not need to be available in more than one language.
      */
     localisationReady: boolean;
     /**
      * If present, this is the list of languages in which the software is available. Of course, this list will contain at least one language. The primary language subtag cannot be omitted, as mandated by the BCP 47.
+     *
+     * @minItems 1
      */
-    availableLanguages: string[];
+    availableLanguages: [string, ...string[]];
   };
   /**
-   * This section provides an overview on the system-level dependencies required to install and use this software.
-   *
-   * NOTE: do not list dependencies at the source code level (e.g.: software libraries being used), and focus only on runtime and/or system-level dependencies that must be installed and maintained separately. For instance, a database is a good example of such dependencies.
+   * An overview of the system-level dependencies required to install and use this software, such as a database. Do not list source code level dependencies (e.g. software libraries); focus only on runtime and system-level dependencies that must be installed and maintained separately.
    */
   dependsOn?: {
     /**
-     * This key contains a list of runtime dependencies that are distributed under an open-source license.
+     * Runtime dependencies distributed under an open source license.
      */
     open?: Dependency[];
     /**
-     * This key contains a list of runtime dependencies that are distributed under a proprietary license.
+     * Runtime dependencies distributed under a proprietary license.
      */
     proprietary?: Dependency[];
     /**
-     * This key contains a list of hardware dependencies that must be owned to use the software.
+     * Hardware dependencies that must be owned to use the software.
      */
     hardware?: Dependency[];
   };
@@ -395,103 +350,13 @@ export interface JSONSchemaForPubliccodeYml {
   /**
    * A list of organisations that are currently known to be funding the development of this software.
    */
-  fundedBy?: Organisation1[];
-  IT?: {
-    /**
-     * This key specifies the version to which the current extension schema adheres to, for forward compatibility.
-     *
-     * Please note how the value of this key is independent from the top-level publiccodeYmlVersion one (see The Standard (core)). In such a way, the extensions schema versioning is independent both from the core version of the schema and from every other Country.
-     */
-    countryExtensionVersion: string;
-    /**
-     * @deprecated
-     * This section contains the keys for auto-declaring the compliance with the current legislation, with respect to the following sections. Not including these keys implies that the compliance is not known or not declared.
-     */
-    conforme?: {
-      /**
-       * If present and set to true, the software is compliant with the Italian accessibility laws (L. 4/2004), as further explained in the linee guida di design (Italian language).
-       */
-      lineeGuidaDesign?: boolean;
-      /**
-       * If present and set to true, the software is compliant with the linee guida sull'interoperabilità.
-       *
-       * Regulatory reference: Art. 73 del CAD (Italian language).
-       */
-      modelloInteroperabilita?: boolean;
-      /**
-       * If present and set to true, the software is compliant with the Misure minime di sicurezza ICT per le Pubbliche amministrazioni (Italian language).
-       */
-      misureMinimeSicurezza?: boolean;
-      /**
-       * If present and set to true, the software is compliant with the Misure minime di sicurezza ICT per le Pubbliche amministrazioni (Italian language).
-       */
-      gdpr?: boolean;
-    };
-    piattaforme?: {
-      /**
-       * If present and set to true, the software interfaces with SPID - il Sistema Pubblico di Identità Digitale.
-       */
-      spid?: boolean;
-      /**
-       * If present and set to true, the software interfaces with the Italian electronic ID card (Carta di Identità Elettronica).
-       */
-      cie?: boolean;
-      /**
-       * If present and set to true, the software interfaces with ANPR.
-       */
-      anpr?: boolean;
-      /**
-       * If present and set to true, the software interfaces with pagoPA.
-       */
-      pagopa?: boolean;
-      /**
-       * If present and set to true, the software interfaces with IO app (https://io.italia.it)
-       */
-      io?: boolean;
-    };
-    riuso?: {
-      /**
-       * This key represents the administration code inside the Public Administration index (codice IPA).
-       */
-      codiceIPA?: string;
-    };
-  };
-}
-export interface Contractor {
+  fundedBy?: FundingOrganisation[];
+  IT?: IT;
   /**
-   * The name of the contractor, whether it's a company or a physical person.
+   * @deprecated
+   * DEPRECATED. Use the uppercase IT country code. The entire country-specific section will be removed in publiccode.yml 1.0.
    */
-  name: string;
-  /**
-   * This is a date (YYYY-MM-DD). This key must contain the date at which the maintenance is going to end. In case of community maintenance, the value should not be more than 2 years in the future, and thus will need to be regularly updated as the community continues working on the project.
-   */
-  until: string;
-  /**
-   * This key contains the e-mail address of the technical contact. It must be an email address of where the technical contact can be directly reached; do NOT populate this key with mailing-lists or generic contact points like "info@acme.inc". The e-mail address must not be obfuscated. To improve resistance against e-mail collection, use \x64 to replace @, as allowed by the YAML specification.
-   */
-  email?: string;
-  /**
-   * This key points to the maintainer website. It can either point to the main institutional website, or to a more project-specific page or website.
-   */
-  website?: string;
-}
-export interface Contact {
-  /**
-   * This key contains the full name of one of the technical contacts. It must be a real person; do NOT populate this key with generic contact information, company departments, associations, etc.
-   */
-  name: string;
-  /**
-   * This key contains the e-mail address of the technical contact. It must be an email address of where the technical contact can be directly reached; do NOT populate this key with mailing-lists or generic contact points like "info@acme.inc". The e-mail address must not be obfuscated. To improve resistance against e-mail collection, use \x64 to replace @, as allowed by the YAML specification.
-   */
-  email?: string;
-  /**
-   * phone number (with international prefix). This has to be a string.
-   */
-  phone?: string;
-  /**
-   * This key contains an explicit affiliation information for the technical contact. In case of multiple maintainers, this can be used to create a relation between each technical contact and each maintainer entity. It can contain for instance a company name, an association name, etc.
-   */
-  affiliation?: string;
+  it?: IT;
 }
 export interface Dependency {
   /**
@@ -528,13 +393,92 @@ export interface Organisation {
    */
   uri: string;
 }
-export interface Organisation1 {
+export interface FundingOrganisation {
   /**
-   * The canonical name of the organisation publishing the software.
+   * The name of the organisation funding the software development.
    */
-  name?: string;
+  name: string;
   /**
-   * The organisation publishing the software as a stable resolvable URI or a persistent identifier.
+   * The URI identifying the organisation.
    */
-  uri: string;
+  uri?: string;
+}
+/**
+ * @deprecated
+ * DEPRECATED. Country-specific sections will be removed in publiccode.yml 1.0. Use supports for compliance and integrations, and organisation for the publishing administration.
+ */
+export interface IT {
+  /**
+   * @deprecated
+   * DEPRECATED together with the entire Italian section. Version 1.0 is used by current files; 0.2 is accepted for compatibility with older publiccode.yml versions.
+   */
+  countryExtensionVersion: '0.2' | '1.0';
+  /**
+   * @deprecated
+   * DEPRECATED. This section contains keys for declaring compliance with Italian legislation. Use supports where an appropriate identifier or alias exists.
+   */
+  conforme?: {
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software is compliant with the former Italian design guidelines.
+     */
+    lineeGuidaDesign?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software is compliant with the former Italian interoperability guidelines.
+     */
+    modelloInteroperabilita?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software is compliant with the Italian minimum ICT security measures for Public Administrations.
+     */
+    misureMinimeSicurezza?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software complies with the GDPR. Use supports with alias:gdpr instead.
+     */
+    gdpr?: boolean;
+  };
+  /**
+   * @deprecated
+   * DEPRECATED. Use supports with the corresponding platform alias instead.
+   */
+  piattaforme?: {
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software interfaces with SPID. Use supports with alias:spid instead.
+     */
+    spid?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software interfaces with the Italian electronic identity card. Use supports with alias:cie instead.
+     */
+    cie?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software interfaces with ANPR. Use supports with alias:anpr instead.
+     */
+    anpr?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software interfaces with pagoPA. Use supports with alias:pagopa instead.
+     */
+    pagopa?: boolean;
+    /**
+     * @deprecated
+     * DEPRECATED. If true, the software interfaces with the IO app. Use supports with alias:io instead.
+     */
+    io?: boolean;
+  };
+  /**
+   * @deprecated
+   * DEPRECATED. Use organisation to identify the publishing administration.
+   */
+  riuso?: {
+    /**
+     * @deprecated
+     * DEPRECATED. This key represents the administration code in the Italian Public Administration index. Use organisation/uri instead.
+     */
+    codiceIPA?: string;
+  };
 }

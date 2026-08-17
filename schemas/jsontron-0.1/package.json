@@ -1,13 +1,13 @@
 {
   "author": "Florian Imdahl <git@ffflorian.de>",
-  "description": "TypeScript definitions for prek.",
+  "description": "TypeScript definitions for jsontron-0.1.",
   "license": "GPL-3.0",
-  "name": "@schemastore/prek",
+  "name": "@schemastore/jsontron-0.1",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.10"
+  "version": "1.0.0"
 }
