@@ -17,6 +17,7 @@ export type ImageName =
   | 'Ubuntu1804'
   | 'Ubuntu2004'
   | 'Ubuntu2204'
+  | 'Ubuntu2404'
   | 'Previous Ubuntu'
   | 'Previous Ubuntu1604'
   | 'Previous Ubuntu1804'

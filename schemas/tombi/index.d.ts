@@ -44,6 +44,15 @@ export type ArrayBracketSpaceWidth = number;
 export type TheNumberOfSpacesAfterTheCommaInASingleLineArray = ArrayCommaSpaceWidth | null;
 export type ArrayCommaSpaceWidth = number;
 /**
+ * - `normalize`: Normalize comment text according to Tombi's formatting rules.
+ * - `preserve`: Preserve the original comment text while formatting its placement normally.
+ */
+export type TheStyleUsedToFormatComments = CommentStyle | null;
+/**
+ * The style used to format comments.
+ */
+export type CommentStyle = 'normalize' | 'preserve';
+/**
  * In accordance with [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339), you can use `T` or space character between date and time.
  *
  * - `T`: Use `T` between date and time like `2001-01-01T00:00:00`
@@ -199,7 +208,8 @@ export type KeyValueEqualsSignSpaceWidth = number;
 export type TheTypeOfLineEnding = LineEnding | null;
 export type LineEnding = ('lf' | 'crlf') | 'auto';
 /**
- * The formatter will try to keep lines within this width.
+ * The formatter will try to keep lines within this width when specified.
+ * If omitted, there is no line-width limit.
  */
 export type TheMaximumLineWidth = LineWidth | null;
 export type LineWidth = number;
@@ -705,6 +715,7 @@ export interface FormatterOptions {
 export interface FormatRules1 {
   'array-bracket-space-width'?: TheNumberOfSpacesInsideTheBracketsOfASingleLineArray;
   'array-comma-space-width'?: TheNumberOfSpacesAfterTheCommaInASingleLineArray;
+  'comment-style'?: TheStyleUsedToFormatComments;
   'date-time-delimiter'?: TheDelimiterBetweenDateAndTime;
   'group-blank-lines-limit'?: TheBlankLinesLimitBetweenGroups;
   'indent-style'?: TheStyleOfIndentation;
@@ -784,6 +795,7 @@ export interface TheSchemaForTheRootTable {
   path: TheSchemaPath;
   include: TheFileMatchPatternOfTheSchema;
   exclude?: TheFileMatchPatternToExcludeTheSchema;
+  strict?: EnableStrictSchemaValidation;
   format?: SchemaSpecificFormatOptions;
   lint?: SchemaSpecificLintOptions;
   overrides?: SchemaSpecificOverrides;
@@ -830,6 +842,7 @@ export interface TheSchemaForTheSubValue {
   path: TheSubSchemaPath;
   include: TheFileMatchPatternOfTheSubSchema;
   exclude?: TheFileMatchPatternToExcludeTheSubSchema;
+  strict?: EnableStrictSchemaValidation;
   format?: SchemaSpecificFormatOptions;
   lint?: SchemaSpecificLintOptions;
   overrides?: SchemaSpecificOverrides;

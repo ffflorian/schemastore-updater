@@ -36,6 +36,7 @@ export type BuiltinHooks =
   | 'check-vcs-permalinks'
   | 'check-xml'
   | 'check-yaml'
+  | 'deny-filename-pattern'
   | 'deny-pattern'
   | 'destroyed-symlinks'
   | 'detect-private-key'
@@ -46,6 +47,7 @@ export type BuiltinHooks =
   | 'mixed-line-ending'
   | 'no-commit-to-branch'
   | 'pretty-format-json'
+  | 'require-filename-pattern'
   | 'require-pattern'
   | 'requirements-txt-fixer'
   | 'trailing-whitespace';
@@ -99,6 +101,7 @@ export interface PrekToml {
     haskell?: string;
     julia?: string;
     lua?: string;
+    mise?: string;
     node?: string;
     perl?: string;
     php?: string;
@@ -225,6 +228,7 @@ export interface RemoteHook {
     | 'haskell'
     | 'julia'
     | 'lua'
+    | 'mise'
     | 'node'
     | 'perl'
     | 'php'
@@ -317,7 +321,7 @@ export interface RemoteHook {
    */
   pass_filenames?: boolean | number;
   /**
-   * A description of the hook. For metadata only.
+   * A description of the hook.
    */
   description?: string;
   /**
@@ -400,6 +404,7 @@ export interface LocalHook {
     | 'haskell'
     | 'julia'
     | 'lua'
+    | 'mise'
     | 'node'
     | 'perl'
     | 'php'
@@ -489,7 +494,7 @@ export interface LocalHook {
    */
   pass_filenames?: boolean | number;
   /**
-   * A description of the hook. For metadata only.
+   * A description of the hook.
    */
   description?: string;
   /**
@@ -635,7 +640,7 @@ export interface MetaHook {
    */
   pass_filenames?: boolean | number;
   /**
-   * A description of the hook. For metadata only.
+   * A description of the hook.
    */
   description?: string;
   /**
@@ -781,7 +786,7 @@ export interface BuiltinHook {
    */
   pass_filenames?: boolean | number;
   /**
-   * A description of the hook. For metadata only.
+   * A description of the hook.
    */
   description?: string;
   /**
