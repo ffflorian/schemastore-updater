@@ -556,7 +556,7 @@
     "appveyor.json": {
       "generatedFile": "schemas/appveyor/index.d.ts",
       "generatedSha256": "d903e824c31127a9d30a54fddd61fb80a83e4f5ce8824ab3b2eac87cc1982cc2",
-      "published": false,
+      "published": true,
       "sourceSha256": "ffecb2dade7f726893b29ad072b47f26c23f1cc2e03a9e79a2a017fc3b144ae4",
       "updatedAt": "2026-08-17T05:24:23.252Z"
     },
@@ -2768,7 +2768,7 @@
     "helmfile.json": {
       "generatedFile": "schemas/helmfile/index.d.ts",
       "generatedSha256": "9a2fdbfa1e9b1031620ae8819edb4e46e4f66fe56fb7248e1ddd2aab005391db",
-      "published": false,
+      "published": true,
       "sourceSha256": "088bcf5374770a3ea25afee62669f02b6a18e9306d273b901e382b6b82243662",
       "updatedAt": "2026-08-17T05:24:27.038Z"
     },
@@ -3020,7 +3020,7 @@
     "jsontron-0.1.json": {
       "generatedFile": "schemas/jsontron-0.1/index.d.ts",
       "generatedSha256": "ee0b2e105eaf094e8a12ed067a186bd9680980955367e4cb9cc12ec1656669f1",
-      "published": false,
+      "published": true,
       "sourceSha256": "9faf79191f3c9e1281ce1d634e229e02ccebee48a2bc05f24b30665f5be8d785",
       "updatedAt": "2026-08-17T05:24:37.449Z"
     },
@@ -3853,7 +3853,7 @@
     "okf-0.2.json": {
       "generatedFile": "schemas/okf-0.2/index.d.ts",
       "generatedSha256": "9d6ed1b204c732dbacdcc2a90db8bc1ce3d51cceec693247c4f4f417c88fb104",
-      "published": false,
+      "published": true,
       "sourceSha256": "69d27cf86163bef199692580601637c433c078d0b4a657ce9e457100f7e4f38d",
       "updatedAt": "2026-08-17T05:27:42.957Z"
     },
@@ -4420,7 +4420,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "a8e58917dc13ba9e04abc4ae7aba135b9d2535becb79f68aecd08e9fffbcee87",
-      "published": false,
+      "published": true,
       "sourceSha256": "045959abe096b5a800214fb08e80e24dbadb3cdfc0049283c990fb7f460b5998",
       "updatedAt": "2026-08-17T05:27:47.858Z"
     },
@@ -4574,7 +4574,7 @@
     "publiccode.json": {
       "generatedFile": "schemas/publiccode/index.d.ts",
       "generatedSha256": "8f72123d5d7f3d62fc6381a00ef2b7cf32bd0bf8023d368191e9af3ab5ce3f1d",
-      "published": false,
+      "published": true,
       "sourceSha256": "dbc983f9954ce1b37eddb8872cef009c1fdacc4eb374addb76c99d9fcfee9691",
       "updatedAt": "2026-08-17T05:27:48.579Z"
     },
@@ -4840,7 +4840,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "03de1ae51e40b9e915ff92cf79e0c4f86b50666869ff9b3911e2091a0b9624ff",
-      "published": false,
+      "published": true,
       "sourceSha256": "a6e5db1ff6de69732ad55ee5db75384db93c5e0df93c56356f14ee99e2361a9b",
       "updatedAt": "2026-08-17T05:27:59.255Z"
     },
@@ -5295,7 +5295,7 @@
     "specmatic.json": {
       "generatedFile": "schemas/specmatic/index.d.ts",
       "generatedSha256": "c57730dd7b4e775a7b833147c4929e31f1ec7af6f374ea01f10d0353e2fdfc5a",
-      "published": false,
+      "published": true,
       "sourceSha256": "fc036acdff895337abe261ed9d622c43c8751a44d4b7bb35932f7e75ead27ad5",
       "updatedAt": "2026-08-17T05:28:02.886Z"
     },
@@ -5484,7 +5484,7 @@
     "tombi.json": {
       "generatedFile": "schemas/tombi/index.d.ts",
       "generatedSha256": "113f8a60e6b88bb17014aa799984ea674c038f8902b8d61340700a2681d31ab3",
-      "published": false,
+      "published": true,
       "sourceSha256": "f23ac7cfa05a76432c741fbffbae23c417c06bb55ae9227440a01ea916072386",
       "updatedAt": "2026-08-17T05:28:04.465Z"
     },
@@ -5988,7 +5988,7 @@
     "youtrack-app.json": {
       "generatedFile": "schemas/youtrack-app/index.d.ts",
       "generatedSha256": "c66136b4ad6c4ad39ddb19131ea10420919fb91bb8cf9518a8fb4dfa33c81030",
-      "published": false,
+      "published": true,
       "sourceSha256": "389988a18496c3e66c0faad90cba87587682a39d1bee34d7cf0afb9a66c1d5f7",
       "updatedAt": "2026-08-17T05:28:11.254Z"
     },
