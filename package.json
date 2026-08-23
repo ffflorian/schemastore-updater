@@ -21,7 +21,7 @@
     "prettier": "3.9.6",
     "semantic-release": "25.0.9",
     "tsx": "4.23.12",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   },
   "engines": {
     "node": ">=22"
