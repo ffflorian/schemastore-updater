@@ -34,6 +34,10 @@ export interface PnpmWorkspaceSpecification {
    */
   cleanupUnusedCatalogs?: boolean;
   /**
+   * When set to true, pnpm will remove unused catalog entries during installation. `cleanupUnusedCatalogs` is the deprecated spelling of this setting and continues to work; when both are set, `catalogPrune` wins.
+   */
+  catalogPrune?: boolean;
+  /**
    * A list of package names that are allowed to be executed during installation.
    */
   onlyBuiltDependencies?: string[];
@@ -58,6 +62,15 @@ export interface PnpmWorkspaceSpecification {
       peerDependenciesMeta?: PeerDependencyMeta;
     };
   };
+  /**
+   * Per-workspace-project pnpm settings that replace project-specific .npmrc files.
+   */
+  packageConfigs?:
+    | {
+        [k: string]: PackageConfig | undefined;
+      }
+    | PackageConfig
+    | undefined[];
   peerDependencyRules?: {
     /**
      * pnpm will not print warnings about missing peer dependencies from this list.
@@ -214,6 +227,14 @@ export interface PnpmWorkspaceSpecification {
    * Defines what linker should be used for installing Node packages.
    */
   nodeLinker?: 'isolated' | 'hoisted' | 'pnp';
+  /**
+   * When true, pnpm injects the generated node_modules/.package-map.json into pnpm-managed Node.js script environments by adding Node's --experimental-package-map option to NODE_OPTIONS. see https://pnpm.io/settings/node-modules#nodeexperimentalpackagemap
+   */
+  nodeExperimentalPackageMap?: boolean;
+  /**
+   * Controls how node_modules/.package-map.json is generated. standard - only declared dependencies are available through the package map. loose - also maps packages that are reachable through the installed node_modules layout, which can allow undeclared hoisted dependencies to resolve.
+   */
+  nodePackageMapType?: 'standard' | 'loose';
   /**
    * When symlink is set to false, pnpm creates a virtual store directory without any symlinks. It is a useful setting together with nodeLinker=pnp.
    */
@@ -694,6 +715,10 @@ export interface PnpmWorkspaceSpecification {
    */
   minimumReleaseAgeStrict?: boolean;
   /**
+   * When set to true, pnpm add, pnpm update, and pnpm remove prune the entries of minimumReleaseAgeExclude in pnpm-workspace.yaml that the freshly written lockfile no longer resolves: a version that is gone is dropped (an entry is removed once none of its versions remain), and an entry for a package that is no longer in the lockfile is removed too. Name patterns (@myorg/*) are always kept.
+   */
+  minimumReleaseAgeExcludePrune?: boolean;
+  /**
    * Bypass staleness checks for cached data. Missing data will still be requested from the server.
    */
   preferOffline?: boolean;
@@ -817,4 +842,40 @@ export interface PeerDependencyMeta {
         [k: string]: unknown | undefined;
       }
     | undefined;
+}
+/**
+ * Per-package pnpm configuration applied to workspace projects matched by package name or selector.
+ */
+export interface PackageConfig {
+  /**
+   * When true, all dependencies are hoisted to node_modules/.pnpm/node_modules.
+   */
+  hoist?: boolean;
+  /**
+   * Tells pnpm which packages should be hoisted to node_modules/.pnpm/node_modules
+   */
+  hoistPattern?: string[];
+  /**
+   * Workspace project names or selectors matched by this package configuration.
+   */
+  match?: string[];
+  /**
+   * The directory in which dependencies will be installed.
+   */
+  modulesDir?: string;
+  /**
+   * Used to override any dependency in the dependency graph.
+   */
+  overrides?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Saved dependencies will be configured with an exact version rather than using pnpm's default semver range operator.
+   */
+  saveExact?: boolean;
+  /**
+   * Configure how versions of packages installed to a package.json file get prefixed.
+   */
+  savePrefix?: '^' | '~' | '' | '=';
+  [k: string]: unknown | undefined;
 }

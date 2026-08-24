@@ -35,6 +35,13 @@
       "sourceSha256": "fede23cbf3ae8d00d7476f0b1402cb2ebbc28e75888b2df4f76c92bc964105d8",
       "updatedAt": "2026-06-29T06:31:05.780Z"
     },
+    "abc-clinical-demand-forecast-5.1.0.json": {
+      "generatedFile": "schemas/abc-clinical-demand-forecast-5.1.0/index.d.ts",
+      "generatedSha256": "2352d6e3f864bcd473d582ffee5c7adeecfa168337e25cc0ddd1c5e247f62822",
+      "published": false,
+      "sourceSha256": "c2d6481a4a597d04ebb023ba695cd2e5d2c13649b3697aeec5d620b1d59c6cd8",
+      "updatedAt": "2026-08-24T05:27:37.034Z"
+    },
     "abc-inventory-module-data-1.0.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-1.0.0/index.d.ts",
       "generatedSha256": "03c7dce3ec9fb7683ada33a5daad4ff676536fcac59ad40371c886acfce5ac66",
@@ -83,6 +90,13 @@
       "published": true,
       "sourceSha256": "a8216539943f982a7c2747b3bd1ea7a1ac0f274e7c50712e48da5c076f4235f6",
       "updatedAt": "2026-06-29T06:31:06.115Z"
+    },
+    "abc-inventory-module-data-5.4.0.json": {
+      "generatedFile": "schemas/abc-inventory-module-data-5.4.0/index.d.ts",
+      "generatedSha256": "75dbcdf40cb355f7cc44ff9e56a250dc31a3c00447215d5b9c6be3b94c7b2f50",
+      "published": false,
+      "sourceSha256": "ba1e570cd5527d09a394d7e49146b2842e888c034c6ad3c5cebaa6d84c8411aa",
+      "updatedAt": "2026-08-24T05:27:37.352Z"
     },
     "abc-supply-plan-1.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-1.0.0/index.d.ts",
@@ -160,6 +174,13 @@
       "published": true,
       "sourceSha256": "702fad02cd411422f6b708f4df10076d917af5584cea20538795e214d663a11b",
       "updatedAt": "2026-06-29T06:31:06.389Z"
+    },
+    "abc-supply-plan-14.1.0.json": {
+      "generatedFile": "schemas/abc-supply-plan-14.1.0/index.d.ts",
+      "generatedSha256": "9228c353834672b7227f00d6d7353b505acf4e53d8ba07aafb5bae24ae6f2744",
+      "published": false,
+      "sourceSha256": "9502d3c4f0b943d9fa6805e20caf103cf17a54b40b651d2d040a6e0ec3fa5bba",
+      "updatedAt": "2026-08-24T05:27:37.609Z"
     },
     "abc-supply-plan-2.0.0.json": {
       "generatedFile": "schemas/abc-supply-plan-2.0.0/index.d.ts",
@@ -555,10 +576,10 @@
     },
     "appveyor.json": {
       "generatedFile": "schemas/appveyor/index.d.ts",
-      "generatedSha256": "d903e824c31127a9d30a54fddd61fb80a83e4f5ce8824ab3b2eac87cc1982cc2",
-      "published": true,
-      "sourceSha256": "ffecb2dade7f726893b29ad072b47f26c23f1cc2e03a9e79a2a017fc3b144ae4",
-      "updatedAt": "2026-08-17T05:24:23.252Z"
+      "generatedSha256": "e3330c307a0e8cd95c019414826c84fb5c7e4b9e1262e95aa0ecd56d14bcddda",
+      "published": false,
+      "sourceSha256": "f017144748ec40c5c0c363219e840d65fb9bc936d85f3824609623a6d0aa5129",
+      "updatedAt": "2026-08-24T05:27:39.428Z"
     },
     "architectfx.json": {
       "generatedFile": "schemas/architectfx/index.d.ts",
@@ -1780,10 +1801,10 @@
     },
     "drupal-services.json": {
       "generatedFile": "schemas/drupal-services/index.d.ts",
-      "generatedSha256": "eb0a389839f1bd54777be75de44e87770b3b2ce0b9c8cfcebddf2caa231aed50",
-      "published": true,
-      "sourceSha256": "b306e944e463cccfbe7a05b8302d6c5cbbef3115e9111d84cfac656d1dd9bc16",
-      "updatedAt": "2026-03-27T22:03:21.037Z"
+      "generatedSha256": "386a2561749658fddf4f15d555848c8ba2162e0c4718ec4679bfb6957783f4df",
+      "published": false,
+      "sourceSha256": "85f699018aab48990db33ca8af7d0e7b840a819615f4475e9cfe54961c2b70a1",
+      "updatedAt": "2026-08-24T05:27:41.335Z"
     },
     "drush.site.yml.json": {
       "generatedFile": "schemas/drush.site.yml/index.d.ts",
@@ -2627,10 +2648,10 @@
     },
     "github-workflow-template-properties.json": {
       "generatedFile": "schemas/github-workflow-template-properties/index.d.ts",
-      "generatedSha256": "d119bd4e31958836f4d23abe2addfc8bb96faa579daf67d4ca8faf5b1c8ba3bd",
-      "published": true,
-      "sourceSha256": "1a7f4a69f95c6e464c443a4258f26a0c9a18dcb825684f280c0598752338508b",
-      "updatedAt": "2026-03-27T22:03:33.115Z"
+      "generatedSha256": "04c5c957c30c7e1fec0b898b9ff91c92814c5ebf4648250e14bfe5d8244bfcf3",
+      "published": false,
+      "sourceSha256": "66b24ab7c4b2e7a89e548f1574dc4ea150d0bbb9cc08602895c25d7111a7db38",
+      "updatedAt": "2026-08-24T05:27:41.895Z"
     },
     "github-workflow.json": {
       "generatedFile": "schemas/github-workflow/index.d.ts",
@@ -4349,10 +4370,10 @@
     },
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
-      "generatedSha256": "3db6f9a700b33699cb3bbe2415790ab5dd1d1f30ce0eb575211e71274b6df8d3",
-      "published": true,
-      "sourceSha256": "0afdf4cc4589c1e6873b2ab7b6352607f7421c2bfb190b81a22e9ab303f1226d",
-      "updatedAt": "2026-08-10T05:32:29.993Z"
+      "generatedSha256": "b08f40fb440f4b5c353a67f73993448b82d4e0500d9f53fab1f61a018999e574",
+      "published": false,
+      "sourceSha256": "6a92d780883c0c39cc3dc00d7cf9ba899575dd8383692bb52c767c31221e324e",
+      "updatedAt": "2026-08-24T05:31:02.865Z"
     },
     "pocketmine-plugin.json": {
       "generatedFile": "schemas/pocketmine-plugin/index.d.ts",
@@ -4661,20 +4682,6 @@
       "published": true,
       "sourceSha256": "26a06a45a5c7936cbe5b115a80453ccfd941929a73585e35320e8acb35f2b9cb",
       "updatedAt": "2026-03-27T22:08:00.195Z"
-    },
-    "rancher-fleet-0.5.json": {
-      "generatedFile": "schemas/rancher-fleet-0.5/index.d.ts",
-      "generatedSha256": "000a0263bae26676ebe97e430d84b93d4171b4e63c4857ef6c3fd95b26d7eff1",
-      "published": true,
-      "sourceSha256": "1354ea03ef67c2be0b50de7d5892c06b71eb9f13577f0d86013ef93b5108d919",
-      "updatedAt": "2026-05-04T06:03:59.419Z"
-    },
-    "rancher-fleet-0.8.json": {
-      "generatedFile": "schemas/rancher-fleet-0.8/index.d.ts",
-      "generatedSha256": "9463c1c27978ecefbba79ec503e3afc4814618a8df181c054193afe97505fd64",
-      "published": true,
-      "sourceSha256": "54c7d15b9d3f1a3abb9be1d498b81e71df1441c93126e6fa825d7faf1e08380a",
-      "updatedAt": "2026-05-04T06:03:59.659Z"
     },
     "rc3-auth-0.0.3.json": {
       "generatedFile": "schemas/rc3-auth-0.0.3/index.d.ts",
@@ -5063,10 +5070,10 @@
     },
     "scarb.json": {
       "generatedFile": "schemas/scarb/index.d.ts",
-      "generatedSha256": "03cf2290305caf618e1b82068b015db82e2c00ddb74865df5a5bab96ce4eac6b",
-      "published": true,
-      "sourceSha256": "6e3ff1580099a433d1455b50cf8772a261df0598dfb708f142843f8beed6121f",
-      "updatedAt": "2026-04-06T05:44:31.127Z"
+      "generatedSha256": "28087154e1dd4d78a116ad525408c2a4e63b737789c270e97e59d956795aabb5",
+      "published": false,
+      "sourceSha256": "0926476ece88d1c3f6413cafe2510d648bb5616d6c3754f39ecc61fbcd8f71b6",
+      "updatedAt": "2026-08-24T05:31:16.852Z"
     },
     "schema-catalog.json": {
       "generatedFile": "schemas/schema-catalog/index.d.ts",
@@ -6007,6 +6014,6 @@
       "updatedAt": "2026-03-27T22:09:45.808Z"
     }
   },
-  "generatedAt": "2026-08-17T05:28:11.331Z",
+  "generatedAt": "2026-08-24T05:31:26.127Z",
   "version": 1
 }

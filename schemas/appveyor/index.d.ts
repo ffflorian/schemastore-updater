@@ -27,6 +27,7 @@ export type ImageName =
   | 'Visual Studio 2017'
   | 'Visual Studio 2019'
   | 'Visual Studio 2022'
+  | 'Visual Studio 2026'
   | 'Visual Studio 2017 Preview'
   | 'Visual Studio 2019 Preview'
   | 'Previous Visual Studio 2013'
