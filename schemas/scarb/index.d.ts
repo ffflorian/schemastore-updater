@@ -237,6 +237,13 @@ export interface TomlCairo {
    */
   'add-statements-functions-debug-info'?: boolean | null;
   /**
+   * Add additional information about struct and enums: their names and names of their fields
+   * and enum variants.
+   * Used by [cairo-debugger](https://github.com/software-mansion/cairo-debugger).
+   * This feature is unstable and is subject to change.
+   */
+  'add-types-debug-info'?: boolean | null;
+  /**
    * Do not exit with error on compiler warnings.
    */
   'allow-warnings'?: boolean | null;
