@@ -4,19 +4,19 @@ export interface HttpsJsonSchemastoreOrgNightwatchJson {
   /**
    * Location(s) where custom commands will be loaded from.
    */
-  custom_commands_path?: null | string | string[];
+  custom_commands_path?: string[] | string | null;
   /**
    * Location(s) where custom assertions will be loaded from.
    */
-  custom_assertions_path?: null | string | string[];
+  custom_assertions_path?: string[] | string | null;
   /**
    * Location(s) where page object files will be loaded from.
    */
-  page_objects_path?: null | string | unknown[];
+  page_objects_path?: unknown[] | string | null;
   /**
    * Location of an external globals module which will be loaded and made available to the test as a property globals on the main client instance.
    */
-  globals_path?: null | string;
+  globals_path?: string | null;
   /**
    * An object which will be made available on the main test api, throughout the test execution
    */
@@ -81,7 +81,7 @@ export interface HttpsJsonSchemastoreOrgNightwatchJson {
   /**
    * A string or array of folders (excluding subfolders) where the tests are located.
    */
-  src_folders?: null | string | string[];
+  src_folders?: string[] | string | null;
   /**
    * Used when running in parallel to determine if the output should be collected and displayed at the end.
    */
@@ -100,11 +100,11 @@ export interface HttpsJsonSchemastoreOrgNightwatchJson {
   selenium?: {
     start_process?: boolean;
     cli_args?:
+      | unknown[]
       | {
           [k: string]: unknown | undefined;
-        }
-      | unknown[];
-    server_path?: null | string;
+        };
+    server_path?: string | null;
     log_path?: string | boolean;
     port?: unknown;
     check_process_delay?: number;
@@ -140,7 +140,7 @@ export interface HttpsJsonSchemastoreOrgNightwatchJson {
         /**
          * Pass node arguments to individual workers (all of the process.execArgv using "auto" or selectively pass node arguments via ["--inspect"])
          */
-        node_options?: string | string[];
+        node_options?: string[] | string;
         [k: string]: unknown | undefined;
       };
   /**
@@ -153,11 +153,11 @@ export interface HttpsJsonSchemastoreOrgNightwatchJson {
   webdriver?: {
     start_process?: boolean;
     cli_args?:
+      | unknown[]
       | {
           [k: string]: unknown | undefined;
-        }
-      | unknown[];
-    server_path?: null | string;
+        };
+    server_path?: string | null;
     log_path?: string;
     use_legacy_jsonwire?: unknown;
     /**
@@ -232,11 +232,11 @@ export interface HttpsJsonSchemastoreOrgNightwatchJson {
   /**
    * An array of folders or file patterns to be skipped (relative to the main source folder).
    */
-  exclude?: null | string[];
+  exclude?: string[] | null;
   /**
    * Folder or file pattern to be used when loading the tests. Files that don't match this pattern will be ignored.
    */
-  filter?: null | string;
+  filter?: string | null;
   /**
    * Skip a group of tests (a subfolder); can be a list of comma-separated values (no space)
    */

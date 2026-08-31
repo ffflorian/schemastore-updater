@@ -62,6 +62,18 @@ export type HookType =
   | 'pre-push'
   | 'pre-rebase'
   | 'prepare-commit-msg';
+export type LanguageVersion =
+  | string
+  | {
+      /**
+       * A language-specific version request. Defaults to `default`.
+       */
+      request?: string;
+      /**
+       * Which toolchain sources to prefer or require. Defaults to `managed`.
+       */
+      preference?: 'only-managed' | 'managed' | 'system' | 'only-system';
+    };
 
 /**
  * The configuration file for prek, a git hook manager written in Rust.
@@ -88,31 +100,31 @@ export interface PrekToml {
    * A mapping from language to the default `language_version`.
    */
   default_language_version?: {
-    bun?: string;
-    conda?: string;
-    coursier?: string;
-    dart?: string;
-    deno?: string;
-    docker?: string;
-    docker_image?: string;
-    dotnet?: string;
-    fail?: string;
-    golang?: string;
-    haskell?: string;
-    julia?: string;
-    lua?: string;
-    mise?: string;
-    node?: string;
-    perl?: string;
-    php?: string;
-    pygrep?: string;
-    python?: string;
-    r?: string;
-    ruby?: string;
-    rust?: string;
-    script?: string;
-    swift?: string;
-    system?: string;
+    bun?: LanguageVersion;
+    conda?: LanguageVersion;
+    coursier?: LanguageVersion;
+    dart?: LanguageVersion;
+    deno?: LanguageVersion;
+    docker?: LanguageVersion;
+    docker_image?: LanguageVersion;
+    dotnet?: LanguageVersion;
+    fail?: LanguageVersion;
+    golang?: LanguageVersion;
+    haskell?: LanguageVersion;
+    julia?: LanguageVersion;
+    lua?: LanguageVersion;
+    mise?: LanguageVersion;
+    node?: LanguageVersion;
+    perl?: LanguageVersion;
+    php?: LanguageVersion;
+    pygrep?: LanguageVersion;
+    python?: LanguageVersion;
+    r?: LanguageVersion;
+    ruby?: LanguageVersion;
+    rust?: LanguageVersion;
+    script?: LanguageVersion;
+    swift?: LanguageVersion;
+    system?: LanguageVersion;
   };
   /**
    * A configuration-wide default for the stages property of hooks.
@@ -160,7 +172,6 @@ export interface PrekToml {
    * any parent projects that contain them.
    */
   orphan?: boolean;
-  auto_update?: UpdateOptions1;
   [k: string]: unknown | undefined;
 }
 /**
@@ -250,7 +261,7 @@ export interface RemoteHook {
   priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
-   * Group names cannot be empty or contain whitespace.
+   * Group names cannot be empty, contain whitespace, or start with `@`.
    */
   groups?: string[];
   /**
@@ -325,11 +336,22 @@ export interface RemoteHook {
    */
   description?: string;
   /**
-   * Run the hook on a specific version of the language.
+   * Select a language version and optionally configure the toolchain source preference.
    * Default is `default`.
    * See <https://pre-commit.com/#overriding-language-version>.
    */
-  language_version?: string;
+  language_version?:
+    | string
+    | {
+        /**
+         * A language-specific version request. Defaults to `default`.
+         */
+        request?: string;
+        /**
+         * Which toolchain sources to prefer or require. Defaults to `managed`.
+         */
+        preference?: 'only-managed' | 'managed' | 'system' | 'only-system';
+      };
   /**
    * Write the output of the hook to a file when the hook fails or verbose is enabled.
    */
@@ -423,7 +445,7 @@ export interface LocalHook {
   priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
-   * Group names cannot be empty or contain whitespace.
+   * Group names cannot be empty, contain whitespace, or start with `@`.
    */
   groups?: string[];
   /**
@@ -498,11 +520,22 @@ export interface LocalHook {
    */
   description?: string;
   /**
-   * Run the hook on a specific version of the language.
+   * Select a language version and optionally configure the toolchain source preference.
    * Default is `default`.
    * See <https://pre-commit.com/#overriding-language-version>.
    */
-  language_version?: string;
+  language_version?:
+    | string
+    | {
+        /**
+         * A language-specific version request. Defaults to `default`.
+         */
+        request?: string;
+        /**
+         * Which toolchain sources to prefer or require. Defaults to `managed`.
+         */
+        preference?: 'only-managed' | 'managed' | 'system' | 'only-system';
+      };
   /**
    * Write the output of the hook to a file when the hook fails or verbose is enabled.
    */
@@ -569,7 +602,7 @@ export interface MetaHook {
   priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
-   * Group names cannot be empty or contain whitespace.
+   * Group names cannot be empty, contain whitespace, or start with `@`.
    */
   groups?: string[];
   /**
@@ -644,11 +677,22 @@ export interface MetaHook {
    */
   description?: string;
   /**
-   * Run the hook on a specific version of the language.
+   * Select a language version and optionally configure the toolchain source preference.
    * Default is `default`.
    * See <https://pre-commit.com/#overriding-language-version>.
    */
-  language_version?: string;
+  language_version?:
+    | string
+    | {
+        /**
+         * A language-specific version request. Defaults to `default`.
+         */
+        request?: string;
+        /**
+         * Which toolchain sources to prefer or require. Defaults to `managed`.
+         */
+        preference?: 'only-managed' | 'managed' | 'system' | 'only-system';
+      };
   /**
    * Write the output of the hook to a file when the hook fails or verbose is enabled.
    */
@@ -715,7 +759,7 @@ export interface BuiltinHook {
   priority?: number | PriorityAlias;
   /**
    * User-defined hook groups used by `prek run --group` and `--no-group`.
-   * Group names cannot be empty or contain whitespace.
+   * Group names cannot be empty, contain whitespace, or start with `@`.
    */
   groups?: string[];
   /**
@@ -790,11 +834,22 @@ export interface BuiltinHook {
    */
   description?: string;
   /**
-   * Run the hook on a specific version of the language.
+   * Select a language version and optionally configure the toolchain source preference.
    * Default is `default`.
    * See <https://pre-commit.com/#overriding-language-version>.
    */
-  language_version?: string;
+  language_version?:
+    | string
+    | {
+        /**
+         * A language-specific version request. Defaults to `default`.
+         */
+        request?: string;
+        /**
+         * Which toolchain sources to prefer or require. Defaults to `managed`.
+         */
+        preference?: 'only-managed' | 'managed' | 'system' | 'only-system';
+      };
   /**
    * Write the output of the hook to a file when the hook fails or verbose is enabled.
    */
@@ -823,18 +878,5 @@ export interface BuiltinHook {
    * The minimum version of prek required to run this hook.
    */
   minimum_prek_version?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Compatibility alias for `update`. Prefer `update` in new configs.
- */
-export interface UpdateOptions1 {
-  cooldown_days?: number;
-  freeze?: boolean;
-  include_tags?: StringOrList;
-  exclude_tags?: StringOrList;
-  repos?: {
-    [k: string]: RepoTagFilterOptions | undefined;
-  };
   [k: string]: unknown | undefined;
 }

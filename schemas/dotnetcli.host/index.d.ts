@@ -8,11 +8,7 @@ export interface JSONSchemaForNETCLITemplateHostFiles {
   [k: string]: unknown | undefined;
 }
 export interface SymbolInfo {
-  isHidden?:
-    | boolean
-    | {
-        [k: string]: unknown | undefined;
-      };
+  isHidden?: boolean | string;
   longName?: string;
   shortName?: string;
   [k: string]: unknown | undefined;

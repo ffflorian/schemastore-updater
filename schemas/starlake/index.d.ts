@@ -1,9 +1,9 @@
 /* eslint-disable */
 
 /**
- * JSON Schema for Starlake Data Pipeline
+ * JSON Schema for Starflow Data Pipeline
  */
-export type StarlakeDataPipeline = StarlakeV1Base & {
+export type StarflowDataPipeline = StarlakeV1Base & {
   version: 1;
   [k: string]: unknown | undefined;
 };
@@ -302,7 +302,7 @@ export interface JDBCTableV1 {
    */
   fullExport?: boolean;
   /**
-   * Optional SQL WHERE clause to filter data. This is used to exclude part of the data. This is not related to incremental extraction which is handled automatically by Starlake. Scope: Data extraction.
+   * Optional SQL WHERE clause to filter data. This is used to exclude part of the data. This is not related to incremental extraction which is handled automatically by Starflow. Scope: Data extraction.
    */
   filter?: string | boolean | number | null;
   /**
@@ -557,6 +557,10 @@ export interface RestAPIV1 {
   auth?: RestAPIAuthV1;
   headers?: MapString5;
   rateLimit?: RestAPIRateLimitV1;
+  retry?: RestAPIRetryV1;
+  timeout?: RestAPITimeoutV1;
+  proxy?: RestAPIProxyV1;
+  tls?: RestAPITlsV1;
   defaults?: RestAPIDefaultsV1;
   /**
    * List of API endpoints to extract data from.
@@ -626,6 +630,86 @@ export interface RestAPIRateLimitV1 {
    * Maximum number of requests per second. Defaults to 10.
    */
   requestsPerSecond?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Retry configuration with exponential backoff.
+ */
+export interface RestAPIRetryV1 {
+  /**
+   * Maximum number of retry attempts. Defaults to 3.
+   */
+  maxRetries?: number;
+  /**
+   * Initial backoff in milliseconds before first retry. Doubles on each subsequent retry. Defaults to 1000.
+   */
+  initialBackoffMs?: number;
+  /**
+   * Maximum backoff in milliseconds. Defaults to 30000.
+   */
+  maxBackoffMs?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Connection and read timeout configuration.
+ */
+export interface RestAPITimeoutV1 {
+  /**
+   * Connection timeout in milliseconds. Defaults to 30000.
+   */
+  connectTimeoutMs?: number;
+  /**
+   * Read timeout in milliseconds. Defaults to 60000.
+   */
+  readTimeoutMs?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * HTTP proxy configuration for corporate environments.
+ */
+export interface RestAPIProxyV1 {
+  /**
+   * Proxy hostname.
+   */
+  host: string | boolean | number | null;
+  /**
+   * Proxy port.
+   */
+  port: number;
+  /**
+   * Proxy authentication username (optional). Supports {{ENV_VAR}}.
+   */
+  username?: string | boolean | number | null;
+  /**
+   * Proxy authentication password (optional). Supports {{ENV_VAR}}.
+   */
+  password?: string | boolean | number | null;
+  [k: string]: unknown | undefined;
+}
+/**
+ * TLS/SSL configuration for mTLS or custom CA certificates.
+ */
+export interface RestAPITlsV1 {
+  /**
+   * Path to the trust store file (JKS format). Supports {{ENV_VAR}}.
+   */
+  trustStorePath?: string | boolean | number | null;
+  /**
+   * Trust store password. Supports {{ENV_VAR}}.
+   */
+  trustStorePassword?: string | boolean | number | null;
+  /**
+   * Path to the key store file for client certificates (JKS format). Supports {{ENV_VAR}}.
+   */
+  keyStorePath?: string | boolean | number | null;
+  /**
+   * Key store password. Supports {{ENV_VAR}}.
+   */
+  keyStorePassword?: string | boolean | number | null;
+  /**
+   * Trust all certificates (development only). Defaults to false.
+   */
+  insecure?: boolean;
   [k: string]: unknown | undefined;
 }
 /**
@@ -726,6 +810,10 @@ export interface RestAPIEndpointV1 {
    * List of regex patterns to exclude fields from extraction.
    */
   excludeFields?: ConvertibleToString | undefined[];
+  /**
+   * JSONPath to check for error indicators in 200 responses (e.g. $.error). If the value at this path is non-null, the response is treated as an error.
+   */
+  errorPath?: string | boolean | number | number | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -2137,7 +2225,6 @@ export interface AppConfigV1 {
    * Directory containing python libraries to use instead of pip install
    */
   pythonLibsDir?: string;
-  gizmosql?: GizmoV1;
   [k: string]: unknown | undefined;
 }
 export interface MetricsV1 {
@@ -2348,6 +2435,10 @@ export interface ConnectionV1 {
    */
   separator?: string | boolean | number | null;
   options?: MapString14;
+  /**
+   * Source SQL dialect of the transform statements executed over this connection. When set, SELECT statements are transpiled from this dialect to the connection engine dialect at run time (e.g. run BigQuery-dialect SQL locally on DuckDB). ANY stands for generic SQL
+   */
+  _transpileDialect?: null | 'ANY' | 'AMAZON_REDSHIFT' | 'DATABRICKS' | 'DUCK_DB' | 'GOOGLE_BIG_QUERY' | 'SNOWFLAKE';
   [k: string]: unknown | undefined;
 }
 /**
@@ -2424,7 +2515,7 @@ export interface TableDdlV1 {
    */
   pingSql?: string | boolean | number | null;
   /**
-   * Override the default select defined by Starlake
+   * Override the default select defined by Starflow
    */
   selectSql?: string | boolean | number | null;
   [k: string]: unknown | undefined;
@@ -2638,7 +2729,7 @@ export interface DagRefV1 {
   [k: string]: unknown | undefined;
 }
 /**
- * HTTP server configuration for the Starlake REST API
+ * HTTP server configuration for the Starflow REST API
  */
 export interface HttpV1 {
   /**
@@ -2649,19 +2740,5 @@ export interface HttpV1 {
    * Port number for the HTTP server. Default is 8080
    */
   port?: number;
-  [k: string]: unknown | undefined;
-}
-/**
- * Gizmo server configuration
- */
-export interface GizmoV1 {
-  /**
-   * Gizmo server URL. Default is 'http://localhost:10900'
-   */
-  url?: string;
-  /**
-   * API key for authenticating with the Gizmo server
-   */
-  apiKey?: string;
   [k: string]: unknown | undefined;
 }

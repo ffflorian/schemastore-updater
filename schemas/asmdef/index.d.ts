@@ -3,15 +3,41 @@
 /**
  * Defines an assembly in the Unity compilation pipeline
  */
-export type UnityAssemblyDefinition = {
-  includePlatforms?: {
-    [k: string]: unknown | undefined;
-  };
-  excludePlatforms?: {
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-} & {
+export type UnityAssemblyDefinition = (
+  | {
+      /**
+       * @minItems 1
+       */
+      includePlatforms?: [unknown, ...unknown[]];
+      /**
+       * @maxItems 0
+       */
+      excludePlatforms?: [];
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * @maxItems 0
+       */
+      includePlatforms?: [];
+      /**
+       * @minItems 1
+       */
+      excludePlatforms?: [unknown, ...unknown[]];
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * @maxItems 0
+       */
+      includePlatforms?: [];
+      /**
+       * @maxItems 0
+       */
+      excludePlatforms?: [];
+      [k: string]: unknown | undefined;
+    }
+) & {
   /**
    * The name of the assembly being defined
    */

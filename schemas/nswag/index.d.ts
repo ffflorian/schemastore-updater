@@ -1,32 +1,5 @@
 /* eslint-disable */
 
-export type SwaggerToTypeScriptClient = ClientGenerator & {
-  template?: 'JQueryCallbacks' | 'JQueryPromises' | 'AngularJS' | 'Angular' | 'Fetch' | 'Aurelia';
-  promiseType?: 'Promise' | 'QPromise';
-  wrapDtoExceptions?: boolean;
-  clientBaseClass?: string;
-  configurationClass?: string;
-  useTransformOptionsMethod?: boolean;
-  useTransformResultMethod?: boolean;
-  baseUrlTokenName?: string;
-  protectedMethods?: string[];
-  importRequiredTypes?: boolean;
-  useGetBaseUrlMethod?: boolean;
-  queryNullValue?: string;
-  httpClass?: 'Http' | 'HttpClient';
-  rxJsVersion?: number;
-  useSingletonProvider?: boolean;
-  injectionTokenType?: 'OpaqueToken' | 'InjectionToken';
-  markOptionalProperties?: boolean;
-  typeScriptVersion?: number;
-  moduleName?: string;
-  nullValue?: string;
-  typeStyle?: 'Interface' | 'Class' | 'KnockoutClass';
-  [k: string]: unknown | undefined;
-};
-export type SwaggerToCSharpClient = ClientGenerator & {
-  [k: string]: unknown | undefined;
-};
 export type SwaggerToCSharpController = unknown;
 
 export interface HttpsJsonSchemastoreOrgNswagJson {
@@ -62,31 +35,30 @@ export interface CodeGenerators {
   swaggerToCSharpController?: SwaggerToCSharpController;
   [k: string]: unknown | undefined;
 }
-export interface ClientGenerator {
-  namespace?: string;
-  dateTimeType?: string;
+export interface SwaggerToTypeScriptClient {
+  template?: 'JQueryCallbacks' | 'JQueryPromises' | 'AngularJS' | 'Angular' | 'Fetch' | 'Aurelia';
+  promiseType?: 'Promise' | 'QPromise';
   wrapDtoExceptions?: boolean;
-  operationGenerationMode?:
-    | 'MultipleClientsFromOperationId'
-    | 'MultipleClientsFromPathSegments'
-    | 'SingleClientFromOperationId'
-    | 'SingleClientFromPathSegments';
-  generateCloneMethod?: boolean;
-  generateDefaultValues?: boolean;
-  excludedTypeNames?: string[];
-  handleReferences?: boolean;
-  generateConstructorInterface?: boolean;
-  importRequiredTypes?: string;
+  clientBaseClass?: string;
+  configurationClass?: string;
+  useTransformOptionsMethod?: boolean;
+  useTransformResultMethod?: boolean;
   baseUrlTokenName?: string;
-  output?: unknown;
-  className?: string;
-  generateDtoTypes?: boolean;
-  generateClientInterfaces?: boolean;
-  generateClientClasses?: boolean;
-  generateOptionalParameters?: boolean;
-  wrapResponses?: boolean;
-  wrapResponseMethods?: string[];
-  generateResponseClasses?: boolean;
-  responseClass?: string;
+  protectedMethods?: string[];
+  importRequiredTypes?: boolean;
+  useGetBaseUrlMethod?: boolean;
+  queryNullValue?: string;
+  httpClass?: 'Http' | 'HttpClient';
+  rxJsVersion?: number;
+  useSingletonProvider?: boolean;
+  injectionTokenType?: 'OpaqueToken' | 'InjectionToken';
+  markOptionalProperties?: boolean;
+  typeScriptVersion?: number;
+  moduleName?: string;
+  nullValue?: string;
+  typeStyle?: 'Interface' | 'Class' | 'KnockoutClass';
+  [k: string]: unknown | undefined;
+}
+export interface SwaggerToCSharpClient {
   [k: string]: unknown | undefined;
 }

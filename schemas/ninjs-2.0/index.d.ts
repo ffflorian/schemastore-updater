@@ -311,9 +311,23 @@ export type Genres = {
 /**
  * Expression of rights to be applied to content. nar:rightsInfo
  */
-export type RightsInformation = {
-  [k: string]: unknown | undefined;
-};
+export type RightsInformation =
+  | {
+      linkedrights: LinkedRights;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      encodedrights: EncodedRights;
+      [k: string]: unknown | undefined;
+    };
+/**
+ * A link from the current Item to Web resource with rights related information. nar:link
+ */
+export type LinkedRights = string;
+/**
+ * Contains a rights expression as defined by a Rights Expression Language. nar:rightsExpressionXML or nar:rightsExpressionData
+ */
+export type EncodedRights = string;
 
 /**
  * A news item as JSON object -- copyright 2021 IPTC - International Press Telecommunications Council - www.iptc.org - This document is published under the Creative Commons Attribution 4.0 license, see  http://creativecommons.org/licenses/by/4.0/

@@ -1,15 +1,37 @@
 /* eslint-disable */
 
+export type PluginArray = (
+  | (
+      | string
+      | {
+          /**
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` ".*".
+           */
+          [k: string]: boolean;
+        }
+    )
+  | (
+      | (
+          | string
+          | {
+              /**
+               * This interface was referenced by `undefined`'s JSON-Schema definition
+               * via the `patternProperty` ".*".
+               */
+              [k: string]: boolean;
+            }
+        )
+      | string[]
+    )[]
+)[];
+
 export interface JSONSchemaForRehyperc {
   /**
    * The plugins field, related to plugins in options, has either an array of plugin names (or paths) or plugin–options tuples, or an object mapping plugins to their options.
    * Plugin options can be false, which specifies that a plugin should not be used. In all other cases, they are treated as an object, and merged by the cascade. Thus, it's possible to specify part of the options from one configuration file, and overwrite or extend it from another file.
    */
-  plugins?:
-    | (string | [] | [string, ...unknown[]])[]
-    | {
-        [k: string]: unknown | undefined;
-      };
+  plugins?: PluginArray | PluginObject;
   settings?: {
     /**
      * Specify whether to parse a fragment, instead of a complete document. In document mode, unopened html, head, and body elements are opened in just the right places.
@@ -129,4 +151,7 @@ export interface JSONSchemaForRehyperc {
      */
     allowDangerousHtml?: boolean;
   };
+}
+export interface PluginObject {
+  [k: string]: unknown | undefined;
 }

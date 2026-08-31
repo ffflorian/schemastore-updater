@@ -53,9 +53,7 @@ export interface BaseMinify {
   [k: string]: unknown | undefined;
 }
 export interface LessOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   options?: Less;
   minify?: CssMinify;
   [k: string]: unknown | undefined;
@@ -126,9 +124,7 @@ export interface CssMinify {
   [k: string]: unknown | undefined;
 }
 export interface SassOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   options?: Sass;
   minify?: CssMinify;
   [k: string]: unknown | undefined;
@@ -176,9 +172,7 @@ export interface Sass {
   [k: string]: unknown | undefined;
 }
 export interface StylusOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   options?: Stylus;
   minify?: CssMinify;
   [k: string]: unknown | undefined;
@@ -194,9 +188,7 @@ export interface Stylus {
   [k: string]: unknown | undefined;
 }
 export interface CoffeeScriptOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   options?: CoffeeScript;
   minify?: JavascriptMinify;
   [k: string]: unknown | undefined;
@@ -239,24 +231,18 @@ export interface JavascriptMinify {
   [k: string]: unknown | undefined;
 }
 export interface IcedCoffeeScriptOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   options?: CoffeeScript;
   minify?: JavascriptMinify;
   [k: string]: unknown | undefined;
 }
 export interface BabelOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   minify?: JavascriptMinify;
   [k: string]: unknown | undefined;
 }
 export interface HandlebarsOptions {
-  inputFile?: {
-    [k: string]: unknown | undefined;
-  };
+  inputFile?: string;
   options?: Handlebars;
   minify?: JavascriptMinify;
   [k: string]: unknown | undefined;

@@ -1,5 +1,35 @@
 /* eslint-disable */
 
+export type BindingBase = {
+  name: string;
+  type: string;
+  direction: 'in' | 'out' | 'inout';
+  /**
+   * The data type hint for the binding parameter (string, binary, or stream).
+   */
+  dataType?: 'string' | 'binary' | 'stream';
+  [k: string]: unknown | undefined;
+} & (
+  | DynamicBinding
+  | (
+      | ServiceBusBinding
+      | BlobBinding
+      | ManualTriggerBinding
+      | EventHubBinding
+      | TimerTriggerBinding
+      | QueueBinding
+      | HttpBinding
+      | MobileBinding
+      | DocumentDBBinding
+      | TableBinding
+      | NotificationHubBinding
+      | TwilioSmsBinding
+      | SendGridBinding
+      | SqlBinding
+      | KustoBinding
+      | MySqlBinding
+    )
+);
 export type ServiceBusBinding = {
   /**
    * The service bus queue to monitor (if using a queue)
@@ -123,7 +153,7 @@ export type HttpBinding =
        * The function HTTP authorization level.
        */
       authLevel?: 'anonymous' | 'function' | 'admin';
-      methods?: [] | ['get' | 'post' | 'delete' | 'head' | 'patch' | 'put' | 'options' | 'trace'];
+      methods?: ('get' | 'post' | 'delete' | 'head' | 'patch' | 'put' | 'options' | 'trace')[];
       [k: string]: unknown | undefined;
     }
   | {
@@ -414,38 +444,7 @@ export interface JSONSchemaForAzureFunctionsFunctionJsonFiles {
   /**
    * A list of function bindings.
    */
-  bindings?: (BindingBase &
-    (
-      | DynamicBinding
-      | (
-          | ServiceBusBinding
-          | BlobBinding
-          | ManualTriggerBinding
-          | EventHubBinding
-          | TimerTriggerBinding
-          | QueueBinding
-          | HttpBinding
-          | MobileBinding
-          | DocumentDBBinding
-          | TableBinding
-          | NotificationHubBinding
-          | TwilioSmsBinding
-          | SendGridBinding
-          | SqlBinding
-          | KustoBinding
-          | MySqlBinding
-        )
-    ))[];
-  [k: string]: unknown | undefined;
-}
-export interface BindingBase {
-  name: string;
-  type: string;
-  direction: 'in' | 'out' | 'inout';
-  /**
-   * The data type hint for the binding parameter (string, binary, or stream).
-   */
-  dataType?: 'string' | 'binary' | 'stream';
+  bindings?: BindingBase[];
   [k: string]: unknown | undefined;
 }
 export interface DynamicBinding {

@@ -44,8 +44,7 @@ export type LogLevel = 'Verbose' | 'Debug' | 'Information' | 'Warning' | 'Error'
 /**
  * Minimum LogLevel Threshold. (Support dynamic reload if the underlying IConfigurationProvider supports it)
  */
-export type MinimumLogLevelThreshold = (LogLevel | DetailedLogLevel) &
-  (((LogLevel | DetailedLogLevel) & string) | (LogLevel | DetailedLogLevel));
+export type MinimumLogLevelThreshold = LogLevel | DetailedLogLevel;
 /**
  * A Serilog Log Level or a reference to a Log Level Switch name on `LevelSwitches` configuration.
  */
@@ -57,22 +56,36 @@ export type LevelSwitchesName = string;
 /**
  * This section defines Enriches that will be applied to log events.
  */
-export type LogEventsEnriches = MethodCallReference;
-/**
- * @minItems 1
- */
-export type MethodCallReference =
-  | [MethodCallReferenceItem, ...MethodCallReferenceItem[]]
+export type LogEventsEnriches =
+  | [
+      (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference),
+      ...((
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference))[]
+    ]
   | string
   | {
-      [k: string]: MethodCallReferenceItem;
+      [k: string]: (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference);
     };
-export type MethodCallReferenceItem = (MethodName | ComplexMethodCallReference) &
-  (
-    | ((MethodName | ComplexMethodCallReference) & string)
-    | (MethodName | ComplexMethodCallReference)
-    | (null & (MethodName | ComplexMethodCallReference))
-  );
 /**
  * A name referring to a C# Class method
  */
@@ -80,54 +93,205 @@ export type MethodName = string;
 /**
  * This section defines Destructure.
  */
-export type LogEventsDestructure = MethodCallReference;
+export type LogEventsDestructure =
+  | [
+      (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference),
+      ...((
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference))[]
+    ]
+  | string
+  | {
+      [k: string]: (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference);
+    };
 /**
  * This section defines filters that will be applied to log events.
  */
-export type LogEventsFilters = MethodCallReference;
+export type LogEventsFilters =
+  | [
+      (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference),
+      ...((
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference))[]
+    ]
+  | string
+  | {
+      [k: string]: (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference);
+    };
 /**
  * This section configures the sinks that log events will be emitted to.
  */
-export type ConfigurationForLogDestination = MethodCallReference;
+export type ConfigurationForLogDestination =
+  | [
+      (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference),
+      ...((
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference))[]
+    ]
+  | string
+  | {
+      [k: string]: (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference);
+    };
 /**
  * This section configures sinks for auditing, instead of regular (safe) logging. Obs: When auditing is used, exceptions from sinks and any intermediate filters propagate back to the caller.
  */
-export type ConfigurationForLogDestinationForAuditing = MethodCallReference;
+export type ConfigurationForLogDestinationForAuditing =
+  | [
+      (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference),
+      ...((
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference))[]
+    ]
+  | string
+  | {
+      [k: string]: (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | null
+      ) &
+        (MethodName | ComplexMethodCallReference);
+    };
 /**
  * This section defines Enriches that will be applied to log events.
  *
  * This interface was referenced by `SerilogAppSettings`'s JSON-Schema definition
  * via the `patternProperty` "^Enrich:((?<EnvironmentVariableName>[a-zA-Z_]\w*)|(?<ArrayIndex>\d*))$".
  */
-export type LogEventsEnriches1 = MethodCallReferenceItem;
+export type LogEventsEnriches1 = (
+  | string
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | null
+) &
+  (MethodName | ComplexMethodCallReference);
 /**
  * This section defines Destructure.
  *
  * This interface was referenced by `SerilogAppSettings`'s JSON-Schema definition
  * via the `patternProperty` "^Destructure:((?<EnvironmentVariableName>[a-zA-Z_]\w*)|(?<ArrayIndex>\d*))$".
  */
-export type LogEventsDestructure1 = MethodCallReferenceItem;
+export type LogEventsDestructure1 = (
+  | string
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | null
+) &
+  (MethodName | ComplexMethodCallReference);
 /**
  * This section defines filters that will be applied to log events.
  *
  * This interface was referenced by `SerilogAppSettings`'s JSON-Schema definition
  * via the `patternProperty` "^Filter:((?<EnvironmentVariableName>[a-zA-Z_]\w*)|(?<ArrayIndex>\d*))$".
  */
-export type LogEventsFilters1 = MethodCallReferenceItem;
+export type LogEventsFilters1 = (
+  | string
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | null
+) &
+  (MethodName | ComplexMethodCallReference);
 /**
  * This section configures the sinks that log events will be emitted to.
  *
  * This interface was referenced by `SerilogAppSettings`'s JSON-Schema definition
  * via the `patternProperty` "^WriteTo:((?<EnvironmentVariableName>[a-zA-Z_]\w*)|(?<ArrayIndex>\d*))$".
  */
-export type ConfigurationForLogDestination1 = MethodCallReferenceItem;
+export type ConfigurationForLogDestination1 = (
+  | string
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | null
+) &
+  (MethodName | ComplexMethodCallReference);
 /**
  * This section configures sinks for auditing, instead of regular (safe) logging. Obs: When auditing is used, exceptions from sinks and any intermediate filters propagate back to the caller.
  *
  * This interface was referenced by `SerilogAppSettings`'s JSON-Schema definition
  * via the `patternProperty` "^AuditTo:((?<EnvironmentVariableName>[a-zA-Z_]\w*)|(?<ArrayIndex>\d*))$".
  */
-export type ConfigurationForLogDestinationForAuditing1 = MethodCallReferenceItem;
+export type ConfigurationForLogDestinationForAuditing1 = (
+  | string
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | null
+) &
+  (MethodName | ComplexMethodCallReference);
 
 export interface JSONSchemaASPNETCoreSAppsettingsJsonFile {
   Kestrel?: Kestrel;

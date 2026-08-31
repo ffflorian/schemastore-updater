@@ -1,34 +1,10 @@
 /* eslint-disable */
 
-export type Profile = Content & Profile1;
-export type Profile1 =
-  | {
-      /**
-       * An absolute path to the to the executable.
-       */
-      executablePath?: string;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * The name of the command to call.
-       */
-      commandName?: string;
-      [k: string]: unknown | undefined;
-    };
-
-export interface JSONSchemaForTheASPNETDebugSettingsJsonFiles {
-  /**
-   * A list of debug profiles
-   */
-  profiles?: Profile[];
-  [k: string]: unknown | undefined;
-}
-export interface Content {
+export type Profile = Profile1 & {
   /**
    * The name of the debug profile
    */
-  name?: string;
+  name: string;
   /**
    * The arguments to pass to the command.
    */
@@ -55,5 +31,28 @@ export interface Content {
    * Sets the version of the SDK.
    */
   sdkVersion?: string;
+  [k: string]: unknown | undefined;
+};
+export type Profile1 =
+  | {
+      /**
+       * An absolute path to the to the executable.
+       */
+      executablePath?: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * The name of the command to call.
+       */
+      commandName?: string;
+      [k: string]: unknown | undefined;
+    };
+
+export interface JSONSchemaForTheASPNETDebugSettingsJsonFiles {
+  /**
+   * A list of debug profiles
+   */
+  profiles?: Profile[];
   [k: string]: unknown | undefined;
 }

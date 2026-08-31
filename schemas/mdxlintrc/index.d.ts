@@ -1,15 +1,37 @@
 /* eslint-disable */
 
+export type PluginArray = (
+  | (
+      | string
+      | {
+          /**
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` ".*".
+           */
+          [k: string]: boolean;
+        }
+    )
+  | (
+      | (
+          | string
+          | {
+              /**
+               * This interface was referenced by `undefined`'s JSON-Schema definition
+               * via the `patternProperty` ".*".
+               */
+              [k: string]: boolean;
+            }
+        )
+      | string[]
+    )[]
+)[];
+
 export interface JSONSchemaForMdxlintrc {
   /**
    * The plugins field, related to plugins in options, has either an array of plugin names (or paths) or plugin–options tuples, or an object mapping plugins to their options.
    * Plugin options can be false, which specifies that a plugin should not be used. In all other cases, they are treated as an object, and merged by the cascade. Thus, it's possible to specify part of the options from one configuration file, and overwrite or extend it from another file.
    */
-  plugins?:
-    | (string | [] | [string, ...unknown[]])[]
-    | {
-        [k: string]: unknown | undefined;
-      };
+  plugins?: PluginArray | PluginObject;
   settings?: {
     /**
      * Marker to use to for bullets of items in unordered lists.
@@ -84,4 +106,7 @@ export interface JSONSchemaForMdxlintrc {
      */
     tightSelfClosing?: boolean;
   };
+}
+export interface PluginObject {
+  [k: string]: unknown | undefined;
 }
