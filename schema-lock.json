@@ -38,7 +38,7 @@
     "abc-clinical-demand-forecast-5.1.0.json": {
       "generatedFile": "schemas/abc-clinical-demand-forecast-5.1.0/index.d.ts",
       "generatedSha256": "2352d6e3f864bcd473d582ffee5c7adeecfa168337e25cc0ddd1c5e247f62822",
-      "published": false,
+      "published": true,
       "sourceSha256": "c2d6481a4a597d04ebb023ba695cd2e5d2c13649b3697aeec5d620b1d59c6cd8",
       "updatedAt": "2026-08-24T05:27:37.034Z"
     },
@@ -94,7 +94,7 @@
     "abc-inventory-module-data-5.4.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.4.0/index.d.ts",
       "generatedSha256": "75dbcdf40cb355f7cc44ff9e56a250dc31a3c00447215d5b9c6be3b94c7b2f50",
-      "published": false,
+      "published": true,
       "sourceSha256": "ba1e570cd5527d09a394d7e49146b2842e888c034c6ad3c5cebaa6d84c8411aa",
       "updatedAt": "2026-08-24T05:27:37.352Z"
     },
@@ -178,7 +178,7 @@
     "abc-supply-plan-14.1.0.json": {
       "generatedFile": "schemas/abc-supply-plan-14.1.0/index.d.ts",
       "generatedSha256": "9228c353834672b7227f00d6d7353b505acf4e53d8ba07aafb5bae24ae6f2744",
-      "published": false,
+      "published": true,
       "sourceSha256": "9502d3c4f0b943d9fa6805e20caf103cf17a54b40b651d2d040a6e0ec3fa5bba",
       "updatedAt": "2026-08-24T05:27:37.609Z"
     },
@@ -577,7 +577,7 @@
     "appveyor.json": {
       "generatedFile": "schemas/appveyor/index.d.ts",
       "generatedSha256": "e3330c307a0e8cd95c019414826c84fb5c7e4b9e1262e95aa0ecd56d14bcddda",
-      "published": false,
+      "published": true,
       "sourceSha256": "f017144748ec40c5c0c363219e840d65fb9bc936d85f3824609623a6d0aa5129",
       "updatedAt": "2026-08-24T05:27:39.428Z"
     },
@@ -1256,7 +1256,7 @@
     "clasp.json": {
       "generatedFile": "schemas/clasp/index.d.ts",
       "generatedSha256": "d69c3f81b8bff4b092ca1c7f090929ed4bae675ac21cf7554cdaf46924718a3a",
-      "published": false,
+      "published": true,
       "sourceSha256": "304160e5b55b14984382436442d22dd20c053fb8972a3bceb599c5b6d859f51d",
       "updatedAt": "2026-08-31T11:11:44.075Z"
     },
@@ -1816,7 +1816,7 @@
     "drupal-services.json": {
       "generatedFile": "schemas/drupal-services/index.d.ts",
       "generatedSha256": "386a2561749658fddf4f15d555848c8ba2162e0c4718ec4679bfb6957783f4df",
-      "published": false,
+      "published": true,
       "sourceSha256": "85f699018aab48990db33ca8af7d0e7b840a819615f4475e9cfe54961c2b70a1",
       "updatedAt": "2026-08-24T05:27:41.335Z"
     },
@@ -2663,7 +2663,7 @@
     "github-workflow-template-properties.json": {
       "generatedFile": "schemas/github-workflow-template-properties/index.d.ts",
       "generatedSha256": "04c5c957c30c7e1fec0b898b9ff91c92814c5ebf4648250e14bfe5d8244bfcf3",
-      "published": false,
+      "published": true,
       "sourceSha256": "66b24ab7c4b2e7a89e548f1574dc4ea150d0bbb9cc08602895c25d7111a7db38",
       "updatedAt": "2026-08-24T05:27:41.895Z"
     },
@@ -4392,7 +4392,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "b08f40fb440f4b5c353a67f73993448b82d4e0500d9f53fab1f61a018999e574",
-      "published": false,
+      "published": true,
       "sourceSha256": "6a92d780883c0c39cc3dc00d7cf9ba899575dd8383692bb52c767c31221e324e",
       "updatedAt": "2026-08-24T05:31:02.865Z"
     },
@@ -5092,7 +5092,7 @@
     "scarb.json": {
       "generatedFile": "schemas/scarb/index.d.ts",
       "generatedSha256": "28087154e1dd4d78a116ad525408c2a4e63b737789c270e97e59d956795aabb5",
-      "published": false,
+      "published": true,
       "sourceSha256": "0926476ece88d1c3f6413cafe2510d648bb5616d6c3754f39ecc61fbcd8f71b6",
       "updatedAt": "2026-08-24T05:31:16.852Z"
     },
