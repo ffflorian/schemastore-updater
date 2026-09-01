@@ -913,7 +913,7 @@
     "bosh-package-spec.json": {
       "generatedFile": "schemas/bosh-package-spec/index.d.ts",
       "generatedSha256": "e49c9fe50d94f6438fd5b8dbcdfd2b283f5e7fc0837f74b6cf8ef9232f5f5e17",
-      "published": false,
+      "published": true,
       "sourceSha256": "65aa87ee6de0030cc9b886a251c0e0d251dcabf72c3665a18b0e2b4857a8837b",
       "updatedAt": "2026-08-31T11:11:42.357Z"
     },
@@ -2824,7 +2824,7 @@
     "hias-hitf.json": {
       "generatedFile": "schemas/hias-hitf/index.d.ts",
       "generatedSha256": "358e2b985cb35cc4db73334571a7d18a4261c3208fd39c4cc090b17b638bab64",
-      "published": false,
+      "published": true,
       "sourceSha256": "7829a5f89de9e028032bc0d8927a4c0a1093d9091db220e4210e65d8a4222673",
       "updatedAt": "2026-08-31T11:11:53.096Z"
     },
@@ -5463,21 +5463,21 @@
     "tfpowershell-datasource.json": {
       "generatedFile": "schemas/tfpowershell-datasource/index.d.ts",
       "generatedSha256": "bb07362f2baa4b7e308ea8bd24db57e74eac788d3360795f02fb0e27be62cacc",
-      "published": false,
+      "published": true,
       "sourceSha256": "bb46ab808130f1955c4d98a1c841bbc0ca3d06b52a4d0e749fa9e96bd5864ffa",
       "updatedAt": "2026-08-31T11:15:17.525Z"
     },
     "tfpowershell-provider.json": {
       "generatedFile": "schemas/tfpowershell-provider/index.d.ts",
       "generatedSha256": "bd0d09399df8275616472b610444b347621c72ba8dca8526a0f3629034e6f234",
-      "published": false,
+      "published": true,
       "sourceSha256": "e0bb120ba92df339f786584669092fd5a2b4082047447c012df9dfee91b086df",
       "updatedAt": "2026-08-31T11:15:17.716Z"
     },
     "tfpowershell-settings.json": {
       "generatedFile": "schemas/tfpowershell-settings/index.d.ts",
       "generatedSha256": "fd46ab79c08652fd601bec94827119681e57eeb73f66aad45687221bc594213e",
-      "published": false,
+      "published": true,
       "sourceSha256": "ad527b6a17205af952844731632d2f36feaa942ad291cd4e3a7cfe47b3df858e",
       "updatedAt": "2026-08-31T11:15:18.106Z"
     },
