@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-export type Profile = ProfileContent | undefined;
-
 export interface JSONSchemaForTheVisualStudioLaunchSettingsJsonFile {
   /**
    * A list of debug profiles
@@ -9,17 +7,14 @@ export interface JSONSchemaForTheVisualStudioLaunchSettingsJsonFile {
   profiles?: {
     [k: string]: Profile | undefined;
   };
-  /**
-   * IIS and IIS Express settings
-   */
   iisSettings?: IisSettingContent;
   [k: string]: unknown | undefined;
 }
-export interface ProfileContent {
+export interface Profile {
   /**
    * Identifies the debug target to run.
    */
-  commandName?:
+  commandName:
     | 'Executable'
     | 'Project'
     | 'IIS'
@@ -135,6 +130,9 @@ export interface ProfileContent {
   targetProject?: string;
   [k: string]: unknown | undefined;
 }
+/**
+ * IIS and IIS Express settings
+ */
 export interface IisSettingContent {
   /**
    * Set to true to enable windows authentication for your site in IIS and IIS Express.
@@ -144,17 +142,28 @@ export interface IisSettingContent {
    * Set to true to enable anonymous authentication for your site in IIS and IIS Express.
    */
   anonymousAuthentication?: boolean;
-  /**
-   * Site settings to use with IISExpress profiles.
-   */
   iisExpress?: IisBindingContent;
-  /**
-   * Site settings to use with IIS profiles.
-   */
-  iis?: IisBindingContent;
+  iis?: IisBindingContent1;
   [k: string]: unknown | undefined;
 }
+/**
+ * Site settings to use with IISExpress profiles.
+ */
 export interface IisBindingContent {
+  /**
+   * The URL of the web site.
+   */
+  applicationUrl?: string;
+  /**
+   * The SSL port to use for the web site.
+   */
+  sslPort?: number;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Site settings to use with IIS profiles.
+ */
+export interface IisBindingContent1 {
   /**
    * The URL of the web site.
    */

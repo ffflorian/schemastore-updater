@@ -1572,11 +1572,13 @@ export type RuleSelector =
   | 'complex-assignment-in-stub'
   | 'complex-if-statement-in-stub'
   | 'complex-structure'
+  | 'complexity'
   | 'constant-imported-as-non-constant'
   | 'continue-in-finally'
   | 'continue-outside-loop'
   | 'convert-named-tuple-functional-to-class'
   | 'convert-typed-dict-functional-to-class'
+  | 'correctness'
   | 'create-subprocess-in-async-function'
   | 'custom-type-var-for-self'
   | 'dataclass-enum'
@@ -1672,6 +1674,7 @@ export type RuleSelector =
   | 'for-loop-writes'
   | 'format-in-get-text-func-call'
   | 'format-literals'
+  | 'formatting'
   | 'forward-annotation-syntax-error'
   | 'fromisoformat-replace-z'
   | 'function-call-in-dataclass-default-argument'
@@ -1994,6 +1997,7 @@ export type RuleSelector =
   | 'pass-statement-stub-body'
   | 'patch-version-comparison'
   | 'path-constructor-current-directory'
+  | 'pedantic'
   | 'pep484-style-positional-only-parameter'
   | 'percent-format-expected-mapping'
   | 'percent-format-expected-sequence'
@@ -2004,6 +2008,7 @@ export type RuleSelector =
   | 'percent-format-positional-count-mismatch'
   | 'percent-format-star-requires-sequence'
   | 'percent-format-unsupported-format-character'
+  | 'performance'
   | 'post-init-default'
   | 'potential-index-error'
   | 'print'
@@ -2025,6 +2030,7 @@ export type RuleSelector =
   | 'pytest-erroneous-use-fixtures-on-fixture'
   | 'pytest-extraneous-scope-function'
   | 'pytest-fail-without-message'
+  | 'pytest-fixture-autouse'
   | 'pytest-fixture-finalizer-callback'
   | 'pytest-fixture-incorrect-parentheses-style'
   | 'pytest-fixture-param-without-value'
@@ -2091,6 +2097,7 @@ export type RuleSelector =
   | 'replace-universal-newlines'
   | 'request-with-no-cert-validation'
   | 'request-without-timeout'
+  | 'restriction'
   | 'return-in-generator'
   | 'return-in-init'
   | 'return-in-try-except-finally'
@@ -2103,6 +2110,7 @@ export type RuleSelector =
   | 'runtime-cast-value'
   | 'runtime-import-in-type-checking-block'
   | 'runtime-string-union'
+  | 'security'
   | 'self-assigning-variable'
   | 'self-or-cls-assignment'
   | 'set-attr-with-constant'
@@ -2148,6 +2156,7 @@ export type RuleSelector =
   | 'string-or-bytes-too-long'
   | 'strip-with-multi-characters'
   | 'stub-body-multiple-statements'
+  | 'style'
   | 'subclass-builtin'
   | 'subprocess-popen-preexec-fn'
   | 'subprocess-popen-with-shell-equals-true'
@@ -2161,6 +2170,7 @@ export type RuleSelector =
   | 'superfluous-else-return'
   | 'suppressible-exception'
   | 'surrounding-whitespace'
+  | 'suspicious'
   | 'suspicious-eval-usage'
   | 'suspicious-ftp-lib-usage'
   | 'suspicious-ftplib-import'
@@ -2799,13 +2809,16 @@ export interface Options {
   /**
    * @deprecated
    * A list of rule codes or prefixes to ignore. Prefixes can specify exact
-   * rules (like `F841`), entire categories (like `F`), or anything in
+   * rules (like `F841`), entire groups (like `F`), or anything in
    * between.
    *
    * When breaking ties between enabled and disabled rules (via `select` and
    * `ignore`, respectively), more specific prefixes override less
    * specific prefixes. `ignore` takes precedence over `select` if the same
    * prefix appears in both.
+   *
+   * In preview, categories like `correctness` and `suspicious` can be used
+   * in addition to rule codes and linter group prefixes.
    */
   ignore?: RuleSelector[] | null;
   /**
@@ -3006,13 +3019,16 @@ export interface Options {
   /**
    * @deprecated
    * A list of rule codes or prefixes to enable. Prefixes can specify exact
-   * rules (like `F841`), entire categories (like `F`), or anything in
+   * rules (like `F841`), entire groups (like `F`), or anything in
    * between.
    *
    * When breaking ties between enabled and disabled rules (via `select` and
    * `ignore`, respectively), more specific prefixes override less
    * specific prefixes. `ignore` takes precedence over `select` if the
    * same prefix appears in both.
+   *
+   * In preview, categories like `correctness` and `suspicious` can be used
+   * in addition to rule codes and linter group prefixes.
    */
   select?: RuleSelector[] | null;
   /**
@@ -4509,13 +4525,16 @@ export interface LintOptions {
   'future-annotations'?: boolean | null;
   /**
    * A list of rule codes or prefixes to ignore. Prefixes can specify exact
-   * rules (like `F841`), entire categories (like `F`), or anything in
+   * rules (like `F841`), entire groups (like `F`), or anything in
    * between.
    *
    * When breaking ties between enabled and disabled rules (via `select` and
    * `ignore`, respectively), more specific prefixes override less
    * specific prefixes. `ignore` takes precedence over `select` if the same
    * prefix appears in both.
+   *
+   * In preview, categories like `correctness` and `suspicious` can be used
+   * in addition to rule codes and linter group prefixes.
    */
   ignore?: RuleSelector[] | null;
   /**
@@ -4605,13 +4624,16 @@ export interface LintOptions {
   ruff?: RuffOptions | null;
   /**
    * A list of rule codes or prefixes to enable. Prefixes can specify exact
-   * rules (like `F841`), entire categories (like `F`), or anything in
+   * rules (like `F841`), entire groups (like `F`), or anything in
    * between.
    *
    * When breaking ties between enabled and disabled rules (via `select` and
    * `ignore`, respectively), more specific prefixes override less
    * specific prefixes. `ignore` takes precedence over `select` if the
    * same prefix appears in both.
+   *
+   * In preview, categories like `correctness` and `suspicious` can be used
+   * in addition to rule codes and linter group prefixes.
    */
   select?: RuleSelector[] | null;
   /**

@@ -3,16 +3,12 @@
 /**
  * JSON schema for MkDocs configuration file
  */
-export type MkDocsConfiguration = CoreProperties & {
-  [k: string]: unknown | undefined;
-};
-
-export interface CoreProperties {
+export interface MkDocsConfiguration {
   /**
    * The main title for the project documentation.
    * https://www.mkdocs.org/user-guide/configuration/#site_name
    */
-  site_name?: string;
+  site_name: string;
   /**
    * Set the canonical URL of the site. This will add a link tag with the canonical URL to the head section of each HTML page. If the 'root' of the MkDocs site will be within a subdirectory of a domain, be sure to include that subdirectory in the setting (https://example.com/foo/).
    * https://www.mkdocs.org/user-guide/configuration/#site_url

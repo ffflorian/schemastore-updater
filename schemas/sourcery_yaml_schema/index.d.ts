@@ -8,7 +8,6 @@ export type Version = string;
  * A list of paths or files which Sourcery will ignore.
  */
 export type Ignore = string[];
-export type RuleSettings = RuleSettingsConfig;
 export type Enable = string[];
 /**
  * A list of rule IDs Sourcery will never suggest.
@@ -45,20 +44,16 @@ export type Tags = string[];
  * A list of custom rules Sourcery will include in its analysis.
  */
 export type Rules = RuleConfig[];
-export type Metrics = MetricsConfig;
 export type QualityThreshold = number;
-export type Github = GitHubConfig;
 export type Labels = string[];
 export type IgnoreLabels = string[];
 export type RequestReview = string | RequestReview1;
 export type Origin = string;
 export type Forked = string;
 export type SourceryBranch = string;
-export type CloneDetection = CloneDetectionConfig;
 export type MinLines = number;
 export type MinDuplicates = number;
 export type IdenticalClonesOnly = boolean;
-export type Proxy = ProxyConfig;
 export type Url = string;
 export type SslCertsFile = string;
 export type NoSslVerify = boolean;
@@ -74,7 +69,7 @@ export interface SourceryYAMLSchema {
   clone_detection?: CloneDetection;
   proxy?: Proxy;
 }
-export interface RuleSettingsConfig {
+export interface RuleSettings {
   enable?: Enable;
   disable?: Disable;
   rule_types?: RuleType[];
@@ -89,7 +84,7 @@ export interface RuleConfig {
   id: Id;
   description: Description;
   pattern: Pattern;
-  language?: RuleLanguage & string;
+  language?: RuleLanguage;
   replacement?: Replacement;
   condition?: Condition;
   explanation?: Explanation;
@@ -114,10 +109,10 @@ export interface NoMatchRuleTestConfig {
 export interface RuleTags {
   [k: string]: string[] | undefined;
 }
-export interface MetricsConfig {
+export interface Metrics {
   quality_threshold?: QualityThreshold;
 }
-export interface GitHubConfig {
+export interface Github {
   labels?: Labels;
   ignore_labels?: IgnoreLabels;
   request_review?: RequestReview;
@@ -127,12 +122,12 @@ export interface RequestReview1 {
   origin?: Origin;
   forked?: Forked;
 }
-export interface CloneDetectionConfig {
+export interface CloneDetection {
   min_lines?: MinLines;
   min_duplicates?: MinDuplicates;
   identical_clones_only?: IdenticalClonesOnly;
 }
-export interface ProxyConfig {
+export interface Proxy {
   url?: Url;
   ssl_certs_file?: SslCertsFile;
   no_ssl_verify?: NoSslVerify;

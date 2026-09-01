@@ -200,12 +200,20 @@ export interface FactorRangeDict {
   prefix: string;
   start?: number;
   stop?: number;
+  default?: string;
 }
 /**
  * labeled factor group for {factor:label} substitution
  */
 export interface FactorLabeledDict {
-  [k: string]: string[] | undefined;
+  [k: string]: (string[] | FactorRangeDict | FactorValuesDict) | undefined;
+}
+/**
+ * factor group with an explicit list and a default used when none of it is active
+ */
+export interface FactorValuesDict {
+  values: string[];
+  default?: string;
 }
 /**
  * base configuration for run environments
