@@ -1,3 +1,10 @@
+## [3.8.4](https://github.com/ffflorian/schemastore-updater/compare/v3.8.3...v3.8.4) (2026-09-02)
+
+
+### Bug Fixes
+
+* **deps:** bump postcss-selector-parser ([#1632](https://github.com/ffflorian/schemastore-updater/issues/1632)) ([242f382](https://github.com/ffflorian/schemastore-updater/commit/242f382323a4ccd8fd5200bc2084b437625fd186))
+
 ## [3.8.3](https://github.com/ffflorian/schemastore-updater/compare/v3.8.2...v3.8.3) (2026-08-10)
 
 
