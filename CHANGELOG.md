@@ -1,3 +1,10 @@
+## [3.8.5](https://github.com/ffflorian/schemastore-updater/compare/v3.8.4...v3.8.5) (2026-09-03)
+
+
+### Bug Fixes
+
+* **deps:** bump @humanfs/node ([#1633](https://github.com/ffflorian/schemastore-updater/issues/1633)) ([da82f90](https://github.com/ffflorian/schemastore-updater/commit/da82f90540d9e64d12b3e000c015f023e81b4c73))
+
 ## [3.8.4](https://github.com/ffflorian/schemastore-updater/compare/v3.8.3...v3.8.4) (2026-09-02)
 
 
