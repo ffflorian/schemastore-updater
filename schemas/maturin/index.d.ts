@@ -5,37 +5,15 @@
  */
 export type AuditWheelMode = 'repair' | 'check' | 'warn' | 'skip';
 /**
- * Decides how to handle manylinux and musllinux compliance
+ * The kind of bindings to use.
  */
-export type PlatformTag =
-  | {
-      Manylinux: {
-        /**
-         * GLIBC version major
-         */
-        major: number;
-        /**
-         * GLIBC version minor
-         */
-        minor: number;
-        [k: string]: unknown | undefined;
-      };
-    }
-  | {
-      Musllinux: {
-        /**
-         * musl libc version major
-         */
-        major: number;
-        /**
-         * musl libc version minor
-         */
-        minor: number;
-        [k: string]: unknown | undefined;
-      };
-    }
-  | 'Linux'
-  | 'Pypi';
+export type Bindings = 'pyo3' | 'pyo3-ffi' | 'cffi' | 'uniffi' | 'bin';
+/**
+ * Parsed `--compatibility` / `[tool.maturin] compatibility` value.
+ *
+ * Accepts platform tags such as `linux`, `manylinux2014`, `manylinux_2_17`, `musllinux_1_2`, or the `pypi` pseudo-option (PyPI filename validation; not a real platform tag).
+ */
+export type CompatibilityTag = string;
 /**
  * A glob pattern for the include and exclude configuration.
  *
@@ -135,11 +113,11 @@ export interface ToolMaturin {
   /**
    * Bindings type
    */
-  bindings?: string | null;
+  bindings?: Bindings | null;
   /**
    * Platform compatibility
    */
-  compatibility?: PlatformTag | null;
+  compatibility?: CompatibilityTag | null;
   /**
    * Override a configuration value (unstable)
    */
@@ -198,6 +176,12 @@ export interface ToolMaturin {
    * Do not activate the `default` feature
    */
   'no-default-features'?: boolean | null;
+  /**
+   * Command to run for PGO profile generation.
+   * Executed in a temporary virtualenv with the instrumented wheel installed.
+   * Example: `python -m pytest tests/benchmarks`
+   */
+  'pgo-command'?: string | null;
   /**
    * Build artifacts with the specified Cargo profile
    */
@@ -289,6 +273,11 @@ export interface GitHubCIConfig {
    */
   musllinux?: PlatformCIConfig | null;
   /**
+   * Name of the GitHub Actions environment to use for the release job
+   * (typically used together with `trusted-publishing = true`)
+   */
+  'publishing-environment'?: string | null;
+  /**
    * Enable pytest
    */
   pytest?: boolean | null;
@@ -296,6 +285,10 @@ export interface GitHubCIConfig {
    * Skip artifact attestation
    */
   'skip-attestation'?: boolean | null;
+  /**
+   * Use PyPI trusted publishing (OpenID Connect) instead of an API token
+   */
+  'trusted-publishing'?: boolean | null;
   /**
    * Windows platform configuration
    */
@@ -331,7 +324,7 @@ export interface PlatformCIConfig {
    */
   manylinux?: string | null;
   /**
-   * Default runner for this platform
+   * Runner override
    */
   runner?: string | null;
   /**
@@ -365,31 +358,31 @@ export interface TargetCIConfig {
    */
   args?: string | null;
   /**
-   * Before-script-linux override
+   * Script to run before build on Linux
    */
   'before-script-linux'?: string | null;
   /**
-   * Container image override
+   * Container image to use
    */
   container?: string | null;
   /**
-   * Docker options override
+   * Docker options
    */
   'docker-options'?: string | null;
   /**
-   * Manylinux version override
+   * Manylinux version (e.g. "auto", "2_28", "musllinux_1_2")
    */
   manylinux?: string | null;
   /**
-   * Runner override for this target
+   * Runner override
    */
   runner?: string | null;
   /**
-   * Rust toolchain override
+   * Rust toolchain (e.g. "nightly", "stable")
    */
   'rust-toolchain'?: string | null;
   /**
-   * Rustup components override
+   * Rustup components to install
    */
   'rustup-components'?: string | null;
   [k: string]: unknown | undefined;

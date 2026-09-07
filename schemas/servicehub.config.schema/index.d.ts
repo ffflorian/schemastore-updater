@@ -21,8 +21,26 @@ export interface MicrosoftServiceHubConfiguration {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[A-Za-z0-9_/\.]+$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
+    [k: string]: unknown | undefined;
+  };
+  hosts: {
+    /**
+     * The path to the directory immediately under which are folders that contain *.servicehub.host.json files.
+     */
+    rootDir: string;
+    [k: string]: unknown | undefined;
+  };
+  services: {
+    /**
+     * The path to the directory immediately under which are folders that contain *.servicehub.service.json files.
+     */
+    rootDir: string;
+    /**
+     * Service names of optional discovery service modules. Controller will use them to locate a service which it cannot find in the services folder.
+     */
+    discoveryServices?: string[];
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;

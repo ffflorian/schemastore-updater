@@ -5,7 +5,6 @@ export type DevDependency = string;
  * The default dev dependencies
  */
 export type DevDependencyGroup = DevDependency[];
-export type DevDependencyGroup1 = DevDependency[] | undefined;
 /**
  * Options that can be applied to a PDM command
  */
@@ -102,7 +101,7 @@ export interface HttpsJsonSchemastoreOrgPartialPdmJson {
    */
   'dev-dependencies'?: {
     dev?: DevDependencyGroup;
-    [k: string]: DevDependencyGroup1 | undefined;
+    [k: string]: DevDependencyGroup | DevDependencyGroup | undefined;
   };
   /**
    * Configuration related to package resolution
@@ -157,7 +156,7 @@ export interface HttpsJsonSchemastoreOrgPartialPdmJson {
     update?: CommandOptions;
     use?: CommandOptions;
     venv?: CommandOptions;
-    [k: string]: CommandOptions;
+    [k: string]: CommandOptions | undefined;
   };
   /**
    * List of PDM plugins required for this project
@@ -192,7 +191,13 @@ export interface HttpsJsonSchemastoreOrgPartialPdmJson {
     post_script?: PdmScript;
     pre_run?: PdmScript;
     post_run?: PdmScript;
-    [k: string]: PdmScript;
+    [k: string]:
+      | PdmScript
+      | {
+          env?: EnvVars;
+          env_file?: EnvFile;
+        }
+      | undefined;
   };
   /**
    * Dynamic version options for PDM-backend

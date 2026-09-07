@@ -45,6 +45,7 @@ export interface Dir {
   platform?: 'darwin' | 'macos' | 'freebsd' | 'linux' | 'sunos' | 'win32' | 'windows';
   error?: string;
   ci?: boolean;
+  location: string;
   [k: string]: unknown | undefined;
 }
 /**
@@ -55,6 +56,7 @@ export interface File {
   platform?: 'darwin' | 'macos' | 'freebsd' | 'linux' | 'sunos' | 'win32' | 'windows';
   error?: string;
   ci?: boolean;
+  location: string;
   [k: string]: unknown | undefined;
 }
 /**
@@ -65,6 +67,7 @@ export interface Env {
   platform?: 'darwin' | 'macos' | 'freebsd' | 'linux' | 'sunos' | 'win32' | 'windows';
   error?: string;
   ci?: boolean;
+  variable: string;
   [k: string]: unknown | undefined;
 }
 /**

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 export type Uri = string;
-export type Item = {
+export type Item = Item1 & {
   /**
    * Lists related resources
    */
@@ -10,7 +10,7 @@ export type Item = {
   /**
    * The URL of an image to use as a banner. Some blogging systems (such as Medium) display a different banner image chosen to go with each post, but that image wouldn't otherwise appear in the "content_html". A feed reader with a detail view may choose to show this banner image at the top of the detail view, possibly with the title overlaid.
    */
-  banner_image?: Uri;
+  banner_image?: string;
   /**
    * The HTML representation of the content
    */
@@ -30,7 +30,7 @@ export type Item = {
   /**
    * Is the URL of a page elsewhere. This is especially useful for linkblogs. If "url" links to where you're talking about a thing, then "external_url" links to the thing you're talking about.
    */
-  external_url?: Uri;
+  external_url?: string;
   /**
    * Is unique for that item for that feed over time. If an item is ever updated, the id should be unchanged. New items should never use a previously-used id. If an id is presented as a number or other type, a JSON Feed reader must coerce it to a string. Ideally, the id is the full URL of the resource described by the item, since URLs make great unique identifiers.
    */
@@ -38,7 +38,7 @@ export type Item = {
   /**
    * The URL of the main image for the item. This image may also appear in the "content_html" — if so, it's a hint to the feed reader that this is the main, featured image. Feed readers may use the image as a preview.
    */
-  image?: Uri;
+  image?: string;
   /**
    * A plain text sentence or two describing the item. This might be presented in a timeline, for instance, where a detail view would display all of "content_html" or "content_text".
    */
@@ -54,12 +54,24 @@ export type Item = {
   /**
    * Is the URL of the resource described by the item. It's the permalink. This may be the same as the id — but should be present regardless.
    */
-  url?: Uri;
-  [k: string]: Extension;
-} & Item1;
-export type Item1 = {
-  [k: string]: unknown | undefined;
+  url?: string;
+  [k: string]: Extension | Attachment[] | Author | string | number | string[] | undefined;
 };
+export type Item1 =
+  | {
+      /**
+       * The HTML representation of the content
+       */
+      content_html: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * The plain text representation of the content
+       */
+      content_text: string;
+      [k: string]: unknown | undefined;
+    };
 
 export interface JSONSchemaForTheJSONFeedFormat {
   author?: Author;
@@ -74,15 +86,15 @@ export interface JSONSchemaForTheJSONFeedFormat {
   /**
    * The URL of an image for the feed suitable to be used in a source list. It should be square and relatively small, but not smaller than 64 x 64 pixels (so that it can look good on retina displays). As with icon, this image should use transparency where appropriate, since it may be rendered on a non-white background.
    */
-  favicon?: Uri;
+  favicon?: string;
   /**
    * The URL of the feed, and serves as the unique identifier for the feed. As with 'home_page_url', this should be considered required for feeds on the public web.
    */
-  feed_url?: Uri;
+  feed_url?: string;
   /**
    * The URL of the resource that the feed describes. This resource may or may not actually be a "home" page, but it should be an HTML page. If a feed is published on the public web, this should be considered as required. But it may not make sense in the case of a file created on a desktop computer, when that file is not shared or is shared only privately.
    */
-  home_page_url?: Uri;
+  home_page_url?: string;
   /**
    * Describes endpoints that can be used to subscribe to real-time notifications from the publisher of this feed
    */
@@ -97,12 +109,12 @@ export interface JSONSchemaForTheJSONFeedFormat {
   /**
    * The URL of an image for the feed suitable to be used in a timeline, much the way an avatar might be used. It should be square and relatively large — such as 512 x 512 — so that it can be scaled-down and so that it can look good on retina displays. It should use transparency where appropriate, since it may be rendered on a non-white background.
    */
-  icon?: Uri;
+  icon?: string;
   items: Item[];
   /**
    * The URL of a feed that provides the next n items, where n is determined by the publisher. This allows for pagination, but with the expectation that reader software is not required to use it and probably won't use it very often. next_url must not be the same as feed_url, and it must not be the same as a previous next_url (to avoid infinite loops).
    */
-  next_url?: Uri;
+  next_url?: string;
   /**
    * The name of the feed, which will often correspond to the name of the website (blog, for instance), though not necessarily.
    */
@@ -115,7 +127,22 @@ export interface JSONSchemaForTheJSONFeedFormat {
    * The URL of the version of the format the feed uses. This should appear at the very top, though we recognize that not all JSON generators allow for ordering.
    */
   version: 'https://jsonfeed.org/version/1' | Uri;
-  [k: string]: Extension;
+  [k: string]:
+    | Extension
+    | Author
+    | string
+    | boolean
+    | {
+        /**
+         * Describes the protocol used to talk with the hub, such as "rssCloud" or "WebSub".
+         */
+        type: string;
+        url: Uri;
+        [k: string]: unknown | undefined;
+      }[]
+    | Item[]
+    | 'https://jsonfeed.org/version/1'
+    | undefined;
 }
 /**
  * Specifies the feed author
@@ -124,7 +151,7 @@ export interface Author {
   /**
    * the URL for an image for the author. As with icon, it should be square and relatively large — such as 512 x 512 pixels — and should use transparency where appropriate, since it may be rendered on a non-white background.
    */
-  avatar?: Uri;
+  avatar?: string;
   /**
    * Is the author's name
    */
@@ -132,8 +159,8 @@ export interface Author {
   /**
    * Is the URL of a site owned by the author. It could be a blog, micro-blog, Twitter account, and so on. Ideally the linked-to page provides a way to contact the author, but that's not required.
    */
-  url?: Uri;
-  [k: string]: Extension;
+  url?: string;
+  [k: string]: Extension | string | undefined;
 }
 /**
  * Custom extension to the JSON Feed format
@@ -177,6 +204,6 @@ export interface Attachment {
   /**
    * Specifies the location of the attachment
    */
-  url: Uri;
-  [k: string]: Extension;
+  url: string;
+  [k: string]: Extension | number | string | undefined;
 }

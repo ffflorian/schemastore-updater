@@ -216,6 +216,8 @@ export type HttpsJsonSchemastoreOrgCatalogInfoJson =
             }[];
         /**
          * A list of steps to execute.
+         *
+         * Items: A description of the step to execute.
          */
         steps: {
           /**
@@ -268,7 +270,28 @@ export type HttpsJsonSchemastoreOrgCatalogInfoJson =
             icon?: string;
             [k: string]: unknown | undefined;
           }[];
-          [k: string]: string | undefined;
+          [k: string]:
+            | string
+            | {
+                /**
+                 * A url in a standard uri format.
+                 */
+                url?: string;
+                /**
+                 * An entity reference to an entity in the catalog.
+                 */
+                entityRef?: string;
+                /**
+                 * A user friendly display name for the link.
+                 */
+                title?: string;
+                /**
+                 * A key representing a visual icon to be displayed in the UI.
+                 */
+                icon?: string;
+                [k: string]: unknown | undefined;
+              }[]
+            | undefined;
         };
         /**
          * The user (or group) owner of the template
@@ -363,6 +386,8 @@ export type HttpsJsonSchemastoreOrgCatalogInfoJson =
         }[];
         /**
          * A list of steps to execute.
+         *
+         * Items: A description of the step to execute.
          */
         steps: {
           /**
@@ -440,7 +465,43 @@ export type HttpsJsonSchemastoreOrgCatalogInfoJson =
             content?: string;
             [k: string]: unknown | undefined;
           }[];
-          [k: string]: string | undefined;
+          [k: string]:
+            | string
+            | {
+                /**
+                 * A url in a standard uri format.
+                 */
+                url?: string;
+                /**
+                 * An entity reference to an entity in the catalog.
+                 */
+                entityRef?: string;
+                /**
+                 * A user friendly display name for the link.
+                 */
+                title?: string;
+                /**
+                 * A key representing a visual icon to be displayed in the UI.
+                 */
+                icon?: string;
+                [k: string]: unknown | undefined;
+              }[]
+            | {
+                /**
+                 * A user friendly display name for the text.
+                 */
+                title?: string;
+                /**
+                 * A key representing a visual icon to be displayed in the UI.
+                 */
+                icon?: string;
+                /**
+                 * The text blob to display in the UI, rendered as Markdown.
+                 */
+                content?: string;
+                [k: string]: unknown | undefined;
+              }[]
+            | undefined;
         };
         [k: string]: unknown | undefined;
       };

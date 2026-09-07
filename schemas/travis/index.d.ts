@@ -3,19 +3,13 @@
 export type JSONSchemaForTravisCIConfigurationFiles = Job & {
   notifications?: {
     webhooks?:
-      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
-      | boolean
-      | Webhooks
-      | [Webhooks, ...Webhooks[]];
+      PossiblySecretStringOrPossiblySecretStringTypeArrayUnique | boolean | Webhooks | [Webhooks, ...Webhooks[]];
     slack?: SlackRoom | boolean | Slack | [Slack, ...Slack[]];
     email?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique | boolean | Email | [Email, ...Email[]];
     irc?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique | boolean | Irc | [Irc, ...Irc[]];
     pushover?: NonEmptyStringOrArrayOfNonEmptyStrings | boolean | Pushover | [Pushover, ...Pushover[]];
     campfire?:
-      | PossiblySecretStringOrPossiblySecretStringTypeArrayUnique
-      | boolean
-      | Campfire
-      | [Campfire, ...Campfire[]];
+      PossiblySecretStringOrPossiblySecretStringTypeArrayUnique | boolean | Campfire | [Campfire, ...Campfire[]];
     flowdock?: PossiblySecretString | boolean | Flowdock | [Flowdock, ...Flowdock[]];
     hipchat?: PossiblySecretStringOrPossiblySecretStringTypeArrayUnique | boolean | Hipchat | [Hipchat, ...Hipchat[]];
   };
@@ -175,9 +169,21 @@ export type Deployment = {
       script: string;
       [k: string]: unknown | undefined;
     }
-  | {
+  | ((
+      | {
+          api_key: PossiblySecretString;
+          [k: string]: unknown | undefined;
+        }
+      | {
+          api_token: PossiblySecretString;
+          [k: string]: unknown | undefined;
+        }
+    ) & {
+      provider: 'npm';
+      email: PossiblySecretString;
+      tag?: string;
       [k: string]: unknown | undefined;
-    }
+    })
   | {
       provider: 'surge';
       project?: string;
@@ -205,7 +211,7 @@ export type Deployment = {
       api_key:
         | PossiblySecretString
         | {
-            [k: string]: PossiblySecretString;
+            [k: string]: PossiblySecretString | undefined;
           };
       app?:
         | string
@@ -255,8 +261,7 @@ export type Deployment = {
     }
 );
 export type PossiblySecretStringOrPossiblySecretStringTypeArrayUnique =
-  | PossiblySecretString
-  | [PossiblySecretString, ...PossiblySecretString[]];
+  PossiblySecretString | [PossiblySecretString, ...PossiblySecretString[]];
 /**
  * Your account name, token and optional channel
  */
@@ -488,8 +493,7 @@ export interface Job {
      * Firefox addon
      */
     firefox?:
-      | ('latest' | 'latest-esr' | 'latest-beta' | 'latest-dev' | 'latest-nightly' | 'latest-unsigned')
-      | NonEmptyString;
+      ('latest' | 'latest-esr' | 'latest-beta' | 'latest-dev' | 'latest-nightly' | 'latest-unsigned') | NonEmptyString;
     /**
      * Chrome addon
      */

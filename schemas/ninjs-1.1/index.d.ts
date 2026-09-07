@@ -141,9 +141,12 @@ export interface IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf2
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
      */
-    [k: string]: {
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | string
+      | undefined;
   }[];
   /**
    * A concept with a relationship to the content
@@ -230,39 +233,241 @@ export interface IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf2
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9]+".
      */
-    [k: string]: {
-      /**
-       * The URL for accessing the rendition as a resource
-       */
-      href?: string;
-      /**
-       * A MIME type which applies to the rendition
-       */
-      mimetype?: string;
-      /**
-       * A title for the link to the rendition resource
-       */
-      title?: string;
-      /**
-       * For still and moving images: the height of the display area measured in pixels
-       */
-      height?: number;
-      /**
-       * For still and moving images: the width of the display area measured in pixels
-       */
-      width?: number;
-      /**
-       * The size of the rendition resource in bytes
-       */
-      sizeinbytes?: number;
-    };
+    [k: string]:
+      | {
+          /**
+           * The URL for accessing the rendition as a resource
+           */
+          href?: string;
+          /**
+           * A MIME type which applies to the rendition
+           */
+          mimetype?: string;
+          /**
+           * A title for the link to the rendition resource
+           */
+          title?: string;
+          /**
+           * For still and moving images: the height of the display area measured in pixels
+           */
+          height?: number;
+          /**
+           * For still and moving images: the width of the display area measured in pixels
+           */
+          width?: number;
+          /**
+           * The size of the rendition resource in bytes
+           */
+          sizeinbytes?: number;
+        }
+      | undefined;
   };
   /**
    * Content of news objects which are associated with this news object.
    */
   associations?: {
-    [k: string]: IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1;
+    [k: string]:
+      IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1 | undefined;
   };
+  /**
+   * A free-form textual description of the content of the item. (The string appended to description_ in the property name should reflect the format of the text)
+   *
+   * This interface was referenced by `IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected`'s JSON-Schema definition
+   * via the `patternProperty` "^description_[a-zA-Z0-9_]+".
+   *
+   * The textual content of the news object. (The string appended to body_ in the property name should reflect the format of the text)
+   *
+   * This interface was referenced by `IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected`'s JSON-Schema definition
+   * via the `patternProperty` "^body_[a-zA-Z0-9_]+".
+   */
+  [k: string]:
+    | string
+    | 'text'
+    | 'audio'
+    | 'video'
+    | 'picture'
+    | 'graphic'
+    | 'composite'
+    | 'complete'
+    | 'incomplete'
+    | 'usable'
+    | 'withheld'
+    | 'canceled'
+    | number
+    | {
+        /**
+         * The name of a person
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the person
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the person
+         */
+        scheme?: string;
+        /**
+         * The code for the person in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * The name of the organisation
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the organisation
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the organisation
+         */
+        scheme?: string;
+        /**
+         * The code for the organisation in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+        /**
+         * Symbols used for a financial instrument linked to the organisation at a specific market place
+         */
+        symbols?: {
+          /**
+           * Ticker symbol used for the financial instrument
+           */
+          ticker?: string;
+          /**
+           * Identifier for the marketplace which uses the ticker symbols of the ticker property
+           */
+          exchange?: string;
+        }[];
+      }[]
+    | {
+        /**
+         * The name of the place
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the place
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the place
+         */
+        scheme?: string;
+        /**
+         * The code for the place in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+        /**
+         * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
+         */
+        [k: string]:
+          | {
+              [k: string]: unknown | undefined;
+            }
+          | string
+          | undefined;
+      }[]
+    | {
+        /**
+         * The name of the subject
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the subject
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the subject
+         */
+        scheme?: string;
+        /**
+         * The code for the subject in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * The name of the event
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the event
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the event
+         */
+        scheme?: string;
+        /**
+         * The code for the event in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * The name of the object
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the object
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the object
+         */
+        scheme?: string;
+        /**
+         * The code for the object in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * A specific rendition of a non-textual content of the news object.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^[a-zA-Z0-9]+".
+         */
+        [k: string]:
+          | {
+              /**
+               * The URL for accessing the rendition as a resource
+               */
+              href?: string;
+              /**
+               * A MIME type which applies to the rendition
+               */
+              mimetype?: string;
+              /**
+               * A title for the link to the rendition resource
+               */
+              title?: string;
+              /**
+               * For still and moving images: the height of the display area measured in pixels
+               */
+              height?: number;
+              /**
+               * For still and moving images: the width of the display area measured in pixels
+               */
+              width?: number;
+              /**
+               * The size of the rendition resource in bytes
+               */
+              sizeinbytes?: number;
+            }
+          | undefined;
+      }
+    | {
+        [k: string]:
+          IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1 | undefined;
+      }
+    | undefined;
 }
 /**
  * A news item as JSON object -- copyright 2014 IPTC - International Press Telecommunications Council - www.iptc.org - This document is published under the Creative Commons Attribution 3.0 license, see  http://creativecommons.org/licenses/by/3.0/  $$comment: as of 2014-03-13
@@ -408,9 +613,12 @@ export interface IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf2
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
      */
-    [k: string]: {
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | string
+      | undefined;
   }[];
   /**
    * A concept with a relationship to the content
@@ -497,37 +705,239 @@ export interface IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf2
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9]+".
      */
-    [k: string]: {
-      /**
-       * The URL for accessing the rendition as a resource
-       */
-      href?: string;
-      /**
-       * A MIME type which applies to the rendition
-       */
-      mimetype?: string;
-      /**
-       * A title for the link to the rendition resource
-       */
-      title?: string;
-      /**
-       * For still and moving images: the height of the display area measured in pixels
-       */
-      height?: number;
-      /**
-       * For still and moving images: the width of the display area measured in pixels
-       */
-      width?: number;
-      /**
-       * The size of the rendition resource in bytes
-       */
-      sizeinbytes?: number;
-    };
+    [k: string]:
+      | {
+          /**
+           * The URL for accessing the rendition as a resource
+           */
+          href?: string;
+          /**
+           * A MIME type which applies to the rendition
+           */
+          mimetype?: string;
+          /**
+           * A title for the link to the rendition resource
+           */
+          title?: string;
+          /**
+           * For still and moving images: the height of the display area measured in pixels
+           */
+          height?: number;
+          /**
+           * For still and moving images: the width of the display area measured in pixels
+           */
+          width?: number;
+          /**
+           * The size of the rendition resource in bytes
+           */
+          sizeinbytes?: number;
+        }
+      | undefined;
   };
   /**
    * Content of news objects which are associated with this news object.
    */
   associations?: {
-    [k: string]: IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1;
+    [k: string]:
+      IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1 | undefined;
   };
+  /**
+   * A free-form textual description of the content of the item. (The string appended to description_ in the property name should reflect the format of the text)
+   *
+   * This interface was referenced by `IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1`'s JSON-Schema definition
+   * via the `patternProperty` "^description_[a-zA-Z0-9_]+".
+   *
+   * The textual content of the news object. (The string appended to body_ in the property name should reflect the format of the text)
+   *
+   * This interface was referenced by `IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1`'s JSON-Schema definition
+   * via the `patternProperty` "^body_[a-zA-Z0-9_]+".
+   */
+  [k: string]:
+    | string
+    | 'text'
+    | 'audio'
+    | 'video'
+    | 'picture'
+    | 'graphic'
+    | 'composite'
+    | 'complete'
+    | 'incomplete'
+    | 'usable'
+    | 'withheld'
+    | 'canceled'
+    | number
+    | {
+        /**
+         * The name of a person
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the person
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the person
+         */
+        scheme?: string;
+        /**
+         * The code for the person in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * The name of the organisation
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the organisation
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the organisation
+         */
+        scheme?: string;
+        /**
+         * The code for the organisation in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+        /**
+         * Symbols used for a finanical instrument linked to the organisation at a specific market place
+         */
+        symbols?: {
+          /**
+           * Ticker symbol used for the financial instrument
+           */
+          ticker?: string;
+          /**
+           * Identifier for the marketplace which uses the ticker symbols of the ticker property
+           */
+          exchange?: string;
+        }[];
+      }[]
+    | {
+        /**
+         * The name of the place
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the place
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the place
+         */
+        scheme?: string;
+        /**
+         * The code for the place in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+        /**
+         * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
+         */
+        [k: string]:
+          | {
+              [k: string]: unknown | undefined;
+            }
+          | string
+          | undefined;
+      }[]
+    | {
+        /**
+         * The name of the subject
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the subject
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the subject
+         */
+        scheme?: string;
+        /**
+         * The code for the subject in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * The name of the event
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the event
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the event
+         */
+        scheme?: string;
+        /**
+         * The code for the event in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * The name of the object
+         */
+        name?: string;
+        /**
+         * The relationship of the content of the news object to the object
+         */
+        rel?: string;
+        /**
+         * The identifier of a scheme (= controlled vocabulary) which includes a code for the object
+         */
+        scheme?: string;
+        /**
+         * The code for the object in a scheme (= controlled vocabulary) which is identified by the scheme property
+         */
+        code?: string;
+      }[]
+    | {
+        /**
+         * A specific rendition of a non-textual content of the news object.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^[a-zA-Z0-9]+".
+         */
+        [k: string]:
+          | {
+              /**
+               * The URL for accessing the rendition as a resource
+               */
+              href?: string;
+              /**
+               * A MIME type which applies to the rendition
+               */
+              mimetype?: string;
+              /**
+               * A title for the link to the rendition resource
+               */
+              title?: string;
+              /**
+               * For still and moving images: the height of the display area measured in pixels
+               */
+              height?: number;
+              /**
+               * For still and moving images: the width of the display area measured in pixels
+               */
+              width?: number;
+              /**
+               * The size of the rendition resource in bytes
+               */
+              sizeinbytes?: number;
+            }
+          | undefined;
+      }
+    | {
+        [k: string]:
+          IPTCNinjsNewsInJSONVersion11Approved20140312DocumentRevisionOf20170905SyntaxErrorCorrected1 | undefined;
+      }
+    | undefined;
 }

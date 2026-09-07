@@ -159,7 +159,7 @@ export interface JSONSchemaForGoogleChromeExtensionManifestFiles {
    * Use the commands API to add keyboard shortcuts that trigger actions in your extension, for example, an action to open the browser action or send a command to the extension.
    */
   commands?: {
-    [k: string]: unknown | undefined;
+    [k: string]: Command | undefined;
   };
   /**
    * Content scripts are JavaScript files that run in the context of web pages.
@@ -258,7 +258,13 @@ export interface JSONSchemaForGoogleChromeExtensionManifestFiles {
    * Declares which extensions, apps, and web pages can connect to your extension via runtime.connect and runtime.sendMessage.
    */
   externally_connectable?: {
+    /**
+     * Items: The IDs of extensions or apps that are allowed to connect. If left empty or unspecified, no extensions or apps can connect.
+     */
     ids?: string[];
+    /**
+     * Items: The URL patterns for web pages that are allowed to connect. This does not affect content scripts. If left empty or unspecified, no web pages can connect.
+     */
     matches?: string[];
     /**
      * Indicates that the extension would like to make use of the TLS channel ID of the web page connecting to it. The web page must also opt to send the TLS channel ID to the extension via setting includeTlsChannelId to true in runtime.connect's connectInfo or runtime.sendMessage's options.

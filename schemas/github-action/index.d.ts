@@ -9,6 +9,7 @@ export type PreIf = string;
  */
 export type PostIf = string;
 export type StringContainingExpressionSyntax = string;
+export type ExpressionSyntax = string;
 
 export interface HttpsJsonSchemastoreOrgGithubActionJson {
   /**
@@ -33,24 +34,26 @@ export interface HttpsJsonSchemastoreOrgGithubActionJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[_a-zA-Z][a-zA-Z0-9_-]*$".
      */
-    [k: string]: {
-      /**
-       * A string description of the input parameter.
-       */
-      description: string;
-      /**
-       * A string shown to users using the deprecated input.
-       */
-      deprecationMessage?: string;
-      /**
-       * A boolean to indicate whether the action requires the input parameter. Set to `true` when the parameter is required.
-       */
-      required?: boolean;
-      /**
-       * A string representing the default value. The default value is used when an input parameter isn't specified in a workflow file.
-       */
-      default?: string;
-    };
+    [k: string]:
+      | {
+          /**
+           * A string description of the input parameter.
+           */
+          description: string;
+          /**
+           * A string shown to users using the deprecated input.
+           */
+          deprecationMessage?: string;
+          /**
+           * A boolean to indicate whether the action requires the input parameter. Set to `true` when the parameter is required.
+           */
+          required?: boolean;
+          /**
+           * A string representing the default value. The default value is used when an input parameter isn't specified in a workflow file.
+           */
+          default?: string;
+        }
+      | undefined;
   };
   outputs?: {
     [k: string]: unknown | undefined;
@@ -361,9 +364,63 @@ export interface RunsComposite {
   /**
    * The run steps that you plan to run in this action.
    */
-  steps: {
+  steps: ({
     [k: string]: unknown | undefined;
-  }[];
+  } & {
+    /**
+     * The command you want to run. This can be inline or a script in your action repository.
+     */
+    run?: string;
+    /**
+     * The shell where you want to run the command.
+     */
+    shell?: (
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | ('bash' | 'pwsh' | 'python' | 'sh' | 'cmd' | 'powershell')
+    ) &
+      string;
+    /**
+     * Selects an action to run as part of a step in your job.
+     */
+    uses?: string;
+    /**
+     * A map of the input parameters defined by the action. Each input parameter is a key/value pair. Input parameters are set as environment variables. The variable is prefixed with INPUT_ and converted to upper case.
+     */
+    with?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * The name of the composite run step.
+     */
+    name?: string;
+    /**
+     * A unique identifier for the step. You can use the `id` to reference the step in contexts.
+     */
+    id?: string;
+    /**
+     * You can use the if conditional to prevent a step from running unless a condition is met. You can use any supported context and expression to create a conditional.
+     * Expressions in an if conditional do not require the ${{ }} syntax. However, you must always use the ${{ }} expression syntax or escape with '', "", or () when the expression starts with !, since ! is reserved notation in YAML format. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions
+     */
+    if?: string;
+    /**
+     * Sets a map of environment variables for only that step.
+     */
+    env?:
+      | {
+          [k: string]: string | number | boolean | undefined;
+        }
+      | StringContainingExpressionSyntax;
+    /**
+     * Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
+     */
+    'continue-on-error'?: boolean | ExpressionSyntax;
+    /**
+     * Specifies the working directory where the command is run.
+     */
+    'working-directory'?: string;
+  })[];
 }
 /**
  * Configures the image used for the Docker action.
@@ -382,7 +439,7 @@ export interface RunsDocker {
    */
   env?:
     | {
-        [k: string]: (string | number | boolean) | undefined;
+        [k: string]: string | number | boolean | undefined;
       }
     | StringContainingExpressionSyntax;
   /**

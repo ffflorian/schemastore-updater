@@ -68,5 +68,32 @@ export interface JSONSchemaForJSONDocumentTransforms {
         '@jdt.value'?: JdtValue;
         [k: string]: unknown | undefined;
       }[];
-  [k: string]: JSONSchemaForJSONDocumentTransforms;
+  [k: string]:
+    | JSONSchemaForJSONDocumentTransforms
+    | {
+        '@jdt.path'?: JdtPath;
+        '@jdt.value'?: JdtValue;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        '@jdt.path'?: JdtPath;
+        '@jdt.value'?: JdtValue;
+        [k: string]: unknown | undefined;
+      }[]
+    | (
+        | boolean
+        | number
+        | null
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | string
+      )[]
+    | boolean
+    | {
+        '@jdt.path'?: JdtPath;
+        [k: string]: unknown | undefined;
+      }
+    | string
+    | undefined;
 }

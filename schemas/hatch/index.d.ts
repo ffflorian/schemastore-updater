@@ -14,6 +14,7 @@ export type Hatch = {
     }
   | {
       version: {
+        source?: never;
         path: string;
         pattern?: string;
         [k: string]: unknown | undefined;
@@ -22,7 +23,27 @@ export type Hatch = {
     }
   | {
       version: {
+        path?: never;
         source: string;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    }
+  | {
+      version: {
+        source: 'regex';
+        path: string;
+        pattern?: string;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    }
+  | {
+      version: {
+        source: 'code';
+        path: string;
+        expression?: string;
+        'search-paths'?: string[];
         [k: string]: unknown | undefined;
       };
       [k: string]: unknown | undefined;
@@ -112,13 +133,10 @@ export type Matrix = {
  */
 export type MatrixNameFormat = string;
 /**
- * Required environment plugins
- */
-export type Requires1 = string[];
-/**
  * Build configuration
  */
-export type Build =
+export type Build = Build1 & Build2;
+export type Build1 =
   | {
       'dev-mode-dirs'?: never;
       [k: string]: unknown | undefined;
@@ -128,6 +146,106 @@ export type Build =
       [k: string]: unknown | undefined;
     };
 /**
+ * Whether to ignore VCS .*ignore files and include those files by default
+ */
+export type IgnoreVCSInFileSelection = boolean;
+/**
+ * List of glob patterns to include files
+ */
+export type IncludeFiles = string[];
+/**
+ * List of glob patterns to exclude files
+ */
+export type ExcludeFiles = string[];
+/**
+ * List of glob patterns to include VCS-ignored files
+ */
+export type ArtifactFiles = string[];
+/**
+ * Whether to only include non-artifact files in packages
+ */
+export type ExcludingFilesOutsidePackages = boolean;
+/**
+ * Rewrite relative paths
+ */
+export type Sources =
+  | {
+      [k: string]: string | undefined;
+    }
+  | string[];
+/**
+ * Whether to skip excluded directories (for performance reasons)
+ */
+export type SkipExcludedDirs = boolean;
+/**
+ * Whether to make the build reproducible
+ */
+export type Reproducible = boolean;
+/**
+ * Directory to write build artifacts to
+ */
+export type OutputDirectory = string;
+/**
+ * List of directories to add to PYTHONPATH in development mode
+ */
+export type DevModeDirectories = string[];
+/**
+ * Whether to use an exact dev mode that doesn’t add whole directories to PYTHONPATH
+ */
+export type ExactDevMode = boolean;
+/**
+ * Wheel build targets
+ */
+export type WheelTarget = Target & WheelTarget1;
+/**
+ * List of relative paths to directories or files to include, preventing directory traversal from project root. This option overrides any include patterns.
+ */
+export type OnlyIncludeSpecificPaths = string[];
+/**
+ * Whether to install the project’s runtime dependencies
+ */
+export type RequireRuntimeDependencies = boolean;
+/**
+ * A list of the project’s runtime features to install
+ */
+export type RequiredRuntimeFeatures = string[];
+/**
+ * Whether to enable current hook (disable to control activation using environment variables)
+ */
+export type ConditionalExecution = boolean;
+/**
+ * List of versions to build
+ */
+export type Versions = string[];
+/**
+ * List of packages to build
+ */
+export type Packages = string[];
+/**
+ * Whether to only include non-artifact files in packages
+ */
+export type OnlyPackages = boolean;
+/**
+ * Whether or not to suppress the error when one has not defined any file selection options and all heuristics have failed to determine what to ship
+ */
+export type BypassSelection = boolean;
+/**
+ * The version of core metadata to use
+ */
+export type CoreMetadataVersion = string;
+/**
+ * Whether or not file names should contain the normalized version of the project name
+ */
+export type StrictNaming = boolean;
+/**
+ * Whether or not on macOS, when build hooks have set the infer_tag build data, the wheel name should signal broad support rather than specific versions for newer SDK versions.
+ */
+export type BroadMacOSCompatibility = boolean;
+/**
+ * Whether or not to suppress the error when one has not defined any file selection options and all heuristics have failed to determine what to ship
+ */
+export type BroadFileSelection = boolean;
+/**
  * A relative path to a file containing the project version
  */
 export type Path = string;
@@ -135,6 +253,14 @@ export type Path = string;
  * A regex pattern to extract the version
  */
 export type Pattern = string;
+/**
+ * A Python expression that will be evaluated in the context of the loaded file to return the version
+ */
+export type Expression = string;
+/**
+ * A list of relative paths to directories that will be prepended to Python's search path
+ */
+export type SearchPaths = string[];
 /**
  * A source to use for retrieving and updating the version.
  */
@@ -204,7 +330,7 @@ export interface Env {
   matrix?: Matrix;
   'matrix-name-format'?: MatrixNameFormat;
   overrides?: Overrides;
-  requires?: Requires1;
+  requires?: Requires;
   [k: string]: unknown | undefined;
 }
 /**
@@ -217,7 +343,7 @@ export interface EnvironmentVariables {
  * Dictionary of scripts to run
  */
 export interface Scripts {
-  [k: string]: (string | string[]) | undefined;
+  [k: string]: string | string[] | undefined;
 }
 /**
  * Overrides depending on things like platform, matrix variables, or environment variables
@@ -230,9 +356,11 @@ export interface Overrides {
    * This interface was referenced by `Overrides`'s JSON-Schema definition
    * via the `patternProperty` "env|matrix|name".
    */
-  [k: string]: {
-    [k: string]: Override | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: Override | undefined;
+      }
+    | undefined;
 }
 /**
  * TODO
@@ -240,12 +368,101 @@ export interface Overrides {
 export interface Override {
   [k: string]: unknown | undefined;
 }
+export interface Build2 {
+  'ignore-vcs'?: IgnoreVCSInFileSelection;
+  include?: IncludeFiles;
+  exclude?: ExcludeFiles;
+  artifacts?: ArtifactFiles;
+  'only-packages'?: ExcludingFilesOutsidePackages;
+  sources?: Sources;
+  'skip-excluded-dirs'?: SkipExcludedDirs;
+  reproducible?: Reproducible;
+  directory?: OutputDirectory;
+  'dev-mode-dirs'?: DevModeDirectories;
+  'dev-mode-exact'?: ExactDevMode;
+  targets?: BuildTargets;
+  hooks?: BuildHookPlugins;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Build targets
+ */
+export interface BuildTargets {
+  wheel?: WheelTarget;
+  [k: string]: Target | WheelTarget | undefined;
+}
+export interface Target {
+  'ignore-vcs'?: IgnoreVCSInFileSelection;
+  include?: IncludeFiles;
+  exclude?: ExcludeFiles;
+  artifacts?: ArtifactFiles;
+  'only-include'?: OnlyIncludeSpecificPaths;
+  hooks?: BuildHookPlugins;
+  dependencies?: Dependencies;
+  'require-runtime-dependencies'?: RequireRuntimeDependencies;
+  'require-runtime-features'?: RequiredRuntimeFeatures;
+  versions?: Versions;
+  packages?: Packages;
+  'force-include'?: ForceInclude;
+  'only-packages'?: OnlyPackages;
+  sources?: Sources1;
+  'bypass-selection'?: BypassSelection;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Configuration for plugin hooks that will be executed at various stages of the build process
+ */
+export interface BuildHookPlugins {
+  [k: string]: BuildHook | undefined;
+}
+export interface BuildHook {
+  dependencies?: Dependencies;
+  'require-runtime-dependencies'?: RequireRuntimeDependencies;
+  'require-runtime-features'?: RequiredRuntimeFeatures;
+  'enable-by-default'?: ConditionalExecution;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Whether to force include files
+ */
+export interface ForceInclude {
+  [k: string]: string | undefined;
+}
+/**
+ * Rewrite relative paths
+ */
+export interface Sources1 {
+  [k: string]: string | undefined;
+}
+export interface WheelTarget1 {
+  'core-metadata-version'?: CoreMetadataVersion;
+  'shared-data'?: SharedData;
+  'extra-metadata'?: ExtraMetadata;
+  'strict-naming'?: StrictNaming;
+  'macos-max-compat'?: BroadMacOSCompatibility;
+  'broad-selection'?: BroadFileSelection;
+  [k: string]: unknown | undefined;
+}
+/**
+ * A mapping similar to the forced inclusion option corresponding to data that will be installed globally in a given Python environment, usually under sys.prefix
+ */
+export interface SharedData {
+  [k: string]: string | undefined;
+}
+/**
+ * A mapping similar to the forced inclusion option corresponding to extra metadata that will be shipped in a directory named extra_metadata
+ */
+export interface ExtraMetadata {
+  [k: string]: string | undefined;
+}
 /**
  * Version configuration
  */
 export interface Version {
   path?: Path;
   pattern?: Pattern;
+  expression?: Expression;
+  'search-paths'?: SearchPaths;
   source?: Source;
   [k: string]: unknown | undefined;
 }

@@ -16,14 +16,14 @@ export type Execution = {
   };
   [k: string]: unknown | undefined;
 }[];
-export type ReportingModules = 'final-stats' | 'console' | 'blazemeter' | 'junit-xml';
+export type ReportingModules = ('final-stats' | 'console' | 'blazemeter' | 'junit-xml' | 'influxdb-reporter') | string;
 export type Reporting = (
   | {
-      module?: ReportingModules;
+      module: ReportingModules;
       criteria?: string[];
       [k: string]: unknown | undefined;
-    }[]
-  | ReportingModules[]
+    }
+  | ReportingModules
 )[];
 export type Services = {
   local?: {

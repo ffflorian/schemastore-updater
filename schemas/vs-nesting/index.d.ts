@@ -1,5 +1,8 @@
 /* eslint-disable */
 
+export type FileExtension = string;
+export type FileName = string;
+
 export interface JSONSchemaForVisualStudioSFileNestingFeature {
   /**
    * Determines if this is the root nesting config file and no further inheritance is required.
@@ -110,30 +113,24 @@ export interface Providers {
   };
   [k: string]: unknown | undefined;
 }
-export interface FileExtension {
-  [k: string]: unknown | undefined;
-}
 export interface ExtExt {
   /**
    * This interface was referenced by `ExtExt`'s JSON-Schema definition
    * via the `patternProperty` "^(\.[^/\\]+|\*)$".
    */
-  [k: string]: FileExtension[];
+  [k: string]: FileExtension[] | undefined;
 }
 export interface FileFile {
   /**
    * This interface was referenced by `FileFile`'s JSON-Schema definition
    * via the `patternProperty` "^[^/\\|:><"?\*]+$".
    */
-  [k: string]: FileName[];
-}
-export interface FileName {
-  [k: string]: unknown | undefined;
+  [k: string]: FileName[] | undefined;
 }
 export interface FileExt {
   /**
    * This interface was referenced by `FileExt`'s JSON-Schema definition
    * via the `patternProperty` "^([^/\\|:><"?\*]+|\*)$".
    */
-  [k: string]: FileExtension[];
+  [k: string]: FileExtension[] | undefined;
 }

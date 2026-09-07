@@ -102,22 +102,6 @@ export type Person = {
   code?: Code;
 }[];
 /**
- * The name of the organisation
- */
-export type Name1 = string;
-/**
- * The relationship of the content of the news object to the organisation
- */
-export type Relationship1 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the organisation
- */
-export type Scheme1 = string;
-/**
- * The code for the organisation in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code1 = string;
-/**
  * Ticker symbol used for the financial instrument
  */
 export type Ticker = string;
@@ -136,145 +120,68 @@ export type Symbols = {
  * An administrative and functional structure which may act as as a business, as a political party or not-for-profit party. nar:subject
  */
 export type Organisation = {
-  name?: Name1;
-  rel?: Relationship1;
-  scheme?: Scheme1;
-  code?: Code1;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
   symbols?: Symbols;
 }[];
-/**
- * The name of the place
- */
-export type Name2 = string;
-/**
- * The relationship of the content of the news object to the place
- */
-export type Relationship2 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the place
- */
-export type Scheme2 = string;
-/**
- * The code for the place in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code2 = string;
 /**
  * A named location. nar:subject
  */
 export type Place = {
-  name?: Name2;
-  rel?: Relationship2;
-  scheme?: Scheme2;
-  code?: Code2;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
   /**
    * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
    *
    * This interface was referenced by `undefined`'s JSON-Schema definition
    * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | Name
+    | undefined;
 }[];
-/**
- * The name of the subject
- */
-export type Name3 = string;
-/**
- * The relationship of the content of the news object to the subject
- */
-export type Relationship3 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the subject
- */
-export type Scheme3 = string;
-/**
- * The code for the subject in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code3 = string;
 /**
  * A concept with a relationship to the content. nar:subject
  */
 export type Subject = {
-  name?: Name3;
-  rel?: Relationship3;
-  scheme?: Scheme3;
-  code?: Code3;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the event
- */
-export type Name4 = string;
-/**
- * The relationship of the content of the news object to the event
- */
-export type Relationship4 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the event
- */
-export type Scheme4 = string;
-/**
- * The code for the event in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code4 = string;
 /**
  * Something which happens in a planned or unplanned manner. nar:?
  */
 export type Event = {
-  name?: Name4;
-  rel?: Relationship4;
-  scheme?: Scheme4;
-  code?: Code4;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the object
- */
-export type Name5 = string;
-/**
- * The relationship of the content of the news object to the object
- */
-export type Relationship5 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the object
- */
-export type Scheme5 = string;
-/**
- * The code for the object in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code5 = string;
 /**
  * Something material, excluding persons. nar:subject
  */
 export type Object = {
-  name?: Name5;
-  rel?: Relationship5;
-  scheme?: Scheme5;
-  code?: Code5;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the infosource
- */
-export type Name6 = string;
-/**
- * The relationship of the content of the news object to the infosource
- */
-export type Relationship6 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the infosource
- */
-export type Schema1 = string;
-/**
- * The code for the infosource in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code6 = string;
 /**
  * A party (person or organisation) which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content. (Added in version 1.2 according to issue #15.) .    infosource:  nar:infoSource
  */
 export type InfoSource = {
-  name?: Name6;
-  rel?: Relationship6;
-  scheme?: Schema1;
-  code?: Code6;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Schema;
+  code?: Code;
 }[];
 /**
  * A short natural-language name for the item. (Added in version 1.2 according to issue #9). nar:itemMeta/title
@@ -313,10 +220,6 @@ export type Href = string;
  */
 export type Mimetype = string;
 /**
- * A title for the link to the rendition resource
- */
-export type Title1 = string;
-/**
  * For still and moving images: the height of the display area measured in pixels. nar:remoteContent@height
  */
 export type Height = number;
@@ -337,385 +240,104 @@ export type Duration = number;
  */
 export type Format = string;
 /**
- * The identifier for this news object. nar:newsItem@guid
- */
-export type UniformResourceIdentifier1 = string;
-/**
- * The generic news type of this news object. (Value 'component' added in version 1.2 as issue #21.). nar:itemClass
- */
-export type Type1 = 'text' | 'audio' | 'video' | 'picture' | 'graphic' | 'composite' | 'component';
-/**
- * A MIME type which applies to this news object. nar:contentType
- */
-export type MIMEType1 = string;
-/**
- * Indicates how complete this representation of a news item is. No mapping to nar. Specific for ninjs.
- */
-export type RepresentationType1 = 'complete' | 'incomplete';
-/**
- * An identifier for the structure of the news object. This can be any string but we suggest something identifying the structure of the content such as 'text-only' or 'text-photo'. Profiles are typically provider-specific. nar:profile
- */
-export type Profile1 = string;
-/**
- * The version of the news object which is identified by the uri property. nar:newsItem@version
- */
-export type Version1 = string;
-/**
- * Indicates when the first version of the item was created. (Added in version 1.2 from issue #5). nar:firstCreated
- */
-export type FirstCreated1 = string;
-/**
- * The date and time when this version of the news object was created. nar:versionCreated
- */
-export type VersionCreated1 = string;
-/**
- * The date and time before which all versions of the news object are embargoed. If absent, this object is not embargoed. nar:embargoed
- */
-export type Embargoed1 = string;
-/**
- * The publishing status of the news object, its value is *usable* by default. nar:pubStatus
- */
-export type PublicationStatus1 = 'usable' | 'withheld' | 'canceled';
-/**
- * The editorial urgency of the content from 1 to 9. 1 represents the highest urgency, 9 the lowest. nar:urgency
- */
-export type Urgency1 = number;
-/**
- * The person or organisation claiming the intellectual property for the content. nar:copyrightHolder
- */
-export type CopyrightHolder1 = string;
-/**
- * Any necessary copyright notice for claiming the intellectual property for the content. nar:copyrightNotice
- */
-export type CopyrightNotice1 = string;
-/**
- * A natural-language statement about the usage terms pertaining to the content. nar:usageTerms
- */
-export type UsageTerms1 = string;
-/**
- * A note that is intended to be read by internal staff at the receiving organisation, but not published to the end-user. (Added in version 1.2 from issue #6.) . ednote: nar:edNote
- */
-export type EditorialNote1 = string;
-/**
- * The human language used by the content. The value should follow IETF BCP47. nar:language
- */
-export type Language1 = string;
-/**
- * The name of a person
- */
-export type Name7 = string;
-/**
- * The relationship of the content of the news object to the person
- */
-export type Relationship7 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the person
- */
-export type Scheme6 = string;
-/**
- * The code for the person in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code7 = string;
-/**
  * An individual human being. nar:subject
  */
 export type Person1 = {
-  name?: Name7;
-  rel?: Relationship7;
-  scheme?: Scheme6;
-  code?: Code7;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the organisation
- */
-export type Name8 = string;
-/**
- * The relationship of the content of the news object to the organisation
- */
-export type Relationship8 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the organisation
- */
-export type Scheme7 = string;
-/**
- * The code for the organisation in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code8 = string;
-/**
- * Ticker symbol used for the financial instrument
- */
-export type Ticker1 = string;
-/**
- * Identifier for the marketplace which uses the ticker symbols of the ticker property
- */
-export type Exchange1 = string;
 /**
  * Symbols used for a financial instrument linked to the organisation at a specific market place
  */
 export type Symbols1 = {
-  ticker?: Ticker1;
-  exchange?: Exchange1;
+  ticker?: Ticker;
+  exchange?: Exchange;
 }[];
 /**
  * An administrative and functional structure which may act as as a business, as a political party or not-for-profit party. nar:subject
  */
 export type Organisation1 = {
-  name?: Name8;
-  rel?: Relationship8;
-  scheme?: Scheme7;
-  code?: Code8;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
   symbols?: Symbols1;
 }[];
-/**
- * The name of the place
- */
-export type Name9 = string;
-/**
- * The relationship of the content of the news object to the place
- */
-export type Relationship9 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the place
- */
-export type Scheme8 = string;
-/**
- * The code for the place in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code9 = string;
 /**
  * A named location. nar:subject
  */
 export type Place1 = {
-  name?: Name9;
-  rel?: Relationship9;
-  scheme?: Scheme8;
-  code?: Code9;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
   /**
    * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
    *
    * This interface was referenced by `undefined`'s JSON-Schema definition
    * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | Name
+    | undefined;
 }[];
-/**
- * The name of the subject
- */
-export type Name10 = string;
-/**
- * The relationship of the content of the news object to the subject
- */
-export type Relationship10 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the subject
- */
-export type Scheme9 = string;
-/**
- * The code for the subject in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code10 = string;
 /**
  * A concept with a relationship to the content. nar:subject
  */
 export type Subject1 = {
-  name?: Name10;
-  rel?: Relationship10;
-  scheme?: Scheme9;
-  code?: Code10;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the event
- */
-export type Name11 = string;
-/**
- * The relationship of the content of the news object to the event
- */
-export type Relationship11 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the event
- */
-export type Scheme10 = string;
-/**
- * The code for the event in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code11 = string;
 /**
  * Something which happens in a planned or unplanned manner. nar:?
  */
 export type Event1 = {
-  name?: Name11;
-  rel?: Relationship11;
-  scheme?: Scheme10;
-  code?: Code11;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the object
- */
-export type Name12 = string;
-/**
- * The relationship of the content of the news object to the object
- */
-export type Relationship12 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the object
- */
-export type Scheme11 = string;
-/**
- * The code for the object in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code12 = string;
 /**
  * Something material, excluding persons. nar:subject
  */
 export type Object1 = {
-  name?: Name12;
-  rel?: Relationship12;
-  scheme?: Scheme11;
-  code?: Code12;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the infosource
- */
-export type Name13 = string;
-/**
- * The relationship of the content of the news object to the infosource
- */
-export type Relationship13 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the infosource
- */
-export type Schema2 = string;
-/**
- * The code for the infosource in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code13 = string;
 /**
  * A party (person or organisation) which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content. (Added in version 1.2 according to issue #15.) .    infosource:  nar:infoSource
  */
 export type InfoSource1 = {
-  name?: Name13;
-  rel?: Relationship13;
-  scheme?: Schema2;
-  code?: Code13;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Schema;
+  code?: Code;
 }[];
-/**
- * A short natural-language name for the item. (Added in version 1.2 according to issue #9). nar:itemMeta/title
- */
-export type Title2 = string;
-/**
- * The name(s) of the creator(s) of the content. nar:by
- */
-export type Byline1 = string;
-/**
- * A brief and snappy introduction to the content, designed to catch the reader's attention. nar:headline
- */
-export type Headline1 = string;
-/**
- * A human-readable identifier for the item. (Added in version 1.2 from issue #4.). nar:slugline
- */
-export type Slugline1 = string;
-/**
- * The name of the location from which the content originates. nar:located
- */
-export type Located1 = string;
-/**
- * The total character count in the article excluding figure captions. (Added in version 1.2 according to issue #27.). nar:charcount
- */
-export type CharacterCount1 = number;
-/**
- * The total number of words in the article excluding figure captions. (Added in version 1.2 according to issue #27.). nar:wordcount
- */
-export type WordCount1 = number;
-/**
- * The URL for accessing the rendition as a resource. nar:remoteContent@ref
- */
-export type Href1 = string;
-/**
- * A MIME type which applies to the rendition. nar:remoteContent@contenttype
- */
-export type Mimetype1 = string;
-/**
- * A title for the link to the rendition resource
- */
-export type Title3 = string;
-/**
- * For still and moving images: the height of the display area measured in pixels. nar:remoteContent@height
- */
-export type Height1 = number;
-/**
- * For still and moving images: the width of the display area measured in pixels. nar:remoteContent@width
- */
-export type Width1 = number;
-/**
- * The size of the rendition resource in bytes
- */
-export type SizeInBytes1 = number;
-/**
- * The total time duration of the content in seconds. (Added in version 1.2. Issue #18). nar:remoteContent@duration
- */
-export type Duration1 = number;
-/**
- * Binary format name. (Added in version 1.2. Issue #18). nar:remoteContent@format
- */
-export type Format1 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the trust indicator
- */
-export type Scheme12 = string;
-/**
- * The code for the trust indicator in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code14 = string;
-/**
- * The title of the resource being referenced.
- */
-export type Title4 = string;
-/**
- * The URL for accessing the trust indicator resource.
- */
-export type Href2 = string;
 /**
  * An array of objects to allow links to documents about trust indicators. (nar:link) issue #44. (Added in version 1.3)
  */
 export type TrustIndicator = {
-  scheme?: Scheme12;
-  code?: Code14;
-  title?: Title4;
-  href?: Href2;
+  scheme?: Scheme;
+  code?: Code;
+  title?: Title;
+  href?: Href;
 }[];
-/**
- * For example ninjs. nar:standard
- */
-export type NameOfStandard1 = string;
-/**
- * For example 1.3. nar:standardversion
- */
-export type VersionOfStandard1 = string;
-/**
- * The uri of the json schema to use for validation.
- */
-export type Schema3 = string;
-/**
- * The name of the genre
- */
-export type Name14 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the genre. Normally  http://cv.iptc.org/newscodes/genre/
- */
-export type Scheme13 = string;
-/**
- * The code for the genre in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code15 = string;
 /**
  * A nature, intellectual or journalistic form of the content. nar:genre. (Added in version 1.3)
  */
 export type Genre = {
-  name?: Name14;
-  scheme?: Scheme13;
-  code?: Code15;
+  name?: Name;
+  scheme?: Scheme;
+  code?: Code;
 }[];
 /**
  * A free-form textual description of the content of the item. (The string appended to description_ in the property name should reflect the format and/or the purpose of the text, separating the parts with _). nar:description
@@ -739,71 +361,22 @@ export type Body = string;
  */
 export type ExtraHeadlines = string;
 /**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the trust indicator
- */
-export type Scheme14 = string;
-/**
- * The code for the trust indicator in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code16 = string;
-/**
- * The title of the resource being referenced.
- */
-export type Title5 = string;
-/**
- * The URL for accessing the trust indicator resource.
- */
-export type Href3 = string;
-/**
  * An array of objects to allow links to documents about trust indicators. (nar:link) issue #44. (Added in version 1.3)
  */
 export type TrustIndicator1 = {
-  scheme?: Scheme14;
-  code?: Code16;
-  title?: Title5;
-  href?: Href3;
+  scheme?: Scheme;
+  code?: Code;
+  title?: Title;
+  href?: Href;
 }[];
-/**
- * The name of the genre
- */
-export type Name15 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the genre. Normally  http://cv.iptc.org/newscodes/genre/
- */
-export type Scheme15 = string;
-/**
- * The code for the genre in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code17 = string;
 /**
  * A nature, intellectual or journalistic form of the content. nar:genre. (Added in version 1.3)
  */
 export type Genre1 = {
-  name?: Name15;
-  scheme?: Scheme15;
-  code?: Code17;
+  name?: Name;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * A free-form textual description of the content of the item. (The string appended to description_ in the property name should reflect the format and/or the purpose of the text, separating the parts with _). nar:description
- *
- * This interface was referenced by `IPTCNinjsNewsInJSON13Approved13May2020`'s JSON-Schema definition
- * via the `patternProperty` "^description_[a-zA-Z0-9_]+".
- */
-export type Description1 = string;
-/**
- * The textual content of the news object. (The string appended to body_ in the property name should reflect the format and/or the purpose of the text, separating the parts with _). nar:inlineData or nar:inlineXML
- *
- * This interface was referenced by `IPTCNinjsNewsInJSON13Approved13May2020`'s JSON-Schema definition
- * via the `patternProperty` "^body_[a-zA-Z0-9_]+".
- */
-export type Body1 = string;
-/**
- * Additional headlines or strings of that type can be handled here. This is not replacing the main headline-property in ninjs. (The string appended to headline_ in the property name should reflect the format and/or the purpose of the text, separating the parts with _) nar:headline with roles issue #13. (Added in 1.3)
- *
- * This interface was referenced by `IPTCNinjsNewsInJSON13Approved13May2020`'s JSON-Schema definition
- * via the `patternProperty` "^headline_[a-zA-Z0-9_]+".
- */
-export type ExtraHeadlines1 = string;
 
 /**
  * A news item as JSON object -- copyright 2020 IPTC - International Press Telecommunications Council - www.iptc.org - This document is published under the Creative Commons Attribution 4.0 license, see  http://creativecommons.org/licenses/by/4.0/
@@ -845,11 +418,33 @@ export interface IPTCNinjsNewsInJSON13Approved13May2020 {
    * Content of news objects which are associated with this news object. nar:link
    */
   associations?: {
-    [k: string]: IPTCNinjsNewsInJSON13Approved13May20201;
+    [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
   };
   altids?: AlternativeId1;
   trustindicator?: TrustIndicator1;
   genre?: Genre1;
+  [k: string]:
+    | Description
+    | Standard
+    | Type
+    | RepresentationType
+    | PublicationStatus
+    | Urgency
+    | Person
+    | Organisation
+    | Place
+    | Subject
+    | Event
+    | Object
+    | InfoSource
+    | Renditions
+    | {
+        [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
+      }
+    | AlternativeId1
+    | TrustIndicator1
+    | Genre1
+    | undefined;
 }
 /**
  * An object with information about standard, version and schema this instance is valid against. nar:standard, nar:standardversion and xml:schema issue #43. (Added in version 1.3)
@@ -869,16 +464,18 @@ export interface Renditions {
    * This interface was referenced by `Renditions`'s JSON-Schema definition
    * via the `patternProperty` "^[a-zA-Z0-9_]+".
    */
-  [k: string]: {
-    href?: Href;
-    mimetype?: Mimetype;
-    title?: Title1;
-    height?: Height;
-    width?: Width;
-    sizeinbytes?: SizeInBytes;
-    duration?: Duration;
-    format?: Format;
-  };
+  [k: string]:
+    | {
+        href?: Href;
+        mimetype?: Mimetype;
+        title?: Title;
+        height?: Height;
+        width?: Width;
+        sizeinbytes?: SizeInBytes;
+        duration?: Duration;
+        format?: Format;
+      }
+    | undefined;
 }
 /**
  * A news item as JSON object -- copyright 2020 IPTC - International Press Telecommunications Council - www.iptc.org - This document is published under the Creative Commons Attribution 4.0 license, see  http://creativecommons.org/licenses/by/4.0/
@@ -887,22 +484,22 @@ export interface Renditions {
  * via the `patternProperty` "^[a-zA-Z0-9_]+".
  */
 export interface IPTCNinjsNewsInJSON13Approved13May20201 {
-  uri: UniformResourceIdentifier1;
-  type?: Type1;
-  mimetype?: MIMEType1;
-  representationtype?: RepresentationType1;
-  profile?: Profile1;
-  version?: Version1;
-  firstcreated?: FirstCreated1;
-  versioncreated?: VersionCreated1;
-  embargoed?: Embargoed1;
-  pubstatus?: PublicationStatus1;
-  urgency?: Urgency1;
-  copyrightholder?: CopyrightHolder1;
-  copyrightnotice?: CopyrightNotice1;
-  usageterms?: UsageTerms1;
-  ednote?: EditorialNote1;
-  language?: Language1;
+  uri: UniformResourceIdentifier;
+  type?: Type;
+  mimetype?: MIMEType;
+  representationtype?: RepresentationType;
+  profile?: Profile;
+  version?: Version;
+  firstcreated?: FirstCreated;
+  versioncreated?: VersionCreated;
+  embargoed?: Embargoed;
+  pubstatus?: PublicationStatus;
+  urgency?: Urgency;
+  copyrightholder?: CopyrightHolder;
+  copyrightnotice?: CopyrightNotice;
+  usageterms?: UsageTerms;
+  ednote?: EditorialNote;
+  language?: Language;
   person?: Person1;
   organisation?: Organisation1;
   place?: Place1;
@@ -910,24 +507,46 @@ export interface IPTCNinjsNewsInJSON13Approved13May20201 {
   event?: Event1;
   object?: Object1;
   infosource?: InfoSource1;
-  title?: Title2;
-  byline?: Byline1;
-  headline?: Headline1;
-  slugline?: Slugline1;
-  located?: Located1;
-  charcount?: CharacterCount1;
-  wordcount?: WordCount1;
+  title?: Title;
+  byline?: Byline;
+  headline?: Headline;
+  slugline?: Slugline;
+  located?: Located;
+  charcount?: CharacterCount;
+  wordcount?: WordCount;
   renditions?: Renditions1;
   /**
    * Content of news objects which are associated with this news object. nar:link
    */
   associations?: {
-    [k: string]: IPTCNinjsNewsInJSON13Approved13May20201;
+    [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
   };
   altids?: AlternativeId;
   trustindicator?: TrustIndicator;
   $standard?: Standard1;
   genre?: Genre;
+  [k: string]:
+    | Description
+    | Type
+    | RepresentationType
+    | PublicationStatus
+    | Urgency
+    | Person1
+    | Organisation1
+    | Place1
+    | Subject1
+    | Event1
+    | Object1
+    | InfoSource1
+    | Renditions1
+    | {
+        [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
+      }
+    | AlternativeId
+    | TrustIndicator
+    | Standard1
+    | Genre
+    | undefined;
 }
 /**
  * Wrapper for different renditions of the news object. nar:remoteContent
@@ -939,16 +558,18 @@ export interface Renditions1 {
    * This interface was referenced by `Renditions1`'s JSON-Schema definition
    * via the `patternProperty` "^[a-zA-Z0-9_]+".
    */
-  [k: string]: {
-    href?: Href1;
-    mimetype?: Mimetype1;
-    title?: Title3;
-    height?: Height1;
-    width?: Width1;
-    sizeinbytes?: SizeInBytes1;
-    duration?: Duration1;
-    format?: Format1;
-  };
+  [k: string]:
+    | {
+        href?: Href;
+        mimetype?: Mimetype;
+        title?: Title;
+        height?: Height;
+        width?: Width;
+        sizeinbytes?: SizeInBytes;
+        duration?: Duration;
+        format?: Format;
+      }
+    | undefined;
 }
 /**
  * Alternative identifiers of the item. It is up to the individual provider to name and set type on the alternative identifiers they like to use. nar:altId issue #3. (Added in version 1.3)
@@ -960,9 +581,9 @@ export interface AlternativeId {
  * An object with information about standard, version and schema this instance is valid against. nar:standard, nar:standardversion and xml:schema issue #43. (Added in version 1.3)
  */
 export interface Standard1 {
-  name?: NameOfStandard1;
-  version?: VersionOfStandard1;
-  schema?: Schema3;
+  name?: NameOfStandard;
+  version?: VersionOfStandard;
+  schema?: Schema;
 }
 /**
  * Alternative identifiers of the item. It is up to the individual provider to name and set type on the alternative identifiers they like to use. nar:altId issue #3. (Added in version 1.3)

@@ -59,122 +59,6 @@ export type Probe = {
     }
 );
 /**
- * A startup probe indicates whether the application within a container is started. All other probes are disabled until the startup succeeds
- */
-export type Probe1 = {
-  /**
-   * (optional) the initial delay to wait before starting to probe in seconds
-   */
-  initialDelay?: number;
-  /**
-   * (optional) the time in seconds to wait for an http response for each call to the probe endpoint
-   */
-  timeout?: number;
-  /**
-   * (optional) the number of times the probe is allowed to fail the health check before performing its duty (e.g., recreating a pod or marking a pod as unavailable)
-   */
-  failureThreshold?: number;
-  /**
-   * (optional) the number of times the probe has to pass the health check before performing its duty (e.g., marking a pod as available)
-   */
-  successThreshold?: number;
-  [k: string]: unknown | undefined;
-} & (
-  | {
-      /**
-       * the url-path to http-GET for the check.
-       */
-      path: string;
-      /**
-       * the port on which to http-GET the path for checking this service
-       */
-      port: string;
-      /**
-       * (optional) the scheme used for the probe HTTP or HTTPS defaults to HTTP
-       */
-      scheme?: string;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * the port on which to tcp checking this service
-       */
-      tcpSocket: string;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * list of probe commands
-       */
-      commands: {
-        /**
-         * argument
-         */
-        arg?: string;
-        [k: string]: unknown | undefined;
-      }[];
-      [k: string]: unknown | undefined;
-    }
-);
-/**
- * Defines a check, failure of which leads to the service not receiving any requests
- */
-export type Probe2 = {
-  /**
-   * (optional) the initial delay to wait before starting to probe in seconds
-   */
-  initialDelay?: number;
-  /**
-   * (optional) the time in seconds to wait for an http response for each call to the probe endpoint
-   */
-  timeout?: number;
-  /**
-   * (optional) the number of times the probe is allowed to fail the health check before performing its duty (e.g., recreating a pod or marking a pod as unavailable)
-   */
-  failureThreshold?: number;
-  /**
-   * (optional) the number of times the probe has to pass the health check before performing its duty (e.g., marking a pod as available)
-   */
-  successThreshold?: number;
-  [k: string]: unknown | undefined;
-} & (
-  | {
-      /**
-       * the url-path to http-GET for the check.
-       */
-      path: string;
-      /**
-       * the port on which to http-GET the path for checking this service
-       */
-      port: string;
-      /**
-       * (optional) the scheme used for the probe HTTP or HTTPS defaults to HTTP
-       */
-      scheme?: string;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * the port on which to tcp checking this service
-       */
-      tcpSocket: string;
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * list of probe commands
-       */
-      commands: {
-        /**
-         * argument
-         */
-        arg?: string;
-        [k: string]: unknown | undefined;
-      }[];
-      [k: string]: unknown | undefined;
-    }
-);
-/**
  * Host entries added to /etc/hosts file
  */
 export type HostAliases = {
@@ -325,13 +209,13 @@ export interface ConcreteEnvironmentsLists {
    * definitions for one specific environment
    */
   [k: string]:
-    | (
-        | ConcreteEnvironmentSpec1
-        | {
-            $ref?: string | string[];
-            [k: string]: unknown | undefined;
-          }
-      )
+    | ConcreteEnvironmentSpec1
+    | {
+        $ref?: string | string[];
+        [k: string]: unknown | undefined;
+      }
+    | string
+    | ConcreteEnvironmentSpec
     | undefined;
 }
 /**
@@ -393,7 +277,30 @@ export interface ConcreteEnvironmentSpec {
      */
     [k: string]: ServiceConfiguration | undefined;
   };
-  [k: string]: ServiceConfiguration1 | undefined;
+  [k: string]:
+    | ServiceConfiguration1
+    | string
+    | string[]
+    | TemplateParameter[]
+    | 'docker-compose'
+    | 'openshift'
+    | 'kubernetes'
+    | ResourceSpec
+    | 'service-mesh'
+    | {
+        /**
+         * tag value
+         */
+        [k: string]: string | undefined;
+      }
+    | boolean
+    | {
+        /**
+         * per-config-set overrides
+         */
+        [k: string]: ServiceConfiguration | undefined;
+      }
+    | undefined;
 }
 export interface TemplateParameter {
   name: string;
@@ -459,7 +366,8 @@ export interface ServiceConfiguration {
         }
       | string
       | number
-      | boolean;
+      | boolean
+      | undefined;
   };
   /**
    * The entrypoint that is used to start the image (Only works with docker-compose and OpenShift
@@ -470,8 +378,8 @@ export interface ServiceConfiguration {
     service?: Labels1;
   };
   liveness?: Probe;
-  startup?: Probe1;
-  readiness?: Probe2;
+  startup?: Probe;
+  readiness?: Probe;
   /**
    * How to roll out changed versions of the service (Recreate or Rolling)
    */
@@ -578,7 +486,7 @@ export interface Labels {
    * This interface was referenced by `Labels1`'s JSON-Schema definition
    * via the `patternProperty` "^.*$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * List of labels for services
@@ -591,7 +499,7 @@ export interface Labels1 {
    * This interface was referenced by `Labels1`'s JSON-Schema definition
    * via the `patternProperty` "^.*$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * Specifies resource usage of a container instance
@@ -675,7 +583,8 @@ export interface ServiceConfiguration1 {
         }
       | string
       | number
-      | boolean;
+      | boolean
+      | undefined;
   };
   /**
    * The entrypoint that is used to start the image (Only works with docker-compose and OpenShift
@@ -686,8 +595,8 @@ export interface ServiceConfiguration1 {
     service?: Labels1;
   };
   liveness?: Probe;
-  startup?: Probe1;
-  readiness?: Probe2;
+  startup?: Probe;
+  readiness?: Probe;
   /**
    * How to roll out changed versions of the service (Recreate or Rolling)
    */
@@ -839,7 +748,30 @@ export interface ConcreteEnvironmentSpec1 {
      */
     [k: string]: ServiceConfiguration | undefined;
   };
-  [k: string]: ServiceConfiguration2 | undefined;
+  [k: string]:
+    | ServiceConfiguration2
+    | string
+    | string[]
+    | TemplateParameter[]
+    | 'docker-compose'
+    | 'openshift'
+    | 'kubernetes'
+    | ResourceSpec
+    | 'service-mesh'
+    | {
+        /**
+         * tag value
+         */
+        [k: string]: string | undefined;
+      }
+    | boolean
+    | {
+        /**
+         * per-config-set overrides
+         */
+        [k: string]: ServiceConfiguration | undefined;
+      }
+    | undefined;
 }
 /**
  * per-service overrides
@@ -866,7 +798,8 @@ export interface ServiceConfiguration2 {
         }
       | string
       | number
-      | boolean;
+      | boolean
+      | undefined;
   };
   /**
    * The entrypoint that is used to start the image (Only works with docker-compose and OpenShift
@@ -877,8 +810,8 @@ export interface ServiceConfiguration2 {
     service?: Labels1;
   };
   liveness?: Probe;
-  startup?: Probe1;
-  readiness?: Probe2;
+  startup?: Probe;
+  readiness?: Probe;
   /**
    * How to roll out changed versions of the service (Recreate or Rolling)
    */

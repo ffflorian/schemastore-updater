@@ -41,83 +41,73 @@ export interface Checks {
   [k: string]: unknown | undefined;
 }
 export interface ArgumentCount {
-  config?: Config;
-  [k: string]: unknown | undefined;
-}
-export interface Config {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface ComplexLogic {
-  config?: Config1;
-  [k: string]: unknown | undefined;
-}
-export interface Config1 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface FileLines {
-  config?: Config2;
-  [k: string]: unknown | undefined;
-}
-export interface Config2 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface MethodComplexity {
-  config?: Config3;
-  [k: string]: unknown | undefined;
-}
-export interface Config3 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface MethodCount {
-  config?: Config4;
-  [k: string]: unknown | undefined;
-}
-export interface Config4 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface MethodLines {
-  config?: Config5;
-  [k: string]: unknown | undefined;
-}
-export interface Config5 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface NestedControlFlow {
-  config?: Config6;
-  [k: string]: unknown | undefined;
-}
-export interface Config6 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface ReturnStatements {
-  config?: Config7;
-  [k: string]: unknown | undefined;
-}
-export interface Config7 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface SimilarCode {
-  config?: Config8;
-  [k: string]: unknown | undefined;
-}
-export interface Config8 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 export interface IdenticalCode {
-  config?: Config9;
-  [k: string]: unknown | undefined;
-}
-export interface Config9 {
-  threshold?: Threshold;
+  config?: {
+    threshold?: Threshold;
+    [k: string]: unknown | undefined;
+  };
   [k: string]: unknown | undefined;
 }
 /**

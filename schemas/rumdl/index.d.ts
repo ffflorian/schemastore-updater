@@ -1,25 +1,33 @@
 /* eslint-disable */
 
 /**
- * Markdown flavor/dialect. Accepts: standard, gfm, mkdocs, mdx, quarto, obsidian, kramdown. Aliases: commonmark/github map to standard, qmd/rmd/rmarkdown map to quarto, jekyll maps to kramdown.
+ * Markdown flavor/dialect. Accepts: standard, gfm, mkdocs, mdx, pandoc, quarto, obsidian, kramdown, azure_devops, myst, hugo, mdg, gh-aw (preview). Aliases: commonmark/github map to standard, qmd/rmd/rmarkdown map to quarto, jekyll maps to kramdown, azure/ado map to azure_devops, mystmd maps to myst, goldmark maps to hugo, markdown_with_gherkin maps to mdg.
  */
 export type MarkdownFlavor =
-  | (
-      | 'standard'
-      | 'gfm'
-      | 'github'
-      | 'commonmark'
-      | 'mkdocs'
-      | 'mdx'
-      | 'quarto'
-      | 'qmd'
-      | 'rmd'
-      | 'rmarkdown'
-      | 'obsidian'
-      | 'kramdown'
-      | 'jekyll'
-    )
-  | undefined;
+  | 'standard'
+  | 'gfm'
+  | 'github'
+  | 'commonmark'
+  | 'mkdocs'
+  | 'mdx'
+  | 'pandoc'
+  | 'quarto'
+  | 'qmd'
+  | 'rmd'
+  | 'rmarkdown'
+  | 'obsidian'
+  | 'kramdown'
+  | 'jekyll'
+  | 'azure_devops'
+  | 'azure'
+  | 'ado'
+  | 'myst'
+  | 'mystmd'
+  | 'hugo'
+  | 'goldmark'
+  | 'mdg'
+  | 'markdown_with_gherkin'
+  | 'gh-aw';
 /**
  * Error handling strategy for tool execution failures.
  */
@@ -30,16 +38,27 @@ export type Severity = 'error' | 'warning' | 'info';
  * rumdl configuration for linting Markdown files. Rules can be configured individually using [MD###] sections with rule-specific options.
  */
 export interface Config {
+  /**
+   * Path to a base config file to inherit settings from.
+   * Supports relative paths, absolute paths, `~/` for the home directory, and
+   * `$VAR` / `${VAR}` environment-variable expansion (a literal `$` is written `$$`).
+   * Example: `extends = "../base.rumdl.toml"` or `extends = "$GEM_PATH/base.rumdl.toml"`
+   */
+  extends?: string | null;
   global?: GlobalConfig;
   /**
-   * Per-file rule ignores: maps file patterns to lists of rules to ignore
+   * Per-file rule ignores: maps file patterns to lists of rules to ignore.
+   * Patterns are relative to the project root; a leading `~/` expands to the
+   * home directory and absolute paths are matched as written.
    * Example: { "README.md": ["MD033"], "docs/** /*.md": ["MD013"] }
    */
   'per-file-ignores'?: {
     [k: string]: string[] | undefined;
   };
   /**
-   * Per-file flavor overrides: maps file patterns to Markdown flavors
+   * Per-file flavor overrides: maps file patterns to Markdown flavors.
+   * Patterns are relative to the project root; a leading `~/` expands to the
+   * home directory and absolute paths are matched as written.
    * Example: { "docs/** /*.md": MkDocs, "** /*.mdx": MDX }
    * Uses IndexMap to preserve config file order for "first match wins" semantics
    */
@@ -47,7 +66,19 @@ export interface Config {
     [k: string]: MarkdownFlavor | undefined;
   };
   'code-block-tools'?: CodeBlockToolsConfig;
-  [k: string]: RuleConfig | undefined;
+  [k: string]:
+    | RuleConfig
+    | string
+    | null
+    | GlobalConfig
+    | {
+        [k: string]: string[] | undefined;
+      }
+    | {
+        [k: string]: MarkdownFlavor | undefined;
+      }
+    | CodeBlockToolsConfig
+    | undefined;
 }
 /**
  * Global configuration options
@@ -62,11 +93,15 @@ export interface GlobalConfig {
    */
   disable?: string[];
   /**
-   * Files to exclude
+   * Files to exclude. Glob patterns, relative to the project root; a
+   * leading `~/` expands to the home directory and absolute paths are
+   * matched as written.
    */
   exclude?: string[];
   /**
-   * Files to include
+   * Files to include. Glob patterns, relative to the project root; a
+   * leading `~/` expands to the home directory and absolute paths are
+   * matched as written.
    */
   include?: string[];
   /**
@@ -102,13 +137,24 @@ export interface GlobalConfig {
     | 'commonmark'
     | 'mkdocs'
     | 'mdx'
+    | 'pandoc'
     | 'quarto'
     | 'qmd'
     | 'rmd'
     | 'rmarkdown'
     | 'obsidian'
     | 'kramdown'
-    | 'jekyll';
+    | 'jekyll'
+    | 'azure_devops'
+    | 'azure'
+    | 'ado'
+    | 'myst'
+    | 'mystmd'
+    | 'hugo'
+    | 'goldmark'
+    | 'mdg'
+    | 'markdown_with_gherkin'
+    | 'gh-aw';
   /**
    * @deprecated
    * \[DEPRECATED\] Whether to enforce exclude patterns for explicitly passed paths.
@@ -118,7 +164,9 @@ export interface GlobalConfig {
    */
   'force-exclude'?: boolean;
   /**
-   * Directory to store cache files (default: .rumdl_cache)
+   * Directory to store cache files (default: .rumdl_cache).
+   * A leading `~/` expands to the home directory; a relative path resolves
+   * against the project root.
    * Can also be set via --cache-dir CLI flag or RUMDL_CACHE_DIR environment variable
    */
   'cache-dir'?: string | null;
@@ -135,6 +183,13 @@ export interface GlobalConfig {
    * Additional rules to disable on top of the base set (additive)
    */
   'extend-disable'?: string[];
+  /**
+   * Whether to read settings from `.editorconfig` files (default: false).
+   * When enabled, the `.editorconfig` properties that map onto rumdl
+   * settings fill in anything no rumdl config sets, resolved per file so
+   * section globs and nested `.editorconfig` files apply as written.
+   */
+  editorconfig?: boolean;
   [k: string]: unknown | undefined;
 }
 /**
@@ -158,11 +213,13 @@ export interface CodeBlockToolsConfig {
    * Behavior when a code block language has no tools configured for the current mode
    * (e.g., no lint tools for `rumdl check`, no format tools for `rumdl check --fix`)
    */
-  'on-missing-language-definition'?: 'ignore' | 'fail' | 'fail-fast';
+  'on-missing-language-definition'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
   /**
-   * Behavior when a configured tool's binary cannot be found (e.g., not in PATH)
+   * Behavior when a configured tool's binary cannot be found (e.g., not in PATH).
+   * Defaults to `warn`: the tools rumdl drives are installed separately from
+   * rumdl, so an absent one is common enough that silence about it is a trap.
    */
-  'on-missing-tool-binary'?: 'ignore' | 'fail' | 'fail-fast';
+  'on-missing-tool-binary'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
   /**
    * Timeout per tool execution in milliseconds (default: 30000)
    */

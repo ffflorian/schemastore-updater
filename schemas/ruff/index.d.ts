@@ -2411,7 +2411,7 @@ export type RuleSelector =
   | 'zip-dict-keys-and-values'
   | 'zip-instead-of-pairwise'
   | 'zip-without-explicit-strict';
-export type Language = ('python' | 'pyi' | 'ipynb' | 'markdown') | undefined;
+export type Language = 'python' | 'pyi' | 'ipynb' | 'markdown';
 /**
  * An immutable name.
  *
@@ -2439,8 +2439,8 @@ export type Language = ('python' | 'pyi' | 'ipynb' | 'markdown') | undefined;
  * interning boundaries.
  */
 export type Name = string;
-export type Alias = string | undefined;
-export type BannedAliases = string[] | undefined;
+export type Alias = string;
+export type BannedAliases = string[];
 export type ParametrizeNameType = 'csv' | 'tuple' | 'list';
 export type ParametrizeValuesRowType = 'tuple' | 'list';
 export type ParametrizeValuesType = 'tuple' | 'list';
@@ -2487,9 +2487,7 @@ export type OutputFormat =
   | 'rdjson'
   | 'azure'
   | 'sarif';
-export type PythonVersion =
-  | ('py37' | 'py38' | 'py39' | 'py310' | 'py311' | 'py312' | 'py313' | 'py314' | 'py315')
-  | undefined;
+export type PythonVersion = 'py37' | 'py38' | 'py39' | 'py310' | 'py311' | 'py312' | 'py313' | 'py314' | 'py315';
 export type RequiredVersion = string;
 
 export interface Options {
@@ -2948,6 +2946,8 @@ export interface Options {
    * A list of mappings from file pattern to rule codes or prefixes to
    * exclude, when considering any matching files. An initial '!' negates
    * the file pattern.
+   *
+   * For more information on the glob syntax, refer to the [`globset` documentation](https://docs.rs/globset/latest/globset/#syntax).
    */
   'per-file-ignores'?: {
     [k: string]: RuleSelector[] | undefined;
@@ -3104,7 +3104,7 @@ export interface Options {
    * file than it would for an equivalent runtime file with the same target
    * version.
    */
-  'target-version'?: PythonVersion | undefined | null;
+  'target-version'?: PythonVersion | null;
   /**
    * @deprecated
    * A list of task tags to recognize (e.g., "TODO", "FIXME", "XXX").
@@ -4585,6 +4585,8 @@ export interface LintOptions {
    * A list of mappings from file pattern to rule codes or prefixes to
    * exclude, when considering any matching files. An initial '!' negates
    * the file pattern.
+   *
+   * For more information on the glob syntax, refer to the [`globset` documentation](https://docs.rs/globset/latest/globset/#syntax).
    */
   'per-file-ignores'?: {
     [k: string]: RuleSelector[] | undefined;

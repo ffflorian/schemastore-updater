@@ -249,20 +249,82 @@ export interface Dashboard {
   access?: [
     (
       | {
+          deny: unknown;
           [k: string]: unknown | undefined;
         }
       | {
+          grant: unknown;
           [k: string]: unknown | undefined;
         }
-    ),
-    ...(
+    ) & {
+      /**
+       * A user group alias who is denied access
+       */
+      deny?: string;
+      /**
+       * A user group alias who is granted access
+       */
+      grant?: string;
+      [k: string]: unknown | undefined;
+    } & (
+        | {
+            deny: unknown;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            grant: unknown;
+            [k: string]: unknown | undefined;
+          }
+      ) & {
+        /**
+         * A user group alias who is denied access
+         */
+        deny?: string;
+        /**
+         * A user group alias who is granted access
+         */
+        grant?: string;
+        [k: string]: unknown | undefined;
+      },
+    ...((
       | {
+          deny: unknown;
           [k: string]: unknown | undefined;
         }
       | {
+          grant: unknown;
           [k: string]: unknown | undefined;
         }
-    )[]
+    ) & {
+      /**
+       * A user group alias who is denied access
+       */
+      deny?: string;
+      /**
+       * A user group alias who is granted access
+       */
+      grant?: string;
+      [k: string]: unknown | undefined;
+    } & (
+        | {
+            deny: unknown;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            grant: unknown;
+            [k: string]: unknown | undefined;
+          }
+      ) & {
+        /**
+         * A user group alias who is denied access
+         */
+        deny?: string;
+        /**
+         * A user group alias who is granted access
+         */
+        grant?: string;
+        [k: string]: unknown | undefined;
+      })[]
   ];
 }
 /**
@@ -304,6 +366,8 @@ export interface ContentApp {
   weight?: number;
   /**
    * A list of rules to show or hide the content app based on content, media & member types
+   *
+   * Items: See documentation for example of rules https://our.umbraco.com/Documentation/Extending/Content-Apps/#limiting-according-to-type
    */
   show?: string[];
 }

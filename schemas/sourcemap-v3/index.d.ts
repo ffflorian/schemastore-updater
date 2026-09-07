@@ -66,7 +66,31 @@ export interface JSONSchemaForTheSourceMapsV3 {
    * This interface was referenced by `JSONSchemaForTheSourceMapsV3`'s JSON-Schema definition
    * via the `patternProperty` "^x_".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | number
+    | string
+    | string[]
+    | (string | null)[]
+    | [
+        SectionMap & {
+          offset?: {
+            line?: number;
+            column?: number;
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        },
+        ...(SectionMap & {
+          offset?: {
+            line?: number;
+            column?: number;
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        })[]
+      ]
+    | undefined;
 }

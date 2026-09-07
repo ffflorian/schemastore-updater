@@ -3,7 +3,15 @@
 /**
  * This is a JSON schema representation of the schema.org Action schema: https://schema.org/ContactPoint
  */
-export type JSONSchemaForSchemaOrgContactPoint = JSONSchemaForSchemaOrgThing & {
+export type JSONSchemaForSchemaOrgContactPoint = (
+  | {
+      context?: Context;
+      graph?: Graph;
+      common?: Common;
+      [k: string]: unknown | undefined;
+    }
+  | JSONSchemaForSchemaOrgThing[]
+) & {
   /**
    * override the @context property to ensure the schema.org URI is used
    */
@@ -16,12 +24,12 @@ export type JSONSchemaForSchemaOrgContactPoint = JSONSchemaForSchemaOrgThing & {
    * The geographic area where a service or offered item is provided. Supersedes serviceArea.
    */
   areaServed?:
-    | (JSONSchemaForSchemaOrgThing1 | JSONSchemaForSchemaOrgThing2 | JSONSchemaForSchemaOrgThing3 | string)[]
-    | (JSONSchemaForSchemaOrgThing4 | JSONSchemaForSchemaOrgThing5 | JSONSchemaForSchemaOrgThing6 | string);
+    | (JSONSchemaForSchemaOrgThing | JSONSchemaForSchemaOrgThing | JSONSchemaForSchemaOrgThing | string)[]
+    | (JSONSchemaForSchemaOrgThing | JSONSchemaForSchemaOrgThing | JSONSchemaForSchemaOrgThing | string);
   /**
    * A language someone may use with the item. Please use one of the language codes from the IETF BCP 47 standard. See also inLanguage
    */
-  availableLanguage?: (string | JSONSchemaForSchemaOrgThing7) | (string | JSONSchemaForSchemaOrgThing8)[];
+  availableLanguage?: (string | JSONSchemaForSchemaOrgThing) | (string | JSONSchemaForSchemaOrgThing)[];
   /**
    * An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers).
    */
@@ -38,11 +46,11 @@ export type JSONSchemaForSchemaOrgContactPoint = JSONSchemaForSchemaOrgThing & {
    * The fax number.
    */
   faxNumber?: string;
-  hoursAvailable?: JSONSchemaForSchemaOrgThing9;
+  hoursAvailable?: JSONSchemaForSchemaOrgThing;
   /**
    * The product or service this support contact point is related to (such as product support for a particular product line). This can be a specific product or product line (e.g. "iPhone") or a general category of products or services (e.g. "smartphones").
    */
-  productSupported?: (string | JSONSchemaForSchemaOrgThing10)[] | (string | JSONSchemaForSchemaOrgThing11);
+  productSupported?: (string | JSONSchemaForSchemaOrgThing)[] | (string | JSONSchemaForSchemaOrgThing);
   /**
    * The telephone number.
    */
@@ -52,676 +60,15 @@ export type JSONSchemaForSchemaOrgContactPoint = JSONSchemaForSchemaOrgThing & {
 /**
  * This is a JSON schema representation of the schema.org Thing schema: https://schema.org/Thing
  */
-export type JSONSchemaForSchemaOrgThing = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-export type SchemaForJSONLD = Context &
-  Graph &
-  Common &
-  (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | unknown[]
-  );
-/**
- * AdministrativeArea
- */
-export type JSONSchemaForSchemaOrgThing1 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * GeoShape
- */
-export type JSONSchemaForSchemaOrgThing2 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * Place
- */
-export type JSONSchemaForSchemaOrgThing3 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * AdministrativeArea
- */
-export type JSONSchemaForSchemaOrgThing4 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * GeoShape
- */
-export type JSONSchemaForSchemaOrgThing5 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * Place
- */
-export type JSONSchemaForSchemaOrgThing6 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * Language
- */
-export type JSONSchemaForSchemaOrgThing7 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * Language
- */
-export type JSONSchemaForSchemaOrgThing8 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * The hours during which this service or contact is available. (OpeningHoursSpecification)
- */
-export type JSONSchemaForSchemaOrgThing9 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * Product
- */
-export type JSONSchemaForSchemaOrgThing10 = SchemaForJSONLD & {
-  /**
-   * override the @context property to ensure the schema.org URI is used
-   */
-  '@context'?: string;
-  /**
-   * An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.
-   */
-  additionalType?: string;
-  /**
-   * An alias for the item.
-   */
-  alternateName?: string;
-  /**
-   * A description of the item.
-   */
-  description?: string;
-  /**
-   * A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.
-   */
-  disambiguatingDescription?: string;
-  /**
-   * An image of the item. This can be a URL or a fully described ImageObject.
-   */
-  image?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.
-   */
-  mainEntityOfPage?:
-    | string
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * The name of the item.
-   */
-  name?: string;
-  /**
-   * Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
-   */
-  potentialAction?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
-   */
-  sameAs?: string;
-  /**
-   * URL of the item.
-   */
-  url?: string;
-  [k: string]: unknown | undefined;
-};
-/**
- * Product
- */
-export type JSONSchemaForSchemaOrgThing11 = SchemaForJSONLD & {
+export type JSONSchemaForSchemaOrgThing = (
+  | {
+      context?: Context;
+      graph?: Graph;
+      common?: Common;
+      [k: string]: unknown | undefined;
+    }
+  | JSONSchemaForSchemaOrgThing[]
+) & {
   /**
    * override the @context property to ensure the schema.org URI is used
    */
@@ -815,7 +162,7 @@ export interface Common {
   /**
    * Used to set the data type of a node or typed value.
    */
-  '@type'?: string | null | unknown[];
+  '@type'?: string | unknown[] | null;
   /**
    * Used to set the default container type for a term.
    */
@@ -836,10 +183,10 @@ export interface Common {
    * Used to express reverse properties.
    */
   '@reverse'?:
-    | string
     | {
         [k: string]: Common | undefined;
       }
+    | string
     | null;
   /**
    * Used to set the base IRI against which relative IRIs are resolved
@@ -849,7 +196,24 @@ export interface Common {
    * Used to expand properties and values in @type with a common prefix IRI
    */
   '@vocab'?: string | null;
-  [k: string]: Common | undefined;
+  [k: string]:
+    | Common
+    | string
+    | boolean
+    | number
+    | null
+    | unknown[]
+    | '@language'
+    | '@list'
+    | '@index'
+    | '@set'
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | {
+        [k: string]: Common | undefined;
+      }
+    | undefined;
 }
 export interface Common1 {
   /**
@@ -867,7 +231,7 @@ export interface Common1 {
   /**
    * Used to set the data type of a node or typed value.
    */
-  '@type'?: string | null | unknown[];
+  '@type'?: string | unknown[] | null;
   /**
    * Used to set the default container type for a term.
    */
@@ -888,10 +252,10 @@ export interface Common1 {
    * Used to express reverse properties.
    */
   '@reverse'?:
-    | string
     | {
         [k: string]: Common | undefined;
       }
+    | string
     | null;
   /**
    * Used to set the base IRI against which relative IRIs are resolved
@@ -901,5 +265,22 @@ export interface Common1 {
    * Used to expand properties and values in @type with a common prefix IRI
    */
   '@vocab'?: string | null;
-  [k: string]: Common | undefined;
+  [k: string]:
+    | Common
+    | string
+    | boolean
+    | number
+    | null
+    | unknown[]
+    | '@language'
+    | '@list'
+    | '@index'
+    | '@set'
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | {
+        [k: string]: Common | undefined;
+      }
+    | undefined;
 }

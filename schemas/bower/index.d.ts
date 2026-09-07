@@ -20,7 +20,7 @@ export interface JSONSchemaForBowerConfigurationFiles {
   /**
    * SPDX license identifier or path/url to a license.
    */
-  license?: string | unknown[];
+  license?: string | string[];
   /**
    * A list of files for Bower to ignore when installing your package.
    */
@@ -78,21 +78,51 @@ export interface JSONSchemaForBowerConfigurationFiles {
   exportsOverride?: {
     [k: string]:
       | {
-          [k: string]: (string | unknown[]) | undefined;
+          [k: string]: string | unknown[] | undefined;
         }
       | undefined;
   };
   /**
    * The types of modules this package exposes
    */
-  moduleType?: ('amd' | 'es6' | 'globals' | 'node' | 'yui')[] | string;
+  moduleType?: string | ('amd' | 'es6' | 'globals' | 'node' | 'yui')[];
   /**
    * Any property starting with _ is valid.
    *
    * This interface was referenced by `JSONSchemaForBowerConfigurationFiles`'s JSON-Schema definition
    * via the `patternProperty` "^_".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | unknown[]
+    | boolean
+    | number
+    | null
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | string
+    | string[]
+    | (
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+      )[]
+    | {
+        type?: 'git';
+        url?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        [k: string]: string | undefined;
+      }
+    | {
+        [k: string]:
+          | {
+              [k: string]: string | unknown[] | undefined;
+            }
+          | undefined;
+      }
+    | ('amd' | 'es6' | 'globals' | 'node' | 'yui')[]
+    | undefined;
 }

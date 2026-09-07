@@ -55,12 +55,14 @@ export interface PnpmWorkspaceSpecification {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.+$".
      */
-    [k: string]: {
-      dependencies?: Dependency1;
-      optionalDependencies?: OptionalDependency;
-      peerDependencies?: PeerDependency;
-      peerDependenciesMeta?: PeerDependencyMeta;
-    };
+    [k: string]:
+      | {
+          dependencies?: Dependency1;
+          optionalDependencies?: OptionalDependency;
+          peerDependencies?: PeerDependency;
+          peerDependenciesMeta?: PeerDependencyMeta;
+        }
+      | undefined;
   };
   /**
    * Per-workspace-project pnpm settings that replace project-specific .npmrc files.
@@ -69,8 +71,7 @@ export interface PnpmWorkspaceSpecification {
     | {
         [k: string]: PackageConfig | undefined;
       }
-    | PackageConfig
-    | undefined[];
+    | PackageConfig[];
   peerDependencyRules?: {
     /**
      * pnpm will not print warnings about missing peer dependencies from this list.
@@ -166,6 +167,10 @@ export interface PnpmWorkspaceSpecification {
      * A list of GHSA codes that will be ignored by pnpm audit.
      */
     ignore?: string[];
+    /**
+     * When `true`, `pnpm audit --fix` removes the `audit.ignore` entries whose GHSA no longer appears in the audit report, so a list of tolerated advisories doesn't accumulate entries for dependencies that are long gone. Added in: v11.25.0 and v12.0.0.
+     */
+    ignorePrune?: boolean;
   };
   auditConfig?: {
     /**
@@ -252,6 +257,10 @@ export interface PnpmWorkspaceSpecification {
    */
   virtualStoreDirMaxLength?: number;
   /**
+   * Determines where the virtual store is located. When set to project, a separate virtual store is created in each project's node_modules/.pnpm. When set to global, a single store is shared by every project on the machine, with each project's node_modules holding only symlinks into it. Added in pnpm v11.23.0.
+   */
+  virtualStoreType?: 'project' | 'global';
+  /**
    * Controls the way packages are imported from the store (if you want to disable symlinks inside node_modules, then you need to change the nodeLinker setting, not this one).
    */
   packageImportMethod?: 'auto' | 'hardlink' | 'copy' | 'clone' | 'clone-or-copy';
@@ -271,6 +280,14 @@ export interface PnpmWorkspaceSpecification {
    * By default, if a file in the store has been modified, the content of this file is checked before linking it to a project's node_modules.
    */
   verifyStoreIntegrity?: boolean;
+  /**
+   * Deprecated. Only allows installation with a store server. If no store server is running, installation will fail.
+   */
+  useRunningStoreServer?: boolean;
+  /**
+   * Makes pnpm install work against a read-only package store (such as a Nix store or OCI image layer). When enabled, pnpm opens the store's SQLite database in immutable mode and never writes to the store. Works best together with --offline and --frozen-lockfile; incompatible with --force. Added in pnpm v11.7.0.
+   */
+  frozenStore?: boolean;
   /**
    * Some registries allow the exact same content to be published under different package names and/or versions.
    */
@@ -458,10 +475,36 @@ export interface PnpmWorkspaceSpecification {
   childConcurrency?: number;
   /**
    * Use and cache the results of (pre/post)install hooks.
+   * When a pre/post install script modify the contents of a package (e.g. build output), pnpm saves the modified package in the global store. On future installs on the same machine, pnpm reuses this cached, prebuilt version.
+   * An object is the canonical way to declare the remote tier; `sideEffectsCache: true` is the shorthand for reading and writing.
    */
-  sideEffectsCache?: boolean;
+  sideEffectsCache?:
+    | boolean
+    | {
+        /**
+         * Restore a build from the cache when one is present. Default true.
+         */
+        read?: boolean;
+        /**
+         * Save a package's build output to the cache. Default true.
+         */
+        write?: boolean;
+        /**
+         * Reuse builds across machines by restoring signed, organization-scoped artifacts through a pnpr server instead of running the package's lifecycle scripts locally. Added in pnpm v11.25.0 and v12.0.0. Fields describing the act of signing (publish, keyId, builderId, imageDigest, architectureBaseline, buildEnv, trustedKeys, privateKey) are refused in pnpm-workspace.yaml and read from the global configuration file or the environment instead.
+         */
+        remote?: {
+          /**
+           * The organization scope of the artifacts.
+           */
+          org?: string;
+          /**
+           * An eligibility list of packages that may be restored from the remote cache. A package is only a candidate when it also passes allowBuilds, has requiresBuild: true, and has a verified source integrity.
+           */
+          packages?: string[];
+        };
+      };
   /**
-   * Only use the side effects cache if present, do not create it for new packages.
+   * Only use the side effects cache if present, do not create it for new packages. The older spelling of sideEffectsCache: { read: true, write: false }.
    */
   sideEffectsCacheReadonly?: boolean;
   /**
@@ -533,6 +576,23 @@ export interface PnpmWorkspaceSpecification {
    */
   workspaceConcurrency?: number;
   /**
+   * Configure dependency relationships and per-task concurrency limits for recursive runs (`pnpm -r run <script>`). A task is a script in one workspace project; it becomes ready after every task it depends on completes successfully. A task with no entry under tasks defaults to depending on the same task in its workspace dependencies, but once a task has an entry, an omitted dependsOn is the same as `dependsOn: []`.
+   */
+  tasks?: {
+    [k: string]:
+      | {
+          /**
+           * Tasks this task depends on. Each entry is either the task in the same project (e.g. `build`) or the task in each selected workspace dependency of the project (e.g. `^build`).
+           */
+          dependsOn?: string[];
+          /**
+           * A positive integer limiting how many instances of this named task may run across workspace projects at once. This limit is separate from workspaceConcurrency.
+           */
+          concurrency?: number;
+        }
+      | undefined;
+  };
+  /**
    * If true, pnpm will fail if no packages match the filter
    */
   failIfNoMatch?: boolean;
@@ -557,6 +617,14 @@ export interface PnpmWorkspaceSpecification {
    */
   globalBinDir?: string;
   /**
+   * Controls which globally installed packages get project-aware shims, which are global commands that run the version specified by the current project instead of the globally installed one. A boolean disables (false) or resets to the defaults (true), while an object maps package names to a policy: "auto" (or true) to switch automatically when publisher-authenticated, "prompt" to confirm on each use, "always" to switch unconditionally, or false to disable. Object entries merge with the built-in defaults ({"node": "auto", "deno": "auto", "bun": "auto"}). Added in pnpm v12.0.0-rc.2.
+   */
+  globalShims?:
+    | boolean
+    | {
+        [k: string]: 'auto' | 'prompt' | 'always' | boolean | undefined;
+      };
+  /**
    * The location where all the packages are saved on the disk.
    */
   stateDir?: string;
@@ -572,6 +640,10 @@ export interface PnpmWorkspaceSpecification {
    * When true, pnpm will check for updates to the installed packages and notify the user.
    */
   updateNotifier?: boolean;
+  /**
+   * Explicitly tells pnpm whether the current environment is a Continuous Integration system, overriding pnpm's automatic CI detection. Added in pnpm v10.12.1.
+   */
+  ci?: boolean;
   /**
    * Create symlinks to executables in node_modules/.bin instead of command shims. This setting is ignored on Windows, where only command shims work.
    */
@@ -797,7 +869,7 @@ export interface PnpmWorkspaceSpecification {
   /**
    * Added a new hoistingLimits setting for `nodeLinker: hoisted` installs, mirroring yarn's `nmHoistingLimits`. It accepts `none` (the default — hoist as far as possible), workspaces (hoist only as far as each workspace package), or dependencies (hoist only up to each workspace package's direct dependencies).
    */
-  hoistingLimits?: 'node' | 'workspaces' | 'dependencies';
+  hoistingLimits?: 'none' | 'workspaces' | 'dependencies';
 }
 /**
  * Define dependency version ranges as reusable constants,
