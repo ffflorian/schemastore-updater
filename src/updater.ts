@@ -112,16 +112,14 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
     );
 
     try {
-      const generatedCode = fixIndexSignatureCompatibility(
-        deduplicateGeneratedTypes(
-          await compileFromFile(schemaFilePath, {
-            bannerComment: '/* eslint-disable */',
-            strictIndexSignatures: true,
-            style: {
-              singleQuote: true,
-            },
-          })
-        )
+      const generatedCode = deduplicateGeneratedTypes(
+        await compileFromFile(schemaFilePath, {
+          bannerComment: '/* eslint-disable */',
+          strictIndexSignatures: true,
+          style: {
+            singleQuote: true,
+          },
+        })
       );
 
       await mkdir(packageDirPath, {recursive: true});
@@ -405,50 +403,6 @@ async function exists(filePath: string): Promise<boolean> {
   } catch {
     return false;
   }
-}
-
-function fixIndexSignatureCompatibility(code: string): string {
-  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
-
-  const offsets: number[] = [];
-
-  function visit(node: ts.Node): void {
-    if (ts.isTypeLiteralNode(node)) {
-      const hasOptionalProp = node.members.some(
-        member => ts.isPropertySignature(member) && member.questionToken !== undefined
-      );
-
-      if (hasOptionalProp) {
-        for (const member of node.members) {
-          if (!ts.isIndexSignatureDeclaration(member) || !member.type) {
-            continue;
-          }
-          if (/\bundefined\b/.test(member.type.getText(sourceFile))) {
-            continue;
-          }
-          offsets.push(member.type.getEnd());
-        }
-      }
-    }
-
-    ts.forEachChild(node, visit);
-  }
-
-  visit(sourceFile);
-
-  if (offsets.length === 0) {
-    return code;
-  }
-
-  offsets.sort((offsetA, offsetB) => offsetB - offsetA);
-
-  let result = code;
-
-  for (const offset of offsets) {
-    result = `${result.slice(0, offset)} | undefined${result.slice(offset)}`;
-  }
-
-  return result;
 }
 
 function formatDiagnostics(diagnostics: readonly ts.Diagnostic[]): string {

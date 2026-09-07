@@ -209,18 +209,17 @@ When touching generation logic (`src/updater.ts`), publishing logic (`src/publis
 
 ## Post-Processing Pipeline for Generated Declarations
 
-After `compileFromFile` produces a `.d.ts` string, two post-processing steps run before writing to disk:
+After `compileFromFile` produces a `.d.ts` string, one post-processing step runs before writing to disk:
 
 1. **`deduplicateGeneratedTypes`** — `json-schema-to-typescript` sometimes emits `TypeName`, `TypeName1` … `TypeNameN` for the same sub-schema used multiple times (see [issue #1402](https://github.com/ffflorian/schemastore-updater/issues/1402)). This function removes the numbered duplicates and replaces all references with the base name.
    - Uses the TypeScript compiler API (`ts.createSourceFile`) to parse type alias declarations and compare their body texts.
    - Only removes `TypeNameN` when `TypeName` already exists with the identical body.
 
-2. **`fixIndexSignatureCompatibility`** — a known upstream bug in `json-schema-to-typescript` ([bcherny/json-schema-to-typescript#235](https://github.com/bcherny/json-schema-to-typescript/issues/235)) omits `| undefined` from typed `additionalProperties` index signatures. Without it, TypeScript reports **TS2411** (`Property 'x' of type 'T | undefined' is not assignable to 'string' index type 'T'`) when a type literal has optional properties.
-   - Walks the AST looking for `TypeLiteralNode`s with at least one optional property (`questionToken !== undefined`).
-   - For each such literal, finds index signatures whose type text does not already contain `undefined`, and inserts ` | undefined` immediately after the type.
-   - Insertions are applied end-to-start to keep earlier offsets valid.
+Pipeline order: `deduplicateGeneratedTypes(await compileFromFile(...))`.
 
-Pipeline order: `fixIndexSignatureCompatibility(deduplicateGeneratedTypes(await compileFromFile(...)))`.
+### Index signature compatibility (TS2411)
+
+Index signature compatibility (TS2411: `Property 'x' of type 'T | undefined' is not assignable to 'string' index type 'T'`) is handled by `json-schema-to-typescript` itself since 16.0.0. We pass `strictIndexSignatures: true`, which appends `| undefined` to every generated index signature, and 16.0.0 additionally widens index signatures to cover their optional sibling properties ([bcherny/json-schema-to-typescript#704](https://github.com/bcherny/json-schema-to-typescript/pull/704), fixes #671). The former manual `fixIndexSignatureCompatibility` post-processing pass was a no-op given `strictIndexSignatures: true` and was removed with the 16.0.0 upgrade. Do not re-add it. If a TS2411 regression ever reappears, keep `strictIndexSignatures: true` set and fix the generator, not a post-processing patch.
 
 ## Type-Checking Generated Declarations
 
@@ -229,7 +228,7 @@ Pipeline order: `fixIndexSignatureCompatibility(deduplicateGeneratedTypes(await 
 Key compiler options:
 
 - `skipDefaultLibCheck: true` — skips only the default lib files, **not** the file under test. Do **not** use `skipLibCheck: true` — that skips all `.d.ts` files and silently passes broken generated declarations.
-- No `strict: true` — `strictNullChecks` (part of strict) makes optional properties compatible with non-`undefined` index signatures, which would suppress the TS2411 class of errors that `fixIndexSignatureCompatibility` is designed to catch.
+- No `strict: true` — `strictNullChecks` (part of strict) makes optional properties compatible with non-`undefined` index signatures, which would suppress the TS2411 class of errors, so the type check would stop catching them if a generator regression ever slipped one through.
 
 ## PR Body Generation Pattern
 
@@ -248,7 +247,8 @@ Summary files are gitignored and only exist during the workflow run. When modify
 - Bumping minor/major versions instead of patch.
 - Writing README/package templates that break expected format.
 - Using `skipLibCheck: true` in `typeCheckSingleFile` — this skips all `.d.ts` files and makes the type check a no-op for the generated file.
-- Adding `strict: true` to `typeCheckSingleFile` — `strictNullChecks` suppresses TS2411 errors that the post-processing pipeline is designed to catch.
+- Adding `strict: true` to `typeCheckSingleFile` — `strictNullChecks` suppresses the TS2411 class of errors that the type check exists to catch.
+- Re-adding a `fixIndexSignatureCompatibility` post-processing pass — TS2411 is handled by `json-schema-to-typescript` 16.0.0 plus `strictIndexSignatures: true`; the manual pass is a no-op and was removed.
 - Re-adding CI-side automation for the brand-new-package OTP challenge (polling `doneUrl`, storing a 2FA-bypass token, etc.) — see the note under GitHub Actions Automation. Confirmed unworkable for non-interactive callers; `yarn bootstrap:new-packages` must be run locally by a maintainer.
 
 ## If You Add New Features

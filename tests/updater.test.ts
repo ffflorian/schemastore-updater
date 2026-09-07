@@ -312,29 +312,23 @@ describe('updateSchemas', () => {
     expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
   });
 
-  it('fixes index signature incompatibility with optional properties', async () => {
+  it('emits strict index signatures that type-check with optional properties', async () => {
     const context = await createWorkspace({
-      'schema/test.json': JSON.stringify(createBasicSchema('Test'), null, 2),
+      'schema/test.json': JSON.stringify(
+        {
+          $schema: 'http://json-schema.org/draft-07/schema#',
+          additionalProperties: {type: 'string'},
+          properties: {name: {type: 'string'}},
+          title: 'Test',
+          type: 'object',
+        },
+        null,
+        2
+      ),
     });
 
-    vi.resetModules();
-    vi.doMock('json-schema-to-typescript', () => ({
-      compileFromFile: vi.fn(async () =>
-        [
-          '/* eslint-disable */',
-          '',
-          'export type Test = {',
-          "  '.'?: string;",
-          '  [k: string]: string;',
-          '};',
-          '',
-        ].join('\n')
-      ),
-    }));
-
-    const mockedUpdater = await import('../src/updater.ts');
     const stats = await withWorkingDirectory(context.workspaceDir, () =>
-      mockedUpdater.updateSchemas({force: false, sourceDir: context.sourceDir})
+      updateSchemas({force: false, sourceDir: context.sourceDir})
     );
 
     expect(stats.generated).toBe(1);
