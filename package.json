@@ -15,7 +15,7 @@
     "@types/node": "~26",
     "@types/semver": "7.8.0",
     "eslint": "10.9.1",
-    "eslint-plugin-perfectionist": "5.10.1",
+    "eslint-plugin-perfectionist": "5.11.0",
     "lefthook": "2.1.12",
     "oxlint": "1.81.0",
     "prettier": "3.9.6",
