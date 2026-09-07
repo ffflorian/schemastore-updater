@@ -1,3 +1,10 @@
+## [3.8.6](https://github.com/ffflorian/schemastore-updater/compare/v3.8.5...v3.8.6) (2026-09-07)
+
+
+### Bug Fixes
+
+* **deps:** bump json-schema-to-typescript from 15.0.4 to 16.0.0 ([#1640](https://github.com/ffflorian/schemastore-updater/issues/1640)) ([e2e93c2](https://github.com/ffflorian/schemastore-updater/commit/e2e93c2a3b45d44fc2c8566c18fd678ed7941e12))
+
 ## [3.8.5](https://github.com/ffflorian/schemastore-updater/compare/v3.8.4...v3.8.5) (2026-09-03)
 
 
