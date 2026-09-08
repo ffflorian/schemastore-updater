@@ -3,7 +3,15 @@
 /**
  * This is a JSON schema representation of the schema.org Thing schema: https://schema.org/Thing
  */
-export type JSONSchemaForSchemaOrgThing = SchemaForJSONLD & {
+export type JSONSchemaForSchemaOrgThing = (
+  | {
+      context?: Context;
+      graph?: Graph;
+      common?: Common;
+      [k: string]: unknown | undefined;
+    }
+  | SchemaForJSONLD[]
+) & {
   /**
    * override the @context property to ensure the schema.org URI is used
    */
@@ -60,15 +68,14 @@ export type JSONSchemaForSchemaOrgThing = SchemaForJSONLD & {
   url?: string;
   [k: string]: unknown | undefined;
 };
-export type SchemaForJSONLD = Context &
-  Graph &
-  Common &
-  (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | unknown[]
-  );
+export type SchemaForJSONLD =
+  | {
+      context?: Context;
+      graph?: Graph;
+      common?: Common;
+      [k: string]: unknown | undefined;
+    }
+  | SchemaForJSONLD[];
 
 export interface Context {
   /**
@@ -106,7 +113,7 @@ export interface Common {
   /**
    * Used to set the data type of a node or typed value.
    */
-  '@type'?: string | null | unknown[];
+  '@type'?: string | unknown[] | null;
   /**
    * Used to set the default container type for a term.
    */
@@ -127,10 +134,10 @@ export interface Common {
    * Used to express reverse properties.
    */
   '@reverse'?:
-    | string
     | {
         [k: string]: Common | undefined;
       }
+    | string
     | null;
   /**
    * Used to set the base IRI against which relative IRIs are resolved
@@ -140,7 +147,24 @@ export interface Common {
    * Used to expand properties and values in @type with a common prefix IRI
    */
   '@vocab'?: string | null;
-  [k: string]: Common | undefined;
+  [k: string]:
+    | Common
+    | string
+    | boolean
+    | number
+    | null
+    | unknown[]
+    | '@language'
+    | '@list'
+    | '@index'
+    | '@set'
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | {
+        [k: string]: Common | undefined;
+      }
+    | undefined;
 }
 export interface Common1 {
   /**
@@ -158,7 +182,7 @@ export interface Common1 {
   /**
    * Used to set the data type of a node or typed value.
    */
-  '@type'?: string | null | unknown[];
+  '@type'?: string | unknown[] | null;
   /**
    * Used to set the default container type for a term.
    */
@@ -179,10 +203,10 @@ export interface Common1 {
    * Used to express reverse properties.
    */
   '@reverse'?:
-    | string
     | {
         [k: string]: Common | undefined;
       }
+    | string
     | null;
   /**
    * Used to set the base IRI against which relative IRIs are resolved
@@ -192,5 +216,22 @@ export interface Common1 {
    * Used to expand properties and values in @type with a common prefix IRI
    */
   '@vocab'?: string | null;
-  [k: string]: Common | undefined;
+  [k: string]:
+    | Common
+    | string
+    | boolean
+    | number
+    | null
+    | unknown[]
+    | '@language'
+    | '@list'
+    | '@index'
+    | '@set'
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | {
+        [k: string]: Common | undefined;
+      }
+    | undefined;
 }

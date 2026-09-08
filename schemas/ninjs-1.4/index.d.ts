@@ -106,22 +106,6 @@ export type Person = {
   code?: Code;
 }[];
 /**
- * The name of the organisation
- */
-export type Name1 = string;
-/**
- * The relationship of the content of the news object to the organisation
- */
-export type Relationship1 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the organisation
- */
-export type Scheme1 = string;
-/**
- * The code for the organisation in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code1 = string;
-/**
  * Ticker symbol used for the financial instrument
  */
 export type Ticker = string;
@@ -140,145 +124,68 @@ export type Symbols = {
  * An administrative and functional structure which may act as as a business, as a political party or not-for-profit party. nar:subject
  */
 export type Organisation = {
-  name?: Name1;
-  rel?: Relationship1;
-  scheme?: Scheme1;
-  code?: Code1;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
   symbols?: Symbols;
 }[];
-/**
- * The name of the place
- */
-export type Name2 = string;
-/**
- * The relationship of the content of the news object to the place
- */
-export type Relationship2 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the place
- */
-export type Scheme2 = string;
-/**
- * The code for the place in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code2 = string;
 /**
  * A named location. nar:subject
  */
 export type Place = {
-  name?: Name2;
-  rel?: Relationship2;
-  scheme?: Scheme2;
-  code?: Code2;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
   /**
    * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
    *
    * This interface was referenced by `undefined`'s JSON-Schema definition
    * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | Name
+    | undefined;
 }[];
-/**
- * The name of the subject
- */
-export type Name3 = string;
-/**
- * The relationship of the content of the news object to the subject
- */
-export type Relationship3 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the subject
- */
-export type Scheme3 = string;
-/**
- * The code for the subject in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code3 = string;
 /**
  * A concept with a relationship to the content. nar:subject
  */
 export type Subject = {
-  name?: Name3;
-  rel?: Relationship3;
-  scheme?: Scheme3;
-  code?: Code3;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the event
- */
-export type Name4 = string;
-/**
- * The relationship of the content of the news object to the event
- */
-export type Relationship4 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the event
- */
-export type Scheme4 = string;
-/**
- * The code for the event in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code4 = string;
 /**
  * Something which happens in a planned or unplanned manner. nar:?
  */
 export type Event = {
-  name?: Name4;
-  rel?: Relationship4;
-  scheme?: Scheme4;
-  code?: Code4;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the object
- */
-export type Name5 = string;
-/**
- * The relationship of the content of the news object to the object
- */
-export type Relationship5 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the object
- */
-export type Scheme5 = string;
-/**
- * The code for the object in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code5 = string;
 /**
  * Something material, excluding persons. nar:subject
  */
 export type Object = {
-  name?: Name5;
-  rel?: Relationship5;
-  scheme?: Scheme5;
-  code?: Code5;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Scheme;
+  code?: Code;
 }[];
-/**
- * The name of the infosource
- */
-export type Name6 = string;
-/**
- * The relationship of the content of the news object to the infosource
- */
-export type Relationship6 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the infosource
- */
-export type Schema1 = string;
-/**
- * The code for the infosource in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code6 = string;
 /**
  * A party (person or organisation) which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content. (Added in version 1.2 according to issue #15.) .    infosource:  nar:infoSource
  */
 export type InfoSource = {
-  name?: Name6;
-  rel?: Relationship6;
-  scheme?: Schema1;
-  code?: Code6;
+  name?: Name;
+  rel?: Relationship;
+  scheme?: Schema;
+  code?: Code;
 }[];
 /**
  * A short natural-language name for the item. (Added in version 1.2 according to issue #9). nar:itemMeta/title
@@ -317,10 +224,6 @@ export type Href = string;
  */
 export type Mimetype = string;
 /**
- * A title for the link to the rendition resource
- */
-export type Title1 = string;
-/**
  * For still and moving images: the height of the display area measured in pixels. nar:remoteContent@height
  */
 export type Height = number;
@@ -341,49 +244,21 @@ export type Duration = number;
  */
 export type Format = string;
 /**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the trust indicator
- */
-export type Scheme6 = string;
-/**
- * The code for the trust indicator in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code7 = string;
-/**
- * The title of the resource being referenced.
- */
-export type Title2 = string;
-/**
- * The URL for accessing the trust indicator resource.
- */
-export type Href1 = string;
-/**
  * An array of objects to allow links to documents about trust indicators. (nar:link) issue #44. (Added in version 1.3)
  */
 export type TrustIndicator = {
-  scheme?: Scheme6;
-  code?: Code7;
-  title?: Title2;
-  href?: Href1;
+  scheme?: Scheme;
+  code?: Code;
+  title?: Title;
+  href?: Href;
 }[];
-/**
- * The name of the genre
- */
-export type Name7 = string;
-/**
- * The identifier of a scheme (= controlled vocabulary) which includes a code for the genre. Normally  http://cv.iptc.org/newscodes/genre/
- */
-export type Scheme7 = string;
-/**
- * The code for the genre in a scheme (= controlled vocabulary) which is identified by the scheme property
- */
-export type Code8 = string;
 /**
  * A nature, intellectual or journalistic form of the content. nar:genre. (Added in version 1.3)
  */
 export type Genre = {
-  name?: Name7;
-  scheme?: Scheme7;
-  code?: Code8;
+  name?: Name;
+  scheme?: Scheme;
+  code?: Code;
 }[];
 /**
  * The date and time after which the Item is no longer considered editorially relevant by its provider. nar:expires (Added in 1.4)
@@ -392,9 +267,31 @@ export type Expires = string;
 /**
  * Expression of rights to be applied to content. nar:rightsInfo (Added in 1.4)
  */
-export type RightsInformation = {
+export type RightsInformation = (
+  | {
+      linkedrights: LinkedRights;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      encodedrights: EncodedRights;
+      [k: string]: unknown | undefined;
+    }
+) & {
+  langid?: LanguageId;
   [k: string]: unknown | undefined;
 };
+/**
+ * A link from the current Item to Web resource with rights related information. nar:link
+ */
+export type LinkedRights = string;
+/**
+ * Contains a rights expression as defined by a Rights Expression Language. nar:rightsExpressionXML or nar:rightsExpressionData
+ */
+export type EncodedRights = string;
+/**
+ * Identifier for the Rights Expression language used. nar:@langid
+ */
+export type LanguageId = string;
 /**
  * A free-form textual description of the content of the item. (The string appended to description_ in the property name should reflect the format and/or the purpose of the text, separating the parts with _). nar:description
  *
@@ -458,13 +355,36 @@ export interface IPTCNinjsNewsInJSONVersion14Approved18May2022 {
    * Content of news objects which are associated with this news object. nar:link
    */
   associations?: {
-    [k: string]: IPTCNinjsNewsInJSONVersion14Approved18May2022;
+    [k: string]: IPTCNinjsNewsInJSONVersion14Approved18May2022 | undefined;
   };
   altids?: AlternativeId;
   trustindicator?: TrustIndicator;
   genre?: Genre;
   expires?: Expires;
   rightsinfo?: RightsInformation;
+  [k: string]:
+    | Description
+    | Standard
+    | Type
+    | RepresentationType
+    | PublicationStatus
+    | Urgency
+    | Person
+    | Organisation
+    | Place
+    | Subject
+    | Event
+    | Object
+    | InfoSource
+    | Renditions
+    | {
+        [k: string]: IPTCNinjsNewsInJSONVersion14Approved18May2022 | undefined;
+      }
+    | AlternativeId
+    | TrustIndicator
+    | Genre
+    | RightsInformation
+    | undefined;
 }
 /**
  * An object with information about standard, version and schema this instance is valid against. nar:standard, nar:standardversion and xml:schema issue #43. (Added in version 1.3)
@@ -484,16 +404,18 @@ export interface Renditions {
    * This interface was referenced by `Renditions`'s JSON-Schema definition
    * via the `patternProperty` "^[a-zA-Z0-9_]+".
    */
-  [k: string]: {
-    href?: Href;
-    mimetype?: Mimetype;
-    title?: Title1;
-    height?: Height;
-    width?: Width;
-    sizeinbytes?: SizeInBytes;
-    duration?: Duration;
-    format?: Format;
-  };
+  [k: string]:
+    | {
+        href?: Href;
+        mimetype?: Mimetype;
+        title?: Title;
+        height?: Height;
+        width?: Width;
+        sizeinbytes?: SizeInBytes;
+        duration?: Duration;
+        format?: Format;
+      }
+    | undefined;
 }
 /**
  * Alternative identifiers of the item. It is up to the individual provider to name and set type on the alternative identifiers they like to use. nar:altId issue #3. (Added in version 1.3)

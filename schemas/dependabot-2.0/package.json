@@ -9,5 +9,5 @@
     "url": "git+https://github.com/ffflorian/schemastore-updater.git"
   },
   "types": "index.d.ts",
-  "version": "1.0.8"
+  "version": "1.0.9"
 }

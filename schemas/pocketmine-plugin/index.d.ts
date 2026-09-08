@@ -57,7 +57,7 @@ export interface HttpsJsonSchemastoreOrgPocketminePluginJson {
   extensions?:
     | string[]
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string;
   /**

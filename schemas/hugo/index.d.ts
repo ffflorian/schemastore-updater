@@ -24,36 +24,6 @@ export type FrontMatterOptions = Cascade | Cascade1[];
  */
 export type UniqueStringArray = string[];
 /**
- * The audio
- * https://gohugo.io/content-management/front-matter#predefined
- */
-export type UniqueStringArray1 = string[];
-/**
- * The images
- * https://gohugo.io/content-management/front-matter#predefined
- */
-export type UniqueStringArray2 = string[];
-/**
- * The keywords
- * https://gohugo.io/content-management/front-matter#predefined
- */
-export type UniqueStringArray3 = string[];
-/**
- * The series
- * https://gohugo.io/content-management/front-matter#predefined
- */
-export type UniqueStringArray4 = string[];
-/**
- * The videos
- * https://gohugo.io/content-management/front-matter#predefined
- */
-export type UniqueStringArray5 = string[];
-/**
- * The disabled languages
- * https://gohugo.io/content-management/multilingual/#disable-a-language
- */
-export type UniqueStringArray6 = string[];
-/**
  * The mount options
  * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
  */
@@ -74,20 +44,55 @@ export type MountOptions = {
    */
   disableWatch?: boolean;
   /**
-   * The language code
+   * @deprecated
+   * DEPRECATED. Deprecated in v0.153.0. Use `sites` instead.
    * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
    */
   lang?: string;
   /**
-   * The included files
+   * @deprecated
+   * DEPRECATED. Deprecated in v0.153.0. Use `files` instead.
    * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
    */
   includeFiles?: string | string[];
   /**
-   * The excluded files
+   * @deprecated
+   * DEPRECATED. Deprecated in v0.153.0. Use `files` instead.
    * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
    */
   excludeFiles?: string | string[];
+  /**
+   * A glob slice defining the files to include or exclude
+   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
+   */
+  files?: string[];
+  /**
+   * A map to define sites matrix and sites complements for the mount
+   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
+   */
+  sites?: {
+    /**
+     * The sites matrix
+     * https://gohugo.io/quick-reference/glossary/#sites-matrix
+     */
+    matrix?: {
+      languages?: string[];
+      roles?: string[];
+      versions?: string[];
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * The sites complements
+     * https://gohugo.io/quick-reference/glossary/#sites-complements
+     */
+    complements?: {
+      languages?: string[];
+      roles?: string[];
+      versions?: string[];
+      [k: string]: unknown | undefined;
+    };
+    [k: string]: unknown | undefined;
+  };
 }[];
 /**
  * The import options
@@ -132,45 +137,67 @@ export type ImportOptions = {
   mounts?: MountOptions;
 }[];
 /**
- * The mount options
- * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
+ * The permalink options
+ * https://gohugo.io/configuration/permalinks/
  */
-export type MountOptions1 = {
-  /**
-   * The source path
-   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
-   */
-  source: string;
-  /**
-   * The target path
-   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
-   */
-  target: string;
-  /**
-   * Whether to disable watching
-   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
-   */
-  disableWatch?: boolean;
-  /**
-   * The language code
-   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
-   */
-  lang?: string;
-  /**
-   * The included files
-   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
-   */
-  includeFiles?: string | string[];
-  /**
-   * The excluded files
-   * https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts
-   */
-  excludeFiles?: string | string[];
-}[];
+export type PermalinkOptions =
+  | {
+      _merge?: MergeType;
+      page?: PermalinkConfiguration;
+      section?: PermalinkConfiguration;
+      term?: PermalinkConfiguration;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * A permalink
+       */
+      pattern: string;
+      /**
+       * Optional page matcher. If omitted, the pattern applies to all pages
+       * https://gohugo.io/configuration/permalinks/
+       */
+      target?: {
+        /**
+         * A glob pattern matching the page's logical path
+         * https://gohugo.io/configuration/permalinks/#path
+         */
+        path?: string;
+        /**
+         * A glob pattern matching the page kind
+         * https://gohugo.io/configuration/permalinks/#kind
+         */
+        kind?: string;
+        /**
+         * A glob pattern matching the environment
+         * https://gohugo.io/configuration/permalinks/#environment
+         */
+        environment?: string;
+        /**
+         * A sites matrix matching any combination of content dimensions including language, version, and role
+         * https://gohugo.io/quick-reference/glossary/#sites-matrix
+         */
+        sites?: {
+          /**
+           * The sites matrix
+           * https://gohugo.io/quick-reference/glossary/#sites-matrix
+           */
+          matrix?: {
+            languages?: string[];
+            roles?: string[];
+            versions?: string[];
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    }[];
 export type PermalinkConfiguration =
   | PermalinkDefinition
   | {
-      [k: string]: PermalinkDefinition;
+      [k: string]: PermalinkDefinition | undefined;
     };
 /**
  * A permalink
@@ -502,16 +529,7 @@ export interface HugoStaticSiteGeneratorConfigFileSchema {
      * https://gohugo.io/content-management/image-processing/#image-processing-config
      */
     anchor?:
-      | 'Smart'
-      | 'TopLeft'
-      | 'Top'
-      | 'TopRight'
-      | 'Left'
-      | 'Center'
-      | 'Right'
-      | 'BottomLeft'
-      | 'Bottom'
-      | 'BottomRight';
+      'Smart' | 'TopLeft' | 'Top' | 'TopRight' | 'Left' | 'Center' | 'Right' | 'BottomLeft' | 'Bottom' | 'BottomRight';
     /**
      * The default background color
      * https://gohugo.io/content-management/image-processing/#image-processing-config
@@ -530,7 +548,7 @@ export interface HugoStaticSiteGeneratorConfigFileSchema {
    * https://gohugo.io/configuration/all/#layoutdir
    */
   layoutDir?: string;
-  disableLanguages?: UniqueStringArray6;
+  disableLanguages?: UniqueStringArray;
   /**
    * The main sections of a site. Used by the MainSections method
    * https://gohugo.io/configuration/all/#mainsections
@@ -753,7 +771,7 @@ export interface HugoStaticSiteGeneratorConfigFileSchema {
     replacements?: string;
     hugoVersion?: Version;
     imports?: ImportOptions;
-    mounts?: MountOptions1;
+    mounts?: MountOptions;
   };
   /**
    * The content editor
@@ -782,7 +800,7 @@ export interface HugoStaticSiteGeneratorConfigFileSchema {
    */
   outputs?: {
     _merge?: MergeType;
-    [k: string]: string[] | undefined;
+    [k: string]: string[] | MergeType | undefined;
   };
   /**
    * UNDOCUMENTED.
@@ -1817,11 +1835,12 @@ export interface CacheOptions {
          */
         dir?: string;
       }
+    | MergeType
     | undefined;
 }
 export interface Cascade {
   aliases?: UniqueStringArray;
-  audio?: UniqueStringArray1;
+  audio?: UniqueStringArray;
   /**
    *
    * https://gohugo.io/content-management/build-options/
@@ -1869,13 +1888,13 @@ export interface Cascade {
    * https://gohugo.io/content-management/front-matter#predefined
    */
   headless?: boolean;
-  images?: UniqueStringArray2;
+  images?: UniqueStringArray;
   /**
    * Specify that the page language is (not) the CJK language
    * https://gohugo.io/content-management/front-matter#predefined
    */
   isCJKLanguage?: boolean;
-  keywords?: UniqueStringArray3;
+  keywords?: UniqueStringArray;
   /**
    * The layout
    * https://gohugo.io/content-management/front-matter#predefined
@@ -1962,7 +1981,7 @@ export interface Cascade {
       );
     [k: string]: unknown | undefined;
   };
-  series?: UniqueStringArray4;
+  series?: UniqueStringArray;
   /**
    * The slug
    * https://gohugo.io/content-management/front-matter#predefined
@@ -2016,7 +2035,7 @@ export interface Cascade {
    * https://gohugo.io/content-management/front-matter#predefined
    */
   url?: string;
-  videos?: UniqueStringArray5;
+  videos?: UniqueStringArray;
   /**
    * The weight
    * https://gohugo.io/content-management/front-matter#predefined
@@ -2032,9 +2051,96 @@ export interface Cascade {
    * This interface was referenced by `Cascade1`'s JSON-Schema definition
    * via the `patternProperty` "^(?!aliases|audio|build|date|description|draft|expiryDate|headless|images|isCJKLanguage|keywords|layout|lastmod|linkTitle|markup|menus|modified|outputs|params|pubdate|publishDate|published|resources|sitemap|series|slug|summary|target|title|translationKey|type|unpublishdate|url|videos|weight)$".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | UniqueStringArray
+    | UniqueStringArray
+    | {
+        /**
+         *
+         * https://gohugo.io/content-management/build-options/#list
+         */
+        list?: 'always' | 'local' | 'never';
+        /**
+         *
+         * https://gohugo.io/content-management/build-options/#publishresources
+         */
+        publishResources?: boolean;
+        /**
+         *
+         * https://gohugo.io/content-management/build-options/#render
+         */
+        render?: 'always' | 'link' | 'never';
+        [k: string]: unknown | undefined;
+      }
+    | string
+    | boolean
+    | UniqueStringArray
+    | UniqueStringArray
+    | 'rst'
+    | 'md'
+    | string[]
+    | {
+        [k: string]:
+          | {
+              identifier?: string;
+              name?: string;
+              params?: {
+                [k: string]: unknown | undefined;
+              };
+              parent?: string;
+              post?: string;
+              pre?: string;
+              weight?: number;
+              [k: string]: unknown | undefined;
+            }
+          | undefined;
+      }
+    | OutputFormatOptions
+    | ResourceOptions
+    | {
+        /**
+         *
+         * https://gohugo.io/configuration/sitemap/#changefreq
+         */
+        changefreq?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+        /**
+         * https://gohugo.io/configuration/sitemap/#disable
+         */
+        disable?: boolean;
+        priority?: number &
+          (
+            | -1
+            | {
+                [k: string]: unknown | undefined;
+              }
+          );
+        [k: string]: unknown | undefined;
+      }
+    | UniqueStringArray
+    | {
+        environment?: string;
+        /**
+         * The glob pattern matching the content path below /content
+         * https://gohugo.io/content-management/front-matter#front-matter-cascade
+         */
+        path?: string;
+        /**
+         * The glob pattern matching the page's kind
+         * https://gohugo.io/content-management/front-matter#front-matter-cascade
+         */
+        kind?: string;
+        /**
+         * The glob pattern matching the page's language
+         * https://gohugo.io/content-management/front-matter#front-matter-cascade
+         */
+        lang?: string;
+      }
+    | UniqueStringArray
+    | number
+    | undefined;
 }
 /**
  * The output format options
@@ -2143,7 +2249,7 @@ export interface ParamOptions {
 }
 export interface Cascade1 {
   aliases?: UniqueStringArray;
-  audio?: UniqueStringArray1;
+  audio?: UniqueStringArray;
   /**
    *
    * https://gohugo.io/content-management/build-options/
@@ -2191,13 +2297,13 @@ export interface Cascade1 {
    * https://gohugo.io/content-management/front-matter#predefined
    */
   headless?: boolean;
-  images?: UniqueStringArray2;
+  images?: UniqueStringArray;
   /**
    * Specify that the page language is (not) the CJK language
    * https://gohugo.io/content-management/front-matter#predefined
    */
   isCJKLanguage?: boolean;
-  keywords?: UniqueStringArray3;
+  keywords?: UniqueStringArray;
   /**
    * The layout
    * https://gohugo.io/content-management/front-matter#predefined
@@ -2284,7 +2390,7 @@ export interface Cascade1 {
       );
     [k: string]: unknown | undefined;
   };
-  series?: UniqueStringArray4;
+  series?: UniqueStringArray;
   /**
    * The slug
    * https://gohugo.io/content-management/front-matter#predefined
@@ -2338,7 +2444,7 @@ export interface Cascade1 {
    * https://gohugo.io/content-management/front-matter#predefined
    */
   url?: string;
-  videos?: UniqueStringArray5;
+  videos?: UniqueStringArray;
   /**
    * The weight
    * https://gohugo.io/content-management/front-matter#predefined
@@ -2354,19 +2460,106 @@ export interface Cascade1 {
    * This interface was referenced by `Cascade1`'s JSON-Schema definition
    * via the `patternProperty` "^(?!aliases|audio|build|date|description|draft|expiryDate|headless|images|isCJKLanguage|keywords|layout|lastmod|linkTitle|markup|menus|modified|outputs|params|pubdate|publishDate|published|resources|sitemap|series|slug|summary|target|title|translationKey|type|unpublishdate|url|videos|weight)$".
    */
-  [k: string]: {
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | UniqueStringArray
+    | UniqueStringArray
+    | {
+        /**
+         *
+         * https://gohugo.io/content-management/build-options/#list
+         */
+        list?: 'always' | 'local' | 'never';
+        /**
+         *
+         * https://gohugo.io/content-management/build-options/#publishresources
+         */
+        publishResources?: boolean;
+        /**
+         *
+         * https://gohugo.io/content-management/build-options/#render
+         */
+        render?: 'always' | 'link' | 'never';
+        [k: string]: unknown | undefined;
+      }
+    | string
+    | boolean
+    | UniqueStringArray
+    | UniqueStringArray
+    | 'rst'
+    | 'md'
+    | string[]
+    | {
+        [k: string]:
+          | {
+              identifier?: string;
+              name?: string;
+              params?: {
+                [k: string]: unknown | undefined;
+              };
+              parent?: string;
+              post?: string;
+              pre?: string;
+              weight?: number;
+              [k: string]: unknown | undefined;
+            }
+          | undefined;
+      }
+    | OutputFormatOptions
+    | ResourceOptions
+    | {
+        /**
+         *
+         * https://gohugo.io/configuration/sitemap/#changefreq
+         */
+        changefreq?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+        /**
+         * https://gohugo.io/configuration/sitemap/#disable
+         */
+        disable?: boolean;
+        priority?: number &
+          (
+            | -1
+            | {
+                [k: string]: unknown | undefined;
+              }
+          );
+        [k: string]: unknown | undefined;
+      }
+    | UniqueStringArray
+    | {
+        environment?: string;
+        /**
+         * The glob pattern matching the content path below /content
+         * https://gohugo.io/content-management/front-matter#front-matter-cascade
+         */
+        path?: string;
+        /**
+         * The glob pattern matching the page's kind
+         * https://gohugo.io/content-management/front-matter#front-matter-cascade
+         */
+        kind?: string;
+        /**
+         * The glob pattern matching the page's language
+         * https://gohugo.io/content-management/front-matter#front-matter-cascade
+         */
+        lang?: string;
+      }
+    | UniqueStringArray
+    | number
+    | undefined;
 }
 /**
  * The front matter options
- * https://gohugo.io/getting-started/configuration/#configure-front-matter
+ * https://gohugo.io/configuration/front-matter/#dates
  */
 export interface FrontMatterOptions1 {
   _merge?: MergeType;
   /**
    *
-   * https://gohugo.io/getting-started/configuration/#configure-dates
+   * https://gohugo.io/configuration/front-matter/#dates
    */
   date?: (
     | ':default'
@@ -2379,15 +2572,16 @@ export interface FrontMatterOptions1 {
     | 'pubdate'
     | 'publishDate'
     | 'publishdate'
+    | 'published'
   )[];
   /**
    *
-   * https://gohugo.io/getting-started/configuration/#configure-dates
+   * https://gohugo.io/configuration/front-matter/#dates
    */
   expiryDate?: (':default' | 'expirydate' | 'expiryDate' | 'unpublishdate' | 'unpublishDate')[];
   /**
    *
-   * https://gohugo.io/getting-started/configuration/#configure-dates
+   * https://gohugo.io/configuration/front-matter/#dates
    */
   lastmod?: (
     | ':default'
@@ -2400,10 +2594,11 @@ export interface FrontMatterOptions1 {
     | 'pubdate'
     | 'publishDate'
     | 'publishdate'
+    | 'published'
   )[];
   /**
    *
-   * https://gohugo.io/getting-started/configuration/#configure-dates
+   * https://gohugo.io/configuration/front-matter/#dates
    */
   publishDate?: (
     | ':default'
@@ -2416,6 +2611,7 @@ export interface FrontMatterOptions1 {
     | 'pubdate'
     | 'publishDate'
     | 'publishdate'
+    | 'published'
   )[];
 }
 /**
@@ -2457,6 +2653,7 @@ export interface LanguageOptions {
     | {
         [k: string]: unknown | undefined;
       }
+    | MergeType
     | undefined;
 }
 /**
@@ -3493,6 +3690,23 @@ export interface MediaTypeSOptions {
         suffixes?: string[];
         [k: string]: unknown | undefined;
       }
+    | MergeType
+    | {
+        /**
+         *
+         * https://gohugo.io/templates/output-formats/#media-types
+         */
+        suffixes?: string[];
+        [k: string]: unknown | undefined;
+      }
+    | {
+        /**
+         *
+         * https://gohugo.io/templates/output-formats/#media-types
+         */
+        suffix?: string & string[];
+        [k: string]: unknown | undefined;
+      }
     | undefined;
 }
 /**
@@ -3516,6 +3730,13 @@ export interface MediaMenuOptions {
          * https://gohugo.io/content-management/menus/#properties-front-matter
          */
         name?: string;
+        /**
+         * User-defined properties for the menu entry.
+         * https://gohugo.io/content-management/menus/#properties-front-matter
+         */
+        params?: {
+          [k: string]: unknown | undefined;
+        };
         /**
          * Required for child entries in a nested menu.
          * https://gohugo.io/content-management/menus/#properties-front-matter
@@ -3551,14 +3772,8 @@ export interface MediaMenuOptions {
          * https://gohugo.io/content-management/menus/#properties-site-configuration
          */
         url?: string;
-        /**
-         * User-defined properties for the menu entry.
-         * https://gohugo.io/content-management/menus/#properties-front-matter
-         */
-        params?: {
-          [k: string]: unknown | undefined;
-        };
       }[]
+    | MergeType
     | undefined;
 }
 /**
@@ -3584,6 +3799,13 @@ export interface MediaMenuOptions1 {
          */
         name?: string;
         /**
+         * User-defined properties for the menu entry.
+         * https://gohugo.io/content-management/menus/#properties-front-matter
+         */
+        params?: {
+          [k: string]: unknown | undefined;
+        };
+        /**
          * Required for child entries in a nested menu.
          * https://gohugo.io/content-management/menus/#properties-front-matter
          */
@@ -3618,14 +3840,8 @@ export interface MediaMenuOptions1 {
          * https://gohugo.io/content-management/menus/#properties-site-configuration
          */
         url?: string;
-        /**
-         * User-defined properties for the menu entry.
-         * https://gohugo.io/content-management/menus/#properties-front-matter
-         */
-        params?: {
-          [k: string]: unknown | undefined;
-        };
       }[]
+    | MergeType
     | undefined;
 }
 /**
@@ -3657,17 +3873,6 @@ export interface OutputFormatOptions2 {
   [k: string]: OutputFormatOptions1 | undefined;
 }
 /**
- * The permalink options
- * https://gohugo.io/content-management/urls/#permalinks
- */
-export interface PermalinkOptions {
-  _merge?: MergeType;
-  page?: PermalinkConfiguration;
-  section?: PermalinkConfiguration;
-  term?: PermalinkConfiguration;
-  [k: string]: unknown | undefined;
-}
-/**
  * The related content options
  * https://gohugo.io/getting-started/configuration/#related
  */
@@ -3692,57 +3897,109 @@ export interface RelatedContentOptions {
 }
 /**
  * The security options
- * https://gohugo.io/about/security-model/#security-policy
+ * https://gohugo.io/configuration/security/
  */
 export interface SecurityOptions {
   _merge?: MergeType;
   /**
-   *
-   * https://gohugo.io/about/security-model/#security-policy
+   * Regular expressions matching media types of content formats allowed in the content directory
+   * https://gohugo.io/configuration/security/#allowcontent
+   */
+  allowContent?: string[];
+  /**
+   * Controls whether inline shortcodes are enabled
+   * https://gohugo.io/configuration/security/#enableinlineshortcodes
    */
   enableInlineShortcodes?: boolean;
   /**
-   *
-   * https://gohugo.io/about/security-model/#security-policy
+   * Controls which external executables Hugo is allowed to run
+   * https://gohugo.io/configuration/security/#exec
    */
   exec?: {
     /**
-     *
-     * https://gohugo.io/about/security-model/#security-policy
+     * Regular expressions matching names of external executables Hugo is permitted to run
+     * https://gohugo.io/configuration/security/#execallow
      */
     allow?: string[];
     /**
-     *
-     * https://gohugo.io/about/security-model/#security-policy
+     * Regular expressions matching OS environment variable names Hugo can access
+     * https://gohugo.io/configuration/security/#execosenv
      */
     osEnv?: string[];
   };
   /**
-   *
-   * https://gohugo.io/about/security-model/#security-policy
+   * Controls which environment variables are accessible via template functions
+   * https://gohugo.io/configuration/security/#funcs
    */
   funcs?: {
     /**
-     *
-     * https://gohugo.io/about/security-model/#security-policy
+     * Regular expressions for environment variable names accessible via the os.Getenv function
+     * https://gohugo.io/configuration/security/#funcsgetenv
      */
     getenv?: string[];
   };
   /**
-   *
-   * https://gohugo.io/about/security-model/#security-policy
+   * Controls HTTP access for resources.GetRemote
+   * https://gohugo.io/configuration/security/#http
    */
   http?: {
     /**
-     *
-     * https://gohugo.io/about/security-model/#security-policy
+     * Regular expressions matching Content-Type values in HTTP responses that Hugo trusts
+     * https://gohugo.io/configuration/security/#httpmediatypes
+     */
+    mediaTypes?: string[];
+    /**
+     * Regular expressions matching HTTP methods allowed by resources.GetRemote
+     * https://gohugo.io/configuration/security/#httpmethods
      */
     methods?: string[];
     /**
-     *
-     * https://gohugo.io/about/security-model/#security-policy
+     * Regular expressions matching URLs that resources.GetRemote is allowed to access
+     * https://gohugo.io/configuration/security/#httpurls
      */
     urls?: string[];
+  };
+  /**
+   * Controls Node.js permission model settings
+   * https://gohugo.io/configuration/security/#node
+   */
+  node?: {
+    /**
+     * Node.js permission model configuration
+     * https://gohugo.io/configuration/security/#nodepermissions
+     */
+    permissions?: {
+      /**
+       * Whether to disable the Node.js permission model
+       * https://gohugo.io/configuration/security/#nodepermissionsdisable
+       */
+      disable?: boolean;
+      /**
+       * Node.js tool names permitted to load native addons
+       * https://gohugo.io/configuration/security/#nodepermissionsallowaddons
+       */
+      allowAddons?: string[];
+      /**
+       * Node.js tool names permitted to spawn child processes
+       * https://gohugo.io/configuration/security/#nodepermissionsallowchildprocess
+       */
+      allowChildProcess?: string[];
+      /**
+       * File system paths Node.js tools may read
+       * https://gohugo.io/configuration/security/#nodepermissionsallowread
+       */
+      allowRead?: string[];
+      /**
+       * Node.js tool names permitted to spawn worker threads
+       * https://gohugo.io/configuration/security/#nodepermissionsallowworker
+       */
+      allowWorker?: string[];
+      /**
+       * File system paths Node.js tools may write
+       * https://gohugo.io/configuration/security/#nodepermissionsallowwrite
+       */
+      allowWrite?: string[];
+    };
   };
 }
 export interface SegmentIncludesExcludes {
@@ -3824,5 +4081,5 @@ export interface TaxonomyOptions {
    * This interface was referenced by `TaxonomyOptions`'s JSON-Schema definition
    * via the `patternProperty` "^(?!tag|category)$".
    */
-  [k: string]: string;
+  [k: string]: string | MergeType | undefined;
 }

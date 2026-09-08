@@ -69,7 +69,7 @@ export type EventType = 'all' | 'changed' | 'added' | 'deleted';
 
 export interface JSONSchemaForTheGruntWatchTask {
   options?: Options;
-  [k: string]: Target | undefined;
+  [k: string]: Target | Options | undefined;
 }
 export interface Target {
   /**

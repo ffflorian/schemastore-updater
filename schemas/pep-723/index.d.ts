@@ -44,6 +44,7 @@ export interface ToolSpecificConfiguration {
     | {
         [k: string]: unknown | undefined;
       }
+    | CombinedOptions
     | undefined;
 }
 /**
@@ -74,6 +75,7 @@ export interface CombinedOptions {
    * bypasses SSL verification and could expose you to MITM attacks.
    */
   'allow-insecure-host'?: string[] | null;
+  audit?: AuditOptions | null;
   /**
    * Configuration for the uv build backend.
    *
@@ -255,11 +257,34 @@ export interface CombinedOptions {
    */
   environments?: string[] | null;
   /**
-   * Package names to exclude, e.g., `werkzeug`, `numpy`.
+   * Dependencies to exclude when resolving the project's dependencies.
+   *
+   * Excludes are used to prevent a package from being selected during resolution,
+   * regardless of whether it's requested by any other package. When a package is excluded,
+   * it will be omitted from the dependency list entirely.
+   *
+   * Including a package as an exclusion will prevent it from being installed, even if
+   * it's requested by transitive dependencies. This can be useful for removing optional
+   * dependencies or working around packages with broken dependencies.
+   *
+   * Exclusions can be limited to the dependencies declared by a specific package version by
+   * using a table with `package` and `dependencies`. The `package` table identifies the package
+   * whose dependencies will be excluded by `name` and, optionally, `version`. If `version` is
+   * omitted, the exclusions apply to all versions of that package. A version-specific entry
+   * takes precedence over an all-versions entry.
+   *
+   * !!! note
+   *     In `uv lock`, `uv sync`, and `uv run`, uv will only read `exclude-dependencies` from
+   *     the `pyproject.toml` at the workspace root, and will ignore any declarations in other
+   *     workspace members or `uv.toml` files.
    */
-  'exclude-dependencies'?: string[] | null;
+  'exclude-dependencies'?: (PackageExclusion | string)[] | null;
   /**
    * Limit candidate packages to those that were uploaded prior to the given date.
+   *
+   * The date is compared against the upload time of each individual distribution artifact
+   * (i.e., when each file was uploaded to the package index), not the release date of the
+   * package version.
    *
    * Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g.,
    * `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
@@ -267,8 +292,10 @@ export interface CombinedOptions {
    * Durations do not respect semantics of the local time zone and are always resolved to a fixed
    * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
    * Calendar units such as months and years are not allowed.
+   *
+   * Set to `false` to disable `exclude-newer`.
    */
-  'exclude-newer'?: string | null;
+  'exclude-newer'?: (false | string) | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the
    * given date.
@@ -280,6 +307,9 @@ export interface CombinedOptions {
    * Durations do not respect semantics of the local time zone and are always resolved to a fixed
    * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
    * Calendar units such as months and years are not allowed.
+   *
+   * Set a package to `false` to exempt it from the global [`exclude-newer`](#exclude-newer)
+   * constraint entirely.
    */
   'exclude-newer-package'?: ExcludeNewerPackage | null;
   /**
@@ -338,6 +368,14 @@ export interface CombinedOptions {
    */
   'fork-strategy'?: ('fewest' | 'requires-python') | null;
   /**
+   * The URL of the HTTP proxy to use.
+   */
+  'http-proxy'?: string | null;
+  /**
+   * The URL of the HTTPS proxy to use.
+   */
+  'https-proxy'?: string | null;
+  /**
    * The indexes to use when resolving dependencies.
    *
    * Accepts either a repository compliant with [PEP 503](https://peps.python.org/pep-0503/)
@@ -355,7 +393,7 @@ export interface CombinedOptions {
    * ```toml
    * [[tool.uv.index]]
    * name = "pytorch"
-   * url = "https://download.pytorch.org/whl/cu121"
+   * url = "https://download.pytorch.org/whl/cu130"
    * explicit = true
    *
    * [tool.uv.sources]
@@ -398,7 +436,7 @@ export interface CombinedOptions {
   /**
    * The method to use when installing packages from the global cache.
    *
-   * Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and
+   * Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on
    * Windows.
    *
    * WARNING: The use of symlink link mode is discouraged, as they create tight coupling between
@@ -413,15 +451,13 @@ export interface CombinedOptions {
    */
   managed?: boolean | null;
   /**
+   * @deprecated
    * Whether to load TLS certificates from the platform's native certificate store.
    *
-   * By default, uv loads certificates from the bundled `webpki-roots` crate. The
-   * `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv
-   * improves portability and performance (especially on macOS).
+   * By default, uv uses bundled Mozilla root certificates. When enabled, this loads
+   * certificates from the platform's native certificate store instead.
    *
-   * However, in some cases, you may want to use the platform's native certificate store,
-   * especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's
-   * included in your system's certificate store.
+   * (Deprecated: use `system-certs` instead.)
    */
   'native-tls'?: boolean | null;
   /**
@@ -438,9 +474,9 @@ export interface CombinedOptions {
   /**
    * Don't build source distributions.
    *
-   * When enabled, resolving will not run arbitrary Python code. The cached wheels of
-   * already-built source distributions will be reused, but operations that require building
-   * distributions will exit with an error.
+   * When enabled, uv will reuse cached wheels from previously built source distributions, but
+   * operations that require building a source distribution will exit with an error. uv may
+   * still build editable requirements, and their build backends may run arbitrary Python code.
    */
   'no-build'?: boolean | null;
   /**
@@ -472,19 +508,54 @@ export interface CombinedOptions {
    */
   'no-index'?: boolean | null;
   /**
+   * A list of hosts to exclude from proxying.
+   */
+  'no-proxy'?: string[] | null;
+  /**
    * Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the
    * standards-compliant, publishable package metadata, as opposed to using any local or Git
    * sources.
    */
   'no-sources'?: boolean | null;
   /**
+   * Ignore `tool.uv.sources` for the specified packages.
+   */
+  'no-sources-package'?: string[] | null;
+  /**
    * Disable network access, relying only on locally cached data and locally available files.
    */
   offline?: boolean | null;
   /**
-   * PEP 508-style requirements, e.g., `ruff==0.5.0`, or `ruff @ https://...`.
+   * Overrides to apply when resolving the project's dependencies.
+   *
+   * Overrides are used to force selection of a specific version of a package, regardless of the
+   * version requested by any other package, and regardless of whether choosing that version
+   * would typically constitute an invalid resolution.
+   *
+   * While constraints are _additive_, in that they're combined with the requirements of the
+   * constituent packages, overrides are _absolute_, in that they completely replace the
+   * requirements of any constituent packages.
+   *
+   * Including a package as an override will _not_ trigger installation of the package on its
+   * own; instead, the package must be requested elsewhere in the project's first-party or
+   * transitive dependencies.
+   *
+   * Overrides can be limited to the dependencies declared by a specific package version by
+   * using a table with `package` and `dependencies`. The `package` table identifies the package
+   * whose dependencies will be overridden by `name` and, optionally, `version`. If `version` is
+   * omitted, the overrides apply to all versions of that package. Requirements in `dependencies`
+   * replace dependencies with the same name and add dependencies that are not declared by the
+   * package. Dependencies not listed in `dependencies` are left unchanged.
+   *
+   * Scoped overrides currently support registry version specifiers only. Direct URL and path
+   * sources, including Git sources, and explicit indexes are not supported.
+   *
+   * !!! note
+   *     In `uv lock`, `uv sync`, and `uv run`, uv will only read `override-dependencies` from
+   *     the `pyproject.toml` at the workspace root, and will ignore any declarations in other
+   *     workspace members or `uv.toml` files.
    */
-  'override-dependencies'?: string[] | null;
+  'override-dependencies'?: (PackageOverride | string)[] | null;
   /**
    * Whether the project should be considered a Python package, or a non-package ("virtual")
    * project.
@@ -508,9 +579,69 @@ export interface CombinedOptions {
    */
   prerelease?: ('disallow' | 'allow' | 'if-necessary' | 'explicit' | 'if-necessary-or-explicit') | null;
   /**
-   * Whether to enable experimental, preview features.
+   * @deprecated
+   * Whether to enable all experimental, preview features.
+   *
+   * Use `preview-features` instead.
    */
   preview?: boolean | null;
+  /**
+   * Whether to enable specific or all experimental preview features.
+   *
+   * Unknown feature names are ignored with a warning.
+   */
+  'preview-features'?:
+    | (
+        | boolean
+        | ((
+            | (
+                | 'python-install-default'
+                | 'python-upgrade'
+                | 'json-output'
+                | 'pylock'
+                | 'add-bounds'
+                | 'package-conflicts'
+                | 'extra-build-dependencies'
+                | 'detect-module-conflicts'
+                | 'format-command'
+                | 'native-auth'
+                | 's3-endpoint'
+                | 'cache-size'
+                | 'init-project-flag'
+                | 'workspace-metadata'
+                | 'workspace-dir'
+                | 'workspace-list'
+                | 'sbom-export'
+                | 'auth-helper'
+                | 'direct-publish'
+                | 'target-workspace-discovery'
+                | 'metadata-json'
+                | 'gcs-endpoint'
+                | 'adjust-ulimit'
+                | 'special-conda-env-names'
+                | 'relocatable-envs-default'
+                | 'publish-require-normalized'
+                | 'audit-command'
+                | 'project-directory-must-exist'
+                | 'index-exclude-newer'
+                | 'azure-endpoint'
+                | 'toml-backwards-compatibility'
+                | 'malware-check'
+                | 'venv-safe-clear'
+                | 'check-command'
+                | 'packaged-init'
+                | 'centralized-project-envs'
+                | 'tool-install-locks'
+                | 'workspace-list-scripts'
+                | 'no-distutils-patch'
+              )
+            | {
+                [k: string]: unknown | undefined;
+              }
+          ) &
+            string)[]
+      )
+    | null;
   /**
    * The URL for publishing packages to the Python package index (by default:
    * <https://upload.pypi.org/legacy/>).
@@ -590,6 +721,13 @@ export interface CombinedOptions {
    */
   sources?: ToolUvSources | null;
   /**
+   * Whether to load TLS certificates from the platform's native certificate store.
+   *
+   * By default, uv uses bundled Mozilla root certificates. When enabled, this loads
+   * certificates from the platform's native certificate store instead.
+   */
+  'system-certs'?: boolean | null;
+  /**
    * The backend to use when fetching packages in the PyTorch ecosystem.
    *
    * When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem,
@@ -609,6 +747,7 @@ export interface CombinedOptions {
     | (
         | 'auto'
         | 'cpu'
+        | 'cu132'
         | 'cu130'
         | 'cu129'
         | 'cu128'
@@ -635,6 +774,9 @@ export interface CombinedOptions {
         | 'cu91'
         | 'cu90'
         | 'cu80'
+        | 'rocm7.2'
+        | 'rocm7.1'
+        | 'rocm7.0'
         | 'rocm6.4'
         | 'rocm6.3'
         | 'rocm6.2.4'
@@ -679,6 +821,24 @@ export interface CombinedOptions {
    * The workspace definition for the project, if any.
    */
   workspace?: ToolUvWorkspace | null;
+}
+export interface AuditOptions {
+  /**
+   * A list of vulnerability IDs to ignore during auditing.
+   *
+   * Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from
+   * the audit results.
+   */
+  ignore?: string[] | null;
+  /**
+   * A list of vulnerability IDs to ignore during auditing, but only while no fix is available.
+   *
+   * Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from
+   * the audit results as long as they have no known fix versions. Once a fix version becomes
+   * available, the vulnerability will be reported again.
+   */
+  'ignore-until-fixed'?: string[] | null;
+  [k: string]: unknown | undefined;
 }
 /**
  * Settings for the uv build backend (`uv_build`).
@@ -836,13 +996,13 @@ export interface GitSet {
  * See: <https://peps.python.org/pep-0517/#config-settings>
  */
 export interface ConfigSettings {
-  [k: string]: (string | string[]) | undefined;
+  [k: string]: string | string[] | undefined;
 }
 /**
  * Settings to pass to PEP 517 build backends on a per-package basis.
  */
 export interface PackageConfigSettings {
-  [k: string]: ConfigSettings;
+  [k: string]: ConfigSettings | undefined;
 }
 /**
  * A single item in a conflicting set.
@@ -854,7 +1014,6 @@ export interface SchemaConflictItem {
   extra?: string | null;
   group?: string | null;
   package?: string | null;
-  [k: string]: unknown | undefined;
 }
 export interface ToolUvDependencyGroups {
   [k: string]: DependencyGroupSettings | undefined;
@@ -880,7 +1039,20 @@ export interface StaticMetadata {
    * See: <https://packaging.python.org/en/latest/specifications/name-normalization/>
    */
   name: string;
+  /**
+   * Items: The normalized name of an extra dependency.
+   *
+   * Converts the name to lowercase and collapses runs of `-`, `_`, and `.` down to a single `-`.
+   * For example, `---`, `.`, and `__` are all converted to a single `-`.
+   *
+   * See:
+   * - <https://peps.python.org/pep-0685/#specification/>
+   * - <https://packaging.python.org/en/latest/specifications/name-normalization/>
+   */
   'provides-extra'?: string[];
+  /**
+   * Items: A PEP 508 dependency specifier, e.g., `ruff >= 0.6.0`
+   */
   'requires-dist'?: string[];
   /**
    * PEP 508-style Python requirement, e.g., `>=3.10`
@@ -891,13 +1063,41 @@ export interface StaticMetadata {
    */
   version?: string | null;
 }
-export interface ExcludeNewerPackage {
+/**
+ * A set of exclusions that applies to the dependencies of a specific package version.
+ */
+export interface PackageExclusion {
   /**
-   * Exclude distributions uploaded after the given timestamp.
+   * Items: The normalized name of a package.
    *
-   * Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`), as well as relative durations (e.g., `1 week`, `30 days`, `6 months`). Relative durations are resolved to a timestamp at lock time.
+   * Converts the name to lowercase and collapses runs of `-`, `_`, and `.` down to a single `-`.
+   * For example, `---`, `.`, and `__` are all converted to a single `-`.
+   *
+   * See: <https://packaging.python.org/en/latest/specifications/name-normalization/>
    */
-  [k: string]: string;
+  dependencies: string[];
+  package: PackageExclusionTarget;
+}
+/**
+ * The package and optional version selected by a [`PackageExclusion`].
+ */
+export interface PackageExclusionTarget {
+  /**
+   * The normalized name of a package.
+   *
+   * Converts the name to lowercase and collapses runs of `-`, `_`, and `.` down to a single `-`.
+   * For example, `---`, `.`, and `__` are all converted to a single `-`.
+   *
+   * See: <https://packaging.python.org/en/latest/specifications/name-normalization/>
+   */
+  name: string;
+  /**
+   * PEP 440-style package version, e.g., `1.2.3`
+   */
+  version?: string | null;
+}
+export interface ExcludeNewerPackage {
+  [k: string]: false | string | undefined;
 }
 export interface ExtraBuildDependencies {
   [k: string]:
@@ -963,6 +1163,29 @@ export interface Index {
    */
   default?: boolean;
   /**
+   * An index-specific `exclude-newer` cutoff.
+   *
+   * Accepts the same date, timestamp, and duration values as the global `exclude-newer`
+   * setting. Set this to `false` to disable `exclude-newer` for this index entirely.
+   *
+   * When set to a value, packages resolved from this index will use that cutoff instead of the
+   * globally-specified value, unless a package-specific `exclude-newer-package` override is
+   * present.
+   *
+   * This option is in preview and may change in any future release.
+   *
+   * ```toml
+   * [tool.uv]
+   * exclude-newer = "2025-01-01T00:00:00Z"
+   *
+   * [[tool.uv.index]]
+   * name = "internal"
+   * url = "https://internal.example.com/simple"
+   * exclude-newer = "7 days"
+   * ```
+   */
+  'exclude-newer'?: false | string;
+  /**
    * Mark the index as explicit.
    *
    * Explicit indexes will _only_ be used when explicitly requested via a `[tool.uv.sources]`
@@ -971,7 +1194,7 @@ export interface Index {
    * ```toml
    * [[tool.uv.index]]
    * name = "pytorch"
-   * url = "https://download.pytorch.org/whl/cu121"
+   * url = "https://download.pytorch.org/whl/cu130"
    * explicit = true
    *
    * [tool.uv.sources]
@@ -988,8 +1211,8 @@ export interface Index {
    */
   format?: ('simple' | 'flat') & string;
   /**
-   * Status codes that uv should ignore when deciding whether
-   * to continue searching in the next index after a failure.
+   * Status codes that uv should ignore when deciding whether to continue resolution after a
+   * request to this index fails.
    *
    * ```toml
    * [[tool.uv.index]]
@@ -1008,7 +1231,7 @@ export interface Index {
    * ```toml
    * [[tool.uv.index]]
    * name = "pytorch"
-   * url = "https://download.pytorch.org/whl/cu121"
+   * url = "https://download.pytorch.org/whl/cu130"
    *
    * [tool.uv.sources]
    * torch = { index = "pytorch" }
@@ -1051,6 +1274,34 @@ export interface IndexCacheControl {
    */
   files?: string | null;
   [k: string]: unknown | undefined;
+}
+/**
+ * An override that applies to the dependencies of a specific package version.
+ */
+export interface PackageOverride {
+  /**
+   * Items: A PEP 508 dependency specifier, e.g., `ruff >= 0.6.0`
+   */
+  dependencies: string[];
+  package: PackageOverrideTarget;
+}
+/**
+ * The package and optional version selected by a [`PackageOverride`].
+ */
+export interface PackageOverrideTarget {
+  /**
+   * The normalized name of a package.
+   *
+   * Converts the name to lowercase and collapses runs of `-`, `_`, and `.` down to a single `-`.
+   * For example, `---`, `.`, and `__` are all converted to a single `-`.
+   *
+   * See: <https://packaging.python.org/en/latest/specifications/name-normalization/>
+   */
+  name: string;
+  /**
+   * PEP 440-style package version, e.g., `1.2.3`
+   */
+  version?: string | null;
 }
 /**
  * Settings that are specific to the `uv pip` command-line interface.
@@ -1158,15 +1409,33 @@ export interface PipOptions {
   /**
    * Limit candidate packages to those that were uploaded prior to a given point in time.
    *
-   * Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e.g.,
-   * `2006-12-02T02:07:43Z`). A full timestamp is required to ensure that the resolver will
-   * behave consistently across timezones.
+   * The date is compared against the upload time of each individual distribution artifact
+   * (i.e., when each file was uploaded to the package index), not the release date of the
+   * package version.
+   *
+   * Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g.,
+   * `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+   *
+   * Durations do not respect semantics of the local time zone and are always resolved to a fixed
+   * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
+   * Calendar units such as months and years are not allowed.
+   *
+   * Set to `false` to disable `exclude-newer`.
    */
-  'exclude-newer'?: string | null;
+  'exclude-newer'?: (false | string) | null;
   /**
    * Limit candidate packages for specific packages to those that were uploaded prior to the given date.
    *
-   * Accepts package-date pairs in a dictionary format.
+   * Accepts a dictionary format of `PACKAGE = "DATE"` pairs, where `DATE` is an RFC 3339
+   * timestamp (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g., `24 hours`, `1 week`,
+   * `30 days`), or a ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+   *
+   * Durations do not respect semantics of the local time zone and are always resolved to a fixed
+   * number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored).
+   * Calendar units such as months and years are not allowed.
+   *
+   * Set a package to `false` to exempt it from the global [`exclude-newer`](#exclude-newer)
+   * constraint entirely.
    */
   'exclude-newer-package'?: ExcludeNewerPackage | null;
   /**
@@ -1264,7 +1533,7 @@ export interface PipOptions {
   /**
    * The method to use when installing packages from the global cache.
    *
-   * Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and
+   * Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on
    * Windows.
    *
    * WARNING: The use of symlink link mode is discouraged, as they create tight coupling between
@@ -1291,9 +1560,9 @@ export interface PipOptions {
   /**
    * Don't build source distributions.
    *
-   * When enabled, resolving will not run arbitrary Python code. The cached wheels of
-   * already-built source distributions will be reused, but operations that require building
-   * distributions will exit with an error.
+   * When enabled, uv will reuse cached wheels from previously built source distributions, but
+   * operations that require building a source distribution will exit with an error. uv may
+   * still build editable requirements, and their build backends may run arbitrary Python code.
    *
    * Alias for `--only-binary :all:`.
    */
@@ -1342,6 +1611,10 @@ export interface PipOptions {
    */
   'no-sources'?: boolean | null;
   /**
+   * Ignore `tool.uv.sources` for the specified packages.
+   */
+  'no-sources-package'?: string[] | null;
+  /**
    * Include extras in the output file.
    *
    * By default, uv strips extras, as any packages pulled in by the extras are already included
@@ -1359,9 +1632,10 @@ export interface PipOptions {
   /**
    * Only use pre-built wheels; don't build source distributions.
    *
-   * When enabled, resolving will not run code from the given packages. The cached wheels of already-built
-   * source distributions will be reused, but operations that require building distributions will
-   * exit with an error.
+   * When enabled, uv will reuse cached wheels from previously built source distributions, but
+   * operations that require building a source distribution for the given packages will exit
+   * with an error. uv may still build editable requirements, and their build backends may run
+   * arbitrary Python code.
    *
    * Multiple packages may be provided. Disable binaries for all packages with `:all:`.
    * Clear previously specified packages with `:none:`.
@@ -1458,6 +1732,7 @@ export interface PipOptions {
         | 'aarch64-linux-android'
         | 'x86_64-linux-android'
         | 'wasm32-pyodide2024'
+        | 'wasm32-pyodide2025'
         | 'arm64-apple-ios'
         | 'arm64-apple-ios-simulator'
         | 'x86_64-apple-ios-simulator'
@@ -1543,6 +1818,7 @@ export interface PipOptions {
     | (
         | 'auto'
         | 'cpu'
+        | 'cu132'
         | 'cu130'
         | 'cu129'
         | 'cu128'
@@ -1569,6 +1845,9 @@ export interface PipOptions {
         | 'cu91'
         | 'cu90'
         | 'cu80'
+        | 'rocm7.2'
+        | 'rocm7.1'
+        | 'rocm7.0'
         | 'rocm6.4'
         | 'rocm6.3'
         | 'rocm6.2.4'
@@ -1639,262 +1918,266 @@ export interface PipGroupName {
 }
 export interface ToolUvSources {
   [k: string]:
+    | {
+        branch?: string | null;
+        extra?: string | null;
+        /**
+         * The repository URL (without the `git+` prefix).
+         */
+        git: string;
+        group?: string | null;
+        /**
+         * Whether to use Git LFS when cloning the repository.
+         */
+        lfs?: boolean | null;
+        /**
+         * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+         */
+        marker?: string;
+        /**
+         * The path to the archive within the repository.
+         */
+        path?: string | null;
+        rev?: string | null;
+        /**
+         * The path to the directory with the `pyproject.toml`, if it's not in the repository root.
+         */
+        subdirectory?: string | null;
+        tag?: string | null;
+      }
+    | {
+        extra?: string | null;
+        group?: string | null;
+        /**
+         * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+         */
+        marker?: string;
+        /**
+         * For source distributions, the path to the directory with the `pyproject.toml`, if it's
+         * not in the archive root.
+         */
+        subdirectory?: string | null;
+        /**
+         * A [`Url`] wrapper that redacts credentials and sensitive query parameters when displaying the URL.
+         *
+         * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
+         * secrets by default when the URL is displayed or logged. This helps prevent accidental
+         * exposure of sensitive information in logs and debug output.
+         *
+         * # Examples
+         *
+         * ```
+         * use uv_redacted::DisplaySafeUrl;
+         * use std::str::FromStr;
+         *
+         * // Create a `DisplaySafeUrl` from a `&str`
+         * let mut url = DisplaySafeUrl::parse("https://user:password@example.com").unwrap();
+         *
+         * // Display will mask secrets
+         * assert_eq!(url.to_string(), "https://user:****@example.com/");
+         *
+         * // You can still access the username and password
+         * assert_eq!(url.username(), "user");
+         * assert_eq!(url.password(), Some("password"));
+         *
+         * // And you can still update the username and password
+         * let _ = url.set_username("new_user");
+         * let _ = url.set_password(Some("new_password"));
+         * assert_eq!(url.username(), "new_user");
+         * assert_eq!(url.password(), Some("new_password"));
+         *
+         * // It is also possible to remove the credentials entirely
+         * url.remove_credentials();
+         * assert_eq!(url.username(), "");
+         * assert_eq!(url.password(), None);
+         * ```
+         */
+        url: string;
+      }
+    | {
+        /**
+         * `false` by default.
+         */
+        editable?: boolean | null;
+        extra?: string | null;
+        group?: string | null;
+        /**
+         * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+         */
+        marker?: string;
+        /**
+         * Whether to treat the dependency as a buildable Python package (`true`) or as a virtual
+         * package (`false`). If `false`, the package will not be built or installed, but its
+         * dependencies will be included in the virtual environment.
+         *
+         * When omitted, the package status is inferred based on the presence of a `[build-system]`
+         * in the project's `pyproject.toml`.
+         */
+        package?: boolean | null;
+        path: string;
+      }
+    | {
+        extra?: string | null;
+        group?: string | null;
+        /**
+         * The normalized name of an index.
+         *
+         * Index names may contain letters, digits, hyphens, underscores, and periods, and must be ASCII.
+         */
+        index: string;
+        /**
+         * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+         */
+        marker?: string;
+      }
+    | {
+        /**
+         * Whether the package should be installed as editable. Defaults to `true`.
+         */
+        editable?: boolean | null;
+        extra?: string | null;
+        group?: string | null;
+        /**
+         * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+         */
+        marker?: string;
+        /**
+         * When set to `false`, the package will be fetched from the remote index, rather than
+         * included as a workspace package.
+         */
+        workspace: boolean;
+      }
     | (
-        | (
-            | {
-                branch?: string | null;
-                extra?: string | null;
-                /**
-                 * The repository URL (without the `git+` prefix).
-                 */
-                git: string;
-                group?: string | null;
-                /**
-                 * Whether to use Git LFS when cloning the repository.
-                 */
-                lfs?: boolean | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                rev?: string | null;
-                /**
-                 * The path to the directory with the `pyproject.toml`, if it's not in the archive root.
-                 */
-                subdirectory?: string | null;
-                tag?: string | null;
-              }
-            | {
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                /**
-                 * For source distributions, the path to the directory with the `pyproject.toml`, if it's
-                 * not in the archive root.
-                 */
-                subdirectory?: string | null;
-                /**
-                 * A [`Url`] wrapper that redacts credentials when displaying the URL.
-                 *
-                 * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
-                 * secrets by default when the URL is displayed or logged. This helps prevent accidental
-                 * exposure of sensitive information in logs and debug output.
-                 *
-                 * # Examples
-                 *
-                 * ```
-                 * use uv_redacted::DisplaySafeUrl;
-                 * use std::str::FromStr;
-                 *
-                 * // Create a `DisplaySafeUrl` from a `&str`
-                 * let mut url = DisplaySafeUrl::parse("https://user:password@example.com").unwrap();
-                 *
-                 * // Display will mask secrets
-                 * assert_eq!(url.to_string(), "https://user:****@example.com/");
-                 *
-                 * // You can still access the username and password
-                 * assert_eq!(url.username(), "user");
-                 * assert_eq!(url.password(), Some("password"));
-                 *
-                 * // And you can still update the username and password
-                 * let _ = url.set_username("new_user");
-                 * let _ = url.set_password(Some("new_password"));
-                 * assert_eq!(url.username(), "new_user");
-                 * assert_eq!(url.password(), Some("new_password"));
-                 *
-                 * // It is also possible to remove the credentials entirely
-                 * url.remove_credentials();
-                 * assert_eq!(url.username(), "");
-                 * assert_eq!(url.password(), None);
-                 * ```
-                 */
-                url: string;
-              }
-            | {
-                /**
-                 * `false` by default.
-                 */
-                editable?: boolean | null;
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                /**
-                 * Whether to treat the dependency as a buildable Python package (`true`) or as a virtual
-                 * package (`false`). If `false`, the package will not be built or installed, but its
-                 * dependencies will be included in the virtual environment.
-                 *
-                 * When omitted, the package status is inferred based on the presence of a `[build-system]`
-                 * in the project's `pyproject.toml`.
-                 */
-                package?: boolean | null;
-                path: string;
-              }
-            | {
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * The normalized name of an index.
-                 *
-                 * Index names may contain letters, digits, hyphens, underscores, and periods, and must be ASCII.
-                 */
-                index: string;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-              }
-            | {
-                /**
-                 * Whether the package should be installed as editable. Defaults to `true`.
-                 */
-                editable?: boolean | null;
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                /**
-                 * When set to `false`, the package will be fetched from the remote index, rather than
-                 * included as a workspace package.
-                 */
-                workspace: boolean;
-              }
-          )
-        | (
-            | {
-                branch?: string | null;
-                extra?: string | null;
-                /**
-                 * The repository URL (without the `git+` prefix).
-                 */
-                git: string;
-                group?: string | null;
-                /**
-                 * Whether to use Git LFS when cloning the repository.
-                 */
-                lfs?: boolean | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                rev?: string | null;
-                /**
-                 * The path to the directory with the `pyproject.toml`, if it's not in the archive root.
-                 */
-                subdirectory?: string | null;
-                tag?: string | null;
-              }
-            | {
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                /**
-                 * For source distributions, the path to the directory with the `pyproject.toml`, if it's
-                 * not in the archive root.
-                 */
-                subdirectory?: string | null;
-                /**
-                 * A [`Url`] wrapper that redacts credentials when displaying the URL.
-                 *
-                 * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
-                 * secrets by default when the URL is displayed or logged. This helps prevent accidental
-                 * exposure of sensitive information in logs and debug output.
-                 *
-                 * # Examples
-                 *
-                 * ```
-                 * use uv_redacted::DisplaySafeUrl;
-                 * use std::str::FromStr;
-                 *
-                 * // Create a `DisplaySafeUrl` from a `&str`
-                 * let mut url = DisplaySafeUrl::parse("https://user:password@example.com").unwrap();
-                 *
-                 * // Display will mask secrets
-                 * assert_eq!(url.to_string(), "https://user:****@example.com/");
-                 *
-                 * // You can still access the username and password
-                 * assert_eq!(url.username(), "user");
-                 * assert_eq!(url.password(), Some("password"));
-                 *
-                 * // And you can still update the username and password
-                 * let _ = url.set_username("new_user");
-                 * let _ = url.set_password(Some("new_password"));
-                 * assert_eq!(url.username(), "new_user");
-                 * assert_eq!(url.password(), Some("new_password"));
-                 *
-                 * // It is also possible to remove the credentials entirely
-                 * url.remove_credentials();
-                 * assert_eq!(url.username(), "");
-                 * assert_eq!(url.password(), None);
-                 * ```
-                 */
-                url: string;
-              }
-            | {
-                /**
-                 * `false` by default.
-                 */
-                editable?: boolean | null;
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                /**
-                 * Whether to treat the dependency as a buildable Python package (`true`) or as a virtual
-                 * package (`false`). If `false`, the package will not be built or installed, but its
-                 * dependencies will be included in the virtual environment.
-                 *
-                 * When omitted, the package status is inferred based on the presence of a `[build-system]`
-                 * in the project's `pyproject.toml`.
-                 */
-                package?: boolean | null;
-                path: string;
-              }
-            | {
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * The normalized name of an index.
-                 *
-                 * Index names may contain letters, digits, hyphens, underscores, and periods, and must be ASCII.
-                 */
-                index: string;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-              }
-            | {
-                /**
-                 * Whether the package should be installed as editable. Defaults to `true`.
-                 */
-                editable?: boolean | null;
-                extra?: string | null;
-                group?: string | null;
-                /**
-                 * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
-                 */
-                marker?: string;
-                /**
-                 * When set to `false`, the package will be fetched from the remote index, rather than
-                 * included as a workspace package.
-                 */
-                workspace: boolean;
-              }
-          )[]
-      )
+        | {
+            branch?: string | null;
+            extra?: string | null;
+            /**
+             * The repository URL (without the `git+` prefix).
+             */
+            git: string;
+            group?: string | null;
+            /**
+             * Whether to use Git LFS when cloning the repository.
+             */
+            lfs?: boolean | null;
+            /**
+             * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+             */
+            marker?: string;
+            /**
+             * The path to the archive within the repository.
+             */
+            path?: string | null;
+            rev?: string | null;
+            /**
+             * The path to the directory with the `pyproject.toml`, if it's not in the repository root.
+             */
+            subdirectory?: string | null;
+            tag?: string | null;
+          }
+        | {
+            extra?: string | null;
+            group?: string | null;
+            /**
+             * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+             */
+            marker?: string;
+            /**
+             * For source distributions, the path to the directory with the `pyproject.toml`, if it's
+             * not in the archive root.
+             */
+            subdirectory?: string | null;
+            /**
+             * A [`Url`] wrapper that redacts credentials and sensitive query parameters when displaying the URL.
+             *
+             * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
+             * secrets by default when the URL is displayed or logged. This helps prevent accidental
+             * exposure of sensitive information in logs and debug output.
+             *
+             * # Examples
+             *
+             * ```
+             * use uv_redacted::DisplaySafeUrl;
+             * use std::str::FromStr;
+             *
+             * // Create a `DisplaySafeUrl` from a `&str`
+             * let mut url = DisplaySafeUrl::parse("https://user:password@example.com").unwrap();
+             *
+             * // Display will mask secrets
+             * assert_eq!(url.to_string(), "https://user:****@example.com/");
+             *
+             * // You can still access the username and password
+             * assert_eq!(url.username(), "user");
+             * assert_eq!(url.password(), Some("password"));
+             *
+             * // And you can still update the username and password
+             * let _ = url.set_username("new_user");
+             * let _ = url.set_password(Some("new_password"));
+             * assert_eq!(url.username(), "new_user");
+             * assert_eq!(url.password(), Some("new_password"));
+             *
+             * // It is also possible to remove the credentials entirely
+             * url.remove_credentials();
+             * assert_eq!(url.username(), "");
+             * assert_eq!(url.password(), None);
+             * ```
+             */
+            url: string;
+          }
+        | {
+            /**
+             * `false` by default.
+             */
+            editable?: boolean | null;
+            extra?: string | null;
+            group?: string | null;
+            /**
+             * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+             */
+            marker?: string;
+            /**
+             * Whether to treat the dependency as a buildable Python package (`true`) or as a virtual
+             * package (`false`). If `false`, the package will not be built or installed, but its
+             * dependencies will be included in the virtual environment.
+             *
+             * When omitted, the package status is inferred based on the presence of a `[build-system]`
+             * in the project's `pyproject.toml`.
+             */
+            package?: boolean | null;
+            path: string;
+          }
+        | {
+            extra?: string | null;
+            group?: string | null;
+            /**
+             * The normalized name of an index.
+             *
+             * Index names may contain letters, digits, hyphens, underscores, and periods, and must be ASCII.
+             */
+            index: string;
+            /**
+             * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+             */
+            marker?: string;
+          }
+        | {
+            /**
+             * Whether the package should be installed as editable. Defaults to `true`.
+             */
+            editable?: boolean | null;
+            extra?: string | null;
+            group?: string | null;
+            /**
+             * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
+             */
+            marker?: string;
+            /**
+             * When set to `false`, the package will be fetched from the remote index, rather than
+             * included as a workspace package.
+             */
+            workspace: boolean;
+          }
+      )[]
     | undefined;
 }
 export interface ToolUvWorkspace {

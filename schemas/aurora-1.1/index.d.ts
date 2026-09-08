@@ -258,11 +258,7 @@ export interface WebComponent {
    * The type of web component
    */
   type?:
-    | 'grid-select-element'
-    | 'grid-select-multiple-elements'
-    | 'grid-elements-manager'
-    | 'multiple-select'
-    | 'select';
+    'grid-select-element' | 'grid-select-multiple-elements' | 'grid-elements-manager' | 'multiple-select' | 'select';
 }
 export interface ApiDefinition {
   /**

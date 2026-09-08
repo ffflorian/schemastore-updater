@@ -1,11 +1,12 @@
 /* eslint-disable */
 
+/**
+ * JSON Schema for a Foundry Virtual Tabletop game system manifest.
+ * https://foundryvtt.com/article/system-development/
+ */
 export type JSONSchemaForFoundryVTTSystemFilesSystemJson =
   JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorldJsonThisIsTheBaseFromWhichOthersInherit & {
-    /**
-     * A public URL.
-     */
-    manifest?: string;
+    manifest?: ManifestURL;
     /**
      * Specifies the default initiative formula if applicable to the system.
      */
@@ -30,8 +31,15 @@ export type JSONSchemaForFoundryVTTSystemFilesSystemJson =
   };
 /**
  * A less common way of including Javascript with the increasing adoption of ESModules, this field allows you to define an array of JavaScript file paths which should be included whenever this package is being used. Each listed script path should be relative to the package root directory. All scripts which exist will be automatically included in the game session and loaded in their listed order.
+ *
+ * Items: Relative path to a file, case sensitive.
  */
 export type FileArray = string[];
+/**
+ * A stable URL that describes the latest release version of your manifest file. This URL is used for automatic system installation in the Foundry VTT setup screen. This manifest URL is consulted during the system update check to see whether a new version is available for download. It is important that this address remain stable, otherwise updates will not be detected.
+ * https://foundryvtt.com/article/system-development/
+ */
+export type ManifestURL = string;
 
 export interface JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorldJsonThisIsTheBaseFromWhichOthersInherit {
   /**
@@ -140,6 +148,8 @@ export interface JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorld
   styles?: FileArray;
   /**
    * A list of localization files that Foundry can use to translate strings.
+   *
+   * Items: The language definition
    */
   languages?: {
     /**
@@ -166,6 +176,8 @@ export interface JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorld
   }[];
   /**
    * Packages may come bundled with Compendium packs which include game content for various Document types. Compendium packs are defined as objects which have their own internal metadata structure.
+   *
+   * Items: The definition of a Compendium pack.
    */
   packs?: {
     /**
@@ -232,6 +244,7 @@ export interface JSONSchemaForFoundryVTTManifestFilesModuleJsonSystemJsonOrWorld
   };
   /**
    * @deprecated
+   * Items: The definition of a dependency package.
    */
   dependencies?: {
     /**

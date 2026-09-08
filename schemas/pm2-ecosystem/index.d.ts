@@ -221,9 +221,22 @@ export interface App {
    * This interface was referenced by `App`'s JSON-Schema definition
    * via the `patternProperty` "^env_\S+$".
    */
-  [k: string]: {
-    [k: string]: string | undefined;
-  };
+  [k: string]:
+    | {
+        [k: string]: string | undefined;
+      }
+    | string
+    | string[]
+    | (boolean & string)
+    | boolean
+    | 'json'
+    | number
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'fork'
+    | 'cluster'
+    | undefined;
 }
 export interface DeploymentEnvironment {
   /**

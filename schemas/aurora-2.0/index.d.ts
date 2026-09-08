@@ -22,6 +22,12 @@ export type ExcludedOperationDefinition = (
   | 'update'
   | 'upsert'
 )[];
+/**
+ * Fields to display in the grid-select-element widget
+ *
+ * @minItems 1
+ */
+export type DisplayFields = [string, ...string[]];
 
 /**
  * Aurora module definition: describes a bounded context module with its aggregate, properties, relationships and front configuration
@@ -388,12 +394,7 @@ export interface WidgetDefinition {
    * Set hidden widget on list view
    */
   isListHidden?: boolean;
-  /**
-   * Fields to display in the grid-select-element widget
-   *
-   * @minItems 1
-   */
-  displayFields?: [string, ...string[]];
+  displayFields?: DisplayFields;
   /**
    * Name of the tab where the field will be placed, enabling a tab-based form layout
    */

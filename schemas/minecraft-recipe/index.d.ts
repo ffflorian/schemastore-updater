@@ -4,8 +4,6 @@
  * Configuration file defining a recipe for a data pack for Minecraft.
  */
 export type MinecraftDataPackRecipe = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * The type of recipe.
    */

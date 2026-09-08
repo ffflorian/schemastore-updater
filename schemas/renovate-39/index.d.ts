@@ -1052,15 +1052,7 @@ export type JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40 = {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -1456,1460 +1448,7 @@ export type JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40 = {
    */
   writeDiscoveredRepos?: string;
   [k: string]: unknown | undefined;
-} & ({
-  /**
-   * Labels to add to Pull Request.
-   */
-  addLabels?: string[];
-  /**
-   * Additional string value to be appended to `branchPrefix`.
-   */
-  additionalBranchPrefix?: string;
-  /**
-   * Additional reviewers for Pull Requests (in contrast to `reviewers`, this option adds to the existing reviewer list, rather than replacing it).
-   */
-  additionalReviewers?: string[];
-  /**
-   * Set this to `false` to disable template compilation for post-upgrade commands.
-   */
-  allowCommandTemplating?: boolean;
-  /**
-   * Set this to `true` to allow custom crate registries.
-   */
-  allowCustomCrateRegistries?: boolean;
-  /**
-   * Set this to `true` if repositories are allowed to run install plugins.
-   */
-  allowPlugins?: boolean;
-  /**
-   * Set this to `true` if repositories are allowed to run install scripts.
-   */
-  allowScripts?: boolean;
-  /**
-   * A list of regular expressions that decide which commands are allowed in post-upgrade tasks.
-   */
-  allowedCommands?: string[];
-  /**
-   * List of allowed patterns for environment variable names in repository env config.
-   */
-  allowedEnv?: string[];
-  /**
-   * List of allowed patterns for header names in repository hostRules config.
-   */
-  allowedHeaders?: string[];
-  ansible?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1;
-  'ansible-galaxy'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2;
-  argocd?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3;
-  asdf?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4;
-  /**
-   * Assign reviewers and assignees even if the PR is to be automerged.
-   */
-  assignAutomerge?: boolean;
-  /**
-   * Assignees for Pull Request (either username or email address depending on the platform).
-   */
-  assignees?: string[];
-  /**
-   * Determine assignees based on configured code owners and changes in PR.
-   */
-  assigneesFromCodeOwners?: boolean;
-  /**
-   * Take a random sample of given size from `assignees`.
-   */
-  assigneesSampleSize?: number | null;
-  /**
-   * Set to `true` to automatically approve PRs.
-   */
-  autoApprove?: boolean;
-  /**
-   * Control whether replacement regular expressions are global matches or only the first match.
-   */
-  autoReplaceGlobalMatch?: boolean;
-  /**
-   * Autodiscover all repositories.
-   */
-  autodiscover?: boolean;
-  /**
-   * Filter the list of autodiscovered repositories.
-   */
-  autodiscoverFilter?: (string[] | string) & (((string[] | string) & unknown[]) | (null & (string[] | string)));
-  /**
-   * Filter the list of autodiscovered repositories by namespaces.
-   */
-  autodiscoverNamespaces?: string[] | null;
-  /**
-   * Filter the list of autodiscovered repositories by project names.
-   */
-  autodiscoverProjects?: string[] | null;
-  /**
-   * The order method for autodiscover server side repository search.
-   */
-  autodiscoverRepoOrder?: ('asc' | 'desc') | null;
-  /**
-   * The sort method for autodiscover server side repository search.
-   */
-  autodiscoverRepoSort?: ('alpha' | 'created' | 'updated' | 'size' | 'id') | null;
-  /**
-   * Filter the list of autodiscovered repositories by topics.
-   */
-  autodiscoverTopics?: string[] | null;
-  /**
-   * Whether to automerge branches/PRs automatically, without human intervention.
-   */
-  automerge?: boolean;
-  /**
-   * PR comment to add to trigger automerge. Only used if `automergeType=pr-comment`.
-   */
-  automergeComment?: string;
-  /**
-   * Limit automerge to these times of day or week.
-   */
-  automergeSchedule?: string[] | string;
-  /**
-   * The merge strategy to use when automerging PRs. Used only if `automergeType=pr`.
-   */
-  automergeStrategy?: 'auto' | 'fast-forward' | 'merge-commit' | 'rebase' | 'squash';
-  /**
-   * How to automerge, if enabled.
-   */
-  automergeType?: 'branch' | 'pr' | 'pr-comment';
-  'azure-pipelines'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5;
-  /**
-   * The id of an existing work item on Azure Boards to link to each PR.
-   */
-  azureWorkItemId?: number;
-  /**
-   * List of one or more custom base branches defined as exact strings and/or via regex expressions.
-   */
-  baseBranches?: string[];
-  /**
-   * The base directory for Renovate to store local files, including repository files and cache. If left empty, Renovate will create its own temporary directory to use.
-   */
-  baseDir?: string;
-  batect?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6;
-  'batect-wrapper'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7;
-  bazel?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8;
-  'bazel-module'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9;
-  bazelisk?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10;
-  /**
-   * The PR tasks will be automatically completed after the PR is raised.
-   */
-  bbAutoResolvePrTasks?: boolean;
-  /**
-   * Use the default reviewers (Bitbucket only).
-   */
-  bbUseDefaultReviewers?: boolean;
-  /**
-   * Use the repository's [development branch](https://support.atlassian.com/bitbucket-cloud/docs/branch-a-repository/#The-branching-model) as the repository's default branch.
-   */
-  bbUseDevelopmentBranch?: boolean;
-  bicep?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11;
-  /**
-   * Controls how third-party tools like npm or Gradle are called: directly, via Docker sidecar containers, or via dynamic install.
-   */
-  binarySource?: 'global' | 'docker' | 'install' | 'hermit';
-  'bitbucket-pipelines'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12;
-  bitrise?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13;
-  /**
-   * Limit to a maximum of x concurrent branches. 0 means no limit, `null` (default) inherits value from `prConcurrentLimit`.
-   */
-  branchConcurrentLimit?: number | null;
-  /**
-   * Branch name template.
-   */
-  branchName?: string;
-  /**
-   * Whether to be strict about the use of special characters within the branch name.
-   */
-  branchNameStrict?: boolean;
-  /**
-   * Prefix to use for all branch names.
-   */
-  branchPrefix?: string;
-  /**
-   * Old branchPrefix value to check for existing PRs.
-   */
-  branchPrefixOld?: string;
-  /**
-   * Branch topic.
-   */
-  branchTopic?: string;
-  buildkite?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14;
-  buildpacks?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15;
-  /**
-   * Bump the version in the package file being updated.
-   */
-  bumpVersion?: 'major' | 'minor' | 'patch' | 'prerelease';
-  bun?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16;
-  'bun-version'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17;
-  bundler?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18;
-  /**
-   * The directory where Renovate stores its cache. If left empty, Renovate creates a subdirectory within the `baseDir`.
-   */
-  cacheDir?: string;
-  /**
-   * Maximum duration in minutes to keep datasource cache entries.
-   */
-  cacheHardTtlMinutes?: number;
-  /**
-   * Cache private packages in the datasource cache. This is useful for self-hosted setups
-   */
-  cachePrivatePackages?: boolean;
-  cacheTtlOverride?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19;
-  cake?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20;
-  cargo?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21;
-  cdnurl?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22;
-  /**
-   * A list of branch names to mark for creation or rebasing as if it was selected in the Dependency Dashboard issue.
-   */
-  checkedBranches?: string[];
-  circleci?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23;
-  /**
-   * Set to `true` to initialize submodules during repository clone.
-   */
-  cloneSubmodules?: boolean;
-  /**
-   * List of submodules names or patterns to clone when cloneSubmodules=true.
-   */
-  cloneSubmodulesFilter?: string[];
-  cloudbuild?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24;
-  cocoapods?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25;
-  /**
-   * Commit message body template. Will be appended to commit message, separated by two line returns.
-   */
-  commitBody?: string;
-  /**
-   * If enabled, append a table in the commit message body describing all updates in the commit.
-   */
-  commitBodyTable?: boolean;
-  /**
-   * Message to use for commit messages and pull request titles.
-   */
-  commitMessage?: string;
-  /**
-   * Action verb to use in commit messages and PR titles.
-   */
-  commitMessageAction?: string;
-  /**
-   * Extra description used after the commit message topic - typically the version.
-   */
-  commitMessageExtra?: string;
-  /**
-   * Lowercase PR- and commit titles.
-   */
-  commitMessageLowerCase?: 'auto' | 'never';
-  /**
-   * Prefix to add to start of commit messages and PR titles. Uses a semantic prefix if `semanticCommits` is enabled.
-   */
-  commitMessagePrefix?: string;
-  /**
-   * Suffix to add to end of commit messages and PR titles.
-   */
-  commitMessageSuffix?: string;
-  /**
-   * The upgrade topic/noun used in commit messages and PR titles.
-   */
-  commitMessageTopic?: string;
-  composer?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26;
-  /**
-   * Configure use of `--ignore-platform-reqs` or `--ignore-platform-req` for the Composer package manager.
-   */
-  composerIgnorePlatformReqs?: string[];
-  conan?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27;
-  /**
-   * If enabled, issues created by Renovate are set as confidential.
-   */
-  confidential?: boolean;
-  /**
-   * Enable this to get config migration PRs when needed.
-   */
-  configMigration?: boolean;
-  /**
-   * Set this to `false` to make Renovate create a new issue for each config warning, instead of reopening or reusing an existing issue.
-   */
-  configWarningReuseIssue?: boolean;
-  /**
-   * Configuration object to define language or manager version constraints.
-   */
-  constraints?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * Perform release filtering based on language constraints.
-   */
-  constraintsFiltering?: 'none' | 'strict';
-  /**
-   * The directory where Renovate stores its containerbase cache. If left empty, Renovate creates a subdirectory within the `cacheDir`.
-   */
-  containerbaseDir?: string;
-  copier?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28;
-  cpanfile?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29;
-  crossplane?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30;
-  customDatasources?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31;
-  customEnvVariables?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32;
-  /**
-   * Custom managers using regex matching.
-   */
-  customManagers?: {
-    description?: string[] | string;
-    /**
-     * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    autoReplaceStringTemplate?: string;
-    /**
-     * Optional `currentValue` for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    currentValueTemplate?: string;
-    /**
-     * Custom manager to use. Valid only within a `customManagers` object.
-     */
-    customType?: 'jsonata' | 'regex';
-    /**
-     * Optional datasource for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    datasourceTemplate?: string;
-    /**
-     * Optional depName for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    depNameTemplate?: string;
-    /**
-     * Optional `depType` for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    depTypeTemplate?: string;
-    /**
-     * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    extractVersionTemplate?: string;
-    /**
-     * It specifies the syntax of the package file being managed by the custom JSONata manager.
-     */
-    fileFormat?: 'json' | 'toml' | 'yaml';
-    /**
-     * Queries to use. Valid only within a `customManagers` object.
-     */
-    matchStrings?: string[];
-    /**
-     * Strategy how to interpret matchStrings.
-     */
-    matchStringsStrategy?: 'any' | 'recursive' | 'combination';
-    /**
-     * Optional packageName for extracted dependencies, else defaults to `depName` value. Valid only within a `customManagers` object.
-     */
-    packageNameTemplate?: string;
-    /**
-     * Optional registry URL for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    registryUrlTemplate?: string;
-    /**
-     * Optional versioning for extracted dependencies. Valid only within a `customManagers` object.
-     */
-    versioningTemplate?: string;
-    [k: string]: unknown | undefined;
-  }[];
-  /**
-   * Customize sections in the Dependency Dashboard issue.
-   */
-  customizeDashboard?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * List of registry URLs to use as the default for a datasource.
-   */
-  defaultRegistryUrls?: string[] | null;
-  /**
-   * If set to `true`, Renovate tries to delete the self-hosted config file after reading it.
-   */
-  deleteConfigFile?: boolean;
-  /**
-   * Whether to create a "Dependency Dashboard" issue in the repository.
-   */
-  dependencyDashboard?: boolean;
-  /**
-   * Controls if updates need manual approval from the Dependency Dashboard issue before PRs are created.
-   */
-  dependencyDashboardApproval?: boolean;
-  /**
-   * Set to `true` to let Renovate close the Dependency Dashboard issue if there are no more updates.
-   */
-  dependencyDashboardAutoclose?: boolean;
-  /**
-   * Any text added here will be placed last in the Dependency Dashboard issue body, with a divider separator before it.
-   */
-  dependencyDashboardFooter?: string;
-  /**
-   * Any text added here will be placed first in the Dependency Dashboard issue body.
-   */
-  dependencyDashboardHeader?: string;
-  /**
-   * These labels will always be applied on the Dependency Dashboard issue, even when they have been removed manually.
-   */
-  dependencyDashboardLabels?: string[] | null;
-  /**
-   * Control if the Dependency Dashboard issue lists CVEs supplied by [osv.dev](https://osv.dev).
-   */
-  dependencyDashboardOSVVulnerabilitySummary?: 'none' | 'all' | 'unresolved';
-  /**
-   * Title for the Dependency Dashboard issue.
-   */
-  dependencyDashboardTitle?: string;
-  'deps-edn'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33;
-  /**
-   * Plain text description for a config or preset.
-   */
-  description?: string[] | string;
-  /**
-   * If `true`, Renovate tries to detect global manager configuration from the file system.
-   */
-  detectGlobalManagerConfig?: boolean;
-  /**
-   * If `true`, Renovate tries to detect host rules from environment variables.
-   */
-  detectHostRulesFromEnv?: boolean;
-  devbox?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34;
-  devcontainer?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35;
-  digest?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36;
-  'docker-compose'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37;
-  /**
-   * Change this value to add a prefix to the Renovate Docker sidecar container names and labels.
-   */
-  dockerChildPrefix?: string;
-  /**
-   * Pass CLI flags to `docker run` command when `binarySource=docker`.
-   */
-  dockerCliOptions?: string;
-  /**
-   * By default, Renovate fetches up to 20 pages of Docker tags from registries. But you can set your own limit with this config option.
-   */
-  dockerMaxPages?: number;
-  /**
-   * Change this value to override the default Renovate sidecar image.
-   */
-  dockerSidecarImage?: string;
-  /**
-   * Set the `UID` and `GID` for Docker-based binaries if you use `binarySource=docker`.
-   */
-  dockerUser?: string;
-  dockerfile?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38;
-  /**
-   * If set to `true` then Renovate creates draft PRs, instead of normal status PRs.
-   */
-  draftPR?: boolean;
-  droneci?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39;
-  /**
-   * If enabled, perform a dry run by logging messages instead of creating/updating/deleting branches and PRs.
-   */
-  dryRun?: ('extract' | 'lookup' | 'full') | null;
-  /**
-   * Enable or disable Renovate bot.
-   */
-  enabled?: boolean;
-  /**
-   * A list of package managers to enable. Only managers on the list are enabled.
-   */
-  enabledManagers?: string[];
-  encrypted?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40;
-  /**
-   * Warning text to use if encrypted config is found.
-   */
-  encryptedWarning?: string;
-  /**
-   * Custom endpoint to use.
-   */
-  endpoint?: string | null;
-  env?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41;
-  /**
-   * A file matching any of these glob patterns will not be committed, even if the file has been updated.
-   */
-  excludeCommitPaths?: string[];
-  /**
-   * Default execution timeout in minutes for child processes Renovate creates.
-   */
-  executionTimeout?: number;
-  /**
-   * Expand the configured code owner groups into a full list of group members.
-   */
-  expandCodeOwnersGroups?: boolean;
-  /**
-   * Set this to `true` to allow passing of all environment variables to package managers.
-   */
-  exposeAllEnv?: boolean;
-  /**
-   * Configuration presets to use or extend.
-   */
-  extends?: string[] | string;
-  /**
-   * A regex (`re2`) to extract a version from a datasource's raw version string.
-   */
-  extractVersion?: string;
-  /**
-   * Controls if and when changelogs/release notes are fetched.
-   */
-  fetchChangeLogs?: 'off' | 'branch' | 'pr';
-  /**
-   * RegEx (`re2`) pattern for matching manager files.
-   */
-  fileMatch?: string[] | string;
-  /**
-   * Filter reviewers and assignees based on their availability.
-   */
-  filterUnavailableUsers?: boolean;
-  fleet?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42;
-  flux?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43;
-  /**
-   * If defined, packages will follow this release tag exactly.
-   */
-  followTag?: string;
-  force?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44;
-  /**
-   * Decides if CLI configuration options are moved to the `force` config section.
-   */
-  forceCli?: boolean;
-  /**
-   * Whether to create forks as needed at runtime when running in "fork mode".
-   */
-  forkCreation?: boolean;
-  /**
-   * Disallow maintainers to push to Renovate pull requests when running in fork mode.
-   */
-  forkModeDisallowMaintainerEdits?: boolean;
-  /**
-   * The preferred organization to create or find forked repositories, when in fork mode.
-   */
-  forkOrg?: string;
-  /**
-   * Whether to process forked repositories. By default, all forked repositories are skipped when in `autodiscover` mode.
-   */
-  forkProcessing?: 'auto' | 'enabled' | 'disabled';
-  /**
-   * Set a personal access token here to enable "fork mode".
-   */
-  forkToken?: string;
-  fvm?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45;
-  'git-submodules'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46;
-  /**
-   * Author to use for Git commits. Must conform to [RFC5322](https://datatracker.ietf.org/doc/html/rfc5322).
-   */
-  gitAuthor?: string;
-  /**
-   * Git authors which are ignored by Renovate. Must conform to [RFC5322](https://datatracker.ietf.org/doc/html/rfc5322).
-   */
-  gitIgnoredAuthors?: string[];
-  /**
-   * Ignore approval rules for MRs created by Renovate, which is useful for automerge.
-   */
-  gitLabIgnoreApprovals?: boolean;
-  /**
-   * Which Git commands will be run with the `--no-verify` option.
-   */
-  gitNoVerify?: ('commit' | 'push')[] | ('commit' | 'push');
-  /**
-   * PGP key to use for signing Git commits.
-   */
-  gitPrivateKey?: string;
-  /**
-   * Configure the timeout with a number of milliseconds to wait for a Git task.
-   */
-  gitTimeout?: number;
-  /**
-   * Overrides the default resolution for Git remote, e.g. to switch GitLab from HTTPS to SSH-based.
-   */
-  gitUrl?: 'default' | 'ssh' | 'endpoint';
-  'github-actions'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47;
-  /**
-   * Display warnings about GitHub token not being set.
-   */
-  githubTokenWarn?: boolean;
-  gitlabci?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48;
-  'gitlabci-include'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49;
-  glasskube?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50;
-  gleam?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51;
-  /**
-   * Configuration presets to use or extend for a self-hosted config.
-   */
-  globalExtends?: string[];
-  /**
-   * Directory pattern to run `go get` on.
-   */
-  goGetDirs?: string[];
-  gomod?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52;
-  gradle?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53;
-  'gradle-wrapper'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54;
-  group?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55;
-  /**
-   * Human understandable name for the dependency group.
-   */
-  groupName?: string | null;
-  /**
-   * Slug to use for group (e.g. in branch name). Slug is calculated from `groupName` if `null`.
-   */
-  groupSlug?: string | null;
-  /**
-   * If enabled, branch names will use a hashing function to ensure each branch has that length.
-   */
-  hashedBranchLength?: number | null;
-  'haskell-cabal'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56;
-  'helm-requirements'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57;
-  'helm-values'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58;
-  helmfile?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59;
-  helmsman?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60;
-  helmv3?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61;
-  hermit?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62;
-  homebrew?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63;
-  /**
-   * Host rules/configuration including credentials.
-   */
-  hostRules?: {
-    description?: string[] | string;
-    /**
-     * A list of HTTP status codes safe to ignore even when `abortOnError=true`.
-     */
-    abortIgnoreStatusCodes?: number[];
-    /**
-     * If enabled, Renovate aborts its run when HTTP request errors occur.
-     */
-    abortOnError?: boolean;
-    /**
-     * A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.
-     */
-    artifactAuth?: 'composer'[] | null;
-    /**
-     * Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use `"Token-Only"` to use only the token without an authorization type.
-     */
-    authType?: string;
-    /**
-     * Limit concurrent requests per host.
-     */
-    concurrentRequestLimit?: number | null;
-    /**
-     * Enable got DNS cache.
-     */
-    dnsCache?: boolean;
-    /**
-     * Enable got HTTP/2 support.
-     */
-    enableHttp2?: boolean;
-    headers?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64;
-    /**
-     * hostType for a package rule. Can be a platform name or a datasource name.
-     */
-    hostType?: string;
-    /**
-     * The certificate chains in PEM format.
-     */
-    httpsCertificate?: string | null;
-    /**
-     * The overriding trusted CA certificate.
-     */
-    httpsCertificateAuthority?: string | null;
-    /**
-     * The private key in PEM format.
-     */
-    httpsPrivateKey?: string | null;
-    /**
-     * Explicitly turn on insecure Docker registry access (HTTP).
-     */
-    insecureRegistry?: boolean;
-    /**
-     * Enable HTTP keep-alive for hosts.
-     */
-    keepAlive?: boolean;
-    /**
-     * A domain name, host name or base URL to match against.
-     */
-    matchHost?: string;
-    /**
-     * Limit requests rate per host.
-     */
-    maxRequestsPerSecond?: number;
-    /**
-     * Maximum retry-after header value to wait for before retrying a failed request.
-     */
-    maxRetryAfter?: number;
-    /**
-     * Match against requests that only read data and do not mutate anything.
-     */
-    readOnly?: boolean;
-    /**
-     * Timeout (in milliseconds) for queries to external endpoints.
-     */
-    timeout?: number;
-    [k: string]: unknown | undefined;
-  }[];
-  html?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65;
-  /**
-   * Maximum duration in days to keep HTTP cache entries.
-   */
-  httpCacheTtlDays?: number;
-  /**
-   * Avoid upgrading from a non-deprecated version to a deprecated one.
-   */
-  ignoreDeprecated?: boolean;
-  /**
-   * Dependencies to ignore.
-   */
-  ignoreDeps?: string[];
-  /**
-   * Skip any package file whose path matches one of these. Can be a string or glob pattern.
-   */
-  ignorePaths?: string[];
-  /**
-   * Set this to `true` if `allowPlugins=true` but you wish to skip running plugins when updating lock files.
-   */
-  ignorePlugins?: boolean;
-  /**
-   * Set to `true` to fetch the entire list of PRs instead of only those authored by the Renovate user.
-   */
-  ignorePrAuthor?: boolean;
-  /**
-   * A list of presets to ignore, including any that are nested inside an `extends` array.
-   */
-  ignorePresets?: string[] | string;
-  /**
-   * Reviewers to be ignored in PR reviewers presence (either username or email address depending on the platform).
-   */
-  ignoreReviewers?: string[];
-  /**
-   * Set this to `false` if `allowScripts=true` and you wish to run scripts when updating lock files.
-   */
-  ignoreScripts?: boolean;
-  /**
-   * Set to `true` to enable automerging without tests.
-   */
-  ignoreTests?: boolean;
-  /**
-   * Ignore versions with unstable SemVer.
-   */
-  ignoreUnstable?: boolean;
-  /**
-   * Whether to process repositories that are mirrors. By default, repositories that are mirrors are skipped.
-   */
-  includeMirrors?: boolean;
-  /**
-   * Include package files only within these defined paths.
-   */
-  includePaths?: string[];
-  /**
-   * If `true`, Renovate will inherit configuration from the `inheritConfigFileName` file in `inheritConfigRepoName`.
-   */
-  inheritConfig?: boolean;
-  /**
-   * Renovate will look for this config file name in the `inheritConfigRepoName`.
-   */
-  inheritConfigFileName?: string;
-  /**
-   * Renovate will look in this repo for the `inheritConfigFileName`.
-   */
-  inheritConfigRepoName?: string;
-  /**
-   * If `true`, any `inheritedConfig` fetch error will result in an aborted run.
-   */
-  inheritConfigStrict?: boolean;
-  /**
-   * Whether to consider passing internal checks such as `minimumReleaseAge` when determining branch status.
-   */
-  internalChecksAsSuccess?: boolean;
-  /**
-   * When and how to filter based on internal checks.
-   */
-  internalChecksFilter?: 'strict' | 'flexible' | 'none';
-  jenkins?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66;
-  jsonata?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67;
-  'jsonnet-bundler'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68;
-  /**
-   * If set, users can add this label to PRs to request they be kept updated with the base branch.
-   */
-  keepUpdatedLabel?: string;
-  'kotlin-script'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69;
-  kubernetes?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70;
-  kustomize?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71;
-  /**
-   * Labels to set in Pull Request.
-   */
-  labels?: string[];
-  leiningen?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72;
-  lockFileMaintenance?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73;
-  /**
-   * Add a global or per-repo log context to each log entry.
-   */
-  logContext?: string | null;
-  /**
-   * Remap log levels to different levels.
-   */
-  logLevelRemap?: {
-    description?: string[] | string;
-    /**
-     * Regex/minimatch expression to match against log message.
-     */
-    matchMessage?: string;
-    /**
-     * New log level to use if matchMessage matches.
-     */
-    newLogLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
-    [k: string]: unknown | undefined;
-  }[];
-  major?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74;
-  maven?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75;
-  'maven-wrapper'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76;
-  /**
-   * If set, Renovate will query the merge-confidence JSON API only for datasources that are part of this list.
-   */
-  mergeConfidenceDatasources?: ('go' | 'maven' | 'npm' | 'nuget' | 'packagist' | 'pypi' | 'rubygems')[];
-  /**
-   * If set, Renovate will query this API for Merge Confidence data.
-   */
-  mergeConfidenceEndpoint?: string;
-  meteor?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77;
-  migratePresets?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78;
-  /**
-   * The number of a milestone. If set, the milestone will be set when Renovate creates the PR.
-   */
-  milestone?: number | null;
-  /**
-   * Time required before a new release is considered stable.
-   */
-  minimumReleaseAge?: string | null;
-  minor?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79;
-  mint?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80;
-  mise?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81;
-  mix?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82;
-  /**
-   * Mode of operation.
-   */
-  mode?: 'full' | 'silent';
-  nix?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83;
-  nodenv?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84;
-  npm?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85;
-  /**
-   * npm token used to authenticate with the default registry.
-   */
-  npmToken?: string;
-  /**
-   * String copy of `.npmrc` file. Use `\n` instead of line breaks.
-   */
-  npmrc?: string;
-  /**
-   * Whether to merge `config.npmrc` with repo `.npmrc` content if both are found.
-   */
-  npmrcMerge?: boolean;
-  nuget?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86;
-  nvm?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87;
-  ocb?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88;
-  /**
-   * Require a Configuration PR first.
-   */
-  onboarding?: boolean;
-  /**
-   * Change this value to override the default onboarding branch name.
-   */
-  onboardingBranch?: string;
-  /**
-   * Change this value to override the default onboarding commit message.
-   */
-  onboardingCommitMessage?: string | null;
-  onboardingConfig?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89;
-  /**
-   * Change this value to override the default onboarding config file name.
-   */
-  onboardingConfigFileName?: string;
-  /**
-   * Onboard the repository even if no dependencies are found.
-   */
-  onboardingNoDeps?: 'auto' | 'enabled' | 'disabled';
-  /**
-   * Change this value to override the default onboarding PR title.
-   */
-  onboardingPrTitle?: string;
-  /**
-   * Set to enable rebase/retry markdown checkbox for onboarding PRs.
-   */
-  onboardingRebaseCheckbox?: boolean;
-  /**
-   * Set to `true` to perform a check for disabled config prior to cloning.
-   */
-  optimizeForDisabled?: boolean;
-  osgi?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90;
-  /**
-   * Use vulnerability alerts from `osv.dev`.
-   */
-  osvVulnerabilityAlerts?: boolean;
-  /**
-   * Rules for matching packages.
-   */
-  packageRules?: {
-    description?: string[] | string;
-    /**
-     * A version range or regex pattern capturing allowed versions for dependencies.
-     */
-    allowedVersions?: string;
-    /**
-     * Set a custom URL for the changelog. Renovate will put this URL in the PR body text.
-     */
-    changelogUrl?: string;
-    /**
-     * List of strings containing exact matches (e.g. `["main"]`) and/or regex expressions (e.g. `["/^release/.* /"]`). Valid only within a `packageRules` object.
-     */
-    matchBaseBranches?: string[] | string;
-    /**
-     * List of categories to match (for example: `["python"]`). Valid only within a `packageRules` object.
-     */
-    matchCategories?: string[] | string;
-    /**
-     * Merge confidence levels to match against (`low`, `neutral`, `high`, `very high`). Valid only within `packageRules` object.
-     */
-    matchConfidence?: ('low' | 'neutral' | 'high' | 'very high')[] | ('low' | 'neutral' | 'high' | 'very high');
-    /**
-     * Matches the current age of the package derived from its release timestamp. Valid only within a `packageRules` object.
-     */
-    matchCurrentAge?: string;
-    /**
-     * A regex or glob pattern to match against the raw `currentValue` string of a dependency. Valid only within a `packageRules` object.
-     */
-    matchCurrentValue?: string;
-    /**
-     * A version, or range of versions, to match against the current version of a package. Valid only within a `packageRules` object.
-     */
-    matchCurrentVersion?: string;
-    /**
-     * List of datasources to match (e.g. `["orb"]`). Valid only within a `packageRules` object.
-     */
-    matchDatasources?: string[] | string;
-    /**
-     * Dep names to match. Valid only within a `packageRules` object.
-     */
-    matchDepNames?: string[] | string;
-    /**
-     * List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.
-     */
-    matchDepTypes?: string[] | string;
-    /**
-     * List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.
-     */
-    matchFileNames?: string[];
-    /**
-     * A JSONata expression to match against the full config object. Valid only within a `packageRules` object.
-     */
-    matchJsonata?: string[];
-    /**
-     * List of package managers to match (e.g. `["pipenv"]`). Valid only within a `packageRules` object.
-     */
-    matchManagers?: string[] | string;
-    /**
-     * A regex or glob pattern to match against the raw `newValue` string of a dependency. Valid only within a `packageRules` object.
-     */
-    matchNewValue?: string;
-    /**
-     * Package names to match. Valid only within a `packageRules` object.
-     */
-    matchPackageNames?: string[] | string;
-    /**
-     * List of repositories to match (e.g. `["** /*-archived"]`). Valid only within a `packageRules` object.
-     */
-    matchRepositories?: string[] | string;
-    /**
-     * A list of source URLs to exact match against.
-     */
-    matchSourceUrls?: string[] | string;
-    /**
-     * Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc). Valid only within `packageRules` object.
-     */
-    matchUpdateTypes?:
-      | (
-          | 'major'
-          | 'minor'
-          | 'patch'
-          | 'pin'
-          | 'pinDigest'
-          | 'digest'
-          | 'lockFileMaintenance'
-          | 'rollback'
-          | 'bump'
-          | 'replacement'
-        )[]
-      | (
-          | 'major'
-          | 'minor'
-          | 'patch'
-          | 'pin'
-          | 'pinDigest'
-          | 'digest'
-          | 'lockFileMaintenance'
-          | 'rollback'
-          | 'bump'
-          | 'replacement'
-        );
-    /**
-     * Override the datasource value.
-     */
-    overrideDatasource?: string;
-    /**
-     * Override the depName value.
-     */
-    overrideDepName?: string;
-    /**
-     * Override the packageName value.
-     */
-    overridePackageName?: string;
-    /**
-     * Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.
-     */
-    prPriority?: number;
-    /**
-     * The name of the new dependency that replaces the old deprecated dependency.
-     */
-    replacementName?: string;
-    /**
-     * Controls what the replacement package name.
-     */
-    replacementNameTemplate?: string;
-    /**
-     * The version of the new dependency that replaces the old deprecated dependency.
-     */
-    replacementVersion?: string;
-    /**
-     * Template field for the version of the new dependency that replaces the old deprecated dependency.
-     */
-    replacementVersionTemplate?: string;
-    /**
-     * The source directory in which the package is present at its source.
-     */
-    sourceDirectory?: string;
-    /**
-     * The source URL of the package.
-     */
-    sourceUrl?: string;
-    [k: string]: unknown | undefined;
-  }[];
-  /**
-   * Password for authentication.
-   */
-  password?: string;
-  patch?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91;
-  pep621?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92;
-  pep723?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93;
-  /**
-   * If set to `true`: keep repository data between runs instead of deleting the data.
-   */
-  persistRepoData?: boolean;
-  pin?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94;
-  pinDigest?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95;
-  /**
-   * Whether to add digests to Dockerfile source images.
-   */
-  pinDigests?: boolean;
-  'pip-compile'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96;
-  pip_requirements?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97;
-  pip_setup?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98;
-  pipenv?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99;
-  pixi?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100;
-  /**
-   * Platform type of repository.
-   */
-  platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
-  /**
-   * Controls if platform-native auto-merge is used.
-   */
-  platformAutomerge?: boolean;
-  /**
-   * Use platform API to perform commits instead of using Git directly.
-   */
-  platformCommit?: 'auto' | 'disabled' | 'enabled';
-  poetry?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101;
-  /**
-   * Enable post-update options to be run after package/artifact updating.
-   */
-  postUpdateOptions?: (
-    | 'bundlerConservative'
-    | 'gomodMassage'
-    | 'gomodTidy'
-    | 'gomodTidy1.17'
-    | 'gomodTidyE'
-    | 'gomodUpdateImportPaths'
-    | 'gomodSkipVendor'
-    | 'gomodVendor'
-    | 'helmUpdateSubChartArchives'
-    | 'kustomizeInflateHelmCharts'
-    | 'npmDedupe'
-    | 'pnpmDedupe'
-    | 'yarnDedupeFewer'
-    | 'yarnDedupeHighest'
-  )[];
-  postUpgradeTasks?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102;
-  /**
-   * List of columns to use in PR bodies.
-   */
-  prBodyColumns?: string[];
-  /**
-   * Table column definitions to use in PR tables.
-   */
-  prBodyDefinitions?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * List of extra notes or templates to include in the Pull Request body.
-   */
-  prBodyNotes?: string[] | string;
-  /**
-   * Pull Request body template. Controls which sections are rendered in the body of the pull request.
-   */
-  prBodyTemplate?: string;
-  /**
-   * Set the maximum number of commits per Renovate run. By default there is no limit.
-   */
-  prCommitsPerRunLimit?: number;
-  /**
-   * Limit to a maximum of x concurrent branches/PRs. 0 means no limit.
-   */
-  prConcurrentLimit?: number;
-  /**
-   * When to create the PR for a branch.
-   */
-  prCreation?: 'immediate' | 'not-pending' | 'status-success' | 'approval';
-  /**
-   * Text added here will be placed last in the PR body, with a divider separator before it.
-   */
-  prFooter?: string;
-  /**
-   * Text added here will be placed first in the PR body.
-   */
-  prHeader?: string;
-  /**
-   * Rate limit PRs to maximum x created per hour. 0 means no limit.
-   */
-  prHourlyLimit?: number;
-  /**
-   * Timeout in hours for when `prCreation=not-pending`.
-   */
-  prNotPendingHours?: number;
-  /**
-   * Pull Request title template. Inherits from `commitMessage` if null.
-   */
-  prTitle?: string | null;
-  /**
-   * Whether to bypass appending extra context to the Pull Request title.
-   */
-  prTitleStrict?: boolean;
-  'pre-commit'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103;
-  /**
-   * Cache resolved presets in package cache.
-   */
-  presetCachePersistence?: boolean;
-  /**
-   * If enabled, Renovate logs the fully resolved config for each repository, plus the fully resolved presets.
-   */
-  printConfig?: boolean;
-  /**
-   * Server-side private key.
-   */
-  privateKey?: string;
-  /**
-   * Secondary or old private key to try.
-   */
-  privateKeyOld?: string;
-  /**
-   * Path to the Server-side private key.
-   */
-  privateKeyPath?: string;
-  /**
-   * Path to the Server-side old private key.
-   */
-  privateKeyPathOld?: string;
-  processEnv?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104;
-  productLinks?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105;
-  /**
-   * Set to `true` to enable branch pruning after automerging.
-   */
-  pruneBranchAfterAutomerge?: boolean;
-  /**
-   * Set to `false` to disable pruning stale branches.
-   */
-  pruneStaleBranches?: boolean;
-  pub?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106;
-  puppet?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107;
-  pyenv?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108;
-  /**
-   * Determines how to modify or update existing ranges.
-   */
-  rangeStrategy?: 'auto' | 'pin' | 'bump' | 'replace' | 'widen' | 'update-lockfile' | 'in-range-only';
-  /**
-   * Label to request a rebase from Renovate bot.
-   */
-  rebaseLabel?: string;
-  /**
-   * Controls when Renovate rebases an existing branch.
-   */
-  rebaseWhen?: 'auto' | 'never' | 'conflicted' | 'behind-base-branch' | 'automerging';
-  /**
-   * Recreate PRs even if same ones were closed previously.
-   */
-  recreateWhen?: 'auto' | 'always' | 'never';
-  /**
-   * Key prefix for redis cache entries.
-   */
-  redisPrefix?: string;
-  /**
-   * If set, this Redis URL will be used for caching instead of the file system.
-   */
-  redisUrl?: string;
-  regex?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109;
-  registryAliases?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110;
-  /**
-   * List of URLs to try for dependency lookup. Package manager specific.
-   */
-  registryUrls?: string[] | null;
-  replacement?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111;
-  /**
-   * Select whether to perform a direct replacement or alias replacement.
-   */
-  replacementApproach?: 'replace' | 'alias';
-  /**
-   * Path to where the file should be written. In case of `s3` this has to be a full S3 URI.
-   */
-  reportPath?: string | null;
-  /**
-   * Set how, or if, reports should be generated.
-   */
-  reportType?: ('logging' | 'file' | 's3') | null;
-  /**
-   * List of Repositories.
-   */
-  repositories?: string[];
-  /**
-   * This option decides if Renovate uses a JSON cache to speed up extractions.
-   */
-  repositoryCache?: 'disabled' | 'enabled' | 'reset';
-  /**
-   * Set the type of renovate repository cache if `repositoryCache` is enabled.
-   */
-  repositoryCacheType?: string;
-  /**
-   * Controls Renovate's behavior regarding repository config files such as `renovate.json`.
-   */
-  requireConfig?: 'required' | 'optional' | 'ignored';
-  /**
-   * Ignore versions newer than npm "latest" version.
-   */
-  respectLatest?: boolean;
-  /**
-   * Requested reviewers for Pull Requests (either username or email address depending on the platform).
-   */
-  reviewers?: string[];
-  /**
-   * Determine reviewers based on configured code owners and changes in PR.
-   */
-  reviewersFromCodeOwners?: boolean;
-  /**
-   * Take a random sample of given size from `reviewers`.
-   */
-  reviewersSampleSize?: number | null;
-  rollback?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112;
-  /**
-   * Create PRs to roll back versions if the current version is not found in the registry.
-   */
-  rollbackPrs?: boolean;
-  'ruby-version'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113;
-  'runtime-version'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114;
-  /**
-   * If set, Renovate will use this string as the `endpoint` when creating the AWS S3 client instance.
-   */
-  s3Endpoint?: string;
-  /**
-   * If set, Renovate will enable `forcePathStyle` when creating the AWS S3 client instance.
-   */
-  s3PathStyle?: boolean;
-  sbt?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115;
-  scalafmt?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116;
-  /**
-   * Limit branch creation to these times of day or week.
-   */
-  schedule?: string[] | string;
-  secrets?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117;
-  /**
-   * Commit scope to use if Semantic Commits are enabled.
-   */
-  semanticCommitScope?: string;
-  /**
-   * Commit type to use if Semantic Commits is enabled.
-   */
-  semanticCommitType?: string;
-  /**
-   * Enable Semantic Commit prefixes for commits and PR titles.
-   */
-  semanticCommits?: 'auto' | 'enabled' | 'disabled';
-  /**
-   * If set to `false`, Renovate will upgrade dependencies to their latest release only. Renovate will not separate major or minor branches.
-   */
-  separateMajorMinor?: boolean;
-  /**
-   * If set to `true`, Renovate will separate `minor` and `patch` updates into separate branches.
-   */
-  separateMinorPatch?: boolean;
-  /**
-   * If set to `true`, PRs will be raised separately for each available `major` upgrade version.
-   */
-  separateMultipleMajor?: boolean;
-  /**
-   * If set to `true`, Renovate creates separate PRs for each `minor` stream.
-   */
-  separateMultipleMinor?: boolean;
-  'setup-cfg'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118;
-  /**
-   * Skip installing modules/dependencies if lock file updating is possible without a full install.
-   */
-  skipInstalls?: boolean | null;
-  statusCheckNames?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119;
-  /**
-   * Label to make Renovate stop updating a PR.
-   */
-  stopUpdatingLabel?: string;
-  /**
-   * Options to suppress various types of warnings and other notifications.
-   */
-  suppressNotifications?: (
-    | 'artifactErrors'
-    | 'branchAutomergeFailure'
-    | 'configErrorIssue'
-    | 'dependencyLookupWarnings'
-    | 'lockFileErrors'
-    | 'missingCredentialsError'
-    | 'onboardingClose'
-    | 'prEditedNotification'
-    | 'prIgnoreNotification'
-  )[];
-  sveltos?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120;
-  swift?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121;
-  tekton?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122;
-  terraform?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123;
-  'terraform-version'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124;
-  terragrunt?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125;
-  'terragrunt-version'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126;
-  'tflint-plugin'?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127;
-  /**
-   * Must conform to [IANA Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) format.
-   */
-  timezone?: string;
-  /**
-   * Repository Auth Token.
-   */
-  token?: string;
-  travis?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128;
-  /**
-   * Enable or disable Unicode emoji.
-   */
-  unicodeEmoji?: boolean;
-  /**
-   * Whether to update internal dep versions in a monorepo. Works on Yarn Workspaces.
-   */
-  updateInternalDeps?: boolean;
-  /**
-   * Set to `false` to disable lock file updating.
-   */
-  updateLockFiles?: boolean;
-  /**
-   * Whether to update branches when not scheduled. Renovate will not create branches outside of the schedule.
-   */
-  updateNotScheduled?: boolean;
-  /**
-   * Whether to update pinned (single version) dependencies or not.
-   */
-  updatePinnedDependencies?: boolean;
-  /**
-   * Whether to read configuration from `baseBranches` instead of only the default branch.
-   */
-  useBaseBranchConfig?: 'merge' | 'none';
-  /**
-   * If `false`, Renovate does not try to access cloud metadata services.
-   */
-  useCloudMetadataServices?: boolean;
-  /**
-   * If set to any string, Renovate will use this as the `user-agent` it sends with HTTP requests.
-   */
-  userAgent?: string | null;
-  /**
-   * User-facing strings for the Renovate comment when a PR is closed.
-   */
-  userStrings?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Username for authentication.
-   */
-  username?: string;
-  velaci?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129;
-  vendir?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130;
-  /**
-   * A regex (`re2`) with named capture groups to show how version and compatibility are split from a raw version string.
-   */
-  versionCompatibility?: string;
-  /**
-   * Versioning to use for filtering and comparisons.
-   */
-  versioning?: (
-    | (
-        | 'aws-eks-addon'
-        | 'aws-machine-image'
-        | 'azure-rest-api'
-        | 'bazel-module'
-        | 'cargo'
-        | 'composer'
-        | 'conan'
-        | 'conda'
-        | 'deb'
-        | 'debian'
-        | 'devbox'
-        | 'docker'
-        | 'git'
-        | 'glasskube'
-        | 'go-mod-directive'
-        | 'gradle'
-        | 'hashicorp'
-        | 'helm'
-        | 'hermit'
-        | 'hex'
-        | 'ivy'
-        | 'kubernetes-api'
-        | 'loose'
-        | 'maven'
-        | 'nixpkgs'
-        | 'node'
-        | 'npm'
-        | 'nuget'
-        | 'pep440'
-        | 'perl'
-        | 'poetry'
-        | 'pvp'
-        | 'python'
-        | 'redhat'
-        | 'regex'
-        | 'rez'
-        | 'rpm'
-        | 'ruby'
-        | 'same-major'
-        | 'semver'
-        | 'semver-coerced'
-        | 'swift'
-        | 'ubuntu'
-        | 'unity3d'
-      )
-    | string
-  ) &
-    string;
-  vulnerabilityAlerts?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131;
-  woodpecker?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132;
-  /**
-   * Writes discovered repositories to a JSON file and then exit.
-   */
-  writeDiscoveredRepos?: string;
-  [k: string]: unknown | undefined;
-} | null);
+} | null;
 
 export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom {
   /**
@@ -3960,15 +2499,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -5417,15 +3948,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -6874,15 +5397,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -8331,15 +6846,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -9788,15 +8295,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -11245,15 +9744,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -12702,15 +11193,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -14159,15 +12642,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -15616,15 +14091,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -17073,15 +15540,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -18530,15 +16989,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -19987,15 +18438,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -21444,15 +19887,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -22901,15 +21336,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -24358,15 +22785,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -25815,15 +24234,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -27272,15 +25683,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -28729,15 +27132,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -30186,15 +28581,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -31643,15 +30030,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -33100,15 +31479,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -34557,15 +32928,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -36014,15 +34377,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -37471,15 +35826,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -38928,15 +37275,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -40385,15 +38724,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -41842,15 +40173,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -43299,15 +41622,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -44756,15 +43071,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -46213,15 +44520,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -47670,15 +45969,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -49127,15 +47418,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -50584,15 +48867,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -52041,15 +50316,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -53498,15 +51765,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -54955,15 +53214,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -56412,15 +54663,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -57869,15 +56112,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -59326,15 +57561,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -60783,15 +59010,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -62240,15 +60459,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -63697,15 +61908,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -65154,15 +63357,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -66611,15 +64806,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -68068,15 +66255,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -69525,15 +67704,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -70982,15 +69153,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -72439,15 +70602,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -73896,15 +72051,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -75353,15 +73500,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -76810,15 +74949,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -78267,15 +76398,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -79724,15 +77847,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -81181,15 +79296,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -82638,15 +80745,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -84095,15 +82194,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -85552,15 +83643,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -87009,15 +85092,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -88466,15 +86541,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -89923,15 +87990,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -91380,15 +89439,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -92837,15 +90888,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -94294,15 +92337,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -95751,15 +93786,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -97208,15 +95235,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -98665,15 +96684,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -100122,15 +98133,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -101579,15 +99582,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -103036,15 +101031,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -104493,15 +102480,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -105950,15 +103929,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -107407,15 +105378,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -108864,15 +106827,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -110321,15 +108276,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -111778,15 +109725,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -113235,15 +111174,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -114692,15 +112623,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -116149,15 +114072,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -116552,7 +114467,592 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78 {
    * Writes discovered repositories to a JSON file and then exit.
    */
   writeDiscoveredRepos?: string;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | string[]
+    | boolean
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4
+    | number
+    | null
+    | ((string[] | string) & (((string[] | string) & unknown[]) | (null & (string[] | string))))
+    | 'asc'
+    | 'desc'
+    | 'alpha'
+    | 'created'
+    | 'updated'
+    | 'size'
+    | 'id'
+    | 'auto'
+    | 'fast-forward'
+    | 'merge-commit'
+    | 'rebase'
+    | 'squash'
+    | 'branch'
+    | 'pr'
+    | 'pr-comment'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11
+    | 'global'
+    | 'docker'
+    | 'install'
+    | 'hermit'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15
+    | 'major'
+    | 'minor'
+    | 'patch'
+    | 'prerelease'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25
+    | 'never'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27
+    | {
+        [k: string]: string | undefined;
+      }
+    | 'none'
+    | 'strict'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32
+    | {
+        description?: string[] | string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        autoReplaceStringTemplate?: string;
+        /**
+         * Optional `currentValue` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        currentValueTemplate?: string;
+        /**
+         * Custom manager to use. Valid only within a `customManagers` object.
+         */
+        customType?: 'jsonata' | 'regex';
+        /**
+         * Optional datasource for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        datasourceTemplate?: string;
+        /**
+         * Optional depName for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depNameTemplate?: string;
+        /**
+         * Optional `depType` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depTypeTemplate?: string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        extractVersionTemplate?: string;
+        /**
+         * It specifies the syntax of the package file being managed by the custom JSONata manager.
+         */
+        fileFormat?: 'json' | 'toml' | 'yaml';
+        /**
+         * Queries to use. Valid only within a `customManagers` object.
+         */
+        matchStrings?: string[];
+        /**
+         * Strategy how to interpret matchStrings.
+         */
+        matchStringsStrategy?: 'any' | 'recursive' | 'combination';
+        /**
+         * Optional packageName for extracted dependencies, else defaults to `depName` value. Valid only within a `customManagers` object.
+         */
+        packageNameTemplate?: string;
+        /**
+         * Optional registry URL for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        registryUrlTemplate?: string;
+        /**
+         * Optional versioning for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        versioningTemplate?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | 'all'
+    | 'unresolved'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39
+    | 'extract'
+    | 'lookup'
+    | 'full'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41
+    | 'off'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44
+    | 'enabled'
+    | 'disabled'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46
+    | ('commit' | 'push')[]
+    | 'commit'
+    | 'push'
+    | 'default'
+    | 'ssh'
+    | 'endpoint'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63
+    | {
+        description?: string[] | string;
+        /**
+         * A list of HTTP status codes safe to ignore even when `abortOnError=true`.
+         */
+        abortIgnoreStatusCodes?: number[];
+        /**
+         * If enabled, Renovate aborts its run when HTTP request errors occur.
+         */
+        abortOnError?: boolean;
+        /**
+         * A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.
+         */
+        artifactAuth?: 'composer'[] | null;
+        /**
+         * Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use `"Token-Only"` to use only the token without an authorization type.
+         */
+        authType?: string;
+        /**
+         * Limit concurrent requests per host.
+         */
+        concurrentRequestLimit?: number | null;
+        /**
+         * Enable got DNS cache.
+         */
+        dnsCache?: boolean;
+        /**
+         * Enable got HTTP/2 support.
+         */
+        enableHttp2?: boolean;
+        headers?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64;
+        /**
+         * hostType for a package rule. Can be a platform name or a datasource name.
+         */
+        hostType?: string;
+        /**
+         * The certificate chains in PEM format.
+         */
+        httpsCertificate?: string | null;
+        /**
+         * The overriding trusted CA certificate.
+         */
+        httpsCertificateAuthority?: string | null;
+        /**
+         * The private key in PEM format.
+         */
+        httpsPrivateKey?: string | null;
+        /**
+         * Explicitly turn on insecure Docker registry access (HTTP).
+         */
+        insecureRegistry?: boolean;
+        /**
+         * Enable HTTP keep-alive for hosts.
+         */
+        keepAlive?: boolean;
+        /**
+         * A domain name, host name or base URL to match against.
+         */
+        matchHost?: string;
+        /**
+         * Limit requests rate per host.
+         */
+        maxRequestsPerSecond?: number;
+        /**
+         * Maximum retry-after header value to wait for before retrying a failed request.
+         */
+        maxRetryAfter?: number;
+        /**
+         * Match against requests that only read data and do not mutate anything.
+         */
+        readOnly?: boolean;
+        /**
+         * Timeout (in milliseconds) for queries to external endpoints.
+         */
+        timeout?: number;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65
+    | 'flexible'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73
+    | {
+        description?: string[] | string;
+        /**
+         * Regex/minimatch expression to match against log message.
+         */
+        matchMessage?: string;
+        /**
+         * New log level to use if matchMessage matches.
+         */
+        newLogLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76
+    | ('go' | 'maven' | 'npm' | 'nuget' | 'packagist' | 'pypi' | 'rubygems')[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82
+    | 'silent'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90
+    | {
+        description?: string[] | string;
+        /**
+         * A version range or regex pattern capturing allowed versions for dependencies.
+         */
+        allowedVersions?: string;
+        /**
+         * Set a custom URL for the changelog. Renovate will put this URL in the PR body text.
+         */
+        changelogUrl?: string;
+        /**
+         * List of strings containing exact matches (e.g. `["main"]`) and/or regex expressions (e.g. `["/^release/.* /"]`). Valid only within a `packageRules` object.
+         */
+        matchBaseBranches?: string[] | string;
+        /**
+         * List of categories to match (for example: `["python"]`). Valid only within a `packageRules` object.
+         */
+        matchCategories?: string[] | string;
+        /**
+         * Merge confidence levels to match against (`low`, `neutral`, `high`, `very high`). Valid only within `packageRules` object.
+         */
+        matchConfidence?: ('low' | 'neutral' | 'high' | 'very high')[] | ('low' | 'neutral' | 'high' | 'very high');
+        /**
+         * Matches the current age of the package derived from its release timestamp. Valid only within a `packageRules` object.
+         */
+        matchCurrentAge?: string;
+        /**
+         * A regex or glob pattern to match against the raw `currentValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchCurrentValue?: string;
+        /**
+         * A version, or range of versions, to match against the current version of a package. Valid only within a `packageRules` object.
+         */
+        matchCurrentVersion?: string;
+        /**
+         * List of datasources to match (e.g. `["orb"]`). Valid only within a `packageRules` object.
+         */
+        matchDatasources?: string[] | string;
+        /**
+         * Dep names to match. Valid only within a `packageRules` object.
+         */
+        matchDepNames?: string[] | string;
+        /**
+         * List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.
+         */
+        matchDepTypes?: string[] | string;
+        /**
+         * List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.
+         */
+        matchFileNames?: string[];
+        /**
+         * A JSONata expression to match against the full config object. Valid only within a `packageRules` object.
+         */
+        matchJsonata?: string[];
+        /**
+         * List of package managers to match (e.g. `["pipenv"]`). Valid only within a `packageRules` object.
+         */
+        matchManagers?: string[] | string;
+        /**
+         * A regex or glob pattern to match against the raw `newValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchNewValue?: string;
+        /**
+         * Package names to match. Valid only within a `packageRules` object.
+         */
+        matchPackageNames?: string[] | string;
+        /**
+         * List of repositories to match (e.g. `["** /*-archived"]`). Valid only within a `packageRules` object.
+         */
+        matchRepositories?: string[] | string;
+        /**
+         * A list of source URLs to exact match against.
+         */
+        matchSourceUrls?: string[] | string;
+        /**
+         * Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc). Valid only within `packageRules` object.
+         */
+        matchUpdateTypes?:
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            )[]
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            );
+        /**
+         * Override the datasource value.
+         */
+        overrideDatasource?: string;
+        /**
+         * Override the depName value.
+         */
+        overrideDepName?: string;
+        /**
+         * Override the packageName value.
+         */
+        overridePackageName?: string;
+        /**
+         * Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.
+         */
+        prPriority?: number;
+        /**
+         * The name of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementName?: string;
+        /**
+         * Controls what the replacement package name.
+         */
+        replacementNameTemplate?: string;
+        /**
+         * The version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersion?: string;
+        /**
+         * Template field for the version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersionTemplate?: string;
+        /**
+         * The source directory in which the package is present at its source.
+         */
+        sourceDirectory?: string;
+        /**
+         * The source URL of the package.
+         */
+        sourceUrl?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100
+    | 'azure'
+    | 'bitbucket'
+    | 'bitbucket-server'
+    | 'codecommit'
+    | 'gerrit'
+    | 'gitea'
+    | 'github'
+    | 'gitlab'
+    | 'local'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101
+    | (
+        | 'bundlerConservative'
+        | 'gomodMassage'
+        | 'gomodTidy'
+        | 'gomodTidy1.17'
+        | 'gomodTidyE'
+        | 'gomodUpdateImportPaths'
+        | 'gomodSkipVendor'
+        | 'gomodVendor'
+        | 'helmUpdateSubChartArchives'
+        | 'kustomizeInflateHelmCharts'
+        | 'npmDedupe'
+        | 'pnpmDedupe'
+        | 'yarnDedupeFewer'
+        | 'yarnDedupeHighest'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'immediate'
+    | 'not-pending'
+    | 'status-success'
+    | 'approval'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108
+    | 'pin'
+    | 'bump'
+    | 'replace'
+    | 'widen'
+    | 'update-lockfile'
+    | 'in-range-only'
+    | 'conflicted'
+    | 'behind-base-branch'
+    | 'automerging'
+    | 'always'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111
+    | 'alias'
+    | 'logging'
+    | 'file'
+    | 's3'
+    | 'reset'
+    | 'required'
+    | 'optional'
+    | 'ignored'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119
+    | (
+        | 'artifactErrors'
+        | 'branchAutomergeFailure'
+        | 'configErrorIssue'
+        | 'dependencyLookupWarnings'
+        | 'lockFileErrors'
+        | 'missingCredentialsError'
+        | 'onboardingClose'
+        | 'prEditedNotification'
+        | 'prIgnoreNotification'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128
+    | 'merge'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130
+    | ((
+        | (
+            | 'aws-eks-addon'
+            | 'aws-machine-image'
+            | 'azure-rest-api'
+            | 'bazel-module'
+            | 'cargo'
+            | 'composer'
+            | 'conan'
+            | 'conda'
+            | 'deb'
+            | 'debian'
+            | 'devbox'
+            | 'docker'
+            | 'git'
+            | 'glasskube'
+            | 'go-mod-directive'
+            | 'gradle'
+            | 'hashicorp'
+            | 'helm'
+            | 'hermit'
+            | 'hex'
+            | 'ivy'
+            | 'kubernetes-api'
+            | 'loose'
+            | 'maven'
+            | 'nixpkgs'
+            | 'node'
+            | 'npm'
+            | 'nuget'
+            | 'pep440'
+            | 'perl'
+            | 'poetry'
+            | 'pvp'
+            | 'python'
+            | 'redhat'
+            | 'regex'
+            | 'rez'
+            | 'rpm'
+            | 'ruby'
+            | 'same-major'
+            | 'semver'
+            | 'semver-coerced'
+            | 'swift'
+            | 'ubuntu'
+            | 'unity3d'
+          )
+        | string
+      ) &
+        string)
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132
+    | undefined;
 }
 /**
  * Configuration to apply when an update type is `minor`.
@@ -117606,15 +116106,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -119063,15 +117555,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -120520,15 +119004,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -121977,15 +120453,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -123434,15 +121902,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -124891,15 +123351,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -126348,15 +124800,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -127805,15 +126249,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -129262,15 +127698,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -130719,15 +129147,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -132176,15 +130596,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -133633,15 +132045,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -135090,15 +133494,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -136547,15 +134943,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -138004,15 +136392,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -139461,15 +137841,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -140918,15 +139290,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -142375,15 +140739,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -143832,15 +142188,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -145289,15 +143637,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -146746,15 +145086,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -148203,15 +146535,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -149660,15 +147984,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -151117,15 +149433,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -152574,15 +150882,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -154031,15 +152331,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -154434,7 +152726,592 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104 {
    * Writes discovered repositories to a JSON file and then exit.
    */
   writeDiscoveredRepos?: string;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | string[]
+    | boolean
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4
+    | number
+    | null
+    | ((string[] | string) & (((string[] | string) & unknown[]) | (null & (string[] | string))))
+    | 'asc'
+    | 'desc'
+    | 'alpha'
+    | 'created'
+    | 'updated'
+    | 'size'
+    | 'id'
+    | 'auto'
+    | 'fast-forward'
+    | 'merge-commit'
+    | 'rebase'
+    | 'squash'
+    | 'branch'
+    | 'pr'
+    | 'pr-comment'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11
+    | 'global'
+    | 'docker'
+    | 'install'
+    | 'hermit'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15
+    | 'major'
+    | 'minor'
+    | 'patch'
+    | 'prerelease'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25
+    | 'never'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27
+    | {
+        [k: string]: string | undefined;
+      }
+    | 'none'
+    | 'strict'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32
+    | {
+        description?: string[] | string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        autoReplaceStringTemplate?: string;
+        /**
+         * Optional `currentValue` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        currentValueTemplate?: string;
+        /**
+         * Custom manager to use. Valid only within a `customManagers` object.
+         */
+        customType?: 'jsonata' | 'regex';
+        /**
+         * Optional datasource for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        datasourceTemplate?: string;
+        /**
+         * Optional depName for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depNameTemplate?: string;
+        /**
+         * Optional `depType` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depTypeTemplate?: string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        extractVersionTemplate?: string;
+        /**
+         * It specifies the syntax of the package file being managed by the custom JSONata manager.
+         */
+        fileFormat?: 'json' | 'toml' | 'yaml';
+        /**
+         * Queries to use. Valid only within a `customManagers` object.
+         */
+        matchStrings?: string[];
+        /**
+         * Strategy how to interpret matchStrings.
+         */
+        matchStringsStrategy?: 'any' | 'recursive' | 'combination';
+        /**
+         * Optional packageName for extracted dependencies, else defaults to `depName` value. Valid only within a `customManagers` object.
+         */
+        packageNameTemplate?: string;
+        /**
+         * Optional registry URL for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        registryUrlTemplate?: string;
+        /**
+         * Optional versioning for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        versioningTemplate?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | 'all'
+    | 'unresolved'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39
+    | 'extract'
+    | 'lookup'
+    | 'full'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41
+    | 'off'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44
+    | 'enabled'
+    | 'disabled'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46
+    | ('commit' | 'push')[]
+    | 'commit'
+    | 'push'
+    | 'default'
+    | 'ssh'
+    | 'endpoint'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63
+    | {
+        description?: string[] | string;
+        /**
+         * A list of HTTP status codes safe to ignore even when `abortOnError=true`.
+         */
+        abortIgnoreStatusCodes?: number[];
+        /**
+         * If enabled, Renovate aborts its run when HTTP request errors occur.
+         */
+        abortOnError?: boolean;
+        /**
+         * A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.
+         */
+        artifactAuth?: 'composer'[] | null;
+        /**
+         * Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use `"Token-Only"` to use only the token without an authorization type.
+         */
+        authType?: string;
+        /**
+         * Limit concurrent requests per host.
+         */
+        concurrentRequestLimit?: number | null;
+        /**
+         * Enable got DNS cache.
+         */
+        dnsCache?: boolean;
+        /**
+         * Enable got HTTP/2 support.
+         */
+        enableHttp2?: boolean;
+        headers?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64;
+        /**
+         * hostType for a package rule. Can be a platform name or a datasource name.
+         */
+        hostType?: string;
+        /**
+         * The certificate chains in PEM format.
+         */
+        httpsCertificate?: string | null;
+        /**
+         * The overriding trusted CA certificate.
+         */
+        httpsCertificateAuthority?: string | null;
+        /**
+         * The private key in PEM format.
+         */
+        httpsPrivateKey?: string | null;
+        /**
+         * Explicitly turn on insecure Docker registry access (HTTP).
+         */
+        insecureRegistry?: boolean;
+        /**
+         * Enable HTTP keep-alive for hosts.
+         */
+        keepAlive?: boolean;
+        /**
+         * A domain name, host name or base URL to match against.
+         */
+        matchHost?: string;
+        /**
+         * Limit requests rate per host.
+         */
+        maxRequestsPerSecond?: number;
+        /**
+         * Maximum retry-after header value to wait for before retrying a failed request.
+         */
+        maxRetryAfter?: number;
+        /**
+         * Match against requests that only read data and do not mutate anything.
+         */
+        readOnly?: boolean;
+        /**
+         * Timeout (in milliseconds) for queries to external endpoints.
+         */
+        timeout?: number;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65
+    | 'flexible'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73
+    | {
+        description?: string[] | string;
+        /**
+         * Regex/minimatch expression to match against log message.
+         */
+        matchMessage?: string;
+        /**
+         * New log level to use if matchMessage matches.
+         */
+        newLogLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76
+    | ('go' | 'maven' | 'npm' | 'nuget' | 'packagist' | 'pypi' | 'rubygems')[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82
+    | 'silent'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90
+    | {
+        description?: string[] | string;
+        /**
+         * A version range or regex pattern capturing allowed versions for dependencies.
+         */
+        allowedVersions?: string;
+        /**
+         * Set a custom URL for the changelog. Renovate will put this URL in the PR body text.
+         */
+        changelogUrl?: string;
+        /**
+         * List of strings containing exact matches (e.g. `["main"]`) and/or regex expressions (e.g. `["/^release/.* /"]`). Valid only within a `packageRules` object.
+         */
+        matchBaseBranches?: string[] | string;
+        /**
+         * List of categories to match (for example: `["python"]`). Valid only within a `packageRules` object.
+         */
+        matchCategories?: string[] | string;
+        /**
+         * Merge confidence levels to match against (`low`, `neutral`, `high`, `very high`). Valid only within `packageRules` object.
+         */
+        matchConfidence?: ('low' | 'neutral' | 'high' | 'very high')[] | ('low' | 'neutral' | 'high' | 'very high');
+        /**
+         * Matches the current age of the package derived from its release timestamp. Valid only within a `packageRules` object.
+         */
+        matchCurrentAge?: string;
+        /**
+         * A regex or glob pattern to match against the raw `currentValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchCurrentValue?: string;
+        /**
+         * A version, or range of versions, to match against the current version of a package. Valid only within a `packageRules` object.
+         */
+        matchCurrentVersion?: string;
+        /**
+         * List of datasources to match (e.g. `["orb"]`). Valid only within a `packageRules` object.
+         */
+        matchDatasources?: string[] | string;
+        /**
+         * Dep names to match. Valid only within a `packageRules` object.
+         */
+        matchDepNames?: string[] | string;
+        /**
+         * List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.
+         */
+        matchDepTypes?: string[] | string;
+        /**
+         * List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.
+         */
+        matchFileNames?: string[];
+        /**
+         * A JSONata expression to match against the full config object. Valid only within a `packageRules` object.
+         */
+        matchJsonata?: string[];
+        /**
+         * List of package managers to match (e.g. `["pipenv"]`). Valid only within a `packageRules` object.
+         */
+        matchManagers?: string[] | string;
+        /**
+         * A regex or glob pattern to match against the raw `newValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchNewValue?: string;
+        /**
+         * Package names to match. Valid only within a `packageRules` object.
+         */
+        matchPackageNames?: string[] | string;
+        /**
+         * List of repositories to match (e.g. `["** /*-archived"]`). Valid only within a `packageRules` object.
+         */
+        matchRepositories?: string[] | string;
+        /**
+         * A list of source URLs to exact match against.
+         */
+        matchSourceUrls?: string[] | string;
+        /**
+         * Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc). Valid only within `packageRules` object.
+         */
+        matchUpdateTypes?:
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            )[]
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            );
+        /**
+         * Override the datasource value.
+         */
+        overrideDatasource?: string;
+        /**
+         * Override the depName value.
+         */
+        overrideDepName?: string;
+        /**
+         * Override the packageName value.
+         */
+        overridePackageName?: string;
+        /**
+         * Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.
+         */
+        prPriority?: number;
+        /**
+         * The name of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementName?: string;
+        /**
+         * Controls what the replacement package name.
+         */
+        replacementNameTemplate?: string;
+        /**
+         * The version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersion?: string;
+        /**
+         * Template field for the version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersionTemplate?: string;
+        /**
+         * The source directory in which the package is present at its source.
+         */
+        sourceDirectory?: string;
+        /**
+         * The source URL of the package.
+         */
+        sourceUrl?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100
+    | 'azure'
+    | 'bitbucket'
+    | 'bitbucket-server'
+    | 'codecommit'
+    | 'gerrit'
+    | 'gitea'
+    | 'github'
+    | 'gitlab'
+    | 'local'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101
+    | (
+        | 'bundlerConservative'
+        | 'gomodMassage'
+        | 'gomodTidy'
+        | 'gomodTidy1.17'
+        | 'gomodTidyE'
+        | 'gomodUpdateImportPaths'
+        | 'gomodSkipVendor'
+        | 'gomodVendor'
+        | 'helmUpdateSubChartArchives'
+        | 'kustomizeInflateHelmCharts'
+        | 'npmDedupe'
+        | 'pnpmDedupe'
+        | 'yarnDedupeFewer'
+        | 'yarnDedupeHighest'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'immediate'
+    | 'not-pending'
+    | 'status-success'
+    | 'approval'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108
+    | 'pin'
+    | 'bump'
+    | 'replace'
+    | 'widen'
+    | 'update-lockfile'
+    | 'in-range-only'
+    | 'conflicted'
+    | 'behind-base-branch'
+    | 'automerging'
+    | 'always'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111
+    | 'alias'
+    | 'logging'
+    | 'file'
+    | 's3'
+    | 'reset'
+    | 'required'
+    | 'optional'
+    | 'ignored'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119
+    | (
+        | 'artifactErrors'
+        | 'branchAutomergeFailure'
+        | 'configErrorIssue'
+        | 'dependencyLookupWarnings'
+        | 'lockFileErrors'
+        | 'missingCredentialsError'
+        | 'onboardingClose'
+        | 'prEditedNotification'
+        | 'prIgnoreNotification'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128
+    | 'merge'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130
+    | ((
+        | (
+            | 'aws-eks-addon'
+            | 'aws-machine-image'
+            | 'azure-rest-api'
+            | 'bazel-module'
+            | 'cargo'
+            | 'composer'
+            | 'conan'
+            | 'conda'
+            | 'deb'
+            | 'debian'
+            | 'devbox'
+            | 'docker'
+            | 'git'
+            | 'glasskube'
+            | 'go-mod-directive'
+            | 'gradle'
+            | 'hashicorp'
+            | 'helm'
+            | 'hermit'
+            | 'hex'
+            | 'ivy'
+            | 'kubernetes-api'
+            | 'loose'
+            | 'maven'
+            | 'nixpkgs'
+            | 'node'
+            | 'npm'
+            | 'nuget'
+            | 'pep440'
+            | 'perl'
+            | 'poetry'
+            | 'pvp'
+            | 'python'
+            | 'redhat'
+            | 'regex'
+            | 'rez'
+            | 'rpm'
+            | 'ruby'
+            | 'same-major'
+            | 'semver'
+            | 'semver-coerced'
+            | 'swift'
+            | 'ubuntu'
+            | 'unity3d'
+          )
+        | string
+      ) &
+        string)
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132
+    | undefined;
 }
 /**
  * Links which are used in PRs, issues and comments.
@@ -155488,15 +154365,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -155891,7 +154760,592 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105 {
    * Writes discovered repositories to a JSON file and then exit.
    */
   writeDiscoveredRepos?: string;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | string[]
+    | boolean
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4
+    | number
+    | null
+    | ((string[] | string) & (((string[] | string) & unknown[]) | (null & (string[] | string))))
+    | 'asc'
+    | 'desc'
+    | 'alpha'
+    | 'created'
+    | 'updated'
+    | 'size'
+    | 'id'
+    | 'auto'
+    | 'fast-forward'
+    | 'merge-commit'
+    | 'rebase'
+    | 'squash'
+    | 'branch'
+    | 'pr'
+    | 'pr-comment'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11
+    | 'global'
+    | 'docker'
+    | 'install'
+    | 'hermit'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15
+    | 'major'
+    | 'minor'
+    | 'patch'
+    | 'prerelease'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25
+    | 'never'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27
+    | {
+        [k: string]: string | undefined;
+      }
+    | 'none'
+    | 'strict'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32
+    | {
+        description?: string[] | string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        autoReplaceStringTemplate?: string;
+        /**
+         * Optional `currentValue` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        currentValueTemplate?: string;
+        /**
+         * Custom manager to use. Valid only within a `customManagers` object.
+         */
+        customType?: 'jsonata' | 'regex';
+        /**
+         * Optional datasource for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        datasourceTemplate?: string;
+        /**
+         * Optional depName for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depNameTemplate?: string;
+        /**
+         * Optional `depType` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depTypeTemplate?: string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        extractVersionTemplate?: string;
+        /**
+         * It specifies the syntax of the package file being managed by the custom JSONata manager.
+         */
+        fileFormat?: 'json' | 'toml' | 'yaml';
+        /**
+         * Queries to use. Valid only within a `customManagers` object.
+         */
+        matchStrings?: string[];
+        /**
+         * Strategy how to interpret matchStrings.
+         */
+        matchStringsStrategy?: 'any' | 'recursive' | 'combination';
+        /**
+         * Optional packageName for extracted dependencies, else defaults to `depName` value. Valid only within a `customManagers` object.
+         */
+        packageNameTemplate?: string;
+        /**
+         * Optional registry URL for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        registryUrlTemplate?: string;
+        /**
+         * Optional versioning for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        versioningTemplate?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | 'all'
+    | 'unresolved'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39
+    | 'extract'
+    | 'lookup'
+    | 'full'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41
+    | 'off'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44
+    | 'enabled'
+    | 'disabled'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46
+    | ('commit' | 'push')[]
+    | 'commit'
+    | 'push'
+    | 'default'
+    | 'ssh'
+    | 'endpoint'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63
+    | {
+        description?: string[] | string;
+        /**
+         * A list of HTTP status codes safe to ignore even when `abortOnError=true`.
+         */
+        abortIgnoreStatusCodes?: number[];
+        /**
+         * If enabled, Renovate aborts its run when HTTP request errors occur.
+         */
+        abortOnError?: boolean;
+        /**
+         * A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.
+         */
+        artifactAuth?: 'composer'[] | null;
+        /**
+         * Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use `"Token-Only"` to use only the token without an authorization type.
+         */
+        authType?: string;
+        /**
+         * Limit concurrent requests per host.
+         */
+        concurrentRequestLimit?: number | null;
+        /**
+         * Enable got DNS cache.
+         */
+        dnsCache?: boolean;
+        /**
+         * Enable got HTTP/2 support.
+         */
+        enableHttp2?: boolean;
+        headers?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64;
+        /**
+         * hostType for a package rule. Can be a platform name or a datasource name.
+         */
+        hostType?: string;
+        /**
+         * The certificate chains in PEM format.
+         */
+        httpsCertificate?: string | null;
+        /**
+         * The overriding trusted CA certificate.
+         */
+        httpsCertificateAuthority?: string | null;
+        /**
+         * The private key in PEM format.
+         */
+        httpsPrivateKey?: string | null;
+        /**
+         * Explicitly turn on insecure Docker registry access (HTTP).
+         */
+        insecureRegistry?: boolean;
+        /**
+         * Enable HTTP keep-alive for hosts.
+         */
+        keepAlive?: boolean;
+        /**
+         * A domain name, host name or base URL to match against.
+         */
+        matchHost?: string;
+        /**
+         * Limit requests rate per host.
+         */
+        maxRequestsPerSecond?: number;
+        /**
+         * Maximum retry-after header value to wait for before retrying a failed request.
+         */
+        maxRetryAfter?: number;
+        /**
+         * Match against requests that only read data and do not mutate anything.
+         */
+        readOnly?: boolean;
+        /**
+         * Timeout (in milliseconds) for queries to external endpoints.
+         */
+        timeout?: number;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65
+    | 'flexible'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73
+    | {
+        description?: string[] | string;
+        /**
+         * Regex/minimatch expression to match against log message.
+         */
+        matchMessage?: string;
+        /**
+         * New log level to use if matchMessage matches.
+         */
+        newLogLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76
+    | ('go' | 'maven' | 'npm' | 'nuget' | 'packagist' | 'pypi' | 'rubygems')[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82
+    | 'silent'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90
+    | {
+        description?: string[] | string;
+        /**
+         * A version range or regex pattern capturing allowed versions for dependencies.
+         */
+        allowedVersions?: string;
+        /**
+         * Set a custom URL for the changelog. Renovate will put this URL in the PR body text.
+         */
+        changelogUrl?: string;
+        /**
+         * List of strings containing exact matches (e.g. `["main"]`) and/or regex expressions (e.g. `["/^release/.* /"]`). Valid only within a `packageRules` object.
+         */
+        matchBaseBranches?: string[] | string;
+        /**
+         * List of categories to match (for example: `["python"]`). Valid only within a `packageRules` object.
+         */
+        matchCategories?: string[] | string;
+        /**
+         * Merge confidence levels to match against (`low`, `neutral`, `high`, `very high`). Valid only within `packageRules` object.
+         */
+        matchConfidence?: ('low' | 'neutral' | 'high' | 'very high')[] | ('low' | 'neutral' | 'high' | 'very high');
+        /**
+         * Matches the current age of the package derived from its release timestamp. Valid only within a `packageRules` object.
+         */
+        matchCurrentAge?: string;
+        /**
+         * A regex or glob pattern to match against the raw `currentValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchCurrentValue?: string;
+        /**
+         * A version, or range of versions, to match against the current version of a package. Valid only within a `packageRules` object.
+         */
+        matchCurrentVersion?: string;
+        /**
+         * List of datasources to match (e.g. `["orb"]`). Valid only within a `packageRules` object.
+         */
+        matchDatasources?: string[] | string;
+        /**
+         * Dep names to match. Valid only within a `packageRules` object.
+         */
+        matchDepNames?: string[] | string;
+        /**
+         * List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.
+         */
+        matchDepTypes?: string[] | string;
+        /**
+         * List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.
+         */
+        matchFileNames?: string[];
+        /**
+         * A JSONata expression to match against the full config object. Valid only within a `packageRules` object.
+         */
+        matchJsonata?: string[];
+        /**
+         * List of package managers to match (e.g. `["pipenv"]`). Valid only within a `packageRules` object.
+         */
+        matchManagers?: string[] | string;
+        /**
+         * A regex or glob pattern to match against the raw `newValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchNewValue?: string;
+        /**
+         * Package names to match. Valid only within a `packageRules` object.
+         */
+        matchPackageNames?: string[] | string;
+        /**
+         * List of repositories to match (e.g. `["** /*-archived"]`). Valid only within a `packageRules` object.
+         */
+        matchRepositories?: string[] | string;
+        /**
+         * A list of source URLs to exact match against.
+         */
+        matchSourceUrls?: string[] | string;
+        /**
+         * Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc). Valid only within `packageRules` object.
+         */
+        matchUpdateTypes?:
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            )[]
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            );
+        /**
+         * Override the datasource value.
+         */
+        overrideDatasource?: string;
+        /**
+         * Override the depName value.
+         */
+        overrideDepName?: string;
+        /**
+         * Override the packageName value.
+         */
+        overridePackageName?: string;
+        /**
+         * Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.
+         */
+        prPriority?: number;
+        /**
+         * The name of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementName?: string;
+        /**
+         * Controls what the replacement package name.
+         */
+        replacementNameTemplate?: string;
+        /**
+         * The version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersion?: string;
+        /**
+         * Template field for the version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersionTemplate?: string;
+        /**
+         * The source directory in which the package is present at its source.
+         */
+        sourceDirectory?: string;
+        /**
+         * The source URL of the package.
+         */
+        sourceUrl?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100
+    | 'azure'
+    | 'bitbucket'
+    | 'bitbucket-server'
+    | 'codecommit'
+    | 'gerrit'
+    | 'gitea'
+    | 'github'
+    | 'gitlab'
+    | 'local'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101
+    | (
+        | 'bundlerConservative'
+        | 'gomodMassage'
+        | 'gomodTidy'
+        | 'gomodTidy1.17'
+        | 'gomodTidyE'
+        | 'gomodUpdateImportPaths'
+        | 'gomodSkipVendor'
+        | 'gomodVendor'
+        | 'helmUpdateSubChartArchives'
+        | 'kustomizeInflateHelmCharts'
+        | 'npmDedupe'
+        | 'pnpmDedupe'
+        | 'yarnDedupeFewer'
+        | 'yarnDedupeHighest'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'immediate'
+    | 'not-pending'
+    | 'status-success'
+    | 'approval'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108
+    | 'pin'
+    | 'bump'
+    | 'replace'
+    | 'widen'
+    | 'update-lockfile'
+    | 'in-range-only'
+    | 'conflicted'
+    | 'behind-base-branch'
+    | 'automerging'
+    | 'always'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111
+    | 'alias'
+    | 'logging'
+    | 'file'
+    | 's3'
+    | 'reset'
+    | 'required'
+    | 'optional'
+    | 'ignored'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119
+    | (
+        | 'artifactErrors'
+        | 'branchAutomergeFailure'
+        | 'configErrorIssue'
+        | 'dependencyLookupWarnings'
+        | 'lockFileErrors'
+        | 'missingCredentialsError'
+        | 'onboardingClose'
+        | 'prEditedNotification'
+        | 'prIgnoreNotification'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128
+    | 'merge'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130
+    | ((
+        | (
+            | 'aws-eks-addon'
+            | 'aws-machine-image'
+            | 'azure-rest-api'
+            | 'bazel-module'
+            | 'cargo'
+            | 'composer'
+            | 'conan'
+            | 'conda'
+            | 'deb'
+            | 'debian'
+            | 'devbox'
+            | 'docker'
+            | 'git'
+            | 'glasskube'
+            | 'go-mod-directive'
+            | 'gradle'
+            | 'hashicorp'
+            | 'helm'
+            | 'hermit'
+            | 'hex'
+            | 'ivy'
+            | 'kubernetes-api'
+            | 'loose'
+            | 'maven'
+            | 'nixpkgs'
+            | 'node'
+            | 'npm'
+            | 'nuget'
+            | 'pep440'
+            | 'perl'
+            | 'poetry'
+            | 'pvp'
+            | 'python'
+            | 'redhat'
+            | 'regex'
+            | 'rez'
+            | 'rpm'
+            | 'ruby'
+            | 'same-major'
+            | 'semver'
+            | 'semver-coerced'
+            | 'swift'
+            | 'ubuntu'
+            | 'unity3d'
+          )
+        | string
+      ) &
+        string)
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132
+    | undefined;
 }
 /**
  * Configuration object for the pub manager
@@ -156945,15 +156399,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -158402,15 +157848,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -159859,15 +159297,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -161316,15 +160746,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -162773,15 +162195,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -163176,7 +162590,592 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110 {
    * Writes discovered repositories to a JSON file and then exit.
    */
   writeDiscoveredRepos?: string;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | string[]
+    | boolean
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4
+    | number
+    | null
+    | ((string[] | string) & (((string[] | string) & unknown[]) | (null & (string[] | string))))
+    | 'asc'
+    | 'desc'
+    | 'alpha'
+    | 'created'
+    | 'updated'
+    | 'size'
+    | 'id'
+    | 'auto'
+    | 'fast-forward'
+    | 'merge-commit'
+    | 'rebase'
+    | 'squash'
+    | 'branch'
+    | 'pr'
+    | 'pr-comment'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11
+    | 'global'
+    | 'docker'
+    | 'install'
+    | 'hermit'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15
+    | 'major'
+    | 'minor'
+    | 'patch'
+    | 'prerelease'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25
+    | 'never'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27
+    | {
+        [k: string]: string | undefined;
+      }
+    | 'none'
+    | 'strict'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32
+    | {
+        description?: string[] | string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        autoReplaceStringTemplate?: string;
+        /**
+         * Optional `currentValue` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        currentValueTemplate?: string;
+        /**
+         * Custom manager to use. Valid only within a `customManagers` object.
+         */
+        customType?: 'jsonata' | 'regex';
+        /**
+         * Optional datasource for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        datasourceTemplate?: string;
+        /**
+         * Optional depName for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depNameTemplate?: string;
+        /**
+         * Optional `depType` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depTypeTemplate?: string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        extractVersionTemplate?: string;
+        /**
+         * It specifies the syntax of the package file being managed by the custom JSONata manager.
+         */
+        fileFormat?: 'json' | 'toml' | 'yaml';
+        /**
+         * Queries to use. Valid only within a `customManagers` object.
+         */
+        matchStrings?: string[];
+        /**
+         * Strategy how to interpret matchStrings.
+         */
+        matchStringsStrategy?: 'any' | 'recursive' | 'combination';
+        /**
+         * Optional packageName for extracted dependencies, else defaults to `depName` value. Valid only within a `customManagers` object.
+         */
+        packageNameTemplate?: string;
+        /**
+         * Optional registry URL for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        registryUrlTemplate?: string;
+        /**
+         * Optional versioning for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        versioningTemplate?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | 'all'
+    | 'unresolved'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39
+    | 'extract'
+    | 'lookup'
+    | 'full'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41
+    | 'off'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44
+    | 'enabled'
+    | 'disabled'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46
+    | ('commit' | 'push')[]
+    | 'commit'
+    | 'push'
+    | 'default'
+    | 'ssh'
+    | 'endpoint'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63
+    | {
+        description?: string[] | string;
+        /**
+         * A list of HTTP status codes safe to ignore even when `abortOnError=true`.
+         */
+        abortIgnoreStatusCodes?: number[];
+        /**
+         * If enabled, Renovate aborts its run when HTTP request errors occur.
+         */
+        abortOnError?: boolean;
+        /**
+         * A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.
+         */
+        artifactAuth?: 'composer'[] | null;
+        /**
+         * Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use `"Token-Only"` to use only the token without an authorization type.
+         */
+        authType?: string;
+        /**
+         * Limit concurrent requests per host.
+         */
+        concurrentRequestLimit?: number | null;
+        /**
+         * Enable got DNS cache.
+         */
+        dnsCache?: boolean;
+        /**
+         * Enable got HTTP/2 support.
+         */
+        enableHttp2?: boolean;
+        headers?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64;
+        /**
+         * hostType for a package rule. Can be a platform name or a datasource name.
+         */
+        hostType?: string;
+        /**
+         * The certificate chains in PEM format.
+         */
+        httpsCertificate?: string | null;
+        /**
+         * The overriding trusted CA certificate.
+         */
+        httpsCertificateAuthority?: string | null;
+        /**
+         * The private key in PEM format.
+         */
+        httpsPrivateKey?: string | null;
+        /**
+         * Explicitly turn on insecure Docker registry access (HTTP).
+         */
+        insecureRegistry?: boolean;
+        /**
+         * Enable HTTP keep-alive for hosts.
+         */
+        keepAlive?: boolean;
+        /**
+         * A domain name, host name or base URL to match against.
+         */
+        matchHost?: string;
+        /**
+         * Limit requests rate per host.
+         */
+        maxRequestsPerSecond?: number;
+        /**
+         * Maximum retry-after header value to wait for before retrying a failed request.
+         */
+        maxRetryAfter?: number;
+        /**
+         * Match against requests that only read data and do not mutate anything.
+         */
+        readOnly?: boolean;
+        /**
+         * Timeout (in milliseconds) for queries to external endpoints.
+         */
+        timeout?: number;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65
+    | 'flexible'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73
+    | {
+        description?: string[] | string;
+        /**
+         * Regex/minimatch expression to match against log message.
+         */
+        matchMessage?: string;
+        /**
+         * New log level to use if matchMessage matches.
+         */
+        newLogLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76
+    | ('go' | 'maven' | 'npm' | 'nuget' | 'packagist' | 'pypi' | 'rubygems')[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82
+    | 'silent'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90
+    | {
+        description?: string[] | string;
+        /**
+         * A version range or regex pattern capturing allowed versions for dependencies.
+         */
+        allowedVersions?: string;
+        /**
+         * Set a custom URL for the changelog. Renovate will put this URL in the PR body text.
+         */
+        changelogUrl?: string;
+        /**
+         * List of strings containing exact matches (e.g. `["main"]`) and/or regex expressions (e.g. `["/^release/.* /"]`). Valid only within a `packageRules` object.
+         */
+        matchBaseBranches?: string[] | string;
+        /**
+         * List of categories to match (for example: `["python"]`). Valid only within a `packageRules` object.
+         */
+        matchCategories?: string[] | string;
+        /**
+         * Merge confidence levels to match against (`low`, `neutral`, `high`, `very high`). Valid only within `packageRules` object.
+         */
+        matchConfidence?: ('low' | 'neutral' | 'high' | 'very high')[] | ('low' | 'neutral' | 'high' | 'very high');
+        /**
+         * Matches the current age of the package derived from its release timestamp. Valid only within a `packageRules` object.
+         */
+        matchCurrentAge?: string;
+        /**
+         * A regex or glob pattern to match against the raw `currentValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchCurrentValue?: string;
+        /**
+         * A version, or range of versions, to match against the current version of a package. Valid only within a `packageRules` object.
+         */
+        matchCurrentVersion?: string;
+        /**
+         * List of datasources to match (e.g. `["orb"]`). Valid only within a `packageRules` object.
+         */
+        matchDatasources?: string[] | string;
+        /**
+         * Dep names to match. Valid only within a `packageRules` object.
+         */
+        matchDepNames?: string[] | string;
+        /**
+         * List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.
+         */
+        matchDepTypes?: string[] | string;
+        /**
+         * List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.
+         */
+        matchFileNames?: string[];
+        /**
+         * A JSONata expression to match against the full config object. Valid only within a `packageRules` object.
+         */
+        matchJsonata?: string[];
+        /**
+         * List of package managers to match (e.g. `["pipenv"]`). Valid only within a `packageRules` object.
+         */
+        matchManagers?: string[] | string;
+        /**
+         * A regex or glob pattern to match against the raw `newValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchNewValue?: string;
+        /**
+         * Package names to match. Valid only within a `packageRules` object.
+         */
+        matchPackageNames?: string[] | string;
+        /**
+         * List of repositories to match (e.g. `["** /*-archived"]`). Valid only within a `packageRules` object.
+         */
+        matchRepositories?: string[] | string;
+        /**
+         * A list of source URLs to exact match against.
+         */
+        matchSourceUrls?: string[] | string;
+        /**
+         * Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc). Valid only within `packageRules` object.
+         */
+        matchUpdateTypes?:
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            )[]
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            );
+        /**
+         * Override the datasource value.
+         */
+        overrideDatasource?: string;
+        /**
+         * Override the depName value.
+         */
+        overrideDepName?: string;
+        /**
+         * Override the packageName value.
+         */
+        overridePackageName?: string;
+        /**
+         * Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.
+         */
+        prPriority?: number;
+        /**
+         * The name of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementName?: string;
+        /**
+         * Controls what the replacement package name.
+         */
+        replacementNameTemplate?: string;
+        /**
+         * The version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersion?: string;
+        /**
+         * Template field for the version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersionTemplate?: string;
+        /**
+         * The source directory in which the package is present at its source.
+         */
+        sourceDirectory?: string;
+        /**
+         * The source URL of the package.
+         */
+        sourceUrl?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100
+    | 'azure'
+    | 'bitbucket'
+    | 'bitbucket-server'
+    | 'codecommit'
+    | 'gerrit'
+    | 'gitea'
+    | 'github'
+    | 'gitlab'
+    | 'local'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101
+    | (
+        | 'bundlerConservative'
+        | 'gomodMassage'
+        | 'gomodTidy'
+        | 'gomodTidy1.17'
+        | 'gomodTidyE'
+        | 'gomodUpdateImportPaths'
+        | 'gomodSkipVendor'
+        | 'gomodVendor'
+        | 'helmUpdateSubChartArchives'
+        | 'kustomizeInflateHelmCharts'
+        | 'npmDedupe'
+        | 'pnpmDedupe'
+        | 'yarnDedupeFewer'
+        | 'yarnDedupeHighest'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'immediate'
+    | 'not-pending'
+    | 'status-success'
+    | 'approval'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108
+    | 'pin'
+    | 'bump'
+    | 'replace'
+    | 'widen'
+    | 'update-lockfile'
+    | 'in-range-only'
+    | 'conflicted'
+    | 'behind-base-branch'
+    | 'automerging'
+    | 'always'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111
+    | 'alias'
+    | 'logging'
+    | 'file'
+    | 's3'
+    | 'reset'
+    | 'required'
+    | 'optional'
+    | 'ignored'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119
+    | (
+        | 'artifactErrors'
+        | 'branchAutomergeFailure'
+        | 'configErrorIssue'
+        | 'dependencyLookupWarnings'
+        | 'lockFileErrors'
+        | 'missingCredentialsError'
+        | 'onboardingClose'
+        | 'prEditedNotification'
+        | 'prIgnoreNotification'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128
+    | 'merge'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130
+    | ((
+        | (
+            | 'aws-eks-addon'
+            | 'aws-machine-image'
+            | 'azure-rest-api'
+            | 'bazel-module'
+            | 'cargo'
+            | 'composer'
+            | 'conan'
+            | 'conda'
+            | 'deb'
+            | 'debian'
+            | 'devbox'
+            | 'docker'
+            | 'git'
+            | 'glasskube'
+            | 'go-mod-directive'
+            | 'gradle'
+            | 'hashicorp'
+            | 'helm'
+            | 'hermit'
+            | 'hex'
+            | 'ivy'
+            | 'kubernetes-api'
+            | 'loose'
+            | 'maven'
+            | 'nixpkgs'
+            | 'node'
+            | 'npm'
+            | 'nuget'
+            | 'pep440'
+            | 'perl'
+            | 'poetry'
+            | 'pvp'
+            | 'python'
+            | 'redhat'
+            | 'regex'
+            | 'rez'
+            | 'rpm'
+            | 'ruby'
+            | 'same-major'
+            | 'semver'
+            | 'semver-coerced'
+            | 'swift'
+            | 'ubuntu'
+            | 'unity3d'
+          )
+        | string
+      ) &
+        string)
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132
+    | undefined;
 }
 /**
  * Configuration to apply when replacing a dependency.
@@ -164230,15 +164229,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -165687,15 +165678,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -167144,15 +167127,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -168601,15 +168576,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -170058,15 +170025,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -171515,15 +171474,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -172972,15 +172923,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -173375,7 +173318,592 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117 {
    * Writes discovered repositories to a JSON file and then exit.
    */
   writeDiscoveredRepos?: string;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | string[]
+    | boolean
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom1
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom2
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom3
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom4
+    | number
+    | null
+    | ((string[] | string) & (((string[] | string) & unknown[]) | (null & (string[] | string))))
+    | 'asc'
+    | 'desc'
+    | 'alpha'
+    | 'created'
+    | 'updated'
+    | 'size'
+    | 'id'
+    | 'auto'
+    | 'fast-forward'
+    | 'merge-commit'
+    | 'rebase'
+    | 'squash'
+    | 'branch'
+    | 'pr'
+    | 'pr-comment'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom5
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom6
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom7
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom8
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom9
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom10
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom11
+    | 'global'
+    | 'docker'
+    | 'install'
+    | 'hermit'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom12
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom13
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom14
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom15
+    | 'major'
+    | 'minor'
+    | 'patch'
+    | 'prerelease'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom16
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom17
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom18
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom19
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom20
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom21
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom22
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom23
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom24
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom25
+    | 'never'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom26
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom27
+    | {
+        [k: string]: string | undefined;
+      }
+    | 'none'
+    | 'strict'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom28
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom29
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom30
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom31
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom32
+    | {
+        description?: string[] | string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        autoReplaceStringTemplate?: string;
+        /**
+         * Optional `currentValue` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        currentValueTemplate?: string;
+        /**
+         * Custom manager to use. Valid only within a `customManagers` object.
+         */
+        customType?: 'jsonata' | 'regex';
+        /**
+         * Optional datasource for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        datasourceTemplate?: string;
+        /**
+         * Optional depName for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depNameTemplate?: string;
+        /**
+         * Optional `depType` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        depTypeTemplate?: string;
+        /**
+         * Optional `extractVersion` for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        extractVersionTemplate?: string;
+        /**
+         * It specifies the syntax of the package file being managed by the custom JSONata manager.
+         */
+        fileFormat?: 'json' | 'toml' | 'yaml';
+        /**
+         * Queries to use. Valid only within a `customManagers` object.
+         */
+        matchStrings?: string[];
+        /**
+         * Strategy how to interpret matchStrings.
+         */
+        matchStringsStrategy?: 'any' | 'recursive' | 'combination';
+        /**
+         * Optional packageName for extracted dependencies, else defaults to `depName` value. Valid only within a `customManagers` object.
+         */
+        packageNameTemplate?: string;
+        /**
+         * Optional registry URL for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        registryUrlTemplate?: string;
+        /**
+         * Optional versioning for extracted dependencies. Valid only within a `customManagers` object.
+         */
+        versioningTemplate?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | 'all'
+    | 'unresolved'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom33
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom34
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom35
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom36
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom37
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom38
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom39
+    | 'extract'
+    | 'lookup'
+    | 'full'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom40
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom41
+    | 'off'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom42
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom43
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom44
+    | 'enabled'
+    | 'disabled'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom45
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom46
+    | ('commit' | 'push')[]
+    | 'commit'
+    | 'push'
+    | 'default'
+    | 'ssh'
+    | 'endpoint'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom47
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom48
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom49
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom50
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom51
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom52
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom53
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom54
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom55
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom56
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom57
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom58
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom59
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom60
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom61
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom62
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom63
+    | {
+        description?: string[] | string;
+        /**
+         * A list of HTTP status codes safe to ignore even when `abortOnError=true`.
+         */
+        abortIgnoreStatusCodes?: number[];
+        /**
+         * If enabled, Renovate aborts its run when HTTP request errors occur.
+         */
+        abortOnError?: boolean;
+        /**
+         * A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.
+         */
+        artifactAuth?: 'composer'[] | null;
+        /**
+         * Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use `"Token-Only"` to use only the token without an authorization type.
+         */
+        authType?: string;
+        /**
+         * Limit concurrent requests per host.
+         */
+        concurrentRequestLimit?: number | null;
+        /**
+         * Enable got DNS cache.
+         */
+        dnsCache?: boolean;
+        /**
+         * Enable got HTTP/2 support.
+         */
+        enableHttp2?: boolean;
+        headers?: JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom64;
+        /**
+         * hostType for a package rule. Can be a platform name or a datasource name.
+         */
+        hostType?: string;
+        /**
+         * The certificate chains in PEM format.
+         */
+        httpsCertificate?: string | null;
+        /**
+         * The overriding trusted CA certificate.
+         */
+        httpsCertificateAuthority?: string | null;
+        /**
+         * The private key in PEM format.
+         */
+        httpsPrivateKey?: string | null;
+        /**
+         * Explicitly turn on insecure Docker registry access (HTTP).
+         */
+        insecureRegistry?: boolean;
+        /**
+         * Enable HTTP keep-alive for hosts.
+         */
+        keepAlive?: boolean;
+        /**
+         * A domain name, host name or base URL to match against.
+         */
+        matchHost?: string;
+        /**
+         * Limit requests rate per host.
+         */
+        maxRequestsPerSecond?: number;
+        /**
+         * Maximum retry-after header value to wait for before retrying a failed request.
+         */
+        maxRetryAfter?: number;
+        /**
+         * Match against requests that only read data and do not mutate anything.
+         */
+        readOnly?: boolean;
+        /**
+         * Timeout (in milliseconds) for queries to external endpoints.
+         */
+        timeout?: number;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom65
+    | 'flexible'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom66
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom67
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom68
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom69
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom70
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom71
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom72
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom73
+    | {
+        description?: string[] | string;
+        /**
+         * Regex/minimatch expression to match against log message.
+         */
+        matchMessage?: string;
+        /**
+         * New log level to use if matchMessage matches.
+         */
+        newLogLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom74
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom75
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom76
+    | ('go' | 'maven' | 'npm' | 'nuget' | 'packagist' | 'pypi' | 'rubygems')[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom77
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom78
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom79
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom80
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom81
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom82
+    | 'silent'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom83
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom84
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom85
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom86
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom87
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom88
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom89
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom90
+    | {
+        description?: string[] | string;
+        /**
+         * A version range or regex pattern capturing allowed versions for dependencies.
+         */
+        allowedVersions?: string;
+        /**
+         * Set a custom URL for the changelog. Renovate will put this URL in the PR body text.
+         */
+        changelogUrl?: string;
+        /**
+         * List of strings containing exact matches (e.g. `["main"]`) and/or regex expressions (e.g. `["/^release/.* /"]`). Valid only within a `packageRules` object.
+         */
+        matchBaseBranches?: string[] | string;
+        /**
+         * List of categories to match (for example: `["python"]`). Valid only within a `packageRules` object.
+         */
+        matchCategories?: string[] | string;
+        /**
+         * Merge confidence levels to match against (`low`, `neutral`, `high`, `very high`). Valid only within `packageRules` object.
+         */
+        matchConfidence?: ('low' | 'neutral' | 'high' | 'very high')[] | ('low' | 'neutral' | 'high' | 'very high');
+        /**
+         * Matches the current age of the package derived from its release timestamp. Valid only within a `packageRules` object.
+         */
+        matchCurrentAge?: string;
+        /**
+         * A regex or glob pattern to match against the raw `currentValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchCurrentValue?: string;
+        /**
+         * A version, or range of versions, to match against the current version of a package. Valid only within a `packageRules` object.
+         */
+        matchCurrentVersion?: string;
+        /**
+         * List of datasources to match (e.g. `["orb"]`). Valid only within a `packageRules` object.
+         */
+        matchDatasources?: string[] | string;
+        /**
+         * Dep names to match. Valid only within a `packageRules` object.
+         */
+        matchDepNames?: string[] | string;
+        /**
+         * List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.
+         */
+        matchDepTypes?: string[] | string;
+        /**
+         * List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.
+         */
+        matchFileNames?: string[];
+        /**
+         * A JSONata expression to match against the full config object. Valid only within a `packageRules` object.
+         */
+        matchJsonata?: string[];
+        /**
+         * List of package managers to match (e.g. `["pipenv"]`). Valid only within a `packageRules` object.
+         */
+        matchManagers?: string[] | string;
+        /**
+         * A regex or glob pattern to match against the raw `newValue` string of a dependency. Valid only within a `packageRules` object.
+         */
+        matchNewValue?: string;
+        /**
+         * Package names to match. Valid only within a `packageRules` object.
+         */
+        matchPackageNames?: string[] | string;
+        /**
+         * List of repositories to match (e.g. `["** /*-archived"]`). Valid only within a `packageRules` object.
+         */
+        matchRepositories?: string[] | string;
+        /**
+         * A list of source URLs to exact match against.
+         */
+        matchSourceUrls?: string[] | string;
+        /**
+         * Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc). Valid only within `packageRules` object.
+         */
+        matchUpdateTypes?:
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            )[]
+          | (
+              | 'major'
+              | 'minor'
+              | 'patch'
+              | 'pin'
+              | 'pinDigest'
+              | 'digest'
+              | 'lockFileMaintenance'
+              | 'rollback'
+              | 'bump'
+              | 'replacement'
+            );
+        /**
+         * Override the datasource value.
+         */
+        overrideDatasource?: string;
+        /**
+         * Override the depName value.
+         */
+        overrideDepName?: string;
+        /**
+         * Override the packageName value.
+         */
+        overridePackageName?: string;
+        /**
+         * Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.
+         */
+        prPriority?: number;
+        /**
+         * The name of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementName?: string;
+        /**
+         * Controls what the replacement package name.
+         */
+        replacementNameTemplate?: string;
+        /**
+         * The version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersion?: string;
+        /**
+         * Template field for the version of the new dependency that replaces the old deprecated dependency.
+         */
+        replacementVersionTemplate?: string;
+        /**
+         * The source directory in which the package is present at its source.
+         */
+        sourceDirectory?: string;
+        /**
+         * The source URL of the package.
+         */
+        sourceUrl?: string;
+        [k: string]: unknown | undefined;
+      }[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom91
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom92
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom93
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom94
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom95
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom96
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom97
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom98
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom99
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom100
+    | 'azure'
+    | 'bitbucket'
+    | 'bitbucket-server'
+    | 'codecommit'
+    | 'gerrit'
+    | 'gitea'
+    | 'github'
+    | 'gitlab'
+    | 'local'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom101
+    | (
+        | 'bundlerConservative'
+        | 'gomodMassage'
+        | 'gomodTidy'
+        | 'gomodTidy1.17'
+        | 'gomodTidyE'
+        | 'gomodUpdateImportPaths'
+        | 'gomodSkipVendor'
+        | 'gomodVendor'
+        | 'helmUpdateSubChartArchives'
+        | 'kustomizeInflateHelmCharts'
+        | 'npmDedupe'
+        | 'pnpmDedupe'
+        | 'yarnDedupeFewer'
+        | 'yarnDedupeHighest'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom102
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'immediate'
+    | 'not-pending'
+    | 'status-success'
+    | 'approval'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom103
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom104
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom105
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom106
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom107
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom108
+    | 'pin'
+    | 'bump'
+    | 'replace'
+    | 'widen'
+    | 'update-lockfile'
+    | 'in-range-only'
+    | 'conflicted'
+    | 'behind-base-branch'
+    | 'automerging'
+    | 'always'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom109
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom110
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom111
+    | 'alias'
+    | 'logging'
+    | 'file'
+    | 's3'
+    | 'reset'
+    | 'required'
+    | 'optional'
+    | 'ignored'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom112
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom113
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom114
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom115
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom116
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom117
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119
+    | (
+        | 'artifactErrors'
+        | 'branchAutomergeFailure'
+        | 'configErrorIssue'
+        | 'dependencyLookupWarnings'
+        | 'lockFileErrors'
+        | 'missingCredentialsError'
+        | 'onboardingClose'
+        | 'prEditedNotification'
+        | 'prIgnoreNotification'
+      )[]
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128
+    | 'merge'
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130
+    | ((
+        | (
+            | 'aws-eks-addon'
+            | 'aws-machine-image'
+            | 'azure-rest-api'
+            | 'bazel-module'
+            | 'cargo'
+            | 'composer'
+            | 'conan'
+            | 'conda'
+            | 'deb'
+            | 'debian'
+            | 'devbox'
+            | 'docker'
+            | 'git'
+            | 'glasskube'
+            | 'go-mod-directive'
+            | 'gradle'
+            | 'hashicorp'
+            | 'helm'
+            | 'hermit'
+            | 'hex'
+            | 'ivy'
+            | 'kubernetes-api'
+            | 'loose'
+            | 'maven'
+            | 'nixpkgs'
+            | 'node'
+            | 'npm'
+            | 'nuget'
+            | 'pep440'
+            | 'perl'
+            | 'poetry'
+            | 'pvp'
+            | 'python'
+            | 'redhat'
+            | 'regex'
+            | 'rez'
+            | 'rpm'
+            | 'ruby'
+            | 'same-major'
+            | 'semver'
+            | 'semver-coerced'
+            | 'swift'
+            | 'ubuntu'
+            | 'unity3d'
+          )
+        | string
+      ) &
+        string)
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131
+    | JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132
+    | undefined;
 }
 /**
  * Configuration object for the setup-cfg manager
@@ -174429,15 +174957,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom118 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -175886,15 +176406,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom119 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -177343,15 +177855,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom120 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -178800,15 +179304,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom121 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -180257,15 +180753,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom122 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -181714,15 +182202,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom123 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -183171,15 +183651,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom124 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -184628,15 +185100,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom125 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -186085,15 +186549,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom126 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -187542,15 +187998,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom127 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -188999,15 +189447,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom128 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -190456,15 +190896,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom129 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -191913,15 +192345,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom130 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -193370,15 +193794,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom131 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */
@@ -194827,15 +195243,7 @@ export interface JSONSchemaForRenovateConfigFilesHttpsRenovatebotCom132 {
    * Platform type of repository.
    */
   platform?:
-    | 'azure'
-    | 'bitbucket'
-    | 'bitbucket-server'
-    | 'codecommit'
-    | 'gerrit'
-    | 'gitea'
-    | 'github'
-    | 'gitlab'
-    | 'local';
+    'azure' | 'bitbucket' | 'bitbucket-server' | 'codecommit' | 'gerrit' | 'gitea' | 'github' | 'gitlab' | 'local';
   /**
    * Controls if platform-native auto-merge is used.
    */

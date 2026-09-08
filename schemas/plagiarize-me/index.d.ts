@@ -72,13 +72,13 @@ export interface PlagiarizeMeConfiguration {
      */
     strings: {
       project: string;
-      [k: string]: (string | number | boolean) | undefined;
+      [k: string]: string | number | boolean | undefined;
     };
     /**
      * Variables available to be used for finding and replacing by variable name. For example `$var_name: hello` would replace string '$var_name' with 'hello' in target project
      */
     vars?: {
-      [k: string]: (string | number | boolean) | undefined;
+      [k: string]: string | number | boolean | undefined;
     };
     /**
      * Relative path to target files that will be completely overwritten by source files in the same path
@@ -111,31 +111,34 @@ export interface PlagiarizeMeConfiguration {
        * Values to be used as variables within the target project. So `var_name: hello` in the template configuration and `var_name: world` would replace instances of 'hello' found in the source file with with 'world' found in the target file
        */
       strings: {
-        [k: string]: (string | boolean | number) | undefined;
+        [k: string]: string | boolean | number | undefined;
       };
       /**
        * Values to be used as variables within the target project. So `var_name: hello` would replace instances of '$var_name' with 'hello' in the target file
        */
       values?: {
-        [k: string]: (string | boolean | number | null) | undefined;
+        [k: string]: string | boolean | number | null | undefined;
       };
       /**
        * Values to be used as variables within the plagiarize-me.yaml file only. So `var_name: hello` would replace '$var_name' with 'hello' in plagiarize-me.yaml
        */
       vars?: {
-        [k: string]: (string | boolean | number | null) | undefined;
+        [k: string]: string | boolean | number | null | undefined;
       };
     };
     merge?: (MergeJson | MergeYaml | MergeGit | MergeEnv)[];
     create?: {
+      /**
+       * Items: The path to the file to create if it does not already exist
+       */
       files?: string[];
     };
     configs?: {
       strings?: {
-        [k: string]: (string | boolean | number) | undefined;
+        [k: string]: string | boolean | number | undefined;
       };
       vars?: {
-        [k: string]: (string | boolean | number | null) | undefined;
+        [k: string]: string | boolean | number | null | undefined;
       };
     }[];
   }[];
@@ -147,6 +150,7 @@ export interface PlagiarizeMeConfiguration {
       [k: string]: string | undefined;
     };
     instances?: {
+      project: string;
       [k: string]: string | undefined;
     }[];
     git?: {
@@ -166,6 +170,8 @@ export interface PlagiarizeMeConfiguration {
       push?: boolean;
       /**
        * A list of removes to push to (if `push: true`)
+       *
+       * Items: name of the remote
        */
       remotes: string[];
       hooks?: {
@@ -189,6 +195,9 @@ export interface MoveItems {
    * The path to move the directory to
    */
   to: string;
+  /**
+   * Items: The directories to move
+   */
   names: string[];
   [k: string]: unknown | undefined;
 }
@@ -214,6 +223,8 @@ export interface MergeJson {
   create?: string[];
   /**
    * A set of properties to replace if the condition evaluates to truthy
+   *
+   * Items: Configuration for property to replace if condition evaluates to truthy
    */
   replaceIf?: {
     /**
@@ -260,6 +271,8 @@ export interface MergeYaml {
   create?: string[];
   /**
    * A set of properties to replace if the condition evaluates to truthy
+   *
+   * Items: Configuration for property to replace if condition evaluates to truthy
    */
   replaceIf?: {
     /**
@@ -306,6 +319,8 @@ export interface MergeEnv {
   skip?: string[];
   /**
    * List of Environment variable names to create in target project if they are not already created
+   *
+   * Items: The Environment variable name
    */
   create?: string[];
   skipIfNotSameFileName?: string[];
