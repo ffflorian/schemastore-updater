@@ -384,12 +384,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/prettier-config@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@ffflorian/prettier-config@npm:1.0.1"
+"@ffflorian/prettier-config@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@ffflorian/prettier-config@npm:1.0.2"
   peerDependencies:
     prettier: ">= 1.17.0"
-  checksum: 10c0/60bd2c4f9a13839a670d4608ba95e42ef6b0bafd1bfc67cc1109e40906774a1b17c96e4fe4e70ff09bba1483eba22a0f47d10435da2c95c14e2a9d0dd9d847f8
+  checksum: 10c0/d6450a265b2f068265c40111a55b65fc5aea66476cf69f85b3fa8e5bba5542663beceebd51d44860c3ce0885fac92f74603a32b05ebbf5228a3c02200bac9a10
   languageName: node
   linkType: hard
 
@@ -5184,7 +5184,7 @@ __metadata:
   resolution: "schemastore-updater@workspace:."
   dependencies:
     "@ffflorian/oxlint-config": "npm:1.0.5"
-    "@ffflorian/prettier-config": "npm:1.0.1"
+    "@ffflorian/prettier-config": "npm:1.0.2"
     "@semantic-release/changelog": "npm:7.0.0"
     "@semantic-release/git": "npm:11.0.1"
     "@types/node": "npm:~26"
