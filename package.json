@@ -14,7 +14,7 @@
     "@semantic-release/git": "11.0.1",
     "@types/node": "~26",
     "@types/semver": "7.8.0",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "eslint-plugin-perfectionist": "5.11.0",
     "lefthook": "2.1.12",
     "oxlint": "1.82.0",
