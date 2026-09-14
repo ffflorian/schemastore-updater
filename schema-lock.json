@@ -1186,7 +1186,7 @@
     "cfgd-config-0.10.0.json": {
       "generatedFile": "schemas/cfgd-config-0.10.0/index.d.ts",
       "generatedSha256": "70763ac9092f9650108aac9afe0d9b3159dcb50f3d3f590278bdc036f3bc4b68",
-      "published": false,
+      "published": true,
       "sourceSha256": "6663fb47a53b09ef742ea500ea21f0087e465035fc708e52308451633b3812ba",
       "updatedAt": "2026-09-14T10:10:07.483Z"
     },
@@ -1200,7 +1200,7 @@
     "cfgd-configsource-0.10.0.json": {
       "generatedFile": "schemas/cfgd-configsource-0.10.0/index.d.ts",
       "generatedSha256": "25b631ac9ce00cf0278af9f015bde9e93d51019da73f9aae76e9959dd8dddea2",
-      "published": false,
+      "published": true,
       "sourceSha256": "0ba65fe74f888ca73ae73280133cf82fb2a363344a7da4f301b83e95926f631b",
       "updatedAt": "2026-09-14T10:10:07.756Z"
     },
@@ -1214,7 +1214,7 @@
     "cfgd-module-0.10.0.json": {
       "generatedFile": "schemas/cfgd-module-0.10.0/index.d.ts",
       "generatedSha256": "a093b24520c05adaeb437666167a1fae8a9886b0b9a1cc5133e27c7c1927b301",
-      "published": false,
+      "published": true,
       "sourceSha256": "1b22c4972aa6bf32e45643020bb5375154d091a2c06391ec833ed24499d43db4",
       "updatedAt": "2026-09-14T10:10:07.999Z"
     },
@@ -1228,7 +1228,7 @@
     "cfgd-profile-0.10.0.json": {
       "generatedFile": "schemas/cfgd-profile-0.10.0/index.d.ts",
       "generatedSha256": "8353500ef03505415386d692b9f125292f055def5cb57186ef2362a52a087910",
-      "published": false,
+      "published": true,
       "sourceSha256": "d656a6f1e049c4fab88b9fcd2631848d2b23ca481e4b8a2e12fc5f184d39c2d1",
       "updatedAt": "2026-09-14T10:10:08.224Z"
     },
@@ -6219,7 +6219,7 @@
     "urai-ecma.json": {
       "generatedFile": "schemas/urai-ecma/index.d.ts",
       "generatedSha256": "7f70a535f2807bb3731531ee409cbfcbed107cd38e9373c15643e8d38021ba10",
-      "published": false,
+      "published": true,
       "sourceSha256": "ef96a55dd086b14690a07db1a76310aa8f9edbda2398e98eae43bcb9bcc8cd23",
       "updatedAt": "2026-09-14T10:10:26.479Z"
     },
