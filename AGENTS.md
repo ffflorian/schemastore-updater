@@ -212,8 +212,11 @@ When touching generation logic (`src/updater.ts`), publishing logic (`src/publis
 After `compileFromFile` produces a `.d.ts` string, one post-processing step runs before writing to disk:
 
 1. **`deduplicateGeneratedTypes`** — `json-schema-to-typescript` sometimes emits `TypeName`, `TypeName1` … `TypeNameN` for the same sub-schema used multiple times (see [issue #1402](https://github.com/ffflorian/schemastore-updater/issues/1402)). This function removes the numbered duplicates and replaces all references with the base name.
-   - Uses the TypeScript compiler API (`ts.createSourceFile`) to parse type alias declarations and compare their body texts.
-   - Only removes `TypeNameN` when `TypeName` already exists with the identical body.
+   - Uses the TypeScript compiler API (`ts.createSourceFile`) to parse type alias **and** interface declarations and compare their bodies.
+   - Bodies are compared comment-free (`ts.createPrinter({removeComments: true})`), so declarations that differ only in their generated `This interface was referenced by ...` provenance notes still count as duplicates.
+   - A `TypeNameN` is only treated as a generated variant when a declaration named `TypeName` also exists. Names like `LVDSConnectorUsage2` come straight from the schema and must be left alone.
+   - Duplicates are merged into `TypeName` when its body is identical, otherwise into the lowest numbered variant of the family. The latter covers `CoreRule1` ... `CoreRule8`, which are identical to each other but not to `CoreRule`.
+   - Renaming runs to a fixed point, because declarations that only differed in references to just-merged types become duplicates themselves.
 
 Pipeline order: `deduplicateGeneratedTypes(await compileFromFile(...))`.
 

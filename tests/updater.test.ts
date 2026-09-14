@@ -283,7 +283,14 @@ describe('updateSchemas', () => {
     );
     const secondLock = await readLockFile(context.workspaceDir);
 
-    expect(stats).toEqual({failed: 1, failedSchemas: ['accelerator-schema'], generated: 0, generatedSchemas: [], skipped: 0, totalSchemas: 1});
+    expect(stats).toEqual({
+      failed: 1,
+      failedSchemas: ['accelerator-schema'],
+      generated: 0,
+      generatedSchemas: [],
+      skipped: 0,
+      totalSchemas: 1,
+    });
     expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
   });
 
@@ -308,7 +315,14 @@ describe('updateSchemas', () => {
     );
     const secondLock = await readLockFile(context.workspaceDir);
 
-    expect(stats).toEqual({failed: 1, failedSchemas: ['accelerator-schema'], generated: 0, generatedSchemas: [], skipped: 0, totalSchemas: 1});
+    expect(stats).toEqual({
+      failed: 1,
+      failedSchemas: ['accelerator-schema'],
+      generated: 0,
+      generatedSchemas: [],
+      skipped: 0,
+      totalSchemas: 1,
+    });
     expect(secondLock.entries['accelerator/schema.json']).toEqual(firstEntry);
   });
 
@@ -376,6 +390,124 @@ describe('updateSchemas', () => {
     expect(generatedDts).not.toContain('Wrapper1');
     expect(generatedDts).toContain('export type Wrapper = {');
     expect(generatedDts).toContain('Root = Wrapper | Wrapper');
+  });
+
+  it('deduplicates identical numbered interface variants in generated declarations', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        'export interface Rule {',
+        '  severity?: string;',
+        '}',
+        '',
+        '/**',
+        ' * This interface was referenced by `Root`s JSON-Schema definition via the `patternProperty` "^a$".',
+        ' */',
+        'export interface Rule1 {',
+        '  severity?: string;',
+        '}',
+        '',
+        'export interface Root {',
+        '  first?: Rule;',
+        '  second?: Rule1;',
+        '}',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).not.toContain('Rule1');
+    expect(generatedDts).toContain('export interface Rule {');
+    expect(generatedDts).toContain('  second?: Rule;');
+  });
+
+  it('keeps the lowest numbered variant when the unnumbered declaration differs', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        'export interface CoreRule {',
+        '  severity?: string;',
+        '  [k: string]: unknown | undefined;',
+        '}',
+        '',
+        'export interface CoreRule1 {',
+        '  severity?: string;',
+        '}',
+        '',
+        'export interface CoreRule2 {',
+        '  severity?: string;',
+        '}',
+        '',
+        'export interface Root {',
+        '  first?: CoreRule1;',
+        '  second?: CoreRule2;',
+        '}',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).toContain('export interface CoreRule {');
+    expect(generatedDts).toContain('export interface CoreRule1 {');
+    expect(generatedDts).not.toContain('CoreRule2');
+    expect(generatedDts).toContain('  second?: CoreRule1;');
+  });
+
+  it('deduplicates declarations that only become identical after a previous rename', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        'export type Leaf = string;',
+        '',
+        'export type Leaf1 = string;',
+        '',
+        'export interface Branch {',
+        '  value?: Leaf;',
+        '}',
+        '',
+        'export interface Branch1 {',
+        '  value?: Leaf1;',
+        '}',
+        '',
+        'export interface Root {',
+        '  first?: Branch;',
+        '  second?: Branch1;',
+        '}',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).not.toContain('Leaf1');
+    expect(generatedDts).not.toContain('Branch1');
+    expect(generatedDts).toContain('  second?: Branch;');
+  });
+
+  it('keeps numbered declarations that do not belong to an unnumbered declaration', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        '/**',
+        ' * Sets the usage mode for connector 1.',
+        ' */',
+        'export type ConnectorUsage1 = string;',
+        '',
+        '/**',
+        ' * Sets the usage mode for connector 2.',
+        ' */',
+        'export type ConnectorUsage2 = string;',
+        '',
+        'export interface Root {',
+        '  first?: ConnectorUsage1;',
+        '  second?: ConnectorUsage2;',
+        '}',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).toContain('export type ConnectorUsage1 = string;');
+    expect(generatedDts).toContain('export type ConnectorUsage2 = string;');
   });
 
   it('preserves existing lock file entries for other schemas when schema option is given', async () => {
@@ -481,6 +613,24 @@ async function createWorkspace(schemaFiles: Record<string, string>): Promise<Wor
   }
 
   return {sourceDir, workspaceDir};
+}
+
+async function generateWithCompilerOutput(compilerOutput: string): Promise<string> {
+  const context = await createWorkspace({
+    'schema/test.json': JSON.stringify(createBasicSchema('Test'), null, 2),
+  });
+
+  vi.resetModules();
+  vi.doMock('json-schema-to-typescript', () => ({
+    compileFromFile: vi.fn(async () => compilerOutput),
+  }));
+
+  const mockedUpdater = await import('../src/updater.ts');
+  await withWorkingDirectory(context.workspaceDir, () =>
+    mockedUpdater.updateSchemas({force: false, sourceDir: context.sourceDir})
+  );
+
+  return readFile(path.join(context.workspaceDir, 'schemas/schema-test/index.d.ts'), 'utf-8');
 }
 
 async function readLockFile(workspaceDir: string): Promise<SchemaLockFile> {

@@ -202,6 +202,36 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
   return stats;
 }
 
+function applyTypeRenames(code: string, renames: Map<string, string>): string {
+  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
+
+  // Collect declaration ranges to remove, descending so earlier positions stay valid
+  const rangesToRemove: Array<{end: number; start: number}> = [];
+
+  for (const statement of sourceFile.statements) {
+    if (!ts.isTypeAliasDeclaration(statement) && !ts.isInterfaceDeclaration(statement)) {
+      continue;
+    }
+    if (renames.has(statement.name.text)) {
+      rangesToRemove.push({end: statement.getEnd(), start: statement.getFullStart()});
+    }
+  }
+
+  rangesToRemove.sort((rangeA, rangeB) => rangeB.start - rangeA.start);
+
+  let result = code;
+
+  for (const {end, start} of rangesToRemove) {
+    result = result.slice(0, start) + result.slice(end);
+  }
+
+  for (const [from, to] of renames) {
+    result = result.replace(new RegExp(`\\b${from}\\b`, 'g'), to);
+  }
+
+  return result;
+}
+
 function bumpPatchVersion(version: string): string {
   const validVersion = valid(version);
   if (!validVersion) {
@@ -214,6 +244,65 @@ function bumpPatchVersion(version: string): string {
   }
 
   return nextVersion;
+}
+
+function collectDuplicateTypeRenames(code: string): Map<string, string> {
+  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
+
+  // Comments are dropped so that declarations differing only in their generated
+  // `This interface was referenced by ...` provenance notes still count as equal
+  const printer = ts.createPrinter({removeComments: true});
+  const printNode = (node: ts.Node): string => printer.printNode(ts.EmitHint.Unspecified, node, sourceFile);
+
+  const declarationBodies = new Map<string, string>();
+
+  for (const statement of sourceFile.statements) {
+    if (ts.isTypeAliasDeclaration(statement)) {
+      declarationBodies.set(statement.name.text, `type ${printNode(statement.type)}`);
+    } else if (ts.isInterfaceDeclaration(statement)) {
+      declarationBodies.set(statement.name.text, `interface ${statement.members.map(printNode).join('\n')}`);
+    }
+  }
+
+  // A `TypeNameN` is only a generated variant when `TypeName` itself was declared:
+  // names such as `LVDSConnectorUsage2` come straight from the schema instead
+  const numberedVariants = new Map<string, {baseName: string; suffix: number}>();
+
+  for (const name of declarationBodies.keys()) {
+    const variant = parseNumberedTypeName(name);
+    if (variant && declarationBodies.has(variant.baseName)) {
+      numberedVariants.set(name, variant);
+    }
+  }
+
+  // Lowest numbered variant of every family of identically declared `TypeNameN` types
+  const familyCanonicals = new Map<string, {name: string; suffix: number}>();
+
+  for (const [name, variant] of numberedVariants) {
+    const familyKey = `${variant.baseName} ${declarationBodies.get(name)}`;
+    const canonical = familyCanonicals.get(familyKey);
+    if (!canonical || variant.suffix < canonical.suffix) {
+      familyCanonicals.set(familyKey, {name, suffix: variant.suffix});
+    }
+  }
+
+  const renames = new Map<string, string>();
+
+  for (const [name, variant] of numberedVariants) {
+    const body = declarationBodies.get(name);
+
+    // Merge into `TypeName` when it is identical, otherwise into the lowest numbered variant
+    const target =
+      declarationBodies.get(variant.baseName) === body
+        ? variant.baseName
+        : familyCanonicals.get(`${variant.baseName} ${body}`)?.name;
+
+    if (target && target !== name) {
+      renames.set(name, target);
+    }
+  }
+
+  return renames;
 }
 
 async function collectJsonFiles(root: string): Promise<string[]> {
@@ -322,63 +411,17 @@ function createUpdateSummary(stats: UpdateStats): string {
 }
 
 function deduplicateGeneratedTypes(code: string): string {
-  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
-
-  const typeBodyTexts = new Map<string, string>();
-
-  for (const statement of sourceFile.statements) {
-    if (!ts.isTypeAliasDeclaration(statement)) {
-      continue;
-    }
-    typeBodyTexts.set(statement.name.text, statement.type.getText(sourceFile));
-  }
-
-  // Map TypeNameN -> TypeName where both exist and have identical bodies
-  const renames = new Map<string, string>();
-
-  for (const [name, bodyText] of typeBodyTexts) {
-    const match = name.match(/^(.*\D)(\d+)$/);
-    if (!match) {
-      continue;
-    }
-    const [, baseName] = match;
-    if (!baseName) {
-      continue;
-    }
-    if (typeBodyTexts.get(baseName) === bodyText) {
-      renames.set(name, baseName);
-    }
-  }
-
-  if (renames.size === 0) {
-    return code;
-  }
-
-  // Collect declaration ranges to remove, descending so earlier positions stay valid
-  const rangesToRemove: Array<{end: number; start: number}> = [];
-
-  for (const statement of sourceFile.statements) {
-    if (!ts.isTypeAliasDeclaration(statement)) {
-      continue;
-    }
-    if (renames.has(statement.name.text)) {
-      rangesToRemove.push({end: statement.getEnd(), start: statement.getFullStart()});
-    }
-  }
-
-  rangesToRemove.sort((rangeA, rangeB) => rangeB.start - rangeA.start);
-
   let result = code;
 
-  for (const {end, start} of rangesToRemove) {
-    result = result.slice(0, start) + result.slice(end);
+  // Renames cascade: declarations that only differed in references to types which
+  // have just been merged become identical themselves, so repeat until stable.
+  for (;;) {
+    const renames = collectDuplicateTypeRenames(result);
+    if (renames.size === 0) {
+      return result;
+    }
+    result = applyTypeRenames(result, renames);
   }
-
-  for (const [from, to] of renames) {
-    result = result.replace(new RegExp(`\\b${from}\\b`, 'g'), to);
-  }
-
-  return result;
 }
 
 async function ensureSchemaStoreRepo(baseDir: string): Promise<string> {
@@ -465,6 +508,15 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
     generatedAt: parsed.generatedAt,
     version: 1,
   };
+}
+
+function parseNumberedTypeName(name: string): {baseName: string; suffix: number} | undefined {
+  const match = name.match(/^(.*\D)(\d+)$/);
+  if (!match?.[1] || !match[2]) {
+    return undefined;
+  }
+
+  return {baseName: match[1], suffix: Number(match[2])};
 }
 
 async function resolveNextPackageVersion(packageJsonPath: string): Promise<string> {
