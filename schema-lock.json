@@ -1074,7 +1074,7 @@
     "bunfig.json": {
       "generatedFile": "schemas/bunfig/index.d.ts",
       "generatedSha256": "125b415b43dcb1a64becf704df953fb3559b2779aa0ee337b4e5de71128f0fbc",
-      "published": false,
+      "published": true,
       "sourceSha256": "285fd376c7aa93f162b4e1d180e0488a2e1748db3a6dfe503c07b6730f865a3d",
       "updatedAt": "2026-09-14T10:10:07.169Z"
     },
@@ -1186,7 +1186,7 @@
     "cfgd-config-0.10.0.json": {
       "generatedFile": "schemas/cfgd-config-0.10.0/index.d.ts",
       "generatedSha256": "70763ac9092f9650108aac9afe0d9b3159dcb50f3d3f590278bdc036f3bc4b68",
-      "published": false,
+      "published": true,
       "sourceSha256": "6663fb47a53b09ef742ea500ea21f0087e465035fc708e52308451633b3812ba",
       "updatedAt": "2026-09-14T10:10:07.483Z"
     },
@@ -1200,7 +1200,7 @@
     "cfgd-configsource-0.10.0.json": {
       "generatedFile": "schemas/cfgd-configsource-0.10.0/index.d.ts",
       "generatedSha256": "25b631ac9ce00cf0278af9f015bde9e93d51019da73f9aae76e9959dd8dddea2",
-      "published": false,
+      "published": true,
       "sourceSha256": "0ba65fe74f888ca73ae73280133cf82fb2a363344a7da4f301b83e95926f631b",
       "updatedAt": "2026-09-14T10:10:07.756Z"
     },
@@ -1214,7 +1214,7 @@
     "cfgd-module-0.10.0.json": {
       "generatedFile": "schemas/cfgd-module-0.10.0/index.d.ts",
       "generatedSha256": "a093b24520c05adaeb437666167a1fae8a9886b0b9a1cc5133e27c7c1927b301",
-      "published": false,
+      "published": true,
       "sourceSha256": "1b22c4972aa6bf32e45643020bb5375154d091a2c06391ec833ed24499d43db4",
       "updatedAt": "2026-09-14T10:10:07.999Z"
     },
@@ -1228,7 +1228,7 @@
     "cfgd-profile-0.10.0.json": {
       "generatedFile": "schemas/cfgd-profile-0.10.0/index.d.ts",
       "generatedSha256": "8353500ef03505415386d692b9f125292f055def5cb57186ef2362a52a087910",
-      "published": false,
+      "published": true,
       "sourceSha256": "d656a6f1e049c4fab88b9fcd2631848d2b23ca481e4b8a2e12fc5f184d39c2d1",
       "updatedAt": "2026-09-14T10:10:08.224Z"
     },
@@ -1515,7 +1515,7 @@
     "compile-commands.json": {
       "generatedFile": "schemas/compile-commands/index.d.ts",
       "generatedSha256": "6535c1eb1e374f50461354bacb277b0ada2b4f5820088b2e287413f3f1345b55",
-      "published": false,
+      "published": true,
       "sourceSha256": "d7c6fc766068c9b1d3601ebe574b2801a3741a5cb26238cbe40c6dee05829ddb",
       "updatedAt": "2026-09-14T10:10:08.437Z"
     },
@@ -1592,7 +1592,7 @@
     "crucible-code-schema.json": {
       "generatedFile": "schemas/crucible-code-schema/index.d.ts",
       "generatedSha256": "d6cfdb6b0c2bcf65f60c1e8f0400ca340010b2ef32fb5b8d04a4a6519a6469f8",
-      "published": false,
+      "published": true,
       "sourceSha256": "ece4f456221a9540b58c27302fe6734ced5f2f19178f28b0feb8a021fc782a3e",
       "updatedAt": "2026-09-14T10:10:08.652Z"
     },
@@ -1858,7 +1858,7 @@
     "dotnet-tools.json": {
       "generatedFile": "schemas/dotnet-tools/index.d.ts",
       "generatedSha256": "32baf16deb5d4ff782d34a9645f8808ab854eba5e506a57823ad92424c50bfd8",
-      "published": false,
+      "published": true,
       "sourceSha256": "fa5cec2931ed9ede4aae293c39c17ba7f260f256f78df5af81ad854f29e127e5",
       "updatedAt": "2026-09-14T10:10:08.858Z"
     },
@@ -2845,7 +2845,7 @@
     "github-workflow.json": {
       "generatedFile": "schemas/github-workflow/index.d.ts",
       "generatedSha256": "dbc9affd4643b788b3c20df7aaa98c9de638994b0a4333680ec39f7d26989cda",
-      "published": false,
+      "published": true,
       "sourceSha256": "da1201a126ca161e1e3dc8ade1faaaa47b33cf64bc17d907f298cf7d5eae8f07",
       "updatedAt": "2026-09-14T10:10:09.204Z"
     },
@@ -4210,7 +4210,7 @@
     "now.json": {
       "generatedFile": "schemas/now/index.d.ts",
       "generatedSha256": "b16db9330461ae4e2c07711d25ed55ed76523fc6adecb320d8538acd3af05a22",
-      "published": false,
+      "published": true,
       "sourceSha256": "a778eb614ccdc3a6c16ebe7d22b4ae785c6576881052141d27257a05b4bbe8bc",
       "updatedAt": "2026-09-14T10:10:09.762Z"
     },
@@ -4679,7 +4679,7 @@
     "partial-pyright.json": {
       "generatedFile": "schemas/partial-pyright/index.d.ts",
       "generatedSha256": "aa28555c652f7e8bdf842239708d3b78558dc404e26ee05b65f7a753ae8cc544",
-      "published": false,
+      "published": true,
       "sourceSha256": "a1f1c4a8f060717ae057c1fc1957e47a341a60630bae776c3d2b48f1fac9613d",
       "updatedAt": "2026-09-14T10:10:14.954Z"
     },
@@ -4826,7 +4826,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "e18120d309c4654edd08191a870e257a8d630e307d415a80d5ecda61a4e31cba",
-      "published": false,
+      "published": true,
       "sourceSha256": "47c4af135465563fc8aed3a773636f5e34fdcb2bd08ad6ae41f6919a20be6f7a",
       "updatedAt": "2026-09-14T10:10:15.180Z"
     },
@@ -5064,21 +5064,21 @@
     "pull-request-labeler-4.json": {
       "generatedFile": "schemas/pull-request-labeler-4/index.d.ts",
       "generatedSha256": "64ea1c132b6e57d9dde0a3ee4e13ad38cbba3132d353286297481e7a47d20c77",
-      "published": false,
+      "published": true,
       "sourceSha256": "02ee983b81e6365157f2b584d3462757135dd71d303fe8748eca13323b78c12b",
       "updatedAt": "2026-09-14T10:10:24.986Z"
     },
     "pull-request-labeler-5.json": {
       "generatedFile": "schemas/pull-request-labeler-5/index.d.ts",
       "generatedSha256": "8de5fcb66102f6a4780878c8e74cd7e25d791413bfba55df5ec3718c016384ec",
-      "published": false,
+      "published": true,
       "sourceSha256": "348d89b61cccc1828dc1e1a871ec249c0a3e2a98a210369e454660ab217cf4a5",
       "updatedAt": "2026-09-14T10:10:25.164Z"
     },
     "pull-request-labeler.json": {
       "generatedFile": "schemas/pull-request-labeler/index.d.ts",
       "generatedSha256": "8de5fcb66102f6a4780878c8e74cd7e25d791413bfba55df5ec3718c016384ec",
-      "published": false,
+      "published": true,
       "sourceSha256": "cfd8862ea75b9dad7681bfc35341cc8d9046c2a2c6b1548e633c9fcfcb8a7133",
       "updatedAt": "2026-09-14T10:10:25.361Z"
     },
@@ -5337,7 +5337,7 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "2aacd5a82d0e787f430aba2beb107e7c77a581206f24bef6a635bdf72e304133",
-      "published": false,
+      "published": true,
       "sourceSha256": "39130f4c2c6f41bce870798b9e4d2d6ac916ead55172e6c295938e820090b9d5",
       "updatedAt": "2026-09-14T10:10:25.686Z"
     },
@@ -5792,7 +5792,7 @@
     "specmatic.json": {
       "generatedFile": "schemas/specmatic/index.d.ts",
       "generatedSha256": "1f3eef820091e5545a60c12063223800f361d297881c02faf0740900e21100bf",
-      "published": false,
+      "published": true,
       "sourceSha256": "bea27e5ca315ad58d2d42b0104fd3375797095d8aec2a767168354a801d80270",
       "updatedAt": "2026-09-14T10:10:25.999Z"
     },
@@ -6100,7 +6100,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "ed2f97e7c1c11ef2485d9b425b2503ad7558aaa66bceb4ef357c43df2150cca0",
-      "published": false,
+      "published": true,
       "sourceSha256": "4323b790e65e979876bd48c7387a5150520e0c4cf1e36c221252a7234c2bd70a",
       "updatedAt": "2026-09-14T10:10:26.291Z"
     },
@@ -6219,7 +6219,7 @@
     "urai-ecma.json": {
       "generatedFile": "schemas/urai-ecma/index.d.ts",
       "generatedSha256": "7f70a535f2807bb3731531ee409cbfcbed107cd38e9373c15643e8d38021ba10",
-      "published": false,
+      "published": true,
       "sourceSha256": "ef96a55dd086b14690a07db1a76310aa8f9edbda2398e98eae43bcb9bcc8cd23",
       "updatedAt": "2026-09-14T10:10:26.479Z"
     },
