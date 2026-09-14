@@ -4,14 +4,6 @@
  * A non-negative integer. Numeric strings are accepted by actions/labeler.
  */
 export type NonNegativeInteger = number | string;
-export type Match = Match1 & Match2;
-export type Match1 = {
-  [k: string]: unknown | undefined;
-};
-export type GlobRule = GlobRule1 & GlobRule2;
-export type GlobRule1 = {
-  [k: string]: unknown | undefined;
-};
 export type StringOrStringArray = string | string[];
 export type All = Match[];
 export type Any = Match[];
@@ -33,12 +25,12 @@ export interface PullRequestLabeler {
   'max-files-changed'?: NonNegativeInteger;
   [k: string]: Label | NonNegativeInteger | undefined;
 }
-export interface Match2 {
+export interface Match {
   'changed-files'?: GlobRule[];
   'base-branch'?: StringOrStringArray;
   'head-branch'?: StringOrStringArray;
 }
-export interface GlobRule2 {
+export interface GlobRule {
   'any-glob-to-any-file'?: StringOrStringArray;
   'any-glob-to-all-files'?: StringOrStringArray;
   'all-globs-to-any-file'?: StringOrStringArray;
