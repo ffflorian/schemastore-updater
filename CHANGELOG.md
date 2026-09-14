@@ -1,3 +1,10 @@
+## [3.8.7](https://github.com/ffflorian/schemastore-updater/compare/v3.8.6...v3.8.7) (2026-09-14)
+
+
+### Bug Fixes
+
+* **deps:** bump js-yaml in the npm_and_yarn group across 1 directory ([#1649](https://github.com/ffflorian/schemastore-updater/issues/1649)) ([b747ead](https://github.com/ffflorian/schemastore-updater/commit/b747eadb2591e5a3f6278e17d3350f5288f06eb0))
+
 ## [3.8.6](https://github.com/ffflorian/schemastore-updater/compare/v3.8.5...v3.8.6) (2026-09-07)
 
 
