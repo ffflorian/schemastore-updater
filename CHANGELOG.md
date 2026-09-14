@@ -1,3 +1,10 @@
+## [3.8.8](https://github.com/ffflorian/schemastore-updater/compare/v3.8.7...v3.8.8) (2026-09-14)
+
+
+### Bug Fixes
+
+* **updater:** deduplicate numbered interface variants and cascading renames ([878e61e](https://github.com/ffflorian/schemastore-updater/commit/878e61e59d6d08a081895b3a6251b0a30a9a6d91))
+
 ## [3.8.7](https://github.com/ffflorian/schemastore-updater/compare/v3.8.6...v3.8.7) (2026-09-14)
 
 
