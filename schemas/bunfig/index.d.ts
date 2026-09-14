@@ -1,7 +1,8 @@
 /* eslint-disable */
 
 /**
- * Bun configuration schema for `bunfig.toml`. See https://bun.sh/docs/runtime/bunfig
+ * Bun configuration schema for `bunfig.toml`.
+ * https://bun.com/docs/runtime/bunfig
  */
 export interface BunConfiguration {
   /**
@@ -48,27 +49,52 @@ export interface BunConfiguration {
     [k: string]: unknown | undefined;
   };
   /**
-   * Configure how Bun maps file extensions to loaders. This is useful for loading files that aren't natively supported by Bun
-   * https://bun.sh/docs/runtime/bunfig#loader
+   * Map file extensions to Bun's built-in loaders.
+   * https://bun.com/docs/bundler/loaders
    */
   loader?: {
     [k: string]:
-      | (
-          | 'jsx'
-          | 'js'
-          | 'ts'
-          | 'tsx'
-          | 'css'
-          | 'file'
-          | 'json'
-          | 'toml'
-          | 'wasm'
-          | 'napi'
-          | 'base64'
-          | 'dataurl'
-          | 'text'
-        )
+      | 'jsx'
+      | 'js'
+      | 'ts'
+      | 'tsx'
+      | 'css'
+      | 'file'
+      | 'json'
+      | 'jsonc'
+      | 'json5'
+      | 'toml'
+      | 'yaml'
+      | 'xml'
+      | 'wasm'
+      | 'napi'
+      | 'base64'
+      | 'dataurl'
+      | 'text'
+      | 'sqlite'
+      | 'sqlite_embedded'
+      | 'html'
+      | 'md'
+      | 'sh'
+      | 'mjs'
+      | 'cjs'
+      | 'cts'
+      | 'mts'
+      | 'node'
+      | 'txt'
+      | 'markdown'
       | undefined;
+  };
+  /**
+   * Configure Bun's debugging tools.
+   * https://bun.com/docs/runtime/utils#bunopenineditor
+   */
+  debug?: {
+    /**
+     * Set the editor that Bun.openInEditor() opens.
+     * https://bun.com/docs/runtime/utils#bunopenineditor
+     */
+    editor?: string;
   };
   /**
    * The `telemetry` field permit to enable/disable the analytics records. Bun records bundle timings (so we can answer with data, "is Bun getting faster?") and feature usage (e.g., "are people actually using macros?"). The request body size is about 60 bytes, so it's not a lot of data. By default the telemetry is enabled.
@@ -109,6 +135,36 @@ export interface BunConfiguration {
      * https://bun.com/docs/runtime/bunfig#serve-port
      */
     port?: number;
+    /**
+     * Configure how Bun serves and bundles static routes.
+     * https://bun.com/docs/bundler/fullstack#plugins
+     */
+    static?: {
+      /**
+       * Load plugins to bundle static routes.
+       * https://bun.com/docs/bundler/fullstack#plugins
+       */
+      plugins?: string | string[];
+      /**
+       * Select how Bun emits sourcemaps for static routes.
+       * https://bun.com/docs/bundler/fullstack#sourcemaps
+       */
+      sourcemap?: boolean | ('none' | 'linked' | 'inline' | 'external');
+      /**
+       * Select which environment variables Bun inlines into static routes. Use `inline` for all variables, `disable` for none, or a prefix with `*` for matching variables.
+       * https://bun.com/docs/bundler/fullstack#inline-environment-variables
+       */
+      env?:
+        | boolean
+        | ((
+            | ('inline' | 'disable')
+            | {
+                [k: string]: unknown | undefined;
+              }
+          ) &
+            string);
+      [k: string]: unknown | undefined;
+    };
   };
   /**
    * Test runner
@@ -146,13 +202,27 @@ export interface BunConfiguration {
      */
     coveragePathIgnorePatterns?: string | string[];
     /**
-     * To specify a coverage threshold. By default, no threshold is set. If your test suite does not meet or exceed this threshold, `bun test` will exit with a non-zero exit code to indicate the failure
-     * https://bun.sh/docs/runtime/bunfig#test-coveragethreshold
+     * Set a coverage threshold for all metrics or for individual metrics. A test run fails if coverage does not meet the threshold.
+     * https://bun.com/docs/test/configuration#coverage-thresholds
      */
     coverageThreshold?:
       | number
       | {
-          [k: string]: unknown | undefined;
+          /**
+           * Set the minimum line coverage.
+           * https://bun.com/docs/test/configuration#coverage-thresholds
+           */
+          lines?: number;
+          /**
+           * Set the minimum function coverage.
+           * https://bun.com/docs/test/configuration#coverage-thresholds
+           */
+          functions?: number;
+          /**
+           * Set the minimum statement coverage. Bun accepts this value but does not enforce it.
+           * https://bun.com/docs/test/configuration#coverage-thresholds
+           */
+          statements?: number;
         };
     /**
      * Whether to skip test files when computing coverage statistics. Default false
@@ -165,10 +235,10 @@ export interface BunConfiguration {
      */
     coverageIgnoreSourcemaps?: boolean;
     /**
-     * By default, coverage reports will be printed to the console. For persistent code coverage reports in CI environments and for other tools use `lcov`
-     * https://bun.sh/docs/runtime/bunfig#test-coveragereporter
+     * Select console or LCOV coverage reports. Use one reporter name or an array of names.
+     * https://bun.com/docs/test/code-coverage#coverage-reporters
      */
-    coverageReporter?: ('text' | 'lcov')[];
+    coverageReporter?: ('text' | 'lcov') | ('text' | 'lcov')[];
     /**
      * Set path where coverage reports will be saved. Please notice, that it works only for persistent `coverageReporter` like `lcov`
      * https://bun.sh/docs/runtime/bunfig#test-coveragedir
@@ -195,10 +265,10 @@ export interface BunConfiguration {
      */
     retry?: number;
     /**
-     * Glob pattern for test files that should run with concurrent test execution enabled.
-     * https://bun.sh/docs/runtime/bunfig#test-concurrenttestglob
+     * Select test files that run tests concurrently. Use one glob or an array of globs.
+     * https://bun.com/docs/test/configuration#concurrenttestglob
      */
-    concurrentTestGlob?: string;
+    concurrentTestGlob?: string | [string, ...string[]];
     /**
      * When enabled, only failed tests are displayed in the output. Default `false`
      * https://bun.sh/docs/runtime/bunfig#test-onlyfailures
@@ -279,10 +349,10 @@ export interface BunConfiguration {
      */
     saveTextLockfile?: boolean;
     /**
-     * To configure Bun's package auto-install behavior. Default `"auto"` — when no `node_modules` folder is found, Bun will automatically install dependencies on the fly during execution
-     * https://bun.sh/docs/runtime/bunfig#install-auto
+     * Set auto-install behavior. The default `"auto"` installs dependencies when `node_modules` is absent. Bun also accepts a boolean.
+     * https://bun.com/docs/runtime/bunfig#install-auto
      */
-    auto?: 'auto' | 'force' | 'disable' | 'fallback';
+    auto?: boolean | ('auto' | 'force' | 'disable' | 'fallback');
     /**
      * Configure how Bun resolves package versions against the npm registry when running scripts. Default `"online"`.
      *
@@ -292,6 +362,11 @@ export interface BunConfiguration {
      * https://bun.com/docs/runtime/bunfig#install-prefer
      */
     prefer?: 'online' | 'offline' | 'latest';
+    /**
+     * Use only packages and metadata in the local cache. Fail if an item is missing. Default `false`.
+     * https://bun.com/docs/runtime/bunfig#install-offline
+     */
+    offline?: boolean;
     /**
      * When true, `bun install` will not update `bun.lock`. Default `false`. If `package.json` and the existing `bun.lock` are not in agreement, this will error
      * https://bun.sh/docs/runtime/bunfig#install-frozenlockfile
@@ -329,6 +404,16 @@ export interface BunConfiguration {
            * https://bun.sh/docs/runtime/bunfig#install-registry
            */
           token?: string;
+          /**
+           * Set the registry user name.
+           * https://bun.com/docs/pm/npmrc#configure-options-for-a-specific-registry
+           */
+          username?: string;
+          /**
+           * Set the registry password.
+           * https://bun.com/docs/pm/npmrc#configure-options-for-a-specific-registry
+           */
+          password?: string;
         };
     /**
      * Whether to link workspace packages from the monorepo root to their respective `node_modules` directories. Default `true`
@@ -340,41 +425,72 @@ export interface BunConfiguration {
      * https://bun.sh/docs/runtime/bunfig#install-scopes
      */
     scopes?: {
-      [k: string]: unknown | undefined;
+      /**
+       * The default registry is `https://registry.npmjs.org/`. This can be globally configured in `bunfig.toml`
+       * https://bun.sh/docs/runtime/bunfig#install-registry
+       */
+      [k: string]:
+        | string
+        | {
+            /**
+             * The URL of the registry
+             * https://bun.sh/docs/runtime/bunfig#install-registry
+             */
+            url?: string;
+            /**
+             * The token to use for authentication
+             * https://bun.sh/docs/runtime/bunfig#install-registry
+             */
+            token?: string;
+            /**
+             * Set the registry user name.
+             * https://bun.com/docs/pm/npmrc#configure-options-for-a-specific-registry
+             */
+            username?: string;
+            /**
+             * Set the registry password.
+             * https://bun.com/docs/pm/npmrc#configure-options-for-a-specific-registry
+             */
+            password?: string;
+          }
+        | undefined;
     };
     /**
-     * The CA certificate as a string
-     * https://bun.sh/docs/runtime/bunfig#install-ca-and-install-cafile
+     * Set one CA certificate or an array of certificates.
+     * https://bun.com/docs/runtime/bunfig#install-ca-and-install-cafile
      */
-    ca?: string;
+    ca?: string | string[];
     /**
      * A path to a CA certificate file. The file can contain multiple certificates.
      * https://bun.sh/docs/runtime/bunfig#install-ca-and-install-cafile
      */
     cafile?: string;
     /**
-     * To configure the cache behavior
-     * https://bun.sh/docs/runtime/bunfig#install-cache
+     * Configure the cache with an object. Bun also accepts a directory string or `false` to disable both caches.
+     * https://bun.com/docs/runtime/bunfig#install-cache
      */
-    cache?: {
-      /**
-       * The directory to use for the cache
-       * https://bun.sh/docs/runtime/bunfig#install-cache
-       */
-      dir?: string;
-      /**
-       * When true, don't load from the global cache.
-       *
-       * Bun may still write to `node_modules/.cache`
-       * https://bun.sh/docs/runtime/bunfig#install-cache
-       */
-      disable?: boolean;
-      /**
-       * When true, always resolve the latest versions from the registry
-       * https://bun.sh/docs/runtime/bunfig#install-cache
-       */
-      disableManifest?: boolean;
-    };
+    cache?:
+      | boolean
+      | string
+      | {
+          /**
+           * The directory to use for the cache
+           * https://bun.sh/docs/runtime/bunfig#install-cache
+           */
+          dir?: string;
+          /**
+           * When true, don't load from the global cache.
+           *
+           * Bun may still write to `node_modules/.cache`
+           * https://bun.sh/docs/runtime/bunfig#install-cache
+           */
+          disable?: boolean;
+          /**
+           * When true, always resolve the latest versions from the registry
+           * https://bun.sh/docs/runtime/bunfig#install-cache
+           */
+          disableManifest?: boolean;
+        };
     /**
      * To configure lockfile behavior, use the `install.lockfile` section
      * https://bun.sh/docs/runtime/bunfig#install-lockfile
@@ -392,8 +508,8 @@ export interface BunConfiguration {
       print?: 'yarn';
     };
     /**
-     * Configure the default linker strategy. Default `"hoisted"`
-     * https://bun.sh/docs/runtime/bunfig#install-linker
+     * Set how Bun links dependencies into `node_modules`. New workspaces use `"isolated"`; new single-package projects and existing projects use `"hoisted"`.
+     * https://bun.com/docs/runtime/bunfig#install-linker
      */
     linker?: 'hoisted' | 'isolated';
     /**
@@ -407,10 +523,15 @@ export interface BunConfiguration {
      */
     publicHoistPattern?: string[];
     /**
-     * When using the `"isolated"` linker, packages matching these glob patterns are hoisted to the virtual store root (`node_modules/.bun`) so they can be resolved by other packages in the virtual store. Default `[]`. Similar to pnpm's `hoist-pattern`.
+     * When using the `"isolated"` linker, Bun links matching packages into the fallback directory (`node_modules/.bun/node_modules`). By default, Bun links all packages, equivalent to `["*"]`.
      * https://bun.com/docs/runtime/bunfig#install-hoistpattern
      */
     hoistPattern?: string[];
+    /**
+     * Create a fallback directory for packages in isolated installs. Default `true`. Set to `false` to prevent undeclared packages from resolving through this directory.
+     * https://bun.com/docs/runtime/bunfig#install-hoist
+     */
+    hoist?: boolean;
     /**
      * Set the log level for `bun install`. This can be one of `"debug"`, `"warn"`, or `"error"`.
      * https://bun.com/docs/runtime/bunfig#install-loglevel
@@ -439,10 +560,8 @@ export interface BunConfiguration {
     minimumReleaseAgeExcludes?: string[];
   };
   /**
-   * The `bun run` command can be configured under the `[run]` section. These apply to the `bun run` command and the `bun` command when running a file or executable or script.
-   *
-   * Currently, `bunfig.toml` isn't always automatically loaded for `bun run` in a local project (it does check for a global `bunfig.toml`), so you might still need to pass `-c` or `-c=bunfig.toml` to use these settings
-   * https://bun.sh/docs/runtime/bunfig#bun-run
+   * Configure `bun run` and the `bun` command when they run a file, script, or executable. Bun loads the local project's `bunfig.toml` for these commands.
+   * https://bun.com/docs/runtime/bunfig#bun-run
    */
   run?: {
     /**

@@ -1,18 +1,15 @@
 /* eslint-disable */
 
 export type Label =
+  | string
   | (
       | string
-      | (
-          | string
-          | {
-              any?: Any;
-              all?: All;
-              [k: string]: unknown | undefined;
-            }
-        )[]
-    )
-  | undefined;
+      | {
+          any?: Any;
+          all?: All;
+          [k: string]: unknown | undefined;
+        }
+    )[];
 export type Any = string[];
 export type All = string[];
 

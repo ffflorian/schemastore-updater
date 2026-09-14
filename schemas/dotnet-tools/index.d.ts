@@ -20,6 +20,10 @@ export type AvailableToolCommands = ToolCommand[] | null;
  * A command made available by this tool which can be invoked according to the naming convention of its executable. If the command is in the format `dotnet-<toolName>`, it should be invoked using 'dotnet <toolName>'. If the command is in the format '<toolName>', it can be directly invoked using just '<toolName>'. If null, no specific commands are specified.
  */
 export type ToolCommand = string | null;
+/**
+ * Allow tool to use a newer version of the .NET runtime if the runtime it targets isn't installed.
+ */
+export type AllowRollForward = boolean;
 
 export interface HttpsJsonSchemastoreOrgDotnetToolsJson {
   version: NETToolsManifestVersion;
@@ -31,7 +35,7 @@ export interface HttpsJsonSchemastoreOrgDotnetToolsJson {
  * Mappings of .NET CLI tools that are available locally for the project. Each entry specifies a tool accessible by its NuGet package ID.
  */
 export interface LocalTools {
-  [k: string]: ToolConfiguration;
+  [k: string]: ToolConfiguration | undefined;
 }
 /**
  * Represents a single .NET CLI tool with its specific settings and commands.
@@ -42,5 +46,6 @@ export interface LocalTools {
 export interface ToolConfiguration {
   version: ToolNuGetVersion;
   commands: AvailableToolCommands;
+  rollForward?: AllowRollForward;
   [k: string]: unknown | undefined;
 }

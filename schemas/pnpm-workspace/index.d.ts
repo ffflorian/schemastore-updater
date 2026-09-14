@@ -249,6 +249,10 @@ export interface PnpmWorkspaceSpecification {
    */
   enableModulesDir?: boolean;
   /**
+   * Controls whether pnpm asks for confirmation before removing and reinstalling a modules directory that is incompatible with the current install settings. Confirmation is disabled in CI. Supported by pnpm v11.
+   */
+  confirmModulesPurge?: boolean;
+  /**
    * The directory with links to the store.
    */
   virtualStoreDir?: string;
@@ -803,6 +807,10 @@ export interface PnpmWorkspaceSpecification {
    */
   trustPolicyExclude?: string[];
   /**
+   * When set to `true`, `pnpm add`, `pnpm update`, and `pnpm remove` prune the entries of [`trustPolicyExclude`](#trustpolicyexclude) in `pnpm-workspace.yaml` that the freshly written lockfile no longer resolves: a version that is gone is dropped (an entry is removed once none of its versions remain), and an entry for a package that is no longer in the lockfile is removed too. Name patterns (`@myorg/*`) are always kept.
+   */
+  trustPolicyExcludePrune?: boolean;
+  /**
    * A map of package matchers to explicitly allow (`true`) or disallow (`false`) script execution. This field replaces `onlyBuiltDependencies` and `ignoredBuiltDependencies` (which are also deprecated by this new setting), providing a single source of truth.
    */
   allowBuilds?: {
@@ -833,11 +841,38 @@ export interface PnpmWorkspaceSpecification {
    */
   minimumReleaseAgeIgnoreMissingTime?: boolean;
   /**
-   * Configure registries for scoped packages in `pnpm-workspace.yaml`. The `default` key sets the main registry (equivalent to the `registry` `.npmrc` setting). Scoped keys configure registries for specific package scopes.
+   * Configures the registries packages resolve from, in one of two shapes. The declaration shape keys each registry by its URL and states everything about it in one place: which scopes and bare-specifier prefix are routed to it, how it lays out tarball URLs, and whether its abbreviated metadata carries the `time` field. The older shape maps the `default` registry and `@`-prefixed scopes straight to registry URLs. The two shapes cannot be mixed.
+   * https://pnpm.io/settings#registries
    */
-  registries?: {
-    [k: string]: string | undefined;
-  };
+  registries?:
+    | {
+        /**
+         * Declares one registry: the routes that reach it and how it serves packages.
+         */
+        [k: string]:
+          | {
+              /**
+               * The `@`-prefixed scopes routed to this registry. A bare `@` makes this the default registry — the one packages resolve from when no scope matches.
+               */
+              scopes?: string[];
+              /**
+               * The bare-specifier prefix this registry answers to, as in `pnpm add work:^1.0.0`.
+               */
+              prefix?: string;
+              /**
+               * The software serving this registry: `npm` behaves like registry.npmjs.org, which serves a scoped package from the percent-encoded path as well as the unencoded one; `artifactory` repeats the scope in a scoped package's tarball filename.
+               */
+              serverType?: 'npm' | 'artifactory';
+              /**
+               * Whether this registry's abbreviated metadata carries the `time` field. registry.npmjs.org does not; Verdaccio and several proxies do.
+               */
+              supportsTimeField?: boolean;
+            }
+          | undefined;
+      }
+    | {
+        [k: string]: string | undefined;
+      };
   /**
    * Defines named registry aliases that can be used as a prefix when installing packages, e.g. `pnpm add work:@corp/lib@^2.0.0` resolves `@corp/lib@^2.0.0` against the configured URL. Built-in aliases `gh:` (https://npm.pkg.github.com/) and `npmjs:` (https://registry.npmjs.org/) work without any configuration and can be overridden. An alias must start with a letter and contain only letters, digits, `.`, `_`, and `-`. Added in pnpm 11.1.0.
    */
@@ -852,6 +887,10 @@ export interface PnpmWorkspaceSpecification {
    * Overrides the `onFail` behavior of both the `packageManager` field and `devEngines.packageManager` when the running pnpm version does not match the declared one.
    */
   pmOnFail?: 'download' | 'error' | 'warn' | 'ignore';
+  /**
+   * Controls whether pnpm installs runtime entries declared in `devEngines.runtime`. Set to false when the runtime is provisioned separately, such as in a CI matrix.
+   */
+  runtime?: boolean;
   /**
    * Overrides the `onFail` field of `devEngines.runtime` (and `engines.runtime`) in the root project's `package.json`. This is useful when you want a different local behavior than what is written in the manifest — for instance, forcing pnpm to download the declared runtime even when the manifest sets `onFail: "warn"`.
    */

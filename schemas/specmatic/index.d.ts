@@ -5,8 +5,6 @@
  * https://specmatic.io/documentation/
  */
 export type SpecmaticConfiguration = {
-  [k: string]: unknown | undefined;
-} & {
   version: number;
   [k: string]: unknown | undefined;
 };

@@ -106,6 +106,8 @@ export interface CrucibleConfiguration {
             $comment?: string;
             /**
              * What to pass the program, one argument per element, applied verbatim. Read only from the configuration file in your home directory
+             *
+             * @maxItems 256
              */
             args?: string[];
             /**
@@ -315,9 +317,88 @@ export interface CrucibleConfiguration {
     $schema?: string;
     $comment?: string;
     /**
-     * Whether commands require verified kernel confinement, may use an explicit compatibility fallback, or run unconfined; only user configuration may weaken required
+     * Require verified operating-system confinement for commands; off by default, and only user configuration may disable it
      */
-    mode?: 'required' | 'degraded' | 'off';
+    enabled?: boolean;
+    /**
+     * Filesystem access relative to the workspace root or at an absolute path
+     */
+    filesystem?: {
+      $schema?: string;
+      $comment?: string;
+      /**
+       * Readable paths that no nested writable grant may reopen
+       *
+       * @maxItems 128
+       */
+      protected?: string[];
+      /**
+       * Readable paths without write access; projects may only narrow existing access
+       *
+       * @maxItems 128
+       */
+      readOnly?: string[];
+      /**
+       * Paths hidden from sandboxed commands on Linux/WSL2 and macOS; nonempty lists are unsupported on native Windows
+       *
+       * @maxItems 128
+       */
+      unreadable?: string[];
+      /**
+       * Additional writable paths; only user configuration may grant access
+       *
+       * @maxItems 128
+       */
+      writable?: string[];
+    };
+    /**
+     * Command resource ceilings; project configuration may only lower them
+     */
+    limits?: {
+      $schema?: string;
+      $comment?: string;
+      /**
+       * Maximum wall time for each command, including background commands
+       */
+      commandSeconds?: number;
+      /**
+       * Maximum simultaneously running commands
+       */
+      concurrentCommands?: number;
+      /**
+       * Maximum combined command output before its process scope is stopped
+       */
+      outputBytes?: number;
+    };
+    /**
+     * Domain mediation and explicit local connections
+     */
+    network?: {
+      $schema?: string;
+      $comment?: string;
+      /**
+       * Allow sandboxed processes to create local listeners on Linux/WSL2 and macOS; true is unsupported on native Windows
+       */
+      allowLocalBinding?: boolean;
+      /**
+       * Exact host Unix socket paths on Linux/WSL2 and macOS; projects may only narrow user grants; nonempty lists are unsupported on native Windows
+       *
+       * @maxItems 64
+       */
+      allowUnixSockets?: string[];
+      /**
+       * Allowed hostnames, IP literals, *.domain patterns or * on Linux/WSL2 and macOS; projects may only narrow user grants; unsupported on native Windows
+       *
+       * @maxItems 64
+       */
+      allowedDomains?: string[];
+      /**
+       * Overriding denied hostnames, IP literals or domain patterns on Linux/WSL2 and macOS; nonempty lists are unsupported on native Windows
+       *
+       * @maxItems 64
+       */
+      deniedDomains?: string[];
+    };
   };
   /**
    * What the model is asked under: how much it explains, and anything you would rather it were told instead

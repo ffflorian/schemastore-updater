@@ -6,11 +6,13 @@
 export type PathToConfigurationFileThatThisConfigurationExtends = string;
 /**
  * Paths of directories or files that should be considered part of the project. If no paths are specified, pyright defaults to the directory that contains the config file. Paths may contain wildcard characters: `**` (a directory or multiple levels of directories), `*` (a sequence of zero or more characters), or `?` (a single character). If no include paths are specified, the root path for the workspace is assumed.
+ *
+ * Items: File or directory to include in type analysis
  */
 export type FilesAndDirectoriesIncludedInTypeAnalysis = string[];
 export type FileOrDirectoryToExcludeFromTypeAnalysis = string;
 /**
- * Paths of directories or files that should not be considered part of the project. These override the includes directories and files, allowing specific subdirectories to be excluded. Note that files in the exclude paths may still be included in the analysis if they are referenced (imported) by source files that are not excluded. Paths may contain wildcard characters: `**` (a directory or multiple levels of directories), `*` (a sequence of zero or more characters), or `?` (a single character). If no exclude paths are specified, Pyright automatically excludes the following: `** /node_modules`, `** /__pycache__`, `** /.*` and any virtual environment directories.
+ * Paths of directories or files that should not be considered part of the project. These override the directories and files that `include` matched, allowing specific subdirectories to be excluded. Note that files in the exclude paths may still be included in the analysis if they are referenced (imported) by source files that are not excluded. Paths may contain wildcard characters `**` (a directory or multiple levels of directories), `*` (a sequence of zero or more characters), or `?` (a single character). By default Pyright also excludes the following: `** /node_modules`, `** /__pycache__`, `** /.*` (hidden directories); Pylance additionally excludes auto-detected virtual environment directories. Any paths you specify here are added on top of these defaults rather than replacing them, and the defaults take precedence over `include` (so a directory auto-detected as a virtual environment stays excluded even if it is explicitly included). In Pylance these built-in excludes can be turned off with the `python.analysis.useDefaultExcludes` setting. For more detail on Python environment specification and discovery, refer to the import resolution (https://microsoft.github.io/pyright/#/import-resolution?id=configuring-your-python-environment) documentation.
  */
 export type FilesAndDirectoriesExcludedFromTypeAnalysis = FileOrDirectoryToExcludeFromTypeAnalysis[];
 export type FileOrDirectoryWhereDiagnosticsShouldBeSuppressed = string;
@@ -24,7 +26,7 @@ export type FileOrDirectoryThatShouldUseStrictTypeCheckingRules = string;
  */
 export type FilesAndDirectoriesThatShouldUseStrictTypeCheckingRules =
   FileOrDirectoryThatShouldUseStrictTypeCheckingRules[];
-export type ValueOfConstantBooleanOrString = (string | boolean) | undefined;
+export type ValueOfConstantBooleanOrString = string | boolean;
 /**
  * Specifies the default rule set to use. Some rules can be overridden using additional configuration flags documented below. If set to `off`, all type-checking rules are disabled, but Python syntax and semantic errors are still reported.
  */
@@ -89,142 +91,72 @@ export type ControlsReportingOfGeneralTypeIssues = 'none' | 'information' | 'war
  * Generate or suppress diagnostics for properties where the type of the value passed to the setter is not assignable to the value returned by the getter. Such mismatches violate the intended use of properties, which are meant to act like variables.
  */
 export type ControlsReportingOfPropertyGetterSetterTypeMismatches =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for non-standard member accesses for functions.
  */
 export type ControlsReportingOfMemberAccessesOnFunctionObjects =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for imports that have no corresponding imported python file or type stub file.
  */
 export type ControlsReportingOfImportsThatCannotBeResolved =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for imports that have no corresponding source file. This happens when a type stub is found, but the module source file was not found, indicating that the code may fail at runtime when using this execution environment. Type checking will be done using the type stub.
  */
 export type ControlsReportingOfImportsThatCannotBeResolvedToSourceFiles =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for type annotations that use invalid type expression forms or are semantically invalid.
  */
 export type ControlsReportingOfTypeExpressionsThatUseAnInvalidForm =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for imports that have no corresponding type stub file (either a typeshed file or a custom type stub). The type checker requires type stubs to do its best job at analysis.
  */
 export type ControlsReportingOfImportsThatCannotBeResolvedToTypeStubFiles =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for cyclical import chains. These are not errors in Python, but they do slow down type analysis and often hint at architectural layering issues. Generally, they should be avoided. Note that there are import cycles in the typeshed stdlib typestub files that are ignored by this setting.
  */
 export type ControlsReportingOfModuleImportsThatCreateCyclesInImportGraph =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an imported symbol that is not referenced within that file.
  */
 export type ControlsReportingOfImportedSymbolsThatAreNotReferencedWithinTheSourceFile =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a class with a private name (starting with an underscore) that is not accessed.
  */
 export type ControlsReportingOfPrivateClassesThatAreNotAccessed =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a function or method with a private name (starting with an underscore) that is not accessed.
  */
 export type ControlsReportingOfPrivateFunctionsOrMethodsThatAreNotAccessed =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a variable that is not accessed. Variables whose names begin with an underscore are exempt from this check.
  */
 export type ControlsReportingOfLocalVariablesThatAreNotAccessed =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an imported symbol or module that is imported more than once.
  */
 export type ControlsReportingOfSymbolsOrModulesThatAreImportedMoreThanOnce =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a wildcard import from an external library. The use of this language feature is highly discouraged and can result in bugs when the library is updated.
  */
 export type ControlsReportingOfWildcardImportFromExternalLibrary =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for the attempted instantiate an abstract or protocol class or use of an abstract method.
  */
 export type ControlsReportingOfAttemptedInstantiationOfAbstractClass =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for argument type incompatibilities when evaluating a call expression.
  */
@@ -233,62 +165,32 @@ export type ControlsReportingOfIncompatibleArgumentType = 'none' | 'information'
  * Generate or suppress diagnostics for a type mismatch detected by the `typing.assert_type` call.
  */
 export type ControlsReportingOfTypeMismatchDetectedByTypingAssertTypeCall =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for assignment type incompatibility.
  */
 export type ControlsReportingOfTypeIncompatibilitiesForAssignments =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics related to attribute accesses.
  */
 export type ControlsReportingOfIssuesRelatedToAttributeAccesses =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics related to call expressions and arguments passed to a call target.
  */
 export type ControlsReportingOfIssuesRelatedToCallExpressionsAndArguments =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an overloaded function that has overload signatures that are inconsistent with each other or with the implementation.
  */
 export type ControlsReportingOfInconsistenciesBetweenFunctionOverloadSignatures =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics related to index operations and expressions.
  */
 export type ControlsReportingOfIssuesRelatedToIndexOperationsAndExpressions =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for invalid type argument usage.
  */
@@ -297,152 +199,77 @@ export type ControlsReportingOfInvalidTypeArgumentUsage = 'none' | 'information'
  * Generate or suppress diagnostics for an overloaded function or method if the implementation is not provided.
  */
 export type ControlsReportingOfAnOverloadedFunctionOrMethodWithAMissingImplementation =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics related to the use of unary or binary operators (like `*` or `not`).
  */
 export type ControlsReportingOfDiagnosticsRelatedToUnaryAndBinaryOperators =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to subscript (index) a variable with an `Optional` type.
  */
 export type ControlsReportingOfAttemptsToSubscriptIndexAVariableWithOptionalType =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to access a member of a variable with an `Optional` type.
  */
 export type ControlsReportingOfAttemptsToAccessAMemberOfAVariableWithOptionalType =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to call a variable with an `Optional` type.
  */
 export type ControlsReportingOfAttemptsToCallAVariableWithOptionalType =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to use an `Optional` type as an iterable value (e.g. within a `for` statement).
  */
 export type ControlsReportingOfAttemptsToUseAnOptionalTypeAsAnIterableValue =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to use an `Optional` type as a context manager (as a parameter to a `with` statement).
  */
 export type ControlsReportingOfAttemptsToUseAnOptionalTypeAsAParameterToAWithStatement =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to use an `Optional` type as an operand to a unary operator (like `~`) or the left-hand operator of a binary operator (like `*` or `<<`).
  */
 export type ControlsReportingOfAttemptsToUseAnOptionalTypeAsAnOperandForABinaryOrUnaryOperator =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a symbol that has more than one type declaration.
  */
 export type ControlsReportingOfAttemptsToDeclareTheTypeOfASymbolMultipleTimes =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics related to function return type compatibility.
  */
 export type ControlsReportingOfFunctionReturnTypeIncompatibility =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an attempt to access a non-required field within a `TypedDict` without first checking whether it is present.
  */
 export type ControlsReportingOfAttemptsToAccessANonRequiredKeyInATypedDictWithoutACheckForItsPresence =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for function decorators that have no type annotations. These obscure the function type, defeating many type analysis features.
  */
 export type ControlsReportingOfFunctionDecoratorsWithoutTypeAnnotationsWhichObscureFunctionTypes =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for class decorators that have no type annotations. These obscure the class type, defeating many type analysis features.
  */
 export type ControlsReportingOfClassDecoratorsWithoutTypeAnnotationsWhichObscureClassTypes =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for base classes whose type cannot be determined statically. These obscure the class type, defeating many type analysis features.
  */
 export type ControlsReportingOfABaseClassOfAnUnknownTypeWhichObscuresMostTypeCheckingForTheClass =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics when `namedtuple` is used rather than `NamedTuple`. The former contains no type information, whereas the latter does.
  */
 export type ControlsReportingOfANamedTupleDefinitionThatDoesNotContainTypeInformation =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for incorrect usage of private or protected variables or functions. Protected class members begin with a single underscore (`_`) and can be accessed only by subclasses. Private class members begin with a double underscore but do not end in a double underscore and can be accessed only within the declaring class. Variables and functions declared outside of a class are considered private if their names start with either a single or double underscore, and they cannot be accessed outside of the declaring module.
  */
@@ -456,352 +283,177 @@ export type ControlsReportingOfDeprecatedTypeCommentUsage = 'none' | 'informatio
  * Generate or suppress diagnostics for use of a symbol from a `py.typed` module that is not meant to be exported from that module.
  */
 export type ControlsReportingOfImproperUsageOfSymbolImportedFromAPyTypedModuleThatIsNotReExportedFromThatModule =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for attempts to redefine variables whose names are all-caps with underscores and numerals.
  */
 export type ControlsReportingOfAttemptsToRedefineVariablesThatAreInAllCaps =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for use of a class or function that has been marked as deprecated.
  */
 export type ControlsReportingOfUseOfDeprecatedClassOrFunction =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for methods that override a method of the same name in a base class in an incompatible manner (wrong number of parameters, incompatible parameter types, or incompatible return type).
  */
 export type ControlsReportingOfMethodOverridesInSubclassesThatRedefineTheMethodInAnIncompatibleWay =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for class variable declarations that override a symbol of the same name in a base class with a type that is incompatible with the base class symbol type.
  */
 export type ControlsReportingOfOverridesInSubclassesThatRedefineAVariableInAnIncompatibleWay =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics when an `__init__` method signature is inconsistent with a `__new__` signature.
  */
 export type ControlsReportingOf_Init__And_New__MethodsWhoseSignaturesAreInconsistent =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for function overloads that overlap in signature and obscure each other or have incompatible return types.
  */
 export type ControlsReportingOfFunctionOverloadsThatOverlapInSignatureAndObscureEachOtherOrDoNotAgreeOnReturnType =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for variables that are possibly unbound on some code paths.
  */
 export type ControlsReportingOfAttemptsToUseVariableThatIsPossiblyUnboundOnSomeCodePaths =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for `__init__`, `__init_subclass__`, `__enter__` and `__exit__` methods in a subclass that fail to call through to the same-named method on a base class.
  */
 export type ControlsReportingOfMissingCallToParentClassForInherited_Init__Methods =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for instance variables within a class that are not initialized or declared within the class body or the `__init__` method.
  */
 export type ControlsReportingOfInstanceVariablesThatAreNotInitializedInTheConstructor =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for invalid escape sequences used within string literals. The Python specification indicates that such sequences will generate a syntax error in future versions.
  */
 export type ControlsReportingOfInvalidEscapeSequencesUsedWithinStringLiterals =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for input or return parameters for functions or methods that have an unknown type.
  */
 export type ControlsReportingInputAndReturnParametersWhoseTypesAreUnknown =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for call arguments for functions or methods that have an unknown type.
  */
 export type ControlsReportingArgumentExpressionsWhoseTypesAreUnknown =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for input or return parameters for lambdas that have an unknown type.
  */
 export type ControlsReportingInputAndReturnParametersForLambdasWhoseTypesAreUnknown =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for variables that have an unknown type.
  */
 export type ControlsReportingLocalVariablesWhoseTypesAreUnknown =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for class or instance variables that have an unknown type.
  */
 export type ControlsReportingClassAndInstanceVariablesWhoseTypesAreUnknown =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for input parameters for functions or methods that are missing a type annotation. The `self` and `cls` parameters used within methods are exempt from this check.
  */
 export type ControlsReportingInputParametersThatAreMissingATypeAnnotation =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics when a generic class is used without providing explicit or implicit type arguments.
  */
 export type ControlsReportingGenericClassReferenceWithMissingTypeArguments =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics when a `TypeVar` is used inappropriately (e.g. if a `TypeVar` appears only once) within a generic function signature.
  */
 export type ControlsReportingImproperUseOfTypeVariablesWithinFunctionSignatures =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for function calls, list expressions, set expressions, or dictionary expressions within a default value initialization expression. Such calls can mask expensive operations that are performed at module initialization time.
  */
 export type ControlsReportingUsageOfFunctionCallsWithinADefaultValueInitializerExpression =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for `isinstance` or `issubclass` calls where the result is statically determined to be always true or always false. Such calls are often indicative of a programming error.
  */
 export type ControlsReportingCallsToIsinstanceOrIssubclassWhereTheResultIsStaticallyDeterminedToBeAlwaysOrNeverTrue =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for `cast` calls that are statically determined to be unnecessary. Such calls are sometimes indicative of a programming error.
  */
 export type ControlsReportingCallsToCastThatAreUnnecessary =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for `==` or `!=` comparisons or other conditional expressions that are statically determined to always evaluate to `False` or `True`. Such comparisons are sometimes indicative of a programming error. Also reports `case` clauses in a `match` statement that can be statically determined to never match (with exception of the `_` wildcard pattern, which is exempted).
  */
 export type ControlsReportingTheUseOfOrComparisonsThatAreUnnecessary =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for `in` operations that are statically determined to always evaluate to `False` or `True`. Such operations are sometimes indicative of a programming error.
  */
 export type ControlsReportingTheUseOfInOperationsThatAreUnnecessary =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for `assert` statement that will provably always assert because its first argument is a parenthesized tuple (for example, `assert (v > 0, "Bad value")` when the intent was probably `assert v > 0, "Bad value"`). This is a common programming error.
  */
 export type ControlsReportingAssertExpressionsThatWillAlwaysEvaluateToTrue =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a missing or misnamed `self` parameter in instance methods and `cls` parameter in class methods. Instance methods in metaclasses (classes that derive from `type`) are allowed to use `cls` for instance methods.
  */
 export type ControlsReportingMissingOrMisnamedSelfParameters =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for two or more string literals that follow each other, indicating an implicit concatenation. This is considered a bad practice and often masks bugs such as missing commas.
  */
 export type ControlsReportingUsageOfImplicitConcatenationOfStringLiterals =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for unbound variables.
  */
 export type ControlsReportingOfAttemptsToUseAnUnboundVariable =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for the use of an unhashable object in a container that requires hashability.
  */
 export type ControlsReportingOfUnhashableObjectInContainerThatRequiresHashability =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for undefined variables.
  */
 export type ControlsReportingOfAttemptsToUseAnUndefinedVariable =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for statements that are syntactically correct but have no purpose within a type stub file.
  */
 export type ControlsReportingOfTypeStubStatementsThatDoNotConformToPEP484 =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a module-level `__getattr__` call in a type stub file, indicating that it is incomplete.
  */
 export type ControlsReportingOfIncompleteTypeStubsThatDeclareAModuleLevel_Getattr__Function =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for statements that define or manipulate `__all__` in a way that is not allowed by a static type checker, thus rendering the contents of `__all__` to be unknown or incorrect. Also reports names within the `__all__` list that are not present in the module namespace.
  */
 export type ControlsReportingOfUnsupportedOperationsPerformedOn_All__ =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for call statements whose return value is not used in any way and is not `None`.
  */
 export type ControlsReportingOfCallExpressionsWhoseResultsAreNotConsumed =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for call statements whose return value is not used in any way and is a `Coroutine`. This identifies a common error where an `await` keyword is mistakenly omitted.
  */
 export type ControlsReportingOfCallExpressionsThatReturnsCoroutineWhoseResultsAreNotConsumed =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for an `except` clause that will never be reached.
  */
@@ -810,55 +462,30 @@ export type ControlsReportingOfUnreachableExceptClauses = 'none' | 'information'
  * Generate or suppress diagnostics for simple expressions whose results are not used in any way.
  */
 export type ControlsReportingOfSimpleExpressionsWhoseValueIsNotUsedInAnyWay =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a `# type: ignore` or `# pyright: ignore` comment that would have no effect if removed.
  */
 export type ControlsReportingOfTypeIgnoreCommentsThatHaveNoEffect =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for a `match` statement that does not provide cases that exhaustively match against all potential types of the target expression.
  */
 export type ControlsReportingOfMatchStatementsThatDoNotExhaustivelyMatchAllPossibleValues =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for code that is determined to be structurally unreachable or unreachable by type analysis.
  */
 export type ControlsReportingOfCodeThatIsDeterminedByTypeAnalysisToBeUnreachable =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 /**
  * Generate or suppress diagnostics for overridden methods in a class that are missing an explicit `@override` decorator.
  */
 export type ControlsReportingOverriddenMethodsThatAreMissingAnOverrideDecorator =
-  | 'none'
-  | 'information'
-  | 'warning'
-  | 'error'
-  | true
-  | false;
+  'none' | 'information' | 'warning' | 'error' | true | false;
 export type AdditionalImportSearchResolutionPath = string;
 /**
- * Additional search paths that will be used when searching for modules imported by files.
+ * Additional search paths that will be used when searching for modules imported by files. Each entry may contain glob patterns (`*`, `**`, `?`), which are expanded to matching directories in a deterministic order; see Extra path glob expansion (https://microsoft.github.io/pyright/#/import-resolution?id=extra-path-glob-expansion).
  */
 export type AdditionalImportSearchResolutionPaths = AdditionalImportSearchResolutionPath[];
 /**
