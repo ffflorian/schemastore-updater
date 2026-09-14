@@ -209,16 +209,31 @@ When touching generation logic (`src/updater.ts`), publishing logic (`src/publis
 
 ## Post-Processing Pipeline for Generated Declarations
 
-After `compileFromFile` produces a `.d.ts` string, one post-processing step runs before writing to disk:
+After `compileFromFile` produces a `.d.ts` string, two post-processing steps run before writing to disk:
 
-1. **`deduplicateGeneratedTypes`** — `json-schema-to-typescript` sometimes emits `TypeName`, `TypeName1` … `TypeNameN` for the same sub-schema used multiple times (see [issue #1402](https://github.com/ffflorian/schemastore-updater/issues/1402)). This function removes the numbered duplicates and replaces all references with the base name.
+1. **`simplifyGeneratedTypes`** — see the TS2590 section below.
+2. **`deduplicateGeneratedTypes`** — `json-schema-to-typescript` sometimes emits `TypeName`, `TypeName1` … `TypeNameN` for the same sub-schema used multiple times (see [issue #1402](https://github.com/ffflorian/schemastore-updater/issues/1402)). This function removes the numbered duplicates and replaces all references with the base name.
    - Uses the TypeScript compiler API (`ts.createSourceFile`) to parse type alias **and** interface declarations and compare their bodies.
    - Bodies are compared comment-free (`ts.createPrinter({removeComments: true})`), so declarations that differ only in their generated `This interface was referenced by ...` provenance notes still count as duplicates.
    - A `TypeNameN` is only treated as a generated variant when a declaration named `TypeName` also exists. Names like `LVDSConnectorUsage2` come straight from the schema and must be left alone.
    - Duplicates are merged into `TypeName` when its body is identical, otherwise into the lowest numbered variant of the family. The latter covers `CoreRule1` ... `CoreRule8`, which are identical to each other but not to `CoreRule`.
    - Renaming runs to a fixed point, because declarations that only differed in references to just-merged types become duplicates themselves.
 
-Pipeline order: `deduplicateGeneratedTypes(await compileFromFile(...))`.
+Pipeline order: `deduplicateGeneratedTypes(simplifyGeneratedTypes(await compileFromFile(...)))`. Simplification runs first so that the smaller, normalised bodies give deduplication more matches.
+
+### Union complexity (TS2590)
+
+`json-schema-to-typescript` 16.0.0 expands a schema that has both a `type` array and a sibling `oneOf` / `anyOf` into `A & ((M1 & A) | (M2 & A) | ...)`, where `A` is the type produced by the `type` keyword. Because `A` is inlined once per branch, the output grows quadratically: `stylelintrc` went from 12797 lines (15.0.4) to 86225 lines, and TypeScript rejected it with `TS2590: Expression produces a union type that is too complex to represent`. `package` inherits the same failure through its `$ref` to `stylelintrc.json`.
+
+**`simplifyGeneratedTypes`** rewrites the generated declarations using three type-level identities, repeated to a fixed point (`stylelintrc`: 86225 -> 4846 lines, no diagnostics):
+
+- `T & T` is `T` — drop repeated intersection members.
+- `T | T` is `T` — drop repeated union members.
+- `C & ((M1 & C) | (M2 & C))` is `C & (M1 | M2)` — factor a member shared by every branch of a union out of the surrounding intersection. This is the rewrite that removes the quadratic inlining.
+
+These are exact identities, not heuristics, so the rewrite never widens or narrows a type. Members are compared comment-free and paren-free via `ts.createPrinter({removeComments: true})`; the replacement text is spliced from the original source ranges so the surrounding `prettier` formatting survives.
+
+The failure is **not** caused by recursion, so a depth limit does not help. Do not try to cap recursion depth, and do not pin `json-schema-to-typescript` back to 15.x — that would reintroduce the TS2411 class of failures described below.
 
 ### Index signature compatibility (TS2411)
 
