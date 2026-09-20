@@ -17,7 +17,7 @@
     "eslint": "10.10.0",
     "eslint-plugin-perfectionist": "5.11.0",
     "lefthook": "2.1.12",
-    "oxlint": "1.82.0",
+    "oxlint": "1.83.0",
     "prettier": "3.9.6",
     "semantic-release": "25.0.9",
     "tsx": "4.23.13",
