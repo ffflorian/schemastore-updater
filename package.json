@@ -16,7 +16,7 @@
     "@types/semver": "7.8.0",
     "eslint": "10.10.0",
     "eslint-plugin-perfectionist": "5.11.1",
-    "lefthook": "2.1.12",
+    "lefthook": "2.1.14",
     "oxlint": "1.83.0",
     "prettier": "3.9.6",
     "semantic-release": "25.0.9",
