@@ -21,6 +21,8 @@ export interface PatternManifest {
    * Available semantic versions of the pattern
    *
    * @minItems 1
+   *
+   * Items: Semantic version of the pattern
    */
   versions?: [string, ...string[]];
   /**
@@ -31,6 +33,8 @@ export interface PatternManifest {
    * Array of tags describing the pattern
    *
    * @minItems 1
+   *
+   * Items: Tag describing the pattern
    */
   tags?: [string, ...string[]];
   /**
@@ -59,7 +63,7 @@ export interface PatternManifest {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Dependencies of the pattern used for demo purposes
@@ -69,7 +73,7 @@ export interface PatternManifest {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Options for overriding of core pattern behaviour
@@ -83,7 +87,7 @@ export interface PatternManifest {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^.+$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
     /**
      * Custom url to use as demo for this pattern

@@ -89,6 +89,8 @@ export type Instantiation = ('auto' | 'user')[];
  * A collection of id's of eligible resource and statement classes; if 'subjectClasses' is missing, all resource or statement classes are eligible.
  *
  * @minItems 1
+ *
+ * Items: Must be a member of resourceClasses or statementClasses.
  */
 export type ResourceAndStatementClassesEligibleAsSubject = [
   (
@@ -112,6 +114,8 @@ export type ResourceAndStatementClassesEligibleAsSubject = [
  * A collection of id's of eligible resource and statement classes; if 'objectClasses' is missing, all resource or statement classes are eligible.
  *
  * @minItems 1
+ *
+ * Items: Must be a member of resourceClasses or statementClasses.
  */
 export type ResourceAndStatementClassesEligibleAsObject = [
   (
@@ -188,6 +192,8 @@ export type Properties = {
 }[];
 /**
  * The list of consolidated items which can be used in case a consolidated item shall be updated.
+ *
+ * Items: A list of pointers to resources resp statements which have been merged to this one.
  */
 export type AlternativeIds = (
   | string
@@ -420,6 +426,8 @@ export interface JSONSchemaForSpecIFV10 {
      * A collection of keys of eligible property classes
      *
      * @minItems 0
+     *
+     * Items: Must be a member of propertyClasses.
      */
     propertyClasses?: (
       | string
@@ -462,6 +470,8 @@ export interface JSONSchemaForSpecIFV10 {
      * A collection of keys of eligible property classes
      *
      * @minItems 0
+     *
+     * Items: Must be a member of propertyClasses.
      */
     propertyClasses?: (
       | string

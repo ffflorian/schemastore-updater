@@ -587,45 +587,9 @@ export interface SourceSpec {
    * Local name for this source, used in `cfgd source` commands and status output.
    */
   name: string;
-  origin: OriginSpec1;
+  origin: OriginSpec;
   subscription?: SubscriptionSpec;
   sync?: SourceSyncSpec;
-}
-/**
- * One entry of `spec.origin[]`: a remote this machine's config can sync with.
- *
- * ```yaml
- * origin:
- *   - type: Git
- *     url: git@github.com:me/dotfiles.git
- *     branch: main
- * ```
- */
-export interface OriginSpec1 {
-  /**
-   * Auth method override for this origin (e.g. a credential-helper name).
-   * Omitted uses the ambient git/SSH credential configuration.
-   */
-  auth?: string | null;
-  /**
-   * Branch to sync against. Default: `master`.
-   */
-  branch?: string;
-  /**
-   * SSH `StrictHostKeyChecking` policy for git operations.
-   * `AcceptNew` (default): accept first-seen keys, reject changed keys.
-   * `Yes`: require keys to already exist in known_hosts (high-security).
-   * `No`: accept any key (insecure, not recommended).
-   */
-  sshStrictHostKeyChecking?: 'AcceptNew' | 'Yes' | 'No';
-  /**
-   * Kind of origin: `Git` (a git remote) or `Server` (the device gateway).
-   */
-  type: 'Git' | 'Server';
-  /**
-   * The origin's URL (a git remote, or the gateway's base URL).
-   */
-  url: string;
 }
 /**
  * What this machine accepts from the source and how it applies.

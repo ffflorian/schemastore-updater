@@ -729,7 +729,6 @@ export type EntityType = All | string;
 export type All = 'all';
 export type CacheStatus = 'hit' | 'miss' | 'partial_hit' | 'status';
 export type CacheControlSelector = 'scope' | 'no_store' | 'max_age';
-export type Mode2 = 'measure' | 'enforce';
 /**
  * Algorithm for calculating the cost of an incoming query.
  */
@@ -828,51 +827,48 @@ export type ErrorMode =
       [k: string]: unknown | undefined;
     };
 export type SubgraphConfig2 =
-  | (
-      | boolean
-      | {
-          /**
-           * Allow specific extension keys for a subgraph. Will extending global allow list or override a global deny list
-           */
-          allow_extensions_keys: string[];
-          /**
-           * Redact error messages for a subgraph
-           */
-          redact_message?: boolean | null;
-          /**
-           * Exclude specific extension keys from global allow/deny list
-           */
-          exclude_global_keys?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | {
-          /**
-           * Allow specific extension keys for a subgraph. Will extending global deny list or override a global allow list
-           */
-          deny_extensions_keys: string[];
-          /**
-           * Redact error messages for a subgraph
-           */
-          redact_message?: boolean | null;
-          /**
-           * Exclude specific extension keys from global allow/deny list
-           */
-          exclude_global_keys?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | {
-          /**
-           * Redact error messages for a subgraph
-           */
-          redact_message?: boolean | null;
-          /**
-           * Exclude specific extension keys from global allow/deny list
-           */
-          exclude_global_keys?: string[];
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | boolean
+  | {
+      /**
+       * Allow specific extension keys for a subgraph. Will extending global allow list or override a global deny list
+       */
+      allow_extensions_keys: string[];
+      /**
+       * Redact error messages for a subgraph
+       */
+      redact_message?: boolean | null;
+      /**
+       * Exclude specific extension keys from global allow/deny list
+       */
+      exclude_global_keys?: string[];
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * Allow specific extension keys for a subgraph. Will extending global deny list or override a global allow list
+       */
+      deny_extensions_keys: string[];
+      /**
+       * Redact error messages for a subgraph
+       */
+      redact_message?: boolean | null;
+      /**
+       * Exclude specific extension keys from global allow/deny list
+       */
+      exclude_global_keys?: string[];
+      [k: string]: unknown | undefined;
+    }
+  | {
+      /**
+       * Redact error messages for a subgraph
+       */
+      redact_message?: boolean | null;
+      /**
+       * Exclude specific extension keys from global allow/deny list
+       */
+      exclude_global_keys?: string[];
+      [k: string]: unknown | undefined;
+    };
 /**
  * Subgraph URL mappings
  */
@@ -1281,50 +1277,35 @@ export type MappingProblems = 'problems' | 'count' | 'boolean';
 export type SpanMode = 'deprecated' | 'spec_compliant';
 export type DefaultAttributeRequirementLevel = 'none' | 'required' | 'recommended';
 export type ConditionalRouterSelector =
-  | (
-      | RouterSelector
-      | {
-          condition?: ConditionRouterSelector;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | RouterSelector
+  | {
+      condition?: ConditionRouterSelector;
+      [k: string]: unknown | undefined;
+    };
 export type ConditionalSupergraphSelector =
-  | (
-      | SupergraphSelector
-      | {
-          condition?: ConditionSupergraphSelector;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | SupergraphSelector
+  | {
+      condition?: ConditionSupergraphSelector;
+      [k: string]: unknown | undefined;
+    };
 export type ConditionalSubgraphSelector =
-  | (
-      | SubgraphSelector
-      | {
-          condition?: ConditionSubgraphSelector;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | SubgraphSelector
+  | {
+      condition?: ConditionSubgraphSelector;
+      [k: string]: unknown | undefined;
+    };
 export type ConditionalConnectorSelector =
-  | (
-      | ConnectorSelector
-      | {
-          condition?: ConditionConnectorSelector;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | ConnectorSelector
+  | {
+      condition?: ConditionConnectorSelector;
+      [k: string]: unknown | undefined;
+    };
 export type ConditionalHttpClientSelector =
-  | (
-      | HttpClientSelector
-      | {
-          condition?: ConditionHttpClientSelector;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | HttpClientSelector
+  | {
+      condition?: ConditionHttpClientSelector;
+      [k: string]: unknown | undefined;
+    };
 export type HttpClientSelector =
   | {
       /**
@@ -1444,42 +1425,39 @@ export type StandardInstrumentExtendedGraphQLAttributesWithGraphQLSelector =
       attributes: ExtendedGraphQLAttributesWithGraphQLSelector;
     };
 export type GraphQLSelector =
-  | (
-      | {
-          list_length: ListLength;
-        }
-      | {
-          field_name: FieldName;
-        }
-      | {
-          field_type: FieldType;
-        }
-      | {
-          type_name: TypeName;
-        }
-      | {
-          /**
-           * The operation name from the query.
-           */
-          operation_name: OperationName;
-          /**
-           * Optional default value.
-           */
-          default?: string | null;
-        }
-      | {
-          /**
-           * A static value
-           */
-          static: AttributeValue;
-        }
-    )
-  | undefined;
+  | {
+      list_length: ListLength;
+    }
+  | {
+      field_name: FieldName;
+    }
+  | {
+      field_type: FieldType;
+    }
+  | {
+      type_name: TypeName;
+    }
+  | {
+      /**
+       * The operation name from the query.
+       */
+      operation_name: OperationName;
+      /**
+       * Optional default value.
+       */
+      default?: string | null;
+    }
+  | {
+      /**
+       * A static value
+       */
+      static: AttributeValue;
+    };
 export type ListLength = 'value';
 export type FieldName = 'string';
 export type FieldType = 'name' | 'type';
 export type TypeName = 'string';
-export type GraphQLValue = StandardUnit | GraphQLSelector | undefined;
+export type GraphQLValue = StandardUnit | GraphQLSelector;
 export type StandardUnit = 'unit';
 /**
  * Specify a condition for when an [instrument][] should be mutated or an [event][] should be triggered.
@@ -1510,7 +1488,7 @@ export type ConditionGraphQLSelector =
       lt: [GraphQLSelectorOrValue, GraphQLSelectorOrValue];
     }
   | {
-      exists: GraphQLSelector | undefined;
+      exists: GraphQLSelector;
     }
   | {
       all: ConditionGraphQLSelector[];
@@ -1523,7 +1501,7 @@ export type ConditionGraphQLSelector =
     }
   | 'true'
   | 'false';
-export type GraphQLSelectorOrValue = AttributeValue | GraphQLSelector | undefined;
+export type GraphQLSelectorOrValue = AttributeValue | GraphQLSelector;
 export type StandardInstrumentExtendedCacheAttributesWithSubgraphSelector =
   | null
   | boolean
@@ -1532,10 +1510,6 @@ export type StandardInstrumentExtendedCacheAttributesWithSubgraphSelector =
     };
 export type Compression = 'gzip' | 'deflate' | 'br' | 'identity';
 export type BatchingMode = 'batch_http_link';
-/**
- * Per subgraph configuration for response caching
- */
-export type Ttl2 = string;
 
 /**
  * The configuration for the router.
@@ -1600,7 +1574,7 @@ export interface Configuration {
   override_subgraph_url?: Conf2;
   preview_entity_cache?: Config6;
   preview_file_uploads?: FileUploadsConfig;
-  progressive_override?: Config9;
+  progressive_override?: Config4;
   rhai?: RhaiConfig;
   subscription?: SubscriptionConfig;
   telemetry?: TelemetryConfig;
@@ -1613,6 +1587,50 @@ export interface Configuration {
    * Type conditioned fetching configuration.
    */
   experimental_type_conditioned_fetching?: boolean;
+  /**
+   * This interface was referenced by `Configuration`'s JSON-Schema definition
+   * via the `patternProperty` "^experimental_mock_subgraphs$".
+   */
+  [k: string]:
+    | {
+        [k: string]: SubgraphConfig | undefined;
+      }
+    | Config7
+    | HealthCheckConfig
+    | Sandbox
+    | Homepage
+    | Server
+    | Supergraph
+    | Cors
+    | Tls
+    | Apq
+    | PersistedQueries
+    | LimitsConfig
+    | Config
+    | Plugins
+    | AuthenticationConfig
+    | AuthorizationConfig
+    | ConnectorsConfig
+    | CoprocessorConfig
+    | CSRFConfig
+    | DemandControlConfig
+    | Config4
+    | Config5
+    | Conf
+    | ForbidMutationsConfig
+    | HeadersConfig
+    | IncludeSubgraphErrorsConfig
+    | LicenseEnforcementConfig
+    | Conf2
+    | Config6
+    | FileUploadsConfig
+    | Config4
+    | RhaiConfig
+    | SubscriptionConfig
+    | TelemetryConfig
+    | TrafficShapingConfig
+    | Batching
+    | undefined;
 }
 /**
  * Configuration options pertaining to the health component.
@@ -2064,7 +2082,7 @@ export interface SubgraphTlsClientConfiguration {
    * per subgraph options
    */
   subgraphs?: {
-    [k: string]: TlsClient;
+    [k: string]: TlsClient | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -2073,7 +2091,7 @@ export interface ConnectorConfiguration {
    * Map of subgraph_name.connector_source_name to configuration
    */
   sources?: {
-    [k: string]: TlsClient;
+    [k: string]: TlsClient | undefined;
   };
   /**
    * Options applying to all sources
@@ -2172,7 +2190,7 @@ export interface SubgraphSubgraphApqConfiguration {
    * per subgraph options
    */
   subgraphs?: {
-    [k: string]: SubgraphApq;
+    [k: string]: SubgraphApq | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -2409,7 +2427,7 @@ export interface Plugins {
   'experimental.broken'?: Config2;
   'experimental.expose_query_plan'?: ExposeQueryPlanConfig;
   'experimental.record'?: RecordConfig;
-  'experimental.restricted'?: Config3;
+  'experimental.restricted'?: Config2;
 }
 /**
  * This is a broken plugin for testing purposes only.
@@ -2434,16 +2452,6 @@ export interface RecordConfig {
    * the current working directory.
    */
   storage_path?: string | null;
-}
-/**
- * Restricted plugin (for testing purposes only)
- */
-export interface Config3 {
-  /**
-   * Enable the restricted plugin (for testing purposes only)
-   */
-  enabled: boolean;
-  [k: string]: unknown | undefined;
 }
 /**
  * Authentication
@@ -2553,7 +2561,7 @@ export interface AuthenticationSubgraphConfig {
    * Create a configuration that will apply only to a specific subgraph.
    */
   subgraphs?: {
-    [k: string]: AuthConfig;
+    [k: string]: AuthConfig | undefined;
   };
 }
 /**
@@ -2629,7 +2637,7 @@ export interface AuthenticationConnectorConfig {
    * Create a configuration that will apply only to a specific source.
    */
   sources?: {
-    [k: string]: AuthConfig;
+    [k: string]: AuthConfig | undefined;
   };
 }
 /**
@@ -3172,7 +3180,7 @@ export interface DemandControlConfig {
    * - Measure: The plugin will measure the cost of incoming requests but not reject them.
    * - Enforce: The plugin will enforce the cost of incoming requests and reject them if the algorithm indicates that they should be rejected.
    */
-  mode: Mode2;
+  mode: Mode;
   /**
    * The strategy used to reject requests.
    */
@@ -3229,7 +3237,7 @@ export interface HeadersConfig {
    * Rules to specific subgraphs
    */
   subgraphs?: {
-    [k: string]: HeadersLocation;
+    [k: string]: HeadersLocation | undefined;
   };
   /**
    * Rules for connectors
@@ -3290,7 +3298,7 @@ export interface ConnectorHeadersConfiguration {
    * Map of subgraph_name.connector_source_name to configuration
    */
   sources?: {
-    [k: string]: HeadersLocation;
+    [k: string]: HeadersLocation | undefined;
   };
   /**
    * Options applying to all sources across all subgraphs
@@ -3355,7 +3363,7 @@ export interface SubgraphSubgraphConfiguration {
    * per subgraph options
    */
   subgraphs?: {
-    [k: string]: Subgraph;
+    [k: string]: Subgraph | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -3486,12 +3494,6 @@ export interface MultipartRequestLimits {
   max_file_size: string;
 }
 /**
- * Configuration for the progressive override plugin
- */
-export interface Config9 {
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the Rhai Plugin
  */
 export interface RhaiConfig {
@@ -3574,7 +3576,7 @@ export interface SubgraphPassthroughMode {
    * Configuration for specific subgraphs
    */
   subgraphs?: {
-    [k: string]: WebSocketConfiguration;
+    [k: string]: WebSocketConfiguration | undefined;
   };
 }
 /**
@@ -3818,7 +3820,7 @@ export interface SubgraphErrorConfig {
    * Handling of errors coming from specified subgraphs
    */
   subgraphs?: {
-    [k: string]: ErrorConfiguration;
+    [k: string]: ErrorConfiguration | undefined;
   };
 }
 export interface ErrorConfiguration {
@@ -3879,7 +3881,7 @@ export interface LoggingCommon {
    * The Open Telemetry resource
    */
   resource?: {
-    [k: string]: AttributeValue;
+    [k: string]: AttributeValue | undefined;
   };
 }
 export interface StdOut {
@@ -3944,7 +3946,7 @@ export interface MetricsCommon {
    * The Open Telemetry resource
    */
   resource?: {
-    [k: string]: AttributeValue;
+    [k: string]: AttributeValue | undefined;
   };
   /**
    * Custom buckets for all histograms
@@ -4207,7 +4209,7 @@ export interface TracingCommon {
    * The Open Telemetry resource
    */
   resource?: {
-    [k: string]: AttributeValue;
+    [k: string]: AttributeValue | undefined;
   };
 }
 export interface ZipkinConfig {
@@ -4316,7 +4318,7 @@ export interface ExtendedRouterEventsConfigWithEvent {
    * Log the router error
    */
   error?: StandardEventConfigRouterSelector;
-  [k: string]: Event | undefined;
+  [k: string]: Event | StandardEventConfigRouterSelector | undefined;
 }
 /**
  * An event that can be logged as part of a trace.
@@ -4563,7 +4565,7 @@ export interface ExtendedRouterAttributesWithRouterSelector {
    * Requirement level: Recommended
    */
   'user_agent.original'?: StandardAttribute | null;
-  [k: string]: RouterSelector;
+  [k: string]: RouterSelector | StandardAttribute | null | boolean | undefined;
 }
 export interface ExtendedSupergraphEventsConfigWithEvent {
   /**
@@ -4578,7 +4580,7 @@ export interface ExtendedSupergraphEventsConfigWithEvent {
    * Log the supergraph error
    */
   error?: StandardEventConfigSupergraphSelector;
-  [k: string]: Event2 | undefined;
+  [k: string]: Event2 | StandardEventConfigSupergraphSelector | undefined;
 }
 /**
  * An event that can be logged as part of a trace.
@@ -4657,7 +4659,7 @@ export interface ExtendedSupergraphAttributesWithSupergraphSelector {
    * The cost result, this is an error code returned by the cost calculation or COST_OK
    */
   'cost.result'?: StandardAttribute | null;
-  [k: string]: SupergraphSelector;
+  [k: string]: SupergraphSelector | StandardAttribute | null | undefined;
 }
 export interface ExtendedSubgraphEventsConfigWithEvent {
   /**
@@ -4672,7 +4674,7 @@ export interface ExtendedSubgraphEventsConfigWithEvent {
    * Log the subgraph error
    */
   error?: StandardEventConfigSubgraphSelector;
-  [k: string]: Event3 | undefined;
+  [k: string]: Event3 | StandardEventConfigSubgraphSelector | undefined;
 }
 /**
  * An event that can be logged as part of a trace.
@@ -4745,7 +4747,7 @@ export interface ExtendedSubgraphAttributesWithSubgraphSelector {
    * The number of times the request has been resent
    */
   'http.request.resend_count'?: StandardAttribute | null;
-  [k: string]: SubgraphSelector;
+  [k: string]: SubgraphSelector | StandardAttribute | null | undefined;
 }
 export interface ExtendedConnectorEventsConfigWithEvent {
   /**
@@ -4760,7 +4762,7 @@ export interface ExtendedConnectorEventsConfigWithEvent {
    * Log the connector HTTP error
    */
   error?: StandardEventConfigConnectorSelector;
-  [k: string]: Event4 | undefined;
+  [k: string]: Event4 | StandardEventConfigConnectorSelector | undefined;
 }
 /**
  * An event that can be logged as part of a trace.
@@ -4828,7 +4830,7 @@ export interface ExtendedConnectorAttributesWithConnectorSelector {
    * Requirement level: Required
    */
   'connector.url.template'?: StandardAttribute | null;
-  [k: string]: ConnectorSelector;
+  [k: string]: ConnectorSelector | StandardAttribute | null | undefined;
 }
 export interface Spans {
   /**
@@ -5089,7 +5091,7 @@ export interface ExtendedRouterAttributesWithConditionalRouterSelector {
    * Requirement level: Recommended
    */
   'user_agent.original'?: StandardAttribute | null;
-  [k: string]: ConditionalRouterSelector | undefined;
+  [k: string]: ConditionalRouterSelector | StandardAttribute | null | boolean | undefined;
 }
 export interface SupergraphSpans {
   /**
@@ -5146,7 +5148,7 @@ export interface ExtendedSupergraphAttributesWithConditionalSupergraphSelector {
    * The cost result, this is an error code returned by the cost calculation or COST_OK
    */
   'cost.result'?: StandardAttribute | null;
-  [k: string]: ConditionalSupergraphSelector | undefined;
+  [k: string]: ConditionalSupergraphSelector | StandardAttribute | null | undefined;
 }
 export interface SubgraphSpans {
   /**
@@ -5197,7 +5199,7 @@ export interface ExtendedSubgraphAttributesWithConditionalSubgraphSelector {
    * The number of times the request has been resent
    */
   'http.request.resend_count'?: StandardAttribute | null;
-  [k: string]: ConditionalSubgraphSelector | undefined;
+  [k: string]: ConditionalSubgraphSelector | StandardAttribute | null | undefined;
 }
 export interface ConnectorSpans {
   /**
@@ -5243,7 +5245,7 @@ export interface ExtendedConnectorAttributesWithConditionalConnectorSelector {
    * Requirement level: Required
    */
   'connector.url.template'?: StandardAttribute | null;
-  [k: string]: ConditionalConnectorSelector | undefined;
+  [k: string]: ConditionalConnectorSelector | StandardAttribute | null | undefined;
 }
 export interface HttpClientSpans {
   /**
@@ -5305,7 +5307,12 @@ export interface ExtendedRouterInstrumentsConfigWithInstrument {
    * Histogram of router overhead (time not spent in subgraph requests)
    */
   'apollo.router.overhead'?: StandardInstrumentExtendedRouterOverheadAttributesWithRouterSelector;
-  [k: string]: Instrument | undefined;
+  [k: string]:
+    | Instrument
+    | StandardInstrumentExtendedRouterAttributesWithRouterSelector
+    | StandardInstrumentActiveRequestsAttributes
+    | StandardInstrumentExtendedRouterOverheadAttributesWithRouterSelector
+    | undefined;
 }
 export interface ActiveRequestsAttributes {
   /**
@@ -5329,7 +5336,7 @@ export interface ActiveRequestsAttributes {
  * Empty attributes struct for router overhead - no standard attributes, only custom selectors
  */
 export interface ExtendedRouterOverheadAttributesWithRouterSelector {
-  [k: string]: RouterSelector;
+  [k: string]: RouterSelector | undefined;
 }
 export interface Instrument {
   /**
@@ -5370,7 +5377,7 @@ export interface ExtendedSupergraphInstrumentsConfigWithInstrument {
    * A histogram of the delta between the estimated and actual cost of the operation using the currently configured cost model
    */
   'cost.delta'?: StandardInstrumentExtendedSupergraphAttributesWithSupergraphSelector;
-  [k: string]: Instrument2 | undefined;
+  [k: string]: Instrument2 | StandardInstrumentExtendedSupergraphAttributesWithSupergraphSelector | undefined;
 }
 export interface Instrument2 {
   /**
@@ -5411,7 +5418,7 @@ export interface ExtendedSubgraphInstrumentsConfigWithInstrument {
    * Histogram of client response body size
    */
   'http.client.response.body.size'?: StandardInstrumentExtendedSubgraphAttributesWithSubgraphSelector;
-  [k: string]: Instrument3 | undefined;
+  [k: string]: Instrument3 | StandardInstrumentExtendedSubgraphAttributesWithSubgraphSelector | undefined;
 }
 export interface Instrument3 {
   /**
@@ -5452,7 +5459,7 @@ export interface ExtendedConnectorInstrumentsConfigWithInstrument {
    * Histogram of client response body size
    */
   'http.client.response.body.size'?: StandardInstrumentExtendedConnectorAttributesWithConnectorSelector;
-  [k: string]: Instrument4 | undefined;
+  [k: string]: Instrument4 | StandardInstrumentExtendedConnectorAttributesWithConnectorSelector | undefined;
 }
 export interface Instrument4 {
   /**
@@ -5489,7 +5496,7 @@ export interface ExtendedGraphQLInstrumentsConfigWithInstrument {
    * A counter of the number of times a field is used.
    */
   'field.execution'?: StandardInstrumentExtendedGraphQLAttributesWithGraphQLSelector;
-  [k: string]: Instrument5 | undefined;
+  [k: string]: Instrument5 | StandardInstrumentExtendedGraphQLAttributesWithGraphQLSelector | undefined;
 }
 export interface ExtendedGraphQLAttributesWithGraphQLSelector {
   /**
@@ -5512,7 +5519,7 @@ export interface ExtendedGraphQLAttributesWithGraphQLSelector {
    * The GraphQL type name
    */
   'graphql.type.name'?: StandardAttribute | null;
-  [k: string]: GraphQLSelector | undefined;
+  [k: string]: GraphQLSelector | StandardAttribute | null | undefined;
 }
 export interface Instrument5 {
   /**
@@ -5549,14 +5556,14 @@ export interface ExtendedCacheInstrumentsConfigWithInstrument {
    * A counter of times we have a cache hit or cache miss
    */
   'apollo.router.response.cache'?: StandardInstrumentExtendedCacheAttributesWithSubgraphSelector;
-  [k: string]: Instrument6 | undefined;
+  [k: string]: Instrument6 | StandardInstrumentExtendedCacheAttributesWithSubgraphSelector | undefined;
 }
 export interface ExtendedCacheAttributesWithSubgraphSelector {
   /**
    * Entity type
    */
   'graphql.type.name'?: StandardAttribute | null;
-  [k: string]: SubgraphSelector;
+  [k: string]: SubgraphSelector | StandardAttribute | null | undefined;
 }
 export interface Instrument6 {
   /**
@@ -5600,7 +5607,7 @@ export interface TrafficShapingConfig {
    * Applied on specific subgraphs
    */
   subgraphs?: {
-    [k: string]: SubgraphShaping;
+    [k: string]: SubgraphShaping | undefined;
   };
   /**
    * Applied on specific subgraphs
@@ -5673,7 +5680,7 @@ export interface ConnectorsShapingConfig {
    * Applied on specific connector sources
    */
   sources?: {
-    [k: string]: ConnectorShaping;
+    [k: string]: ConnectorShaping | undefined;
   };
 }
 export interface ConnectorShaping {
@@ -5731,7 +5738,7 @@ export interface SubgraphCommonBatchingConfigConfiguration {
    * per subgraph options
    */
   subgraphs?: {
-    [k: string]: CommonBatchingConfig;
+    [k: string]: CommonBatchingConfig | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -5825,7 +5832,7 @@ export interface SubgraphSubgraphConfiguration2 {
    * per subgraph options
    */
   subgraphs?: {
-    [k: string]: Subgraph2;
+    [k: string]: Subgraph2 | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -5840,7 +5847,7 @@ export interface Subgraph2 {
   /**
    * expiration for all keys for this subgraph, unless overridden by the `Cache-Control` header in subgraph responses
    */
-  ttl?: Ttl2 | null;
+  ttl?: Ttl | null;
   /**
    * activates caching for this subgraph, overrides the global configuration
    */
@@ -5852,7 +5859,7 @@ export interface Subgraph2 {
   /**
    * Invalidation configuration
    */
-  invalidation?: SubgraphInvalidationConfig2 | null;
+  invalidation?: SubgraphInvalidationConfig | null;
 }
 /**
  * Redis cache configuration
@@ -5910,16 +5917,6 @@ export interface Config8 {
    * Interval for collecting Redis metrics (default: 1s)
    */
   metrics_interval?: string | null;
-}
-export interface SubgraphInvalidationConfig2 {
-  /**
-   * Enable the invalidation
-   */
-  enabled?: boolean;
-  /**
-   * Shared key needed to request the invalidation endpoint
-   */
-  shared_key?: string;
 }
 export interface InvalidationEndpointConfig2 {
   /**

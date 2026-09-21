@@ -82,10 +82,14 @@ export type FlatpakBuilderManifest = {
   'appstream-compose'?: boolean;
   /**
    * Install these extra sdk extensions in /usr
+   *
+   * Items: Install this extra sdk extension in /usr
    */
   'sdk-extensions'?: string[];
   /**
    * Install these extra sdk extensions when creating the platform
+   *
+   * Items: Install this extra sdk extension when creating the platform
    */
   'platform-extensions'?: string[];
   /**
@@ -98,18 +102,26 @@ export type FlatpakBuilderManifest = {
   'base-version'?: string;
   /**
    * Install these extra extensions from the base application when initializing the application directory
+   *
+   * Items: Install this extra extension from the base application when initializing the application directory
    */
   'base-extensions'?: string[];
   /**
    * Inherit these extra extension points from the base application or sdk when finishing the build
+   *
+   * Items: Inherit this extra extension point from the base application or sdk when finishing the build
    */
   'inherit-extensions'?: string[];
   /**
    * Inherit these extra extension points from the base application or sdk when finishing the build, but do not inherit them into the platform
+   *
+   * Items: Inherit this extra extension point from the base application or sdk when finishing the build, but do not inherit into the platform
    */
   'inherit-sdk-extensions'?: string[];
   /**
    * Add these tags to the metadata file
+   *
+   * Items: Add this tag to the metadata file
    */
   tags?: string[];
   'build-options'?: BuildOptions;
@@ -118,36 +130,48 @@ export type FlatpakBuilderManifest = {
    * This is a dictionary of extension objects. The key is the name of the extension
    */
   'add-extensions'?: {
-    [k: string]: Extension;
+    [k: string]: Extension | undefined;
   };
   /**
    * This is a dictionary of extension objects similar to add-extensions. The main difference is that the extensions are added early and are available for use during the build
    */
   'add-build-extensions'?: {
-    [k: string]: Extension;
+    [k: string]: Extension | undefined;
   };
   /**
    * An array of file patterns that should be removed at the end. Patterns starting with / are taken to be full pathnames (without the /app prefix), otherwise they just match the basename
+   *
+   * Items: File pattern that should be removed at the end. Patterns starting with / are taken to be full pathnames (without the /app prefix), otherwise they just match the basename
    */
   cleanup?: string[];
   /**
    * An array of commandlines that are run during the cleanup phase
+   *
+   * Items: Commandline that is run during the cleanup phase
    */
   'cleanup-commands'?: string[];
   /**
    * Extra files to clean up in the platform
+   *
+   * Items: Extra file to clean up in the platform
    */
   'cleanup-platform'?: string[];
   /**
    * An array of commandlines that are run during the cleanup phase of the platform
+   *
+   * Items: Commandline that is run during the cleanup phase of the platform
    */
   'cleanup-platform-commands'?: string[];
   /**
    * An array of commandlines that are run after importing the base platform, but before applying the new files from the sdk. This is a good place to e.g. delete things from the base that may conflict with the files added in the sdk
+   *
+   * Items: Commandline that is run after importing the base platform, but before applying the new files from the sdk. This is a good place to e.g. delete things from the base that may conflict with the files added in the sdk
    */
   'prepare-platform-commands'?: string[];
   /**
    * An array of arguments passed to the flatpak build-finish command
+   *
+   * Items: Argument passed to the flatpak build-finish command
    */
   'finish-args'?: string[];
   /**
@@ -168,6 +192,8 @@ export type FlatpakBuilderManifest = {
   'rename-icon'?: string;
   /**
    * Any mime icons with any of these names will be renamed to a name prefixed with id during the cleanup phase. Note that this is the icon name, not the full filenames, so it should not include a filename extension
+   *
+   * Items: Icon name to rename
    */
   'rename-mime-icons'?: string[];
   /**
@@ -186,6 +212,19 @@ export type FlatpakBuilderManifest = {
    * This string will be suffixed to the Name key in the main application desktop file
    */
   'desktop-file-name-suffix'?: string;
+  [k: string]:
+    | IgnoredPropCustom
+    | IgnoredPropComment
+    | IgnoredPropSchema
+    | string
+    | boolean
+    | string[]
+    | BuildOptions
+    | Modules
+    | {
+        [k: string]: Extension | undefined;
+      }
+    | undefined;
 } & {
   [k: string]: unknown | undefined;
 };
@@ -274,34 +313,48 @@ export interface BuildOptions {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[^=]+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * This is a array defining which host environment variables is transferred to build-commands or post-install environment
+   *
+   * Items: Host environment variable to transfer
    */
   'secret-env'?: string[];
   /**
    * This is an array containing extra options to pass to flatpak build
+   *
+   * Items: Extra option to pass to flatpak build
    */
   'build-args'?: string[];
   /**
    * Similar to build-args but affects the tests, not the normal build
+   *
+   * Items: Similar to build-arg but affects the tests, not the normal build
    */
   'test-args'?: string[];
   /**
    * This is an array containing extra options to pass to configure
+   *
+   * Items: Extra option to pass to configure
    */
   'config-opts'?: string[];
   /**
    * This is an array of options that will be passed to configure, meant to be used to pass secrets through host environment variables. Put the option with an environment variables and will be resolved beforehand. '-DSECRET_ID=$CI_SECRET'
+   *
+   * Items: Extra option to pass to configure
    */
   'secret-opts'?: string[];
   /**
    * An array of extra arguments that will be passed to make
+   *
+   * Items: Extra argument that will be passed to make
    */
   'make-args'?: string[];
   /**
    * An array of extra arguments that will be passed to make install
+   *
+   * Items: Extra argument that will be passed to make install
    */
   'make-install-args'?: string[];
   /**
@@ -320,7 +373,7 @@ export interface BuildOptions {
    * This is a dictionary defining for each arch a separate build options object that override the main one
    */
   arch?: {
-    [k: string]: BuildOptions;
+    [k: string]: BuildOptions | undefined;
   };
 }
 /**

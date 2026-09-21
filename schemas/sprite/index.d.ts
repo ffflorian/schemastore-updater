@@ -11,7 +11,7 @@ export interface HttpsJsonSchemastoreOrgSpriteJson {
     /**
      * A custom CSS declaration (property: value).
      */
-    [k: string]: (string | number) | undefined;
+    [k: string]: string | number | undefined;
   };
   /**
    * The image resolution of the generated image sprite

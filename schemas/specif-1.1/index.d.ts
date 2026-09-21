@@ -174,7 +174,7 @@ export type SpecifInstantiation = ('auto' | 'user')[];
 /**
  * A list of keys referencing propertyClasses; a base resourceClass must have at least one propertyClass, whereas an extending class may have none.
  */
-export type SpecifKeys = SpecifKey2[];
+export type SpecifKeys = SpecifKey[];
 /**
  * The list of consolidated items to be used in case a consolidated item shall be updated.
  */
@@ -305,7 +305,7 @@ export interface SpecifResourceClass {
   id: SpecifId;
   title: SpecifText;
   description?: SpecifMultiLanguageText;
-  extends?: SpecifKey1;
+  extends?: SpecifKey;
   icon?: SpecifIcon;
   isHeading?: boolean;
   instantiation?: SpecifInstantiation;
@@ -315,31 +315,11 @@ export interface SpecifResourceClass {
   changedAt: SpecifDateTime;
   changedBy?: string;
 }
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey1 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey2 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
 export interface SpecifStatementClass {
   id: SpecifId;
   title: SpecifText;
   description?: SpecifMultiLanguageText;
-  extends?: SpecifKey3;
+  extends?: SpecifKey;
   icon?: SpecifIcon;
   instantiation?: SpecifInstantiation;
   /**
@@ -354,20 +334,10 @@ export interface SpecifStatementClass {
   changedAt: SpecifDateTime;
   changedBy?: string;
 }
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey3 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
 export interface SpecifResource {
   id: SpecifId;
   alternativeIds?: SpecifAlternativeIds;
-  class: SpecifKey4;
+  class: SpecifKey;
   /**
    * An IETF language tag such as 'en', 'en-US, 'fr' or 'de' showing the used language of the resource. Is superseded by a property's language value.
    */
@@ -396,41 +366,21 @@ export interface SpecifAlternativeId {
    */
   project?: string;
 }
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey4 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
 export interface SpecifProperty {
-  class: SpecifKey5;
+  class: SpecifKey;
   values: SpecifValues;
   [k: string]: unknown | undefined;
-}
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey5 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
 }
 export interface SpecifStatement {
   id: SpecifId;
   alternativeIds?: SpecifAlternativeIds;
-  class: SpecifKey6;
+  class: SpecifKey;
   /**
    * An IETF language tag such as 'en', 'en-US, 'fr' or 'de' showing the used language of the statement. Is superseded by a property's language value.
    */
   language?: string;
-  subject: SpecifKey7;
-  object: SpecifKey8;
+  subject: SpecifKey;
+  object: SpecifKey;
   /**
    * A list of properties of a resource or statement; the number of properties including any parent's properties must be >0.
    */
@@ -441,57 +391,17 @@ export interface SpecifStatement {
   changedBy?: string;
   [k: string]: unknown | undefined;
 }
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey6 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey7 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey8 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
-}
 export interface SpecifNode {
   id: SpecifId;
   title?: SpecifMultiLanguageText;
   description?: SpecifMultiLanguageText;
-  resource: SpecifKey9;
+  resource: SpecifKey;
   nodes?: SpecifNodes;
   revision?: SpecifRevision;
   replaces?: SpecifReplaces;
   changedAt: SpecifDateTime;
   changedBy?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * A key for a particular revision of an identifiable item, e.g. of a resource. A key consists of a globally unique identifier and a revision. No or an undefined revision means the latest revision of the identified item.
- */
-export interface SpecifKey9 {
-  id: SpecifId;
-  /**
-   * A globally unique revision tag with one or multiple blocks with alphanumeric characters separated by a special character [.:,;/-]. Sequential as well as branching/merging notations are possible.
-   */
-  revision?: string;
 }
 export interface SpecifFile {
   id: SpecifId;

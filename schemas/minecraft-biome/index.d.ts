@@ -5,6 +5,32 @@
  * https://minecraft.wiki/w/Custom_biome
  */
 export type ParticleOptions1 = {
+  /**
+   * A particle type for the current biome
+   * https://minecraft.wiki/w/Custom_biome
+   */
+  type?: string;
+  /**
+   * A particle state for the current biome
+   * https://minecraft.wiki/w/Custom_biome
+   */
+  value?: {
+    /**
+     * A particle identifier for the current biome
+     * https://minecraft.wiki/w/Custom_biome
+     */
+    Name?: string;
+    /**
+     * Particle properties for the current biome
+     * https://minecraft.wiki/w/Custom_biome
+     */
+    [k: string]:
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | string
+      | undefined;
+  };
   [k: string]: unknown | undefined;
 };
 export type TickChance = number;
@@ -81,6 +107,9 @@ export interface MinecraftDataPackBiome {
   /**
    * Features for the current biome
    * https://minecraft.wiki/w/Custom_biome
+   *
+   * Items: A feature for the current biome
+   * https://minecraft.wiki/w/Custom_biome
    */
   features?: (string | unknown[])[];
   /**
@@ -90,6 +119,9 @@ export interface MinecraftDataPackBiome {
   creature_spawn_probability?: number;
   /**
    * The structures to generate in this biome
+   * https://minecraft.wiki/w/Custom_biome
+   *
+   * Items: The namespaced ID of a configured structure feature
    * https://minecraft.wiki/w/Custom_biome
    */
   starts?: string[];
@@ -218,10 +250,16 @@ export interface Carvers {
   /**
    * Carvers used during air generation step for the current biome
    * https://minecraft.wiki/w/Custom_biome
+   *
+   * Items: A namespaced id of a configured carver for the current biome
+   * https://minecraft.wiki/w/Custom_biome
    */
   air?: string[];
   /**
    * Carvers used during liquid generation step for the current biome
+   * https://minecraft.wiki/w/Custom_biome
+   *
+   * Items: A namespaced id of a configured carver for the current biome
    * https://minecraft.wiki/w/Custom_biome
    */
   liquid?: string[];

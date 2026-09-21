@@ -13,21 +13,20 @@ export interface HttpsJsonSchemastoreOrgPopxfCorr10Json {
         col_names: ObservableNames;
         correlations: {
           [k: string]:
-            | (
-                | [[number, ...number[]], ...[number, ...number[]][]]
-                | [
-                    [
-                      [[number, ...number[]], ...[number, ...number[]][]],
-                      ...[[number, ...number[]], ...[number, ...number[]][]][]
-                    ],
-                    ...[
-                      [[number, ...number[]], ...[number, ...number[]][]],
-                      ...[[number, ...number[]], ...[number, ...number[]][]][]
-                    ][]
-                  ]
-              )
+            | [[number, ...number[]], ...[number, ...number[]][]]
+            | [
+                [
+                  [[number, ...number[]], ...[number, ...number[]][]],
+                  ...[[number, ...number[]], ...[number, ...number[]][]][]
+                ],
+                ...[
+                  [[number, ...number[]], ...[number, ...number[]][]],
+                  ...[[number, ...number[]], ...[number, ...number[]][]][]
+                ][]
+              ]
             | undefined;
         };
       }
+    | 'https://json.schemastore.org/popxf-corr-1.0.json'
     | undefined;
 }

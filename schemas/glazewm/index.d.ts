@@ -152,106 +152,86 @@ export type BorderRadius = number;
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
  *
  * @minItems 1
+ *
+ * Items: Component settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-component-configuration
  */
 export type ComponentsLeft = [
   {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
+    type: Type;
+    margin?: Margin;
+    padding?: Padding;
+    opacity?: Opacity;
+    background?: Background;
+    foreground?: Foreground;
+    font_family?: FontFamily;
+    font_size?: FontSize;
+    font_weight?: FontWeight;
+    border_width?: BorderWidth;
+    border_color?: BorderColor;
     [k: string]: unknown | undefined;
   },
   ...({
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
+    type: Type;
+    margin?: Margin;
+    padding?: Padding;
+    opacity?: Opacity;
+    background?: Background;
+    foreground?: Foreground;
+    font_family?: FontFamily;
+    font_size?: FontSize;
+    font_weight?: FontWeight;
+    border_width?: BorderWidth;
+    border_color?: BorderColor;
     [k: string]: unknown | undefined;
   })[]
 ];
+/**
+ * A type of the component
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-component-configuration
+ */
+export type Type = string;
+/**
+ * A margin of the component
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-component-configuration
+ */
+export type Margin = string;
 /**
  * Center component settings
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
  *
  * @minItems 1
+ *
+ * Items: Component settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-component-configuration
  */
 export type ComponentsCenter = [
   {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
+    type: Type;
+    margin?: Margin;
+    padding?: Padding;
+    opacity?: Opacity;
+    background?: Background;
+    foreground?: Foreground;
+    font_family?: FontFamily;
+    font_size?: FontSize;
+    font_weight?: FontWeight;
+    border_width?: BorderWidth;
+    border_color?: BorderColor;
     [k: string]: unknown | undefined;
   },
   ...({
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
+    type: Type;
+    margin?: Margin;
+    padding?: Padding;
+    opacity?: Opacity;
+    background?: Background;
+    foreground?: Foreground;
+    font_family?: FontFamily;
+    font_size?: FontSize;
+    font_weight?: FontWeight;
+    border_width?: BorderWidth;
+    border_color?: BorderColor;
     [k: string]: unknown | undefined;
   })[]
 ];
@@ -260,52 +240,37 @@ export type ComponentsCenter = [
  * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-configuration
  *
  * @minItems 1
+ *
+ * Items: Component settings
+ * https://github.com/glzr-io/glazewm?tab=readme-ov-file#bar-component-configuration
  */
 export type ComponentsRight = [
   {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
+    type: Type;
+    margin?: Margin;
+    padding?: Padding;
+    opacity?: Opacity;
+    background?: Background;
+    foreground?: Foreground;
+    font_family?: FontFamily;
+    font_size?: FontSize;
+    font_weight?: FontWeight;
+    border_width?: BorderWidth;
+    border_color?: BorderColor;
     [k: string]: unknown | undefined;
   },
   ...({
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
-    [k: string]: unknown | undefined;
-  } & {
+    type: Type;
+    margin?: Margin;
+    padding?: Padding;
+    opacity?: Opacity;
+    background?: Background;
+    foreground?: Foreground;
+    font_family?: FontFamily;
+    font_size?: FontSize;
+    font_weight?: FontWeight;
+    border_width?: BorderWidth;
+    border_color?: BorderColor;
     [k: string]: unknown | undefined;
   })[]
 ];
@@ -480,37 +445,10 @@ export interface Transparency {
  * Visual effects to apply to non-focused windows
  */
 export interface OtherWindows {
-  border?: Border1;
-  hide_title_bar?: HideTitleBar1;
-  corner_style?: CornerStyle1;
-  transparency?: Transparency1;
-}
-/**
- * Highlight the window with a colored border
- */
-export interface Border1 {
-  enabled?: Enabled;
-  color?: Color;
-}
-/**
- * Remove the title bar from the window's frame
- */
-export interface HideTitleBar1 {
-  enabled?: Enabled;
-}
-/**
- * Change the corner style of the window's frame
- */
-export interface CornerStyle1 {
-  enabled?: Enabled;
-  style?: Style;
-}
-/**
- * Change the transparency of the window
- */
-export interface Transparency1 {
-  enabled?: Enabled;
-  opacity?: Opacity;
+  border?: Border;
+  hide_title_bar?: HideTitleBar;
+  corner_style?: CornerStyle;
+  transparency?: Transparency;
 }
 /**
  * Window behavior settings

@@ -33,9 +33,9 @@ export interface JSONSchemaForCatapultPSPContentsYamlFiles {
      */
     license: string;
     documentationFile: SupportPackFile;
-    coreDescriptionFile: SupportPackFile1;
-    peripheralRegisterDescriptionFile?: SupportPackFile2;
-    openOCDConfigurationFile?: SupportPackFile3;
+    coreDescriptionFile: SupportPackFile;
+    peripheralRegisterDescriptionFile?: SupportPackFile;
+    openOCDConfigurationFile?: SupportPackFile;
     /**
      * Launch configuration for platform
      */
@@ -52,14 +52,14 @@ export interface JSONSchemaForCatapultPSPContentsYamlFiles {
      * True only for FPGA platforms
      */
     isPlatformFPGA?: boolean;
-    fpgaBitFile?: SupportPackFile4;
-    fpgaProgConfigFile?: SupportPackFile5;
+    fpgaBitFile?: SupportPackFile;
+    fpgaProgConfigFile?: SupportPackFile;
     /**
      * String with processor trace encoder settings required by the decoder
      */
     traceSettingsString?: string;
     libsDirectory?: SupportPackDirectory;
-    headersDirectory?: SupportPackDirectory1;
+    headersDirectory?: SupportPackDirectory;
     /**
      * Hostname or IP address for debug connection to remote machines
      */
@@ -84,83 +84,9 @@ export interface SupportPackFile {
   path: string;
 }
 /**
- * File containing description of core using IMG proprietary YAML format
- */
-export interface SupportPackFile1 {
-  /**
-   * builtin="true" means that a file path is relative to the platform directory within the SDK installation.builtin="false" means the file path is relative to the top level of the unzipped package
-   */
-  builtin: boolean;
-  /**
-   * file path within zip file
-   */
-  path: string;
-}
-/**
- * File containing peripheral register information using CMSIS SVD XML format (see https://www.keil.com/pack/doc/CMSIS/SVD/html/svd_Format_pg.html)
- */
-export interface SupportPackFile2 {
-  /**
-   * builtin="true" means that a file path is relative to the platform directory within the SDK installation.builtin="false" means the file path is relative to the top level of the unzipped package
-   */
-  builtin: boolean;
-  /**
-   * file path within zip file
-   */
-  path: string;
-}
-/**
- * File containing OpenOCD configuration (see https://openocd.org/doc-release/html/Config-File-Guidelines.html#Config-File-Guidelines)
- */
-export interface SupportPackFile3 {
-  /**
-   * builtin="true" means that a file path is relative to the platform directory within the SDK installation.builtin="false" means the file path is relative to the top level of the unzipped package
-   */
-  builtin: boolean;
-  /**
-   * file path within zip file
-   */
-  path: string;
-}
-/**
- * Bitfile for programming FPGA
- */
-export interface SupportPackFile4 {
-  /**
-   * builtin="true" means that a file path is relative to the platform directory within the SDK installation.builtin="false" means the file path is relative to the top level of the unzipped package
-   */
-  builtin: boolean;
-  /**
-   * file path within zip file
-   */
-  path: string;
-}
-/**
- * OpenOCD config file for programming FPGA
- */
-export interface SupportPackFile5 {
-  /**
-   * builtin="true" means that a file path is relative to the platform directory within the SDK installation.builtin="false" means the file path is relative to the top level of the unzipped package
-   */
-  builtin: boolean;
-  /**
-   * file path within zip file
-   */
-  path: string;
-}
-/**
  * Directory containing library files for use with the platform
  */
 export interface SupportPackDirectory {
-  /**
-   * directory path within zip file
-   */
-  path: string;
-}
-/**
- * Directory containing header files for use with the platform
- */
-export interface SupportPackDirectory1 {
   /**
    * directory path within zip file
    */

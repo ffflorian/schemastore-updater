@@ -202,9 +202,51 @@ export type CKANJSONSchema = {
   /**
    * List of install directives
    */
-  install?: {
+  install?: ({
     [k: string]: unknown | undefined;
-  }[];
+  } & {
+    /**
+     * Path to file to install
+     */
+    file?: string;
+    /**
+     * A directory to find for installation
+     */
+    find?: string;
+    /**
+     * A regexp that matches the directory to install
+     */
+    find_regexp?: string;
+    /**
+     * If true, find directives match files as well as directories
+     */
+    find_matches_files?: boolean;
+    /**
+     * Where file should be installed to
+     */
+    install_to: ('GameData' | 'Ships' | 'GameRoot' | 'Tutorial' | 'Scenarios') | string | 'GameData/Mods';
+    /**
+     * The name to give the matching directory or file when installed
+     */
+    as?: string;
+    /**
+     * List of files and directories that should be filtered from the install
+     */
+    filter?: string | string[];
+    /**
+     * List of regexps that should filter files from this install
+     */
+    filter_regexp?: string | string[];
+    /**
+     * List of files and directories that should not be excluded from the install
+     */
+    include_only?: string | string[];
+    /**
+     * List of regexps that should include files in this install
+     */
+    include_only_regexp?: string | string[];
+    [k: string]: unknown | undefined;
+  })[];
   /**
    * Optional timestamp when the described version of the mod was released
    */

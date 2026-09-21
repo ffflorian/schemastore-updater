@@ -78,16 +78,10 @@ export interface RequestHeaders {
 export interface Response {
   Body?: Body;
   BodyContentType?: BodyContentType;
-  ContentHeaders?: ContentHeaders1;
+  ContentHeaders?: ContentHeaders;
   HttpVersion?: HTTPVersion;
   ResponseHeaders?: ResponseHeaders;
   Status?: Status;
-  [k: string]: unknown | undefined;
-}
-/**
- * The response content headers
- */
-export interface ContentHeaders1 {
   [k: string]: unknown | undefined;
 }
 /**

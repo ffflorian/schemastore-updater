@@ -106,7 +106,7 @@ export type Hooks = {
     | 'blue-green.application.before-start.live'
   )[];
   parameters?: HooksParameters;
-  'parameters-metadata'?: PropertiesMetadata1;
+  'parameters-metadata'?: PropertiesMetadata;
   /**
    * List of names either matching a resource name or a provided dependency name provided within the same MTA that are required by this hook.
    */
@@ -121,7 +121,7 @@ export type Hooks = {
     parameters?: {
       [k: string]: unknown | undefined;
     };
-    'parameters-metadata'?: PropertiesMetadata2;
+    'parameters-metadata'?: PropertiesMetadata;
     [k: string]: unknown | undefined;
   }[];
   [k: string]: unknown | undefined;
@@ -144,9 +144,9 @@ export type ModuleProvides = {
   properties?: {
     [k: string]: unknown | undefined;
   };
-  'properties-metadata'?: PropertiesMetadata3;
+  'properties-metadata'?: PropertiesMetadata;
   parameters?: ModuleProvidesParameters;
-  'parameters-metadata'?: PropertiesMetadata4;
+  'parameters-metadata'?: PropertiesMetadata;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -167,9 +167,9 @@ export type ModuleRequires = {
   properties?: {
     [k: string]: unknown | undefined;
   };
-  'properties-metadata'?: PropertiesMetadata5;
+  'properties-metadata'?: PropertiesMetadata;
   parameters?: ModuleRequiresParameters;
-  'parameters-metadata'?: PropertiesMetadata6;
+  'parameters-metadata'?: PropertiesMetadata;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -285,9 +285,9 @@ export interface ComSapMtaMtaSchema_33 {
     properties?: {
       [k: string]: unknown | undefined;
     };
-    'properties-metadata'?: PropertiesMetadata7;
+    'properties-metadata'?: PropertiesMetadata;
     parameters?: ResourceParameters;
-    'parameters-metadata'?: ParametersMetadata1;
+    'parameters-metadata'?: ParametersMetadata;
     /**
      * It is possible to define parameters in external files. The "includes" section is used to point to those files.
      */
@@ -328,9 +328,9 @@ export interface ComSapMtaMtaSchema_33 {
       properties?: {
         [k: string]: unknown | undefined;
       };
-      'properties-metadata'?: PropertiesMetadata8;
+      'properties-metadata'?: PropertiesMetadata;
       parameters?: Parameters;
-      'parameters-metadata'?: ParametersMetadata2;
+      'parameters-metadata'?: ParametersMetadata;
       /**
        * It is possible to define parameters in external files. The "includes" section is used to point to those files.
        */
@@ -349,8 +349,8 @@ export interface ComSapMtaMtaSchema_33 {
     }[];
     [k: string]: unknown | undefined;
   }[];
-  parameters?: Parameters1;
-  'parameters-metadata'?: ParametersMetadata3;
+  parameters?: Parameters;
+  'parameters-metadata'?: ParametersMetadata;
   /**
    * It is possible to define parameters in external files. The "includes" section is used to point to those files.
    */
@@ -683,60 +683,6 @@ export interface HooksParameters {
   [k: string]: unknown | undefined;
 }
 /**
- * Additional information about the hook's parameters.
- */
-export interface PropertiesMetadata1 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the hook's parameters.
- */
-export interface PropertiesMetadata2 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the provided dependency's properties.
- */
-export interface PropertiesMetadata3 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
 export interface ModuleProvidesParameters {
@@ -759,42 +705,6 @@ export interface ResourceConfigurationTarget {
   [k: string]: unknown | undefined;
 }
 /**
- * Additional information about the provided dependency's parameters.
- */
-export interface PropertiesMetadata4 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the required dependency's properties.
- */
-export interface PropertiesMetadata5 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
 export interface ModuleRequiresParameters {
@@ -815,42 +725,6 @@ export interface ModuleRequiresParameters {
    */
   'env-var-name'?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the required dependency's parameters.
- */
-export interface PropertiesMetadata6 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the resource's properties.
- */
-export interface PropertiesMetadata7 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }
 export interface ResourceParametersCf {
   /**
@@ -974,21 +848,7 @@ export interface ResourceParametersCfXsa {
    * [CF/XSA] The version of the provider MTA.
    */
   version?: string;
-  target?: ResourceConfigurationTarget1;
-  [k: string]: unknown | undefined;
-}
-/**
- * [CF/XSA] The name of the organization and space in which the provider MTA is deployed.
- */
-export interface ResourceConfigurationTarget1 {
-  /**
-   * [CF/XSA] The org in which the configuration will be looked for
-   */
-  org?: string;
-  /**
-   * [CF/XSA] The space in which the configuration will be looked for
-   */
-  space?: string;
+  target?: ResourceConfigurationTarget;
   [k: string]: unknown | undefined;
 }
 export interface ResourceParametersXsa {
@@ -1011,42 +871,6 @@ export interface ResourceParametersXsa {
    */
   siteId?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the resource's parameters.
- */
-export interface ParametersMetadata1 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the required properties.
- */
-export interface PropertiesMetadata8 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }
 /**
  * Configuration parameters that are used when provisioning the resource in the target runtime environment.
@@ -1104,78 +928,4 @@ export interface ApplyNamespaceValues {
    */
   'as-suffix'?: boolean;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the required parameters.
- */
-export interface ParametersMetadata2 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Global parameters that are used when building or deploying the application
- */
-export interface Parameters1 {
-  /**
-   * Apply namespace to application names, service names and application routes.
-   */
-  'apply-namespace'?: ApplyNamespaceValues[];
-  /**
-   * [CF] Defines how long, in seconds, your application can take during staging before the MTA operation times out.
-   */
-  'apps-stage-timeout'?: number;
-  /**
-   * [CF] Defines how long, in seconds, your application can take to start before the MTA operation times out.
-   */
-  'apps-start-timeout'?: number;
-  /**
-   * [CF] Defines how long, in seconds, your application can take to execute a task before the MTA operation times out
-   */
-  'apps-task-execution-timeout'?: number;
-  /**
-   * [CF] Defines how long, in seconds, you can upload your application binary before the MTA operation times out.
-   */
-  'apps-upload-timeout'?: number;
-  /**
-   * [CF/XSA] Defines if parallel deployment of modules is enabled. When enabled, modules without explicitly set deployed-after parameter are deployed in parallel.
-   */
-  'enable-parallel-deployments'?: boolean;
-  /**
-   * [CF/XSA] Indicates if the existing routes of all applications within that MTA should be kept.
-   */
-  'keep-existing-routes'?: boolean;
-  /**
-   * [CF] Enables dependency-aware stop ordering during the final phase of blue-green deployments.
-   */
-  'bg-dependency-aware-stop-order'?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the global parameters.
- */
-export interface ParametersMetadata3 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }

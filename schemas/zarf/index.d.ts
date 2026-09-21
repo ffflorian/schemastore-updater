@@ -32,7 +32,7 @@ export interface HttpsGithubComZarfDevZarfSrcApiV1Alpha1ZarfPackage {
    * This interface was referenced by `HttpsGithubComZarfDevZarfSrcApiV1Alpha1ZarfPackage`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Package metadata.
@@ -105,7 +105,7 @@ export interface ZarfMetadata {
    * This interface was referenced by `ZarfMetadata`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Zarf-generated package build data.
@@ -165,7 +165,7 @@ export interface ZarfBuildData {
    * This interface was referenced by `ZarfBuildData`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfComponent is the primary functional grouping of assets to deploy by Zarf.
@@ -227,7 +227,7 @@ export interface ZarfComponent {
    * This interface was referenced by `ZarfComponent`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Filter when this component is included in package creation or deployment.
@@ -246,7 +246,7 @@ export interface ZarfComponentOnlyTarget {
    * This interface was referenced by `ZarfComponentOnlyTarget`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Only deploy component to specified clusters.
@@ -264,7 +264,7 @@ export interface ZarfComponentOnlyCluster {
    * This interface was referenced by `ZarfComponentOnlyCluster`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Import a component from another Zarf package.
@@ -286,7 +286,7 @@ export interface ZarfComponentImport {
    * This interface was referenced by `ZarfComponentImport`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfManifest defines raw manifests Zarf will deploy as a helm chart.
@@ -320,7 +320,7 @@ export interface ZarfManifest {
    * This interface was referenced by `ZarfManifest`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfChart defines a helm chart to be deployed.
@@ -378,7 +378,7 @@ export interface ZarfChart {
    * This interface was referenced by `ZarfChart`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfChartVariable represents a variable that can be set for a Helm chart overrides.
@@ -400,7 +400,7 @@ export interface ZarfChartVariable {
    * This interface was referenced by `ZarfChartVariable`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfDataInjection is a data-injection definition.
@@ -419,7 +419,7 @@ export interface ZarfDataInjection {
    * This interface was referenced by `ZarfDataInjection`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The target pod + container to inject the data into.
@@ -445,7 +445,7 @@ export interface ZarfContainerTarget {
    * This interface was referenced by `ZarfContainerTarget`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfFile defines a file to deploy.
@@ -479,7 +479,7 @@ export interface ZarfFile {
    * This interface was referenced by `ZarfFile`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * [Deprecated] (replaced by actions) Custom commands to run before or after package deployment. This will be removed in Zarf v1.0.0.
@@ -513,20 +513,20 @@ export interface DeprecatedZarfComponentScripts {
    * This interface was referenced by `DeprecatedZarfComponentScripts`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Custom commands to run at various stages of a package lifecycle.
  */
 export interface ZarfComponentActions {
   onCreate?: ZarfComponentActionSet;
-  onDeploy?: ZarfComponentActionSet1;
-  onRemove?: ZarfComponentActionSet2;
+  onDeploy?: ZarfComponentActionSet;
+  onRemove?: ZarfComponentActionSet;
   /**
    * This interface was referenced by `ZarfComponentActions`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Actions to run during package creation.
@@ -553,13 +553,13 @@ export interface ZarfComponentActionSet {
    * This interface was referenced by `ZarfComponentActionSet`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    *
-   * This interface was referenced by `ZarfComponentActionSet1`'s JSON-Schema definition
+   * This interface was referenced by `ZarfComponentActionSet`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    *
-   * This interface was referenced by `ZarfComponentActionSet2`'s JSON-Schema definition
+   * This interface was referenced by `ZarfComponentActionSet`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Default configuration for all actions in this set.
@@ -590,7 +590,7 @@ export interface ZarfComponentActionDefaults {
    * This interface was referenced by `ZarfComponentActionDefaults`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * (cmd only) Indicates a preference for a shell for the provided cmd to be executed in on supported operating systems.
@@ -612,10 +612,10 @@ export interface Shell {
    * This interface was referenced by `Shell`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    *
-   * This interface was referenced by `Shell1`'s JSON-Schema definition
+   * This interface was referenced by `Shell`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * ZarfComponentAction represents a single action to run during a zarf package operation.
@@ -645,7 +645,7 @@ export interface ZarfComponentAction {
    * The command to run. Must specify either cmd or wait for the action to do anything.
    */
   cmd?: string;
-  shell?: Shell1;
+  shell?: Shell;
   /**
    * [Deprecated] (replaced by setVariables) (onDeploy/cmd only) The name of a variable to update with the output of the command. This variable will be available to all remaining actions and components in the package. This will be removed in Zarf v1.0.0.
    */
@@ -663,32 +663,7 @@ export interface ZarfComponentAction {
    * This interface was referenced by `ZarfComponentAction`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
-}
-/**
- * (cmd only) Indicates a preference for a shell for the provided cmd to be executed in on supported operating systems.
- */
-export interface Shell1 {
-  /**
-   * (default 'powershell') Indicates a preference for the shell to use on Windows systems (note that choosing 'cmd' will turn off migrations like touch -> New-Item)
-   */
-  windows?: string;
-  /**
-   * (default 'sh') Indicates a preference for the shell to use on Linux systems
-   */
-  linux?: string;
-  /**
-   * (default 'sh') Indicates a preference for the shell to use on macOS systems
-   */
-  darwin?: string;
-  /**
-   * This interface was referenced by `Shell`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   *
-   * This interface was referenced by `Shell1`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Variable represents a variable that has a value set programmatically
@@ -718,7 +693,7 @@ export interface Variable {
    * This interface was referenced by `Variable`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Wait for a condition to be met before continuing. Must specify either cmd or wait for the action. See the 'zarf tools wait-for' command for more info.
@@ -730,7 +705,7 @@ export interface ZarfComponentActionWait {
    * This interface was referenced by `ZarfComponentActionWait`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Wait for a condition to be met in the cluster before continuing. Only one of cluster or network can be specified.
@@ -756,7 +731,7 @@ export interface ZarfComponentActionWaitCluster {
    * This interface was referenced by `ZarfComponentActionWaitCluster`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Wait for a condition to be met on the network before continuing. Only one of cluster or network can be specified.
@@ -778,73 +753,7 @@ export interface ZarfComponentActionWaitNetwork {
    * This interface was referenced by `ZarfComponentActionWaitNetwork`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
-}
-/**
- * Actions to run during package deployment.
- */
-export interface ZarfComponentActionSet1 {
-  defaults?: ZarfComponentActionDefaults;
-  /**
-   * Actions to run at the start of an operation.
-   */
-  before?: ZarfComponentAction[];
-  /**
-   * Actions to run at the end of an operation.
-   */
-  after?: ZarfComponentAction[];
-  /**
-   * Actions to run if all operations succeed.
-   */
-  onSuccess?: ZarfComponentAction[];
-  /**
-   * Actions to run if all operations fail.
-   */
-  onFailure?: ZarfComponentAction[];
-  /**
-   * This interface was referenced by `ZarfComponentActionSet`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   *
-   * This interface was referenced by `ZarfComponentActionSet1`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   *
-   * This interface was referenced by `ZarfComponentActionSet2`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   */
-  [k: string]: unknown;
-}
-/**
- * Actions to run during package removal.
- */
-export interface ZarfComponentActionSet2 {
-  defaults?: ZarfComponentActionDefaults;
-  /**
-   * Actions to run at the start of an operation.
-   */
-  before?: ZarfComponentAction[];
-  /**
-   * Actions to run at the end of an operation.
-   */
-  after?: ZarfComponentAction[];
-  /**
-   * Actions to run if all operations succeed.
-   */
-  onSuccess?: ZarfComponentAction[];
-  /**
-   * Actions to run if all operations fail.
-   */
-  onFailure?: ZarfComponentAction[];
-  /**
-   * This interface was referenced by `ZarfComponentActionSet`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   *
-   * This interface was referenced by `ZarfComponentActionSet1`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   *
-   * This interface was referenced by `ZarfComponentActionSet2`'s JSON-Schema definition
-   * via the `patternProperty` "^x-".
-   */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * NamespacedObjectKindReference is a reference to a specific resource in a namespace using its kind and API version.
@@ -870,7 +779,7 @@ export interface NamespacedObjectKindReference {
    * This interface was referenced by `NamespacedObjectKindReference`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Constant are constants that can be used to dynamically template K8s resources or run in actions.
@@ -900,7 +809,7 @@ export interface Constant {
    * This interface was referenced by `Constant`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * InteractiveVariable is a variable that can be used to prompt a user for more information
@@ -942,5 +851,5 @@ export interface InteractiveVariable {
    * This interface was referenced by `InteractiveVariable`'s JSON-Schema definition
    * via the `patternProperty` "^x-".
    */
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }

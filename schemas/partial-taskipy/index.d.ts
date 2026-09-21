@@ -46,13 +46,13 @@ export interface Taskipy {
  * task definitions
  */
 export interface Tasks {
-  [k: string]: Task;
+  [k: string]: Task | undefined;
 }
 /**
  * variables used in your tasks
  */
 export interface Variables {
-  [k: string]: Variable;
+  [k: string]: Variable | undefined;
 }
 export interface Variable1 {
   var?: VariableValue;

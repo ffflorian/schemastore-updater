@@ -6,8 +6,7 @@ export type AcceptsTheSyntaxForSearchPatternOnDirectoryEnumerateFiles = string;
 export type LimitsTheImagesOptimizedByImgbotByEssentiallyIgnoringThem =
   AcceptsTheSyntaxForSearchPatternOnDirectoryEnumerateFiles[];
 export type OptInToUseLossyCompressionAlgorithmsTheDefaultBehaviourWithoutThisSettingIsLossLessCompression =
-  | boolean
-  | ('true' | 'false');
+  boolean | ('true' | 'false');
 export type OptInToAlsoCompressWikiRepoTheDefaultBehaviourIsOptOut = boolean | ('true' | 'false');
 export type CanBeUsedToLimitTheFrequencyOfPRsImgbotWillOpenOverTime = number;
 

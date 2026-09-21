@@ -88,7 +88,7 @@ export interface PrekToml {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^\S+$".
      */
-    [k: string]: number;
+    [k: string]: number | undefined;
   };
   repos: Repo[];
   /**

@@ -4,25 +4,22 @@
  * A localized value is either a plain string or an object that carries the localized string together with an optional language tag and text direction.
  */
 export type LocalizedValue =
-  | (
-      | string
-      | {
-          /**
-           * The localized string.
-           */
-          value: string;
-          /**
-           * The language tag of the localized value.
-           */
-          lang?: string;
-          /**
-           * The base direction of the localized value.
-           */
-          dir?: 'ltr' | 'rtl' | 'auto';
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | string
+  | {
+      /**
+       * The localized string.
+       */
+      value: string;
+      /**
+       * The language tag of the localized value.
+       */
+      lang?: string;
+      /**
+       * The base direction of the localized value.
+       */
+      dir?: 'ltr' | 'rtl' | 'auto';
+      [k: string]: unknown | undefined;
+    };
 
 export interface JSONSchemaForWebApplicationManifestFiles {
   /**

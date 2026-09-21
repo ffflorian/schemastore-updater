@@ -36,15 +36,7 @@ export type UnitOfMeasure = string;
  * The shape of the material represented graphically.
  */
 export type MaterialShape =
-  | 'circle'
-  | 'square'
-  | 'diamond'
-  | 'rectangle'
-  | 'parallelogram'
-  | 'trapezoid'
-  | 'triangle'
-  | 'pentagon'
-  | 'hexagon';
+  'circle' | 'square' | 'diamond' | 'rectangle' | 'parallelogram' | 'trapezoid' | 'triangle' | 'pentagon' | 'hexagon';
 /**
  * Colors may be specified in any string-based format supported by the Color constructor documented at https://www.npmjs.com/package/color
  */
@@ -200,7 +192,7 @@ export interface ABCSupplyPlanJSONSchema {
  * A mapping of material IDs to their respective states within the ABC system.
  */
 export interface ABCMaterialsMap {
-  [k: string]: ABCMaterialState;
+  [k: string]: ABCMaterialState | undefined;
 }
 /**
  * Represents the state of a material in the system including its attributes and planning parameters.
@@ -293,7 +285,7 @@ export interface Demand {
    * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Map of other types of demand not included in the primary demand values.
@@ -312,7 +304,7 @@ export interface OtherDemand {
    * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Annotations related to other demand entries, providing additional context.
@@ -322,7 +314,7 @@ export interface OtherDemandAnnotation {
    * This interface was referenced by `OtherDemandAnnotation`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * Map of actual quantities, corresponding to real data collected.
@@ -341,7 +333,7 @@ export interface Actuals {
    * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Map of planned order quantities, anticipated ahead of time.
@@ -360,7 +352,7 @@ export interface PlannedOrders {
    * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Adjustments made to account for expired materials, reducing quantities.
@@ -370,13 +362,13 @@ export interface ExpiryAdjustments {
    * This interface was referenced by `ExpiryAdjustments`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * A mapping of recipes, representing the relationships and dependencies between materials.
  */
 export interface RecipeMap {
-  [k: string]: RecipeState;
+  [k: string]: RecipeState | undefined;
 }
 /**
  * Defines a recipe within the system, including its components and yields.

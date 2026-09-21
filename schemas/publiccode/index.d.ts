@@ -312,7 +312,24 @@ export interface JSONSchemaForPubliccodeYml {
    * Information on the maintenance status of the software, useful to evaluate whether it is actively developed.
    */
   maintenance: {
-    [k: string]: unknown | undefined;
+    /**
+     * How the software is currently maintained.
+     */
+    type: 'internal' | 'contract' | 'community' | 'none';
+    /**
+     * The entity or entities currently contracted for maintaining the software. Mandatory when maintenance/type is contract, and must not be present otherwise.
+     *
+     * @minItems 1
+     */
+    contractors?: [Contractor, ...Contractor[]];
+    /**
+     * One or more contacts maintaining this software. This key is mandatory when maintenance/type is internal or community and optional otherwise.
+     *
+     * All contacts need to be a physical person, not a company or an organisation. If somebody is acting as a representative of an institution, it must be listed within the affiliation of the contact.
+     *
+     * @minItems 1
+     */
+    contacts?: [Contact, ...Contact[]];
   };
   /**
    * An overview of the localisation features of the software.
@@ -357,6 +374,42 @@ export interface JSONSchemaForPubliccodeYml {
    * DEPRECATED. Use the uppercase IT country code. The entire country-specific section will be removed in publiccode.yml 1.0.
    */
   it?: IT;
+}
+export interface Contractor {
+  /**
+   * The name of the contractor, whether it's a company or a physical person.
+   */
+  name: string;
+  /**
+   * The date (YYYY-MM-DD) at which the maintenance is going to end. For community maintenance, this should not be more than 2 years in the future, and needs to be updated regularly as the project continues.
+   */
+  until: string;
+  /**
+   * The e-mail address of the technical contact. It must be an address where the contact can be reached directly; do NOT use mailing lists or generic contact points like "info@acme.inc".
+   */
+  email?: string;
+  /**
+   * The maintainer website: either the main institutional website or a more project-specific page.
+   */
+  website?: string;
+}
+export interface Contact {
+  /**
+   * The full name of one of the technical contacts. It must be a real person; do NOT use generic contact information, company departments, associations, etc.
+   */
+  name: string;
+  /**
+   * The e-mail address of the technical contact. It must be an address where the contact can be reached directly; do NOT use mailing lists or generic contact points like "info@acme.inc".
+   */
+  email?: string;
+  /**
+   * phone number (with international prefix). This has to be a string.
+   */
+  phone?: string;
+  /**
+   * Explicit affiliation of the technical contact, such as a company or association name. Useful with multiple maintainers, to relate each contact to a maintainer entity.
+   */
+  affiliation?: string;
 }
 export interface Dependency {
   /**

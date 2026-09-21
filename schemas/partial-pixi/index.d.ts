@@ -265,7 +265,7 @@ export type Args1 = (
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[a-zA-Z_][a-zA-Z\d_]*$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     }
 )[];
 /**
@@ -412,16 +412,16 @@ export interface ToolPixiForPyprojectToml {
   dev?: Dev;
   environments?: Environments;
   feature?: Feature;
-  'host-dependencies'?: HostDependencies2;
+  'host-dependencies'?: HostDependencies;
   package?: Package;
   project?: Workspace1;
-  'pypi-dependencies'?: PypiDependencies2;
-  'pypi-options'?: PyPIOptions2;
-  'system-requirements'?: SystemRequirements1;
-  target?: Target5;
-  tasks?: Tasks2;
+  'pypi-dependencies'?: PypiDependencies;
+  'pypi-options'?: PyPIOptions;
+  'system-requirements'?: SystemRequirements;
+  target?: Target;
+  tasks?: Tasks;
   tool?: Tool;
-  workspace?: Workspace2;
+  workspace?: Workspace1;
   [k: string]: unknown | undefined;
 }
 /**
@@ -441,7 +441,7 @@ export interface Env {
  * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
  */
 export interface BuildDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
  * A precise description of a `conda` package version.
@@ -468,13 +468,13 @@ export interface MatchspecTable {
  * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
  */
 export interface Constraints {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
  * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
  */
 export interface Dependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
  * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
@@ -504,7 +504,7 @@ export interface Environments {
    * This interface was referenced by `Environments`'s JSON-Schema definition
    * via the `patternProperty` "^[a-z\d\-]+$".
    */
-  [k: string]: Environment | string[];
+  [k: string]: Environment | string[] | undefined;
 }
 /**
  * A composition of the dependencies of features which can be activated to run tasks or provide a shell
@@ -524,13 +524,13 @@ export interface Feature {
  * A composable aspect of the project which can contribute dependencies and tasks to an environment
  */
 export interface Feature1 {
-  activation?: Activation1;
-  'build-dependencies'?: BuildDependencies1;
+  activation?: Activation;
+  'build-dependencies'?: BuildDependencies;
   'channel-priority'?: ChannelPriority;
   channels?: Channels;
-  constraints?: Constraints1;
-  dependencies?: Dependencies1;
-  dev?: Dev1;
+  constraints?: Constraints;
+  dependencies?: Dependencies;
+  dev?: Dev;
   'host-dependencies'?: HostDependencies;
   platforms?: Platforms;
   'pypi-dependencies'?: PypiDependencies;
@@ -538,20 +538,7 @@ export interface Feature1 {
   'solve-strategy'?: SolveStrategy;
   'system-requirements'?: SystemRequirements;
   target?: Target;
-  tasks?: Tasks1;
-}
-/**
- * The scripts used on the activation of environments using this feature
- */
-export interface Activation1 {
-  env?: Env;
-  scripts?: Scripts;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
+  tasks?: Tasks;
 }
 /**
  * A precise description of a `conda` channel, with an optional priority.
@@ -561,43 +548,23 @@ export interface ChannelInlineTable {
   priority?: Priority;
 }
 /**
- * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
- */
-export interface Constraints1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export interface Dependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev1 {
-  [k: string]: SourceSpecTable | undefined;
-}
-/**
  * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
  */
 export interface HostDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
  * The PyPI dependencies of this feature
  */
 export interface PypiDependencies {
   [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
+    | string
+    | PyPIVersion
+    | PyPIGitBranchRequirement
+    | PyPIGitTagRequirement
+    | PyPIGitRevRequirement
+    | PyPIPathRequirement
+    | PyPIUrlRequirement
     | undefined;
 }
 export interface PyPIVersion {
@@ -653,15 +620,13 @@ export interface PyPIOptions {
  */
 export interface DependencyOverrides {
   [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
+    | string
+    | PyPIVersion
+    | PyPIGitBranchRequirement
+    | PyPIGitTagRequirement
+    | PyPIGitRevRequirement
+    | PyPIPathRequirement
+    | PyPIUrlRequirement
     | undefined;
 }
 /**
@@ -701,67 +666,14 @@ export interface Target {
  * A machine-specific configuration of dependencies and tasks
  */
 export interface Target1 {
-  activation?: Activation2;
-  'build-dependencies'?: BuildDependencies2;
-  constraints?: Constraints2;
-  dependencies?: Dependencies2;
-  dev?: Dev2;
-  'host-dependencies'?: HostDependencies1;
-  'pypi-dependencies'?: PypiDependencies1;
+  activation?: Activation;
+  'build-dependencies'?: BuildDependencies;
+  constraints?: Constraints;
+  dependencies?: Dependencies;
+  dev?: Dev;
+  'host-dependencies'?: HostDependencies;
+  'pypi-dependencies'?: PypiDependencies;
   tasks?: Tasks;
-}
-/**
- * The scripts used on the activation of the project for this target
- */
-export interface Activation2 {
-  env?: Env;
-  scripts?: Scripts;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
- */
-export interface Constraints2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export interface Dependencies2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev2 {
-  [k: string]: SourceSpecTable | undefined;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The PyPI dependencies for this target
- */
-export interface PypiDependencies1 {
-  [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
-    | undefined;
 }
 /**
  * The tasks of the target
@@ -771,7 +683,7 @@ export interface Tasks {
    * This interface was referenced by `Tasks`'s JSON-Schema definition
    * via the `patternProperty` "^[^\s\$]+$".
    */
-  [k: string]: TaskInlineTable | DependsOn1[] | string;
+  [k: string]: TaskInlineTable | DependsOn1[] | string | undefined;
 }
 /**
  * A precise definition of a task.
@@ -785,7 +697,7 @@ export interface TaskInlineTable {
   'depends-on'?: DependsOn;
   depends_on?: DependsOn2;
   description?: Description;
-  env?: Env1;
+  env?: Env;
   inputs?: Inputs;
   outputs?: Outputs;
 }
@@ -806,45 +718,23 @@ export interface DependsOn1 {
   task: Task;
 }
 /**
- * A map of environment variables to values, used in the task, these will be overwritten by the shell.
- */
-export interface Env1 {
-  [k: string]: string | undefined;
-}
-/**
- * The tasks provided by this feature
- */
-export interface Tasks1 {
-  /**
-   * This interface was referenced by `Tasks1`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
  * The package's metadata information
  */
 export interface Package {
   authors?: Authors;
   build: Build1;
-  'build-dependencies'?: BuildDependencies3;
+  'build-dependencies'?: BuildDependencies;
   description?: Description1;
   documentation?: Documentation;
   homepage?: Homepage;
-  'host-dependencies'?: HostDependencies3;
+  'host-dependencies'?: HostDependencies;
   license?: License2;
   'license-file'?: LicenseFile;
   name?: Name1;
   readme?: Readme;
   repository?: Repository;
   'run-dependencies'?: RunDependencies;
-  target?: Target3;
+  target?: Target;
   version?: Version4;
 }
 /**
@@ -868,13 +758,13 @@ export interface Build1 {
  * Additional dependencies to install alongside the build backend
  */
 export interface AdditionalDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
  * The build backend to instantiate
  */
 export interface BuildBackend {
-  'additional-dependencies'?: AdditionalDependencies1;
+  'additional-dependencies'?: AdditionalDependencies;
   branch?: Branch;
   build?: Build;
   'build-number'?: BuildNumber;
@@ -893,12 +783,6 @@ export interface BuildBackend {
   tag?: Tag;
   url?: Url;
   version?: Version;
-}
-/**
- * Additional dependencies to install alongside the build backend
- */
-export interface AdditionalDependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
 }
 /**
  * The configuration of the build backend
@@ -927,37 +811,13 @@ export interface Target2 {
  * Target-specific build configuration for different platforms
  */
 export interface BuildTarget {
-  config?: Config1;
-}
-/**
- * Target-specific configuration for the build backend
- */
-export interface Config1 {
-  [k: string]: unknown | undefined;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies3 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies3 {
-  [k: string]: (string | MatchspecTable) | undefined;
+  config?: Config;
 }
 /**
  * The `conda` dependencies required at runtime. See https://pixi.sh/latest/build/dependency_types/ for more information.
  */
 export interface RunDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * Machine-specific aspects of the package
- */
-export interface Target3 {
-  [k: string]: Target1 | undefined;
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
  * The project's metadata information
@@ -978,7 +838,7 @@ export interface Workspace1 {
   name?: Name;
   platforms?: Platforms;
   preview?: Preview;
-  'pypi-options'?: PyPIOptions1;
+  'pypi-options'?: PyPIOptions;
   readme?: Readme1;
   repository?: Repository1;
   'requires-pixi'?: RequiresPixi;
@@ -998,21 +858,6 @@ export interface BuildVariants {
  */
 export interface CondaPypiMap {
   [k: string]: string | undefined;
-}
-/**
- * Options related to PyPI indexes for this project
- */
-export interface PyPIOptions1 {
-  'dependency-overrides'?: DependencyOverrides;
-  'extra-index-urls'?: ExtraIndexUrls;
-  'find-links'?: FindLinks;
-  'index-strategy'?: IndexStrategy;
-  'index-url'?: IndexUrl;
-  'no-binary'?: NoBinary;
-  'no-build'?: NoBuild;
-  'no-build-isolation'?: NoBuildIsolation;
-  'prerelease-mode'?: PrereleaseMode;
-  'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
 }
 /**
  * Options related to S3 for this project
@@ -1038,103 +883,11 @@ export interface Target4 {
  * Target-specific configuration for a workspace
  */
 export interface WorkspaceTarget {
-  'build-variants'?: BuildVariants1;
-}
-/**
- * The build variants for this workspace target
- */
-export interface BuildVariants1 {
-  [k: string]: string[] | undefined;
-}
-/**
- * The PyPI dependencies
- */
-export interface PypiDependencies2 {
-  [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
-    | undefined;
-}
-/**
- * Options related to PyPI indexes, on the default feature
- */
-export interface PyPIOptions2 {
-  'dependency-overrides'?: DependencyOverrides;
-  'extra-index-urls'?: ExtraIndexUrls;
-  'find-links'?: FindLinks;
-  'index-strategy'?: IndexStrategy;
-  'index-url'?: IndexUrl;
-  'no-binary'?: NoBinary;
-  'no-build'?: NoBuild;
-  'no-build-isolation'?: NoBuildIsolation;
-  'prerelease-mode'?: PrereleaseMode;
-  'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
-}
-/**
- * The system requirements of the project
- */
-export interface SystemRequirements1 {
-  archspec?: Archspec;
-  cuda?: Cuda;
-  libc?: Libc;
-  linux?: Linux;
-  macos?: Macos;
-  unix?: Unix;
-}
-/**
- * The targets of the project
- */
-export interface Target5 {
-  [k: string]: Target1 | undefined;
-}
-/**
- * The tasks of the project
- */
-export interface Tasks2 {
-  /**
-   * This interface was referenced by `Tasks2`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string;
+  'build-variants'?: BuildVariants;
 }
 /**
  * Third-party tool configurations, ignored by pixi
  */
 export interface Tool {
   [k: string]: unknown | undefined;
-}
-/**
- * The workspace's metadata information
- */
-export interface Workspace2 {
-  authors?: Authors1;
-  'build-variants'?: BuildVariants;
-  'build-variants-files'?: BuildVariantsFiles;
-  'channel-priority'?: ChannelPriority;
-  channels: Channels;
-  'conda-pypi-map'?: CondaPypiMap;
-  description?: Description;
-  documentation?: Documentation1;
-  'exclude-newer'?: ExcludeNewer;
-  homepage?: Homepage1;
-  license?: License;
-  'license-file'?: LicenseFile1;
-  name?: Name;
-  platforms?: Platforms;
-  preview?: Preview;
-  'pypi-options'?: PyPIOptions1;
-  readme?: Readme1;
-  repository?: Repository1;
-  'requires-pixi'?: RequiresPixi;
-  's3-options'?: S3Options;
-  'solve-strategy'?: SolveStrategy;
-  target?: Target4;
-  version?: Version;
 }

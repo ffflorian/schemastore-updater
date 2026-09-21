@@ -309,10 +309,10 @@ export interface Security {
  */
 export interface Email {
   registration: EmailContent;
-  confirmation: EmailContent1;
-  new_account: EmailContent2;
-  password_reset: EmailContent3;
-  password_reset_confirmation: EmailContent4;
+  confirmation: EmailContent;
+  new_account: EmailContent;
+  password_reset: EmailContent;
+  password_reset_confirmation: EmailContent;
   /**
    * The 'From:' to sent to mail with
    */
@@ -346,58 +346,6 @@ export interface Email {
  * The registration email
  */
 export interface EmailContent {
-  /**
-   * Subject of the email
-   */
-  subject?: string;
-  /**
-   * Body (or content) or the email
-   */
-  body?: string;
-}
-/**
- * The confirmation email
- */
-export interface EmailContent1 {
-  /**
-   * Subject of the email
-   */
-  subject?: string;
-  /**
-   * Body (or content) or the email
-   */
-  body?: string;
-}
-/**
- * The new account email
- */
-export interface EmailContent2 {
-  /**
-   * Subject of the email
-   */
-  subject?: string;
-  /**
-   * Body (or content) or the email
-   */
-  body?: string;
-}
-/**
- * The password reset email
- */
-export interface EmailContent3 {
-  /**
-   * Subject of the email
-   */
-  subject?: string;
-  /**
-   * Body (or content) or the email
-   */
-  body?: string;
-}
-/**
- * The password reset confirmation email
- */
-export interface EmailContent4 {
   /**
    * Subject of the email
    */
@@ -454,33 +402,12 @@ export interface Social {
  */
 export interface Legal {
   tos: ExternalReference;
-  privacy_policy: ExternalReference1;
+  privacy_policy: ExternalReference;
 }
 /**
  * The Terms of Services
  */
 export interface ExternalReference {
-  /**
-   * The URL to access the content
-   */
-  url?: string;
-  /**
-   * The content of the reference
-   */
-  content?:
-    | {
-        /**
-         * The file to import content from
-         */
-        from_file?: string;
-        [k: string]: unknown | undefined;
-      }
-    | string;
-}
-/**
- * The Privacy Policy
- */
-export interface ExternalReference1 {
   /**
    * The URL to access the content
    */

@@ -73,9 +73,69 @@ export interface JSONSchemaForWordPressBlocks {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "[a-zA-Z]".
      */
-    [k: string]: {
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | ({
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * The type indicates the type of data that is stored by the attribute. It does not indicate where the data is stored, which is defined by the source field.
+           *
+           * A type is required, unless an enum is provided. A type can be used with an enum.
+           *
+           * Note that the validity of an object is determined by your source. For an example, see the query details below.
+           */
+          type?:
+            | ('null' | 'boolean' | 'object' | 'array' | 'string' | 'rich-text' | 'integer' | 'number')
+            | ('null' | 'boolean' | 'object' | 'array' | 'string' | 'integer' | 'number')[];
+          /**
+           * An attribute can be defined as one of a fixed set of values. This is specified by an enum, which contains an array of allowed values:
+           */
+          enum?: (boolean | number | string)[];
+          /**
+           * Attribute sources are used to define how the attribute values are extracted from saved post content. They provide a mechanism to map from the saved markup to a JavaScript representation of a block.
+           */
+          source?: 'attribute' | 'text' | 'rich-text' | 'html' | 'raw' | 'query' | 'meta';
+          /**
+           * The selector can be an HTML tag, or anything queryable with querySelector, such as a class or id attribute. Examples are given below.
+           *
+           * For example, a selector of img will match an img element, and img.class will match an img element that has a class of class.
+           */
+          selector?: string;
+          /**
+           * Use an attribute source to extract the value from an attribute in the markup. The attribute is specified by the attribute field, which must be supplied.
+           *
+           * Example: Extract the src attribute from an image found in the block’s markup.
+           */
+          attribute?: string;
+          /**
+           * Use query to extract an array of values from markup. Entries of the array are determined by the selector argument, where each matched element within the block will have an entry structured corresponding to the second argument, an object of attribute sources.
+           */
+          query?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Although attributes may be obtained from a post’s meta, meta attribute sources are considered deprecated; EntityProvider and related hook APIs should be used instead, as shown in the Create Meta Block how-to here:
+           *
+           * https://developer.wordpress.org/block-editor/how-to-guides/metabox/#step-2-add-meta-block
+           */
+          meta?: string;
+          /**
+           * Designates the conceptual type of the attribute.
+           *
+           * The `content` value marks the attribute as user-editable content, and the `local` value marks the attribute as temporary and non-persistable.
+           */
+          role?: 'content' | 'local';
+          /**
+           * A block attribute can contain a default value, which will be used if the type and source do not match anything within the block content.
+           *
+           * The value is provided by the default field, and the value should match the expected format of the attribute.
+           */
+          default?: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        })
+      | undefined;
   };
   /**
    * Context provided for available access by descendants of blocks of this type, in the form of an object which maps a context name to one of the block’s own attribute.
@@ -87,7 +147,7 @@ export interface JSONSchemaForWordPressBlocks {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "[a-zA-Z]".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Array of the names of context values to inherit from an ancestor provider.
@@ -103,6 +163,10 @@ export interface JSONSchemaForWordPressBlocks {
      * Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link.
      */
     anchor?: boolean;
+    /**
+     * Allows PHP-only blocks with a `render_callback` to appear in the block editor without JavaScript registration. The editor renders them with `ServerSideRender`. If a block uses an API version older than 3, or does not specify one, the editor uses version 3.
+     */
+    autoRegister?: boolean;
     /**
      * This property adds block controls which allow to change block’s alignment.
      */
@@ -222,6 +286,10 @@ export interface JSONSchemaForWordPressBlocks {
        */
       minHeight?: boolean;
       /**
+       * Allow blocks to define a minimum width value.
+       */
+      minWidth?: boolean;
+      /**
        * Allow blocks to define a width value.
        */
       width?: boolean;
@@ -253,6 +321,10 @@ export interface JSONSchemaForWordPressBlocks {
        * Allow blocks to define values related to the size of a background image, including size, position, and repeat controls
        */
       backgroundSize?: boolean;
+      /**
+       * Allow blocks to define gradient values.
+       */
+      gradient?: boolean;
       [k: string]: unknown | undefined;
     };
     /**
@@ -317,6 +389,10 @@ export interface JSONSchemaForWordPressBlocks {
              * The column count value.
              */
             columnCount?: number;
+            /**
+             * Whether grid columns stretch to fill the available space (auto-fit) instead of leaving empty tracks (auto-fill).
+             */
+            autoFit?: boolean;
             [k: string]: unknown | undefined;
           };
           /**
@@ -332,7 +408,7 @@ export interface JSONSchemaForWordPressBlocks {
            */
           allowInheriting?: boolean;
           /**
-           * For the `flex` layout type only, determines display of sizing controls (Fit/Fill/Fixed) on all child blocks of the flex block.
+           * For the `flex` layout type only, determines display of sizing controls (Fit/Grow/Max/Fixed) on all child blocks of the flex block.
            */
           allowSizingOnChildren?: boolean;
           /**
@@ -433,6 +509,12 @@ export interface JSONSchemaForWordPressBlocks {
        * When the block declares support for textIndent, its attributes definition is extended to include the style attribute.
        */
       textIndent?: boolean;
+      /**
+       * This value signals that a block supports the text-shadow CSS style property. When it does, the block editor will show a UI control for the user to set its value if the theme declares support.
+       *
+       * When the block declares support for textShadow, its attributes definition is extended to include the style attribute.
+       */
+      textShadow?: boolean;
       [k: string]: unknown | undefined;
     };
     /**
@@ -509,6 +591,7 @@ export interface JSONSchemaForWordPressBlocks {
           aspectRatio?: string;
           height?: string;
           minHeight?: string;
+          minWidth?: string;
           width?: string;
           [k: string]: unknown | undefined;
         };
@@ -589,6 +672,10 @@ export interface JSONSchemaForWordPressBlocks {
      * Where each block itself is an object that contains the block name, the block attributes, and the blocks inner blocks.
      */
     innerBlocks?: unknown[];
+    /**
+     * Static HTML fragments interleaved with inner blocks, where null entries mark the positions of the inner blocks within the static markup. Only applies to the Custom HTML block.
+     */
+    innerContent?: (string | null)[];
     [k: string]: unknown | undefined;
   };
   /**
@@ -601,7 +688,7 @@ export interface JSONSchemaForWordPressBlocks {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-z][a-z0-9-]*\/[a-z][a-z0-9-]*$".
      */
-    [k: string]: 'before' | 'after' | 'firstChild' | 'lastChild';
+    [k: string]: 'before' | 'after' | 'firstChild' | 'lastChild' | undefined;
   };
   /**
    * Block type editor script definition. It will only be enqueued in the context of the editor.
@@ -671,6 +758,10 @@ export interface JSONSchemaForWordPressBlocks {
          * Initial configuration of nested blocks.
          */
         innerBlocks?: unknown[][];
+        /**
+         * Static HTML fragments interleaved with inner blocks, where null entries mark the positions of the inner blocks within the static markup. Only applies to the Custom HTML block.
+         */
+        innerContent?: (string | null)[];
         /**
          * Example provides structured data for the block preview. You can set to undefined to disable the preview shown for the block type.
          */

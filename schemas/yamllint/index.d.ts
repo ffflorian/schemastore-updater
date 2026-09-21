@@ -40,7 +40,7 @@ export type MaximumSpacesInsideEmpty = number;
 /**
  * Use this rule to control the use of flow sequences or the number of spaces inside brackets ([ and ]).
  */
-export type Brackets = Toggle | Rule2;
+export type Brackets = Toggle | Rule1;
 /**
  * Use this rule to control the number of spaces before and after colons (:).
  */
@@ -92,7 +92,7 @@ export type Present = boolean;
 /**
  * Use this rule to require or forbid the use of document start marker (---).
  */
-export type DocumentStart = Toggle | Rule8;
+export type DocumentStart = Toggle | Rule7;
 /**
  * Use this rule to set a maximal number of allowed consecutive blank lines.
  */
@@ -200,7 +200,7 @@ export type AllowNonBreakableInlineMappings = boolean;
  *
  * The POSIX standard requires the last line to end with a new line character. All UNIX tools expect a new line at the end of files. Most text editors use this convention too.
  */
-export type NewLineAtEndOfFile = Toggle | Rule17;
+export type NewLineAtEndOfFile = Toggle | Rule6;
 /**
  * Use this rule to force the type of new line characters.
  */
@@ -251,7 +251,7 @@ export type CheckKeys = boolean;
 /**
  * Use this rule to forbid trailing spaces at the end of lines.
  */
-export type TrailingSpaces = Toggle | Rule21;
+export type TrailingSpaces = Toggle | Rule6;
 /**
  * Use this rule to forbid non-explicitly typed truthy values other than allowed ones (by default: true and false), for example YES or off.
  *
@@ -351,14 +351,6 @@ export interface Rule1 {
   'max-spaces-inside-empty'?: MaximumSpacesInsideEmpty;
   [k: string]: unknown | undefined;
 }
-export interface Rule2 {
-  forbid?: Forbid;
-  'min-spaces-inside'?: MinimumSpacesInside;
-  'max-spaces-inside'?: MaximumSpacesInside;
-  'min-spaces-inside-empty'?: MinimumSpacesInsideEmpty;
-  'max-spaces-inside-empty'?: MaximumSpacesInsideEmpty;
-  [k: string]: unknown | undefined;
-}
 export interface Rule3 {
   'max-spaces-before'?: MaximumSpacesBefore;
   'max-spaces-after'?: MaximumSpacesAfter;
@@ -381,10 +373,6 @@ export interface Rule6 {
   [k: string]: unknown | undefined;
 }
 export interface Rule7 {
-  present?: Present;
-  [k: string]: unknown | undefined;
-}
-export interface Rule8 {
   present?: Present;
   [k: string]: unknown | undefined;
 }
@@ -431,10 +419,6 @@ export interface Rule16 {
   'allow-non-breakable-inline-mappings'?: AllowNonBreakableInlineMappings;
   [k: string]: unknown | undefined;
 }
-export interface Rule17 {
-  level?: 'error' | 'warning';
-  [k: string]: unknown | undefined;
-}
 export interface Rule18 {
   type?: Type;
   [k: string]: unknown | undefined;
@@ -442,10 +426,6 @@ export interface Rule18 {
 export interface Rule19 {
   'forbid-implicit-octal'?: ForbidImplicitOctal;
   'forbid-explicit-octal'?: ForbidExplicitOctal;
-  [k: string]: unknown | undefined;
-}
-export interface Rule21 {
-  level?: 'error' | 'warning';
   [k: string]: unknown | undefined;
 }
 export interface Rule22 {

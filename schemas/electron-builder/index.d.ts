@@ -262,7 +262,7 @@ export interface HttpsJsonSchemastoreOrgElectronBuilderJson {
    * Whether to fail if the application is not signed (to prevent unsigned app if code signing configuration is not correct).
    */
   readonly?: boolean;
-  releaseInfo?: ReleaseInfo3;
+  releaseInfo?: ReleaseInfo;
   /**
    * Whether to build using Electron Build Service if target not supported on current OS.
    */
@@ -1305,7 +1305,7 @@ export interface MacConfiguration {
         | string
       )[]
     | (null | string);
-  releaseInfo?: ReleaseInfo1;
+  releaseInfo?: ReleaseInfo;
   /**
    * Path of [requirements file](https://developer.apple.com/library/mac/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html) used in signing. Not applicable for MAS.
    */
@@ -1351,31 +1351,6 @@ export interface MacConfiguration {
    * Whether to sign app for development or for distribution.
    */
   type?: ('development' | 'distribution') | null;
-}
-/**
- * The release info. Intended for command line usage:
- *
- * ```
- * -c.releaseInfo.releaseNotes="new features"
- * ```
- */
-export interface ReleaseInfo1 {
-  /**
-   * The release date.
-   */
-  releaseDate?: string;
-  /**
-   * The release name.
-   */
-  releaseName?: null | string;
-  /**
-   * The release notes.
-   */
-  releaseNotes?: null | string;
-  /**
-   * The path to release notes file. Defaults to `release-notes-${platform}.md` (where `platform` it is current platform — `mac`, `linux` or `windows`) or `release-notes.md` in the [build resources](#MetadataDirectories-buildResources).
-   */
-  releaseNotesFile?: null | string;
 }
 export interface MasConfiguration {
   /**
@@ -1522,7 +1497,7 @@ export interface MasConfiguration {
         | string
       )[]
     | (null | string);
-  releaseInfo?: ReleaseInfo2;
+  releaseInfo?: ReleaseInfo;
   /**
    * Path of [requirements file](https://developer.apple.com/library/mac/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html) used in signing. Not applicable for MAS.
    */
@@ -1568,31 +1543,6 @@ export interface MasConfiguration {
    * Whether to sign app for development or for distribution.
    */
   type?: ('development' | 'distribution') | null;
-}
-/**
- * The release info. Intended for command line usage:
- *
- * ```
- * -c.releaseInfo.releaseNotes="new features"
- * ```
- */
-export interface ReleaseInfo2 {
-  /**
-   * The release date.
-   */
-  releaseDate?: string;
-  /**
-   * The release name.
-   */
-  releaseName?: null | string;
-  /**
-   * The release notes.
-   */
-  releaseNotes?: null | string;
-  /**
-   * The path to release notes file. Defaults to `release-notes-${platform}.md` (where `platform` it is current platform — `mac`, `linux` or `windows`) or `release-notes.md` in the [build resources](#MetadataDirectories-buildResources).
-   */
-  releaseNotesFile?: null | string;
 }
 export interface MsiOptions {
   /**
@@ -2104,8 +2054,7 @@ export interface PkgBackgroundOptions {
    * Options are: center, left, right, top, bottom, topleft, topright, bottomleft, bottomright
    */
   alignment?:
-    | ('bottom' | 'bottomleft' | 'bottomright' | 'center' | 'left' | 'right' | 'top' | 'topleft' | 'topright')
-    | null;
+    ('bottom' | 'bottomleft' | 'bottomright' | 'center' | 'left' | 'right' | 'top' | 'topleft' | 'topright') | null;
   /**
    * Path to the image to use as an installer background.
    */
@@ -2164,31 +2113,6 @@ export interface PortableOptions {
    * Defaults to [uuid](https://github.com/segmentio/ksuid) of build (changed on each build of portable executable).
    */
   unpackDirName?: string;
-}
-/**
- * The release info. Intended for command line usage:
- *
- * ```
- * -c.releaseInfo.releaseNotes="new features"
- * ```
- */
-export interface ReleaseInfo3 {
-  /**
-   * The release date.
-   */
-  releaseDate?: string;
-  /**
-   * The release name.
-   */
-  releaseName?: null | string;
-  /**
-   * The release notes.
-   */
-  releaseNotes?: null | string;
-  /**
-   * The path to release notes file. Defaults to `release-notes-${platform}.md` (where `platform` it is current platform — `mac`, `linux` or `windows`) or `release-notes.md` in the [build resources](#MetadataDirectories-buildResources).
-   */
-  releaseNotesFile?: null | string;
 }
 export interface SnapOptions {
   /**
@@ -2300,9 +2224,10 @@ export interface SnapOptions {
 }
 export interface PlugDescriptor {
   [k: string]:
-    | ({
+    | {
         [k: string]: unknown | undefined;
-      } | null)
+      }
+    | null
     | undefined;
 }
 export interface SquirrelWindowsOptions {
@@ -2467,7 +2392,7 @@ export interface WindowsConfiguration {
    * Defaults to common name from your code signing certificate.
    */
   publisherName?: string[] | (null | string);
-  releaseInfo?: ReleaseInfo4;
+  releaseInfo?: ReleaseInfo;
   /**
    * The [security level](https://msdn.microsoft.com/en-us/library/6ad1fshk.aspx#Anchor_9) at which the application requests to be executed.
    * Cannot be specified per target, allowed only in the `win`.
@@ -2513,29 +2438,4 @@ export interface WindowsConfiguration {
    * The [publisher name](#publisherName) will be used for the signature verification.
    */
   verifyUpdateCodeSignature?: boolean;
-}
-/**
- * The release info. Intended for command line usage:
- *
- * ```
- * -c.releaseInfo.releaseNotes="new features"
- * ```
- */
-export interface ReleaseInfo4 {
-  /**
-   * The release date.
-   */
-  releaseDate?: string;
-  /**
-   * The release name.
-   */
-  releaseName?: null | string;
-  /**
-   * The release notes.
-   */
-  releaseNotes?: null | string;
-  /**
-   * The path to release notes file. Defaults to `release-notes-${platform}.md` (where `platform` it is current platform — `mac`, `linux` or `windows`) or `release-notes.md` in the [build resources](#MetadataDirectories-buildResources).
-   */
-  releaseNotesFile?: null | string;
 }

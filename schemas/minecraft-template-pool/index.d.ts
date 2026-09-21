@@ -50,19 +50,6 @@ export type ElementType1 =
   | 'minecraft:legacy_single_pool_element'
   | 'minecraft:single_pool_element';
 /**
- * The namespaced ID of a processor if this is a string.
- */
-export type Processors2 =
-  | string
-  | {
-      processors?: Processors3;
-      [k: string]: unknown | undefined;
-    };
-/**
- * A list of processors to use.
- */
-export type Processors3 = Processor1[];
-/**
  * A list of structures to choose from.
  */
 export type Elements1 = Element2[];
@@ -106,10 +93,6 @@ export interface Element2 {
   location?: Location;
   projection?: Projection;
   element_type?: ElementType1;
-  processors?: Processors2;
-  [k: string]: unknown | undefined;
-}
-export interface Processor1 {
-  processor_type?: ProcessorType;
+  processors?: Processors;
   [k: string]: unknown | undefined;
 }

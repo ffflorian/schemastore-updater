@@ -62,69 +62,10 @@ export type HttpsWwwSchemastoreOrgPrometheusAlertmanagerJson = {
    */
   mute_time_intervals?: TimeInterval[] | null;
   time_intervals?: TimeInterval[] | null;
-} & ({
-  global?: {
-    /**
-     * The default SMTP From header field
-     */
-    smtp_from?: string;
-    /**
-     * The default SMTP smarthost used for sending emails, including port number. Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS).
-     */
-    smtp_smarthost?: string;
-    /**
-     * The default hostname to identify to the SMTP server
-     */
-    smtp_hello?: string;
-    smtp_auth_username?: string;
-    smtp_auth_password?: string;
-    smtp_auth_password_file?: string;
-    smtp_auth_identity?: string;
-    smtp_auth_secret?: string;
-    /**
-     * The default SMTP TLS requirement
-     */
-    smtp_require_tls?: boolean;
-    smtp_tls_config?: TlsConfig;
-    jira_api_url?: string;
-    slack_api_url?: string;
-    slack_api_url_file?: string;
-    victorops_api_key?: string;
-    victorops_api_key_file?: string;
-    victorops_api_url?: string;
-    pagerduty_url?: string;
-    opsgenie_api_key?: string;
-    opsgenie_api_key_file?: string;
-    opsgenie_api_url?: string;
-    rocketchat_api_url?: string;
-    rocketchat_token?: string;
-    rocketchat_token_file?: string;
-    rocketchat_token_id?: string;
-    rocketchat_token_id_file?: string;
-    wechat_api_url?: string;
-    wechat_api_secret?: string;
-    wechat_api_corp_id?: string;
-    telegram_api_url?: string;
-    webex_api_url?: string;
-    http_config?: HttpConfig;
-    resolve_timeout?: string;
-  };
-  /**
-   * Files from which custom notification template definitions are read. The last component may use a wildcard matcher, e.g. 'templates/*.tmpl'.
-   */
-  templates?: string[] | null;
-  route?: Route;
-  receivers?: Receiver[];
-  inhibit_rules?: InhibitRule[] | null;
-  /**
-   * DEPRECATED. A list of mute time intervals for muting routes. Use time_intervals
-   */
-  mute_time_intervals?: TimeInterval[] | null;
-  time_intervals?: TimeInterval[] | null;
-} | null);
+} | null;
 export type Labelname = string;
-export type Labelvalue = string | undefined;
-export type Regex = string | undefined;
+export type Labelvalue = string;
+export type Regex = string;
 /**
  * A list of matchers that an alert has to fulfill to match the node
  */
@@ -219,7 +160,7 @@ export interface HttpConfig {
    * Configure whether HTTP requests follow HTTP 3xx redirects
    */
   follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
+  tls_config?: TlsConfig;
   /**
    * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
    */
@@ -267,7 +208,7 @@ export interface Oauth2 {
   endpoint_params?: {
     [k: string]: string | undefined;
   };
-  tls_config?: TlsConfig1;
+  tls_config?: TlsConfig;
   /**
    * Optional proxy URL
    */
@@ -286,72 +227,6 @@ export interface Oauth2 {
   proxy_connect_header?: {
     [k: string]: string[] | undefined;
   };
-}
-/**
- * Configures the token request's TLS settings
- */
-export interface TlsConfig1 {
-  /**
-   * CA certificate to validate the server certificate with
-   */
-  ca_file?: string;
-  /**
-   * Certificate file for client cert authentication to the server
-   */
-  cert_file?: string;
-  /**
-   * Key files for client cert authentication to the server
-   */
-  key_file?: string;
-  /**
-   * ServerName extension to indicate the name of the server
-   */
-  server_name?: string;
-  /**
-   * Disable validation of the server certificate
-   */
-  insecure_skip_verify?: boolean;
-  /**
-   * Minimum acceptable TLS version
-   */
-  min_version?: 'TLS10' | 'TLS11' | 'TLS12' | 'TLS13';
-  /**
-   * Maximum acceptable TLS version
-   */
-  max_version?: 'TLS10' | 'TLS11' | 'TLS12' | 'TLS13';
-}
-/**
- * Configures the TLS settings
- */
-export interface TlsConfig2 {
-  /**
-   * CA certificate to validate the server certificate with
-   */
-  ca_file?: string;
-  /**
-   * Certificate file for client cert authentication to the server
-   */
-  cert_file?: string;
-  /**
-   * Key files for client cert authentication to the server
-   */
-  key_file?: string;
-  /**
-   * ServerName extension to indicate the name of the server
-   */
-  server_name?: string;
-  /**
-   * Disable validation of the server certificate
-   */
-  insecure_skip_verify?: boolean;
-  /**
-   * Minimum acceptable TLS version
-   */
-  min_version?: 'TLS10' | 'TLS11' | 'TLS12' | 'TLS13';
-  /**
-   * Maximum acceptable TLS version
-   */
-  max_version?: 'TLS10' | 'TLS11' | 'TLS12' | 'TLS13';
 }
 export interface Route {
   receiver?: string;
@@ -433,7 +308,7 @@ export interface Receiver {
      * Message avatar URL
      */
     avatar_url?: string;
-    http_config?: HttpConfig1;
+    http_config?: HttpConfig;
   }[];
   email_configs?: {
     /**
@@ -465,7 +340,7 @@ export interface Receiver {
      *  The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints
      */
     require_tls?: boolean;
-    tls_config?: TlsConfig3;
+    tls_config?: TlsConfig;
     /**
      * The HTML body of the email notification
      */
@@ -506,7 +381,7 @@ export interface Receiver {
      * Message body template
      */
     text?: string;
-    http_config?: HttpConfig2;
+    http_config?: HttpConfig;
   }[];
   msteamsv2_configs?: {
     /**
@@ -529,7 +404,7 @@ export interface Receiver {
      * Message body template
      */
     text?: string;
-    http_config?: HttpConfig3;
+    http_config?: HttpConfig;
   }[];
   jira_configs?: {
     /**
@@ -586,7 +461,7 @@ export interface Receiver {
     fields?: {
       [k: string]: unknown | undefined;
     };
-    http_config?: HttpConfig4;
+    http_config?: HttpConfig;
   }[];
   opsgenie_configs?: {
     /**
@@ -656,7 +531,7 @@ export interface Receiver {
      * Comma separated list of actions that will be available for the alert
      */
     actions?: string;
-    http_config?: HttpConfig5;
+    http_config?: HttpConfig;
   }[];
   pagerduty_configs?: {
     /**
@@ -740,7 +615,7 @@ export interface Receiver {
      * The class/type of the event
      */
     class?: string;
-    http_config?: HttpConfig6;
+    http_config?: HttpConfig;
   }[];
   pushover_configs?: {
     /**
@@ -799,7 +674,7 @@ export interface Receiver {
      * Optional time to live (TTL) to use for notification, see https://pushover.net/api#ttl
      */
     ttl?: string;
-    http_config?: HttpConfig7;
+    http_config?: HttpConfig;
   }[];
   rocketchat_configs?: {
     /**
@@ -892,7 +767,7 @@ export interface Receiver {
     title_link?: string;
     image_url?: string;
     thumb_url?: string;
-    http_config?: HttpConfig8;
+    http_config?: HttpConfig;
   }[];
   sns_configs?: {
     /**
@@ -948,7 +823,7 @@ export interface Receiver {
     attributes?: {
       [k: string]: string | undefined;
     };
-    http_config?: HttpConfig9;
+    http_config?: HttpConfig;
   }[];
   telegram_configs?: {
     /**
@@ -987,7 +862,7 @@ export interface Receiver {
      * Parse mode for telegram message, supported values are MarkdownV2, Markdown, HTML and empty string for plain text
      */
     parse_mode?: 'MarkdownV2' | 'Markdown' | 'HTML' | '';
-    http_config?: HttpConfig10;
+    http_config?: HttpConfig;
   }[];
   victorops_configs?: {
     /**
@@ -1026,7 +901,7 @@ export interface Receiver {
      * The monitoring tool the state message is from
      */
     monitoring_tool?: string;
-    http_config?: HttpConfig11;
+    http_config?: HttpConfig;
   }[];
   webex_configs?: {
     /**
@@ -1045,7 +920,7 @@ export interface Receiver {
      * Message template
      */
     message?: string;
-    http_config?: HttpConfig12;
+    http_config?: HttpConfig;
   }[];
   webhook_configs?: {
     /**
@@ -1060,7 +935,7 @@ export interface Receiver {
      * The endpoint to send HTTP POST requests to. url and url_file are mutually exclusive.
      */
     url_file?: string;
-    http_config?: HttpConfig13;
+    http_config?: HttpConfig;
     /**
      * The maximum number of alerts to include in a single webhook message. Alerts above this threshold are truncated. When leaving this at its default value of 0, all alerts are included.
      */
@@ -1094,1079 +969,6 @@ export interface Receiver {
     to_party?: string;
     to_tag?: string;
   }[];
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig1 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * TLS configuration
- */
-export interface TlsConfig3 {
-  /**
-   * CA certificate to validate the server certificate with
-   */
-  ca_file?: string;
-  /**
-   * Certificate file for client cert authentication to the server
-   */
-  cert_file?: string;
-  /**
-   * Key files for client cert authentication to the server
-   */
-  key_file?: string;
-  /**
-   * ServerName extension to indicate the name of the server
-   */
-  server_name?: string;
-  /**
-   * Disable validation of the server certificate
-   */
-  insecure_skip_verify?: boolean;
-  /**
-   * Minimum acceptable TLS version
-   */
-  min_version?: 'TLS10' | 'TLS11' | 'TLS12' | 'TLS13';
-  /**
-   * Maximum acceptable TLS version
-   */
-  max_version?: 'TLS10' | 'TLS11' | 'TLS12' | 'TLS13';
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig2 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig3 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration. You must use this configuration to supply the personal access token (PAT) as part of the HTTP `Authorization` header. For Jira Cloud, use basic_auth with the email address as the username and the PAT as the password. For Jira Data Center, use the 'authorization' field with 'credentials: <PAT value>'
- */
-export interface HttpConfig4 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig5 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig6 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig7 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig8 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig9 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig10 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig11 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration. You must use this configuration to supply the bot token as part of the HTTP `Authorization` header
- */
-export interface HttpConfig12 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
-}
-/**
- * The HTTP client's configuration
- */
-export interface HttpConfig13 {
-  /**
-   * Sets the `Authorization` header with the configured username and password. password and password_file are mutually exclusive
-   */
-  basic_auth?: {
-    username?: string;
-    password?: string;
-    password_file?: string;
-  };
-  /**
-   * Optional the `Authorization` header configuration
-   */
-  authorization?: {
-    /**
-     * Sets the authentication type
-     */
-    type?: string;
-    /**
-     * Sets the credentials. It is mutually exclusive with `credentials_file`
-     */
-    credentials?: string;
-    /**
-     * Sets the credentials with the credentials read from the configured file. It is mutually exclusive with `credentials`
-     */
-    credentials_file?: string;
-  };
-  oauth2?: Oauth2;
-  /**
-   * Whether to enable HTTP2
-   */
-  enable_http2?: boolean;
-  /**
-   * Optional proxy URL
-   */
-  proxy_url?: string;
-  /**
-   * Comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers
-   */
-  no_proxy?: string;
-  /**
-   * Use proxy URL indicated by environment variables (HTTP_PROXY, http_proxy, HTTPS_PROXY, https_proxy, NO_PROXY, and no_proxy)
-   */
-  proxy_from_environment?: boolean;
-  /**
-   * Specifies headers to send to proxies during CONNECT requests
-   */
-  proxy_connect_header?: {
-    [k: string]: string[] | undefined;
-  };
-  /**
-   * Configure whether HTTP requests follow HTTP 3xx redirects
-   */
-  follow_redirects?: boolean;
-  tls_config?: TlsConfig2;
-  /**
-   * Custom HTTP headers to be sent along with each request. Headers that are set by Prometheus itself can't be overwritten
-   */
-  http_headers?: {
-    [k: string]:
-      | {
-          /**
-           * Header values
-           */
-          values?: string[];
-          /**
-           * Headers values. Hidden in configuration page
-           */
-          secrets?: string[];
-          /**
-           * Files to read header values from
-           */
-          files?: string[];
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
 }
 export interface InhibitRule {
   /**

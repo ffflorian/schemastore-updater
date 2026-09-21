@@ -47,7 +47,7 @@ export interface AliasesForCommonRsyncTargets {
   'drush-script'?: PathToTheRemoteDrushCommand;
   'alias-path'?: AListOfPathsWhereDrushWillSearchForAliasFiles;
   files?: string;
-  [k: string]: string | undefined;
+  [k: string]: string | AListOfPathsWhereDrushWillSearchForAliasFiles | undefined;
 }
 export interface ContainsOptionsForSpecificCommands {
   [k: string]:

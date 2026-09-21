@@ -16,5 +16,5 @@ export type Widget = {
  * https://projects.linuxmint.com/reference/git/cinnamon-tutorials/xlet-settings-ref.html
  */
 export interface GuiStructure {
-  [k: string]: Widget;
+  [k: string]: Widget | undefined;
 }

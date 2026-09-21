@@ -129,8 +129,8 @@ export interface MadgeConfiguration {
 }
 export interface GraphVizOptions {
   G?: GraphVizAttributes;
-  E?: GraphVizAttributes1;
-  N?: GraphVizAttributes2;
+  E?: GraphVizAttributes;
+  N?: GraphVizAttributes;
   [k: string]: unknown | undefined;
 }
 /**
@@ -138,21 +138,7 @@ export interface GraphVizOptions {
  * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L45-L74
  */
 export interface GraphVizAttributes {
-  [k: string]: (string | number | boolean) | undefined;
-}
-/**
- * Edge-level Graphviz attributes.
- * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L45-L74
- */
-export interface GraphVizAttributes1 {
-  [k: string]: (string | number | boolean) | undefined;
-}
-/**
- * Node-level Graphviz attributes.
- * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L45-L74
- */
-export interface GraphVizAttributes2 {
-  [k: string]: (string | number | boolean) | undefined;
+  [k: string]: string | number | boolean | undefined;
 }
 export interface DetectiveOptions {
   es6?: DetectiveParserOptions;

@@ -15,9 +15,7 @@ export type URI = string;
  *
  * @minItems 1
  */
-export type ManifestTypes = {
-  [k: string]: unknown | undefined;
-} & [string, ...string[]];
+export type ManifestTypes = [string, ...string[]];
 /**
  * The KYA specification version this manifest conforms to.
  */
@@ -106,8 +104,16 @@ export type Duration = string;
  * Optional deployment metadata, including update policy and confidential compute constraints.
  */
 export type Deployment = {
+  info?: string;
+  updatePolicy?: 'immutable' | 'signedRelease';
+  authoritativeSigner?: DecentralizedIdentifier;
+  tee: TrustedExecutionEnvironment;
   [k: string]: unknown | undefined;
 };
+/**
+ * A hex-encoded string.
+ */
+export type HexString = string;
 /**
  * An RFC 3339 date-time string.
  */
@@ -132,15 +138,23 @@ export type EmbeddedVerifiableCredential = (
       issuanceDate: DateTime;
       [k: string]: unknown | undefined;
     }
-) & {
-  [k: string]: unknown | undefined;
-} & VCPayloadDispatch;
+) &
+  VCPayloadDispatch &
+  EmbeddedVc;
 /**
  * Conditional typing rules mapping known VC types to credentialSubject shapes.
  */
 export type VCPayloadDispatch = {
   [k: string]: unknown | undefined;
 };
+/**
+ * A verifier challenge protocol or endpoint used to validate an embedded claim (e.g., ZK solvency).
+ */
+export type ChallengeService = ChallengeService1;
+/**
+ * An evidence reference; if an id is present, a digest is required for integrity binding.
+ */
+export type EvidenceItem = EvidenceItem1;
 /**
  * Evidence credentials embedded or referenced by digest for verification workflows.
  */
@@ -254,6 +268,20 @@ export interface SigningConstraint {
   [k: string]: unknown | undefined;
 }
 /**
+ * Confidential compute parameters used to bind an agent deployment to verifiable hardware attestation.
+ */
+export interface TrustedExecutionEnvironment {
+  hardwareLabel?: string;
+  framework: 'sevSnp' | 'tdx' | 'sgx' | 'nitro';
+  measurementHash?: HexString;
+  signerHash?: HexString;
+  minimumSvn?: number;
+  allowDebug?: boolean;
+  attestationUri?: URI;
+  bindingMechanism?: 'reportData' | 'pubkeyHash';
+  [k: string]: unknown | undefined;
+}
+/**
  * Optional governance endpoints, visibility, and oracle references.
  */
 export interface Governance {
@@ -309,6 +337,42 @@ export interface TreasuryItem {
    */
   networks: [string, ...string[]];
   usage: 'operational' | 'reserve' | 'escrow' | 'receivable';
+  [k: string]: unknown | undefined;
+}
+export interface EmbeddedVc {
+  id: URI;
+  /**
+   * @minItems 1
+   */
+  type: [string, ...string[]];
+  issuer: DecentralizedIdentifier;
+  validFrom?: DateTime;
+  issuanceDate?: DateTime;
+  validUntil?: DateTime;
+  credentialStatus?: {
+    [k: string]: unknown | undefined;
+  };
+  credentialSubject: unknown;
+  challengeService?: ChallengeService[];
+  evidence?: EvidenceItem[];
+  proof: unknown;
+  [k: string]: unknown | undefined;
+}
+export interface ChallengeService1 {
+  type: string;
+  challengeEndpoint?: URI;
+  method: 'directQuery' | 'proverIntermediary';
+  /**
+   * @minItems 1
+   */
+  supportedQueries: [string, ...string[]];
+  verificationKeyMultibase?: string;
+  [k: string]: unknown | undefined;
+}
+export interface EvidenceItem1 {
+  type?: string;
+  id?: URI;
+  digestMultibase?: string;
   [k: string]: unknown | undefined;
 }
 /**

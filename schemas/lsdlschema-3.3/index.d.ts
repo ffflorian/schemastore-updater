@@ -381,7 +381,7 @@ export interface LSDLSchema {
  * Additional linguistic schemas referenced by objects within this linguistic schema
  */
 export interface Namespaces {
-  [k: string]: LsdlReference;
+  [k: string]: LsdlReference | undefined;
 }
 /**
  * A reference to an additional linguistic schema.
@@ -394,7 +394,7 @@ export interface LsdlReference {}
  * The entities in the linguistic schema.
  */
 export interface Entities {
-  [k: string]: Entity;
+  [k: string]: Entity | undefined;
 }
 /**
  * An entity in the linguistic schema
@@ -460,7 +460,7 @@ export interface FullVisibilityProperty {
  * A term in the linguistic schema
  */
 export interface FullTerm {
-  [k: string]: TermProperties;
+  [k: string]: TermProperties | undefined;
 }
 /**
  * Properties of the term
@@ -725,7 +725,7 @@ export interface FullEntityReference {
  * The relationships in the linguistic schema.
  */
 export interface Relationships {
-  [k: string]: Relationship;
+  [k: string]: Relationship | undefined;
 }
 /**
  * A relationship in the linguistic schema
@@ -759,7 +759,7 @@ export interface Relationship {
  * References to linguistic entities which participate in the relationship
  */
 export interface Roles {
-  [k: string]: Role;
+  [k: string]: Role | undefined;
 }
 /**
  * A role in a linguistic relationship.
@@ -1013,7 +1013,7 @@ export interface VerbPhrasingProperties {
  * A global text substitution in the linguistic schema.
  */
 export interface GlobalSubstitution {
-  [k: string]: GlobalSubstitutionProperties;
+  [k: string]: GlobalSubstitutionProperties | undefined;
 }
 export interface FullGlobalSubstitutionProperties {
   /**
@@ -1033,7 +1033,7 @@ export interface FullGlobalSubstitutionProperties {
  * An example utterance associated with the linguistic schema
  */
 export interface FullExample {
-  [k: string]: ExampleProperties;
+  [k: string]: ExampleProperties | undefined;
 }
 /**
  * Metadata properties about an example utterance
@@ -1051,7 +1051,7 @@ export interface ExampleProperties {
  * A list of agents that have modified this linguistic schema.
  */
 export interface Agents {
-  [k: string]: AgentProperties;
+  [k: string]: AgentProperties | undefined;
 }
 /**
  * Properties of the term

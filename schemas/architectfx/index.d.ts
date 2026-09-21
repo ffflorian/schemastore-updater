@@ -37,13 +37,19 @@ export interface ArchitectFXDocumentsSchema {
    * A class which may hold injected fields to handle them
    */
   '.controller'?: string;
+  /**
+   * Items: Maven coordinates used for third-party libraries that are needed to load the document
+   */
   '.deps'?: string[];
+  /**
+   * Items: Java imports for resolving commonly used classes in the Document
+   */
   '.imports'?: string[];
   /**
    * A series of generic steps to configure global state or specific objects
    */
   '.config'?: Config[];
-  [k: string]: Entity;
+  [k: string]: Entity | string | string[] | Config[] | undefined;
 }
 /**
  * Entity or tree node

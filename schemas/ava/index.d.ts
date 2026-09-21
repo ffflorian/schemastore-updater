@@ -74,7 +74,11 @@ export interface EnvironmentVariables {
   [k: string]: string | undefined;
 }
 export interface Extensions {
-  [k: string]: ('commonjs' | 'module') | undefined;
+  /**
+   * This interface was referenced by `Extensions`'s JSON-Schema definition
+   * via the `patternProperty` "^(c|m)?js$".
+   */
+  [k: string]: true | 'commonjs' | 'module' | undefined;
 }
 /**
  * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
@@ -96,5 +100,5 @@ export interface Paths {
    * This interface was referenced by `Paths`'s JSON-Schema definition
    * via the `patternProperty` "/$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }

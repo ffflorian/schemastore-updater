@@ -3,9 +3,8 @@
 /**
  * The repository URI or local repository directory path.
  */
-export type Repository = Path | Path1 | RepoNamePattern;
+export type Repository = Path | Path | RepoNamePattern;
 export type Path = string;
-export type Path1 = string;
 /**
  * If {repo} starts with github user name (ex:'Shougo/dein.vim'), dein will install github plugins.
  */
@@ -35,19 +34,6 @@ export type OnMapArray1 = (OnMapString & OnMapString1)[];
  * It is converted to |dein#add()|.
  */
 export type DefinitionPropertiesTableForInstallingAVimPlugin = PatternForADefinitionOfVimPlugin[];
-/**
- * '_' key is executed after all ftplugin.
- */
-export type AllFiletypes1 = string;
-/**
- * '{filetype}' key is executed {filetype} ftplugin.
- * You can define multiple filetypes by '{filetype1}_{filetype2}' key.
- * 'b:undo_ftplugin' is defined automatically.
- *
- * This interface was referenced by `FtpluginDefinition`'s JSON-Schema definition
- * via the `patternProperty` "^[0-9a-zA-Z].+$".
- */
-export type Filetype1 = string;
 /**
  * It is the global |dein-options-hook_add|.
  * It is executed in |dein#end()|.
@@ -95,7 +81,7 @@ export interface PatternForADefinitionOfVimPlugin {
    */
   ftplugin?: {
     _?: AllFiletypes;
-    [k: string]: Filetype;
+    [k: string]: Filetype | undefined;
   };
   /**
    * If set to v:false, dein doesn't register the plugin, i.e. the plugin will be disabled. If it is String, dein will eval it. If you don't set it, dein will register (enable) the plugin
@@ -235,7 +221,7 @@ export interface OnMapDict {
    * This interface was referenced by `OnMapDict`'s JSON-Schema definition
    * via the `patternProperty` "^[nvxsomilct]+$".
    */
-  [k: string]: VimModeKeyMappingString | OnMapArray2;
+  [k: string]: VimModeKeyMappingString | OnMapArray2 | undefined;
 }
 /**
  * '_' key is executed after all ftplugin.
@@ -243,8 +229,8 @@ export interface OnMapDict {
  *  You can define multiple filetypes by '{filetype1}_{filetype2}' key.
  */
 export interface FtpluginDefinition {
-  _?: AllFiletypes1;
-  [k: string]: Filetype1;
+  _?: AllFiletypes;
+  [k: string]: Filetype | undefined;
 }
 export interface PatternForMultipleDefinitionOfVimPlugin {
   plugins: Plugins;

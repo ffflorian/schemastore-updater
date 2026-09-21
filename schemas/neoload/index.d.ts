@@ -113,8 +113,8 @@ export type Steps = [
     if?: ActionIf;
   }[]
 ];
-export type ActionDelay = Text & string & string;
-export type ActionThinkTime = Text & string & string;
+export type ActionDelay = Text & string;
+export type ActionThinkTime = Text & string;
 
 export interface JSONSchemaForNeoLoadAsCodeFiles {
   $schema?: Url;

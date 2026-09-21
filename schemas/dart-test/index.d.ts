@@ -118,18 +118,18 @@ export type ConvertJSTracesToDartTraces = boolean;
 export type Skip = SkipTheTestIfTrue | ReasonForSkippingTheTest;
 export type SkipTheTestIfTrue = boolean;
 export type ReasonForSkippingTheTest = string;
-export type _TestConfigurationInner = TestConfiguration1 & {
+export type _TestConfigurationInner = TestConfiguration & {
   /**
    * A preset used in a test configuration can contain test configuration.
    */
   presets?: {
-    [k: string]: TestConfiguration1 | undefined;
+    [k: string]: TestConfiguration | undefined;
   };
   /**
    * Applies test options when a specific operating system is used
    */
   on_os?: {
-    [k: string]: TestConfiguration1 | undefined;
+    [k: string]: TestConfiguration | undefined;
   };
   [k: string]: unknown | undefined;
 };
@@ -238,29 +238,6 @@ export type Executable = string;
 export type RunTheBrowserInHeadlessMode = boolean;
 
 export interface TestConfiguration {
-  timeout?: Timeout;
-  verbose_trace?: RemoveInternalStackFrames;
-  chain_stack_traces?: WhetherStackTracesAreChained;
-  js_trace?: ConvertJSTracesToDartTraces;
-  skip?: Skip;
-  /**
-   * This field controls how many times a test is retried upon failure.
-   */
-  retry?: number;
-  test_on?: string;
-  tags?: {
-    [k: string]: _TestConfigurationInner | undefined;
-  };
-  /**
-   * Adds additional tags. This is usually used in a tag definition to enable tag inheritance.
-   */
-  add_tags?: string[];
-  on_platform?: {
-    [k: string]: _TestConfigurationInner | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-export interface TestConfiguration1 {
   timeout?: Timeout;
   verbose_trace?: RemoveInternalStackFrames;
   chain_stack_traces?: WhetherStackTracesAreChained;

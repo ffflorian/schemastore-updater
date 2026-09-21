@@ -9,52 +9,26 @@ export type PluginName = string;
  * Optional permission attributes.
  */
 export type Permission1 =
-  | (
-      | {
-          /**
-           * A short description of what this permission allows.
-           */
-          description?: string;
-          /**
-           * The default state for the permission.
-           */
-          default?: true | false | 'op' | 'not op';
-          /**
-           * Allows other permissions to be set as a relation to the parent permission.
-           */
-          children?:
-            | string[]
-            | {
-                [k: string]: Permission1 | undefined;
-              };
-          [k: string]: unknown | undefined;
-        }
-      | (undefined &
-          (
-            | boolean
-            | {
-                /**
-                 * A short description of what this permission allows.
-                 */
-                description?: string;
-                /**
-                 * The default state for the permission.
-                 */
-                default?: true | false | 'op' | 'not op';
-                /**
-                 * Allows other permissions to be set as a relation to the parent permission.
-                 */
-                children?:
-                  | string[]
-                  | {
-                      [k: string]: Permission1 | undefined;
-                    };
-                [k: string]: unknown | undefined;
-              }
-          ))
-      | undefined
-    )
-  | undefined;
+  | boolean
+  | {
+      /**
+       * A short description of what this permission allows.
+       */
+      description?: string;
+      /**
+       * The default state for the permission.
+       */
+      default?: true | false | 'op' | 'not op';
+      /**
+       * Allows other permissions to be set as a relation to the parent permission.
+       */
+      children?:
+        | string[]
+        | {
+            [k: string]: Permission1 | undefined;
+          };
+      [k: string]: unknown | undefined;
+    };
 
 export interface JSONSchemaForBukkitPluginYAML {
   /**
@@ -132,6 +106,8 @@ export interface JSONSchemaForBukkitPluginYAML {
   'api-version'?: string | number;
   /**
    * A list of libraries the server should download and supply to the plugin when loading it.
+   *
+   * Items: A single server provided library. This library can be used during runtime without being shaded into the plugin jar.
    */
   libraries?: string[];
   [k: string]: unknown | undefined;

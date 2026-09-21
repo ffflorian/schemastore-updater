@@ -165,7 +165,7 @@ export interface JSONSchemaForDNXProjectJsonFiles {
    */
   repository?: {
     type?: 'git';
-    [k: string]: string | undefined;
+    [k: string]: string | 'git' | undefined;
   };
   /**
    * Scripts to execute during the various stages.
@@ -206,18 +206,16 @@ export interface CompilationOptions {
 }
 export interface Dependencies {
   [k: string]:
-    | (
-        | string
-        | {
-            version?: string;
-            type?: 'default' | 'build';
-            /**
-             * Restrict this dependency to matching only a Project or a Package
-             */
-            target?: 'project' | 'package';
-            [k: string]: unknown | undefined;
-          }
-      )
+    | string
+    | {
+        version?: string;
+        type?: 'default' | 'build';
+        /**
+         * Restrict this dependency to matching only a Project or a Package
+         */
+        target?: 'project' | 'package';
+        [k: string]: unknown | undefined;
+      }
     | undefined;
 }
 export interface ConfigType {

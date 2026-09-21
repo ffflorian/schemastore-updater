@@ -61,7 +61,7 @@ export interface Dictionary {
     | boolean
     | string
     | {
-        [k: string]: (boolean | string) | undefined;
+        [k: string]: boolean | string | undefined;
       };
   filled?: true;
   priority?: number;

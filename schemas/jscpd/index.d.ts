@@ -248,17 +248,7 @@ export type Reporter =
     )
   | string;
 export type ColorPreset =
-  | 'green'
-  | 'blue'
-  | 'red'
-  | 'yellow'
-  | 'orange'
-  | 'purple'
-  | 'pink'
-  | 'grey'
-  | 'gray'
-  | 'cyan'
-  | 'black';
+  'green' | 'blue' | 'red' | 'yellow' | 'orange' | 'purple' | 'pink' | 'grey' | 'gray' | 'cyan' | 'black';
 export type ColorHex = string;
 
 export interface HttpsJsonSchemastoreOrgJscpdJson {
@@ -287,7 +277,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   formatsExts?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
@@ -409,7 +399,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   formatsNames?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
@@ -498,7 +488,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   'formats-exts'?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
@@ -507,7 +497,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   'formats-names'?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;

@@ -414,9 +414,9 @@ export interface Pattern {
    */
   while?: string;
   captures?: Captures;
-  beginCaptures?: Captures1;
-  endCaptures?: Captures2;
-  whileCaptures?: Captures3;
+  beginCaptures?: Captures;
+  endCaptures?: Captures;
+  whileCaptures?: Captures;
   /**
    * applies to the region between the begin and end matches
    */
@@ -432,85 +432,13 @@ export interface Captures {
    * This interface was referenced by `Captures`'s JSON-Schema definition
    * via the `patternProperty` "^[0-9]+$".
    *
-   * This interface was referenced by `Captures1`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures2`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures3`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   */
-  [k: string]:
-    | {
-        name?: Name;
-        patterns?: Pattern[];
-      }
-    | undefined;
-}
-/**
- * allows you to assign attributes to the captures of the begin pattern. Using the captures key for a begin/end rule is short-hand for giving both beginCaptures and endCaptures with same values.
- */
-export interface Captures1 {
-  /**
    * This interface was referenced by `Captures`'s JSON-Schema definition
    * via the `patternProperty` "^[0-9]+$".
    *
-   * This interface was referenced by `Captures1`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures2`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures3`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   */
-  [k: string]:
-    | {
-        name?: Name;
-        patterns?: Pattern[];
-      }
-    | undefined;
-}
-/**
- * allows you to assign attributes to the captures of the end pattern. Using the captures key for a begin/end rule is short-hand for giving both beginCaptures and endCaptures with same values.
- */
-export interface Captures2 {
-  /**
    * This interface was referenced by `Captures`'s JSON-Schema definition
    * via the `patternProperty` "^[0-9]+$".
    *
-   * This interface was referenced by `Captures1`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures2`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures3`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   */
-  [k: string]:
-    | {
-        name?: Name;
-        patterns?: Pattern[];
-      }
-    | undefined;
-}
-/**
- * allows you to assign attributes to the captures of the while pattern. Using the captures key for a begin/while rule is short-hand for giving both beginCaptures and whileCaptures with same values.
- */
-export interface Captures3 {
-  /**
    * This interface was referenced by `Captures`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures1`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures2`'s JSON-Schema definition
-   * via the `patternProperty` "^[0-9]+$".
-   *
-   * This interface was referenced by `Captures3`'s JSON-Schema definition
    * via the `patternProperty` "^[0-9]+$".
    */
   [k: string]:

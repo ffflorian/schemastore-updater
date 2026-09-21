@@ -13,31 +13,8 @@ export type PatternDtoNullable = {
    * A regex pattern used to match, cannot be empty. If you need a pattern that matches every string use ".*"
    */
   pattern: string;
-} & PatternDtoNullable1;
-export type PatternDtoNullable1 = {
-  /**
-   * Whether to ignore case.
-   */
-  ignore_case?: boolean & string;
-  /**
-   * Whether to invert the match.
-   */
-  inverted?: boolean & string;
-  /**
-   * A regex pattern used to match, cannot be empty. If you need a pattern that matches every string use ".*"
-   */
-  pattern: string;
 } | null;
 export type PatternWithRewriteDtoNullable = {
-  regex?: PatternDtoNullable & {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * The rewrite expression.
-   */
-  substitution?: string | null;
-} & PatternWithRewriteDtoNullable1;
-export type PatternWithRewriteDtoNullable1 = {
   regex?: PatternDtoNullable & {
     [k: string]: unknown | undefined;
   };
@@ -51,25 +28,9 @@ export type SimplePatternDtoNullable = {
    * The actual pattern.
    */
   pattern?: string | null;
-} & SimplePatternDtoNullable1;
-export type SimplePatternDtoNullable1 = {
-  /**
-   * The actual pattern.
-   */
-  pattern?: string | null;
 } | null;
 export type PatternWithoutInvertDtoNullable = null | Pattern;
 export type ExpertSettingsDtoNullable = {
-  /**
-   * Expert settings for the Apache httpd.
-   */
-  apache?: string | null;
-  /**
-   * Expert settings for the Security Gate.
-   */
-  security_gate?: string | null;
-} & ExpertSettingsDtoNullable1;
-export type ExpertSettingsDtoNullable1 = {
   /**
    * Expert settings for the Apache httpd.
    */
@@ -88,26 +49,8 @@ export type SimpleHeaderActionDtoNullable = {
    * The value of the header to add.
    */
   value?: string | null;
-} & SimpleHeaderActionDtoNullable1;
-export type SimpleHeaderActionDtoNullable1 = {
-  /**
-   * The name of the header to add.
-   */
-  name?: string | null;
-  /**
-   * The value of the header to add.
-   */
-  value?: string | null;
 } | null;
 export type RemoveHeaderActionDtoNullable = {
-  name?: PatternDtoNullable & {
-    [k: string]: unknown | undefined;
-  };
-  value?: PatternDtoNullable & {
-    [k: string]: unknown | undefined;
-  };
-} & RemoveHeaderActionDtoNullable1;
-export type RemoveHeaderActionDtoNullable1 = {
   name?: PatternDtoNullable & {
     [k: string]: unknown | undefined;
   };
@@ -126,20 +69,40 @@ export type RewriteHeaderValueDtoNullable = {
   value?: PatternDtoNullable & {
     [k: string]: unknown | undefined;
   };
-} & RewriteHeaderValueDtoNullable1;
-export type RewriteHeaderValueDtoNullable1 = {
-  name?: PatternDtoNullable & {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * A string to rewrite the header value with. Can make back-references to the header value pattern.
-   */
-  replace?: string | null;
-  value?: PatternDtoNullable & {
-    [k: string]: unknown | undefined;
-  };
 } | null;
-export type Provider = string;
+export type Provider = string & {
+  /**
+   * Name of JWKS issuer. Corresponds to the 'Issuer' field in JWT.
+   */
+  issuer?: string | null;
+  /**
+   * JSON Object that represents the set of JWKS.
+   */
+  jwks?: string | null;
+  /**
+   * JSON file with the definitions of JWKS.
+   */
+  jwks_file?: string | null;
+  /**
+   * Name by which provider is referenced. Must be unique.
+   */
+  name: string;
+};
+export type Provider1 = string & {
+  /**
+   * Name of JWKS issuer. This value is used to restrict the usage of the JWKS to JWTs with a matching issuer (claim 'iss').
+   */
+  issuer?: string | null;
+  /**
+   * Name by which provider is referenced. Must be unique.
+   */
+  name: string;
+  /**
+   * URL of JWKS service provider.
+   */
+  service_url: string;
+  tls?: Tls;
+};
 
 export interface HttpsJsonSchemastoreOrgAirlockMicrogateway31Json {
   apps?: Application[];
@@ -163,7 +126,7 @@ export interface HttpsJsonSchemastoreOrgAirlockMicrogateway31Json {
     /**
      * Remote JWKS providers which are fetched according to the jwks_providers.refresh_interval.
      */
-    remote?: string & Provider[];
+    remote?: string & Provider1[];
   } | null;
   /**
    * The encoded license.
@@ -1029,6 +992,60 @@ export interface DeniedRules {
    * Unique short name. In order to prevent overriding built-in deny rules, the name may not start with '(default)'.
    */
   rule_key?: string;
+}
+export interface Tls {
+  /**
+   * The TLS cipher suite to use. For documentation visit www.openssl.org and search for 'ciphers'.
+   */
+  cipher_suite?: string;
+  client?: {
+    /**
+     * List of certificates of the CA chain for the certificate.
+     */
+    ca_chain?: string | null;
+    /**
+     * The CA chain file path.
+     */
+    ca_chain_file?: string | null;
+    /**
+     * The certificate in PEM format.
+     */
+    certificate?: string | null;
+    /**
+     * The certificate file path.
+     */
+    certificate_file?: string | null;
+    /**
+     * The private key for the certificate in PEM format.
+     */
+    privatekey?: string | null;
+    /**
+     * The private key file path
+     */
+    privatekey_file?: string | null;
+  } | null;
+  /**
+   * Force new session for each request.
+   */
+  force_new_session?: boolean & string;
+  /**
+   * The TLS protocol to use. For the description of the default values see the Gateway documentation for 'Supported SSL/TLS versions'.
+   */
+  protocol?: 'DEFAULT' | 'TLSv1_0' | 'TLSv1_1' | 'TLSv1_2' | 'TLSv1_3';
+  server?: {
+    /**
+     * The concatenated certificates of the CAs which are used as trust anchor during chain validation, in PEM format.
+     */
+    ca_validation?: string | null;
+    /**
+     * The file containing the validation CA certificates.
+     */
+    ca_validation_file?: string | null;
+    /**
+     * Verification which involves a server identity check to mitigate man in the middle attacks.
+     */
+    host_name_verification?: boolean & string;
+  } | null;
 }
 /**
  * Configuration for metrics sending.

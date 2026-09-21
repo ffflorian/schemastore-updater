@@ -63,21 +63,9 @@ export type Functions = {
     | undefined;
 }[];
 /**
- * Determines conditions for this pool to be used. If multiple conditions are specified, all must pass.
- */
-export type Conditions1 = {
-  /**
-   * A condition.
-   */
-  [k: string]:
-    | {
-        condition?: Condition;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}[];
-/**
  * Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
+ *
+ * Items: A condition.
  */
 export type Conditions2 = {
   condition?: Condition;
@@ -101,15 +89,12 @@ export type Functions1 = {
 /**
  * Specifies the number of rolls on the pool.
  */
-export type Rolls = {
-  [k: string]: unknown | undefined;
-} & (
+export type Rolls =
   | number
   | {
       type?: Type1;
       [k: string]: unknown | undefined;
-    }
-);
+    };
 /**
  * The number provider type.
  */
@@ -117,51 +102,12 @@ export type Type1 = 'minecraft:constant' | 'minecraft:uniform' | 'minecraft:bino
 /**
  * Specifies the number of bonus rolls on the pool per point of luck. Rounded down after multiplying.
  */
-export type BonusRolls = {
-  [k: string]: unknown | undefined;
-} & (
+export type BonusRolls =
   | number
   | {
       type?: Type1;
       [k: string]: unknown | undefined;
-    }
-);
-/**
- * Determines conditions for this entry to be used. If multiple conditions are specified, all must pass.
- */
-export type Conditions3 = {
-  /**
-   * A condition.
-   */
-  [k: string]:
-    | {
-        condition?: Condition;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}[];
-/**
- * Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
- */
-export type Conditions4 = {
-  condition?: Condition;
-  [k: string]: unknown | undefined;
-}[];
-/**
- * Applies functions to the item stack or item stacks being produced. Functions are applied in order, so for example looting_enchant must be after set_count to work correctly.
- */
-export type Functions2 = {
-  /**
-   * A function.
-   */
-  [k: string]:
-    | {
-        function?: Function;
-        conditions?: Conditions4;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}[];
+    };
 /**
  * Namespaced ID type of entry.
  */
@@ -190,10 +136,12 @@ export type Weight = number;
 export type Quality = number;
 /**
  * A list of all things that can be produced by this pool. One entry is chosen per roll as a weighted random selection from all entries without failing conditions.
+ *
+ * Items: An entry.
  */
 export type Entries = {
-  conditions?: Conditions3;
-  functions?: Functions2;
+  conditions?: Conditions;
+  functions?: Functions1;
   type?: Type2;
   name?: Name;
   children?: Children;
@@ -204,9 +152,11 @@ export type Entries = {
 }[];
 /**
  * A list of all pools for this loot table. Each pool used generates items from its list of items based on the number of rolls. Pools are applied in order.
+ *
+ * Items: A pool.
  */
 export type Pools = {
-  conditions?: Conditions1;
+  conditions?: Conditions;
   functions?: Functions1;
   rolls?: Rolls;
   bonus_rolls?: BonusRolls;

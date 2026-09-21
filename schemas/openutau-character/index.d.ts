@@ -128,6 +128,8 @@ export interface HttpsJsonSchemastoreOrgOpenutauCharacterJson {
   default_phonemizer?: string;
   /**
    * The subbanks of the voicebank for different pitch and voice color
+   *
+   * Items: A subbank of the voicebank
    */
   subbanks?: {
     /**
@@ -144,6 +146,8 @@ export interface HttpsJsonSchemastoreOrgOpenutauCharacterJson {
     suffix?: string;
     /**
      * The tone ranges that this subbank covers
+     *
+     * Items: A tone range that this subbank cover
      */
     tone_ranges?: string[];
     [k: string]: unknown | undefined;

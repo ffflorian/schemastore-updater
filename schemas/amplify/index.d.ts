@@ -54,8 +54,8 @@ export interface Backend {
  */
 export interface BuildPhases {
   preBuild?: Phase;
-  build?: Phase1;
-  postBuild?: Phase2;
+  build?: Phase;
+  postBuild?: Phase;
   [k: string]: unknown | undefined;
 }
 /**
@@ -70,39 +70,7 @@ export interface Phase {
    * Runtime versions to use (e.g., nodejs: 18)
    */
   'runtime-versions'?: {
-    [k: string]: (string | number) | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * Build commands
- */
-export interface Phase1 {
-  /**
-   * Shell commands to execute in this phase
-   */
-  commands?: string[];
-  /**
-   * Runtime versions to use (e.g., nodejs: 18)
-   */
-  'runtime-versions'?: {
-    [k: string]: (string | number) | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * Commands to run after the build
- */
-export interface Phase2 {
-  /**
-   * Shell commands to execute in this phase
-   */
-  commands?: string[];
-  /**
-   * Runtime versions to use (e.g., nodejs: 18)
-   */
-  'runtime-versions'?: {
-    [k: string]: (string | number) | undefined;
+    [k: string]: string | number | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -163,57 +131,9 @@ export interface Test {
  * Test phases with preTest, test, and postTest steps
  */
 export interface TestPhases {
-  preTest?: Phase3;
-  test?: Phase4;
-  postTest?: Phase5;
-  [k: string]: unknown | undefined;
-}
-/**
- * Commands to run before tests
- */
-export interface Phase3 {
-  /**
-   * Shell commands to execute in this phase
-   */
-  commands?: string[];
-  /**
-   * Runtime versions to use (e.g., nodejs: 18)
-   */
-  'runtime-versions'?: {
-    [k: string]: (string | number) | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * Test commands
- */
-export interface Phase4 {
-  /**
-   * Shell commands to execute in this phase
-   */
-  commands?: string[];
-  /**
-   * Runtime versions to use (e.g., nodejs: 18)
-   */
-  'runtime-versions'?: {
-    [k: string]: (string | number) | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * Commands to run after tests
- */
-export interface Phase5 {
-  /**
-   * Shell commands to execute in this phase
-   */
-  commands?: string[];
-  /**
-   * Runtime versions to use (e.g., nodejs: 18)
-   */
-  'runtime-versions'?: {
-    [k: string]: (string | number) | undefined;
-  };
+  preTest?: Phase;
+  test?: Phase;
+  postTest?: Phase;
   [k: string]: unknown | undefined;
 }
 /**
