@@ -4,17 +4,12 @@
  * A form item
  * https://docs.gitea.com/next/usage/issue-pull-request-templates#syntax-for-yaml-template
  */
-export type FormItem = {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-};
+export type FormItem = FormItem1;
+/**
+ * A form item type
+ * https://docs.gitea.com/next/usage/issue-pull-request-templates#syntax-for-yaml-template
+ */
+export type Type = 'checkboxes' | 'dropdown' | 'input' | 'markdown' | 'textarea';
 export type Assignee = string;
 
 export interface GitHubIssueFormsConfigFileSchema {
@@ -52,4 +47,8 @@ export interface GitHubIssueFormsConfigFileSchema {
    * https://docs.gitea.com/next/usage/issue-pull-request-templates#syntax-for-yaml-template
    */
   title?: string;
+}
+export interface FormItem1 {
+  type: Type;
+  [k: string]: unknown | undefined;
 }

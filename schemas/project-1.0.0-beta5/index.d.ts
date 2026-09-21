@@ -136,14 +136,12 @@ export interface CompilationOptions {
 }
 export interface Dependencies {
   [k: string]:
-    | (
-        | string
-        | {
-            version?: string;
-            type?: 'default' | 'build';
-            [k: string]: unknown | undefined;
-          }
-      )
+    | string
+    | {
+        version?: string;
+        type?: 'default' | 'build';
+        [k: string]: unknown | undefined;
+      }
     | undefined;
 }
 export interface ConfigType {

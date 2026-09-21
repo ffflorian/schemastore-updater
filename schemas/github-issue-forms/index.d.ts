@@ -5,19 +5,12 @@ export type Assignee = string;
  * A form item
  * https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema#about-githubs-form-schema
  */
-export type FormItem = {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-};
+export type FormItem = FormItem1;
+/**
+ * A form item type
+ * https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema#keys
+ */
+export type Type = 'checkboxes' | 'dropdown' | 'input' | 'markdown' | 'textarea' | 'upload';
 
 export interface GitHubIssueFormsConfigFileSchema {
   /**
@@ -61,4 +54,8 @@ export interface GitHubIssueFormsConfigFileSchema {
    * @minItems 1
    */
   body: [FormItem, ...FormItem[]];
+}
+export interface FormItem1 {
+  type: Type;
+  [k: string]: unknown | undefined;
 }

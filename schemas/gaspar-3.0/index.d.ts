@@ -19,19 +19,29 @@ export type GasparConfig = {
   IgnoreAnnotations?: boolean;
 };
 export type OutputDefinition = {
-  [k: string]: unknown | undefined;
-} & {
+  /**
+   * Output for
+   */
+  Type: 'TypeScript' | 'Angular' | 'Swift' | 'Kotlin' | 'Proto';
+  /**
+   * The location to output the translated file to (relative to the project root).
+   */
+  Location: string;
   [k: string]: unknown | undefined;
 };
 export type OutputDefinition1 = {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
-} & {
+  /**
+   * Output for
+   */
+  Type: 'Angular' | 'CSharp' | 'Ocelot' | 'Python' | 'TypeScript';
+  /**
+   * The location to output the translated file to (relative to the project root). You can include {ServiceName}, {ServiceHost} or {ServicePort} to have those placeholders replaced (see the demo file).
+   */
+  Location: string;
+  /**
+   * When building the service contract, you can prefix the url with this value; e.g. "http://myservice.com:81". The service url will be built from this followed by / then the action route. Can include {ServiceName}, {ServiceHost} or {ServicePort} to have those placeholders replaced (see the demo file).
+   */
+  UrlPrefix?: string;
   [k: string]: unknown | undefined;
 };
 

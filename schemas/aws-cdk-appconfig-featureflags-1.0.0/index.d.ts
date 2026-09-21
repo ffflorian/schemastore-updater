@@ -13,7 +13,7 @@ export interface FlagSetDefinition {
   values: FlagValues;
 }
 export interface FlagDefinitions {
-  [k: string]: FlagDefinition;
+  [k: string]: FlagDefinition | undefined;
 }
 /**
  * This interface was referenced by `FlagDefinitions`'s JSON-Schema definition
@@ -31,7 +31,7 @@ export interface FlagDefinition {
   attributes: AttributeDefinitions;
 }
 export interface AttributeDefinitions {
-  [k: string]: AttributeDefinition;
+  [k: string]: AttributeDefinition | undefined;
 }
 /**
  * This interface was referenced by `AttributeDefinitions`'s JSON-Schema definition
@@ -66,7 +66,7 @@ export interface BoolConstraints {
   required?: boolean;
 }
 export interface FlagValues {
-  [k: string]: FlagValue;
+  [k: string]: FlagValue | undefined;
 }
 /**
  * This interface was referenced by `FlagValues`'s JSON-Schema definition

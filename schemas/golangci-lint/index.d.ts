@@ -11,6 +11,7 @@ export type LinterNames =
       | 'bidichk'
       | 'bodyclose'
       | 'canonicalheader'
+      | 'clickhouselint'
       | 'containedctx'
       | 'contextcheck'
       | 'copyloopvar'
@@ -28,6 +29,7 @@ export type LinterNames =
       | 'errorlint'
       | 'exhaustive'
       | 'exhaustruct'
+      | 'exhaustruct_v5'
       | 'exptostd'
       | 'fatcontext'
       | 'forbidigo'
@@ -50,6 +52,7 @@ export type LinterNames =
       | 'goheader'
       | 'gomoddirectives'
       | 'gomodguard'
+      | 'gomodguard_v2'
       | 'goprintffuncname'
       | 'gosec'
       | 'gosimple'
@@ -251,7 +254,7 @@ export type GoheaderSettings = {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^.+$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
     /**
      * Regular expressions to use in your template.
@@ -261,7 +264,7 @@ export type GoheaderSettings = {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^.+$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
   };
   /**
@@ -298,6 +301,7 @@ export type GosecRules =
   | 'G121'
   | 'G122'
   | 'G123'
+  | 'G124'
   | 'G201'
   | 'G202'
   | 'G203'
@@ -331,7 +335,10 @@ export type GosecRules =
   | 'G704'
   | 'G705'
   | 'G706'
-  | 'G707';
+  | 'G707'
+  | 'G708'
+  | 'G709'
+  | 'G710';
 export type GovetAnalyzers =
   | 'appends'
   | 'asmdecl'
@@ -354,6 +361,7 @@ export type GovetAnalyzers =
   | 'httpmux'
   | 'httpresponse'
   | 'ifaceassert'
+  | 'inline'
   | 'loopclosure'
   | 'lostcancel'
   | 'nilfunc'
@@ -378,7 +386,7 @@ export type GovetAnalyzers =
   | 'unusedresult'
   | 'unusedwrite'
   | 'waitgroup';
-export type IfaceAnalyzers = 'identical' | 'unused' | 'opaque' | 'unexported';
+export type IfaceAnalyzers = 'identical' | 'unused' | 'opaque' | 'unexported' | 'unusedmethod';
 /**
  * Use either `reject` or `allow` properties for interfaces matching.
  */
@@ -390,15 +398,21 @@ export type IreturnSettings = {
 };
 export type ModernizeAnalyzers =
   | 'any'
-  | 'fmtappendf'
+  | 'atomictypes'
+  | 'embedlit'
+  | 'errorsastype'
   | 'forvar'
+  | 'importcomment'
   | 'mapsloop'
   | 'minmax'
   | 'newexpr'
   | 'omitzero'
   | 'plusbuild'
   | 'rangeint'
+  | 'reflecttypeassert'
   | 'reflecttypefor'
+  | 'slicesbackward'
+  | 'slicesclip'
   | 'slicescontains'
   | 'slicessort'
   | 'stditerators'
@@ -408,7 +422,7 @@ export type ModernizeAnalyzers =
   | 'stringsbuilder'
   | 'testingcontext'
   | 'unsafefuncs'
-  | 'waitgroup';
+  | 'waitgroupgo';
 export type TheRuleName =
   | 'add-constant'
   | 'argument-limit'
@@ -885,29 +899,34 @@ export type TagliatelleCases =
   | 'lower'
   | 'header';
 export type WslChecks =
+  | 'after-block'
+  | 'after-decl'
+  | 'after-defer'
+  | 'after-expr'
+  | 'after-go'
+  | 'append'
+  | 'assign-exclusive'
+  | 'assign-expr'
   | 'assign'
   | 'branch'
+  | 'cuddle-group'
   | 'decl'
   | 'defer'
+  | 'err'
   | 'expr'
   | 'for'
   | 'go'
   | 'if'
   | 'inc-dec'
   | 'label'
+  | 'leading-whitespace'
   | 'range'
   | 'return'
   | 'select'
   | 'send'
   | 'switch'
-  | 'type-switch'
-  | 'append'
-  | 'assign-exclusive'
-  | 'assign-expr'
-  | 'err'
-  | 'leading-whitespace'
   | 'trailing-whitespace'
-  | 'after-block';
+  | 'type-switch';
 /**
  * Usable formatter names.
  */
@@ -1020,6 +1039,8 @@ export interface GolangciLintConfiguration {
       dupword?: DupwordSettings;
       asasalint?: AsasalintSettings;
       bidichk?: BidichkSettings;
+      bodyclose?: BodycloseSettings;
+      canonicalheader?: CanonicalheaderSettings;
       cyclop?: CyclopSettings;
       decorder?: DecorderSettings;
       depguard?: DepguardSettings;
@@ -1031,6 +1052,7 @@ export interface GolangciLintConfiguration {
       errorlint?: ErrorlintSettings;
       exhaustive?: ExhaustiveSettings;
       exhaustruct?: ExhaustructSettings;
+      exhaustruct_v5?: Exhaustructv5Settings;
       fatcontext?: FatcontextSettings;
       forbidigo?: ForbidigoSettings;
       funcorder?: FuncorderSettings;
@@ -1048,6 +1070,7 @@ export interface GolangciLintConfiguration {
       goheader?: GoheaderSettings;
       gomoddirectives?: GomoddirectivesSettings;
       gomodguard?: GomodguardSettings;
+      gomodguard_v2?: Gomodguardv2Settings;
       gosec?: GosecSettings;
       gosmopolitan?: GosmopolitanSettings;
       govet?: GovetSettings;
@@ -1108,9 +1131,16 @@ export interface GolangciLintConfiguration {
       generated?: 'strict' | 'lax' | 'disable';
       'warn-unused'?: boolean;
       presets?: ('comments' | 'std-error-handling' | 'common-false-positives' | 'legacy')[];
-      rules?: {
+      rules?: ({
         [k: string]: unknown | undefined;
-      }[];
+      } & {
+        path?: string;
+        'path-except'?: string;
+        linters?: LinterNames[];
+        text?: string;
+        source?: string;
+        [k: string]: unknown | undefined;
+      })[];
       paths?: string[];
       'paths-except'?: string[];
     };
@@ -1180,9 +1210,16 @@ export interface GolangciLintConfiguration {
      * When a list of severity rules are provided, severity information will be added to lint issues. Severity rules have the same filtering capability as exclude rules except you are allowed to specify one matcher per severity rule.
      * Only affects out formats that support setting severity information.
      */
-    rules?: {
+    rules?: ({
       [k: string]: unknown | undefined;
-    }[];
+    } & {
+      severity: string;
+      path?: string;
+      'path-except'?: string;
+      linters?: LinterNames[];
+      text?: string;
+      source?: string;
+    })[];
   };
 }
 export interface SimpleFormat {
@@ -1201,6 +1238,10 @@ export interface DupwordSettings {
    * Checks only comments, skip strings.
    */
   'comments-only'?: boolean;
+  /**
+   * Skip raw string literals (backtick-delimited) from duplicate word checking.
+   */
+  'skip-raw-strings'?: boolean;
 }
 export interface AsasalintSettings {
   /**
@@ -1249,6 +1290,16 @@ export interface BidichkSettings {
    * Disallow: POP-DIRECTIONAL-ISOLATE
    */
   'pop-directional-isolate'?: boolean;
+}
+export interface BodycloseSettings {
+  /**
+   * Check that the response body is consumed.
+   */
+  'check-consumption'?: boolean;
+}
+export interface CanonicalheaderSettings {
+  'use-default-exclusions'?: boolean;
+  exclusions?: string[];
 }
 export interface CyclopSettings {
   /**
@@ -1302,33 +1353,35 @@ export interface DepguardSettings {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[^.]+$".
      */
-    [k: string]: {
-      /**
-       * Used to determine the package matching priority.
-       */
-      'list-mode'?: 'original' | 'strict' | 'lax';
-      /**
-       * List of file globs that will match this list of settings to compare against.
-       */
-      files?: string[];
-      /**
-       * List of allowed packages.
-       */
-      allow?: string[];
-      /**
-       * Packages that are not allowed where the value is a suggestion.
-       */
-      deny?: {
-        /**
-         * Description
-         */
-        desc?: string;
-        /**
-         * Package
-         */
-        pkg?: string;
-      }[];
-    };
+    [k: string]:
+      | {
+          /**
+           * Used to determine the package matching priority.
+           */
+          'list-mode'?: 'original' | 'strict' | 'lax';
+          /**
+           * List of file globs that will match this list of settings to compare against.
+           */
+          files?: string[];
+          /**
+           * List of allowed packages.
+           */
+          allow?: string[];
+          /**
+           * Packages that are not allowed where the value is a suggestion.
+           */
+          deny?: {
+            /**
+             * Description
+             */
+            desc?: string;
+            /**
+             * Package
+             */
+            pkg?: string;
+          }[];
+        }
+      | undefined;
   };
 }
 export interface DogsledSettings {
@@ -1468,11 +1521,53 @@ export interface ExhaustructSettings {
    */
   'allow-empty-declarations'?: boolean;
 }
+export interface Exhaustructv5Settings {
+  /**
+   * List of regular expressions to match type names that should be checked.
+   */
+  'enforce-patterns'?: string[];
+  /**
+   * List of regular expressions to match type names that should be skipped from checking.
+   */
+  'ignore-patterns'?: string[];
+  /**
+   * List of regular expressions to match type names where all fields are treated as optional.
+   */
+  'optional-patterns'?: string[];
+  /**
+   * Allows empty structures, effectively excluding them from the check.
+   */
+  'allow-empty'?: boolean;
+  /**
+   * List of regular expressions to match type names that should be allowed to be empty.
+   */
+  'allow-empty-patterns'?: string[];
+  /**
+   * Allows empty structures in return statements.
+   */
+  'allow-empty-returns'?: boolean;
+  /**
+   * Allows empty structures in variable declarations.
+   */
+  'allow-empty-declarations'?: boolean;
+  /**
+   * When true, only types marked with //exhaustruct:enforce directive or matching enforce-rx patterns are checked.
+   */
+  'explicit-mode'?: boolean;
+}
 export interface FatcontextSettings {
   /**
    * Check for potential fat contexts in struct pointers.
    */
   'check-struct-pointers'?: boolean;
+  /**
+   * Disable detection of fat contexts in function literals.
+   */
+  'check-loops'?: boolean;
+  /**
+   * Disable detection of fat contexts in function literals.
+   */
+  'check-function-literals'?: boolean;
 }
 export interface ForbidigoSettings {
   /**
@@ -1514,6 +1609,10 @@ export interface FuncorderSettings {
    * Checks if the constructors and/or structure methods are sorted alphabetically.
    */
   alphabetical?: boolean;
+  /**
+   * Checks that exported functions are placed before unexported functions.
+   */
+  function?: boolean;
 }
 export interface FunlenSettings {
   /**
@@ -1616,6 +1715,7 @@ export interface GoconstSettings {
    * Minimum occurrences count to trigger.
    */
   'min-occurrences'?: number;
+  'exclude-types'?: ('Assignment' | 'Binary' | 'Case' | 'Return' | 'Call' | 'CompositeLit')[];
   /**
    * Ignore when constant is not used as function argument
    */
@@ -1644,6 +1744,15 @@ export interface GoconstSettings {
    * Evaluates of constant expressions like Prefix + "suffix"
    */
   'eval-const-expressions'?: boolean;
+  /**
+   * Ignore strings from test files
+   */
+  'ignore-tests'?: boolean;
+  'ignore-functions'?: string[];
+  /**
+   * Ignore string literals used as map keys
+   */
+  'ignore-map-keys'?: boolean;
 }
 export interface GocriticSettings {
   /**
@@ -1811,6 +1920,10 @@ export interface GomoddirectivesSettings {
    */
   'replace-allow-list'?: string[];
   /**
+   * Allow all `replace` directives.
+   */
+  'replace-allow-all'?: boolean;
+  /**
    * Allow to not explain why the version has been retracted in the `retract` directives.
    */
   'retract-allow-no-explanation'?: boolean;
@@ -1867,16 +1980,18 @@ export interface GomodguardSettings {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^.+$".
        */
-      [k: string]: {
-        /**
-         * Recommended modules that should be used instead.
-         */
-        recommendations?: string[];
-        /**
-         * Reason why the recommended module should be used.
-         */
-        reason?: string;
-      };
+      [k: string]:
+        | {
+            /**
+             * Recommended modules that should be used instead.
+             */
+            recommendations?: string[];
+            /**
+             * Reason why the recommended module should be used.
+             */
+            reason?: string;
+          }
+        | undefined;
     }[];
     /**
      * List of blocked module version constraints.
@@ -1886,22 +2001,39 @@ export interface GomodguardSettings {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^.*$".
        */
-      [k: string]: {
-        /**
-         * Version constraint.
-         */
-        version?: string;
-        /**
-         * Reason why the version constraint exists.
-         */
-        reason: string;
-      };
+      [k: string]:
+        | {
+            /**
+             * Version constraint.
+             */
+            version?: string;
+            /**
+             * Reason why the version constraint exists.
+             */
+            reason: string;
+          }
+        | undefined;
     }[];
     /**
      * Raise lint issues if loading local path with replace directive
      */
     'local-replace-directives'?: boolean;
   };
+}
+export interface Gomodguardv2Settings {
+  'local-replace-directives'?: boolean;
+  allowed?: {
+    module: string;
+    version?: string;
+    'match-type'?: '' | 'exact' | 'prefix' | 'regex';
+  }[];
+  blocked?: {
+    module: string;
+    version?: string;
+    'match-type'?: string;
+    reason?: string;
+    recommendations?: string[];
+  }[];
 }
 export interface GosecSettings {
   /**
@@ -1957,9 +2089,11 @@ export interface GovetSettings {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: {
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   /**
    * Enable analyzers by name.
@@ -1995,6 +2129,9 @@ export interface IfaceSettings {
   enable?: IfaceAnalyzers[];
   settings?: {
     unused?: {
+      exclude?: string[];
+    };
+    unusedmethod?: {
       exclude?: string[];
     };
   };
@@ -2219,6 +2356,10 @@ export interface NonamedreturnsSettings {
    * Report named error if it is assigned inside defer.
    */
   'report-error-in-defer'?: boolean;
+  /**
+   * Allow named returns in the signature but report them if referenced in the body or used by a naked return.
+   */
+  'allow-unused-named-returns'?: boolean;
 }
 export interface ParalleltestSettings {
   /**
@@ -2229,6 +2370,10 @@ export interface ParalleltestSettings {
    * Ignore missing calls to `t.Parallel()` in subtests. Top-level tests are still required to have `t.Parallel`, but subtests are allowed to skip it.
    */
   'ignore-missing-subtests'?: boolean;
+  /**
+   * Check that defer is not used with t.Parallel (use t.Cleanup instead).
+   */
+  'check-cleanup'?: boolean;
 }
 export interface PerfsprintSettings {
   /**
@@ -2358,49 +2503,71 @@ export interface RowserrcheckSettings {
 }
 export interface SloglintSettings {
   /**
-   * Enforce using key-value pairs only (incompatible with attr-only).
-   */
-  'kv-only'?: boolean;
-  /**
-   * Enforce not using global loggers.
+   * Report the use of global loggers.
    */
   'no-global'?: '' | 'all' | 'default';
   /**
-   * Enforce not mixing key-value pairs and attributes.
-   */
-  'no-mixed-args'?: boolean;
-  /**
-   * Enforce using methods that accept a context.
+   * Report the use of functions without a context.Context.
    */
   context?: '' | 'all' | 'scope';
   /**
-   * Enforce using static values for log messages.
+   * Report dynamic log messages, such as those that are built with fmt.Sprintf.
    */
   'static-msg'?: boolean;
   /**
-   * Enforce message style.
+   * Report log messages that do not match a particular style.
    */
   'msg-style'?: '' | 'lowercased' | 'capitalized';
   /**
-   * Enforce a single key naming convention.
+   * Report the use of both key-value pairs and attributes within a single function call.
    */
-  'key-naming-case'?: 'snake' | 'kebab' | 'camel' | 'pascal';
+  'no-mixed-args'?: boolean;
   /**
-   * Enforce using attributes only (incompatible with kv-only).
+   * Report any use of attributes as function call arguments.
+   */
+  'kv-only'?: boolean;
+  /**
+   * Report any use of key-value pairs as function call arguments.
    */
   'attr-only'?: boolean;
   /**
-   * Enforce using constants instead of raw keys.
+   * Report two or more arguments on the same line.
+   */
+  'args-on-sep-lines'?: boolean;
+  /**
+   * Report the use of string literals as log keys.
    */
   'no-raw-keys'?: boolean;
   /**
-   * Enforce not using specific keys.
+   * Report the use of log keys that are not explicitly allowed.
+   */
+  'allowed-keys'?: string[];
+  /**
+   * Report the use of forbidden log keys.
    */
   'forbidden-keys'?: string[];
   /**
-   * Enforce putting arguments on separate lines.
+   * Report log keys that do not match a particular naming case.
    */
-  'args-on-sep-lines'?: boolean;
+  'key-naming-case'?: 'snake' | 'kebab' | 'camel' | 'pascal';
+  /**
+   * Analyze custom functions in addition to the standard log/slog functions.
+   */
+  'custom-funcs'?: SloglintCustomFunc[];
+}
+export interface SloglintCustomFunc {
+  /**
+   * The full name of the function, including the package. If the function is a method, the receiver type must be wrapped in parentheses.
+   */
+  name?: string;
+  /**
+   * The position of the "msg string" argument in the function signature, starting from 0. If there is no message in the function, a negative value must be passed.
+   */
+  'msg-pos'?: number;
+  /**
+   * The position of the "args ...any" argument in the function signature, starting from 0. If there are no arguments in the function, a negative value must be passed.
+   */
+  'args-pos'?: number;
 }
 export interface SpancheckSettings {
   /**
@@ -2524,7 +2691,7 @@ export interface TagliatelleSettings {
      */
     'ignored-fields'?: string[];
     rules?: {
-      [k: string]: TagliatelleCases;
+      [k: string]: TagliatelleCases | undefined;
     };
     /**
      * Defines the association between tag name and case.
@@ -2534,17 +2701,19 @@ export interface TagliatelleSettings {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^.+$".
        */
-      [k: string]: {
-        case: TagliatelleCases;
-        'extra-initialisms'?: boolean;
-        'initialism-overrides'?: {
-          /**
-           * This interface was referenced by `undefined`'s JSON-Schema definition
-           * via the `patternProperty` "^.+$".
-           */
-          [k: string]: boolean;
-        };
-      };
+      [k: string]:
+        | {
+            case: TagliatelleCases;
+            'extra-initialisms'?: boolean;
+            'initialism-overrides'?: {
+              /**
+               * This interface was referenced by `undefined`'s JSON-Schema definition
+               * via the `patternProperty` "^.+$".
+               */
+              [k: string]: boolean | undefined;
+            };
+          }
+        | undefined;
     };
     /**
      * Overrides the default/root configuration.
@@ -2567,7 +2736,7 @@ export interface TagliatelleSettings {
        */
       ignore?: boolean;
       rules?: {
-        [k: string]: TagliatelleCases;
+        [k: string]: TagliatelleCases | undefined;
       };
       /**
        * Defines the association between tag name and case.
@@ -2577,17 +2746,19 @@ export interface TagliatelleSettings {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^.+$".
          */
-        [k: string]: {
-          case: TagliatelleCases;
-          'extra-initialisms'?: boolean;
-          'initialism-overrides'?: {
-            /**
-             * This interface was referenced by `undefined`'s JSON-Schema definition
-             * via the `patternProperty` "^.+$".
-             */
-            [k: string]: boolean;
-          };
-        };
+        [k: string]:
+          | {
+              case: TagliatelleCases;
+              'extra-initialisms'?: boolean;
+              'initialism-overrides'?: {
+                /**
+                 * This interface was referenced by `undefined`'s JSON-Schema definition
+                 * via the `patternProperty` "^.+$".
+                 */
+                [k: string]: boolean | undefined;
+              };
+            }
+          | undefined;
       };
     }[];
   };
@@ -3051,6 +3222,7 @@ export interface WslSettingsV5 {
   'allow-whole-block'?: boolean;
   'branch-max-lines'?: number;
   'case-max-lines'?: number;
+  'cuddle-max-statements'?: number;
   default?: 'all' | 'none' | 'default' | '';
   enable?: WslChecks[];
   disable?: WslChecks[];
@@ -3068,13 +3240,39 @@ export interface CustomSettings {
    * via the `patternProperty` "^.*$".
    */
   [k: string]:
-    | {
-        type: 'module';
-        [k: string]: unknown | undefined;
-      }
-    | {
-        [k: string]: unknown | undefined;
-      };
+    | ((
+        | {
+            type: 'module';
+            [k: string]: unknown | undefined;
+          }
+        | {
+            [k: string]: unknown | undefined;
+          }
+      ) & {
+        /**
+         * The plugin type.
+         */
+        type?: 'module' | 'goplugin';
+        /**
+         * The path to the plugin *.so. Can be absolute or local.
+         */
+        path?: string;
+        /**
+         * The description of the linter, for documentation purposes only.
+         */
+        description?: string;
+        /**
+         * Intended to point to the repo location of the linter, for documentation purposes only.
+         */
+        'original-url'?: string;
+        /**
+         * Plugins settings/configuration. Only work with plugin based on `linterdb.PluginConstructor`.
+         */
+        settings?: {
+          [k: string]: unknown | undefined;
+        };
+      })
+    | undefined;
 }
 export interface GciSettings {
   /**
@@ -3120,6 +3318,11 @@ export interface GofumptSettings {
    *  Module path which contains the source code being formatted.
    */
   'module-path'?: string;
+  extra?: {
+    'group-params'?: boolean;
+    'clothe-returns'?: boolean;
+    'balance-calls'?: boolean;
+  };
 }
 export interface GoimportsSettings {
   /**

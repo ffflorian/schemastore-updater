@@ -157,7 +157,7 @@ export interface GitVersionConfigurationSchema {
    * Provides a way to translate the PreReleaseLabel to a number.
    */
   'pre-release-weight'?: null | number;
-  'prevent-increment'?: PreventIncrementConfiguration1;
+  'prevent-increment'?: PreventIncrementConfiguration;
   /**
    * The regular expression pattern to use to match this branch.
    */
@@ -218,24 +218,6 @@ export interface GitVersionConfigurationSchema {
  * The prevent increment configuration section.
  */
 export interface PreventIncrementConfiguration {
-  /**
-   * Prevent increment when branch merged.
-   */
-  'of-merged-branch'?: null | boolean;
-  /**
-   * Prevent increment when branch merged.
-   */
-  'when-branch-merged'?: null | boolean;
-  /**
-   * This branch related property controls the behavior whether to use the tagged (value set to true) or the incremented (value set to false) semantic version. Defaults to true.
-   */
-  'when-current-commit-tagged'?: null | boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * The prevent increment configuration section.
- */
-export interface PreventIncrementConfiguration1 {
   /**
    * Prevent increment when branch merged.
    */

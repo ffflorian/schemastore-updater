@@ -24,7 +24,7 @@ export interface ApplicationDependenciesGroup {
   indirect: ApplicationDependencies;
 }
 export interface ApplicationDependencies {
-  [k: string]: Version;
+  [k: string]: Version | undefined;
 }
 export interface Package {
   type: 'package';
@@ -64,12 +64,12 @@ export interface Package {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` ".*".
          */
-        [k: string]: string[];
+        [k: string]: string[] | undefined;
       };
   'elm-version': Range;
   dependencies: PackageDependencies;
   'test-dependencies': PackageDependencies;
 }
 export interface PackageDependencies {
-  [k: string]: Range;
+  [k: string]: Range | undefined;
 }

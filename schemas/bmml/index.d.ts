@@ -4,8 +4,6 @@
  * Business model metadata
  */
 export type Meta = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * Name of the business model
    */

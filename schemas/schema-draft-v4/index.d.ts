@@ -41,16 +41,16 @@ export interface HttpsJsonSchemastoreOrgSchemaDraftV4Json {
   required?: StringArray;
   additionalProperties?: boolean | HttpsJsonSchemastoreOrgSchemaDraftV4Json;
   definitions?: {
-    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json;
+    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json | undefined;
   };
   properties?: {
-    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json;
+    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json | undefined;
   };
   patternProperties?: {
-    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json;
+    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json | undefined;
   };
   dependencies?: {
-    [k: string]: (HttpsJsonSchemastoreOrgSchemaDraftV4Json | StringArray) | undefined;
+    [k: string]: HttpsJsonSchemastoreOrgSchemaDraftV4Json | StringArray | undefined;
   };
   /**
    * @minItems 1

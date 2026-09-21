@@ -35,6 +35,9 @@ export type Url = string;
  * https://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html
  *
  * @minItems 1
+ *
+ * Items: A versions of Cinnamon supported by the extension
+ * https://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html
  */
 export type ShellVersion = [string, ...string[]];
 /**

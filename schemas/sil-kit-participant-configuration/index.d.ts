@@ -263,13 +263,22 @@ export interface HttpsJsonSchemastoreOrgSilKitParticipantConfigurationJson {
    * Optional configuration for the extension loading mechanism
    */
   Extensions?: {
+    /**
+     * Items: A filesystem path to additionally search for extensions
+     */
     SearchPathHints?: string[];
   };
   /**
    * Optional configuration to include other participant configurations files
    */
   Includes?: {
+    /**
+     * Items: A filesystem path to additionally search for files to be included
+     */
     SearchPathHints?: string[];
+    /**
+     * Items: Participant configuration files to be included
+     */
     Files?: string[];
     [k: string]: unknown | undefined;
   };

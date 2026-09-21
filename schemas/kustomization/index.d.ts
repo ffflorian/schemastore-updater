@@ -31,7 +31,7 @@ export type PatchJson6902 =
        * inline json patch
        */
       patch: string;
-      target: PatchTarget1;
+      target: PatchTarget;
     }
   | {
       /**
@@ -412,7 +412,7 @@ export interface ReplacementsTarget {
   /**
    * Exclude objects that match this
    */
-  reject?: Selector1[];
+  reject?: Selector[];
   /**
    * The structured path(s) to the target nodes
    *
@@ -462,142 +462,24 @@ export interface Selector {
    */
   labelSelector?: string;
 }
-/**
- * Selector specifies a set of resources.
- * Any resource that matches intersection of all conditions is included in this set.
- */
-export interface Selector1 {
-  /**
-   * The group of the referent
-   */
-  group?: string;
-  /**
-   * The kind of the referent
-   */
-  kind?: string;
-  /**
-   * The name of the referent
-   */
-  name?: string;
-  /**
-   * The namespace of the referent
-   */
-  namespace?: string;
-  /**
-   * The version of the referent
-   */
-  version?: string;
-  /**
-   * AnnotationSelector is a string that follows the label selection expression
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api
-   */
-  annotationSelector?: string;
-  /**
-   * LabelSelector is a string that follows the label selection expression
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api
-   */
-  labelSelector?: string;
-}
 export interface PatchesPatchPath {
   options?: PatchesOptions;
   path: string;
-  target?: Selector2;
+  target?: Selector;
 }
 export interface PatchesOptions {
   allowNameChange?: boolean;
   allowKindChange?: boolean;
 }
-/**
- * Selector specifies a set of resources.
- * Any resource that matches intersection of all conditions is included in this set.
- */
-export interface Selector2 {
-  /**
-   * The group of the referent
-   */
-  group?: string;
-  /**
-   * The kind of the referent
-   */
-  kind?: string;
-  /**
-   * The name of the referent
-   */
-  name?: string;
-  /**
-   * The namespace of the referent
-   */
-  namespace?: string;
-  /**
-   * The version of the referent
-   */
-  version?: string;
-  /**
-   * AnnotationSelector is a string that follows the label selection expression
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api
-   */
-  annotationSelector?: string;
-  /**
-   * LabelSelector is a string that follows the label selection expression
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api
-   */
-  labelSelector?: string;
-}
 export interface PatchesInlinePatch {
   options?: PatchesOptions;
   patch: string;
-  target?: Selector3;
-}
-/**
- * Selector specifies a set of resources.
- * Any resource that matches intersection of all conditions is included in this set.
- */
-export interface Selector3 {
-  /**
-   * The group of the referent
-   */
-  group?: string;
-  /**
-   * The kind of the referent
-   */
-  kind?: string;
-  /**
-   * The name of the referent
-   */
-  name?: string;
-  /**
-   * The namespace of the referent
-   */
-  namespace?: string;
-  /**
-   * The version of the referent
-   */
-  version?: string;
-  /**
-   * AnnotationSelector is a string that follows the label selection expression
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api
-   */
-  annotationSelector?: string;
-  /**
-   * LabelSelector is a string that follows the label selection expression
-   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api
-   */
-  labelSelector?: string;
+  target?: Selector;
 }
 /**
  * Refers to a Kubernetes object that the json patch will be applied to. It must refer to a Kubernetes resource under the purview of this kustomization
  */
 export interface PatchTarget {
-  group?: string;
-  kind: string;
-  name: string;
-  namespace?: string;
-  version: string;
-}
-/**
- * Refers to a Kubernetes object that the json patch will be applied to. It must refer to a Kubernetes resource under the purview of this kustomization
- */
-export interface PatchTarget1 {
   group?: string;
   kind: string;
   name: string;

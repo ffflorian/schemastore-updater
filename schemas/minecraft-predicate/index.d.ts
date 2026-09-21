@@ -4,8 +4,6 @@
  * Configuration file defining a predicate for a data pack for Minecraft.
  */
 export type MinecraftDataPackPredicate = {
-  [k: string]: unknown | undefined;
-} & {
   conditions?: Conditions;
   [k: string]: unknown | undefined;
 };

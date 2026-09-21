@@ -2,14 +2,7 @@
 
 export type BranchOutputArm = 'False' | 'True';
 export type WasmGraphConfigConnectionOperator =
-  | 'source'
-  | 'map'
-  | 'filter'
-  | 'branch'
-  | 'concatenate'
-  | 'accumulate'
-  | 'delay'
-  | 'sink';
+  'source' | 'map' | 'filter' | 'branch' | 'concatenate' | 'accumulate' | 'delay' | 'sink';
 
 export interface AzureIoTOperationsWasmGraphConfig {
   connections: WasmGraphConfigConnection[];

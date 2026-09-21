@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 export interface BrowserI18NMessagesJsonTranslationFile {
-  [k: string]: TranslationEntry;
+  [k: string]: TranslationEntry | undefined;
 }
 /**
  * Translation key
@@ -24,7 +24,7 @@ export interface TranslationEntry {
  * (optional): List of placeholders that can be used in the message.
  */
 export interface Placeholders {
-  [k: string]: Placeholder;
+  [k: string]: Placeholder | undefined;
 }
 /**
  * Placeholder key

@@ -45,7 +45,7 @@ export interface AIHarnessOrgPolicy {
   };
   licenses?: {
     disposition?: {
-      [k: string]: ('auto-approve' | 'alert' | 'fail' | 'block') | undefined;
+      [k: string]: 'auto-approve' | 'alert' | 'fail' | 'block' | undefined;
     };
   };
   mcp?: {

@@ -52,7 +52,7 @@ export type CIBW_CONFIG_SETTINGS =
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` ".+".
        */
-      [k: string]: string | string[];
+      [k: string]: string | string[] | undefined;
     };
 export type CIBW_CONTAINER_ENGINE =
   | ('docker' | 'podman')
@@ -89,7 +89,7 @@ export type CIBW_ENVIRONMENT =
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` ".+".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
 /**
  * Set environment variables on the host to pass-through to the container during the build.
@@ -177,7 +177,7 @@ export type CIBW_XBUILD_FILES =
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` ".+".
        */
-      [k: string]: string | string[];
+      [k: string]: string | string[] | undefined;
     };
 /**
  * Specify the version of Pyodide to use
@@ -225,7 +225,7 @@ export type CIBW_TEST_ENVIRONMENT =
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` ".+".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
 /**
  * Additional configuration for the test runner

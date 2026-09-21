@@ -26,14 +26,7 @@ export type CollectionItems = {
    * determines how collection files are parsed and saved. It will be inferred if the extension field or existing collection file extensions match one of the supported extensions.
    */
   format?:
-    | 'yml'
-    | 'yaml'
-    | 'toml'
-    | 'json'
-    | 'frontmatter'
-    | 'yaml-frontmatter'
-    | 'toml-frontmatter'
-    | 'json-frontmatter';
+    'yml' | 'yaml' | 'toml' | 'json' | 'frontmatter' | 'yaml-frontmatter' | 'toml-frontmatter' | 'json-frontmatter';
   /**
    * For folder collections where users can create new items, the slug option specifies a template for generating new filenames based on a file's creation date and title field. (This means that all collections with create: true must have a title field (a different field can be used via identifier_field)).
    *
@@ -79,6 +72,23 @@ export type CollectionItems = {
   extension?: string;
   [k: string]: unknown | undefined;
 } & CollectionItems1;
+export type Widget =
+  | {
+      /**
+       * Defaults to True
+       */
+      required?: boolean;
+      /**
+       * optionally add helper text directly below a widget.
+       */
+      hint?: string;
+      /**
+       * add field validation by specifying a list with a regex pattern and an error message; more extensive validation can be achieved with custom widgets
+       */
+      pattern?: unknown[];
+      [k: string]: unknown | undefined;
+    }
+  | string;
 /**
  * The fields option maps editor UI widgets to field-value pairs in the saved file. The order of the fields in your Netlify CMS config.yml file determines their order in the editor UI and in the saved file.
  */
@@ -125,9 +135,15 @@ export type Files = {
   fields?: Fields;
   [k: string]: unknown | undefined;
 }[];
-export type CollectionItems1 = {
-  [k: string]: unknown | undefined;
-};
+export type CollectionItems1 =
+  | {
+      files: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      folder: unknown;
+      [k: string]: unknown | undefined;
+    };
 
 /**
  * Config file for Netlify CMS
@@ -249,20 +265,5 @@ export interface NetlifyConfigSchema {
    * Defaults to an empty list.
    */
   view_filters?: unknown[];
-  [k: string]: unknown | undefined;
-}
-export interface Widget {
-  /**
-   * Defaults to True
-   */
-  required?: boolean;
-  /**
-   * optionally add helper text directly below a widget.
-   */
-  hint?: string;
-  /**
-   * add field validation by specifying a list with a regex pattern and an error message; more extensive validation can be achieved with custom widgets
-   */
-  pattern?: unknown[];
   [k: string]: unknown | undefined;
 }

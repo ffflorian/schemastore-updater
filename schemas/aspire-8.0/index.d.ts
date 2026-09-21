@@ -42,7 +42,7 @@ export type Volumes = {
    */
   readOnly: boolean;
 }[];
-export type ResourceAzureBicepV1 = ResourceAzureBicep & {
+export type ResourceAzureBicepV1 = ResourceAzureBicepV0 & {
   type?: 'azure.bicep.v1';
   scope?: {
     /**
@@ -71,7 +71,7 @@ export interface HttpsJsonSchemastoreOrgAspire80Json {
    */
   resources: {
     [k: string]:
-      | (
+      | ((
           | {
               type: 'dockerfile.v0';
               /**
@@ -104,9 +104,27 @@ export interface HttpsJsonSchemastoreOrgAspire80Json {
               volumes?: Volumes;
               build?: never;
             }
-          | {
+          | ({
               [k: string]: unknown | undefined;
-            }
+            } & {
+              type?: 'container.v1';
+              /**
+               * A string representing the container image to be used.
+               */
+              image?: string;
+              /**
+               * The entrypoint to use for the container image when executed.
+               */
+              entrypoint?: string;
+              deployment?: ResourceAzureBicepV0 | ResourceAzureBicepV1;
+              args?: Args;
+              build?: Build;
+              connectionString?: ConnectionString;
+              env?: Env;
+              bindings?: Bindings;
+              bindMounts?: BindMounts;
+              volumes?: Volumes;
+            })
           | {
               type: 'project.v0';
               /**
@@ -123,7 +141,7 @@ export interface HttpsJsonSchemastoreOrgAspire80Json {
                * The path to the project file. Relative paths are interpreted as being relative to the location of the manifest file.
                */
               path: string;
-              deployment?: ResourceAzureBicep | ResourceAzureBicepV1;
+              deployment?: ResourceAzureBicepV0 | ResourceAzureBicepV1;
               args?: Args;
               env?: Env;
               bindings?: Bindings;
@@ -241,7 +259,7 @@ export interface HttpsJsonSchemastoreOrgAspire80Json {
                 type?: string;
               };
             }
-          | ResourceAzureBicep
+          | ResourceAzureBicepV0
           | ResourceAzureBicepV1
           | {
               type: 'aws.cloudformation.stack.v0';
@@ -262,7 +280,10 @@ export interface HttpsJsonSchemastoreOrgAspire80Json {
               type: string;
               [k: string]: unknown | undefined;
             }
-        )
+        ) & {
+          type: string;
+          [k: string]: unknown | undefined;
+        })
       | undefined;
   };
   [k: string]: unknown | undefined;
@@ -315,7 +336,7 @@ export interface BuildArgs {
 /**
  * Represents a resource that is deployed using Azure Bicep.
  */
-export interface ResourceAzureBicep {
+export interface ResourceAzureBicepV0 {
   type?: 'azure.bicep.v0';
   /**
    * Path to the Bicep file to be used for deployment.
@@ -327,15 +348,55 @@ export interface ResourceAzureBicep {
    */
   params?: {
     [k: string]:
-      | (
-          | unknown[]
-          | boolean
-          | number
-          | {
-              [k: string]: unknown | undefined;
-            }
-          | string
-        )
+      | unknown[]
+      | boolean
+      | number
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | string
+      | undefined;
+  };
+}
+/**
+ * An object that captures properties that control the building of a container image.
+ */
+export interface Build {
+  /**
+   * The path to the context directory for the container build. Can be relative of absolute. If relative it is relative to the location of the manifest file.
+   */
+  context: string;
+  /**
+   * The path to the Dockerfile. Can be relative or absolute. If relative it is relative to the manifest file.
+   */
+  dockerfile: string;
+  /**
+   * A list of build arguments which are used during container build.
+   */
+  args?: {
+    [k: string]: string | undefined;
+  };
+  /**
+   * A list of build arguments which are used during container build.
+   */
+  secrets?: {
+    [k: string]:
+      | {
+          type: 'env';
+          /**
+           * If provided use as the value for the environment variable when docker build is run.
+           */
+          value: string;
+          [k: string]: unknown | undefined;
+        }
+      | {
+          type: 'file';
+          /**
+           * Path to secret file. If relative, the path is relative to the manifest file.
+           */
+          source: string;
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
 }

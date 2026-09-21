@@ -18,7 +18,12 @@ export type PrometheusRules = {
          * Offset the rule evaluation timestamp of this particular group by the specified duration into the past.
          */
         query_offset?: string | null;
-        labels?: Labels;
+        /**
+         * Labels to add or overwrite before storing the result for its rules. Labels defined in <rule> will override the key if it has a collision.
+         */
+        labels?: {
+          [k: string]: LabelValue | undefined;
+        } | null;
         /**
          * Limit the number of alerts an alerting rule and series a recording rule can produce. 0 is no limit.
          */
@@ -26,71 +31,14 @@ export type PrometheusRules = {
         rules?: (RecordingRule | AlertingRule)[] | null;
       }[]
     | null;
-} & ({
-  groups?:
-    | {
-        /**
-         * The name of the group. Must be unique within a file.
-         */
-        name: string;
-        /**
-         * How often rules in the group are evaluated.
-         */
-        interval?: string | null;
-        /**
-         * Offset the rule evaluation timestamp of this particular group by the specified duration into the past.
-         */
-        query_offset?: string | null;
-        labels?: Labels;
-        /**
-         * Limit the number of alerts an alerting rule and series a recording rule can produce. 0 is no limit.
-         */
-        limit?: number | null;
-        rules?: (RecordingRule | AlertingRule)[] | null;
-      }[]
-    | null;
-} | null);
+} | null;
 /**
- * Labels to add or overwrite before storing the result for its rules. Labels defined in <rule> will override the key if it has a collision.
- */
-export type Labels = {
-  [k: string]: LabelValue;
-} & ({
-  [k: string]: LabelValue;
-} | null);
-/**
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
  * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
  */
 export type LabelValue = string;
 /**
- * Annotations to add to each alert.
- */
-export type Annotations = {
-  [k: string]: TmplString;
-} & ({
-  [k: string]: TmplString;
-} | null);
-/**
  * A string which is template-expanded before usage.
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
  *
  * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
@@ -106,7 +54,12 @@ export interface RecordingRule {
    * The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and the result recorded as a new set of time series with the metric name as given by 'record'.
    */
   expr: string | number;
-  labels?: Labels;
+  /**
+   * Labels to add or overwrite before storing the result.
+   */
+  labels?: {
+    [k: string]: LabelValue | undefined;
+  } | null;
 }
 export interface AlertingRule {
   /**
@@ -125,6 +78,16 @@ export interface AlertingRule {
    * How long an alert will continue firing after the condition that triggered it has cleared.
    */
   keep_firing_for?: string | null;
-  labels?: Labels;
-  annotations?: Annotations;
+  /**
+   * Labels to add or overwrite for each alert.
+   */
+  labels?: {
+    [k: string]: LabelValue | undefined;
+  } | null;
+  /**
+   * Annotations to add to each alert.
+   */
+  annotations?: {
+    [k: string]: TmplString | undefined;
+  } | null;
 }

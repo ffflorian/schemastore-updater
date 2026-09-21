@@ -5,40 +5,31 @@ export type Url = string;
 /**
  * Info about a plugin/repository outside this one.
  */
-export type OtherRepository =
-  | (
-      | OtherRepository1
-      | (undefined & {
-          /**
-           * Primary homepage of the plugin.
-           */
-          homepage?: string;
-          'addon-info'?: JSONSchemaForVimPluginAddonInfoJsonMetadataFiles1;
-          [k: string]: unknown | undefined;
-        })
-      | undefined
-    )
-  | undefined;
+export type OtherRepository = OtherRepository1 & {
+  /**
+   * Primary homepage of the plugin.
+   */
+  homepage?: string;
+  'addon-info'?: JSONSchemaForVimPluginAddonInfoJsonMetadataFiles;
+  [k: string]: unknown | undefined;
+};
 export type OtherRepository1 =
-  | (
-      | {}
-      | {
-          type?: '' | 'archive';
-          url?: Url;
-          /**
-           * Script ID number of the target plugin on www.vim.org, if any.
-           */
-          vim_script_nr?: number;
-          'script-type'?: 'color scheme' | 'ftplugin' | 'game' | 'indent' | 'syntax' | 'utility' | 'patch';
-          [k: string]: unknown | undefined;
-        }
-      | {
-          type: RepoType;
-          url: Url;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | {}
+  | {
+      type?: '' | 'archive';
+      url?: Url;
+      /**
+       * Script ID number of the target plugin on www.vim.org, if any.
+       */
+      vim_script_nr?: number;
+      'script-type'?: 'color scheme' | 'ftplugin' | 'game' | 'indent' | 'syntax' | 'utility' | 'patch';
+      [k: string]: unknown | undefined;
+    }
+  | {
+      type: RepoType;
+      url: Url;
+      [k: string]: unknown | undefined;
+    };
 
 export interface JSONSchemaForVimPluginAddonInfoJsonMetadataFiles {
   /**
@@ -84,39 +75,5 @@ export interface SelfRepository {
    * For a deprecated plugin, a deprecation message to be shown to any user who installs the plugin.
    */
   deprecated?: string;
-  [k: string]: unknown | undefined;
-}
-export interface JSONSchemaForVimPluginAddonInfoJsonMetadataFiles1 {
-  /**
-   * The name of the plugin. Used by plugin managers and some introspection tools. Generally corresponds to the name of the repository but without "vim" prefix/suffix.
-   */
-  name?: string;
-  /**
-   * Dotted version number of the plugin, generally in semantic versioning scheme.
-   */
-  version?: string;
-  /**
-   * Short description of the plugin and what it does (a sentence or two)
-   */
-  description?: string;
-  /**
-   * Primary homepage of the plugin.
-   */
-  homepage?: string;
-  /**
-   * Name of the person or organization that created the plugin
-   */
-  author?: string;
-  /**
-   * Name of the person who maintains the plugin
-   */
-  maintainer?: string;
-  repository?: SelfRepository;
-  /**
-   * Plugins that are strictly required for the plugin to work, where keys are plugin names and values may describe where plugins can be fetched from.
-   */
-  dependencies?: {
-    [k: string]: OtherRepository | undefined;
-  };
   [k: string]: unknown | undefined;
 }

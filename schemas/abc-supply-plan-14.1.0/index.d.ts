@@ -14,6 +14,142 @@ export type ABCAnalyticsItem = TimeSeries | AnalyticsNoteItem | DemandConsumptio
  */
 export type TimeAggregateType = 'Annual' | 'Quarterly' | 'Monthly';
 /**
+ * How to display the quantities for this metric. Null means quantity-display selection does not apply to this metric type.
+ */
+export type ShowQuantitiesAs = (('Units' | 'Lots' | 'Monetary') | null) &
+  (string | null);
+/**
+ * ID of the comparison plan to overlay against this metric. Null means no comparison plan is attached.
+ */
+export type ComparisonPlanID = string | null;
+/**
+ * Region filter for Clinical Demand Forecast metrics. Null means no region filter (Global).
+ */
+export type RegionID = string | null;
+/**
+ * Treatment-arm filter for Clinical Demand Forecast metrics. Null means no arm filter (Overall).
+ */
+export type ArmID = string | null;
+/**
+ * Kit filter for Clinical Demand Forecast metrics. Null means no kit filter (All kits).
+ */
+export type KitID = string | null;
+/**
+ * Kit-item filter for Clinical Demand Forecast metrics. Null means no item filter (All items).
+ */
+export type ItemID = string | null;
+/**
+ * Whether to display cumulative values for this metric. Null is treated as false (the cumulative toggle has not been set).
+ */
+export type IsCumulative = boolean | null;
+/**
+ * Present only when metricType is customMetric. An arithmetic expression over named references to time series.
+ */
+export type CustomMetricFormula = {
+  /**
+   * @minItems 1
+   */
+  seriesReferences: [
+    {
+      referenceLabel: string;
+      planID: string | null;
+      metricType:
+        | 'demand'
+        | 'actuals'
+        | 'otherDemand'
+        | 'firmOrders'
+        | 'plannedOrders'
+        | 'firmRelease'
+        | 'plannedRelease'
+        | 'expiryAdjustments'
+        | 'inventory'
+        | 'mfc'
+        | 'targetMFC'
+        | 'capacityUtilization'
+        | 'workInProgress'
+        | 'enrolled'
+        | 'active'
+        | 'completed'
+        | 'kitDemand'
+        | 'sites'
+        | 'screened'
+        | 'screenedOut'
+        | 'droppedOut'
+        | 'siteSeedingKitDemand'
+        | 'kitItemDemand';
+      abcMaterialIDs: string[];
+      regionID: string | null;
+      armID: string | null;
+      kitID: string | null;
+      itemID: string | null;
+      showQuantitiesAs: (('Units' | 'Lots' | 'Monetary') | null) &
+        (string | null);
+      recipeRollupTargetABCMaterialID: string | null;
+      subMetricComponentID: SubMetricComponentID;
+    },
+    ...{
+      referenceLabel: string;
+      planID: string | null;
+      metricType:
+        | 'demand'
+        | 'actuals'
+        | 'otherDemand'
+        | 'firmOrders'
+        | 'plannedOrders'
+        | 'firmRelease'
+        | 'plannedRelease'
+        | 'expiryAdjustments'
+        | 'inventory'
+        | 'mfc'
+        | 'targetMFC'
+        | 'capacityUtilization'
+        | 'workInProgress'
+        | 'enrolled'
+        | 'active'
+        | 'completed'
+        | 'kitDemand'
+        | 'sites'
+        | 'screened'
+        | 'screenedOut'
+        | 'droppedOut'
+        | 'siteSeedingKitDemand'
+        | 'kitItemDemand';
+      abcMaterialIDs: string[];
+      regionID: string | null;
+      armID: string | null;
+      kitID: string | null;
+      itemID: string | null;
+      showQuantitiesAs: (('Units' | 'Lots' | 'Monetary') | null) &
+        (string | null);
+      recipeRollupTargetABCMaterialID: string | null;
+      subMetricComponentID: SubMetricComponentID;
+    }[]
+  ];
+  expression: string;
+  scalarConstants: ScalarConstants;
+  unitsLabel: UnitsLabel;
+  decimalPrecision: DecimalPrecision;
+} | null;
+/**
+ * Isolate one sub-metric component of the reference's metric: for Demand or Consumption, the id of the direct-downstream material (Consumption) or a demand-details key (Demand) whose contribution to isolate. Absent or null means the whole metric, not a single component.
+ */
+export type SubMetricComponentID = string | null;
+/**
+ * Planner-defined named scalar values (e.g. a currency-conversion rate) usable in the expression by name. Optional.
+ */
+export type ScalarConstants = {
+  name: string;
+  value: number;
+}[];
+/**
+ * Optional free-text unit shown on the chart axis and the export Units column for this Custom Metric (e.g. bottle, dose). Absent or null means unitless. Display-only; a Custom Metric formula can mix units, so this is neither derived nor validated.
+ */
+export type UnitsLabel = string | null;
+/**
+ * How many decimal places to show for this Custom Metric on the chart axis, data labels, and tooltip. Zero shows whole numbers. A formula such as a ratio needs a nonzero value to display its fractional result.
+ */
+export type DecimalPrecision = number;
+/**
  * Hex color string for the note's background.
  */
 export type BackgroundColor = string;
@@ -27,9 +163,208 @@ export type ImageURL = string | null;
  * This interface was referenced by `ABCMaterialsMap`'s JSON-Schema definition
  * via the `patternProperty` "^\d+$".
  */
-export type ABCMaterialState = {
-  [k: string]: unknown | undefined;
-};
+export type ABCMaterialState = ABCMaterialState1;
+/**
+ * The X coordinate position of the material in a graphical representation.
+ */
+export type XCoordinate = number;
+/**
+ * The Y coordinate position of the material in a graphical representation.
+ */
+export type YCoordinate = number;
+/**
+ * Numeric value representing the order or sequence of the material.
+ */
+export type Ordering = number;
+/**
+ * The name of the material.
+ */
+export type MaterialName = string;
+/**
+ * The unit of measure used for the material.
+ */
+export type UnitOfMeasure = string;
+/**
+ * The shape of the material represented graphically.
+ */
+export type MaterialShape =
+  'circle' | 'square' | 'diamond' | 'rectangle' | 'parallelogram' | 'trapezoid' | 'triangle' | 'pentagon' | 'hexagon';
+/**
+ * Colors may be specified in any string-based format supported by the Color constructor documented at https://www.npmjs.com/package/color
+ */
+export type Color = string;
+/**
+ * Indicates whether to carry over the expiry information for the material.
+ */
+export type ExpiryCarryover = boolean;
+/**
+ * Determines if the material is a node where capacity constraints are applied.
+ */
+export type CapacityConstraintNode = boolean;
+/**
+ * The method used for managing inventory levels, either target months forward coverage or minimum inventory.
+ */
+export type InventoryMethod = 'TargetMFC' | 'MinimumInventory';
+/**
+ * The currency used for monetary calculations of the material.
+ */
+export type Currency = string;
+/**
+ * The direct manufacturing cost per unit of the material.
+ */
+export type ManufacturingCost = number;
+/**
+ * The standard cost per unit including overhead of the material.
+ */
+export type StandardCost = number;
+/**
+ * The sales price per unit of the material.
+ */
+export type SalesPrice = number;
+/**
+ * Batch size for orders. Must be greater than 0 to plan, etc.
+ */
+export type LotSize = number;
+/**
+ * Delay between Manufacture Date and Release Date.  Format: non-negative integer.
+ */
+export type LeadTime = number;
+/**
+ * Time during which no Planned Orders are allowed.  Format: non-negative integer.
+ */
+export type FirmingPeriod = number;
+/**
+ * Defines a time-specific integer value within a valid date range, ensuring it is non-negative.
+ */
+export type NonNegativeIntegerTimeDependentValue = TemplateTimeDependentValue & NonNegativeIntegerConstraints;
+/**
+ * The start date for the time-dependent value. Must be the first day of a month and within a valid date range.
+ */
+export type StartDate = string | null;
+/**
+ * The end date for the time-dependent value. Must be the last day of a month and within a valid date range.
+ */
+export type EndDate = string | null;
+/**
+ * An integer value that cannot be negative, typically representing quantities or counts in a time-dependent context.
+ */
+export type TimeDependentValue = number;
+/**
+ * Target Months Forward Coverage refers to a dynamic safety stock level—a buffer quantity of inventory designed to mitigate the risk of stock-outs caused by variability in Demand. In essence, it represents the number of months of Demand that could be satisfied assuming no additional material is manufactured. Each value is defined for a specific period of time.
+ */
+export type TargetMFC = NonNegativeIntegerTimeDependentValue[];
+/**
+ * List of Minimum Inventory values, each defined for a specific period of time. Minimum Inventory denotes the lowest stock level to prevent outages, triggering restock.
+ */
+export type MinimumInventory = NonNegativeIntegerTimeDependentValue[];
+/**
+ * Defines a time-specific integer value that must always be positive, ensuring it meets the requirements of scenarios where zero or negative numbers are not permitted.
+ */
+export type PositiveIntegerTimeDependentValue = TemplateTimeDependentValue & PositiveIntegerConstraints;
+/**
+ * List of Planning Frequency values, each defined for a specific period of time.
+ */
+export type PlanningFrequencies = PositiveIntegerTimeDependentValue[];
+/**
+ * List of Shelf Life values, each defined for a specific period of time.
+ */
+export type ShelfLives = NonNegativeIntegerTimeDependentValue[];
+/**
+ * Buffers to account for Stopship scenarios, listed for different periods.
+ */
+export type StopshipBuffers = NonNegativeIntegerTimeDependentValue[];
+/**
+ * The identifier for the lot number of the inventory item. It must be at least 1 character in length.
+ */
+export type LotNumber = string;
+/**
+ * The quantity of the inventory item when first recorded. This must be a non-negative number.
+ */
+export type InitialInventoryQuantity = number;
+/**
+ * The date the item was manufactured. This date must be the first day of a month and fall within a valid date range.
+ */
+export type ManufactureDate = string;
+/**
+ * The date the item will expire. This date must be the last day of a month and fall within a valid date range.
+ */
+export type ExpirationDate = string;
+/**
+ * List of Initial Inventory records, each associated with specific lot and dates.
+ */
+export type InitialInventories = InitialInventory[];
+/**
+ * The name or identifier of the firm order.
+ */
+export type FirmOrderName = string;
+/**
+ * The quantity specified in the firm order. Must be a non-negative value.
+ */
+export type FirmOrderQuantity = number;
+/**
+ * The date the goods are scheduled to be released. Must be the first day of the month and within valid date range.
+ */
+export type ReleaseDate = string;
+/**
+ * List of Firm Orders with their respective quantities and dates.
+ */
+export type FirmOrders = FirmOrder[];
+/**
+ * User-visible label for the demand row.
+ */
+export type Label = string;
+/**
+ * Link to the source plan this demand row was copied from. Null if not linked.
+ */
+export type SourceLink = null | ClinicalDemandForecastLink | SupplyPlanLink;
+/**
+ * The ID of the source Clinical Demand Forecast.
+ */
+export type PlanID = string;
+/**
+ * The kit ID within the source Clinical Demand Forecast.
+ */
+export type KitID1 = string;
+/**
+ * The region ID within the source Clinical Demand Forecast.
+ */
+export type RegionID1 = string;
+/**
+ * Whether this demand is for placebo kits. Null or false for commercial demand.
+ */
+export type IsPlacebo = boolean | null;
+/**
+ * Whether kit demand (treatment-driven) is included.
+ */
+export type IncludeDemand = boolean | null;
+/**
+ * Whether site seeding demand is included.
+ */
+export type IncludeSiteSeeding = boolean | null;
+/**
+ * The material ID within the source Supply Plan.
+ */
+export type MaterialID = string;
+/**
+ * Defines how quantities are represented, e.g., in units, lots, or monetary value.
+ */
+export type ShowQuantitiesAs1 = 'Units' | 'Lots' | 'Monetary';
+/**
+ * Determines the type of analysis to be performed on expiry data, focusing on expiration or stopship scenarios.
+ */
+export type ExpiryAnalysisType = 'Expiration' | 'Stopship';
+/**
+ * Indicates whether planning parameters are dependent on time, necessitating different values at different periods.
+ */
+export type TimeDependentPlanningParameters = boolean;
+/**
+ * For pulling inventory from the inventory management system into Initial Inventory and Firm Orders & Releases
+ */
+export type MaterialNumberInTheInventoryManagementSystem = string | null;
+/**
+ * For pulling inventory from the inventory management system into Initial Inventory and Firm Orders & Releases and filtering it by location
+ */
+export type LocationInTheInventoryManagementSystem = string | null;
 /**
  * Unique identifier of the recipe.
  */
@@ -42,14 +377,6 @@ export type ConsumptionAllocation = 'PercentAllocation' | 'PriorityAllocation';
  * Defines a time-specific percentage value within a valid date range, adhering to percentage constraints.
  */
 export type PercentTimeDependentValue = TemplateTimeDependentValue & PercentValueConstraints;
-/**
- * The start date for the time-dependent value. Must be the first day of a month and within a valid date range.
- */
-export type StartDate = string | null;
-/**
- * The end date for the time-dependent value. Must be the last day of a month and within a valid date range.
- */
-export type EndDate = string | null;
 /**
  * Percentage allocations of materials to the recipe over different periods.
  */
@@ -154,7 +481,78 @@ export interface TimeSeries {
   excludeMonthsFromEnd: number;
   timeAggregateType: TimeAggregateType;
   metrics: {
-    [k: string]: unknown | undefined;
+    metricType:
+      | 'demand'
+      | 'actuals'
+      | 'otherDemand'
+      | 'firmOrders'
+      | 'plannedOrders'
+      | 'firmRelease'
+      | 'plannedRelease'
+      | 'expiryAdjustments'
+      | 'inventory'
+      | 'mfc'
+      | 'targetMFC'
+      | 'capacityUtilization'
+      | 'workInProgress'
+      | 'customMetric'
+      | 'enrolled'
+      | 'active'
+      | 'completed'
+      | 'kitDemand'
+      | 'sites'
+      | 'screened'
+      | 'screenedOut'
+      | 'droppedOut'
+      | 'siteSeedingKitDemand'
+      | 'kitItemDemand';
+    abcMaterialIDs: string[];
+    visualization:
+      | {
+          type: 'line';
+          strokeWidth: number;
+          strokeDasharray: string;
+          dotSize: number;
+          dotFill: string;
+          /**
+           * Display data point values directly on the chart
+           */
+          showDataPointValues: boolean;
+        }
+      | {
+          type: 'bar';
+          barWidth: number;
+          radius: number;
+          stackId: string;
+          showAsPercent: boolean;
+          /**
+           * Display data point values directly on the chart
+           */
+          showDataPointValues: boolean;
+        }
+      | {
+          type: 'area';
+          fillOpacity: number;
+          strokeWidth: number;
+          stackId: string;
+          showAsPercent: boolean;
+          /**
+           * Display data point values directly on the chart
+           */
+          showDataPointValues: boolean;
+        };
+    yAxisIndex: number;
+    color: string;
+    zIndex: number;
+    label: string;
+    showQuantitiesAs: ShowQuantitiesAs;
+    comparisonPlanID: ComparisonPlanID;
+    regionID: RegionID;
+    armID: ArmID;
+    kitID: KitID;
+    itemID: ItemID;
+    isCumulative: IsCumulative;
+    customFormula: CustomMetricFormula;
   }[];
 }
 export interface AnalyticsNoteItem {
@@ -237,13 +635,197 @@ export interface DemandConsumptionAllocationItem {
  * A mapping of material IDs to their respective states within the ABC system.
  */
 export interface ABCMaterialsMap {
-  [k: string]: ABCMaterialState;
+  [k: string]: ABCMaterialState | undefined;
+}
+export interface ABCMaterialState1 {
+  x: XCoordinate;
+  y: YCoordinate;
+  ordering: Ordering;
+  abcMaterialName: MaterialName;
+  uom: UnitOfMeasure;
+  materialShape: MaterialShape;
+  materialColor: Color;
+  doExpiryCarryover: ExpiryCarryover;
+  isCapacityConstraintNode: CapacityConstraintNode;
+  inventoryMethod: InventoryMethod;
+  decimalPrecision: DecimalPrecision;
+  currency: Currency;
+  manufacturingCost: ManufacturingCost;
+  standardCost: StandardCost;
+  salesPrice: SalesPrice;
+  lotSize: LotSize;
+  leadTime: LeadTime;
+  firmingPeriod: FirmingPeriod;
+  targetMFCs: TargetMFC;
+  minimumInventories: MinimumInventory;
+  planningFrequencies: PlanningFrequencies;
+  shelfLives: ShelfLives;
+  stopshipBuffers: StopshipBuffers;
+  initialInventories: InitialInventories;
+  firmOrders: FirmOrders;
+  demand: Demand;
+  demandDetails: DemandConsumptionAllocation;
+  otherDemand: PositiveDateMap;
+  otherDemandAnnotation: OtherDemandAnnotation;
+  actuals: PositiveDateMap;
+  plannedOrders: PositiveDateMap;
+  expiryAdjustments: ExpiryAdjustments;
+  expiryAdjustmentsAnnotation: ExpiryAdjustmentsAnnotation;
+  timeAggregateType: TimeAggregateType;
+  showQuantitiesAs: ShowQuantitiesAs1;
+  expiryAnalysisType: ExpiryAnalysisType;
+  timeDependentPlanningParameters: TimeDependentPlanningParameters;
+  inventorySystemMaterialNumber: MaterialNumberInTheInventoryManagementSystem;
+  inventorySystemLocationName: LocationInTheInventoryManagementSystem;
+}
+/**
+ * Base template for defining time-dependent values, specifying the valid date ranges for such values.
+ */
+export interface TemplateTimeDependentValue {
+  startDate: StartDate;
+  endDate: EndDate;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines constraints for integer values to ensure they are non-negative, used in various time-dependent value configurations.
+ */
+export interface NonNegativeIntegerConstraints {
+  timeDependentValue: TimeDependentValue;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines constraints for integer values to ensure they are positive, used in various configurations where a strictly positive value is required.
+ */
+export interface PositiveIntegerConstraints {
+  timeDependentValue: TimeDependentValue;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines the initial inventory of a material, including lot number and associated dates.
+ */
+export interface InitialInventory {
+  lotNumber: LotNumber;
+  initialInventoryQuantity: InitialInventoryQuantity;
+  manufactureDate: ManufactureDate;
+  expirationDate: ExpirationDate;
+}
+/**
+ * Defines a firm order within the system, including order details and relevant dates.
+ */
+export interface FirmOrder {
+  firmOrderName: FirmOrderName;
+  firmOrderQuantity: FirmOrderQuantity;
+  manufactureDate: ManufactureDate;
+  releaseDate: ReleaseDate;
+  expirationDate: ExpirationDate;
+}
+/**
+ * Map of demand rows, where each key is a unique ID and value is a DateMap containing demand values for specific dates.
+ */
+export interface Demand {
+  [k: string]: PositiveDateMap | undefined;
+}
+/**
+ * Mapping of dates to positive numerical values, typically representing demand or supply quantities.
+ *
+ * This interface was referenced by `Demand`'s JSON-Schema definition
+ * via the `patternProperty` "^.*$".
+ */
+export interface PositiveDateMap {
+  /**
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
+}
+/**
+ * Mapping of demand row IDs to their metadata including labels and ordering.
+ */
+export interface DemandConsumptionAllocation {
+  /**
+   * This interface was referenced by `DemandConsumptionAllocation`'s JSON-Schema definition
+   * via the `patternProperty` "^.*$".
+   */
+  [k: string]:
+    | {
+        label: Label;
+        ordering: Ordering;
+        sourceLink: SourceLink;
+      }
+    | undefined;
+}
+/**
+ * Link to a specific kit and region within a Clinical Demand Forecast.
+ */
+export interface ClinicalDemandForecastLink {
+  planType: 'clinicalDemandForecast';
+  planID: PlanID;
+  kitID: KitID1;
+  regionID: RegionID1;
+  armID: ArmID;
+  itemID: ItemID;
+  isPlacebo: IsPlacebo;
+  includeDemand: IncludeDemand;
+  includeSiteSeeding: IncludeSiteSeeding;
+}
+/**
+ * Link to a specific material within a Supply Plan.
+ */
+export interface SupplyPlanLink {
+  planType: 'supplyPlan';
+  planID: PlanID;
+  materialID: MaterialID;
+}
+/**
+ * Annotations related to other demand entries, providing additional context.
+ */
+export interface OtherDemandAnnotation {
+  /**
+   * This interface was referenced by `OtherDemandAnnotation`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `ExpiryAdjustmentsAnnotation`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: string | undefined;
+}
+/**
+ * Adjustments made to account for expired materials, reducing quantities.
+ */
+export interface ExpiryAdjustments {
+  /**
+   * This interface was referenced by `ExpiryAdjustments`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
+}
+/**
+ * Annotations related to expiry adjustment entries, providing additional context such as lot numbers being written off.
+ */
+export interface ExpiryAdjustmentsAnnotation {
+  /**
+   * This interface was referenced by `OtherDemandAnnotation`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `ExpiryAdjustmentsAnnotation`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: string | undefined;
 }
 /**
  * A mapping of recipes, representing the acyclic relationships among materials. abcAreAllocationMethodsHomogeneous requires no mixing of Allocation Methods.  A downstream material cannot have mixed upstream recipes.  An upstream material cannot have mixed downstream recipes.
  */
 export interface RecipeMap {
-  [k: string]: RecipeState;
+  [k: string]: RecipeState | undefined;
 }
 /**
  * Defines a recipe within the system, including its components and yields.
@@ -257,14 +839,6 @@ export interface RecipeState {
   percentAllocations: PercentAllocations;
   priorityAllocations: PriorityAllocations;
   percentYield: PercentYield;
-}
-/**
- * Base template for defining time-dependent values, specifying the valid date ranges for such values.
- */
-export interface TemplateTimeDependentValue {
-  startDate: StartDate;
-  endDate: EndDate;
-  [k: string]: unknown | undefined;
 }
 /**
  * Constraints for percentage values, defining the valid range as 0% to 100%.

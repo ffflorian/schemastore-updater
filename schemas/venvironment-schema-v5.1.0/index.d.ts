@@ -586,161 +586,11 @@ export type FunctionalMockupUnits = FunctionalMockupUnit[];
  */
 export type Full9 = [string | (string | number), ...(string | (string | number))[]];
 /**
- * TCP port for AUTOSAR PDU multiplexing.
- *
- * @minItems 1
- */
-export type Full10 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * TLS port for AUTOSAR PDU multiplexing.
- *
- * @minItems 1
- */
-export type Full11 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * DTLS port for AUTOSAR PDU multiplexing.
- *
- * @minItems 1
- */
-export type Full12 = [string | (string | number), ...(string | (string | number))[]];
-/**
  * UDP port for CCS SDP.
  *
  * @minItems 1
  */
 export type Full13 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * TCP port for CCS V2G.
- *
- * @minItems 1
- */
-export type Full14 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * TLS port for CCS V2G.
- *
- * @minItems 1
- */
-export type Full15 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for DHCPv4.
- *
- * @minItems 1
- */
-export type Full16 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for DHCPv6.
- *
- * @minItems 1
- */
-export type Full17 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for DoIP.
- *
- * @minItems 1
- */
-export type Full18 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * TCP port for DoIP.
- *
- * @minItems 1
- */
-export type Full19 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * TLS port for DoIP.
- *
- * @minItems 1
- */
-export type Full20 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * TCP port for HTTP.
- *
- * @minItems 1
- */
-export type Full21 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * TLS port for HTTP.
- *
- * @minItems 1
- */
-export type Full22 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for IKEv2.
- *
- * @minItems 1
- */
-export type Full23 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for NTP.
- *
- * @minItems 1
- */
-export type Full24 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for RTCP.
- *
- * @minItems 1
- */
-export type Full25 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for RTP.
- *
- * @minItems 1
- */
-export type Full26 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for SNMP.
- *
- * @minItems 1
- */
-export type Full27 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for SOME/IP.
- *
- * @minItems 1
- */
-export type Full28 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * TCP port for SOME/IP.
- *
- * @minItems 1
- */
-export type Full29 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * TLS port for SOME/IP.
- *
- * @minItems 1
- */
-export type Full30 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * DTLS port for SOME/IP.
- *
- * @minItems 1
- */
-export type Full31 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for TFTP.
- *
- * @minItems 1
- */
-export type Full32 = string & [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for UDP NM.
- *
- * @minItems 1
- */
-export type Full33 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * UDP port for XCP.
- *
- * @minItems 1
- */
-export type Full34 = [string | (string | number), ...(string | (string | number))[]];
-/**
- * TCP port for XCP.
- *
- * @minItems 1
- */
-export type Full35 = [string | (string | number), ...(string | (string | number))[]];
 /**
  * Global settings for FlexRay controlling the interpretation of frames and PDUs of FlexRay configurations with channels A and B.
  */
@@ -1108,7 +958,7 @@ export type SymbolMappings = SystemVariables[];
 /**
  * A list of system variable files. Entries can be deactivated with when.
  */
-export type SystemVariables1 = SystemVariables2[];
+export type SystemVariables1 = SystemVariables[];
 /**
  * List of user files. Entries can be deactivated with when.
  */
@@ -2113,7 +1963,7 @@ export interface EthernetNetwork {
     [k: string]: unknown | undefined;
   } & string;
   'global-tcp-ip-stack-adapter'?: Full2;
-  'test-tcp-ip-stack-adapter'?: Full6;
+  'test-tcp-ip-stack-adapter'?: Full2;
   /**
    * Defines the mapping of the network to an underlying layer.
    * Connects the network either to simulated network ("internal-simulator"), hardware ("external-hardware") or to SIL Kit ("external-sil-kit").
@@ -2274,80 +2124,6 @@ export interface VlanSettings {
          */
         'address-configuration': 'static' | string;
       };
-}
-/**
- * Address configuration for the test TCP/IP stack. This setting is relevant if global-settings/ethernet/test-tcp-ip-stack/selected-stack is set to "individual".
- */
-export interface Full6 {
-  /**
-   * MAC address of the current TCP/IP stack (cannot be a multicast address).
-   */
-  'mac-address'?: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | string
-  ) &
-    string;
-  /**
-   * Maximum Transmission Unit.
-   */
-  mtu?: number | string;
-  /**
-   * Configurations for IPv4.
-   */
-  'ipv4-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': ('dhcp' | 'link-local') | string;
-      }
-    | {
-        addresses: Full3;
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': 'static' | string;
-      };
-  /**
-   * Configurations for IPv6.
-   */
-  'ipv6-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'dhcp' | string;
-      }
-    | {
-        addresses: Full4;
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'static' | string;
-      };
-  vlans?: Full5;
 }
 /**
  * A replay block for the Ethernet protocol.
@@ -2691,9 +2467,9 @@ export interface GlobalProtocolIdentificationSettingsForEthernet {
    */
   'autosar-pdu-multiplexing'?: {
     'udp-port'?: Full9;
-    'tcp-port'?: Full10;
-    'tls-port'?: Full11;
-    'dtls-port'?: Full12;
+    'tcp-port'?: Full9;
+    'tls-port'?: Full9;
+    'dtls-port'?: Full9;
   };
   /**
    * Protocol identification settings for CCS SDP.
@@ -2705,93 +2481,93 @@ export interface GlobalProtocolIdentificationSettingsForEthernet {
    * Protocol identification settings for CCS V2G.
    */
   'ccs-v2g'?: {
-    'tcp-port'?: Full14;
-    'tls-port'?: Full15;
+    'tcp-port'?: Full9;
+    'tls-port'?: Full9;
   };
   /**
    * Protocol identification settings for DHCPv4.
    */
   dhcpv4?: {
-    'udp-port'?: Full16;
+    'udp-port'?: Full13;
   };
   /**
    * Protocol identification settings for DHCPv6.
    */
   dhcpv6?: {
-    'udp-port'?: Full17;
+    'udp-port'?: Full13;
   };
   /**
    * Protocol identification settings for DoIP.
    */
   doip?: {
-    'udp-port'?: Full18;
-    'tcp-port'?: Full19;
-    'tls-port'?: Full20;
+    'udp-port'?: Full13;
+    'tcp-port'?: Full13;
+    'tls-port'?: Full13;
   };
   /**
    * Protocol identification settings for HTTP.
    */
   http?: {
-    'tcp-port'?: Full21;
-    'tls-port'?: Full22;
+    'tcp-port'?: Full13;
+    'tls-port'?: Full13;
   };
   /**
    * Protocol identification settings for IKEv2.
    */
   ikev2?: {
-    'udp-port'?: Full23;
+    'udp-port'?: Full13;
   };
   /**
    * Protocol identification settings for NTP.
    */
   ntp?: {
-    'udp-port'?: Full24;
+    'udp-port'?: Full13;
   };
   /**
    * Protocol identification settings for RTCP.
    */
   rtcp?: {
-    'udp-port'?: Full25;
+    'udp-port'?: Full9;
   };
   /**
    * Protocol identification settings for RTP.
    */
   rtp?: {
-    'udp-port'?: Full26;
+    'udp-port'?: Full9;
   };
   /**
    * Protocol identification settings for SNMP.
    */
   snmp?: {
-    'udp-port'?: Full27;
+    'udp-port'?: Full13;
   };
   /**
    * Protocol identification settings for SOME/IP.
    */
   'some-ip'?: {
-    'udp-port'?: Full28;
-    'tcp-port'?: Full29;
-    'tls-port'?: Full30;
-    'dtls-port'?: Full31;
+    'udp-port'?: Full13;
+    'tcp-port'?: Full9;
+    'tls-port'?: Full9;
+    'dtls-port'?: Full9;
   };
   /**
    * Protocol identification settings for TFTP.
    */
   tftp?: {
-    'udp-port'?: Full32;
+    'udp-port'?: Full13;
   };
   /**
    * Protocol identification settings for UDP NM.
    */
   'udp-nm'?: {
-    'udp-port'?: Full33;
+    'udp-port'?: Full9;
   };
   /**
    * Protocol identification settings for XCP.
    */
   xcp?: {
-    'udp-port'?: Full34;
-    'tcp-port'?: Full35;
+    'udp-port'?: Full9;
+    'tcp-port'?: Full9;
   };
 }
 /**
@@ -3144,10 +2920,7 @@ export interface PortConfiguration {
    * Name of the Ethernet network where the port is configured.
    */
   network: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
+    {
         [k: string]: unknown | undefined;
       }
   ) &
@@ -3156,10 +2929,7 @@ export interface PortConfiguration {
    * Name of a measurement port.
    */
   'measurement-port': (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | {
+    {
         [k: string]: unknown | undefined;
       }
   ) &
@@ -3182,7 +2952,7 @@ export interface PortConfiguration {
   /**
    * Name of an available MACsec port configuration from the security profile.
    */
-  'port-configuration': string | string;
+  'port-configuration': string;
   'bypass-filter'?: Full42;
   /**
    * Node is added to the environment only if the specified condition is true.
@@ -3376,110 +3146,12 @@ export interface Full45 {
    * Overwrite the database node name set at the simulation-node level. Only needed for gateway nodes when more than one database assigned to the network contains the node. To specify a database, use the syntax "dbName::nodeName".
    */
   'database-node'?: string;
-  'tcp-ip-stack-adapter'?: Full46;
-}
-/**
- * Address configuration for the associated tcp-ip-stack. Is overwritten by a configuration from a linked database.
- */
-export interface Full46 {
-  /**
-   * MAC address of the current TCP/IP stack (cannot be a multicast address).
-   */
-  'mac-address'?: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | string
-  ) &
-    string;
-  /**
-   * Maximum Transmission Unit.
-   */
-  mtu?: number | string;
-  /**
-   * Configurations for IPv4.
-   */
-  'ipv4-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': ('dhcp' | 'link-local') | string;
-      }
-    | {
-        addresses: Full3;
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': 'static' | string;
-      };
-  /**
-   * Configurations for IPv6.
-   */
-  'ipv6-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'dhcp' | string;
-      }
-    | {
-        addresses: Full4;
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'static' | string;
-      };
-  vlans?: Full5;
+  'tcp-ip-stack-adapter'?: Full2;
 }
 /**
  * Describes a symbol mapping file (.vmap). Please ensure that the mappings are valid for the environment. No symbol validation will be performed.
  */
 export interface SystemVariables {
-  /**
-   * Node is added to the environment only if the specified condition is true.
-   */
-  when?: string | boolean;
-  'file-path':
-    | ((
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | string
-      ) &
-        string)
-    | ((
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | string
-      ) &
-        string)[];
-}
-/**
- * Describes a system variable file (.vsysvar/.xml).
- */
-export interface SystemVariables2 {
   /**
    * Node is added to the environment only if the specified condition is true.
    */

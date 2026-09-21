@@ -64,8 +64,8 @@ export interface ConfigSourceSpec {
 export interface ConfigSourcePolicy {
   constraints?: SourceConstraints;
   locked?: PolicyItems;
-  optional?: PolicyItems1;
-  recommended?: PolicyItems2;
+  optional?: PolicyItems;
+  recommended?: PolicyItems;
   /**
    * Items every subscriber receives unconditionally.
    */
@@ -624,84 +624,6 @@ export interface SecretSpec {
    * so `template` is rejected on a sops-encrypted file source.
    */
   template?: string | null;
-}
-/**
- * Items a subscriber must explicitly name in `subscription.optIn` to receive.
- */
-export interface PolicyItems1 {
-  /**
-   * Shell aliases offered at this tier.
-   */
-  aliases?: ShellAlias[];
-  /**
-   * Environment variables offered at this tier.
-   */
-  env?: EnvVar[];
-  /**
-   * Files offered at this tier.
-   */
-  files?: ManagedFileSpec[];
-  /**
-   * Module names offered at this tier.
-   */
-  modules?: string[];
-  /**
-   * Packages offered at this tier.
-   */
-  packages?: PackagesSpec | null;
-  /**
-   * Profile names this tier recommends composing in.
-   */
-  profiles?: string[];
-  /**
-   * Secrets offered at this tier.
-   */
-  secrets?: SecretSpec[];
-  /**
-   * System configurator settings offered at this tier.
-   */
-  system?: {
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Items a subscriber receives when `subscription.acceptRecommended` is set.
- */
-export interface PolicyItems2 {
-  /**
-   * Shell aliases offered at this tier.
-   */
-  aliases?: ShellAlias[];
-  /**
-   * Environment variables offered at this tier.
-   */
-  env?: EnvVar[];
-  /**
-   * Files offered at this tier.
-   */
-  files?: ManagedFileSpec[];
-  /**
-   * Module names offered at this tier.
-   */
-  modules?: string[];
-  /**
-   * Packages offered at this tier.
-   */
-  packages?: PackagesSpec | null;
-  /**
-   * Profile names this tier recommends composing in.
-   */
-  profiles?: string[];
-  /**
-   * Secrets offered at this tier.
-   */
-  secrets?: SecretSpec[];
-  /**
-   * System configurator settings offered at this tier.
-   */
-  system?: {
-    [k: string]: unknown | undefined;
-  };
 }
 /**
  * Profiles and modules this source publishes.

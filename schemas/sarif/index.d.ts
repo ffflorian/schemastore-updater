@@ -3,9 +3,20 @@
 /**
  * Information about how to locate a relevant reporting descriptor.
  */
-export type ReportingDescriptorReference = {
-  [k: string]: unknown | undefined;
-} & {
+export type ReportingDescriptorReference = (
+  | {
+      index: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      guid: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      id: unknown;
+      [k: string]: unknown | undefined;
+    }
+) & {
   /**
    * The id of the descriptor.
    */
@@ -35,9 +46,16 @@ export type ReportingDescriptorReference = {
 /**
  * A description of the reporting descriptor relationship.
  */
-export type Message = {
-  [k: string]: unknown | undefined;
-} & {
+export type Message = (
+  | {
+      text: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      id: unknown;
+      [k: string]: unknown | undefined;
+    }
+) & {
   /**
    * A plain text message string.
    */
@@ -72,57 +90,22 @@ export type Message = {
 /**
  * Identifies the artifact and region.
  */
-export type PhysicalLocation = {
-  [k: string]: unknown | undefined;
-} & {
-  address?: Address;
-  artifactLocation?: ArtifactLocation1;
-  region?: Region;
-  contextRegion?: Region1;
-  /**
-   * Key/value pairs that provide additional information about the physical location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-};
-/**
- * A message relevant to the thread flow.
- */
-export type Message13 = (
+export type PhysicalLocation = (
   | {
+      address: unknown;
       [k: string]: unknown | undefined;
     }
   | {
+      artifactLocation: unknown;
       [k: string]: unknown | undefined;
     }
 ) & {
+  address?: Address;
+  artifactLocation?: ArtifactLocation;
+  region?: Region;
+  contextRegion?: Region;
   /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * A Markdown message string.
-   */
-  markdown?: string;
-  /**
-   * The identifier for this message.
-   */
-  id?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
+   * Key/value pairs that provide additional information about the physical location.
    */
   properties?: {
     /**
@@ -164,9 +147,19 @@ export type ReportingDescriptorReference5 = ReportingDescriptorReference6 & {
     [k: string]: unknown | undefined;
   };
 };
-export type ReportingDescriptorReference6 = {
-  [k: string]: unknown | undefined;
-};
+export type ReportingDescriptorReference6 =
+  | {
+      index: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      guid: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      id: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Represents a path through a graph.
  */
@@ -184,13 +177,13 @@ export type GraphTraversal = {
    * Values of relevant expressions at the start of the graph traversal that may change during graph traversal.
    */
   initialState?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * Values of relevant expressions at the start of the graph traversal that remain constant for the graph traversal.
    */
   immutableState?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * The sequences of edges traversed by this graph traversal.
@@ -211,17 +204,23 @@ export type GraphTraversal = {
     [k: string]: unknown | undefined;
   };
 } & GraphTraversal1;
-export type GraphTraversal1 = {
-  [k: string]: unknown | undefined;
-};
+export type GraphTraversal1 =
+  | {
+      runGraphIndex: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      resultGraphIndex: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * A physical location relevant to a result. Specifies a reference to a programming artifact together with a range of bytes or characters within that artifact.
  */
 export type PhysicalLocation1 = PhysicalLocation2 & {
   address?: Address;
-  artifactLocation?: ArtifactLocation1;
+  artifactLocation?: ArtifactLocation;
   region?: Region;
-  contextRegion?: Region1;
+  contextRegion?: Region;
   /**
    * Key/value pairs that provide additional information about the physical location.
    */
@@ -235,16 +234,29 @@ export type PhysicalLocation1 = PhysicalLocation2 & {
     [k: string]: unknown | undefined;
   };
 };
-export type PhysicalLocation2 = {
-  [k: string]: unknown | undefined;
-};
+export type PhysicalLocation2 =
+  | {
+      address: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      artifactLocation: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * An external property file containing a run.conversion object to be merged with the root log file.
  */
-export type ExternalPropertyFileReference = {
-  [k: string]: unknown | undefined;
-} & {
-  location?: ArtifactLocation13;
+export type ExternalPropertyFileReference = (
+  | {
+      location: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      guid: unknown;
+      [k: string]: unknown | undefined;
+    }
+) & {
+  location?: ArtifactLocation;
   /**
    * A stable, unique identifier for the external property file in the form of a GUID.
    */
@@ -270,7 +282,7 @@ export type ExternalPropertyFileReference = {
  * Contains information that enables a SARIF consumer to locate the external property file that contains the value of an externalized property associated with the run.
  */
 export type ExternalPropertyFileReference1 = ExternalPropertyFileReference2 & {
-  location?: ArtifactLocation13;
+  location?: ArtifactLocation;
   /**
    * A stable, unique identifier for the external property file in the form of a GUID.
    */
@@ -292,9 +304,15 @@ export type ExternalPropertyFileReference1 = ExternalPropertyFileReference2 & {
     [k: string]: unknown | undefined;
   };
 };
-export type ExternalPropertyFileReference2 = {
-  [k: string]: unknown | undefined;
-};
+export type ExternalPropertyFileReference2 =
+  | {
+      location: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      guid: unknown;
+      [k: string]: unknown | undefined;
+    };
 
 /**
  * Static Analysis Results Format (SARIF) Version 2.1.0-rtm.5 JSON Schema: a standard format for the output of static analysis tools.
@@ -359,7 +377,7 @@ export interface Run {
    * The artifact location specified by each uriBaseId symbol on the machine where the tool originally ran.
    */
   originalUriBaseIds?: {
-    [k: string]: ArtifactLocation;
+    [k: string]: ArtifactLocation | undefined;
   };
   /**
    * An array of artifact objects relevant to the run.
@@ -391,7 +409,7 @@ export interface Run {
    *
    * @minItems 0
    */
-  runAggregates?: RunAutomationDetails1[];
+  runAggregates?: RunAutomationDetails[];
   /**
    * The 'guid' property of a previous SARIF 'run' that comprises the baseline that was used to compute result 'baselineState' properties for the run.
    */
@@ -432,37 +450,37 @@ export interface Run {
    *
    * @minItems 0
    */
-  taxonomies?: ToolComponent1[];
+  taxonomies?: ToolComponent[];
   /**
    * Addresses associated with this run instance, if any.
    *
    * @minItems 0
    */
-  addresses?: Address1[];
+  addresses?: Address[];
   /**
    * The set of available translations of the localized data provided by the tool.
    *
    * @minItems 0
    */
-  translations?: ToolComponent1[];
+  translations?: ToolComponent[];
   /**
    * Contains configurations that may potentially override both reportingDescriptor.defaultConfiguration (the tool's default severities) and invocation.configurationOverrides (severities established at run-time from the command line).
    *
    * @minItems 0
    */
-  policies?: ToolComponent1[];
+  policies?: ToolComponent[];
   /**
    * An array of request objects cached at run level.
    *
    * @minItems 0
    */
-  webRequests?: WebRequest2[];
+  webRequests?: WebRequest[];
   /**
    * An array of response objects cached at run level.
    *
    * @minItems 0
    */
-  webResponses?: WebResponse2[];
+  webResponses?: WebResponse[];
   specialLocations?: SpecialLocations;
   /**
    * Key/value pairs that provide additional information about the run.
@@ -487,7 +505,7 @@ export interface Tool {
    *
    * @minItems 0
    */
-  extensions?: ToolComponent1[];
+  extensions?: ToolComponent[];
   /**
    * Key/value pairs that provide additional information about the tool.
    */
@@ -526,7 +544,7 @@ export interface ToolComponent {
    */
   productSuite?: string;
   shortDescription?: MultiformatMessageString;
-  fullDescription?: MultiformatMessageString1;
+  fullDescription?: MultiformatMessageString;
   /**
    * The name of the tool component along with its version and any other useful identifying information, such as its locale.
    */
@@ -559,7 +577,7 @@ export interface ToolComponent {
    * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
@@ -605,14 +623,14 @@ export interface ToolComponent {
    * The minimum value of localizedDataSemanticVersion required in translations consumed by this component; used by components that consume translations.
    */
   minimumRequiredLocalizedDataSemanticVersion?: string;
-  associatedComponent?: ToolComponentReference1;
+  associatedComponent?: ToolComponentReference;
   translationMetadata?: TranslationMetadata;
   /**
    * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
    *
    * @minItems 0
    */
-  supportedTaxonomies?: ToolComponentReference2[];
+  supportedTaxonomies?: ToolComponentReference[];
   /**
    * Key/value pairs that provide additional information about the tool component.
    */
@@ -630,56 +648,6 @@ export interface ToolComponent {
  * A message string or message format string rendered in multiple formats.
  */
 export interface MultiformatMessageString {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString1 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString2 {
   /**
    * A plain text message string or format string.
    */
@@ -735,20 +703,20 @@ export interface ReportingDescriptor {
    * @minItems 0
    */
   deprecatedNames?: string[];
-  shortDescription?: MultiformatMessageString3;
-  fullDescription?: MultiformatMessageString4;
+  shortDescription?: MultiformatMessageString;
+  fullDescription?: MultiformatMessageString;
   /**
    * A set of name/value pairs with arbitrary names. Each value is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
   messageStrings?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   defaultConfiguration?: ReportingConfiguration;
   /**
    * A URI where the primary documentation for the report can be found.
    */
   helpUri?: string;
-  help?: MultiformatMessageString5;
+  help?: MultiformatMessageString;
   /**
    * An array of objects that describe relationships between this reporting descriptor and others.
    *
@@ -757,56 +725,6 @@ export interface ReportingDescriptor {
   relationships?: ReportingDescriptorRelationship[];
   /**
    * Key/value pairs that provide additional information about the report.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString3 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString4 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -859,31 +777,6 @@ export interface PropertyBag {
    */
   tags?: string[];
   [k: string]: unknown | undefined;
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString5 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
 }
 /**
  * Information about the relation of one reporting descriptor to another.
@@ -968,35 +861,6 @@ export interface ArtifactLocation {
   };
 }
 /**
- * The component which is strongly associated with this component. For a translation, this refers to the component which has been translated. For an extension, this is the driver that provides the extension's plugin model.
- */
-export interface ToolComponentReference1 {
-  /**
-   * The 'name' property of the referenced toolComponent.
-   */
-  name?: string;
-  /**
-   * An index into the referenced toolComponent in tool.extensions.
-   */
-  index?: number;
-  /**
-   * The 'guid' property of the referenced toolComponent.
-   */
-  guid?: string;
-  /**
-   * Key/value pairs that provide additional information about the toolComponentReference.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * Translation metadata, required for a translation, not populated by other component types.
  */
 export interface TranslationMetadata {
@@ -1008,8 +872,8 @@ export interface TranslationMetadata {
    * The full name associated with the translation metadata.
    */
   fullName?: string;
-  shortDescription?: MultiformatMessageString6;
-  fullDescription?: MultiformatMessageString7;
+  shortDescription?: MultiformatMessageString;
+  fullDescription?: MultiformatMessageString;
   /**
    * The absolute URI from which the translation metadata can be downloaded.
    */
@@ -1020,210 +884,6 @@ export interface TranslationMetadata {
   informationUri?: string;
   /**
    * Key/value pairs that provide additional information about the translation metadata.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString6 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message string or message format string rendered in multiple formats.
- */
-export interface MultiformatMessageString7 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Identifies a particular toolComponent object, either the driver or an extension.
- */
-export interface ToolComponentReference2 {
-  /**
-   * The 'name' property of the referenced toolComponent.
-   */
-  name?: string;
-  /**
-   * An index into the referenced toolComponent in tool.extensions.
-   */
-  index?: number;
-  /**
-   * The 'guid' property of the referenced toolComponent.
-   */
-  guid?: string;
-  /**
-   * Key/value pairs that provide additional information about the toolComponentReference.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A component, such as a plug-in or the driver, of the analysis tool that was run.
- */
-export interface ToolComponent1 {
-  /**
-   * A unique identifier for the tool component in the form of a GUID.
-   */
-  guid?: string;
-  /**
-   * The name of the tool component.
-   */
-  name: string;
-  /**
-   * The organization or company that produced the tool component.
-   */
-  organization?: string;
-  /**
-   * A product suite to which the tool component belongs.
-   */
-  product?: string;
-  /**
-   * A localizable string containing the name of the suite of products to which the tool component belongs.
-   */
-  productSuite?: string;
-  shortDescription?: MultiformatMessageString;
-  fullDescription?: MultiformatMessageString1;
-  /**
-   * The name of the tool component along with its version and any other useful identifying information, such as its locale.
-   */
-  fullName?: string;
-  /**
-   * The tool component version, in whatever format the component natively provides.
-   */
-  version?: string;
-  /**
-   * The tool component version in the format specified by Semantic Versioning 2.0.
-   */
-  semanticVersion?: string;
-  /**
-   * The binary version of the tool component's primary executable file expressed as four non-negative integers separated by a period (for operating systems that express file versions in this way).
-   */
-  dottedQuadFileVersion?: string;
-  /**
-   * A string specifying the UTC date (and optionally, the time) of the component's release.
-   */
-  releaseDateUtc?: string;
-  /**
-   * The absolute URI from which the tool component can be downloaded.
-   */
-  downloadUri?: string;
-  /**
-   * The absolute URI at which information about this version of the tool component can be found.
-   */
-  informationUri?: string;
-  /**
-   * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
-   */
-  globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2 | undefined;
-  };
-  /**
-   * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
-   *
-   * @minItems 0
-   */
-  notifications?: ReportingDescriptor[];
-  /**
-   * An array of reportingDescriptor objects relevant to the analysis performed by the tool component.
-   *
-   * @minItems 0
-   */
-  rules?: ReportingDescriptor[];
-  /**
-   * An array of reportingDescriptor objects relevant to the definitions of both standalone and tool-defined taxonomies.
-   *
-   * @minItems 0
-   */
-  taxa?: ReportingDescriptor[];
-  /**
-   * An array of the artifactLocation objects associated with the tool component.
-   *
-   * @minItems 0
-   */
-  locations?: ArtifactLocation[];
-  /**
-   * The language of the messages emitted into the log file during this run (expressed as an ISO 639-1 two-letter lowercase language code) and an optional region (expressed as an ISO 3166-1 two-letter uppercase subculture code associated with a country or region). The casing is recommended but not required (in order for this data to conform to RFC5646).
-   */
-  language?: string;
-  /**
-   * The kinds of data contained in this object.
-   */
-  contents?: ('localizedData' | 'nonLocalizedData')[];
-  /**
-   * Specifies whether this object contains a complete definition of the localizable and/or non-localizable data for this component, as opposed to including only data that is relevant to the results persisted to this log file.
-   */
-  isComprehensive?: boolean;
-  /**
-   * The semantic version of the localized strings defined in this component; maintained by components that provide translations.
-   */
-  localizedDataSemanticVersion?: string;
-  /**
-   * The minimum value of localizedDataSemanticVersion required in translations consumed by this component; used by components that consume translations.
-   */
-  minimumRequiredLocalizedDataSemanticVersion?: string;
-  associatedComponent?: ToolComponentReference1;
-  translationMetadata?: TranslationMetadata;
-  /**
-   * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
-   *
-   * @minItems 0
-   */
-  supportedTaxonomies?: ToolComponentReference2[];
-  /**
-   * Key/value pairs that provide additional information about the tool component.
    */
   properties?: {
     /**
@@ -1323,18 +983,18 @@ export interface Invocation {
    * The id of the process in which the invocation occurred.
    */
   processId?: number;
-  executableLocation?: ArtifactLocation2;
-  workingDirectory?: ArtifactLocation3;
+  executableLocation?: ArtifactLocation;
+  workingDirectory?: ArtifactLocation;
   /**
    * The environment variables associated with the analysis tool process, expressed as key/value pairs.
    */
   environmentVariables?: {
     [k: string]: string | undefined;
   };
-  stdin?: ArtifactLocation4;
-  stdout?: ArtifactLocation5;
-  stderr?: ArtifactLocation6;
-  stdoutStderr?: ArtifactLocation7;
+  stdin?: ArtifactLocation;
+  stdout?: ArtifactLocation;
+  stderr?: ArtifactLocation;
+  stdoutStderr?: ArtifactLocation;
   /**
    * Key/value pairs that provide additional information about the invocation.
    */
@@ -1352,40 +1012,10 @@ export interface Invocation {
  * Information about how a specific rule or notification was reconfigured at runtime.
  */
 export interface ConfigurationOverride {
-  configuration: ReportingConfiguration1;
+  configuration: ReportingConfiguration;
   descriptor: ReportingDescriptorReference;
   /**
    * Key/value pairs that provide additional information about the configuration override.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies how the rule or notification was configured during the scan.
- */
-export interface ReportingConfiguration1 {
-  /**
-   * Specifies whether the report may be produced during the scan.
-   */
-  enabled?: boolean;
-  /**
-   * Specifies the failure level for the report.
-   */
-  level?: 'none' | 'note' | 'warning' | 'error';
-  /**
-   * Specifies the relative priority of the report. Used for analysis output only.
-   */
-  rank?: number;
-  parameters?: PropertyBag;
-  /**
-   * Key/value pairs that provide additional information about the reporting configuration.
    */
   properties?: {
     /**
@@ -1457,7 +1087,7 @@ export interface Location {
    *
    * @minItems 0
    */
-  annotations?: Region2[];
+  annotations?: Region[];
   /**
    * An array of objects that describe relationships between this location and others.
    *
@@ -1519,36 +1149,6 @@ export interface Address {
   parentIndex?: number;
   /**
    * Key/value pairs that provide additional information about the address.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The location of the artifact.
- */
-export interface ArtifactLocation1 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
    */
   properties?: {
     /**
@@ -1627,89 +1227,9 @@ export interface ArtifactContent {
    * MIME Base64-encoded content from a binary artifact, or from a text artifact in its original encoding.
    */
   binary?: string;
-  rendered?: MultiformatMessageString8;
+  rendered?: MultiformatMessageString;
   /**
    * Key/value pairs that provide additional information about the artifact content.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * An alternate rendered representation of the artifact (e.g., a decompiled representation of a binary region).
- */
-export interface MultiformatMessageString8 {
-  /**
-   * A plain text message string or format string.
-   */
-  text: string;
-  /**
-   * A Markdown message string or format string.
-   */
-  markdown?: string;
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A region within an artifact where a result was detected.
- */
-export interface Region1 {
-  /**
-   * The line number of the first character in the region.
-   */
-  startLine?: number;
-  /**
-   * The column number of the first character in the region.
-   */
-  startColumn?: number;
-  /**
-   * The line number of the last character in the region.
-   */
-  endLine?: number;
-  /**
-   * The column number of the character following the end of the region.
-   */
-  endColumn?: number;
-  /**
-   * The zero-based offset from the beginning of the artifact of the first character in the region.
-   */
-  charOffset?: number;
-  /**
-   * The length of the region in characters.
-   */
-  charLength?: number;
-  /**
-   * The zero-based offset from the beginning of the artifact of the first byte in the region.
-   */
-  byteOffset?: number;
-  /**
-   * The length of the region in bytes.
-   */
-  byteLength?: number;
-  snippet?: ArtifactContent;
-  message?: Message;
-  /**
-   * Specifies the source language, if any, of the portion of the artifact specified by the region object.
-   */
-  sourceLanguage?: string;
-  /**
-   * Key/value pairs that provide additional information about the region.
    */
   properties?: {
     /**
@@ -1751,61 +1271,6 @@ export interface LogicalLocation {
   kind?: string;
   /**
    * Key/value pairs that provide additional information about the logical location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A region within an artifact where a result was detected.
- */
-export interface Region2 {
-  /**
-   * The line number of the first character in the region.
-   */
-  startLine?: number;
-  /**
-   * The column number of the first character in the region.
-   */
-  startColumn?: number;
-  /**
-   * The line number of the last character in the region.
-   */
-  endLine?: number;
-  /**
-   * The column number of the character following the end of the region.
-   */
-  endColumn?: number;
-  /**
-   * The zero-based offset from the beginning of the artifact of the first character in the region.
-   */
-  charOffset?: number;
-  /**
-   * The length of the region in characters.
-   */
-  charLength?: number;
-  /**
-   * The zero-based offset from the beginning of the artifact of the first byte in the region.
-   */
-  byteOffset?: number;
-  /**
-   * The length of the region in bytes.
-   */
-  byteLength?: number;
-  snippet?: ArtifactContent;
-  message?: Message;
-  /**
-   * Specifies the source language, if any, of the portion of the artifact specified by the region object.
-   */
-  sourceLanguage?: string;
-  /**
-   * Key/value pairs that provide additional information about the region.
    */
   properties?: {
     /**
@@ -1861,7 +1326,7 @@ export interface Exception {
    *
    * @minItems 0
    */
-  innerExceptions?: Exception1[];
+  innerExceptions?: Exception[];
   /**
    * Key/value pairs that provide additional information about the exception.
    */
@@ -1903,7 +1368,7 @@ export interface Stack {
  * A function call within a stack trace.
  */
 export interface StackFrame {
-  location?: Location1;
+  location?: Location;
   /**
    * The name of the module that contains the code of this stack frame.
    */
@@ -1932,264 +1397,11 @@ export interface StackFrame {
   };
 }
 /**
- * The location to which this stack frame refers.
- */
-export interface Location1 {
-  /**
-   * Value that distinguishes this location from all other locations within a single result object.
-   */
-  id?: number;
-  physicalLocation?: PhysicalLocation;
-  /**
-   * The logical locations associated with the result.
-   *
-   * @minItems 0
-   */
-  logicalLocations?: LogicalLocation[];
-  message?: Message;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region2[];
-  /**
-   * An array of objects that describe relationships between this location and others.
-   *
-   * @minItems 0
-   */
-  relationships?: LocationRelationship[];
-  /**
-   * Key/value pairs that provide additional information about the location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Describes a runtime exception encountered during the execution of an analysis tool.
- */
-export interface Exception1 {
-  /**
-   * A string that identifies the kind of exception, for example, the fully qualified type name of an object that was thrown, or the symbolic name of a signal.
-   */
-  kind?: string;
-  /**
-   * A message that describes the exception.
-   */
-  message?: string;
-  stack?: Stack;
-  /**
-   * An array of exception objects each of which is considered a cause of this exception.
-   *
-   * @minItems 0
-   */
-  innerExceptions?: Exception1[];
-  /**
-   * Key/value pairs that provide additional information about the exception.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation2 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation3 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation4 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation5 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation6 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation7 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A conversion object that describes how a converter transformed an analysis tool's native reporting format into the SARIF format.
  */
 export interface Conversion {
-  tool: Tool1;
-  invocation?: Invocation1;
+  tool: Tool;
+  invocation?: Invocation;
   /**
    * The locations of the analysis tool's per-run log files.
    *
@@ -2198,143 +1410,6 @@ export interface Conversion {
   analysisToolLogFiles?: ArtifactLocation[];
   /**
    * Key/value pairs that provide additional information about the conversion.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A tool object that describes the converter.
- */
-export interface Tool1 {
-  driver: ToolComponent;
-  /**
-   * Tool extensions that contributed to or reconfigured the analysis tool that was run.
-   *
-   * @minItems 0
-   */
-  extensions?: ToolComponent1[];
-  /**
-   * Key/value pairs that provide additional information about the tool.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * An invocation object that describes the invocation of the converter.
- */
-export interface Invocation1 {
-  /**
-   * The command line used to invoke the tool.
-   */
-  commandLine?: string;
-  /**
-   * An array of strings, containing in order the command line arguments passed to the tool from the operating system.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * The locations of any response files specified on the tool's command line.
-   *
-   * @minItems 0
-   */
-  responseFiles?: ArtifactLocation[];
-  /**
-   * The Coordinated Universal Time (UTC) date and time at which the invocation started. See "Date/time properties" in the SARIF spec for the required format.
-   */
-  startTimeUtc?: string;
-  /**
-   * The Coordinated Universal Time (UTC) date and time at which the invocation ended. See "Date/time properties" in the SARIF spec for the required format.
-   */
-  endTimeUtc?: string;
-  /**
-   * The process exit code.
-   */
-  exitCode?: number;
-  /**
-   * An array of configurationOverride objects that describe rules related runtime overrides.
-   *
-   * @minItems 0
-   */
-  ruleConfigurationOverrides?: ConfigurationOverride[];
-  /**
-   * An array of configurationOverride objects that describe notifications related runtime overrides.
-   *
-   * @minItems 0
-   */
-  notificationConfigurationOverrides?: ConfigurationOverride[];
-  /**
-   * A list of runtime conditions detected by the tool during the analysis.
-   *
-   * @minItems 0
-   */
-  toolExecutionNotifications?: Notification[];
-  /**
-   * A list of conditions detected by the tool that are relevant to the tool's configuration.
-   *
-   * @minItems 0
-   */
-  toolConfigurationNotifications?: Notification[];
-  /**
-   * The reason for the process exit.
-   */
-  exitCodeDescription?: string;
-  /**
-   * The name of the signal that caused the process to exit.
-   */
-  exitSignalName?: string;
-  /**
-   * The numeric value of the signal that caused the process to exit.
-   */
-  exitSignalNumber?: number;
-  /**
-   * The reason given by the operating system that the process failed to start.
-   */
-  processStartFailureMessage?: string;
-  /**
-   * Specifies whether the tool's execution completed successfully.
-   */
-  executionSuccessful: boolean;
-  /**
-   * The machine on which the invocation occurred.
-   */
-  machine?: string;
-  /**
-   * The account under which the invocation occurred.
-   */
-  account?: string;
-  /**
-   * The id of the process in which the invocation occurred.
-   */
-  processId?: number;
-  executableLocation?: ArtifactLocation2;
-  workingDirectory?: ArtifactLocation3;
-  /**
-   * The environment variables associated with the analysis tool process, expressed as key/value pairs.
-   */
-  environmentVariables?: {
-    [k: string]: string | undefined;
-  };
-  stdin?: ArtifactLocation4;
-  stdout?: ArtifactLocation5;
-  stderr?: ArtifactLocation6;
-  stdoutStderr?: ArtifactLocation7;
-  /**
-   * Key/value pairs that provide additional information about the invocation.
    */
   properties?: {
     /**
@@ -2370,39 +1445,9 @@ export interface VersionControlDetails {
    * A Coordinated Universal Time (UTC) date and time that can be used to synchronize an enlistment to the state of the repository at that time.
    */
   asOfTimeUtc?: string;
-  mappedTo?: ArtifactLocation8;
+  mappedTo?: ArtifactLocation;
   /**
    * Key/value pairs that provide additional information about the version control details.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation8 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
    */
   properties?: {
     /**
@@ -2419,7 +1464,7 @@ export interface ArtifactLocation8 {
  */
 export interface Artifact {
   description?: Message;
-  location?: ArtifactLocation9;
+  location?: ArtifactLocation;
   /**
    * Identifies the index of the immediate parent of the artifact, if this artifact is nested.
    */
@@ -2466,7 +1511,7 @@ export interface Artifact {
    * The MIME type (RFC 2045) of the artifact.
    */
   mimeType?: string;
-  contents?: ArtifactContent1;
+  contents?: ArtifactContent;
   /**
    * Specifies the encoding for an artifact object that refers to a text file.
    */
@@ -2487,62 +1532,6 @@ export interface Artifact {
   lastModifiedTimeUtc?: string;
   /**
    * Key/value pairs that provide additional information about the artifact.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The location of the artifact.
- */
-export interface ArtifactLocation9 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The contents of the artifact.
- */
-export interface ArtifactContent1 {
-  /**
-   * UTF-8-encoded content from a text artifact.
-   */
-  text?: string;
-  /**
-   * MIME Base64-encoded content from a binary artifact, or from a text artifact in its original encoding.
-   */
-  binary?: string;
-  rendered?: MultiformatMessageString8;
-  /**
-   * Key/value pairs that provide additional information about the artifact content.
    */
   properties?: {
     /**
@@ -2593,7 +1582,7 @@ export interface Node {
    */
   id: string;
   label?: Message;
-  location?: Location2;
+  location?: Location;
   /**
    * Array of child nodes.
    *
@@ -2602,47 +1591,6 @@ export interface Node {
   children?: Node[];
   /**
    * Key/value pairs that provide additional information about the node.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A location within a programming artifact.
- */
-export interface Location2 {
-  /**
-   * Value that distinguishes this location from all other locations within a single result object.
-   */
-  id?: number;
-  physicalLocation?: PhysicalLocation;
-  /**
-   * The logical locations associated with the result.
-   *
-   * @minItems 0
-   */
-  logicalLocations?: LogicalLocation[];
-  message?: Message;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region2[];
-  /**
-   * An array of objects that describe relationships between this location and others.
-   *
-   * @minItems 0
-   */
-  relationships?: LocationRelationship[];
-  /**
-   * Key/value pairs that provide additional information about the location.
    */
   properties?: {
     /**
@@ -2706,7 +1654,7 @@ export interface Result {
    */
   level?: 'none' | 'note' | 'warning' | 'error';
   message: Message;
-  analysisTarget?: ArtifactLocation10;
+  analysisTarget?: ArtifactLocation;
   /**
    * The set of locations where the result was detected. Specify only one location unless the problem indicated by the result can only be corrected by making a change at every specified location.
    *
@@ -2742,7 +1690,7 @@ export interface Result {
    *
    * @minItems 0
    */
-  stacks?: Stack1[];
+  stacks?: Stack[];
   /**
    * An array of 'codeFlow' objects relevant to the result.
    *
@@ -2810,64 +1758,10 @@ export interface Result {
    * @minItems 0
    */
   taxa?: ReportingDescriptorReference5[];
-  webRequest?: WebRequest1;
-  webResponse?: WebResponse1;
+  webRequest?: WebRequest;
+  webResponse?: WebResponse;
   /**
    * Key/value pairs that provide additional information about the result.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation10 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A call stack that is relevant to a result.
- */
-export interface Stack1 {
-  message?: Message;
-  /**
-   * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
-   *
-   * @minItems 0
-   */
-  frames: StackFrame[];
-  /**
-   * Key/value pairs that provide additional information about the stack.
    */
   properties?: {
     /**
@@ -2911,18 +1805,18 @@ export interface ThreadFlow {
    * An string that uniquely identifies the threadFlow within the codeFlow in which it occurs.
    */
   id?: string;
-  message?: Message13;
+  message?: Message;
   /**
    * Values of relevant expressions at the start of the thread flow that may change during thread flow execution.
    */
   initialState?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * Values of relevant expressions at the start of the thread flow that remain constant.
    */
   immutableState?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
@@ -2951,8 +1845,8 @@ export interface ThreadFlowLocation {
    * The index within the run threadFlowLocations array.
    */
   index?: number;
-  location?: Location3;
-  stack?: Stack2;
+  location?: Location;
+  stack?: Stack;
   /**
    * A set of distinct strings that categorize the thread flow location. Well-known kinds include 'acquire', 'release', 'enter', 'exit', 'call', 'return', 'branch', 'implicit', 'false', 'true', 'caution', 'danger', 'unknown', 'unreachable', 'taint', 'function', 'handler', 'lock', 'memory', 'resource', 'scope' and 'value'.
    *
@@ -2973,7 +1867,7 @@ export interface ThreadFlowLocation {
    * A dictionary, each of whose keys specifies a variable or expression, the associated value of which represents the variable or expression value. For an annotation of kind 'continuation', for example, this dictionary might hold the current assumed values of a set of global variables.
    */
   state?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * An integer representing a containment hierarchy within the thread flow.
@@ -2995,71 +1889,6 @@ export interface ThreadFlowLocation {
   webResponse?: WebResponse;
   /**
    * Key/value pairs that provide additional information about the threadflow location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The code location.
- */
-export interface Location3 {
-  /**
-   * Value that distinguishes this location from all other locations within a single result object.
-   */
-  id?: number;
-  physicalLocation?: PhysicalLocation;
-  /**
-   * The logical locations associated with the result.
-   *
-   * @minItems 0
-   */
-  logicalLocations?: LogicalLocation[];
-  message?: Message;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region2[];
-  /**
-   * An array of objects that describe relationships between this location and others.
-   *
-   * @minItems 0
-   */
-  relationships?: LocationRelationship[];
-  /**
-   * Key/value pairs that provide additional information about the location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The call stack leading to this location.
- */
-export interface Stack2 {
-  message?: Message;
-  /**
-   * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
-   *
-   * @minItems 0
-   */
-  frames: StackFrame[];
-  /**
-   * Key/value pairs that provide additional information about the stack.
    */
   properties?: {
     /**
@@ -3107,35 +1936,9 @@ export interface WebRequest {
   parameters?: {
     [k: string]: string | undefined;
   };
-  body?: ArtifactContent2;
+  body?: ArtifactContent;
   /**
    * Key/value pairs that provide additional information about the request.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The body of the request.
- */
-export interface ArtifactContent2 {
-  /**
-   * UTF-8-encoded content from a text artifact.
-   */
-  text?: string;
-  /**
-   * MIME Base64-encoded content from a binary artifact, or from a text artifact in its original encoding.
-   */
-  binary?: string;
-  rendered?: MultiformatMessageString8;
-  /**
-   * Key/value pairs that provide additional information about the artifact content.
    */
   properties?: {
     /**
@@ -3177,39 +1980,13 @@ export interface WebResponse {
   headers?: {
     [k: string]: string | undefined;
   };
-  body?: ArtifactContent3;
+  body?: ArtifactContent;
   /**
    * Specifies whether a response was received from the server.
    */
   noResponseReceived?: boolean;
   /**
    * Key/value pairs that provide additional information about the response.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The body of the response.
- */
-export interface ArtifactContent3 {
-  /**
-   * UTF-8-encoded content from a text artifact.
-   */
-  text?: string;
-  /**
-   * MIME Base64-encoded content from a binary artifact, or from a text artifact in its original encoding.
-   */
-  binary?: string;
-  rendered?: MultiformatMessageString8;
-  /**
-   * Key/value pairs that provide additional information about the artifact content.
    */
   properties?: {
     /**
@@ -3234,7 +2011,7 @@ export interface EdgeTraversal {
    * The values of relevant expressions after the edge has been traversed.
    */
   finalState?: {
-    [k: string]: MultiformatMessageString2 | undefined;
+    [k: string]: MultiformatMessageString | undefined;
   };
   /**
    * The number of edge traversals necessary to return from a nested graph.
@@ -3273,50 +2050,9 @@ export interface Suppression {
    * A string representing the justification for the suppression.
    */
   justification?: string;
-  location?: Location4;
+  location?: Location;
   /**
    * Key/value pairs that provide additional information about the suppression.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A location within a programming artifact.
- */
-export interface Location4 {
-  /**
-   * Value that distinguishes this location from all other locations within a single result object.
-   */
-  id?: number;
-  physicalLocation?: PhysicalLocation;
-  /**
-   * The logical locations associated with the result.
-   *
-   * @minItems 0
-   */
-  logicalLocations?: LogicalLocation[];
-  message?: Message;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region2[];
-  /**
-   * An array of objects that describe relationships between this location and others.
-   *
-   * @minItems 0
-   */
-  relationships?: LocationRelationship[];
-  /**
-   * Key/value pairs that provide additional information about the location.
    */
   properties?: {
     /**
@@ -3333,13 +2069,13 @@ export interface Location4 {
  */
 export interface Attachment {
   description?: Message;
-  artifactLocation: ArtifactLocation11;
+  artifactLocation: ArtifactLocation;
   /**
    * An array of regions of interest within the attachment.
    *
    * @minItems 0
    */
-  regions?: Region2[];
+  regions?: Region[];
   /**
    * An array of rectangles specifying areas of interest within the image.
    *
@@ -3348,36 +2084,6 @@ export interface Attachment {
   rectangles?: Rectangle[];
   /**
    * Key/value pairs that provide additional information about the attachment.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The location of the attachment.
- */
-export interface ArtifactLocation11 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
    */
   properties?: {
     /**
@@ -3494,7 +2200,7 @@ export interface Fix {
  * A change to a single artifact.
  */
 export interface ArtifactChange {
-  artifactLocation: ArtifactLocation12;
+  artifactLocation: ArtifactLocation;
   /**
    * An array of replacement objects, each of which represents the replacement of a single region in a single artifact specified by 'artifactLocation'.
    *
@@ -3515,222 +2221,13 @@ export interface ArtifactChange {
   };
 }
 /**
- * The location of the artifact to change.
- */
-export interface ArtifactLocation12 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * The replacement of a single region of an artifact.
  */
 export interface Replacement {
-  deletedRegion: Region3;
-  insertedContent?: ArtifactContent4;
+  deletedRegion: Region;
+  insertedContent?: ArtifactContent;
   /**
    * Key/value pairs that provide additional information about the replacement.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The region of the artifact to delete.
- */
-export interface Region3 {
-  /**
-   * The line number of the first character in the region.
-   */
-  startLine?: number;
-  /**
-   * The column number of the first character in the region.
-   */
-  startColumn?: number;
-  /**
-   * The line number of the last character in the region.
-   */
-  endLine?: number;
-  /**
-   * The column number of the character following the end of the region.
-   */
-  endColumn?: number;
-  /**
-   * The zero-based offset from the beginning of the artifact of the first character in the region.
-   */
-  charOffset?: number;
-  /**
-   * The length of the region in characters.
-   */
-  charLength?: number;
-  /**
-   * The zero-based offset from the beginning of the artifact of the first byte in the region.
-   */
-  byteOffset?: number;
-  /**
-   * The length of the region in bytes.
-   */
-  byteLength?: number;
-  snippet?: ArtifactContent;
-  message?: Message;
-  /**
-   * Specifies the source language, if any, of the portion of the artifact specified by the region object.
-   */
-  sourceLanguage?: string;
-  /**
-   * Key/value pairs that provide additional information about the region.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The content to insert at the location specified by the 'deletedRegion' property.
- */
-export interface ArtifactContent4 {
-  /**
-   * UTF-8-encoded content from a text artifact.
-   */
-  text?: string;
-  /**
-   * MIME Base64-encoded content from a binary artifact, or from a text artifact in its original encoding.
-   */
-  binary?: string;
-  rendered?: MultiformatMessageString8;
-  /**
-   * Key/value pairs that provide additional information about the artifact content.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A web request associated with this result.
- */
-export interface WebRequest1 {
-  /**
-   * The index within the run.webRequests array of the request object associated with this result.
-   */
-  index?: number;
-  /**
-   * The request protocol. Example: 'http'.
-   */
-  protocol?: string;
-  /**
-   * The request version. Example: '1.1'.
-   */
-  version?: string;
-  /**
-   * The target of the request.
-   */
-  target?: string;
-  /**
-   * The HTTP method. Well-known values are 'GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT'.
-   */
-  method?: string;
-  /**
-   * The request headers.
-   */
-  headers?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * The request parameters.
-   */
-  parameters?: {
-    [k: string]: string | undefined;
-  };
-  body?: ArtifactContent2;
-  /**
-   * Key/value pairs that provide additional information about the request.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A web response associated with this result.
- */
-export interface WebResponse1 {
-  /**
-   * The index within the run.webResponses array of the response object associated with this result.
-   */
-  index?: number;
-  /**
-   * The response protocol. Example: 'http'.
-   */
-  protocol?: string;
-  /**
-   * The response version. Example: '1.1'.
-   */
-  version?: string;
-  /**
-   * The response status code. Example: 451.
-   */
-  statusCode?: number;
-  /**
-   * The response reason. Example: 'Not found'.
-   */
-  reasonPhrase?: string;
-  /**
-   * The response headers.
-   */
-  headers?: {
-    [k: string]: string | undefined;
-  };
-  body?: ArtifactContent3;
-  /**
-   * Specifies whether a response was received from the server.
-   */
-  noResponseReceived?: boolean;
-  /**
-   * Key/value pairs that provide additional information about the response.
    */
   properties?: {
     /**
@@ -3746,36 +2243,6 @@ export interface WebResponse1 {
  * Automation details that describe this run.
  */
 export interface RunAutomationDetails {
-  description?: Message;
-  /**
-   * A hierarchical string that uniquely identifies this object's containing run object.
-   */
-  id?: string;
-  /**
-   * A stable, unique identifier for this object's containing run object in the form of a GUID.
-   */
-  guid?: string;
-  /**
-   * A stable, unique identifier for the equivalence class of runs to which this object's containing run object belongs in the form of a GUID.
-   */
-  correlationGuid?: string;
-  /**
-   * Key/value pairs that provide additional information about the run automation details.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Information that describes a run's identity and role within an engineering system process.
- */
-export interface RunAutomationDetails1 {
   description?: Message;
   /**
    * A hierarchical string that uniquely identifies this object's containing run object.
@@ -3901,223 +2368,12 @@ export interface ExternalPropertyFileReferences {
   };
 }
 /**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation13 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A physical or virtual address, or a range of addresses, in an 'addressable region' (memory or a binary file).
- */
-export interface Address1 {
-  /**
-   * The address expressed as a byte offset from the start of the addressable region.
-   */
-  absoluteAddress?: number;
-  /**
-   * The address expressed as a byte offset from the absolute address of the top-most parent object.
-   */
-  relativeAddress?: number;
-  /**
-   * The number of bytes in this range of addresses.
-   */
-  length?: number;
-  /**
-   * An open-ended string that identifies the address kind. 'data', 'function', 'header','instruction', 'module', 'page', 'section', 'segment', 'stack', 'stackFrame', 'table' are well-known values.
-   */
-  kind?: string;
-  /**
-   * A name that is associated with the address, e.g., '.text'.
-   */
-  name?: string;
-  /**
-   * A human-readable fully qualified name that is associated with the address.
-   */
-  fullyQualifiedName?: string;
-  /**
-   * The byte offset of this address from the absolute or relative address of the parent object.
-   */
-  offsetFromParent?: number;
-  /**
-   * The index within run.addresses of the cached object for this address.
-   */
-  index?: number;
-  /**
-   * The index within run.addresses of the parent object.
-   */
-  parentIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the address.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Describes an HTTP request.
- */
-export interface WebRequest2 {
-  /**
-   * The index within the run.webRequests array of the request object associated with this result.
-   */
-  index?: number;
-  /**
-   * The request protocol. Example: 'http'.
-   */
-  protocol?: string;
-  /**
-   * The request version. Example: '1.1'.
-   */
-  version?: string;
-  /**
-   * The target of the request.
-   */
-  target?: string;
-  /**
-   * The HTTP method. Well-known values are 'GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT'.
-   */
-  method?: string;
-  /**
-   * The request headers.
-   */
-  headers?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * The request parameters.
-   */
-  parameters?: {
-    [k: string]: string | undefined;
-  };
-  body?: ArtifactContent2;
-  /**
-   * Key/value pairs that provide additional information about the request.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Describes the response to an HTTP request.
- */
-export interface WebResponse2 {
-  /**
-   * The index within the run.webResponses array of the response object associated with this result.
-   */
-  index?: number;
-  /**
-   * The response protocol. Example: 'http'.
-   */
-  protocol?: string;
-  /**
-   * The response version. Example: '1.1'.
-   */
-  version?: string;
-  /**
-   * The response status code. Example: 451.
-   */
-  statusCode?: number;
-  /**
-   * The response reason. Example: 'Not found'.
-   */
-  reasonPhrase?: string;
-  /**
-   * The response headers.
-   */
-  headers?: {
-    [k: string]: string | undefined;
-  };
-  body?: ArtifactContent3;
-  /**
-   * Specifies whether a response was received from the server.
-   */
-  noResponseReceived?: boolean;
-  /**
-   * Key/value pairs that provide additional information about the response.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A specialLocations object that defines locations of special significance to SARIF consumers.
  */
 export interface SpecialLocations {
-  displayBase?: ArtifactLocation14;
+  displayBase?: ArtifactLocation;
   /**
    * Key/value pairs that provide additional information about the special locations.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of an artifact.
- */
-export interface ArtifactLocation14 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri?: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run artifacts array of the artifact object associated with the artifact location.
-   */
-  index?: number;
-  description?: Message;
-  /**
-   * Key/value pairs that provide additional information about the artifact location.
    */
   properties?: {
     /**
@@ -4149,14 +2405,14 @@ export interface ExternalProperties {
    * A stable, unique identifier for the run associated with this external properties object, in the form of a GUID.
    */
   runGuid?: string;
-  conversion?: Conversion1;
+  conversion?: Conversion;
   /**
    * An array of graph objects that will be merged with a separate run.
    *
    * @minItems 0
    */
   graphs?: Graph[];
-  externalizedProperties?: PropertyBag1;
+  externalizedProperties?: PropertyBag;
   /**
    * An array of artifact objects that will be merged with a separate run.
    *
@@ -4192,208 +2448,46 @@ export interface ExternalProperties {
    *
    * @minItems 0
    */
-  taxonomies?: ToolComponent1[];
-  driver?: ToolComponent2;
+  taxonomies?: ToolComponent[];
+  driver?: ToolComponent;
   /**
    * Tool extensions that will be merged with a separate run.
    *
    * @minItems 0
    */
-  extensions?: ToolComponent1[];
+  extensions?: ToolComponent[];
   /**
    * Tool policies that will be merged with a separate run.
    *
    * @minItems 0
    */
-  policies?: ToolComponent1[];
+  policies?: ToolComponent[];
   /**
    * Tool translations that will be merged with a separate run.
    *
    * @minItems 0
    */
-  translations?: ToolComponent1[];
+  translations?: ToolComponent[];
   /**
    * Addresses that will be merged with a separate run.
    *
    * @minItems 0
    */
-  addresses?: Address1[];
+  addresses?: Address[];
   /**
    * Requests that will be merged with a separate run.
    *
    * @minItems 0
    */
-  webRequests?: WebRequest2[];
+  webRequests?: WebRequest[];
   /**
    * Responses that will be merged with a separate run.
    *
    * @minItems 0
    */
-  webResponses?: WebResponse2[];
+  webResponses?: WebResponse[];
   /**
    * Key/value pairs that provide additional information about the external properties.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A conversion object that will be merged with a separate run.
- */
-export interface Conversion1 {
-  tool: Tool1;
-  invocation?: Invocation1;
-  /**
-   * The locations of the analysis tool's per-run log files.
-   *
-   * @minItems 0
-   */
-  analysisToolLogFiles?: ArtifactLocation[];
-  /**
-   * Key/value pairs that provide additional information about the conversion.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Key/value pairs that provide additional information that will be merged with a separate run.
- */
-export interface PropertyBag1 {
-  /**
-   * A set of distinct strings that provide additional information.
-   *
-   * @minItems 0
-   */
-  tags?: string[];
-  [k: string]: unknown | undefined;
-}
-/**
- * A component, such as a plug-in or the driver, of the analysis tool that was run.
- */
-export interface ToolComponent2 {
-  /**
-   * A unique identifier for the tool component in the form of a GUID.
-   */
-  guid?: string;
-  /**
-   * The name of the tool component.
-   */
-  name: string;
-  /**
-   * The organization or company that produced the tool component.
-   */
-  organization?: string;
-  /**
-   * A product suite to which the tool component belongs.
-   */
-  product?: string;
-  /**
-   * A localizable string containing the name of the suite of products to which the tool component belongs.
-   */
-  productSuite?: string;
-  shortDescription?: MultiformatMessageString;
-  fullDescription?: MultiformatMessageString1;
-  /**
-   * The name of the tool component along with its version and any other useful identifying information, such as its locale.
-   */
-  fullName?: string;
-  /**
-   * The tool component version, in whatever format the component natively provides.
-   */
-  version?: string;
-  /**
-   * The tool component version in the format specified by Semantic Versioning 2.0.
-   */
-  semanticVersion?: string;
-  /**
-   * The binary version of the tool component's primary executable file expressed as four non-negative integers separated by a period (for operating systems that express file versions in this way).
-   */
-  dottedQuadFileVersion?: string;
-  /**
-   * A string specifying the UTC date (and optionally, the time) of the component's release.
-   */
-  releaseDateUtc?: string;
-  /**
-   * The absolute URI from which the tool component can be downloaded.
-   */
-  downloadUri?: string;
-  /**
-   * The absolute URI at which information about this version of the tool component can be found.
-   */
-  informationUri?: string;
-  /**
-   * A dictionary, each of whose keys is a resource identifier and each of whose values is a multiformatMessageString object, which holds message strings in plain text and (optionally) Markdown format. The strings can include placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
-   */
-  globalMessageStrings?: {
-    [k: string]: MultiformatMessageString2 | undefined;
-  };
-  /**
-   * An array of reportingDescriptor objects relevant to the notifications related to the configuration and runtime execution of the tool component.
-   *
-   * @minItems 0
-   */
-  notifications?: ReportingDescriptor[];
-  /**
-   * An array of reportingDescriptor objects relevant to the analysis performed by the tool component.
-   *
-   * @minItems 0
-   */
-  rules?: ReportingDescriptor[];
-  /**
-   * An array of reportingDescriptor objects relevant to the definitions of both standalone and tool-defined taxonomies.
-   *
-   * @minItems 0
-   */
-  taxa?: ReportingDescriptor[];
-  /**
-   * An array of the artifactLocation objects associated with the tool component.
-   *
-   * @minItems 0
-   */
-  locations?: ArtifactLocation[];
-  /**
-   * The language of the messages emitted into the log file during this run (expressed as an ISO 639-1 two-letter lowercase language code) and an optional region (expressed as an ISO 3166-1 two-letter uppercase subculture code associated with a country or region). The casing is recommended but not required (in order for this data to conform to RFC5646).
-   */
-  language?: string;
-  /**
-   * The kinds of data contained in this object.
-   */
-  contents?: ('localizedData' | 'nonLocalizedData')[];
-  /**
-   * Specifies whether this object contains a complete definition of the localizable and/or non-localizable data for this component, as opposed to including only data that is relevant to the results persisted to this log file.
-   */
-  isComprehensive?: boolean;
-  /**
-   * The semantic version of the localized strings defined in this component; maintained by components that provide translations.
-   */
-  localizedDataSemanticVersion?: string;
-  /**
-   * The minimum value of localizedDataSemanticVersion required in translations consumed by this component; used by components that consume translations.
-   */
-  minimumRequiredLocalizedDataSemanticVersion?: string;
-  associatedComponent?: ToolComponentReference1;
-  translationMetadata?: TranslationMetadata;
-  /**
-   * An array of toolComponentReference objects to declare the taxonomies supported by the tool component.
-   *
-   * @minItems 0
-   */
-  supportedTaxonomies?: ToolComponentReference2[];
-  /**
-   * Key/value pairs that provide additional information about the tool component.
    */
   properties?: {
     /**

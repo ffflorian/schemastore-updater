@@ -29,8 +29,7 @@ export interface HttpsJsonSchemastoreOrgClangTidyJson {
    * Style for formatting code around applied fixes.
    */
   FormatStyle?:
-    | ('none' | 'file' | 'llvm' | 'google' | 'webkit' | 'mozilla' | 'chromium' | 'microsoft' | 'gnu')
-    | string;
+    ('none' | 'file' | 'llvm' | 'google' | 'webkit' | 'mozilla' | 'chromium' | 'microsoft' | 'gnu') | string;
   /**
    * File extensions to consider to determine if a given diagnostic is located in a header file.
    */

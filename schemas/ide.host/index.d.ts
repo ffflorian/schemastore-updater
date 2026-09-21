@@ -2,7 +2,7 @@
 
 export interface JSONSchemaForIDETemplateHostFiles {
   name?: Text;
-  description?: Text1;
+  description?: Text;
   /**
    * The order of the template as shown in the New Project dialog
    */
@@ -58,15 +58,6 @@ export interface Text {
   id?: string;
   [k: string]: unknown | undefined;
 }
-/**
- * Description of the template
- */
-export interface Text1 {
-  text: string;
-  package?: string;
-  id?: string;
-  [k: string]: unknown | undefined;
-}
 export interface SymbolInfo {
   /**
    * Should be shown in the IDE. If not specified, defaults value is the value specified by defaultSymbolVisibility.
@@ -99,26 +90,8 @@ export interface OverrideInfo {
    * The id of the symbol from the template.json.
    */
   id: string;
-  name?: Text2;
-  description?: Text3;
-  [k: string]: unknown | undefined;
-}
-/**
- * Overrides the name specified in the template.json
- */
-export interface Text2 {
-  text: string;
-  package?: string;
-  id?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Overrides the name specified in the template.json
- */
-export interface Text3 {
-  text: string;
-  package?: string;
-  id?: string;
+  name?: Text;
+  description?: Text;
   [k: string]: unknown | undefined;
 }
 export interface Tags {

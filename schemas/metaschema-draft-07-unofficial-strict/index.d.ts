@@ -65,8 +65,8 @@ export type PatternProperty = string;
  * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=enum#enumerated-values
  */
 export type EnumProperty = [
-  boolean | number | null | number | string,
-  ...(boolean | number | null | number | string)[]
+  boolean | number | null | string,
+  ...(boolean | number | null | string)[]
 ];
 /**
  * A minimum item count of the current property or definition
@@ -129,7 +129,7 @@ export type FormatProperty =
  * Additional sub-properties of the current property or definition or whether to allow them
  * https://json-schema.org/understanding-json-schema/reference/object.html?highlight=required#additional-properties
  */
-export type AdditionalPropertiesProperty = false | Entity2;
+export type AdditionalPropertiesProperty = false | Entity;
 /**
  * A minimum count of sub-properties of the current property or definition
  * https://json-schema.org/understanding-json-schema/reference/object.html?highlight=required#size
@@ -154,21 +154,21 @@ export type ExamplesProperty = (boolean | number | null | string)[];
  *
  * @minItems 2
  */
-export type AnyOfProperty = [SubSchemaEntity1, SubSchemaEntity1, ...SubSchemaEntity1[]];
+export type AnyOfProperty = [SubSchemaEntity, SubSchemaEntity, ...SubSchemaEntity[]];
 /**
  * A requirement to match at one sub-schema of the current property or definition
  * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#oneof
  *
  * @minItems 2
  */
-export type OneOfProperty = [SubSchemaEntity2, SubSchemaEntity2, ...SubSchemaEntity2[]];
+export type OneOfProperty = [SubSchemaEntity, SubSchemaEntity, ...SubSchemaEntity[]];
 /**
  * A requirement to match all sub-schemas of the current property or definition
  * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#allof
  *
  * @minItems 2
  */
-export type AllOfProperty = [SubSchemaEntity3, SubSchemaEntity3, ...SubSchemaEntity3[]];
+export type AllOfProperty = [SubSchemaEntity, SubSchemaEntity, ...SubSchemaEntity[]];
 
 /**
  * A schema
@@ -196,7 +196,7 @@ export interface HttpsJsonSchemastoreOrgMetaschemaDraft07UnofficialStrictJson {
    * Definitions
    */
   definitions?: {
-    [k: string]: SubSchemaEntity4 | undefined;
+    [k: string]: SubSchemaEntity | undefined;
   };
   title: TitleProperty;
   description: DescriptionProperty;
@@ -211,7 +211,7 @@ export interface HttpsJsonSchemastoreOrgMetaschemaDraft07UnofficialStrictJson {
   pattern?: PatternProperty;
   format?: FormatProperty;
   enum?: EnumProperty;
-  items?: ItemsProperty2;
+  items?: ItemsProperty;
   minItems?: MinItemsProperty;
   maxItems?: MaxItemsProperty;
   uniqueItems?: UniqueItemsProperty;
@@ -280,7 +280,7 @@ export interface SubSchemaEntity {
    */
   default?: boolean | number | null | string;
   examples?: ExamplesProperty;
-  not?: NotProperty1;
+  not?: NotProperty;
   anyOf?: AnyOfProperty;
   oneOf?: OneOfProperty;
   allOf?: AllOfProperty;
@@ -329,7 +329,7 @@ export interface ItemsProperty {
    */
   default?: boolean | number | null | string;
   examples?: ExamplesProperty;
-  not?: NotProperty1;
+  not?: NotProperty;
   anyOf?: AnyOfProperty;
   oneOf?: OneOfProperty;
   allOf?: AllOfProperty;
@@ -368,7 +368,7 @@ export interface Entity {
   pattern?: PatternProperty;
   format?: FormatProperty;
   enum?: EnumProperty;
-  items?: ItemsProperty1;
+  items?: ItemsProperty;
   minItems?: MinItemsProperty;
   maxItems?: MaxItemsProperty;
   uniqueItems?: UniqueItemsProperty;
@@ -429,7 +429,7 @@ export interface Entity {
      */
     default?: boolean | number | null | string;
     examples?: ExamplesProperty;
-    not?: NotProperty1;
+    not?: NotProperty;
     anyOf?: AnyOfProperty;
     oneOf?: OneOfProperty;
     allOf?: AllOfProperty;
@@ -438,55 +438,6 @@ export interface Entity {
     else?: ElseProperty;
     [k: string]: unknown | undefined;
   };
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty1;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * Items of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/array.html?highlight=items#items
- */
-export interface ItemsProperty1 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
   anyOf?: AnyOfProperty;
   oneOf?: OneOfProperty;
   allOf?: AllOfProperty;
@@ -500,395 +451,7 @@ export interface ItemsProperty1 {
  * https://json-schema.org/understanding-json-schema/reference/object.html?highlight=required#pattern-properties
  */
 export interface PatternPropertiesProperty {
-  '.'?: Entity1;
-  [k: string]: unknown | undefined;
-}
-/**
- * A pattern sub-property of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/object.html?highlight=required#pattern-properties
- */
-export interface Entity1 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  title: TitleProperty;
-  description: DescriptionProperty;
-  type: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  format?: FormatProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty1;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  /**
-   * A sub-schema should not match of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#not
-   */
-  not?: {
-    $comment?: CommentProperty;
-    $ref?: RefProperty;
-    description?: string;
-    id?: string;
-    type?: TypeProperty;
-    minimum?: MinimumProperty;
-    maximum?: MaximumProperty;
-    exclusiveMinimum?: ExclusiveMinimumProperty;
-    exclusiveMaximum?: ExclusiveMaximumProperty;
-    multipleOf?: MultipleOfProperty;
-    minLength?: MinLengthProperty;
-    maxLength?: MaxLengthProperty;
-    pattern?: PatternProperty;
-    enum?: EnumProperty;
-    items?: ItemsProperty;
-    minItems?: MinItemsProperty;
-    maxItems?: MaxItemsProperty;
-    uniqueItems?: UniqueItemsProperty;
-    required?: RequiredProperty;
-    properties?: PropertiesProperty;
-    patternProperties?: PatternPropertiesProperty;
-    additionalProperties?: AdditionalPropertiesProperty;
-    minProperties?: MinPropertiesProperty;
-    maxProperties?: MaxPropertiesProperty;
-    /**
-     * A constant of the current property or definition
-     * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-     */
-    const?: boolean | number | null | string;
-    /**
-     * A default of the current property or definition
-     * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-     */
-    default?: boolean | number | null | string;
-    examples?: ExamplesProperty;
-    not?: NotProperty1;
-    anyOf?: AnyOfProperty;
-    oneOf?: OneOfProperty;
-    allOf?: AllOfProperty;
-    if?: IfProperty;
-    then?: ThenProperty;
-    else?: ElseProperty;
-    [k: string]: unknown | undefined;
-  };
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty1;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-export interface Entity2 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  title: TitleProperty;
-  description: DescriptionProperty;
-  type: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  format?: FormatProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty1;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  /**
-   * A sub-schema should not match of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#not
-   */
-  not?: {
-    $comment?: CommentProperty;
-    $ref?: RefProperty;
-    description?: string;
-    id?: string;
-    type?: TypeProperty;
-    minimum?: MinimumProperty;
-    maximum?: MaximumProperty;
-    exclusiveMinimum?: ExclusiveMinimumProperty;
-    exclusiveMaximum?: ExclusiveMaximumProperty;
-    multipleOf?: MultipleOfProperty;
-    minLength?: MinLengthProperty;
-    maxLength?: MaxLengthProperty;
-    pattern?: PatternProperty;
-    enum?: EnumProperty;
-    items?: ItemsProperty;
-    minItems?: MinItemsProperty;
-    maxItems?: MaxItemsProperty;
-    uniqueItems?: UniqueItemsProperty;
-    required?: RequiredProperty;
-    properties?: PropertiesProperty;
-    patternProperties?: PatternPropertiesProperty;
-    additionalProperties?: AdditionalPropertiesProperty;
-    minProperties?: MinPropertiesProperty;
-    maxProperties?: MaxPropertiesProperty;
-    /**
-     * A constant of the current property or definition
-     * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-     */
-    const?: boolean | number | null | string;
-    /**
-     * A default of the current property or definition
-     * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-     */
-    default?: boolean | number | null | string;
-    examples?: ExamplesProperty;
-    not?: NotProperty1;
-    anyOf?: AnyOfProperty;
-    oneOf?: OneOfProperty;
-    allOf?: AllOfProperty;
-    if?: IfProperty;
-    then?: ThenProperty;
-    else?: ElseProperty;
-    [k: string]: unknown | undefined;
-  };
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty1;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * A sub-schema should not match of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#not
- */
-export interface NotProperty1 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * A sub-schema of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#anyof
- */
-export interface SubSchemaEntity1 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * A sub-schema of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#oneof
- */
-export interface SubSchemaEntity2 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * A sub-schema of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#allof
- */
-export interface SubSchemaEntity3 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty;
-  else?: ElseProperty;
+  '.'?: Entity;
   [k: string]: unknown | undefined;
 }
 /**
@@ -1024,221 +587,6 @@ export interface ElseProperty {
   [k: string]: unknown | undefined;
 }
 /**
- * A conditional branch of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/conditionals.html?highlight=condition#if-then-else
- */
-export interface ThenProperty1 {
-  /**
-   * A mapping from sub-property names to requirements of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/conditionals.html?highlight=condition#if-then-else
-   */
-  properties: {
-    [k: string]: unknown | undefined;
-  };
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * A pattern sub-property of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/object.html?highlight=required#pattern-properties
- *
- * This interface was referenced by `PatternPropertiesProperty`'s JSON-Schema definition
- * via the `patternProperty` ".".
- */
-export interface Entity3 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  title: TitleProperty;
-  description: DescriptionProperty;
-  type: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  format?: FormatProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty1;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  /**
-   * A sub-schema should not match of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#not
-   */
-  not?: {
-    $comment?: CommentProperty;
-    $ref?: RefProperty;
-    description?: string;
-    id?: string;
-    type?: TypeProperty;
-    minimum?: MinimumProperty;
-    maximum?: MaximumProperty;
-    exclusiveMinimum?: ExclusiveMinimumProperty;
-    exclusiveMaximum?: ExclusiveMaximumProperty;
-    multipleOf?: MultipleOfProperty;
-    minLength?: MinLengthProperty;
-    maxLength?: MaxLengthProperty;
-    pattern?: PatternProperty;
-    enum?: EnumProperty;
-    items?: ItemsProperty;
-    minItems?: MinItemsProperty;
-    maxItems?: MaxItemsProperty;
-    uniqueItems?: UniqueItemsProperty;
-    required?: RequiredProperty;
-    properties?: PropertiesProperty;
-    patternProperties?: PatternPropertiesProperty;
-    additionalProperties?: AdditionalPropertiesProperty;
-    minProperties?: MinPropertiesProperty;
-    maxProperties?: MaxPropertiesProperty;
-    /**
-     * A constant of the current property or definition
-     * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-     */
-    const?: boolean | number | null | string;
-    /**
-     * A default of the current property or definition
-     * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-     */
-    default?: boolean | number | null | string;
-    examples?: ExamplesProperty;
-    not?: NotProperty1;
-    anyOf?: AnyOfProperty;
-    oneOf?: OneOfProperty;
-    allOf?: AllOfProperty;
-    if?: IfProperty;
-    then?: ThenProperty;
-    else?: ElseProperty;
-    [k: string]: unknown | undefined;
-  };
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty1;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * A definition
- */
-export interface SubSchemaEntity4 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
- * Items of the current property or definition
- * https://json-schema.org/understanding-json-schema/reference/array.html?highlight=items#items
- */
-export interface ItemsProperty2 {
-  $comment?: CommentProperty;
-  $ref?: RefProperty;
-  description?: string;
-  id?: string;
-  type?: TypeProperty;
-  minimum?: MinimumProperty;
-  maximum?: MaximumProperty;
-  exclusiveMinimum?: ExclusiveMinimumProperty;
-  exclusiveMaximum?: ExclusiveMaximumProperty;
-  multipleOf?: MultipleOfProperty;
-  minLength?: MinLengthProperty;
-  maxLength?: MaxLengthProperty;
-  pattern?: PatternProperty;
-  enum?: EnumProperty;
-  items?: ItemsProperty;
-  minItems?: MinItemsProperty;
-  maxItems?: MaxItemsProperty;
-  uniqueItems?: UniqueItemsProperty;
-  required?: RequiredProperty;
-  properties?: PropertiesProperty;
-  patternProperties?: PatternPropertiesProperty;
-  additionalProperties?: AdditionalPropertiesProperty;
-  minProperties?: MinPropertiesProperty;
-  maxProperties?: MaxPropertiesProperty;
-  /**
-   * A constant of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=const#constant-values
-   */
-  const?: boolean | number | null | string;
-  /**
-   * A default of the current property or definition
-   * https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default#annotations
-   */
-  default?: boolean | number | null | string;
-  examples?: ExamplesProperty;
-  not?: NotProperty1;
-  anyOf?: AnyOfProperty;
-  oneOf?: OneOfProperty;
-  allOf?: AllOfProperty;
-  if?: IfProperty;
-  then?: ThenProperty;
-  else?: ElseProperty;
-  [k: string]: unknown | undefined;
-}
-/**
  * A sub-schema should not match of the current property or definition
  * https://json-schema.org/understanding-json-schema/reference/combining.html?highlight=anyof#not
  */
@@ -1278,7 +626,7 @@ export interface NotProperty {
    */
   default?: boolean | number | null | string;
   examples?: ExamplesProperty;
-  not?: NotProperty1;
+  not?: NotProperty;
   anyOf?: AnyOfProperty;
   oneOf?: OneOfProperty;
   allOf?: AllOfProperty;

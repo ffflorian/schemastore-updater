@@ -42,7 +42,7 @@ export type MethodsToSetOptionalDependencies = unknown[];
 export interface JSONSchemaForDrupalServicesFile {
   parameters?: ServiceParameters;
   services?: {
-    [k: string]: (DrupalServiceAliasShorthand | DrupalServices) | undefined;
+    [k: string]: DrupalServiceAliasShorthand | DrupalServices | undefined;
   };
 }
 export interface ServiceParameters {

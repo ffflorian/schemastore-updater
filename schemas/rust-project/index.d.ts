@@ -110,5 +110,5 @@ export interface EnvironmentVariables {
    * This interface was referenced by `EnvironmentVariables`'s JSON-Schema definition
    * via the `patternProperty` "^.*$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }

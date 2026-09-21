@@ -233,7 +233,7 @@ export interface Env {
  * Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.
  */
 export interface Globals {
-  [k: string]: (('readonly' | 'writable' | 'off') | boolean) | undefined;
+  [k: string]: 'readonly' | 'writable' | 'off' | boolean | undefined;
 }
 /**
  * The JavaScript language options to be supported
@@ -3373,14 +3373,12 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
         {
           patterns?: {
             [k: string]:
-              | (
-                  | string
-                  | {
-                      suggest: string;
-                      fix?: boolean;
-                      message?: string;
-                    }
-                )
+              | string
+              | {
+                  suggest: string;
+                  fix?: boolean;
+                  message?: string;
+                }
               | undefined;
           };
           [k: string]: unknown | undefined;
@@ -3719,11 +3717,13 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^(?:\S+)$".
              */
-            [k: string]: {
-              singleline?: 'always' | 'never' | 'consistent' | 'ignore';
-              multiline?: 'always' | 'never' | 'consistent' | 'ignore';
-              maxEmptyLines?: number;
-            };
+            [k: string]:
+              | {
+                  singleline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  multiline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  maxEmptyLines?: number;
+                }
+              | undefined;
           };
           [k: string]: unknown | undefined;
         }
@@ -3758,7 +3758,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
           /**
            * @minItems 0
            */
-          allow?: [] | [string];
+          allow?: string[];
           [k: string]: unknown | undefined;
         }
       ];
@@ -4626,7 +4626,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^(?:\S+|/.*\/[a-z]*)$".
              */
-            [k: string]: string[];
+            [k: string]: string[] | undefined;
           };
           directives?: string[];
           [k: string]: unknown | undefined;
@@ -6632,9 +6632,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
    * https://typescript-eslint.io/rules/consistent-indexed-object-style
    */
   '@typescript-eslint/consistent-indexed-object-style'?:
-    | number
-    | ('off' | 'warn' | 'error')
-    | [number | ('off' | 'warn' | 'error'), 'record' | 'index-signature'];
+    number | ('off' | 'warn' | 'error') | [number | ('off' | 'warn' | 'error'), 'record' | 'index-signature'];
   /**
    * Require `return` statements to either always or never specify values
    * https://typescript-eslint.io/rules/consistent-return
@@ -6667,9 +6665,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
    * https://typescript-eslint.io/rules/consistent-type-definitions
    */
   '@typescript-eslint/consistent-type-definitions'?:
-    | number
-    | ('off' | 'warn' | 'error')
-    | [number | ('off' | 'warn' | 'error'), 'interface' | 'type'];
+    number | ('off' | 'warn' | 'error') | [number | ('off' | 'warn' | 'error'), 'interface' | 'type'];
   /**
    * Enforce consistent usage of type exports
    * https://typescript-eslint.io/rules/consistent-type-exports
@@ -8444,32 +8440,34 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
         }
       ];
   /**
-   * Enforce the consistent use of either backticks, double, or single quotes
+   * DEPRECATED. Enforce the consistent use of either backticks, double, or single quotes
    * https://typescript-eslint.io/rules/quotes
    */
   '@typescript-eslint/quotes'?:
     | number
     | ('off' | 'warn' | 'error')
-    | [number | ('off' | 'warn' | 'error'), 'double' | 'single' | 'backtick']
-    | [
-        number | ('off' | 'warn' | 'error'),
-        'double' | 'single' | 'backtick',
-        {
-          /**
-           * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
-           */
-          avoidEscape?: boolean;
-          /**
-           * allows strings to use backticks
-           */
-          allowTemplateLiterals?: boolean;
-          /**
-           * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
-           */
-          'avoid-escape'?: boolean;
-          [k: string]: unknown | undefined;
-        }
-      ];
+    | (
+        | [number | ('off' | 'warn' | 'error'), 'double' | 'single' | 'backtick']
+        | [
+            number | ('off' | 'warn' | 'error'),
+            'double' | 'single' | 'backtick',
+            {
+              /**
+               * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
+               */
+              avoidEscape?: boolean;
+              /**
+               * allows strings to use backticks
+               */
+              allowTemplateLiterals?: boolean;
+              /**
+               * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
+               */
+              'avoid-escape'?: boolean;
+              [k: string]: unknown | undefined;
+            }
+          ]
+      );
   /**
    * Require `Array#sort` and `Array#toSorted` calls to always provide a `compareFunction`
    * https://typescript-eslint.io/rules/require-array-sort-compare

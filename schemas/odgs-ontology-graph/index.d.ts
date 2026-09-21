@@ -16,18 +16,20 @@ export interface ODGSOntologyGraph {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: {
-      source_file?: string;
-      urn_prefix: string;
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          source_file?: string;
+          urn_prefix: string;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   relationship_types?: {
     type: string;
     description?: string;
     [k: string]: unknown | undefined;
   }[];
-  graph_edges: (
+  graph_edges: ((
     | {
         comment: string;
         [k: string]: unknown | undefined;
@@ -39,6 +41,15 @@ export interface ODGSOntologyGraph {
         relationship: string;
         [k: string]: unknown | undefined;
       }
-  )[];
+  ) & {
+    comment?: string;
+    link_id?: string;
+    source_urn?: string;
+    target_urn?: string;
+    relationship?: string;
+    weight?: number;
+    description?: string;
+    [k: string]: unknown | undefined;
+  })[];
   [k: string]: unknown | undefined;
 }
