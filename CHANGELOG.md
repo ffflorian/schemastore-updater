@@ -1,3 +1,10 @@
+## [3.8.9](https://github.com/ffflorian/schemastore-updater/compare/v3.8.8...v3.8.9) (2026-09-21)
+
+
+### Bug Fixes
+
+* Simplify types ([#1653](https://github.com/ffflorian/schemastore-updater/issues/1653)) ([1c167a4](https://github.com/ffflorian/schemastore-updater/commit/1c167a4924a52a814b37ef0eb08c25a61332eb13))
+
 ## [3.8.8](https://github.com/ffflorian/schemastore-updater/compare/v3.8.7...v3.8.8) (2026-09-14)
 
 
