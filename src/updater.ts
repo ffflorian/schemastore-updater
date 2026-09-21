@@ -113,13 +113,15 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
     try {
       const generatedCode = deduplicateGeneratedTypes(
-        await compileFromFile(schemaFilePath, {
-          bannerComment: '/* eslint-disable */',
-          strictIndexSignatures: true,
-          style: {
-            singleQuote: true,
-          },
-        })
+        simplifyGeneratedTypes(
+          await compileFromFile(schemaFilePath, {
+            bannerComment: '/* eslint-disable */',
+            strictIndexSignatures: true,
+            style: {
+              singleQuote: true,
+            },
+          })
+        )
       );
 
       await mkdir(packageDirPath, {recursive: true});
@@ -232,6 +234,17 @@ function applyTypeRenames(code: string, renames: Map<string, string>): string {
   return result;
 }
 
+function applyTypeSimplifications(code: string, edits: Array<{end: number; start: number; text: string}>): string {
+  let result = code;
+
+  // Descending so earlier positions stay valid
+  for (const {end, start, text} of [...edits].sort((editA, editB) => editB.start - editA.start)) {
+    result = result.slice(0, start) + text + result.slice(end);
+  }
+
+  return result;
+}
+
 function bumpPatchVersion(version: string): string {
   const validVersion = valid(version);
   if (!validVersion) {
@@ -327,6 +340,102 @@ async function collectJsonFiles(root: string): Promise<string[]> {
   await walk(root);
   outputPaths.sort((pathA, pathB) => pathA.localeCompare(pathB));
   return outputPaths;
+}
+
+function collectTypeSimplifications(code: string): Array<{end: number; start: number; text: string}> {
+  const sourceFile = ts.createSourceFile('generated.d.ts', code, ts.ScriptTarget.Latest, true);
+  const printer = ts.createPrinter({removeComments: true});
+  const typeKeys = new Map<ts.TypeNode, string>();
+
+  // Parentheses carry no meaning for the comparisons below, only for the emitted text
+  const unwrap = (node: ts.TypeNode): ts.TypeNode => {
+    let current = node;
+    while (ts.isParenthesizedTypeNode(current)) {
+      current = current.type;
+    }
+    return current;
+  };
+
+  const typeKey = (node: ts.TypeNode): string => {
+    const cached = typeKeys.get(node);
+    if (cached !== undefined) {
+      return cached;
+    }
+    const printed = printer.printNode(ts.EmitHint.Unspecified, unwrap(node), sourceFile);
+    typeKeys.set(node, printed);
+    return printed;
+  };
+
+  const edits: Array<{end: number; start: number; text: string}> = [];
+
+  function visit(node: ts.Node): void {
+    if (ts.isIntersectionTypeNode(node) || ts.isUnionTypeNode(node)) {
+      // `T & T` is `T` and `T | T` is `T`
+      const seenKeys = new Set<string>();
+      const uniqueTypes = node.types.filter(type => {
+        const key = typeKey(type);
+        if (seenKeys.has(key)) {
+          return false;
+        }
+        seenKeys.add(key);
+        return true;
+      });
+
+      if (uniqueTypes.length < node.types.length) {
+        edits.push({
+          end: node.getEnd(),
+          start: node.getStart(sourceFile),
+          text: uniqueTypes.map(type => type.getText(sourceFile)).join(ts.isUnionTypeNode(node) ? ' | ' : ' & '),
+        });
+        return;
+      }
+    }
+
+    // `C & ((M1 & C) | (M2 & C))` is `C & (M1 | M2)`, which stops `json-schema-to-typescript`
+    // from inlining `C` once per branch of a sibling `oneOf` / `anyOf`
+    if (ts.isIntersectionTypeNode(node)) {
+      const operandKeys = node.types.map(typeKey);
+
+      for (const [index, operand] of node.types.entries()) {
+        const union = unwrap(operand);
+        if (!ts.isUnionTypeNode(union)) {
+          continue;
+        }
+
+        const sharedKey = operandKeys.find(
+          (candidate, candidateIndex) =>
+            candidateIndex !== index &&
+            union.types.every(member => {
+              const unwrappedMember = unwrap(member);
+              return (
+                ts.isIntersectionTypeNode(unwrappedMember) &&
+                unwrappedMember.types.some(part => typeKey(part) === candidate)
+              );
+            })
+        );
+
+        if (!sharedKey) {
+          continue;
+        }
+
+        const members = union.types.map(member => {
+          const remaining = (unwrap(member) as ts.IntersectionTypeNode).types.filter(
+            part => typeKey(part) !== sharedKey
+          );
+          const memberText = remaining.map(part => part.getText(sourceFile)).join(' & ');
+          return remaining.length > 1 ? `(${memberText})` : memberText;
+        });
+
+        edits.push({end: union.getEnd(), start: union.getStart(sourceFile), text: members.join(' | ')});
+        return;
+      }
+    }
+
+    ts.forEachChild(node, visit);
+  }
+
+  visit(sourceFile);
+  return edits;
 }
 
 function createGeneratorLog(entries: string[]): string {
@@ -536,6 +645,19 @@ async function resolveNextPackageVersion(packageJsonPath: string): Promise<strin
   }
 
   return bumpPatchVersion(parsedPackageJson.version);
+}
+
+function simplifyGeneratedTypes(code: string): string {
+  let result = code;
+
+  // Each pass rewrites the outermost matches only, so nested ones need another round
+  for (;;) {
+    const edits = collectTypeSimplifications(result);
+    if (edits.length === 0) {
+      return result;
+    }
+    result = applyTypeSimplifications(result, edits);
+  }
 }
 
 function typeCheckSingleFile(filePath: string): {errors: string; ok: false} | {ok: true} {

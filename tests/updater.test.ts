@@ -510,6 +510,55 @@ describe('updateSchemas', () => {
     expect(generatedDts).toContain('export type ConnectorUsage2 = string;');
   });
 
+  it('drops repeated members from generated intersections and unions', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        'export type Repeated = (boolean | CoreRule) & (boolean | CoreRule) & string[];',
+        '',
+        'export type RepeatedUnion = string | number | string;',
+        '',
+        'export interface CoreRule {',
+        '  severity?: string;',
+        '}',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).toContain('export type Repeated = (boolean | CoreRule) & string[];');
+    expect(generatedDts).toContain('export type RepeatedUnion = string | number;');
+  });
+
+  it('factors a shared intersection member out of a generated oneOf union', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        'export type UnitRule = (string[] | string) &',
+        '  (((string[] | string) & unknown[]) | (null & (string[] | string)));',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).toContain('export type UnitRule = (string[] | string) &\n  (unknown[] | null);');
+  });
+
+  it('simplifies nested generated intersections down to a fixed point', async () => {
+    const generatedDts = await generateWithCompilerOutput(
+      [
+        '/* eslint-disable */',
+        '',
+        'export type Nested = {',
+        '  value?: (boolean | null) & (((boolean | null) & boolean) | ((boolean | null) & null));',
+        '};',
+        '',
+      ].join('\n')
+    );
+
+    expect(generatedDts).toContain('value?: (boolean | null);');
+  });
+
   it('preserves existing lock file entries for other schemas when schema option is given', async () => {
     const context = await createWorkspace({
       'accelerator/schema.json': JSON.stringify(createBasicSchema('Accelerator'), null, 2),
