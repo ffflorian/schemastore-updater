@@ -184,7 +184,7 @@ Use yarn only.
 - When joining only literal path segments, prefer `path.join('a/b/c')` over `path.join('a', 'b', 'c')`.
 - Do not use dynamic imports in the middle of functions when the module can be imported at the top of the file.
 - Prefer `for (const entry of entries)` loops over `await Promise.all(entries.map(...))` for recursive directory walking in this repository.
-- Follow the repository prettier code style.
+- Follow the repository code style.
 - Run `yarn fix:other` for formatting changes.
 
 ## Testing Expectations for Code Changes
@@ -231,7 +231,7 @@ Pipeline order: `deduplicateGeneratedTypes(simplifyGeneratedTypes(await compileF
 - `T | T` is `T` — drop repeated union members.
 - `C & ((M1 & C) | (M2 & C))` is `C & (M1 | M2)` — factor a member shared by every branch of a union out of the surrounding intersection. This is the rewrite that removes the quadratic inlining.
 
-These are exact identities, not heuristics, so the rewrite never widens or narrows a type. Members are compared comment-free and paren-free via `ts.createPrinter({removeComments: true})`; the replacement text is spliced from the original source ranges so the surrounding `prettier` formatting survives.
+These are exact identities, not heuristics, so the rewrite never widens or narrows a type. Members are compared comment-free and paren-free via `ts.createPrinter({removeComments: true})`; the replacement text is spliced from the original source ranges so the surrounding formatting survives.
 
 The failure is **not** caused by recursion, so a depth limit does not help. Do not try to cap recursion depth, and do not pin `json-schema-to-typescript` back to 15.x — that would reintroduce the TS2411 class of failures described below.
 

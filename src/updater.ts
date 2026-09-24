@@ -426,7 +426,11 @@ function collectTypeSimplifications(code: string): Array<{end: number; start: nu
           return remaining.length > 1 ? `(${memberText})` : memberText;
         });
 
-        edits.push({end: union.getEnd(), start: union.getStart(sourceFile), text: members.join(' | ')});
+        edits.push({
+          end: union.getEnd(),
+          start: union.getStart(sourceFile),
+          text: members.join(' | '),
+        });
         return;
       }
     }
