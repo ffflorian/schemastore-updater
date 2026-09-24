@@ -25,6 +25,6 @@
     "target": "ES2024",
     "types": ["node"]
   },
-  "exclude": [".cache/**"],
+  "exclude": [".cache/**", "oxfmt.config.ts"],
   "include": ["src/**/*.ts"]
 }

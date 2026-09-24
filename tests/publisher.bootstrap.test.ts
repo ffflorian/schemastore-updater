@@ -155,7 +155,11 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
 
     const stats = await withWorkingDirectory(workspaceDirectory, () => bootstrapNewPackages());
 
-    expect(stats).toMatchObject({bootstrapped: 0, failed: 1, failedPackages: ['@schemastore/alpha@1.0.0']});
+    expect(stats).toMatchObject({
+      bootstrapped: 0,
+      failed: 1,
+      failedPackages: ['@schemastore/alpha@1.0.0'],
+    });
     expect(execFileMock).not.toHaveBeenCalled();
   });
 

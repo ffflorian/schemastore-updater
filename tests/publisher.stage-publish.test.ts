@@ -32,7 +32,10 @@ describe('stagePackageDirectory (default publishPackage)', () => {
   it('invokes `npm stage publish` relying only on the ambient OIDC environment', async () => {
     delete process.env.NPM_TOKEN;
     execFileMock.mockImplementation((_command, _args, _options, callback) => {
-      (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {stderr: '', stdout: ''});
+      (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {
+        stderr: '',
+        stdout: '',
+      });
       return {} as ReturnType<typeof execFile>;
     });
 

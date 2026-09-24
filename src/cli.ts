@@ -143,7 +143,9 @@ async function runPublishCommand(options: PublishCommandOptions): Promise<void> 
   });
 
   console.info(
-    stats.dryRun ? '\nDry run complete.' : '\nStaging complete. Versions are pending 2FA approval on npmjs.com before they go live.'
+    stats.dryRun
+      ? '\nDry run complete.'
+      : '\nStaging complete. Versions are pending 2FA approval on npmjs.com before they go live.'
   );
   console.info(`Attempted: ${stats.attempted}`);
   console.info(`Staged: ${stats.published}`);
