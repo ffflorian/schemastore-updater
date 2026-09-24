@@ -4,5 +4,5 @@ import config from '@ffflorian/oxfmt-config';
 
 export default defineConfig({
   ...config,
-  ignorePatterns: ['**/dist/**', '**/node_modules/**', '**/.yarn/**'],
+  ignorePatterns: [...(config.ignorePatterns || []), '**/schemas/**'],
 });
