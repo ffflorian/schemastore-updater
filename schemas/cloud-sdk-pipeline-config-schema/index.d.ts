@@ -111,7 +111,9 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
   /**
    * The general configuration of the pipeline
    */
-  general?: {
+  general?: (null | {
+    [k: string]: unknown | undefined;
+  }) & {
     /**
      * The name of your default branch. This branch will be used for deploying your application. Other branches will skip deployment.
      */
@@ -160,11 +162,13 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       jnlpAgent?: string;
       [k: string]: unknown | undefined;
     };
-  } | null;
+  };
   /**
    * Configuration, which will modify the behaviour of stages in the SAP Cloud SDK Pipeline.
    */
-  stages?: {
+  stages?: (null | {
+    [k: string]: unknown | undefined;
+  }) & {
     backendIntegrationTests?: {
       /**
        * The number of times that integration tests will retry before aborting the build. Note: This will consume more time for the jenkins build.
@@ -399,8 +403,10 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       runInAllBranches?: boolean;
     };
     [k: string]: unknown | undefined;
-  } | null;
-  steps?: {
+  };
+  steps?: (null | {
+    [k: string]: unknown | undefined;
+  }) & {
     /**
      * The mavenExecute step is used for all invocations of the mvn build tool. It is either used directly for executing specific maven phases such as test, or indirectly for steps that execute maven plugins such as checkPmd.
      */
@@ -706,7 +712,7 @@ export interface SAPCloudSDKPipelineConfigJSONSchema {
       [k: string]: unknown | undefined;
     };
     [k: string]: unknown | undefined;
-  } | null;
+  };
   [k: string]: unknown | undefined;
 }
 /**

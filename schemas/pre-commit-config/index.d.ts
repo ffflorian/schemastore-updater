@@ -376,104 +376,10 @@ export interface LocalRepo {
   [k: string]: unknown | undefined;
 }
 export interface HookDefinition {
-  /**
-   * An identifier of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  id: string;
-  /**
-   * An additional identifier of the current hook for `pre-commit run <hookid>`
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  alias?: string;
-  /**
-   * A name of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  name: string;
-  /**
-   * A language version of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  language_version?: string;
-  /**
-   * A pattern to include files to run on of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  files?: string;
-  /**
-   * A pattern to exclude files from `files` to run on of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  exclude?: string;
-  types?: FileTypes;
-  types_or?: FileTypes;
-  exclude_types?: FileTypes;
-  /**
-   * List of additional parameters to pass to the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  args?: string[];
-  stages?: Stages;
-  /**
-   * A list of additional_dependencies of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  additional_dependencies?: string[];
-  /**
-   * Run the current hook when no files matched
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  always_run?: boolean;
-  /**
-   * Display an output of the current hook even it passes
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  verbose?: boolean;
-  /**
-   * A command of the current hook
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  entry: string;
-  /**
-   * A log file of the current hook
-   */
-  log_file?: string;
-  /**
-   * A language the current hook is written in
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  language:
-    | (
-        | 'conda'
-        | 'coursier'
-        | 'dart'
-        | 'docker'
-        | 'docker_image'
-        | 'dotnet'
-        | 'fail'
-        | 'golang'
-        | 'lua'
-        | 'node'
-        | 'perl'
-        | 'python'
-        | 'python_venv'
-        | 'r'
-        | 'ruby'
-        | 'rust'
-        | 'swift'
-        | 'pygrep'
-        | 'script'
-        | 'system'
-        | 'unsupported'
-        | 'unsupported_script'
-      )
-    | string;
-  /**
-   * Whether to pass filenames to the current hook or not
-   * https://pre-commit.com/#pre-commit-configyaml---hooks
-   */
-  pass_filenames?: boolean;
+  id: unknown;
+  name: unknown;
+  entry: unknown;
+  language: unknown;
   [k: string]: unknown | undefined;
 }
 export interface UriRepo {

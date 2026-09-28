@@ -152,8 +152,7 @@ export interface DeployedCli {
    * List of plugins to load and use.
    */
   plugin?: (
-    | string
-    | []
+    | ((string | unknown[]) & [])
     | [string]
     | [
         string,

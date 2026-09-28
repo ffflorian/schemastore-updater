@@ -30,12 +30,15 @@ export type Projection = 'rigid' | 'terrain_matching';
 /**
  * The namespaced ID of a processor if this is a string.
  */
-export type Processors =
+export type Processors = (
   | string
   | {
-      processors?: Processors1;
       [k: string]: unknown | undefined;
-    };
+    }
+) & {
+  processors?: Processors1;
+  [k: string]: unknown | undefined;
+};
 /**
  * The namespaced id of the processor to use.
  */
@@ -49,19 +52,6 @@ export type ElementType1 =
   | 'minecraft:list_pool_element'
   | 'minecraft:legacy_single_pool_element'
   | 'minecraft:single_pool_element';
-/**
- * The namespaced ID of a processor if this is a string.
- */
-export type Processors2 =
-  | string
-  | {
-      processors?: Processors3;
-      [k: string]: unknown | undefined;
-    };
-/**
- * A list of processors to use.
- */
-export type Processors3 = Processor1[];
 /**
  * A list of structures to choose from.
  */
@@ -106,10 +96,6 @@ export interface Element2 {
   location?: Location;
   projection?: Projection;
   element_type?: ElementType1;
-  processors?: Processors2;
-  [k: string]: unknown | undefined;
-}
-export interface Processor1 {
-  processor_type?: ProcessorType;
+  processors?: Processors;
   [k: string]: unknown | undefined;
 }

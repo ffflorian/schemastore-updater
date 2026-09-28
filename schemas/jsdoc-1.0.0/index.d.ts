@@ -75,7 +75,7 @@ export type TutorialsPath = string;
 /**
  * Determines how to handle unrecognized tags
  */
-export type UnknownTags = boolean | JSDocTag[];
+export type UnknownTags = (boolean | unknown[]) & JSDocTag[];
 export type JSDocTag = string;
 export type Dictionary = 'jsdoc' | 'closure';
 /**
