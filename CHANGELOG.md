@@ -1,3 +1,10 @@
+## [3.8.10](https://github.com/ffflorian/schemastore-updater/compare/v3.8.9...v3.8.10) (2026-09-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ip-address in the npm_and_yarn group across 1 directory ([#1670](https://github.com/ffflorian/schemastore-updater/issues/1670)) ([910867b](https://github.com/ffflorian/schemastore-updater/commit/910867b28c09736cadace9dd24c4d13d3836973f))
+
 ## [3.8.9](https://github.com/ffflorian/schemastore-updater/compare/v3.8.8...v3.8.9) (2026-09-21)
 
 
