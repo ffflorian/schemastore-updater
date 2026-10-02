@@ -4813,21 +4813,109 @@ export type BuildNumber = string;
  */
 export type Channel = string;
 /**
+ * Optional extra dependencies to select for the package
+ */
+export type Extras = string[];
+/**
  * The file name of the package
  */
 export type FileName = string;
+/**
+ * Plain string flags used to select package variants
+ */
+export type Flags = string[];
 /**
  * The git URL to the repo
  */
 export type Git = string;
 /**
+ * If `true` Git LFS objects are fetched during the checkout
+ */
+export type Lfs = boolean;
+/**
  * The license of the package
  */
 export type License = string;
 /**
+ * The license family of the package
+ */
+export type LicenseFamily = string;
+/**
  * The md5 hash of the package
  */
 export type Md5 = string;
+/**
+ * The authors of the project. Can be a list of strings or { workspace = true } to inherit from workspace
+ */
+export type Authors = string[] | WorkspaceInheritance;
+/**
+ * Must be true to inherit from workspace
+ */
+export type Workspace = true;
+/**
+ * The md5 hash of the package
+ */
+export type Md51 = string;
+/**
+ * A short description of the project. Can be a string or { workspace = true } to inherit from workspace
+ */
+export type Description1 = string | WorkspaceInheritance;
+/**
+ * The URL of the documentation of the project. Can be a URL or { workspace = true } to inherit from workspace
+ */
+export type Documentation = string | WorkspaceInheritance;
+/**
+ * The URL of the homepage of the project. Can be a URL or { workspace = true } to inherit from workspace
+ */
+export type Homepage = string | WorkspaceInheritance;
+/**
+ * `true` uses the default bounds; a table configures them.
+ */
+export type PinCompatible = true | PinTable;
+/**
+ * Pin the exact version and build string. Cannot be combined with the bounds or `build`.
+ */
+export type Exact = boolean;
+/**
+ * Lower bound of the pinned range: a pin expression like `x.x` (number of version segments to keep) or a literal version.
+ */
+export type LowerBound = string;
+/**
+ * Upper bound of the pinned range: a pin expression like `x` (the segment to bump, exclusive) or a literal version.
+ */
+export type UpperBound = string;
+/**
+ * The license of the project; we advise using an [SPDX](https://spdx.org/licenses/) identifier. Can be a string or { workspace = true } to inherit from workspace
+ */
+export type License2 = string | WorkspaceInheritance;
+/**
+ * The path to the license file of the project. Can be a path or { workspace = true } to inherit from workspace
+ */
+export type LicenseFile = string | WorkspaceInheritance;
+/**
+ * The name of the package. Can be a string or { workspace = true } to inherit from workspace
+ */
+export type Name = string | WorkspaceInheritance;
+/**
+ * Whether a workspace-wide `pixi publish` publishes this package. Packages that do not opt in with `publish = true` are left out of the publish set.
+ */
+export type Publish1 = boolean;
+/**
+ * The path to the readme file of the project. Can be a path or { workspace = true } to inherit from workspace
+ */
+export type Readme = string | WorkspaceInheritance;
+/**
+ * The URL of the repository of the project. Can be a URL or { workspace = true } to inherit from workspace
+ */
+export type Repository = string | WorkspaceInheritance;
+/**
+ * `true` uses the default bounds; a table configures them.
+ */
+export type PinSubpackage = true | PinTable;
+/**
+ * The version of the project; we advise use of [SemVer](https://semver.org). Can be a string or { workspace = true } to inherit from workspace
+ */
+export type Version1 = string | WorkspaceInheritance;
 /**
  * A git SHA revision to use
  */
@@ -4849,21 +4937,84 @@ export type Subdirectory = string;
  */
 export type Tag = string;
 /**
+ * The track features of the package
+ */
+export type TrackFeatures = string[];
+/**
  * The URL to the package
  */
 export type Url = string;
 /**
  * The version of the package in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
  */
-export type Version1 = string;
+export type Version2 = string;
+/**
+ * The condition under which this match spec applies. Use a package string, `{ all = [...] }`, `{ any = [...] }`, or `{ package = ..., version = ..., build = ... }`.
+ */
+export type When = string | WhenAll | WhenAny | WhenPackage;
+/**
+ * Conditions to combine with a logical AND
+ *
+ * @minItems 1
+ */
+export type All = [string | WhenAll | WhenAny | WhenPackage, ...(string | WhenAll | WhenAny | WhenPackage)[]];
+/**
+ * Conditions to combine with a logical OR
+ *
+ * @minItems 1
+ */
+export type Any = [string | WhenAll | WhenAny | WhenPackage, ...(string | WhenAll | WhenAny | WhenPackage)[]];
+/**
+ * The package name to match
+ */
+export type Package2 = string;
+/**
+ * Override the workspace-level `exclude-newer` cutoff for this channel only
+ */
+export type ExcludeNewer = string;
+/**
+ * The priority of the channel
+ */
+export type Priority = number;
+/**
+ * The `conda` channels that are used to fetch the build backend from
+ */
+export type Channels = (string | ChannelInlineTable)[];
+/**
+ * The name of the build backend package
+ */
+export type Name1 = string;
+/**
+ * The build number to record in the produced package
+ */
+export type BuildNumber4 = number;
+/**
+ * An optional prefix to prepend to the auto-generated build string
+ */
+export type BuildStringPrefix = string;
+/**
+ * Names of environment variables to expose as secrets to the build script. Values are read from the host environment at build time; only the names live in the manifest. Forwarded to rattler-build's `build.script.secrets`.
+ */
+export type Secrets = string[];
+/**
+ * The sha256 hash of the package
+ */
+export type Sha2561 = string;
 /**
  * The md5 hash of the source package
  */
-export type Md51 = string;
+export type Md52 = string;
 /**
  * The sha256 hash of the source package
  */
-export type Sha2561 = string;
+export type Sha2562 = string;
+/**
+ * The type of channel priority that is used in the solve.
+ * - 'strict': only take the package from the channel it exist in first.
+ * - 'flexible': exhaust the candidates of higher-priority channels before falling back to the next channel, regardless of the version.
+ * - 'disabled': group all dependencies together as if there is no channel difference.
+ */
+export type ChannelPriority = 'disabled' | 'flexible' | 'strict';
 /**
  * The features that define the environment
  */
@@ -4872,24 +5023,6 @@ export type Features = string[];
  * Whether to add the default feature to this environment
  */
 export type NoDefaultFeature = boolean;
-/**
- * The group name for environments that should be solved together
- */
-export type SolveGroup = string;
-/**
- * The type of channel priority that is used in the solve.
- * - 'strict': only take the package from the channel it exist in first.
- * - 'disabled': group all dependencies together as if there is no channel difference.
- */
-export type ChannelPriority = 'disabled' | 'strict';
-/**
- * The priority of the channel
- */
-export type Priority = number;
-/**
- * The `conda` channels that can be considered when solving environments containing this feature
- */
-export type Channels = (string | ChannelInlineTable)[];
 /**
  * A supported operating system and processor architecture pair.
  */
@@ -4915,21 +5048,13 @@ export type Platform =
   | 'win-arm64'
   | 'zos-z';
 /**
- * The platforms that the feature supports: a union of all features combined in one environment is used for the environment.
+ * The platforms that this environment supports. Each entry is either a conda subdir or the name of a workspace platform.
  */
-export type Platforms1 = Platform[];
-/**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras = string[];
+export type Platforms1 = (Platform | string)[];
 /**
  * The index to fetch the package from
  */
 export type Index = string;
-/**
- * The version of the package in [PEP 440](https://www.python.org/dev/peps/pep-0440/) format
- */
-export type Version2 = string;
 /**
  * If `true` the package will be installed as editable
  */
@@ -4971,44 +5096,16 @@ export type PrereleaseMode = 'disallow' | 'allow' | 'if-necessary' | 'explicit' 
  */
 export type SkipWheelFilenameCheck = boolean;
 /**
+ * The group name for environments that should be solved together
+ */
+export type SolveGroup = string;
+/**
  * The strategy that is used in the solve.
  * - 'highest': solve all packages to the highest compatible version.
  * - 'lowest': solve all packages to the lowest compatible version.
  * - 'lowest-direct': solve direct dependencies to the lowest compatible version and transitive ones to the highest compatible version.
  */
 export type SolveStrategy = 'highest' | 'lowest' | 'lowest-direct';
-/**
- * The architecture the project supports
- */
-export type Archspec = string;
-/**
- * The minimum version of CUDA
- */
-export type Cuda = number | string;
-/**
- * The minimum version of `libc`
- */
-export type Libc = LibcFamily | number | string;
-/**
- * The family of the `libc`
- */
-export type Family = string;
-/**
- * The version of `libc`
- */
-export type Version3 = number | string;
-/**
- * The minimum version of the Linux kernel
- */
-export type Linux = number | string;
-/**
- * The minimum version of MacOS
- */
-export type Macos = number | string;
-/**
- * Whether the project supports UNIX
- */
-export type Unix = boolean | string;
 /**
  * The name of the argument
  */
@@ -5081,69 +5178,37 @@ export type Inputs = string[];
  */
 export type Outputs = string[];
 /**
- * The authors of the project. Can be a list of strings or { workspace = true } to inherit from workspace
+ * The architecture the project supports
  */
-export type Authors = string[] | WorkspaceInheritance;
+export type Archspec = string;
 /**
- * Must be true to inherit from workspace
+ * The minimum version of CUDA
  */
-export type Workspace = true;
+export type Cuda = number | string;
 /**
- * The build string of the package
+ * The minimum version of `libc`
  */
-export type Build4 = string;
+export type Libc = LibcFamily | number | string;
 /**
- * The md5 hash of the package
+ * The family of the `libc`
  */
-export type Md52 = string;
+export type Family = string;
 /**
- * The name of the build backend package
+ * The version of `libc`
  */
-export type Name = string;
+export type Version7 = number | string;
 /**
- * The sha256 hash of the package
+ * The minimum version of the Linux kernel
  */
-export type Sha2562 = string;
+export type Linux = number | string;
 /**
- * The version of the package in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
+ * The minimum version of MacOS
  */
-export type Version4 = string;
+export type Macos = number | string;
 /**
- * A short description of the project. Can be a string or { workspace = true } to inherit from workspace
+ * Whether the project supports UNIX
  */
-export type Description2 = string | WorkspaceInheritance;
-/**
- * The URL of the documentation of the project. Can be a URL or { workspace = true } to inherit from workspace
- */
-export type Documentation = string | WorkspaceInheritance;
-/**
- * The URL of the homepage of the project. Can be a URL or { workspace = true } to inherit from workspace
- */
-export type Homepage = string | WorkspaceInheritance;
-/**
- * The license of the project; we advise using an [SPDX](https://spdx.org/licenses/) identifier. Can be a string or { workspace = true } to inherit from workspace
- */
-export type License2 = string | WorkspaceInheritance;
-/**
- * The path to the license file of the project. Can be a path or { workspace = true } to inherit from workspace
- */
-export type LicenseFile = string | WorkspaceInheritance;
-/**
- * The name of the package. Can be a string or { workspace = true } to inherit from workspace
- */
-export type Name1 = string | WorkspaceInheritance;
-/**
- * The path to the readme file of the project. Can be a path or { workspace = true } to inherit from workspace
- */
-export type Readme = string | WorkspaceInheritance;
-/**
- * The URL of the repository of the project. Can be a URL or { workspace = true } to inherit from workspace
- */
-export type Repository = string | WorkspaceInheritance;
-/**
- * The version of the project; we advise use of [SemVer](https://semver.org). Can be a string or { workspace = true } to inherit from workspace
- */
-export type Version5 = string | WorkspaceInheritance;
+export type Unix = boolean | string;
 /**
  * The authors of the project
  */
@@ -5153,13 +5218,29 @@ export type Authors1 = string[];
  */
 export type BuildVariantsFiles = string[];
 /**
+ * The `conda` to PyPI mapping configuration; `false` disables the mapping entirely
+ */
+export type CondaPypiMap =
+  | {
+      [k: string]: string | false | CondaPypiMapTable | undefined;
+    }
+  | false;
+/**
+ * The URL or path to a mapping file with `conda_name: pypi_name` entries
+ */
+export type Location = string;
+/**
+ * How the project mapping interacts with Pixi's default mapping data: `overlay` (default) applies it on top, `replace` uses it instead
+ */
+export type MappingMode = 'overlay' | 'replace';
+/**
+ * Whether Pixi may assume the conda package name is also the PyPI package name when mapping data has no answer. Defaults to true for conda-forge and false for other channels.
+ */
+export type SameNameHeuristic = boolean;
+/**
  * The URL of the documentation of the project
  */
 export type Documentation1 = string;
-/**
- * Exclude any package newer than this date
- */
-export type ExcludeNewer = string;
 /**
  * The URL of the homepage of the project
  */
@@ -5169,9 +5250,66 @@ export type Homepage1 = string;
  */
 export type LicenseFile1 = string;
 /**
- * The platforms that the project supports
+ * A workspace platform: a conda subdir plus declared virtual-package
+ * guarantees, identified by a workspace-scoped name.
  */
-export type Platforms2 = Platform[];
+export type WorkspacePlatform = (
+  | {
+      name: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      platform: unknown;
+      [k: string]: unknown | undefined;
+    }
+) & {
+  archspec?: Archspec;
+  cuda?: Cuda1;
+  glibc?: Glibc;
+  linux?: Linux1;
+  macos?: Macos1;
+  name?: Name1;
+  osx?: Osx;
+  platform?: Platform;
+  windows?: Windows;
+  [k: string]: unknown | undefined;
+};
+/**
+ * Declare a `__cuda` virtual package at the given version (e.g. `12.0`), or a `{ driver, arch }` table to also declare `__cuda_arch` (GPU compute capability).
+ */
+export type Cuda1 = string | CudaTable;
+/**
+ * The `__cuda_arch` GPU compute capability, e.g. `8.6`. Requires `driver`.
+ */
+export type Arch = string;
+/**
+ * The `__cuda` driver version, e.g. `12.0`.
+ */
+export type Driver = string;
+/**
+ * Declare a `__glibc` virtual package at the given version, e.g. `2.28`.
+ */
+export type Glibc = string;
+/**
+ * Declare a `__linux` virtual package at the given kernel version, e.g. `5.10`.
+ */
+export type Linux1 = string;
+/**
+ * Declare a `__osx` virtual package at the given macOS version, e.g. `14.0`.
+ */
+export type Macos1 = string;
+/**
+ * Alias for `macos`: declare a `__osx` virtual package at the given macOS version, e.g. `14.0`.
+ */
+export type Osx = string;
+/**
+ * Declare a `__win` virtual package at the given Windows version, e.g. `10`.
+ */
+export type Windows = string;
+/**
+ * The platforms that the project supports. Each entry is either a conda subdir, the name of a workspace platform defined elsewhere, or an inline table describing a workspace platform (optional `name`, optional `platform`, plus virtual-package shortcut keys such as `cuda`, `archspec`, `glibc`, `linux`, `macos`/`osx`, `windows`).
+ */
+export type Platforms3 = (Platform | string | WorkspacePlatform)[];
 /**
  * Defines the enabling of preview features of the project
  */
@@ -5201,14 +5339,10 @@ export type ForcePathStyle = boolean;
  */
 export type Region = string;
 /**
- * The version of the project; we advise use of [SemVer](https://semver.org)
- */
-export type Version6 = string;
-/**
  * This interface was referenced by `TasksMap`'s JSON-Schema definition
  * via the `patternProperty` "^[^\W\d][\w:+-]*$".
  *
- * This interface was referenced by `TasksMap1`'s JSON-Schema definition
+ * This interface was referenced by `TasksMap`'s JSON-Schema definition
  * via the `patternProperty` "^[^\W\d][\w:+-]*$".
  */
 export type TaskDef =
@@ -5339,7 +5473,7 @@ export type ScriptTask = {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -5421,7 +5555,7 @@ export type ScriptTaskWithCase = {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -5549,7 +5683,7 @@ export type PathToConfigurationFileThatThisConfigurationExtends = string;
 export type FilesAndDirectoriesIncludedInTypeAnalysis = string[];
 export type FileOrDirectoryToExcludeFromTypeAnalysis = string;
 /**
- * Paths of directories or files that should not be considered part of the project. These override the includes directories and files, allowing specific subdirectories to be excluded. Note that files in the exclude paths may still be included in the analysis if they are referenced (imported) by source files that are not excluded. Paths may contain wildcard characters: `**` (a directory or multiple levels of directories), `*` (a sequence of zero or more characters), or `?` (a single character). If no exclude paths are specified, Pyright automatically excludes the following: `** /node_modules`, `** /__pycache__`, `** /.*` and any virtual environment directories.
+ * Paths of directories or files that should not be considered part of the project. These override the directories and files that `include` matched, allowing specific subdirectories to be excluded. Note that files in the exclude paths may still be included in the analysis if they are referenced (imported) by source files that are not excluded. Paths may contain wildcard characters `**` (a directory or multiple levels of directories), `*` (a sequence of zero or more characters), or `?` (a single character). By default Pyright also excludes the following: `** /node_modules`, `** /__pycache__`, `** /.*` (hidden directories); Pylance additionally excludes auto-detected virtual environment directories. Any paths you specify here are added on top of these defaults rather than replacing them, and the defaults take precedence over `include` (so a directory auto-detected as a virtual environment stays excluded even if it is explicitly included). In Pylance these built-in excludes can be turned off with the `python.analysis.useDefaultExcludes` setting. For more detail on Python environment specification and discovery, refer to the import resolution (https://microsoft.github.io/pyright/#/import-resolution?id=configuring-your-python-environment) documentation.
  */
 export type FilesAndDirectoriesExcludedFromTypeAnalysis = FileOrDirectoryToExcludeFromTypeAnalysis[];
 export type FileOrDirectoryWhereDiagnosticsShouldBeSuppressed = string;
@@ -5563,7 +5697,8 @@ export type FileOrDirectoryThatShouldUseStrictTypeCheckingRules = string;
  */
 export type FilesAndDirectoriesThatShouldUseStrictTypeCheckingRules =
   FileOrDirectoryThatShouldUseStrictTypeCheckingRules[];
-export type ValueOfConstantBooleanOrString = string | boolean;
+export type ValueOfConstantBooleanOrString = string;
+export type ValueOfConstantBooleanOrString1 = boolean;
 /**
  * Specifies the default rule set to use. Some rules can be overridden using additional configuration flags documented below. If set to `off`, all type-checking rules are disabled, but Python syntax and semantic errors are still reported.
  */
@@ -6022,7 +6157,7 @@ export type ControlsReportingOverriddenMethodsThatAreMissingAnOverrideDecorator 
   'none' | 'information' | 'warning' | 'error' | true | false;
 export type AdditionalImportSearchResolutionPath = string;
 /**
- * Additional search paths that will be used when searching for modules imported by files.
+ * Additional search paths that will be used when searching for modules imported by files. Each entry may contain glob patterns (`*`, `**`, `?`), which are expanded to matching directories in a deterministic order; see Extra path glob expansion (https://microsoft.github.io/pyright/#/import-resolution?id=extra-path-glob-expansion).
  */
 export type AdditionalImportSearchResolutionPaths = AdditionalImportSearchResolutionPath[];
 /**
@@ -6091,8 +6226,6 @@ export type TOMLVersion1 = ('v1.0.0' | 'v1.1.0') | 'v1.1.0-preview';
 /**
  * The file match pattern to include in formatting and linting.
  * Supports glob pattern.
- *
- * @minItems 1
  */
 export type FilePatternsToInclude = [string, ...string[]] | null;
 /**
@@ -6557,10 +6690,6 @@ export type DocumentLinkFeatureOptions1 = (EnabledOnly | CargoDocumentLinkFeatur
  */
 export type DeprecatedCargoTomlDocumentLinkFeature = ToggleFeatureDefaultFalse | null;
 /**
- * Whether this nested feature is enabled.
- */
-export type EnableFeature2 = boolean | null;
-/**
  * Whether document links are created for crates.io package references.
  */
 export type CratesIoDocumentLinkFeature = ToggleFeatureDefaultTrue | null;
@@ -6806,7 +6935,7 @@ export type Message = string;
  * List of docstring section configurations.
  */
 export type DocstringSections = {
-  name: Name;
+  name: Name1;
   type: Type1;
   order?: Order;
   admonition?: Admonition;
@@ -6871,7 +7000,6 @@ export interface ProjectExtraDependencyRequirements {
  * Named groups of dependencies, similar to `requirements.txt` files, which launchers, IDEs, and other tools can find and identify by name. Each item in `[dependency-groups]` is defined as mapping of group name to list of [dependency specifiers](https://packaging.python.org/en/latest/specifications/dependency-specifiers/).
  */
 export interface PEP735DependencyGroups {
-  dev?: DependencySpecifiersOrIncludeGroups;
   [k: string]: DependencySpecifiersOrIncludeGroups | undefined;
 }
 /**
@@ -6910,7 +7038,7 @@ export interface ToolSpecificConfiguration {
   tox?: TestingFramework1;
   uv?: PackageManager3;
   dfc?: DocstringFormatChecker;
-  'docstring-format-checker'?: DocstringFormatChecker1;
+  'docstring-format-checker'?: DocstringFormatChecker;
   quikrun?: Quikrun;
   [k: string]:
     | {
@@ -6940,7 +7068,7 @@ export interface ToolSpecificConfiguration {
     | TestingFramework1
     | PackageManager3
     | DocstringFormatChecker
-    | DocstringFormatChecker1
+    | DocstringFormatChecker
     | Quikrun
     | undefined;
 }
@@ -9374,6 +9502,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -10050,6 +10179,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -11800,6 +11930,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -12476,6 +12607,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -14229,6 +14361,7 @@ export interface LinterAndFormatter {
           | 'RUF073'
           | 'RUF074'
           | 'RUF075'
+          | 'RUF077'
           | 'RUF1'
           | 'RUF10'
           | 'RUF100'
@@ -14905,6 +15038,7 @@ export interface LinterAndFormatter {
           | 'map-without-explicit-strict'
           | 'math-constant'
           | 'meta-class-abc-meta'
+          | 'method-receiver-default'
           | 'mismatched-section-underline-length'
           | 'misplaced-bare-raise'
           | 'missing-blank-line-after-last-section'
@@ -16648,6 +16782,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -17324,6 +17459,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -19083,6 +19219,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -19759,6 +19896,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -21501,6 +21639,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -22177,6 +22316,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -23919,6 +24059,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -24595,6 +24736,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -26368,6 +26510,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -27044,6 +27187,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -28897,6 +29041,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -29573,6 +29718,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -31456,6 +31602,7 @@ export interface LinterAndFormatter {
           | 'RUF073'
           | 'RUF074'
           | 'RUF075'
+          | 'RUF077'
           | 'RUF1'
           | 'RUF10'
           | 'RUF100'
@@ -32132,6 +32279,7 @@ export interface LinterAndFormatter {
           | 'map-without-explicit-strict'
           | 'math-constant'
           | 'meta-class-abc-meta'
+          | 'method-receiver-default'
           | 'mismatched-section-underline-length'
           | 'misplaced-bare-raise'
           | 'missing-blank-line-after-last-section'
@@ -33948,6 +34096,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -34624,6 +34773,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -36460,6 +36610,7 @@ export interface LinterAndFormatter {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -37136,6 +37287,7 @@ export interface LinterAndFormatter {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -38230,6 +38382,9 @@ export interface Flake8TidyImportsOptions {
   'ban-relative-imports'?: ('parents' | 'all') | null;
   /**
    * Specific modules or module members that may not be imported or accessed.
+   * These can be extended by the
+   * [`extend-banned-api`](#lint_flake8-tidy-imports_extend-banned-api) option.
+   *
    * Note that this rule is only meant to flag accidental uses,
    * and can be circumvented via `eval` or `importlib`.
    */
@@ -38243,6 +38398,15 @@ export interface Flake8TidyImportsOptions {
    * if `banned-module-level-imports` is enabled.
    */
   'banned-module-level-imports'?: string[] | null;
+  /**
+   * Additional modules or module members that may not be imported or accessed.
+   * These entries will be added to the
+   * [`banned-api`](#lint_flake8-tidy-imports_banned-api) mapping and will override
+   * any existing entries if the two settings overlap.
+   */
+  'extend-banned-api'?: {
+    [k: string]: ApiBan | undefined;
+  } | null;
   /**
    * Specific modules that must be imported lazily in contexts where `lazy import` is legal, or
    * `"all"` to require every lazily-convertible import to use the `lazy` keyword. Ruff ignores
@@ -40120,6 +40284,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -40796,6 +40961,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -42546,6 +42712,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -43222,6 +43389,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -44964,6 +45132,7 @@ export interface LintOptions {
           | 'RUF073'
           | 'RUF074'
           | 'RUF075'
+          | 'RUF077'
           | 'RUF1'
           | 'RUF10'
           | 'RUF100'
@@ -45640,6 +45809,7 @@ export interface LintOptions {
           | 'map-without-explicit-strict'
           | 'math-constant'
           | 'meta-class-abc-meta'
+          | 'method-receiver-default'
           | 'mismatched-section-underline-length'
           | 'misplaced-bare-raise'
           | 'missing-blank-line-after-last-section'
@@ -47382,6 +47552,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -48058,6 +48229,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -49816,6 +49988,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -50492,6 +50665,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -52234,6 +52408,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -52910,6 +53085,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -54651,6 +54827,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -55327,6 +55504,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -57075,6 +57253,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -57751,6 +57930,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -59577,6 +59757,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -60253,6 +60434,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -62042,6 +62224,7 @@ export interface LintOptions {
           | 'RUF073'
           | 'RUF074'
           | 'RUF075'
+          | 'RUF077'
           | 'RUF1'
           | 'RUF10'
           | 'RUF100'
@@ -62718,6 +62901,7 @@ export interface LintOptions {
           | 'map-without-explicit-strict'
           | 'math-constant'
           | 'meta-class-abc-meta'
+          | 'method-receiver-default'
           | 'mismatched-section-underline-length'
           | 'misplaced-bare-raise'
           | 'missing-blank-line-after-last-section'
@@ -64502,6 +64686,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -65178,6 +65363,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -66946,6 +67132,7 @@ export interface LintOptions {
         | 'RUF073'
         | 'RUF074'
         | 'RUF075'
+        | 'RUF077'
         | 'RUF1'
         | 'RUF10'
         | 'RUF100'
@@ -67622,6 +67809,7 @@ export interface LintOptions {
         | 'map-without-explicit-strict'
         | 'math-constant'
         | 'meta-class-abc-meta'
+        | 'method-receiver-default'
         | 'mismatched-section-underline-length'
         | 'misplaced-bare-raise'
         | 'missing-blank-line-after-last-section'
@@ -70552,17 +70740,19 @@ export interface PackageManagerAndTaskRunner {
   dependencies?: Dependencies3;
   dev?: Dev;
   environments?: Environments;
+  'exclude-newer'?: ExcludeNewer1;
   feature?: Feature;
-  'host-dependencies'?: HostDependencies2;
+  'host-dependencies'?: HostDependencies1;
   package?: Package;
-  project?: Workspace1;
-  'pypi-dependencies'?: PypiDependencies2;
-  'pypi-options'?: PyPIOptions2;
-  'system-requirements'?: SystemRequirements1;
-  target?: Target6;
-  tasks?: Tasks2;
+  project?: Workspace3;
+  'pypi-dependencies'?: PypiDependencies;
+  'pypi-exclude-newer'?: PypiExcludeNewer;
+  'pypi-options'?: PyPIOptions;
+  'system-requirements'?: SystemRequirements;
+  target?: Target2;
+  tasks?: Tasks;
   tool?: Tool;
-  workspace?: Workspace2;
+  workspace?: Workspace3;
   [k: string]: unknown | undefined;
 }
 /**
@@ -70582,6 +70772,90 @@ export interface Env1 {
  * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
  */
 export interface BuildDependencies {
+  [k: string]: string | InheritableMatchspecTable | undefined;
+}
+/**
+ * A spec that may inherit from `[workspace.dependencies]`.
+ *
+ * Setting `workspace = true` pulls the version (and any other unset fields)
+ * from the matching `[workspace.dependencies]` entry. Members may layer
+ * further attributes on top; restating `version` or the source location
+ * (`path`, `git`, `url`) alongside `workspace = true` is an error.
+ */
+export interface InheritableMatchspecTable {
+  branch?: Branch;
+  build?: Build2;
+  'build-number'?: BuildNumber;
+  channel?: Channel;
+  extras?: Extras;
+  'file-name'?: FileName;
+  flags?: Flags;
+  git?: Git;
+  lfs?: Lfs;
+  license?: License;
+  'license-family'?: LicenseFamily;
+  md5?: Md5;
+  package?: Package;
+  path?: Path;
+  rev?: Rev;
+  sha256?: Sha2561;
+  subdir?: Subdir;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+  'track-features'?: TrackFeatures;
+  url?: Url;
+  version?: Version2;
+  when?: When;
+  workspace?: Workspace;
+}
+/**
+ * An inline package definition for this source dependency, instead of a separate `pixi.toml`. The package name is taken from the dependency key and the source is taken from this spec, so `name` and `build.source` are not set here.
+ */
+export interface Package {
+  authors?: Authors;
+  build: Build3;
+  'build-dependencies'?: BuildDependencies1;
+  description?: Description1;
+  documentation?: Documentation;
+  'extra-dependencies'?: ExtraDependencies1;
+  homepage?: Homepage;
+  'host-dependencies'?: HostDependencies;
+  license?: License2;
+  'license-file'?: LicenseFile;
+  name?: Name;
+  publish?: Publish1;
+  readme?: Readme;
+  repository?: Repository;
+  'run-constraints'?: RunConstraints;
+  'run-dependencies'?: RunDependencies;
+  'run-exports'?: RunExports;
+  version?: Version1;
+}
+/**
+ * Indicates that a field should inherit its value from the workspace.
+ */
+export interface WorkspaceInheritance {
+  workspace: Workspace;
+}
+/**
+ * The build configuration of the package
+ */
+export interface Build3 {
+  'additional-dependencies'?: AdditionalDependencies;
+  backend: BuildBackend;
+  'build-number'?: BuildNumber4;
+  'build-string-prefix'?: BuildStringPrefix;
+  channels?: Channels;
+  config?: Config;
+  flags?: Flags;
+  secrets?: Secrets;
+  source?: SourceLocation;
+  target?: Target1;
+}
+/**
+ * Additional dependencies to install alongside the build backend
+ */
+export interface AdditionalDependencies {
   [k: string]: string | MatchspecTable | undefined;
 }
 /**
@@ -70592,30 +70866,308 @@ export interface MatchspecTable {
   build?: Build2;
   'build-number'?: BuildNumber;
   channel?: Channel;
+  extras?: Extras;
   'file-name'?: FileName;
+  flags?: Flags;
   git?: Git;
+  lfs?: Lfs;
   license?: License;
-  md5?: Md5;
+  'license-family'?: LicenseFamily;
+  md5?: Md51;
+  package?: Package;
   path?: Path;
   rev?: Rev;
   sha256?: Sha256;
   subdir?: Subdir;
   subdirectory?: Subdirectory;
   tag?: Tag;
+  'track-features'?: TrackFeatures;
   url?: Url;
-  version?: Version1;
+  version?: Version2;
+  when?: When;
+}
+/**
+ * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface BuildDependencies1 {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | {
+        [k: string]: string | InheritableMatchspecTable | undefined;
+      }
+    | undefined;
+}
+/**
+ * Extra groups that can be requested through MatchSpec extras. Each group uses the same conda package specification syntax as run-dependencies.
+ */
+export interface ExtraDependencies1 {
+  /**
+   * This interface was referenced by `ExtraDependencies1`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-z0-9._+-]{1,64}$".
+   */
+  [k: string]:
+    | {
+        [k: string]:
+          | string
+          | MatchspecTable
+          | {
+              [k: string]: string | MatchspecTable | undefined;
+            }
+          | undefined;
+      }
+    | undefined;
+}
+/**
+ * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface HostDependencies {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Pin to a version compatible with the one resolved in the previous environment.
+ *
+ * Mirrors rattler-build's `pin_compatible()`: a `pin-compatible` entry in
+ * `run-dependencies` resolves against the host environment, one in
+ * `host-dependencies` against the build environment.
+ */
+export interface PinCompatibleSpec {
+  'pin-compatible': PinCompatible;
+}
+/**
+ * The arguments of a pin, mirroring rattler-build's `pin_compatible`/`pin_subpackage`.
+ *
+ * Bounds that are not given fall back to the defaults: `lower-bound = "x.x.x.x.x.x"`
+ * (pin to the exact resolved version) and `upper-bound = "x"` (next-major exclusive).
+ */
+export interface PinTable {
+  build?: Build2;
+  exact?: Exact;
+  'lower-bound'?: LowerBound;
+  'upper-bound'?: UpperBound;
+}
+/**
+ * The `conda` run-time version constraints. These constrain the versions of packages that may be installed in the run environment without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface RunConstraints {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | {
+        [k: string]: string | InheritableMatchspecTable | undefined;
+      }
+    | undefined;
+}
+/**
+ * The `conda` dependencies required at runtime. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface RunDependencies {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * The run-exports this package declares for its consumers, mirroring the conda run-exports mechanism. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface RunExports {
+  noarch?: Noarch;
+  strong?: Strong;
+  'strong-constraints'?: StrongConstraints;
+  weak?: Weak;
+  'weak-constraints'?: WeakConstraints;
+}
+/**
+ * The only run-export bucket applied when the consuming output is `noarch`: added to the run dependencies of noarch consumers that depend on this package in `host-dependencies`.
+ */
+export interface Noarch {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Pin the package itself for its consumers.
+ *
+ * Mirrors rattler-build's `pin_subpackage()`. Only valid in the
+ * `run-exports` tables, on an entry named after the package itself.
+ */
+export interface PinSubpackageSpec {
+  'pin-subpackage': PinSubpackage;
+}
+/**
+ * Added to the run dependencies of consumers that depend on this package in `build-dependencies` or `host-dependencies`.
+ */
+export interface Strong {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Added to the run constraints of consumers that depend on this package in `build-dependencies` or `host-dependencies`. Constraints only restrict versions and cannot be source specs.
+ */
+export interface StrongConstraints {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Added to the run dependencies of consumers that depend on this package in `host-dependencies`.
+ */
+export interface Weak {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Added to the run constraints of consumers that depend on this package in `host-dependencies`. Constraints only restrict versions and cannot be source specs.
+ */
+export interface WeakConstraints {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * All conditions must apply.
+ */
+export interface WhenAll {
+  all: All;
+}
+/**
+ * Any condition may apply.
+ */
+export interface WhenAny {
+  any: Any;
+}
+/**
+ * Expanded package condition syntax.
+ *
+ * Accepts the same matchspec fields as a regular package dependency except
+ * for `when` itself, `channel`, and source-location fields (`url`, `git`,
+ * `path`, `md5`, `sha256`, ...).
+ */
+export interface WhenPackage {
+  build?: Build2;
+  'build-number'?: BuildNumber;
+  extras?: Extras;
+  'file-name'?: FileName;
+  flags?: Flags;
+  license?: License;
+  'license-family'?: LicenseFamily;
+  package: Package2;
+  subdir?: Subdir;
+  'track-features'?: TrackFeatures;
+  version?: Version2;
+}
+/**
+ * The build backend to instantiate
+ */
+export interface BuildBackend {
+  'additional-dependencies'?: AdditionalDependencies;
+  build?: Build2;
+  'build-number'?: BuildNumber;
+  channel?: Channel;
+  channels?: Channels;
+  extras?: Extras;
+  'file-name'?: FileName;
+  flags?: Flags;
+  license?: License;
+  'license-family'?: LicenseFamily;
+  name?: Name1;
+  subdir?: Subdir;
+  'track-features'?: TrackFeatures;
+  version?: Version2;
+  when?: When;
+  workspace?: Workspace;
+}
+/**
+ * A precise description of a `conda` channel, with an optional priority.
+ */
+export interface ChannelInlineTable {
+  channel: Channel;
+  'exclude-newer'?: ExcludeNewer;
+  priority?: Priority;
+}
+/**
+ * The configuration of the build backend
+ */
+export interface Config {
+  [k: string]: unknown | undefined;
+}
+/**
+ * The source from which to build the package
+ */
+export interface SourceLocation {
+  branch?: Branch;
+  git?: Git;
+  path?: Path;
+  rev?: Rev;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+}
+/**
+ * Target-specific build configuration for different platforms
+ */
+export interface Target1 {
+  [k: string]: BuildTarget | undefined;
+}
+/**
+ * Target-specific build configuration for different platforms
+ */
+export interface BuildTarget {
+  config?: Config;
 }
 /**
  * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
  */
 export interface Constraints {
-  [k: string]: string | MatchspecTable | undefined;
+  [k: string]: string | InheritableMatchspecTable | undefined;
 }
 /**
  * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
  */
 export interface Dependencies3 {
-  [k: string]: string | MatchspecTable | undefined;
+  [k: string]: string | InheritableMatchspecTable | undefined;
 }
 /**
  * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
@@ -70629,10 +71181,10 @@ export interface Dev {
 export interface SourceSpecTable {
   branch?: Branch;
   git?: Git;
-  md5?: Md51;
+  md5?: Md52;
   path?: Path;
   rev?: Rev;
-  sha256?: Sha2561;
+  sha256?: Sha2562;
   subdirectory?: Subdirectory;
   tag?: Tag;
   url?: Url;
@@ -70651,55 +71203,21 @@ export interface Environments {
  * A composition of the dependencies of features which can be activated to run tasks or provide a shell
  */
 export interface Environment {
-  features?: Features;
-  'no-default-feature'?: NoDefaultFeature;
-  'solve-group'?: SolveGroup;
-}
-/**
- * The features of the project
- */
-export interface Feature {
-  [k: string]: Feature1 | undefined;
-}
-/**
- * A composable aspect of the project which can contribute dependencies and tasks to an environment
- */
-export interface Feature1 {
-  activation?: Activation1;
-  'build-dependencies'?: BuildDependencies1;
+  activation?: Activation;
   'channel-priority'?: ChannelPriority;
   channels?: Channels;
   constraints?: Constraints1;
   dependencies?: Dependencies4;
-  dev?: Dev1;
-  'host-dependencies'?: HostDependencies;
+  dev?: Dev;
+  features?: Features;
+  'no-default-feature'?: NoDefaultFeature;
   platforms?: Platforms1;
   'pypi-dependencies'?: PypiDependencies;
   'pypi-options'?: PyPIOptions;
+  'solve-group'?: SolveGroup;
   'solve-strategy'?: SolveStrategy;
-  'system-requirements'?: SystemRequirements;
-  target?: Target1;
-  tasks?: Tasks1;
-}
-/**
- * The scripts used on the activation of environments using this feature
- */
-export interface Activation1 {
-  env?: Env1;
-  scripts?: Scripts1;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies1 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * A precise description of a `conda` channel, with an optional priority.
- */
-export interface ChannelInlineTable {
-  channel: Channel;
-  priority?: Priority;
+  target?: Target2;
+  tasks?: Tasks;
 }
 /**
  * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
@@ -70714,19 +71232,7 @@ export interface Dependencies4 {
   [k: string]: string | MatchspecTable | undefined;
 }
 /**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev1 {
-  [k: string]: SourceSpecTable | undefined;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The PyPI dependencies of this feature
+ * The PyPI dependencies of this environment
  */
 export interface PypiDependencies {
   [k: string]:
@@ -70748,17 +71254,20 @@ export interface PyPIGitBranchRequirement {
   branch?: Branch;
   extras?: Extras;
   git?: Git;
+  lfs?: Lfs;
   subdirectory?: Subdirectory;
 }
 export interface PyPIGitTagRequirement {
   extras?: Extras;
   git?: Git;
+  lfs?: Lfs;
   subdirectory?: Subdirectory;
   tag?: Tag;
 }
 export interface PyPIGitRevRequirement {
   extras?: Extras;
   git?: Git;
+  lfs?: Lfs;
   rev?: Rev;
   subdirectory?: Subdirectory;
 }
@@ -70773,7 +71282,7 @@ export interface PyPIUrlRequirement {
   url?: Url;
 }
 /**
- * Options related to PyPI indexes for this feature
+ * Options related to PyPI indexes for this environment
  */
 export interface PyPIOptions {
   'dependency-overrides'?: DependencyOverrides;
@@ -70814,89 +71323,29 @@ export interface FindLinksURL {
   url?: Url;
 }
 /**
- * The system requirements of this feature
+ * Machine-specific aspects of this environment
  */
-export interface SystemRequirements {
-  archspec?: Archspec;
-  cuda?: Cuda;
-  libc?: Libc;
-  linux?: Linux;
-  macos?: Macos;
-  unix?: Unix;
-}
-export interface LibcFamily {
-  family?: Family;
-  version?: Version3;
-}
-/**
- * Machine-specific aspects of this feature
- */
-export interface Target1 {
-  [k: string]: Target2 | undefined;
+export interface Target2 {
+  [k: string]: Target3 | undefined;
 }
 /**
  * A machine-specific configuration of dependencies and tasks
  */
-export interface Target2 {
-  activation?: Activation2;
-  'build-dependencies'?: BuildDependencies2;
-  constraints?: Constraints2;
-  dependencies?: Dependencies5;
-  dev?: Dev2;
+export interface Target3 {
+  activation?: Activation;
+  'build-dependencies'?: BuildDependencies;
+  constraints?: Constraints;
+  dependencies?: Dependencies3;
+  dev?: Dev;
   'host-dependencies'?: HostDependencies1;
-  'pypi-dependencies'?: PypiDependencies1;
+  'pypi-dependencies'?: PypiDependencies;
   tasks?: Tasks;
-}
-/**
- * The scripts used on the activation of the project for this target
- */
-export interface Activation2 {
-  env?: Env1;
-  scripts?: Scripts1;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies2 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
- */
-export interface Constraints2 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export interface Dependencies5 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev2 {
-  [k: string]: SourceSpecTable | undefined;
 }
 /**
  * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
  */
 export interface HostDependencies1 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The PyPI dependencies for this target
- */
-export interface PypiDependencies1 {
-  [k: string]:
-    | string
-    | PyPIVersion
-    | PyPIGitBranchRequirement
-    | PyPIGitTagRequirement
-    | PyPIGitRevRequirement
-    | PyPIPathRequirement
-    | PyPIUrlRequirement
-    | undefined;
+  [k: string]: string | InheritableMatchspecTable | undefined;
 }
 /**
  * The tasks of the target
@@ -70920,7 +71369,7 @@ export interface TaskInlineTable {
   'depends-on'?: DependsOn;
   depends_on?: DependsOn2;
   description?: Description;
-  env?: Env2;
+  env?: Env1;
   inputs?: Inputs;
   outputs?: Outputs;
 }
@@ -70941,186 +71390,80 @@ export interface DependsOn1 {
   task: Task;
 }
 /**
- * A map of environment variables to values, used in the task, these will be overwritten by the shell.
+ * Workspace-wide per-package `exclude-newer` overrides for conda packages
  */
-export interface Env2 {
+export interface ExcludeNewer1 {
   [k: string]: string | undefined;
 }
 /**
- * The tasks provided by this feature
+ * The features of the project
  */
-export interface Tasks1 {
-  /**
-   * This interface was referenced by `Tasks1`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string | undefined;
+export interface Feature {
+  [k: string]: Feature1 | undefined;
 }
 /**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ * A composable aspect of the project which can contribute dependencies and tasks to an environment
  */
-export interface HostDependencies2 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The package's metadata information
- */
-export interface Package {
-  authors?: Authors;
-  build: Build3;
-  'build-dependencies'?: BuildDependencies3;
-  description?: Description2;
-  documentation?: Documentation;
-  homepage?: Homepage;
-  'host-dependencies'?: HostDependencies3;
-  license?: License2;
-  'license-file'?: LicenseFile;
-  name?: Name1;
-  readme?: Readme;
-  repository?: Repository;
-  'run-dependencies'?: RunDependencies;
-  target?: Target4;
-  version?: Version5;
-}
-/**
- * Indicates that a field should inherit its value from the workspace.
- */
-export interface WorkspaceInheritance {
-  workspace: Workspace;
-}
-/**
- * The build configuration of the package
- */
-export interface Build3 {
-  'additional-dependencies'?: AdditionalDependencies;
-  backend: BuildBackend;
+export interface Feature1 {
+  activation?: Activation;
+  'build-dependencies'?: BuildDependencies;
+  'channel-priority'?: ChannelPriority;
   channels?: Channels;
-  config?: Config;
-  source?: SourceLocation;
-  target?: Target3;
+  constraints?: Constraints;
+  dependencies?: Dependencies3;
+  dev?: Dev;
+  'host-dependencies'?: HostDependencies1;
+  platforms?: Platforms1;
+  'pypi-dependencies'?: PypiDependencies;
+  'pypi-options'?: PyPIOptions;
+  'solve-strategy'?: SolveStrategy;
+  'system-requirements'?: SystemRequirements;
+  target?: Target2;
+  tasks?: Tasks;
 }
 /**
- * Additional dependencies to install alongside the build backend
+ * The system requirements of this feature
  */
-export interface AdditionalDependencies {
-  [k: string]: string | MatchspecTable | undefined;
+export interface SystemRequirements {
+  archspec?: Archspec;
+  cuda?: Cuda;
+  libc?: Libc;
+  linux?: Linux;
+  macos?: Macos;
+  unix?: Unix;
 }
-/**
- * The build backend to instantiate
- */
-export interface BuildBackend {
-  'additional-dependencies'?: AdditionalDependencies1;
-  branch?: Branch;
-  build?: Build4;
-  'build-number'?: BuildNumber;
-  channel?: Channel;
-  channels?: Channels;
-  'file-name'?: FileName;
-  git?: Git;
-  license?: License;
-  md5?: Md52;
-  name?: Name;
-  path?: Path;
-  rev?: Rev;
-  sha256?: Sha2562;
-  subdir?: Subdir;
-  subdirectory?: Subdirectory;
-  tag?: Tag;
-  url?: Url;
-  version?: Version4;
-}
-/**
- * Additional dependencies to install alongside the build backend
- */
-export interface AdditionalDependencies1 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The configuration of the build backend
- */
-export interface Config {
-  [k: string]: unknown | undefined;
-}
-/**
- * The source from which to build the package
- */
-export interface SourceLocation {
-  branch?: Branch;
-  git?: Git;
-  path?: Path;
-  rev?: Rev;
-  subdirectory?: Subdirectory;
-  tag?: Tag;
-}
-/**
- * Target-specific build configuration for different platforms
- */
-export interface Target3 {
-  [k: string]: BuildTarget | undefined;
-}
-/**
- * Target-specific build configuration for different platforms
- */
-export interface BuildTarget {
-  config?: Config1;
-}
-/**
- * Target-specific configuration for the build backend
- */
-export interface Config1 {
-  [k: string]: unknown | undefined;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies3 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies3 {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * The `conda` dependencies required at runtime. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface RunDependencies {
-  [k: string]: string | MatchspecTable | undefined;
-}
-/**
- * Machine-specific aspects of the package
- */
-export interface Target4 {
-  [k: string]: Target2 | undefined;
+export interface LibcFamily {
+  family?: Family;
+  version?: Version7;
 }
 /**
  * The project's metadata information
  */
-export interface Workspace1 {
+export interface Workspace3 {
   authors?: Authors1;
   'build-variants'?: BuildVariants;
   'build-variants-files'?: BuildVariantsFiles;
   'channel-priority'?: ChannelPriority;
   channels: Channels;
   'conda-pypi-map'?: CondaPypiMap;
+  dependencies?: Dependencies4;
   description?: Description;
   documentation?: Documentation1;
   'exclude-newer'?: ExcludeNewer;
   homepage?: Homepage1;
   license?: License;
   'license-file'?: LicenseFile1;
-  name?: Name;
-  platforms?: Platforms2;
+  name?: Name1;
+  platforms?: Platforms3;
   preview?: Preview;
-  'pypi-options'?: PyPIOptions1;
+  'pypi-options'?: PyPIOptions;
   readme?: Readme1;
   repository?: Repository1;
   'requires-pixi'?: RequiresPixi;
   's3-options'?: S3Options;
   'solve-strategy'?: SolveStrategy;
   target?: Target5;
-  version?: Version6;
+  version?: Version2;
 }
 /**
  * The build variants of the project
@@ -71129,25 +71472,29 @@ export interface BuildVariants {
   [k: string]: string[] | undefined;
 }
 /**
- * The `conda` to PyPI mapping configuration
+ * The mapping configuration for one channel in `conda-pypi-map`.
  */
-export interface CondaPypiMap {
-  [k: string]: string | undefined;
+export interface CondaPypiMapTable {
+  location?: Location;
+  mapping?: Mapping;
+  'mapping-mode'?: MappingMode;
+  'same-name-heuristic'?: SameNameHeuristic;
 }
 /**
- * Options related to PyPI indexes for this project
+ * Inline `conda_name: pypi_name` entries; a list maps one conda package to several PyPI names, `false` marks a package as not available on PyPI. Inline entries override entries from `location`.
  */
-export interface PyPIOptions1 {
-  'dependency-overrides'?: DependencyOverrides;
-  'extra-index-urls'?: ExtraIndexUrls;
-  'find-links'?: FindLinks;
-  'index-strategy'?: IndexStrategy;
-  'index-url'?: IndexUrl;
-  'no-binary'?: NoBinary;
-  'no-build'?: NoBuild;
-  'no-build-isolation'?: NoBuildIsolation;
-  'prerelease-mode'?: PrereleaseMode;
-  'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
+export interface Mapping {
+  [k: string]: string | string[] | false | undefined;
+}
+/**
+ * The grouped CUDA virtual-package table: `cuda = { driver, arch }`.
+ *
+ * `driver` maps to `__cuda` (equivalent to the bare `cuda = "12.0"` form);
+ * `arch` maps to `__cuda_arch` (GPU compute capability) and requires `driver`.
+ */
+export interface CudaTable {
+  arch?: Arch;
+  driver: Driver;
 }
 /**
  * Options related to S3 for this project
@@ -71173,103 +71520,19 @@ export interface Target5 {
  * Target-specific configuration for a workspace
  */
 export interface WorkspaceTarget {
-  'build-variants'?: BuildVariants1;
+  'build-variants'?: BuildVariants;
 }
 /**
- * The build variants for this workspace target
+ * Workspace-wide per-package `exclude-newer` overrides for PyPI packages
  */
-export interface BuildVariants1 {
-  [k: string]: string[] | undefined;
-}
-/**
- * The PyPI dependencies
- */
-export interface PypiDependencies2 {
-  [k: string]:
-    | string
-    | PyPIVersion
-    | PyPIGitBranchRequirement
-    | PyPIGitTagRequirement
-    | PyPIGitRevRequirement
-    | PyPIPathRequirement
-    | PyPIUrlRequirement
-    | undefined;
-}
-/**
- * Options related to PyPI indexes, on the default feature
- */
-export interface PyPIOptions2 {
-  'dependency-overrides'?: DependencyOverrides;
-  'extra-index-urls'?: ExtraIndexUrls;
-  'find-links'?: FindLinks;
-  'index-strategy'?: IndexStrategy;
-  'index-url'?: IndexUrl;
-  'no-binary'?: NoBinary;
-  'no-build'?: NoBuild;
-  'no-build-isolation'?: NoBuildIsolation;
-  'prerelease-mode'?: PrereleaseMode;
-  'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
-}
-/**
- * The system requirements of the project
- */
-export interface SystemRequirements1 {
-  archspec?: Archspec;
-  cuda?: Cuda;
-  libc?: Libc;
-  linux?: Linux;
-  macos?: Macos;
-  unix?: Unix;
-}
-/**
- * The targets of the project
- */
-export interface Target6 {
-  [k: string]: Target2 | undefined;
-}
-/**
- * The tasks of the project
- */
-export interface Tasks2 {
-  /**
-   * This interface was referenced by `Tasks2`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string | undefined;
+export interface PypiExcludeNewer {
+  [k: string]: string | undefined;
 }
 /**
  * Third-party tool configurations, ignored by pixi
  */
 export interface Tool {
   [k: string]: unknown | undefined;
-}
-/**
- * The workspace's metadata information
- */
-export interface Workspace2 {
-  authors?: Authors1;
-  'build-variants'?: BuildVariants;
-  'build-variants-files'?: BuildVariantsFiles;
-  'channel-priority'?: ChannelPriority;
-  channels: Channels;
-  'conda-pypi-map'?: CondaPypiMap;
-  description?: Description;
-  documentation?: Documentation1;
-  'exclude-newer'?: ExcludeNewer;
-  homepage?: Homepage1;
-  license?: License;
-  'license-file'?: LicenseFile1;
-  name?: Name;
-  platforms?: Platforms2;
-  preview?: Preview;
-  'pypi-options'?: PyPIOptions1;
-  readme?: Readme1;
-  repository?: Repository1;
-  'requires-pixi'?: RequiresPixi;
-  's3-options'?: S3Options;
-  'solve-strategy'?: SolveStrategy;
-  target?: Target5;
-  version?: Version6;
 }
 /**
  * A task runner that works well with `pyproject.toml` files.
@@ -71359,7 +71622,7 @@ export interface TaskRunner {
   shell_interpreter?:
     | ('posix' | 'sh' | 'bash' | 'zsh' | 'fish' | 'pwsh' | 'powershell' | 'python')
     | ('posix' | 'sh' | 'bash' | 'zsh' | 'fish' | 'pwsh' | 'powershell' | 'python')[];
-  tasks?: TasksMap1;
+  tasks?: TasksMap;
   /**
    * Sets the default verbosity level for all commands. '-1' is quieter, '0' is
    * the default level, and '1' is more verbose. The command line arguments are
@@ -71580,7 +71843,7 @@ export interface CmdTask {
    * error if there are no matches.
    */
   empty_glob?: 'pass' | 'null' | 'fail';
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -71629,9 +71892,6 @@ export interface CmdTask {
    */
   verbosity?: -2 | -1 | 0 | 1 | 2;
 }
-export interface EnvOption1 {
-  [k: string]: string | EnvDefault | undefined;
-}
 export interface ExprTask {
   args?:
     | (string | ArgsItem)[]
@@ -71660,7 +71920,7 @@ export interface ExprTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -71741,7 +72001,7 @@ export interface ParallelTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -71830,7 +72090,7 @@ export interface RefTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   /**
    * Help text to be displayed next to the task name in the documentation when
@@ -71884,7 +72144,7 @@ export interface SequenceTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -71953,7 +72213,7 @@ export interface ShellTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72042,7 +72302,7 @@ export interface SwitchTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72137,7 +72397,7 @@ export interface CmdTaskWithCase {
    * error if there are no matches.
    */
   empty_glob?: 'pass' | 'null' | 'fail';
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72215,7 +72475,7 @@ export interface ExprTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72297,7 +72557,7 @@ export interface ParallelTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72387,7 +72647,7 @@ export interface RefTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   /**
    * Help text to be displayed next to the task name in the documentation when
@@ -72442,7 +72702,7 @@ export interface SequenceTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72512,7 +72772,7 @@ export interface ShellTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72602,7 +72862,7 @@ export interface SwitchTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: string | EnvfileFull | (string | EnvfileFull)[];
   executor?:
     | ('auto' | 'poetry' | 'simple' | 'uv' | 'virtualenv')
@@ -72690,12 +72950,6 @@ export interface IncludeScriptItem {
    * merged into the project config.
    */
   script: string;
-}
-/**
- * A mapping of task names to task definitions.
- */
-export interface TasksMap1 {
-  [k: string]: TaskDef | undefined;
 }
 /**
  * Python dependency management and packaging made easy.
@@ -74904,7 +75158,7 @@ export interface StaticTypeChecker1 {
  * Set of identifiers that should be assumed to contain a constant value wherever used within this program. For example, `{ "DEBUG": true }` indicates that pyright should assume that the identifier `DEBUG` will always be equal to `True`. If this identifier is used within a conditional expression (such as `if not DEBUG:`) pyright will use the indicated value to determine whether the guarded block is reachable or not. Member expressions that reference one of these constants (e.g. `my_module.DEBUG`) are also supported.
  */
 export interface IdentifiersThatShouldBeTreatedAsConstants {
-  [k: string]: ValueOfConstantBooleanOrString | undefined;
+  [k: string]: ValueOfConstantBooleanOrString | ValueOfConstantBooleanOrString1 | undefined;
 }
 export interface AnalysisSettingsToUseForSpecifiedSubdirectoriesOfCode1 {
   root: PathToCodeSubdirectoryToWhichTheseSettingsApply;
@@ -75508,16 +75762,16 @@ export interface RepositoryReviewer {
  * The complementary task runner for python.
  */
 export interface TaskRunner1 {
-  tasks?: Tasks3;
+  tasks?: Tasks4;
   variables?: Variables;
   settings?: Settings;
 }
 /**
  * task definitions
  */
-export interface Tasks3 {
+export interface Tasks4 {
   /**
-   * This interface was referenced by `Tasks3`'s JSON-Schema definition
+   * This interface was referenced by `Tasks4`'s JSON-Schema definition
    * via the `patternProperty` "^.+$".
    */
   [k: string]:
@@ -75771,7 +76025,7 @@ export interface CargoDocumentLinkFeatureTree {
   workspace?: DeprecatedWorkspaceDocumentLinkFeature;
 }
 export interface ToggleFeatureDefaultFalse {
-  enabled?: EnableFeature2;
+  enabled?: EnableFeature1;
 }
 export interface CargoGotoDeclarationFeatureTree {
   dependency?: DependencyDeclarationNavigationFeature;
@@ -75886,6 +76140,14 @@ export interface TestingFramework1 {
    */
   temp_dir?: string;
   /**
+   * (provisional) point a PEP-832 .venv redirect file at a tox environment, so editors can discover it; unset means on unless a tox environment lives at .venv
+   */
+  venv_redirect?: boolean;
+  /**
+   * (provisional) the tox environment the .venv redirect file points at, picked automatically when unset
+   */
+  venv_redirect_env?: string;
+  /**
    * define environments to automatically run
    */
   env_list?: (
@@ -75988,7 +76250,7 @@ export interface TestingFramework1 {
    */
   setupdir?: string;
   env_run_base?: EnvRunBase;
-  env_pkg_base?: EnvRunBase1;
+  env_pkg_base?: EnvRunBase;
   /**
    * per-environment overrides (keyed by environment name)
    */
@@ -76371,293 +76633,6 @@ export interface EnvRunBase {
  */
 export interface SetEnv {
   [k: string]: string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf | undefined;
-}
-/**
- * base configuration for packaging environments
- */
-export interface EnvRunBase1 {
-  /**
-   * environment variables to set when running commands in the tox environment
-   */
-  set_env?: {
-    [k: string]: string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf | undefined;
-  };
-  setenv?: SetEnv;
-  /**
-   * inherit missing keys from these sections
-   */
-  base?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * the tox execute used to evaluate this environment
-   */
-  runner?: string;
-  /**
-   * description attached to the tox environment
-   */
-  description?: string;
-  /**
-   * tox environments that this environment depends on (must be run after those)
-   */
-  depends?: (
-    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
-    | {
-        /**
-         * factor groups for cartesian product expansion
-         */
-        product: (string[] | FactorRangeDict | FactorLabeledDict)[];
-        /**
-         * environment names to exclude from product
-         */
-        exclude?: string[];
-      }
-    | FactorRangeDict
-    | FactorLabeledDict
-  )[];
-  /**
-   * labels attached to the tox environment
-   */
-  labels?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * directory assigned to the tox environment
-   */
-  env_dir?: string;
-  /**
-   * @deprecated
-   * Deprecated: use 'env_dir' instead
-   */
-  envdir?: string;
-  /**
-   * a folder that is always reset at the start of the run
-   */
-  env_tmp_dir?: string;
-  /**
-   * @deprecated
-   * Deprecated: use 'env_tmp_dir' instead
-   */
-  envtmpdir?: string;
-  /**
-   * a folder for logging where tox will put logs of tool invocation
-   */
-  env_log_dir?: string;
-  /**
-   * @deprecated
-   * Deprecated: use 'env_log_dir' instead
-   */
-  envlogdir?: string;
-  /**
-   * timeout to allow process to exit before sending SIGINT
-   */
-  suicide_timeout?: number;
-  /**
-   * timeout before sending SIGTERM after SIGINT
-   */
-  interrupt_timeout?: number;
-  /**
-   * timeout before sending SIGKILL after SIGTERM
-   */
-  terminate_timeout?: number;
-  /**
-   * run on platforms that match this regular expression (empty means any platform)
-   */
-  platform?: string;
-  /**
-   * environment variables to pass on to the tox environment
-   */
-  pass_env?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  passenv?: PassEnv;
-  /**
-   * environment variable patterns to exclude after pass_env glob expansion
-   */
-  disallow_pass_env?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * if set to True the content of the output will always be shown  when running in parallel mode
-   */
-  parallel_show_output?: boolean;
-  /**
-   * always recreate virtual environment if this option is true, otherwise leave it up to tox
-   */
-  recreate?: boolean;
-  /**
-   * external command glob to allow calling
-   */
-  allowlist_externals?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * command used to list installed packages
-   */
-  list_dependencies_command?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * install the latest available pre-release (alpha/beta/rc) of dependencies without a specified version
-   */
-  pip_pre?: boolean;
-  /**
-   * command used to install packages
-   */
-  install_command?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * constraints to apply to installed python dependencies
-   */
-  constraints?: string;
-  /**
-   * If true, apply constraints during install_package_deps.
-   */
-  constrain_package_deps?: boolean;
-  /**
-   * Use the exact versions of installed deps as constraints, otherwise use the listed deps.
-   */
-  use_frozen_constraints?: boolean;
-  /**
-   * the commands to be called before testing
-   */
-  commands_pre?: (
-    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
-    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
-  )[];
-  /**
-   * the commands to be called for testing
-   */
-  commands?: (
-    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
-    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
-  )[];
-  /**
-   * the commands to be called after testing
-   */
-  commands_post?: (
-    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
-    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
-  )[];
-  /**
-   * run commands_post even after interrupt (SIGINT), allow second interrupt to cancel
-   */
-  interrupt_post_commands?: boolean;
-  /**
-   * commands to run before the environment is removed during recreation (e.g. cache cleanup)
-   */
-  recreate_commands?: (
-    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
-    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
-  )[];
-  /**
-   * change to this working directory when executing the test command
-   */
-  change_dir?: string;
-  /**
-   * @deprecated
-   * Deprecated: use 'change_dir' instead
-   */
-  changedir?: string;
-  /**
-   * if True rewrite relative posargs paths from cwd to change_dir
-   */
-  args_are_paths?: boolean;
-  /**
-   * when executing the commands keep going even if a sub-command exits with non-zero exit code
-   */
-  ignore_errors?: boolean;
-  /**
-   * number of times to retry a failed command (0 means no retries)
-   */
-  commands_retry?: number;
-  /**
-   * if set to true a failing result of this testenv will not make tox fail (instead just warn)
-   */
-  ignore_outcome?: boolean;
-  /**
-   * if set to true, tox will stop executing remaining environments when this environment fails
-   */
-  fail_fast?: boolean;
-  /**
-   * fallback python interpreter used when no factor or explicit base_python is defined
-   */
-  default_base_python?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
-  /**
-   * file(s) containing the Python version to use (e.g. .python-version), first one found wins; used when base_python is not explicitly set and the env name has no Python factor
-   */
-  base_python_file?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
-  /**
-   * environment identifier for python, first one found wins
-   */
-  base_python?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
-  /**
-   * @deprecated
-   * Deprecated: use 'base_python' instead
-   */
-  basepython?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[] | string;
-  /**
-   * python dependencies with optional version specifiers, as specified by PEP-440
-   */
-  deps?: string | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * dependency groups to install of the target package
-   */
-  dependency_groups?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * extras to install of the target package
-   */
-  extras?: (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[];
-  /**
-   * PEP 751 pylock.toml lock file path to install locked dependencies from
-   */
-  pylock?: string;
-  /**
-   * commands to execute after setup (deps and package install) but before test commands
-   */
-  extra_setup_commands?: (
-    | (string | ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)[]
-    | (ReplaceEnv | ReplaceRef | ReplacePosargs | ReplaceGlob | ReplaceIf)
-  )[];
-  /**
-   * override core skip_missing_interpreters for this environment
-   */
-  skip_missing_interpreters?: boolean;
-  /**
-   * create virtual environments that also have access to globally installed packages.
-   */
-  system_site_packages?: boolean;
-  /**
-   * @deprecated
-   * Deprecated: use 'system_site_packages' instead
-   */
-  sitepackages?: boolean;
-  /**
-   * force virtualenv to always copy rather than symlink
-   */
-  always_copy?: boolean;
-  /**
-   * @deprecated
-   * Deprecated: use 'always_copy' instead
-   */
-  alwayscopy?: boolean;
-  /**
-   * true if you want virtualenv to upgrade pip/wheel/setuptools to the latest version
-   */
-  download?: boolean;
-  /**
-   * PEP 440 version spec for virtualenv (e.g. virtualenv<20.22.0). When set, tox bootstraps this version in an isolated environment and runs it via subprocess, enabling Python versions incompatible with the installed virtualenv. Left empty it is derived automatically: tox pins an older virtualenv only when the installed one can no longer create the targeted Python version.
-   */
-  virtualenv_spec?: string;
-  /**
-   * skip installation
-   */
-  skip_install?: boolean;
-  /**
-   * use develop mode
-   */
-  use_develop?: boolean;
-  /**
-   * @deprecated
-   * Deprecated: use 'use_develop' instead
-   */
-  usedevelop?: boolean;
-  /**
-   * package installation mode - wheel | sdist | sdist-wheel | editable | editable-legacy | deps-only | skip | external
-   */
-  package?: string;
-  /**
-   * tox environment used to package
-   */
-  package_env?: string;
-  [k: string]: unknown | undefined;
 }
 /**
  * An extremely fast Python package installer and resolver, written in Rust.
@@ -78815,17 +78790,6 @@ export interface ToolUvWorkspace {
  * A CLI tool to check and validate Python docstring formatting and completeness
  */
 export interface DocstringFormatChecker {
-  allow_undefined_sections?: AllowUndefinedSections;
-  require_docstrings?: RequireDocstrings;
-  check_private?: CheckPrivateMembers;
-  validate_param_types?: ValidateParameterTypes;
-  optional_style?: OptionalStyle;
-  sections?: DocstringSections;
-}
-/**
- * A CLI tool to check and validate Python docstring formatting and completeness
- */
-export interface DocstringFormatChecker1 {
   allow_undefined_sections?: AllowUndefinedSections;
   require_docstrings?: RequireDocstrings;
   check_private?: CheckPrivateMembers;

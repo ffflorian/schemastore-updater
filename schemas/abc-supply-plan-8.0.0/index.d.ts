@@ -17,14 +17,185 @@ export type AnalyticsItem = TimeSeries | AnalyticsNoteItem;
  */
 export type TimeAggregateType = 'Annual' | 'Quarterly' | 'Monthly';
 /**
+ * How to display the quantities for this metric
+ */
+export type ShowQuantitiesAs = (string | null) & (('Units' | 'Lots' | 'Monetary') | null);
+/**
  * Represents the state of a material in the system including its attributes and planning parameters.
  *
  * This interface was referenced by `ABCMaterialsMap`'s JSON-Schema definition
  * via the `patternProperty` "^\d+$".
  */
-export type ABCMaterialState = {
-  [k: string]: unknown | undefined;
-};
+export type ABCMaterialState = ABCMaterialState1;
+/**
+ * The X coordinate position of the material in a graphical representation.
+ */
+export type XCoordinate = number;
+/**
+ * The Y coordinate position of the material in a graphical representation.
+ */
+export type YCoordinate = number;
+/**
+ * Numeric value representing the order or sequence of the material.
+ */
+export type Ordering = number;
+/**
+ * The name of the material.
+ */
+export type MaterialName = string;
+/**
+ * The unit of measure used for the material.
+ */
+export type UnitOfMeasure = string;
+/**
+ * The shape of the material represented graphically.
+ */
+export type MaterialShape =
+  'circle' | 'square' | 'diamond' | 'rectangle' | 'parallelogram' | 'trapezoid' | 'triangle' | 'pentagon' | 'hexagon';
+/**
+ * Colors may be specified in any string-based format supported by the Color constructor documented at https://www.npmjs.com/package/color
+ */
+export type Color = string;
+/**
+ * Indicates whether to carry over the expiry information for the material.
+ */
+export type ExpiryCarryover = boolean;
+/**
+ * Determines if the material is a node where capacity constraints are applied.
+ */
+export type CapacityConstraintNode = boolean;
+/**
+ * The method used for managing inventory levels, either target months forward coverage or minimum inventory.
+ */
+export type InventoryMethod = 'TargetMFC' | 'MinimumInventory';
+/**
+ * The precision of decimal places allowed for numerical entries related to the material.
+ */
+export type DecimalPrecision = number;
+/**
+ * The currency used for monetary calculations of the material.
+ */
+export type Currency = string;
+/**
+ * The direct manufacturing cost per unit of the material.
+ */
+export type ManufacturingCost = number;
+/**
+ * The standard cost per unit including overhead of the material.
+ */
+export type StandardCost = number;
+/**
+ * The sales price per unit of the material.
+ */
+export type SalesPrice = number;
+/**
+ * Batch size for orders. Must be greater than 0 to plan, etc.
+ */
+export type LotSize = number;
+/**
+ * Delay between Manufacture Date and Release Date.  Format: non-negative integer.
+ */
+export type LeadTime = number;
+/**
+ * Time during which no Planned Orders are allowed.  Format: non-negative integer.
+ */
+export type FirmingPeriod = number;
+/**
+ * Defines a time-specific integer value within a valid date range, ensuring it is non-negative.
+ */
+export type NonNegativeIntegerTimeDependentValue = TemplateTimeDependentValue & NonNegativeIntegerConstraints;
+/**
+ * The start date for the time-dependent value. Must be the first day of a month and within a valid date range.
+ */
+export type StartDate = string | null;
+/**
+ * The end date for the time-dependent value. Must be the last day of a month and within a valid date range.
+ */
+export type EndDate = string | null;
+/**
+ * An integer value that cannot be negative, typically representing quantities or counts in a time-dependent context.
+ */
+export type TimeDependentValue = number;
+/**
+ * Target Months Forward Coverage refers to a dynamic safety stock level—a buffer quantity of inventory designed to mitigate the risk of stock-outs caused by variability in Demand. In essence, it represents the number of months of Demand that could be satisfied assuming no additional material is manufactured. Each value is defined for a specific period of time.
+ */
+export type TargetMFC = NonNegativeIntegerTimeDependentValue[];
+/**
+ * List of Minimum Inventory values, each defined for a specific period of time. Minimum Inventory denotes the lowest stock level to prevent outages, triggering restock.
+ */
+export type MinimumInventory = NonNegativeIntegerTimeDependentValue[];
+/**
+ * Defines a time-specific integer value that must always be positive, ensuring it meets the requirements of scenarios where zero or negative numbers are not permitted.
+ */
+export type PositiveIntegerTimeDependentValue = TemplateTimeDependentValue & PositiveIntegerConstraints;
+/**
+ * List of Planning Frequency values, each defined for a specific period of time.
+ */
+export type PlanningFrequencies = PositiveIntegerTimeDependentValue[];
+/**
+ * List of Shelf Life values, each defined for a specific period of time.
+ */
+export type ShelfLives = NonNegativeIntegerTimeDependentValue[];
+/**
+ * Buffers to account for Stopship scenarios, listed for different periods.
+ */
+export type StopshipBuffers = NonNegativeIntegerTimeDependentValue[];
+/**
+ * The identifier for the lot number of the inventory item. It must be at least 1 character in length.
+ */
+export type LotNumber = string;
+/**
+ * The quantity of the inventory item when first recorded. This must be a non-negative number.
+ */
+export type InitialInventoryQuantity = number;
+/**
+ * The date the item was manufactured. This date must be the first day of a month and fall within a valid date range.
+ */
+export type ManufactureDate = string;
+/**
+ * The date the item will expire. This date must be the last day of a month and fall within a valid date range.
+ */
+export type ExpirationDate = string;
+/**
+ * List of Initial Inventory records, each associated with specific lot and dates.
+ */
+export type InitialInventories = InitialInventory[];
+/**
+ * The name or identifier of the firm order.
+ */
+export type FirmOrderName = string;
+/**
+ * The quantity specified in the firm order. Must be a non-negative value.
+ */
+export type FirmOrderQuantity = number;
+/**
+ * The date the goods are scheduled to be released. Must be the first day of the month and within valid date range.
+ */
+export type ReleaseDate = string;
+/**
+ * List of Firm Orders with their respective quantities and dates.
+ */
+export type FirmOrders = FirmOrder[];
+/**
+ * Defines how quantities are represented, e.g., in units, lots, or monetary value.
+ */
+export type ShowQuantitiesAs1 = 'Units' | 'Lots' | 'Monetary';
+/**
+ * Determines the type of analysis to be performed on expiry data, focusing on expiration or stopship scenarios.
+ */
+export type ExpiryAnalysisType = 'Expiration' | 'Stopship';
+/**
+ * Indicates whether planning parameters are dependent on time, necessitating different values at different periods.
+ */
+export type TimeDependentPlanningParameters = boolean;
+/**
+ * For pulling inventory from the inventory management system into Initial Inventory and Firm Orders & Releases
+ */
+export type MaterialNumberInTheInventoryManagementSystem = string | null;
+/**
+ * For pulling inventory from the inventory management system into Initial Inventory and Firm Orders & Releases and filtering it by location
+ */
+export type LocationInTheInventoryManagementSystem = string | null;
 /**
  * Unique identifier of the recipe.
  */
@@ -37,14 +208,6 @@ export type ConsumptionAllocation = 'PercentAllocation' | 'PriorityAllocation';
  * Defines a time-specific percentage value within a valid date range, adhering to percentage constraints.
  */
 export type PercentTimeDependentValue = TemplateTimeDependentValue & PercentValueConstraints;
-/**
- * The start date for the time-dependent value. Must be the first day of a month and within a valid date range.
- */
-export type StartDate = string | null;
-/**
- * The end date for the time-dependent value. Must be the last day of a month and within a valid date range.
- */
-export type EndDate = string | null;
 /**
  * Percentage allocations of materials to the recipe over different periods.
  */
@@ -136,7 +299,46 @@ export interface TimeSeries {
   excludeMonthsFromEnd: number;
   timeAggregateType: TimeAggregateType;
   metrics: {
-    [k: string]: unknown | undefined;
+    metricType:
+      | 'demand'
+      | 'consumption'
+      | 'actuals'
+      | 'otherDemand'
+      | 'firmOrders'
+      | 'plannedOrders'
+      | 'firmRelease'
+      | 'plannedRelease'
+      | 'expiryAdjustments'
+      | 'inventory'
+      | 'mfc';
+    abcMaterialIDs: string[];
+    visualization:
+      | {
+          type: 'line';
+          strokeWidth: number;
+          strokeDasharray: string;
+          dotSize: number;
+          dotFill: string;
+        }
+      | {
+          type: 'bar';
+          barWidth: number;
+          radius: number;
+          stackId: string;
+          showAsPercent: boolean;
+        }
+      | {
+          type: 'area';
+          fillOpacity: number;
+          strokeWidth: number;
+          stackId: string;
+          showAsPercent: boolean;
+        };
+    yAxisIndex: number;
+    color: string;
+    zIndex: number;
+    label: string;
+    showQuantitiesAs: ShowQuantitiesAs;
   }[];
 }
 export interface AnalyticsNoteItem {
@@ -159,13 +361,189 @@ export interface AnalyticsNoteItem {
  * A mapping of material IDs to their respective states within the ABC system.
  */
 export interface ABCMaterialsMap {
-  [k: string]: ABCMaterialState;
+  [k: string]: ABCMaterialState | undefined;
+}
+export interface ABCMaterialState1 {
+  x: XCoordinate;
+  y: YCoordinate;
+  ordering: Ordering;
+  abcMaterialName: MaterialName;
+  uom: UnitOfMeasure;
+  materialShape: MaterialShape;
+  materialColor: Color;
+  doExpiryCarryover: ExpiryCarryover;
+  isCapacityConstraintNode: CapacityConstraintNode;
+  inventoryMethod: InventoryMethod;
+  decimalPrecision: DecimalPrecision;
+  currency: Currency;
+  manufacturingCost: ManufacturingCost;
+  standardCost: StandardCost;
+  salesPrice: SalesPrice;
+  lotSize: LotSize;
+  leadTime: LeadTime;
+  firmingPeriod: FirmingPeriod;
+  targetMFCs: TargetMFC;
+  minimumInventories: MinimumInventory;
+  planningFrequencies: PlanningFrequencies;
+  shelfLives: ShelfLives;
+  stopshipBuffers: StopshipBuffers;
+  initialInventories: InitialInventories;
+  firmOrders: FirmOrders;
+  demand: Demand;
+  otherDemand: OtherDemand;
+  otherDemandAnnotation: OtherDemandAnnotation;
+  actuals: Actuals;
+  plannedOrders: PlannedOrders;
+  expiryAdjustments: ExpiryAdjustments;
+  timeAggregateType: TimeAggregateType;
+  showQuantitiesAs: ShowQuantitiesAs1;
+  expiryAnalysisType: ExpiryAnalysisType;
+  timeDependentPlanningParameters: TimeDependentPlanningParameters;
+  inventorySystemMaterialNumber: MaterialNumberInTheInventoryManagementSystem;
+  inventorySystemLocationName: LocationInTheInventoryManagementSystem;
+}
+/**
+ * Base template for defining time-dependent values, specifying the valid date ranges for such values.
+ */
+export interface TemplateTimeDependentValue {
+  startDate: StartDate;
+  endDate: EndDate;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines constraints for integer values to ensure they are non-negative, used in various time-dependent value configurations.
+ */
+export interface NonNegativeIntegerConstraints {
+  timeDependentValue: TimeDependentValue;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines constraints for integer values to ensure they are positive, used in various configurations where a strictly positive value is required.
+ */
+export interface PositiveIntegerConstraints {
+  timeDependentValue: TimeDependentValue;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Defines the initial inventory of a material, including lot number and associated dates.
+ */
+export interface InitialInventory {
+  lotNumber: LotNumber;
+  initialInventoryQuantity: InitialInventoryQuantity;
+  manufactureDate: ManufactureDate;
+  expirationDate: ExpirationDate;
+}
+/**
+ * Defines a firm order within the system, including order details and relevant dates.
+ */
+export interface FirmOrder {
+  firmOrderName: FirmOrderName;
+  firmOrderQuantity: FirmOrderQuantity;
+  manufactureDate: ManufactureDate;
+  releaseDate: ReleaseDate;
+  expirationDate: ExpirationDate;
+}
+/**
+ * Map of Demand values with specific dates as keys.
+ */
+export interface Demand {
+  /**
+   * This interface was referenced by `Demand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `OtherDemand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `Actuals`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
+}
+/**
+ * Map of other types of demand not included in the primary demand values.
+ */
+export interface OtherDemand {
+  /**
+   * This interface was referenced by `Demand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `OtherDemand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `Actuals`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
+}
+/**
+ * Annotations related to other demand entries, providing additional context.
+ */
+export interface OtherDemandAnnotation {
+  /**
+   * This interface was referenced by `OtherDemandAnnotation`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: string | undefined;
+}
+/**
+ * Map of actual quantities, corresponding to real data collected.
+ */
+export interface Actuals {
+  /**
+   * This interface was referenced by `Demand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `OtherDemand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `Actuals`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
+}
+/**
+ * Map of planned order quantities, anticipated ahead of time.
+ */
+export interface PlannedOrders {
+  /**
+   * This interface was referenced by `Demand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `OtherDemand`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `Actuals`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   *
+   * This interface was referenced by `PlannedOrders`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
+}
+/**
+ * Adjustments made to account for expired materials, reducing quantities.
+ */
+export interface ExpiryAdjustments {
+  /**
+   * This interface was referenced by `ExpiryAdjustments`'s JSON-Schema definition
+   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
+   */
+  [k: string]: number | undefined;
 }
 /**
  * A mapping of recipes, representing the acyclic relationships among materials. abcAreAllocationMethodsHomogeneous requires no mixing of Allocation Methods.  A downstream material cannot have mixed upstream recipes.  An upstream material cannot have mixed downstream recipes.
  */
 export interface RecipeMap {
-  [k: string]: RecipeState;
+  [k: string]: RecipeState | undefined;
 }
 /**
  * Defines a recipe within the system, including its components and yields.
@@ -179,14 +557,6 @@ export interface RecipeState {
   percentAllocations: PercentAllocations;
   priorityAllocations: PriorityAllocations;
   percentYield: PercentYield;
-}
-/**
- * Base template for defining time-dependent values, specifying the valid date ranges for such values.
- */
-export interface TemplateTimeDependentValue {
-  startDate: StartDate;
-  endDate: EndDate;
-  [k: string]: unknown | undefined;
 }
 /**
  * Constraints for percentage values, defining the valid range as 0% to 100%.

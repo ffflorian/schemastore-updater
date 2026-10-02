@@ -77,8 +77,7 @@ export interface Git {
    * Custom commit processing pipeline.
    */
   processing_order?:
-    | ('commit_preprocessors' | 'split_commits' | 'conventional_commits' | 'commit_parsers' | 'link_parsers')[]
-    | null;
+    ('commit_preprocessors' | 'split_commits' | 'conventional_commits' | 'commit_parsers' | 'link_parsers')[] | null;
   /**
    * Whether to parse commits according to the Conventional Commits specification.
    */

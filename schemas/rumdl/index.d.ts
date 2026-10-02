@@ -105,7 +105,9 @@ export interface GlobalConfig {
    */
   include?: string[];
   /**
-   * Respect .gitignore files when scanning directories
+   * Respect .gitignore, .ignore and git exclude files when scanning
+   * directories. .markdownlintignore applies regardless, and explicitly
+   * named files bypass both.
    */
   'respect-gitignore'?: boolean;
   /**
