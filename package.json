@@ -9,7 +9,7 @@
   "description": "SchemaStore schema updater",
   "devDependencies": {
     "@ffflorian/oxfmt-config": "1.3.0",
-    "@ffflorian/oxlint-config": "1.0.9",
+    "@ffflorian/oxlint-config": "1.0.10",
     "@semantic-release/changelog": "7.0.0",
     "@semantic-release/git": "11.0.1",
     "@types/node": "~26",
