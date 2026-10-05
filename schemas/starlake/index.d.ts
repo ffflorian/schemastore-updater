@@ -14,13 +14,13 @@ export type StarlakeV1Base = {
   load?: DomainV1;
   transform?: AutoJobDescV1;
   task?: AutoTaskDescV12;
-  env?: MapString12;
+  env?: MapString;
   table?: TableV1;
   refs?: RefV1[];
   application?: AppConfigV1;
   [k: string]: unknown | undefined;
 } & StarlakeV1Base1;
-export type ConvertibleToString = (string | boolean | number | null) | undefined;
+export type ConvertibleToString = string | boolean | number | null;
 export type JDBCSchemasV1 = ExtractV1Base & {
   /**
    * Describe what to fetch from a database connection. Scope: Schema and Data extraction.
@@ -43,7 +43,7 @@ export type JDBCSchemaV1 = JDBCSchemaBase & {
   /**
    * List of tables to exclude. Applied on tables list. Scope: Schema and Data extraction.
    */
-  exclude?: ConvertibleToString | undefined[];
+  exclude?: ConvertibleToString[];
   [k: string]: unknown | undefined;
 };
 /**
@@ -64,9 +64,51 @@ export type RestAPIsV1 = ExtractV1Base & {
   restAPI: RestAPIV1;
   [k: string]: unknown | undefined;
 };
-export type StarlakeV1Base1 = {
-  [k: string]: unknown | undefined;
-};
+export type StarlakeV1Base1 =
+  | {
+      extract: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      load: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      transform: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      env: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      types: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      tables: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      table: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      task: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      application: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      refs: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      dag: unknown;
+      [k: string]: unknown | undefined;
+    };
 
 /**
  * Custom type definition. Custom types are defined in the types/types.sl.yml file
@@ -139,19 +181,12 @@ export interface DagGenerationConfigV1 {
    * {schedule}, {domain}, {table} in the file name are used for DAG generation purposes
    */
   filename: string | boolean | number | null;
-  options?: MapString1;
+  options?: MapString;
   [k: string]: unknown | undefined;
-}
-/**
- * DAG generation options
- */
-export interface MapString1 {
-  [k: string]: ConvertibleToString | undefined;
 }
 export interface ExtractV1Base {
   sanitizeAttributeName?: (
-    | 'ON_EXTRACT'
-    | AttributeNameIsSanitizedAndStoredAsRenamePropertyWhenAttributeSNameDiffersFromSanitizedName
+    'ON_EXTRACT' | AttributeNameIsSanitizedAndStoredAsRenamePropertyWhenAttributeSNameDiffersFromSanitizedName
   ) &
     string;
   /**
@@ -179,6 +214,8 @@ export interface JDBCSchemaBase {
   columnRemarks?: string | boolean | number | null;
   /**
    * One or many of the predefined table types. Scope: Schema and Data extraction.
+   *
+   * Items: Table types supported by the Extract module
    */
   tableTypes?: ((string | boolean | number | null) &
     (
@@ -215,7 +252,7 @@ export interface JDBCSchemaBase {
    * Number of data partitions to create. Scope: Data extraction.
    */
   numPartitions?: number;
-  connectionOptions?: MapString2;
+  connectionOptions?: MapString;
   /**
    * Number of rows to be fetched from the database when additional rows are needed. By default, most JDBC drivers use a fetch size of 10, so if you are reading 1000 objects, increasing the fetch size to 256 can significantly reduce the time required to fetch the query's results. The optimal fetch size is not always obvious. Scope: Data extraction.
    */
@@ -234,12 +271,6 @@ export interface JDBCSchemaBase {
   sanitizeName?: boolean;
   [k: string]: unknown | undefined;
 }
-/**
- * Options to set on database connection if no connectionRef is provided. Scope: Data extraction.
- */
-export interface MapString2 {
-  [k: string]: ConvertibleToString | undefined;
-}
 export interface JDBCTableV1 {
   /**
    * Table name. Set to '*' to extract all tables. Scope: Schema and Data extraction.
@@ -256,30 +287,30 @@ export interface JDBCTableV1 {
    */
   columns?: [
     (
-      | (string | boolean | number | number | null)
+      | (string | boolean | number | null)
       | {
           /**
            * Column name to extract. Scope: Schema and Data extraction.
            */
-          name: string | boolean | number | number | null;
+          name: string | boolean | number | null;
           /**
            * Rename database column name. Scope: Schema and Data extraction.
            */
-          rename?: string | boolean | number | number | null;
+          rename?: string | boolean | number | null;
           [k: string]: unknown | undefined;
         }
     ),
     ...(
-      | (string | boolean | number | number | null)
+      | (string | boolean | number | null)
       | {
           /**
            * Column name to extract. Scope: Schema and Data extraction.
            */
-          name: string | boolean | number | number | null;
+          name: string | boolean | number | null;
           /**
            * Rename database column name. Scope: Schema and Data extraction.
            */
-          rename?: string | boolean | number | number | null;
+          rename?: string | boolean | number | null;
           [k: string]: unknown | undefined;
         }
     )[]
@@ -292,7 +323,7 @@ export interface JDBCTableV1 {
    * Number of data partitions to create. Scope: Data extraction.
    */
   numPartitions?: number;
-  connectionOptions?: MapString3;
+  connectionOptions?: MapString;
   /**
    * Number of rows to be fetched from the database when additional rows are needed. By default, most JDBC drivers use a fetch size of 10, so if you are reading 1000 objects, increasing the fetch size to 256 can significantly reduce the time required to fetch the query's results. The optimal fetch size is not always obvious. Scope: Data extraction.
    */
@@ -310,12 +341,6 @@ export interface JDBCTableV1 {
    */
   stringPartitionFunc?: string | boolean | number | null;
   [k: string]: unknown | undefined;
-}
-/**
- * Options to set on database connection, only when connectionRef is not defined. Scope: Data extraction.
- */
-export interface MapString3 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Define the output format of data extraction. Scope: Data extraction.
@@ -377,6 +402,8 @@ export interface DefaultJDBCSchemaV1 {
   columnRemarks?: string | boolean | number | null;
   /**
    * One or many of the predefined table types. Scope: Schema and Data extraction.
+   *
+   * Items: Table types supported by the Extract module
    */
   tableTypes?: ((string | boolean | number | null) &
     (
@@ -413,7 +440,7 @@ export interface DefaultJDBCSchemaV1 {
    * Number of data partitions to create. Scope: Data extraction.
    */
   numPartitions?: number;
-  connectionOptions?: MapString2;
+  connectionOptions?: MapString;
   /**
    * Number of rows to be fetched from the database when additional rows are needed. By default, most JDBC drivers use a fetch size of 10, so if you are reading 1000 objects, increasing the fetch size to 256 can significantly reduce the time required to fetch the query's results. The optimal fetch size is not always obvious. Scope: Data extraction.
    */
@@ -440,7 +467,7 @@ export interface OpenAPIV1 {
    * Common base path used to remove from path in order to generate final table name.
    */
   basePath?: string | boolean | number | null;
-  formatTypeMapping?: MapString4;
+  formatTypeMapping?: MapString;
   /**
    * Describe what to fetch from data connection. Scope: Schema and Data extraction.
    *
@@ -449,21 +476,15 @@ export interface OpenAPIV1 {
   domains?: [OpenAPIDomainV1, ...OpenAPIDomainV1[]];
   [k: string]: unknown | undefined;
 }
-/**
- * mapping a format used for string and the starlake attribute type
- */
-export interface MapString4 {
-  [k: string]: ConvertibleToString | undefined;
-}
 export interface OpenAPIDomainV1 {
   /**
    * Domain name used to group tables extracted from openAPI spec
    */
-  name: string | boolean | number | number | null;
+  name: string | boolean | number | null;
   /**
    * Common base path used to remove from path in order to generate final table name.
    */
-  basePath?: string | boolean | number | number | null;
+  basePath?: string | boolean | number | null;
   schemas?: OpenAPIObjectSchemasV1;
   /**
    * Describe what to fetch from data connection. Scope: Schema and Data extraction.
@@ -482,11 +503,11 @@ export interface OpenAPIObjectSchemasV1 {
    *
    * @minItems 1
    */
-  include?: [ConvertibleToString | undefined, ...(ConvertibleToString | undefined)[]];
+  include?: [ConvertibleToString, ...ConvertibleToString[]];
   /**
    * List of regex used to exclude open api schemas (#/components/schemas). Defaults to [].
    */
-  exclude?: ConvertibleToString | undefined[];
+  exclude?: ConvertibleToString[];
   [k: string]: unknown | undefined;
 }
 export interface OpenAPIRoutesV1 {
@@ -495,11 +516,11 @@ export interface OpenAPIRoutesV1 {
    *
    * @minItems 1
    */
-  paths?: [ConvertibleToString | undefined, ...(ConvertibleToString | undefined)[]];
+  paths?: [ConvertibleToString, ...ConvertibleToString[]];
   /**
    * Force all routes matching the pattern to be saved as the given name if they don't conflict
    */
-  as?: string | boolean | number | number | null;
+  as?: string | boolean | number | null;
   /**
    * List of operations to retrieve schema from. Defaults to ['GET']. Supported values are GET and POST.
    *
@@ -511,13 +532,13 @@ export interface OpenAPIRoutesV1 {
    *
    * @minItems 1
    */
-  exclude?: [ConvertibleToString | undefined, ...(ConvertibleToString | undefined)[]];
+  exclude?: [ConvertibleToString, ...ConvertibleToString[]];
   /**
    * List of regex used to excludes fields. Fields and their subfields are separated by _.
    *
    * @minItems 1
    */
-  excludeFields?: [ConvertibleToString | undefined, ...(ConvertibleToString | undefined)[]];
+  excludeFields?: [ConvertibleToString, ...ConvertibleToString[]];
   explode?: OpenAPIRouteObjectExplosionV1;
   [k: string]: unknown | undefined;
 }
@@ -537,7 +558,7 @@ export interface OpenAPIRouteObjectExplosionV1 {
   /**
    * filter out on field path. Each field is separated by _. Default to []
    */
-  exclude?: ConvertibleToString | undefined[];
+  exclude?: ConvertibleToString[];
   /**
    * Regex applied on object path. If matches, use the given name otherwise fallback to route_path + object path as final name
    */
@@ -555,7 +576,7 @@ export interface RestAPIV1 {
    */
   baseUrl: string | boolean | number | null;
   auth?: RestAPIAuthV1;
-  headers?: MapString5;
+  headers?: MapString;
   rateLimit?: RestAPIRateLimitV1;
   retry?: RestAPIRetryV1;
   timeout?: RestAPITimeoutV1;
@@ -615,12 +636,6 @@ export interface RestAPIAuthV1 {
    */
   scope?: string | boolean | number | null;
   [k: string]: unknown | undefined;
-}
-/**
- * Global HTTP headers applied to all requests.
- */
-export interface MapString5 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Rate limiting configuration.
@@ -717,8 +732,8 @@ export interface RestAPITlsV1 {
  */
 export interface RestAPIDefaultsV1 {
   pagination?: RestAPIPaginationV1;
-  headers?: MapString6;
-  queryParams?: MapString7;
+  headers?: MapString;
+  queryParams?: MapString;
   [k: string]: unknown | undefined;
 }
 /**
@@ -756,25 +771,13 @@ export interface RestAPIPaginationV1 {
   [k: string]: unknown | undefined;
 }
 /**
- * Default headers applied to all endpoints.
- */
-export interface MapString6 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Default query parameters applied to all endpoints.
- */
-export interface MapString7 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
  * REST API endpoint definition for data extraction
  */
 export interface RestAPIEndpointV1 {
   /**
    * API endpoint path (e.g. /api/v2/customers).
    */
-  path: string | boolean | number | number | null;
+  path: string | boolean | number | null;
   /**
    * HTTP method. Defaults to GET.
    */
@@ -782,26 +785,26 @@ export interface RestAPIEndpointV1 {
   /**
    * Table name override. If not set, derived from the last path segment.
    */
-  as?: string | boolean | number | number | null;
+  as?: string | boolean | number | null;
   /**
    * Domain name to group this endpoint under. Defaults to 'default'.
    */
-  domain?: string | boolean | number | number | null;
-  headers?: MapString8;
-  queryParams?: MapString9;
+  domain?: string | boolean | number | null;
+  headers?: MapString;
+  queryParams?: MapString;
   /**
    * JSON request body for POST endpoints.
    */
-  requestBody?: string | boolean | number | number | null;
+  requestBody?: string | boolean | number | null;
   pagination?: RestAPIPaginationV11;
   /**
    * JSONPath to the data array in the response (e.g. $.data or $.results).
    */
-  responsePath?: string | boolean | number | number | null;
+  responsePath?: string | boolean | number | null;
   /**
    * Field name used for incremental extraction. The max value is saved between runs.
    */
-  incrementalField?: string | boolean | number | number | null;
+  incrementalField?: string | boolean | number | null;
   /**
    * Child endpoints that depend on parent records. Use {parent.fieldName} in path.
    */
@@ -809,24 +812,12 @@ export interface RestAPIEndpointV1 {
   /**
    * List of regex patterns to exclude fields from extraction.
    */
-  excludeFields?: ConvertibleToString | undefined[];
+  excludeFields?: ConvertibleToString[];
   /**
    * JSONPath to check for error indicators in 200 responses (e.g. $.error). If the value at this path is non-null, the response is treated as an error.
    */
-  errorPath?: string | boolean | number | number | null;
+  errorPath?: string | boolean | number | null;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional HTTP headers for this endpoint.
- */
-export interface MapString8 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Additional query parameters for this endpoint.
- */
-export interface MapString9 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Pagination strategy for this endpoint. Overrides defaults.
@@ -880,7 +871,7 @@ export interface DomainV1 {
   /**
    * Set of string to attach to this domain
    */
-  tags?: ConvertibleToString | undefined[];
+  tags?: ConvertibleToString[];
   /**
    * If present, the domain is renamed to this name in the target database
    */
@@ -949,14 +940,14 @@ export interface MetadataV1 {
    * recognized filename extensions. json, csv, dsv, psv are recognized by default.
    * Only files with these extensions will be moved to the stage folder.
    */
-  extensions?: ConvertibleToString | undefined[];
+  extensions?: ConvertibleToString[];
   /**
    * Ack extension used for each file. ".ack" if not specified.
    * Files are moved to the stage folder only once a file with the same name as the source file and with this extension is present.
    * To move a file without requiring an ack file to be present, set explicitly this property to the empty string value "".
    */
   ack?: string | boolean | number | null;
-  options?: MapString11;
+  options?: MapString;
   /**
    * Loader to use, 'spark' or 'native'. Default to 'spark' of SL_LOADER env variable is set to 'native'
    */
@@ -989,7 +980,7 @@ export interface AllSinksV1 {
   /**
    * FS or BQ: List of attributes to use for clustering
    */
-  clustering?: ConvertibleToString | undefined[];
+  clustering?: ConvertibleToString[];
   /**
    * BQ: Number of days before this table is set as expired and deleted. Never by default.
    */
@@ -1025,7 +1016,7 @@ export interface AllSinksV1 {
   /**
    * columns to use for sharding. table will be named table_{sharding(0)}_{sharding(1)}
    */
-  sharding?: ConvertibleToString | undefined[];
+  sharding?: ConvertibleToString[];
   /**
    * FS or BQ: List of partition attributes
    */
@@ -1038,20 +1029,8 @@ export interface AllSinksV1 {
    * Optional path attribute if you want to save the file outside of the default location (datasets folder)
    */
   path?: string;
-  options?: MapString10;
+  options?: MapString;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional Spark writer options (e.g., compression, partitionOverwriteMode)
- */
-export interface MapString10 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Options to add to the spark reader
- */
-export interface MapString11 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Configure freshness checks on this dataset
@@ -1096,31 +1075,27 @@ export interface WriteStrategyV1 {
      * Write strategy type including custom strategies. Allows predefined strategies or custom strategy names
      */
     [k: string]:
-      | (
-          | (string | boolean | number | null)
-          | (undefined &
-              (
-                | ((string | boolean | number | null) &
-                    (
-                      | 'OVERWRITE'
-                      | 'APPEND'
-                      | 'UPSERT_BY_KEY'
-                      | 'UPSERT_BY_KEY_AND_TIMESTAMP'
-                      | 'DELETE_THEN_INSERT'
-                      | 'SCD2'
-                      | 'OVERWRITE_BY_PARTITION'
-                    ))
-                | (string | boolean | number | null)
-              ))
-          | undefined
-        )
+      | ((string | boolean | number | null) &
+          (
+            | ((string | boolean | number | null) &
+                (
+                  | 'OVERWRITE'
+                  | 'APPEND'
+                  | 'UPSERT_BY_KEY'
+                  | 'UPSERT_BY_KEY_AND_TIMESTAMP'
+                  | 'DELETE_THEN_INSERT'
+                  | 'SCD2'
+                  | 'OVERWRITE_BY_PARTITION'
+                ))
+            | (string | boolean | number | null)
+          ))
       | undefined;
   };
   /**
    * List of columns to use as key(s) for the target table.
    *   This is used to update existing records in the target table.
    */
-  key?: ConvertibleToString | undefined[];
+  key?: ConvertibleToString[];
   /**
    * timestamp column to use for the target table.
    *  This is used to update existing records in the target table by strategies UPSERT_BY_KEY_AND_TIMESTAMP and SCD2.
@@ -1176,11 +1151,11 @@ export interface AutoTaskDescV1 {
   /**
    * attach streams to task (Snowflake only)
    */
-  streams?: ConvertibleToString | undefined[];
+  streams?: ConvertibleToString[];
   /**
    * List of columns that make up the primary key for the output table
    */
-  primaryKey?: ConvertibleToString | undefined[];
+  primaryKey?: ConvertibleToString[];
   /**
    * Output Database (refer to a project id in BigQuery). Default to SL_DATABASE env var if set.
    */
@@ -1196,15 +1171,15 @@ export interface AutoTaskDescV1 {
   /**
    * List of columns used for partitioning the output.
    */
-  partition?: ConvertibleToString | undefined[];
+  partition?: ConvertibleToString[];
   /**
    * List of SQL requests to executed before the main SQL request is run
    */
-  presql?: ConvertibleToString | undefined[];
+  presql?: ConvertibleToString[];
   /**
    * List of SQL requests to executed after the main SQL request is run
    */
-  postsql?: ConvertibleToString | undefined[];
+  postsql?: ConvertibleToString[];
   sink?: AllSinksV1;
   rls?: RowLevelSecurityV1[];
   /**
@@ -1231,7 +1206,7 @@ export interface AutoTaskDescV1 {
   /**
    * Set of string to attach to the output table
    */
-  tags?: ConvertibleToString | undefined[];
+  tags?: ConvertibleToString[];
   writeStrategy?: WriteStrategyV11;
   /**
    * Cron expression to use for this task
@@ -1279,7 +1254,7 @@ export interface RowLevelSecurityV1 {
    * user / groups / service accounts to which this security level is applied.
    * ex : user:me@mycompany.com,group:group@mycompany.com,serviceAccount:mysa@google-accounts.com
    */
-  grants: ConvertibleToString | undefined[];
+  grants: ConvertibleToString[];
   /**
    * Description for this access policy
    */
@@ -1309,7 +1284,7 @@ export interface AccessControlEntryV1 {
    * user / groups / service accounts to which this security level is applied.
    * ex : user:me@mycompany.com,group:group@mycompany.com,serviceAccount:mysa@google-accounts.com
    */
-  grants: ConvertibleToString | undefined[];
+  grants: ConvertibleToString[];
   /**
    * This Access Control Entry unique name
    */
@@ -1379,7 +1354,7 @@ export interface AttributeV1 {
   /**
    * Tags associated with this attribute
    */
-  tags?: ConvertibleToString | undefined[];
+  tags?: ConvertibleToString[];
   /**
    * How to trim the input string
    */
@@ -1445,31 +1420,27 @@ export interface WriteStrategyV11 {
      * Write strategy type including custom strategies. Allows predefined strategies or custom strategy names
      */
     [k: string]:
-      | (
-          | (string | boolean | number | null)
-          | (undefined &
-              (
-                | ((string | boolean | number | null) &
-                    (
-                      | 'OVERWRITE'
-                      | 'APPEND'
-                      | 'UPSERT_BY_KEY'
-                      | 'UPSERT_BY_KEY_AND_TIMESTAMP'
-                      | 'DELETE_THEN_INSERT'
-                      | 'SCD2'
-                      | 'OVERWRITE_BY_PARTITION'
-                    ))
-                | (string | boolean | number | null)
-              ))
-          | undefined
-        )
+      | ((string | boolean | number | null) &
+          (
+            | ((string | boolean | number | null) &
+                (
+                  | 'OVERWRITE'
+                  | 'APPEND'
+                  | 'UPSERT_BY_KEY'
+                  | 'UPSERT_BY_KEY_AND_TIMESTAMP'
+                  | 'DELETE_THEN_INSERT'
+                  | 'SCD2'
+                  | 'OVERWRITE_BY_PARTITION'
+                ))
+            | (string | boolean | number | null)
+          ))
       | undefined;
   };
   /**
    * List of columns to use as key(s) for the target table.
    *   This is used to update existing records in the target table.
    */
-  key?: ConvertibleToString | undefined[];
+  key?: ConvertibleToString[];
   /**
    * timestamp column to use for the target table.
    *  This is used to update existing records in the target table by strategies UPSERT_BY_KEY_AND_TIMESTAMP and SCD2.
@@ -1512,11 +1483,11 @@ export interface AutoTaskDescV11 {
   /**
    * attach streams to task (Snowflake only)
    */
-  streams?: ConvertibleToString | undefined[];
+  streams?: ConvertibleToString[];
   /**
    * List of columns that make up the primary key for the output table
    */
-  primaryKey?: ConvertibleToString | undefined[];
+  primaryKey?: ConvertibleToString[];
   /**
    * Output Database (refer to a project id in BigQuery). Default to SL_DATABASE env var if set.
    */
@@ -1532,15 +1503,15 @@ export interface AutoTaskDescV11 {
   /**
    * List of columns used for partitioning the output.
    */
-  partition?: ConvertibleToString | undefined[];
+  partition?: ConvertibleToString[];
   /**
    * List of SQL requests to executed before the main SQL request is run
    */
-  presql?: ConvertibleToString | undefined[];
+  presql?: ConvertibleToString[];
   /**
    * List of SQL requests to executed after the main SQL request is run
    */
-  postsql?: ConvertibleToString | undefined[];
+  postsql?: ConvertibleToString[];
   sink?: AllSinksV1;
   rls?: RowLevelSecurityV1[];
   /**
@@ -1567,7 +1538,7 @@ export interface AutoTaskDescV11 {
   /**
    * Set of string to attach to the output table
    */
-  tags?: ConvertibleToString | undefined[];
+  tags?: ConvertibleToString[];
   writeStrategy?: WriteStrategyV11;
   /**
    * Cron expression to use for this task
@@ -1611,11 +1582,11 @@ export interface AutoTaskDescV12 {
   /**
    * attach streams to task (Snowflake only)
    */
-  streams?: ConvertibleToString | undefined[];
+  streams?: ConvertibleToString[];
   /**
    * List of columns that make up the primary key for the output table
    */
-  primaryKey?: ConvertibleToString | undefined[];
+  primaryKey?: ConvertibleToString[];
   /**
    * Output Database (refer to a project id in BigQuery). Default to SL_DATABASE env var if set.
    */
@@ -1631,15 +1602,15 @@ export interface AutoTaskDescV12 {
   /**
    * List of columns used for partitioning the output.
    */
-  partition?: ConvertibleToString | undefined[];
+  partition?: ConvertibleToString[];
   /**
    * List of SQL requests to executed before the main SQL request is run
    */
-  presql?: ConvertibleToString | undefined[];
+  presql?: ConvertibleToString[];
   /**
    * List of SQL requests to executed after the main SQL request is run
    */
-  postsql?: ConvertibleToString | undefined[];
+  postsql?: ConvertibleToString[];
   sink?: AllSinksV1;
   rls?: RowLevelSecurityV1[];
   /**
@@ -1666,7 +1637,7 @@ export interface AutoTaskDescV12 {
   /**
    * Set of string to attach to the output table
    */
-  tags?: ConvertibleToString | undefined[];
+  tags?: ConvertibleToString[];
   writeStrategy?: WriteStrategyV11;
   /**
    * Cron expression to use for this task
@@ -1699,12 +1670,6 @@ export interface AutoTaskDescV12 {
   [k: string]: unknown | undefined;
 }
 /**
- * Map of string
- */
-export interface MapString12 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
  * Table Schema definition.
  */
 export interface TableV1 {
@@ -1730,19 +1695,19 @@ export interface TableV1 {
   /**
    * attach streams to table (Snowflake only)
    */
-  streams?: ConvertibleToString | undefined[];
+  streams?: ConvertibleToString[];
   /**
    * Reserved for future use.
    */
-  presql?: ConvertibleToString | undefined[];
+  presql?: ConvertibleToString[];
   /**
    * List of SQL requests to executed after the table has been loaded.
    */
-  postsql?: ConvertibleToString | undefined[];
+  postsql?: ConvertibleToString[];
   /**
    * Set of string to attach to this Schema
    */
-  tags?: ConvertibleToString | undefined[];
+  tags?: ConvertibleToString[];
   /**
    *  Row level security on this schema.
    */
@@ -1754,7 +1719,7 @@ export interface TableV1 {
   /**
    * List of columns that make up the primary key
    */
-  primaryKey?: ConvertibleToString | undefined[];
+  primaryKey?: ConvertibleToString[];
   /**
    * Map of rolename -> List[Users].
    */
@@ -1838,14 +1803,14 @@ export interface MetadataV11 {
    * recognized filename extensions. json, csv, dsv, psv are recognized by default.
    * Only files with these extensions will be moved to the stage folder.
    */
-  extensions?: ConvertibleToString | undefined[];
+  extensions?: ConvertibleToString[];
   /**
    * Ack extension used for each file. ".ack" if not specified.
    * Files are moved to the stage folder only once a file with the same name as the source file and with this extension is present.
    * To move a file without requiring an ack file to be present, set explicitly this property to the empty string value "".
    */
   ack?: string | boolean | number | null;
-  options?: MapString11;
+  options?: MapString;
   /**
    * Loader to use, 'spark' or 'native'. Default to 'spark' of SL_LOADER env variable is set to 'native'
    */
@@ -2036,7 +2001,7 @@ export interface AppConfigV1 {
    */
   scd2EndTimestamp?: string | boolean | number | null;
   area?: AreaV1;
-  hadoop?: MapString13;
+  hadoop?: MapString;
   connections?: MapConnectionV1;
   jdbcEngines?: MapJdbcEngineV1;
   privacy?: PrivacyV1;
@@ -2069,7 +2034,7 @@ export interface AppConfigV1 {
    */
   maxParCopy?: number;
   kafka?: KafkaConfigV1;
-  dsvOptions?: MapString20;
+  dsvOptions?: MapString;
   /**
    * reserved
    */
@@ -2118,7 +2083,7 @@ export interface AppConfigV1 {
    * Default connection to use when loading / transforming data
    */
   transformConnectionRef?: string | boolean | number | null;
-  schedulePresets?: MapString21;
+  schedulePresets?: MapString;
   /**
    * How many job to run simultaneously in dev mode (experimental)
    */
@@ -2293,7 +2258,7 @@ export interface AllSinksV11 {
   /**
    * FS or BQ: List of attributes to use for clustering
    */
-  clustering?: ConvertibleToString | undefined[];
+  clustering?: ConvertibleToString[];
   /**
    * BQ: Number of days before this table is set as expired and deleted. Never by default.
    */
@@ -2329,7 +2294,7 @@ export interface AllSinksV11 {
   /**
    * columns to use for sharding. table will be named table_{sharding(0)}_{sharding(1)}
    */
-  sharding?: ConvertibleToString | undefined[];
+  sharding?: ConvertibleToString[];
   /**
    * FS or BQ: List of partition attributes
    */
@@ -2342,7 +2307,7 @@ export interface AllSinksV11 {
    * Optional path attribute if you want to save the file outside of the default location (datasets folder)
    */
   path?: string;
-  options?: MapString10;
+  options?: MapString;
   [k: string]: unknown | undefined;
 }
 export interface LockV1 {
@@ -2399,12 +2364,6 @@ export interface AreaV1 {
   [k: string]: unknown | undefined;
 }
 /**
- * Map of string
- */
-export interface MapString13 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
  * Connections configurations
  */
 export interface MapConnectionV1 {
@@ -2434,18 +2393,12 @@ export interface ConnectionV1 {
    * Catalog/schema separator character used in fully qualified table names. Default is '.'
    */
   separator?: string | boolean | number | null;
-  options?: MapString14;
+  options?: MapString;
   /**
    * Source SQL dialect of the transform statements executed over this connection. When set, SELECT statements are transpiled from this dialect to the connection engine dialect at run time (e.g. run BigQuery-dialect SQL locally on DuckDB). ANY stands for generic SQL
    */
   _transpileDialect?: null | 'ANY' | 'AMAZON_REDSHIFT' | 'DATABRICKS' | 'DUCK_DB' | 'GOOGLE_BIG_QUERY' | 'SNOWFLAKE';
   [k: string]: unknown | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString14 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * JDBC engine configurations
@@ -2524,14 +2477,8 @@ export interface TableDdlV1 {
  * Privacy algorithms
  */
 export interface PrivacyV1 {
-  options?: MapString15;
+  options?: MapString;
   [k: string]: unknown | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString15 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Internal configuration
@@ -2633,7 +2580,7 @@ export interface ExpectationsConfigV1 {
  * Kafka configuration for streaming ingestion and message processing
  */
 export interface KafkaConfigV1 {
-  serverOptions?: MapString16;
+  serverOptions?: MapString;
   /**
    * Map of topic name to topic configuration
    */
@@ -2644,14 +2591,8 @@ export interface KafkaConfigV1 {
    * Offset management mode: 'STREAM' for Spark streaming checkpoints or 'FILE' for file-based offset tracking
    */
   cometOffsetsMode?: string | boolean | number | null;
-  customDeserializers?: MapString19;
+  customDeserializers?: MapString;
   [k: string]: unknown | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString16 {
-  [k: string]: ConvertibleToString | undefined;
 }
 export interface KafkaTopicConfigV1 {
   /**
@@ -2665,7 +2606,7 @@ export interface KafkaTopicConfigV1 {
   /**
    * List of fields to extract from Kafka messages
    */
-  fields?: ConvertibleToString | undefined[];
+  fields?: ConvertibleToString[];
   /**
    * Number of partitions for the Kafka topic when creating it
    */
@@ -2674,45 +2615,15 @@ export interface KafkaTopicConfigV1 {
    * Replication factor for the Kafka topic when creating it
    */
   replicationFactor?: number;
-  createOptions?: MapString17;
-  accessOptions?: MapString18;
+  createOptions?: MapString;
+  accessOptions?: MapString;
   /**
    * HTTP headers to include when accessing Kafka via HTTP proxy
    */
   headers?: {
-    [k: string]: MapString12;
+    [k: string]: MapString | undefined;
   };
   [k: string]: unknown | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString17 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString18 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString19 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString20 {
-  [k: string]: ConvertibleToString | undefined;
-}
-/**
- * Map of string
- */
-export interface MapString21 {
-  [k: string]: ConvertibleToString | undefined;
 }
 /**
  * Default DAG configuration references for load and transform tasks

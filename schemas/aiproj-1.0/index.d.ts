@@ -27,93 +27,110 @@ export type BlackBoxOptions = {
 /**
  * Authentication options
  */
-export type AuthenticationOptions = (
-  | {
-      Type: 'RawCookie';
-      Cookie: {
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    }
-  | {
-      Type: 'Form';
-      Form: {
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    }
-  | {
-      Type: 'Http';
-      Http: {
-        [k: string]: unknown | undefined;
-      };
-      [k: string]: unknown | undefined;
-    }
-  | {
-      Type: 'None';
-      [k: string]: unknown | undefined;
-    }
-  | null
-) &
+export type AuthenticationOptions = ({
+  Cookie?: CookieAuthenticationOptions;
+  Form?: FormAuthenticationOptions;
+  Http?: HTTPAuthenticationOptions;
+  /**
+   * Type of authentication
+   */
+  Type?: 'Form' | 'Http' | 'RawCookie' | 'None';
+} | null) &
   (
-    | (
-        | {
-            Type: 'RawCookie';
-            Cookie: {
-              [k: string]: unknown | undefined;
-            };
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Type: 'Form';
-            Form: {
-              [k: string]: unknown | undefined;
-            };
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Type: 'Http';
-            Http: {
-              [k: string]: unknown | undefined;
-            };
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Type: 'None';
-            [k: string]: unknown | undefined;
-          }
-        | null
-      )
-    | (null &
-        (
-          | {
-              Type: 'RawCookie';
-              Cookie: {
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Type: 'Form';
-              Form: {
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Type: 'Http';
-              Http: {
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Type: 'None';
-              [k: string]: unknown | undefined;
-            }
-          | null
-        ))
+    | {
+        Type: 'RawCookie';
+        Cookie: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+    | {
+        Type: 'Form';
+        Form: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+    | {
+        Type: 'Http';
+        Http: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+    | {
+        Type: 'None';
+        [k: string]: unknown | undefined;
+      }
+    | null
   );
+/**
+ * Cookie authentication options
+ */
+export type CookieAuthenticationOptions = {
+  /**
+   * Cookie
+   */
+  Cookie: string;
+  /**
+   * Verification address
+   */
+  ValidationAddress: string;
+  /**
+   * String to search for
+   */
+  ValidationTemplate: string;
+} | null;
+/**
+ * Form-based authentication options
+ */
+export type FormAuthenticationOptions = {
+  /**
+   * Sign-in form URL
+   */
+  FormAddress: string;
+  /**
+   * Sign-in form XPath
+   */
+  FormXPath: string;
+  /**
+   * User
+   */
+  Login: string;
+  /**
+   * User identifier
+   */
+  LoginKey: string;
+  /**
+   * Password
+   */
+  Password: string;
+  /**
+   * Password identifier
+   */
+  PasswordKey: string;
+  /**
+   * String to search for
+   */
+  ValidationTemplate: string;
+} | null;
+/**
+ * HTTP Basic authentication options
+ */
+export type HTTPAuthenticationOptions = {
+  /**
+   * User
+   */
+  Login: string;
+  /**
+   * Password
+   */
+  Password: string;
+  /**
+   * Verification address
+   */
+  ValidationAddress: string;
+} | null;
 /**
  * Proxy server settings
  */
@@ -228,12 +245,7 @@ export interface Aiproj {
    * Enabled modules
    */
   ScanModules?: (
-    | 'Configuration'
-    | 'Components'
-    | 'BlackBox'
-    | 'DataFlowAnalysis'
-    | 'PatternMatching'
-    | 'VulnerableSourceCode'
+    'Configuration' | 'Components' | 'BlackBox' | 'DataFlowAnalysis' | 'PatternMatching' | 'VulnerableSourceCode'
   )[];
   /**
    * Exclude from scanning the files from the .gitignore file

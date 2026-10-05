@@ -1,16 +1,6 @@
 /* eslint-disable */
 
 /**
- * Define dependency version ranges as reusable constants,
- * for later reference in package.json files.
- * This (singular) field creates a catalog named default.
- *
- */
-export type Dependency = {
-  [k: string]: string | undefined;
-} | null;
-
-/**
  * JSON schema for pnpm-workspace.yaml files
  */
 export interface PnpmWorkspaceSpecification {
@@ -18,7 +8,13 @@ export interface PnpmWorkspaceSpecification {
    * Workspace package paths. Glob patterns are supported
    */
   packages?: string[];
-  catalog?: Dependency;
+  /**
+   * Define dependency version ranges as reusable constants,
+   * for later reference in package.json files.
+   * This (singular) field creates a catalog named default.
+   *
+   */
+  catalog?: Dependency | null;
   /**
    * Define arbitrarily named catalogs
    */
@@ -57,7 +53,7 @@ export interface PnpmWorkspaceSpecification {
      */
     [k: string]:
       | {
-          dependencies?: Dependency1;
+          dependencies?: Dependency;
           optionalDependencies?: OptionalDependency;
           peerDependencies?: PeerDependency;
           peerDependenciesMeta?: PeerDependencyMeta;
@@ -198,6 +194,10 @@ export interface PnpmWorkspaceSpecification {
    * A list of optional dependencies that the install should be skipped.
    */
   ignoredOptionalDependencies?: string[];
+  /**
+   * When true, pnpm install --force also installs optional dependencies whose os, cpu, or libc do not match the host. When false, --force refetches every package but still skips optional dependencies built for other platforms. pnpm v11 behaved as if this setting were true; prefer supportedArchitectures to install optional dependencies for other platforms on purpose. Added in pnpm v12.7.0.
+   */
+  forceIgnoresPlatform?: boolean;
   executionEnv?: {
     /**
      * Specifies which exact Node.js version should be used for the project's runtime.
@@ -304,6 +304,10 @@ export interface PnpmWorkspaceSpecification {
    * When set to false, pnpm won't read or generate a pnpm-lock.yaml file.
    */
   lockfile?: boolean;
+  /**
+   * When true, installation fails if the lockfile is missing or needs to be updated.
+   */
+  frozenLockfile?: boolean;
   /**
    * When set to true and the available pnpm-lock.yaml satisfies the package.json dependencies directive, a headless installation is performed.
    */
@@ -429,6 +433,10 @@ export interface PnpmWorkspaceSpecification {
    */
   color?: 'always' | 'auto' | 'never';
   /**
+   * Controls whether dependency and download progress lines are printed during installation. When set to false (or --no-progress is passed), progress output is suppressed. Warnings, lifecycle script output, and the dependency summary are still printed. Added in pnpm v12.6.0.
+   */
+  progress?: boolean;
+  /**
    * Any logs at or higher than the given level will be shown.
    */
   loglevel?: 'debug' | 'info' | 'warn' | 'error';
@@ -522,7 +530,7 @@ export interface PnpmWorkspaceSpecification {
   /**
    * This setting allows the checking of the state of dependencies before running scripts.
    */
-  verifyDepsBeforeRun?: 'install' | 'warn' | 'error' | 'prompt' | false;
+  verifyDepsBeforeRun?: ('install' | 'warn' | 'error' | 'prompt') | false;
   /**
    * When strictDepBuilds is enabled, the installation will exit with a non-zero exit code if any dependencies have unreviewed build scripts (aka postinstall scripts).
    */
@@ -593,8 +601,61 @@ export interface PnpmWorkspaceSpecification {
            * A positive integer limiting how many instances of this named task may run across workspace projects at once. This limit is separate from workspaceConcurrency.
            */
           concurrency?: number;
+          /**
+           * Assigns this task to a named concurrency group whose machine-wide limit is configured under concurrencyGroups. Added in pnpm v12.5.0.
+           */
+          concurrencyGroup?: string;
+          /**
+           * Waiting tasks take available slots in order of descending priority, with higher values running first. Ties are broken by arrival order. Added in pnpm v12.6.0.
+           */
+          priority?: number;
+          /**
+           * Globs, relative to the project directory, naming the files the task produces. Their presence makes the task cacheable by `pnpm pipeline`; declaring `outputs: []` states the task produces no files. Read by pnpm pipeline only.
+           */
+          outputs?: string[];
+          /**
+           * Globs narrowing what goes into the task's cache key. Without it, every tracked file of the project counts. An entry prefixed with `+` adds to that default instead of replacing it. Read by pnpm pipeline only.
+           */
+          inputs?: string[];
+          /**
+           * Environment variable names whose values take part in the task's cache key. The values are hashed, never stored. Read by pnpm pipeline only.
+           */
+          env?: string[];
+          /**
+           * Set to false to opt a task with declared outputs back out of the `pnpm pipeline` cache. Read by pnpm pipeline only.
+           */
+          cache?: boolean;
+          /**
+           * Points Cargo's target and build directories at this path so a Cargo task keeps its local build state between runs and between git worktrees. The directory must be relative to the project and ignored by git. Read by pnpm pipeline only.
+           */
+          cargoTargetDir?: string;
         }
       | undefined;
+  };
+  /**
+   * Machine-wide concurrency limits for named groups of tasks (assigned via `tasks.<name>.concurrencyGroup`). At most the given number of tasks in a group run at once across pnpm processes sharing the same stateDir, including pnpm pipeline. A missing or zero group limit does not restrict execution. Added in pnpm v12.5.0.
+   */
+  concurrencyGroups?: {
+    [k: string]: number | undefined;
+  };
+  /**
+   * Named sets of task names, keyed by pipeline name, run by `pnpm pipeline [name]`. A pipeline is a set, not a sequence: the order in which its tasks run comes from `tasks.<name>.dependsOn`. The pipeline named `default` runs when no name is given. Added in pnpm v12.4.0 (experimental, pnpm v12 only).
+   */
+  pipelines?: {
+    [k: string]: string[] | undefined;
+  };
+  /**
+   * The git ref the affected selection of `pnpm pipeline` resolves its merge base against. Overridden by the `--base <ref>` option.
+   */
+  pipelineBase?: string;
+  /**
+   * Cargo (Rust) dependencies support: when enabled, `pnpm install` resolves and installs the workspace's Cargo dependencies next to the npm packages. Multi-ecosystem support is experimental. Added in: v12.4.0 (pnpm v12 only).
+   */
+  cargo?: {
+    /**
+     * Whether pnpm install resolves and installs the workspace's Cargo dependencies.
+     */
+    enabled?: boolean;
   };
   /**
    * If true, pnpm will fail if no packages match the filter
@@ -608,6 +669,10 @@ export interface PnpmWorkspaceSpecification {
    * Configure how versions of packages installed to a package.json file get prefixed.
    */
   savePrefix?: '^' | '~' | '' | '=';
+  /**
+   * When set to true, pnpm add saves available @types/* packages in devDependencies alongside registry dependencies. Packages that declare bundled TypeScript types are skipped. Added in pnpm v12.6.0.
+   */
+  saveTypes?: boolean;
   /**
    * If you pnpm add a package and you don't provide a specific version, then it will install the package at the version registered under the tag from this setting.
    */
@@ -649,6 +714,19 @@ export interface PnpmWorkspaceSpecification {
    */
   ci?: boolean;
   /**
+   * On macOS, exclude newly created pnpm directories from Time Machine backups by marking them with the com.apple.metadata:com_apple_backup_excludeItem extended attribute. Read from the global configuration file or the PNPM_CONFIG_MACOS_BACKUP_* environment variables; ignored in project pnpm-workspace.yaml files. Added in pnpm v12.6.0.
+   */
+  macosBackup?: {
+    /**
+     * When true on macOS, newly created node_modules, virtual-store, and similar directories are marked so Time Machine skips them.
+     */
+    excludeModulesDir?: boolean;
+    /**
+     * When true on macOS, newly created package-store directories are marked so Time Machine skips them.
+     */
+    excludeStoreDir?: boolean;
+  };
+  /**
    * Create symlinks to executables in node_modules/.bin instead of command shims. This setting is ignored on Windows, where only command shims work.
    */
   preferSymlinkedExecutables?: boolean;
@@ -673,6 +751,10 @@ export interface PnpmWorkspaceSpecification {
    */
   deployAllFiles?: boolean;
   /**
+   * When set to true, pnpm install and pnpm add deduplicate compatible dependency versions during installation. If a dependency appears at multiple versions and one version satisfies every range in the workspace, pnpm picks that version for all of them. Frozen installs (--frozen-lockfile) leave the lockfile unchanged; deduplication only runs when the lockfile is being written. Added in pnpm v12.6.0.
+   */
+  autoDedupe?: boolean;
+  /**
    * When set to true, dependencies that are already symlinked to the root node_modules directory of the workspace will not be symlinked to subproject node_modules directories.
    */
   dedupeDirectDeps?: boolean;
@@ -696,6 +778,10 @@ export interface PnpmWorkspaceSpecification {
    * The primary branch of the repository which is used for publishing the latest changes.
    */
   publishBranch?: string;
+  /**
+   * After uploading a package, wait up to this many milliseconds for the published version and its tarball to become available from the registry. If they are not available in time, the command fails. 0 disables the check. When publishing recursively, pnpm confirms that a package is available before it publishes the packages that depend on it. Added in pnpm v12.7.0.
+   */
+  publishWaitTimeout?: number;
   /**
    * Versioning settings for pnpm's native workspace release management, used by `pnpm change` and recursive `pnpm version`.
    */
@@ -860,6 +946,10 @@ export interface PnpmWorkspaceSpecification {
                */
               prefix?: string;
               /**
+               * The package ecosystem this registry serves. Set to `cargo` to declare a custom Cargo sparse index (since pnpm v12.5.0); only one Cargo index may be declared. Without a declaration, pnpm uses https://index.crates.io.
+               */
+              ecosystem?: 'cargo';
+              /**
                * The software serving this registry: `npm` behaves like registry.npmjs.org, which serves a scoped package from the percent-encoded path as well as the unencoded one; `artifactory` repeats the scope in a scoped package's tarball filename.
                */
               serverType?: 'npm' | 'artifactory';
@@ -911,21 +1001,21 @@ export interface PnpmWorkspaceSpecification {
   hoistingLimits?: 'none' | 'workspaces' | 'dependencies';
 }
 /**
+ * Dependencies are specified with a simple hash of package name to version range.
+ * The version range is a string which has one or more space-separated descriptors.
+ * Dependencies can also be identified with a tarball or git URL.
+ *
+ */
+export interface Dependency {
+  [k: string]: string | undefined;
+}
+/**
  * Define dependency version ranges as reusable constants,
  * for later reference in package.json files.
  * This (singular) field creates a catalog named default.
  *
  */
 export interface Catalog {
-  [k: string]: string | undefined;
-}
-/**
- * Dependencies are specified with a simple hash of package name to version range.
- * The version range is a string which has one or more space-separated descriptors.
- * Dependencies can also be identified with a tarball or git URL.
- *
- */
-export interface Dependency1 {
   [k: string]: string | undefined;
 }
 /**

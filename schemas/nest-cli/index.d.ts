@@ -1,14 +1,6 @@
 /* eslint-disable */
 
-export type PluginItems = {
-  /**
-   * The npm package name of the cli plugin, eg @nestjs/swagger.
-   */
-  name?: string;
-  options?: PluginOptions | GraphQLPluginOptions | SwaggerPluginOptions;
-  [k: string]: unknown | undefined;
-} & PluginItems1;
-export type PluginItems1 =
+export type PluginItems =
   | string
   | {
       /**
@@ -21,25 +13,7 @@ export type PluginItems1 =
 /**
  * For finer control, the element can be object.
  */
-export type AssetsOptions = {
-  /**
-   * Glob-like file specifications for the assets to be distributed.
-   */
-  include?: string;
-  /**
-   * Glob-like file specifications for the assets to be excluded from the include list.
-   */
-  exclude?: string;
-  /**
-   * A string specifying the path (relative to the root folder) where the assets should be distributed. Defaults to the same output directory configured for compiler output.
-   */
-  outDir?: string;
-  /**
-   * If true, run in watch mode watching specified assets. Setting watchAssets in a top-level compilerOptions property overrides any watchAssets settings within the assets property.
-   */
-  watchAssets?: boolean;
-} & AssetsOptions1;
-export type AssetsOptions1 =
+export type AssetsOptions =
   | string
   | {
       /**
@@ -62,153 +36,7 @@ export type AssetsOptions1 =
 /**
  * If the value is boolean, a value of true enables spec generation by default and a value of false disables it. A flag passed on the CLI command line overrides this setting, as does a project-specific generateOptions setting (more below). If the value is an object, each key represents a schematic name, and the boolean value determines whether the default spec generation is enabled / disabled for that specific schematic. See https://docs.nestjs.com/cli/monorepo#global-generate-options for details.
  */
-export type GenerateSpecOptions = {
-  /**
-   * Generate spec file for application schematics or not.
-   */
-  application?: boolean;
-  /**
-   * Disable spec file generation for class schematics.
-   */
-  class?: boolean;
-  /**
-   * Alias for class
-   */
-  cl?: boolean;
-  /**
-   * Generate spec file for configuration schematics or not.
-   */
-  configuration?: boolean;
-  /**
-   * Alias for configuration
-   */
-  config?: boolean;
-  /**
-   * Generate spec file for controller schematics or not.
-   */
-  controller?: boolean;
-  /**
-   * Alias for controller
-   */
-  co?: boolean;
-  /**
-   * Generate spec file for decorator schematics or not.
-   */
-  decorator?: boolean;
-  /**
-   * Alias for decorator
-   */
-  d?: boolean;
-  /**
-   * Generate spec file for filter schematics or not.
-   */
-  filter?: boolean;
-  /**
-   * Alias for filter
-   */
-  f?: boolean;
-  /**
-   * Generate spec file for gateway schematics or not.
-   */
-  gateway?: boolean;
-  /**
-   * Alias for gateway
-   */
-  ga?: boolean;
-  /**
-   * Generate spec file for guard schematics or not.
-   */
-  guard?: boolean;
-  /**
-   * Alias for guard
-   */
-  gu?: boolean;
-  /**
-   * Generate spec file for interceptor schematics or not.
-   */
-  interceptor?: boolean;
-  /**
-   * Alias for interceptor
-   */
-  in?: boolean;
-  /**
-   * Generate spec file for interface schematics or not.
-   */
-  interface?: boolean;
-  /**
-   * Generate spec file for middleware schematics or not.
-   */
-  middleware?: boolean;
-  /**
-   * Alias for middleware
-   */
-  mi?: boolean;
-  /**
-   * Generate spec file for module schematics or not.
-   */
-  module?: boolean;
-  /**
-   * Alias for module
-   */
-  mo?: boolean;
-  /**
-   * Generate spec file for pipe schematics or not.
-   */
-  pipe?: boolean;
-  /**
-   * Alias for pipe
-   */
-  pi?: boolean;
-  /**
-   * Generate spec file for provider schematics or not.
-   */
-  provider?: boolean;
-  /**
-   * Alias for provider
-   */
-  pr?: boolean;
-  /**
-   * Generate spec file for resolver schematics or not.
-   */
-  resolver?: boolean;
-  /**
-   * Alias for resolver
-   */
-  r?: boolean;
-  /**
-   * Generate spec file for service schematics or not.
-   */
-  service?: boolean;
-  /**
-   * Alias for resolver
-   */
-  s?: boolean;
-  /**
-   * Generate spec file for library schematics or not.
-   */
-  library?: boolean;
-  /**
-   * Alias for library
-   */
-  lib?: boolean;
-  /**
-   * Generate spec file for sub-app schematics or not.
-   */
-  'sub-app'?: boolean;
-  /**
-   * Alias for sub-app
-   */
-  app?: boolean;
-  /**
-   * Generate spec file for resource schematics or not.
-   */
-  resource?: boolean;
-  /**
-   * Alias for resource
-   */
-  res?: boolean;
-} & GenerateSpecOptions1;
-export type GenerateSpecOptions1 =
+export type GenerateSpecOptions =
   | boolean
   | {
       /**
@@ -407,12 +235,12 @@ export interface CompilerOptions {
    */
   tsConfigPath?: string;
   builder?:
-    | ('tsc' | 'webpack' | 'swc')
+    | ('tsc' | 'webpack' | 'swc' | 'rspack')
     | {
         /**
-         * Builder to be used (tsc, webpack, swc). For details on how to configure `SWC` see https://docs.nestjs.com/recipes/swc#getting-started
+         * Builder to be used (tsc, webpack, swc, rspack). For details on how to configure `SWC` see https://docs.nestjs.com/recipes/swc#getting-started
          */
-        type?: 'tsc' | 'webpack' | 'swc';
+        type?: 'tsc' | 'webpack' | 'swc' | 'rspack';
         options?: {
           /**
            * The directory to output files.
@@ -450,6 +278,10 @@ export interface CompilerOptions {
            * Path to SWC config file to use.
            */
           swcrcPath?: string;
+          /**
+           * Path to the builder config file (e.g. webpack.config.js or rspack.config.js) when using webpack or rspack builders.
+           */
+          configPath?: string;
           [k: string]: unknown | undefined;
         };
         [k: string]: unknown | undefined;
