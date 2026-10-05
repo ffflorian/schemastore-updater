@@ -79,8 +79,6 @@ export interface HttpsAkaMsWingetManifestLocale100SchemaJson {
   Moniker?: string | null;
   /**
    * List of additional package search terms
-   *
-   * @maxItems 16
    */
   Tags?:
     | []

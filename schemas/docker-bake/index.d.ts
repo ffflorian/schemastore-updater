@@ -64,7 +64,7 @@ export interface Target {
    * You can set args attributes to use null values. Doing so forces the target to use the ARG value specified in the Dockerfile.
    */
   args?: {
-    [k: string]: (string | null) | undefined;
+    [k: string]: string | null | undefined;
   };
   /**
    * The annotations attribute lets you add annotations to images built with bake. The key takes a list of annotations, in the format of KEY=VALUE.
@@ -111,7 +111,7 @@ export interface Target {
    * t's possible to use a null value for labels. If you do, the builder uses the label value specified in the Dockerfile.
    */
   labels?: {
-    [k: string]: (string | null) | undefined;
+    [k: string]: string | null | undefined;
   };
   /**
    * A matrix strategy lets you fork a single target into multiple different variants, based on parameters that you specify. This works in a similar way to [Matrix strategies for GitHub Actions]. You can use this to reduce duplication in your bake definition.

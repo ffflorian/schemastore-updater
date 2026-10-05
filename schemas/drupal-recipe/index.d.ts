@@ -69,27 +69,36 @@ export interface NewRecipe {
  * The key is the configuration provider and the value is the list of configuration names.
  */
 export interface AListOfConfigurationsToBeInstalled {
-  [k: string]: (string | string[]) | undefined;
+  [k: string]: string | string[] | undefined;
 }
 /**
  * The key is the configuration object targeted and the value is the action to be performed. For each action additional properties can be provided.
  */
 export interface KeyValue {
   [k: string]:
+    | BlockBlock
+    | FormDisplay
+    | FormDisplay1
+    | ContactForm
+    | EditorEditor
+    | FieldField
+    | FieldStorage
+    | WorkflowsWorkflow
+    | UserRole
     | {
-        set?: Set1;
+        set?: Set;
         setMultiple?: SetMultiple;
         /**
          * Creates a clone of any config entity with a new ID.
          */
         cloneAs?: string;
-        create?: Create1;
-        createIfNotExists?: CreateIfNotExists1;
-        createForEach?: CreateForEach1;
-        createForEachIfNotExists?: CreateForEachIfNotExists1;
-        setThirdPartySetting?: SetThirdPartySetting1;
+        create?: Create;
+        createIfNotExists?: CreateIfNotExists;
+        createForEach?: CreateForEach;
+        createForEachIfNotExists?: CreateForEachIfNotExists;
+        setThirdPartySetting?: SetThirdPartySetting;
         setThirdPartySettings?: SetThirdPartySettings;
-        simpleConfigUpdate?: SimpleConfigUpdate1;
+        simpleConfigUpdate?: SimpleConfigUpdate;
         [k: string]: unknown | undefined;
       }
     | undefined;
@@ -475,6 +484,8 @@ export interface FieldStorage {
 export interface WorkflowsWorkflow {
   /**
    * If you have an entity type or entity bundle that you want to add to a content moderation workflow, you can use config actions.
+   *
+   * Items: Opt only certain content types into moderation.
    */
   addNodeTypes?: [] | [string];
   /**
@@ -506,6 +517,8 @@ export interface UserRole {
   grantPermission?: string;
   /**
    * Add multiple roles.
+   *
+   * Items: Used to add permissions to user roles.
    */
   grantPermissions?: [] | [string];
   /**
@@ -533,66 +546,4 @@ export interface UserRole {
   setThirdPartySetting?: SetThirdPartySetting;
   setThirdPartySettings?: SetThirdPartySettings;
   simpleConfigUpdate?: SimpleConfigUpdate;
-}
-/**
- * Changes a property of a config entity. This is a pretty low-level method and should generally only be used if no dedicated method exists. Works on all config entities.
- */
-export interface Set1 {
-  /**
-   * The property name i.e. label
-   */
-  property_name: string;
-  /**
-   * The property value i.e. Logged-in user
-   */
-  value: string | number | boolean | unknown[];
-  [k: string]: unknown | undefined;
-}
-/**
- * Creates a config entity.
- */
-export interface Create1 {
-  [k: string]: unknown | undefined;
-}
-/**
- * Creates a config entity if it does not exist. Existence is determined by it having the same ID.
- */
-export interface CreateIfNotExists1 {
-  [k: string]: unknown | undefined;
-}
-/**
- * Loop over bundle config entities to create other config entities that are coupled to those bundles.
- */
-export interface CreateForEach1 {
-  [k: string]: unknown | undefined;
-}
-/**
- * Extends createForEach, to create only when it doesn't exist.
- */
-export interface CreateForEachIfNotExists1 {
-  [k: string]: unknown | undefined;
-}
-/**
- * Set third-party settings values for any config entity that can carry third-party settings.
- */
-export interface SetThirdPartySetting1 {
-  /**
-   * The module name
-   */
-  module: string;
-  /**
-   * The key i.e. enabled
-   */
-  key: string;
-  /**
-   * The property value i.e. true
-   */
-  value: string | number | boolean | unknown[];
-  [k: string]: unknown | undefined;
-}
-/**
- * Used to make updates to any configuration value.
- */
-export interface SimpleConfigUpdate1 {
-  [k: string]: unknown | undefined;
 }

@@ -100,7 +100,7 @@ export interface JSONSchemaForASPNETProjectJsonFiles {
    */
   repository?: {
     type?: 'git';
-    [k: string]: string | undefined;
+    [k: string]: string | 'git' | undefined;
   };
   /**
    * Glob pattern to indicate all the files that need to be compiled as resources.
@@ -146,14 +146,12 @@ export interface CompilationOptions {
 }
 export interface Dependencies {
   [k: string]:
-    | (
-        | string
-        | {
-            version?: string;
-            type?: 'default' | 'build';
-            [k: string]: unknown | undefined;
-          }
-      )
+    | string
+    | {
+        version?: string;
+        type?: 'default' | 'build';
+        [k: string]: unknown | undefined;
+      }
     | undefined;
 }
 export interface ConfigType {

@@ -45,9 +45,6 @@ export interface HttpsJsonSchemastoreOrgBitriseStepJson {
   asset_urls?: {
     /**
      * A URL pointing to a Step asset such as an icon image.
-     *
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
      */
     [k: string]: string | undefined;
   };
@@ -103,15 +100,7 @@ export interface HttpsJsonSchemastoreOrgBitriseStepJson {
    * Additional metadata related to the Step.
    */
   meta?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]:
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
+    [k: string]: unknown | undefined;
   };
   /**
    * The execution container for this Step. The Step runs inside the specified Docker container.
@@ -131,15 +120,7 @@ export interface HttpsJsonSchemastoreOrgBitriseStepJson {
    * Items: An input parameter of the Step.
    */
   inputs?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]:
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * The outputs the Step generates.
@@ -147,15 +128,7 @@ export interface HttpsJsonSchemastoreOrgBitriseStepJson {
    * Items: An output parameter of the Step.
    */
   outputs?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]:
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
+    [k: string]: unknown | undefined;
   }[];
   /**
    * Platform-specific executable binaries
@@ -266,9 +239,6 @@ export interface CheckOnlyDepModel {
 }
 /**
  * Additional configuration for a container reference.
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` ".*".
  */
 export interface ContainerReferenceConfigModel {
   /**
