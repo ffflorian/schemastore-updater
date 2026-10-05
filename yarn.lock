@@ -354,14 +354,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/oxlint-config@npm:1.0.9":
-  version: 1.0.9
-  resolution: "@ffflorian/oxlint-config@npm:1.0.9"
+"@ffflorian/oxlint-config@npm:1.0.10":
+  version: 1.0.10
+  resolution: "@ffflorian/oxlint-config@npm:1.0.10"
   peerDependencies:
     eslint: ">=10.8.0"
     eslint-plugin-perfectionist: ">=5.10.0"
     oxlint: ">=1.76.0"
-  checksum: 10c0/708f7733b4d2cbb7076c8ba23156cf1016ffdc3b94e3221cc55dbb0ca8a392f766cf513c7954f1fbae8fb4f622bb32acb62b03cdf0f5285c8fbaf1d9e4620d8a
+  checksum: 10c0/7d02dab481b0a6eb75d32955d186d264ba2e5463e4f8ceec476b8cce0dc702f521afe84629b6ef16543620db2457339bc0638417c4c9eb3e324503da233f9440
   languageName: node
   linkType: hard
 
@@ -5297,7 +5297,7 @@ __metadata:
   resolution: "schemastore-updater@workspace:."
   dependencies:
     "@ffflorian/oxfmt-config": "npm:1.3.0"
-    "@ffflorian/oxlint-config": "npm:1.0.9"
+    "@ffflorian/oxlint-config": "npm:1.0.10"
     "@semantic-release/changelog": "npm:7.0.0"
     "@semantic-release/git": "npm:11.0.1"
     "@types/node": "npm:~26"
