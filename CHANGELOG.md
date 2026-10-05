@@ -1,3 +1,10 @@
+## [3.8.12](https://github.com/ffflorian/schemastore-updater/compare/v3.8.11...v3.8.12) (2026-10-05)
+
+
+### Bug Fixes
+
+* **deps:** bump http-cache-semantics ([#1681](https://github.com/ffflorian/schemastore-updater/issues/1681)) ([7b99f90](https://github.com/ffflorian/schemastore-updater/commit/7b99f90c92a26b6fbd66372c1272473f0d7181bd))
+
 ## [3.8.11](https://github.com/ffflorian/schemastore-updater/compare/v3.8.10...v3.8.11) (2026-10-02)
 
 
