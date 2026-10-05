@@ -216,7 +216,7 @@ export interface RevolaConfiguration {
    * Shell commands to run at various lifecycle stages. Each key is a lifecycle hook name and the value is the command(s) to run.
    */
   hooks?: {
-    [k: string]: (string | [string, ...string[]]) | undefined;
+    [k: string]: string | [string, ...string[]] | undefined;
   };
   /**
    * Defines plugins where each key is a plugin name and the value is its configuration object.

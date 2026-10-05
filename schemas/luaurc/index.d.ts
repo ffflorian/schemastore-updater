@@ -10,7 +10,7 @@ export interface HttpsJsonSchemastoreOrgLuaurcJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^(?!\.{1,2}$)(?!.*\/)[a-zA-Z0-9\-\._]+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   lint?: {
     '*'?: boolean;

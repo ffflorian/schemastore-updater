@@ -70,65 +70,7 @@ export interface OverridesDefinition {
      * Exclude these files from this override.
      */
     excludeFiles?: string | string[];
-    options?: OptionsDefinition1;
+    options?: OptionsDefinition;
   }[];
-  [k: string]: unknown | undefined;
-}
-/**
- * The options to apply for this override.
- */
-export interface OptionsDefinition1 {
-  /**
-   * Include parentheses around a sole arrow function parameter.
-   */
-  arrowParens?: 'avoid' | 'always';
-  /**
-   * Print spaces between brackets in object literals.
-   */
-  bracketSpacing?: boolean;
-  /**
-   * Insert @format pragma into file's first docblock comment.
-   */
-  insertPragma?: boolean;
-  /**
-   * Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line.
-   */
-  jsxBracketSameLine?: boolean;
-  /**
-   * Specify which parser to use.
-   */
-  parser?: 'babylon' | 'flow' | 'typescript' | 'postcss' | 'json' | 'graphql' | 'markdown';
-  /**
-   * Specify the line length that the printer will wrap on.
-   */
-  printWidth?: number;
-  /**
-   * How to wrap prose.
-   */
-  proseWrap?: 'always' | 'never' | 'preserve';
-  /**
-   * Require either '@prettier' or '@format' to be present in the file's first docblock comment in order for it to be formatted.
-   */
-  requirePragma?: boolean;
-  /**
-   * Print semicolons at the ends of statements.
-   */
-  semi?: boolean;
-  /**
-   * Use single quotes instead of double quotes.
-   */
-  singleQuote?: boolean;
-  /**
-   * Specify the number of spaces per indentation-level.
-   */
-  tabWidth?: number;
-  /**
-   * Print trailing commas wherever possible.
-   */
-  trailingComma?: 'none' | 'all' | 'es5';
-  /**
-   * Indent lines with tabs instead of spaces.
-   */
-  useTabs?: boolean;
   [k: string]: unknown | undefined;
 }

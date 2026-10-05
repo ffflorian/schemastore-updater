@@ -128,11 +128,148 @@ export type CloudflareWorkers = {
 /**
  * The key should be camelCased.
  */
-export type TheKeyWhichYourOptionWillBeDefinedUnder =
+export type TheKeyWhichYourOptionWillBeDefinedUnder = {
+  [k: string]: unknown | undefined;
+} & {
+  title?: TheTitleRelatedToYourFormField;
+  description?: TheDescriptionWhichAppearsNextToYourFormField;
+  helpvalue?: ExtraInstructionsOrContextToTheInstallProcess;
+  services?: ServiceAlias;
+  showIf?: ConditionallyShowAField;
+  required?: RequireField;
+  enum?: DeclareAListOfValuesToSelectFrom;
+  enumNames?: DeclareHumanReadableNames;
+  order: TheOrderTheOptionAppearsInTheInstallForm;
+  properties?: AnObjectContainingYourAppSInstallOptions;
+  maxItems?: SpecifyTheMaxNumberOfEntriesInAnArrayObject;
+  minimum?: TheMinimumNumberAllowedInTheField;
+  maximum?: TheMaximumNumberAllowedInTheField;
+  step?: DeclareTheIncrementOfASliderUsedWithTypeNumberFormatSlider;
+  products?: LimitThisOptionToASetOfEligibleProducts;
+  units?: DeclareWhichUnitsTheInstallerCanChooseUsedWithTypeObjectFormatNumber;
+  type: DeclaresTheTypeThisOptionWillUseInYourAppSINSTALL_OPTIONSConstant;
+  placeholder?: AValueThatDescribesWhatShouldBeProvidedInTheFormField;
+  default?: ADefaultValueThatAppearsTheFormField;
+  format?: TheFormatYourInputWillAppearAsInTheInstallForm;
+  add?: AddItemButtonDeclaration;
+  items?: DeclarationsForEachItemInAnArray;
+  [k: string]: unknown | undefined;
+};
+/**
+ * Each word should be capitalized.
+ */
+export type TheTitleRelatedToYourFormField = string;
+/**
+ * This should be omitted unless the field needs further detail. Descriptions often pose a question e.g. "Where should the button appear on your site?"
+ * Supports sanitized HTML. External links should be used sparingly e.g.
+ * 	<a target="_blank" href="https://example.com">External Link</a>
+ */
+export type TheDescriptionWhichAppearsNextToYourFormField = string;
+/**
+ * Unlike every other option type, this doesn't collect any input nor set any value on the INSTALL_OPTIONS object.
+ * **This should be used sparingly.** If you believe your install option needs more context, consider separating the installation flow in to more steps, or move this content into the app configuration page "Additional Install Instructions" field.
+ */
+export type ExtraInstructionsOrContextToTheInstallProcess = string;
+/**
+ * An string alias defined in the Cloudflare service creator.
+ * https://www.cloudflare.com/apps/services/new
+ *
+ * @minItems 1
+ * @maxItems 1
+ */
+export type ServiceAlias = [string];
+/**
+ * The `showIf` property can accept a boolean option property key:
+ *
+ *
+ * 	"showIf": "optionName"
+ *
+ * An object with a property key, operator, and expected value can also be used for more complex matching:
+ * 	"showIf": {"optionName": {"op": "==", "value": "foo"}}
+ * The showIf property can also accept multiple criteria, all of which must be matched for the field to be visible.
+ * You can also use `showIf` to show options based on the current product the customer has elected to purchase:
+ * 	"showIf": {"INSTALL_PRODUCT.id": "business"}
+ */
+export type ConditionallyShowAField =
+  | string
   | {
-      [k: string]: unknown | undefined;
-    }
-  | undefined;
+      [k: string]: AStringMatchingAnotherDefinedOptionKeyOrINSTALL_PRODUCTId | undefined;
+    };
+export type JavaScriptOperator = '==' | '!=' | '<' | '>' | '<=' | '>=';
+export type ExpectedValue = string | number | null;
+export type RequireField = boolean;
+/**
+ * Presented as a <select> element with enum strings as <option>s.
+ * Declare "enumNames" for human-readable names
+ * Declare "format": "radios" for radio buttons.
+ */
+export type DeclareAListOfValuesToSelectFrom = string[];
+/**
+ * Note that JavaScript does **not** retain the order of keys in an object. This property must be added to ensure your options are rendered in the right order.
+ */
+export type TheOrderTheOptionAppearsInTheInstallForm = number;
+export type SpecifyTheMaxNumberOfEntriesInAnArrayObject = number;
+export type TheMinimumNumberAllowedInTheField = number;
+export type TheMaximumNumberAllowedInTheField = number;
+export type DeclareTheIncrementOfASliderUsedWithTypeNumberFormatSlider = number;
+/**
+ * Most option types can be limited to a set of eligible products with an array of qualifying product IDs:
+ * 	{"products": ["pro", "enterprise"]}
+ * Radio options can be limited to specific products with products. Much like `enumNames`, each key in the object is a string from the enum array. However the value is an array containing a string `productId` for each eligible product:
+ * 	"{enumNames":{
+ * 	"announcement": "Just show a message",
+ * 	"cta": "Redirect them to a special page",
+ * 	"signup": "Gather emails to sign visitors up for your newsletter"
+ * 	},
+ * 	"products": {
+ * 	"cta": ["plus", "pro"],
+ * 	"signup": ["pro"]
+ * 	}
+ */
+export type LimitThisOptionToASetOfEligibleProducts =
+  | AnArrayContainingAProductIdForEachEligibleProduct[]
+  | {
+      [k: string]: unknown[] | undefined;
+    };
+export type AnArrayContainingAProductIdForEachEligibleProduct = string;
+/**
+ * Presented as a floating-point number input and unit selector. This is useful when a customer has to set a specific size on an element.
+ */
+export type DeclareWhichUnitsTheInstallerCanChooseUsedWithTypeObjectFormatNumber = string[];
+export type DeclaresTheTypeThisOptionWillUseInYourAppSINSTALL_OPTIONSConstant =
+  'array' | 'boolean' | 'help' | 'hidden' | 'integer' | 'number' | 'object' | 'string';
+/**
+ * Many developers duplicate the placeholder content as a default text in their app. This allows customers to always have sane default labels that can be overridden for localization. If this proves cumbersome, we recommend importing the install.json contents into your app JavaScript with Webpack.
+ */
+export type AValueThatDescribesWhatShouldBeProvidedInTheFormField = string;
+/**
+ * Used with the "selector" and "element" formats.
+ */
+export type CSSSelectorMatchingAnElementOnThePage = string;
+/**
+ * `INSTALL` provides a method, `createElement`, which can turn this resulting object into a new element on the page in the specified location. To use it, pass the value of the element option into the method.
+ */
+export type TheInsertionStrategyUsedByINSTALLCreateElementOptionNamePreviousElement =
+  'before' | 'after' | 'prepend' | 'replace';
+export type TheFormatYourInputWillAppearAsInTheInstallForm =
+  | 'account'
+  | 'code'
+  | 'color'
+  | 'date-time'
+  | 'date'
+  | 'element'
+  | 'email'
+  | 'image'
+  | 'number'
+  | 'page'
+  | 'radios'
+  | 'richtext'
+  | 'selector'
+  | 'slider'
+  | 'textarea'
+  | 'time'
+  | 'url';
+export type ButtonLabel = string;
 
 export interface JSONSchemaForConfiguringCloudflareAppsInstallJsonFiles {
   resources?: FilesIncludedInYourAppToBeInsertedOntoHTMLPages;
@@ -177,4 +314,38 @@ export interface AParentObjectContainingYourAppSInstallOptions {
  */
 export interface AnObjectContainingYourAppSInstallOptions {
   [k: string]: TheKeyWhichYourOptionWillBeDefinedUnder | undefined;
+}
+export interface AStringMatchingAnotherDefinedOptionKeyOrINSTALL_PRODUCTId {
+  op?: JavaScriptOperator;
+  value?: ExpectedValue;
+}
+/**
+ * Used with "enum"
+ */
+export interface DeclareHumanReadableNames {
+  [k: string]: string | undefined;
+}
+/**
+ * Ensure that your app renders correctly without the default value. Alternatively, use a "placeholder" property.
+ */
+export interface ADefaultValueThatAppearsTheFormField {
+  selector?: CSSSelectorMatchingAnElementOnThePage;
+  method?: TheInsertionStrategyUsedByINSTALLCreateElementOptionNamePreviousElement;
+  [k: string]: unknown | undefined;
+}
+export interface AddItemButtonDeclaration {
+  description?: ModalDescription;
+  properties?: AnObjectContainingYourAppSInstallOptions;
+  buttonLabel?: ButtonLabel;
+  [k: string]: unknown | undefined;
+}
+export interface ModalDescription {
+  [k: string]: unknown | undefined;
+}
+/**
+ * Used with {"type": "array"}. Must have "properties" key.
+ */
+export interface DeclarationsForEachItemInAnArray {
+  properties?: AnObjectContainingYourAppSInstallOptions;
+  [k: string]: unknown | undefined;
 }

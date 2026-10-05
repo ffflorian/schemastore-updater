@@ -14,6 +14,6 @@ export interface HttpsJsonSchemastoreOrgPartialRepoReviewJson {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^[A-Z]+[0-9]*$".
          */
-        [k: string]: string;
+        [k: string]: string | undefined;
       };
 }

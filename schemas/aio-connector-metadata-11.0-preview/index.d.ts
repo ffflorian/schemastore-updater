@@ -18,16 +18,16 @@ export type CoreSchemaMetaSchema =
       minimum?: number;
       exclusiveMinimum?: number;
       maxLength?: number;
-      minLength?: number & number;
+      minLength?: number;
       pattern?: string;
       additionalItems?: CoreSchemaMetaSchema;
       items?: CoreSchemaMetaSchema | SchemaArray;
       maxItems?: number;
-      minItems?: number & number;
+      minItems?: number;
       uniqueItems?: boolean;
       contains?: CoreSchemaMetaSchema;
       maxProperties?: number;
-      minProperties?: number & number;
+      minProperties?: number;
       required?: StringArray;
       additionalProperties?: CoreSchemaMetaSchema;
       definitions?: {
@@ -330,7 +330,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
         events?: {
           limits: ModelLimits;
           eventConfigurationSchema?: CoreSchemaMetaSchema;
-          alternativeTypeName?: AlternativeTypeName1;
+          alternativeTypeName?: AlternativeTypeName;
           /**
            * Describes if this connector expects these fields to be provided in the event definition when deploying the connector. Also describes the expected shape of these values if they are supported.
            */
@@ -353,7 +353,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
           };
           [k: string]: unknown | undefined;
         };
-        alternativeTypeName?: AlternativeTypeName2;
+        alternativeTypeName?: AlternativeTypeName;
         eventGroupConfigurationSchema?: CoreSchemaMetaSchema;
         /**
          * Describes if this connector expects these fields to be provided in the event definition when deploying the connector. Also describes the expected shape of these values if they are supported.
@@ -375,7 +375,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
         dataPoints?: {
           limits?: ModelLimits;
           dataPointConfigurationSchema?: CoreSchemaMetaSchema;
-          alternativeTypeName?: AlternativeTypeName3;
+          alternativeTypeName?: AlternativeTypeName;
           /**
            * Describes if this connector expects these fields to be provided in the data point definition when deploying the connector. Also describes the expected shape of these values if they are supported.
            */
@@ -385,7 +385,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
           };
           [k: string]: unknown | undefined;
         };
-        alternativeTypeName?: AlternativeTypeName4;
+        alternativeTypeName?: AlternativeTypeName;
         /**
          * Describes if this connector expects these fields to be provided in the dataset definition when deploying the connector. Also describes the expected shape of these values if they are supported.
          */
@@ -414,14 +414,14 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
       managementGroups?: {
         limits: ModelLimits;
         managementGroupConfigurationSchema?: CoreSchemaMetaSchema;
-        alternativeTypeName?: AlternativeTypeName5;
+        alternativeTypeName?: AlternativeTypeName;
         /**
          * If present, this connector supports using management group actions.
          */
         managementGroupActions?: {
           limits: ModelLimits;
           actionConfigurationSchema?: CoreSchemaMetaSchema;
-          alternativeTypeName?: AlternativeTypeName6;
+          alternativeTypeName?: AlternativeTypeName;
           /**
            * Describes if this connector expects these fields to be provided in the management group action definition when deploying the connector. Also describes the expected shape of these values if they are supported.
            */
@@ -455,7 +455,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
       streams?: {
         limits: ModelLimits;
         streamConfigurationSchema?: CoreSchemaMetaSchema;
-        alternativeTypeName?: AlternativeTypeName7;
+        alternativeTypeName?: AlternativeTypeName;
         /**
          * Describes if this connector expects these fields to be provided in the stream definition when deploying the connector. Also describes the expected shape of these values if they are supported.
          */
@@ -517,7 +517,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
         events?: {
           limits: ModelLimits;
           eventConfigurationSchema?: CoreSchemaMetaSchema;
-          alternativeTypeName?: AlternativeTypeName1;
+          alternativeTypeName?: AlternativeTypeName;
           /**
            * Describes if this connector expects these fields to be provided in the event definition when deploying the connector. Also describes the expected shape of these values if they are supported.
            */
@@ -540,7 +540,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
           };
           [k: string]: unknown | undefined;
         };
-        alternativeTypeName?: AlternativeTypeName2;
+        alternativeTypeName?: AlternativeTypeName;
         eventGroupConfigurationSchema?: CoreSchemaMetaSchema;
         /**
          * Describes if this connector expects these fields to be provided in the event definition when deploying the connector. Also describes the expected shape of these values if they are supported.
@@ -562,7 +562,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
         dataPoints?: {
           limits?: ModelLimits;
           dataPointConfigurationSchema?: CoreSchemaMetaSchema;
-          alternativeTypeName?: AlternativeTypeName3;
+          alternativeTypeName?: AlternativeTypeName;
           /**
            * Describes if this connector expects these fields to be provided in the data point definition when deploying the connector. Also describes the expected shape of these values if they are supported.
            */
@@ -572,7 +572,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
           };
           [k: string]: unknown | undefined;
         };
-        alternativeTypeName?: AlternativeTypeName4;
+        alternativeTypeName?: AlternativeTypeName;
         /**
          * Describes if this connector expects these fields to be provided in the dataset definition when deploying the connector. Also describes the expected shape of these values if they are supported.
          */
@@ -601,14 +601,14 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
       managementGroups?: {
         limits: ModelLimits;
         managementGroupConfigurationSchema?: CoreSchemaMetaSchema;
-        alternativeTypeName?: AlternativeTypeName5;
+        alternativeTypeName?: AlternativeTypeName;
         /**
          * If present, this connector supports using management group actions.
          */
         managementGroupActions?: {
           limits: ModelLimits;
           actionConfigurationSchema?: CoreSchemaMetaSchema;
-          alternativeTypeName?: AlternativeTypeName6;
+          alternativeTypeName?: AlternativeTypeName;
           /**
            * Describes if this connector expects these fields to be provided in the management group action definition when deploying the connector. Also describes the expected shape of these values if they are supported.
            */
@@ -642,7 +642,7 @@ export interface JSONSchemaForAzureIoTOperationsConnectorMetadata110Preview {
       streams?: {
         limits: ModelLimits;
         streamConfigurationSchema?: CoreSchemaMetaSchema;
-        alternativeTypeName?: AlternativeTypeName7;
+        alternativeTypeName?: AlternativeTypeName;
         /**
          * Describes if this connector expects these fields to be provided in the stream definition when deploying the connector. Also describes the expected shape of these values if they are supported.
          */
@@ -759,19 +759,6 @@ export interface ModelLimits {
   minimum?: number;
 }
 /**
- * The alternative name to the type "event" within an event group
- */
-export interface AlternativeTypeName1 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
-}
-/**
  * The specific default values that will be used by the connector when publishing telemetry to the MQTT broker.
  */
 export interface MqttDestinationDefaults {
@@ -804,45 +791,6 @@ export interface StorageDestinationDefaults {
   path: string;
 }
 /**
- * The alternative name to the type "eventGroups" within an asset
- */
-export interface AlternativeTypeName2 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
-}
-/**
- * The alternative name to the type "dataPoints" within a dataset
- */
-export interface AlternativeTypeName3 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
-}
-/**
- * The alternative name to the type "datasets" within an asset
- */
-export interface AlternativeTypeName4 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
-}
-/**
  * The broker state store-specific default values that will be used by the connector if not otherwise specified.
  */
 export interface BrokerStateStoreDestinationDefaults {
@@ -851,43 +799,4 @@ export interface BrokerStateStoreDestinationDefaults {
    * The default broker state store key that will be published to. Values are allowed to contain deploy-time parameters like 'dss/{deviceName}/{inboundEndpointName}'.  The supported parameter tokens are: {deviceName}, {inboundEndpointName}, {assetName}, {datasetName}, {eventGroupName}, {eventName}, {streamName}, and {kubernetesNamespace}. Dataset/eventGroup/event/stream name tokens are only allowed if the configured destination is for a dataset/event/stream.
    */
   key: string;
-}
-/**
- * The alternative name to the type "managementGroups" within an asset
- */
-export interface AlternativeTypeName5 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
-}
-/**
- * The alternative name to the type "actions" within a management group
- */
-export interface AlternativeTypeName6 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
-}
-/**
- * The alternative name to the type "stream" within an asset
- */
-export interface AlternativeTypeName7 {
-  /**
-   * The singular form of the name of this type
-   */
-  singular: string;
-  /**
-   * The plural form of the name of this type
-   */
-  plural: string;
 }

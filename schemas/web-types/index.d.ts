@@ -40,7 +40,7 @@ export type CustomEnablementRules = string[];
  * This interface was referenced by `NameConversionRulesSingle`'s JSON-Schema definition
  * via the `patternProperty` "^/[^/\n\r]+/[^/\n\r]+$".
  *
- * This interface was referenced by `NameConversionRulesSingle1`'s JSON-Schema definition
+ * This interface was referenced by `NameConversionRulesSingle`'s JSON-Schema definition
  * via the `patternProperty` "^/[^/\n\r]+/[^/\n\r]+$".
  */
 export type NameConverter =
@@ -49,10 +49,10 @@ export type NameConverter =
  * This interface was referenced by `NameConversionRulesMultiple`'s JSON-Schema definition
  * via the `patternProperty` "^/[^/\n\r]+/[^/\n\r]+$".
  *
- * This interface was referenced by `NameConversionRulesMultiple1`'s JSON-Schema definition
+ * This interface was referenced by `NameConversionRulesMultiple`'s JSON-Schema definition
  * via the `patternProperty` "^/[^/\n\r]+/[^/\n\r]+$".
  *
- * This interface was referenced by `NameConversionRulesMultiple2`'s JSON-Schema definition
+ * This interface was referenced by `NameConversionRulesMultiple`'s JSON-Schema definition
  * via the `patternProperty` "^/[^/\n\r]+/[^/\n\r]+$".
  */
 export type NameConverters = NameConverter[];
@@ -175,7 +175,7 @@ export type NamePatternTemplate = [
  */
 export type ListReference = Reference | Reference[];
 /**
- * This interface was referenced by `Html1`'s JSON-Schema definition
+ * This interface was referenced by `Html`'s JSON-Schema definition
  * via the `patternProperty` "^(?!pattern|elements|attributes|events)$".
  *
  * This interface was referenced by `Html`'s JSON-Schema definition
@@ -228,7 +228,7 @@ export type CssGenericItem = BaseContribution & CssContributionsHost;
  * This interface was referenced by `Css`'s JSON-Schema definition
  * via the `patternProperty` "^(?!pattern|properties|pseudo-elements|pseudo-classes|functions|classes|parts)$".
  *
- * This interface was referenced by `Css1`'s JSON-Schema definition
+ * This interface was referenced by `Css`'s JSON-Schema definition
  * via the `patternProperty` "^(?!pattern|properties|pseudo-elements|pseudo-classes|functions|classes|parts)$".
  */
 export type GenericCssContributions = GenericCssContributionOrProperty | GenericCssContributionOrProperty[];
@@ -331,7 +331,7 @@ export interface JSONSchemaForWebTypes {
    */
   contributions?: {
     html?: Html;
-    css?: Css1;
+    css?: Css;
     js?: JsGlobal;
   };
 }
@@ -343,7 +343,7 @@ export interface FrameworkConfig {
   'disable-when'?: DisablementRules;
   'canonical-names'?: NameConversionRulesSingle;
   'match-names'?: NameConversionRulesMultiple;
-  'name-variants'?: NameConversionRulesMultiple1;
+  'name-variants'?: NameConversionRulesMultiple;
 }
 /**
  * Specify rules for enabling web framework support. Only one framework can be enabled in a particular file. If you need your contributions to be enabled in all files, regardless of the context, do not specify the framework.
@@ -401,12 +401,6 @@ export interface NameConversionRulesMultiple {
   [k: string]: NameConverters | undefined;
 }
 /**
- * Provide an array of name conversions, in which particular symbol kinds should be proposed in auto completion. Format of the 'name-variants' property names is '{namespace}/{symbol kind}'. All symbol kinds are by default provided as-is.
- */
-export interface NameConversionRulesMultiple1 {
-  [k: string]: NameConverters | undefined;
-}
-/**
  * Provide configuration for Web Types contexts. This allows to contribute additional Web Types for example if a particular library is present in the project.
  */
 export interface ContextsConfig {
@@ -417,52 +411,9 @@ export interface ContextKindConfig {
    * Context kind. Only a single context of the particular kind will be enabled. An example of context kind is framework, which has dedicated support in Web Types.
    */
   kind?: string;
-  'enable-when'?: EnablementRules1;
-  'disable-when'?: DisablementRules1;
-  [k: string]: ContextConfig | string | EnablementRules1 | DisablementRules1 | undefined;
-}
-/**
- * Specify rules for enabling web framework support. Only one framework can be enabled in a particular file. If you need your contributions to be enabled in all files, regardless of the context, do not specify the framework.
- */
-export interface EnablementRules1 {
-  /**
-   * Node.js package names, which enable framework support within the folder containing the package.json.
-   */
-  'node-packages'?: string[];
-  /**
-   * Since 2024.2. Ruby gem names, which enable framework support within the particular Ruby module.
-   */
-  'ruby-gems'?: string[];
-  /**
-   * Extensions of files, which should have the framework support enabled. Use this to support custom file extensions like '.vue' or '.svelte'. Never specify generic extensions like '.html', '.js' or '.ts'. If you need your contributions to be present in every file don't specify the framework at all
-   */
-  'file-extensions'?: string[];
-  /**
-   * RegExp patterns to match file names, which should have the framework support enabled. Use carefully as broken pattern may even freeze IDE.
-   */
-  'file-name-patterns'?: Pattern[];
-  /**
-   * Global JavaScript libraries names enabled within the IDE, which enable framework support in the whole project
-   */
-  'ide-libraries'?: string[];
-  /**
-   * List of tool executables (without extension), which presence should be checked in the project. In case of Node projects, such tools will be searched in node_modules/.bin/
-   */
-  'project-tool-executables'?: string[];
-  [k: string]: CustomEnablementRules | string[] | Pattern[] | undefined;
-}
-/**
- * Specify rules for disabling web framework support. These rules take precedence over enable-when rules. They allow to turn off framework support in case of some conflicts between frameworks priority.
- */
-export interface DisablementRules1 {
-  /**
-   * Extensions of files, which should have the framework support disabled
-   */
-  'file-extensions'?: string[];
-  /**
-   * RegExp patterns to match file names, which should have the framework support disabled
-   */
-  'file-name-patterns'?: Pattern[];
+  'enable-when'?: EnablementRules;
+  'disable-when'?: DisablementRules;
+  [k: string]: ContextConfig | string | EnablementRules | DisablementRules | undefined;
 }
 /**
  * Since 2024.2. Provide rules for setting a particular name for particular context kind. This allows to contribute additional Web Types for example if a particular library is present in the project.
@@ -524,7 +475,7 @@ export interface BaseContribution {
   extension?: Extension;
   extends?: Reference;
   pattern?: NamePatternRoot;
-  html?: Html1;
+  html?: Html;
   css?: Css;
   js?: Js;
   'exclusive-contributions'?: ExclusiveContributions;
@@ -551,35 +502,16 @@ export interface ReferenceNameConversion {
   /**
    * Override global canonical name conversion rule against which comparisons are made for the referenced symbols. When only rule name is specified, it applies to the symbols of the same kind as the last segment of the referenced path. Otherwise format of the property names is '{namespace}/{symbol kind}'. Supported by JetBrains IDEs since 2022.1.
    */
-  'canonical-names'?: NameConverter | NameConversionRulesSingle1;
+  'canonical-names'?: NameConverter | NameConversionRulesSingle;
   /**
    * Override global rules, by which referenced symbols should be matched against their canonical names. When only rule names are specified, they applies to the symbols of the same kind as the last segment of the referenced path. Otherwise format of the property names is '{namespace}/{symbol kind}'. Supported by JetBrains IDEs since 2022.1.
    */
-  'match-names'?: NameConverters | NameConversionRulesMultiple2;
+  'match-names'?: NameConverters | NameConversionRulesMultiple;
   /**
    * Override global rules, by which referenced symbol names should be proposed in auto completion. When only rule names are specified, they applies to the symbols of the same kind as the last segment of the referenced path. Otherwise format of the property names is '{namespace}/{symbol kind}'. Supported by JetBrains IDEs since 2022.1.
    */
-  'name-variants'?: NameConverters | NameConversionRulesMultiple2;
+  'name-variants'?: NameConverters | NameConversionRulesMultiple;
   [k: string]: unknown | undefined;
-}
-export interface NameConversionRulesSingle1 {
-  [k: string]: NameConverter | undefined;
-}
-export interface NameConversionRulesMultiple2 {
-  [k: string]: NameConverters | undefined;
-}
-/**
- * Contains contributions to HTML namespace. It's property names represent symbol kinds, its property values contain list of contributions of particular kind. There are 2 predefined kinds, which integrate directly with IDE - HTML elements and HTML attributes. There are also 2 deprecated kinds: tags (which is equivalent to 'elements') and 'events' (which was moved to JS namespace)
- */
-export interface Html1 {
-  'types-syntax'?: DeprecatedTypesSyntax;
-  'description-markup'?: DeprecatedDescriptionMarkup;
-  /**
-   * Deprecated, use `elements` property.
-   */
-  tags?: HtmlElement[];
-  [k: string]:
-    GenericHtmlContributions | DeprecatedTypesSyntax | DeprecatedDescriptionMarkup | HtmlElement[] | undefined;
 }
 /**
  * A generic contribution. All contributions are of this type, except for HTML attributes and elements, as well as predefined CSS contribution kinds.
@@ -737,37 +669,6 @@ export interface JsContributionsHost {
 export interface TypedContribution {
   type?: TypeList;
   [k: string]: unknown | undefined;
-}
-/**
- * Contains contributions to CSS namespace. It's property names represent symbol kinds, its property values contain list of contributions of particular kind. There are predefined kinds, which integrate directly with IDE - properties, classes, functions, pseudo-elements, pseudo-classes and parts.
- */
-export interface Css1 {
-  /**
-   * CSS properties
-   */
-  properties?: CssProperty[];
-  /**
-   * CSS pseudo-elements
-   */
-  'pseudo-elements'?: CssPseudoElement[];
-  /**
-   * CSS pseudo-classes
-   */
-  'pseudo-classes'?: CssPseudoClass[];
-  /**
-   * CSS functions
-   */
-  functions?: CssGenericItem[];
-  /**
-   * CSS classes
-   */
-  classes?: CssGenericItem[];
-  /**
-   * CSS parts
-   */
-  parts?: CssGenericItem[];
-  [k: string]:
-    GenericCssContributions | CssProperty[] | CssPseudoElement[] | CssPseudoClass[] | CssGenericItem[] | undefined;
 }
 /**
  * Contains contributions to JS namespace. It's property names represent symbol kinds, its property values contain list of contributions of particular kind. There are 2 predefined kinds, which integrate directly with IDE - properties and events, but only events can be contributed globally.

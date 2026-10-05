@@ -13,18 +13,7 @@ export interface HttpsJsonSchemastoreOrgPartialBlackJson {
    * Python versions that should be supported by Black's output. You should include all versions that your code supports. By default, Black will infer target versions from the project metadata in pyproject.toml. If this does not yield conclusive results, Black will use per-file auto-detection.
    */
   'target-version'?: (
-    | 'py33'
-    | 'py34'
-    | 'py35'
-    | 'py36'
-    | 'py37'
-    | 'py38'
-    | 'py39'
-    | 'py310'
-    | 'py311'
-    | 'py312'
-    | 'py313'
-    | 'py314'
+    'py33' | 'py34' | 'py35' | 'py36' | 'py37' | 'py38' | 'py39' | 'py310' | 'py311' | 'py312' | 'py313' | 'py314'
   )[];
   /**
    * Format all input files like typing stubs regardless of file extension. This is useful when piping source on standard input.

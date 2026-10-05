@@ -80,6 +80,8 @@ export type HttpsJsonSchemastoreOrgVectorJson = {
   };
   /**
    * All configured unit tests.
+   *
+   * Items: A unit test definition.
    */
   tests?: {
     input?: AUnitTestInput;
@@ -180,7 +182,7 @@ export type HttpsJsonSchemastoreOrgVectorJson = {
   latency_ewma_alpha?: TheAlphaValueForTheExponentialWeightedMovingAverageEWMAOfTransformLatencyMetrics;
   log_schema?: DefaultLogSchemaForAllEvents;
   metrics_storage_refresh_period?: TheIntervalInSecondsAtWhichTheInternalMetricsCacheForVRLIsRefreshedThisMustBeSetToBeAbleToAccessMetricsInVRLFunctions;
-  proxy?: ProxyConfiguration4;
+  proxy?: ProxyConfiguration;
   telemetry?: TelemetryOptions;
   timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
   wildcard_matching?: SetWildcardMatchingModeForInputs;
@@ -209,24 +211,23 @@ export type AListOfUpstreamSourceSourcesOrTransformTransformsIDs = string[];
  * condition. We don't recommend using a condition that uses only date range searches.
  */
 export type ConfigurationOptionsForAnEnrichmentTableHttpsVectorDevDocsReferenceGlossaryEnrichmentTablesToBeUsedInARemapHttpsVectorDevDocsReferenceConfigurationTransformsRemapTransformCurrentlySupportedAre =
-
-    | (VectorEnrichmentTablesFileFileConfig & {
-        /**
-         * Exposes data from a static file as an enrichment table.
-         */
-        type: 'file';
-        [k: string]: unknown | undefined;
-      })
-    | (VectorEnrichmentTablesMemoryConfigMemoryConfig & {
-        /**
-         * Exposes data from a memory cache as an enrichment table. The cache can be written to using
-         * a sink.
-         */
-        type: 'memory';
-        [k: string]: unknown | undefined;
-      })
-    | ExposesDataFromAMaxMindMaxmindGeoIP2Geoip2DatabaseAsAnEnrichmentTable
-    | ExposesDataFromAMaxMindMaxmindDatabaseAsAnEnrichmentTable;
+  | (VectorEnrichmentTablesFileFileConfig & {
+      /**
+       * Exposes data from a static file as an enrichment table.
+       */
+      type: 'file';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorEnrichmentTablesMemoryConfigMemoryConfig & {
+      /**
+       * Exposes data from a memory cache as an enrichment table. The cache can be written to using
+       * a sink.
+       */
+      type: 'memory';
+      [k: string]: unknown | undefined;
+    })
+  | ExposesDataFromAMaxMindMaxmindGeoIP2Geoip2DatabaseAsAnEnrichmentTable
+  | ExposesDataFromAMaxMindMaxmindDatabaseAsAnEnrichmentTable;
 /**
  * When set to `true`, the first row of the CSV file will be read as the header row, and
  * the values will be used for the names of each column. This is the default behavior.
@@ -258,8 +259,7 @@ export type DeterminesWhetherToIncludeTheKeyTagOnInternalMetrics = boolean;
  * By default, there is no size limit.
  */
 export type MaximumSizeOfTheTableInBytesAllInsertionsThatMakeThisTableBiggerThanTheMaximumSizeAreRejected =
-  | number
-  | null;
+  number | null;
 /**
  * By default, batches are not used and entire table is exported.
  */
@@ -492,95 +492,91 @@ export type WhenEnabledVectorValidatesThatEventsFlowingIntoEachSinkMatchTheSchem
  * configuration reload process.
  */
 export type ConfigurationOptionsToRetrieveSecretsFromExternalBackendInOrderToAvoidStoringSecretsInPlaintextInVectorConfigMultipleBackendsCanBeConfiguredUseSECRETBackendNameSecretKeyToTellVectorToRetrieveTheSecretThisPlaceholderIsReplacedByTheSecretRetrievedFromTheRelevantBackend =
-
-    | (
-        | (VectorSecretsFileFileBackend & {
+  | (VectorSecretsFileFileBackend & {
+      /**
+       * File.
+       */
+      type: 'file';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSecretsDirectoryDirectoryBackend & {
+      /**
+       * Directory.
+       */
+      type: 'directory';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSecretsExecExecBackend & {
+      /**
+       * Exec.
+       */
+      type: 'exec';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
             /**
-             * File.
+             * The AWS access key ID.
              */
-            type: 'file';
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
             [k: string]: unknown | undefined;
-          })
-        | (VectorSecretsDirectoryDirectoryBackend & {
-            /**
-             * Directory.
-             */
-            type: 'directory';
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
             [k: string]: unknown | undefined;
-          })
-        | (VectorSecretsExecExecBackend & {
-            /**
-             * Exec.
-             */
-            type: 'exec';
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
             [k: string]: unknown | undefined;
-          })
-        | (({
-            /**
-             * Configuration of the authentication strategy for interacting with AWS services.
-             */
-            auth?:
-              | {
-                  /**
-                   * The AWS access key ID.
-                   */
-                  access_key_id: string;
-                  assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                  external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                  region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                  /**
-                   * The AWS secret access key.
-                   */
-                  secret_access_key: string;
-                  session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                  /**
-                   * The AWS session token.
-                   * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                   */
-                  session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                  [k: string]: unknown | undefined;
-                }
-              | AuthenticateUsingCredentialsStoredInAFile
-              | {
-                  assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                  external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                  imds?: VectorAwsAuthImdsAuthentication;
-                  load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                  region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                  session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                  [k: string]: unknown | undefined;
-                }
-              | {
-                  imds?: VectorAwsAuthImdsAuthentication1;
-                  load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                  region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                  [k: string]: unknown | undefined;
-                };
-            /**
-             * ID of the secret to resolve.
-             */
-            secret_id: string;
-            /**
-             * TLS configuration.
-             */
-            tls?: null | VectorCoreTlsSettingsTlsConfig;
-            [k: string]: unknown | undefined;
-          } & VectorAwsRegionRegionOrEndpoint) & {
-            /**
-             * AWS Secrets Manager.
-             */
-            type: 'aws_secrets_manager';
-            [k: string]: unknown | undefined;
-          })
-        | (VectorSecretsTestTestBackend & {
-            /**
-             * Test.
-             */
-            type: 'test';
-            [k: string]: unknown | undefined;
-          })
-      )
-    | undefined;
+          };
+      /**
+       * ID of the secret to resolve.
+       */
+      secret_id: string;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint) & {
+      /**
+       * AWS Secrets Manager.
+       */
+      type: 'aws_secrets_manager';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSecretsTestTestBackend & {
+      /**
+       * Test.
+       */
+      type: 'test';
+      [k: string]: unknown | undefined;
+    });
 /**
  * The path to the script or binary must be the first argument.
  */
@@ -634,105 +630,1734 @@ export type TheAWSRegionAwsRegionOfTheTargetService = string | null;
 /**
  * Fully resolved sink component.
  */
-export type VectorConfigSinkSinkOuterAllocStringString =
-  | ({
-      buffer?: ConfiguresTheBufferingBehaviorForThisSink;
-      graph?: ExtraGraphConfiguration1;
+export type VectorConfigSinkSinkOuterAllocStringString = {
+  buffer?: ConfiguresTheBufferingBehaviorForThisSink;
+  graph?: ExtraGraphConfiguration;
+  /**
+   * Healthcheck configuration.
+   */
+  healthcheck?: {
+    /**
+     * Whether or not to check the health of the sink when Vector starts up.
+     */
+    enabled?: boolean;
+    /**
+     * Timeout duration for healthcheck in seconds.
+     */
+    timeout?: number;
+    uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo;
+    [k: string]: unknown | undefined;
+  };
+  healthcheck_uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo;
+  inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs;
+  proxy?: ProxyConfiguration;
+  [k: string]: unknown | undefined;
+} & (
+  | (ConfigurationForTheAmqpSink & {
       /**
-       * Healthcheck configuration.
+       * Send events to AMQP 0.9.1 compatible brokers like RabbitMQ.
        */
-      healthcheck?: {
+      type: 'amqp';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksAppsignalConfigAppsignalConfig & {
+      /**
+       * Deliver log and metric event data to AppSignal.
+       */
+      type: 'appsignal';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
+            /**
+             * The AWS access key ID.
+             */
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            [k: string]: unknown | undefined;
+          };
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
         /**
-         * Whether or not to check the health of the sink when Vector starts up.
+         * The maximum size of a batch before it is flushed.
          */
-        enabled?: boolean;
+        max_events?: number | null;
         /**
-         * Timeout duration for healthcheck in seconds.
+         * The maximum age of a batch before it is flushed.
          */
-        timeout?: number;
-        uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo;
+        timeout_secs?: number | null;
         [k: string]: unknown | undefined;
       };
-      healthcheck_uri?: TheFullURIToMakeHTTPHealthcheckRequestsTo;
-      inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs;
-      proxy?: ProxyConfiguration1;
+      compression?: CompressionConfiguration;
+      create_missing_group?: DynamicallyCreateALogGroupLogGroupIfItDoesNotAlreadyExist;
+      create_missing_stream?: DynamicallyCreateALogStreamLogStreamIfItDoesNotAlreadyExist;
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      group_name: ATemplatedField;
+      kms_key?: TheARNArnAmazonResourceNameOfTheKMSKeyKmsKeyToUseWhenEncryptingLogData;
+      /**
+       * Outbound HTTP request settings.
+       */
+      request?: {
+        /**
+         * Additional HTTP headers to add to every HTTP request.
+         */
+        headers?: {
+          [k: string]: string | undefined;
+        };
+        [k: string]: unknown | undefined;
+      } & MiddlewareSettingsForOutboundRequests;
+      /**
+       * Retention policy configuration for AWS CloudWatch Log Group
+       */
+      retention?: {
+        /**
+         * If retention is enabled, the number of days to retain logs for.
+         */
+        days?: number;
+        /**
+         * Whether or not to set a retention policy when creating a new Log Group.
+         */
+        enabled?: boolean;
+        [k: string]: unknown | undefined;
+      };
+      stream_name: ATemplatedField;
+      tags?: TheKeyValuePairsToBeAppliedAsTagsTagsToTheLogGroupAndStream;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & TheAWSRegionAwsRegionOfTheTargetService1) & {
+      /**
+       * Publish log events to AWS CloudWatch Logs.
+       */
+      type: 'aws_cloudwatch_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
+            /**
+             * The AWS access key ID.
+             */
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            [k: string]: unknown | undefined;
+          };
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      compression?: CompressionConfiguration;
+      default_namespace: TheDefaultNamespaceNamespaceToUseForMetricsThatDoNotHaveOne;
+      request?: MiddlewareSettingsForOutboundRequests;
+      /**
+       * A map from metric name to AWS storage resolution.
+       * Valid values are 1 (high resolution) and 60 (standard resolution).
+       * If unset, the AWS SDK default of 60 (standard resolution) is used.
+       * See [AWS Metrics Resolution](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Resolution_definition)
+       * See [MetricDatum::storage_resolution](https://docs.rs/aws-sdk-cloudwatch/1.91.0/aws_sdk_cloudwatch/types/struct.MetricDatum.html#structfield.storage_resolution)
+       */
+      storage_resolution?: {
+        [k: string]: number | undefined;
+      };
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & TheAWSRegionAwsRegionOfTheTargetService1) & {
+      /**
+       * Publish metric events to AWS CloudWatch Metrics.
+       */
+      type: 'aws_cloudwatch_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    } & ({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
+            /**
+             * The AWS access key ID.
+             */
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            [k: string]: unknown | undefined;
+          };
+      compression?: CompressionConfiguration;
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      partition_key_field?: TheLogFieldUsedAsTheKinesisRecordSPartitionKeyValue;
+      request?: MiddlewareSettingsForOutboundRequests;
+      /**
+       * Whether or not to retry successful requests containing partial failures.
+       */
+      request_retry_partial?: boolean;
+      stream_name: TheStreamNameStreamNameOfTheTargetKinesisFirehoseDeliveryStream;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint)) & {
+      /**
+       * Publish logs to AWS Kinesis Data Firehose topics.
+       */
+      type: 'aws_kinesis_firehose';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    } & ({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
+            /**
+             * The AWS access key ID.
+             */
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            [k: string]: unknown | undefined;
+          };
+      compression?: CompressionConfiguration;
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      partition_key_field?: TheLogFieldUsedAsTheKinesisRecordSPartitionKeyValue;
+      request?: MiddlewareSettingsForOutboundRequests;
+      /**
+       * Whether or not to retry successful requests containing partial failures.
+       */
+      request_retry_partial?: boolean;
+      stream_name: TheStreamNameStreamNameOfTheTargetKinesisFirehoseDeliveryStream;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint)) & {
+      /**
+       * Publish logs to AWS Kinesis Streams topics.
+       */
+      type: 'aws_kinesis_streams';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
+            /**
+             * The AWS access key ID.
+             */
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            [k: string]: unknown | undefined;
+          };
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings;
+      bucket: TheS3BucketName;
+      compression?: CompressionConfiguration;
+      filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey;
+      filename_extension?: TheFilenameExtensionToUseInTheObjectKey;
+      filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey;
+      force_path_style?: SpecifiesWhichAddressingStyleToUse;
+      key_prefix?: APrefixToApplyToAllObjectKeys;
+      request?: MiddlewareSettingsForOutboundRequests;
+      retry_strategy?: SpecifiesRetryStrategyForFailedRequests;
+      timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & {
+      acl?: CannedACLToApplyToTheCreatedObjects;
+      content_encoding?: OverridesWhatContentEncodingHasBeenAppliedToTheObject;
+      content_type?: OverridesTheMIMETypeOfTheObject;
+      grant_full_control?: GrantsREADREAD_ACPAndWRITE_ACPPermissionsOnTheCreatedObjectsToTheNamedGrantee;
+      grant_read?: GrantsREADPermissionsOnTheCreatedObjectsToTheNamedGrantee;
+      grant_read_acp?: GrantsREAD_ACPPermissionsOnTheCreatedObjectsToTheNamedGrantee;
+      grant_write_acp?: GrantsWRITE_ACPPermissionsOnTheCreatedObjectsToTheNamedGrantee;
+      server_side_encryption?: AWSS3ServerSideEncryptionAlgorithms;
+      ssekms_key_id?: SpecifiesTheIDOfTheAWSKeyManagementServiceAWSKMSSymmetricalCustomerManagedCustomerMasterKeyCMKThatIsUsedForTheCreatedObjects;
+      storage_class?: TheStorageClassForTheCreatedObjects;
+      /**
+       * The tag-set for the object.
+       */
+      tags?: {
+        [k: string]: string | undefined;
+      } | null;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint &
+      CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * Store observability events in the AWS S3 object storage system.
+       */
+      type: 'aws_s3';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * The ARN of the Amazon SNS topic to which messages are sent.
+       */
+      topic_arn: string;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint &
+      VectorSinksAwsSSConfigBaseSSSinkConfig) & {
+      /**
+       * Publish observability events to AWS Simple Notification Service topics.
+       */
+      type: 'aws_sns';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * The URL of the Amazon SQS queue to which messages are sent.
+       */
+      queue_url: string;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint &
+      VectorSinksAwsSSConfigBaseSSSinkConfig) & {
+      /**
+       * Publish observability events to AWS Simple Queue Service topics.
+       */
+      type: 'aws_sqs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
+      compression?: CompressionConfiguration;
+      /**
+       * The Axiom dataset to write to.
+       */
+      dataset: string;
+      org_id?: TheAxiomOrganizationID;
+      /**
+       * Outbound HTTP request settings.
+       */
+      request?: {
+        /**
+         * Additional HTTP headers to add to every HTTP request.
+         */
+        headers?: {
+          [k: string]: string | undefined;
+        };
+        [k: string]: unknown | undefined;
+      } & MiddlewareSettingsForOutboundRequests;
+      tls?: TheTLSSettingsForTheConnection;
+      /**
+       * Wrapper for sensitive strings containing credentials
+       */
+      token: string;
+      [k: string]: unknown | undefined;
+    } & {
+      region?: TheAxiomRegionalEdgeDomainToUseForIngestion;
+      url?: URIOfTheAxiomEndpointToSendDataTo;
+      [k: string]: unknown | undefined;
+    }) & {
+      /**
+       * Deliver log events to Axiom.
+       */
+      type: 'axiom';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings;
+      blob_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheBlobKey;
+      blob_prefix?: ATemplatedField;
+      blob_time_format?: TheTimestampFormatForTheTimeComponentOfTheBlobKey;
+      compression?: CompressionConfiguration;
+      connection_string: TheAzureBlobStorageAccountConnectionString;
+      /**
+       * The Azure Blob Storage Account container name.
+       */
+      container_name: string;
+      request?: MiddlewareSettingsForOutboundRequests;
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * Store your observability data in Azure Blob Storage.
+       */
+      type: 'azure_blob';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksAzureLogsIngestionConfigAzureLogsIngestionConfig & {
+      /**
+       * Publish log events to the Azure Monitor Logs Ingestion API.
+       */
+      type: 'azure_logs_ingestion';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksAzureMonitorLogsConfigAzureMonitorLogsConfig & {
+      /**
+       * Publish log events to the Azure Monitor Data Collector API.
+       */
+      type: 'azure_monitor_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksBlackholeConfigBlackholeConfig & {
+      /**
+       * Send observability events nowhere, which can be useful for debugging purposes.
+       */
+      type: 'blackhole';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksClickhouseConfigClickhouseConfig & {
+      /**
+       * Deliver log data to a ClickHouse database.
+       */
+      type: 'clickhouse';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      target?: TheStandardStreamStandardStreamsToWriteTo;
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * Display observability events in the console, which can be useful for debugging purposes.
+       */
+      type: 'console';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksDatabendConfigDatabendConfig & {
+      /**
+       * Deliver log data to a Databend database.
+       */
+      type: 'databend';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      request?: MiddlewareSettingsForOutboundRequests;
+      [k: string]: unknown | undefined;
+    } & VectorSinksDatadogLocalDatadogCommonConfig) & {
+      /**
+       * Publish observability events to the Datadog Events API.
+       */
+      type: 'datadog_events';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      compression?: CompressionConfiguration8;
+      /**
+       * When enabled this sink will normalize events to conform to the Datadog Agent standard. This
+       * also sends requests to the logs backend with the `DD-PROTOCOL: agent-json` header. This bool
+       * will be overridden as `true` if this header has already been set in the request.headers
+       * configuration setting.
+       */
+      conforms_as_agent?: boolean;
+      encoding?: CodecsEncodingTransformerTransformer;
+      /**
+       * Outbound HTTP request settings.
+       */
+      request?: {
+        /**
+         * Additional HTTP headers to add to every HTTP request.
+         */
+        headers?: {
+          [k: string]: string | undefined;
+        };
+        [k: string]: unknown | undefined;
+      } & MiddlewareSettingsForOutboundRequests;
+      [k: string]: unknown | undefined;
+    } & VectorSinksDatadogLocalDatadogCommonConfig) & {
+      /**
+       * Publish log events to Datadog.
+       */
+      type: 'datadog_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
+      request?: MiddlewareSettingsForOutboundRequests;
+      [k: string]: unknown | undefined;
+    } & VectorSinksDatadogLocalDatadogCommonConfig) & {
+      /**
+       * Publish metric events to Datadog.
+       */
+      type: 'datadog_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      compression?: CompressionConfiguration8;
+      request?: MiddlewareSettingsForOutboundRequests;
+      [k: string]: unknown | undefined;
+    } & VectorSinksDatadogLocalDatadogCommonConfig) & {
+      /**
+       * Publish trace events to Datadog.
+       */
+      type: 'datadog_traces';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
+      compression?: CompressionConfiguration;
+      database: ATemplatedField;
+      /**
+       * Options for determining the health of Doris endpoints.
+       */
+      distribution?: null | VectorSinksUtilServiceHealthHealthConfig;
+      endpoints?: AListOfDorisEndpointsToSendLogsTo;
+      headers?: CustomHTTPHeadersToAddToTheRequest;
+      /**
+       * The prefix for Stream Load label.
+       * The final label will be in format: `{label_prefix}_{database}_{table}_{timestamp}_{uuid}`.
+       */
+      label_prefix?: string;
+      /**
+       * Enable request logging.
+       */
+      log_request?: boolean;
+      /**
+       * Number of retries attempted before failing.
+       */
+      max_retries?: number;
+      request?: MiddlewareSettingsForOutboundRequests;
+      table: ATemplatedField;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * Deliver log data to an Apache Doris database.
+       */
+      type: 'doris';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksElasticsearchConfigElasticsearchConfig & {
+      /**
+       * Index observability events in Elasticsearch.
+       */
+      type: 'elasticsearch';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Compression configuration.
+       */
+      compression?: GzipGzipCompression | ZstandardZstdCompression | 'none';
+      idle_timeout_secs?: TheAmountOfTimeThatAFileCanBeIdleAndStayOpen;
+      internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig;
+      path: ATemplatedField;
+      timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
+      /**
+       * Configuration for truncating files.
+       */
+      truncate?: {
+        /**
+         * If this is set, files will be truncated after being closed for a set amount of seconds.
+         */
+        after_close_time_secs?: number | null;
+        /**
+         * If this is set, files will be truncated after set amount of seconds of no modifications.
+         */
+        after_modified_time_secs?: number | null;
+        /**
+         * If this is set, files will be truncated after set amount of seconds regardless of the state.
+         */
+        after_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * Output observability events into files.
+       */
+      type: 'file';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      compression?: CompressionConfiguration13;
+      /**
+       * The Unique identifier (UUID) corresponding to the Chronicle instance.
+       */
+      customer_id: string;
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      /**
+       * The endpoint to send data to.
+       */
+      endpoint?: string | null;
+      /**
+       * The default `log_type` to attach to events if the template in `log_type` cannot be resolved.
+       */
+      fallback_log_type?: string | null;
+      /**
+       * A set of labels that are attached to each batch of events.
+       */
+      labels?: {
+        [k: string]: string | undefined;
+      } | null;
+      log_type: ATemplatedField;
+      namespace?: ATemplatedField1;
+      /**
+       * The GCP region to use.
+       */
+      region?:
+        | null
+        | (
+            | 'eu'
+            | 'us'
+            | 'asia'
+            | 'são_paulo'
+            | 'canada'
+            | 'dammam'
+            | 'doha'
+            | 'frankfurt'
+            | 'london'
+            | 'mumbai'
+            | 'paris'
+            | 'singapore'
+            | 'sydney'
+            | 'tel_aviv'
+            | 'tokyo'
+            | 'turin'
+            | 'zurich'
+          );
+      request?: MiddlewareSettingsForOutboundRequests;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorGcpGcpAuthConfig) & {
+      /**
+       * Store unstructured log events in Google Chronicle.
+       */
+      type: 'gcp_chronicle_unstructured';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      acl?: ThePredefinedACLToApplyToCreatedObjects;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings;
+      /**
+       * The GCS bucket name.
+       */
+      bucket: string;
+      cache_control?: SetsTheCacheControlHeaderForTheCreatedObjects;
+      compression?: CompressionConfiguration;
+      content_encoding?: OverridesWhatContentEncodingHasBeenAppliedToTheObject;
+      content_type?: OverridesTheMIMETypeOfTheCreatedObjects;
+      /**
+       * API endpoint for Google Cloud Storage
+       */
+      endpoint?: string;
+      filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey;
+      filename_extension?: TheFilenameExtensionToUseInTheObjectKey;
+      filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey;
+      key_prefix?: APrefixToApplyToAllObjectKeys1;
+      metadata?: TheSetOfMetadataKeyValuePairsForTheCreatedObjects;
+      request?: MiddlewareSettingsForOutboundRequests;
+      storage_class?: TheStorageClassForCreatedObjects;
+      timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming &
+      VectorGcpGcpAuthConfig) & {
+      /**
+       * Store observability events in GCP Cloud Storage.
+       */
+      type: 'gcp_cloud_storage';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      endpoint?: TheEndpointToWhichToPublishEvents;
+      /**
+       * The project name to which to publish events.
+       */
+      project: string;
+      request?: MiddlewareSettingsForOutboundRequests;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      /**
+       * The topic within the project to which to publish events.
+       */
+      topic: string;
+      [k: string]: unknown | undefined;
+    } & VectorGcpGcpAuthConfig) & {
+      /**
+       * Publish observability events to GCP's Pub/Sub messaging system.
+       */
+      type: 'gcp_pubsub';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
+      encoding?: CodecsEncodingTransformerTransformer;
+      log_id: ATemplatedField;
+      request?: MiddlewareSettingsForOutboundRequests;
+      resource: AMonitoredResource;
+      severity_key?: TheFieldOfTheLogEventFromWhichToTakeTheOutgoingLogSSeverityField;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
       [k: string]: unknown | undefined;
     } & (
-      | (ConfigurationForTheAmqpSink & {
+      | TheBillingAccountIDToWhichToPublishLogs
+      | TheFolderIDToWhichToPublishLogs
+      | TheOrganizationIDToWhichToPublishLogs
+      | TheProjectIDToWhichToPublishLogs
+    ) & {
+        /**
+         * A map of key, value pairs that provides additional information about the log entry.
+         */
+        labels?: {
+          [k: string]: ATemplatedField | undefined;
+        };
+        /**
+         * The value of this field is used to retrieve the associated labels from the `jsonPayload`
+         * and extract their values to set as LogEntry labels.
+         */
+        labels_key?: string | null;
+        [k: string]: unknown | undefined;
+      } & VectorGcpGcpAuthConfig) & {
+      /**
+       * Deliver logs to GCP's Cloud Operations suite.
+       */
+      type: 'gcp_stackdriver_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      default_namespace?: TheDefaultNamespaceToUseForMetricsThatDoNotHaveOne;
+      project_id: TheProjectIDToWhichToPublishMetrics;
+      request?: MiddlewareSettingsForOutboundRequests;
+      resource: AMonitoredResource1;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorGcpGcpAuthConfig) & {
+      /**
+       * Deliver metrics to GCP's Cloud Monitoring system.
+       */
+      type: 'gcp_stackdriver_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksGreptimedbMetricsConfigGreptimeDBConfig & {
+      /**
+       * Ingest metrics data into GreptimeDB.
+       */
+      type: 'greptimedb';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig & {
+      /**
+       * Ingest logs data into GreptimeDB.
+       */
+      type: 'greptimedb_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksGreptimedbMetricsConfigGreptimeDBMetricsConfig & {
+      /**
+       * Ingest metrics data into GreptimeDB.
+       */
+      type: 'greptimedb_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksHoneycombConfigHoneycombConfig & {
+      /**
+       * Deliver log events to Honeycomb.
+       */
+      type: 'honeycomb';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
+      compression?: CompressionConfiguration;
+      /**
+       * @deprecated
+       * A list of custom headers to add to each request.
+       */
+      headers?: {
+        [k: string]: string | undefined;
+      } | null;
+      method?: HTTPMethod;
+      payload_prefix?: AStringToPrefixThePayloadWith;
+      payload_suffix?: AStringToSuffixThePayloadWith;
+      /**
+       * Outbound HTTP request settings.
+       */
+      request?: {
+        /**
+         * Additional HTTP headers to add to every HTTP request.
+         */
+        headers?: {
+          [k: string]: string | undefined;
+        };
+        [k: string]: unknown | undefined;
+      } & MiddlewareSettingsForOutboundRequests;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      uri: ATemplatedField;
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * Deliver observability event data to an HTTP server.
+       */
+      type: 'http';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksHumioLogsHumioLogsConfig & {
+      /**
+       * Deliver log event data to Humio.
+       */
+      type: 'humio_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings;
+      compression?: CompressionConfiguration;
+      endpoint?: TheBaseURLOfTheHumioInstance;
+      event_type?: TheTypeOfEventsSentToThisSinkHumioUsesThisAsTheNameOfTheParserToUseToIngestTheData;
+      host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio;
+      index?: OptionalNameOfTheRepositoryToIngestInto;
+      indexed_fields?: EventFieldsToBeAddedToHumioSExtraFields;
+      request?: MiddlewareSettingsForOutboundRequests;
+      source?: TheSourceOfEventsSentToThisSink;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      /**
+       * Wrapper for sensitive strings containing credentials
+       */
+      token: string;
+      [k: string]: unknown | undefined;
+    } & VectorTransformsMetricToLogMetricToLogConfig) & {
+      /**
+       * Deliver metric event data to Humio.
+       */
+      type: 'humio_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      encoding?: CodecsEncodingTransformerTransformer;
+      endpoint: TheEndpointToSendDataTo;
+      host_key?: UseThisOptionToCustomizeTheKeyContainingTheHostname;
+      /**
+       * The name of the InfluxDB measurement that is written to.
+       */
+      measurement?: string | null;
+      message_key?: UseThisOptionToCustomizeTheKeyContainingTheMessage;
+      namespace?: TheNamespaceOfTheMeasurementNameToUse;
+      request?: MiddlewareSettingsForOutboundRequests;
+      source_type_key?: UseThisOptionToCustomizeTheKeyContainingTheSourceType;
+      tags?: TheListOfNamesOfLogFieldsThatShouldBeAddedAsTagsToEachMeasurement;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & CoreOptionOptionVectorSinksInfluxdbInfluxDb1Settings &
+      CoreOptionOptionVectorSinksInfluxdbInfluxDb2Settings) & {
+      /**
+       * Deliver log event data to InfluxDB.
+       */
+      type: 'influxdb_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
+      endpoint: TheEndpointToSendDataTo;
+      /**
+       * The list of quantiles to calculate when sending distribution metrics.
+       */
+      quantiles?: number[];
+      request?: MiddlewareSettingsForOutboundRequests;
+      /**
+       * A map of additional tags, in the key/value pair format, to add to each measurement.
+       */
+      tags?: {
+        [k: string]: string | undefined;
+      } | null;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & CoreOptionOptionVectorSinksInfluxdbInfluxDb1Settings &
+      CoreOptionOptionVectorSinksInfluxdbInfluxDb2Settings) & {
+      /**
+       * Deliver metric event data to InfluxDB.
+       */
+      type: 'influxdb_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      bootstrap_servers: ACommaSeparatedListOfKafkaBootstrapServers;
+      /**
+       * Supported compression types for Kafka.
+       */
+      compression?: 'none' | 'gzip' | 'snappy' | 'lz4' | 'zstd';
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      headers_key?: TheLogFieldNameToUseForTheKafkaHeaders;
+      healthcheck_topic?: TheTopicNameToUseForHealthcheckIfOmittedTopicIsUsedThisOptionHelpsPreventHealthcheckWarningsWhenTopicIsTemplated;
+      key_field?: TheLogFieldNameOrTagKeyToUseForTheTopicKey;
+      librdkafka_options?: AMapOfAdvancedOptionsToPassDirectlyToTheUnderlyingLibrdkafkaClient;
+      /**
+       * Local message timeout, in milliseconds.
+       */
+      message_timeout_ms?: number;
+      /**
+       * The time window used for the `rate_limit_num` option.
+       */
+      rate_limit_duration_secs?: number;
+      /**
+       * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
+       */
+      rate_limit_num?: number;
+      /**
+       * Default timeout, in milliseconds, for network requests.
+       */
+      socket_timeout_ms?: number;
+      topic: ATemplatedField;
+      [k: string]: unknown | undefined;
+    } & VectorKafkaKafkaAuthConfig) & {
+      /**
+       * Publish observability event data to Apache Kafka topics.
+       */
+      type: 'kafka';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksKeepConfigKeepConfig & {
+      /**
+       * Deliver log events to Keep.
+       */
+      type: 'keep';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksMezmoLogdnaConfig & {
+      /**
+       * Deliver log event data to LogDNA.
+       */
+      type: 'logdna';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksLokiConfigLokiConfig & {
+      /**
+       * Deliver log event data to the Loki aggregation system.
+       */
+      type: 'loki';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksMezmoMezmoConfig & {
+      /**
+       * Deliver log event data to Mezmo.
+       */
+      type: 'mezmo';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * If set to true, the MQTT session is cleaned on login.
+       */
+      clean_session?: boolean;
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
+            /**
+             * Encodes an event as a CEF (Common Event Format) formatted message.
+             */
+            codec: 'cef';
+            [k: string]: unknown | undefined;
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
+            /**
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
+             */
+            codec: 'syslog';
+            [k: string]: unknown | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      /**
+       * Supported Quality of Service types for MQTT.
+       */
+      quality_of_service?: 'atleastonce' | 'atmostonce' | 'exactlyonce';
+      /**
+       * Whether the messages should be retained by the server
+       */
+      retain?: boolean;
+      topic: ATemplatedField;
+      [k: string]: unknown | undefined;
+    } & VectorCommonMqttMqttCommonConfig) & {
+      /**
+       * This component is missing a description.
+       */
+      type: 'mqtt';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksNatsConfigNatsSinkConfig & {
+      /**
+       * Publish observability data to subjects on the NATS messaging system.
+       */
+      type: 'nats';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksNewRelicConfigNewRelicConfig & {
+      /**
+       * Deliver events to New Relic.
+       */
+      type: 'new_relic';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksOpentelemetryOpenTelemetryConfig & {
+      /**
+       * Deliver OTLP data over HTTP.
+       */
+      type: 'opentelemetry';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksPapertrailPapertrailConfig & {
+      /**
+       * Deliver log events to Papertrail from SolarWinds.
+       */
+      type: 'papertrail';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksPostgresConfigPostgresConfig & {
+      /**
+       * Deliver log data to a PostgreSQL database.
+       */
+      type: 'postgres';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksPrometheusExporterPrometheusExporterConfig & {
+      /**
+       * Expose metric events on a Prometheus compatible endpoint.
+       */
+      type: 'prometheus_exporter';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig & {
+      /**
+       * Deliver metric data to a Prometheus remote write endpoint.
+       */
+      type: 'prometheus_remote_write';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksPulsarConfigPulsarSinkConfig & {
+      /**
+       * Publish observability events to Apache Pulsar topics.
+       */
+      type: 'pulsar';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksRedisConfigRedisSinkConfig & {
+      /**
+       * Publish observability data to Redis.
+       */
+      type: 'redis';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksSematextLogsSematextLogsConfig & {
+      /**
+       * Publish log events to Sematext.
+       */
+      type: 'sematext_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksSematextMetricsSematextMetricsConfig & {
+      /**
+       * Publish metric events to Sematext.
+       */
+      type: 'sematext_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      [k: string]: unknown | undefined;
+    } & (
+      | (({
+          address: TheAddressToConnectTo;
           /**
-           * Send events to AMQP 0.9.1 compatible brokers like RabbitMQ.
+           * TCP keepalive settings for socket-based components.
            */
-          type: 'amqp';
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
+          send_buffer_bytes?: TheSizeOfTheSocketSSendBuffer;
+          /**
+           * Configures the TLS options for incoming/outgoing connections.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
           [k: string]: unknown | undefined;
-        })
-      | (VectorSinksAppsignalConfigAppsignalConfig & {
+        } & CodecsEncodingConfigEncodingConfigWithFraming) & {
           /**
-           * Deliver log and metric event data to AppSignal.
+           * Send over TCP.
            */
-          type: 'appsignal';
+          mode: 'tcp';
           [k: string]: unknown | undefined;
         })
       | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink2;
-          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          compression?: CompressionConfiguration;
-          create_missing_group?: DynamicallyCreateALogGroupLogGroupIfItDoesNotAlreadyExist;
-          create_missing_stream?: DynamicallyCreateALogStreamLogStreamIfItDoesNotAlreadyExist;
           /**
            * Encoding configuration.
            * Configures how events are encoded into raw bytes.
@@ -780,1859 +2405,228 @@ export type VectorConfigSinkSinkOuterAllocStringString =
             timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
             [k: string]: unknown | undefined;
           };
-          group_name: ATemplatedField;
-          kms_key?: TheARNArnAmazonResourceNameOfTheKMSKeyKmsKeyToUseWhenEncryptingLogData;
-          /**
-           * Outbound HTTP request settings.
-           */
-          request?: {
-            /**
-             * Additional HTTP headers to add to every HTTP request.
-             */
-            headers?: {
-              [k: string]: string | undefined;
-            };
-            [k: string]: unknown | undefined;
-          } & MiddlewareSettingsForOutboundRequests1;
-          /**
-           * Retention policy configuration for AWS CloudWatch Log Group
-           */
-          retention?: {
-            /**
-             * If retention is enabled, the number of days to retain logs for.
-             */
-            days?: number;
-            /**
-             * Whether or not to set a retention policy when creating a new Log Group.
-             */
-            enabled?: boolean;
-            [k: string]: unknown | undefined;
-          };
-          stream_name: ATemplatedField;
-          tags?: TheKeyValuePairsToBeAppliedAsTagsTagsToTheLogGroupAndStream;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & TheAWSRegionAwsRegionOfTheTargetService1) & {
-          /**
-           * Publish log events to AWS CloudWatch Logs.
-           */
-          type: 'aws_cloudwatch_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink3;
-          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          compression?: CompressionConfiguration;
-          default_namespace: TheDefaultNamespaceNamespaceToUseForMetricsThatDoNotHaveOne;
-          request?: MiddlewareSettingsForOutboundRequests2;
-          /**
-           * A map from metric name to AWS storage resolution.
-           * Valid values are 1 (high resolution) and 60 (standard resolution).
-           * If unset, the AWS SDK default of 60 (standard resolution) is used.
-           * See [AWS Metrics Resolution](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Resolution_definition)
-           * See [MetricDatum::storage_resolution](https://docs.rs/aws-sdk-cloudwatch/1.91.0/aws_sdk_cloudwatch/types/struct.MetricDatum.html#structfield.storage_resolution)
-           */
-          storage_resolution?: {
-            [k: string]: number | undefined;
-          };
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & TheAWSRegionAwsRegionOfTheTargetService2) & {
-          /**
-           * Publish metric events to AWS CloudWatch Metrics.
-           */
-          type: 'aws_cloudwatch_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        } & ({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink4;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          compression?: CompressionConfiguration;
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          partition_key_field?: TheLogFieldUsedAsTheKinesisRecordSPartitionKeyValue;
-          request?: MiddlewareSettingsForOutboundRequests3;
-          /**
-           * Whether or not to retry successful requests containing partial failures.
-           */
-          request_retry_partial?: boolean;
-          stream_name: TheStreamNameStreamNameOfTheTargetKinesisFirehoseDeliveryStream;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint1)) & {
-          /**
-           * Publish logs to AWS Kinesis Data Firehose topics.
-           */
-          type: 'aws_kinesis_firehose';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        } & ({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink4;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          compression?: CompressionConfiguration;
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          partition_key_field?: TheLogFieldUsedAsTheKinesisRecordSPartitionKeyValue;
-          request?: MiddlewareSettingsForOutboundRequests3;
-          /**
-           * Whether or not to retry successful requests containing partial failures.
-           */
-          request_retry_partial?: boolean;
-          stream_name: TheStreamNameStreamNameOfTheTargetKinesisFirehoseDeliveryStream;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint1)) & {
-          /**
-           * Publish logs to AWS Kinesis Streams topics.
-           */
-          type: 'aws_kinesis_streams';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink5;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings;
-          bucket: TheS3BucketName;
-          compression?: CompressionConfiguration;
-          filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey;
-          filename_extension?: TheFilenameExtensionToUseInTheObjectKey;
-          filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey;
-          force_path_style?: SpecifiesWhichAddressingStyleToUse;
-          key_prefix?: APrefixToApplyToAllObjectKeys;
-          request?: MiddlewareSettingsForOutboundRequests4;
-          retry_strategy?: SpecifiesRetryStrategyForFailedRequests;
-          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
           [k: string]: unknown | undefined;
         } & {
-          acl?: CannedACLToApplyToTheCreatedObjects;
-          content_encoding?: OverridesWhatContentEncodingHasBeenAppliedToTheObject;
-          content_type?: OverridesTheMIMETypeOfTheObject;
-          grant_full_control?: GrantsREADREAD_ACPAndWRITE_ACPPermissionsOnTheCreatedObjectsToTheNamedGrantee;
-          grant_read?: GrantsREADPermissionsOnTheCreatedObjectsToTheNamedGrantee;
-          grant_read_acp?: GrantsREAD_ACPPermissionsOnTheCreatedObjectsToTheNamedGrantee;
-          grant_write_acp?: GrantsWRITE_ACPPermissionsOnTheCreatedObjectsToTheNamedGrantee;
-          server_side_encryption?: AWSS3ServerSideEncryptionAlgorithms;
-          ssekms_key_id?: SpecifiesTheIDOfTheAWSKeyManagementServiceAWSKMSSymmetricalCustomerManagedCustomerMasterKeyCMKThatIsUsedForTheCreatedObjects;
-          storage_class?: TheStorageClassForTheCreatedObjects;
-          /**
-           * The tag-set for the object.
-           */
-          tags?: {
-            [k: string]: string | undefined;
-          } | null;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint2 &
-          CodecsEncodingConfigEncodingConfigWithFraming) & {
-          /**
-           * Store observability events in the AWS S3 object storage system.
-           */
-          type: 'aws_s3';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * The ARN of the Amazon SNS topic to which messages are sent.
-           */
-          topic_arn: string;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint3 &
-          VectorSinksAwsSSConfigBaseSSSinkConfig) & {
-          /**
-           * Publish observability events to AWS Simple Notification Service topics.
-           */
-          type: 'aws_sns';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * The URL of the Amazon SQS queue to which messages are sent.
-           */
-          queue_url: string;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint4 &
-          VectorSinksAwsSSConfigBaseSSSinkConfig1) & {
-          /**
-           * Publish observability events to AWS Simple Queue Service topics.
-           */
-          type: 'aws_sqs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink7;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
-          compression?: CompressionConfiguration;
-          /**
-           * The Axiom dataset to write to.
-           */
-          dataset: string;
-          org_id?: TheAxiomOrganizationID;
-          /**
-           * Outbound HTTP request settings.
-           */
-          request?: {
-            /**
-             * Additional HTTP headers to add to every HTTP request.
-             */
-            headers?: {
-              [k: string]: string | undefined;
-            };
-            [k: string]: unknown | undefined;
-          } & MiddlewareSettingsForOutboundRequests1;
-          tls?: TheTLSSettingsForTheConnection;
-          /**
-           * Wrapper for sensitive strings containing credentials
-           */
-          token: string;
-          [k: string]: unknown | undefined;
-        } & {
-          region?: TheAxiomRegionalEdgeDomainToUseForIngestion;
-          url?: URIOfTheAxiomEndpointToSendDataTo;
+          address: TheAddressToConnectTo;
+          send_buffer_bytes?: TheSizeOfTheSocketSSendBuffer;
           [k: string]: unknown | undefined;
         }) & {
           /**
-           * Deliver log events to Axiom.
+           * Send over UDP.
            */
-          type: 'axiom';
+          mode: 'udp';
           [k: string]: unknown | undefined;
         })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink8;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings1;
-          blob_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheBlobKey;
-          blob_prefix?: ATemplatedField;
-          blob_time_format?: TheTimestampFormatForTheTimeComponentOfTheBlobKey;
-          compression?: CompressionConfiguration;
-          connection_string: TheAzureBlobStorageAccountConnectionString;
+      | ((VectorSinksUtilUnixUnixSinkConfig & CodecsEncodingConfigEncodingConfigWithFraming) & {
           /**
-           * The Azure Blob Storage Account container name.
+           * Send over a Unix domain socket (UDS), in stream mode.
            */
-          container_name: string;
-          request?: MiddlewareSettingsForOutboundRequests6;
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming1) & {
-          /**
-           * Store your observability data in Azure Blob Storage.
-           */
-          type: 'azure_blob';
+          mode: 'unix_stream';
           [k: string]: unknown | undefined;
         })
-      | (VectorSinksAzureLogsIngestionConfigAzureLogsIngestionConfig & {
+      | ((VectorSinksUtilUnixUnixSinkConfig & CodecsEncodingConfigEncodingConfigWithFraming) & {
           /**
-           * Publish log events to the Azure Monitor Logs Ingestion API.
+           * Send over a Unix domain socket (UDS), in datagram mode.
+           * Unavailable on macOS, due to send(2)'s apparent non-blocking behavior,
+           * resulting in ENOBUFS errors which we currently don't handle.
            */
-          type: 'azure_logs_ingestion';
+          mode: 'unix_datagram';
           [k: string]: unknown | undefined;
         })
-      | (VectorSinksAzureMonitorLogsConfigAzureMonitorLogsConfig & {
+    )) & {
+      /**
+       * Deliver logs to a remote socket endpoint.
+       */
+      type: 'socket';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksSplunkHecLogsConfigHecLogsSinkConfig & {
+      /**
+       * Deliver log data to Splunk's HTTP Event Collector.
+       */
+      type: 'splunk_hec_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksSplunkHecMetricsConfigHecMetricsSinkConfig & {
+      /**
+       * Deliver metric data to Splunk's HTTP Event Collector.
+       */
+      type: 'splunk_hec_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Event batching behavior.
+       */
+      batch?: {
+        max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+        /**
+         * The maximum size of a batch before it is flushed.
+         */
+        max_events?: number | null;
+        /**
+         * The maximum age of a batch before it is flushed.
+         */
+        timeout_secs?: number | null;
+        [k: string]: unknown | undefined;
+      };
+      default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
+      [k: string]: unknown | undefined;
+    } & (
+      | ({
+          address: TheAddressToConnectTo;
           /**
-           * Publish log events to the Azure Monitor Data Collector API.
+           * TCP keepalive settings for socket-based components.
            */
-          type: 'azure_monitor_logs';
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
+          send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
+          /**
+           * Configures the TLS options for incoming/outgoing connections.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Send over TCP.
+           */
+          mode: 'tcp';
           [k: string]: unknown | undefined;
         })
-      | (VectorSinksBlackholeConfigBlackholeConfig & {
+      | ({
+          address: TheAddressToConnectTo;
+          send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
+          [k: string]: unknown | undefined;
+        } & {
           /**
-           * Send observability events nowhere, which can be useful for debugging purposes.
+           * Send over UDP.
            */
-          type: 'blackhole';
+          mode: 'udp';
           [k: string]: unknown | undefined;
         })
-      | (VectorSinksClickhouseConfigClickhouseConfig & {
+      | ({
+          path: TheUnixSocketPath;
+          send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
           /**
-           * Deliver log data to a ClickHouse database.
+           * The Unix socket mode to use.
            */
-          type: 'clickhouse';
+          unix_mode?: 'Datagram' | 'Stream';
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Send over a Unix domain socket (UDS).
+           */
+          mode: 'unix';
           [k: string]: unknown | undefined;
         })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink13;
-          target?: TheStandardStreamStandardStreamsToWriteTo;
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming2) & {
-          /**
-           * Display observability events in the console, which can be useful for debugging purposes.
-           */
-          type: 'console';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksDatabendConfigDatabendConfig & {
-          /**
-           * Deliver log data to a Databend database.
-           */
-          type: 'databend';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          request?: MiddlewareSettingsForOutboundRequests11;
-          [k: string]: unknown | undefined;
-        } & VectorSinksDatadogLocalDatadogCommonConfig) & {
-          /**
-           * Publish observability events to the Datadog Events API.
-           */
-          type: 'datadog_events';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
+    )) & {
+      /**
+       * Deliver metric data to a StatsD aggregator.
+       */
+      type: 'statsd';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorConfigUnitTestUnitTestComponentsUnitTestSinkConfig & {
+      /**
+       * Unit test.
+       */
+      type: 'unit_test';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorConfigUnitTestUnitTestComponentsUnitTestStreamSinkConfig & {
+      /**
+       * Unit test stream.
+       */
+      type: 'unit_test_stream';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksVectorConfigVectorConfig & {
+      /**
+       * Relay observability data to a Vector instance.
+       */
+      type: 'vector';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings;
+      compression?: CompressionConfiguration;
+      endpoint?: AnHDFSClusterConsistsOfASingleNameNodeAMasterServerThatManagesTheFileSystemNamespaceAndRegulatesAccessToFilesByClients;
+      prefix?: APrefixToApplyToAllKeys;
+      root?: TheRootPathForWebHDFS;
+      [k: string]: unknown | undefined;
+    } & CodecsEncodingConfigEncodingConfigWithFraming) & {
+      /**
+       * WebHDFS.
+       */
+      type: 'webhdfs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+      /**
+       * Encoding configuration.
+       * Configures how events are encoded into raw bytes.
+       * The selected encoding also determines which input types (logs, metrics, traces) are supported.
+       */
+      encoding: (
+        | EncodesAnEventAsAnApacheAvroApacheAvroMessage
+        | (CodecsEncodingFormatCefCefSerializerConfig & {
             /**
-             * The maximum size of a batch before it is flushed.
+             * Encodes an event as a CEF (Common Event Format) formatted message.
              */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
+            codec: 'cef';
             [k: string]: unknown | undefined;
-          };
-          compression?: CompressionConfiguration8;
-          /**
-           * When enabled this sink will normalize events to conform to the Datadog Agent standard. This
-           * also sends requests to the logs backend with the `DD-PROTOCOL: agent-json` header. This bool
-           * will be overridden as `true` if this header has already been set in the request.headers
-           * configuration setting.
-           */
-          conforms_as_agent?: boolean;
-          encoding?: CodecsEncodingTransformerTransformer4;
-          /**
-           * Outbound HTTP request settings.
-           */
-          request?: {
+          })
+        | EncodesAnEventAsACSVMessage
+        | EncodesAnEventAsAGELFGelfMessage
+        | EncodesAnEventAsJSONJson
+        | EncodesAnEventAsALogfmtLogfmtMessage
+        | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
+        | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
+        | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
+        | EncodesAnEventAsAProtobufProtobufMessage
+        | NoEncoding
+        | PlainTextEncoding
+        | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
             /**
-             * Additional HTTP headers to add to every HTTP request.
+             * Syslog encoding
+             * RFC 3164 and 5424 are supported
              */
-            headers?: {
-              [k: string]: string | undefined;
-            };
+            codec: 'syslog';
             [k: string]: unknown | undefined;
-          } & MiddlewareSettingsForOutboundRequests1;
-          [k: string]: unknown | undefined;
-        } & VectorSinksDatadogLocalDatadogCommonConfig1) & {
-          /**
-           * Publish log events to Datadog.
-           */
-          type: 'datadog_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
-          request?: MiddlewareSettingsForOutboundRequests12;
-          [k: string]: unknown | undefined;
-        } & VectorSinksDatadogLocalDatadogCommonConfig2) & {
-          /**
-           * Publish metric events to Datadog.
-           */
-          type: 'datadog_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          compression?: CompressionConfiguration10;
-          request?: MiddlewareSettingsForOutboundRequests13;
-          [k: string]: unknown | undefined;
-        } & VectorSinksDatadogLocalDatadogCommonConfig3) & {
-          /**
-           * Publish trace events to Datadog.
-           */
-          type: 'datadog_traces';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink16;
-          auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings5;
-          compression?: CompressionConfiguration;
-          database: ATemplatedField;
-          /**
-           * Options for determining the health of Doris endpoints.
-           */
-          distribution?: null | VectorSinksUtilServiceHealthHealthConfig;
-          endpoints?: AListOfDorisEndpointsToSendLogsTo;
-          headers?: CustomHTTPHeadersToAddToTheRequest;
-          /**
-           * The prefix for Stream Load label.
-           * The final label will be in format: `{label_prefix}_{database}_{table}_{timestamp}_{uuid}`.
-           */
-          label_prefix?: string;
-          /**
-           * Enable request logging.
-           */
-          log_request?: boolean;
-          /**
-           * Number of retries attempted before failing.
-           */
-          max_retries?: number;
-          request?: MiddlewareSettingsForOutboundRequests14;
-          table: ATemplatedField;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming3) & {
-          /**
-           * Deliver log data to an Apache Doris database.
-           */
-          type: 'doris';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksElasticsearchConfigElasticsearchConfig & {
-          /**
-           * Index observability events in Elasticsearch.
-           */
-          type: 'elasticsearch';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink18;
-          /**
-           * Compression configuration.
-           */
-          compression?: GzipGzipCompression | ZstandardZstdCompression | 'none';
-          idle_timeout_secs?: TheAmountOfTimeThatAFileCanBeIdleAndStayOpen;
-          internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig;
-          path: ATemplatedField;
-          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
-          /**
-           * Configuration for truncating files.
-           */
-          truncate?: {
-            /**
-             * If this is set, files will be truncated after being closed for a set amount of seconds.
-             */
-            after_close_time_secs?: number | null;
-            /**
-             * If this is set, files will be truncated after set amount of seconds of no modifications.
-             */
-            after_modified_time_secs?: number | null;
-            /**
-             * If this is set, files will be truncated after set amount of seconds regardless of the state.
-             */
-            after_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming4) & {
-          /**
-           * Output observability events into files.
-           */
-          type: 'file';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink19;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          compression?: CompressionConfiguration13;
-          /**
-           * The Unique identifier (UUID) corresponding to the Chronicle instance.
-           */
-          customer_id: string;
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          /**
-           * The endpoint to send data to.
-           */
-          endpoint?: string | null;
-          /**
-           * The default `log_type` to attach to events if the template in `log_type` cannot be resolved.
-           */
-          fallback_log_type?: string | null;
-          /**
-           * A set of labels that are attached to each batch of events.
-           */
-          labels?: {
-            [k: string]: string | undefined;
-          } | null;
-          log_type: ATemplatedField;
-          namespace?: ATemplatedField18;
-          /**
-           * The GCP region to use.
-           */
-          region?:
-            | null
-            | (
-                | 'eu'
-                | 'us'
-                | 'asia'
-                | 'são_paulo'
-                | 'canada'
-                | 'dammam'
-                | 'doha'
-                | 'frankfurt'
-                | 'london'
-                | 'mumbai'
-                | 'paris'
-                | 'singapore'
-                | 'sydney'
-                | 'tel_aviv'
-                | 'tokyo'
-                | 'turin'
-                | 'zurich'
-              );
-          request?: MiddlewareSettingsForOutboundRequests15;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & VectorGcpGcpAuthConfig) & {
-          /**
-           * Store unstructured log events in Google Chronicle.
-           */
-          type: 'gcp_chronicle_unstructured';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink20;
-          acl?: ThePredefinedACLToApplyToCreatedObjects;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings2;
-          /**
-           * The GCS bucket name.
-           */
-          bucket: string;
-          cache_control?: SetsTheCacheControlHeaderForTheCreatedObjects;
-          compression?: CompressionConfiguration;
-          content_encoding?: OverridesWhatContentEncodingHasBeenAppliedToTheObject;
-          content_type?: OverridesTheMIMETypeOfTheCreatedObjects;
-          /**
-           * API endpoint for Google Cloud Storage
-           */
-          endpoint?: string;
-          filename_append_uuid?: WhetherOrNotToAppendAUUIDV4TokenToTheEndOfTheObjectKey;
-          filename_extension?: TheFilenameExtensionToUseInTheObjectKey;
-          filename_time_format?: TheTimestampFormatForTheTimeComponentOfTheObjectKey;
-          key_prefix?: APrefixToApplyToAllObjectKeys1;
-          metadata?: TheSetOfMetadataKeyValuePairsForTheCreatedObjects;
-          request?: MiddlewareSettingsForOutboundRequests16;
-          storage_class?: TheStorageClassForCreatedObjects;
-          timezone?: TimezoneToUseForAnyDateSpecifiersInTemplateStrings;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming5 &
-          VectorGcpGcpAuthConfig1) & {
-          /**
-           * Store observability events in GCP Cloud Storage.
-           */
-          type: 'gcp_cloud_storage';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink21;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          endpoint?: TheEndpointToWhichToPublishEvents;
-          /**
-           * The project name to which to publish events.
-           */
-          project: string;
-          request?: MiddlewareSettingsForOutboundRequests17;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          /**
-           * The topic within the project to which to publish events.
-           */
-          topic: string;
-          [k: string]: unknown | undefined;
-        } & VectorGcpGcpAuthConfig2) & {
-          /**
-           * Publish observability events to GCP's Pub/Sub messaging system.
-           */
-          type: 'gcp_pubsub';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink22;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings7;
-          encoding?: CodecsEncodingTransformerTransformer6;
-          log_id: ATemplatedField;
-          request?: MiddlewareSettingsForOutboundRequests18;
-          resource: AMonitoredResource;
-          severity_key?: TheFieldOfTheLogEventFromWhichToTakeTheOutgoingLogSSeverityField;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & (
-          | TheBillingAccountIDToWhichToPublishLogs
-          | TheFolderIDToWhichToPublishLogs
-          | TheOrganizationIDToWhichToPublishLogs
-          | TheProjectIDToWhichToPublishLogs
-        ) & {
-            /**
-             * A map of key, value pairs that provides additional information about the log entry.
-             */
-            labels?: {
-              [k: string]: ATemplatedField;
-            };
-            /**
-             * The value of this field is used to retrieve the associated labels from the `jsonPayload`
-             * and extract their values to set as LogEntry labels.
-             */
-            labels_key?: string | null;
-            [k: string]: unknown | undefined;
-          } & VectorGcpGcpAuthConfig3) & {
-          /**
-           * Deliver logs to GCP's Cloud Operations suite.
-           */
-          type: 'gcp_stackdriver_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink23;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          default_namespace?: TheDefaultNamespaceToUseForMetricsThatDoNotHaveOne;
-          project_id: TheProjectIDToWhichToPublishMetrics;
-          request?: MiddlewareSettingsForOutboundRequests19;
-          resource: AMonitoredResource1;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & VectorGcpGcpAuthConfig4) & {
-          /**
-           * Deliver metrics to GCP's Cloud Monitoring system.
-           */
-          type: 'gcp_stackdriver_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksGreptimedbMetricsConfigGreptimeDBConfig & {
-          /**
-           * Ingest metrics data into GreptimeDB.
-           */
-          type: 'greptimedb';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig & {
-          /**
-           * Ingest logs data into GreptimeDB.
-           */
-          type: 'greptimedb_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksGreptimedbMetricsConfigGreptimeDBMetricsConfig & {
-          /**
-           * Ingest metrics data into GreptimeDB.
-           */
-          type: 'greptimedb_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksHoneycombConfigHoneycombConfig & {
-          /**
-           * Deliver log events to Honeycomb.
-           */
-          type: 'honeycomb';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink27;
-          auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings8;
-          compression?: CompressionConfiguration;
-          /**
-           * @deprecated
-           * A list of custom headers to add to each request.
-           */
-          headers?: {
-            [k: string]: string | undefined;
-          } | null;
-          method?: HTTPMethod;
-          payload_prefix?: AStringToPrefixThePayloadWith;
-          payload_suffix?: AStringToSuffixThePayloadWith;
-          /**
-           * Outbound HTTP request settings.
-           */
-          request?: {
-            /**
-             * Additional HTTP headers to add to every HTTP request.
-             */
-            headers?: {
-              [k: string]: string | undefined;
-            };
-            [k: string]: unknown | undefined;
-          } & MiddlewareSettingsForOutboundRequests1;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          uri: ATemplatedField;
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming6) & {
-          /**
-           * Deliver observability event data to an HTTP server.
-           */
-          type: 'http';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksHumioLogsHumioLogsConfig & {
-          /**
-           * Deliver log event data to Humio.
-           */
-          type: 'humio_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink29;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings1;
-          compression?: CompressionConfiguration;
-          endpoint?: TheBaseURLOfTheHumioInstance;
-          event_type?: TheTypeOfEventsSentToThisSinkHumioUsesThisAsTheNameOfTheParserToUseToIngestTheData;
-          host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio;
-          index?: OptionalNameOfTheRepositoryToIngestInto;
-          indexed_fields?: EventFieldsToBeAddedToHumioSExtraFields;
-          request?: MiddlewareSettingsForOutboundRequests24;
-          source?: TheSourceOfEventsSentToThisSink;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          /**
-           * Wrapper for sensitive strings containing credentials
-           */
-          token: string;
-          [k: string]: unknown | undefined;
-        } & VectorTransformsMetricToLogMetricToLogConfig1) & {
-          /**
-           * Deliver metric event data to Humio.
-           */
-          type: 'humio_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink30;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          encoding?: CodecsEncodingTransformerTransformer9;
-          endpoint: TheEndpointToSendDataTo;
-          host_key?: UseThisOptionToCustomizeTheKeyContainingTheHostname;
-          /**
-           * The name of the InfluxDB measurement that is written to.
-           */
-          measurement?: string | null;
-          message_key?: UseThisOptionToCustomizeTheKeyContainingTheMessage;
-          namespace?: TheNamespaceOfTheMeasurementNameToUse;
-          request?: MiddlewareSettingsForOutboundRequests25;
-          source_type_key?: UseThisOptionToCustomizeTheKeyContainingTheSourceType;
-          tags?: TheListOfNamesOfLogFieldsThatShouldBeAddedAsTagsToEachMeasurement;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & CoreOptionOptionVectorSinksInfluxdbInfluxDb1Settings &
-          CoreOptionOptionVectorSinksInfluxdbInfluxDb2Settings) & {
-          /**
-           * Deliver log event data to InfluxDB.
-           */
-          type: 'influxdb_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink31;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
-          endpoint: TheEndpointToSendDataTo;
-          /**
-           * The list of quantiles to calculate when sending distribution metrics.
-           */
-          quantiles?: number[];
-          request?: MiddlewareSettingsForOutboundRequests26;
-          /**
-           * A map of additional tags, in the key/value pair format, to add to each measurement.
-           */
-          tags?: {
-            [k: string]: string | undefined;
-          } | null;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & CoreOptionOptionVectorSinksInfluxdbInfluxDb1Settings &
-          CoreOptionOptionVectorSinksInfluxdbInfluxDb2Settings) & {
-          /**
-           * Deliver metric event data to InfluxDB.
-           */
-          type: 'influxdb_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink32;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          bootstrap_servers: ACommaSeparatedListOfKafkaBootstrapServers;
-          /**
-           * Supported compression types for Kafka.
-           */
-          compression?: 'none' | 'gzip' | 'snappy' | 'lz4' | 'zstd';
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          headers_key?: TheLogFieldNameToUseForTheKafkaHeaders;
-          healthcheck_topic?: TheTopicNameToUseForHealthcheckIfOmittedTopicIsUsedThisOptionHelpsPreventHealthcheckWarningsWhenTopicIsTemplated;
-          key_field?: TheLogFieldNameOrTagKeyToUseForTheTopicKey;
-          librdkafka_options?: AMapOfAdvancedOptionsToPassDirectlyToTheUnderlyingLibrdkafkaClient;
-          /**
-           * Local message timeout, in milliseconds.
-           */
-          message_timeout_ms?: number;
-          /**
-           * The time window used for the `rate_limit_num` option.
-           */
-          rate_limit_duration_secs?: number;
-          /**
-           * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-           */
-          rate_limit_num?: number;
-          /**
-           * Default timeout, in milliseconds, for network requests.
-           */
-          socket_timeout_ms?: number;
-          topic: ATemplatedField;
-          [k: string]: unknown | undefined;
-        } & VectorKafkaKafkaAuthConfig) & {
-          /**
-           * Publish observability event data to Apache Kafka topics.
-           */
-          type: 'kafka';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksKeepConfigKeepConfig & {
-          /**
-           * Deliver log events to Keep.
-           */
-          type: 'keep';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksMezmoLogdnaConfig & {
-          /**
-           * Deliver log event data to LogDNA.
-           */
-          type: 'logdna';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksLokiConfigLokiConfig & {
-          /**
-           * Deliver log event data to the Loki aggregation system.
-           */
-          type: 'loki';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksMezmoMezmoConfig & {
-          /**
-           * Deliver log event data to Mezmo.
-           */
-          type: 'mezmo';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink36;
-          /**
-           * If set to true, the MQTT session is cleaned on login.
-           */
-          clean_session?: boolean;
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          /**
-           * Supported Quality of Service types for MQTT.
-           */
-          quality_of_service?: 'atleastonce' | 'atmostonce' | 'exactlyonce';
-          /**
-           * Whether the messages should be retained by the server
-           */
-          retain?: boolean;
-          topic: ATemplatedField;
-          [k: string]: unknown | undefined;
-        } & VectorCommonMqttMqttCommonConfig) & {
-          /**
-           * This component is missing a description.
-           */
-          type: 'mqtt';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksNatsConfigNatsSinkConfig & {
-          /**
-           * Publish observability data to subjects on the NATS messaging system.
-           */
-          type: 'nats';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksNewRelicConfigNewRelicConfig & {
-          /**
-           * Deliver events to New Relic.
-           */
-          type: 'new_relic';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksOpentelemetryOpenTelemetryConfig & {
-          /**
-           * Deliver OTLP data over HTTP.
-           */
-          type: 'opentelemetry';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksPapertrailPapertrailConfig & {
-          /**
-           * Deliver log events to Papertrail from SolarWinds.
-           */
-          type: 'papertrail';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksPostgresConfigPostgresConfig & {
-          /**
-           * Deliver log data to a PostgreSQL database.
-           */
-          type: 'postgres';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksPrometheusExporterPrometheusExporterConfig & {
-          /**
-           * Expose metric events on a Prometheus compatible endpoint.
-           */
-          type: 'prometheus_exporter';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig & {
-          /**
-           * Deliver metric data to a Prometheus remote write endpoint.
-           */
-          type: 'prometheus_remote_write';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksPulsarConfigPulsarSinkConfig & {
-          /**
-           * Publish observability events to Apache Pulsar topics.
-           */
-          type: 'pulsar';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksRedisConfigRedisSinkConfig & {
-          /**
-           * Publish observability data to Redis.
-           */
-          type: 'redis';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksSematextLogsSematextLogsConfig & {
-          /**
-           * Publish log events to Sematext.
-           */
-          type: 'sematext_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksSematextMetricsSematextMetricsConfig & {
-          /**
-           * Publish metric events to Sematext.
-           */
-          type: 'sematext_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink47;
-          [k: string]: unknown | undefined;
-        } & (
-          | (({
-              address: TheAddressToConnectTo;
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              send_buffer_bytes?: TheSizeOfTheSocketSSendBuffer;
-              /**
-               * Configures the TLS options for incoming/outgoing connections.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-              [k: string]: unknown | undefined;
-            } & CodecsEncodingConfigEncodingConfigWithFraming7) & {
-              /**
-               * Send over TCP.
-               */
-              mode: 'tcp';
-              [k: string]: unknown | undefined;
-            })
-          | (({
-              /**
-               * Encoding configuration.
-               * Configures how events are encoded into raw bytes.
-               * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-               */
-              encoding: (
-                | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-                | (CodecsEncodingFormatCefCefSerializerConfig & {
-                    /**
-                     * Encodes an event as a CEF (Common Event Format) formatted message.
-                     */
-                    codec: 'cef';
-                    [k: string]: unknown | undefined;
-                  })
-                | EncodesAnEventAsACSVMessage
-                | EncodesAnEventAsAGELFGelfMessage
-                | EncodesAnEventAsJSONJson
-                | EncodesAnEventAsALogfmtLogfmtMessage
-                | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-                | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-                | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-                | EncodesAnEventAsAProtobufProtobufMessage
-                | NoEncoding
-                | PlainTextEncoding
-                | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                    /**
-                     * Syslog encoding
-                     * RFC 3164 and 5424 are supported
-                     */
-                    codec: 'syslog';
-                    [k: string]: unknown | undefined;
-                  })
-              ) & {
-                /**
-                 * List of fields that are excluded from the encoded event.
-                 */
-                except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-                /**
-                 * List of fields that are included in the encoded event.
-                 */
-                only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-                /**
-                 * Format used for timestamp fields.
-                 */
-                timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            } & {
-              address: TheAddressToConnectTo;
-              send_buffer_bytes?: TheSizeOfTheSocketSSendBuffer;
-              [k: string]: unknown | undefined;
-            }) & {
-              /**
-               * Send over UDP.
-               */
-              mode: 'udp';
-              [k: string]: unknown | undefined;
-            })
-          | ((VectorSinksUtilUnixUnixSinkConfig & CodecsEncodingConfigEncodingConfigWithFraming8) & {
-              /**
-               * Send over a Unix domain socket (UDS), in stream mode.
-               */
-              mode: 'unix_stream';
-              [k: string]: unknown | undefined;
-            })
-          | ((VectorSinksUtilUnixUnixSinkConfig & CodecsEncodingConfigEncodingConfigWithFraming8) & {
-              /**
-               * Send over a Unix domain socket (UDS), in datagram mode.
-               * Unavailable on macOS, due to send(2)'s apparent non-blocking behavior,
-               * resulting in ENOBUFS errors which we currently don't handle.
-               */
-              mode: 'unix_datagram';
-              [k: string]: unknown | undefined;
-            })
-        )) & {
-          /**
-           * Deliver logs to a remote socket endpoint.
-           */
-          type: 'socket';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksSplunkHecLogsConfigHecLogsSinkConfig & {
-          /**
-           * Deliver log data to Splunk's HTTP Event Collector.
-           */
-          type: 'splunk_hec_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksSplunkHecMetricsConfigHecMetricsSinkConfig & {
-          /**
-           * Deliver metric data to Splunk's HTTP Event Collector.
-           */
-          type: 'splunk_hec_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink49;
-          /**
-           * Event batching behavior.
-           */
-          batch?: {
-            max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-            /**
-             * The maximum size of a batch before it is flushed.
-             */
-            max_events?: number | null;
-            /**
-             * The maximum age of a batch before it is flushed.
-             */
-            timeout_secs?: number | null;
-            [k: string]: unknown | undefined;
-          };
-          default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
-          [k: string]: unknown | undefined;
-        } & (
-          | ({
-              address: TheAddressToConnectTo;
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
-              /**
-               * Configures the TLS options for incoming/outgoing connections.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Send over TCP.
-               */
-              mode: 'tcp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              address: TheAddressToConnectTo;
-              send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Send over UDP.
-               */
-              mode: 'udp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              path: TheUnixSocketPath;
-              send_buffer_size?: TheSizeOfTheSocketSSendBuffer;
-              /**
-               * The Unix socket mode to use.
-               */
-              unix_mode?: 'Datagram' | 'Stream';
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Send over a Unix domain socket (UDS).
-               */
-              mode: 'unix';
-              [k: string]: unknown | undefined;
-            })
-        )) & {
-          /**
-           * Deliver metric data to a StatsD aggregator.
-           */
-          type: 'statsd';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorConfigUnitTestUnitTestComponentsUnitTestSinkConfig & {
-          /**
-           * Unit test.
-           */
-          type: 'unit_test';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorConfigUnitTestUnitTestComponentsUnitTestStreamSinkConfig & {
-          /**
-           * Unit test stream.
-           */
-          type: 'unit_test_stream';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksVectorConfigVectorConfig & {
-          /**
-           * Relay observability data to a Vector instance.
-           */
-          type: 'vector';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink51;
-          batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings3;
-          compression?: CompressionConfiguration;
-          endpoint?: AnHDFSClusterConsistsOfASingleNameNodeAMasterServerThatManagesTheFileSystemNamespaceAndRegulatesAccessToFilesByClients;
-          prefix?: APrefixToApplyToAllKeys;
-          root?: TheRootPathForWebHDFS;
-          [k: string]: unknown | undefined;
-        } & CodecsEncodingConfigEncodingConfigWithFraming9) & {
-          /**
-           * WebHDFS.
-           */
-          type: 'webhdfs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink52;
-          /**
-           * Encoding configuration.
-           * Configures how events are encoded into raw bytes.
-           * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-           */
-          encoding: (
-            | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-            | (CodecsEncodingFormatCefCefSerializerConfig & {
-                /**
-                 * Encodes an event as a CEF (Common Event Format) formatted message.
-                 */
-                codec: 'cef';
-                [k: string]: unknown | undefined;
-              })
-            | EncodesAnEventAsACSVMessage
-            | EncodesAnEventAsAGELFGelfMessage
-            | EncodesAnEventAsJSONJson
-            | EncodesAnEventAsALogfmtLogfmtMessage
-            | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-            | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-            | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-            | EncodesAnEventAsAProtobufProtobufMessage
-            | NoEncoding
-            | PlainTextEncoding
-            | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-                /**
-                 * Syslog encoding
-                 * RFC 3164 and 5424 are supported
-                 */
-                codec: 'syslog';
-                [k: string]: unknown | undefined;
-              })
-          ) & {
-            /**
-             * List of fields that are excluded from the encoded event.
-             */
-            except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * List of fields that are included in the encoded event.
-             */
-            only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-            /**
-             * Format used for timestamp fields.
-             */
-            timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        } & VectorCommonWebsocketWebSocketCommonConfig) & {
-          /**
-           * Deliver observability event data to a websocket listener.
-           */
-          type: 'websocket';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSinksWebsocketServerConfigWebSocketListenerSinkConfig & {
-          /**
-           * Deliver observability event data to websocket clients.
-           */
-          type: 'websocket_server';
-          [k: string]: unknown | undefined;
-        })
-    ))
-  | undefined;
+          })
+      ) & {
+        /**
+         * List of fields that are excluded from the encoded event.
+         */
+        except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * List of fields that are included in the encoded event.
+         */
+        only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
+        /**
+         * Format used for timestamp fields.
+         */
+        timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    } & VectorCommonWebsocketWebSocketCommonConfig) & {
+      /**
+       * Deliver observability event data to a websocket listener.
+       */
+      type: 'websocket';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSinksWebsocketServerConfigWebSocketListenerSinkConfig & {
+      /**
+       * Deliver observability event data to websocket clients.
+       */
+      type: 'websocket_server';
+      [k: string]: unknown | undefined;
+    })
+);
 /**
  * More information about the individual buffer types, and buffer behavior, can be found in the
  * [Buffering Model][buffering_model] section.
@@ -2640,8 +2634,7 @@ export type VectorConfigSinkSinkOuterAllocStringString =
  * [buffering_model]: /docs/architecture/buffering-model/
  */
 export type ConfiguresTheBufferingBehaviorForThisSink =
-  | (EventsAreBufferedInMemory | EventsAreBufferedOnDisk)
-  | VectorBuffersConfigBufferType[];
+  (EventsAreBufferedInMemory | EventsAreBufferedOnDisk) | VectorBuffersConfigBufferType[];
 /**
  * This is more performant, but less durable. Data will be lost if Vector is restarted
  * forcefully or crashes.
@@ -2790,7 +2783,7 @@ export type EncodesAnEventAsAnApacheAvroApacheAvroMessage1 = 'avro';
  * A wrapper around `OwnedTargetPath` that allows it to be used in Vector config
  * with prefix default to `PathPrefix::Event`
  */
-export type VectorLookupLookupV2ConfigTargetPath = string | undefined;
+export type VectorLookupLookupV2ConfigTargetPath = string;
 /**
  * A wrapper around `OwnedTargetPath` that allows it to be used in Vector config
  * with prefix default to `PathPrefix::Event`
@@ -2822,8 +2815,7 @@ export type TheEscapeCharacterToUseWhenWritingCSV = number;
  * output for any of these types is an empty string.
  */
 export type ConfiguresTheFieldsThatAreEncodedAsWellAsTheOrderInWhichTheyAppearInTheOutput =
-  | VectorLookupLookupV2ConfigTargetPath
-  | undefined[];
+  VectorLookupLookupV2ConfigTargetPath[];
 /**
  * This codec must be configured with fields to encode.
  */
@@ -2963,7 +2955,7 @@ export type PlainTextEncoding1 = 'text';
  * If not provided, the encoder checks for a semantic "service" field.
  * If that is also missing, it defaults to "vector".
  */
-export type PathToAFieldInTheEventToUseForTheAppName = null | VectorLookupLookupV2ConfigTargetPath | undefined;
+export type PathToAFieldInTheEventToUseForTheAppName = null | VectorLookupLookupV2ConfigTargetPath;
 /**
  * A wrapper around `OwnedValuePath` that allows it to be used in Vector config.
  * This requires a valid path to be used. If you want to allow optional paths,
@@ -2974,12 +2966,7 @@ export type VectorLookupLookupV2ConfigValuePath = string;
  * The format in which a timestamp should be represented.
  */
 export type CodecsEncodingTransformerTimestampFormat =
-  | 'unix'
-  | 'rfc3339'
-  | 'unix_ms'
-  | 'unix_us'
-  | 'unix_ns'
-  | 'unix_float';
+  'unix' | 'rfc3339' | 'unix_ms' | 'unix_us' | 'unix_ns' | 'unix_float';
 /**
  * The exchange to publish messages to.
  */
@@ -3018,11 +3005,7 @@ export type CompressionConfiguration =
        * Compression algorithm.
        */
       algorithm:
-        | 'none'
-        | GzipGzipCompression
-        | ZlibZlibCompression
-        | ZstandardZstdCompression
-        | SnappySnappyCompression;
+        'none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression;
       /**
        * Compression level.
        */
@@ -3137,7 +3120,7 @@ export type TheTimeARequestCanTakeBeforeBeingAborted = number;
 export type VectorCoreTlsSettingsTlsEnableableConfig = {
   enabled?: WhetherToRequireTLSForIncomingOrOutgoingConnections;
   [k: string]: unknown | undefined;
-} & VectorCoreTlsSettingsTlsConfig1;
+} & VectorCoreTlsSettingsTlsConfig;
 /**
  * When enabled and used for incoming connections, an identity certificate is also required. See `tls.crt_file` for
  * more information.
@@ -3418,8 +3401,7 @@ export type AWSS3ServerSideEncryptionAlgorithms = null | AWSS3ServerSideEncrypti
  * [aws_docs]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html
  */
 export type AWSS3ServerSideEncryptionAlgorithms1 =
-  | EachObjectIsEncryptedWithAES256UsingAUniqueKey
-  | EachObjectIsEncryptedWithAES256UsingKeysManagedByAWSKMS;
+  EachObjectIsEncryptedWithAES256UsingAUniqueKey | EachObjectIsEncryptedWithAES256UsingKeysManagedByAWSKMS;
 /**
  * This corresponds to the `SSE-S3` option.
  */
@@ -3693,7 +3675,7 @@ export type ConfigurationOfTheAuthenticationStrategyForHTTPRequests1 =
             [k: string]: unknown | undefined;
           }
         | {
-            imds?: VectorAwsAuthImdsAuthentication1;
+            imds?: VectorAwsAuthImdsAuthentication;
             load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
             region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
             [k: string]: unknown | undefined;
@@ -3765,10 +3747,6 @@ export type AllowNullValuesForNonNullableFieldsInTheSchema = boolean;
  */
 export type EncodesEventsInApacheArrowApacheArrowIPCStreamingFormat1 = 'arrow_stream';
 /**
- * The database that contains the table that data is inserted into.
- */
-export type ATemplatedField6 = null | ATemplatedField;
-/**
  * The format to parse input data.
  */
 export type DataFormat = 'json_each_row' | 'json_as_object' | 'json_as_string' | 'arrow_stream';
@@ -3776,8 +3754,7 @@ export type DataFormat = 'json_each_row' | 'json_as_object' | 'json_as_string' |
  * If left unspecified, use the default provided by the `ClickHouse` server.
  */
 export type SetsAsyncInsertDeduplicateAllowingClickHouseToPerformDeduplicationWhenInsertingBlocksInTheReplicatedTable =
-  | boolean
-  | null;
+  boolean | null;
 /**
  * If left unspecified, use the default provided by the `ClickHouse` server.
  */
@@ -3786,8 +3763,7 @@ export type SetsAsyncInsertAllowingClickHouseToQueueTheInsertedDataAndLaterFlush
  * If left unspecified, use the default provided by the `ClickHouse` server.
  */
 export type SetsAsyncInsertMaxDataSizeTheMaximumSizeInBytesOfUnparsedDataCollectedPerQueryBeforeBeingInserted =
-  | number
-  | null;
+  number | null;
 /**
  * If left unspecified, use the default provided by the `ClickHouse` server.
  */
@@ -3804,8 +3780,7 @@ export type SetsWaitForProcessingTimeoutToControlTheTimeoutForWaitingForProcessi
  * If left unspecified, use the default provided by the `ClickHouse` server.
  */
 export type SetsInputFormatSkipUnknownFieldsAllowingClickHouseToDiscardFieldsNotPresentInTheTableSchema =
-  | boolean
-  | null;
+  boolean | null;
 /**
  * [standard_streams]: https://en.wikipedia.org/wiki/Standard_streams
  */
@@ -3818,28 +3793,6 @@ export type WriteOutputToSTDOUTStdout = 'stdout';
  * [stderr]: https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)
  */
 export type WriteOutputToSTDERRStderr = 'stderr';
-/**
- * This codec must be configured with fields to encode.
- */
-export type EncodesAnEventAsACSVMessage2 = CodecsEncodingFormatCsvCsvSerializerConfig1 & {
-  codec: EncodesAnEventAsACSVMessage3;
-  [k: string]: unknown | undefined;
-};
-/**
- * This codec must be configured with fields to encode.
- */
-export type EncodesAnEventAsACSVMessage3 = 'csv';
-/**
- * [json]: https://www.json.org/
- */
-export type EncodesAnEventAsJSONJson2 = CodecsEncodingFormatJsonJsonSerializerConfig1 & {
-  codec: EncodesAnEventAsJSONJson3;
-  [k: string]: unknown | undefined;
-};
-/**
- * [json]: https://www.json.org/
- */
-export type EncodesAnEventAsJSONJson3 = 'json';
 /**
  * If an event has a Datadog [API key][api_key] set explicitly in its metadata, it takes
  * precedence over this setting.
@@ -3873,63 +3826,12 @@ export type TheDatadogSiteDdSiteToSendObservabilityDataTo = string | null;
 /**
  * All compression algorithms use the default compression level unless otherwise specified.
  */
-export type CompressionConfiguration8 = null | CompressionConfiguration9;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration9 =
-  | ('none' | GzipGzipCompression | ZlibZlibCompression | ZstandardZstdCompression | SnappySnappyCompression)
-  | {
-      /**
-       * Compression algorithm.
-       */
-      algorithm:
-        | 'none'
-        | GzipGzipCompression
-        | ZlibZlibCompression
-        | ZstandardZstdCompression
-        | SnappySnappyCompression;
-      /**
-       * Compression level.
-       */
-      level?:
-        | 'none'
-        | 'fast'
-        | 'best'
-        | 'default'
-        | 0
-        | 1
-        | 2
-        | 3
-        | 4
-        | 5
-        | 6
-        | 7
-        | 8
-        | 9
-        | 10
-        | 11
-        | 12
-        | 13
-        | 14
-        | 15
-        | 16
-        | 17
-        | 18
-        | 19
-        | 20
-        | 21;
-      [k: string]: unknown | undefined;
-    };
+export type CompressionConfiguration8 = null | CompressionConfiguration;
 /**
  * This namespace is only used if a metric has no existing namespace. When a namespace is
  * present, it is used as a prefix to the metric name, and separated with a period (`.`).
  */
 export type SetsTheDefaultNamespaceForAnyMetricsSent = string | null;
-/**
- * All compression algorithms use the default compression level unless otherwise specified.
- */
-export type CompressionConfiguration10 = null | CompressionConfiguration9;
 /**
  * The endpoint must contain an HTTP scheme, and may specify a
  * hostname or IP address and port.
@@ -3949,14 +3851,6 @@ export type TheAPIVersionOfElasticsearch = AutoDetectTheAPIVersion | 'v6' | 'v7'
  * [es_version]: https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html#cluster-state-api-path-params
  */
 export type AutoDetectTheAPIVersion = 'auto';
-/**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
-export type TheARNOfAnIAMRoleIamRoleToAssume3 = string;
-/**
- * Version field value.
- */
-export type ATemplatedField12 = null | ATemplatedField;
 /**
  * Possible values are `internal`, `external` or `external_gt` and `external_gte`.
  *
@@ -4035,23 +3929,20 @@ export type IngestsDocumentsInBulkUsingTheBulkAPICreateAction = 'data_stream';
  */
 export type VectorHttpQueryParameterValue =
   | (
-      | (
-          | string
-          | {
-              /**
-               * The parameter type, indicating how the `value` should be treated.
-               */
-              type?: 'string' | 'vrl';
-              /**
-               * The raw value of the parameter.
-               */
-              value: string;
-              [k: string]: unknown | undefined;
-            }
-        )
-      | VectorHttpParameterValue[]
+      | string
+      | {
+          /**
+           * The parameter type, indicating how the `value` should be treated.
+           */
+          type?: 'string' | 'vrl';
+          /**
+           * The raw value of the parameter.
+           */
+          value: string;
+          [k: string]: unknown | undefined;
+        }
     )
-  | undefined;
+  | VectorHttpParameterValue[];
 /**
  * Represents a query parameter value, which can be a simple string or a typed object
  * indicating whether the value is a string or a VRL expression.
@@ -4130,10 +4021,6 @@ export type CompressionConfiguration13 =
         | 21;
       [k: string]: unknown | undefined;
     };
-/**
- * User-configured environment namespace to identify the data domain the logs originated from.
- */
-export type ATemplatedField18 = null | ATemplatedField;
 /**
  * Either an API key or a path to a service account credentials JSON file can be specified.
  *
@@ -4237,7 +4124,7 @@ export type AMonitoredResource = {
   type: TheMonitoredResourceType;
   [k: string]: unknown | undefined;
 } & {
-  [k: string]: ATemplatedField;
+  [k: string]: ATemplatedField | undefined;
 };
 /**
  * For example, the type of a Compute Engine VM instance is `gce_instance`.
@@ -4324,10 +4211,6 @@ export type ThePasswordForYourGreptimeDBInstance = null | VectorCommonSensitiveS
  * This is required if your instance has authentication enabled.
  */
 export type TheUsernameForYourGreptimeDBInstance = string | null;
-/**
- * Pipeline version to be used for the logs.
- */
-export type ATemplatedField22 = null | ATemplatedField;
 /**
  * The HTTP method to use when making the request.
  */
@@ -4471,7 +4354,7 @@ export type ACommaSeparatedListOfKafkaBootstrapServers = string;
 /**
  * If omitted, no headers are written.
  */
-export type TheLogFieldNameToUseForTheKafkaHeaders = null | VectorLookupLookupV2ConfigTargetPath | undefined;
+export type TheLogFieldNameToUseForTheKafkaHeaders = null | VectorLookupLookupV2ConfigTargetPath;
 /**
  * It is ignored when healthcheck is disabled.
  */
@@ -4484,7 +4367,7 @@ export type TheTopicNameToUseForHealthcheckIfOmittedTopicIsUsedThisOptionHelpsPr
  * Kafka uses a hash of the key to choose the partition or uses round-robin if the record has
  * no key.
  */
-export type TheLogFieldNameOrTagKeyToUseForTheTopicKey = null | VectorLookupLookupV2ConfigTargetPath | undefined;
+export type TheLogFieldNameOrTagKeyToUseForTheTopicKey = null | VectorLookupLookupV2ConfigTargetPath;
 /**
  * Only `PLAIN`- and `SCRAM`-based mechanisms are supported when configuring SASL authentication using `sasl.*`. For
  * other mechanisms, `librdkafka_options.*` must be used directly to configure other `librdkafka`-specific values.
@@ -4629,14 +4512,6 @@ export type QuantilesToUseForAggregatingDistributionDistMetricDocsMetricsIntoASu
  */
 export type SuppressesTimestampsOnThePrometheusOutput = boolean;
 /**
- * A bearer token (OAuth2, JWT, etc) is passed as-is.
- */
-export type BearerAuthentication3 = 'bearer';
-/**
- * [iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
- */
-export type TheARNOfAnIAMRoleIamRoleToAssume5 = string;
-/**
  * If unset, sending unique incremental metrics to this sink will cause indefinite memory growth.
  */
 export type TheAmountOfTimeInSecondsThatIncrementalMetricsWillPersistInTheInternalMetricsCacheAfterHavingNotBeenUpdatedBeforeTheyExpireAndAreRemoved =
@@ -4758,10 +4633,6 @@ export type TheEndpointToSendDataTo3 = string | null;
  * present, it is used as a prefix to the metric name, and separated with a period (`.`).
  */
 export type SetsTheDefaultNamespaceForAnyMetricsSent2 = string;
-/**
- * Setting this option overrides the `region` option.
- */
-export type TheEndpointToSendDataTo4 = string | null;
 /**
  * Both IP address and hostname are accepted formats.
  *
@@ -4927,14 +4798,7 @@ export type ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources
  * HTTP header without any additional encryption beyond what is provided by the transport itself.
  */
 export type ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources1 =
-  | BasicAuthentication2
-  | CustomAuthenticationUsingVRLCode;
-/**
- * The username and password are concatenated and encoded using [base64][base64].
- *
- * [base64]: https://en.wikipedia.org/wiki/Base64
- */
-export type BasicAuthentication3 = 'basic';
+  BasicAuthentication2 | CustomAuthenticationUsingVRLCode;
 /**
  * Takes in request and validates it using VRL code.
  */
@@ -5151,726 +5015,842 @@ export type MessageIDPath = null | VectorLookupLookupV2ConfigValuePath;
 /**
  * Fully resolved source component.
  */
-export type VectorConfigSourceSourceOuter =
-  | ({
-      graph?: ExtraGraphConfiguration2;
-      proxy?: ProxyConfiguration2;
+export type VectorConfigSourceSourceOuter = {
+  graph?: ExtraGraphConfiguration;
+  proxy?: ProxyConfiguration;
+  [k: string]: unknown | undefined;
+} & (
+  | (ConfigurationForTheAmqpSource & {
+      /**
+       * Collect events from AMQP 0.9.1 compatible brokers like RabbitMQ.
+       */
+      type: 'amqp';
       [k: string]: unknown | undefined;
-    } & (
-      | (ConfigurationForTheAmqpSource & {
-          /**
-           * Collect events from AMQP 0.9.1 compatible brokers like RabbitMQ.
-           */
-          type: 'amqp';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesApacheMetricsApacheMetricsConfig & {
-          /**
-           * Collect metrics from Apache's HTTPD server.
-           */
-          type: 'apache_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesAwsEcsMetricsAwsEcsMetricsSourceConfig & {
-          /**
-           * Collect Docker container stats for tasks running in AWS ECS and AWS Fargate.
-           */
-          type: 'aws_ecs_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesAwsKinesisFirehoseAwsKinesisFirehoseConfig & {
-          /**
-           * Collect logs from AWS Kinesis Firehose.
-           */
-          type: 'aws_kinesis_firehose';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource2;
-          assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          /**
-           * The compression scheme used for decompressing objects retrieved from S3.
-           */
-          compression?: AutomaticallyAttemptToDetermineTheCompressionScheme | 'none' | 'gzip' | 'zstd';
-          /**
-           * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-           * type (log, metric, trace).
-           */
-          decoding?:
-            | {
-                /**
-                 * Uses the raw bytes as-is.
-                 */
-                codec: 'bytes';
-                [k: string]: unknown | undefined;
-              }
-            | DecodesTheRawBytesAsJSONJson
-            | DecodesTheRawBytesAsProtobufProtobuf
-            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-            | DecodesTheRawBytesAsASyslogMessage
-            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-            | DecodesTheRawBytesAsAGELFGelfMessage
-            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          force_path_style?: SpecifiesWhichAddressingStyleToUse;
-          framing?: FramingConfiguration;
-          /**
-           * The namespace to use for logs. This overrides the global setting.
-           */
-          log_namespace?: boolean | null;
-          multiline?: MultilineAggregationConfiguration;
-          /**
-           * Configuration options for SQS.
-           */
-          sqs?:
-            | null
-            | ({
-                client_concurrency?: NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages;
-                /**
-                 * Configuration for deferring events to another queue based on their age.
-                 */
-                deferred?: null | {
-                  max_age_secs: EventMustHaveBeenEmittedWithinTheLastMaxAgeSecsSecondsToBeProcessed;
-                  /**
-                   * The URL of the queue to forward events to when they are older than `max_age_secs`.
-                   */
-                  queue_url: string;
-                  [k: string]: unknown | undefined;
-                };
-                delete_failed_message?: WhetherToDeleteNonRetryableMessages;
-                delete_message?: WhetherToDeleteTheMessageOnceItIsProcessed;
-                max_number_of_messages?: MaximumNumberOfMessagesToPollFromSQSInABatch;
-                poll_secs?: HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds;
-                /**
-                 * The URL of the SQS queue to poll for bucket notifications.
-                 */
-                queue_url: string;
-                /**
-                 * TLS configuration.
-                 */
-                tls_options?: null | VectorCoreTlsSettingsTlsConfig;
-                visibility_timeout_secs?: TheVisibilityTimeoutToUseForMessagesInSeconds;
-                [k: string]: unknown | undefined;
-              } & (null | {
-                connect_timeout_seconds?: TheConnectionTimeoutForAWSRequests;
-                operation_timeout_seconds?: TheOperationTimeoutForAWSRequests;
-                read_timeout_seconds?: TheReadTimeoutForAWSRequests;
-                [k: string]: unknown | undefined;
-              }));
-          /**
-           * The strategy to use to consume objects from S3.
-           */
-          strategy?: ConsumesObjectsByProcessingBucketNotificationEventsSentToAnAWSSQSQueueAwsSqs;
-          /**
-           * TLS configuration.
-           */
-          tls_options?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint6) & {
-          /**
-           * Collect logs from AWS S3.
-           */
-          type: 'aws_s3';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource3;
-          /**
-           * Configuration of the authentication strategy for interacting with AWS services.
-           */
-          auth?:
-            | {
-                /**
-                 * The AWS access key ID.
-                 */
-                access_key_id: string;
-                assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                /**
-                 * The AWS secret access key.
-                 */
-                secret_access_key: string;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                /**
-                 * The AWS session token.
-                 * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-                 */
-                session_token?: null | VectorCommonSensitiveStringSensitiveString;
-                [k: string]: unknown | undefined;
-              }
-            | AuthenticateUsingCredentialsStoredInAFile
-            | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-                external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication;
-                load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                imds?: VectorAwsAuthImdsAuthentication1;
-                load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-                region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-                [k: string]: unknown | undefined;
-              };
-          client_concurrency?: NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages;
-          /**
-           * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-           * type (log, metric, trace).
-           */
-          decoding?:
-            | {
-                /**
-                 * Uses the raw bytes as-is.
-                 */
-                codec: 'bytes';
-                [k: string]: unknown | undefined;
-              }
-            | DecodesTheRawBytesAsJSONJson
-            | DecodesTheRawBytesAsProtobufProtobuf
-            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-            | DecodesTheRawBytesAsASyslogMessage
-            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-            | DecodesTheRawBytesAsAGELFGelfMessage
-            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          delete_message?: WhetherToDeleteTheMessageOnceItIsProcessed;
-          framing?: FramingConfiguration;
-          /**
-           * The namespace to use for logs. This overrides the global setting.
-           */
-          log_namespace?: boolean | null;
-          poll_secs?: HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds;
-          /**
-           * The URL of the SQS queue to poll for messages.
-           */
-          queue_url: string;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          visibility_timeout_secs?: TheVisibilityTimeoutToUseForMessagesInSeconds;
-          [k: string]: unknown | undefined;
-        } & VectorAwsRegionRegionOrEndpoint7) & {
-          /**
-           * Collect logs from AWS SQS.
-           */
-          type: 'aws_sqs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesDatadogAgentDatadogAgentConfig & {
-          /**
-           * Receive logs, metrics, and traces collected by a Datadog Agent.
-           */
-          type: 'datadog_agent';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          count?: TheTotalNumberOfLinesToOutput;
-          /**
-           * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-           * type (log, metric, trace).
-           */
-          decoding?:
-            | {
-                /**
-                 * Uses the raw bytes as-is.
-                 */
-                codec: 'bytes';
-                [k: string]: unknown | undefined;
-              }
-            | DecodesTheRawBytesAsJSONJson
-            | DecodesTheRawBytesAsProtobufProtobuf
-            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-            | DecodesTheRawBytesAsASyslogMessage
-            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-            | DecodesTheRawBytesAsAGELFGelfMessage
-            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          framing?: FramingConfiguration;
-          interval?: TheAmountOfTimeInSecondsToPauseBetweenEachBatchOfOutputLines;
-          /**
-           * The namespace to use for logs. This overrides the global setting.
-           */
-          log_namespace?: boolean | null;
-          [k: string]: unknown | undefined;
-        } & (
-          | {
-              /**
-               * Lines are chosen at random from the list specified using `lines`.
-               */
-              format: 'shuffle';
-              /**
-               * The list of lines to output.
-               */
-              lines: string[];
-              /**
-               * If `true`, each output line starts with an increasing sequence number, beginning with 0.
-               */
-              sequence?: boolean;
-              [k: string]: unknown | undefined;
-            }
-          | RandomlyGeneratedLogsInApacheCommonApacheCommonFormat
-          | RandomlyGeneratedLogsInApacheErrorApacheErrorFormat
-          | RandomlyGeneratedLogsInSyslogFormatRFC5424Syslog_5424
-          | RandomlyGeneratedLogsInSyslogFormatRFC3164Syslog_3164
-          | RandomlyGeneratedHTTPServerLogsInJSONJsonFormat
-        )) & {
-          /**
-           * Generate fake log events, which can be useful for testing and demos.
-           */
-          type: 'demo_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheSourcePathToEachEvent;
-          /**
-           * The namespace to use for logs. This overrides the global settings.
-           */
-          log_namespace?: boolean | null;
-          /**
-           * Whether to downcase all DNSTAP hostnames received for consistency
-           */
-          lowercase_hostnames?: boolean;
-          /**
-           * Maximum number of frames that can be processed concurrently.
-           */
-          max_frame_handling_tasks?: number | null;
-          max_frame_length?: MaximumDNSTAPFrameLengthThatTheSourceAccepts;
-          /**
-           * Whether or not to concurrently process DNSTAP frames.
-           */
-          multithreaded?: boolean | null;
-          raw_data_only?: WhetherOrNotToSkipParsingOrDecodingOfDNSTAPFrames;
-          [k: string]: unknown | undefined;
-        } & (
-          | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * The maximum number of TCP connections that are allowed at any given time.
-               */
-              connection_limit?: number | null;
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              max_connection_duration_secs?: MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed;
-              /**
-               * List of allowed origin IP networks. IP addresses must be in CIDR notation.
-               */
-              permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
-              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
-              /**
-               * The size of the receive buffer used for each connection.
-               */
-              receive_buffer_bytes?: number | null;
-              /**
-               * The timeout before a connection is forcefully closed during shutdown.
-               */
-              shutdown_timeout_secs?: number;
-              /**
-               * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on TCP.
-               */
-              mode: 'tcp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
-              socket_path: AbsolutePathToTheSocketFileToReadDNSTAPDataFrom;
-              socket_receive_buffer_size?: TheSizeInBytesOfTheReceiveBufferUsedForTheSocket;
-              socket_send_buffer_size?: TheSizeInBytesOfTheSendBufferUsedForTheSocket;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on a Unix domain socket
-               */
-              mode: 'unix';
-              [k: string]: unknown | undefined;
-            })
-        )) & {
-          /**
-           * Collect DNS logs from a dnstap-compatible server.
-           */
-          type: 'dnstap';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesDockerLogsDockerLogsConfig & {
-          /**
-           * Collect container logs from a Docker Daemon.
-           */
-          type: 'docker_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesEventstoredbMetricsEventStoreDbConfig & {
-          /**
-           * Receive metrics from collected by a EventStoreDB.
-           */
-          type: 'eventstoredb_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesExecExecConfig & {
-          /**
-           * Collect output from a process running on the host.
-           */
-          type: 'exec';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesFileFileConfig & {
-          /**
-           * Collect logs from files.
-           */
-          type: 'file';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesFileDescriptorsFileDescriptorFileDescriptorSourceConfig & {
-          /**
-           * Collect logs from a file descriptor.
-           */
-          type: 'file_descriptor';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * The namespace to use for logs. This overrides the global setting.
-           */
-          log_namespace?: boolean | null;
-          [k: string]: unknown | undefined;
-        } & (
-          | ({
-              acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource6;
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * The maximum number of TCP connections that are allowed at any given time.
-               */
-              connection_limit?: number | null;
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              /**
-               * List of allowed origin IP networks. IP addresses must be in CIDR notation.
-               */
-              permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
-              receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForEachConnection;
-              /**
-               * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on TCP port
-               */
-              mode: 'tcp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              path: TheUnixSocketPath;
-              socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on unix stream socket
-               */
-              mode: 'unix';
-              [k: string]: unknown | undefined;
-            })
-        )) & {
-          /**
-           * Collect logs from a Fluentd or Fluent Bit agent.
-           */
-          type: 'fluent';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          ack_deadline_seconds?: TheAcknowledgementDeadlineInSecondsToUseForThisStream;
-          ack_deadline_secs?: TheAcknowledgementDeadlineInSecondsToUseForThisStream1;
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource7;
-          /**
-           * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-           * type (log, metric, trace).
-           */
-          decoding?:
-            | {
-                /**
-                 * Uses the raw bytes as-is.
-                 */
-                codec: 'bytes';
-                [k: string]: unknown | undefined;
-              }
-            | DecodesTheRawBytesAsJSONJson
-            | DecodesTheRawBytesAsProtobufProtobuf
-            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-            | DecodesTheRawBytesAsASyslogMessage
-            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-            | DecodesTheRawBytesAsAGELFGelfMessage
-            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          /**
-           * The endpoint from which to pull data.
-           */
-          endpoint?: string;
-          framing?: FramingConfiguration;
-          full_response_size?: TheNumberOfMessagesInAResponseToMarkAStreamAsBusyThisIsUsedToDetermineIfMoreStreamsShouldBeStarted;
-          /**
-           * The amount of time, in seconds, with no received activity
-           * before sending a keepalive request. If this is set larger than
-           * `60`, you may see periodic errors sent from the server.
-           */
-          keepalive_secs?: number;
-          /**
-           * The namespace to use for logs. This overrides the global setting.
-           */
-          log_namespace?: boolean | null;
-          /**
-           * The maximum number of concurrent stream connections to open at once.
-           */
-          max_concurrency?: number;
-          /**
-           * How often to poll the currently active streams to see if they
-           * are all busy and so open a new stream.
-           */
-          poll_time_seconds?: number;
-          /**
-           * The project name from which to pull logs.
-           */
-          project: string;
-          /**
-           * @deprecated
-           * The amount of time, in seconds, to wait between retry attempts after an error.
-           */
-          retry_delay_seconds?: number | null;
-          /**
-           * The amount of time, in seconds, to wait between retry attempts after an error.
-           */
-          retry_delay_secs?: number;
-          /**
-           * The subscription within the project which is configured to receive logs.
-           */
-          subscription: string;
-          /**
-           * TLS configuration.
-           */
-          tls?: null | VectorCoreTlsSettingsTlsConfig;
-          [k: string]: unknown | undefined;
-        } & VectorGcpGcpAuthConfig5) & {
-          /**
-           * Fetch observability events from GCP's Pub/Sub messaging system.
-           */
-          type: 'gcp_pubsub';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesHerokuLogsLogplexConfig & {
-          /**
-           * Collect logs from Heroku's Logplex, the router responsible for receiving logs from your Heroku apps.
-           */
-          type: 'heroku_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesHostMetricsHostMetricsConfig & {
-          /**
-           * Collect metric data from the local system.
-           */
-          type: 'host_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesHttpServerHttpConfig & {
-          /**
-           * Host an HTTP endpoint to receive logs.
-           */
-          type: 'http';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesHttpClientClientHttpClientConfig & {
-          /**
-           * Pull observability data from an HTTP server at a configured interval.
-           */
-          type: 'http_client';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesHttpServerSimpleHttpConfig & {
-          /**
-           * Host an HTTP endpoint to receive logs.
-           */
-          type: 'http_server';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesInternalLogsInternalLogsConfig & {
-          /**
-           * Expose internal log messages emitted by the running Vector instance.
-           */
-          type: 'internal_logs';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesInternalMetricsInternalMetricsConfig & {
-          /**
-           * Expose internal metrics emitted by the running Vector instance.
-           */
-          type: 'internal_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesJournaldJournaldConfig & {
-          /**
-           * Collect logs from JournalD.
-           */
-          type: 'journald';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource11;
-          auto_offset_reset?: IfOffsetsForConsumerGroupDoNotExistSetThemUsingThisStrategy;
-          bootstrap_servers: ACommaSeparatedListOfKafkaBootstrapServers;
-          /**
-           * The frequency that the consumer offsets are committed (written) to offset storage.
-           */
-          commit_interval_ms?: number;
-          /**
-           * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-           * type (log, metric, trace).
-           */
-          decoding?:
-            | {
-                /**
-                 * Uses the raw bytes as-is.
-                 */
-                codec: 'bytes';
-                [k: string]: unknown | undefined;
-              }
-            | DecodesTheRawBytesAsJSONJson
-            | DecodesTheRawBytesAsProtobufProtobuf
-            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-            | DecodesTheRawBytesAsASyslogMessage
-            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-            | DecodesTheRawBytesAsAGELFGelfMessage
-            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          drain_timeout_ms?: TimeoutToDrainPendingAcknowledgementsDuringShutdownOrAKafkaConsumerGroupRebalance;
-          /**
-           * Maximum time the broker may wait to fill the response.
-           */
-          fetch_wait_max_ms?: number;
-          framing?: FramingConfiguration;
-          /**
-           * The consumer group name to be used to consume events from Kafka.
-           */
-          group_id: string;
-          headers_key?: OverridesTheNameOfTheLogFieldUsedToAddTheHeadersToEachEvent;
-          key_field?: OverridesTheNameOfTheLogFieldUsedToAddTheMessageKeyToEachEvent;
-          librdkafka_options?: AdvancedOptionsSetDirectlyOnTheUnderlyingLibrdkafkaClient;
-          /**
-           * The namespace to use for logs. This overrides the global setting.
-           */
-          log_namespace?: boolean | null;
-          /**
-           * Metrics (beta) configuration.
-           */
-          metrics?: {
+    })
+  | (VectorSourcesApacheMetricsApacheMetricsConfig & {
+      /**
+       * Collect metrics from Apache's HTTPD server.
+       */
+      type: 'apache_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesAwsEcsMetricsAwsEcsMetricsSourceConfig & {
+      /**
+       * Collect Docker container stats for tasks running in AWS ECS and AWS Fargate.
+       */
+      type: 'aws_ecs_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesAwsKinesisFirehoseAwsKinesisFirehoseConfig & {
+      /**
+       * Collect logs from AWS Kinesis Firehose.
+       */
+      type: 'aws_kinesis_firehose';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
+      assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
             /**
-             * Expose topic lag metrics for all topics and partitions. Metric names are `kafka_consumer_lag`.
+             * The AWS access key ID.
              */
-            topic_lag_metric: boolean;
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
             [k: string]: unknown | undefined;
           };
-          offset_key?: OverridesTheNameOfTheLogFieldUsedToAddTheOffsetToEachEvent;
-          partition_key?: OverridesTheNameOfTheLogFieldUsedToAddThePartitionToEachEvent;
+      /**
+       * The compression scheme used for decompressing objects retrieved from S3.
+       */
+      compression?: AutomaticallyAttemptToDetermineTheCompressionScheme | 'none' | 'gzip' | 'zstd';
+      /**
+       * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+       * type (log, metric, trace).
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      force_path_style?: SpecifiesWhichAddressingStyleToUse;
+      framing?: FramingConfiguration;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      multiline?: MultilineAggregationConfiguration;
+      /**
+       * Configuration options for SQS.
+       */
+      sqs?:
+        | null
+        | ({
+            client_concurrency?: NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages;
+            /**
+             * Configuration for deferring events to another queue based on their age.
+             */
+            deferred?: null | {
+              max_age_secs: EventMustHaveBeenEmittedWithinTheLastMaxAgeSecsSecondsToBeProcessed;
+              /**
+               * The URL of the queue to forward events to when they are older than `max_age_secs`.
+               */
+              queue_url: string;
+              [k: string]: unknown | undefined;
+            };
+            delete_failed_message?: WhetherToDeleteNonRetryableMessages;
+            delete_message?: WhetherToDeleteTheMessageOnceItIsProcessed;
+            max_number_of_messages?: MaximumNumberOfMessagesToPollFromSQSInABatch;
+            poll_secs?: HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds;
+            /**
+             * The URL of the SQS queue to poll for bucket notifications.
+             */
+            queue_url: string;
+            /**
+             * TLS configuration.
+             */
+            tls_options?: null | VectorCoreTlsSettingsTlsConfig;
+            visibility_timeout_secs?: TheVisibilityTimeoutToUseForMessagesInSeconds;
+            [k: string]: unknown | undefined;
+          } & (null | {
+            connect_timeout_seconds?: TheConnectionTimeoutForAWSRequests;
+            operation_timeout_seconds?: TheOperationTimeoutForAWSRequests;
+            read_timeout_seconds?: TheReadTimeoutForAWSRequests;
+            [k: string]: unknown | undefined;
+          }));
+      /**
+       * The strategy to use to consume objects from S3.
+       */
+      strategy?: ConsumesObjectsByProcessingBucketNotificationEventsSentToAnAWSSQSQueueAwsSqs;
+      /**
+       * TLS configuration.
+       */
+      tls_options?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint) & {
+      /**
+       * Collect logs from AWS S3.
+       */
+      type: 'aws_s3';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
+      /**
+       * Configuration of the authentication strategy for interacting with AWS services.
+       */
+      auth?:
+        | {
+            /**
+             * The AWS access key ID.
+             */
+            access_key_id: string;
+            assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            /**
+             * The AWS secret access key.
+             */
+            secret_access_key: string;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            /**
+             * The AWS session token.
+             * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+             */
+            session_token?: null | VectorCommonSensitiveStringSensitiveString;
+            [k: string]: unknown | undefined;
+          }
+        | AuthenticateUsingCredentialsStoredInAFile
+        | {
+            assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
+            external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            imds?: VectorAwsAuthImdsAuthentication;
+            load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
+            region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
+            [k: string]: unknown | undefined;
+          };
+      client_concurrency?: NumberOfConcurrentTasksToCreateForPollingTheQueueForMessages;
+      /**
+       * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+       * type (log, metric, trace).
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      delete_message?: WhetherToDeleteTheMessageOnceItIsProcessed;
+      framing?: FramingConfiguration;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      poll_secs?: HowLongToWaitWhilePollingTheQueueForNewMessagesInSeconds;
+      /**
+       * The URL of the SQS queue to poll for messages.
+       */
+      queue_url: string;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      visibility_timeout_secs?: TheVisibilityTimeoutToUseForMessagesInSeconds;
+      [k: string]: unknown | undefined;
+    } & VectorAwsRegionRegionOrEndpoint) & {
+      /**
+       * Collect logs from AWS SQS.
+       */
+      type: 'aws_sqs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesDatadogAgentDatadogAgentConfig & {
+      /**
+       * Receive logs, metrics, and traces collected by a Datadog Agent.
+       */
+      type: 'datadog_agent';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      count?: TheTotalNumberOfLinesToOutput;
+      /**
+       * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+       * type (log, metric, trace).
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      framing?: FramingConfiguration;
+      interval?: TheAmountOfTimeInSecondsToPauseBetweenEachBatchOfOutputLines;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      [k: string]: unknown | undefined;
+    } & (
+      | {
           /**
-           * The Kafka session timeout.
+           * Lines are chosen at random from the list specified using `lines`.
            */
-          session_timeout_ms?: number;
+          format: 'shuffle';
           /**
-           * Timeout for network requests.
+           * The list of lines to output.
            */
-          socket_timeout_ms?: number;
-          topic_key?: OverridesTheNameOfTheLogFieldUsedToAddTheTopicToEachEvent;
-          topics: TheKafkaTopicsNamesToReadEventsFrom;
+          lines: string[];
+          /**
+           * If `true`, each output line starts with an increasing sequence number, beginning with 0.
+           */
+          sequence?: boolean;
           [k: string]: unknown | undefined;
-        } & VectorKafkaKafkaAuthConfig1) & {
+        }
+      | RandomlyGeneratedLogsInApacheCommonApacheCommonFormat
+      | RandomlyGeneratedLogsInApacheErrorApacheErrorFormat
+      | RandomlyGeneratedLogsInSyslogFormatRFC5424Syslog_5424
+      | RandomlyGeneratedLogsInSyslogFormatRFC3164Syslog_3164
+      | RandomlyGeneratedHTTPServerLogsInJSONJsonFormat
+    )) & {
+      /**
+       * Generate fake log events, which can be useful for testing and demos.
+       */
+      type: 'demo_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheSourcePathToEachEvent;
+      /**
+       * The namespace to use for logs. This overrides the global settings.
+       */
+      log_namespace?: boolean | null;
+      /**
+       * Whether to downcase all DNSTAP hostnames received for consistency
+       */
+      lowercase_hostnames?: boolean;
+      /**
+       * Maximum number of frames that can be processed concurrently.
+       */
+      max_frame_handling_tasks?: number | null;
+      max_frame_length?: MaximumDNSTAPFrameLengthThatTheSourceAccepts;
+      /**
+       * Whether or not to concurrently process DNSTAP frames.
+       */
+      multithreaded?: boolean | null;
+      raw_data_only?: WhetherOrNotToSkipParsingOrDecodingOfDNSTAPFrames;
+      [k: string]: unknown | undefined;
+    } & (
+      | ({
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
           /**
-           * Collect logs from Apache Kafka.
+           * The maximum number of TCP connections that are allowed at any given time.
            */
-          type: 'kafka';
+          connection_limit?: number | null;
+          /**
+           * TCP keepalive settings for socket-based components.
+           */
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
+          max_connection_duration_secs?: MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed;
+          /**
+           * List of allowed origin IP networks. IP addresses must be in CIDR notation.
+           */
+          permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
+          port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
+          /**
+           * The size of the receive buffer used for each connection.
+           */
+          receive_buffer_bytes?: number | null;
+          /**
+           * The timeout before a connection is forcefully closed during shutdown.
+           */
+          shutdown_timeout_secs?: number;
+          /**
+           * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Listen on TCP.
+           */
+          mode: 'tcp';
           [k: string]: unknown | undefined;
         })
-      | (VectorSourcesKubernetesLogsConfig & {
+      | ({
+          socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
+          socket_path: AbsolutePathToTheSocketFileToReadDNSTAPDataFrom;
+          socket_receive_buffer_size?: TheSizeInBytesOfTheReceiveBufferUsedForTheSocket;
+          socket_send_buffer_size?: TheSizeInBytesOfTheSendBufferUsedForTheSocket;
+          [k: string]: unknown | undefined;
+        } & {
           /**
-           * Collect Pod logs from Kubernetes Nodes.
+           * Listen on a Unix domain socket
            */
-          type: 'kubernetes_logs';
+          mode: 'unix';
           [k: string]: unknown | undefined;
         })
-      | (VectorSourcesLogstashLogstashConfig & {
+    )) & {
+      /**
+       * Collect DNS logs from a dnstap-compatible server.
+       */
+      type: 'dnstap';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesDockerLogsDockerLogsConfig & {
+      /**
+       * Collect container logs from a Docker Daemon.
+       */
+      type: 'docker_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesEventstoredbMetricsEventStoreDbConfig & {
+      /**
+       * Receive metrics from collected by a EventStoreDB.
+       */
+      type: 'eventstoredb_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesExecExecConfig & {
+      /**
+       * Collect output from a process running on the host.
+       */
+      type: 'exec';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesFileFileConfig & {
+      /**
+       * Collect logs from files.
+       */
+      type: 'file';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesFileDescriptorsFileDescriptorFileDescriptorSourceConfig & {
+      /**
+       * Collect logs from a file descriptor.
+       */
+      type: 'file_descriptor';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      [k: string]: unknown | undefined;
+    } & (
+      | ({
+          acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
           /**
-           * Collect logs from a Logstash agent.
+           * The maximum number of TCP connections that are allowed at any given time.
            */
-          type: 'logstash';
+          connection_limit?: number | null;
+          /**
+           * TCP keepalive settings for socket-based components.
+           */
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
+          /**
+           * List of allowed origin IP networks. IP addresses must be in CIDR notation.
+           */
+          permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
+          receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForEachConnection;
+          /**
+           * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Listen on TCP port
+           */
+          mode: 'tcp';
           [k: string]: unknown | undefined;
         })
-      | (VectorSourcesMongodbMetricsMongoDbMetricsConfig & {
+      | ({
+          path: TheUnixSocketPath;
+          socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
+          [k: string]: unknown | undefined;
+        } & {
           /**
-           * Collect metrics from the MongoDB database.
+           * Listen on unix stream socket
            */
-          type: 'mongodb_metrics';
+          mode: 'unix';
           [k: string]: unknown | undefined;
         })
-      | (({
+    )) & {
+      /**
+       * Collect logs from a Fluentd or Fluent Bit agent.
+       */
+      type: 'fluent';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      ack_deadline_seconds?: TheAcknowledgementDeadlineInSecondsToUseForThisStream;
+      ack_deadline_secs?: TheAcknowledgementDeadlineInSecondsToUseForThisStream1;
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
+      /**
+       * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+       * type (log, metric, trace).
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      /**
+       * The endpoint from which to pull data.
+       */
+      endpoint?: string;
+      framing?: FramingConfiguration;
+      full_response_size?: TheNumberOfMessagesInAResponseToMarkAStreamAsBusyThisIsUsedToDetermineIfMoreStreamsShouldBeStarted;
+      /**
+       * The amount of time, in seconds, with no received activity
+       * before sending a keepalive request. If this is set larger than
+       * `60`, you may see periodic errors sent from the server.
+       */
+      keepalive_secs?: number;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      /**
+       * The maximum number of concurrent stream connections to open at once.
+       */
+      max_concurrency?: number;
+      /**
+       * How often to poll the currently active streams to see if they
+       * are all busy and so open a new stream.
+       */
+      poll_time_seconds?: number;
+      /**
+       * The project name from which to pull logs.
+       */
+      project: string;
+      /**
+       * @deprecated
+       * The amount of time, in seconds, to wait between retry attempts after an error.
+       */
+      retry_delay_seconds?: number | null;
+      /**
+       * The amount of time, in seconds, to wait between retry attempts after an error.
+       */
+      retry_delay_secs?: number;
+      /**
+       * The subscription within the project which is configured to receive logs.
+       */
+      subscription: string;
+      /**
+       * TLS configuration.
+       */
+      tls?: null | VectorCoreTlsSettingsTlsConfig;
+      [k: string]: unknown | undefined;
+    } & VectorGcpGcpAuthConfig) & {
+      /**
+       * Fetch observability events from GCP's Pub/Sub messaging system.
+       */
+      type: 'gcp_pubsub';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesHerokuLogsLogplexConfig & {
+      /**
+       * Collect logs from Heroku's Logplex, the router responsible for receiving logs from your Heroku apps.
+       */
+      type: 'heroku_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesHostMetricsHostMetricsConfig & {
+      /**
+       * Collect metric data from the local system.
+       */
+      type: 'host_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesHttpServerHttpConfig & {
+      /**
+       * Host an HTTP endpoint to receive logs.
+       */
+      type: 'http';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesHttpClientClientHttpClientConfig & {
+      /**
+       * Pull observability data from an HTTP server at a configured interval.
+       */
+      type: 'http_client';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesHttpServerSimpleHttpConfig & {
+      /**
+       * Host an HTTP endpoint to receive logs.
+       */
+      type: 'http_server';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesInternalLogsInternalLogsConfig & {
+      /**
+       * Expose internal log messages emitted by the running Vector instance.
+       */
+      type: 'internal_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesInternalMetricsInternalMetricsConfig & {
+      /**
+       * Expose internal metrics emitted by the running Vector instance.
+       */
+      type: 'internal_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesJournaldJournaldConfig & {
+      /**
+       * Collect logs from JournalD.
+       */
+      type: 'journald';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
+      auto_offset_reset?: IfOffsetsForConsumerGroupDoNotExistSetThemUsingThisStrategy;
+      bootstrap_servers: ACommaSeparatedListOfKafkaBootstrapServers;
+      /**
+       * The frequency that the consumer offsets are committed (written) to offset storage.
+       */
+      commit_interval_ms?: number;
+      /**
+       * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+       * type (log, metric, trace).
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      drain_timeout_ms?: TimeoutToDrainPendingAcknowledgementsDuringShutdownOrAKafkaConsumerGroupRebalance;
+      /**
+       * Maximum time the broker may wait to fill the response.
+       */
+      fetch_wait_max_ms?: number;
+      framing?: FramingConfiguration;
+      /**
+       * The consumer group name to be used to consume events from Kafka.
+       */
+      group_id: string;
+      headers_key?: OverridesTheNameOfTheLogFieldUsedToAddTheHeadersToEachEvent;
+      key_field?: OverridesTheNameOfTheLogFieldUsedToAddTheMessageKeyToEachEvent;
+      librdkafka_options?: AdvancedOptionsSetDirectlyOnTheUnderlyingLibrdkafkaClient;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      /**
+       * Metrics (beta) configuration.
+       */
+      metrics?: {
+        /**
+         * Expose topic lag metrics for all topics and partitions. Metric names are `kafka_consumer_lag`.
+         */
+        topic_lag_metric: boolean;
+        [k: string]: unknown | undefined;
+      };
+      offset_key?: OverridesTheNameOfTheLogFieldUsedToAddTheOffsetToEachEvent;
+      partition_key?: OverridesTheNameOfTheLogFieldUsedToAddThePartitionToEachEvent;
+      /**
+       * The Kafka session timeout.
+       */
+      session_timeout_ms?: number;
+      /**
+       * Timeout for network requests.
+       */
+      socket_timeout_ms?: number;
+      topic_key?: OverridesTheNameOfTheLogFieldUsedToAddTheTopicToEachEvent;
+      topics: TheKafkaTopicsNamesToReadEventsFrom;
+      [k: string]: unknown | undefined;
+    } & VectorKafkaKafkaAuthConfig) & {
+      /**
+       * Collect logs from Apache Kafka.
+       */
+      type: 'kafka';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesKubernetesLogsConfig & {
+      /**
+       * Collect Pod logs from Kubernetes Nodes.
+       */
+      type: 'kubernetes_logs';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesLogstashLogstashConfig & {
+      /**
+       * Collect logs from a Logstash agent.
+       */
+      type: 'logstash';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesMongodbMetricsMongoDbMetricsConfig & {
+      /**
+       * Collect metrics from the MongoDB database.
+       */
+      type: 'mongodb_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+       * type (log, metric, trace).
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      framing?: FramingConfiguration;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      /**
+       * MQTT topic or topics from which messages are to be read.
+       */
+      topic?: string | string[];
+      topic_key?: OverridesTheNameOfTheLogFieldUsedToAddTheTopicToEachEvent;
+      [k: string]: unknown | undefined;
+    } & VectorCommonMqttMqttCommonConfig) & {
+      /**
+       * Collect logs from MQTT.
+       */
+      type: 'mqtt';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesNatsConfigNatsSourceConfig & {
+      /**
+       * Read observability data from subjects on the NATS messaging system.
+       */
+      type: 'nats';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesNginxMetricsNginxMetricsConfig & {
+      /**
+       * Collect metrics from NGINX.
+       */
+      type: 'nginx_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesOktaClientOktaConfig & {
+      /**
+       * Pull Okta system logs via the Okta API
+       */
+      type: 'okta';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesOpentelemetryConfigOpentelemetryConfig & {
+      /**
+       * Receive OTLP data through gRPC or HTTP.
+       */
+      type: 'opentelemetry';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesPostgresqlMetricsPostgresqlMetricsConfig & {
+      /**
+       * Collect metrics from the PostgreSQL database.
+       */
+      type: 'postgresql_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesPrometheusPushgatewayPrometheusPushgatewayConfig & {
+      /**
+       * Receive metrics via the Prometheus Pushgateway protocol.
+       */
+      type: 'prometheus_pushgateway';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesPrometheusRemoteWritePrometheusRemoteWriteConfig & {
+      /**
+       * Receive metric via the Prometheus Remote Write protocol.
+       */
+      type: 'prometheus_remote_write';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesPrometheusScrapePrometheusScrapeConfig & {
+      /**
+       * Collect metrics from Prometheus exporters.
+       */
+      type: 'prometheus_scrape';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesPulsarPulsarSourceConfig & {
+      /**
+       * Collect logs from Apache Pulsar.
+       */
+      type: 'pulsar';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesRedisRedisSourceConfig & {
+      /**
+       * Collect observability data from Redis.
+       */
+      type: 'redis';
+      [k: string]: unknown | undefined;
+    })
+  | ((
+      | ({
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
+          /**
+           * The maximum number of TCP connections that are allowed at any given time.
+           */
+          connection_limit?: number | null;
           /**
            * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
            * type (log, metric, trace).
@@ -5893,494 +5873,376 @@ export type VectorConfigSourceSourceOuter =
             | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
             | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
             | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          framing?: FramingConfiguration;
+          framing?: FramingConfiguration6;
+          host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
+          /**
+           * TCP keepalive settings for socket-based components.
+           */
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
           /**
            * The namespace to use for logs. This overrides the global setting.
            */
           log_namespace?: boolean | null;
+          max_connection_duration_secs?: MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed;
           /**
-           * MQTT topic or topics from which messages are to be read.
+           * List of allowed origin IP networks. IP addresses must be in CIDR notation.
            */
-          topic?: string | string[];
-          topic_key?: OverridesTheNameOfTheLogFieldUsedToAddTheTopicToEachEvent;
+          permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
+          port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
+          /**
+           * The size of the receive buffer used for each connection.
+           */
+          receive_buffer_bytes?: number | null;
+          /**
+           * The timeout before a connection is forcefully closed during shutdown.
+           */
+          shutdown_timeout_secs?: number;
+          /**
+           * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
           [k: string]: unknown | undefined;
-        } & VectorCommonMqttMqttCommonConfig1) & {
+        } & {
           /**
-           * Collect logs from MQTT.
+           * Listen on TCP.
            */
-          type: 'mqtt';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesNatsConfigNatsSourceConfig & {
-          /**
-           * Read observability data from subjects on the NATS messaging system.
-           */
-          type: 'nats';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesNginxMetricsNginxMetricsConfig & {
-          /**
-           * Collect metrics from NGINX.
-           */
-          type: 'nginx_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesOktaClientOktaConfig & {
-          /**
-           * Pull Okta system logs via the Okta API
-           */
-          type: 'okta';
+          mode: 'tcp';
           [k: string]: unknown | undefined;
         })
-      | (VectorSourcesOpentelemetryConfigOpentelemetryConfig & {
+      | ({
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
           /**
-           * Receive OTLP data through gRPC or HTTP.
+           * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
+           * type (log, metric, trace).
            */
-          type: 'opentelemetry';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesPostgresqlMetricsPostgresqlMetricsConfig & {
-          /**
-           * Collect metrics from the PostgreSQL database.
-           */
-          type: 'postgresql_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesPrometheusPushgatewayPrometheusPushgatewayConfig & {
-          /**
-           * Receive metrics via the Prometheus Pushgateway protocol.
-           */
-          type: 'prometheus_pushgateway';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesPrometheusRemoteWritePrometheusRemoteWriteConfig & {
-          /**
-           * Receive metric via the Prometheus Remote Write protocol.
-           */
-          type: 'prometheus_remote_write';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesPrometheusScrapePrometheusScrapeConfig & {
-          /**
-           * Collect metrics from Prometheus exporters.
-           */
-          type: 'prometheus_scrape';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesPulsarPulsarSourceConfig & {
-          /**
-           * Collect logs from Apache Pulsar.
-           */
-          type: 'pulsar';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesRedisRedisSourceConfig & {
-          /**
-           * Collect observability data from Redis.
-           */
-          type: 'redis';
-          [k: string]: unknown | undefined;
-        })
-      | ((
-          | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * The maximum number of TCP connections that are allowed at any given time.
-               */
-              connection_limit?: number | null;
-              /**
-               * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-               * type (log, metric, trace).
-               */
-              decoding?:
-                | {
-                    /**
-                     * Uses the raw bytes as-is.
-                     */
-                    codec: 'bytes';
-                    [k: string]: unknown | undefined;
-                  }
-                | DecodesTheRawBytesAsJSONJson
-                | DecodesTheRawBytesAsProtobufProtobuf
-                | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-                | DecodesTheRawBytesAsASyslogMessage
-                | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-                | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-                | DecodesTheRawBytesAsAGELFGelfMessage
-                | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-                | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-                | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-              framing?: FramingConfiguration18;
-              host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              /**
-               * The namespace to use for logs. This overrides the global setting.
-               */
-              log_namespace?: boolean | null;
-              max_connection_duration_secs?: MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed;
-              /**
-               * List of allowed origin IP networks. IP addresses must be in CIDR notation.
-               */
-              permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
-              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
-              /**
-               * The size of the receive buffer used for each connection.
-               */
-              receive_buffer_bytes?: number | null;
-              /**
-               * The timeout before a connection is forcefully closed during shutdown.
-               */
-              shutdown_timeout_secs?: number;
-              /**
-               * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on TCP.
-               */
-              mode: 'tcp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-               * type (log, metric, trace).
-               */
-              decoding?:
-                | {
-                    /**
-                     * Uses the raw bytes as-is.
-                     */
-                    codec: 'bytes';
-                    [k: string]: unknown | undefined;
-                  }
-                | DecodesTheRawBytesAsJSONJson
-                | DecodesTheRawBytesAsProtobufProtobuf
-                | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-                | DecodesTheRawBytesAsASyslogMessage
-                | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-                | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-                | DecodesTheRawBytesAsAGELFGelfMessage
-                | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-                | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-                | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-              framing?: FramingConfiguration19;
-              host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
-              /**
-               * The namespace to use for logs. This overrides the global setting.
-               */
-              log_namespace?: boolean | null;
-              max_length?: TheMaximumBufferSizeOfIncomingMessages;
-              multicast_groups?: ListOfIPv4MulticastGroupsToJoinOnSocketSBindingProcess;
-              port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
-              /**
-               * The size of the receive buffer used for the listening socket.
-               */
-              receive_buffer_bytes?: number | null;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on UDP.
-               */
-              mode: 'udp';
-              [k: string]: unknown | undefined;
-            })
-          | (VectorSourcesSocketUnixUnixConfig & {
-              /**
-               * Listen on a Unix domain socket (UDS), in datagram mode.
-               */
-              mode: 'unix_datagram';
-              [k: string]: unknown | undefined;
-            })
-          | (VectorSourcesSocketUnixUnixConfig1 & {
-              /**
-               * Listen on a Unix domain socket (UDS), in stream mode.
-               */
-              mode: 'unix_stream';
-              [k: string]: unknown | undefined;
-            })
-        ) & {
-          /**
-           * Collect logs over a socket.
-           */
-          type: 'socket';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesSplunkHecSplunkConfig & {
-          /**
-           * Receive logs from Splunk.
-           */
-          type: 'splunk_hec';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesStaticMetricsStaticMetricsConfig & {
-          /**
-           * Produce static metrics defined in configuration.
-           */
-          type: 'static_metrics';
-          [k: string]: unknown | undefined;
-        })
-      | ((
-          | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * The maximum number of TCP connections that are allowed at any given time.
-               */
-              connection_limit?: number | null;
-              /**
-               * Specifies the target unit for converting incoming StatsD timing values. When set to "seconds" (the default), timing values in milliseconds (`ms`) are converted to seconds (`s`). When set to "milliseconds", the original timing values are preserved.
-               */
-              convert_to?: 'seconds' | 'milliseconds';
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              /**
-               * List of allowed origin IP networks. IP addresses must be in CIDR notation.
-               */
-              permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
-              /**
-               * The size of the receive buffer used for each connection.
-               */
-              receive_buffer_bytes?: number | null;
-              /**
-               * Whether or not to sanitize incoming statsd key names. When "true", keys are sanitized by:
-               * - "/" is replaced with "-"
-               * - All whitespace is replaced with "_"
-               * - All non alphanumeric characters (A-Z, a-z, 0-9, _, or -) are removed.
-               */
-              sanitize?: boolean;
-              /**
-               * The timeout before a connection is forcefully closed during shutdown.
-               */
-              shutdown_timeout_secs?: number;
-              /**
-               * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on TCP.
-               */
-              mode: 'tcp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * Specifies the target unit for converting incoming StatsD timing values. When set to "seconds" (the default), timing values in milliseconds (`ms`) are converted to seconds (`s`). When set to "milliseconds", the original timing values are preserved.
-               */
-              convert_to?: 'seconds' | 'milliseconds';
-              /**
-               * The size of the receive buffer used for each connection.
-               */
-              receive_buffer_bytes?: number | null;
-              sanitize?: boolean;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on UDP.
-               */
-              mode: 'udp';
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              /**
-               * Specifies the target unit for converting incoming StatsD timing values. When set to "seconds" (the default), timing values in milliseconds (`ms`) are converted to seconds (`s`). When set to "milliseconds", the original timing values are preserved.
-               */
-              convert_to?: 'seconds' | 'milliseconds';
-              path: TheUnixSocketPath;
-              sanitize?: boolean;
-              [k: string]: unknown | undefined;
-            } & {
-              /**
-               * Listen on a Unix domain Socket (UDS).
-               */
-              mode: 'unix';
-              [k: string]: unknown | undefined;
-            })
-        ) & {
-          /**
-           * Collect metrics emitted by the StatsD aggregator.
-           */
-          type: 'statsd';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorSourcesFileDescriptorsStdinStdinConfig & {
-          /**
-           * Collect logs sent via stdin.
-           */
-          type: 'stdin';
-          [k: string]: unknown | undefined;
-        })
-      | (({
+          decoding?:
+            | {
+                /**
+                 * Uses the raw bytes as-is.
+                 */
+                codec: 'bytes';
+                [k: string]: unknown | undefined;
+              }
+            | DecodesTheRawBytesAsJSONJson
+            | DecodesTheRawBytesAsProtobufProtobuf
+            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+            | DecodesTheRawBytesAsASyslogMessage
+            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+            | DecodesTheRawBytesAsAGELFGelfMessage
+            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+          framing?: FramingConfiguration6;
           host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
           /**
            * The namespace to use for logs. This overrides the global setting.
            */
           log_namespace?: boolean | null;
-          max_length?: TheMaximumBufferSizeOfIncomingMessagesInBytes;
-          [k: string]: unknown | undefined;
-        } & (
-          | {
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * The maximum number of TCP connections that are allowed at any given time.
-               */
-              connection_limit?: number | null;
-              /**
-               * TCP keepalive settings for socket-based components.
-               */
-              keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
-              /**
-               * Listen on TCP.
-               */
-              mode: 'tcp';
-              /**
-               * List of allowed origin IP networks. IP addresses must be in CIDR notation.
-               */
-              permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
-              receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForEachConnection;
-              /**
-               * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
-               */
-              tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
-              [k: string]: unknown | undefined;
-            }
-          | {
-              address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
-              /**
-               * Listen on UDP.
-               */
-              mode: 'udp';
-              receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForTheListeningSocket;
-              [k: string]: unknown | undefined;
-            }
-          | ListenOnUDSUnixDomainSocketThisOnlySupportsUnixStreamSockets
-        )) & {
+          max_length?: TheMaximumBufferSizeOfIncomingMessages;
+          multicast_groups?: ListOfIPv4MulticastGroupsToJoinOnSocketSBindingProcess;
+          port_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostSPortToEachEvent;
           /**
-           * Collect logs sent via Syslog.
+           * The size of the receive buffer used for the listening socket.
            */
-          type: 'syslog';
+          receive_buffer_bytes?: number | null;
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Listen on UDP.
+           */
+          mode: 'udp';
           [k: string]: unknown | undefined;
         })
-      | (VectorConfigUnitTestUnitTestComponentsUnitTestSourceConfig & {
+      | (VectorSourcesSocketUnixUnixConfig & {
           /**
-           * Unit test.
+           * Listen on a Unix domain socket (UDS), in datagram mode.
            */
-          type: 'unit_test';
+          mode: 'unix_datagram';
           [k: string]: unknown | undefined;
         })
-      | (VectorConfigUnitTestUnitTestComponentsUnitTestStreamSourceConfig & {
+      | (VectorSourcesSocketUnixUnixConfig & {
           /**
-           * Unit test stream.
+           * Listen on a Unix domain socket (UDS), in stream mode.
            */
-          type: 'unit_test_stream';
+          mode: 'unix_stream';
           [k: string]: unknown | undefined;
         })
-      | (VectorSourcesVectorVectorConfig & {
+    ) & {
+      /**
+       * Collect logs over a socket.
+       */
+      type: 'socket';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesSplunkHecSplunkConfig & {
+      /**
+       * Receive logs from Splunk.
+       */
+      type: 'splunk_hec';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesStaticMetricsStaticMetricsConfig & {
+      /**
+       * Produce static metrics defined in configuration.
+       */
+      type: 'static_metrics';
+      [k: string]: unknown | undefined;
+    })
+  | ((
+      | ({
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
           /**
-           * Collect observability data from a Vector instance.
+           * The maximum number of TCP connections that are allowed at any given time.
            */
-          type: 'vector';
+          connection_limit?: number | null;
+          /**
+           * Specifies the target unit for converting incoming StatsD timing values. When set to "seconds" (the default), timing values in milliseconds (`ms`) are converted to seconds (`s`). When set to "milliseconds", the original timing values are preserved.
+           */
+          convert_to?: 'seconds' | 'milliseconds';
+          /**
+           * TCP keepalive settings for socket-based components.
+           */
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
+          /**
+           * List of allowed origin IP networks. IP addresses must be in CIDR notation.
+           */
+          permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
+          /**
+           * The size of the receive buffer used for each connection.
+           */
+          receive_buffer_bytes?: number | null;
+          /**
+           * Whether or not to sanitize incoming statsd key names. When "true", keys are sanitized by:
+           * - "/" is replaced with "-"
+           * - All whitespace is replaced with "_"
+           * - All non alphanumeric characters (A-Z, a-z, 0-9, _, or -) are removed.
+           */
+          sanitize?: boolean;
+          /**
+           * The timeout before a connection is forcefully closed during shutdown.
+           */
+          shutdown_timeout_secs?: number;
+          /**
+           * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
+          [k: string]: unknown | undefined;
+        } & {
+          /**
+           * Listen on TCP.
+           */
+          mode: 'tcp';
           [k: string]: unknown | undefined;
         })
-      | (({
+      | ({
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
           /**
-           * Number of seconds before timing out while connecting.
+           * Specifies the target unit for converting incoming StatsD timing values. When set to "seconds" (the default), timing values in milliseconds (`ms`) are converted to seconds (`s`). When set to "milliseconds", the original timing values are preserved.
            */
-          connect_timeout_secs?: number;
+          convert_to?: 'seconds' | 'milliseconds';
           /**
-           * Decoder to use on each received message.
+           * The size of the receive buffer used for each connection.
            */
-          decoding?:
-            | {
-                /**
-                 * Uses the raw bytes as-is.
-                 */
-                codec: 'bytes';
-                [k: string]: unknown | undefined;
-              }
-            | DecodesTheRawBytesAsJSONJson
-            | DecodesTheRawBytesAsProtobufProtobuf
-            | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-            | DecodesTheRawBytesAsASyslogMessage
-            | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-            | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-            | DecodesTheRawBytesAsAGELFGelfMessage
-            | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-            | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-            | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-          framing?: FramingConfiguration;
+          receive_buffer_bytes?: number | null;
+          sanitize?: boolean;
+          [k: string]: unknown | undefined;
+        } & {
           /**
-           * An optional message to send to the server upon connection.
+           * Listen on UDP.
            */
-          initial_message?: string | null;
+          mode: 'udp';
+          [k: string]: unknown | undefined;
+        })
+      | ({
           /**
-           * Number of seconds before timing out while waiting for a reply to the initial message.
-           * This is only used when `initial_message` is also configured.
+           * Specifies the target unit for converting incoming StatsD timing values. When set to "seconds" (the default), timing values in milliseconds (`ms`) are converted to seconds (`s`). When set to "milliseconds", the original timing values are preserved.
            */
-          initial_message_timeout_secs?: number;
+          convert_to?: 'seconds' | 'milliseconds';
+          path: TheUnixSocketPath;
+          sanitize?: boolean;
+          [k: string]: unknown | undefined;
+        } & {
           /**
-           * The namespace to use for logs. This overrides the global setting.
+           * Listen on a Unix domain Socket (UDS).
            */
-          log_namespace?: boolean | null;
+          mode: 'unix';
+          [k: string]: unknown | undefined;
+        })
+    ) & {
+      /**
+       * Collect metrics emitted by the StatsD aggregator.
+       */
+      type: 'statsd';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesFileDescriptorsStdinStdinConfig & {
+      /**
+       * Collect logs sent via stdin.
+       */
+      type: 'stdin';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      max_length?: TheMaximumBufferSizeOfIncomingMessagesInBytes;
+      [k: string]: unknown | undefined;
+    } & (
+      | {
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
           /**
-           * An optional application-level ping message to send over the WebSocket connection.
-           * If not set, a standard WebSocket ping control frame is sent instead.
+           * The maximum number of TCP connections that are allowed at any given time.
            */
-          ping_message?: string | null;
+          connection_limit?: number | null;
           /**
-           * The expected application-level pong message to listen for as a response to a custom `ping_message`.
-           * This is only used when `ping_message` is also configured. When a custom ping is sent,
-           * receiving this specific message confirms that the connection is still alive.
+           * TCP keepalive settings for socket-based components.
            */
-          pong_message?:
-            | null
+          keepalive?: null | VectorCoreTcpTcpKeepaliveConfig;
+          /**
+           * Listen on TCP.
+           */
+          mode: 'tcp';
+          /**
+           * List of allowed origin IP networks. IP addresses must be in CIDR notation.
+           */
+          permit_origin?: null | VectorCoreIpallowlistIpAllowlistConfig;
+          receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForEachConnection;
+          /**
+           * `TlsEnableableConfig` for `sources`, adding metadata from the client certificate.
+           */
+          tls?: null | VectorCoreTlsSettingsTlsSourceConfig;
+          [k: string]: unknown | undefined;
+        }
+      | {
+          address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
+          /**
+           * Listen on UDP.
+           */
+          mode: 'udp';
+          receive_buffer_bytes?: TheSizeOfTheReceiveBufferUsedForTheListeningSocket;
+          [k: string]: unknown | undefined;
+        }
+      | ListenOnUDSUnixDomainSocketThisOnlySupportsUnixStreamSockets
+    )) & {
+      /**
+       * Collect logs sent via Syslog.
+       */
+      type: 'syslog';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorConfigUnitTestUnitTestComponentsUnitTestSourceConfig & {
+      /**
+       * Unit test.
+       */
+      type: 'unit_test';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorConfigUnitTestUnitTestComponentsUnitTestStreamSourceConfig & {
+      /**
+       * Unit test stream.
+       */
+      type: 'unit_test_stream';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorSourcesVectorVectorConfig & {
+      /**
+       * Collect observability data from a Vector instance.
+       */
+      type: 'vector';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Number of seconds before timing out while connecting.
+       */
+      connect_timeout_secs?: number;
+      /**
+       * Decoder to use on each received message.
+       */
+      decoding?:
+        | {
+            /**
+             * Uses the raw bytes as-is.
+             */
+            codec: 'bytes';
+            [k: string]: unknown | undefined;
+          }
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
+      framing?: FramingConfiguration;
+      /**
+       * An optional message to send to the server upon connection.
+       */
+      initial_message?: string | null;
+      /**
+       * Number of seconds before timing out while waiting for a reply to the initial message.
+       * This is only used when `initial_message` is also configured.
+       */
+      initial_message_timeout_secs?: number;
+      /**
+       * The namespace to use for logs. This overrides the global setting.
+       */
+      log_namespace?: boolean | null;
+      /**
+       * An optional application-level ping message to send over the WebSocket connection.
+       * If not set, a standard WebSocket ping control frame is sent instead.
+       */
+      ping_message?: string | null;
+      /**
+       * The expected application-level pong message to listen for as a response to a custom `ping_message`.
+       * This is only used when `ping_message` is also configured. When a custom ping is sent,
+       * receiving this specific message confirms that the connection is still alive.
+       */
+      pong_message?:
+        | null
+        | (
+            | string
             | (
-                | string
-                | (
-                    | {
-                        /**
-                         * The entire message must be an exact match.
-                         */
-                        type: 'exact';
-                        /**
-                         * The string value to match against.
-                         */
-                        value: string;
-                        [k: string]: unknown | undefined;
-                      }
-                    | {
-                        /**
-                         * The message must contain the value as a substring.
-                         */
-                        type: 'contains';
-                        /**
-                         * The string value to match against.
-                         */
-                        value: string;
-                        [k: string]: unknown | undefined;
-                      }
-                  )
-              );
-          [k: string]: unknown | undefined;
-        } & VectorCommonWebsocketWebSocketCommonConfig1) & {
-          /**
-           * Collect events from a websocket endpoint.
-           */
-          type: 'websocket';
-          [k: string]: unknown | undefined;
-        })
-    ))
-  | undefined;
+                | {
+                    /**
+                     * The entire message must be an exact match.
+                     */
+                    type: 'exact';
+                    /**
+                     * The string value to match against.
+                     */
+                    value: string;
+                    [k: string]: unknown | undefined;
+                  }
+                | {
+                    /**
+                     * The message must contain the value as a substring.
+                     */
+                    type: 'contains';
+                    /**
+                     * The string value to match against.
+                     */
+                    value: string;
+                    [k: string]: unknown | undefined;
+                  }
+              )
+          );
+      [k: string]: unknown | undefined;
+    } & VectorCommonWebsocketWebSocketCommonConfig) & {
+      /**
+       * Collect events from a websocket endpoint.
+       */
+      type: 'websocket';
+      [k: string]: unknown | undefined;
+    })
+);
 /**
  * Supports AMQP version 0.9.1
  */
@@ -6435,7 +6297,7 @@ export type ConfigurationForTheAmqpSource = {
    */
   routing_key_field?: string;
   [k: string]: unknown | undefined;
-} & VectorAmqpAmqpConfig1;
+} & VectorAmqpAmqpConfig;
 /**
  * Framing handles how events are separated when encoded in a raw byte form, where each event is
  * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
@@ -6609,9 +6471,7 @@ export type TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAC
  * [encoding_option]: https://docs.aws.amazon.com/firehose/latest/dev/create-destination.html#create-destination-http
  */
 export type TheCompressionSchemeToUseForDecompressingRecordsWithinTheFirehoseMessage =
-  | AutomaticallyAttemptToDetermineTheCompressionScheme
-  | 'none'
-  | 'gzip';
+  AutomaticallyAttemptToDetermineTheCompressionScheme | 'none' | 'gzip';
 /**
  * The compression scheme of the object is determined by looking at its file signature, also known
  * as [magic bytes][magic_bytes].
@@ -6807,6 +6667,8 @@ export type TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketP
 export type MaximumDurationToKeepEachConnectionOpenConnectionsOpenForLongerThanThisDurationAreClosed = number | null;
 /**
  * List of allowed origin IP networks. IP addresses must be in CIDR notation.
+ *
+ * Items: IP network
  */
 export type VectorCoreIpallowlistIpAllowlistConfig = string[];
 /**
@@ -6825,7 +6687,7 @@ export type VectorCoreTlsSettingsTlsSourceConfig = {
 } & ({
   enabled?: WhetherToRequireTLSForIncomingOrOutgoingConnections;
   [k: string]: unknown | undefined;
-} & VectorCoreTlsSettingsTlsConfig1);
+} & VectorCoreTlsSettingsTlsConfig);
 /**
  * Note: The file mode value can be specified in any numeric format supported by your configuration
  * language, but it is most intuitive to use an octal number.
@@ -6909,74 +6771,7 @@ export type OverridesTheDefaultNamespaceForTheMetricsEmittedByTheSource = string
  * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
  * ends within the byte stream.
  */
-export type FramingConfiguration6 = null | FramingConfiguration7;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration7 =
-  | {
-      /**
-       * Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
-       */
-      method: 'bytes';
-      [k: string]: unknown | undefined;
-    }
-  | (CodecsDecodingFramingCharacterDelimitedCharacterDelimitedDecoderConfig1 & {
-      /**
-       * Byte frames which are delimited by a chosen character.
-       */
-      method: 'character_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | (CodecsDecodingFramingLengthDelimitedLengthDelimitedDecoderConfig1 & {
-      /**
-       * Byte frames which are prefixed by an unsigned big-endian 32-bit integer indicating the length.
-       */
-      method: 'length_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | (CodecsDecodingFramingNewlineDelimitedNewlineDelimitedDecoderConfig1 & {
-      /**
-       * Byte frames which are delimited by a newline character.
-       */
-      method: 'newline_delimited';
-      [k: string]: unknown | undefined;
-    })
-  | ByteFramesAccordingToTheOctetCountingOctetCountingFormat2
-  | ByteFramesWhichAreChunkedGELFMessages2
-  | (CodecsDecodingFramingVarintLengthDelimitedVarintLengthDelimitedDecoderConfig1 & {
-      /**
-       * Byte frames which are prefixed by a varint indicating the length.
-       * This is compatible with protobuf's length-delimited encoding.
-       */
-      method: 'varint_length_delimited';
-      [k: string]: unknown | undefined;
-    });
-/**
- * [octet_counting]: https://tools.ietf.org/html/rfc6587#section-3.4.1
- */
-export type ByteFramesAccordingToTheOctetCountingOctetCountingFormat2 =
-  CodecsDecodingFramingOctetCountingOctetCountingDecoderConfig1 & {
-    method: ByteFramesAccordingToTheOctetCountingOctetCountingFormat3;
-    [k: string]: unknown | undefined;
-  };
-/**
- * [octet_counting]: https://tools.ietf.org/html/rfc6587#section-3.4.1
- */
-export type ByteFramesAccordingToTheOctetCountingOctetCountingFormat3 = 'octet_counting';
-/**
- * [chunked_gelf]: https://go2docs.graylog.org/current/getting_in_log_data/gelf.html
- */
-export type ByteFramesWhichAreChunkedGELFMessages2 = CodecsDecodingFramingChunkedGelfChunkedGelfDecoderConfig1 & {
-  method: ByteFramesWhichAreChunkedGELFMessages3;
-  [k: string]: unknown | undefined;
-};
-/**
- * [chunked_gelf]: https://go2docs.graylog.org/current/getting_in_log_data/gelf.html
- */
-export type ByteFramesWhichAreChunkedGELFMessages3 = 'chunked_gelf';
+export type FramingConfiguration6 = null | FramingConfiguration;
 /**
  * If the command takes longer than `exec_interval_secs` to run, it is killed.
  */
@@ -7079,12 +6874,6 @@ export type EnablesAddingTheFileOffsetToEachEventAndSetsTheNameOfTheLogFieldUsed
  */
 export type AfterReachingEOFTheNumberOfSecondsToWaitBeforeRemovingTheFileUnlessNewDataIsWritten = number | null;
 /**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration8 = null | FramingConfiguration7;
-/**
  * Messages larger than this are truncated.
  */
 export type TheMaximumBufferSizeInBytesOfIncomingMessages = number;
@@ -7169,161 +6958,6 @@ export type TheListOfHostMetricCollectorServicesToUse =
  */
 export type MetricsRelatedToLinuxControlGroups = 'cgroups';
 /**
- * [json]: https://www.json.org/
- */
-export type DecodesTheRawBytesAsJSONJson2 = CodecsDecodingFormatJsonJsonDeserializerConfig1 & {
-  codec: DecodesTheRawBytesAsJSONJson3;
-  [k: string]: unknown | undefined;
-};
-/**
- * [json]: https://www.json.org/
- */
-export type DecodesTheRawBytesAsJSONJson3 = 'json';
-/**
- * [protobuf]: https://protobuf.dev/
- */
-export type DecodesTheRawBytesAsProtobufProtobuf2 = CodecsDecodingFormatProtobufProtobufDeserializerConfig1 & {
-  codec: DecodesTheRawBytesAsProtobufProtobuf3;
-  [k: string]: unknown | undefined;
-};
-/**
- * [protobuf]: https://protobuf.dev/
- */
-export type DecodesTheRawBytesAsProtobufProtobuf3 = 'protobuf';
-/**
- * This decoder handles the three OTLP signal types: logs, metrics, and traces.
- * It automatically detects which type of OTLP message is being decoded.
- *
- * [otlp]: https://opentelemetry.io/docs/specs/otlp/
- */
-export type DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat2 =
-  CodecsDecodingFormatOtlpOtlpDeserializerConfig1 & {
-    codec: DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat3;
-    [k: string]: unknown | undefined;
-  };
-/**
- * This decoder handles the three OTLP signal types: logs, metrics, and traces.
- * It automatically detects which type of OTLP message is being decoded.
- *
- * [otlp]: https://opentelemetry.io/docs/specs/otlp/
- */
-export type DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat3 = 'otlp';
-/**
- * Decodes either as the [RFC 3164][rfc3164]-style format ("old" style) or the
- * [RFC 5424][rfc5424]-style format ("new" style, includes structured data).
- *
- * [rfc3164]: https://www.ietf.org/rfc/rfc3164.txt
- * [rfc5424]: https://www.ietf.org/rfc/rfc5424.txt
- */
-export type DecodesTheRawBytesAsASyslogMessage2 = CodecsDecodingFormatSyslogSyslogDeserializerConfig1 & {
-  codec: DecodesTheRawBytesAsASyslogMessage3;
-  [k: string]: unknown | undefined;
-};
-/**
- * Decodes either as the [RFC 3164][rfc3164]-style format ("old" style) or the
- * [RFC 5424][rfc5424]-style format ("new" style, includes structured data).
- *
- * [rfc3164]: https://www.ietf.org/rfc/rfc3164.txt
- * [rfc5424]: https://www.ietf.org/rfc/rfc5424.txt
- */
-export type DecodesTheRawBytesAsASyslogMessage3 = 'syslog';
-/**
- * This decoder can output all types of events (logs, metrics, traces).
- *
- * This codec is **[experimental][experimental]**.
- *
- * [vector_native_protobuf]: https://github.com/vectordotdev/vector/blob/master/lib/vector-core/proto/event.proto
- * [experimental]: https://vector.dev/highlights/2022-03-31-native-event-codecs
- */
-export type DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf3 = 'native';
-/**
- * This decoder can output all types of events (logs, metrics, traces).
- *
- * This codec is **[experimental][experimental]**.
- *
- * [vector_native_json]: https://github.com/vectordotdev/vector/blob/master/lib/codecs/tests/data/native_encoding/schema.cue
- * [experimental]: https://vector.dev/highlights/2022-03-31-native-event-codecs
- */
-export type DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson2 =
-  CodecsDecodingFormatNativeJsonNativeJsonDeserializerConfig1 & {
-    codec: DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson3;
-    [k: string]: unknown | undefined;
-  };
-/**
- * This decoder can output all types of events (logs, metrics, traces).
- *
- * This codec is **[experimental][experimental]**.
- *
- * [vector_native_json]: https://github.com/vectordotdev/vector/blob/master/lib/codecs/tests/data/native_encoding/schema.cue
- * [experimental]: https://vector.dev/highlights/2022-03-31-native-event-codecs
- */
-export type DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson3 = 'native_json';
-/**
- * This codec is experimental for the following reason:
- *
- * The GELF specification is more strict than the actual Graylog receiver.
- * Vector's decoder adheres more strictly to the GELF spec, with
- * the exception that some characters such as `@`  are allowed in field names.
- *
- * Other GELF codecs such as Loki's, use a [Go SDK][implementation] that is maintained
- * by Graylog, and is much more relaxed than the GELF spec.
- *
- * Going forward, Vector will use that [Go SDK][implementation] as the reference implementation, which means
- * the codec may continue to relax the enforcement of specification.
- *
- * [gelf]: https://docs.graylog.org/docs/gelf
- * [implementation]: https://github.com/Graylog2/go-gelf/blob/v2/gelf/reader.go
- */
-export type DecodesTheRawBytesAsAGELFGelfMessage2 = CodecsDecodingFormatGelfGelfDeserializerConfig1 & {
-  codec: DecodesTheRawBytesAsAGELFGelfMessage3;
-  [k: string]: unknown | undefined;
-};
-/**
- * This codec is experimental for the following reason:
- *
- * The GELF specification is more strict than the actual Graylog receiver.
- * Vector's decoder adheres more strictly to the GELF spec, with
- * the exception that some characters such as `@`  are allowed in field names.
- *
- * Other GELF codecs such as Loki's, use a [Go SDK][implementation] that is maintained
- * by Graylog, and is much more relaxed than the GELF spec.
- *
- * Going forward, Vector will use that [Go SDK][implementation] as the reference implementation, which means
- * the codec may continue to relax the enforcement of specification.
- *
- * [gelf]: https://docs.graylog.org/docs/gelf
- * [implementation]: https://github.com/Graylog2/go-gelf/blob/v2/gelf/reader.go
- */
-export type DecodesTheRawBytesAsAGELFGelfMessage3 = 'gelf';
-/**
- * [influxdb]: https://docs.influxdata.com/influxdb/cloud/reference/syntax/line-protocol
- */
-export type DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage2 =
-  CodecsDecodingFormatInfluxdbInfluxdbDeserializerConfig1 & {
-    codec: DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage3;
-    [k: string]: unknown | undefined;
-  };
-/**
- * [influxdb]: https://docs.influxdata.com/influxdb/cloud/reference/syntax/line-protocol
- */
-export type DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage3 = 'influxdb';
-/**
- * [apache_avro]: https://avro.apache.org/
- */
-export type DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage3 = 'avro';
-/**
- * [vrl]: https://vector.dev/docs/reference/vrl
- */
-export type DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram2 =
-  CodecsDecodingFormatVrlVrlDeserializerConfig1 & {
-    codec: DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram3;
-    [k: string]: unknown | undefined;
-  };
-/**
- * [vrl]: https://vector.dev/docs/reference/vrl
- */
-export type DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram3 = 'vrl';
-/**
  * For `json` and `ndjson` encodings, the fields of the JSON objects are output as separate fields.
  */
 export type TheExpectedEncodingOfReceivedData = null | VectorSourcesUtilBodyDecodingEncoding;
@@ -7331,12 +6965,6 @@ export type TheExpectedEncodingOfReceivedData = null | VectorSourcesUtilBodyDeco
  * Content encoding.
  */
 export type VectorSourcesUtilBodyDecodingEncoding = 'text' | 'ndjson' | 'json' | 'binary';
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration11 = null | FramingConfiguration7;
 /**
  * Accepts the wildcard (`*`) character for headers matching a specified pattern.
  *
@@ -7650,12 +7278,6 @@ export type TheNATSURLToConnectTo = string;
  */
 export type AListOfNGINXInstancesToScrape = string[];
 /**
- * If set to an empty string, no namespace is added to the metrics.
- *
- * By default, `nginx` is used.
- */
-export type OverridesTheDefaultNamespaceForTheMetricsEmittedByTheSource2 = string;
-/**
  * One major caveat here is that the incoming metrics will be parsed as logs but they will preserve the OTLP format.
  * This means that components that work on metrics, will not be compatible with this output.
  * However, these events can be forwarded directly to a downstream OTEL collector.
@@ -7741,12 +7363,6 @@ export type SetsTheNameOfTheLogFieldToUseToAddTheKeyToEachEvent =
  */
 export type TheRedisURLToConnectTo = string;
 /**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration18 = null | FramingConfiguration7;
-/**
  * The value will be the peer host's address, including the port i.e. `1.2.3.4:9000`.
  *
  * By default, the [global `log_schema.host_key` option][global_host_key] is used.
@@ -7757,12 +7373,6 @@ export type FramingConfiguration18 = null | FramingConfiguration7;
  */
 export type OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent =
   null | VectorLookupLookupV2OptionalPathOptionalValuePath;
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration19 = null | FramingConfiguration7;
 /**
  * Messages larger than this are truncated.
  */
@@ -7777,14 +7387,10 @@ export type TheMaximumBufferSizeOfIncomingMessages = number;
  * Note that this setting will only work if the source's address
  * is an IPv4 address (IPv6 and systemd file descriptor as source's address are not supported
  * with multicast groups).
+ *
+ * Items: An IPv4 address.
  */
 export type ListOfIPv4MulticastGroupsToJoinOnSocketSBindingProcess = string[];
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration20 = null | FramingConfiguration7;
 /**
  * An optional path that deserializes an empty string to `None`.
  */
@@ -7850,12 +7456,6 @@ export type TheValueOfTheQuantile = number;
  * The quantiles measured from this summary.
  */
 export type ASingleQuantileObservation = ASingleQuantileObservation1[];
-/**
- * Framing handles how events are separated when encoded in a raw byte form, where each event is
- * a frame that must be prefixed, or delimited, in a way that marks where an event begins and
- * ends within the byte stream.
- */
-export type FramingConfiguration21 = null | FramingConfiguration7;
 /**
  * Messages larger than this are truncated.
  */
@@ -7950,21 +7550,18 @@ export type VectorCoreEventMetricMetric = ({
  * used to provide the storage for `TagValueSet`.
  */
 export type VectorCoreEventMetricTagsTagValueSet =
-  | (
-      | 'Empty'
-      | {
-          /**
-           * A single tag value, either a bare tag or a value.
-           */
-          Single: null | string;
-          [k: string]: unknown | undefined;
-        }
-      | {
-          Set: VectorCoreEventMetricTagsTagValue[];
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | 'Empty'
+  | {
+      /**
+       * A single tag value, either a bare tag or a value.
+       */
+      Single: null | string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      Set: VectorCoreEventMetricTagsTagValue[];
+      [k: string]: unknown | undefined;
+    };
 /**
  * A single tag value, either a bare tag or a value.
  */
@@ -8076,209 +7673,209 @@ export type AUnitTestOutput = AUnitTestOutput1[];
 /**
  * Fully resolved transform component.
  */
-export type VectorConfigTransformTransformOuterAllocStringString =
-  | ({
-      graph?: ExtraGraphConfiguration3;
-      inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs;
+export type VectorConfigTransformTransformOuterAllocStringString = {
+  graph?: ExtraGraphConfiguration;
+  inputs: AListOfUpstreamSourceSourcesOrTransformTransformsIDs;
+  [k: string]: unknown | undefined;
+} & (
+  | (VectorTransformsAggregateAggregateConfig & {
+      /**
+       * Aggregate metrics passing through a topology.
+       */
+      type: 'aggregate';
       [k: string]: unknown | undefined;
-    } & (
-      | (VectorTransformsAggregateAggregateConfig & {
+    })
+  | (VectorTransformsAwsEc2MetadataEc2Metadata & {
+      /**
+       * Parse metadata emitted by AWS EC2 instances.
+       */
+      type: 'aws_ec2_metadata';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsDedupeConfigDedupeConfig & {
+      /**
+       * Deduplicate logs passing through a topology.
+       */
+      type: 'dedupe';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsExclusiveRouteConfigExclusiveRouteConfig & {
+      /**
+       * Split a stream of events into unique sub-streams based on user-supplied conditions.
+       */
+      type: 'exclusive_route';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsFilterFilterConfig & {
+      /**
+       * Filter events based on a set of conditions.
+       */
+      type: 'filter';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsIncrementalToAbsoluteIncrementalToAbsoluteConfig & {
+      /**
+       * Convert incremental metrics to absolute.
+       */
+      type: 'incremental_to_absolute';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsLogToMetricLogToMetricConfig & {
+      /**
+       * Convert log events to metric events.
+       */
+      type: 'log_to_metric';
+      [k: string]: unknown | undefined;
+    })
+  | ((
+      | ({
+          version?: TransformAPIVersion;
+          [k: string]: unknown | undefined;
+        } & {
+          search_dirs?: AListOfDirectoriesToSearchWhenLoadingALuaFileViaTheRequireFunction;
           /**
-           * Aggregate metrics passing through a topology.
+           * The Lua program to execute for each event.
            */
-          type: 'aggregate';
+          source: string;
           [k: string]: unknown | undefined;
         })
-      | (VectorTransformsAwsEc2MetadataEc2Metadata & {
-          /**
-           * Parse metadata emitted by AWS EC2 instances.
-           */
-          type: 'aws_ec2_metadata';
+      | ({
+          version: TransformAPIVersion1;
           [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsDedupeConfigDedupeConfig & {
+        } & {
+          hooks: LifecycleHooks;
+          metric_tag_values?: WhenSetToSingleMetricTagValuesAreExposedAsSingleStringsTheSameAsTheyWereBeforeThisConfigOptionTagsWithMultipleValuesShowTheLastAssignedValueAndNullValuesAreIgnored;
+          search_dirs?: AListOfDirectoriesToSearchWhenLoadingALuaFileViaTheRequireFunction1;
+          source?: TheLuaProgramToInitializeTheTransformWith;
           /**
-           * Deduplicate logs passing through a topology.
+           * A list of timers which should be configured and executed periodically.
+           *
+           * Items: A Lua timer.
            */
-          type: 'dedupe';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsExclusiveRouteConfigExclusiveRouteConfig & {
-          /**
-           * Split a stream of events into unique sub-streams based on user-supplied conditions.
-           */
-          type: 'exclusive_route';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsFilterFilterConfig & {
-          /**
-           * Filter events based on a set of conditions.
-           */
-          type: 'filter';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsIncrementalToAbsoluteIncrementalToAbsoluteConfig & {
-          /**
-           * Convert incremental metrics to absolute.
-           */
-          type: 'incremental_to_absolute';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsLogToMetricLogToMetricConfig & {
-          /**
-           * Convert log events to metric events.
-           */
-          type: 'log_to_metric';
-          [k: string]: unknown | undefined;
-        })
-      | ((
-          | ({
-              version?: TransformAPIVersion;
-              [k: string]: unknown | undefined;
-            } & {
-              search_dirs?: AListOfDirectoriesToSearchWhenLoadingALuaFileViaTheRequireFunction;
-              /**
-               * The Lua program to execute for each event.
-               */
-              source: string;
-              [k: string]: unknown | undefined;
-            })
-          | ({
-              version: TransformAPIVersion1;
-              [k: string]: unknown | undefined;
-            } & {
-              hooks: LifecycleHooks;
-              metric_tag_values?: WhenSetToSingleMetricTagValuesAreExposedAsSingleStringsTheSameAsTheyWereBeforeThisConfigOptionTagsWithMultipleValuesShowTheLastAssignedValueAndNullValuesAreIgnored;
-              search_dirs?: AListOfDirectoriesToSearchWhenLoadingALuaFileViaTheRequireFunction1;
-              source?: TheLuaProgramToInitializeTheTransformWith;
-              /**
-               * A list of timers which should be configured and executed periodically.
-               */
-              timers?: {
-                handler: TheHandlerFunctionWhichIsCalledWhenTheTimerTicks;
-                /**
-                 * The interval to execute the handler, in seconds.
-                 */
-                interval_seconds: number;
-                [k: string]: unknown | undefined;
-              }[];
-              [k: string]: unknown | undefined;
-            })
-        ) & {
-          /**
-           * Modify event data using the Lua programming language.
-           */
-          type: 'lua';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsMetricToLogMetricToLogConfig2 & {
-          /**
-           * Convert metric events to log events.
-           */
-          type: 'metric_to_log';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsReduceConfigReduceConfig & {
-          /**
-           * Collapse multiple log events into a single event based on a set of conditions and merge strategies.
-           */
-          type: 'reduce';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsRemapRemapConfig & {
-          /**
-           * Modify your observability data as it passes through your topology using Vector Remap Language (VRL).
-           */
-          type: 'remap';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsRouteRouteConfig & {
-          /**
-           * Split a stream of events into multiple sub-streams based on user-supplied conditions.
-           */
-          type: 'route';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsSampleConfigSampleConfig & {
-          /**
-           * Sample events from an event stream based on supplied criteria and at a configurable rate.
-           */
-          type: 'sample';
-          [k: string]: unknown | undefined;
-        })
-      | (({
-          /**
-           * Tag cardinality limits configuration per metric name.
-           */
-          per_metric_limits?: {
+          timers?: {
+            handler: TheHandlerFunctionWhichIsCalledWhenTheTimerTicks;
             /**
-             * Tag cardinality limit configuration per metric name.
+             * The interval to execute the handler, in seconds.
              */
-            [k: string]:
-              | ({
-                  /**
-                   * Namespace of the metric this configuration refers to.
-                   */
-                  namespace?: string | null;
-                  [k: string]: unknown | undefined;
-                } & ({
-                  internal_metrics?: VectorTransformsTagCardinalityLimitConfigInternalMetricsConfig;
-                  /**
-                   * Possible actions to take when an event arrives that would exceed the cardinality limit for one
-                   * or more of its tags.
-                   */
-                  limit_exceeded_action?: 'drop_tag' | 'drop_event';
-                  /**
-                   * How many distinct values to accept for any given key.
-                   */
-                  value_limit?: number;
-                  [k: string]: unknown | undefined;
-                } & (TracksCardinalityExactly | TracksCardinalityProbabilistically)))
-              | undefined;
-          };
-          [k: string]: unknown | undefined;
-        } & ({
-          internal_metrics?: VectorTransformsTagCardinalityLimitConfigInternalMetricsConfig;
-          /**
-           * Possible actions to take when an event arrives that would exceed the cardinality limit for one
-           * or more of its tags.
-           */
-          limit_exceeded_action?: 'drop_tag' | 'drop_event';
-          /**
-           * How many distinct values to accept for any given key.
-           */
-          value_limit?: number;
-          [k: string]: unknown | undefined;
-        } & (TracksCardinalityExactly | TracksCardinalityProbabilistically))) & {
-          /**
-           * Limit the cardinality of tags on metrics events as a safeguard against cardinality explosion.
-           */
-          type: 'tag_cardinality_limit';
+            interval_seconds: number;
+            [k: string]: unknown | undefined;
+          }[];
           [k: string]: unknown | undefined;
         })
-      | (VectorTransformsThrottleConfigThrottleConfig & {
-          /**
-           * Rate limit logs passing through a topology.
-           */
-          type: 'throttle';
-          [k: string]: unknown | undefined;
-        })
-      | (ConfigurationForTheTraceToLogTransform & {
-          /**
-           * Convert trace events to log events.
-           */
-          type: 'trace_to_log';
-          [k: string]: unknown | undefined;
-        })
-      | (VectorTransformsWindowConfigWindowConfig & {
-          /**
-           * Apply a buffered sliding window over the stream of events and flush it based on supplied criteria
-           */
-          type: 'window';
-          [k: string]: unknown | undefined;
-        })
-    ))
-  | undefined;
+    ) & {
+      /**
+       * Modify event data using the Lua programming language.
+       */
+      type: 'lua';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsMetricToLogMetricToLogConfig & {
+      /**
+       * Convert metric events to log events.
+       */
+      type: 'metric_to_log';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsReduceConfigReduceConfig & {
+      /**
+       * Collapse multiple log events into a single event based on a set of conditions and merge strategies.
+       */
+      type: 'reduce';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsRemapRemapConfig & {
+      /**
+       * Modify your observability data as it passes through your topology using Vector Remap Language (VRL).
+       */
+      type: 'remap';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsRouteRouteConfig & {
+      /**
+       * Split a stream of events into multiple sub-streams based on user-supplied conditions.
+       */
+      type: 'route';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsSampleConfigSampleConfig & {
+      /**
+       * Sample events from an event stream based on supplied criteria and at a configurable rate.
+       */
+      type: 'sample';
+      [k: string]: unknown | undefined;
+    })
+  | (({
+      /**
+       * Tag cardinality limits configuration per metric name.
+       */
+      per_metric_limits?: {
+        /**
+         * Tag cardinality limit configuration per metric name.
+         */
+        [k: string]:
+          | ({
+              /**
+               * Namespace of the metric this configuration refers to.
+               */
+              namespace?: string | null;
+              [k: string]: unknown | undefined;
+            } & ({
+              internal_metrics?: VectorTransformsTagCardinalityLimitConfigInternalMetricsConfig;
+              /**
+               * Possible actions to take when an event arrives that would exceed the cardinality limit for one
+               * or more of its tags.
+               */
+              limit_exceeded_action?: 'drop_tag' | 'drop_event';
+              /**
+               * How many distinct values to accept for any given key.
+               */
+              value_limit?: number;
+              [k: string]: unknown | undefined;
+            } & (TracksCardinalityExactly | TracksCardinalityProbabilistically)))
+          | undefined;
+      };
+      [k: string]: unknown | undefined;
+    } & ({
+      internal_metrics?: VectorTransformsTagCardinalityLimitConfigInternalMetricsConfig;
+      /**
+       * Possible actions to take when an event arrives that would exceed the cardinality limit for one
+       * or more of its tags.
+       */
+      limit_exceeded_action?: 'drop_tag' | 'drop_event';
+      /**
+       * How many distinct values to accept for any given key.
+       */
+      value_limit?: number;
+      [k: string]: unknown | undefined;
+    } & (TracksCardinalityExactly | TracksCardinalityProbabilistically))) & {
+      /**
+       * Limit the cardinality of tags on metrics events as a safeguard against cardinality explosion.
+       */
+      type: 'tag_cardinality_limit';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsThrottleConfigThrottleConfig & {
+      /**
+       * Rate limit logs passing through a topology.
+       */
+      type: 'throttle';
+      [k: string]: unknown | undefined;
+    })
+  | (ConfigurationForTheTraceToLogTransform & {
+      /**
+       * Convert trace events to log events.
+       */
+      type: 'trace_to_log';
+      [k: string]: unknown | undefined;
+    })
+  | (VectorTransformsWindowConfigWindowConfig & {
+      /**
+       * Apply a buffered sliding window over the stream of events and flush it based on supplied criteria
+       */
+      type: 'window';
+      [k: string]: unknown | undefined;
+    })
+);
 /**
  * During this time frame, metrics (beta) with the same series data (name, namespace, tags, and so on) are aggregated.
  */
@@ -8287,15 +7884,7 @@ export type TheIntervalBetweenFlushesInMilliseconds = number;
  * Some of the functions may only function on incremental and some only on absolute metrics.
  */
 export type FunctionToUseForAggregation =
-  | 'Auto'
-  | 'Sum'
-  | 'Latest'
-  | 'Count'
-  | 'Diff'
-  | 'Max'
-  | 'Min'
-  | 'Mean'
-  | 'Stdev';
+  'Auto' | 'Sum' | 'Latest' | 'Count' | 'Diff' | 'Max' | 'Min' | 'Mean' | 'Stdev';
 /**
  * When no field matching configuration is specified, events are matched using the `timestamp`,
  * `host`, and `message` fields from an event. The specific field names used are those set in
@@ -8317,7 +7906,7 @@ export type OptionsToControlWhatFieldsToMatchAgainst1 =
        * A wrapper around `OwnedTargetPath` that allows it to be used in Vector config
        * with prefix default to `PathPrefix::Event`
        */
-      match: VectorLookupLookupV2ConfigTargetPath | undefined[];
+      match: VectorLookupLookupV2ConfigTargetPath[];
       [k: string]: unknown | undefined;
     }
   | {
@@ -8325,7 +7914,7 @@ export type OptionsToControlWhatFieldsToMatchAgainst1 =
        * A wrapper around `OwnedTargetPath` that allows it to be used in Vector config
        * with prefix default to `PathPrefix::Event`
        */
-      ignore: VectorLookupLookupV2ConfigTargetPath | undefined[];
+      ignore: VectorLookupLookupV2ConfigTargetPath[];
       [k: string]: unknown | undefined;
     };
 /**
@@ -8367,10 +7956,6 @@ export type SettingThisFlagChangesTheBehaviorOfThisTransformationNotablyTheMetri
  */
 export type OverridesTheNameOfTheCounter = null | ATemplatedField;
 /**
- * Sets the namespace for the metric.
- */
-export type ATemplatedField33 = null | ATemplatedField;
-/**
  * Both keys and values can be templated, allowing you to attach dynamic tags to events.
  */
 export type TagsToApplyToTheMetric = {
@@ -8379,23 +7964,7 @@ export type TagsToApplyToTheMetric = {
 /**
  * This may be a single value, a `null` for a bare tag, or an array of either.
  */
-export type SpecificationOfTheValueOfACreatedTag = (ATemplatedField34 | ATemplatedField35[]) | undefined;
-/**
- * A single tag value.
- */
-export type ATemplatedField34 = null | ATemplatedField;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField35 = null | ATemplatedField;
+export type SpecificationOfTheValueOfACreatedTag = ATemplatedField1 | ATemplatedField1[];
 /**
  * Specifying this version ensures that backward compatibility is not broken.
  */
@@ -8462,65 +8031,7 @@ export type TheHandlerFunctionWhichIsCalledWhenTheTimerTicks = string;
  * If this condition resolves to `true` for an event, the current transaction is immediately
  * flushed with this event.
  */
-export type AConditionUsedToDistinguishTheFinalEventOfATransaction = null | AnEventMatchingCondition4;
-/**
- * Many methods exist for matching events, such as using a VRL expression, a Datadog Search query string,
- * or hard-coded matchers like "must be a metric" or "fields A, B, and C must match these constraints".
- *
- * As VRL is the most common way to apply conditions to events, this type provides a shortcut to define VRL expressions
- * directly in the configuration by passing the VRL expression as a string:
- *
- * ```toml
- * condition = '.message == "hooray"'
- * ```
- *
- * When other condition types are required, they can be specified with an enum-style notation:
- *
- * ```toml
- * condition.type = 'datadog_search'
- * condition.source = 'NOT "foo"'
- * ```
- */
-export type AnEventMatchingCondition4 = string | AnEventMatchingCondition5;
-/**
- * A fully-specified condition.
- */
-export type AnEventMatchingCondition5 =
-  | {
-      /**
-       * Matches an event if it is a log.
-       */
-      type: 'is_log';
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * Matches an event if it is a metric.
-       */
-      type: 'is_metric';
-      [k: string]: unknown | undefined;
-    }
-  | {
-      /**
-       * Matches an event if it is a trace.
-       */
-      type: 'is_trace';
-      [k: string]: unknown | undefined;
-    }
-  | (VectorConditionsVrlVrlConfig & {
-      /**
-       * Matches an event with a [Vector Remap Language](https://vector.dev/docs/reference/vrl) (VRL) [boolean expression](https://vector.dev/docs/reference/vrl#boolean-expressions).
-       */
-      type: 'vrl';
-      [k: string]: unknown | undefined;
-    })
-  | (VectorConditionsDatadogSearchDatadogSearchConfig & {
-      /**
-       * Matches an event with a [Datadog Search](https://docs.datadoghq.com/logs/explorer/search_syntax/) query.
-       */
-      type: 'datadog_search';
-      [k: string]: unknown | undefined;
-    });
+export type AConditionUsedToDistinguishTheFinalEventOfATransaction = null | AnEventMatchingCondition;
 /**
  * Each group with matching values for the specified keys is reduced independently, allowing
  * you to keep independent event streams separate. Note that each field specified, will be reduced
@@ -8541,7 +8052,7 @@ export type DiscardAllButTheLastValueFound = 'retain';
  * If this condition resolves to `true` for an event, the previous transaction is flushed
  * (without this event) and a new transaction is started.
  */
-export type AConditionUsedToDistinguishTheFirstEventOfATransaction = null | AnEventMatchingCondition4;
+export type AConditionUsedToDistinguishTheFirstEventOfATransaction = null | AnEventMatchingCondition;
 /**
  * If a VRL program is manually aborted (using [`abort`][vrl_docs_abort]) when
  * processing an event, this option controls whether the original, unmodified event is sent
@@ -8617,19 +8128,7 @@ export type ReroutesUnmatchedEventsToANamedOutputInsteadOfSilentlyDiscardingThem
 /**
  * A logical condition used to exclude events from sampling.
  */
-export type AnEventMatchingCondition6 = null | AnEventMatchingCondition4;
-/**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField36 = null | ATemplatedField;
+export type AnEventMatchingCondition6 = null | AnEventMatchingCondition;
 /**
  * Each unique value for the key creates a bucket of related events to be sampled together
  * and the rate is applied to the buckets themselves to sample `1/N` buckets.  The overall rate
@@ -8687,10 +8186,6 @@ export type TheSizeOfTheCacheForDetectingDuplicateTagsInBytes = number;
  */
 export type TracksCardinalityProbabilistically1 = 'probabilistic';
 /**
- * A logical condition used to exclude events from sampling.
- */
-export type AnEventMatchingCondition7 = null | AnEventMatchingCondition4;
-/**
  * If true, the counter will be incremented for each discarded event, including the key value
  * associated with the discarded event. If false, the counter will not be emitted. Instead, the
  * number of discarded events can be seen through the `component_discarded_events_total` internal
@@ -8701,18 +8196,6 @@ export type AnEventMatchingCondition7 = null | AnEventMatchingCondition4;
  */
 export type WhetherOrNotToEmitTheEventsDiscardedTotalInternalMetricWithTheKeyTag = boolean;
 /**
- * In many cases, components can be configured so that part of the component's functionality can be
- * customized on a per-event basis. For example, you have a sink that writes events to a file and you want to
- * specify which file an event should go to by using an event field as part of the
- * input to the filename used.
- *
- * By using `Template`, users can specify either fixed strings or templated strings. Templated strings use a common syntax to
- * refer to fields in an event that is used as the input data when rendering the template. An example of a fixed string
- * is `my-file.log`. An example of a template string is `my-file-{{key}}.log`, where `{{key}}`
- * is the key's value when the template is rendered into a string.
- */
-export type ATemplatedField37 = null | ATemplatedField;
-/**
  * Each unique key has its own `threshold`.
  */
 export type TheNumberOfEventsAllowedForAGivenBucketPerConfiguredWindowSecs = number;
@@ -8721,7 +8204,7 @@ export type TheNumberOfEventsAllowedForAGivenBucketPerConfiguredWindowSecs = num
  * buffering and without preserving the original order of events. Use with caution if the sink
  * cannot handle out of order events.
  */
-export type AConditionUsedToPassEventsThroughTheTransformWithoutBuffering = null | AnEventMatchingCondition4;
+export type AConditionUsedToPassEventsThroughTheTransformWithoutBuffering = null | AnEventMatchingCondition;
 /**
  * This controls how quickly the `*_buffer_utilization_mean` gauges respond to new
  * observations. Longer half-lives retain more of the previous value, leading to slower
@@ -8737,8 +8220,7 @@ export type AConditionUsedToPassEventsThroughTheTransformWithoutBuffering = null
  * Must be greater than 0.
  */
 export type TheHalfLifeInSecondsForTheExponentialWeightedMovingAverageEWMAOfSourceAndTransformBufferUtilizationMetrics =
-  | number
-  | null;
+  number | null;
 /**
  * This is the directory where Vector will store any state data, such as disk buffers, file
  * checkpoints, and more.
@@ -9146,24 +8628,6 @@ export interface VectorAwsAuthImdsAuthentication {
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration for authenticating with AWS through IMDS.
- */
-export interface VectorAwsAuthImdsAuthentication1 {
-  /**
-   * Connect timeout for IMDS.
-   */
-  connect_timeout_seconds?: number;
-  /**
-   * Number of IMDS retries for fetching tokens and metadata.
-   */
-  max_attempts?: number;
-  /**
-   * Read timeout for IMDS.
-   */
-  read_timeout_seconds?: number;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration of the region/endpoint to use when interacting with an AWS service.
  */
 export interface VectorAwsRegionRegionOrEndpoint {
@@ -9207,30 +8671,6 @@ export interface EventsAreBufferedOnDisk {
     | WaitForFreeSpaceInTheBuffer
     | DropsTheEventInsteadOfWaitingForFreeSpaceInBuffer
     | OverflowsToTheNextStageInTheBufferTopology;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configure output for component when generated with graph command
- */
-export interface ExtraGraphConfiguration1 {
-  node_attributes?: NodeAttributesToAddToThisComponentSNodeInResultingGraph;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configure to proxy traffic through an HTTP(S) proxy when making external requests.
- *
- * Similar to common proxy configuration convention, you can set different proxies
- * to use based on the type of traffic being proxied. You can also set specific hosts that
- * should not be proxied.
- */
-export interface ProxyConfiguration1 {
-  /**
-   * Enables proxying support.
-   */
-  enabled?: boolean;
-  http?: ProxyEndpointToUseWhenProxyingHTTPTraffic;
-  https?: ProxyEndpointToUseWhenProxyingHTTPSTraffic;
-  no_proxy?: AListOfHostsToAvoidProxying;
   [k: string]: unknown | undefined;
 }
 /**
@@ -9473,15 +8913,15 @@ export interface CodecsEncodingFormatSyslogSyslogSerializerOptions {
   /**
    * Path to a field in the event to use for the facility. Defaults to "user".
    */
-  facility?: null | VectorLookupLookupV2ConfigTargetPath | undefined;
+  facility?: null | VectorLookupLookupV2ConfigTargetPath;
   /**
    * Path to a field in the event to use for the msg ID.
    */
-  msg_id?: null | VectorLookupLookupV2ConfigTargetPath | undefined;
+  msg_id?: null | VectorLookupLookupV2ConfigTargetPath;
   /**
    * Path to a field in the event to use for the proc ID.
    */
-  proc_id?: null | VectorLookupLookupV2ConfigTargetPath | undefined;
+  proc_id?: null | VectorLookupLookupV2ConfigTargetPath;
   /**
    * RFC to use for formatting.
    */
@@ -9489,7 +8929,7 @@ export interface CodecsEncodingFormatSyslogSyslogSerializerOptions {
   /**
    * Path to a field in the event to use for the severity. Defaults to "informational".
    */
-  severity?: null | VectorLookupLookupV2ConfigTargetPath | undefined;
+  severity?: null | VectorLookupLookupV2ConfigTargetPath;
   [k: string]: unknown | undefined;
 }
 /**
@@ -9529,7 +8969,7 @@ export interface VectorAmqpAmqpConfig {
  * Configuration for the `appsignal` sink.
  */
 export interface VectorSinksAppsignalConfigAppsignalConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink1;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Event batching behavior.
    */
@@ -9560,15 +9000,6 @@ export interface VectorSinksAppsignalConfigAppsignalConfig {
    * Configures the TLS options for incoming/outgoing connections.
    */
   tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink1 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -9640,79 +9071,6 @@ export interface ConfigurationOfAdaptiveConcurrencyParameters {
   [k: string]: unknown | undefined;
 }
 /**
- * TLS configuration.
- */
-export interface VectorCoreTlsSettingsTlsConfig1 {
-  alpn_protocols?: SetsTheListOfSupportedALPNProtocols;
-  ca_file?: AbsolutePathToAnAdditionalCACertificateFile;
-  crt_file?: AbsolutePathToACertificateFileUsedToIdentifyThisServer;
-  key_file?: AbsolutePathToAPrivateKeyFileUsedToIdentifyThisServer;
-  key_pass?: PassphraseUsedToUnlockTheEncryptedKeyFile;
-  server_name?: ServerNameToUseWhenUsingServerNameIndicationSNI;
-  verify_certificate?: EnablesCertificateVerificationForComponentsThatCreateAServerThisRequiresThatTheClientConnectionsHaveAValidClientCertificateForComponentsThatInitiateRequestsThisValidatesThatTheUpstreamHasAValidCertificate;
-  verify_hostname?: EnablesHostnameVerification;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink2 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests1 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters1;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters1 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
  * [aws_region]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
  */
 export interface TheAWSRegionAwsRegionOfTheTargetService1 {
@@ -9721,143 +9079,6 @@ export interface TheAWSRegionAwsRegionOfTheTargetService1 {
    */
   endpoint?: string | null;
   region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink3 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests2 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters2;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters2 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
- * [aws_region]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
- */
-export interface TheAWSRegionAwsRegionOfTheTargetService2 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink4 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests3 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint1 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink5 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -9873,55 +9094,6 @@ export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBase
    * The maximum age of a batch before it is flushed.
    */
   timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests4 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint2 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
   [k: string]: unknown | undefined;
 }
 /**
@@ -10038,21 +9210,10 @@ export interface CodecsEncodingFramingVarintLengthDelimitedVarintLengthDelimited
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint3 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
  * Base Configuration `aws_s_s` for sns and sqs sink.
  */
 export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink6;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
   /**
    * Configuration of the authentication strategy for interacting with AWS services.
@@ -10089,7 +9250,7 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
         [k: string]: unknown | undefined;
       }
     | {
-        imds?: VectorAwsAuthImdsAuthentication1;
+        imds?: VectorAwsAuthImdsAuthentication;
         load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
         region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
         [k: string]: unknown | undefined;
@@ -10143,178 +9304,11 @@ export interface VectorSinksAwsSSConfigBaseSSSinkConfig {
   };
   message_deduplication_id?: TheMessageDeduplicationIDValueToAllowAWSToIdentifyDuplicateMessages;
   message_group_id?: TheTagThatSpecifiesThatAMessageBelongsToASpecificMessageGroup;
-  request?: MiddlewareSettingsForOutboundRequests5;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink6 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests5 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint4 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
- * Base Configuration `aws_s_s` for sns and sqs sink.
- */
-export interface VectorSinksAwsSSConfigBaseSSSinkConfig1 {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink6;
-  assume_role?: TheARNOfAnIAMRoleIamRoleToAssumeAtStartup;
-  /**
-   * Configuration of the authentication strategy for interacting with AWS services.
-   */
-  auth?:
-    | {
-        /**
-         * The AWS access key ID.
-         */
-        access_key_id: string;
-        assume_role?: TheARNOfAnIAMRoleIamRoleToAssume;
-        external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-        /**
-         * The AWS secret access key.
-         */
-        secret_access_key: string;
-        session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-        /**
-         * The AWS session token.
-         * See [AWS temporary credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-         */
-        session_token?: null | VectorCommonSensitiveStringSensitiveString;
-        [k: string]: unknown | undefined;
-      }
-    | AuthenticateUsingCredentialsStoredInAFile
-    | {
-        assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
-        external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-        imds?: VectorAwsAuthImdsAuthentication;
-        load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-        session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
-        [k: string]: unknown | undefined;
-      }
-    | {
-        imds?: VectorAwsAuthImdsAuthentication1;
-        load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
-        region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  message_deduplication_id?: TheMessageDeduplicationIDValueToAllowAWSToIdentifyDuplicateMessages;
-  message_group_id?: TheTagThatSpecifiesThatAMessageBelongsToASpecificMessageGroup;
-  request?: MiddlewareSettingsForOutboundRequests5;
-  /**
-   * TLS configuration.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * Controls how acknowledgements are handled for this sink.
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink7 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -10333,141 +9327,10 @@ export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSize
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink8 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests6 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters3;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters3 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming1 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `azure_logs_ingestion` sink.
  */
 export interface VectorSinksAzureLogsIngestionConfigAzureLogsIngestionConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink9;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Configuration of the authentication strategy for interacting with Azure services.
    */
@@ -10524,11 +9387,11 @@ export interface VectorSinksAzureLogsIngestionConfigAzureLogsIngestionConfig {
             [k: string]: unknown | undefined;
           }
       );
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings1;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   dcr_immutable_id: TheDataCollectionRuleImmutableIDDcrImmutableIdForTheDataCollectionEndpoint;
-  encoding?: CodecsEncodingTransformerTransformer1;
+  encoding?: CodecsEncodingTransformerTransformer;
   endpoint: TheDataCollectionEndpointURIEndpointAssociatedWithTheLogAnalyticsWorkspace;
-  request?: MiddlewareSettingsForOutboundRequests7;
+  request?: MiddlewareSettingsForOutboundRequests;
   stream_name: TheStreamNameStreamNameForTheDataCollectionRule;
   timestamp_field?: TheDestinationFieldColumnForTheTimestamp;
   /**
@@ -10539,97 +9402,17 @@ export interface VectorSinksAzureLogsIngestionConfigAzureLogsIngestionConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink9 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer1 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests7 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `azure_monitor_logs` sink.
  */
 export interface VectorSinksAzureMonitorLogsConfigAzureMonitorLogsConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink10;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   azure_resource_id?: TheResourceIDResourceIdOfTheAzureResourceTheDataShouldBeAssociatedWith;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings2;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   customer_id: TheUniqueIdentifierUniqIdForTheLogAnalyticsWorkspace;
-  encoding?: CodecsEncodingTransformerTransformer2;
+  encoding?: CodecsEncodingTransformerTransformer;
   host?: AlternativeHostAltHostForDedicatedAzureRegions;
   log_type: TheRecordTypeRecordTypeOfTheDataThatIsBeingSubmitted;
-  request?: MiddlewareSettingsForOutboundRequests8;
+  request?: MiddlewareSettingsForOutboundRequests;
   shared_key: ThePrimaryOrTheSecondaryKeySharedKeyForTheLogAnalyticsWorkspace;
   time_generated_key?: UseThisOptionToCustomizeTheLogFieldUsedAsTimeGenerated1InAzure;
   /**
@@ -10639,118 +9422,29 @@ export interface VectorSinksAzureMonitorLogsConfigAzureMonitorLogsConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink10 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings2 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer2 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests8 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `blackhole` sink.
  */
 export interface VectorSinksBlackholeConfigBlackholeConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink11;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   print_interval_secs?: TheIntervalBetweenReportingASummaryOfActivity;
   rate?: TheNumberOfEventsPerSecondThatTheSinkIsAllowedToConsume;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink11 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
  * Configuration for the `clickhouse` sink.
  */
 export interface VectorSinksClickhouseConfigClickhouseConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink12;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings3;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   batch_encoding?: TheBatchEncodingConfigurationForEncodingEventsInBatches;
   compression?: CompressionConfiguration;
-  database?: ATemplatedField6;
+  database?: ATemplatedField1;
   /**
    * Sets `date_time_input_format` to `best_effort`, allowing ClickHouse to properly parse RFC3339/ISO 8601.
    */
   date_time_best_effort?: boolean;
-  encoding?: CodecsEncodingTransformerTransformer3;
+  encoding?: CodecsEncodingTransformerTransformer;
   endpoint: TheURIComponentOfARequest;
   format?: DataFormat;
   /**
@@ -10775,22 +9469,13 @@ export interface VectorSinksClickhouseConfigClickhouseConfig {
     };
     [k: string]: unknown | undefined;
   };
-  request?: MiddlewareSettingsForOutboundRequests9;
+  request?: MiddlewareSettingsForOutboundRequests;
   skip_unknown_fields?: SetsInputFormatSkipUnknownFieldsAllowingClickHouseToDiscardFieldsNotPresentInTheTableSchema;
   table: ATemplatedField;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink12 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -10822,149 +9507,12 @@ export interface BearerAuthentication {
   [k: string]: unknown | undefined;
 }
 /**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings3 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer3 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests9 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink13 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming2 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `databend` sink.
  */
 export interface VectorSinksDatabendConfigDatabendConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink14;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings4;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   /**
    * Compression configuration.
    */
@@ -10976,7 +9524,7 @@ export interface VectorSinksDatabendConfigDatabendConfig {
   /**
    * Configures how events are encoded into raw bytes.
    */
-  encoding?: (EncodesAnEventAsACSVMessage2 | EncodesAnEventAsJSONJson2) & {
+  encoding?: (EncodesAnEventAsACSVMessage | EncodesAnEventAsJSONJson) & {
     /**
      * List of fields that are excluded from the encoded event.
      */
@@ -10997,7 +9545,7 @@ export interface VectorSinksDatabendConfigDatabendConfig {
    * Refer to https://docs.databend.com/sql/sql-reference/file-format-options#null_field_as
    */
   missing_field_as?: 'ERROR' | 'NULL' | 'FIELD_DEFAULT' | 'TYPE_DEFAULT';
-  request?: MiddlewareSettingsForOutboundRequests10;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * The table that data is inserted into.
    */
@@ -11010,126 +9558,11 @@ export interface VectorSinksDatabendConfigDatabendConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink14 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings4 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Options for the CSV encoder.
- */
-export interface CodecsEncodingFormatCsvCsvSerializerConfig1 {
-  csv: CodecsEncodingFormatCsvCsvSerializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding options specific to the Json serializer.
- */
-export interface CodecsEncodingFormatJsonJsonSerializerConfig1 {
-  json?: CodecsEncodingFormatJsonJsonSerializerOptions;
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests10 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests11 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Shared configuration for Datadog sinks.
  * Contains the maximum set of common settings that applies to all DD sink components.
  */
 export interface VectorSinksDatadogLocalDatadogCommonConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink15;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   default_api_key?: TheDefaultDatadogAPIKeyApiKeyToUseInAuthenticationOfHTTPRequests;
   endpoint?: TheEndpointToSendObservabilityDataTo;
   site?: TheDatadogSiteDdSiteToSendObservabilityDataTo;
@@ -11137,178 +9570,6 @@ export interface VectorSinksDatadogLocalDatadogCommonConfig {
    * Configures the TLS options for incoming/outgoing connections.
    */
   tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink15 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer4 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Shared configuration for Datadog sinks.
- * Contains the maximum set of common settings that applies to all DD sink components.
- */
-export interface VectorSinksDatadogLocalDatadogCommonConfig1 {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink15;
-  default_api_key?: TheDefaultDatadogAPIKeyApiKeyToUseInAuthenticationOfHTTPRequests;
-  endpoint?: TheEndpointToSendObservabilityDataTo;
-  site?: TheDatadogSiteDdSiteToSendObservabilityDataTo;
-  /**
-   * Configures the TLS options for incoming/outgoing connections.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests12 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Shared configuration for Datadog sinks.
- * Contains the maximum set of common settings that applies to all DD sink components.
- */
-export interface VectorSinksDatadogLocalDatadogCommonConfig2 {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink15;
-  default_api_key?: TheDefaultDatadogAPIKeyApiKeyToUseInAuthenticationOfHTTPRequests;
-  endpoint?: TheEndpointToSendObservabilityDataTo;
-  site?: TheDatadogSiteDdSiteToSendObservabilityDataTo;
-  /**
-   * Configures the TLS options for incoming/outgoing connections.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests13 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Shared configuration for Datadog sinks.
- * Contains the maximum set of common settings that applies to all DD sink components.
- */
-export interface VectorSinksDatadogLocalDatadogCommonConfig3 {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink15;
-  default_api_key?: TheDefaultDatadogAPIKeyApiKeyToUseInAuthenticationOfHTTPRequests;
-  endpoint?: TheEndpointToSendObservabilityDataTo;
-  site?: TheDatadogSiteDdSiteToSendObservabilityDataTo;
-  /**
-   * Configures the TLS options for incoming/outgoing connections.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink16 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings5 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11339,105 +9600,10 @@ export interface CustomHTTPHeadersToAddToTheRequest {
   [k: string]: string | undefined;
 }
 /**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests14 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming3 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `elasticsearch` sink.
  */
 export interface VectorSinksElasticsearchConfigElasticsearchConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink17;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   api_version?: TheAPIVersionOfElasticsearch;
   /**
    * Elasticsearch Authentication strategies.
@@ -11481,18 +9647,18 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
                 session_token?: null | VectorCommonSensitiveStringSensitiveString;
                 [k: string]: unknown | undefined;
               }
-            | AuthenticateUsingCredentialsStoredInAFile1
+            | AuthenticateUsingCredentialsStoredInAFile
             | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume3;
+                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
                 external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication2;
+                imds?: VectorAwsAuthImdsAuthentication;
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
                 region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
                 [k: string]: unknown | undefined;
               }
             | {
-                imds?: VectorAwsAuthImdsAuthentication3;
+                imds?: VectorAwsAuthImdsAuthentication;
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
                 region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
@@ -11508,8 +9674,8 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
   /**
    * Configuration of the region/endpoint to use when interacting with an AWS service.
    */
-  aws?: null | VectorAwsRegionRegionOrEndpoint5;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings6;
+  aws?: null | VectorAwsRegionRegionOrEndpoint;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   /**
    * Elasticsearch bulk mode configuration.
    */
@@ -11520,7 +9686,7 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
      * The default index to write events to if the template in `bulk.index` cannot be resolved
      */
     template_fallback_index?: string | null;
-    version?: ATemplatedField12;
+    version?: ATemplatedField1;
     version_type?: VersionType;
     [k: string]: unknown | undefined;
   };
@@ -11541,7 +9707,7 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
    */
   distribution?: null | VectorSinksUtilServiceHealthHealthConfig;
   doc_type?: TheDocTypeDocTypeForYourIndexData;
-  encoding?: CodecsEncodingTransformerTransformer5;
+  encoding?: CodecsEncodingTransformerTransformer;
   endpoint?: TheElasticsearchEndpointToSendLogsTo;
   endpoints?: AListOfElasticsearchEndpointsToSendLogsTo;
   id_key?: TheNameOfTheEventKeyThatShouldMapToElasticsearchSIdFieldEsId;
@@ -11578,116 +9744,13 @@ export interface VectorSinksElasticsearchConfigElasticsearchConfig {
       [k: string]: string | undefined;
     };
     [k: string]: unknown | undefined;
-  } & MiddlewareSettingsForOutboundRequests1;
+  } & MiddlewareSettingsForOutboundRequests;
   request_retry_partial?: WhetherOrNotToRetrySuccessfulRequestsContainingPartialFailures;
   suppress_type_name?: WhetherOrNotToSendTheTypeFieldToElasticsearch;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink17 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Additionally, the specific credential profile to use can be set.
- * The file format must match the credentials file format outlined in
- * <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html>.
- */
-export interface AuthenticateUsingCredentialsStoredInAFile1 {
-  /**
-   * Path to the credentials file.
-   */
-  credentials_file: string;
-  profile?: TheCredentialsProfileToUse;
-  region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration for authenticating with AWS through IMDS.
- */
-export interface VectorAwsAuthImdsAuthentication2 {
-  /**
-   * Connect timeout for IMDS.
-   */
-  connect_timeout_seconds?: number;
-  /**
-   * Number of IMDS retries for fetching tokens and metadata.
-   */
-  max_attempts?: number;
-  /**
-   * Read timeout for IMDS.
-   */
-  read_timeout_seconds?: number;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration for authenticating with AWS through IMDS.
- */
-export interface VectorAwsAuthImdsAuthentication3 {
-  /**
-   * Connect timeout for IMDS.
-   */
-  connect_timeout_seconds?: number;
-  /**
-   * Number of IMDS retries for fetching tokens and metadata.
-   */
-  max_attempts?: number;
-  /**
-   * Read timeout for IMDS.
-   */
-  read_timeout_seconds?: number;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint5 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings6 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer5 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11704,135 +9767,10 @@ export interface VectorTransformsMetricToLogMetricToLogConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink18 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration of internal metrics for file-based components.
  */
 export interface VectorInternalEventsFileFileInternalMetricsConfig {
   include_file_tag?: WhetherOrNotToIncludeTheFileTagOnTheComponentSCorrespondingInternalMetrics;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming4 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink19 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests15 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters4;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters4 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
   [k: string]: unknown | undefined;
 }
 /**
@@ -11845,300 +9783,6 @@ export interface VectorGcpGcpAuthConfig {
    * Skip all authentication handling. For use with integration tests only.
    */
   skip_authentication?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink20 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings2 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests16 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters5;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters5 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming5 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the authentication strategy for interacting with GCP services.
- */
-export interface VectorGcpGcpAuthConfig1 {
-  api_key?: AnAPIKeyGcpApiKey;
-  credentials_path?: PathToAServiceAccountGcpServiceAccountCredentialsCredentialsJSONFile;
-  /**
-   * Skip all authentication handling. For use with integration tests only.
-   */
-  skip_authentication?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink21 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests17 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the authentication strategy for interacting with GCP services.
- */
-export interface VectorGcpGcpAuthConfig2 {
-  api_key?: AnAPIKeyGcpApiKey;
-  credentials_path?: PathToAServiceAccountGcpServiceAccountCredentialsCredentialsJSONFile;
-  /**
-   * Skip all authentication handling. For use with integration tests only.
-   */
-  skip_authentication?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink22 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings7 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer6 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests18 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters6;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters6 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
   [k: string]: unknown | undefined;
 }
 /**
@@ -12180,93 +9824,10 @@ export interface TheProjectIDToWhichToPublishLogs {
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration of the authentication strategy for interacting with GCP services.
- */
-export interface VectorGcpGcpAuthConfig3 {
-  api_key?: AnAPIKeyGcpApiKey;
-  credentials_path?: PathToAServiceAccountGcpServiceAccountCredentialsCredentialsJSONFile;
-  /**
-   * Skip all authentication handling. For use with integration tests only.
-   */
-  skip_authentication?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink23 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests19 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters7;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters7 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the authentication strategy for interacting with GCP services.
- */
-export interface VectorGcpGcpAuthConfig4 {
-  api_key?: AnAPIKeyGcpApiKey;
-  credentials_path?: PathToAServiceAccountGcpServiceAccountCredentialsCredentialsJSONFile;
-  /**
-   * Skip all authentication handling. For use with integration tests only.
-   */
-  skip_authentication?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `greptimedb` sink.
  */
 export interface VectorSinksGreptimedbMetricsConfigGreptimeDBConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink24;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings;
   dbname?: TheGreptimeDBDatabaseDatabaseNameToConnect;
   endpoint: TheHostAndPortOfGreptimeDBGRPCService;
@@ -12277,21 +9838,12 @@ export interface VectorSinksGreptimedbMetricsConfigGreptimeDBConfig {
   grpc_compression?: string | null;
   new_naming?: UseGreptimeSPrefixedNamingForTimeIndexAndValueColumns;
   password?: ThePasswordForYourGreptimeDBInstance;
-  request?: MiddlewareSettingsForOutboundRequests20;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
   username?: TheUsernameForYourGreptimeDBInstance;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink24 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -12310,52 +9862,14 @@ export interface VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBD
   [k: string]: unknown | undefined;
 }
 /**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests20 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `greptimedb_logs` sink.
  */
 export interface VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink25;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings1;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings;
   compression?: CompressionConfiguration;
   dbname?: ATemplatedField;
-  encoding?: CodecsEncodingTransformerTransformer7;
+  encoding?: CodecsEncodingTransformerTransformer;
   /**
    * The endpoint of the GreptimeDB server.
    */
@@ -12375,8 +9889,8 @@ export interface VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig {
   } | null;
   password?: ThePasswordForYourGreptimeDBInstance;
   pipeline_name?: ATemplatedField;
-  pipeline_version?: ATemplatedField22;
-  request?: MiddlewareSettingsForOutboundRequests21;
+  pipeline_version?: ATemplatedField1;
+  request?: MiddlewareSettingsForOutboundRequests;
   table: ATemplatedField;
   /**
    * TLS configuration.
@@ -12386,90 +9900,10 @@ export interface VectorSinksGreptimedbLogsConfigGreptimeDBLogsConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink25 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer7 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests21 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration items for GreptimeDB
  */
 export interface VectorSinksGreptimedbMetricsConfigGreptimeDBMetricsConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink24;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksGreptimedbGreptimeDBDefaultBatchSettings;
   dbname?: TheGreptimeDBDatabaseDatabaseNameToConnect;
   endpoint: TheHostAndPortOfGreptimeDBGRPCService;
@@ -12480,7 +9914,7 @@ export interface VectorSinksGreptimedbMetricsConfigGreptimeDBMetricsConfig {
   grpc_compression?: string | null;
   new_naming?: UseGreptimeSPrefixedNamingForTimeIndexAndValueColumns;
   password?: ThePasswordForYourGreptimeDBInstance;
-  request?: MiddlewareSettingsForOutboundRequests20;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * TLS configuration.
    */
@@ -12492,7 +9926,7 @@ export interface VectorSinksGreptimedbMetricsConfigGreptimeDBMetricsConfig {
  * Configuration for the `honeycomb` sink.
  */
 export interface VectorSinksHoneycombConfigHoneycombConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink26;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Wrapper for sensitive strings containing credentials
    */
@@ -12517,165 +9951,19 @@ export interface VectorSinksHoneycombConfigHoneycombConfig {
    * The dataset to which logs are sent.
    */
   dataset: string;
-  encoding?: CodecsEncodingTransformerTransformer8;
+  encoding?: CodecsEncodingTransformerTransformer;
   /**
    * Honeycomb's endpoint to send logs to
    */
   endpoint?: string;
-  request?: MiddlewareSettingsForOutboundRequests22;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink26 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer8 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests22 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink27 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings8 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming6 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
+  request?: MiddlewareSettingsForOutboundRequests;
   [k: string]: unknown | undefined;
 }
 /**
  * Configuration for the `humio_logs` sink.
  */
 export interface VectorSinksHumioLogsHumioLogsConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink28;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings;
   compression?: CompressionConfiguration;
   /**
@@ -12730,7 +10018,7 @@ export interface VectorSinksHumioLogsHumioLogsConfig {
   host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToHumio;
   index?: OptionalNameOfTheRepositoryToIngestInto;
   indexed_fields?: EventFieldsToBeAddedToHumioSExtraFields;
-  request?: MiddlewareSettingsForOutboundRequests23;
+  request?: MiddlewareSettingsForOutboundRequests;
   source?: TheSourceOfEventsSentToThisSink;
   timestamp_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheTimestampToSendToHumioWhenSetToATimestampIsNotSetInTheEventsSentToHumio;
   /**
@@ -12748,15 +10036,6 @@ export interface VectorSinksHumioLogsHumioLogsConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink28 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
  * Event batching behavior.
  */
 export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings {
@@ -12769,184 +10048,6 @@ export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSp
    * The maximum age of a batch before it is flushed.
    */
   timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests23 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink29 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings1 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests24 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration for the `metric_to_log` transform.
- */
-export interface VectorTransformsMetricToLogMetricToLogConfig1 {
-  host_tag?: NameOfTheTagInTheMetricToUseForTheSourceHost;
-  /**
-   * The namespace to use for logs. This overrides the global setting.
-   */
-  log_namespace?: boolean | null;
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
-  timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink30 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer9 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests25 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -12967,62 +10068,6 @@ export interface VectorSinksInfluxdbInfluxDb2Settings {
   bucket: TheNameOfTheBucketToWriteInto;
   org: TheNameOfTheOrganizationToWriteInto;
   token: TheTokenTokenDocsToAuthenticateWith;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink31 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests26 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink32 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13070,7 +10115,7 @@ export interface VectorKafkaKafkaSaslConfig {
  * Configuration for the `keep` sink.
  */
 export interface VectorSinksKeepConfigKeepConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink33;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Wrapper for sensitive strings containing credentials
    */
@@ -13090,89 +10135,24 @@ export interface VectorSinksKeepConfigKeepConfig {
     timeout_secs?: number | null;
     [k: string]: unknown | undefined;
   };
-  encoding?: CodecsEncodingTransformerTransformer10;
+  encoding?: CodecsEncodingTransformerTransformer;
   /**
    * Keeps endpoint to send logs to
    */
   endpoint?: string;
-  request?: MiddlewareSettingsForOutboundRequests27;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink33 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer10 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests27 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
+  request?: MiddlewareSettingsForOutboundRequests;
   [k: string]: unknown | undefined;
 }
 /**
  * Configuration for the `logdna` sink.
  */
 export interface VectorSinksMezmoLogdnaConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink34;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Wrapper for sensitive strings containing credentials
    */
   api_key: string;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings9;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   /**
    * The default app that is set for events that do not contain a `file` or `app` field.
    */
@@ -13181,7 +10161,7 @@ export interface VectorSinksMezmoLogdnaConfig {
    * The default environment that is set for events that do not contain an `env` field.
    */
   default_env?: string;
-  encoding?: CodecsEncodingTransformerTransformer11;
+  encoding?: CodecsEncodingTransformerTransformer;
   endpoint?: TheURIComponentOfARequest;
   hostname: ATemplatedField;
   /**
@@ -13192,7 +10172,7 @@ export interface VectorSinksMezmoLogdnaConfig {
    * The MAC address that is attached to each batch of events.
    */
   mac?: string | null;
-  request?: MiddlewareSettingsForOutboundRequests28;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * The tags that are attached to each batch of events.
    */
@@ -13200,90 +10180,10 @@ export interface VectorSinksMezmoLogdnaConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink34 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings9 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer11 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests28 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `loki` sink.
  */
 export interface VectorSinksLokiConfigLokiConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink35;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
   /**
    * Event batching behavior.
@@ -13364,22 +10264,13 @@ export interface VectorSinksLokiConfigLokiConfig {
    */
   remove_structured_metadata_fields?: boolean;
   remove_timestamp?: WhetherOrNotToRemoveTheTimestampFromTheEventPayload;
-  request?: MiddlewareSettingsForOutboundRequests29;
+  request?: MiddlewareSettingsForOutboundRequests;
   structured_metadata?: StructuredMetadataThatIsAttachedToEachBatchOfEvents;
   tenant_id?: TheTenantIDTenantIdToSpecifyInRequestsToLoki;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink35 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13395,45 +10286,7 @@ export interface ControlsHowAcknowledgementsAreHandledForThisSink35 {
  * [label_expansion]: https://vector.dev/docs/reference/configuration/sinks/loki/#label-expansion
  */
 export interface ASetOfLabelsThatAreAttachedToEachBatchOfEvents {
-  [k: string]: ATemplatedField;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests29 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
+  [k: string]: ATemplatedField | undefined;
 }
 /**
  * Both keys and values are templateable, which enables you to attach dynamic structured metadata to events.
@@ -13444,18 +10297,18 @@ export interface MiddlewareSettingsForOutboundRequests29 {
  * [label_expansion]: https://vector.dev/docs/reference/configuration/sinks/loki/#label-expansion
  */
 export interface StructuredMetadataThatIsAttachedToEachBatchOfEvents {
-  [k: string]: ATemplatedField;
+  [k: string]: ATemplatedField | undefined;
 }
 /**
  * Configuration for the `mezmo` (formerly `logdna`) sink.
  */
 export interface VectorSinksMezmoMezmoConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink34;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Wrapper for sensitive strings containing credentials
    */
   api_key: string;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings9;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
   /**
    * The default app that is set for events that do not contain a `file` or `app` field.
    */
@@ -13464,7 +10317,7 @@ export interface VectorSinksMezmoMezmoConfig {
    * The default environment that is set for events that do not contain an `env` field.
    */
   default_env?: string;
-  encoding?: CodecsEncodingTransformerTransformer11;
+  encoding?: CodecsEncodingTransformerTransformer;
   endpoint?: TheURIComponentOfARequest;
   hostname: ATemplatedField;
   /**
@@ -13475,20 +10328,11 @@ export interface VectorSinksMezmoMezmoConfig {
    * The MAC address that is attached to each batch of events.
    */
   mac?: string | null;
-  request?: MiddlewareSettingsForOutboundRequests28;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * The tags that are attached to each batch of events.
    */
   tags?: ATemplatedField[] | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink36 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13533,7 +10377,7 @@ export interface VectorCommonMqttMqttCommonConfig {
  * Configuration for the `nats` sink.
  */
 export interface VectorSinksNatsConfigNatsSinkConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink37;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Configuration of the authentication strategy when interacting with NATS.
    */
@@ -13587,22 +10431,13 @@ export interface VectorSinksNatsConfigNatsSinkConfig {
     [k: string]: unknown | undefined;
   };
   jetstream?: SendMessagesUsingJetstreamJetstream;
-  request?: MiddlewareSettingsForOutboundRequests30;
+  request?: MiddlewareSettingsForOutboundRequests;
   subject: ATemplatedField;
   /**
    * Configures the TLS options for incoming/outgoing connections.
    */
   tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
   url: TheNATSURLNatsUrlToConnectTo;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink37 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13667,56 +10502,6 @@ export interface SendMessagesUsingJetstreamJetstream {
   [k: string]: unknown | undefined;
 }
 /**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests30 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters8;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters8 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `new_relic` sink.
  */
 export interface VectorSinksNewRelicConfigNewRelicConfig {
@@ -13724,7 +10509,7 @@ export interface VectorSinksNewRelicConfigNewRelicConfig {
    * Wrapper for sensitive strings containing credentials
    */
   account_id: string;
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink38;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * New Relic API endpoint.
    */
@@ -13745,7 +10530,7 @@ export interface VectorSinksNewRelicConfigNewRelicConfig {
     [k: string]: unknown | undefined;
   };
   compression?: CompressionConfiguration;
-  encoding?: CodecsEncodingTransformerTransformer12;
+  encoding?: CodecsEncodingTransformerTransformer;
   /**
    * Wrapper for sensitive strings containing credentials
    */
@@ -13754,72 +10539,7 @@ export interface VectorSinksNewRelicConfigNewRelicConfig {
    * New Relic region.
    */
   region?: null | ('us' | 'eu');
-  request?: MiddlewareSettingsForOutboundRequests31;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink38 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer12 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests31 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
+  request?: MiddlewareSettingsForOutboundRequests;
   [k: string]: unknown | undefined;
 }
 /**
@@ -13830,9 +10550,9 @@ export interface VectorSinksOpentelemetryOpenTelemetryConfig {
    * Protocol configuration
    */
   protocol: ({
-    acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink27;
+    acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
     auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
-    batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings8;
+    batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
     compression?: CompressionConfiguration;
     /**
      * @deprecated
@@ -13855,14 +10575,14 @@ export interface VectorSinksOpentelemetryOpenTelemetryConfig {
         [k: string]: string | undefined;
       };
       [k: string]: unknown | undefined;
-    } & MiddlewareSettingsForOutboundRequests1;
+    } & MiddlewareSettingsForOutboundRequests;
     /**
      * TLS configuration.
      */
     tls?: null | VectorCoreTlsSettingsTlsConfig;
     uri: ATemplatedField;
     [k: string]: unknown | undefined;
-  } & CodecsEncodingConfigEncodingConfigWithFraming6) & {
+  } & CodecsEncodingConfigEncodingConfigWithFraming) & {
     /**
      * Send data over HTTP.
      */
@@ -13875,7 +10595,7 @@ export interface VectorSinksOpentelemetryOpenTelemetryConfig {
  * Configuration for the `papertrail` sink.
  */
 export interface VectorSinksPapertrailPapertrailConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink39;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Encoding configuration.
    * Configures how events are encoded into raw bytes.
@@ -13940,15 +10660,6 @@ export interface VectorSinksPapertrailPapertrailConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink39 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
  * TCP keepalive settings for socket-based components.
  */
 export interface VectorCoreTcpTcpKeepaliveConfig {
@@ -13962,7 +10673,7 @@ export interface VectorCoreTcpTcpKeepaliveConfig {
  * Configuration for the `postgres` sink.
  */
 export interface VectorSinksPostgresConfigPostgresConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink40;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   batch?: EventBatchingBehavior;
   /**
    * The PostgreSQL server connection string. It can contain the username and password.
@@ -13975,7 +10686,7 @@ export interface VectorSinksPostgresConfigPostgresConfig {
    * information about why a connection pool should be used.
    */
   pool_size?: number;
-  request?: MiddlewareSettingsForOutboundRequests32;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * The table that data is inserted into. This table parameter is vulnerable
    * to SQL injection attacks as Vector does not validate or sanitize it, you must not use untrusted input.
@@ -13983,15 +10694,6 @@ export interface VectorSinksPostgresConfigPostgresConfig {
    * as table names as parameters in prepared statements are not allowed in PostgreSQL.
    */
   table: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink40 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14017,48 +10719,10 @@ export interface EventBatchingBehavior {
   [k: string]: unknown | undefined;
 }
 /**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests32 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `prometheus_exporter` sink.
  */
 export interface VectorSinksPrometheusExporterPrometheusExporterConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink41;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   address?: TheAddressToExposeForScraping;
   auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
   buckets?: DefaultBucketsToUseForAggregatingDistributionDistMetricDocsMetricsIntoHistograms;
@@ -14074,19 +10738,10 @@ export interface VectorSinksPrometheusExporterPrometheusExporterConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink41 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `prometheus_remote_write` sink.
  */
 export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink42;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Authentication strategies.
    */
@@ -14108,7 +10763,7 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
             user: string;
             [k: string]: unknown | undefined;
           }
-        | BearerAuthentication2
+        | BearerAuthentication
         | ((
             | {
                 /**
@@ -14130,18 +10785,18 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
                 session_token?: null | VectorCommonSensitiveStringSensitiveString;
                 [k: string]: unknown | undefined;
               }
-            | AuthenticateUsingCredentialsStoredInAFile2
+            | AuthenticateUsingCredentialsStoredInAFile
             | {
-                assume_role: TheARNOfAnIAMRoleIamRoleToAssume5;
+                assume_role: TheARNOfAnIAMRoleIamRoleToAssume1;
                 external_id?: TheOptionalUniqueExternalIDInConjunctionWithRoleToAssume;
-                imds?: VectorAwsAuthImdsAuthentication4;
+                imds?: VectorAwsAuthImdsAuthentication;
                 load_timeout_secs?: TimeoutForAssumingTheRoleInSeconds;
                 region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 session_name?: TheOptionalRoleSessionNameRoleSessionNameIsAUniqueSessionIdentifierForYourAssumedRole;
                 [k: string]: unknown | undefined;
               }
             | {
-                imds?: VectorAwsAuthImdsAuthentication5;
+                imds?: VectorAwsAuthImdsAuthentication;
                 load_timeout_secs?: TimeoutForSuccessfullyLoadingAnyCredentialsInSeconds;
                 region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
                 [k: string]: unknown | undefined;
@@ -14157,7 +10812,7 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
   /**
    * Configuration of the region/endpoint to use when interacting with an AWS service.
    */
-  aws?: null | VectorAwsRegionRegionOrEndpoint5;
+  aws?: null | VectorAwsRegionRegionOrEndpoint;
   /**
    * The batch config for remote write.
    */
@@ -14191,82 +10846,12 @@ export interface VectorSinksPrometheusRemoteWriteConfigRemoteWriteConfig {
   request?: {
     headers?: AdditionalHTTPHeadersToAddToEveryHTTPRequest;
     [k: string]: unknown | undefined;
-  } & MiddlewareSettingsForOutboundRequests33;
+  } & MiddlewareSettingsForOutboundRequests;
   tenant_id?: TheTenantIDToSend;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink42 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * A bearer token (OAuth2, JWT, etc) is passed as-is.
- */
-export interface BearerAuthentication2 {
-  strategy: BearerAuthentication3;
-  /**
-   * Wrapper for sensitive strings containing credentials
-   */
-  token: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Additionally, the specific credential profile to use can be set.
- * The file format must match the credentials file format outlined in
- * <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html>.
- */
-export interface AuthenticateUsingCredentialsStoredInAFile2 {
-  /**
-   * Path to the credentials file.
-   */
-  credentials_file: string;
-  profile?: TheCredentialsProfileToUse;
-  region?: TheAWSRegionAwsRegionToSendSTSRequestsTo;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration for authenticating with AWS through IMDS.
- */
-export interface VectorAwsAuthImdsAuthentication4 {
-  /**
-   * Connect timeout for IMDS.
-   */
-  connect_timeout_seconds?: number;
-  /**
-   * Number of IMDS retries for fetching tokens and metadata.
-   */
-  max_attempts?: number;
-  /**
-   * Read timeout for IMDS.
-   */
-  read_timeout_seconds?: number;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration for authenticating with AWS through IMDS.
- */
-export interface VectorAwsAuthImdsAuthentication5 {
-  /**
-   * Connect timeout for IMDS.
-   */
-  connect_timeout_seconds?: number;
-  /**
-   * Number of IMDS retries for fetching tokens and metadata.
-   */
-  max_attempts?: number;
-  /**
-   * Read timeout for IMDS.
-   */
-  read_timeout_seconds?: number;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14276,60 +10861,10 @@ export interface AdditionalHTTPHeadersToAddToEveryHTTPRequest {
   [k: string]: string | undefined;
 }
 /**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests33 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters9;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters9 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `pulsar` sink.
  */
 export interface VectorSinksPulsarConfigPulsarSinkConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink43;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Authentication configuration.
    */
@@ -14468,19 +11003,10 @@ export interface VectorSinksPulsarConfigPulsarSinkConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink43 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `redis` sink.
  */
 export interface VectorSinksRedisConfigRedisSinkConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink44;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Event batching behavior.
    */
@@ -14559,7 +11085,7 @@ export interface VectorSinksRedisConfigRedisSinkConfig {
     method: UseTheRpushMethod | UseTheLpushMethod;
     [k: string]: unknown | undefined;
   };
-  request?: MiddlewareSettingsForOutboundRequests34;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * Controls how Redis Sentinel will connect to the servers belonging to it.
    */
@@ -14608,77 +11134,18 @@ export interface VectorSinksRedisConfigRedisSinkConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink44 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests34 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters10;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * These parameters typically do not require changes from the default, and incorrect values can lead to meta-stable or
- * unstable performance and sink behavior. Proceed with caution.
- */
-export interface ConfigurationOfAdaptiveConcurrencyParameters10 {
-  decrease_ratio?: TheFractionOfTheCurrentValueToSetTheNewConcurrencyLimitWhenDecreasingTheLimit;
-  ewma_alpha?: TheWeightingOfNewMeasurementsComparedToOlderMeasurements;
-  initial_concurrency?: TheInitialConcurrencyLimitToUseIfNotSpecifiedTheInitialLimitIs1NoConcurrency;
-  max_concurrency_limit?: TheMaximumConcurrencyLimit;
-  rtt_deviation_scale?: ScaleOfRTTDeviationsWhichAreNotConsideredAnomalous;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `sematext_logs` sink.
  */
 export interface VectorSinksSematextLogsSematextLogsConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink45;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings10;
-  encoding?: CodecsEncodingTransformerTransformer13;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings;
+  encoding?: CodecsEncodingTransformerTransformer;
   endpoint?: TheEndpointToSendDataTo3;
   /**
    * The Sematext region to send data to.
    */
   region?: 'us' | 'eu';
-  request?: MiddlewareSettingsForOutboundRequests35;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * Wrapper for sensitive strings containing credentials
    */
@@ -14686,90 +11153,10 @@ export interface VectorSinksSematextLogsSematextLogsConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink45 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchRealtimeSizeBasedDefaultBatchSettings10 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Transformations to prepare an event for serialization.
- */
-export interface CodecsEncodingTransformerTransformer13 {
-  /**
-   * List of fields that are excluded from the encoded event.
-   */
-  except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * List of fields that are included in the encoded event.
-   */
-  only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-  /**
-   * Format used for timestamp fields.
-   */
-  timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests35 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `sematext_metrics` sink.
  */
 export interface VectorSinksSematextMetricsSematextMetricsConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink46;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   /**
    * Event batching behavior.
    */
@@ -14786,12 +11173,12 @@ export interface VectorSinksSematextMetricsSematextMetricsConfig {
     [k: string]: unknown | undefined;
   };
   default_namespace: SetsTheDefaultNamespaceForAnyMetricsSent2;
-  endpoint?: TheEndpointToSendDataTo4;
+  endpoint?: TheEndpointToSendDataTo3;
   /**
    * The Sematext region to send data to.
    */
   region?: 'us' | 'eu';
-  request?: MiddlewareSettingsForOutboundRequests36;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * Wrapper for sensitive strings containing credentials
    */
@@ -14799,180 +11186,10 @@ export interface VectorSinksSematextMetricsSematextMetricsConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink46 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests36 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink47 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming7 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
  * A Unix Domain Socket sink.
  */
 export interface VectorSinksUtilUnixUnixSinkConfig {
   path: TheUnixSocketPath;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming8 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
   [k: string]: unknown | undefined;
 }
 /**
@@ -14994,9 +11211,9 @@ export interface VectorSinksSplunkHecLogsConfigHecLogsSinkConfig {
      */
     retry_limit?: number;
     [k: string]: unknown | undefined;
-  } & ControlsHowAcknowledgementsAreHandledForThisSink48;
+  } & ControlsHowAcknowledgementsAreHandledForThisSink;
   auto_extract_timestamp?: PassesTheAutoExtractTimestampOptionToSplunk;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings2;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings;
   compression?: CompressionConfiguration;
   default_token: DefaultSplunkHECToken;
   /**
@@ -15054,7 +11271,7 @@ export interface VectorSinksSplunkHecLogsConfigHecLogsSinkConfig {
   host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToSplunkHEC;
   index?: TheNameOfTheIndexToSendEventsTo;
   indexed_fields?: FieldsToBeAddedToSplunkIndexSplunkFieldIndexDocs;
-  request?: MiddlewareSettingsForOutboundRequests37;
+  request?: MiddlewareSettingsForOutboundRequests;
   source?: TheSourceOfEventsSentToThisSink;
   sourcetype?: TheSourcetypeOfEventsSentToThisSink;
   timestamp_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheTimestampToSendToSplunkHECWhenSetToATimestampIsNotSetInTheEventsSentToSplunkHEC;
@@ -15062,68 +11279,6 @@ export interface VectorSinksSplunkHecLogsConfigHecLogsSinkConfig {
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink48 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings2 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests37 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
   [k: string]: unknown | undefined;
 }
 /**
@@ -15145,83 +11300,21 @@ export interface VectorSinksSplunkHecMetricsConfigHecMetricsSinkConfig {
      */
     retry_limit?: number;
     [k: string]: unknown | undefined;
-  } & ControlsHowAcknowledgementsAreHandledForThisSink48;
-  batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings3;
+  } & ControlsHowAcknowledgementsAreHandledForThisSink;
+  batch?: VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings;
   compression?: CompressionConfiguration;
   default_namespace?: SetsTheDefaultNamespaceForAnyMetricsSent;
   default_token: DefaultSplunkHECToken;
   endpoint: TheBaseURLOfTheSplunkInstance;
   host_key?: OverridesTheNameOfTheLogFieldUsedToRetrieveTheHostnameToSendToSplunkHEC1;
   index?: TheNameOfTheIndexWhereToSendTheEventsTo;
-  request?: MiddlewareSettingsForOutboundRequests38;
+  request?: MiddlewareSettingsForOutboundRequests;
   source?: TheSourceOfEventsSentToThisSink;
   sourcetype?: TheSourcetypeOfEventsSentToThisSink;
   /**
    * TLS configuration.
    */
   tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksSplunkHecCommonUtilSplunkHecDefaultBatchSettings3 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests38 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink49 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -15248,7 +11341,7 @@ export interface VectorConfigUnitTestUnitTestComponentsUnitTestStreamSinkConfig 
  * Configuration for the `vector` sink.
  */
 export interface VectorSinksVectorConfigVectorConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink50;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   address: TheDownstreamVectorAddressToWhichToConnect;
   /**
    * Event batching behavior.
@@ -15266,7 +11359,7 @@ export interface VectorSinksVectorConfigVectorConfig {
     [k: string]: unknown | undefined;
   };
   compression?: WhetherOrNotToCompressRequests;
-  request?: MiddlewareSettingsForOutboundRequests39;
+  request?: MiddlewareSettingsForOutboundRequests;
   /**
    * Configures the TLS options for incoming/outgoing connections.
    */
@@ -15275,143 +11368,6 @@ export interface VectorSinksVectorConfigVectorConfig {
    * Version of the configuration.
    */
   version?: null | '2';
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink50 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Various settings can be configured, such as concurrency and rate limits, timeouts, and retry behavior.
- *
- * Note that the retry backoff policy follows the Fibonacci sequence.
- */
-export interface MiddlewareSettingsForOutboundRequests39 {
-  adaptive_concurrency?: ConfigurationOfAdaptiveConcurrencyParameters;
-  /**
-   * Configuration for outbound request concurrency.
-   *
-   * This can be set either to one of the below enum values or to a positive integer, which denotes
-   * a fixed concurrency limit.
-   */
-  concurrency?: AFixedConcurrencyOf1 | ConcurrencyIsManagedByVectorSAdaptiveRequestConcurrencyArcFeature | number;
-  /**
-   * The time window used for the `rate_limit_num` option.
-   */
-  rate_limit_duration_secs?: number;
-  /**
-   * The maximum number of requests allowed within the `rate_limit_duration_secs` time window.
-   */
-  rate_limit_num?: number;
-  /**
-   * The maximum number of retries to make for failed requests.
-   */
-  retry_attempts?: number;
-  retry_initial_backoff_secs?: TheAmountOfTimeToWaitBeforeAttemptingTheFirstRetryForAFailedRequest;
-  /**
-   * The jitter mode to use for retry backoff behavior.
-   */
-  retry_jitter_mode?: 'None' | FullJitter;
-  /**
-   * The maximum amount of time to wait between retries.
-   */
-  retry_max_duration_secs?: number;
-  timeout_secs?: TheTimeARequestCanTakeBeforeBeingAborted;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink51 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
- * Event batching behavior.
- */
-export interface VectorSinksUtilBatchBatchConfigVectorSinksUtilBatchBulkSizeBasedDefaultBatchSettings3 {
-  max_bytes?: TheMaximumSizeOfABatchThatIsProcessedByASink;
-  /**
-   * The maximum size of a batch before it is flushed.
-   */
-  max_events?: number | null;
-  /**
-   * The maximum age of a batch before it is flushed.
-   */
-  timeout_secs?: number | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Encoding configuration.
- */
-export interface CodecsEncodingConfigEncodingConfigWithFraming9 {
-  /**
-   * Encoding configuration.
-   * Configures how events are encoded into raw bytes.
-   * The selected encoding also determines which input types (logs, metrics, traces) are supported.
-   */
-  encoding: (
-    | EncodesAnEventAsAnApacheAvroApacheAvroMessage
-    | (CodecsEncodingFormatCefCefSerializerConfig & {
-        /**
-         * Encodes an event as a CEF (Common Event Format) formatted message.
-         */
-        codec: 'cef';
-        [k: string]: unknown | undefined;
-      })
-    | EncodesAnEventAsACSVMessage
-    | EncodesAnEventAsAGELFGelfMessage
-    | EncodesAnEventAsJSONJson
-    | EncodesAnEventAsALogfmtLogfmtMessage
-    | EncodesAnEventInTheNativeProtocolBuffersFormatVectorNativeProtobuf
-    | EncodesAnEventInTheNativeJSONFormatVectorNativeJson
-    | EncodesAnEventInTheOTLPOpenTelemetryProtocolOtlpFormat
-    | EncodesAnEventAsAProtobufProtobufMessage
-    | NoEncoding
-    | PlainTextEncoding
-    | (CodecsEncodingFormatSyslogSyslogSerializerConfig & {
-        /**
-         * Syslog encoding
-         * RFC 3164 and 5424 are supported
-         */
-        codec: 'syslog';
-        [k: string]: unknown | undefined;
-      })
-  ) & {
-    /**
-     * List of fields that are excluded from the encoded event.
-     */
-    except_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * List of fields that are included in the encoded event.
-     */
-    only_fields?: VectorLookupLookupV2ConfigValuePath[] | null;
-    /**
-     * Format used for timestamp fields.
-     */
-    timestamp_format?: null | CodecsEncodingTransformerTimestampFormat;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Framing configuration.
-   */
-  framing?: null | CodecsEncodingFramingFramerFramingConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink52 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
   [k: string]: unknown | undefined;
 }
 /**
@@ -15432,7 +11388,7 @@ export interface VectorCommonWebsocketWebSocketCommonConfig {
  * Configuration for the `websocket_server` sink.
  */
 export interface VectorSinksWebsocketServerConfigWebSocketListenerSinkConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink53;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledForThisSink;
   address: TheSocketAddressToListenForConnectionsOn;
   auth?: ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources;
   /**
@@ -15494,56 +11450,54 @@ export interface VectorSinksWebsocketServerConfigWebSocketListenerSinkConfig {
        * Configuration of extra metrics tags
        */
       [k: string]:
-        | (
-            | {
-                /**
-                 * Hard-coded extra metric tag for all clients
-                 */
-                type: 'fixed';
-                /**
-                 * Tag value
-                 */
-                value: string;
-                [k: string]: unknown | undefined;
-              }
-            | {
-                /**
-                 * Name of the header to use as value
-                 */
-                name: string;
-                /**
-                 * Extra metric tag that takes on the value of a header
-                 */
-                type: 'header';
-                [k: string]: unknown | undefined;
-              }
-            | {
-                /**
-                 * Name of the query parameter to use as value
-                 */
-                name: string;
-                /**
-                 * Extra metric tag that takes on the value of a query parameter
-                 */
-                type: 'query';
-                [k: string]: unknown | undefined;
-              }
-            | {
-                /**
-                 * Extra metric tag that takes full request URL as value
-                 */
-                type: 'url';
-                [k: string]: unknown | undefined;
-              }
-            | {
-                /**
-                 * Extra metric tag that uses client ip address as value
-                 */
-                type: 'ip_address';
-                with_port?: SetToTrueIfPortShouldBeIncludedWithTheIpAddress;
-                [k: string]: unknown | undefined;
-              }
-          )
+        | {
+            /**
+             * Hard-coded extra metric tag for all clients
+             */
+            type: 'fixed';
+            /**
+             * Tag value
+             */
+            value: string;
+            [k: string]: unknown | undefined;
+          }
+        | {
+            /**
+             * Name of the header to use as value
+             */
+            name: string;
+            /**
+             * Extra metric tag that takes on the value of a header
+             */
+            type: 'header';
+            [k: string]: unknown | undefined;
+          }
+        | {
+            /**
+             * Name of the query parameter to use as value
+             */
+            name: string;
+            /**
+             * Extra metric tag that takes on the value of a query parameter
+             */
+            type: 'query';
+            [k: string]: unknown | undefined;
+          }
+        | {
+            /**
+             * Extra metric tag that takes full request URL as value
+             */
+            type: 'url';
+            [k: string]: unknown | undefined;
+          }
+        | {
+            /**
+             * Extra metric tag that uses client ip address as value
+             */
+            type: 'ip_address';
+            with_port?: SetToTrueIfPortShouldBeIncludedWithTheIpAddress;
+            [k: string]: unknown | undefined;
+          }
         | undefined;
     };
     [k: string]: unknown | undefined;
@@ -15647,15 +11601,6 @@ export interface VectorSinksWebsocketServerConfigWebSocketListenerSinkConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledForThisSink53 {
-  enabled?: ControlsWhetherOrNotEndToEndAcknowledgementsAreEnabled;
-  [k: string]: unknown | undefined;
-}
-/**
  * The username and password are concatenated and encoded using [base64][base64].
  *
  * [base64]: https://en.wikipedia.org/wiki/Base64
@@ -15665,7 +11610,7 @@ export interface BasicAuthentication2 {
    * Wrapper for sensitive strings containing credentials
    */
   password: string;
-  strategy: BasicAuthentication3;
+  strategy: BasicAuthentication1;
   /**
    * The basic authentication username.
    */
@@ -15841,30 +11786,6 @@ export interface CodecsDecodingFormatVrlVrlDeserializerOptions {
   [k: string]: unknown | undefined;
 }
 /**
- * Configure output for component when generated with graph command
- */
-export interface ExtraGraphConfiguration2 {
-  node_attributes?: NodeAttributesToAddToThisComponentSNodeInResultingGraph;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configure to proxy traffic through an HTTP(S) proxy when making external requests.
- *
- * Similar to common proxy configuration convention, you can set different proxies
- * to use based on the type of traffic being proxied. You can also set specific hosts that
- * should not be proxied.
- */
-export interface ProxyConfiguration2 {
-  /**
-   * Enables proxying support.
-   */
-  enabled?: boolean;
-  http?: ProxyEndpointToUseWhenProxyingHTTPTraffic;
-  https?: ProxyEndpointToUseWhenProxyingHTTPSTraffic;
-  no_proxy?: AListOfHostsToAvoidProxying;
-  [k: string]: unknown | undefined;
-}
-/**
  * @deprecated
  * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
  *
@@ -15904,29 +11825,7 @@ export interface CodecsDecodingFramingCharacterDelimitedCharacterDelimitedDecode
  * Config used to build a `LengthDelimitedDecoder`.
  */
 export interface CodecsDecodingFramingLengthDelimitedLengthDelimitedDecoderConfig {
-  length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-  [k: string]: unknown | undefined;
-}
-/**
- * Options for the length delimited decoder.
- */
-export interface CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1 {
-  /**
-   * Length field byte order (little or big endian)
-   */
-  length_field_is_big_endian?: boolean;
-  /**
-   * Number of bytes representing the field length
-   */
-  length_field_length?: number;
-  /**
-   * Number of bytes in the header before the length field
-   */
-  length_field_offset?: number;
-  /**
-   * Maximum frame length
-   */
-  max_frame_length?: number;
+  length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16001,17 +11900,6 @@ export interface CodecsDecodingFramingVarintLengthDelimitedVarintLengthDelimited
   [k: string]: unknown | undefined;
 }
 /**
- * AMQP connection options.
- */
-export interface VectorAmqpAmqpConfig1 {
-  connection_string: URIForTheAMQPServer;
-  /**
-   * TLS configuration.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsConfig;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `apache_metrics` source.
  */
 export interface VectorSourcesApacheMetricsApacheMetricsConfig {
@@ -16045,7 +11933,7 @@ export interface VectorSourcesAwsEcsMetricsAwsEcsMetricsSourceConfig {
 export interface VectorSourcesAwsKinesisFirehoseAwsKinesisFirehoseConfig {
   access_key?: AnAccessKeyToAuthenticateRequestsAgainst;
   access_keys?: AListOfAccessKeysToAuthenticateRequestsAgainst;
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource1;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   /**
    * The socket address to listen for connections on.
    */
@@ -16087,47 +11975,11 @@ export interface VectorSourcesAwsKinesisFirehoseAwsKinesisFirehoseConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource1 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration of HTTP server keepalive parameters.
  */
 export interface VectorHttpKeepaliveConfig {
   max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
   max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource2 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16144,50 +11996,10 @@ export interface VectorSourcesUtilMultilineConfigMultilineConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint6 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource3 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the region/endpoint to use when interacting with an AWS service.
- */
-export interface VectorAwsRegionRegionOrEndpoint7 {
-  /**
-   * Custom endpoint for use with AWS-compatible services.
-   */
-  endpoint?: string | null;
-  region?: TheAWSRegionAwsRegionOfTheTargetService;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `datadog_agent` source.
  */
 export interface VectorSourcesDatadogAgentDatadogAgentConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource4;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToAcceptConnectionsOn;
   /**
    * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
@@ -16224,7 +12036,7 @@ export interface VectorSourcesDatadogAgentDatadogAgentConfig {
    */
   disable_traces?: boolean;
   framing?: FramingConfiguration;
-  keepalive?: VectorHttpKeepaliveConfig1;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -16252,32 +12064,6 @@ export interface VectorSourcesDatadogAgentDatadogAgentConfig {
    * Configures the TLS options for incoming/outgoing connections.
    */
   tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource4 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig1 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16463,55 +12249,10 @@ export interface VectorSourcesExecExecConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * Config used to build a `CharacterDelimitedDecoder`.
- */
-export interface CodecsDecodingFramingCharacterDelimitedCharacterDelimitedDecoderConfig1 {
-  character_delimited: CodecsDecodingFramingCharacterDelimitedCharacterDelimitedDecoderOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `LengthDelimitedDecoder`.
- */
-export interface CodecsDecodingFramingLengthDelimitedLengthDelimitedDecoderConfig1 {
-  length_delimited: CodecsCommonLengthDelimitedLengthDelimitedCoderOptions1;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `NewlineDelimitedDecoder`.
- */
-export interface CodecsDecodingFramingNewlineDelimitedNewlineDelimitedDecoderConfig1 {
-  newline_delimited?: CodecsDecodingFramingNewlineDelimitedNewlineDelimitedDecoderOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `OctetCountingDecoder`.
- */
-export interface CodecsDecodingFramingOctetCountingOctetCountingDecoderConfig1 {
-  octet_counting?: CodecsDecodingFramingOctetCountingOctetCountingDecoderOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `ChunkedGelfDecoder`.
- */
-export interface CodecsDecodingFramingChunkedGelfChunkedGelfDecoderConfig1 {
-  chunked_gelf?: CodecsDecodingFramingChunkedGelfChunkedGelfDecoderOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `VarintLengthDelimitedDecoder`.
- */
-export interface CodecsDecodingFramingVarintLengthDelimitedVarintLengthDelimitedDecoderConfig1 {
-  /**
-   * Maximum frame length
-   */
-  max_frame_length?: number;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `file` source.
  */
 export interface VectorSourcesFileFileConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource5;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   data_dir?: TheDirectoryUsedToPersistFileCheckpointPositions;
   /**
    * Character set encoding.
@@ -16535,7 +12276,7 @@ export interface VectorSourcesFileFileConfig {
    * Array of file patterns to include. [Globbing](https://vector.dev/docs/reference/configuration/sources/file/#globbing) is supported.
    */
   include: StdlibPathBuf[];
-  internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig1;
+  internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig;
   /**
    * String sequence used to separate one file line from another.
    */
@@ -16580,35 +12321,10 @@ export interface VectorSourcesFileFileConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource5 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
  * [inode]: https://en.wikipedia.org/wiki/Inode
  */
 export interface UseTheDeviceAndInodeInodeAsTheIdentifier {
   strategy: UseTheDeviceAndInodeInodeAsTheIdentifier1;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of internal metrics for file-based components.
- */
-export interface VectorInternalEventsFileFileInternalMetricsConfig1 {
-  include_file_tag?: WhetherOrNotToIncludeTheFileTagOnTheComponentSCorrespondingInternalMetrics;
   [k: string]: unknown | undefined;
 }
 /**
@@ -16641,7 +12357,7 @@ export interface VectorSourcesFileDescriptorsFileDescriptorFileDescriptorSourceC
    * The file descriptor number to read from.
    */
   fd: number;
-  framing?: FramingConfiguration8;
+  framing?: FramingConfiguration6;
   host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -16651,58 +12367,10 @@ export interface VectorSourcesFileDescriptorsFileDescriptorFileDescriptorSourceC
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource6 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource7 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of the authentication strategy for interacting with GCP services.
- */
-export interface VectorGcpGcpAuthConfig5 {
-  api_key?: AnAPIKeyGcpApiKey;
-  credentials_path?: PathToAServiceAccountGcpServiceAccountCredentialsCredentialsJSONFile;
-  /**
-   * Skip all authentication handling. For use with integration tests only.
-   */
-  skip_authentication?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for `heroku_logs` source.
  */
 export interface VectorSourcesHerokuLogsLogplexConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource8;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   /**
    * The socket address to listen for connections on.
    */
@@ -16731,7 +12399,7 @@ export interface VectorSourcesHerokuLogsLogplexConfig {
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
   framing?: FramingConfiguration;
-  keepalive?: VectorHttpKeepaliveConfig2;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -16744,32 +12412,6 @@ export interface VectorSourcesHerokuLogsLogplexConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource8 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig2 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `host_metrics` source.
  */
 export interface VectorSourcesHostMetricsHostMetricsConfig {
@@ -16779,16 +12421,16 @@ export interface VectorSourcesHostMetricsHostMetricsConfig {
    * Options for the disk metrics collector.
    */
   disk?: {
-    devices?: VectorSourcesHostMetricsFilterList1;
+    devices?: VectorSourcesHostMetricsFilterList;
     [k: string]: unknown | undefined;
   };
   /**
    * Options for the filesystem metrics collector.
    */
   filesystem?: {
-    devices?: VectorSourcesHostMetricsFilterList2;
-    filesystems?: VectorSourcesHostMetricsFilterList3;
-    mountpoints?: VectorSourcesHostMetricsFilterList4;
+    devices?: VectorSourcesHostMetricsFilterList;
+    filesystems?: VectorSourcesHostMetricsFilterList;
+    mountpoints?: VectorSourcesHostMetricsFilterList;
     [k: string]: unknown | undefined;
   };
   /**
@@ -16799,14 +12441,14 @@ export interface VectorSourcesHostMetricsHostMetricsConfig {
    * Options for the network metrics collector.
    */
   network?: {
-    devices?: VectorSourcesHostMetricsFilterList5;
+    devices?: VectorSourcesHostMetricsFilterList;
     [k: string]: unknown | undefined;
   };
   /**
    * Options for the process metrics collector.
    */
   process?: {
-    processes?: VectorSourcesHostMetricsFilterList6;
+    processes?: VectorSourcesHostMetricsFilterList;
     [k: string]: unknown | undefined;
   };
   /**
@@ -16841,63 +12483,10 @@ export interface VectorSourcesHostMetricsFilterList {
   [k: string]: unknown | undefined;
 }
 /**
- * Lists of device name patterns to include or exclude in gathering
- * I/O utilization metrics.
- */
-export interface VectorSourcesHostMetricsFilterList1 {
-  excludes?: AnyPatternsWhichShouldBeExcluded;
-  includes?: AnyPatternsWhichShouldBeIncluded;
-  [k: string]: unknown | undefined;
-}
-/**
- * Lists of device name patterns to include or exclude in gathering
- * usage metrics.
- */
-export interface VectorSourcesHostMetricsFilterList2 {
-  excludes?: AnyPatternsWhichShouldBeExcluded;
-  includes?: AnyPatternsWhichShouldBeIncluded;
-  [k: string]: unknown | undefined;
-}
-/**
- * Lists of filesystem name patterns to include or exclude in gathering
- * usage metrics.
- */
-export interface VectorSourcesHostMetricsFilterList3 {
-  excludes?: AnyPatternsWhichShouldBeExcluded;
-  includes?: AnyPatternsWhichShouldBeIncluded;
-  [k: string]: unknown | undefined;
-}
-/**
- * Lists of mount point path patterns to include or exclude in gathering
- * usage metrics.
- */
-export interface VectorSourcesHostMetricsFilterList4 {
-  excludes?: AnyPatternsWhichShouldBeExcluded;
-  includes?: AnyPatternsWhichShouldBeIncluded;
-  [k: string]: unknown | undefined;
-}
-/**
- * Lists of device name patterns to include or exclude in gathering
- * network utilization metrics.
- */
-export interface VectorSourcesHostMetricsFilterList5 {
-  excludes?: AnyPatternsWhichShouldBeExcluded;
-  includes?: AnyPatternsWhichShouldBeIncluded;
-  [k: string]: unknown | undefined;
-}
-/**
- * Lists of process name patterns to include or exclude.
- */
-export interface VectorSourcesHostMetricsFilterList6 {
-  excludes?: AnyPatternsWhichShouldBeExcluded;
-  includes?: AnyPatternsWhichShouldBeIncluded;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `http` source.
  */
 export interface VectorSourcesHttpServerHttpConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource9;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToListenForConnectionsOn;
   auth?: ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources;
   /**
@@ -16914,25 +12503,25 @@ export interface VectorSourcesHttpServerHttpConfig {
             codec: 'bytes';
             [k: string]: unknown | undefined;
           }
-        | DecodesTheRawBytesAsJSONJson2
-        | DecodesTheRawBytesAsProtobufProtobuf2
-        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat2
-        | DecodesTheRawBytesAsASyslogMessage2
-        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf2
-        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson2
-        | DecodesTheRawBytesAsAGELFGelfMessage2
-        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage2
-        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage2
-        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram2
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram
       );
   encoding?: TheExpectedEncodingOfReceivedData;
-  framing?: FramingConfiguration11;
+  framing?: FramingConfiguration6;
   headers?: AListOfHTTPHeadersToIncludeInTheLogEvent;
   /**
    * An optional path that deserializes an empty string to `None`.
    */
   host_key?: string;
-  keepalive?: VectorHttpKeepaliveConfig3;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -16959,130 +12548,6 @@ export interface VectorSourcesHttpServerHttpConfig {
    * Configures the TLS options for incoming/outgoing connections.
    */
   tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource9 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `JsonDeserializer`.
- */
-export interface CodecsDecodingFormatJsonJsonDeserializerConfig1 {
-  json?: CodecsDecodingFormatJsonJsonDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `ProtobufDeserializer`.
- */
-export interface CodecsDecodingFormatProtobufProtobufDeserializerConfig1 {
-  protobuf?: CodecsDecodingFormatProtobufProtobufDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build an `OtlpDeserializer`.
- */
-export interface CodecsDecodingFormatOtlpOtlpDeserializerConfig1 {
-  signal_types?: SignalTypesToAttemptParsingInPriorityOrder;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `SyslogDeserializer`.
- */
-export interface CodecsDecodingFormatSyslogSyslogDeserializerConfig1 {
-  syslog?: CodecsDecodingFormatSyslogSyslogDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * This decoder can output all types of events (logs, metrics, traces).
- *
- * This codec is **[experimental][experimental]**.
- *
- * [vector_native_protobuf]: https://github.com/vectordotdev/vector/blob/master/lib/vector-core/proto/event.proto
- * [experimental]: https://vector.dev/highlights/2022-03-31-native-event-codecs
- */
-export interface DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf2 {
-  codec: DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf3;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `NativeJsonDeserializer`.
- */
-export interface CodecsDecodingFormatNativeJsonNativeJsonDeserializerConfig1 {
-  native_json?: CodecsDecodingFormatNativeJsonNativeJsonDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `GelfDeserializer`.
- */
-export interface CodecsDecodingFormatGelfGelfDeserializerConfig1 {
-  gelf?: CodecsDecodingFormatGelfGelfDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `InfluxdbDeserializer`.
- * - [InfluxDB Line Protocol](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/):
- */
-export interface CodecsDecodingFormatInfluxdbInfluxdbDeserializerConfig1 {
-  influxdb?: CodecsDecodingFormatInfluxdbInfluxdbDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * [apache_avro]: https://avro.apache.org/
- */
-export interface DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage2 {
-  avro: CodecsDecodingFormatAvroAvroDeserializerOptions1;
-  codec: DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage3;
-  [k: string]: unknown | undefined;
-}
-/**
- * Apache Avro-specific encoder options.
- */
-export interface CodecsDecodingFormatAvroAvroDeserializerOptions1 {
-  /**
-   * The Avro schema definition.
-   * **Note**: The following [`apache_avro::types::Value`] variants are *not* supported:
-   * * `Date`
-   * * `Decimal`
-   * * `Duration`
-   * * `Fixed`
-   * * `TimeMillis`
-   */
-  schema: string;
-  /**
-   * For Avro datum encoded in Kafka messages, the bytes are prefixed with the schema ID.  Set this to `true` to strip the schema ID prefix.
-   * According to [Confluent Kafka's document](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#wire-format).
-   */
-  strip_schema_id_prefix: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * Config used to build a `VrlDeserializer`.
- */
-export interface CodecsDecodingFormatVrlVrlDeserializerConfig1 {
-  vrl: CodecsDecodingFormatVrlVrlDeserializerOptions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig3 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
   [k: string]: unknown | undefined;
 }
 /**
@@ -17164,7 +12629,7 @@ export interface CustomParametersForTheHTTPRequestQueryString {
  * Configuration for the `http_server` source.
  */
 export interface VectorSourcesHttpServerSimpleHttpConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource9;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToListenForConnectionsOn;
   auth?: ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources;
   /**
@@ -17181,25 +12646,25 @@ export interface VectorSourcesHttpServerSimpleHttpConfig {
             codec: 'bytes';
             [k: string]: unknown | undefined;
           }
-        | DecodesTheRawBytesAsJSONJson2
-        | DecodesTheRawBytesAsProtobufProtobuf2
-        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat2
-        | DecodesTheRawBytesAsASyslogMessage2
-        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf2
-        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson2
-        | DecodesTheRawBytesAsAGELFGelfMessage2
-        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage2
-        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage2
-        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram2
+        | DecodesTheRawBytesAsJSONJson
+        | DecodesTheRawBytesAsProtobufProtobuf
+        | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
+        | DecodesTheRawBytesAsASyslogMessage
+        | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
+        | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
+        | DecodesTheRawBytesAsAGELFGelfMessage
+        | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
+        | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
+        | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram
       );
   encoding?: TheExpectedEncodingOfReceivedData;
-  framing?: FramingConfiguration11;
+  framing?: FramingConfiguration6;
   headers?: AListOfHTTPHeadersToIncludeInTheLogEvent;
   /**
    * An optional path that deserializes an empty string to `None`.
    */
   host_key?: string;
-  keepalive?: VectorHttpKeepaliveConfig3;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * The namespace to use for logs. This overrides the global setting.
    */
@@ -17266,7 +12731,7 @@ export interface VectorSourcesInternalMetricsInternalMetricsConfig {
  * Configuration for the `journald` source.
  */
 export interface VectorSourcesJournaldJournaldConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource10;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   batch_size?: TheSystemdJournalIsReadInBatchesAndACheckpointIsSetAtTheEndOfEachBatch;
   /**
    * Only include entries that occurred after the current boot of the system.
@@ -17294,24 +12759,6 @@ export interface VectorSourcesJournaldJournaldConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource10 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
  * If `exclude_units` is specified, it is merged into this list.
  */
 export interface AListOfSetsOfFieldValuePairsThatIfAnyArePresentInAJournalEntryExcludesTheEntryFromThisSource {
@@ -17324,38 +12771,6 @@ export interface AListOfSetsOfFieldValuePairsThatIfAnyArePresentInAJournalEntryE
  */
 export interface AListOfSetsOfFieldValuePairsToMonitor {
   [k: string]: string[] | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource11 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Kafka authentication configuration.
- */
-export interface VectorKafkaKafkaAuthConfig1 {
-  /**
-   * Configuration for SASL authentication when interacting with Kafka.
-   */
-  sasl?: null | VectorKafkaKafkaSaslConfig;
-  /**
-   * Configures the TLS options for incoming/outgoing connections.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
 }
 /**
  * Configuration for the `kubernetes_logs` source.
@@ -17383,7 +12798,7 @@ export interface VectorSourcesKubernetesLogsConfig {
   include_paths_glob_patterns?: StdlibPathBuf[];
   ingestion_timestamp_field?: OverridesTheNameOfTheLogFieldUsedToAddTheIngestionTimestampToEachEvent;
   insert_namespace_fields?: SpecifiesWhetherOrNotToEnrichLogsWithNamespaceFields;
-  internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig2;
+  internal_metrics?: VectorInternalEventsFileFileInternalMetricsConfig;
   kube_config_file?: OptionalPathToAReadableKubeconfigKubeconfigFile;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -17447,17 +12862,10 @@ export interface VectorSourcesKubernetesLogsConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration of internal metrics for file-based components.
- */
-export interface VectorInternalEventsFileFileInternalMetricsConfig2 {
-  include_file_tag?: WhetherOrNotToIncludeTheFileTagOnTheComponentSCorrespondingInternalMetrics;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `logstash` source.
  */
 export interface VectorSourcesLogstashLogstashConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource12;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToListenForConnectionsOnOrSystemdNToUseTheNthSocketPassedBySystemdSocketActivation;
   /**
    * The maximum number of TCP connections that are allowed at any given time.
@@ -17486,24 +12894,6 @@ export interface VectorSourcesLogstashLogstashConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource12 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `mongodb_metrics` source.
  */
 export interface VectorSourcesMongodbMetricsMongoDbMetricsConfig {
@@ -17513,44 +12903,6 @@ export interface VectorSourcesMongodbMetricsMongoDbMetricsConfig {
    * The interval between scrapes, in seconds.
    */
   scrape_interval_secs?: number;
-  [k: string]: unknown | undefined;
-}
-/**
- * Shared MQTT configuration for sources and sinks.
- */
-export interface VectorCommonMqttMqttCommonConfig1 {
-  /**
-   * MQTT client ID.
-   */
-  client_id?: string | null;
-  /**
-   * MQTT server address (The broker’s domain name or IP address).
-   */
-  host: string;
-  /**
-   * Connection keep-alive interval.
-   */
-  keep_alive?: number;
-  /**
-   * Maximum packet size
-   */
-  max_packet_size?: number;
-  /**
-   * MQTT password.
-   */
-  password?: string | null;
-  /**
-   * TCP port of the MQTT server to connect to.
-   */
-  port?: number;
-  /**
-   * TLS configuration.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  /**
-   * MQTT username.
-   */
-  user?: string | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -17646,7 +12998,7 @@ export interface BatchSettingsForAJetStreamPullConsumer {
 export interface VectorSourcesNginxMetricsNginxMetricsConfig {
   auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
   endpoints: AListOfNGINXInstancesToScrape;
-  namespace?: OverridesTheDefaultNamespaceForTheMetricsEmittedByTheSource2;
+  namespace?: OverridesTheDefaultNamespaceForTheMetricsEmittedByTheSource1;
   /**
    * The interval between scrapes.
    */
@@ -17698,7 +13050,7 @@ export interface VectorSourcesOktaClientOktaConfig {
  * Configuration for the `opentelemetry` source.
  */
 export interface VectorSourcesOpentelemetryConfigOpentelemetryConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource13;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   /**
    * Configuration for the `opentelemetry` gRPC server.
    */
@@ -17716,7 +13068,7 @@ export interface VectorSourcesOpentelemetryConfigOpentelemetryConfig {
   http: {
     address: TheSocketAddressToListenForConnectionsOn;
     headers?: AListOfHTTPHeadersToIncludeInTheLogEvent;
-    keepalive?: VectorHttpKeepaliveConfig4;
+    keepalive?: VectorHttpKeepaliveConfig;
     /**
      * Configures the TLS options for incoming/outgoing connections.
      */
@@ -17728,32 +13080,6 @@ export interface VectorSourcesOpentelemetryConfigOpentelemetryConfig {
    */
   log_namespace?: boolean | null;
   use_otlp_decoding?: SettingThisFieldWillOverrideTheLegacyMappingOfOTELProtosToVectorEventsAndUseTheProtoDirectly;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource13 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig4 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
   [k: string]: unknown | undefined;
 }
 /**
@@ -17784,11 +13110,11 @@ export interface VectorSourcesPostgresqlMetricsPostgresqlMetricsConfig {
  * Configuration for the `prometheus_pushgateway` source.
  */
 export interface VectorSourcesPrometheusPushgatewayPrometheusPushgatewayConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource14;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToAcceptConnectionsOn;
   aggregate_metrics?: WhetherToAggregateValuesAcrossPushes;
   auth?: ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources;
-  keepalive?: VectorHttpKeepaliveConfig5;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * Configures the TLS options for incoming/outgoing connections.
    */
@@ -17796,39 +13122,13 @@ export interface VectorSourcesPrometheusPushgatewayPrometheusPushgatewayConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource14 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig5 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `prometheus_remote_write` source.
  */
 export interface VectorSourcesPrometheusRemoteWritePrometheusRemoteWriteConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource15;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToAcceptConnectionsOn;
   auth?: ConfigurationOfTheAuthenticationStrategyForServerModeSinksAndSources;
-  keepalive?: VectorHttpKeepaliveConfig6;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * Defines the behavior for handling conflicting metric metadata.
    */
@@ -17842,32 +13142,6 @@ export interface VectorSourcesPrometheusRemoteWritePrometheusRemoteWriteConfig {
    * Configures the TLS options for incoming/outgoing connections.
    */
   tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource15 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig6 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
   [k: string]: unknown | undefined;
 }
 /**
@@ -17911,7 +13185,7 @@ export interface CustomParametersForTheScrapeRequestQueryString {
  * Configuration for the `pulsar` source.
  */
 export interface VectorSourcesPulsarPulsarSourceConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource16;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   /**
    * Authentication configuration.
    */
@@ -18023,24 +13297,6 @@ export interface VectorSourcesPulsarPulsarSourceConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource16 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `redis` source.
  */
 export interface VectorSourcesRedisRedisSourceConfig {
@@ -18119,43 +13375,7 @@ export interface VectorSourcesSocketUnixUnixConfig {
     | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration20;
-  host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent2;
-  /**
-   * The namespace to use for logs. This overrides the global setting.
-   */
-  log_namespace?: boolean | null;
-  path: TheUnixSocketPath;
-  socket_file_mode?: UnixFileModeBitsToBeAppliedToTheUnixSocketFileAsItsDesignatedFilePermissions;
-  [k: string]: unknown | undefined;
-}
-/**
- * Unix domain socket configuration for the `socket` source.
- */
-export interface VectorSourcesSocketUnixUnixConfig1 {
-  /**
-   * Configures how events are decoded from raw bytes. Note some decoders can also determine the event output
-   * type (log, metric, trace).
-   */
-  decoding?:
-    | {
-        /**
-         * Uses the raw bytes as-is.
-         */
-        codec: 'bytes';
-        [k: string]: unknown | undefined;
-      }
-    | DecodesTheRawBytesAsJSONJson
-    | DecodesTheRawBytesAsProtobufProtobuf
-    | DecodesTheRawBytesAsOTLPOpenTelemetryProtocolOtlpProtobufFormat
-    | DecodesTheRawBytesAsASyslogMessage
-    | DecodesTheRawBytesAsNativeProtocolBuffersFormatVectorNativeProtobuf
-    | DecodesTheRawBytesAsNativeJSONFormatVectorNativeJson
-    | DecodesTheRawBytesAsAGELFGelfMessage
-    | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
-    | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
-    | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration20;
+  framing?: FramingConfiguration6;
   host_key?: OverridesTheNameOfTheLogFieldUsedToAddThePeerHostToEachEvent2;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -18185,7 +13405,7 @@ export interface VectorSourcesSplunkHecSplunkConfig {
     [k: string]: unknown | undefined;
   };
   address?: TheSocketAddressToListenForConnectionsOn;
-  keepalive?: VectorHttpKeepaliveConfig7;
+  keepalive?: VectorHttpKeepaliveConfig;
   /**
    * The namespace to use for logs. This overrides the global settings.
    */
@@ -18200,14 +13420,6 @@ export interface VectorSourcesSplunkHecSplunkConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration of HTTP server keepalive parameters.
- */
-export interface VectorHttpKeepaliveConfig7 {
-  max_connection_age_jitter_factor?: TheFactorByWhichToJitterTheMaxConnectionAgeSecsValue;
-  max_connection_age_secs?: TheMaximumAmountOfTimeAConnectionMayExistBeforeItIsClosedBySendingAConnectionCloseHeaderOnTheHTTPResponseSetThisToALargeValueLike100000000ToDisableThisFeature;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `static_metrics` source.
  */
 export interface VectorSourcesStaticMetricsStaticMetricsConfig {
@@ -18217,6 +13429,8 @@ export interface VectorSourcesStaticMetricsStaticMetricsConfig {
   interval_secs?: number;
   /**
    * Tag configuration for the `internal_metrics` source.
+   *
+   * Items: Tag configuration for the `internal_metrics` source.
    */
   metrics?: {
     kind: MetricKind;
@@ -18491,7 +13705,7 @@ export interface VectorSourcesFileDescriptorsStdinStdinConfig {
     | DecodesTheRawBytesAsAnInfluxdbLineProtocolInfluxdbMessage
     | DecodesTheRawBytesAsAsAnApacheAvroApacheAvroMessage
     | DecodesTheRawBytesAsAStringAndPassesThemAsInputToAVRLVrlProgram;
-  framing?: FramingConfiguration21;
+  framing?: FramingConfiguration6;
   host_key?: OverridesTheNameOfTheLogFieldUsedToAddTheCurrentHostnameToEachEvent;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -18525,7 +13739,7 @@ export interface VectorConfigUnitTestUnitTestComponentsUnitTestStreamSourceConfi
  * Configuration for the `vector` source.
  */
 export interface VectorSourcesVectorVectorConfig {
-  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource17;
+  acknowledgements?: ControlsHowAcknowledgementsAreHandledByThisSource;
   address: TheSocketAddressToListenForConnectionsOn;
   /**
    * The namespace to use for logs. This overrides the global setting.
@@ -18539,38 +13753,6 @@ export interface VectorSourcesVectorVectorConfig {
    * Version of the configuration.
    */
   version?: null | '2';
-  [k: string]: unknown | undefined;
-}
-/**
- * @deprecated
- * This setting is **deprecated** in favor of enabling `acknowledgements` at the [global][global_acks] or sink level.
- *
- * Enabling or disabling acknowledgements at the source level has **no effect** on acknowledgement behavior.
- *
- * See [End-to-end Acknowledgements][e2e_acks] for more information on how event acknowledgement is handled.
- *
- * [global_acks]: https://vector.dev/docs/reference/configuration/global-options/#acknowledgements
- * [e2e_acks]: https://vector.dev/docs/architecture/end-to-end-acknowledgements/
- */
-export interface ControlsHowAcknowledgementsAreHandledByThisSource17 {
-  /**
-   * Whether or not end-to-end acknowledgements are enabled for this source.
-   */
-  enabled?: boolean | null;
-  [k: string]: unknown | undefined;
-}
-/**
- * Shared websocket configuration for sources and sinks.
- */
-export interface VectorCommonWebsocketWebSocketCommonConfig1 {
-  auth?: ConfigurationOfTheAuthenticationStrategyForHTTPRequests;
-  ping_interval?: TheIntervalInSecondsBetweenSendingPingPingSToTheRemotePeer;
-  ping_timeout?: TheNumberOfSecondsToWaitForAPongPongResponseFromTheRemotePeer;
-  /**
-   * TLS configuration.
-   */
-  tls?: null | VectorCoreTlsSettingsTlsEnableableConfig;
-  uri: TheWebSocketURIToConnectTo;
   [k: string]: unknown | undefined;
 }
 /**
@@ -18651,13 +13833,6 @@ export interface VectorConditionsDatadogSearchDatadogSearchConfig {
   [k: string]: unknown | undefined;
 }
 /**
- * Configure output for component when generated with graph command
- */
-export interface ExtraGraphConfiguration3 {
-  node_attributes?: NodeAttributesToAddToThisComponentSNodeInResultingGraph;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `aggregate` transform.
  */
 export interface VectorTransformsAggregateAggregateConfig {
@@ -18681,7 +13856,7 @@ export interface VectorTransformsAwsEc2MetadataEc2Metadata {
    * Sets a prefix for all event fields added by the transform.
    */
   namespace?: null | VectorLookupLookupV2OptionalPathOptionalTargetPath;
-  proxy?: ProxyConfiguration3;
+  proxy?: ProxyConfiguration;
   /**
    * The interval between querying for updated metadata, in seconds.
    */
@@ -18698,23 +13873,6 @@ export interface VectorTransformsAwsEc2MetadataEc2Metadata {
    * A list of instance tags to include in each transformed event.
    */
   tags?: string[];
-  [k: string]: unknown | undefined;
-}
-/**
- * Configure to proxy traffic through an HTTP(S) proxy when making external requests.
- *
- * Similar to common proxy configuration convention, you can set different proxies
- * to use based on the type of traffic being proxied. You can also set specific hosts that
- * should not be proxied.
- */
-export interface ProxyConfiguration3 {
-  /**
-   * Enables proxying support.
-   */
-  enabled?: boolean;
-  http?: ProxyEndpointToUseWhenProxyingHTTPTraffic;
-  https?: ProxyEndpointToUseWhenProxyingHTTPSTraffic;
-  no_proxy?: AListOfHostsToAvoidProxying;
   [k: string]: unknown | undefined;
 }
 /**
@@ -18756,6 +13914,8 @@ export interface VectorTransformsExclusiveRouteConfigExclusiveRouteConfig {
    * An array of named routes. The route names are expected to be unique.
    * Routes are evaluated in order from first to last, and only the first matching route receives each event
    * (first-match-wins).
+   *
+   * Items: Individual route configuration.
    */
   routes: {
     condition: AnEventMatchingCondition;
@@ -18809,7 +13969,7 @@ export interface VectorTransformsLogToMetricLogToMetricConfig {
     | ({
         field: ATemplatedField;
         name?: OverridesTheNameOfTheCounter;
-        namespace?: ATemplatedField33;
+        namespace?: ATemplatedField1;
         tags?: TagsToApplyToTheMetric;
         [k: string]: unknown | undefined;
       } & (
@@ -18869,19 +14029,6 @@ export interface LifecycleHooks {
   [k: string]: unknown | undefined;
 }
 /**
- * Configuration for the `metric_to_log` transform.
- */
-export interface VectorTransformsMetricToLogMetricToLogConfig2 {
-  host_tag?: NameOfTheTagInTheMetricToUseForTheSourceHost;
-  /**
-   * The namespace to use for logs. This overrides the global setting.
-   */
-  log_namespace?: boolean | null;
-  metric_tag_values?: ControlsHowMetricTagValuesAreEncoded;
-  timezone?: TheNameOfTheTimeZoneToApplyToTimestampConversionsThatDoNotContainAnExplicitTimeZone;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configuration for the `reduce` transform.
  */
 export interface VectorTransformsReduceConfigReduceConfig {
@@ -18926,20 +14073,18 @@ export interface AMapOfFieldNamesToCustomMergeStrategies {
    * Strategies for merging events.
    */
   [k: string]:
-    | (
-        | 'discard'
-        | DiscardAllButTheLastValueFound
-        | 'sum'
-        | 'max'
-        | 'min'
-        | 'array'
-        | 'concat'
-        | 'concat_newline'
-        | 'concat_raw'
-        | 'shortest_array'
-        | 'longest_array'
-        | 'flat_unique'
-      )
+    | 'discard'
+    | DiscardAllButTheLastValueFound
+    | 'sum'
+    | 'max'
+    | 'min'
+    | 'array'
+    | 'concat'
+    | 'concat_newline'
+    | 'concat_raw'
+    | 'shortest_array'
+    | 'longest_array'
+    | 'flat_unique'
     | undefined;
 }
 /**
@@ -18979,14 +14124,14 @@ export interface VectorTransformsRouteRouteConfig {
  * Otherwise, the unmatched event is instead silently discarded.
  */
 export interface AMapFromRouteIdentifiersToLogicalConditionsEachConditionRepresentsAFilterWhichIsAppliedToEachEvent {
-  [k: string]: AnEventMatchingCondition;
+  [k: string]: AnEventMatchingCondition | undefined;
 }
 /**
  * Configuration for the `sample` transform.
  */
 export interface VectorTransformsSampleConfigSampleConfig {
   exclude?: AnEventMatchingCondition6;
-  group_by?: ATemplatedField36;
+  group_by?: ATemplatedField1;
   key_field?: TheNameOfTheFieldWhoseValueIsHashedToDetermineIfTheEventShouldBeSampled;
   rate?: TheRateAtWhichEventsAreForwardedExpressedAs1N;
   ratio?: TheRateAtWhichEventsAreForwardedExpressedAsAPercentage;
@@ -19022,7 +14167,7 @@ export interface VectorTransformsTagCardinalityLimitConfigBloomFilterConfig {
  * Configuration for the `throttle` transform.
  */
 export interface VectorTransformsThrottleConfigThrottleConfig {
-  exclude?: AnEventMatchingCondition7;
+  exclude?: AnEventMatchingCondition6;
   /**
    * Configuration of internal metrics for the Throttle transform.
    */
@@ -19030,7 +14175,7 @@ export interface VectorTransformsThrottleConfigThrottleConfig {
     emit_events_discarded_per_key?: WhetherOrNotToEmitTheEventsDiscardedTotalInternalMetricWithTheKeyTag;
     [k: string]: unknown | undefined;
   };
-  key_field?: ATemplatedField37;
+  key_field?: ATemplatedField1;
   threshold: TheNumberOfEventsAllowedForAGivenBucketPerConfiguredWindowSecs;
   /**
    * The time window in which the configured `threshold` is applied, in seconds.
@@ -19089,23 +14234,6 @@ export interface DefaultLogSchemaForAllEvents {
    * An optional path that deserializes an empty string to `None`.
    */
   timestamp_key?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Configure to proxy traffic through an HTTP(S) proxy when making external requests.
- *
- * Similar to common proxy configuration convention, you can set different proxies
- * to use based on the type of traffic being proxied. You can also set specific hosts that
- * should not be proxied.
- */
-export interface ProxyConfiguration4 {
-  /**
-   * Enables proxying support.
-   */
-  enabled?: boolean;
-  http?: ProxyEndpointToUseWhenProxyingHTTPTraffic;
-  https?: ProxyEndpointToUseWhenProxyingHTTPSTraffic;
-  no_proxy?: AListOfHostsToAvoidProxying;
   [k: string]: unknown | undefined;
 }
 /**

@@ -17,7 +17,8 @@ export interface ConfigurationForTheEdgeHubModule {
             priority?: number;
             timeToLiveSecs?: number;
           }
-        | string;
+        | string
+        | undefined;
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;

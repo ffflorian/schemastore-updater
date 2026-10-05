@@ -12,15 +12,7 @@ export type AvroSchema = AvroTypes;
  * Allowed Avro types
  */
 export type AvroTypes =
-  | PrimitiveType
-  | PrimitiveTypeWithMetadata
-  | CustomType
-  | Record
-  | Enum
-  | Array
-  | Map
-  | Fixed
-  | Union;
+  PrimitiveType | PrimitiveTypeWithMetadata | CustomType | Record | Enum | Array | Map | Fixed | Union;
 /**
  * Basic type primitives.
  */

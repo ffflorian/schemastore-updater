@@ -5,7 +5,7 @@ export type JSONSchemaForBabel6ConfigurationFiles = Options & {
    * This is an object of keys that represent different environments. For example, you may have: `{ env: { production: { /* specific options * / } } }` which will use those options when the environment variable BABEL_ENV is set to "production". If BABEL_ENV isn't set then NODE_ENV will be used, if it's not set then it defaults to "development"
    */
   env?: {
-    [k: string]: Options;
+    [k: string]: Options | undefined;
   };
   [k: string]: unknown | undefined;
 };

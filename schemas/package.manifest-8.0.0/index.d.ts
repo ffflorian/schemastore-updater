@@ -266,26 +266,7 @@ export interface Dashboard {
        */
       grant?: string;
       [k: string]: unknown | undefined;
-    } & (
-        | {
-            deny: unknown;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            grant: unknown;
-            [k: string]: unknown | undefined;
-          }
-      ) & {
-        /**
-         * A user group alias who is denied access
-         */
-        deny?: string;
-        /**
-         * A user group alias who is granted access
-         */
-        grant?: string;
-        [k: string]: unknown | undefined;
-      },
+    },
     ...((
       | {
           deny: unknown;
@@ -305,26 +286,7 @@ export interface Dashboard {
        */
       grant?: string;
       [k: string]: unknown | undefined;
-    } & (
-        | {
-            deny: unknown;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            grant: unknown;
-            [k: string]: unknown | undefined;
-          }
-      ) & {
-        /**
-         * A user group alias who is denied access
-         */
-        deny?: string;
-        /**
-         * A user group alias who is granted access
-         */
-        grant?: string;
-        [k: string]: unknown | undefined;
-      })[]
+    })[]
   ];
 }
 /**

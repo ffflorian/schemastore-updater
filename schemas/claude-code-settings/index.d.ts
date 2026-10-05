@@ -1569,7 +1569,32 @@ export interface ClaudeCodeSettings {
     /**
      * Environment variable value
      */
-    [k: string]: string | undefined;
+    [k: string]:
+      | string
+      | 'default'
+      | 'flex'
+      | 'priority'
+      | '0'
+      | '1'
+      | 'true'
+      | 'false'
+      | 'verbose'
+      | 'debug'
+      | 'info'
+      | 'warn'
+      | 'error'
+      | 'low'
+      | 'medium'
+      | 'high'
+      | 'xhigh'
+      | 'max'
+      | 'auto'
+      | 'grpc'
+      | 'http/json'
+      | 'http/protobuf'
+      | 'delta'
+      | 'cumulative'
+      | undefined;
   };
   /**
    * Customize attribution for git commits and pull requests. See https://code.claude.com/docs/en/settings#attribution-settings
@@ -1945,13 +1970,11 @@ export interface ClaudeCodeSettings {
    */
   enabledPlugins?: {
     [k: string]:
-      | (
-          | string[]
-          | boolean
-          | {
-              [k: string]: unknown | undefined;
-            }
-        )
+      | string[]
+      | boolean
+      | {
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
   /**
@@ -2546,7 +2569,7 @@ export interface ClaudeCodeSettings {
    * Per-skill visibility overrides. Controls whether skills appear to Claude and in the / picker. Values: 'on' (name and description shown, default), 'name-only' (name only), 'user-invocable-only' (hidden from Claude, visible in /), 'off' (hidden everywhere). Plugin skills are not affected by this setting. See https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings
    */
   skillOverrides?: {
-    [k: string]: ('on' | 'name-only' | 'user-invocable-only' | 'off') | undefined;
+    [k: string]: 'on' | 'name-only' | 'user-invocable-only' | 'off' | undefined;
   };
   /**
    * Reduce or disable UI animations (spinners, shimmer, flash effects) for accessibility
@@ -2609,7 +2632,7 @@ export interface ClaudeCodeSettings {
           mcpServers?: {
             [k: string]:
               | {
-                  [k: string]: (string | number | boolean | string[]) | undefined;
+                  [k: string]: string | number | boolean | string[] | undefined;
                 }
               | undefined;
           };
@@ -2617,7 +2640,7 @@ export interface ClaudeCodeSettings {
            * Non-sensitive option values from the plugin manifest's userConfig, keyed by option name. Sensitive values go to secure storage instead. See https://code.claude.com/docs/en/plugins-reference
            */
           options?: {
-            [k: string]: (string | number | boolean | string[]) | undefined;
+            [k: string]: string | number | boolean | string[] | undefined;
           };
         }
       | undefined;
@@ -2887,13 +2910,7 @@ export interface ClaudeCodeSettings {
    * Method for task-complete and permission-prompt notifications. "auto" (default) sends a desktop notification in iTerm2, Ghostty, and Kitty and does nothing in other terminals; "terminal_bell" rings the bell in any terminal; "notifications_disabled" turns them off. See https://code.claude.com/docs/en/terminal-config#get-a-terminal-bell-or-notification
    */
   preferredNotifChannel?:
-    | 'auto'
-    | 'terminal_bell'
-    | 'iterm2'
-    | 'iterm2_with_bell'
-    | 'kitty'
-    | 'ghostty'
-    | 'notifications_disabled';
+    'auto' | 'terminal_bell' | 'iterm2' | 'iterm2_with_bell' | 'kitty' | 'ghostty' | 'notifications_disabled';
   /**
    * (Managed settings only) Allowlist of marketplace names whose plugins may surface as contextual "suggested for this directory" tips in the /plugin Discover tab. No marketplace-declared suggestions surface without this allowlist. The built-in first-party frontend-design tip is unaffected. See https://code.claude.com/docs/en/settings#available-settings
    */

@@ -21,7 +21,7 @@ export interface JSONSchemaForAsconfigJson {
   entries?: ArrayOfNonEmptyStrings;
   options?: CompilerOptions;
   targets?: {
-    [k: string]: CompilerOptions;
+    [k: string]: CompilerOptions | undefined;
   };
 }
 export interface CompilerOptions {

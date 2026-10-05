@@ -77,7 +77,7 @@ export interface PaperPaperPluginYml {
    */
   dependencies?: {
     bootstrap?: DependencyGroup;
-    server?: DependencyGroup1;
+    server?: DependencyGroup;
   };
   [k: string]: unknown | undefined;
 }
@@ -93,7 +93,7 @@ export interface Permission {
   children?:
     | string[]
     | {
-        [k: string]: (boolean | Permission | undefined) | undefined;
+        [k: string]: boolean | Permission | undefined;
       };
 }
 /**
@@ -118,10 +118,4 @@ export interface Dependency {
    * Whether this dependency is required for the plugin to load. Defaults to true
    */
   required?: boolean;
-}
-/**
- * Dependencies for the server
- */
-export interface DependencyGroup1 {
-  [k: string]: Dependency | undefined;
 }

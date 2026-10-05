@@ -189,7 +189,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
          * The permissions to set: the key-value pairs, where the key is a permission, and the value is a file or array of files to apply the permission to.
          */
         args?: {
-          [k: string]: (string[] | string) | undefined;
+          [k: string]: string[] | string | undefined;
         };
         [k: string]: unknown | undefined;
       }
@@ -273,7 +273,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   forms?: {
     [k: string]:
-      | (
+      | ((
           | {
               [k: string]: unknown | undefined;
             }
@@ -315,6 +315,9 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
             }
           | {
               identifier?: 'chain';
+              /**
+               * Items: The name of the form to apply to the previous step (or source value if this is the first step).
+               */
               steps: string[];
               [k: string]: unknown | undefined;
             }
@@ -366,7 +369,13 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
               identifier?: 'snakeCase';
               [k: string]: unknown | undefined;
             }
-        )
+        ) & {
+          /**
+           * The identifier for the value form component that will be used to transform the value.
+           */
+          identifier?: string;
+          [k: string]: unknown | undefined;
+        })
       | undefined;
   };
   /**
@@ -374,7 +383,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   symbols?: {
     [k: string]:
-      | (
+      | ((
           | {
               /**
                * The symbol binds value from external sources.
@@ -447,7 +456,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
               }[];
               [k: string]: unknown | undefined;
             }
-          | (
+          | ((
               | GeneratorCasing
               | GeneratorCoalesce
               | GeneratorConstant
@@ -459,7 +468,32 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
               | GeneratorRegexMatch
               | GeneratorSwitch
               | GeneratorJoin
-            )
+            ) & {
+              /**
+               * Defines the high level configuration of symbol.
+               */
+              type?: 'generated';
+              /**
+               * The text to replace with the value of this symbol.
+               */
+              replaces?: string;
+              /**
+               * Defines the portion of file names which will be replaced by symbol value.
+               */
+              fileRename?: string;
+              onlyIf?: {
+                /**
+                 * The replacement string occurs after this value.
+                 */
+                after?: string;
+                /**
+                 * The replacement string occurs before this value.
+                 */
+                before?: string;
+                [k: string]: unknown | undefined;
+              }[];
+              [k: string]: unknown | undefined;
+            })
           | {
               /**
                * Defines the high level configuration of symbol.
@@ -541,7 +575,11 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
               value?: string;
               [k: string]: unknown | undefined;
             }
-        )
+        ) & {
+          datatype?: Datatype;
+          type: 'bind' | 'derived' | 'generated' | 'parameter' | 'computed';
+          [k: string]: unknown | undefined;
+        })
       | undefined;
   };
   /**
@@ -597,7 +635,7 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
    */
   constraints?: {
     [k: string]:
-      | (
+      | ((
           | {
               args?:
                 | unknown[]
@@ -651,7 +689,19 @@ export interface JSONSchemaNETTemplateConfigurationTemplateJson {
               args?: string;
               [k: string]: unknown | undefined;
             }
-        )
+        ) & {
+          /**
+           * Constraint type.
+           */
+          type: string;
+          /**
+           * Constraints arguments.
+           */
+          args?: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        })
       | undefined;
   };
   [k: string]: unknown | undefined;

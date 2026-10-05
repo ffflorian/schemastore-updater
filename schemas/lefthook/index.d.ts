@@ -53,7 +53,7 @@ export interface HttpsJsonSchemastoreOrgLefthookJson {
   colors?:
     | boolean
     | {
-        [k: string]: (number | string) | undefined;
+        [k: string]: number | string | undefined;
       };
   /**
    * Whether hide spinner and other interactive things.

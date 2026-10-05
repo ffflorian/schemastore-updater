@@ -301,7 +301,12 @@ export interface UpdateIdentity {
  * Properties of a device this update is compatible with.
  */
 export interface UpdateCompatibilityInfo {
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 /**
  * Update installation instructions.
@@ -346,5 +351,10 @@ export interface UpdateFile {
  */
 export interface FileHashes {
   sha256: SHA256HashValue;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }

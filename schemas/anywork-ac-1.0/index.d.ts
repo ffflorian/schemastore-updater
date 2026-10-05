@@ -4,8 +4,6 @@
  * AnyWork automation config schema
  */
 export type AnyWorkAutomationConfig = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * A configuration type
    */

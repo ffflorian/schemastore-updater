@@ -2058,14 +2058,12 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
         {
           patterns?: {
             [k: string]:
-              | (
-                  | string
-                  | {
-                      suggest: string;
-                      fix?: boolean;
-                      message?: string;
-                    }
-                )
+              | string
+              | {
+                  suggest: string;
+                  fix?: boolean;
+                  message?: string;
+                }
               | undefined;
           };
           [k: string]: unknown | undefined;
@@ -2404,11 +2402,13 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^(?:\S+)$".
              */
-            [k: string]: {
-              singleline?: 'always' | 'never' | 'consistent' | 'ignore';
-              multiline?: 'always' | 'never' | 'consistent' | 'ignore';
-              maxEmptyLines?: number;
-            };
+            [k: string]:
+              | {
+                  singleline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  multiline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  maxEmptyLines?: number;
+                }
+              | undefined;
           };
           [k: string]: unknown | undefined;
         }
@@ -3311,7 +3311,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^(?:\S+|/.*\/[a-z]*)$".
              */
-            [k: string]: string[];
+            [k: string]: string[] | undefined;
           };
           directives?: string[];
           [k: string]: unknown | undefined;
@@ -5317,9 +5317,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
    * https://typescript-eslint.io/rules/consistent-indexed-object-style
    */
   '@typescript-eslint/consistent-indexed-object-style'?:
-    | RuleNumber
-    | RuleString
-    | [RuleNumber | RuleString, 'record' | 'index-signature'];
+    RuleNumber | RuleString | [RuleNumber | RuleString, 'record' | 'index-signature'];
   /**
    * Require `return` statements to either always or never specify values
    * https://typescript-eslint.io/rules/consistent-return
@@ -5352,9 +5350,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
    * https://typescript-eslint.io/rules/consistent-type-definitions
    */
   '@typescript-eslint/consistent-type-definitions'?:
-    | RuleNumber
-    | RuleString
-    | [RuleNumber | RuleString, 'interface' | 'type'];
+    RuleNumber | RuleString | [RuleNumber | RuleString, 'interface' | 'type'];
   /**
    * Enforce consistent usage of type exports
    * https://typescript-eslint.io/rules/consistent-type-exports

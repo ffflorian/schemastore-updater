@@ -31,7 +31,7 @@ export type GitPattern = boolean | GitSet;
  * The URL of an index to use for fetching packages (e.g., `https://pypi.org/simple`), or a local path.
  */
 export type IndexUrl = string;
-export type ConfigSettingValue = (string | string[]) | undefined;
+export type ConfigSettingValue = string | string[];
 /**
  * The normalized name of an extra dependency.
  *
@@ -358,7 +358,7 @@ export type PythonPreference = 'only-managed' | 'managed' | 'system' | 'only-sys
  * A version specifier, e.g. `>=0.5.0` or `==0.5.0`.
  */
 export type RequiredVersion = string;
-export type Sources = (Source | Source[]) | undefined;
+export type Sources = Source | Source[];
 /**
  * A `tool.uv.sources` value.
  */
@@ -1280,7 +1280,7 @@ export interface ConfigSettings {
  * Settings to pass to PEP 517 build backends on a per-package basis.
  */
 export interface PackageConfigSettings {
-  [k: string]: ConfigSettings;
+  [k: string]: ConfigSettings | undefined;
 }
 /**
  * A single item in a conflicting set.
@@ -1338,7 +1338,7 @@ export interface PackageExclusionTarget {
   version?: string | null;
 }
 export interface ExcludeNewerPackage {
-  [k: string]: ExcludeNewerOverride;
+  [k: string]: ExcludeNewerOverride | undefined;
 }
 export interface ExtraBuildDependencies {
   [k: string]: ExtraBuildDependency[] | undefined;

@@ -11,7 +11,7 @@ export type RestrictAccessToThisPermissionToTrustedUsers = boolean;
 
 export interface JSONSchemaForDrupalPermissionsFile {
   permission_callbacks?: ListOfPermissionCallbacks;
-  [k: string]: PermissionDefinition | undefined;
+  [k: string]: PermissionDefinition | ListOfPermissionCallbacks | undefined;
 }
 export interface PermissionDefinition {
   title: TheHumanReadableNameOfThePermission;

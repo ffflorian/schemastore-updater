@@ -240,89 +240,6 @@ export type Duration = number;
  */
 export type Format = string;
 /**
- * An individual human being. nar:subject
- */
-export type Person1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * Symbols used for a financial instrument linked to the organisation at a specific market place
- */
-export type Symbols1 = {
-  ticker?: Ticker;
-  exchange?: Exchange;
-}[];
-/**
- * An administrative and functional structure which may act as as a business, as a political party or not-for-profit party. nar:subject
- */
-export type Organisation1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-  symbols?: Symbols1;
-}[];
-/**
- * A named location. nar:subject
- */
-export type Place1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-  /**
-   * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
-   *
-   * This interface was referenced by `undefined`'s JSON-Schema definition
-   * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
-   */
-  [k: string]:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | Name
-    | undefined;
-}[];
-/**
- * A concept with a relationship to the content. nar:subject
- */
-export type Subject1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * Something which happens in a planned or unplanned manner. nar:?
- */
-export type Event1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * Something material, excluding persons. nar:subject
- */
-export type Object1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * A party (person or organisation) which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content. (Added in version 1.2 according to issue #15.) .    infosource:  nar:infoSource
- */
-export type InfoSource1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Schema;
-  code?: Code;
-}[];
-/**
  * An array of objects to allow links to documents about trust indicators. (nar:link) issue #44. (Added in version 1.3)
  */
 export type TrustIndicator = {
@@ -360,23 +277,6 @@ export type Body = string;
  * via the `patternProperty` "^headline_[a-zA-Z0-9_]+".
  */
 export type ExtraHeadlines = string;
-/**
- * An array of objects to allow links to documents about trust indicators. (nar:link) issue #44. (Added in version 1.3)
- */
-export type TrustIndicator1 = {
-  scheme?: Scheme;
-  code?: Code;
-  title?: Title;
-  href?: Href;
-}[];
-/**
- * A nature, intellectual or journalistic form of the content. nar:genre. (Added in version 1.3)
- */
-export type Genre1 = {
-  name?: Name;
-  scheme?: Scheme;
-  code?: Code;
-}[];
 
 /**
  * A news item as JSON object -- copyright 2020 IPTC - International Press Telecommunications Council - www.iptc.org - This document is published under the Creative Commons Attribution 4.0 license, see  http://creativecommons.org/licenses/by/4.0/
@@ -420,9 +320,9 @@ export interface IPTCNinjsNewsInJSON13Approved13May2020 {
   associations?: {
     [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
   };
-  altids?: AlternativeId1;
-  trustindicator?: TrustIndicator1;
-  genre?: Genre1;
+  altids?: AlternativeId;
+  trustindicator?: TrustIndicator;
+  genre?: Genre;
   [k: string]:
     | Description
     | Standard
@@ -441,9 +341,9 @@ export interface IPTCNinjsNewsInJSON13Approved13May2020 {
     | {
         [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
       }
-    | AlternativeId1
-    | TrustIndicator1
-    | Genre1
+    | AlternativeId
+    | TrustIndicator
+    | Genre
     | undefined;
 }
 /**
@@ -500,13 +400,13 @@ export interface IPTCNinjsNewsInJSON13Approved13May20201 {
   usageterms?: UsageTerms;
   ednote?: EditorialNote;
   language?: Language;
-  person?: Person1;
-  organisation?: Organisation1;
-  place?: Place1;
-  subject?: Subject1;
-  event?: Event1;
-  object?: Object1;
-  infosource?: InfoSource1;
+  person?: Person;
+  organisation?: Organisation;
+  place?: Place;
+  subject?: Subject;
+  event?: Event;
+  object?: Object;
+  infosource?: InfoSource;
   title?: Title;
   byline?: Byline;
   headline?: Headline;
@@ -514,7 +414,7 @@ export interface IPTCNinjsNewsInJSON13Approved13May20201 {
   located?: Located;
   charcount?: CharacterCount;
   wordcount?: WordCount;
-  renditions?: Renditions1;
+  renditions?: Renditions;
   /**
    * Content of news objects which are associated with this news object. nar:link
    */
@@ -523,7 +423,7 @@ export interface IPTCNinjsNewsInJSON13Approved13May20201 {
   };
   altids?: AlternativeId;
   trustindicator?: TrustIndicator;
-  $standard?: Standard1;
+  $standard?: Standard;
   genre?: Genre;
   [k: string]:
     | Description
@@ -531,63 +431,26 @@ export interface IPTCNinjsNewsInJSON13Approved13May20201 {
     | RepresentationType
     | PublicationStatus
     | Urgency
-    | Person1
-    | Organisation1
-    | Place1
-    | Subject1
-    | Event1
-    | Object1
-    | InfoSource1
-    | Renditions1
+    | Person
+    | Organisation
+    | Place
+    | Subject
+    | Event
+    | Object
+    | InfoSource
+    | Renditions
     | {
         [k: string]: IPTCNinjsNewsInJSON13Approved13May20201 | undefined;
       }
     | AlternativeId
     | TrustIndicator
-    | Standard1
+    | Standard
     | Genre
-    | undefined;
-}
-/**
- * Wrapper for different renditions of the news object. nar:remoteContent
- */
-export interface Renditions1 {
-  /**
-   * A specific rendition of the content of the news object. (Description changed in version 1.2 according to issue #17.)
-   *
-   * This interface was referenced by `Renditions1`'s JSON-Schema definition
-   * via the `patternProperty` "^[a-zA-Z0-9_]+".
-   */
-  [k: string]:
-    | {
-        href?: Href;
-        mimetype?: Mimetype;
-        title?: Title;
-        height?: Height;
-        width?: Width;
-        sizeinbytes?: SizeInBytes;
-        duration?: Duration;
-        format?: Format;
-      }
     | undefined;
 }
 /**
  * Alternative identifiers of the item. It is up to the individual provider to name and set type on the alternative identifiers they like to use. nar:altId issue #3. (Added in version 1.3)
  */
 export interface AlternativeId {
-  [k: string]: unknown | undefined;
-}
-/**
- * An object with information about standard, version and schema this instance is valid against. nar:standard, nar:standardversion and xml:schema issue #43. (Added in version 1.3)
- */
-export interface Standard1 {
-  name?: NameOfStandard;
-  version?: VersionOfStandard;
-  schema?: Schema;
-}
-/**
- * Alternative identifiers of the item. It is up to the individual provider to name and set type on the alternative identifiers they like to use. nar:altId issue #3. (Added in version 1.3)
- */
-export interface AlternativeId1 {
   [k: string]: unknown | undefined;
 }

@@ -25,6 +25,11 @@ export interface ConfigurationBaselineSchema {
   description?: string;
   parameters?: BaselineParameterSchema[];
   resources?: {
+    displayName: string;
+    resourceType: {
+      [k: string]: unknown | undefined;
+    };
+    properties: unknown;
     [k: string]: unknown | undefined;
   }[];
   [k: string]: unknown | undefined;

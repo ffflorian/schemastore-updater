@@ -52,7 +52,7 @@ export type UnescapedBackticks = LintLevel | DetailedLint;
  * The group of all rustdoc lints (`#![allow(rustdoc::all)]`).
  */
 export type All = LintLevel | DetailedLint;
-export type Lint = (LintLevel | DetailedLint) | undefined;
+export type Lint = LintLevel | DetailedLint;
 
 /**
  * Lint settings for rustdoc individual lints and the `all` lint.
@@ -70,7 +70,21 @@ export interface RustdocLints {
   redundant_explicit_links?: RedundantExplicitLinks;
   unescaped_backticks?: UnescapedBackticks;
   all?: All;
-  [k: string]: Lint | undefined;
+  [k: string]:
+    | Lint
+    | BareURLs
+    | BrokenIntraDocLinks
+    | InvalidCodeblockAttributes
+    | InvalidHTMLTags
+    | InvalidRustCodeblocks
+    | MissingCrateLevelDocs
+    | MissingDocCodeExamples
+    | PrivateDocTests
+    | PrivateIntraDocLinks
+    | RedundantExplicitLinks
+    | UnescapedBackticks
+    | All
+    | undefined;
 }
 export interface DetailedLint {
   level?: LintLevel;

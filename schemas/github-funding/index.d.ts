@@ -54,11 +54,7 @@ export type ThanksDev = string;
  * Link or links where funding is accepted on external locations.
  */
 export type CustomURLOrURLS =
-  | string
-  | [string]
-  | [string, string]
-  | [string, string, string]
-  | [string, string, string, string];
+  string | [string] | [string, string] | [string, string, string] | [string, string, string, string];
 
 /**
  * You can add a sponsor button in your repository to increase the visibility of funding options for your open source project.

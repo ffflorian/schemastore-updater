@@ -30,7 +30,7 @@ export interface HttpsJsonSchemastoreOrgLegoJson {
    * An object mapping file objects to strings
    */
   fileFormats?: {
-    [k: string]: FileFormat1;
+    [k: string]: FileFormat | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -38,23 +38,6 @@ export interface HttpsJsonSchemastoreOrgLegoJson {
  * This object or string represents the file format
  */
 export interface FileFormat {
-  /**
-   * Name of block file
-   */
-  name: string;
-  /**
-   * Path to file template
-   */
-  template?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * This object represents a file format
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` ".*".
- */
-export interface FileFormat1 {
   /**
    * Name of block file
    */

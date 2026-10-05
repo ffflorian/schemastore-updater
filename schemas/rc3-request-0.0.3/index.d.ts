@@ -21,9 +21,9 @@ export interface Rc3Request {
    */
   url?: string;
   params?: Nvp;
-  form_data?: Nvp1;
+  form_data?: Nvp;
   auth?: Rc3Auth;
-  headers?: Nvp2;
+  headers?: Nvp;
   /**
    * The body of the request
    */
@@ -67,13 +67,6 @@ export interface Nvp {
   [k: string]: string | undefined;
 }
 /**
- * Form x-www-form-urlencoded data to pass in the request body
- */
-export interface Nvp1 {
-  name?: string;
-  [k: string]: string | undefined;
-}
-/**
  * RC auth that can be stored at Collection, Folder, or Request levels
  */
 export interface Rc3Auth {
@@ -101,11 +94,4 @@ export interface Rc3Auth {
    * The basic auth password
    */
   password?: string;
-}
-/**
- * The HTTP headers to send with this request
- */
-export interface Nvp2 {
-  name?: string;
-  [k: string]: string | undefined;
 }

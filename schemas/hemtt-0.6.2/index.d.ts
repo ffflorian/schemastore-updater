@@ -68,20 +68,15 @@ export type TheReusePrivateKeySchema = boolean;
 export type ThePostbuildSchema = TheItemsSchema[];
 export type ThePrebuildSchema = TheItemsSchema[];
 export type TheReleasebuildSchema = TheItemsSchema[];
-export type TheSchema =
-  | (
-      | (ParallelRequiresForeachToBeTrue & {
-          steps?: TheStepsSchema;
-          steps_linux?: TheStepsLinuxSchema;
-          steps_windows?: TheStepsWindowsSchema;
-          show_output?: TheShowOutputSchema;
-          foreach?: TheForeachSchema;
-          parallel?: TheParallelSchema;
-          [k: string]: unknown | undefined;
-        })
-      | undefined
-    )
-  | undefined;
+export type TheSchema = ParallelRequiresForeachToBeTrue & {
+  steps?: TheStepsSchema;
+  steps_linux?: TheStepsLinuxSchema;
+  steps_windows?: TheStepsWindowsSchema;
+  show_output?: TheShowOutputSchema;
+  foreach?: TheForeachSchema;
+  parallel?: TheParallelSchema;
+  [k: string]: unknown | undefined;
+};
 export type ParallelRequiresForeachToBeTrue =
   | {
       [k: string]: unknown | undefined;

@@ -33,21 +33,23 @@ export interface AzureStaticWebAppsConfigurationFile {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: {
-      /**
-       * Redirect to a relative or absolute path, or an external URI. Default status code is 302, override with 301.
-       */
-      redirect?: string;
-      /**
-       * Status code
-       */
-      statusCode?: number;
-      /**
-       * A path to rewrite the request route to
-       */
-      rewrite?: string;
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          /**
+           * Redirect to a relative or absolute path, or an external URI. Default status code is 302, override with 301.
+           */
+          redirect?: string;
+          /**
+           * Status code
+           */
+          statusCode?: number;
+          /**
+           * A path to rewrite the request route to
+           */
+          rewrite?: string;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   /**
    * Custom mime types configuration
@@ -57,7 +59,7 @@ export interface AzureStaticWebAppsConfigurationFile {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^\..+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Default headers to set on all responses
@@ -308,53 +310,55 @@ export interface Auth {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` ".*".
        */
-      [k: string]: {
-        /**
-         * <false> if the custom OpenID Connect provider is not enabled, <true> otherwise
-         */
-        enabled?: boolean;
-        registration: {
-          /**
-           * The name of the application setting containing the Client ID
-           */
-          clientIdSettingName?: string;
-          clientCredential: {
+      [k: string]:
+        | {
             /**
-             * The name of the application setting containing the Client Secret
+             * <false> if the custom OpenID Connect provider is not enabled, <true> otherwise
              */
-            clientSecretSettingName: string;
-            [k: string]: unknown | undefined;
-          };
-          openIdConnectConfiguration: {
-            /**
-             * The path to the authorization endpoint
-             */
-            authorizationEndpoint?: string;
-            /**
-             * The path to the token endpoint
-             */
-            tokenEndpoint?: string;
-            /**
-             * The path to the issuer endpoint
-             */
-            issuer?: string;
-            /**
-             * The path to the jwks uri
-             */
-            certificationUri?: string;
-            /**
-             * The path to the well known configuration endpoint
-             */
-            wellKnownOpenIdConfiguration?: string;
-            [k: string]: unknown | undefined;
-          };
-        };
-        login: {
-          nameClaimType?: string;
-          scopes?: string[];
-          loginParameterNames?: string[];
-        };
-      };
+            enabled?: boolean;
+            registration: {
+              /**
+               * The name of the application setting containing the Client ID
+               */
+              clientIdSettingName?: string;
+              clientCredential: {
+                /**
+                 * The name of the application setting containing the Client Secret
+                 */
+                clientSecretSettingName: string;
+                [k: string]: unknown | undefined;
+              };
+              openIdConnectConfiguration: {
+                /**
+                 * The path to the authorization endpoint
+                 */
+                authorizationEndpoint?: string;
+                /**
+                 * The path to the token endpoint
+                 */
+                tokenEndpoint?: string;
+                /**
+                 * The path to the issuer endpoint
+                 */
+                issuer?: string;
+                /**
+                 * The path to the jwks uri
+                 */
+                certificationUri?: string;
+                /**
+                 * The path to the well known configuration endpoint
+                 */
+                wellKnownOpenIdConfiguration?: string;
+                [k: string]: unknown | undefined;
+              };
+            };
+            login: {
+              nameClaimType?: string;
+              scopes?: string[];
+              loginParameterNames?: string[];
+            };
+          }
+        | undefined;
     };
   };
 }

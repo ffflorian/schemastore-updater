@@ -248,6 +248,8 @@ export type Duration = number;
 export type Format = string;
 /**
  * An array of objects with different renditions of the news object. nar:remoteContent
+ *
+ * Items: A specific rendition of the content of the news object. (Description changed in version 1.2 according to issue #17.)
  */
 export type Renditions = {
   name: Name;
@@ -262,6 +264,8 @@ export type Renditions = {
 }[];
 /**
  * An array of objects with content of news objects which are associated with this news object.
+ *
+ * Items: One associated object where each object can use all properties in ninjs.
  */
 export type Associations = (
   | {
@@ -311,7 +315,7 @@ export type Genres = {
 /**
  * Expression of rights to be applied to content. nar:rightsInfo
  */
-export type RightsInformation =
+export type RightsInformation = (
   | {
       linkedrights: LinkedRights;
       [k: string]: unknown | undefined;
@@ -319,7 +323,11 @@ export type RightsInformation =
   | {
       encodedrights: EncodedRights;
       [k: string]: unknown | undefined;
-    };
+    }
+) & {
+  langid?: LanguageId;
+  [k: string]: unknown | undefined;
+};
 /**
  * A link from the current Item to Web resource with rights related information. nar:link
  */
@@ -328,6 +336,10 @@ export type LinkedRights = string;
  * Contains a rights expression as defined by a Rights Expression Language. nar:rightsExpressionXML or nar:rightsExpressionData
  */
 export type EncodedRights = string;
+/**
+ * Identifier for the Rights Expression language used. nar:@langid
+ */
+export type LanguageId = string;
 
 /**
  * A news item as JSON object -- copyright 2021 IPTC - International Press Telecommunications Council - www.iptc.org - This document is published under the Creative Commons Attribution 4.0 license, see  http://creativecommons.org/licenses/by/4.0/

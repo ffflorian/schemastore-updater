@@ -15,9 +15,7 @@ export type OS = 'ANDROID' | 'IOS';
 /**
  * Permission decision for iOS devices
  */
-export type PermissionDecision =
-  | ('ALWAYS' | 'CRITICAL' | 'IN_USE' | 'LIMITED' | 'NEVER' | 'NO' | 'UNSET' | 'YES')
-  | undefined;
+export type PermissionDecision = 'ALWAYS' | 'CRITICAL' | 'IN_USE' | 'LIMITED' | 'NEVER' | 'NO' | 'UNSET' | 'YES';
 /**
  * Swiping speed for Mobile devices
  */
@@ -680,14 +678,12 @@ export interface HttpsJsonSchemastoreOrgBoykaConfigJson {
              */
             experimental_options?: {
               [k: string]:
-                | (
-                    | string
-                    | number
-                    | boolean
-                    | {
-                        [k: string]: unknown | undefined;
-                      }
-                  )
+                | string
+                | number
+                | boolean
+                | {
+                    [k: string]: unknown | undefined;
+                  }
                 | undefined;
             };
             /**
@@ -757,11 +753,11 @@ export interface HttpsJsonSchemastoreOrgBoykaConfigJson {
  * Capabilities object where you can add any capability based on the Cloud platform supported or Grid supported capabilities
  */
 export interface Caps {
-  [k: string]: (string | number | boolean) | undefined;
+  [k: string]: string | number | boolean | undefined;
 }
 /**
  * Arguments object where you can add any arguments
  */
 export interface Args {
-  [k: string]: (string | number | boolean) | undefined;
+  [k: string]: string | number | boolean | undefined;
 }

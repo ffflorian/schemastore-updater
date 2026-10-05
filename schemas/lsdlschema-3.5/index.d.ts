@@ -202,7 +202,7 @@ export type Identifier = string;
 /**
  * A role in a linguistic relationship.
  */
-export type Role = (Identifier | FullRole) | undefined;
+export type Role = Identifier | FullRole;
 /**
  * A set of conditions which are required to be true for instances of the relationship represented in the semantic model
  *
@@ -325,7 +325,7 @@ export type VerbPhrasing = {
  * @minItems 1
  */
 export type GlobalSubstitutions = [GlobalSubstitution, ...GlobalSubstitution[]];
-export type GlobalSubstitutionProperties = (string | FullGlobalSubstitutionProperties) | undefined;
+export type GlobalSubstitutionProperties = string | FullGlobalSubstitutionProperties;
 /**
  * Examples associated with the linguistic schema.
  *

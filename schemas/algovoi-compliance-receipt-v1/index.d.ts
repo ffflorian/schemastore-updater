@@ -24,6 +24,8 @@ export interface AlgoVoiComplianceReceiptV1 {
    * Ordered list of jurisdictions under which the screening was performed. Element order is load-bearing: per RFC 8785 §3.2.3 array element order is preserved in canonicalisation, so ['UK','EU'] and ['EU','UK'] produce distinct canonical bytes and distinct SHA-256 hashes. Producer-side ordering MUST match the order under which the regulatory rules were applied.
    *
    * @minItems 1
+   *
+   * Items: Jurisdiction code (typically ISO 3166-1 alpha-2 or the regional aggregate code such as EU).
    */
   jurisdiction_flags: [string, ...string[]];
   /**

@@ -1,10 +1,6 @@
 /* eslint-disable */
 
-export type SourceSchema = {
-  path: string;
-  matchCase?: boolean;
-} & SourceSchema1;
-export type SourceSchema1 =
+export type SourceSchema =
   | string
   | {
       path: string;
@@ -13,23 +9,7 @@ export type SourceSchema1 =
 /**
  * @minItems 1
  */
-export type ScopesSchema = {
-  GET?: ScopeTemplate;
-  POST?: ScopeTemplate;
-  HEAD?: ScopeTemplate;
-  PUT?: ScopeTemplate;
-  DELETE?: ScopeTemplate;
-  TRACE?: ScopeTemplate;
-  PATCH?: ScopeTemplate;
-  OPTIONS?: ScopeTemplate;
-  CONNECT?: ScopeTemplate;
-  default?: ScopeTemplate;
-} & ScopesSchema1;
-/**
- * @minItems 1
- */
-export type ScopeTemplate = string | [string, ...string[]];
-export type ScopesSchema1 =
+export type ScopesSchema =
   | string
   | [string, ...string[]]
   | {
@@ -44,13 +24,23 @@ export type ScopesSchema1 =
       CONNECT?: ScopeTemplate;
       default?: ScopeTemplate;
     };
+/**
+ * @minItems 1
+ */
+export type ScopeTemplate = string | [string, ...string[]];
+export type HostPatternSchema =
+  | string
+  | {
+      [k: string]: unknown | undefined;
+    };
 
 /**
  * Application Router Configuration Schema
  */
-export interface ComSapXsappSchema_82 {
+export interface SAPApplicationRouterConfiguration {
   welcomeFile?: string;
   authenticationMethod?: 'none' | 'route';
+  stateProtection?: boolean;
   sessionTimeout?: number;
   pluginMetadataEndpoint?: string;
   routes?: {
@@ -64,12 +54,16 @@ export interface ComSapXsappSchema_82 {
     ];
     target?: string;
     destination?: string;
+    destinationAuth?: 'ias' | 'xsuaa';
+    setBackendSessionCookies?: boolean;
     localDir?: string;
     csrfProtection?: boolean;
+    preferLocal?: boolean;
     service?: string;
     endpoint?: string;
-    authenticationType?: 'xsuaa' | 'basic' | 'ias' | 'none';
+    authenticationType?: 'xsuaa' | 'ias' | 'basic' | 'none';
     identityProvider?: string;
+    dynamicIdentityProvider?: boolean;
     scope?: ScopesSchema;
     replace?: {
       pathSuffixes: string[];
@@ -79,6 +73,10 @@ export interface ComSapXsappSchema_82 {
       };
     };
     cacheControl?: string;
+  }[];
+  responseHeaders?: {
+    name: string;
+    value: string;
   }[];
   destinations?: {
     [k: string]:
@@ -98,8 +96,11 @@ export interface ComSapXsappSchema_82 {
       | undefined;
   };
   logout?: {
+    backChannelLogoutEndpoint?: string;
     logoutEndpoint?: string;
     logoutPage?: string;
+    logoutMethod?: 'POST' | 'GET';
+    csrfProtection?: boolean;
   };
   login?: {
     callbackEndpoint: string;
@@ -110,17 +111,52 @@ export interface ComSapXsappSchema_82 {
   compression?: {
     enabled?: boolean;
     minSize?: number;
+    compressResponseMixedTypeContent?: boolean;
   };
   websockets?: {
     enabled: boolean;
   };
-  errorPage?: {
+  errorPage?: ({
+    [k: string]: unknown | undefined;
+  } & {
     /**
      * @minItems 1
      */
     status: number | [number, ...number[]];
-    file: string;
+    file?: string;
+    path?: string;
     [k: string]: unknown | undefined;
-  }[];
+  })[];
+  /**
+   * @minItems 1
+   */
+  cors?: [CorsConfigItem, ...CorsConfigItem[]];
   [k: string]: unknown | undefined;
+}
+export interface CorsConfigItem {
+  uriPattern: SourceSchema;
+  hostPattern?: HostPatternSchema;
+  allowedOrigin: AllowedOriginItem[];
+  /**
+   * @minItems 1
+   */
+  allowedMethods?: [
+    'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'POST' | 'PUT' | 'TRACE' | 'PATCH',
+    ...('DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'POST' | 'PUT' | 'TRACE' | 'PATCH')[]
+  ];
+  /**
+   * @minItems 1
+   */
+  allowedHeaders?: [string, ...string[]];
+  allowedCredentials?: boolean;
+  /**
+   * @minItems 1
+   */
+  exposeHeaders?: [string, ...string[]];
+  maxAge?: number;
+}
+export interface AllowedOriginItem {
+  host: string;
+  protocol?: string;
+  port?: number;
 }

@@ -221,12 +221,10 @@ export interface JSONSchemaForExpoSDK50AppManifest {
      */
     locales?: {
       [k: string]:
-        | (
-            | string
-            | {
-                [k: string]: unknown | undefined;
-              }
-          )
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
         | undefined;
     };
     /**

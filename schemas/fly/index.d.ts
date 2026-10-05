@@ -118,7 +118,7 @@ export interface FlyIoConfigSchemaFlyToml {
          * Add or remove HTTP response headers.
          */
         headers?: {
-          [k: string]: (boolean | string | string[]) | undefined;
+          [k: string]: boolean | string | string[] | undefined;
         };
         [k: string]: unknown | undefined;
       };
@@ -427,7 +427,7 @@ export interface Services {
       response?: {
         pristine?: boolean;
         headers?: {
-          [k: string]: (boolean | string | string[]) | undefined;
+          [k: string]: boolean | string | string[] | undefined;
         };
         [k: string]: unknown | undefined;
       };

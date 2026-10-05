@@ -4,7 +4,7 @@
  * Task for the current build file
  * https://no0dles.gitbook.io/hammerkit/task
  */
-export type Task = (ContainerTask | LocalTask) | undefined;
+export type Task = ContainerTask | LocalTask;
 export type TaskCommand = Command | TaskCommandWithPathExtension;
 /**
  * Command to be executed for the current task
@@ -61,7 +61,7 @@ export type TaskImage = string;
 /**
  * A daemon in the background
  */
-export type Service = (ContainerService | KubernetesService) | undefined;
+export type Service = ContainerService | KubernetesService;
 
 /**
  * Build tool with support for containerization
@@ -114,6 +114,8 @@ export interface ContainerTask {
   image: TaskImage;
   /**
    * A list of ports that get exposed on the host from the container <localPort>:<targetPort>
+   *
+   * Items: <localPort>:<targetPort>
    */
   ports?: string[];
   /**
@@ -180,7 +182,7 @@ export interface Services {
  * https://no0dles.gitbook.io/hammerkit/service/kubernetes
  */
 export interface ContainerService {
-  labels?: LabelOptions1;
+  labels?: LabelOptions;
   envs?: ServiceEnvironmentVariables;
   healthcheck?: ServiceHealthcheck;
   /**
@@ -190,25 +192,24 @@ export interface ContainerService {
   /**
    * A list of ports that get exposed on the host from the container <localPort>:<targetPort>
    * https://no0dles.gitbook.io/hammerkit/service/container#mounts
+   *
+   * Items: <localPort>:<targetPort>
    */
   ports?: string[];
   /**
    * A list of volumes that get attached to the container <name>:<containerPath>
    * https://no0dles.gitbook.io/hammerkit/service/container#mounts
+   *
+   * Items: <name>:<containerPath>
    */
   volumes?: string[];
   /**
    * File paths that get mounted into the container <localPath>:<containerPath>
    * https://no0dles.gitbook.io/hammerkit/service/container#mounts
+   *
+   * Items: <localPath>:<containerPath>
    */
   mounts?: string[];
-}
-/**
- * A map of label values for the current service
- * https://no0dles.gitbook.io/hammerkit/labels
- */
-export interface LabelOptions1 {
-  [k: string]: string | undefined;
 }
 /**
  * Environment values for the current service
@@ -247,6 +248,8 @@ export interface KubernetesService {
   context: string;
   /**
    * A list of ports that get exposed on the host from the service <localPort>:<targetPort>
+   *
+   * Items: <localPort>:<targetPort>
    */
   ports: string[];
   selector: ServiceSelector;
@@ -270,12 +273,12 @@ export interface ServiceSelector {
  * https://no0dles.gitbook.io/hammerkit/build-file/includes
  */
 export interface Includes {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * References to other build files
  * https://no0dles.gitbook.io/hammerkit/build-file/references
  */
 export interface References {
-  [k: string]: string;
+  [k: string]: string | undefined;
 }

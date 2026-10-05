@@ -587,7 +587,64 @@ export interface ClaudeCodePluginMarketplace {
       | string
       | {
           [k: string]:
-            | (
+            | {
+                type?: 'stdio';
+                command: string;
+                args?: string[];
+                env?: {
+                  [k: string]: string | undefined;
+                };
+                [k: string]: unknown | undefined;
+              }
+            | {
+                type: 'sse';
+                url: string;
+                headers?: {
+                  [k: string]: string | undefined;
+                };
+                headersHelper?: string;
+                oauth?: {
+                  clientId?: string;
+                  callbackPort?: number;
+                  authServerMetadataUrl?: string;
+                  scopes?: string;
+                  xaa?: boolean;
+                  [k: string]: unknown | undefined;
+                };
+                [k: string]: unknown | undefined;
+              }
+            | {
+                type: 'http';
+                url: string;
+                headers?: {
+                  [k: string]: string | undefined;
+                };
+                headersHelper?: string;
+                oauth?: {
+                  clientId?: string;
+                  callbackPort?: number;
+                  authServerMetadataUrl?: string;
+                  scopes?: string;
+                  xaa?: boolean;
+                  [k: string]: unknown | undefined;
+                };
+                [k: string]: unknown | undefined;
+              }
+            | {
+                type: 'ws';
+                url: string;
+                headers?: {
+                  [k: string]: string | undefined;
+                };
+                headersHelper?: string;
+                [k: string]: unknown | undefined;
+              }
+            | undefined;
+        }
+      | (
+          | string
+          | {
+              [k: string]:
                 | {
                     type?: 'stdio';
                     command: string;
@@ -640,67 +697,6 @@ export interface ClaudeCodePluginMarketplace {
                     headersHelper?: string;
                     [k: string]: unknown | undefined;
                   }
-              )
-            | undefined;
-        }
-      | (
-          | string
-          | {
-              [k: string]:
-                | (
-                    | {
-                        type?: 'stdio';
-                        command: string;
-                        args?: string[];
-                        env?: {
-                          [k: string]: string | undefined;
-                        };
-                        [k: string]: unknown | undefined;
-                      }
-                    | {
-                        type: 'sse';
-                        url: string;
-                        headers?: {
-                          [k: string]: string | undefined;
-                        };
-                        headersHelper?: string;
-                        oauth?: {
-                          clientId?: string;
-                          callbackPort?: number;
-                          authServerMetadataUrl?: string;
-                          scopes?: string;
-                          xaa?: boolean;
-                          [k: string]: unknown | undefined;
-                        };
-                        [k: string]: unknown | undefined;
-                      }
-                    | {
-                        type: 'http';
-                        url: string;
-                        headers?: {
-                          [k: string]: string | undefined;
-                        };
-                        headersHelper?: string;
-                        oauth?: {
-                          clientId?: string;
-                          callbackPort?: number;
-                          authServerMetadataUrl?: string;
-                          scopes?: string;
-                          xaa?: boolean;
-                          [k: string]: unknown | undefined;
-                        };
-                        [k: string]: unknown | undefined;
-                      }
-                    | {
-                        type: 'ws';
-                        url: string;
-                        headers?: {
-                          [k: string]: string | undefined;
-                        };
-                        headersHelper?: string;
-                        [k: string]: unknown | undefined;
-                      }
-                  )
                 | undefined;
             }
         )[];

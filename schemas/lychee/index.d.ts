@@ -240,11 +240,5 @@ export interface HostConfig {
    * Minimum interval between requests to this host.
    */
   request_interval?: string;
-  headers?: StringMap1;
-}
-/**
- * Custom request headers for this host.
- */
-export interface StringMap1 {
-  [k: string]: string | undefined;
+  headers?: StringMap;
 }

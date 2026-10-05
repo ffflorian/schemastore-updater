@@ -9,7 +9,7 @@ export interface JSONSchemaForHostMetaFiles {
   [k: string]: unknown | undefined;
 }
 export interface Property {
-  [k: string]: (string | null) | undefined;
+  [k: string]: string | null | undefined;
 }
 export interface Link {
   rel?: string;

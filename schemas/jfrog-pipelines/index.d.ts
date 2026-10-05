@@ -35,7 +35,7 @@ export type Execution = (string | Task)[];
 /**
  * https://www.jfrog.com/confluence/display/JFROG/Pipelines+Steps
  */
-export type Step = Step1 & Step1;
+export type Step = Step1;
 
 export interface Resource1 {
   name?: string;

@@ -2474,16 +2474,7 @@ export interface HttpsJsonSchemastoreOrgPantsbuild2170Json {
      * https://www.pantsbuild.org/v2.17/docs/reference-python#pip_version
      */
     pip_version?:
-      | '20.3.4-patched'
-      | '22.2.2'
-      | '22.3'
-      | '22.3.1'
-      | '23.0'
-      | '23.0.1'
-      | '23.1'
-      | '23.1.1'
-      | '23.1.2'
-      | 'latest';
+      '20.3.4-patched' | '22.2.2' | '22.3' | '22.3.1' | '23.0' | '23.0.1' | '23.1' | '23.1.1' | '23.1.2' | 'latest';
     /**
      * Whether to use the standard Python command history file when running a repl
      * https://www.pantsbuild.org/v2.17/docs/reference-python#repl_history

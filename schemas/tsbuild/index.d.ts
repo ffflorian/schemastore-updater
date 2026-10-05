@@ -379,7 +379,7 @@ export interface CompilerOptionsDefinition {
      * Specify a set of entries that re-map imports to additional lookup locations.
      */
     paths?: {
-      [k: string]: (string[] | null) | undefined;
+      [k: string]: string[] | null | undefined;
     } | null;
     /**
      * Specify a list of language service plugins to include.
@@ -805,6 +805,8 @@ export interface IncludeDefinition {
 export interface ReferencesDefinition {
   /**
    * Referenced projects. Requires TypeScript version 3.0 or later.
+   *
+   * Items: Project reference.
    */
   references?: {
     /**

@@ -8,6 +8,9 @@
  *
  * This interface was referenced by `Presets`'s JSON-Schema definition
  * via the `patternProperty` ".".
+ *
+ * Items: A preset
+ * https://github.com/ChrisTitusTech/winutil/blob/main/config/preset.json
  */
 export type PresetCategory = [string, ...string[]];
 
@@ -16,5 +19,5 @@ export type PresetCategory = [string, ...string[]];
  * https://github.com/ChrisTitusTech/winutil/blob/main/config/preset.json
  */
 export interface Presets {
-  [k: string]: PresetCategory;
+  [k: string]: PresetCategory | undefined;
 }

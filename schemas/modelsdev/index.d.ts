@@ -40,7 +40,7 @@ export interface ModelsConfiguration {
      * Visible benchmark metric columns keyed by data-source id.
      */
     columns?: {
-      [k: string]: StringSet;
+      [k: string]: StringSet | undefined;
     };
     [k: string]: unknown | undefined;
   };

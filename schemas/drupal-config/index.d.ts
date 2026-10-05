@@ -26,7 +26,7 @@ export interface ConfigurationItem {
   constraints?: ValidationConstrains;
   sequence?: ConfigItem;
   mapping?: {
-    [k: string]: ConfigItem;
+    [k: string]: ConfigItem | undefined;
   };
 }
 export interface ValidationConstrains {
@@ -45,6 +45,6 @@ export interface ConfigItem {
   constraints?: ValidationConstrains;
   sequence?: ConfigItem;
   mapping?: {
-    [k: string]: ConfigItem;
+    [k: string]: ConfigItem | undefined;
   };
 }

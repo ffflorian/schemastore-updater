@@ -17,38 +17,8 @@ export type Language = 'auto' | 'en' | 'pl' | 'nl' | 'de' | 'tr';
  * @minItems 1
  */
 export type ActiveBorderColor = [
-  Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1,
-  ...(Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1)[]
+  Color & Color1,
+  ...(Color & Color1)[]
 ];
 export type Color =
   | (
@@ -77,38 +47,8 @@ export type Color1 = string;
  * @minItems 1
  */
 export type InactiveBorderColor = [
-  Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1,
-  ...(Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1)[]
+  Color & Color1,
+  ...(Color & Color1)[]
 ];
 /**
  * A selected line background color
@@ -117,38 +57,8 @@ export type InactiveBorderColor = [
  * @minItems 1
  */
 export type SelectedLineBackgroundColor = [
-  Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1,
-  ...(Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1)[]
+  Color & Color1,
+  ...(Color & Color1)[]
 ];
 /**
  * An option text color
@@ -157,38 +67,8 @@ export type SelectedLineBackgroundColor = [
  * @minItems 1
  */
 export type OptionsTextColor = [
-  Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1,
-  ...(Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1 &
-    Color &
-    Color1)[]
+  Color & Color1,
+  ...(Color & Color1)[]
 ];
 /**
  * Whether to return immediately
@@ -398,6 +278,9 @@ export type Command = string;
 /**
  * Service names
  * https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md#default
+ *
+ * Items: A service name
+ * https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md#default
  */
 export type ServiceNames = string[];
 /**
@@ -526,7 +409,7 @@ export interface CustomCommands {
  * https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md#default
  */
 export interface Replacements {
-  [k: string]: ReplacementGroup;
+  [k: string]: ReplacementGroup | undefined;
 }
 /**
  * A replacement group
@@ -536,5 +419,5 @@ export interface Replacements {
  * via the `patternProperty` ".".
  */
 export interface ReplacementGroup {
-  [k: string]: Replacement;
+  [k: string]: Replacement | undefined;
 }

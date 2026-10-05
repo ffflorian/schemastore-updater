@@ -88,7 +88,7 @@ export interface HttpsJsonSchemastoreOrgAzureDevopsExtensionManifest10Json {
     license?: Link;
     privacypolicy?: Link;
     support?: Link;
-    [k: string]: Link;
+    [k: string]: Link | undefined;
   };
   /**
    * The identifier of the publisher. This identifier must match the identifier the extension is published under.
@@ -209,7 +209,7 @@ export interface ContributionConstraint {
  */
 export interface Content {
   details?: Content1;
-  [k: string]: Content1;
+  [k: string]: Content1 | undefined;
 }
 /**
  * A content file that describes the extension to users.
@@ -324,78 +324,18 @@ export interface Contribution {
  */
 export interface ExtensionEventCallbackCollection {
   postDisable?: ExtensionEventCallback;
-  postEnable?: ExtensionEventCallback1;
-  postInstall?: ExtensionEventCallback2;
-  postUninstall?: ExtensionEventCallback3;
-  postUpdate?: ExtensionEventCallback4;
-  preInstall?: ExtensionEventCallback5;
-  versionCheck?: ExtensionEventCallback6;
+  postEnable?: ExtensionEventCallback;
+  postInstall?: ExtensionEventCallback;
+  postUninstall?: ExtensionEventCallback;
+  postUpdate?: ExtensionEventCallback;
+  preInstall?: ExtensionEventCallback;
+  versionCheck?: ExtensionEventCallback;
   [k: string]: unknown | undefined;
 }
 /**
  * Optional.  Defines an endpoint that gets called via a POST request to notify that an extension disable has occurred.
  */
 export interface ExtensionEventCallback {
-  /**
-   * The uri of the endpoint that is hit when an event occurs
-   */
-  uri?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Optional.  Defines an endpoint that gets called via a POST request to notify that an extension enable has occurred.
- */
-export interface ExtensionEventCallback1 {
-  /**
-   * The uri of the endpoint that is hit when an event occurs
-   */
-  uri?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Optional.  Defines an endpoint that gets called via a POST request to notify that an extension install has completed.
- */
-export interface ExtensionEventCallback2 {
-  /**
-   * The uri of the endpoint that is hit when an event occurs
-   */
-  uri?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Optional.  Defines an endpoint that gets called via a POST request to notify that an extension uninstall has occurred.
- */
-export interface ExtensionEventCallback3 {
-  /**
-   * The uri of the endpoint that is hit when an event occurs
-   */
-  uri?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Optional.  Defines an endpoint that gets called via a POST request to notify that an extension update has occurred.
- */
-export interface ExtensionEventCallback4 {
-  /**
-   * The uri of the endpoint that is hit when an event occurs
-   */
-  uri?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Optional.  Defines an endpoint that gets called via a POST request to notify that an extension install is about to occur.  Response indicates whether to proceed or abort.
- */
-export interface ExtensionEventCallback5 {
-  /**
-   * The uri of the endpoint that is hit when an event occurs
-   */
-  uri?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * For multi-version extensions, defines an endpoint that gets called via an OPTIONS request to determine the particular version of the extension to be used
- */
-export interface ExtensionEventCallback6 {
   /**
    * The uri of the endpoint that is hit when an event occurs
    */

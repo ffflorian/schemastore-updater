@@ -37,10 +37,14 @@ export interface DependabotConfigurationFile {
     target_branch?: string;
     /**
      * Reviewers to set on update pull requests.
+     *
+     * Items: reviewer github username
      */
     default_reviewers?: string[];
     /**
      * Assignees to set on update pull requests.
+     *
+     * Items: assignee github username
      */
     default_assignees?: string[];
     /**
@@ -108,11 +112,7 @@ export interface DependabotConfigurationFile {
      * Specify how Dependabot should update your package manifest (e.g. package.json, Gemfile etc), as opposed to your lockfile. By default, version requirements are increased if it's an app and the range widened if it's a library.
      */
     version_requirement_updates?:
-      | 'off'
-      | 'auto'
-      | 'widen_ranges'
-      | 'increase_versions'
-      | 'increase_versions_if_necessary';
+      'off' | 'auto' | 'widen_ranges' | 'increase_versions' | 'increase_versions_if_necessary';
     /**
      * Preferences for the format of Dependabot's commit messages and pull request titles. By default, Dependabot will attempt to detect your commit message preferences and use those.
      */

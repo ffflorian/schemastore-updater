@@ -8,7 +8,7 @@ export type Exports =
   | string
   | string[]
   | {
-      [k: string]: (string | string[]) | undefined;
+      [k: string]: string | string[] | undefined;
     };
 
 export interface HttpsJsonSchemastoreOrgOmletrcJson {
@@ -47,5 +47,5 @@ export interface HttpsJsonSchemastoreOrgOmletrcJson {
   hookScript?: string;
 }
 export interface Aliases {
-  [k: string]: (string | string[]) | undefined;
+  [k: string]: string | string[] | undefined;
 }

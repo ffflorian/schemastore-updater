@@ -8,8 +8,6 @@ export type TOMLVersion1 = ('v1.0.0' | 'v1.1.0') | 'v1.1.0-preview';
 /**
  * The file match pattern to include in formatting and linting.
  * Supports glob pattern.
- *
- * @minItems 1
  */
 export type FilePatternsToInclude = [GlobPattern, ...GlobPattern[]] | null;
 /**

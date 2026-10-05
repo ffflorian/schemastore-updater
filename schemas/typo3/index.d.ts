@@ -1,8 +1,6 @@
 /* eslint-disable */
 
 export type ErrorHandling = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * Make sure to have at least 0 (not defined otherwise) configured in order to serve helpful error messages to your visitors.
    */
@@ -13,6 +11,11 @@ export type ErrorHandling = {
   errorHandler?: 'Page' | 'Fluid' | 'PHP';
   [k: string]: unknown | undefined;
 };
+export type TypeOfAspect = (
+  | ('LocaleModifier' | 'PersistedAliasMapper' | 'PersistedPatternMapper' | 'StaticRangeMapper' | 'StaticValueMapper')
+  | string
+) &
+  string;
 
 export interface HttpsJsonSchemastoreOrgTypo3Json {
   /**
@@ -40,6 +43,24 @@ export interface HttpsJsonSchemastoreOrgTypo3Json {
      */
     [k: string]:
       | {
+          type: (('Simple' | 'Plugin' | 'Extbase' | 'PageType') | string) & string;
+          default?: string;
+          routePath?: string;
+          limitToPages?: number[];
+          requirements?: {
+            [k: string]: string | undefined;
+          };
+          _arguments?: {
+            [k: string]: string | undefined;
+          };
+          aspects?: {
+            [k: string]:
+              | {
+                  type: TypeOfAspect;
+                  [k: string]: unknown | undefined;
+                }
+              | undefined;
+          };
           [k: string]: unknown | undefined;
         }
       | undefined;

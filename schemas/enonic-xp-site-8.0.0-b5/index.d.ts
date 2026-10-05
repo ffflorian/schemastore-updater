@@ -1,8 +1,6 @@
 /* eslint-disable */
 
 export type ControllerMapping = {
-  [k: string]: unknown | undefined;
-} & {
   service?: string;
   controller?: string;
   filter?: string;
@@ -10,6 +8,9 @@ export type ControllerMapping = {
   invertPattern?: boolean;
   match?: string;
   order?: number;
+} & ControllerMapping1;
+export type ControllerMapping1 = {
+  [k: string]: unknown | undefined;
 };
 
 /**

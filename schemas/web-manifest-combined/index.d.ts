@@ -95,24 +95,22 @@ export interface JSONSchemaForWebApplicationManifestFiles1 {
      * A localized value is either a plain string or an object that carries the localized string together with an optional language tag and text direction.
      */
     [k: string]:
-      | (
-          | string
-          | {
-              /**
-               * The localized string.
-               */
-              value: string;
-              /**
-               * The language tag of the localized value.
-               */
-              lang?: string;
-              /**
-               * The base direction of the localized value.
-               */
-              dir?: 'ltr' | 'rtl' | 'auto';
-              [k: string]: unknown | undefined;
-            }
-        )
+      | string
+      | {
+          /**
+           * The localized string.
+           */
+          value: string;
+          /**
+           * The language tag of the localized value.
+           */
+          lang?: string;
+          /**
+           * The base direction of the localized value.
+           */
+          dir?: 'ltr' | 'rtl' | 'auto';
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
   /**
@@ -123,24 +121,22 @@ export interface JSONSchemaForWebApplicationManifestFiles1 {
      * A localized value is either a plain string or an object that carries the localized string together with an optional language tag and text direction.
      */
     [k: string]:
-      | (
-          | string
-          | {
-              /**
-               * The localized string.
-               */
-              value: string;
-              /**
-               * The language tag of the localized value.
-               */
-              lang?: string;
-              /**
-               * The base direction of the localized value.
-               */
-              dir?: 'ltr' | 'rtl' | 'auto';
-              [k: string]: unknown | undefined;
-            }
-        )
+      | string
+      | {
+          /**
+           * The localized string.
+           */
+          value: string;
+          /**
+           * The language tag of the localized value.
+           */
+          lang?: string;
+          /**
+           * The base direction of the localized value.
+           */
+          dir?: 'ltr' | 'rtl' | 'auto';
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
   /**

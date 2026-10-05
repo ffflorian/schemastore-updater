@@ -32,29 +32,12 @@ export interface JSONSchemaForUnistSyntaxTrees {
  */
 export interface Position {
   end: Point;
-  start: Point1;
+  start: Point;
 }
 /**
  * The end field of Position represents the place of the first character after the parsed source region, whether it exists or not.
  */
 export interface Point {
-  /**
-   * The column field (1-indexed integer) represents a column in a source file.
-   */
-  column: number;
-  /**
-   * The line field (1-indexed integer) represents a line in a source file.
-   */
-  line: number;
-  /**
-   * The offset field (0-indexed integer) represents a character in a source file.
-   */
-  offset?: number;
-}
-/**
- * The start field of Position represents the place of the first character of the parsed source region.
- */
-export interface Point1 {
   /**
    * The column field (1-indexed integer) represents a column in a source file.
    */

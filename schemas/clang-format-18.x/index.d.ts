@@ -427,15 +427,7 @@ export interface ClangFormatConfig {
  The brace breaking style to use.
  */
   BreakBeforeBraces?:
-    | 'Attach'
-    | 'Linux'
-    | 'Mozilla'
-    | 'Stroustrup'
-    | 'Allman'
-    | 'Whitesmiths'
-    | 'GNU'
-    | 'WebKit'
-    | 'Custom';
+    'Attach' | 'Linux' | 'Mozilla' | 'Stroustrup' | 'Allman' | 'Whitesmiths' | 'GNU' | 'WebKit' | 'Custom';
   BreakBeforeConceptDeclarations?: boolean | ('Never' | 'Allowed' | 'Always');
   /**
  * clnag-format 5

@@ -1,16 +1,6 @@
 /* eslint-disable */
 
 /**
- * Define dependency version ranges as reusable constants,
- * for later reference in package.json files.
- * This (singular) field creates a catalog named default.
- *
- */
-export type Dependency = {
-  [k: string]: string | undefined;
-} | null;
-
-/**
  * JSON schema for pnpm-workspace.yaml files
  */
 export interface PnpmWorkspaceSpecification {
@@ -18,7 +8,13 @@ export interface PnpmWorkspaceSpecification {
    * Workspace package paths. Glob patterns are supported
    */
   packages?: string[];
-  catalog?: Dependency;
+  /**
+   * Define dependency version ranges as reusable constants,
+   * for later reference in package.json files.
+   * This (singular) field creates a catalog named default.
+   *
+   */
+  catalog?: Dependency | null;
   /**
    * Define arbitrarily named catalogs
    */
@@ -57,7 +53,7 @@ export interface PnpmWorkspaceSpecification {
      */
     [k: string]:
       | {
-          dependencies?: Dependency1;
+          dependencies?: Dependency;
           optionalDependencies?: OptionalDependency;
           peerDependencies?: PeerDependency;
           peerDependenciesMeta?: PeerDependencyMeta;
@@ -522,7 +518,7 @@ export interface PnpmWorkspaceSpecification {
   /**
    * This setting allows the checking of the state of dependencies before running scripts.
    */
-  verifyDepsBeforeRun?: 'install' | 'warn' | 'error' | 'prompt' | false;
+  verifyDepsBeforeRun?: ('install' | 'warn' | 'error' | 'prompt') | false;
   /**
    * When strictDepBuilds is enabled, the installation will exit with a non-zero exit code if any dependencies have unreviewed build scripts (aka postinstall scripts).
    */
@@ -596,6 +592,16 @@ export interface PnpmWorkspaceSpecification {
         }
       | undefined;
   };
+  /**
+   * Named sets of task names, keyed by pipeline name, run by `pnpm pipeline [name]`. A pipeline is a set, not a sequence: the order in which its tasks run comes from `tasks.<name>.dependsOn`. The pipeline named `default` runs when no name is given. Added in pnpm v12.4.0 (experimental, pnpm v12 only).
+   */
+  pipelines?: {
+    [k: string]: string[] | undefined;
+  };
+  /**
+   * The git ref the affected selection of `pnpm pipeline` resolves its merge base against. Overridden by the `--base <ref>` option.
+   */
+  pipelineBase?: string;
   /**
    * If true, pnpm will fail if no packages match the filter
    */
@@ -911,21 +917,21 @@ export interface PnpmWorkspaceSpecification {
   hoistingLimits?: 'none' | 'workspaces' | 'dependencies';
 }
 /**
+ * Dependencies are specified with a simple hash of package name to version range.
+ * The version range is a string which has one or more space-separated descriptors.
+ * Dependencies can also be identified with a tarball or git URL.
+ *
+ */
+export interface Dependency {
+  [k: string]: string | undefined;
+}
+/**
  * Define dependency version ranges as reusable constants,
  * for later reference in package.json files.
  * This (singular) field creates a catalog named default.
  *
  */
 export interface Catalog {
-  [k: string]: string | undefined;
-}
-/**
- * Dependencies are specified with a simple hash of package name to version range.
- * The version range is a string which has one or more space-separated descriptors.
- * Dependencies can also be identified with a tarball or git URL.
- *
- */
-export interface Dependency1 {
   [k: string]: string | undefined;
 }
 /**

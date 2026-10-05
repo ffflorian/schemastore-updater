@@ -189,6 +189,9 @@ export interface AMicroEditorConfigSchema {
   /**
    * Plugin repositories
    * https://github.com/zyedidia/micro/blob/master/runtime/help/options.md#options
+   *
+   * Items: A plugin repository
+   * https://github.com/zyedidia/micro/blob/master/runtime/help/options.md#options
    */
   pluginrepos?: string[];
   /**

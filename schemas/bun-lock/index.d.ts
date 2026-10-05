@@ -92,7 +92,7 @@ export type BunLockFilePackageArray =
                * This interface was referenced by `undefined`'s JSON-Schema definition
                * via the `patternProperty` ".*".
                */
-              [k: string]: string;
+              [k: string]: string | undefined;
             }
           | string;
         /**
@@ -114,7 +114,7 @@ export interface BunLockFile {
    * Defines the project workspaces and their corresponding packages.
    */
   workspaces: {
-    [k: string]: BunLockFileWorkspacePackage;
+    [k: string]: BunLockFileWorkspacePackage | undefined;
   };
   /**
    * Defines custom dependency resolutions for specific packages.
@@ -124,7 +124,7 @@ export interface BunLockFile {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Lists dependencies that have been patched to modify their behavior.
@@ -134,7 +134,7 @@ export interface BunLockFile {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * An array of dependencies explicitly marked as trusted.
@@ -144,7 +144,7 @@ export interface BunLockFile {
    * Contains information about all the packages used in the project.
    */
   packages: {
-    [k: string]: BunLockFilePackageArray;
+    [k: string]: BunLockFilePackageArray | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -160,7 +160,7 @@ export interface BunLockFileBasePackageInfo {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A map of development-only dependencies.
@@ -170,7 +170,7 @@ export interface BunLockFileBasePackageInfo {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A map of optional dependencies for this package.
@@ -180,7 +180,7 @@ export interface BunLockFileBasePackageInfo {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * A map of peer dependencies for this package.
@@ -190,7 +190,7 @@ export interface BunLockFileBasePackageInfo {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * An array of optional peer dependencies.
@@ -205,7 +205,7 @@ export interface BunLockFileBasePackageInfo {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` ".*".
          */
-        [k: string]: string;
+        [k: string]: string | undefined;
       }
     | string;
   /**

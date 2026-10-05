@@ -364,27 +364,10 @@ export interface PackageRelationship {
    * The manifest attribute provides an explicit manifest url to be used for downloading the dependency. If a manifest is not provided, the dependency package must exist in the Foundry website directory.
    */
   manifest?: string;
-  compatibility?: PackageCompatibility1;
+  compatibility?: PackageCompatibility;
   /**
    * (undocumented, intended to be used by core Foundry in the future)
    */
   reason?: string;
   flags?: Flags;
-}
-/**
- * As above, the compatibility of a dependency can be defined, ensuring that the dependency will not be installed if it does not meet the defined requirements.
- */
-export interface PackageCompatibility1 {
-  /**
-   * The module will not function for versions earlier than this.
-   */
-  minimum?: string | number;
-  /**
-   * The module has been verified to be compatible up to this version.
-   */
-  verified?: string | number;
-  /**
-   * The module will not function for newer versions than this.
-   */
-  maximum?: string | number;
 }

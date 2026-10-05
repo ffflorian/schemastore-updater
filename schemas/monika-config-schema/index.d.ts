@@ -56,10 +56,6 @@ export type Postgres = (
     }
 )[];
 /**
- * redis uri connection configuration
- */
-export type URIConnection1 = string;
-/**
  * The hostname or IP address of the redis server
  */
 export type RedisHost = string;
@@ -68,26 +64,18 @@ export type RedisHost = string;
  */
 export type PortNumber = number & string;
 /**
- * Password used for the redis AUTH, if set.
- */
-export type Password1 = string;
-/**
- * Username used for the redis AUTH, if set.
- */
-export type Username1 = string;
-/**
  * Monitor redis health
  */
 export type Redis = (
   | {
-      uri: URIConnection1;
+      uri: URIConnection;
       [k: string]: unknown | undefined;
     }
   | {
       host: RedisHost;
       port: PortNumber;
-      password?: Password1;
-      username?: Username1;
+      password?: Password;
+      username?: Username;
       [k: string]: unknown | undefined;
     }
 )[];
@@ -100,26 +88,14 @@ export type MongoDBURI = string;
  */
 export type MongoDBHost = string;
 /**
- * Port number used for the MongoDB
- */
-export type PortNumber1 = number & string;
-/**
- * Password used for the MongoDB AUTH, if set.
- */
-export type Password2 = string;
-/**
- * Username used for the MongoDB AUTH, if set.
- */
-export type Username2 = string;
-/**
  * Monitor MongoDB health
  */
 export type MongoDB = {
   uri?: MongoDBURI;
   host?: MongoDBHost;
-  port?: PortNumber1;
-  password?: Password2;
-  username?: Username2;
+  port?: PortNumber;
+  password?: Password;
+  username?: Username;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -127,48 +103,20 @@ export type MongoDB = {
  */
 export type DatabaseHost = string;
 /**
- * Port number used by your database server
- */
-export type PortNumber2 = number & string;
-/**
- * User with access to the database
- */
-export type Username3 = string;
-/**
- * User password for authentication
- */
-export type Password3 = string;
-export type Database1 = string;
-/**
  * Monitor MariaDB/Mysql health
  */
 export type MariaDBMysql = {
   host: DatabaseHost;
-  port: PortNumber2;
-  username: Username3;
-  password: Password3;
-  database: Database1;
+  port: PortNumber;
+  username: Username;
+  password: Password;
+  database: Database;
 }[];
-/**
- * Unique string identification of the request
- */
-export type Id1 = string;
 /**
  * The http method
  */
 export type HTTPMethod =
-  | 'CONNECT'
-  | 'DELETE'
-  | 'GET'
-  | 'HEAD'
-  | 'LINK'
-  | 'OPTIONS'
-  | 'PATCH'
-  | 'POST'
-  | 'PURGE'
-  | 'PUT'
-  | 'TRACE'
-  | 'UNLINK';
+  'CONNECT' | 'DELETE' | 'GET' | 'HEAD' | 'LINK' | 'OPTIONS' | 'PATCH' | 'POST' | 'PURGE' | 'PUT' | 'TRACE' | 'UNLINK';
 /**
  * The remote URL address to probe
  */
@@ -182,10 +130,6 @@ export type Timeout = number;
  */
 export type SaveBody = boolean;
 /**
- * Unique string identification of the alert
- */
-export type Id2 = string;
-/**
  * An expression that will trigger an alert when its is logically true. See the assertions here: https://monika.hyperjump.tech/guides/alerts#alert-query
  */
 export type Assertion = string;
@@ -194,30 +138,22 @@ export type Assertion = string;
  */
 export type Message = string;
 /**
- * Unique string identification of the alert
- */
-export type Id3 = string;
-/**
  * Note: Query is deprecated, please use assertion
  */
 export type Query = string;
-/**
- * Message that will be sent to the notification channel
- */
-export type Message1 = string;
 /**
  * The condition which will trigger an alert and the subsequent notification
  */
 export type Alerts = (
   | {
-      id?: Id2;
+      id?: Id;
       assertion: Assertion;
       message: Message;
     }
   | {
-      id?: Id3;
+      id?: Id;
       query: Query;
-      message: Message1;
+      message: Message;
     }
 )[];
 /**
@@ -232,7 +168,7 @@ export type FollowRedirects = number & string;
  * The http or ping request to probe for
  */
 export type Requests = {
-  id?: Id1;
+  id?: Id;
   method?: HTTPMethod;
   url: Url;
   timeout?: Timeout;
@@ -246,7 +182,7 @@ export type Requests = {
    * This interface was referenced by `undefined`'s JSON-Schema definition
    * via the `patternProperty` "ping".
    */
-  [k: string]: boolean;
+  [k: string]: boolean | Id | HTTPMethod | Timeout | Alerts | Body | FollowRedirects | Headers | undefined;
 }[];
 /**
  * Host port to connect to
@@ -564,6 +500,8 @@ export interface Pagerduty {
   type: 'pagerduty';
   /**
    * An array of email addresses that will receive the e-mail from Monika
+   *
+   * Items: Data for your payload
    */
   data: {
     /**

@@ -163,6 +163,8 @@ export interface AddOnManifest {
   description: string;
   /**
    * List of sources or services that can be accessed with this add-on
+   *
+   * Items: A single source type
    */
   sources?: string[];
   templates?: Templates;
@@ -172,6 +174,8 @@ export interface AddOnManifest {
   shortDescription?: string;
   /**
    * List of AuthTypes supported
+   *
+   * Items: Types of Authorization supported by the add-on
    */
   authType?: ('NONE' | 'KEY' | 'USER_PASS' | 'OAUTH2')[];
   /**
@@ -220,6 +224,8 @@ export interface CommonOptions {
   universalActions?: Actions[];
   /**
    * Link prefixes
+   *
+   * Items: A link prefix
    */
   openLinkUrlPrefixes?: string[];
   /**
@@ -320,27 +326,13 @@ export interface HomepageTrigger1 {
  * Calendar add-on metadata
  */
 export interface CalendarMetadata {
-  homepageTrigger?: HomepageTrigger2;
+  homepageTrigger?: HomepageTrigger1;
   eventOpenTrigger?: Event;
-  eventUpdateTrigger?: Event1;
+  eventUpdateTrigger?: Event;
   /**
    * Handler access to Calendar event
    */
   eventAccess?: 'METADATA' | 'READ' | 'WRITE' | 'READ_WRITE';
-  [k: string]: unknown | undefined;
-}
-/**
- * The trigger function specification for creating the add-on homepage in the Calendar host
- */
-export interface HomepageTrigger2 {
-  /**
-   * Whether or not homepage (non-contextual) cards are enabled in Calendar. Defaults to true
-   */
-  enabled?: boolean;
-  /**
-   * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects
-   */
-  runFunction?: string;
   [k: string]: unknown | undefined;
 }
 /**
@@ -354,35 +346,11 @@ export interface Event {
   [k: string]: unknown | undefined;
 }
 /**
- * When a Calendar event is updated
- */
-export interface Event1 {
-  /**
-   * Event handler function
-   */
-  runFunction?: string;
-  [k: string]: unknown | undefined;
-}
-/**
  * Configurations for the Google Workspace Add-on's appearance and behavior within the Sheets host application
  */
 export interface AddOnOptions {
-  homepageTrigger?: HomepageTrigger3;
+  homepageTrigger?: HomepageTrigger1;
   onFileScopeGrantedTrigger?: ContextualTrigger1;
-}
-/**
- * The Google Workspace add-on manifest configuration for homepage triggers
- */
-export interface HomepageTrigger3 {
-  /**
-   * Whether or not homepage (non-contextual) cards are enabled in Calendar. Defaults to true
-   */
-  enabled?: boolean;
-  /**
-   * The name of the function to run when this trigger fires. You must implement this function in your add-on project. This function must build and return an array of Card objects
-   */
-  runFunction?: string;
-  [k: string]: unknown | undefined;
 }
 /**
  * A configuration for a contextual trigger that fires when the add-on presents the request file scope dialog

@@ -1,11 +1,7 @@
 /* eslint-disable */
 
 export type StorageBackend =
-  | InMemoryStorage
-  | FileStorageBackend
-  | RaftStorageBackend
-  | ConsulStorageBackend
-  | S3StorageBackend;
+  InMemoryStorage | FileStorageBackend | RaftStorageBackend | ConsulStorageBackend | S3StorageBackend;
 
 /**
  * A JSON schema for Vault's configuration file.

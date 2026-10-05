@@ -258,7 +258,22 @@ export type UpdateFiles =
 /**
  * Update payload file, e.g. binary, firmware, script, etc. Must be unique within update.
  */
-export type UpdateFile = BasicUpdateFileInformation;
+export type UpdateFile = BasicUpdateFileInformation & {
+  /**
+   * Optional related files metadata used together with DownloadHandler metadata to download payload file.
+   *
+   * @minItems 0
+   * @maxItems 4
+   */
+  relatedFiles?:
+    | []
+    | [BasicUpdateFileInformation]
+    | [BasicUpdateFileInformation, BasicUpdateFileInformation]
+    | [BasicUpdateFileInformation, BasicUpdateFileInformation, BasicUpdateFileInformation]
+    | [BasicUpdateFileInformation, BasicUpdateFileInformation, BasicUpdateFileInformation, BasicUpdateFileInformation];
+  downloadHandler?: FileDownloadHandler;
+  [k: string]: unknown | undefined;
+};
 /**
  * File size in number of bytes.
  */
@@ -305,7 +320,12 @@ export interface UpdateIdentity {
  * Properties of a device this update is compatible with.
  */
 export interface UpdateCompatibilityInfo {
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 /**
  * Update installation instructions.
@@ -357,5 +377,20 @@ export interface BasicUpdateFileInformation {
  */
 export interface FileHashes {
   sha256: SHA256HashValue;
-  [k: string]: string | undefined;
+  [k: string]:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
+}
+/**
+ * Optional download handler for utilizing related files to download payload file.
+ */
+export interface FileDownloadHandler {
+  /**
+   * Download handler identifier.
+   */
+  id: string;
+  [k: string]: unknown | undefined;
 }

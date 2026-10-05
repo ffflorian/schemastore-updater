@@ -50,17 +50,19 @@ export interface HttpsJsonSchemastoreOrgPterodactylJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[_a-zA-Z][a-zA-Z0-9_-]*$".
      */
-    [k: string]: {
-      /**
-       * Container to run script in
-       */
-      container?: string;
-      /**
-       * Entrypoint of script
-       */
-      entrypoint?: string;
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          /**
+           * Container to run script in
+           */
+          container?: string;
+          /**
+           * Entrypoint of script
+           */
+          entrypoint?: string;
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   /**
    * Object of variables that can be used to change the startup command

@@ -41,32 +41,30 @@ export interface HttpsJsonSchemastoreOrgFoxxManifestJson {
    */
   dependencies?: {
     [k: string]:
-      | (
-          | string
-          | {
-              /**
-               * Name of the API the service expects.
-               */
-              name?: string;
-              /**
-               * The semantic version ranges of the API the service expects.
-               */
-              version?: string;
-              /**
-               * A description of how the API is used or why it is needed.
-               */
-              description?: string;
-              /**
-               * Whether the service can not function without this dependency.
-               */
-              required?: boolean;
-              /**
-               * Whether the dependency can be specified more than once.
-               */
-              multiple?: boolean;
-              [k: string]: unknown | undefined;
-            }
-        )
+      | string
+      | {
+          /**
+           * Name of the API the service expects.
+           */
+          name?: string;
+          /**
+           * The semantic version ranges of the API the service expects.
+           */
+          version?: string;
+          /**
+           * A description of how the API is used or why it is needed.
+           */
+          description?: string;
+          /**
+           * Whether the service can not function without this dependency.
+           */
+          required?: boolean;
+          /**
+           * Whether the dependency can be specified more than once.
+           */
+          multiple?: boolean;
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
   /**
@@ -90,24 +88,22 @@ export interface HttpsJsonSchemastoreOrgFoxxManifestJson {
    */
   files?: {
     [k: string]:
-      | (
-          | string
-          | {
-              /**
-               * Relative path of the file or folder within the service.
-               */
-              path: string;
-              /**
-               * If set to true the file will be served with gzip-encoding if supported by the client. This can be useful when serving text files like client-side JavaScript, CSS or HTML.
-               */
-              gzip?: boolean;
-              /**
-               * The MIME content type of the file. Defaults to an intelligent guess based on the filename's extension.
-               */
-              type?: string;
-              [k: string]: unknown | undefined;
-            }
-        )
+      | string
+      | {
+          /**
+           * Relative path of the file or folder within the service.
+           */
+          path: string;
+          /**
+           * If set to true the file will be served with gzip-encoding if supported by the client. This can be useful when serving text files like client-side JavaScript, CSS or HTML.
+           */
+          gzip?: boolean;
+          /**
+           * The MIME content type of the file. Defaults to an intelligent guess based on the filename's extension.
+           */
+          type?: string;
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
   /**
@@ -137,6 +133,8 @@ export interface HttpsJsonSchemastoreOrgFoxxManifestJson {
   author?: string;
   /**
    * A list of names of people that have contributed to the development of the service in some way. This will be shown in the web interface.
+   *
+   * Items: Human-readable representation of the contributor, e.g. their name.
    */
   contributors?: string[];
   /**
@@ -145,6 +143,8 @@ export interface HttpsJsonSchemastoreOrgFoxxManifestJson {
   description?: string;
   /**
    * A list of keywords that help categorize this service. This is used by the Foxx Store installers to organize services.
+   *
+   * Items: A keyword relevant to the service.
    */
   keywords?: string[];
   /**

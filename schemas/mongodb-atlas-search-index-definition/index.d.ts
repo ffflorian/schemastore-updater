@@ -22,7 +22,7 @@ export type Mappings =
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "^.*$".
          */
-        [k: string]: MappingsField | MappingsField[];
+        [k: string]: MappingsField | MappingsField[] | undefined;
       };
     };
 export type StoredSource =
@@ -125,14 +125,7 @@ export interface CharFilter {
  */
 export interface Tokenizer {
   type:
-    | 'edgeGram'
-    | 'keyword'
-    | 'nGram'
-    | 'regexCaptureGroup'
-    | 'regexSplit'
-    | 'standard'
-    | 'uaxUrlEmail'
-    | 'whitespace';
+    'edgeGram' | 'keyword' | 'nGram' | 'regexCaptureGroup' | 'regexSplit' | 'standard' | 'uaxUrlEmail' | 'whitespace';
 }
 export interface TokenFilter {
   /**

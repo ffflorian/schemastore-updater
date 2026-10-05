@@ -4,12 +4,18 @@ export interface JSONSchemaForAnyGruntTask {
   options?: {
     [k: string]: unknown | undefined;
   };
-  [k: string]: (FileFormat | Dynamic) | undefined;
+  [k: string]:
+    | FileFormat
+    | Dynamic
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 export interface FileFormat {
   files?:
     | {
-        [k: string]: ([string, ...string[]] | string) | undefined;
+        [k: string]: [string, ...string[]] | string | undefined;
       }
     | Dynamic[];
   [k: string]: unknown | undefined;

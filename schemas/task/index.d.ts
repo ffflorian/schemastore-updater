@@ -15,9 +15,9 @@ export interface HttpsJsonSchemastoreOrgTaskJson {
    */
   isBackground?: boolean;
   linux?: BaseTaskConfiguration;
-  options?: CommandOptions1;
-  osx?: BaseTaskConfiguration1;
-  presentation?: PresentationOptions2;
+  options?: CommandOptions;
+  osx?: BaseTaskConfiguration;
+  presentation?: PresentationOptions;
   /**
    * The problem matcher to be used if a global command is executed (e.g. no tasks
    * are defined). A tasks.json file can either contain a global problemMatcher
@@ -38,7 +38,7 @@ export interface HttpsJsonSchemastoreOrgTaskJson {
    * The configuration's version number
    */
   version?: '2.0.0';
-  windows?: BaseTaskConfiguration2;
+  windows?: BaseTaskConfiguration;
   [k: string]: unknown | undefined;
 }
 /**
@@ -333,7 +333,7 @@ export interface TaskDescription {
    * The task's name
    */
   label?: string;
-  presentation?: PresentationOptions1;
+  presentation?: PresentationOptions;
   /**
    * The problem matcher(s) to use to capture problems in the tasks
    * output.
@@ -345,49 +345,6 @@ export interface TaskDescription {
    * inside a shell (e.g. bash, cmd, powershell, ...)
    */
   type?: 'process' | 'shell' | 'npm';
-  [k: string]: unknown | undefined;
-}
-/**
- * The presentation options.
- */
-export interface PresentationOptions1 {
-  /**
-   * Controls whether the terminal is cleared before this task is run.
-   * Defaults to `false`.
-   */
-  clear?: boolean;
-  /**
-   * Controls whether the command associated with the task is echoed
-   * in the user interface. Defaults to `true`.
-   */
-  echo?: boolean;
-  /**
-   * Controls whether the panel showing the task output is taking focus.
-   * Defaults to `false`.
-   */
-  focus?: boolean;
-  /**
-   * Controls whether the task is executed in a specific terminal
-   * group using split panes. Tasks in the same group (specified by a string value)
-   * will use split terminals to present instead of a new terminal panel.
-   */
-  group?: string;
-  /**
-   * Controls if the task panel is used for this task only (dedicated),
-   * shared between tasks (shared) or if a new panel is created on
-   * every task execution (new). Defaults to `shared`.
-   */
-  panel?: 'dedicated' | 'new' | 'shared';
-  /**
-   * Controls whether the task output is reveal in the user interface.
-   * Defaults to `always`.
-   */
-  reveal?: 'always' | 'never' | 'silent';
-  /**
-   * Controls whether to show the `Terminal will be reused by tasks,
-   * press any key to close it` message.
-   */
-  showReuseMessage?: boolean;
   [k: string]: unknown | undefined;
 }
 /**
@@ -410,155 +367,5 @@ export interface RunOptions {
    *   "folderOpen": The task will be run when the containing folder is opened.
    */
   runOn?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * The command options used when the command is executed. Can be omitted.
- */
-export interface CommandOptions1 {
-  /**
-   * The current working directory of the executed program or shell.
-   * If omitted the current workspace's root is used.
-   */
-  cwd?: string;
-  /**
-   * The environment of the executed program or shell. If omitted
-   * the parent process' environment is used.
-   */
-  env?: {
-    [k: string]: string | undefined;
-  };
-  /**
-   * Configuration of the shell when task type is `shell`
-   */
-  shell?: {
-    /**
-     * The arguments to be passed to the shell executable to run in command mode
-     * (e.g ['-c'] for bash or ['/S', '/C'] for cmd.exe).
-     */
-    args?: string[];
-    /**
-     * The shell to use.
-     */
-    executable?: string;
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * macOS specific task configuration
- */
-export interface BaseTaskConfiguration1 {
-  /**
-   * The arguments passed to the command. Can be omitted.
-   */
-  args?: string[];
-  /**
-   * The command to be executed. Can be an external program or a shell
-   * command.
-   */
-  command?: string;
-  /**
-   * Specifies whether a global command is a background task.
-   */
-  isBackground?: boolean;
-  options?: CommandOptions;
-  presentation?: PresentationOptions;
-  /**
-   * The problem matcher to be used if a global command is executed (e.g. no tasks
-   * are defined). A tasks.json file can either contain a global problemMatcher
-   * property or a tasks property but not both.
-   */
-  problemMatcher?: ProblemMatcher | (ProblemMatcher | string)[] | string;
-  /**
-   * The configuration of the available tasks. A tasks.json file can either
-   * contain a global problemMatcher property or a tasks property but not both.
-   */
-  tasks?: TaskDescription[];
-  /**
-   * The type of a custom task. Tasks of type "shell" are executed
-   * inside a shell (e.g. bash, cmd, powershell, ...)
-   */
-  type?: 'process' | 'shell' | 'npm';
-  [k: string]: unknown | undefined;
-}
-/**
- * The presentation options.
- */
-export interface PresentationOptions2 {
-  /**
-   * Controls whether the terminal is cleared before this task is run.
-   * Defaults to `false`.
-   */
-  clear?: boolean;
-  /**
-   * Controls whether the command associated with the task is echoed
-   * in the user interface. Defaults to `true`.
-   */
-  echo?: boolean;
-  /**
-   * Controls whether the panel showing the task output is taking focus.
-   * Defaults to `false`.
-   */
-  focus?: boolean;
-  /**
-   * Controls whether the task is executed in a specific terminal
-   * group using split panes. Tasks in the same group (specified by a string value)
-   * will use split terminals to present instead of a new terminal panel.
-   */
-  group?: string;
-  /**
-   * Controls if the task panel is used for this task only (dedicated),
-   * shared between tasks (shared) or if a new panel is created on
-   * every task execution (new). Defaults to `shared`.
-   */
-  panel?: 'dedicated' | 'new' | 'shared';
-  /**
-   * Controls whether the task output is reveal in the user interface.
-   * Defaults to `always`.
-   */
-  reveal?: 'always' | 'never' | 'silent';
-  /**
-   * Controls whether to show the `Terminal will be reused by tasks,
-   * press any key to close it` message.
-   */
-  showReuseMessage?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * Windows specific task configuration
- */
-export interface BaseTaskConfiguration2 {
-  /**
-   * The arguments passed to the command. Can be omitted.
-   */
-  args?: string[];
-  /**
-   * The command to be executed. Can be an external program or a shell
-   * command.
-   */
-  command?: string;
-  /**
-   * Specifies whether a global command is a background task.
-   */
-  isBackground?: boolean;
-  options?: CommandOptions;
-  presentation?: PresentationOptions;
-  /**
-   * The problem matcher to be used if a global command is executed (e.g. no tasks
-   * are defined). A tasks.json file can either contain a global problemMatcher
-   * property or a tasks property but not both.
-   */
-  problemMatcher?: ProblemMatcher | (ProblemMatcher | string)[] | string;
-  /**
-   * The configuration of the available tasks. A tasks.json file can either
-   * contain a global problemMatcher property or a tasks property but not both.
-   */
-  tasks?: TaskDescription[];
-  /**
-   * The type of a custom task. Tasks of type "shell" are executed
-   * inside a shell (e.g. bash, cmd, powershell, ...)
-   */
-  type?: 'process' | 'shell' | 'npm';
   [k: string]: unknown | undefined;
 }

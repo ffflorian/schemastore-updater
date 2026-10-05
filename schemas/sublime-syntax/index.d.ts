@@ -50,7 +50,7 @@ export interface SublimeSyntax {
    * https://www.sublimetext.com/docs/syntax.html#contexts
    */
   contexts: {
-    [k: string]: Patterns;
+    [k: string]: Patterns | undefined;
   };
   /**
    * Variables must be defined at the top level of the .sublime-syntax file, and are referenced within regxes via {{varname}}. Variables may themselves include other variables. Note that any text that doesn’t match {{[A-Za-z0-9_]+}} won’t be considered as a variable, so regexes can still include literal {{ characters, for example.
@@ -61,7 +61,7 @@ export interface SublimeSyntax {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[_a-zA-Z][a-zA-Z0-9_]*$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -117,7 +117,7 @@ export interface MatchPattern {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^\d+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * The contexts to push onto the stack. This may be either a single context name, a list of context names, or an inline, anonymous context.
@@ -151,7 +151,7 @@ export interface MatchPattern {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^\d+$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
     /**
      * Accepts the names of two or more contexts, which are attempted in order. If a fail action is encountered, the highlighting of the file will be restarted at the character where the branch occurred, and the next context will be attempted.

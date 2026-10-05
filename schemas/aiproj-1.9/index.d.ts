@@ -81,64 +81,84 @@ export type AuthenticationOptions = (
   | null
 ) &
   (
-    | (
-        | {
-            Type: 'RawCookie';
-            Cookie: {
-              [k: string]: unknown | undefined;
-            };
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Type: 'Form';
-            Form: {
-              [k: string]: unknown | undefined;
-            };
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Type: 'Http';
-            Http: {
-              [k: string]: unknown | undefined;
-            };
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Type: 'None';
-            [k: string]: unknown | undefined;
-          }
-        | null
-      )
-    | (null &
-        (
-          | {
-              Type: 'RawCookie';
-              Cookie: {
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Type: 'Form';
-              Form: {
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Type: 'Http';
-              Http: {
-                [k: string]: unknown | undefined;
-              };
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Type: 'None';
-              [k: string]: unknown | undefined;
-            }
-          | null
-        ))
+    {
+        Cookie?: CookieOptions;
+        Form?: Form;
+        Http?: Http;
+        Type?: TypeOfAuthentication;
+      } | null
   );
+/**
+ * Cookie authentication options
+ */
+export type CookieOptions = {
+  Cookie: Cookie;
+  ValidationAddress: ValidationAddress;
+  ValidationTemplate: ValidationTemplate;
+} | null;
+export type Cookie = string;
+/**
+ * Verification address
+ */
+export type ValidationAddress = string;
+/**
+ * String to search for
+ */
+export type ValidationTemplate = string;
+/**
+ * Form-based authentication options
+ */
+export type Form = (
+  | {
+      FormDetection: 'Auto';
+      FormAddress: string;
+      FormXPath?: null | string;
+      Login: string;
+      LoginKey?: null | string;
+      Password: string;
+      PasswordKey?: null | string;
+      ValidationTemplate: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      FormDetection: 'Manual';
+      FormAddress: string;
+      FormXPath: string;
+      Login: string;
+      LoginKey: string;
+      Password: string;
+      PasswordKey: string;
+      ValidationTemplate: string;
+      [k: string]: unknown | undefined;
+    }
+) &
+  (
+    {
+        FormDetection?: Detection;
+        FormAddress?: SignInFormURL;
+        FormXPath?: SignInFormXPath;
+        Login?: User;
+        LoginKey?: UserIdentifier;
+        Password?: Password;
+        PasswordKey?: PasswordIdentifier;
+        ValidationTemplate?: ValidationTemplate1;
+      } | null
+  );
+/**
+ * Type of form authentication detection
+ */
+export type Detection = 'Auto' | 'Manual';
+/**
+ * HTTP Basic authentication options
+ */
+export type Http = {
+  Login: User1;
+  Password: Password1;
+  ValidationAddress: ValidationAddress;
+} | null;
+export type User1 = string;
+export type Password1 = string;
+export type TypeOfAuthentication = 'Form' | 'Http' | 'RawCookie' | 'None';
 export type SearchMode = 'None' | 'Fast' | 'Full' | 'Normal';
 /**
  * Proxy server settings
@@ -146,15 +166,15 @@ export type SearchMode = 'None' | 'Fast' | 'Full' | 'Normal';
 export type ProxySettings = {
   Enabled?: Enabled;
   Host?: Address2;
-  Login?: User;
-  Password?: Password;
+  Login?: User2;
+  Password?: Password2;
   Port?: Port;
   Type?: TypeOfProxy;
 } | null;
 export type Enabled = boolean;
 export type Address2 = null | string;
-export type User = null | string;
-export type Password = null | string;
+export type User2 = null | string;
+export type Password2 = null | string;
 export type Port = number;
 export type TypeOfProxy = 'Http' | 'Socks4' | 'Socks5';
 /**
@@ -299,94 +319,15 @@ export type MailSettings = (
     }
 ) &
   (
-    | (
-        | {
-            Enabled: true;
-            MailProfileName: string;
-            /**
-             * @minItems 1
-             * @maxItems 10
-             */
-            EmailRecipients:
-              | [unknown]
-              | [unknown, unknown]
-              | [unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown];
-            [k: string]: unknown | undefined;
-          }
-        | {
-            Enabled: false;
-            MailProfileName?: null | string;
-            /**
-             * @minItems 0
-             * @maxItems 10
-             */
-            EmailRecipients?:
-              | []
-              | [unknown]
-              | [unknown, unknown]
-              | [unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-              | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown];
-            [k: string]: unknown | undefined;
-          }
-      )
-    | (null &
-        (
-          | {
-              Enabled: true;
-              MailProfileName: string;
-              /**
-               * @minItems 1
-               * @maxItems 10
-               */
-              EmailRecipients:
-                | [unknown]
-                | [unknown, unknown]
-                | [unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown];
-              [k: string]: unknown | undefined;
-            }
-          | {
-              Enabled: false;
-              MailProfileName?: null | string;
-              /**
-               * @minItems 0
-               * @maxItems 10
-               */
-              EmailRecipients?:
-                | []
-                | [unknown]
-                | [unknown, unknown]
-                | [unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown]
-                | [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown];
-              [k: string]: unknown | undefined;
-            }
-        ))
+    {
+        Enabled?: SendAReportByEmailAfterScanning;
+        MailProfileName?: EmailProfileName;
+        EmailRecipients?: ListOfRecipients;
+      } | null
   );
+export type SendAReportByEmailAfterScanning = boolean;
+export type EmailProfileName = null | string;
+export type ListOfRecipients = string[];
 export type RubyScanOptions = {
   UsePublicAnalysisMethod?: UsePublicAnalysisMethod;
   CustomParameters?: CustomParameters;
@@ -417,12 +358,7 @@ export type ActiveScanningLanguages = (
 export type ProjectName = string;
 export type BranchName = string | null;
 export type EnabledModules = (
-  | 'Configuration'
-  | 'Components'
-  | 'BlackBox'
-  | 'PatternMatching'
-  | 'StaticCodeAnalysis'
-  | 'SoftwareCompositionAnalysis'
+  'Configuration' | 'Components' | 'BlackBox' | 'PatternMatching' | 'StaticCodeAnalysis' | 'SoftwareCompositionAnalysis'
 )[];
 /**
  * Exclude from scanning the files from the .gitignore file
@@ -462,4 +398,28 @@ export interface Aiproj {
   SkipGitIgnoreFiles?: SkipGitignoreFiles;
   ApplyAllPMRules?: ApplyAllPMRules;
   UseSecurityPolicies?: UseSecurityPolicies;
+}
+export interface SignInFormURL {
+  [k: string]: unknown | undefined;
+}
+export interface SignInFormXPath {
+  [k: string]: unknown | undefined;
+}
+export interface User {
+  [k: string]: unknown | undefined;
+}
+export interface UserIdentifier {
+  [k: string]: unknown | undefined;
+}
+export interface Password {
+  [k: string]: unknown | undefined;
+}
+export interface PasswordIdentifier {
+  [k: string]: unknown | undefined;
+}
+/**
+ * String to search for
+ */
+export interface ValidationTemplate1 {
+  [k: string]: unknown | undefined;
 }

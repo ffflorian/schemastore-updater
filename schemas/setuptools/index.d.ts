@@ -51,7 +51,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Mapping from package names to lists of glob patterns. Usually this option is not needed when using ``include-package-data = true`` For more information on how to include data files, check ``setuptools`` `docs <https://setuptools.pypa.io/en/latest/userguide/datafiles.html>`_.
@@ -61,7 +61,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * Automatically include any data files inside the package directories that are specified by ``MANIFEST.in`` For more information on how to include data files, check ``setuptools`` `docs <https://setuptools.pypa.io/en/latest/userguide/datafiles.html>`_.
@@ -75,7 +75,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * **DEPRECATED**: use implicit namespaces instead (:pep:`420`).
@@ -86,6 +86,10 @@ export interface ToolSetuptoolsTable {
    */
   'py-modules'?: string[];
   /**
+   * Extension modules to be compiled by setuptools
+   */
+  'ext-modules'?: ExtensionModule[];
+  /**
    * ``dict``-like structure where each key represents a directory and the value is a list of glob patterns that should be installed in them. **DISCOURAGED**: please notice this might not work as expected with wheels. Whenever possible, consider using data files inside the package directories (or create a new namespace package that only contains data files). See `data files support <https://setuptools.pypa.io/en/latest/userguide/datafiles.html>`_.
    */
   'data-files'?: {
@@ -93,7 +97,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * Mapping of distutils-style command names to ``setuptools.Command`` subclasses which in turn should be represented by strings with a qualified class name (i.e., "dotted" form with module), e.g.::
@@ -107,7 +111,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * **PROVISIONAL**: list of glob patterns for all license files being distributed. (likely to become standard with :pep:`639`). By default: ``['LICEN[CS]E*', 'COPYING*', 'NOTICE*', 'AUTHORS*']``
@@ -126,7 +130,7 @@ export interface ToolSetuptoolsTable {
     'entry-points'?: FileDirective;
     dependencies?: FileDirectiveForDependencies;
     'optional-dependencies'?: {
-      [k: string]: FileDirectiveForDependencies;
+      [k: string]: FileDirectiveForDependencies | undefined;
     };
     readme?:
       | FileDirective
@@ -158,6 +162,28 @@ export interface FindDirective {
      */
     namespaces?: boolean;
   };
+}
+/**
+ * Parameters to construct a :class:`setuptools.Extension` object
+ */
+export interface ExtensionModule {
+  name: string;
+  sources: string[];
+  'include-dirs'?: string[];
+  'define-macros'?: [string, string | null][];
+  'undef-macros'?: string[];
+  'library-dirs'?: string[];
+  libraries?: string[];
+  'runtime-library-dirs'?: string[];
+  'extra-objects'?: string[];
+  'extra-compile-args'?: string[];
+  'extra-link-args'?: string[];
+  'export-symbols'?: string[];
+  'swig-opts'?: string[];
+  depends?: string[];
+  language?: string;
+  optional?: boolean;
+  'py-limited-api'?: boolean;
 }
 /**
  * Value is read from a module attribute. Supports callables and iterables; unsupported types are cast via ``str()``

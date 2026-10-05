@@ -10,7 +10,7 @@ export type InliningStrategy = number | ('default' | 'avoid');
 /**
  * Allows inheriting keys from a workspace.
  */
-export type MaybeWorkspace4 = (TomlWorkspaceDependency | (string | DetailedTomlDependency)) | undefined;
+export type MaybeWorkspace4 = TomlWorkspaceDependency | (string | DetailedTomlDependency);
 /**
  * Type representing a path for use in `Scarb.toml` where all paths are expected to be relative to
  * it.
@@ -24,7 +24,7 @@ export type MaybeWorkspace2 = TomlWorkspaceField | string[];
 /**
  * Allows inheriting keys from a workspace.
  */
-export type MaybeWorkspace = TomlWorkspaceField1 | string;
+export type MaybeWorkspace = TomlWorkspaceField | string;
 /**
  * A valid Cairo package name.
  *
@@ -38,16 +38,16 @@ export type PackageName = string;
 /**
  * Allows inheriting keys from a workspace.
  */
-export type MaybeWorkspace3 = TomlWorkspaceField2 | (string | boolean);
-export type TomlDependency = (string | DetailedTomlDependency) | undefined;
+export type MaybeWorkspace3 = TomlWorkspaceField | (string | boolean);
+export type TomlDependency = string | DetailedTomlDependency;
 /**
  * Allows inheriting keys from a workspace.
  */
-export type MaybeWorkspace5 = (WorkspaceScriptDefinition | string) | undefined;
+export type MaybeWorkspace5 = WorkspaceScriptDefinition | string;
 /**
  * Allows inheriting keys from a workspace.
  */
-export type MaybeWorkspace7 = (TomlWorkspaceTargetDefault | TomlTargetDefaults) | undefined;
+export type MaybeWorkspace7 = TomlWorkspaceTargetDefault | TomlTargetDefaults;
 /**
  * Allows inheriting keys from a workspace.
  */
@@ -56,15 +56,12 @@ export type MaybeWorkspace8 = TomlWorkspaceBuildExternalContracts | string[];
  * Allows inheriting keys from a workspace.
  */
 export type MaybeWorkspace6 =
-  | (
-      | TomlWorkspaceTool
-      | {
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
+  | TomlWorkspaceTool
+  | {
+      [k: string]: unknown | undefined;
+    };
 export type PathOrBool = string | boolean;
-export type ScriptDefinition = string | undefined;
+export type ScriptDefinition = string;
 
 /**
  * This type is used to deserialize `Scarb.toml` files.
@@ -592,27 +589,13 @@ export interface TomlPackage {
   /**
    * Allows inheriting keys from a workspace.
    */
-  version: TomlWorkspaceField1 | string;
+  version: TomlWorkspaceField | string;
   [k: string]: unknown | undefined;
 }
 /**
  * The type when inheriting from a workspace.
  */
 export interface TomlWorkspaceField {
-  workspace: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * The type when inheriting from a workspace.
- */
-export interface TomlWorkspaceField1 {
-  workspace: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * The type when inheriting from a workspace.
- */
-export interface TomlWorkspaceField2 {
   workspace: boolean;
   [k: string]: unknown | undefined;
 }

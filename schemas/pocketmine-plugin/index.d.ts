@@ -105,42 +105,7 @@ export interface HttpsJsonSchemastoreOrgPocketminePluginJson {
 export interface PermissionChildren {
   [k: string]:
     | {
-        children?: PermissionChildren1;
-        /**
-         * Indicates whether players have this permission by default.
-         */
-        default?:
-          | '!admin'
-          | '!op'
-          | '!operator'
-          | 'admin'
-          | false
-          | 'false'
-          | 'isadmin'
-          | 'isop'
-          | 'isoperator'
-          | 'notadmin'
-          | 'notop'
-          | 'notoperator'
-          | 'op'
-          | 'operator'
-          | true
-          | 'true';
-        /**
-         * Description of the permission
-         */
-        description?: string;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * The child permissions. Toggling the parent permission will toggle all child permissions too.
- */
-export interface PermissionChildren1 {
-  [k: string]:
-    | {
-        children?: PermissionChildren1;
+        children?: PermissionChildren;
         /**
          * Indicates whether players have this permission by default.
          */

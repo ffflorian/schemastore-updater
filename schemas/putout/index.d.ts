@@ -49,7 +49,11 @@ export interface HttpsJsonSchemastoreOrgPutoutJson {
    * Allows to match rules for files and folders, specified by glob patterns.
    */
   match?: {
-    [k: string]: unknown | undefined;
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "additionalProperties".
+     */
+    [k: string]: Rules | never | undefined;
   };
   /**
    * Tell 🐊Putout which plugins to load

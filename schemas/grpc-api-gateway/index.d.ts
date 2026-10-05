@@ -3,7 +3,38 @@
 /**
  * EndpointBinding is a gRPC method - HTTP endpoint binding specification.
  */
-export type EndpointBinding =
+export type EndpointBinding = MeshapiGatewayEndpointBinding & MeshapiGatewayEndpointBinding1;
+export type MeshapiGatewayEndpointBinding =
+  | {
+      get: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      put: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      post: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      delete: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      patch: string;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      custom: CustomPattern;
+      [k: string]: unknown | undefined;
+    };
+/**
+ * AdditionalEndpointBinding is an additional gRPC method - HTTP endpoint binding specification.
+ */
+export type AdditionalEndpointBinding = MeshapiGatewayAdditionalEndpointBinding &
+  MeshapiGatewayAdditionalEndpointBinding1;
+export type MeshapiGatewayAdditionalEndpointBinding =
   | {
       get: string;
       [k: string]: unknown | undefined;
@@ -32,43 +63,26 @@ export type EndpointBinding =
  * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
  */
 export type Value =
-  | (
-      | unknown[]
-      | boolean
-      | number
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | string
-    )
-  | undefined;
+  | unknown[]
+  | boolean
+  | number
+  | {
+      [k: string]: unknown | undefined;
+    }
+  | string;
 /**
  * Enum for the data type of a schema.
  */
 export type SchemaDataType = (
-  | 'UNKNOWN'
-  | 0
-  | 'ARRAY'
-  | 1
-  | 'BOOLEAN'
-  | 2
-  | 'INTEGER'
-  | 3
-  | 'NULL'
-  | 4
-  | 'NUMBER'
-  | 5
-  | 'OBJECT'
-  | 6
-  | 'STRING'
-  | 7
+  'UNKNOWN' | 0 | 'ARRAY' | 1 | 'BOOLEAN' | 2 | 'INTEGER' | 3 | 'NULL' | 4 | 'NUMBER' | 5 | 'OBJECT' | 6 | 'STRING' | 7
 )[];
 /**
  * Represents an item in a SchemaList, which can be a schema or another SchemaList.
  */
-export type Item =
+export type Item = MeshapiGatewayOpenapiSchemaItem & MeshapiGatewayOpenapiSchemaItem1;
+export type MeshapiGatewayOpenapiSchemaItem =
   | {
-      schema: Schema | undefined;
+      schema: Schema;
       [k: string]: unknown | undefined;
     }
   | {
@@ -76,86 +90,18 @@ export type Item =
       [k: string]: unknown | undefined;
     };
 /**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value8 =
-  | unknown[]
-  | boolean
-  | number
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | string;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value9 =
-  | unknown[]
-  | boolean
-  | number
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | string;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value10 =
-  | unknown[]
-  | boolean
-  | number
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | string;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value11 =
-  | unknown[]
-  | boolean
-  | number
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | string;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value13 =
-  | unknown[]
-  | boolean
-  | number
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | string;
-/**
  * The Link object represents a possible design-time link for a response. The presence of a link does not guarantee the caller’s ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations. See: https://spec.openapis.org/oas/v3.1.0#link-object
  */
-export type Link =
-  | (
-      | {
-          operation_ref: string;
-          [k: string]: unknown | undefined;
-        }
-      | {
-          operation_id: string;
-          [k: string]: unknown | undefined;
-        }
-    )
-  | undefined;
-/**
- * `Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error. The JSON representation for `Value` is JSON value.
- */
-export type Value18 =
-  | unknown[]
-  | boolean
-  | number
+export type Link = MeshapiGatewayOpenapiLink & MeshapiGatewayOpenapiLink1;
+export type MeshapiGatewayOpenapiLink =
   | {
+      operation_ref: string;
       [k: string]: unknown | undefined;
     }
-  | string;
+  | {
+      operation_id: string;
+      [k: string]: unknown | undefined;
+    };
 
 /**
  * Configuration files for gRPC API Gateway & OpenAPI generation plugin for protobuf (https://github.com/meshapi/grpc-api-gateway)
@@ -185,6 +131,98 @@ export interface CustomPattern {
    * path is the HTTP path pattern.
    */
   path?: string;
+}
+export interface MeshapiGatewayEndpointBinding1 {
+  /**
+   * selector is a dot-separated gRPC service method selector. If the selector begins with '~.', the current proto package will be added to the beginning of the path. For instance: `~.MyService`. Since no proto package can be deduced in the global config file, this alias cannot be used in the global config file. If the selector does not begin with '~.', it will be treated as a fully qualified method name (FQMN).
+   */
+  selector?: string;
+  get?: string;
+  put?: string;
+  post?: string;
+  delete?: string;
+  patch?: string;
+  custom?: CustomPattern;
+  /**
+   * body is a request message field selector that will be read via HTTP body. '*' indicates that the entire request message gets decoded from the body. An empty string indicates that no part of the request gets decoded from the body. NOTE: Not all methods support HTTP body.
+   */
+  body?: string;
+  /**
+   * response_body is a response message field selector that will be written to HTTP response. '*' or an empty string indicates that the entire response message gets encoded.
+   */
+  response_body?: string;
+  /**
+   * query_params are explicit query parameter bindings that can be used to rename or ignore query parameters.
+   */
+  query_params?: QueryParameterBinding[];
+  /**
+   * additional_bindings holds additional bindings for the same gRPC service method.
+   */
+  additional_bindings?: AdditionalEndpointBinding[];
+  /**
+   * disable_query_param_discovery can be used to avoid auto binding query parameters.
+   */
+  disable_query_param_discovery?: boolean;
+  stream?: StreamConfig;
+}
+/**
+ * QueryParameterBinding describes a query parameter to request message binding.
+ */
+export interface QueryParameterBinding {
+  /**
+   * selector is a dot-separated path to the request message's field.
+   */
+  selector?: string;
+  /**
+   * name is the name of the HTTP query parameter that will be used.
+   */
+  name?: string;
+  /**
+   * ignore avoids reading this query parameter altogether (default: false).
+   */
+  ignore?: boolean;
+}
+export interface MeshapiGatewayAdditionalEndpointBinding1 {
+  get?: string;
+  put?: string;
+  post?: string;
+  delete?: string;
+  patch?: string;
+  custom?: CustomPattern;
+  /**
+   * body is a request message field selector that will be read via HTTP body. '*' indicates that the entire request message gets decoded from the body. An empty string indicates that no part of the request gets decoded from the body. NOTE: Not all methods support HTTP body.
+   */
+  body?: string;
+  /**
+   * response_body is a response message field selector that will be written to HTTP response. '*' or an empty string indicates that the entire response message gets encoded.
+   */
+  response_body?: string;
+  /**
+   * query_params are explicit query parameter bindings that can be used to rename or ignore query parameters.
+   */
+  query_params?: QueryParameterBinding[];
+  /**
+   * disable_query_param_discovery can be used to avoid auto binding query parameters.
+   */
+  disable_query_param_discovery?: boolean;
+  stream?: StreamConfig;
+}
+/**
+ * StreamConfig sets the behavior of the HTTP server for gRPC streaming methods.
+ */
+export interface StreamConfig {
+  /**
+   * disable_websockets indicates whether or not websockets are allowed for this method. The client must still ask for a connection upgrade.
+   */
+  disable_websockets?: boolean;
+  /**
+   * disable_sse indicates whether or not server-sent events are allowed. see: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events SSE is only used when Accept-Type from the request includes MIME type text/event-stream.
+   */
+  disable_sse?: boolean;
+  /**
+   * disable_chunked indicates whether or not chunked transfer encoding is allowed. NOTE: Chunked transfer encoding is disabled in HTTP/2 so this option will only be available if the request is HTTP/1.
+   */
+  disable_chunked_transfer?: boolean;
 }
 /**
  * OpenAPISpec defines the overall OpenAPI documentation configuration.
@@ -484,21 +522,21 @@ export interface Schema {
   properties?: {
     [k: string]: Schema | undefined;
   };
-  additional_properties?: Schema | undefined;
-  default?: Value8;
+  additional_properties?: Schema;
+  default?: Value;
   /**
    * The allOf keyword specifies that an instance must validate against all the schemas defined in the array. See: https://json-schema.org/draft/2020-12/json-schema-core#name-allof
    */
-  all_of?: Schema | undefined[];
+  all_of?: Schema[];
   /**
    * The anyOf keyword specifies that an instance must validate against at least one of the schemas defined in the array. See: https://json-schema.org/draft/2020-12/json-schema-core#name-anyof
    */
-  any_of?: Schema | undefined[];
+  any_of?: Schema[];
   /**
    * The oneOf keyword specifies that an instance must validate against exactly one of the schemas defined in the array. See: https://json-schema.org/draft/2020-12/json-schema-core#name-oneof
    */
-  one_of?: Schema | undefined[];
-  not?: Schema | undefined;
+  one_of?: Schema[];
+  not?: Schema;
   /**
    * The readOnly keyword specifies that a property is read-only. See: https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-9.4
    */
@@ -510,7 +548,7 @@ export interface Schema {
   /**
    * Examples of valid instances for the schema. See: https://json-schema.org/draft/2020-12/json-schema-validation#section-9.5
    */
-  examples?: Value9[];
+  examples?: Value[];
   /**
    * The format keyword specifies a predefined format for the schema value. See: https://json-schema.org/draft-06/json-schema-validation#rfc.section.8
    */
@@ -577,7 +615,11 @@ export interface FieldConfiguration {
  * Represents a list of schemas for array validation or for object properties.
  */
 export interface SchemaList {
-  items?: Schema | undefined[];
+  items?: Schema[];
+}
+export interface MeshapiGatewayOpenapiSchemaItem1 {
+  schema?: Schema;
+  list?: SchemaList;
 }
 export interface Response {
   ref?: Reference;
@@ -656,8 +698,8 @@ export interface Header {
    * When this is true, parameter values of type array or object generate separate parameters for each value of the array or key-value pair of the map. For other types of parameters this property has no effect. When style is form, the default value is true. For all other styles, the default value is false.
    */
   explode?: boolean;
-  schema?: Schema | undefined;
-  example?: Value10;
+  schema?: Schema;
+  example?: Value;
   /**
    * Examples of the parameter’s potential value. Each example SHOULD contain a value in the correct format as specified in the parameter encoding. The examples field is mutually exclusive of the example field. Furthermore, if referencing a schema that contains an example, the examples value SHALL override the example provided by the schema.
    */
@@ -690,7 +732,7 @@ export interface Example {
    * Long description for the example. CommonMark syntax MAY be used for rich text representation.
    */
   description?: string;
-  value?: Value11;
+  value?: Value;
   /**
    * A URI that points to the literal example. This provides the capability to reference examples that cannot easily be included in JSON or YAML documents. The value field and externalValue field are mutually exclusive. See the rules for resolving Relative References.
    */
@@ -706,8 +748,8 @@ export interface Example {
  * Each Media Type Object provides schema and examples for the media type identified by its key. See: https://spec.openapis.org/oas/latest.html#media-type-object
  */
 export interface MediaType {
-  schema?: Schema | undefined;
-  example?: Value13;
+  schema?: Schema;
+  example?: Value;
   /**
    * Examples of the parameter’s potential value. Each example SHOULD contain a value in the correct format as specified in the parameter encoding. The examples field is mutually exclusive of the example field. Furthermore, if referencing a schema that contains an example, the examples value SHALL override the example provided by the schema.
    */
@@ -760,6 +802,35 @@ export interface Encoding {
     [k: string]: Value | undefined;
   };
 }
+export interface MeshapiGatewayOpenapiLink1 {
+  ref?: Reference;
+  /**
+   * A relative or absolute URI reference to an OAS operation. This field is mutually exclusive of the operationId field, and MUST point to an Operation Object. Relative operationRef values MAY be used to locate an existing Operation Object in the OpenAPI definition.
+   */
+  operation_ref?: string;
+  /**
+   * The name of an existing, resolvable OAS operation, as defined with a unique operationId. This field is mutually exclusive of the operationRef field. NOTE: If a path (relative or absolute) to another service method is used, that operation ID will be substituted. 	Example: ".google.protobuf.Timestamp"
+   */
+  operation_id?: string;
+  /**
+   * A map representing parameters to pass to an operation as specified with operationId or identified via operationRef. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked operation. The parameter name can be qualified using the parameter location [{in}.]{name} for operations that use the same parameter name in different locations (e.g. path.id).
+   */
+  parameters?: {
+    [k: string]: Value | undefined;
+  };
+  request_body?: Value;
+  /**
+   * A description of the link. CommonMark syntax MAY be used for rich text representation.
+   */
+  description?: string;
+  server?: Server;
+  /**
+   * extensions that start with "x-" such as "x-foo" used to describe extra functionality that is not covered by standard OpenAPI specification. See: https://spec.openapis.org/oas/latest.html#specification-extensions
+   */
+  extensions?: {
+    [k: string]: Value | undefined;
+  };
+}
 /**
  * Describes a single operation parameter. A unique parameter is defined by a combination of a name and location. See: https://spec.openapis.org/oas/latest.html#parameter-object
  */
@@ -801,8 +872,8 @@ export interface Parameter {
    * Determines whether the parameter value SHOULD allow reserved characters, as defined by [RFC3986] :/?#[]@!$&'()*+,;= to be included without percent-encoding. This property only applies to parameters with an in value of query. The default value is false.
    */
   allow_reserved?: boolean;
-  schema?: Schema | undefined;
-  example?: Value18;
+  schema?: Schema;
+  example?: Value;
   /**
    * Examples of the parameter’s potential value. Each example SHOULD contain a value in the correct format as specified in the parameter encoding. The examples field is mutually exclusive of the example field. Furthermore, if referencing a schema that contains an example, the examples value SHALL override the example provided by the schema.
    */
@@ -1002,7 +1073,7 @@ export interface Operation {
   /**
    * A list of parameters that are applicable for this operation. Note that path and query parameters get populated by the generator and will override any overlapping keys. You might use this to define headers and values that are not defined on the request payload.
    */
-  parameters?: Parameter | undefined[];
+  parameters?: Parameter[];
   /**
    * The list of possible responses returned from executing this operation. NOTE: This list is additive meaning that it will override any generated response from the proto files.
    */
@@ -1036,7 +1107,7 @@ export interface OpenAPIMessageSpec {
    * selector is a dot-separated protobuf message selector. If the selector begins with a '.', it will be treated as an absolute path. If it begins with '~.', the current proto package will be added to the beginning of the path. For instance: `~.MyMessage`. Since no proto package can be deduced in the global config file, this alias cannot be used in the global config file. If the path does not begin with a '.' or '~.', it will be treated as a relative path and a search from the current proto package will be performed in order to find the message.
    */
   selector?: string;
-  schema?: Schema | undefined;
+  schema?: Schema;
   /**
    * fields allows controlling the OpenAPI v3.1 generation for individual fields in this proto message.
    */
@@ -1052,5 +1123,5 @@ export interface OpenAPIEnumSpec {
    * selector is a dot-separated protobuf enum selector. If the selector begins with a '.', it will be treated as an absolute path. If it begins with '~.', the current proto package will be added to the beginning of the path. For instance: `~.MyEnum`. Since no proto package can be deduced in the global config file, this alias cannot be used in the global config file. If the path does not begin with a '.' or '~.', it will be treated as a relative path and a search from the current proto package will be performed in order to find the enum.
    */
   selector?: string;
-  schema?: Schema | undefined;
+  schema?: Schema;
 }

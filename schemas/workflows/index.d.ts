@@ -15,7 +15,19 @@ export type GoogleCloudWorkflows =
         params?: [] | [string];
         steps?: StepArray;
       };
-      [k: string]: Subworkflow | undefined;
+      [k: string]:
+        | Subworkflow
+        | {
+            /**
+             * The name of the parameter variable.
+             *
+             * @minItems 0
+             * @maxItems 1
+             */
+            params?: [] | [string];
+            steps?: StepArray;
+          }
+        | undefined;
     }
   | StepArray;
 /**
@@ -23,13 +35,15 @@ export type GoogleCloudWorkflows =
  *
  * @minItems 1
  * @maxItems 100000
+ *
+ * Items: An object with a single step.
  */
 export type StepArray = [
   {
-    [k: string]: Step;
+    [k: string]: Step | undefined;
   },
   ...{
-    [k: string]: Step;
+    [k: string]: Step | undefined;
   }[]
 ];
 /**
@@ -37,6 +51,8 @@ export type StepArray = [
  *
  * @minItems 1
  * @maxItems 50
+ *
+ * Items: A single variable assignment.
  */
 export type Assign = [
   {
@@ -50,11 +66,7 @@ export type Assign = [
  * Run a function and return a result.
  */
 export type Call =
-  | ('http.get' | 'http.post' | 'http.put' | 'http.patch' | 'http.delete' | 'http.request')
-  | ('sys.sleep' | 'sys.sleep_until' | 'sys.log')
-  | ('events.await_callback' | 'events.create_callback_endpoint')
-  | string
-  | string;
+  ('http.get' | 'http.post' | 'http.put' | 'http.patch' | 'http.delete' | 'http.request') | ('sys.sleep' | 'sys.sleep_until' | 'sys.log') | ('events.await_callback' | 'events.create_callback_endpoint') | string;
 /**
  * Define what step Workflows should execute next.
  */
@@ -87,48 +99,9 @@ export type For = {
    */
   range?: [number, number] | string;
   steps: StepArray;
-} & For1 & {
-    /**
-     * A loop variable name. Contains the value of the currently iterated element.
-     */
-    value: string;
-    /**
-     * An index variable name. Contains the value to the current offset of the iteration.
-     */
-    index?: string;
-    /**
-     * An expression that evaluates into a list or a list definition. Required, if not using 'range'.
-     */
-    in?: unknown[] | string;
-    /**
-     * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
-     */
-    range?: [number, number] | string;
-    steps: StepArray;
-  } & For1 & {
-    /**
-     * A loop variable name. Contains the value of the currently iterated element.
-     */
-    value: string;
-    /**
-     * An index variable name. Contains the value to the current offset of the iteration.
-     */
-    index?: string;
-    /**
-     * An expression that evaluates into a list or a list definition. Required, if not using 'range'.
-     */
-    in?: unknown[] | string;
-    /**
-     * A list of two expressions, specifying the beginning and end of the range, both inclusive. Required, if not using 'in'.
-     */
-    range?: [number, number] | string;
-    steps: StepArray;
-  } & For1;
+} & For1;
 export type For1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
+  {
       [k: string]: unknown | undefined;
     };
 /**
@@ -149,222 +122,194 @@ export type Parallel = {
   concurrency_limit?: number;
   branches?: Branches;
   for?: For2;
-} & Parallel1 & {
-    /**
-     * The action for other branches when an exception occurs. Optional. The default policy, 'continueAll', results in no further action, and all other branches will attempt to run.
-     */
-    exception_policy?: 'continueAll';
-    /**
-     * A list of writable variables with parent scope that allow assignments within the 'parallel' step.
-     */
-    shared?: string[];
-    /**
-     * The maximum number of branches and iterations that can concurrently execute within a single workflow execution before further branches and iterations are queued to wait. This applies to a single 'parallel' step only and does not cascade. Must be a positive integer and can be either a literal value or an expression.
-     */
-    concurrency_limit?: number;
-    branches?: Branches;
-    for?: For2;
-  } & Parallel1 & {
-    /**
-     * The action for other branches when an exception occurs. Optional. The default policy, 'continueAll', results in no further action, and all other branches will attempt to run.
-     */
-    exception_policy?: 'continueAll';
-    /**
-     * A list of writable variables with parent scope that allow assignments within the 'parallel' step.
-     */
-    shared?: string[];
-    /**
-     * The maximum number of branches and iterations that can concurrently execute within a single workflow execution before further branches and iterations are queued to wait. This applies to a single 'parallel' step only and does not cascade. Must be a positive integer and can be either a literal value or an expression.
-     */
-    concurrency_limit?: number;
-    branches?: Branches;
-    for?: For2;
-  } & Parallel1;
+} & Parallel1;
 /**
  * Branches that can run concurrently. Required, if not using 'for'.
  *
  * @minItems 2
  * @maxItems 10
+ *
+ * Items: An object with a single step.
  */
 export type Branches =
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ]
   | [
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       },
       {
-        [k: string]: Step;
+        [k: string]: Step | undefined;
       }
     ];
 /**
@@ -389,18 +334,12 @@ export type For2 = {
   range?: [number, number] | string;
   steps: StepArray;
 } & (
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
+  {
       [k: string]: unknown | undefined;
     }
 );
 export type Parallel1 =
-  | {
-      [k: string]: unknown | undefined;
-    }
-  | {
+  {
       [k: string]: unknown | undefined;
     };
 /**
@@ -422,7 +361,7 @@ export type Raise =
 /**
  * A try/except structure for error handling.
  */
-export type Try = Step1 | StepArray;
+export type Try = Step | StepArray;
 /**
  * Define a retry policy to retry steps that return a specific error code.
  */
@@ -482,7 +421,7 @@ export interface Step {
  * Pass arguments and their values when calling a function that accepts parameters.
  */
 export interface Args {
-  url?: string | string;
+  url?: string;
   /**
    * The type of HTTP request method to use. Required if using call type http.request.
    */
@@ -497,12 +436,9 @@ export interface Args {
    * Body fields to supply input to the API.
    */
   body?:
-    | {
+    {
         [k: string]: unknown | undefined;
-      }
-    | null
-    | string
-    | string;
+      } | null | string;
   /**
    * Query fields to supply input to the API.
    */
@@ -526,11 +462,11 @@ export interface Args {
     /**
      * Specify token scope to limit an application's access to a user's account.
      */
-    scopes?: unknown[] | string | string;
+    scopes?: unknown[] | string;
     /**
      * Specifies the audience for the OIDC token. By default, it's set to the same value as url; however, it should be set to your service's root URL.
      */
-    audience?: string | string;
+    audience?: string;
   };
   /**
    * Time in seconds. How long a request is allowed to run before throwing an exception. Default and maximum values vary by call.
@@ -569,7 +505,7 @@ export interface Args {
     /**
      * OAuth2 scopes to pass to the Google API.
      */
-    scopes?: unknown[] | string | string;
+    scopes?: unknown[] | string;
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -603,25 +539,6 @@ export interface Condition {
   except?: Except;
   return?: Return;
   [k: string]: unknown | undefined;
-}
-/**
- * A step.
- */
-export interface Step1 {
-  assign?: Assign;
-  call?: Call;
-  args?: Args;
-  result?: Result;
-  next?: Next;
-  switch?: Switch;
-  for?: For;
-  parallel?: Parallel;
-  raise?: Raise;
-  try?: Try;
-  retry?: Retry;
-  except?: Except;
-  return?: Return;
-  steps?: StepArray;
 }
 /**
  * A try/except structure for error handling.

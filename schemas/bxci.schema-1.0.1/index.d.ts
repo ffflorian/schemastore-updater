@@ -96,7 +96,7 @@ export interface HttpsJsonSchemastoreOrgBxciSchema101Json {
    * Defines the stages and steps required to build the project.
    */
   stages: {
-    [k: string]: Stage;
+    [k: string]: Stage | undefined;
   };
   /**
    * Describes artifacts generated after all the stages have been run

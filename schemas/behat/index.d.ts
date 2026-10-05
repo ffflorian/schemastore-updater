@@ -1,6 +1,13 @@
 /* eslint-disable */
 
-export type HowToFormatTestsOutput = string;
+export type HowToFormatTestsOutput = string & {
+  pretty?: PrintsTheFeatureAsIs;
+  progress?: PrintsOneCharacterPerStep;
+  junit?: OutputsTheFailuresInJUnitCompatibleFiles;
+};
+export type PrintsTheFeatureAsIs = boolean;
+export type PrintsOneCharacterPerStep = boolean;
+export type OutputsTheFailuresInJUnitCompatibleFiles = boolean;
 export type PathsToExecute = string[];
 export type SuiteContexts = (
   | string
@@ -12,7 +19,7 @@ export type SuiteContexts = (
 export interface JSONSchemaForBehatConfigurationFiles {
   default?: DefaultProfile;
   imports?: string[];
-  [k: string]: ProfileName | undefined;
+  [k: string]: ProfileName | DefaultProfile | string[] | undefined;
 }
 export interface DefaultProfile {
   autoload?: {

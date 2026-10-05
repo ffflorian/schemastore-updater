@@ -71,7 +71,7 @@ export interface JSONSchemaForPDMPythonPackageManagerConfigurationHttpsPdmProjec
      * Env var: PDM_PYPI_JSON_API
      */
     json_api?: boolean;
-    [k: string]: PypiDef | undefined;
+    [k: string]: PypiDef | string | boolean | (boolean & string) | undefined;
   };
   strategy?: {
     /**

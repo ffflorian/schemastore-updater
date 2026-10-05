@@ -1,5 +1,10 @@
 /* eslint-disable */
 
+/**
+ * Forces a specific namespace for connectors that perform namespace auto-detection (Advanced).
+ */
+export type Namespace = string;
+
 export interface HardwareSentryConfigurationFile {
   /**
    * Sets the collect period that Hardware Sentry uses to collects metrics from the monitored hosts (Default: 2m).
@@ -48,7 +53,7 @@ export interface HardwareSentryConfigurationFile {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: number;
+    [k: string]: number | undefined;
   };
   /**
    * Overrides the default hardware problem template used to build the alert body for all the monitored hosts.
@@ -57,7 +62,7 @@ export interface HardwareSentryConfigurationFile {
   /**
    * Configures the hosts to monitor.
    */
-  hosts?: (
+  hosts?: ((
     | {
         /**
          * Configures a new host to be monitored.
@@ -102,10 +107,12 @@ export interface HardwareSentryConfigurationFile {
                  * This interface was referenced by `undefined`'s JSON-Schema definition
                  * via the `patternProperty` "^[A-Za-z0-9.\-_:]+$".
                  */
-                [k: string]: {
-                  extraLabels?: KeyValuePairVariables1;
-                  [k: string]: unknown | undefined;
-                };
+                [k: string]:
+                  | {
+                      extraLabels?: KeyValuePairVariables;
+                      [k: string]: unknown | undefined;
+                    }
+                  | undefined;
               };
           /**
            * Configures the type of the hosts to be monitored.
@@ -121,7 +128,265 @@ export interface HardwareSentryConfigurationFile {
         };
         [k: string]: unknown | undefined;
       }
-  )[];
+  ) & {
+    /**
+     * Sets the default collect period that Hardware Sentry uses to collects metrics from the monitored host (Default: 2m).
+     */
+    collectPeriod?: number | string;
+    /**
+     * Disables Hardware Sentry's alerts for the monitored host (Default: false).
+     */
+    disableAlerts?: boolean;
+    /**
+     * Sets the cycle that Hardware Sentry uses to perform discoveries and detect new components for the specific host. By default, Hardware Sentry runs a discovery after 30 collects.
+     */
+    discoveryCycle?: number & string;
+    /**
+     * Sets the Connector(s) that must be excluded from the automatic detection.
+     */
+    excludedConnectors?: string[];
+    extraLabels?: KeyValuePairVariables;
+    /**
+     * Overrides the default hardware problem template used to build the alert body for the monitored host.
+     */
+    hardwareProblemTemplate?: string;
+    /**
+     * Configures the HTTP protocol to access the host.
+     */
+    http?: {
+      /**
+       * Enables HTTPS to access the host (Default: true).
+       */
+      https?: boolean;
+      /**
+       * Sets the password used to establish the connection with the host through the HTTP protocol.
+       */
+      password?: string;
+      /**
+       * Sets the HTTPS port number used to perform HTTP requests (Default: 443).
+       */
+      port?: number;
+      /**
+       * Sets how long until the HTTP request times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets the username used to establish the connection with the host through the HTTP protocol.
+       */
+      username?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Configures the IPMI protocol to access the host.
+     */
+    ipmi?: {
+      /**
+       * Sets the password used to establish the connection with the host through the IPMI protocol.
+       */
+      password?: string;
+      /**
+       * Sets how long until the IPMI request times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets the username used to establish the connection with the host through the IPMI protocol.
+       */
+      username?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Enables the debug mode of the core engine on the specific host (Default: off).
+     */
+    loggerLevel?: 'all' | 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal' | 'off';
+    /**
+     * Sets how long until the engine's discovery and collect operations time out.
+     */
+    operationTimeout?: number;
+    /**
+     * Configures the OS Command protocol to access the host.
+     */
+    osCommand?: {
+      /**
+       * Sets the sudo command to be used for the host to be monitored (Default: sudo).
+       */
+      sudoCommand?: string;
+      /**
+       * Sets how long until the local OS Command times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets if sudo needs to be used for the local OS Command (Default: false).
+       */
+      useSudo?: boolean;
+      /**
+       * Sets the list of commands for which sudo is required.
+       */
+      useSudoCommands?: string[];
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Sets the debug output directory for the monitored host. By default, the debug output file is saved in the `logs` directory under the Hardware Sentry's home directory.
+     */
+    outputDirectory?: string;
+    /**
+     * Sets the Connector(s) to use to monitor the host. No automatic detection will be performed.
+     */
+    selectedConnectors?: string[];
+    /**
+     * Forces all the network calls to be executed in sequential order for the monitored host - NOT RECOMMENDED (Default: false).
+     */
+    sequential?: boolean;
+    /**
+     * Configures the SNMP protocol to access the host.
+     */
+    snmp?: {
+      /**
+       * Sets the SNMP Community string to use to perform SNMP v1 queries (Default: public).
+       */
+      community?: string;
+      /**
+       * SNMP v3 only - Sets the password to use for performing the SNMP query.
+       */
+      password?: string;
+      /**
+       * Sets the SNMP port number used to perform SNMP queries (Default: 161).
+       */
+      port?: number;
+      /**
+       * SNMP v3 only - Sets the type of encryption protocol.
+       */
+      privacy?: 'none' | 'aes' | 'des';
+      /**
+       * SNMP v3 only - Sets the password associated to the privacy protocol.
+       */
+      privacyPassword?: string;
+      /**
+       * Sets how long until the SNMP request times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * SNMP v3 only - Sets the username to use for performing the SNMP query.
+       */
+      username?: string;
+      /**
+       * Sets the version of the SNMP protocol (Default: v1).
+       */
+      version?: 'v1' | 'v2c' | 'v3-no-auth' | 'v3-md5' | 'v3-sha';
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Configures the SSH protocol to access the host.
+     */
+    ssh?: {
+      /**
+       * Sets the password to use for performing the SSH query.
+       */
+      password?: string;
+      /**
+       * Sets the private Key File to use to establish the connection to the host through the SSH protocol.
+       */
+      privateKey?: string;
+      /**
+       * Sets the sudo command to be used.
+       */
+      sudoCommand?: string;
+      /**
+       * Sets how long until the command times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets if sudo needs to be used for the SSH Command (Default: false).
+       */
+      useSudo?: boolean;
+      /**
+       * Sets the list of commands for which sudo is required.
+       */
+      useSudoCommands?: string[];
+      /**
+       * Sets the username to use for performing the SSH query.
+       */
+      username?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Configures the WBEM protocol to access the host.
+     */
+    wbem?: {
+      namespace?: Namespace;
+      /**
+       * Sets the password used to establish the connection with the host through the WBEM protocol.
+       */
+      password?: string;
+      /**
+       * Sets the HTTPS port number used to perform WBEM queries (Default: 5989 for HTTPS or 5988 for HTTP).
+       */
+      port?: number;
+      /**
+       * Sets the protocol used to access the host (Default: https).
+       */
+      protocol?: 'http' | 'https';
+      /**
+       * Sets how long until the WBEM request times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets the username used to establish the connection with the host through the WBEM protocol.
+       */
+      username?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Configures the WinRM protocol to access the host.
+     */
+    winrm?: {
+      /**
+       * Sets an ordered list of authentication schemes (Default: ["ntlm"]).
+       */
+      authentications?: ('ntlm' | 'kerberos')[];
+      namespace?: Namespace;
+      /**
+       * Sets the password used to establish the connection with the host through the WinRM protocol.
+       */
+      password?: string;
+      /**
+       * Sets the port number used to perform WQL queries and commands (Default: 5985 for HTTP or 5986 for HTTPS).
+       */
+      port?: number;
+      /**
+       * Sets the protocol used to access the host (Default: http).
+       */
+      protocol?: 'http' | 'https';
+      /**
+       * Sets how long until the WinRM request times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets the username used to establish the connection with the host through the WinRM protocol.
+       */
+      username?: string;
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Configures the WMI protocol to access the host.
+     */
+    wmi?: {
+      namespace?: Namespace;
+      /**
+       * Sets the password used to establish the connection with the host through the WMI protocol.
+       */
+      password?: string;
+      /**
+       * Sets how long until the WMI request times out (Default: 120s).
+       */
+      timeout?: number | string;
+      /**
+       * Sets the username used to establish the connection with the host through the WMI protocol.
+       */
+      username?: string;
+      [k: string]: unknown | undefined;
+    };
+    [k: string]: unknown | undefined;
+  })[];
   /**
    * Sets the number of jobs that Hardware Sentry can run simultaneously (Default: 20).
    */
@@ -138,7 +403,7 @@ export interface HardwareSentryConfigurationFile {
      * Overrides the OpenTelemetry Collector command line.
      */
     commandLine?: string[];
-    environment?: KeyValuePairVariables2;
+    environment?: KeyValuePairVariables;
     /**
      * Configures where to print the OpenTelemetry Collector's output (Default: log).
      */
@@ -174,43 +439,14 @@ export interface KeyValuePairVariables {
    * This interface was referenced by `KeyValuePairVariables`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    *
-   * This interface was referenced by `KeyValuePairVariables1`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   *
-   * This interface was referenced by `KeyValuePairVariables2`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   */
-  [k: string]: number | string | boolean;
-}
-/**
- * Adds or overrides the attributes of the monitored host.
- */
-export interface KeyValuePairVariables1 {
-  /**
    * This interface was referenced by `KeyValuePairVariables`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    *
-   * This interface was referenced by `KeyValuePairVariables1`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   *
-   * This interface was referenced by `KeyValuePairVariables2`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   */
-  [k: string]: number | string | boolean;
-}
-/**
- * Configures the OpenTelemetry Collector environment variables.
- */
-export interface KeyValuePairVariables2 {
-  /**
    * This interface was referenced by `KeyValuePairVariables`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    *
-   * This interface was referenced by `KeyValuePairVariables1`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   *
-   * This interface was referenced by `KeyValuePairVariables2`'s JSON-Schema definition
+   * This interface was referenced by `KeyValuePairVariables`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: number | string | boolean;
+  [k: string]: number | string | boolean | undefined;
 }

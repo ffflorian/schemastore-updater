@@ -2,7 +2,6 @@
 
 export type String = string;
 export type Bool = boolean | string;
-export type Float64 = number | string;
 /**
  * Configuration for the task that will be run for each element in the array
  */
@@ -67,6 +66,13 @@ export type JobsTask =
                              * `GPU_8xH100` means 8 H100 GPUs per node.
                              */
                             accelerator_type: ('GPU_1xA10' | 'GPU_1xH100' | 'GPU_8xH100') | string;
+                            /**
+                             * [Private Preview] Optional ID of a pre-provisioned accelerator capacity reservation to run
+                             * this AI Runtime workload on. When set, the workload is scheduled onto the
+                             * referenced reserved capacity instead of the on-demand capacity shared among
+                             * all Databricks customers.
+                             */
+                            provisioned_capacity_id?: string;
                           }
                         | string;
                       /**
@@ -128,6 +134,19 @@ export type JobsTask =
              * [Public Preview] The alert_id is the canonical identifier of the alert.
              */
             alert_id?: string;
+            /**
+             * [Private Preview] Per-run parameter overrides, keyed by parameter name, applied onto the alert's stored
+             * query parameters before the query is executed. Only scalar values are supported. Values
+             * may reference job parameters with `{{job.parameters.*}}`, which are resolved before the
+             * task runs. An override whose key does not match a stored parameter fails the task run.
+             * Limited to 10000 characters when serialized as JSON; keys must be 1-100 characters and
+             * contain only letters, digits, underscores, dashes, and periods.
+             */
+            parameters?:
+              | {
+                  [k: string]: String | undefined;
+                }
+              | string;
             /**
              * [Public Preview] The subscribers receive alert evaluation result notifications after the alert task is completed.
              * The number of subscriptions is limited to 100.
@@ -197,7 +216,7 @@ export type JobsTask =
             /**
              * [Beta] Hardware accelerator configuration for Serverless GPU workloads.
              */
-            hardware_accelerator?: ('GPU_1xA10' | 'GPU_8xH100') | string;
+            hardware_accelerator?: ('GPU_1xA10' | 'GPU_8xH100' | 'GPU_1xH100' | 'GPU_8xB300') | string;
           }
         | string;
       /**
@@ -492,7 +511,7 @@ export type JobsTask =
                   /**
                    * [Private Preview] Number of GPUs.
                    */
-                  num_gpus: number | string | string | string | string | string;
+                  num_gpus: number | string;
                 }
               | string;
             /**
@@ -667,11 +686,11 @@ export type JobsTask =
       /**
        * An optional maximum number of times to retry an unsuccessful run. A run is considered to be unsuccessful if it completes with the `FAILED` result_state or `INTERNAL_ERROR` `life_cycle_state`. The value `-1` means to retry indefinitely and the value `0` means to never retry.
        */
-      max_retries?: number | string | string | string | string | string;
+      max_retries?: number | string;
       /**
        * An optional minimal interval in milliseconds between the start of the failed run and the subsequent retry run. The default behavior is that unsuccessful runs are immediately retried.
        */
-      min_retry_interval_millis?: number | string | string | string | string | string;
+      min_retry_interval_millis?: number | string;
       /**
        * If new_cluster, a description of a new cluster that is created for each run.
        */
@@ -1046,6 +1065,11 @@ export type JobsTask =
                    * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                    */
                   alternate_node_type_ids?: String[] | string;
+                  /**
+                   * The AWS Context ID for EC2 Fleet.
+                   * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                   */
+                  aws_context_id?: string;
                 }
               | string;
             /**
@@ -1366,7 +1390,7 @@ export type JobsTask =
              */
             ssh_public_keys?: String[] | string;
             /**
-             * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+             * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
              */
             total_initial_remote_disk_size?: number | string;
             /**
@@ -1384,6 +1408,11 @@ export type JobsTask =
                    * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                    */
                   alternate_node_type_ids?: String[] | string;
+                  /**
+                   * The AWS Context ID for EC2 Fleet.
+                   * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                   */
+                  aws_context_id?: string;
                 }
               | string;
             /**
@@ -1462,15 +1491,15 @@ export type JobsTask =
             /**
              * If true, do not send notifications to recipients specified in `on_start` for the retried runs and do not send notifications to recipients specified in `on_failure` until the last retry of the run.
              */
-            alert_on_last_attempt?: boolean | string | string | string | string | string;
+            alert_on_last_attempt?: boolean | string;
             /**
              * If true, do not send notifications to recipients specified in `on_failure` if the run is canceled.
              */
-            no_alert_for_canceled_runs?: boolean | string | string | string | string | string;
+            no_alert_for_canceled_runs?: boolean | string;
             /**
              * If true, do not send notifications to recipients specified in `on_failure` if the run is skipped.
              */
-            no_alert_for_skipped_runs?: boolean | string | string | string | string | string;
+            no_alert_for_skipped_runs?: boolean | string;
           }
         | string;
       /**
@@ -1481,7 +1510,7 @@ export type JobsTask =
             /**
              * If true, triggers a full refresh on the spark declarative pipeline.
              */
-            full_refresh?: boolean | string | string | string | string | string;
+            full_refresh?: boolean | string;
             /**
              * [Beta] A list of tables to update with fullRefresh.
              */
@@ -1539,7 +1568,7 @@ export type JobsTask =
                   /**
                    * [Public Preview] Whether to overwrite existing Power BI models
                    */
-                  overwrite_existing?: boolean | string | string | string | string | string;
+                  overwrite_existing?: boolean | string;
                   /**
                    * [Public Preview] The default storage mode of the Power BI model
                    */
@@ -1553,7 +1582,7 @@ export type JobsTask =
             /**
              * [Public Preview] Whether the model should be refreshed after the update
              */
-            refresh_after_update?: boolean | string | string | string | string | string;
+            refresh_after_update?: boolean | string;
             /**
              * [Public Preview] The tables to be exported to Power BI
              */
@@ -1648,7 +1677,7 @@ export type JobsTask =
        * An optional policy to specify whether to retry a job when it times out. The default behavior
        * is to not retry on timeout.
        */
-      retry_on_timeout?: boolean | string | string | string | string | string;
+      retry_on_timeout?: boolean | string;
       /**
        * An optional value specifying the condition determining whether the task is run once its dependencies have been completed.
        *
@@ -1688,7 +1717,7 @@ export type JobsTask =
             /**
              * ID of the job to trigger.
              */
-            job_id: number | string | string | string | string | string;
+            job_id: number | string;
             /**
              * Job-level parameters used to trigger the job.
              */
@@ -1823,7 +1852,7 @@ export type JobsTask =
              * @deprecated
              * Deprecated. A value of `false` is no longer supported.
              */
-            run_as_repl?: boolean | string | string | string | string | string;
+            run_as_repl?: boolean | string;
           }
         | string;
       /**
@@ -1883,7 +1912,7 @@ export type JobsTask =
                   /**
                    * If true, the alert notifications are not sent to subscribers.
                    */
-                  pause_subscriptions?: boolean | string | string | string | string | string;
+                  pause_subscriptions?: boolean | string;
                   /**
                    * If specified, alert notifications are sent to subscribers.
                    */
@@ -1920,7 +1949,7 @@ export type JobsTask =
                   /**
                    * If true, the dashboard snapshot is not taken, and emails are not sent to subscribers.
                    */
-                  pause_subscriptions?: boolean | string | string | string | string | string;
+                  pause_subscriptions?: boolean | string;
                   /**
                    * If specified, dashboard snapshots are sent to subscriptions.
                    */
@@ -1995,7 +2024,7 @@ export type JobsTask =
       /**
        * An optional timeout applied to each run of this job task. A value of `0` means no timeout.
        */
-      timeout_seconds?: number | string | string | string | string | string;
+      timeout_seconds?: number | string;
       /**
        * A collection of system notification IDs to notify when runs of this task begin or complete. The default behavior is to not send any system notifications.
        */
@@ -2007,7 +2036,7 @@ export type JobsTask =
             on_duration_warning_threshold_exceeded?:
               | (
                   | {
-                      id: String;
+                      id: string;
                     }
                   | string
                 )[]
@@ -2018,7 +2047,7 @@ export type JobsTask =
             on_failure?:
               | (
                   | {
-                      id: String;
+                      id: string;
                     }
                   | string
                 )[]
@@ -2029,7 +2058,7 @@ export type JobsTask =
             on_start?:
               | (
                   | {
-                      id: String;
+                      id: string;
                     }
                   | string
                 )[]
@@ -2043,7 +2072,7 @@ export type JobsTask =
             on_streaming_backlog_exceeded?:
               | (
                   | {
-                      id: String;
+                      id: string;
                     }
                   | string
                 )[]
@@ -2054,7 +2083,7 @@ export type JobsTask =
             on_success?:
               | (
                   | {
-                      id: String;
+                      id: string;
                     }
                   | string
                 )[]
@@ -2153,9 +2182,17 @@ export interface DatabricksAssetBundles {
         deployment?:
           | {
               /**
+               * The ID the deployment metadata service assigned to this bundle's deployment. Output only.
+               */
+              deployment_id?: string;
+              /**
                * Whether to fail on active runs. If this is set to true a deployment that is running can be interrupted.
                */
               fail_on_active_runs?: boolean | string;
+              /**
+               * The most recent version the deployment metadata service recorded for this deployment. Output only.
+               */
+              latest_version_id?: number | string;
               /**
                * The deployment lock attributes.
                */
@@ -2297,9 +2334,17 @@ export interface DatabricksAssetBundles {
                     deployment?:
                       | {
                           /**
+                           * The ID the deployment metadata service assigned to this bundle's deployment. Output only.
+                           */
+                          deployment_id?: string;
+                          /**
                            * Whether to fail on active runs. If this is set to true a deployment that is running can be interrupted.
                            */
                           fail_on_active_runs?: boolean | string;
+                          /**
+                           * The most recent version the deployment metadata service recorded for this deployment. Output only.
+                           */
+                          latest_version_id?: number | string;
                           /**
                            * The deployment lock attributes.
                            */
@@ -2526,8 +2571,8 @@ export interface DatabricksAssetBundles {
                                             subscriptions?:
                                               | (
                                                   | {
-                                                      destination_id?: String;
-                                                      user_email?: String;
+                                                      destination_id?: string;
+                                                      user_email?: string;
                                                     }
                                                   | string
                                                 )[]
@@ -2554,8 +2599,8 @@ export interface DatabricksAssetBundles {
                                                   | 'STDDEV'
                                                 )
                                               | string;
-                                            display?: String;
-                                            name: String;
+                                            display?: string;
+                                            name: string;
                                           }
                                         | string;
                                       /**
@@ -2580,15 +2625,15 @@ export interface DatabricksAssetBundles {
                                                         | 'STDDEV'
                                                       )
                                                     | string;
-                                                  display?: String;
-                                                  name: String;
+                                                  display?: string;
+                                                  name: string;
                                                 }
                                               | string;
                                             value?:
                                               | {
-                                                  bool_value?: Bool;
-                                                  double_value?: Float64;
-                                                  string_value?: String;
+                                                  bool_value?: boolean | string;
+                                                  double_value?: number | string;
+                                                  string_value?: string;
                                                 }
                                               | string;
                                           }
@@ -2608,24 +2653,33 @@ export interface DatabricksAssetBundles {
                                     }
                                   | string;
                                 /**
-                                 * [Private Preview] Query parameters bound when executing the alert query, referenced in the
-                                 * query text with `:name` syntax. Static values only.
+                                 * [Private Preview] A list of parameters to pass into the alert SQL query statement containing parameter markers. Static values only.
+                                 *
+                                 * Reference a parameter in the query text as `:name`. Each parameter must have a unique, non-empty name.
+                                 * Each parameter consists of a name, a value, and optionally a type. To represent a NULL
+                                 * value, the `value` field may be omitted or set to `null` explicitly. If the `type` field
+                                 * is omitted, the value is interpreted as a string.
+                                 *
+                                 * If the type is given, parameters will be checked for type correctness according
+                                 * to the given type. A value is correct if the provided string can be converted to
+                                 * the requested type using the `cast` function. The exact semantics are described in
+                                 * the section [`cast` function](https://docs.databricks.com/sql/language-manual/functions/cast.html) of the SQL language reference.
                                  */
                                 parameters?:
                                   | (
                                       | {
                                           /**
-                                           * [Private Preview] The name of the parameter, referenced in the query as `:name`.
+                                           * [Private Preview] The name of the parameter. Reference it in the query text as `:name`. Required, must be
+                                           * non-empty, and must be unique across the alert's parameters.
                                            */
                                           name: string;
                                           /**
-                                           * [Private Preview] The SQL data type of the parameter, e.g. STRING, INT, or DATE. Defaults to STRING. This is a
-                                           * string rather than an enum because scalar subtypes such as DECIMAL(10, 4) cannot be enumerated.
-                                           * Complex types such as ARRAY, MAP, and STRUCT are not supported.
+                                           * [Private Preview] The SQL data type of the parameter, for example `STRING`, `INT`, or `DECIMAL(10, 2)`. If no type is given
+                                           * the type is assumed to be `STRING`. Complex types such as `ARRAY`, `MAP`, and `STRUCT` are not supported.
                                            */
                                           type?: string;
                                           /**
-                                           * [Private Preview] The bound value for the parameter, given as a string. If omitted, the value is interpreted as NULL.
+                                           * [Private Preview] The value bound to the parameter, represented as a string. If omitted, the value is interpreted as NULL.
                                            */
                                           value?: string;
                                         }
@@ -2893,14 +2947,14 @@ export interface DatabricksAssetBundles {
                                       | {
                                           app?:
                                             | {
-                                                name?: String;
+                                                name?: string;
                                                 permission?: 'CAN_USE' | string;
                                               }
                                             | string;
                                           database?:
                                             | {
-                                                database_name: String;
-                                                instance_name: String;
+                                                database_name: string;
+                                                instance_name: string;
                                                 permission: 'CAN_CONNECT_AND_CREATE' | string;
                                               }
                                             | string;
@@ -2910,16 +2964,16 @@ export interface DatabricksAssetBundles {
                                           description?: string;
                                           experiment?:
                                             | {
-                                                experiment_id: String;
+                                                experiment_id: string;
                                                 permission: ('CAN_MANAGE' | 'CAN_EDIT' | 'CAN_READ') | string;
                                               }
                                             | string;
                                           genie_space?:
                                             | {
-                                                name: String;
+                                                name: string;
                                                 permission:
                                                   ('CAN_MANAGE' | 'CAN_EDIT' | 'CAN_RUN' | 'CAN_VIEW') | string;
-                                                space_id: String;
+                                                space_id: string;
                                               }
                                             | string;
                                           job?:
@@ -2941,8 +2995,8 @@ export interface DatabricksAssetBundles {
                                           name: string;
                                           postgres?:
                                             | {
-                                                branch?: String;
-                                                database?: String;
+                                                branch?: string;
+                                                database?: string;
                                                 permission?: 'CAN_CONNECT_AND_CREATE' | string;
                                               }
                                             | string;
@@ -2998,7 +3052,7 @@ export interface DatabricksAssetBundles {
                                                       | 'MODIFY'
                                                     )
                                                   | string;
-                                                securable_full_name: String;
+                                                securable_full_name: string;
                                                 securable_type:
                                                   ('VOLUME' | 'TABLE' | 'FUNCTION' | 'CONNECTION') | string;
                                               }
@@ -3141,6 +3195,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -3170,9 +3225,9 @@ export interface DatabricksAssetBundles {
                                        */
                                       azure_encryption_settings?:
                                         | {
-                                            azure_cmk_access_connector_id?: String;
-                                            azure_cmk_managed_identity_id?: String;
-                                            azure_tenant_id: String;
+                                            azure_cmk_access_connector_id?: string;
+                                            azure_cmk_managed_identity_id?: string;
+                                            azure_tenant_id: string;
                                           }
                                         | string;
                                       /**
@@ -3779,6 +3834,11 @@ export interface DatabricksAssetBundles {
                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                        */
                                       alternate_node_type_ids?: String[] | string;
+                                      /**
+                                       * The AWS Context ID for EC2 Fleet.
+                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                       */
+                                      aws_context_id?: string;
                                     }
                                   | string;
                                 /**
@@ -4143,7 +4203,7 @@ export interface DatabricksAssetBundles {
                                  */
                                 ssh_public_keys?: String[] | string;
                                 /**
-                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                  */
                                 total_initial_remote_disk_size?: number | string;
                                 /**
@@ -4161,6 +4221,11 @@ export interface DatabricksAssetBundles {
                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                        */
                                       alternate_node_type_ids?: String[] | string;
+                                      /**
+                                       * The AWS Context ID for EC2 Fleet.
+                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                       */
+                                      aws_context_id?: string;
                                     }
                                   | string;
                                 /**
@@ -4826,6 +4891,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -5212,6 +5278,11 @@ export interface DatabricksAssetBundles {
                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                        */
                                       alternate_node_type_ids?: String[] | string;
+                                      /**
+                                       * The AWS Context ID for EC2 Fleet.
+                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                       */
+                                      aws_context_id?: string;
                                     }
                                   | string;
                                 /**
@@ -5350,9 +5421,13 @@ export interface DatabricksAssetBundles {
                                         | (
                                             | {
                                                 /**
-                                                 * If true, re-fire the run on every bundle deploy. Incompatible with lifecycle.prevent_destroy.
+                                                 * If true, re-fire the run on every bundle deploy.
                                                  */
                                                 on_bundle_deploy?: boolean | string;
+                                                /**
+                                                 * Path or glob relative to the defining YAML file. It must resolve under the sync root. Re-fire the run when a matched file's content hash changes, or when the set of matches appears or disappears. Only files the bundle syncs are hashed, so .gitignore and sync.exclude apply. Use * to match a single directory level; ** is not supported.
+                                                 */
+                                                on_file_change?: string;
                                               }
                                             | string
                                           )[]
@@ -5501,9 +5576,42 @@ export interface DatabricksAssetBundles {
                                 budget_policy_id?: string;
                                 /**
                                  * An optional continuous property for this job. The continuous property will ensure that there is always one run executing. Only one of `schedule` and `continuous` can be used.
+                                 *
+                                 * Pipelines started by a continuous job also run continuously, regardless of their own pipeline mode setting.
                                  */
                                 continuous?:
                                   | {
+                                      /**
+                                       * [Private Preview] Defines when platform-initiated maintenance may run for this job. If unspecified, maintenance may run at any time.
+                                       */
+                                      maintenance_window?:
+                                        | {
+                                            /**
+                                             * [Private Preview] The day of week on which maintenance is allowed to happen. This field is required.
+                                             */
+                                            day_of_week:
+                                              | (
+                                                  | 'MONDAY'
+                                                  | 'TUESDAY'
+                                                  | 'WEDNESDAY'
+                                                  | 'THURSDAY'
+                                                  | 'FRIDAY'
+                                                  | 'SATURDAY'
+                                                  | 'SUNDAY'
+                                                )
+                                              | string;
+                                            /**
+                                             * [Private Preview] An integer between 0 and 23 denoting the start hour for the maintenance window in the 24-hour day.
+                                             * Platform-initiated maintenance is triggered only within a one-hour window starting at this hour.
+                                             * This field is required.
+                                             */
+                                            start_hour: number | string;
+                                            /**
+                                             * [Private Preview] A Java timezone ID. The maintenance window is resolved with respect to this timezone. See [Java TimeZone](https://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) for details. This field is required.
+                                             */
+                                            timezone_id: string;
+                                          }
+                                        | string;
                                       /**
                                        * Indicate whether the continuous execution of the job is paused or not. Defaults to UNPAUSED.
                                        */
@@ -6096,6 +6204,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -6423,7 +6536,7 @@ export interface DatabricksAssetBundles {
                                                  */
                                                 ssh_public_keys?: String[] | string;
                                                 /**
-                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                                  */
                                                 total_initial_remote_disk_size?: number | string;
                                                 /**
@@ -6441,6 +6554,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -6723,6 +6841,13 @@ export interface DatabricksAssetBundles {
                                                                  */
                                                                 accelerator_type:
                                                                   ('GPU_1xA10' | 'GPU_1xH100' | 'GPU_8xH100') | string;
+                                                                /**
+                                                                 * [Private Preview] Optional ID of a pre-provisioned accelerator capacity reservation to run
+                                                                 * this AI Runtime workload on. When set, the workload is scheduled onto the
+                                                                 * referenced reserved capacity instead of the on-demand capacity shared among
+                                                                 * all Databricks customers.
+                                                                 */
+                                                                provisioned_capacity_id?: string;
                                                               }
                                                             | string;
                                                           /**
@@ -6784,6 +6909,19 @@ export interface DatabricksAssetBundles {
                                                  * [Public Preview] The alert_id is the canonical identifier of the alert.
                                                  */
                                                 alert_id?: string;
+                                                /**
+                                                 * [Private Preview] Per-run parameter overrides, keyed by parameter name, applied onto the alert's stored
+                                                 * query parameters before the query is executed. Only scalar values are supported. Values
+                                                 * may reference job parameters with `{{job.parameters.*}}`, which are resolved before the
+                                                 * task runs. An override whose key does not match a stored parameter fails the task run.
+                                                 * Limited to 10000 characters when serialized as JSON; keys must be 1-100 characters and
+                                                 * contain only letters, digits, underscores, dashes, and periods.
+                                                 */
+                                                parameters?:
+                                                  | {
+                                                      [k: string]: String | undefined;
+                                                    }
+                                                  | string;
                                                 /**
                                                  * [Public Preview] The subscribers receive alert evaluation result notifications after the alert task is completed.
                                                  * The number of subscriptions is limited to 100.
@@ -6853,7 +6991,8 @@ export interface DatabricksAssetBundles {
                                                 /**
                                                  * [Beta] Hardware accelerator configuration for Serverless GPU workloads.
                                                  */
-                                                hardware_accelerator?: ('GPU_1xA10' | 'GPU_8xH100') | string;
+                                                hardware_accelerator?:
+                                                  ('GPU_1xA10' | 'GPU_8xH100' | 'GPU_1xH100' | 'GPU_8xB300') | string;
                                               }
                                             | string;
                                           /**
@@ -7148,7 +7287,7 @@ export interface DatabricksAssetBundles {
                                                       /**
                                                        * [Private Preview] Number of GPUs.
                                                        */
-                                                      num_gpus: number | string | string | string | string | string;
+                                                      num_gpus: number | string;
                                                     }
                                                   | string;
                                                 /**
@@ -7323,12 +7462,12 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * An optional maximum number of times to retry an unsuccessful run. A run is considered to be unsuccessful if it completes with the `FAILED` result_state or `INTERNAL_ERROR` `life_cycle_state`. The value `-1` means to retry indefinitely and the value `0` means to never retry.
                                            */
-                                          max_retries?: number | string | string | string | string | string;
+                                          max_retries?: number | string;
                                           /**
                                            * An optional minimal interval in milliseconds between the start of the failed run and the subsequent retry run. The default behavior is that unsuccessful runs are immediately retried.
                                            */
                                           min_retry_interval_millis?:
-                                            number | string | string | string | string | string;
+                                            number | string;
                                           /**
                                            * If new_cluster, a description of a new cluster that is created for each run.
                                            */
@@ -7716,6 +7855,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -8043,7 +8187,7 @@ export interface DatabricksAssetBundles {
                                                  */
                                                 ssh_public_keys?: String[] | string;
                                                 /**
-                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                                  */
                                                 total_initial_remote_disk_size?: number | string;
                                                 /**
@@ -8061,6 +8205,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -8140,17 +8289,17 @@ export interface DatabricksAssetBundles {
                                                  * If true, do not send notifications to recipients specified in `on_start` for the retried runs and do not send notifications to recipients specified in `on_failure` until the last retry of the run.
                                                  */
                                                 alert_on_last_attempt?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                                 /**
                                                  * If true, do not send notifications to recipients specified in `on_failure` if the run is canceled.
                                                  */
                                                 no_alert_for_canceled_runs?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                                 /**
                                                  * If true, do not send notifications to recipients specified in `on_failure` if the run is skipped.
                                                  */
                                                 no_alert_for_skipped_runs?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                               }
                                             | string;
                                           /**
@@ -8161,7 +8310,7 @@ export interface DatabricksAssetBundles {
                                                 /**
                                                  * If true, triggers a full refresh on the spark declarative pipeline.
                                                  */
-                                                full_refresh?: boolean | string | string | string | string | string;
+                                                full_refresh?: boolean | string;
                                                 /**
                                                  * [Beta] A list of tables to update with fullRefresh.
                                                  */
@@ -8220,7 +8369,7 @@ export interface DatabricksAssetBundles {
                                                        * [Public Preview] Whether to overwrite existing Power BI models
                                                        */
                                                       overwrite_existing?:
-                                                        boolean | string | string | string | string | string;
+                                                        boolean | string;
                                                       /**
                                                        * [Public Preview] The default storage mode of the Power BI model
                                                        */
@@ -8235,7 +8384,7 @@ export interface DatabricksAssetBundles {
                                                  * [Public Preview] Whether the model should be refreshed after the update
                                                  */
                                                 refresh_after_update?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                                 /**
                                                  * [Public Preview] The tables to be exported to Power BI
                                                  */
@@ -8330,7 +8479,7 @@ export interface DatabricksAssetBundles {
                                            * An optional policy to specify whether to retry a job when it times out. The default behavior
                                            * is to not retry on timeout.
                                            */
-                                          retry_on_timeout?: boolean | string | string | string | string | string;
+                                          retry_on_timeout?: boolean | string;
                                           /**
                                            * An optional value specifying the condition determining whether the task is run once its dependencies have been completed.
                                            *
@@ -8377,7 +8526,7 @@ export interface DatabricksAssetBundles {
                                                 /**
                                                  * ID of the job to trigger.
                                                  */
-                                                job_id: number | string | string | string | string | string;
+                                                job_id: number | string;
                                                 /**
                                                  * Job-level parameters used to trigger the job.
                                                  */
@@ -8512,7 +8661,7 @@ export interface DatabricksAssetBundles {
                                                  * @deprecated
                                                  * Deprecated. A value of `false` is no longer supported.
                                                  */
-                                                run_as_repl?: boolean | string | string | string | string | string;
+                                                run_as_repl?: boolean | string;
                                               }
                                             | string;
                                           /**
@@ -8573,7 +8722,7 @@ export interface DatabricksAssetBundles {
                                                        * If true, the alert notifications are not sent to subscribers.
                                                        */
                                                       pause_subscriptions?:
-                                                        boolean | string | string | string | string | string;
+                                                        boolean | string;
                                                       /**
                                                        * If specified, alert notifications are sent to subscribers.
                                                        */
@@ -8611,7 +8760,7 @@ export interface DatabricksAssetBundles {
                                                        * If true, the dashboard snapshot is not taken, and emails are not sent to subscribers.
                                                        */
                                                       pause_subscriptions?:
-                                                        boolean | string | string | string | string | string;
+                                                        boolean | string;
                                                       /**
                                                        * If specified, dashboard snapshots are sent to subscriptions.
                                                        */
@@ -8686,7 +8835,7 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * An optional timeout applied to each run of this job task. A value of `0` means no timeout.
                                            */
-                                          timeout_seconds?: number | string | string | string | string | string;
+                                          timeout_seconds?: number | string;
                                           /**
                                            * A collection of system notification IDs to notify when runs of this task begin or complete. The default behavior is to not send any system notifications.
                                            */
@@ -8698,7 +8847,7 @@ export interface DatabricksAssetBundles {
                                                 on_duration_warning_threshold_exceeded?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -8709,7 +8858,7 @@ export interface DatabricksAssetBundles {
                                                 on_failure?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -8720,7 +8869,7 @@ export interface DatabricksAssetBundles {
                                                 on_start?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -8734,7 +8883,7 @@ export interface DatabricksAssetBundles {
                                                 on_streaming_backlog_exceeded?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -8745,7 +8894,7 @@ export interface DatabricksAssetBundles {
                                                 on_success?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -8899,6 +9048,38 @@ export interface DatabricksAssetBundles {
                                            */
                                           continuous?:
                                             | {
+                                                /**
+                                                 * [Private Preview] Defines when platform-initiated maintenance may run for this trigger. If unspecified,
+                                                 * maintenance may run at any time.
+                                                 */
+                                                maintenance_window?:
+                                                  | {
+                                                      /**
+                                                       * [Private Preview] The day of week on which maintenance is allowed to happen. This field is required.
+                                                       */
+                                                      day_of_week:
+                                                        | (
+                                                            | 'MONDAY'
+                                                            | 'TUESDAY'
+                                                            | 'WEDNESDAY'
+                                                            | 'THURSDAY'
+                                                            | 'FRIDAY'
+                                                            | 'SATURDAY'
+                                                            | 'SUNDAY'
+                                                          )
+                                                        | string;
+                                                      /**
+                                                       * [Private Preview] An integer between 0 and 23 denoting the start hour for the maintenance window in the 24-hour day.
+                                                       * Platform-initiated maintenance is triggered only within a one-hour window starting at this hour.
+                                                       * This field is required.
+                                                       */
+                                                      start_hour: number | string;
+                                                      /**
+                                                       * [Private Preview] A Java timezone ID. The maintenance window is resolved with respect to this timezone. See [Java TimeZone](https://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) for details. This field is required.
+                                                       */
+                                                      timezone_id: string;
+                                                    }
+                                                  | string;
                                                 /**
                                                  * [Beta] Whether the continuous job applies task-level retries. Defaults to NEVER.
                                                  */
@@ -9067,7 +9248,7 @@ export interface DatabricksAssetBundles {
                                       on_duration_warning_threshold_exceeded?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -9078,7 +9259,7 @@ export interface DatabricksAssetBundles {
                                       on_failure?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -9089,7 +9270,7 @@ export interface DatabricksAssetBundles {
                                       on_start?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -9103,7 +9284,7 @@ export interface DatabricksAssetBundles {
                                       on_streaming_backlog_exceeded?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -9114,13 +9295,1181 @@ export interface DatabricksAssetBundles {
                                       on_success?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
                                         | string;
                                     }
                                   | string;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    mcp_services?:
+                      | {
+                          [k: string]:
+                            | {
+                                comment?: String;
+                                config?:
+                                  | {
+                                      /**
+                                       * Tool names or prefix patterns to expose from the MCP server. Use exact
+                                       * tool names or prefix patterns such as `read_*`. An empty list exposes all
+                                       * tools. At most 1,024 selectors are allowed, and each selector can contain
+                                       * at most 256 characters.
+                                       */
+                                      include_tool_selectors?: String[] | string;
+                                      /**
+                                       * Rate limits for tool invocations. Supported scopes are user, group, service
+                                       * principal, the service as a whole, and each user by default. Request and
+                                       * token limits are supported. Empty when no rate limit is configured.
+                                       */
+                                      rate_limits?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Scope of the rate limit. Depending on this value, the limit applies to a
+                                                 * principal, the service as a whole, or each user by default.
+                                                 */
+                                                key:
+                                                  | (
+                                                      | 'RATE_LIMIT_KEY_USER'
+                                                      | 'RATE_LIMIT_KEY_USER_GROUP'
+                                                      | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                                      | 'RATE_LIMIT_KEY_SERVICE'
+                                                      | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Principal this limit applies to: user email, group name, or service
+                                                 * principal application ID. Required when `key` applies to a user, group, or
+                                                 * service principal; otherwise it must be unset.
+                                                 */
+                                                principal?: string;
+                                                /**
+                                                 * Renewal period.
+                                                 */
+                                                renewal_period:
+                                                  | (
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_MINUTE'
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Maximum requests allowed in one renewal period. Leave unset for no request
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                requests?: number | string;
+                                                /**
+                                                 * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                tokens?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                      /**
+                                       * Unity Catalog connection referencing the MCP server. Required on Create.
+                                       */
+                                      source_connection?:
+                                        | {
+                                            /**
+                                             * Resource name of the Unity Catalog connection used to access the MCP
+                                             * server, in the form `connections/{catalog}.{schema}.{connection}`.
+                                             */
+                                            name: string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                                grants?:
+                                  | (
+                                      | {
+                                          /**
+                                           * The principal (user email address or group name).
+                                           * For deleted principals, `principal` is empty while `principal_id` is populated.
+                                           */
+                                          principal?: string;
+                                          /**
+                                           * The privileges assigned to the principal.
+                                           */
+                                          privileges?:
+                                            | (
+                                                | (
+                                                    | 'SELECT'
+                                                    | 'READ_PRIVATE_FILES'
+                                                    | 'WRITE_PRIVATE_FILES'
+                                                    | 'CREATE'
+                                                    | 'USAGE'
+                                                    | 'USE_CATALOG'
+                                                    | 'USE_SCHEMA'
+                                                    | 'CREATE_SCHEMA'
+                                                    | 'CREATE_VIEW'
+                                                    | 'CREATE_EXTERNAL_TABLE'
+                                                    | 'CREATE_MATERIALIZED_VIEW'
+                                                    | 'CREATE_FUNCTION'
+                                                    | 'CREATE_MODEL'
+                                                    | 'CREATE_CATALOG'
+                                                    | 'CREATE_MANAGED_STORAGE'
+                                                    | 'CREATE_EXTERNAL_LOCATION'
+                                                    | 'CREATE_STORAGE_CREDENTIAL'
+                                                    | 'CREATE_SERVICE_CREDENTIAL'
+                                                    | 'ACCESS'
+                                                    | 'CREATE_SHARE'
+                                                    | 'CREATE_RECIPIENT'
+                                                    | 'CREATE_PROVIDER'
+                                                    | 'USE_SHARE'
+                                                    | 'USE_RECIPIENT'
+                                                    | 'USE_PROVIDER'
+                                                    | 'USE_MARKETPLACE_ASSETS'
+                                                    | 'SET_SHARE_PERMISSION'
+                                                    | 'MODIFY'
+                                                    | 'REFRESH'
+                                                    | 'EXECUTE'
+                                                    | 'READ_FILES'
+                                                    | 'WRITE_FILES'
+                                                    | 'CREATE_TABLE'
+                                                    | 'ALL_PRIVILEGES'
+                                                    | 'CREATE_CONNECTION'
+                                                    | 'USE_CONNECTION'
+                                                    | 'APPLY_TAG'
+                                                    | 'CREATE_FOREIGN_CATALOG'
+                                                    | 'CREATE_FOREIGN_SECURABLE'
+                                                    | 'MANAGE_ALLOWLIST'
+                                                    | 'CREATE_VOLUME'
+                                                    | 'CREATE_EXTERNAL_VOLUME'
+                                                    | 'READ_VOLUME'
+                                                    | 'WRITE_VOLUME'
+                                                    | 'MANAGE'
+                                                    | 'BROWSE'
+                                                    | 'CREATE_CLEAN_ROOM'
+                                                    | 'MODIFY_CLEAN_ROOM'
+                                                    | 'EXECUTE_CLEAN_ROOM_TASK'
+                                                    | 'EXTERNAL_USE_SCHEMA'
+                                                    | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
+                                                  )
+                                                | string
+                                              )[]
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                mcp_service_id: String;
+                                parent: String;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    model_provider_services?:
+                      | {
+                          [k: string]:
+                            | {
+                                comment?: String;
+                                config?:
+                                  | {
+                                      /**
+                                       * When true, accepts any model exposed by the upstream provider; `targets`
+                                       * is not required and does not restrict routability. When false, only
+                                       * models listed in `targets` are routable. Defaults to false.
+                                       */
+                                      allow_all_targets?: boolean | string;
+                                      /**
+                                       * Amazon Bedrock provider configuration.
+                                       */
+                                      amazon_bedrock?:
+                                        | {
+                                            /**
+                                             * Amazon Bedrock region and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * AWS access-key-pair authentication. Set `access_key_id` and
+                                                   * `secret_access_key.plaintext`. Mutually exclusive with
+                                                   * `service_credential`.
+                                                   */
+                                                  aws_access_key?:
+                                                    | {
+                                                        /**
+                                                         * AWS access key ID. Required on Create when using access-key auth. Treated as
+                                                         * username-equivalent (not a secret value): round-trips on reads and is
+                                                         * scrubbed from audit logs.
+                                                         */
+                                                        access_key_id?: string;
+                                                        /**
+                                                         * AWS secret access key paired with `access_key_id`. Required when creating
+                                                         * a service with access-key authentication. Supply the value in
+                                                         * `secret_access_key.plaintext`.
+                                                         */
+                                                        secret_access_key?:
+                                                          | {
+                                                              /**
+                                                               * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                               * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                               * object remains present to indicate that a secret is configured.
+                                                               */
+                                                              plaintext?: string;
+                                                            }
+                                                          | string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * AWS region where the Bedrock endpoint is hosted (e.g., `us-east-1`).
+                                                   * Required on Create.
+                                                   */
+                                                  region?: string;
+                                                  /**
+                                                   * Reference to a Unity Catalog service credential authorizing Bedrock
+                                                   * requests. On Create, supply `service_credential.name` in the form
+                                                   * `credentials/{name}`. Required on Create when using service-credential
+                                                   * authentication; mutually exclusive with `aws_access_key`. The credential
+                                                   * is referenced by name; its value is not carried here. Only
+                                                   * supported on AWS-hosted workspaces.
+                                                   */
+                                                  service_credential?:
+                                                    | {
+                                                        /**
+                                                         * Resource name of the bound Unity Catalog service credential, in the form
+                                                         * `credentials/{name}`. Supply this field when creating the service or
+                                                         * rebinding its credential. On read, it reflects the credential's current
+                                                         * name.
+                                                         */
+                                                        name: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Anthropic provider configuration. Exactly one of `direct` or `relayed` must
+                                       * be set on Create; the two are mutually exclusive.
+                                       */
+                                      anthropic?:
+                                        | {
+                                            /**
+                                             * Direct authentication with an API key supplied in
+                                             * `direct.api_key.plaintext`. Required unless `relayed` is set.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Anthropic API key. Required when creating the service. Supply the value
+                                                   * in `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                            /**
+                                             * Relayed authentication. Each inference request supplies the caller's
+                                             * OAuth token, which is forwarded to Anthropic. No Anthropic credential is
+                                             * stored. Mutually exclusive with `direct`.
+                                             */
+                                            relayed?: {} | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Azure OpenAI provider configuration.
+                                       */
+                                      azure_openai?:
+                                        | {
+                                            /**
+                                             * Azure OpenAI endpoint and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Azure OpenAI API key. Supply the value in `api_key.plaintext`. Mutually
+                                                   * exclusive with Entra ID and Unity Catalog service credential
+                                                   * authentication.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Full Azure OpenAI endpoint base URL, e.g.
+                                                   * `https://myresource.openai.azure.com`. Required on Create.
+                                                   */
+                                                  base_url?: string;
+                                                  /**
+                                                   * Entra ID service-principal authentication. Set `tenant_id`, `client_id`,
+                                                   * and `client_secret.plaintext`. Mutually exclusive with `api_key` and
+                                                   * `service_credential`.
+                                                   */
+                                                  entra_service_principal?:
+                                                    | {
+                                                        /**
+                                                         * Entra ID client (application) ID. Required on Create.
+                                                         */
+                                                        client_id?: string;
+                                                        /**
+                                                         * Entra ID client secret. Supply the value in `client_secret.plaintext`.
+                                                         */
+                                                        client_secret?:
+                                                          | {
+                                                              /**
+                                                               * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                               * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                               * object remains present to indicate that a secret is configured.
+                                                               */
+                                                              plaintext?: string;
+                                                            }
+                                                          | string;
+                                                        /**
+                                                         * Entra ID (Azure AD) tenant ID. Required on Create.
+                                                         */
+                                                        tenant_id?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Reference to a Unity Catalog service credential authorizing Azure OpenAI
+                                                   * requests. On Create, supply `service_credential.name` in the form
+                                                   * `credentials/{name}`. Required on Create when using service-credential
+                                                   * authentication; mutually exclusive with `api_key` and
+                                                   * `entra_service_principal`. The credential is referenced by name; its value
+                                                   * is not carried here. Only supported on Azure-hosted workspaces.
+                                                   */
+                                                  service_credential?:
+                                                    | {
+                                                        /**
+                                                         * Resource name of the bound Unity Catalog service credential, in the form
+                                                         * `credentials/{name}`. Supply this field when creating the service or
+                                                         * rebinding its credential. On read, it reflects the credential's current
+                                                         * name.
+                                                         */
+                                                        name: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Custom OpenAI-compatible provider configuration with bearer-token
+                                       * authentication.
+                                       */
+                                      custom?:
+                                        | {
+                                            /**
+                                             * Endpoint and authentication configuration for the custom provider.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Bearer token forwarded in the `Authorization` header. Supply the value
+                                                   * in `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Endpoint URL of the OpenAI-compatible service (e.g.,
+                                                   * `https://api.example.com/v1`). Required on Create.
+                                                   */
+                                                  base_url?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Whether to forward incoming HTTP headers to the upstream provider. Defaults
+                                       * to false and is configured for the entire provider service, not per request.
+                                       * Upstream authentication is configured separately in the provider-specific
+                                       * configuration.
+                                       */
+                                      forward_headers?: boolean | string;
+                                      /**
+                                       * Whether to forward incoming query parameters to the upstream provider.
+                                       * Defaults to false and is configured for the entire provider service, not
+                                       * per request.
+                                       */
+                                      forward_query_parameters?: boolean | string;
+                                      /**
+                                       * Whether to proxy paths that AI Gateway does not recognize as configured
+                                       * provider-native API types. Defaults to false. When true, these paths are
+                                       * forwarded unchanged to the upstream provider. When false, only
+                                       * recognized API paths are served. Enabling this broadens the upstream API
+                                       * surface exposed through the provider service.
+                                       */
+                                      forward_unmanaged_paths?: boolean | string;
+                                      /**
+                                       * Gemini Enterprise provider configuration.
+                                       */
+                                      gemini_enterprise?:
+                                        | {
+                                            /**
+                                             * Gemini Enterprise project, region, and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Google Gemini Enterprise API key. Required when creating the service.
+                                                   * Supply the value in `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * GCP project ID hosting the Gemini Enterprise endpoint. Required on Create.
+                                                   */
+                                                  project_id?: string;
+                                                  /**
+                                                   * GCP region of the Gemini Enterprise endpoint (e.g., `us-central1`).
+                                                   * Required on Create.
+                                                   */
+                                                  region?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Payload logging configuration for requests sent directly to this provider
+                                       * service. Requests routed through a model service are captured by that model
+                                       * service's inference table instead.
+                                       */
+                                      inference_table?:
+                                        | {
+                                            /**
+                                             * Parent Unity Catalog schema where the inference table is created, in the
+                                             * form `schemas/{catalog}.{schema}`. Required when configuring an inference
+                                             * table. After the inference table is created, this field cannot be changed.
+                                             */
+                                            parent: string;
+                                            /**
+                                             * Prefix used to form the inference table's registered name. AI Gateway
+                                             * appends `_payload`; for example, `table_name_prefix = "orders"` creates
+                                             * `orders_payload`. If unset, the prefix defaults to the service name. Read
+                                             * `table` from the response for the resulting resource name. After the
+                                             * inference table is created, this field cannot be changed.
+                                             */
+                                            table_name_prefix?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Microsoft Foundry provider configuration.
+                                       */
+                                      microsoft_foundry?:
+                                        | {
+                                            /**
+                                             * Microsoft Foundry endpoint and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Microsoft Foundry API key. Supply the value in `api_key.plaintext`.
+                                                   * Mutually exclusive with Entra ID and Unity Catalog service credential
+                                                   * authentication.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Microsoft Foundry endpoint URL. Required on Create.
+                                                   */
+                                                  base_url?: string;
+                                                  /**
+                                                   * Entra ID service-principal authentication. Set `tenant_id`, `client_id`,
+                                                   * and `client_secret.plaintext`. Mutually exclusive with `api_key` and
+                                                   * `service_credential`.
+                                                   */
+                                                  entra_service_principal?:
+                                                    | {
+                                                        /**
+                                                         * Entra ID client (application) ID. Required on Create.
+                                                         */
+                                                        client_id?: string;
+                                                        /**
+                                                         * Entra ID client secret. Supply the value in `client_secret.plaintext`.
+                                                         */
+                                                        client_secret?:
+                                                          | {
+                                                              /**
+                                                               * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                               * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                               * object remains present to indicate that a secret is configured.
+                                                               */
+                                                              plaintext?: string;
+                                                            }
+                                                          | string;
+                                                        /**
+                                                         * Entra ID (Azure AD) tenant ID. Required on Create.
+                                                         */
+                                                        tenant_id?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Reference to a Unity Catalog service credential authorizing Microsoft
+                                                   * Foundry requests. On Create, supply `service_credential.name` in the form
+                                                   * `credentials/{name}`. Required on Create when using service-credential
+                                                   * authentication; mutually exclusive with `api_key` and
+                                                   * `entra_service_principal`. The credential is referenced by name; its value
+                                                   * is not carried here. Only supported on Azure-hosted workspaces.
+                                                   */
+                                                  service_credential?:
+                                                    | {
+                                                        /**
+                                                         * Resource name of the bound Unity Catalog service credential, in the form
+                                                         * `credentials/{name}`. Supply this field when creating the service or
+                                                         * rebinding its credential. On read, it reflects the credential's current
+                                                         * name.
+                                                         */
+                                                        name: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * OpenAI provider configuration.
+                                       */
+                                      openai?:
+                                        | {
+                                            /**
+                                             * OpenAI configuration with an API key supplied in the request.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * OpenAI API key. Required when creating the service. Supply the value in
+                                                   * `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Optional custom base URL. Defaults to `https://api.openai.com/v1`. Use for
+                                                   * OpenAI-API-compatible third-party endpoints or in-network proxies.
+                                                   */
+                                                  base_url?: string;
+                                                  /**
+                                                   * Optional OpenAI organization ID. When set, the platform forwards it as
+                                                   * the `OpenAI-Organization` header.
+                                                   */
+                                                  organization?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * External model provider. Required on Create and immutable thereafter. Set
+                                       * the matching provider-specific configuration, such as `openai`,
+                                       * `azure_openai`, or `amazon_bedrock`.
+                                       */
+                                      provider_type?:
+                                        | (
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_OPENAI'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_AZURE_OPENAI'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_ANTHROPIC'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_AMAZON_BEDROCK'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_CUSTOM'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_MICROSOFT_FOUNDRY'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_GEMINI_ENTERPRISE'
+                                          )
+                                        | string;
+                                      /**
+                                       * Rate limits for requests sent directly to this provider service. Requests
+                                       * routed through a model service use that model service's rate limits instead.
+                                       */
+                                      rate_limits?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Scope of the rate limit. Depending on this value, the limit applies to a
+                                                 * principal, the service as a whole, or each user by default.
+                                                 */
+                                                key:
+                                                  | (
+                                                      | 'RATE_LIMIT_KEY_USER'
+                                                      | 'RATE_LIMIT_KEY_USER_GROUP'
+                                                      | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                                      | 'RATE_LIMIT_KEY_SERVICE'
+                                                      | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Principal this limit applies to: user email, group name, or service
+                                                 * principal application ID. Required when `key` applies to a user, group, or
+                                                 * service principal; otherwise it must be unset.
+                                                 */
+                                                principal?: string;
+                                                /**
+                                                 * Renewal period.
+                                                 */
+                                                renewal_period:
+                                                  | (
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_MINUTE'
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Maximum requests allowed in one renewal period. Leave unset for no request
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                requests?: number | string;
+                                                /**
+                                                 * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                tokens?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                      /**
+                                       * Models and provider-native API types exposed by this provider service. Each
+                                       * entry must include at least one `native_api_types` value. When
+                                       * `allow_all_targets` is false, at least one entry is required and model
+                                       * service destinations can reference only listed models. When
+                                       * `allow_all_targets` is true, any upstream model is routable; entries in
+                                       * this list provide API-type metadata without restricting other models.
+                                       */
+                                      targets?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                 * This identifies a model at the upstream provider; it is not a Unity
+                                                 * Catalog model resource.
+                                                 */
+                                                model: string;
+                                                /**
+                                                 * Provider-native API types supported by this model, such as
+                                                 * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                 * uses these values to translate requests and responses. At most 64 entries
+                                                 * of 256 characters each are allowed.
+                                                 */
+                                                native_api_types?: String[] | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                    }
+                                  | string;
+                                grants?:
+                                  | (
+                                      | {
+                                          /**
+                                           * The principal (user email address or group name).
+                                           * For deleted principals, `principal` is empty while `principal_id` is populated.
+                                           */
+                                          principal?: string;
+                                          /**
+                                           * The privileges assigned to the principal.
+                                           */
+                                          privileges?:
+                                            | (
+                                                | (
+                                                    | 'SELECT'
+                                                    | 'READ_PRIVATE_FILES'
+                                                    | 'WRITE_PRIVATE_FILES'
+                                                    | 'CREATE'
+                                                    | 'USAGE'
+                                                    | 'USE_CATALOG'
+                                                    | 'USE_SCHEMA'
+                                                    | 'CREATE_SCHEMA'
+                                                    | 'CREATE_VIEW'
+                                                    | 'CREATE_EXTERNAL_TABLE'
+                                                    | 'CREATE_MATERIALIZED_VIEW'
+                                                    | 'CREATE_FUNCTION'
+                                                    | 'CREATE_MODEL'
+                                                    | 'CREATE_CATALOG'
+                                                    | 'CREATE_MANAGED_STORAGE'
+                                                    | 'CREATE_EXTERNAL_LOCATION'
+                                                    | 'CREATE_STORAGE_CREDENTIAL'
+                                                    | 'CREATE_SERVICE_CREDENTIAL'
+                                                    | 'ACCESS'
+                                                    | 'CREATE_SHARE'
+                                                    | 'CREATE_RECIPIENT'
+                                                    | 'CREATE_PROVIDER'
+                                                    | 'USE_SHARE'
+                                                    | 'USE_RECIPIENT'
+                                                    | 'USE_PROVIDER'
+                                                    | 'USE_MARKETPLACE_ASSETS'
+                                                    | 'SET_SHARE_PERMISSION'
+                                                    | 'MODIFY'
+                                                    | 'REFRESH'
+                                                    | 'EXECUTE'
+                                                    | 'READ_FILES'
+                                                    | 'WRITE_FILES'
+                                                    | 'CREATE_TABLE'
+                                                    | 'ALL_PRIVILEGES'
+                                                    | 'CREATE_CONNECTION'
+                                                    | 'USE_CONNECTION'
+                                                    | 'APPLY_TAG'
+                                                    | 'CREATE_FOREIGN_CATALOG'
+                                                    | 'CREATE_FOREIGN_SECURABLE'
+                                                    | 'MANAGE_ALLOWLIST'
+                                                    | 'CREATE_VOLUME'
+                                                    | 'CREATE_EXTERNAL_VOLUME'
+                                                    | 'READ_VOLUME'
+                                                    | 'WRITE_VOLUME'
+                                                    | 'MANAGE'
+                                                    | 'BROWSE'
+                                                    | 'CREATE_CLEAN_ROOM'
+                                                    | 'MODIFY_CLEAN_ROOM'
+                                                    | 'EXECUTE_CLEAN_ROOM_TASK'
+                                                    | 'EXTERNAL_USE_SCHEMA'
+                                                    | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
+                                                  )
+                                                | string
+                                              )[]
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                model_provider_service_id: String;
+                                parent: String;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    model_services?:
+                      | {
+                          [k: string]:
+                            | {
+                                comment?: String;
+                                config?:
+                                  | {
+                                      /**
+                                       * Inference table configuration for payload logging.
+                                       */
+                                      inference_table?:
+                                        | {
+                                            /**
+                                             * Parent Unity Catalog schema where the inference table is created, in the
+                                             * form `schemas/{catalog}.{schema}`. Required when configuring an inference
+                                             * table. After the inference table is created, this field cannot be changed.
+                                             */
+                                            parent: string;
+                                            /**
+                                             * Prefix used to form the inference table's registered name. AI Gateway
+                                             * appends `_payload`; for example, `table_name_prefix = "orders"` creates
+                                             * `orders_payload`. If unset, the prefix defaults to the service name. Read
+                                             * `table` from the response for the resulting resource name. After the
+                                             * inference table is created, this field cannot be changed.
+                                             */
+                                            table_name_prefix?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Rate limits applied to requests routed through this model service.
+                                       */
+                                      rate_limits?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Scope of the rate limit. Depending on this value, the limit applies to a
+                                                 * principal, the service as a whole, or each user by default.
+                                                 */
+                                                key:
+                                                  | (
+                                                      | 'RATE_LIMIT_KEY_USER'
+                                                      | 'RATE_LIMIT_KEY_USER_GROUP'
+                                                      | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                                      | 'RATE_LIMIT_KEY_SERVICE'
+                                                      | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Principal this limit applies to: user email, group name, or service
+                                                 * principal application ID. Required when `key` applies to a user, group, or
+                                                 * service principal; otherwise it must be unset.
+                                                 */
+                                                principal?: string;
+                                                /**
+                                                 * Renewal period.
+                                                 */
+                                                renewal_period:
+                                                  | (
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_MINUTE'
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Maximum requests allowed in one renewal period. Leave unset for no request
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                requests?: number | string;
+                                                /**
+                                                 * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                tokens?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                      /**
+                                       * Routing configuration: destinations and fallback.
+                                       */
+                                      routing?:
+                                        | {
+                                            /**
+                                             * Primary routing destinations. At most 10 are allowed. At least one is
+                                             * required on Create. On Update, provide this list when replacing the full
+                                             * `config` or updating `config.routing.destinations`; other granular routing
+                                             * updates do not require resending destinations. The intermediate
+                                             * `config.routing` mask path is not supported.
+                                             */
+                                            destinations?:
+                                              | (
+                                                  | {
+                                                      /**
+                                                       * Backing-model category. Provide the matching type-specific configuration
+                                                       * and leave the other type-specific configurations unset.
+                                                       */
+                                                      destination_type:
+                                                        | (
+                                                            | 'DESTINATION_TYPE_PAY_PER_TOKEN_FOUNDATION_MODEL'
+                                                            | 'DESTINATION_TYPE_PROVISIONED_THROUGHPUT_FOUNDATION_MODEL'
+                                                            | 'DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL'
+                                                          )
+                                                        | string;
+                                                      /**
+                                                       * Configuration for an external model reached through a model provider service.
+                                                       */
+                                                      external_model_config?:
+                                                        | {
+                                                            /**
+                                                             * Resource name of the governed ModelProviderService that owns provider
+                                                             * auth and provider-specific configuration. The referenced
+                                                             * ModelProviderService also carries the provider type, so this message
+                                                             * does not surface it directly.
+                                                             * Format: `model-provider-services/{catalog}.{schema}.{model_provider_service}`.
+                                                             * Each `{...}` component is capped at 255 characters individually.
+                                                             */
+                                                            model_provider_service: string;
+                                                            /**
+                                                             * Routing target for the destination: the provider-side model selected from
+                                                             * the referenced ModelProviderService's `targets` catalog, plus the unified
+                                                             * API types the platform should translate to/from at request time.
+                                                             */
+                                                            target:
+                                                              | {
+                                                                  /**
+                                                                   * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                                   * This identifies a model at the upstream provider; it is not a Unity
+                                                                   * Catalog model resource.
+                                                                   */
+                                                                  model: string;
+                                                                  /**
+                                                                   * Provider-native API types supported by this model, such as
+                                                                   * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                                   * uses these values to translate requests and responses. At most 64 entries
+                                                                   * of 256 characters each are allowed.
+                                                                   */
+                                                                  native_api_types?: String[] | string;
+                                                                }
+                                                              | string;
+                                                          }
+                                                        | string;
+                                                      /**
+                                                       * User-facing label for this destination, used in routing references.
+                                                       */
+                                                      name: string;
+                                                      /**
+                                                       * Configuration for a pay-per-token Databricks foundation model.
+                                                       */
+                                                      pay_per_token_config?:
+                                                        | {
+                                                            /**
+                                                             * Resource name of the Unity Catalog model.
+                                                             * Format: `models/{catalog}.{schema}.{model}`.
+                                                             */
+                                                            model: string;
+                                                          }
+                                                        | string;
+                                                      /**
+                                                       * Configuration for a provisioned-throughput Databricks foundation model.
+                                                       */
+                                                      provisioned_throughput_config?:
+                                                        | {
+                                                            /**
+                                                             * Name of the backing Model Serving endpoint serving the provisioned-
+                                                             * throughput foundation model, in the form `serving-endpoints/{name}`. The
+                                                             * same Unity Catalog model can be served on multiple Model Serving endpoints
+                                                             * with different throughput, regions, or configurations. The caller selects
+                                                             * the endpoint to which this destination routes. The endpoint must exist at
+                                                             * create time.
+                                                             */
+                                                            model_serving_endpoint: string;
+                                                          }
+                                                        | string;
+                                                      /**
+                                                       * Percentage of primary traffic sent to this destination, from 0 to 100.
+                                                       * Required when there is more than one primary destination, in which case the
+                                                       * primary percentages must sum to 100; a single primary destination receives
+                                                       * all traffic. Fallback destinations are ordered and do not use this field.
+                                                       */
+                                                      traffic_percentage?: number | string;
+                                                    }
+                                                  | string
+                                                )[]
+                                              | string;
+                                            /**
+                                             * Fallback routing applied after a primary destination fails. Fallback
+                                             * destinations are tried in the listed order.
+                                             */
+                                            fallback?:
+                                              | {
+                                                  /**
+                                                   * Fallback destinations, tried in the listed order. At most 5 are allowed.
+                                                   */
+                                                  destinations?:
+                                                    | (
+                                                        | {
+                                                            /**
+                                                             * Backing-model category. Provide the matching type-specific configuration
+                                                             * and leave the other type-specific configurations unset.
+                                                             */
+                                                            destination_type:
+                                                              | (
+                                                                  | 'DESTINATION_TYPE_PAY_PER_TOKEN_FOUNDATION_MODEL'
+                                                                  | 'DESTINATION_TYPE_PROVISIONED_THROUGHPUT_FOUNDATION_MODEL'
+                                                                  | 'DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL'
+                                                                )
+                                                              | string;
+                                                            /**
+                                                             * Configuration for an external model reached through a model provider service.
+                                                             */
+                                                            external_model_config?:
+                                                              | {
+                                                                  /**
+                                                                   * Resource name of the governed ModelProviderService that owns provider
+                                                                   * auth and provider-specific configuration. The referenced
+                                                                   * ModelProviderService also carries the provider type, so this message
+                                                                   * does not surface it directly.
+                                                                   * Format: `model-provider-services/{catalog}.{schema}.{model_provider_service}`.
+                                                                   * Each `{...}` component is capped at 255 characters individually.
+                                                                   */
+                                                                  model_provider_service: string;
+                                                                  /**
+                                                                   * Routing target for the destination: the provider-side model selected from
+                                                                   * the referenced ModelProviderService's `targets` catalog, plus the unified
+                                                                   * API types the platform should translate to/from at request time.
+                                                                   */
+                                                                  target:
+                                                                    | {
+                                                                        /**
+                                                                         * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                                         * This identifies a model at the upstream provider; it is not a Unity
+                                                                         * Catalog model resource.
+                                                                         */
+                                                                        model: string;
+                                                                        /**
+                                                                         * Provider-native API types supported by this model, such as
+                                                                         * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                                         * uses these values to translate requests and responses. At most 64 entries
+                                                                         * of 256 characters each are allowed.
+                                                                         */
+                                                                        native_api_types?: String[] | string;
+                                                                      }
+                                                                    | string;
+                                                                }
+                                                              | string;
+                                                            /**
+                                                             * User-facing label for this destination, used in routing references.
+                                                             */
+                                                            name: string;
+                                                            /**
+                                                             * Configuration for a pay-per-token Databricks foundation model.
+                                                             */
+                                                            pay_per_token_config?:
+                                                              | {
+                                                                  /**
+                                                                   * Resource name of the Unity Catalog model.
+                                                                   * Format: `models/{catalog}.{schema}.{model}`.
+                                                                   */
+                                                                  model: string;
+                                                                }
+                                                              | string;
+                                                            /**
+                                                             * Configuration for a provisioned-throughput Databricks foundation model.
+                                                             */
+                                                            provisioned_throughput_config?:
+                                                              | {
+                                                                  /**
+                                                                   * Name of the backing Model Serving endpoint serving the provisioned-
+                                                                   * throughput foundation model, in the form `serving-endpoints/{name}`. The
+                                                                   * same Unity Catalog model can be served on multiple Model Serving endpoints
+                                                                   * with different throughput, regions, or configurations. The caller selects
+                                                                   * the endpoint to which this destination routes. The endpoint must exist at
+                                                                   * create time.
+                                                                   */
+                                                                  model_serving_endpoint: string;
+                                                                }
+                                                              | string;
+                                                            /**
+                                                             * Percentage of primary traffic sent to this destination, from 0 to 100.
+                                                             * Required when there is more than one primary destination, in which case the
+                                                             * primary percentages must sum to 100; a single primary destination receives
+                                                             * all traffic. Fallback destinations are ordered and do not use this field.
+                                                             */
+                                                            traffic_percentage?: number | string;
+                                                          }
+                                                        | string
+                                                      )[]
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                                grants?:
+                                  | (
+                                      | {
+                                          /**
+                                           * The principal (user email address or group name).
+                                           * For deleted principals, `principal` is empty while `principal_id` is populated.
+                                           */
+                                          principal?: string;
+                                          /**
+                                           * The privileges assigned to the principal.
+                                           */
+                                          privileges?:
+                                            | (
+                                                | (
+                                                    | 'SELECT'
+                                                    | 'READ_PRIVATE_FILES'
+                                                    | 'WRITE_PRIVATE_FILES'
+                                                    | 'CREATE'
+                                                    | 'USAGE'
+                                                    | 'USE_CATALOG'
+                                                    | 'USE_SCHEMA'
+                                                    | 'CREATE_SCHEMA'
+                                                    | 'CREATE_VIEW'
+                                                    | 'CREATE_EXTERNAL_TABLE'
+                                                    | 'CREATE_MATERIALIZED_VIEW'
+                                                    | 'CREATE_FUNCTION'
+                                                    | 'CREATE_MODEL'
+                                                    | 'CREATE_CATALOG'
+                                                    | 'CREATE_MANAGED_STORAGE'
+                                                    | 'CREATE_EXTERNAL_LOCATION'
+                                                    | 'CREATE_STORAGE_CREDENTIAL'
+                                                    | 'CREATE_SERVICE_CREDENTIAL'
+                                                    | 'ACCESS'
+                                                    | 'CREATE_SHARE'
+                                                    | 'CREATE_RECIPIENT'
+                                                    | 'CREATE_PROVIDER'
+                                                    | 'USE_SHARE'
+                                                    | 'USE_RECIPIENT'
+                                                    | 'USE_PROVIDER'
+                                                    | 'USE_MARKETPLACE_ASSETS'
+                                                    | 'SET_SHARE_PERMISSION'
+                                                    | 'MODIFY'
+                                                    | 'REFRESH'
+                                                    | 'EXECUTE'
+                                                    | 'READ_FILES'
+                                                    | 'WRITE_FILES'
+                                                    | 'CREATE_TABLE'
+                                                    | 'ALL_PRIVILEGES'
+                                                    | 'CREATE_CONNECTION'
+                                                    | 'USE_CONNECTION'
+                                                    | 'APPLY_TAG'
+                                                    | 'CREATE_FOREIGN_CATALOG'
+                                                    | 'CREATE_FOREIGN_SECURABLE'
+                                                    | 'MANAGE_ALLOWLIST'
+                                                    | 'CREATE_VOLUME'
+                                                    | 'CREATE_EXTERNAL_VOLUME'
+                                                    | 'READ_VOLUME'
+                                                    | 'WRITE_VOLUME'
+                                                    | 'MANAGE'
+                                                    | 'BROWSE'
+                                                    | 'CREATE_CLEAN_ROOM'
+                                                    | 'MODIFY_CLEAN_ROOM'
+                                                    | 'EXECUTE_CLEAN_ROOM_TASK'
+                                                    | 'EXTERNAL_USE_SCHEMA'
+                                                    | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
+                                                  )
+                                                | string
+                                              )[]
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                model_service_id: String;
+                                parent: String;
                               }
                             | string
                             | undefined;
@@ -9353,7 +10702,7 @@ export interface DatabricksAssetBundles {
                                                  * The name of the entity to be served. The entity may be a model in the Databricks Model Registry, a model in the Unity Catalog (UC), or a function of type FEATURE_SPEC in the UC. If it is a UC object, the full name of the object should be given in the form of **catalog_name.schema_name.model_name**.
                                                  */
                                                 entity_name?: string;
-                                                entity_version?: String;
+                                                entity_version?: string;
                                                 /**
                                                  * An object containing a set of optional, user-specified environment variable key-value pairs used for serving this entity. Note: this is an experimental feature and subject to change. Example entity environment variables that refer to Databricks secrets: `{"OPENAI_API_KEY": "{{secrets/my_scope/my_key}}", "DATABRICKS_TOKEN": "{{secrets/my_scope2/my_key2}}"}`
                                                  */
@@ -9839,8 +11188,8 @@ export interface DatabricksAssetBundles {
                                                  * The minimum tokens per second that the endpoint can scale down to.
                                                  */
                                                 min_provisioned_throughput?: number | string;
-                                                model_name: String;
-                                                model_version: String;
+                                                model_name: string;
+                                                model_version: string;
                                                 /**
                                                  * The name of a served entity. It must be unique across an endpoint. A served entity name can consist of alphanumeric characters, dashes, and underscores. If not specified for an external model, this field defaults to external_model.name, with '.' and ':' replaced with '-', and if not specified for other entities, it defaults to entity_name-entity_version.
                                                  */
@@ -9888,7 +11237,7 @@ export interface DatabricksAssetBundles {
                                             routes?:
                                               | (
                                                   | {
-                                                      served_entity_name?: String;
+                                                      served_entity_name?: string;
                                                       /**
                                                        * The name of the served model this route configures traffic for.
                                                        */
@@ -9905,7 +11254,7 @@ export interface DatabricksAssetBundles {
                                         | string;
                                     }
                                   | string;
-                                description?: String;
+                                description?: string;
                                 /**
                                  * Email notification settings.
                                  */
@@ -10703,7 +12052,7 @@ export interface DatabricksAssetBundles {
                                            */
                                           instance_pool_id?: string;
                                           /**
-                                           * A label for the cluster specification, either `default` to configure the default cluster, or `maintenance` to configure the maintenance cluster. This field is optional. The default value is `default`.
+                                           * A label for the cluster specification, either `default` to configure the default cluster settings applied to both the update and maintenance clusters, `updates` to configure the update cluster, or `maintenance` to configure the maintenance cluster. This field is optional. The default value is `default`.
                                            */
                                           label?: string;
                                           /**
@@ -10774,7 +12123,12 @@ export interface DatabricksAssetBundles {
                                     }
                                   | string;
                                 /**
+                                 * @deprecated
                                  * Whether the pipeline is continuous or triggered. This replaces `trigger`.
+                                 *
+                                 * Deprecated: wrap the pipeline in a continuous job instead, which also lets you take advantage
+                                 * of job-level settings such as performance mode. When the pipeline is started by a continuous
+                                 * job, the job's setting takes precedence and this field is ignored.
                                  */
                                 continuous?: boolean | string;
                                 /**
@@ -10797,7 +12151,7 @@ export interface DatabricksAssetBundles {
                                        */
                                       dependencies?: String[] | string;
                                       /**
-                                       * [Beta] The environment version of the serverless Python environment used to execute
+                                       * [Public Preview] The environment version of the serverless Python environment used to execute
                                        * customer Python code. Each environment version includes a specific Python
                                        * version and a curated set of pre-installed libraries with defined versions,
                                        * providing a stable and reproducible execution environment.
@@ -11839,6 +13193,20 @@ export interface DatabricksAssetBundles {
                                                                 }
                                                               | string;
                                                             /**
+                                                             * [Beta] RabbitMQ specific options for ingestion.
+                                                             * Performance tuning options (consumers_per_task, max_messages_per_fetch, etc.)
+                                                             * are intentionally not exposed in the public API. The managed connector uses
+                                                             * sensible defaults internally. These can be added later if user demand arises.
+                                                             */
+                                                            rabbitmq_options?:
+                                                              | {
+                                                                  /**
+                                                                   * [Beta] (Required) RabbitMQ queue name to consume from.
+                                                                   */
+                                                                  queue: string;
+                                                                }
+                                                              | string;
+                                                            /**
                                                              * [Private Preview] Reddit Ads specific options for ingestion
                                                              */
                                                             reddit_ads_options?:
@@ -12224,13 +13592,11 @@ export interface DatabricksAssetBundles {
                                                        */
                                                       source_catalog?: string;
                                                       /**
-                                                       * [Public Preview] Schema name in the source database. Currently required; this field will become optional in
-                                                       * an upcoming release, since some source types (for example streaming / message-bus connectors)
-                                                       * do not use it. When that change ships, this field's type in the generated SDKs and CLI will
-                                                       * change from required to optional (nullable); clients that assume it is always present should
-                                                       * handle its absence.
+                                                       * [Public Preview] Schema name in the source database. Optional: some source types (for example streaming or
+                                                       * message-bus connectors) do not use it, so it may be absent from a pipeline's definition.
+                                                       * Clients that assume it is always present should handle its absence.
                                                        */
-                                                      source_schema: string;
+                                                      source_schema?: string;
                                                       /**
                                                        * [Public Preview] Configuration settings to control the ingestion of tables. These settings are applied to all tables in this schema and override the table_configuration defined in the IngestionPipelineDefinition object.
                                                        */
@@ -13050,6 +14416,20 @@ export interface DatabricksAssetBundles {
                                                                 }
                                                               | string;
                                                             /**
+                                                             * [Beta] RabbitMQ specific options for ingestion.
+                                                             * Performance tuning options (consumers_per_task, max_messages_per_fetch, etc.)
+                                                             * are intentionally not exposed in the public API. The managed connector uses
+                                                             * sensible defaults internally. These can be added later if user demand arises.
+                                                             */
+                                                            rabbitmq_options?:
+                                                              | {
+                                                                  /**
+                                                                   * [Beta] (Required) RabbitMQ queue name to consume from.
+                                                                   */
+                                                                  queue: string;
+                                                                }
+                                                              | string;
+                                                            /**
                                                              * [Private Preview] Reddit Ads specific options for ingestion
                                                              */
                                                             reddit_ads_options?:
@@ -13367,13 +14747,11 @@ export interface DatabricksAssetBundles {
                                                        */
                                                       source_schema?: string;
                                                       /**
-                                                       * [Public Preview] Table name in the source database. Currently required; this field will become optional in
-                                                       * an upcoming release, since some source types (for example streaming / message-bus connectors)
-                                                       * do not use it. When that change ships, this field's type in the generated SDKs and CLI will
-                                                       * change from required to optional (nullable); clients that assume it is always present should
-                                                       * handle its absence.
+                                                       * [Public Preview] Table name in the source database. Optional: some source types (for example streaming or
+                                                       * message-bus connectors) do not use it, so it may be absent from a pipeline's definition.
+                                                       * Clients that assume it is always present should handle its absence.
                                                        */
-                                                      source_table: string;
+                                                      source_table?: string;
                                                       /**
                                                        * [Public Preview] Configuration settings to control the ingestion of tables. These settings override the table_configuration defined in the IngestionPipelineDefinition object and the SchemaSpec.
                                                        */
@@ -14097,8 +15475,8 @@ export interface DatabricksAssetBundles {
                                   | {
                                       cron?:
                                         | {
-                                            quartz_cron_schedule?: String;
-                                            timezone_id?: String;
+                                            quartz_cron_schedule?: string;
+                                            timezone_id?: string;
                                           }
                                         | string;
                                       manual?: {} | string;
@@ -14126,7 +15504,7 @@ export interface DatabricksAssetBundles {
                                 branch_id: string;
                                 /**
                                  * [Beta] Absolute expiration timestamp. When set, the branch will expire at this time.
-                                 * Mutually exclusive with `ttl` and `no_expiry`. When updating, use `spec.expiration` in the update_mask.
+                                 * Mutually exclusive with `ttl` and `no_expiry`.
                                  */
                                 expire_time?: {} | string;
                                 /**
@@ -14147,7 +15525,7 @@ export interface DatabricksAssetBundles {
                                 /**
                                  * [Beta] Explicitly disable expiration. When set to true, the branch will not expire.
                                  * If set to false, the request is invalid; provide either ttl or expire_time instead.
-                                 * Mutually exclusive with `expire_time` and `ttl`. When updating, use `spec.expiration` in the update_mask.
+                                 * Mutually exclusive with `expire_time` and `ttl`.
                                  */
                                 no_expiry?: boolean | string;
                                 /**
@@ -14179,8 +15557,16 @@ export interface DatabricksAssetBundles {
                                  */
                                 source_branch_time?: {} | string;
                                 /**
+                                 * [Private Preview] The snapshot this branch was created from. When set, the branch's data
+                                 * comes from the snapshot rather than a source branch, so source_branch,
+                                 * source_branch_lsn, and source_branch_time must be empty. The snapshot must
+                                 * be AVAILABLE and belong to this branch's project.
+                                 * Format: projects/{project_id}/snapshots/{snapshot_id}
+                                 */
+                                source_snapshot?: string;
+                                /**
                                  * [Beta] Relative time-to-live duration. When set, the branch will expire at creation_time + ttl.
-                                 * Mutually exclusive with `expire_time` and `no_expiry`. When updating, use `spec.expiration` in the update_mask.
+                                 * Mutually exclusive with `expire_time` and `no_expiry`.
                                  */
                                 ttl?: string;
                               }
@@ -14370,7 +15756,7 @@ export interface DatabricksAssetBundles {
                                 /**
                                  * [Beta] When set to true, explicitly disables automatic suspension (never suspend).
                                  * Should be set to true when provided.
-                                 * Mutually exclusive with `suspend_timeout_duration`. When updating, use `spec.suspension` in the update_mask.
+                                 * Mutually exclusive with `suspend_timeout_duration`.
                                  */
                                 no_suspension?: boolean | string;
                                 /**
@@ -14399,7 +15785,7 @@ export interface DatabricksAssetBundles {
                                 /**
                                  * [Beta] Duration of inactivity after which the compute endpoint is automatically suspended.
                                  * If specified should be between 60s and 604800s (1 minute to 1 week).
-                                 * Mutually exclusive with `no_suspension`. When updating, use `spec.suspension` in the update_mask.
+                                 * Mutually exclusive with `no_suspension`.
                                  */
                                 suspend_timeout_duration?: string;
                               }
@@ -14461,7 +15847,7 @@ export interface DatabricksAssetBundles {
                                       /**
                                        * When set to true, explicitly disables automatic suspension (never suspend).
                                        * Should be set to true when provided.
-                                       * Mutually exclusive with `suspend_timeout_duration`. When updating, use `spec.project_default_settings.suspension` in the update_mask.
+                                       * Mutually exclusive with `suspend_timeout_duration`.
                                        */
                                       no_suspension?: boolean | string;
                                       /**
@@ -14475,7 +15861,7 @@ export interface DatabricksAssetBundles {
                                       /**
                                        * Duration of inactivity after which the compute endpoint is automatically suspended.
                                        * If specified should be between 60s and 604800s (1 minute to 1 week).
-                                       * Mutually exclusive with `no_suspension`. When updating, use `spec.project_default_settings.suspension` in the update_mask.
+                                       * Mutually exclusive with `no_suspension`.
                                        */
                                       suspend_timeout_duration?: string;
                                     }
@@ -14634,6 +16020,102 @@ export interface DatabricksAssetBundles {
                                  * The user-specified role ID; becomes the final component of the role's resource name. Must be 4-63 characters, lowercase letters, numbers, and hyphens (RFC 1123).
                                  */
                                 role_id: string;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    /**
+                     * The Postgres snapshot schedule definitions for the bundle, where each key is the name of the snapshot schedule. Each entry configures the automatic-snapshot cadences for a branch of a Lakebase Autoscaling project.
+                     */
+                    postgres_snapshot_schedules?:
+                      | {
+                          [k: string]:
+                            | {
+                                /**
+                                 * The branch whose automatic-snapshot schedule this manages. Format: projects/{project_id}/branches/{branch_id}
+                                 */
+                                branch: string;
+                                /**
+                                 * Settings that control the deployment lifecycle of the resource, such as preventing it from being destroyed.
+                                 */
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                /**
+                                 * The cadences at which automatic snapshots are taken. An empty set disables automatic snapshots. When several cadences fire together, one snapshot is taken and retained for the longest of their retentions.
+                                 */
+                                schedule?:
+                                  | (
+                                      | {
+                                          /**
+                                           * [Private Preview] Take a snapshot once per day.
+                                           */
+                                          daily_schedule?:
+                                            | {
+                                                /**
+                                                 * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                                 */
+                                                hour?: number | string;
+                                              }
+                                            | string;
+                                          /**
+                                           * [Private Preview] Take a snapshot once per month.
+                                           */
+                                          monthly_schedule?:
+                                            | {
+                                                /**
+                                                 * [Private Preview] The day of the month on which to take the snapshot, in [1, 31]. In shorter
+                                                 * months the snapshot is taken on the last day instead (day 31 runs on Feb 28
+                                                 * or 29, and on Apr 30), so every month gets exactly one snapshot.
+                                                 */
+                                                day: number | string;
+                                                /**
+                                                 * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                                 */
+                                                hour?: number | string;
+                                              }
+                                            | string;
+                                          /**
+                                           * [Private Preview] How long snapshots from this cadence are kept before automatic deletion.
+                                           * Must be at least 1 hour. Applied when a snapshot is taken; not retroactive,
+                                           * so changing it affects only later snapshots.
+                                           */
+                                          retention: string;
+                                          /**
+                                           * [Private Preview] Take a snapshot once per week.
+                                           */
+                                          weekly_schedule?:
+                                            | {
+                                                /**
+                                                 * [Private Preview] The day of the week on which to take the snapshot.
+                                                 */
+                                                day_of_week:
+                                                  | (
+                                                      | 'MONDAY'
+                                                      | 'TUESDAY'
+                                                      | 'WEDNESDAY'
+                                                      | 'THURSDAY'
+                                                      | 'FRIDAY'
+                                                      | 'SATURDAY'
+                                                      | 'SUNDAY'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                                 */
+                                                hour?: number | string;
+                                              }
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
                               }
                             | string
                             | undefined;
@@ -15156,6 +16638,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -15295,6 +16778,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -15494,6 +16978,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -15558,7 +17043,7 @@ export interface DatabricksAssetBundles {
                                  */
                                 channel?:
                                   | {
-                                      dbsql_version?: String;
+                                      dbsql_version?: string;
                                       name?:
                                         | (
                                             | 'CHANNEL_NAME_PREVIEW'
@@ -15700,8 +17185,8 @@ export interface DatabricksAssetBundles {
                                       custom_tags?:
                                         | (
                                             | {
-                                                key?: String;
-                                                value?: String;
+                                                key?: string;
+                                                value?: string;
                                               }
                                             | string
                                           )[]
@@ -16123,6 +17608,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -16248,6 +17734,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -16432,6 +17919,10 @@ export interface DatabricksAssetBundles {
   experimental?:
     | {
         /**
+         * Whether to record deployment history using the deployment metadata service (DMS), which tracks what changed across deployments.
+         */
+        deployment_history?: boolean | string;
+        /**
          * Whether to deploy bundle files and artifacts as a single immutable snapshot. When true, all files are packaged into a content-addressed archive and workspace.file_path and workspace.artifact_path are set to the resulting location.
          */
         immutable_folder?: boolean | string;
@@ -16478,10 +17969,6 @@ export interface DatabricksAssetBundles {
          * Whether to use a Python wheel wrapper.
          */
         python_wheel_wrapper?: boolean | string;
-        /**
-         * Whether to record deployment history using the deployment metadata service (DMS), which tracks what changed across deployments.
-         */
-        record_deployment_history?: boolean | string;
         /**
          * The commands to run.
          */
@@ -16681,8 +18168,8 @@ export interface DatabricksAssetBundles {
                                 subscriptions?:
                                   | (
                                       | {
-                                          destination_id?: String;
-                                          user_email?: String;
+                                          destination_id?: string;
+                                          user_email?: string;
                                         }
                                       | string
                                     )[]
@@ -16700,8 +18187,8 @@ export interface DatabricksAssetBundles {
                                 aggregation?:
                                   | ('SUM' | 'COUNT' | 'COUNT_DISTINCT' | 'AVG' | 'MEDIAN' | 'MIN' | 'MAX' | 'STDDEV')
                                   | string;
-                                display?: String;
-                                name: String;
+                                display?: string;
+                                name: string;
                               }
                             | string;
                           /**
@@ -16726,15 +18213,15 @@ export interface DatabricksAssetBundles {
                                             | 'STDDEV'
                                           )
                                         | string;
-                                      display?: String;
-                                      name: String;
+                                      display?: string;
+                                      name: string;
                                     }
                                   | string;
                                 value?:
                                   | {
-                                      bool_value?: Bool;
-                                      double_value?: Float64;
-                                      string_value?: String;
+                                      bool_value?: boolean | string;
+                                      double_value?: number | string;
+                                      string_value?: string;
                                     }
                                   | string;
                               }
@@ -16754,24 +18241,33 @@ export interface DatabricksAssetBundles {
                         }
                       | string;
                     /**
-                     * [Private Preview] Query parameters bound when executing the alert query, referenced in the
-                     * query text with `:name` syntax. Static values only.
+                     * [Private Preview] A list of parameters to pass into the alert SQL query statement containing parameter markers. Static values only.
+                     *
+                     * Reference a parameter in the query text as `:name`. Each parameter must have a unique, non-empty name.
+                     * Each parameter consists of a name, a value, and optionally a type. To represent a NULL
+                     * value, the `value` field may be omitted or set to `null` explicitly. If the `type` field
+                     * is omitted, the value is interpreted as a string.
+                     *
+                     * If the type is given, parameters will be checked for type correctness according
+                     * to the given type. A value is correct if the provided string can be converted to
+                     * the requested type using the `cast` function. The exact semantics are described in
+                     * the section [`cast` function](https://docs.databricks.com/sql/language-manual/functions/cast.html) of the SQL language reference.
                      */
                     parameters?:
                       | (
                           | {
                               /**
-                               * [Private Preview] The name of the parameter, referenced in the query as `:name`.
+                               * [Private Preview] The name of the parameter. Reference it in the query text as `:name`. Required, must be
+                               * non-empty, and must be unique across the alert's parameters.
                                */
                               name: string;
                               /**
-                               * [Private Preview] The SQL data type of the parameter, e.g. STRING, INT, or DATE. Defaults to STRING. This is a
-                               * string rather than an enum because scalar subtypes such as DECIMAL(10, 4) cannot be enumerated.
-                               * Complex types such as ARRAY, MAP, and STRUCT are not supported.
+                               * [Private Preview] The SQL data type of the parameter, for example `STRING`, `INT`, or `DECIMAL(10, 2)`. If no type is given
+                               * the type is assumed to be `STRING`. Complex types such as `ARRAY`, `MAP`, and `STRUCT` are not supported.
                                */
                               type?: string;
                               /**
-                               * [Private Preview] The bound value for the parameter, given as a string. If omitted, the value is interpreted as NULL.
+                               * [Private Preview] The value bound to the parameter, represented as a string. If omitted, the value is interpreted as NULL.
                                */
                               value?: string;
                             }
@@ -17039,14 +18535,14 @@ export interface DatabricksAssetBundles {
                           | {
                               app?:
                                 | {
-                                    name?: String;
+                                    name?: string;
                                     permission?: 'CAN_USE' | string;
                                   }
                                 | string;
                               database?:
                                 | {
-                                    database_name: String;
-                                    instance_name: String;
+                                    database_name: string;
+                                    instance_name: string;
                                     permission: 'CAN_CONNECT_AND_CREATE' | string;
                                   }
                                 | string;
@@ -17056,15 +18552,15 @@ export interface DatabricksAssetBundles {
                               description?: string;
                               experiment?:
                                 | {
-                                    experiment_id: String;
+                                    experiment_id: string;
                                     permission: ('CAN_MANAGE' | 'CAN_EDIT' | 'CAN_READ') | string;
                                   }
                                 | string;
                               genie_space?:
                                 | {
-                                    name: String;
+                                    name: string;
                                     permission: ('CAN_MANAGE' | 'CAN_EDIT' | 'CAN_RUN' | 'CAN_VIEW') | string;
-                                    space_id: String;
+                                    space_id: string;
                                   }
                                 | string;
                               job?:
@@ -17085,8 +18581,8 @@ export interface DatabricksAssetBundles {
                               name: string;
                               postgres?:
                                 | {
-                                    branch?: String;
-                                    database?: String;
+                                    branch?: string;
+                                    database?: string;
                                     permission?: 'CAN_CONNECT_AND_CREATE' | string;
                                   }
                                 | string;
@@ -17142,7 +18638,7 @@ export interface DatabricksAssetBundles {
                                           | 'MODIFY'
                                         )
                                       | string;
-                                    securable_full_name: String;
+                                    securable_full_name: string;
                                     securable_type: ('VOLUME' | 'TABLE' | 'FUNCTION' | 'CONNECTION') | string;
                                   }
                                 | string;
@@ -17284,6 +18780,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -17313,9 +18810,9 @@ export interface DatabricksAssetBundles {
                            */
                           azure_encryption_settings?:
                             | {
-                                azure_cmk_access_connector_id?: String;
-                                azure_cmk_managed_identity_id?: String;
-                                azure_tenant_id: String;
+                                azure_cmk_access_connector_id?: string;
+                                azure_cmk_managed_identity_id?: string;
+                                azure_tenant_id: string;
                               }
                             | string;
                           /**
@@ -17917,6 +19414,11 @@ export interface DatabricksAssetBundles {
                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                            */
                           alternate_node_type_ids?: String[] | string;
+                          /**
+                           * The AWS Context ID for EC2 Fleet.
+                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                           */
+                          aws_context_id?: string;
                         }
                       | string;
                     /**
@@ -18279,7 +19781,7 @@ export interface DatabricksAssetBundles {
                      */
                     ssh_public_keys?: String[] | string;
                     /**
-                     * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                     * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                      */
                     total_initial_remote_disk_size?: number | string;
                     /**
@@ -18297,6 +19799,11 @@ export interface DatabricksAssetBundles {
                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                            */
                           alternate_node_type_ids?: String[] | string;
+                          /**
+                           * The AWS Context ID for EC2 Fleet.
+                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                           */
+                          aws_context_id?: string;
                         }
                       | string;
                     /**
@@ -18962,6 +20469,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -19346,6 +20854,11 @@ export interface DatabricksAssetBundles {
                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                            */
                           alternate_node_type_ids?: String[] | string;
+                          /**
+                           * The AWS Context ID for EC2 Fleet.
+                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                           */
+                          aws_context_id?: string;
                         }
                       | string;
                     /**
@@ -19484,9 +20997,13 @@ export interface DatabricksAssetBundles {
                             | (
                                 | {
                                     /**
-                                     * If true, re-fire the run on every bundle deploy. Incompatible with lifecycle.prevent_destroy.
+                                     * If true, re-fire the run on every bundle deploy.
                                      */
                                     on_bundle_deploy?: boolean | string;
+                                    /**
+                                     * Path or glob relative to the defining YAML file. It must resolve under the sync root. Re-fire the run when a matched file's content hash changes, or when the set of matches appears or disappears. Only files the bundle syncs are hashed, so .gitignore and sync.exclude apply. Use * to match a single directory level; ** is not supported.
+                                     */
+                                    on_file_change?: string;
                                   }
                                 | string
                               )[]
@@ -19635,9 +21152,34 @@ export interface DatabricksAssetBundles {
                     budget_policy_id?: string;
                     /**
                      * An optional continuous property for this job. The continuous property will ensure that there is always one run executing. Only one of `schedule` and `continuous` can be used.
+                     *
+                     * Pipelines started by a continuous job also run continuously, regardless of their own pipeline mode setting.
                      */
                     continuous?:
                       | {
+                          /**
+                           * [Private Preview] Defines when platform-initiated maintenance may run for this job. If unspecified, maintenance may run at any time.
+                           */
+                          maintenance_window?:
+                            | {
+                                /**
+                                 * [Private Preview] The day of week on which maintenance is allowed to happen. This field is required.
+                                 */
+                                day_of_week:
+                                  | ('MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY')
+                                  | string;
+                                /**
+                                 * [Private Preview] An integer between 0 and 23 denoting the start hour for the maintenance window in the 24-hour day.
+                                 * Platform-initiated maintenance is triggered only within a one-hour window starting at this hour.
+                                 * This field is required.
+                                 */
+                                start_hour: number | string;
+                                /**
+                                 * [Private Preview] A Java timezone ID. The maintenance window is resolved with respect to this timezone. See [Java TimeZone](https://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) for details. This field is required.
+                                 */
+                                timezone_id: string;
+                              }
+                            | string;
                           /**
                            * Indicate whether the continuous execution of the job is paused or not. Defaults to UNPAUSED.
                            */
@@ -20224,6 +21766,11 @@ export interface DatabricksAssetBundles {
                                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                            */
                                           alternate_node_type_ids?: String[] | string;
+                                          /**
+                                           * The AWS Context ID for EC2 Fleet.
+                                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                           */
+                                          aws_context_id?: string;
                                         }
                                       | string;
                                     /**
@@ -20547,7 +22094,7 @@ export interface DatabricksAssetBundles {
                                      */
                                     ssh_public_keys?: String[] | string;
                                     /**
-                                     * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                     * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                      */
                                     total_initial_remote_disk_size?: number | string;
                                     /**
@@ -20565,6 +22112,11 @@ export interface DatabricksAssetBundles {
                                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                            */
                                           alternate_node_type_ids?: String[] | string;
+                                          /**
+                                           * The AWS Context ID for EC2 Fleet.
+                                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                           */
+                                          aws_context_id?: string;
                                         }
                                       | string;
                                     /**
@@ -20847,6 +22399,13 @@ export interface DatabricksAssetBundles {
                                                      */
                                                     accelerator_type:
                                                       ('GPU_1xA10' | 'GPU_1xH100' | 'GPU_8xH100') | string;
+                                                    /**
+                                                     * [Private Preview] Optional ID of a pre-provisioned accelerator capacity reservation to run
+                                                     * this AI Runtime workload on. When set, the workload is scheduled onto the
+                                                     * referenced reserved capacity instead of the on-demand capacity shared among
+                                                     * all Databricks customers.
+                                                     */
+                                                    provisioned_capacity_id?: string;
                                                   }
                                                 | string;
                                               /**
@@ -20908,6 +22467,19 @@ export interface DatabricksAssetBundles {
                                      * [Public Preview] The alert_id is the canonical identifier of the alert.
                                      */
                                     alert_id?: string;
+                                    /**
+                                     * [Private Preview] Per-run parameter overrides, keyed by parameter name, applied onto the alert's stored
+                                     * query parameters before the query is executed. Only scalar values are supported. Values
+                                     * may reference job parameters with `{{job.parameters.*}}`, which are resolved before the
+                                     * task runs. An override whose key does not match a stored parameter fails the task run.
+                                     * Limited to 10000 characters when serialized as JSON; keys must be 1-100 characters and
+                                     * contain only letters, digits, underscores, dashes, and periods.
+                                     */
+                                    parameters?:
+                                      | {
+                                          [k: string]: String | undefined;
+                                        }
+                                      | string;
                                     /**
                                      * [Public Preview] The subscribers receive alert evaluation result notifications after the alert task is completed.
                                      * The number of subscriptions is limited to 100.
@@ -20977,7 +22549,8 @@ export interface DatabricksAssetBundles {
                                     /**
                                      * [Beta] Hardware accelerator configuration for Serverless GPU workloads.
                                      */
-                                    hardware_accelerator?: ('GPU_1xA10' | 'GPU_8xH100') | string;
+                                    hardware_accelerator?:
+                                      ('GPU_1xA10' | 'GPU_8xH100' | 'GPU_1xH100' | 'GPU_8xB300') | string;
                                   }
                                 | string;
                               /**
@@ -21272,7 +22845,7 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * [Private Preview] Number of GPUs.
                                            */
-                                          num_gpus: number | string | string | string | string | string;
+                                          num_gpus: number | string;
                                         }
                                       | string;
                                     /**
@@ -21447,11 +23020,11 @@ export interface DatabricksAssetBundles {
                               /**
                                * An optional maximum number of times to retry an unsuccessful run. A run is considered to be unsuccessful if it completes with the `FAILED` result_state or `INTERNAL_ERROR` `life_cycle_state`. The value `-1` means to retry indefinitely and the value `0` means to never retry.
                                */
-                              max_retries?: number | string | string | string | string | string;
+                              max_retries?: number | string;
                               /**
                                * An optional minimal interval in milliseconds between the start of the failed run and the subsequent retry run. The default behavior is that unsuccessful runs are immediately retried.
                                */
-                              min_retry_interval_millis?: number | string | string | string | string | string;
+                              min_retry_interval_millis?: number | string;
                               /**
                                * If new_cluster, a description of a new cluster that is created for each run.
                                */
@@ -21833,6 +23406,11 @@ export interface DatabricksAssetBundles {
                                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                            */
                                           alternate_node_type_ids?: String[] | string;
+                                          /**
+                                           * The AWS Context ID for EC2 Fleet.
+                                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                           */
+                                          aws_context_id?: string;
                                         }
                                       | string;
                                     /**
@@ -22156,7 +23734,7 @@ export interface DatabricksAssetBundles {
                                      */
                                     ssh_public_keys?: String[] | string;
                                     /**
-                                     * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                     * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                      */
                                     total_initial_remote_disk_size?: number | string;
                                     /**
@@ -22174,6 +23752,11 @@ export interface DatabricksAssetBundles {
                                            * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                            */
                                           alternate_node_type_ids?: String[] | string;
+                                          /**
+                                           * The AWS Context ID for EC2 Fleet.
+                                           * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                           */
+                                          aws_context_id?: string;
                                         }
                                       | string;
                                     /**
@@ -22252,15 +23835,15 @@ export interface DatabricksAssetBundles {
                                     /**
                                      * If true, do not send notifications to recipients specified in `on_start` for the retried runs and do not send notifications to recipients specified in `on_failure` until the last retry of the run.
                                      */
-                                    alert_on_last_attempt?: boolean | string | string | string | string | string;
+                                    alert_on_last_attempt?: boolean | string;
                                     /**
                                      * If true, do not send notifications to recipients specified in `on_failure` if the run is canceled.
                                      */
-                                    no_alert_for_canceled_runs?: boolean | string | string | string | string | string;
+                                    no_alert_for_canceled_runs?: boolean | string;
                                     /**
                                      * If true, do not send notifications to recipients specified in `on_failure` if the run is skipped.
                                      */
-                                    no_alert_for_skipped_runs?: boolean | string | string | string | string | string;
+                                    no_alert_for_skipped_runs?: boolean | string;
                                   }
                                 | string;
                               /**
@@ -22271,7 +23854,7 @@ export interface DatabricksAssetBundles {
                                     /**
                                      * If true, triggers a full refresh on the spark declarative pipeline.
                                      */
-                                    full_refresh?: boolean | string | string | string | string | string;
+                                    full_refresh?: boolean | string;
                                     /**
                                      * [Beta] A list of tables to update with fullRefresh.
                                      */
@@ -22329,7 +23912,7 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * [Public Preview] Whether to overwrite existing Power BI models
                                            */
-                                          overwrite_existing?: boolean | string | string | string | string | string;
+                                          overwrite_existing?: boolean | string;
                                           /**
                                            * [Public Preview] The default storage mode of the Power BI model
                                            */
@@ -22343,7 +23926,7 @@ export interface DatabricksAssetBundles {
                                     /**
                                      * [Public Preview] Whether the model should be refreshed after the update
                                      */
-                                    refresh_after_update?: boolean | string | string | string | string | string;
+                                    refresh_after_update?: boolean | string;
                                     /**
                                      * [Public Preview] The tables to be exported to Power BI
                                      */
@@ -22438,7 +24021,7 @@ export interface DatabricksAssetBundles {
                                * An optional policy to specify whether to retry a job when it times out. The default behavior
                                * is to not retry on timeout.
                                */
-                              retry_on_timeout?: boolean | string | string | string | string | string;
+                              retry_on_timeout?: boolean | string;
                               /**
                                * An optional value specifying the condition determining whether the task is run once its dependencies have been completed.
                                *
@@ -22485,7 +24068,7 @@ export interface DatabricksAssetBundles {
                                     /**
                                      * ID of the job to trigger.
                                      */
-                                    job_id: number | string | string | string | string | string;
+                                    job_id: number | string;
                                     /**
                                      * Job-level parameters used to trigger the job.
                                      */
@@ -22620,7 +24203,7 @@ export interface DatabricksAssetBundles {
                                      * @deprecated
                                      * Deprecated. A value of `false` is no longer supported.
                                      */
-                                    run_as_repl?: boolean | string | string | string | string | string;
+                                    run_as_repl?: boolean | string;
                                   }
                                 | string;
                               /**
@@ -22680,7 +24263,7 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * If true, the alert notifications are not sent to subscribers.
                                            */
-                                          pause_subscriptions?: boolean | string | string | string | string | string;
+                                          pause_subscriptions?: boolean | string;
                                           /**
                                            * If specified, alert notifications are sent to subscribers.
                                            */
@@ -22717,7 +24300,7 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * If true, the dashboard snapshot is not taken, and emails are not sent to subscribers.
                                            */
-                                          pause_subscriptions?: boolean | string | string | string | string | string;
+                                          pause_subscriptions?: boolean | string;
                                           /**
                                            * If specified, dashboard snapshots are sent to subscriptions.
                                            */
@@ -22792,7 +24375,7 @@ export interface DatabricksAssetBundles {
                               /**
                                * An optional timeout applied to each run of this job task. A value of `0` means no timeout.
                                */
-                              timeout_seconds?: number | string | string | string | string | string;
+                              timeout_seconds?: number | string;
                               /**
                                * A collection of system notification IDs to notify when runs of this task begin or complete. The default behavior is to not send any system notifications.
                                */
@@ -22804,7 +24387,7 @@ export interface DatabricksAssetBundles {
                                     on_duration_warning_threshold_exceeded?:
                                       | (
                                           | {
-                                              id: String;
+                                              id: string;
                                             }
                                           | string
                                         )[]
@@ -22815,7 +24398,7 @@ export interface DatabricksAssetBundles {
                                     on_failure?:
                                       | (
                                           | {
-                                              id: String;
+                                              id: string;
                                             }
                                           | string
                                         )[]
@@ -22826,7 +24409,7 @@ export interface DatabricksAssetBundles {
                                     on_start?:
                                       | (
                                           | {
-                                              id: String;
+                                              id: string;
                                             }
                                           | string
                                         )[]
@@ -22840,7 +24423,7 @@ export interface DatabricksAssetBundles {
                                     on_streaming_backlog_exceeded?:
                                       | (
                                           | {
-                                              id: String;
+                                              id: string;
                                             }
                                           | string
                                         )[]
@@ -22851,7 +24434,7 @@ export interface DatabricksAssetBundles {
                                     on_success?:
                                       | (
                                           | {
-                                              id: String;
+                                              id: string;
                                             }
                                           | string
                                         )[]
@@ -23004,6 +24587,38 @@ export interface DatabricksAssetBundles {
                                */
                               continuous?:
                                 | {
+                                    /**
+                                     * [Private Preview] Defines when platform-initiated maintenance may run for this trigger. If unspecified,
+                                     * maintenance may run at any time.
+                                     */
+                                    maintenance_window?:
+                                      | {
+                                          /**
+                                           * [Private Preview] The day of week on which maintenance is allowed to happen. This field is required.
+                                           */
+                                          day_of_week:
+                                            | (
+                                                | 'MONDAY'
+                                                | 'TUESDAY'
+                                                | 'WEDNESDAY'
+                                                | 'THURSDAY'
+                                                | 'FRIDAY'
+                                                | 'SATURDAY'
+                                                | 'SUNDAY'
+                                              )
+                                            | string;
+                                          /**
+                                           * [Private Preview] An integer between 0 and 23 denoting the start hour for the maintenance window in the 24-hour day.
+                                           * Platform-initiated maintenance is triggered only within a one-hour window starting at this hour.
+                                           * This field is required.
+                                           */
+                                          start_hour: number | string;
+                                          /**
+                                           * [Private Preview] A Java timezone ID. The maintenance window is resolved with respect to this timezone. See [Java TimeZone](https://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) for details. This field is required.
+                                           */
+                                          timezone_id: string;
+                                        }
+                                      | string;
                                     /**
                                      * [Beta] Whether the continuous job applies task-level retries. Defaults to NEVER.
                                      */
@@ -23170,7 +24785,7 @@ export interface DatabricksAssetBundles {
                           on_duration_warning_threshold_exceeded?:
                             | (
                                 | {
-                                    id: String;
+                                    id: string;
                                   }
                                 | string
                               )[]
@@ -23181,7 +24796,7 @@ export interface DatabricksAssetBundles {
                           on_failure?:
                             | (
                                 | {
-                                    id: String;
+                                    id: string;
                                   }
                                 | string
                               )[]
@@ -23192,7 +24807,7 @@ export interface DatabricksAssetBundles {
                           on_start?:
                             | (
                                 | {
-                                    id: String;
+                                    id: string;
                                   }
                                 | string
                               )[]
@@ -23206,7 +24821,7 @@ export interface DatabricksAssetBundles {
                           on_streaming_backlog_exceeded?:
                             | (
                                 | {
-                                    id: String;
+                                    id: string;
                                   }
                                 | string
                               )[]
@@ -23217,13 +24832,1169 @@ export interface DatabricksAssetBundles {
                           on_success?:
                             | (
                                 | {
-                                    id: String;
+                                    id: string;
                                   }
                                 | string
                               )[]
                             | string;
                         }
                       | string;
+                  }
+                | string
+                | undefined;
+            }
+          | string;
+        mcp_services?:
+          | {
+              [k: string]:
+                | {
+                    comment?: String;
+                    config?:
+                      | {
+                          /**
+                           * Tool names or prefix patterns to expose from the MCP server. Use exact
+                           * tool names or prefix patterns such as `read_*`. An empty list exposes all
+                           * tools. At most 1,024 selectors are allowed, and each selector can contain
+                           * at most 256 characters.
+                           */
+                          include_tool_selectors?: String[] | string;
+                          /**
+                           * Rate limits for tool invocations. Supported scopes are user, group, service
+                           * principal, the service as a whole, and each user by default. Request and
+                           * token limits are supported. Empty when no rate limit is configured.
+                           */
+                          rate_limits?:
+                            | (
+                                | {
+                                    /**
+                                     * Scope of the rate limit. Depending on this value, the limit applies to a
+                                     * principal, the service as a whole, or each user by default.
+                                     */
+                                    key:
+                                      | (
+                                          | 'RATE_LIMIT_KEY_USER'
+                                          | 'RATE_LIMIT_KEY_USER_GROUP'
+                                          | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                          | 'RATE_LIMIT_KEY_SERVICE'
+                                          | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                        )
+                                      | string;
+                                    /**
+                                     * Principal this limit applies to: user email, group name, or service
+                                     * principal application ID. Required when `key` applies to a user, group, or
+                                     * service principal; otherwise it must be unset.
+                                     */
+                                    principal?: string;
+                                    /**
+                                     * Renewal period.
+                                     */
+                                    renewal_period:
+                                      ('RATE_LIMIT_RENEWAL_PERIOD_MINUTE' | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR') | string;
+                                    /**
+                                     * Maximum requests allowed in one renewal period. Leave unset for no request
+                                     * limit. Set to `0` to deny all requests.
+                                     */
+                                    requests?: number | string;
+                                    /**
+                                     * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                     * limit. Set to `0` to deny all requests.
+                                     */
+                                    tokens?: number | string;
+                                  }
+                                | string
+                              )[]
+                            | string;
+                          /**
+                           * Unity Catalog connection referencing the MCP server. Required on Create.
+                           */
+                          source_connection?:
+                            | {
+                                /**
+                                 * Resource name of the Unity Catalog connection used to access the MCP
+                                 * server, in the form `connections/{catalog}.{schema}.{connection}`.
+                                 */
+                                name: string;
+                              }
+                            | string;
+                        }
+                      | string;
+                    grants?:
+                      | (
+                          | {
+                              /**
+                               * The principal (user email address or group name).
+                               * For deleted principals, `principal` is empty while `principal_id` is populated.
+                               */
+                              principal?: string;
+                              /**
+                               * The privileges assigned to the principal.
+                               */
+                              privileges?:
+                                | (
+                                    | (
+                                        | 'SELECT'
+                                        | 'READ_PRIVATE_FILES'
+                                        | 'WRITE_PRIVATE_FILES'
+                                        | 'CREATE'
+                                        | 'USAGE'
+                                        | 'USE_CATALOG'
+                                        | 'USE_SCHEMA'
+                                        | 'CREATE_SCHEMA'
+                                        | 'CREATE_VIEW'
+                                        | 'CREATE_EXTERNAL_TABLE'
+                                        | 'CREATE_MATERIALIZED_VIEW'
+                                        | 'CREATE_FUNCTION'
+                                        | 'CREATE_MODEL'
+                                        | 'CREATE_CATALOG'
+                                        | 'CREATE_MANAGED_STORAGE'
+                                        | 'CREATE_EXTERNAL_LOCATION'
+                                        | 'CREATE_STORAGE_CREDENTIAL'
+                                        | 'CREATE_SERVICE_CREDENTIAL'
+                                        | 'ACCESS'
+                                        | 'CREATE_SHARE'
+                                        | 'CREATE_RECIPIENT'
+                                        | 'CREATE_PROVIDER'
+                                        | 'USE_SHARE'
+                                        | 'USE_RECIPIENT'
+                                        | 'USE_PROVIDER'
+                                        | 'USE_MARKETPLACE_ASSETS'
+                                        | 'SET_SHARE_PERMISSION'
+                                        | 'MODIFY'
+                                        | 'REFRESH'
+                                        | 'EXECUTE'
+                                        | 'READ_FILES'
+                                        | 'WRITE_FILES'
+                                        | 'CREATE_TABLE'
+                                        | 'ALL_PRIVILEGES'
+                                        | 'CREATE_CONNECTION'
+                                        | 'USE_CONNECTION'
+                                        | 'APPLY_TAG'
+                                        | 'CREATE_FOREIGN_CATALOG'
+                                        | 'CREATE_FOREIGN_SECURABLE'
+                                        | 'MANAGE_ALLOWLIST'
+                                        | 'CREATE_VOLUME'
+                                        | 'CREATE_EXTERNAL_VOLUME'
+                                        | 'READ_VOLUME'
+                                        | 'WRITE_VOLUME'
+                                        | 'MANAGE'
+                                        | 'BROWSE'
+                                        | 'CREATE_CLEAN_ROOM'
+                                        | 'MODIFY_CLEAN_ROOM'
+                                        | 'EXECUTE_CLEAN_ROOM_TASK'
+                                        | 'EXTERNAL_USE_SCHEMA'
+                                        | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
+                                      )
+                                    | string
+                                  )[]
+                                | string;
+                            }
+                          | string
+                        )[]
+                      | string;
+                    lifecycle?:
+                      | {
+                          /**
+                           * Lifecycle setting to prevent the resource from being destroyed.
+                           */
+                          prevent_destroy?: boolean | string;
+                        }
+                      | string;
+                    mcp_service_id: String;
+                    parent: String;
+                  }
+                | string
+                | undefined;
+            }
+          | string;
+        model_provider_services?:
+          | {
+              [k: string]:
+                | {
+                    comment?: String;
+                    config?:
+                      | {
+                          /**
+                           * When true, accepts any model exposed by the upstream provider; `targets`
+                           * is not required and does not restrict routability. When false, only
+                           * models listed in `targets` are routable. Defaults to false.
+                           */
+                          allow_all_targets?: boolean | string;
+                          /**
+                           * Amazon Bedrock provider configuration.
+                           */
+                          amazon_bedrock?:
+                            | {
+                                /**
+                                 * Amazon Bedrock region and authentication configuration.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * AWS access-key-pair authentication. Set `access_key_id` and
+                                       * `secret_access_key.plaintext`. Mutually exclusive with
+                                       * `service_credential`.
+                                       */
+                                      aws_access_key?:
+                                        | {
+                                            /**
+                                             * AWS access key ID. Required on Create when using access-key auth. Treated as
+                                             * username-equivalent (not a secret value): round-trips on reads and is
+                                             * scrubbed from audit logs.
+                                             */
+                                            access_key_id?: string;
+                                            /**
+                                             * AWS secret access key paired with `access_key_id`. Required when creating
+                                             * a service with access-key authentication. Supply the value in
+                                             * `secret_access_key.plaintext`.
+                                             */
+                                            secret_access_key?:
+                                              | {
+                                                  /**
+                                                   * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                   * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                   * object remains present to indicate that a secret is configured.
+                                                   */
+                                                  plaintext?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * AWS region where the Bedrock endpoint is hosted (e.g., `us-east-1`).
+                                       * Required on Create.
+                                       */
+                                      region?: string;
+                                      /**
+                                       * Reference to a Unity Catalog service credential authorizing Bedrock
+                                       * requests. On Create, supply `service_credential.name` in the form
+                                       * `credentials/{name}`. Required on Create when using service-credential
+                                       * authentication; mutually exclusive with `aws_access_key`. The credential
+                                       * is referenced by name; its value is not carried here. Only
+                                       * supported on AWS-hosted workspaces.
+                                       */
+                                      service_credential?:
+                                        | {
+                                            /**
+                                             * Resource name of the bound Unity Catalog service credential, in the form
+                                             * `credentials/{name}`. Supply this field when creating the service or
+                                             * rebinding its credential. On read, it reflects the credential's current
+                                             * name.
+                                             */
+                                            name: string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                          /**
+                           * Anthropic provider configuration. Exactly one of `direct` or `relayed` must
+                           * be set on Create; the two are mutually exclusive.
+                           */
+                          anthropic?:
+                            | {
+                                /**
+                                 * Direct authentication with an API key supplied in
+                                 * `direct.api_key.plaintext`. Required unless `relayed` is set.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * Anthropic API key. Required when creating the service. Supply the value
+                                       * in `api_key.plaintext`.
+                                       */
+                                      api_key?:
+                                        | {
+                                            /**
+                                             * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                             * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                             * object remains present to indicate that a secret is configured.
+                                             */
+                                            plaintext?: string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                                /**
+                                 * Relayed authentication. Each inference request supplies the caller's
+                                 * OAuth token, which is forwarded to Anthropic. No Anthropic credential is
+                                 * stored. Mutually exclusive with `direct`.
+                                 */
+                                relayed?: {} | string;
+                              }
+                            | string;
+                          /**
+                           * Azure OpenAI provider configuration.
+                           */
+                          azure_openai?:
+                            | {
+                                /**
+                                 * Azure OpenAI endpoint and authentication configuration.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * Azure OpenAI API key. Supply the value in `api_key.plaintext`. Mutually
+                                       * exclusive with Entra ID and Unity Catalog service credential
+                                       * authentication.
+                                       */
+                                      api_key?:
+                                        | {
+                                            /**
+                                             * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                             * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                             * object remains present to indicate that a secret is configured.
+                                             */
+                                            plaintext?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Full Azure OpenAI endpoint base URL, e.g.
+                                       * `https://myresource.openai.azure.com`. Required on Create.
+                                       */
+                                      base_url?: string;
+                                      /**
+                                       * Entra ID service-principal authentication. Set `tenant_id`, `client_id`,
+                                       * and `client_secret.plaintext`. Mutually exclusive with `api_key` and
+                                       * `service_credential`.
+                                       */
+                                      entra_service_principal?:
+                                        | {
+                                            /**
+                                             * Entra ID client (application) ID. Required on Create.
+                                             */
+                                            client_id?: string;
+                                            /**
+                                             * Entra ID client secret. Supply the value in `client_secret.plaintext`.
+                                             */
+                                            client_secret?:
+                                              | {
+                                                  /**
+                                                   * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                   * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                   * object remains present to indicate that a secret is configured.
+                                                   */
+                                                  plaintext?: string;
+                                                }
+                                              | string;
+                                            /**
+                                             * Entra ID (Azure AD) tenant ID. Required on Create.
+                                             */
+                                            tenant_id?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Reference to a Unity Catalog service credential authorizing Azure OpenAI
+                                       * requests. On Create, supply `service_credential.name` in the form
+                                       * `credentials/{name}`. Required on Create when using service-credential
+                                       * authentication; mutually exclusive with `api_key` and
+                                       * `entra_service_principal`. The credential is referenced by name; its value
+                                       * is not carried here. Only supported on Azure-hosted workspaces.
+                                       */
+                                      service_credential?:
+                                        | {
+                                            /**
+                                             * Resource name of the bound Unity Catalog service credential, in the form
+                                             * `credentials/{name}`. Supply this field when creating the service or
+                                             * rebinding its credential. On read, it reflects the credential's current
+                                             * name.
+                                             */
+                                            name: string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                          /**
+                           * Custom OpenAI-compatible provider configuration with bearer-token
+                           * authentication.
+                           */
+                          custom?:
+                            | {
+                                /**
+                                 * Endpoint and authentication configuration for the custom provider.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * Bearer token forwarded in the `Authorization` header. Supply the value
+                                       * in `api_key.plaintext`.
+                                       */
+                                      api_key?:
+                                        | {
+                                            /**
+                                             * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                             * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                             * object remains present to indicate that a secret is configured.
+                                             */
+                                            plaintext?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Endpoint URL of the OpenAI-compatible service (e.g.,
+                                       * `https://api.example.com/v1`). Required on Create.
+                                       */
+                                      base_url?: string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                          /**
+                           * Whether to forward incoming HTTP headers to the upstream provider. Defaults
+                           * to false and is configured for the entire provider service, not per request.
+                           * Upstream authentication is configured separately in the provider-specific
+                           * configuration.
+                           */
+                          forward_headers?: boolean | string;
+                          /**
+                           * Whether to forward incoming query parameters to the upstream provider.
+                           * Defaults to false and is configured for the entire provider service, not
+                           * per request.
+                           */
+                          forward_query_parameters?: boolean | string;
+                          /**
+                           * Whether to proxy paths that AI Gateway does not recognize as configured
+                           * provider-native API types. Defaults to false. When true, these paths are
+                           * forwarded unchanged to the upstream provider. When false, only
+                           * recognized API paths are served. Enabling this broadens the upstream API
+                           * surface exposed through the provider service.
+                           */
+                          forward_unmanaged_paths?: boolean | string;
+                          /**
+                           * Gemini Enterprise provider configuration.
+                           */
+                          gemini_enterprise?:
+                            | {
+                                /**
+                                 * Gemini Enterprise project, region, and authentication configuration.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * Google Gemini Enterprise API key. Required when creating the service.
+                                       * Supply the value in `api_key.plaintext`.
+                                       */
+                                      api_key?:
+                                        | {
+                                            /**
+                                             * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                             * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                             * object remains present to indicate that a secret is configured.
+                                             */
+                                            plaintext?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * GCP project ID hosting the Gemini Enterprise endpoint. Required on Create.
+                                       */
+                                      project_id?: string;
+                                      /**
+                                       * GCP region of the Gemini Enterprise endpoint (e.g., `us-central1`).
+                                       * Required on Create.
+                                       */
+                                      region?: string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                          /**
+                           * Payload logging configuration for requests sent directly to this provider
+                           * service. Requests routed through a model service are captured by that model
+                           * service's inference table instead.
+                           */
+                          inference_table?:
+                            | {
+                                /**
+                                 * Parent Unity Catalog schema where the inference table is created, in the
+                                 * form `schemas/{catalog}.{schema}`. Required when configuring an inference
+                                 * table. After the inference table is created, this field cannot be changed.
+                                 */
+                                parent: string;
+                                /**
+                                 * Prefix used to form the inference table's registered name. AI Gateway
+                                 * appends `_payload`; for example, `table_name_prefix = "orders"` creates
+                                 * `orders_payload`. If unset, the prefix defaults to the service name. Read
+                                 * `table` from the response for the resulting resource name. After the
+                                 * inference table is created, this field cannot be changed.
+                                 */
+                                table_name_prefix?: string;
+                              }
+                            | string;
+                          /**
+                           * Microsoft Foundry provider configuration.
+                           */
+                          microsoft_foundry?:
+                            | {
+                                /**
+                                 * Microsoft Foundry endpoint and authentication configuration.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * Microsoft Foundry API key. Supply the value in `api_key.plaintext`.
+                                       * Mutually exclusive with Entra ID and Unity Catalog service credential
+                                       * authentication.
+                                       */
+                                      api_key?:
+                                        | {
+                                            /**
+                                             * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                             * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                             * object remains present to indicate that a secret is configured.
+                                             */
+                                            plaintext?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Microsoft Foundry endpoint URL. Required on Create.
+                                       */
+                                      base_url?: string;
+                                      /**
+                                       * Entra ID service-principal authentication. Set `tenant_id`, `client_id`,
+                                       * and `client_secret.plaintext`. Mutually exclusive with `api_key` and
+                                       * `service_credential`.
+                                       */
+                                      entra_service_principal?:
+                                        | {
+                                            /**
+                                             * Entra ID client (application) ID. Required on Create.
+                                             */
+                                            client_id?: string;
+                                            /**
+                                             * Entra ID client secret. Supply the value in `client_secret.plaintext`.
+                                             */
+                                            client_secret?:
+                                              | {
+                                                  /**
+                                                   * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                   * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                   * object remains present to indicate that a secret is configured.
+                                                   */
+                                                  plaintext?: string;
+                                                }
+                                              | string;
+                                            /**
+                                             * Entra ID (Azure AD) tenant ID. Required on Create.
+                                             */
+                                            tenant_id?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Reference to a Unity Catalog service credential authorizing Microsoft
+                                       * Foundry requests. On Create, supply `service_credential.name` in the form
+                                       * `credentials/{name}`. Required on Create when using service-credential
+                                       * authentication; mutually exclusive with `api_key` and
+                                       * `entra_service_principal`. The credential is referenced by name; its value
+                                       * is not carried here. Only supported on Azure-hosted workspaces.
+                                       */
+                                      service_credential?:
+                                        | {
+                                            /**
+                                             * Resource name of the bound Unity Catalog service credential, in the form
+                                             * `credentials/{name}`. Supply this field when creating the service or
+                                             * rebinding its credential. On read, it reflects the credential's current
+                                             * name.
+                                             */
+                                            name: string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                          /**
+                           * OpenAI provider configuration.
+                           */
+                          openai?:
+                            | {
+                                /**
+                                 * OpenAI configuration with an API key supplied in the request.
+                                 */
+                                direct?:
+                                  | {
+                                      /**
+                                       * OpenAI API key. Required when creating the service. Supply the value in
+                                       * `api_key.plaintext`.
+                                       */
+                                      api_key?:
+                                        | {
+                                            /**
+                                             * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                             * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                             * object remains present to indicate that a secret is configured.
+                                             */
+                                            plaintext?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Optional custom base URL. Defaults to `https://api.openai.com/v1`. Use for
+                                       * OpenAI-API-compatible third-party endpoints or in-network proxies.
+                                       */
+                                      base_url?: string;
+                                      /**
+                                       * Optional OpenAI organization ID. When set, the platform forwards it as
+                                       * the `OpenAI-Organization` header.
+                                       */
+                                      organization?: string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                          /**
+                           * External model provider. Required on Create and immutable thereafter. Set
+                           * the matching provider-specific configuration, such as `openai`,
+                           * `azure_openai`, or `amazon_bedrock`.
+                           */
+                          provider_type?:
+                            | (
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_OPENAI'
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_AZURE_OPENAI'
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_ANTHROPIC'
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_AMAZON_BEDROCK'
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_CUSTOM'
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_MICROSOFT_FOUNDRY'
+                                | 'EXTERNAL_MODEL_PROVIDER_TYPE_GEMINI_ENTERPRISE'
+                              )
+                            | string;
+                          /**
+                           * Rate limits for requests sent directly to this provider service. Requests
+                           * routed through a model service use that model service's rate limits instead.
+                           */
+                          rate_limits?:
+                            | (
+                                | {
+                                    /**
+                                     * Scope of the rate limit. Depending on this value, the limit applies to a
+                                     * principal, the service as a whole, or each user by default.
+                                     */
+                                    key:
+                                      | (
+                                          | 'RATE_LIMIT_KEY_USER'
+                                          | 'RATE_LIMIT_KEY_USER_GROUP'
+                                          | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                          | 'RATE_LIMIT_KEY_SERVICE'
+                                          | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                        )
+                                      | string;
+                                    /**
+                                     * Principal this limit applies to: user email, group name, or service
+                                     * principal application ID. Required when `key` applies to a user, group, or
+                                     * service principal; otherwise it must be unset.
+                                     */
+                                    principal?: string;
+                                    /**
+                                     * Renewal period.
+                                     */
+                                    renewal_period:
+                                      ('RATE_LIMIT_RENEWAL_PERIOD_MINUTE' | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR') | string;
+                                    /**
+                                     * Maximum requests allowed in one renewal period. Leave unset for no request
+                                     * limit. Set to `0` to deny all requests.
+                                     */
+                                    requests?: number | string;
+                                    /**
+                                     * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                     * limit. Set to `0` to deny all requests.
+                                     */
+                                    tokens?: number | string;
+                                  }
+                                | string
+                              )[]
+                            | string;
+                          /**
+                           * Models and provider-native API types exposed by this provider service. Each
+                           * entry must include at least one `native_api_types` value. When
+                           * `allow_all_targets` is false, at least one entry is required and model
+                           * service destinations can reference only listed models. When
+                           * `allow_all_targets` is true, any upstream model is routable; entries in
+                           * this list provide API-type metadata without restricting other models.
+                           */
+                          targets?:
+                            | (
+                                | {
+                                    /**
+                                     * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                     * This identifies a model at the upstream provider; it is not a Unity
+                                     * Catalog model resource.
+                                     */
+                                    model: string;
+                                    /**
+                                     * Provider-native API types supported by this model, such as
+                                     * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                     * uses these values to translate requests and responses. At most 64 entries
+                                     * of 256 characters each are allowed.
+                                     */
+                                    native_api_types?: String[] | string;
+                                  }
+                                | string
+                              )[]
+                            | string;
+                        }
+                      | string;
+                    grants?:
+                      | (
+                          | {
+                              /**
+                               * The principal (user email address or group name).
+                               * For deleted principals, `principal` is empty while `principal_id` is populated.
+                               */
+                              principal?: string;
+                              /**
+                               * The privileges assigned to the principal.
+                               */
+                              privileges?:
+                                | (
+                                    | (
+                                        | 'SELECT'
+                                        | 'READ_PRIVATE_FILES'
+                                        | 'WRITE_PRIVATE_FILES'
+                                        | 'CREATE'
+                                        | 'USAGE'
+                                        | 'USE_CATALOG'
+                                        | 'USE_SCHEMA'
+                                        | 'CREATE_SCHEMA'
+                                        | 'CREATE_VIEW'
+                                        | 'CREATE_EXTERNAL_TABLE'
+                                        | 'CREATE_MATERIALIZED_VIEW'
+                                        | 'CREATE_FUNCTION'
+                                        | 'CREATE_MODEL'
+                                        | 'CREATE_CATALOG'
+                                        | 'CREATE_MANAGED_STORAGE'
+                                        | 'CREATE_EXTERNAL_LOCATION'
+                                        | 'CREATE_STORAGE_CREDENTIAL'
+                                        | 'CREATE_SERVICE_CREDENTIAL'
+                                        | 'ACCESS'
+                                        | 'CREATE_SHARE'
+                                        | 'CREATE_RECIPIENT'
+                                        | 'CREATE_PROVIDER'
+                                        | 'USE_SHARE'
+                                        | 'USE_RECIPIENT'
+                                        | 'USE_PROVIDER'
+                                        | 'USE_MARKETPLACE_ASSETS'
+                                        | 'SET_SHARE_PERMISSION'
+                                        | 'MODIFY'
+                                        | 'REFRESH'
+                                        | 'EXECUTE'
+                                        | 'READ_FILES'
+                                        | 'WRITE_FILES'
+                                        | 'CREATE_TABLE'
+                                        | 'ALL_PRIVILEGES'
+                                        | 'CREATE_CONNECTION'
+                                        | 'USE_CONNECTION'
+                                        | 'APPLY_TAG'
+                                        | 'CREATE_FOREIGN_CATALOG'
+                                        | 'CREATE_FOREIGN_SECURABLE'
+                                        | 'MANAGE_ALLOWLIST'
+                                        | 'CREATE_VOLUME'
+                                        | 'CREATE_EXTERNAL_VOLUME'
+                                        | 'READ_VOLUME'
+                                        | 'WRITE_VOLUME'
+                                        | 'MANAGE'
+                                        | 'BROWSE'
+                                        | 'CREATE_CLEAN_ROOM'
+                                        | 'MODIFY_CLEAN_ROOM'
+                                        | 'EXECUTE_CLEAN_ROOM_TASK'
+                                        | 'EXTERNAL_USE_SCHEMA'
+                                        | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
+                                      )
+                                    | string
+                                  )[]
+                                | string;
+                            }
+                          | string
+                        )[]
+                      | string;
+                    lifecycle?:
+                      | {
+                          /**
+                           * Lifecycle setting to prevent the resource from being destroyed.
+                           */
+                          prevent_destroy?: boolean | string;
+                        }
+                      | string;
+                    model_provider_service_id: String;
+                    parent: String;
+                  }
+                | string
+                | undefined;
+            }
+          | string;
+        model_services?:
+          | {
+              [k: string]:
+                | {
+                    comment?: String;
+                    config?:
+                      | {
+                          /**
+                           * Inference table configuration for payload logging.
+                           */
+                          inference_table?:
+                            | {
+                                /**
+                                 * Parent Unity Catalog schema where the inference table is created, in the
+                                 * form `schemas/{catalog}.{schema}`. Required when configuring an inference
+                                 * table. After the inference table is created, this field cannot be changed.
+                                 */
+                                parent: string;
+                                /**
+                                 * Prefix used to form the inference table's registered name. AI Gateway
+                                 * appends `_payload`; for example, `table_name_prefix = "orders"` creates
+                                 * `orders_payload`. If unset, the prefix defaults to the service name. Read
+                                 * `table` from the response for the resulting resource name. After the
+                                 * inference table is created, this field cannot be changed.
+                                 */
+                                table_name_prefix?: string;
+                              }
+                            | string;
+                          /**
+                           * Rate limits applied to requests routed through this model service.
+                           */
+                          rate_limits?:
+                            | (
+                                | {
+                                    /**
+                                     * Scope of the rate limit. Depending on this value, the limit applies to a
+                                     * principal, the service as a whole, or each user by default.
+                                     */
+                                    key:
+                                      | (
+                                          | 'RATE_LIMIT_KEY_USER'
+                                          | 'RATE_LIMIT_KEY_USER_GROUP'
+                                          | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                          | 'RATE_LIMIT_KEY_SERVICE'
+                                          | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                        )
+                                      | string;
+                                    /**
+                                     * Principal this limit applies to: user email, group name, or service
+                                     * principal application ID. Required when `key` applies to a user, group, or
+                                     * service principal; otherwise it must be unset.
+                                     */
+                                    principal?: string;
+                                    /**
+                                     * Renewal period.
+                                     */
+                                    renewal_period:
+                                      ('RATE_LIMIT_RENEWAL_PERIOD_MINUTE' | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR') | string;
+                                    /**
+                                     * Maximum requests allowed in one renewal period. Leave unset for no request
+                                     * limit. Set to `0` to deny all requests.
+                                     */
+                                    requests?: number | string;
+                                    /**
+                                     * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                     * limit. Set to `0` to deny all requests.
+                                     */
+                                    tokens?: number | string;
+                                  }
+                                | string
+                              )[]
+                            | string;
+                          /**
+                           * Routing configuration: destinations and fallback.
+                           */
+                          routing?:
+                            | {
+                                /**
+                                 * Primary routing destinations. At most 10 are allowed. At least one is
+                                 * required on Create. On Update, provide this list when replacing the full
+                                 * `config` or updating `config.routing.destinations`; other granular routing
+                                 * updates do not require resending destinations. The intermediate
+                                 * `config.routing` mask path is not supported.
+                                 */
+                                destinations?:
+                                  | (
+                                      | {
+                                          /**
+                                           * Backing-model category. Provide the matching type-specific configuration
+                                           * and leave the other type-specific configurations unset.
+                                           */
+                                          destination_type:
+                                            | (
+                                                | 'DESTINATION_TYPE_PAY_PER_TOKEN_FOUNDATION_MODEL'
+                                                | 'DESTINATION_TYPE_PROVISIONED_THROUGHPUT_FOUNDATION_MODEL'
+                                                | 'DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL'
+                                              )
+                                            | string;
+                                          /**
+                                           * Configuration for an external model reached through a model provider service.
+                                           */
+                                          external_model_config?:
+                                            | {
+                                                /**
+                                                 * Resource name of the governed ModelProviderService that owns provider
+                                                 * auth and provider-specific configuration. The referenced
+                                                 * ModelProviderService also carries the provider type, so this message
+                                                 * does not surface it directly.
+                                                 * Format: `model-provider-services/{catalog}.{schema}.{model_provider_service}`.
+                                                 * Each `{...}` component is capped at 255 characters individually.
+                                                 */
+                                                model_provider_service: string;
+                                                /**
+                                                 * Routing target for the destination: the provider-side model selected from
+                                                 * the referenced ModelProviderService's `targets` catalog, plus the unified
+                                                 * API types the platform should translate to/from at request time.
+                                                 */
+                                                target:
+                                                  | {
+                                                      /**
+                                                       * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                       * This identifies a model at the upstream provider; it is not a Unity
+                                                       * Catalog model resource.
+                                                       */
+                                                      model: string;
+                                                      /**
+                                                       * Provider-native API types supported by this model, such as
+                                                       * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                       * uses these values to translate requests and responses. At most 64 entries
+                                                       * of 256 characters each are allowed.
+                                                       */
+                                                      native_api_types?: String[] | string;
+                                                    }
+                                                  | string;
+                                              }
+                                            | string;
+                                          /**
+                                           * User-facing label for this destination, used in routing references.
+                                           */
+                                          name: string;
+                                          /**
+                                           * Configuration for a pay-per-token Databricks foundation model.
+                                           */
+                                          pay_per_token_config?:
+                                            | {
+                                                /**
+                                                 * Resource name of the Unity Catalog model.
+                                                 * Format: `models/{catalog}.{schema}.{model}`.
+                                                 */
+                                                model: string;
+                                              }
+                                            | string;
+                                          /**
+                                           * Configuration for a provisioned-throughput Databricks foundation model.
+                                           */
+                                          provisioned_throughput_config?:
+                                            | {
+                                                /**
+                                                 * Name of the backing Model Serving endpoint serving the provisioned-
+                                                 * throughput foundation model, in the form `serving-endpoints/{name}`. The
+                                                 * same Unity Catalog model can be served on multiple Model Serving endpoints
+                                                 * with different throughput, regions, or configurations. The caller selects
+                                                 * the endpoint to which this destination routes. The endpoint must exist at
+                                                 * create time.
+                                                 */
+                                                model_serving_endpoint: string;
+                                              }
+                                            | string;
+                                          /**
+                                           * Percentage of primary traffic sent to this destination, from 0 to 100.
+                                           * Required when there is more than one primary destination, in which case the
+                                           * primary percentages must sum to 100; a single primary destination receives
+                                           * all traffic. Fallback destinations are ordered and do not use this field.
+                                           */
+                                          traffic_percentage?: number | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                /**
+                                 * Fallback routing applied after a primary destination fails. Fallback
+                                 * destinations are tried in the listed order.
+                                 */
+                                fallback?:
+                                  | {
+                                      /**
+                                       * Fallback destinations, tried in the listed order. At most 5 are allowed.
+                                       */
+                                      destinations?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Backing-model category. Provide the matching type-specific configuration
+                                                 * and leave the other type-specific configurations unset.
+                                                 */
+                                                destination_type:
+                                                  | (
+                                                      | 'DESTINATION_TYPE_PAY_PER_TOKEN_FOUNDATION_MODEL'
+                                                      | 'DESTINATION_TYPE_PROVISIONED_THROUGHPUT_FOUNDATION_MODEL'
+                                                      | 'DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Configuration for an external model reached through a model provider service.
+                                                 */
+                                                external_model_config?:
+                                                  | {
+                                                      /**
+                                                       * Resource name of the governed ModelProviderService that owns provider
+                                                       * auth and provider-specific configuration. The referenced
+                                                       * ModelProviderService also carries the provider type, so this message
+                                                       * does not surface it directly.
+                                                       * Format: `model-provider-services/{catalog}.{schema}.{model_provider_service}`.
+                                                       * Each `{...}` component is capped at 255 characters individually.
+                                                       */
+                                                      model_provider_service: string;
+                                                      /**
+                                                       * Routing target for the destination: the provider-side model selected from
+                                                       * the referenced ModelProviderService's `targets` catalog, plus the unified
+                                                       * API types the platform should translate to/from at request time.
+                                                       */
+                                                      target:
+                                                        | {
+                                                            /**
+                                                             * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                             * This identifies a model at the upstream provider; it is not a Unity
+                                                             * Catalog model resource.
+                                                             */
+                                                            model: string;
+                                                            /**
+                                                             * Provider-native API types supported by this model, such as
+                                                             * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                             * uses these values to translate requests and responses. At most 64 entries
+                                                             * of 256 characters each are allowed.
+                                                             */
+                                                            native_api_types?: String[] | string;
+                                                          }
+                                                        | string;
+                                                    }
+                                                  | string;
+                                                /**
+                                                 * User-facing label for this destination, used in routing references.
+                                                 */
+                                                name: string;
+                                                /**
+                                                 * Configuration for a pay-per-token Databricks foundation model.
+                                                 */
+                                                pay_per_token_config?:
+                                                  | {
+                                                      /**
+                                                       * Resource name of the Unity Catalog model.
+                                                       * Format: `models/{catalog}.{schema}.{model}`.
+                                                       */
+                                                      model: string;
+                                                    }
+                                                  | string;
+                                                /**
+                                                 * Configuration for a provisioned-throughput Databricks foundation model.
+                                                 */
+                                                provisioned_throughput_config?:
+                                                  | {
+                                                      /**
+                                                       * Name of the backing Model Serving endpoint serving the provisioned-
+                                                       * throughput foundation model, in the form `serving-endpoints/{name}`. The
+                                                       * same Unity Catalog model can be served on multiple Model Serving endpoints
+                                                       * with different throughput, regions, or configurations. The caller selects
+                                                       * the endpoint to which this destination routes. The endpoint must exist at
+                                                       * create time.
+                                                       */
+                                                      model_serving_endpoint: string;
+                                                    }
+                                                  | string;
+                                                /**
+                                                 * Percentage of primary traffic sent to this destination, from 0 to 100.
+                                                 * Required when there is more than one primary destination, in which case the
+                                                 * primary percentages must sum to 100; a single primary destination receives
+                                                 * all traffic. Fallback destinations are ordered and do not use this field.
+                                                 */
+                                                traffic_percentage?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                    }
+                                  | string;
+                              }
+                            | string;
+                        }
+                      | string;
+                    grants?:
+                      | (
+                          | {
+                              /**
+                               * The principal (user email address or group name).
+                               * For deleted principals, `principal` is empty while `principal_id` is populated.
+                               */
+                              principal?: string;
+                              /**
+                               * The privileges assigned to the principal.
+                               */
+                              privileges?:
+                                | (
+                                    | (
+                                        | 'SELECT'
+                                        | 'READ_PRIVATE_FILES'
+                                        | 'WRITE_PRIVATE_FILES'
+                                        | 'CREATE'
+                                        | 'USAGE'
+                                        | 'USE_CATALOG'
+                                        | 'USE_SCHEMA'
+                                        | 'CREATE_SCHEMA'
+                                        | 'CREATE_VIEW'
+                                        | 'CREATE_EXTERNAL_TABLE'
+                                        | 'CREATE_MATERIALIZED_VIEW'
+                                        | 'CREATE_FUNCTION'
+                                        | 'CREATE_MODEL'
+                                        | 'CREATE_CATALOG'
+                                        | 'CREATE_MANAGED_STORAGE'
+                                        | 'CREATE_EXTERNAL_LOCATION'
+                                        | 'CREATE_STORAGE_CREDENTIAL'
+                                        | 'CREATE_SERVICE_CREDENTIAL'
+                                        | 'ACCESS'
+                                        | 'CREATE_SHARE'
+                                        | 'CREATE_RECIPIENT'
+                                        | 'CREATE_PROVIDER'
+                                        | 'USE_SHARE'
+                                        | 'USE_RECIPIENT'
+                                        | 'USE_PROVIDER'
+                                        | 'USE_MARKETPLACE_ASSETS'
+                                        | 'SET_SHARE_PERMISSION'
+                                        | 'MODIFY'
+                                        | 'REFRESH'
+                                        | 'EXECUTE'
+                                        | 'READ_FILES'
+                                        | 'WRITE_FILES'
+                                        | 'CREATE_TABLE'
+                                        | 'ALL_PRIVILEGES'
+                                        | 'CREATE_CONNECTION'
+                                        | 'USE_CONNECTION'
+                                        | 'APPLY_TAG'
+                                        | 'CREATE_FOREIGN_CATALOG'
+                                        | 'CREATE_FOREIGN_SECURABLE'
+                                        | 'MANAGE_ALLOWLIST'
+                                        | 'CREATE_VOLUME'
+                                        | 'CREATE_EXTERNAL_VOLUME'
+                                        | 'READ_VOLUME'
+                                        | 'WRITE_VOLUME'
+                                        | 'MANAGE'
+                                        | 'BROWSE'
+                                        | 'CREATE_CLEAN_ROOM'
+                                        | 'MODIFY_CLEAN_ROOM'
+                                        | 'EXECUTE_CLEAN_ROOM_TASK'
+                                        | 'EXTERNAL_USE_SCHEMA'
+                                        | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
+                                      )
+                                    | string
+                                  )[]
+                                | string;
+                            }
+                          | string
+                        )[]
+                      | string;
+                    lifecycle?:
+                      | {
+                          /**
+                           * Lifecycle setting to prevent the resource from being destroyed.
+                           */
+                          prevent_destroy?: boolean | string;
+                        }
+                      | string;
+                    model_service_id: String;
+                    parent: String;
                   }
                 | string
                 | undefined;
@@ -23455,7 +26226,7 @@ export interface DatabricksAssetBundles {
                                      * The name of the entity to be served. The entity may be a model in the Databricks Model Registry, a model in the Unity Catalog (UC), or a function of type FEATURE_SPEC in the UC. If it is a UC object, the full name of the object should be given in the form of **catalog_name.schema_name.model_name**.
                                      */
                                     entity_name?: string;
-                                    entity_version?: String;
+                                    entity_version?: string;
                                     /**
                                      * An object containing a set of optional, user-specified environment variable key-value pairs used for serving this entity. Note: this is an experimental feature and subject to change. Example entity environment variables that refer to Databricks secrets: `{"OPENAI_API_KEY": "{{secrets/my_scope/my_key}}", "DATABRICKS_TOKEN": "{{secrets/my_scope2/my_key2}}"}`
                                      */
@@ -23941,8 +26712,8 @@ export interface DatabricksAssetBundles {
                                      * The minimum tokens per second that the endpoint can scale down to.
                                      */
                                     min_provisioned_throughput?: number | string;
-                                    model_name: String;
-                                    model_version: String;
+                                    model_name: string;
+                                    model_version: string;
                                     /**
                                      * The name of a served entity. It must be unique across an endpoint. A served entity name can consist of alphanumeric characters, dashes, and underscores. If not specified for an external model, this field defaults to external_model.name, with '.' and ':' replaced with '-', and if not specified for other entities, it defaults to entity_name-entity_version.
                                      */
@@ -23990,7 +26761,7 @@ export interface DatabricksAssetBundles {
                                 routes?:
                                   | (
                                       | {
-                                          served_entity_name?: String;
+                                          served_entity_name?: string;
                                           /**
                                            * The name of the served model this route configures traffic for.
                                            */
@@ -24007,7 +26778,7 @@ export interface DatabricksAssetBundles {
                             | string;
                         }
                       | string;
-                    description?: String;
+                    description?: string;
                     /**
                      * Email notification settings.
                      */
@@ -24797,7 +27568,7 @@ export interface DatabricksAssetBundles {
                                */
                               instance_pool_id?: string;
                               /**
-                               * A label for the cluster specification, either `default` to configure the default cluster, or `maintenance` to configure the maintenance cluster. This field is optional. The default value is `default`.
+                               * A label for the cluster specification, either `default` to configure the default cluster settings applied to both the update and maintenance clusters, `updates` to configure the update cluster, or `maintenance` to configure the maintenance cluster. This field is optional. The default value is `default`.
                                */
                               label?: string;
                               /**
@@ -24868,7 +27639,12 @@ export interface DatabricksAssetBundles {
                         }
                       | string;
                     /**
+                     * @deprecated
                      * Whether the pipeline is continuous or triggered. This replaces `trigger`.
+                     *
+                     * Deprecated: wrap the pipeline in a continuous job instead, which also lets you take advantage
+                     * of job-level settings such as performance mode. When the pipeline is started by a continuous
+                     * job, the job's setting takes precedence and this field is ignored.
                      */
                     continuous?: boolean | string;
                     /**
@@ -24891,7 +27667,7 @@ export interface DatabricksAssetBundles {
                            */
                           dependencies?: String[] | string;
                           /**
-                           * [Beta] The environment version of the serverless Python environment used to execute
+                           * [Public Preview] The environment version of the serverless Python environment used to execute
                            * customer Python code. Each environment version includes a specific Python
                            * version and a curated set of pre-installed libraries with defined versions,
                            * providing a stable and reproducible execution environment.
@@ -25918,6 +28694,20 @@ export interface DatabricksAssetBundles {
                                                     }
                                                   | string;
                                                 /**
+                                                 * [Beta] RabbitMQ specific options for ingestion.
+                                                 * Performance tuning options (consumers_per_task, max_messages_per_fetch, etc.)
+                                                 * are intentionally not exposed in the public API. The managed connector uses
+                                                 * sensible defaults internally. These can be added later if user demand arises.
+                                                 */
+                                                rabbitmq_options?:
+                                                  | {
+                                                      /**
+                                                       * [Beta] (Required) RabbitMQ queue name to consume from.
+                                                       */
+                                                      queue: string;
+                                                    }
+                                                  | string;
+                                                /**
                                                  * [Private Preview] Reddit Ads specific options for ingestion
                                                  */
                                                 reddit_ads_options?:
@@ -26302,13 +29092,11 @@ export interface DatabricksAssetBundles {
                                            */
                                           source_catalog?: string;
                                           /**
-                                           * [Public Preview] Schema name in the source database. Currently required; this field will become optional in
-                                           * an upcoming release, since some source types (for example streaming / message-bus connectors)
-                                           * do not use it. When that change ships, this field's type in the generated SDKs and CLI will
-                                           * change from required to optional (nullable); clients that assume it is always present should
-                                           * handle its absence.
+                                           * [Public Preview] Schema name in the source database. Optional: some source types (for example streaming or
+                                           * message-bus connectors) do not use it, so it may be absent from a pipeline's definition.
+                                           * Clients that assume it is always present should handle its absence.
                                            */
-                                          source_schema: string;
+                                          source_schema?: string;
                                           /**
                                            * [Public Preview] Configuration settings to control the ingestion of tables. These settings are applied to all tables in this schema and override the table_configuration defined in the IngestionPipelineDefinition object.
                                            */
@@ -27113,6 +29901,20 @@ export interface DatabricksAssetBundles {
                                                     }
                                                   | string;
                                                 /**
+                                                 * [Beta] RabbitMQ specific options for ingestion.
+                                                 * Performance tuning options (consumers_per_task, max_messages_per_fetch, etc.)
+                                                 * are intentionally not exposed in the public API. The managed connector uses
+                                                 * sensible defaults internally. These can be added later if user demand arises.
+                                                 */
+                                                rabbitmq_options?:
+                                                  | {
+                                                      /**
+                                                       * [Beta] (Required) RabbitMQ queue name to consume from.
+                                                       */
+                                                      queue: string;
+                                                    }
+                                                  | string;
+                                                /**
                                                  * [Private Preview] Reddit Ads specific options for ingestion
                                                  */
                                                 reddit_ads_options?:
@@ -27429,13 +30231,11 @@ export interface DatabricksAssetBundles {
                                            */
                                           source_schema?: string;
                                           /**
-                                           * [Public Preview] Table name in the source database. Currently required; this field will become optional in
-                                           * an upcoming release, since some source types (for example streaming / message-bus connectors)
-                                           * do not use it. When that change ships, this field's type in the generated SDKs and CLI will
-                                           * change from required to optional (nullable); clients that assume it is always present should
-                                           * handle its absence.
+                                           * [Public Preview] Table name in the source database. Optional: some source types (for example streaming or
+                                           * message-bus connectors) do not use it, so it may be absent from a pipeline's definition.
+                                           * Clients that assume it is always present should handle its absence.
                                            */
-                                          source_table: string;
+                                          source_table?: string;
                                           /**
                                            * [Public Preview] Configuration settings to control the ingestion of tables. These settings override the table_configuration defined in the IngestionPipelineDefinition object and the SchemaSpec.
                                            */
@@ -28149,8 +30949,8 @@ export interface DatabricksAssetBundles {
                       | {
                           cron?:
                             | {
-                                quartz_cron_schedule?: String;
-                                timezone_id?: String;
+                                quartz_cron_schedule?: string;
+                                timezone_id?: string;
                               }
                             | string;
                           manual?: {} | string;
@@ -28178,7 +30978,7 @@ export interface DatabricksAssetBundles {
                     branch_id: string;
                     /**
                      * [Beta] Absolute expiration timestamp. When set, the branch will expire at this time.
-                     * Mutually exclusive with `ttl` and `no_expiry`. When updating, use `spec.expiration` in the update_mask.
+                     * Mutually exclusive with `ttl` and `no_expiry`.
                      */
                     expire_time?: {} | string;
                     /**
@@ -28199,7 +30999,7 @@ export interface DatabricksAssetBundles {
                     /**
                      * [Beta] Explicitly disable expiration. When set to true, the branch will not expire.
                      * If set to false, the request is invalid; provide either ttl or expire_time instead.
-                     * Mutually exclusive with `expire_time` and `ttl`. When updating, use `spec.expiration` in the update_mask.
+                     * Mutually exclusive with `expire_time` and `ttl`.
                      */
                     no_expiry?: boolean | string;
                     /**
@@ -28231,8 +31031,16 @@ export interface DatabricksAssetBundles {
                      */
                     source_branch_time?: {} | string;
                     /**
+                     * [Private Preview] The snapshot this branch was created from. When set, the branch's data
+                     * comes from the snapshot rather than a source branch, so source_branch,
+                     * source_branch_lsn, and source_branch_time must be empty. The snapshot must
+                     * be AVAILABLE and belong to this branch's project.
+                     * Format: projects/{project_id}/snapshots/{snapshot_id}
+                     */
+                    source_snapshot?: string;
+                    /**
                      * [Beta] Relative time-to-live duration. When set, the branch will expire at creation_time + ttl.
-                     * Mutually exclusive with `expire_time` and `no_expiry`. When updating, use `spec.expiration` in the update_mask.
+                     * Mutually exclusive with `expire_time` and `no_expiry`.
                      */
                     ttl?: string;
                   }
@@ -28422,7 +31230,7 @@ export interface DatabricksAssetBundles {
                     /**
                      * [Beta] When set to true, explicitly disables automatic suspension (never suspend).
                      * Should be set to true when provided.
-                     * Mutually exclusive with `suspend_timeout_duration`. When updating, use `spec.suspension` in the update_mask.
+                     * Mutually exclusive with `suspend_timeout_duration`.
                      */
                     no_suspension?: boolean | string;
                     /**
@@ -28451,7 +31259,7 @@ export interface DatabricksAssetBundles {
                     /**
                      * [Beta] Duration of inactivity after which the compute endpoint is automatically suspended.
                      * If specified should be between 60s and 604800s (1 minute to 1 week).
-                     * Mutually exclusive with `no_suspension`. When updating, use `spec.suspension` in the update_mask.
+                     * Mutually exclusive with `no_suspension`.
                      */
                     suspend_timeout_duration?: string;
                   }
@@ -28513,7 +31321,7 @@ export interface DatabricksAssetBundles {
                           /**
                            * When set to true, explicitly disables automatic suspension (never suspend).
                            * Should be set to true when provided.
-                           * Mutually exclusive with `suspend_timeout_duration`. When updating, use `spec.project_default_settings.suspension` in the update_mask.
+                           * Mutually exclusive with `suspend_timeout_duration`.
                            */
                           no_suspension?: boolean | string;
                           /**
@@ -28527,7 +31335,7 @@ export interface DatabricksAssetBundles {
                           /**
                            * Duration of inactivity after which the compute endpoint is automatically suspended.
                            * If specified should be between 60s and 604800s (1 minute to 1 week).
-                           * Mutually exclusive with `no_suspension`. When updating, use `spec.project_default_settings.suspension` in the update_mask.
+                           * Mutually exclusive with `no_suspension`.
                            */
                           suspend_timeout_duration?: string;
                         }
@@ -28686,6 +31494,102 @@ export interface DatabricksAssetBundles {
                      * The user-specified role ID; becomes the final component of the role's resource name. Must be 4-63 characters, lowercase letters, numbers, and hyphens (RFC 1123).
                      */
                     role_id: string;
+                  }
+                | string
+                | undefined;
+            }
+          | string;
+        /**
+         * The Postgres snapshot schedule definitions for the bundle, where each key is the name of the snapshot schedule. Each entry configures the automatic-snapshot cadences for a branch of a Lakebase Autoscaling project.
+         */
+        postgres_snapshot_schedules?:
+          | {
+              [k: string]:
+                | {
+                    /**
+                     * The branch whose automatic-snapshot schedule this manages. Format: projects/{project_id}/branches/{branch_id}
+                     */
+                    branch: string;
+                    /**
+                     * Settings that control the deployment lifecycle of the resource, such as preventing it from being destroyed.
+                     */
+                    lifecycle?:
+                      | {
+                          /**
+                           * Lifecycle setting to prevent the resource from being destroyed.
+                           */
+                          prevent_destroy?: boolean | string;
+                        }
+                      | string;
+                    /**
+                     * The cadences at which automatic snapshots are taken. An empty set disables automatic snapshots. When several cadences fire together, one snapshot is taken and retained for the longest of their retentions.
+                     */
+                    schedule?:
+                      | (
+                          | {
+                              /**
+                               * [Private Preview] Take a snapshot once per day.
+                               */
+                              daily_schedule?:
+                                | {
+                                    /**
+                                     * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                     */
+                                    hour?: number | string;
+                                  }
+                                | string;
+                              /**
+                               * [Private Preview] Take a snapshot once per month.
+                               */
+                              monthly_schedule?:
+                                | {
+                                    /**
+                                     * [Private Preview] The day of the month on which to take the snapshot, in [1, 31]. In shorter
+                                     * months the snapshot is taken on the last day instead (day 31 runs on Feb 28
+                                     * or 29, and on Apr 30), so every month gets exactly one snapshot.
+                                     */
+                                    day: number | string;
+                                    /**
+                                     * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                     */
+                                    hour?: number | string;
+                                  }
+                                | string;
+                              /**
+                               * [Private Preview] How long snapshots from this cadence are kept before automatic deletion.
+                               * Must be at least 1 hour. Applied when a snapshot is taken; not retroactive,
+                               * so changing it affects only later snapshots.
+                               */
+                              retention: string;
+                              /**
+                               * [Private Preview] Take a snapshot once per week.
+                               */
+                              weekly_schedule?:
+                                | {
+                                    /**
+                                     * [Private Preview] The day of the week on which to take the snapshot.
+                                     */
+                                    day_of_week:
+                                      | (
+                                          | 'MONDAY'
+                                          | 'TUESDAY'
+                                          | 'WEDNESDAY'
+                                          | 'THURSDAY'
+                                          | 'FRIDAY'
+                                          | 'SATURDAY'
+                                          | 'SUNDAY'
+                                        )
+                                      | string;
+                                    /**
+                                     * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                     */
+                                    hour?: number | string;
+                                  }
+                                | string;
+                            }
+                          | string
+                        )[]
+                      | string;
                   }
                 | string
                 | undefined;
@@ -29203,6 +32107,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -29342,6 +32247,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -29541,6 +32447,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -29605,7 +32512,7 @@ export interface DatabricksAssetBundles {
                      */
                     channel?:
                       | {
-                          dbsql_version?: String;
+                          dbsql_version?: string;
                           name?:
                             | (
                                 | 'CHANNEL_NAME_PREVIEW'
@@ -29744,8 +32651,8 @@ export interface DatabricksAssetBundles {
                           custom_tags?:
                             | (
                                 | {
-                                    key?: String;
-                                    value?: String;
+                                    key?: string;
+                                    value?: string;
                                   }
                                 | string
                               )[]
@@ -30167,6 +33074,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -30292,6 +33200,7 @@ export interface DatabricksAssetBundles {
                                         | 'EXECUTE_CLEAN_ROOM_TASK'
                                         | 'EXTERNAL_USE_SCHEMA'
                                         | 'READ_METADATA'
+                                        | 'EXTERNAL_USE_LOCATION'
                                       )
                                     | string
                                   )[]
@@ -30487,9 +33396,17 @@ export interface DatabricksAssetBundles {
                     deployment?:
                       | {
                           /**
+                           * The ID the deployment metadata service assigned to this bundle's deployment. Output only.
+                           */
+                          deployment_id?: string;
+                          /**
                            * Whether to fail on active runs. If this is set to true a deployment that is running can be interrupted.
                            */
                           fail_on_active_runs?: boolean | string;
+                          /**
+                           * The most recent version the deployment metadata service recorded for this deployment. Output only.
+                           */
+                          latest_version_id?: number | string;
                           /**
                            * The deployment lock attributes.
                            */
@@ -30716,8 +33633,8 @@ export interface DatabricksAssetBundles {
                                             subscriptions?:
                                               | (
                                                   | {
-                                                      destination_id?: String;
-                                                      user_email?: String;
+                                                      destination_id?: string;
+                                                      user_email?: string;
                                                     }
                                                   | string
                                                 )[]
@@ -30744,8 +33661,8 @@ export interface DatabricksAssetBundles {
                                                   | 'STDDEV'
                                                 )
                                               | string;
-                                            display?: String;
-                                            name: String;
+                                            display?: string;
+                                            name: string;
                                           }
                                         | string;
                                       /**
@@ -30770,15 +33687,15 @@ export interface DatabricksAssetBundles {
                                                         | 'STDDEV'
                                                       )
                                                     | string;
-                                                  display?: String;
-                                                  name: String;
+                                                  display?: string;
+                                                  name: string;
                                                 }
                                               | string;
                                             value?:
                                               | {
-                                                  bool_value?: Bool;
-                                                  double_value?: Float64;
-                                                  string_value?: String;
+                                                  bool_value?: boolean | string;
+                                                  double_value?: number | string;
+                                                  string_value?: string;
                                                 }
                                               | string;
                                           }
@@ -30798,24 +33715,33 @@ export interface DatabricksAssetBundles {
                                     }
                                   | string;
                                 /**
-                                 * [Private Preview] Query parameters bound when executing the alert query, referenced in the
-                                 * query text with `:name` syntax. Static values only.
+                                 * [Private Preview] A list of parameters to pass into the alert SQL query statement containing parameter markers. Static values only.
+                                 *
+                                 * Reference a parameter in the query text as `:name`. Each parameter must have a unique, non-empty name.
+                                 * Each parameter consists of a name, a value, and optionally a type. To represent a NULL
+                                 * value, the `value` field may be omitted or set to `null` explicitly. If the `type` field
+                                 * is omitted, the value is interpreted as a string.
+                                 *
+                                 * If the type is given, parameters will be checked for type correctness according
+                                 * to the given type. A value is correct if the provided string can be converted to
+                                 * the requested type using the `cast` function. The exact semantics are described in
+                                 * the section [`cast` function](https://docs.databricks.com/sql/language-manual/functions/cast.html) of the SQL language reference.
                                  */
                                 parameters?:
                                   | (
                                       | {
                                           /**
-                                           * [Private Preview] The name of the parameter, referenced in the query as `:name`.
+                                           * [Private Preview] The name of the parameter. Reference it in the query text as `:name`. Required, must be
+                                           * non-empty, and must be unique across the alert's parameters.
                                            */
                                           name: string;
                                           /**
-                                           * [Private Preview] The SQL data type of the parameter, e.g. STRING, INT, or DATE. Defaults to STRING. This is a
-                                           * string rather than an enum because scalar subtypes such as DECIMAL(10, 4) cannot be enumerated.
-                                           * Complex types such as ARRAY, MAP, and STRUCT are not supported.
+                                           * [Private Preview] The SQL data type of the parameter, for example `STRING`, `INT`, or `DECIMAL(10, 2)`. If no type is given
+                                           * the type is assumed to be `STRING`. Complex types such as `ARRAY`, `MAP`, and `STRUCT` are not supported.
                                            */
                                           type?: string;
                                           /**
-                                           * [Private Preview] The bound value for the parameter, given as a string. If omitted, the value is interpreted as NULL.
+                                           * [Private Preview] The value bound to the parameter, represented as a string. If omitted, the value is interpreted as NULL.
                                            */
                                           value?: string;
                                         }
@@ -31083,14 +34009,14 @@ export interface DatabricksAssetBundles {
                                       | {
                                           app?:
                                             | {
-                                                name?: String;
+                                                name?: string;
                                                 permission?: 'CAN_USE' | string;
                                               }
                                             | string;
                                           database?:
                                             | {
-                                                database_name: String;
-                                                instance_name: String;
+                                                database_name: string;
+                                                instance_name: string;
                                                 permission: 'CAN_CONNECT_AND_CREATE' | string;
                                               }
                                             | string;
@@ -31100,16 +34026,16 @@ export interface DatabricksAssetBundles {
                                           description?: string;
                                           experiment?:
                                             | {
-                                                experiment_id: String;
+                                                experiment_id: string;
                                                 permission: ('CAN_MANAGE' | 'CAN_EDIT' | 'CAN_READ') | string;
                                               }
                                             | string;
                                           genie_space?:
                                             | {
-                                                name: String;
+                                                name: string;
                                                 permission:
                                                   ('CAN_MANAGE' | 'CAN_EDIT' | 'CAN_RUN' | 'CAN_VIEW') | string;
-                                                space_id: String;
+                                                space_id: string;
                                               }
                                             | string;
                                           job?:
@@ -31131,8 +34057,8 @@ export interface DatabricksAssetBundles {
                                           name: string;
                                           postgres?:
                                             | {
-                                                branch?: String;
-                                                database?: String;
+                                                branch?: string;
+                                                database?: string;
                                                 permission?: 'CAN_CONNECT_AND_CREATE' | string;
                                               }
                                             | string;
@@ -31188,7 +34114,7 @@ export interface DatabricksAssetBundles {
                                                       | 'MODIFY'
                                                     )
                                                   | string;
-                                                securable_full_name: String;
+                                                securable_full_name: string;
                                                 securable_type:
                                                   ('VOLUME' | 'TABLE' | 'FUNCTION' | 'CONNECTION') | string;
                                               }
@@ -31331,6 +34257,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -31360,9 +34287,9 @@ export interface DatabricksAssetBundles {
                                        */
                                       azure_encryption_settings?:
                                         | {
-                                            azure_cmk_access_connector_id?: String;
-                                            azure_cmk_managed_identity_id?: String;
-                                            azure_tenant_id: String;
+                                            azure_cmk_access_connector_id?: string;
+                                            azure_cmk_managed_identity_id?: string;
+                                            azure_tenant_id: string;
                                           }
                                         | string;
                                       /**
@@ -31969,6 +34896,11 @@ export interface DatabricksAssetBundles {
                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                        */
                                       alternate_node_type_ids?: String[] | string;
+                                      /**
+                                       * The AWS Context ID for EC2 Fleet.
+                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                       */
+                                      aws_context_id?: string;
                                     }
                                   | string;
                                 /**
@@ -32333,7 +35265,7 @@ export interface DatabricksAssetBundles {
                                  */
                                 ssh_public_keys?: String[] | string;
                                 /**
-                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                  */
                                 total_initial_remote_disk_size?: number | string;
                                 /**
@@ -32351,6 +35283,11 @@ export interface DatabricksAssetBundles {
                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                        */
                                       alternate_node_type_ids?: String[] | string;
+                                      /**
+                                       * The AWS Context ID for EC2 Fleet.
+                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                       */
+                                      aws_context_id?: string;
                                     }
                                   | string;
                                 /**
@@ -33016,6 +35953,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -33402,6 +36340,11 @@ export interface DatabricksAssetBundles {
                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                        */
                                       alternate_node_type_ids?: String[] | string;
+                                      /**
+                                       * The AWS Context ID for EC2 Fleet.
+                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                       */
+                                      aws_context_id?: string;
                                     }
                                   | string;
                                 /**
@@ -33540,9 +36483,13 @@ export interface DatabricksAssetBundles {
                                         | (
                                             | {
                                                 /**
-                                                 * If true, re-fire the run on every bundle deploy. Incompatible with lifecycle.prevent_destroy.
+                                                 * If true, re-fire the run on every bundle deploy.
                                                  */
                                                 on_bundle_deploy?: boolean | string;
+                                                /**
+                                                 * Path or glob relative to the defining YAML file. It must resolve under the sync root. Re-fire the run when a matched file's content hash changes, or when the set of matches appears or disappears. Only files the bundle syncs are hashed, so .gitignore and sync.exclude apply. Use * to match a single directory level; ** is not supported.
+                                                 */
+                                                on_file_change?: string;
                                               }
                                             | string
                                           )[]
@@ -33691,9 +36638,42 @@ export interface DatabricksAssetBundles {
                                 budget_policy_id?: string;
                                 /**
                                  * An optional continuous property for this job. The continuous property will ensure that there is always one run executing. Only one of `schedule` and `continuous` can be used.
+                                 *
+                                 * Pipelines started by a continuous job also run continuously, regardless of their own pipeline mode setting.
                                  */
                                 continuous?:
                                   | {
+                                      /**
+                                       * [Private Preview] Defines when platform-initiated maintenance may run for this job. If unspecified, maintenance may run at any time.
+                                       */
+                                      maintenance_window?:
+                                        | {
+                                            /**
+                                             * [Private Preview] The day of week on which maintenance is allowed to happen. This field is required.
+                                             */
+                                            day_of_week:
+                                              | (
+                                                  | 'MONDAY'
+                                                  | 'TUESDAY'
+                                                  | 'WEDNESDAY'
+                                                  | 'THURSDAY'
+                                                  | 'FRIDAY'
+                                                  | 'SATURDAY'
+                                                  | 'SUNDAY'
+                                                )
+                                              | string;
+                                            /**
+                                             * [Private Preview] An integer between 0 and 23 denoting the start hour for the maintenance window in the 24-hour day.
+                                             * Platform-initiated maintenance is triggered only within a one-hour window starting at this hour.
+                                             * This field is required.
+                                             */
+                                            start_hour: number | string;
+                                            /**
+                                             * [Private Preview] A Java timezone ID. The maintenance window is resolved with respect to this timezone. See [Java TimeZone](https://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) for details. This field is required.
+                                             */
+                                            timezone_id: string;
+                                          }
+                                        | string;
                                       /**
                                        * Indicate whether the continuous execution of the job is paused or not. Defaults to UNPAUSED.
                                        */
@@ -34286,6 +37266,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -34613,7 +37598,7 @@ export interface DatabricksAssetBundles {
                                                  */
                                                 ssh_public_keys?: String[] | string;
                                                 /**
-                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                                  */
                                                 total_initial_remote_disk_size?: number | string;
                                                 /**
@@ -34631,6 +37616,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -34913,6 +37903,13 @@ export interface DatabricksAssetBundles {
                                                                  */
                                                                 accelerator_type:
                                                                   ('GPU_1xA10' | 'GPU_1xH100' | 'GPU_8xH100') | string;
+                                                                /**
+                                                                 * [Private Preview] Optional ID of a pre-provisioned accelerator capacity reservation to run
+                                                                 * this AI Runtime workload on. When set, the workload is scheduled onto the
+                                                                 * referenced reserved capacity instead of the on-demand capacity shared among
+                                                                 * all Databricks customers.
+                                                                 */
+                                                                provisioned_capacity_id?: string;
                                                               }
                                                             | string;
                                                           /**
@@ -34974,6 +37971,19 @@ export interface DatabricksAssetBundles {
                                                  * [Public Preview] The alert_id is the canonical identifier of the alert.
                                                  */
                                                 alert_id?: string;
+                                                /**
+                                                 * [Private Preview] Per-run parameter overrides, keyed by parameter name, applied onto the alert's stored
+                                                 * query parameters before the query is executed. Only scalar values are supported. Values
+                                                 * may reference job parameters with `{{job.parameters.*}}`, which are resolved before the
+                                                 * task runs. An override whose key does not match a stored parameter fails the task run.
+                                                 * Limited to 10000 characters when serialized as JSON; keys must be 1-100 characters and
+                                                 * contain only letters, digits, underscores, dashes, and periods.
+                                                 */
+                                                parameters?:
+                                                  | {
+                                                      [k: string]: String | undefined;
+                                                    }
+                                                  | string;
                                                 /**
                                                  * [Public Preview] The subscribers receive alert evaluation result notifications after the alert task is completed.
                                                  * The number of subscriptions is limited to 100.
@@ -35043,7 +38053,8 @@ export interface DatabricksAssetBundles {
                                                 /**
                                                  * [Beta] Hardware accelerator configuration for Serverless GPU workloads.
                                                  */
-                                                hardware_accelerator?: ('GPU_1xA10' | 'GPU_8xH100') | string;
+                                                hardware_accelerator?:
+                                                  ('GPU_1xA10' | 'GPU_8xH100' | 'GPU_1xH100' | 'GPU_8xB300') | string;
                                               }
                                             | string;
                                           /**
@@ -35338,7 +38349,7 @@ export interface DatabricksAssetBundles {
                                                       /**
                                                        * [Private Preview] Number of GPUs.
                                                        */
-                                                      num_gpus: number | string | string | string | string | string;
+                                                      num_gpus: number | string;
                                                     }
                                                   | string;
                                                 /**
@@ -35513,12 +38524,12 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * An optional maximum number of times to retry an unsuccessful run. A run is considered to be unsuccessful if it completes with the `FAILED` result_state or `INTERNAL_ERROR` `life_cycle_state`. The value `-1` means to retry indefinitely and the value `0` means to never retry.
                                            */
-                                          max_retries?: number | string | string | string | string | string;
+                                          max_retries?: number | string;
                                           /**
                                            * An optional minimal interval in milliseconds between the start of the failed run and the subsequent retry run. The default behavior is that unsuccessful runs are immediately retried.
                                            */
                                           min_retry_interval_millis?:
-                                            number | string | string | string | string | string;
+                                            number | string;
                                           /**
                                            * If new_cluster, a description of a new cluster that is created for each run.
                                            */
@@ -35906,6 +38917,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -36233,7 +39249,7 @@ export interface DatabricksAssetBundles {
                                                  */
                                                 ssh_public_keys?: String[] | string;
                                                 /**
-                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Currently only supported for GCP HYPERDISK_BALANCED disks.
+                                                 * If set, what the total initial volume size (in GB) of the remote disks should be. Supported for GCP.
                                                  */
                                                 total_initial_remote_disk_size?: number | string;
                                                 /**
@@ -36251,6 +39267,11 @@ export interface DatabricksAssetBundles {
                                                        * A list of node type IDs to use as fallbacks when the primary node type is unavailable.
                                                        */
                                                       alternate_node_type_ids?: String[] | string;
+                                                      /**
+                                                       * The AWS Context ID for EC2 Fleet.
+                                                       * When set (non-empty), the value is passed to AWS CreateFleet API to create the EC2 Fleet.
+                                                       */
+                                                      aws_context_id?: string;
                                                     }
                                                   | string;
                                                 /**
@@ -36330,17 +39351,17 @@ export interface DatabricksAssetBundles {
                                                  * If true, do not send notifications to recipients specified in `on_start` for the retried runs and do not send notifications to recipients specified in `on_failure` until the last retry of the run.
                                                  */
                                                 alert_on_last_attempt?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                                 /**
                                                  * If true, do not send notifications to recipients specified in `on_failure` if the run is canceled.
                                                  */
                                                 no_alert_for_canceled_runs?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                                 /**
                                                  * If true, do not send notifications to recipients specified in `on_failure` if the run is skipped.
                                                  */
                                                 no_alert_for_skipped_runs?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                               }
                                             | string;
                                           /**
@@ -36351,7 +39372,7 @@ export interface DatabricksAssetBundles {
                                                 /**
                                                  * If true, triggers a full refresh on the spark declarative pipeline.
                                                  */
-                                                full_refresh?: boolean | string | string | string | string | string;
+                                                full_refresh?: boolean | string;
                                                 /**
                                                  * [Beta] A list of tables to update with fullRefresh.
                                                  */
@@ -36410,7 +39431,7 @@ export interface DatabricksAssetBundles {
                                                        * [Public Preview] Whether to overwrite existing Power BI models
                                                        */
                                                       overwrite_existing?:
-                                                        boolean | string | string | string | string | string;
+                                                        boolean | string;
                                                       /**
                                                        * [Public Preview] The default storage mode of the Power BI model
                                                        */
@@ -36425,7 +39446,7 @@ export interface DatabricksAssetBundles {
                                                  * [Public Preview] Whether the model should be refreshed after the update
                                                  */
                                                 refresh_after_update?:
-                                                  boolean | string | string | string | string | string;
+                                                  boolean | string;
                                                 /**
                                                  * [Public Preview] The tables to be exported to Power BI
                                                  */
@@ -36520,7 +39541,7 @@ export interface DatabricksAssetBundles {
                                            * An optional policy to specify whether to retry a job when it times out. The default behavior
                                            * is to not retry on timeout.
                                            */
-                                          retry_on_timeout?: boolean | string | string | string | string | string;
+                                          retry_on_timeout?: boolean | string;
                                           /**
                                            * An optional value specifying the condition determining whether the task is run once its dependencies have been completed.
                                            *
@@ -36567,7 +39588,7 @@ export interface DatabricksAssetBundles {
                                                 /**
                                                  * ID of the job to trigger.
                                                  */
-                                                job_id: number | string | string | string | string | string;
+                                                job_id: number | string;
                                                 /**
                                                  * Job-level parameters used to trigger the job.
                                                  */
@@ -36702,7 +39723,7 @@ export interface DatabricksAssetBundles {
                                                  * @deprecated
                                                  * Deprecated. A value of `false` is no longer supported.
                                                  */
-                                                run_as_repl?: boolean | string | string | string | string | string;
+                                                run_as_repl?: boolean | string;
                                               }
                                             | string;
                                           /**
@@ -36763,7 +39784,7 @@ export interface DatabricksAssetBundles {
                                                        * If true, the alert notifications are not sent to subscribers.
                                                        */
                                                       pause_subscriptions?:
-                                                        boolean | string | string | string | string | string;
+                                                        boolean | string;
                                                       /**
                                                        * If specified, alert notifications are sent to subscribers.
                                                        */
@@ -36801,7 +39822,7 @@ export interface DatabricksAssetBundles {
                                                        * If true, the dashboard snapshot is not taken, and emails are not sent to subscribers.
                                                        */
                                                       pause_subscriptions?:
-                                                        boolean | string | string | string | string | string;
+                                                        boolean | string;
                                                       /**
                                                        * If specified, dashboard snapshots are sent to subscriptions.
                                                        */
@@ -36876,7 +39897,7 @@ export interface DatabricksAssetBundles {
                                           /**
                                            * An optional timeout applied to each run of this job task. A value of `0` means no timeout.
                                            */
-                                          timeout_seconds?: number | string | string | string | string | string;
+                                          timeout_seconds?: number | string;
                                           /**
                                            * A collection of system notification IDs to notify when runs of this task begin or complete. The default behavior is to not send any system notifications.
                                            */
@@ -36888,7 +39909,7 @@ export interface DatabricksAssetBundles {
                                                 on_duration_warning_threshold_exceeded?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -36899,7 +39920,7 @@ export interface DatabricksAssetBundles {
                                                 on_failure?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -36910,7 +39931,7 @@ export interface DatabricksAssetBundles {
                                                 on_start?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -36924,7 +39945,7 @@ export interface DatabricksAssetBundles {
                                                 on_streaming_backlog_exceeded?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -36935,7 +39956,7 @@ export interface DatabricksAssetBundles {
                                                 on_success?:
                                                   | (
                                                       | {
-                                                          id: String;
+                                                          id: string;
                                                         }
                                                       | string
                                                     )[]
@@ -37089,6 +40110,38 @@ export interface DatabricksAssetBundles {
                                            */
                                           continuous?:
                                             | {
+                                                /**
+                                                 * [Private Preview] Defines when platform-initiated maintenance may run for this trigger. If unspecified,
+                                                 * maintenance may run at any time.
+                                                 */
+                                                maintenance_window?:
+                                                  | {
+                                                      /**
+                                                       * [Private Preview] The day of week on which maintenance is allowed to happen. This field is required.
+                                                       */
+                                                      day_of_week:
+                                                        | (
+                                                            | 'MONDAY'
+                                                            | 'TUESDAY'
+                                                            | 'WEDNESDAY'
+                                                            | 'THURSDAY'
+                                                            | 'FRIDAY'
+                                                            | 'SATURDAY'
+                                                            | 'SUNDAY'
+                                                          )
+                                                        | string;
+                                                      /**
+                                                       * [Private Preview] An integer between 0 and 23 denoting the start hour for the maintenance window in the 24-hour day.
+                                                       * Platform-initiated maintenance is triggered only within a one-hour window starting at this hour.
+                                                       * This field is required.
+                                                       */
+                                                      start_hour: number | string;
+                                                      /**
+                                                       * [Private Preview] A Java timezone ID. The maintenance window is resolved with respect to this timezone. See [Java TimeZone](https://docs.oracle.com/javase/7/docs/api/java/util/TimeZone.html) for details. This field is required.
+                                                       */
+                                                      timezone_id: string;
+                                                    }
+                                                  | string;
                                                 /**
                                                  * [Beta] Whether the continuous job applies task-level retries. Defaults to NEVER.
                                                  */
@@ -37257,7 +40310,7 @@ export interface DatabricksAssetBundles {
                                       on_duration_warning_threshold_exceeded?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -37268,7 +40321,7 @@ export interface DatabricksAssetBundles {
                                       on_failure?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -37279,7 +40332,7 @@ export interface DatabricksAssetBundles {
                                       on_start?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -37293,7 +40346,7 @@ export interface DatabricksAssetBundles {
                                       on_streaming_backlog_exceeded?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
@@ -37304,13 +40357,1181 @@ export interface DatabricksAssetBundles {
                                       on_success?:
                                         | (
                                             | {
-                                                id: String;
+                                                id: string;
                                               }
                                             | string
                                           )[]
                                         | string;
                                     }
                                   | string;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    mcp_services?:
+                      | {
+                          [k: string]:
+                            | {
+                                comment?: String;
+                                config?:
+                                  | {
+                                      /**
+                                       * Tool names or prefix patterns to expose from the MCP server. Use exact
+                                       * tool names or prefix patterns such as `read_*`. An empty list exposes all
+                                       * tools. At most 1,024 selectors are allowed, and each selector can contain
+                                       * at most 256 characters.
+                                       */
+                                      include_tool_selectors?: String[] | string;
+                                      /**
+                                       * Rate limits for tool invocations. Supported scopes are user, group, service
+                                       * principal, the service as a whole, and each user by default. Request and
+                                       * token limits are supported. Empty when no rate limit is configured.
+                                       */
+                                      rate_limits?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Scope of the rate limit. Depending on this value, the limit applies to a
+                                                 * principal, the service as a whole, or each user by default.
+                                                 */
+                                                key:
+                                                  | (
+                                                      | 'RATE_LIMIT_KEY_USER'
+                                                      | 'RATE_LIMIT_KEY_USER_GROUP'
+                                                      | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                                      | 'RATE_LIMIT_KEY_SERVICE'
+                                                      | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Principal this limit applies to: user email, group name, or service
+                                                 * principal application ID. Required when `key` applies to a user, group, or
+                                                 * service principal; otherwise it must be unset.
+                                                 */
+                                                principal?: string;
+                                                /**
+                                                 * Renewal period.
+                                                 */
+                                                renewal_period:
+                                                  | (
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_MINUTE'
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Maximum requests allowed in one renewal period. Leave unset for no request
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                requests?: number | string;
+                                                /**
+                                                 * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                tokens?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                      /**
+                                       * Unity Catalog connection referencing the MCP server. Required on Create.
+                                       */
+                                      source_connection?:
+                                        | {
+                                            /**
+                                             * Resource name of the Unity Catalog connection used to access the MCP
+                                             * server, in the form `connections/{catalog}.{schema}.{connection}`.
+                                             */
+                                            name: string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                                grants?:
+                                  | (
+                                      | {
+                                          /**
+                                           * The principal (user email address or group name).
+                                           * For deleted principals, `principal` is empty while `principal_id` is populated.
+                                           */
+                                          principal?: string;
+                                          /**
+                                           * The privileges assigned to the principal.
+                                           */
+                                          privileges?:
+                                            | (
+                                                | (
+                                                    | 'SELECT'
+                                                    | 'READ_PRIVATE_FILES'
+                                                    | 'WRITE_PRIVATE_FILES'
+                                                    | 'CREATE'
+                                                    | 'USAGE'
+                                                    | 'USE_CATALOG'
+                                                    | 'USE_SCHEMA'
+                                                    | 'CREATE_SCHEMA'
+                                                    | 'CREATE_VIEW'
+                                                    | 'CREATE_EXTERNAL_TABLE'
+                                                    | 'CREATE_MATERIALIZED_VIEW'
+                                                    | 'CREATE_FUNCTION'
+                                                    | 'CREATE_MODEL'
+                                                    | 'CREATE_CATALOG'
+                                                    | 'CREATE_MANAGED_STORAGE'
+                                                    | 'CREATE_EXTERNAL_LOCATION'
+                                                    | 'CREATE_STORAGE_CREDENTIAL'
+                                                    | 'CREATE_SERVICE_CREDENTIAL'
+                                                    | 'ACCESS'
+                                                    | 'CREATE_SHARE'
+                                                    | 'CREATE_RECIPIENT'
+                                                    | 'CREATE_PROVIDER'
+                                                    | 'USE_SHARE'
+                                                    | 'USE_RECIPIENT'
+                                                    | 'USE_PROVIDER'
+                                                    | 'USE_MARKETPLACE_ASSETS'
+                                                    | 'SET_SHARE_PERMISSION'
+                                                    | 'MODIFY'
+                                                    | 'REFRESH'
+                                                    | 'EXECUTE'
+                                                    | 'READ_FILES'
+                                                    | 'WRITE_FILES'
+                                                    | 'CREATE_TABLE'
+                                                    | 'ALL_PRIVILEGES'
+                                                    | 'CREATE_CONNECTION'
+                                                    | 'USE_CONNECTION'
+                                                    | 'APPLY_TAG'
+                                                    | 'CREATE_FOREIGN_CATALOG'
+                                                    | 'CREATE_FOREIGN_SECURABLE'
+                                                    | 'MANAGE_ALLOWLIST'
+                                                    | 'CREATE_VOLUME'
+                                                    | 'CREATE_EXTERNAL_VOLUME'
+                                                    | 'READ_VOLUME'
+                                                    | 'WRITE_VOLUME'
+                                                    | 'MANAGE'
+                                                    | 'BROWSE'
+                                                    | 'CREATE_CLEAN_ROOM'
+                                                    | 'MODIFY_CLEAN_ROOM'
+                                                    | 'EXECUTE_CLEAN_ROOM_TASK'
+                                                    | 'EXTERNAL_USE_SCHEMA'
+                                                    | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
+                                                  )
+                                                | string
+                                              )[]
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                mcp_service_id: String;
+                                parent: String;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    model_provider_services?:
+                      | {
+                          [k: string]:
+                            | {
+                                comment?: String;
+                                config?:
+                                  | {
+                                      /**
+                                       * When true, accepts any model exposed by the upstream provider; `targets`
+                                       * is not required and does not restrict routability. When false, only
+                                       * models listed in `targets` are routable. Defaults to false.
+                                       */
+                                      allow_all_targets?: boolean | string;
+                                      /**
+                                       * Amazon Bedrock provider configuration.
+                                       */
+                                      amazon_bedrock?:
+                                        | {
+                                            /**
+                                             * Amazon Bedrock region and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * AWS access-key-pair authentication. Set `access_key_id` and
+                                                   * `secret_access_key.plaintext`. Mutually exclusive with
+                                                   * `service_credential`.
+                                                   */
+                                                  aws_access_key?:
+                                                    | {
+                                                        /**
+                                                         * AWS access key ID. Required on Create when using access-key auth. Treated as
+                                                         * username-equivalent (not a secret value): round-trips on reads and is
+                                                         * scrubbed from audit logs.
+                                                         */
+                                                        access_key_id?: string;
+                                                        /**
+                                                         * AWS secret access key paired with `access_key_id`. Required when creating
+                                                         * a service with access-key authentication. Supply the value in
+                                                         * `secret_access_key.plaintext`.
+                                                         */
+                                                        secret_access_key?:
+                                                          | {
+                                                              /**
+                                                               * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                               * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                               * object remains present to indicate that a secret is configured.
+                                                               */
+                                                              plaintext?: string;
+                                                            }
+                                                          | string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * AWS region where the Bedrock endpoint is hosted (e.g., `us-east-1`).
+                                                   * Required on Create.
+                                                   */
+                                                  region?: string;
+                                                  /**
+                                                   * Reference to a Unity Catalog service credential authorizing Bedrock
+                                                   * requests. On Create, supply `service_credential.name` in the form
+                                                   * `credentials/{name}`. Required on Create when using service-credential
+                                                   * authentication; mutually exclusive with `aws_access_key`. The credential
+                                                   * is referenced by name; its value is not carried here. Only
+                                                   * supported on AWS-hosted workspaces.
+                                                   */
+                                                  service_credential?:
+                                                    | {
+                                                        /**
+                                                         * Resource name of the bound Unity Catalog service credential, in the form
+                                                         * `credentials/{name}`. Supply this field when creating the service or
+                                                         * rebinding its credential. On read, it reflects the credential's current
+                                                         * name.
+                                                         */
+                                                        name: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Anthropic provider configuration. Exactly one of `direct` or `relayed` must
+                                       * be set on Create; the two are mutually exclusive.
+                                       */
+                                      anthropic?:
+                                        | {
+                                            /**
+                                             * Direct authentication with an API key supplied in
+                                             * `direct.api_key.plaintext`. Required unless `relayed` is set.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Anthropic API key. Required when creating the service. Supply the value
+                                                   * in `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                            /**
+                                             * Relayed authentication. Each inference request supplies the caller's
+                                             * OAuth token, which is forwarded to Anthropic. No Anthropic credential is
+                                             * stored. Mutually exclusive with `direct`.
+                                             */
+                                            relayed?: {} | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Azure OpenAI provider configuration.
+                                       */
+                                      azure_openai?:
+                                        | {
+                                            /**
+                                             * Azure OpenAI endpoint and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Azure OpenAI API key. Supply the value in `api_key.plaintext`. Mutually
+                                                   * exclusive with Entra ID and Unity Catalog service credential
+                                                   * authentication.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Full Azure OpenAI endpoint base URL, e.g.
+                                                   * `https://myresource.openai.azure.com`. Required on Create.
+                                                   */
+                                                  base_url?: string;
+                                                  /**
+                                                   * Entra ID service-principal authentication. Set `tenant_id`, `client_id`,
+                                                   * and `client_secret.plaintext`. Mutually exclusive with `api_key` and
+                                                   * `service_credential`.
+                                                   */
+                                                  entra_service_principal?:
+                                                    | {
+                                                        /**
+                                                         * Entra ID client (application) ID. Required on Create.
+                                                         */
+                                                        client_id?: string;
+                                                        /**
+                                                         * Entra ID client secret. Supply the value in `client_secret.plaintext`.
+                                                         */
+                                                        client_secret?:
+                                                          | {
+                                                              /**
+                                                               * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                               * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                               * object remains present to indicate that a secret is configured.
+                                                               */
+                                                              plaintext?: string;
+                                                            }
+                                                          | string;
+                                                        /**
+                                                         * Entra ID (Azure AD) tenant ID. Required on Create.
+                                                         */
+                                                        tenant_id?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Reference to a Unity Catalog service credential authorizing Azure OpenAI
+                                                   * requests. On Create, supply `service_credential.name` in the form
+                                                   * `credentials/{name}`. Required on Create when using service-credential
+                                                   * authentication; mutually exclusive with `api_key` and
+                                                   * `entra_service_principal`. The credential is referenced by name; its value
+                                                   * is not carried here. Only supported on Azure-hosted workspaces.
+                                                   */
+                                                  service_credential?:
+                                                    | {
+                                                        /**
+                                                         * Resource name of the bound Unity Catalog service credential, in the form
+                                                         * `credentials/{name}`. Supply this field when creating the service or
+                                                         * rebinding its credential. On read, it reflects the credential's current
+                                                         * name.
+                                                         */
+                                                        name: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Custom OpenAI-compatible provider configuration with bearer-token
+                                       * authentication.
+                                       */
+                                      custom?:
+                                        | {
+                                            /**
+                                             * Endpoint and authentication configuration for the custom provider.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Bearer token forwarded in the `Authorization` header. Supply the value
+                                                   * in `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Endpoint URL of the OpenAI-compatible service (e.g.,
+                                                   * `https://api.example.com/v1`). Required on Create.
+                                                   */
+                                                  base_url?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Whether to forward incoming HTTP headers to the upstream provider. Defaults
+                                       * to false and is configured for the entire provider service, not per request.
+                                       * Upstream authentication is configured separately in the provider-specific
+                                       * configuration.
+                                       */
+                                      forward_headers?: boolean | string;
+                                      /**
+                                       * Whether to forward incoming query parameters to the upstream provider.
+                                       * Defaults to false and is configured for the entire provider service, not
+                                       * per request.
+                                       */
+                                      forward_query_parameters?: boolean | string;
+                                      /**
+                                       * Whether to proxy paths that AI Gateway does not recognize as configured
+                                       * provider-native API types. Defaults to false. When true, these paths are
+                                       * forwarded unchanged to the upstream provider. When false, only
+                                       * recognized API paths are served. Enabling this broadens the upstream API
+                                       * surface exposed through the provider service.
+                                       */
+                                      forward_unmanaged_paths?: boolean | string;
+                                      /**
+                                       * Gemini Enterprise provider configuration.
+                                       */
+                                      gemini_enterprise?:
+                                        | {
+                                            /**
+                                             * Gemini Enterprise project, region, and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Google Gemini Enterprise API key. Required when creating the service.
+                                                   * Supply the value in `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * GCP project ID hosting the Gemini Enterprise endpoint. Required on Create.
+                                                   */
+                                                  project_id?: string;
+                                                  /**
+                                                   * GCP region of the Gemini Enterprise endpoint (e.g., `us-central1`).
+                                                   * Required on Create.
+                                                   */
+                                                  region?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Payload logging configuration for requests sent directly to this provider
+                                       * service. Requests routed through a model service are captured by that model
+                                       * service's inference table instead.
+                                       */
+                                      inference_table?:
+                                        | {
+                                            /**
+                                             * Parent Unity Catalog schema where the inference table is created, in the
+                                             * form `schemas/{catalog}.{schema}`. Required when configuring an inference
+                                             * table. After the inference table is created, this field cannot be changed.
+                                             */
+                                            parent: string;
+                                            /**
+                                             * Prefix used to form the inference table's registered name. AI Gateway
+                                             * appends `_payload`; for example, `table_name_prefix = "orders"` creates
+                                             * `orders_payload`. If unset, the prefix defaults to the service name. Read
+                                             * `table` from the response for the resulting resource name. After the
+                                             * inference table is created, this field cannot be changed.
+                                             */
+                                            table_name_prefix?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Microsoft Foundry provider configuration.
+                                       */
+                                      microsoft_foundry?:
+                                        | {
+                                            /**
+                                             * Microsoft Foundry endpoint and authentication configuration.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * Microsoft Foundry API key. Supply the value in `api_key.plaintext`.
+                                                   * Mutually exclusive with Entra ID and Unity Catalog service credential
+                                                   * authentication.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Microsoft Foundry endpoint URL. Required on Create.
+                                                   */
+                                                  base_url?: string;
+                                                  /**
+                                                   * Entra ID service-principal authentication. Set `tenant_id`, `client_id`,
+                                                   * and `client_secret.plaintext`. Mutually exclusive with `api_key` and
+                                                   * `service_credential`.
+                                                   */
+                                                  entra_service_principal?:
+                                                    | {
+                                                        /**
+                                                         * Entra ID client (application) ID. Required on Create.
+                                                         */
+                                                        client_id?: string;
+                                                        /**
+                                                         * Entra ID client secret. Supply the value in `client_secret.plaintext`.
+                                                         */
+                                                        client_secret?:
+                                                          | {
+                                                              /**
+                                                               * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                               * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                               * object remains present to indicate that a secret is configured.
+                                                               */
+                                                              plaintext?: string;
+                                                            }
+                                                          | string;
+                                                        /**
+                                                         * Entra ID (Azure AD) tenant ID. Required on Create.
+                                                         */
+                                                        tenant_id?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Reference to a Unity Catalog service credential authorizing Microsoft
+                                                   * Foundry requests. On Create, supply `service_credential.name` in the form
+                                                   * `credentials/{name}`. Required on Create when using service-credential
+                                                   * authentication; mutually exclusive with `api_key` and
+                                                   * `entra_service_principal`. The credential is referenced by name; its value
+                                                   * is not carried here. Only supported on Azure-hosted workspaces.
+                                                   */
+                                                  service_credential?:
+                                                    | {
+                                                        /**
+                                                         * Resource name of the bound Unity Catalog service credential, in the form
+                                                         * `credentials/{name}`. Supply this field when creating the service or
+                                                         * rebinding its credential. On read, it reflects the credential's current
+                                                         * name.
+                                                         */
+                                                        name: string;
+                                                      }
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * OpenAI provider configuration.
+                                       */
+                                      openai?:
+                                        | {
+                                            /**
+                                             * OpenAI configuration with an API key supplied in the request.
+                                             */
+                                            direct?:
+                                              | {
+                                                  /**
+                                                   * OpenAI API key. Required when creating the service. Supply the value in
+                                                   * `api_key.plaintext`.
+                                                   */
+                                                  api_key?:
+                                                    | {
+                                                        /**
+                                                         * Inline plaintext credential. INPUT_ONLY: the value never round-trips on
+                                                         * reads. Get and List responses omit `plaintext`; the enclosing secret
+                                                         * object remains present to indicate that a secret is configured.
+                                                         */
+                                                        plaintext?: string;
+                                                      }
+                                                    | string;
+                                                  /**
+                                                   * Optional custom base URL. Defaults to `https://api.openai.com/v1`. Use for
+                                                   * OpenAI-API-compatible third-party endpoints or in-network proxies.
+                                                   */
+                                                  base_url?: string;
+                                                  /**
+                                                   * Optional OpenAI organization ID. When set, the platform forwards it as
+                                                   * the `OpenAI-Organization` header.
+                                                   */
+                                                  organization?: string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                      /**
+                                       * External model provider. Required on Create and immutable thereafter. Set
+                                       * the matching provider-specific configuration, such as `openai`,
+                                       * `azure_openai`, or `amazon_bedrock`.
+                                       */
+                                      provider_type?:
+                                        | (
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_OPENAI'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_AZURE_OPENAI'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_ANTHROPIC'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_AMAZON_BEDROCK'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_CUSTOM'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_MICROSOFT_FOUNDRY'
+                                            | 'EXTERNAL_MODEL_PROVIDER_TYPE_GEMINI_ENTERPRISE'
+                                          )
+                                        | string;
+                                      /**
+                                       * Rate limits for requests sent directly to this provider service. Requests
+                                       * routed through a model service use that model service's rate limits instead.
+                                       */
+                                      rate_limits?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Scope of the rate limit. Depending on this value, the limit applies to a
+                                                 * principal, the service as a whole, or each user by default.
+                                                 */
+                                                key:
+                                                  | (
+                                                      | 'RATE_LIMIT_KEY_USER'
+                                                      | 'RATE_LIMIT_KEY_USER_GROUP'
+                                                      | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                                      | 'RATE_LIMIT_KEY_SERVICE'
+                                                      | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Principal this limit applies to: user email, group name, or service
+                                                 * principal application ID. Required when `key` applies to a user, group, or
+                                                 * service principal; otherwise it must be unset.
+                                                 */
+                                                principal?: string;
+                                                /**
+                                                 * Renewal period.
+                                                 */
+                                                renewal_period:
+                                                  | (
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_MINUTE'
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Maximum requests allowed in one renewal period. Leave unset for no request
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                requests?: number | string;
+                                                /**
+                                                 * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                tokens?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                      /**
+                                       * Models and provider-native API types exposed by this provider service. Each
+                                       * entry must include at least one `native_api_types` value. When
+                                       * `allow_all_targets` is false, at least one entry is required and model
+                                       * service destinations can reference only listed models. When
+                                       * `allow_all_targets` is true, any upstream model is routable; entries in
+                                       * this list provide API-type metadata without restricting other models.
+                                       */
+                                      targets?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                 * This identifies a model at the upstream provider; it is not a Unity
+                                                 * Catalog model resource.
+                                                 */
+                                                model: string;
+                                                /**
+                                                 * Provider-native API types supported by this model, such as
+                                                 * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                 * uses these values to translate requests and responses. At most 64 entries
+                                                 * of 256 characters each are allowed.
+                                                 */
+                                                native_api_types?: String[] | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                    }
+                                  | string;
+                                grants?:
+                                  | (
+                                      | {
+                                          /**
+                                           * The principal (user email address or group name).
+                                           * For deleted principals, `principal` is empty while `principal_id` is populated.
+                                           */
+                                          principal?: string;
+                                          /**
+                                           * The privileges assigned to the principal.
+                                           */
+                                          privileges?:
+                                            | (
+                                                | (
+                                                    | 'SELECT'
+                                                    | 'READ_PRIVATE_FILES'
+                                                    | 'WRITE_PRIVATE_FILES'
+                                                    | 'CREATE'
+                                                    | 'USAGE'
+                                                    | 'USE_CATALOG'
+                                                    | 'USE_SCHEMA'
+                                                    | 'CREATE_SCHEMA'
+                                                    | 'CREATE_VIEW'
+                                                    | 'CREATE_EXTERNAL_TABLE'
+                                                    | 'CREATE_MATERIALIZED_VIEW'
+                                                    | 'CREATE_FUNCTION'
+                                                    | 'CREATE_MODEL'
+                                                    | 'CREATE_CATALOG'
+                                                    | 'CREATE_MANAGED_STORAGE'
+                                                    | 'CREATE_EXTERNAL_LOCATION'
+                                                    | 'CREATE_STORAGE_CREDENTIAL'
+                                                    | 'CREATE_SERVICE_CREDENTIAL'
+                                                    | 'ACCESS'
+                                                    | 'CREATE_SHARE'
+                                                    | 'CREATE_RECIPIENT'
+                                                    | 'CREATE_PROVIDER'
+                                                    | 'USE_SHARE'
+                                                    | 'USE_RECIPIENT'
+                                                    | 'USE_PROVIDER'
+                                                    | 'USE_MARKETPLACE_ASSETS'
+                                                    | 'SET_SHARE_PERMISSION'
+                                                    | 'MODIFY'
+                                                    | 'REFRESH'
+                                                    | 'EXECUTE'
+                                                    | 'READ_FILES'
+                                                    | 'WRITE_FILES'
+                                                    | 'CREATE_TABLE'
+                                                    | 'ALL_PRIVILEGES'
+                                                    | 'CREATE_CONNECTION'
+                                                    | 'USE_CONNECTION'
+                                                    | 'APPLY_TAG'
+                                                    | 'CREATE_FOREIGN_CATALOG'
+                                                    | 'CREATE_FOREIGN_SECURABLE'
+                                                    | 'MANAGE_ALLOWLIST'
+                                                    | 'CREATE_VOLUME'
+                                                    | 'CREATE_EXTERNAL_VOLUME'
+                                                    | 'READ_VOLUME'
+                                                    | 'WRITE_VOLUME'
+                                                    | 'MANAGE'
+                                                    | 'BROWSE'
+                                                    | 'CREATE_CLEAN_ROOM'
+                                                    | 'MODIFY_CLEAN_ROOM'
+                                                    | 'EXECUTE_CLEAN_ROOM_TASK'
+                                                    | 'EXTERNAL_USE_SCHEMA'
+                                                    | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
+                                                  )
+                                                | string
+                                              )[]
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                model_provider_service_id: String;
+                                parent: String;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    model_services?:
+                      | {
+                          [k: string]:
+                            | {
+                                comment?: String;
+                                config?:
+                                  | {
+                                      /**
+                                       * Inference table configuration for payload logging.
+                                       */
+                                      inference_table?:
+                                        | {
+                                            /**
+                                             * Parent Unity Catalog schema where the inference table is created, in the
+                                             * form `schemas/{catalog}.{schema}`. Required when configuring an inference
+                                             * table. After the inference table is created, this field cannot be changed.
+                                             */
+                                            parent: string;
+                                            /**
+                                             * Prefix used to form the inference table's registered name. AI Gateway
+                                             * appends `_payload`; for example, `table_name_prefix = "orders"` creates
+                                             * `orders_payload`. If unset, the prefix defaults to the service name. Read
+                                             * `table` from the response for the resulting resource name. After the
+                                             * inference table is created, this field cannot be changed.
+                                             */
+                                            table_name_prefix?: string;
+                                          }
+                                        | string;
+                                      /**
+                                       * Rate limits applied to requests routed through this model service.
+                                       */
+                                      rate_limits?:
+                                        | (
+                                            | {
+                                                /**
+                                                 * Scope of the rate limit. Depending on this value, the limit applies to a
+                                                 * principal, the service as a whole, or each user by default.
+                                                 */
+                                                key:
+                                                  | (
+                                                      | 'RATE_LIMIT_KEY_USER'
+                                                      | 'RATE_LIMIT_KEY_USER_GROUP'
+                                                      | 'RATE_LIMIT_KEY_SERVICE_PRINCIPAL'
+                                                      | 'RATE_LIMIT_KEY_SERVICE'
+                                                      | 'RATE_LIMIT_KEY_USER_DEFAULT'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Principal this limit applies to: user email, group name, or service
+                                                 * principal application ID. Required when `key` applies to a user, group, or
+                                                 * service principal; otherwise it must be unset.
+                                                 */
+                                                principal?: string;
+                                                /**
+                                                 * Renewal period.
+                                                 */
+                                                renewal_period:
+                                                  | (
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_MINUTE'
+                                                      | 'RATE_LIMIT_RENEWAL_PERIOD_HOUR'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * Maximum requests allowed in one renewal period. Leave unset for no request
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                requests?: number | string;
+                                                /**
+                                                 * Maximum tokens allowed in one renewal period. Leave unset for no token
+                                                 * limit. Set to `0` to deny all requests.
+                                                 */
+                                                tokens?: number | string;
+                                              }
+                                            | string
+                                          )[]
+                                        | string;
+                                      /**
+                                       * Routing configuration: destinations and fallback.
+                                       */
+                                      routing?:
+                                        | {
+                                            /**
+                                             * Primary routing destinations. At most 10 are allowed. At least one is
+                                             * required on Create. On Update, provide this list when replacing the full
+                                             * `config` or updating `config.routing.destinations`; other granular routing
+                                             * updates do not require resending destinations. The intermediate
+                                             * `config.routing` mask path is not supported.
+                                             */
+                                            destinations?:
+                                              | (
+                                                  | {
+                                                      /**
+                                                       * Backing-model category. Provide the matching type-specific configuration
+                                                       * and leave the other type-specific configurations unset.
+                                                       */
+                                                      destination_type:
+                                                        | (
+                                                            | 'DESTINATION_TYPE_PAY_PER_TOKEN_FOUNDATION_MODEL'
+                                                            | 'DESTINATION_TYPE_PROVISIONED_THROUGHPUT_FOUNDATION_MODEL'
+                                                            | 'DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL'
+                                                          )
+                                                        | string;
+                                                      /**
+                                                       * Configuration for an external model reached through a model provider service.
+                                                       */
+                                                      external_model_config?:
+                                                        | {
+                                                            /**
+                                                             * Resource name of the governed ModelProviderService that owns provider
+                                                             * auth and provider-specific configuration. The referenced
+                                                             * ModelProviderService also carries the provider type, so this message
+                                                             * does not surface it directly.
+                                                             * Format: `model-provider-services/{catalog}.{schema}.{model_provider_service}`.
+                                                             * Each `{...}` component is capped at 255 characters individually.
+                                                             */
+                                                            model_provider_service: string;
+                                                            /**
+                                                             * Routing target for the destination: the provider-side model selected from
+                                                             * the referenced ModelProviderService's `targets` catalog, plus the unified
+                                                             * API types the platform should translate to/from at request time.
+                                                             */
+                                                            target:
+                                                              | {
+                                                                  /**
+                                                                   * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                                   * This identifies a model at the upstream provider; it is not a Unity
+                                                                   * Catalog model resource.
+                                                                   */
+                                                                  model: string;
+                                                                  /**
+                                                                   * Provider-native API types supported by this model, such as
+                                                                   * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                                   * uses these values to translate requests and responses. At most 64 entries
+                                                                   * of 256 characters each are allowed.
+                                                                   */
+                                                                  native_api_types?: String[] | string;
+                                                                }
+                                                              | string;
+                                                          }
+                                                        | string;
+                                                      /**
+                                                       * User-facing label for this destination, used in routing references.
+                                                       */
+                                                      name: string;
+                                                      /**
+                                                       * Configuration for a pay-per-token Databricks foundation model.
+                                                       */
+                                                      pay_per_token_config?:
+                                                        | {
+                                                            /**
+                                                             * Resource name of the Unity Catalog model.
+                                                             * Format: `models/{catalog}.{schema}.{model}`.
+                                                             */
+                                                            model: string;
+                                                          }
+                                                        | string;
+                                                      /**
+                                                       * Configuration for a provisioned-throughput Databricks foundation model.
+                                                       */
+                                                      provisioned_throughput_config?:
+                                                        | {
+                                                            /**
+                                                             * Name of the backing Model Serving endpoint serving the provisioned-
+                                                             * throughput foundation model, in the form `serving-endpoints/{name}`. The
+                                                             * same Unity Catalog model can be served on multiple Model Serving endpoints
+                                                             * with different throughput, regions, or configurations. The caller selects
+                                                             * the endpoint to which this destination routes. The endpoint must exist at
+                                                             * create time.
+                                                             */
+                                                            model_serving_endpoint: string;
+                                                          }
+                                                        | string;
+                                                      /**
+                                                       * Percentage of primary traffic sent to this destination, from 0 to 100.
+                                                       * Required when there is more than one primary destination, in which case the
+                                                       * primary percentages must sum to 100; a single primary destination receives
+                                                       * all traffic. Fallback destinations are ordered and do not use this field.
+                                                       */
+                                                      traffic_percentage?: number | string;
+                                                    }
+                                                  | string
+                                                )[]
+                                              | string;
+                                            /**
+                                             * Fallback routing applied after a primary destination fails. Fallback
+                                             * destinations are tried in the listed order.
+                                             */
+                                            fallback?:
+                                              | {
+                                                  /**
+                                                   * Fallback destinations, tried in the listed order. At most 5 are allowed.
+                                                   */
+                                                  destinations?:
+                                                    | (
+                                                        | {
+                                                            /**
+                                                             * Backing-model category. Provide the matching type-specific configuration
+                                                             * and leave the other type-specific configurations unset.
+                                                             */
+                                                            destination_type:
+                                                              | (
+                                                                  | 'DESTINATION_TYPE_PAY_PER_TOKEN_FOUNDATION_MODEL'
+                                                                  | 'DESTINATION_TYPE_PROVISIONED_THROUGHPUT_FOUNDATION_MODEL'
+                                                                  | 'DESTINATION_TYPE_EXTERNAL_FOUNDATION_MODEL'
+                                                                )
+                                                              | string;
+                                                            /**
+                                                             * Configuration for an external model reached through a model provider service.
+                                                             */
+                                                            external_model_config?:
+                                                              | {
+                                                                  /**
+                                                                   * Resource name of the governed ModelProviderService that owns provider
+                                                                   * auth and provider-specific configuration. The referenced
+                                                                   * ModelProviderService also carries the provider type, so this message
+                                                                   * does not surface it directly.
+                                                                   * Format: `model-provider-services/{catalog}.{schema}.{model_provider_service}`.
+                                                                   * Each `{...}` component is capped at 255 characters individually.
+                                                                   */
+                                                                  model_provider_service: string;
+                                                                  /**
+                                                                   * Routing target for the destination: the provider-side model selected from
+                                                                   * the referenced ModelProviderService's `targets` catalog, plus the unified
+                                                                   * API types the platform should translate to/from at request time.
+                                                                   */
+                                                                  target:
+                                                                    | {
+                                                                        /**
+                                                                         * Provider-side model identifier, such as `gpt-5` or `claude-opus-4-7`.
+                                                                         * This identifies a model at the upstream provider; it is not a Unity
+                                                                         * Catalog model resource.
+                                                                         */
+                                                                        model: string;
+                                                                        /**
+                                                                         * Provider-native API types supported by this model, such as
+                                                                         * `openai/v1/chat/completions`. At least one value is required. AI Gateway
+                                                                         * uses these values to translate requests and responses. At most 64 entries
+                                                                         * of 256 characters each are allowed.
+                                                                         */
+                                                                        native_api_types?: String[] | string;
+                                                                      }
+                                                                    | string;
+                                                                }
+                                                              | string;
+                                                            /**
+                                                             * User-facing label for this destination, used in routing references.
+                                                             */
+                                                            name: string;
+                                                            /**
+                                                             * Configuration for a pay-per-token Databricks foundation model.
+                                                             */
+                                                            pay_per_token_config?:
+                                                              | {
+                                                                  /**
+                                                                   * Resource name of the Unity Catalog model.
+                                                                   * Format: `models/{catalog}.{schema}.{model}`.
+                                                                   */
+                                                                  model: string;
+                                                                }
+                                                              | string;
+                                                            /**
+                                                             * Configuration for a provisioned-throughput Databricks foundation model.
+                                                             */
+                                                            provisioned_throughput_config?:
+                                                              | {
+                                                                  /**
+                                                                   * Name of the backing Model Serving endpoint serving the provisioned-
+                                                                   * throughput foundation model, in the form `serving-endpoints/{name}`. The
+                                                                   * same Unity Catalog model can be served on multiple Model Serving endpoints
+                                                                   * with different throughput, regions, or configurations. The caller selects
+                                                                   * the endpoint to which this destination routes. The endpoint must exist at
+                                                                   * create time.
+                                                                   */
+                                                                  model_serving_endpoint: string;
+                                                                }
+                                                              | string;
+                                                            /**
+                                                             * Percentage of primary traffic sent to this destination, from 0 to 100.
+                                                             * Required when there is more than one primary destination, in which case the
+                                                             * primary percentages must sum to 100; a single primary destination receives
+                                                             * all traffic. Fallback destinations are ordered and do not use this field.
+                                                             */
+                                                            traffic_percentage?: number | string;
+                                                          }
+                                                        | string
+                                                      )[]
+                                                    | string;
+                                                }
+                                              | string;
+                                          }
+                                        | string;
+                                    }
+                                  | string;
+                                grants?:
+                                  | (
+                                      | {
+                                          /**
+                                           * The principal (user email address or group name).
+                                           * For deleted principals, `principal` is empty while `principal_id` is populated.
+                                           */
+                                          principal?: string;
+                                          /**
+                                           * The privileges assigned to the principal.
+                                           */
+                                          privileges?:
+                                            | (
+                                                | (
+                                                    | 'SELECT'
+                                                    | 'READ_PRIVATE_FILES'
+                                                    | 'WRITE_PRIVATE_FILES'
+                                                    | 'CREATE'
+                                                    | 'USAGE'
+                                                    | 'USE_CATALOG'
+                                                    | 'USE_SCHEMA'
+                                                    | 'CREATE_SCHEMA'
+                                                    | 'CREATE_VIEW'
+                                                    | 'CREATE_EXTERNAL_TABLE'
+                                                    | 'CREATE_MATERIALIZED_VIEW'
+                                                    | 'CREATE_FUNCTION'
+                                                    | 'CREATE_MODEL'
+                                                    | 'CREATE_CATALOG'
+                                                    | 'CREATE_MANAGED_STORAGE'
+                                                    | 'CREATE_EXTERNAL_LOCATION'
+                                                    | 'CREATE_STORAGE_CREDENTIAL'
+                                                    | 'CREATE_SERVICE_CREDENTIAL'
+                                                    | 'ACCESS'
+                                                    | 'CREATE_SHARE'
+                                                    | 'CREATE_RECIPIENT'
+                                                    | 'CREATE_PROVIDER'
+                                                    | 'USE_SHARE'
+                                                    | 'USE_RECIPIENT'
+                                                    | 'USE_PROVIDER'
+                                                    | 'USE_MARKETPLACE_ASSETS'
+                                                    | 'SET_SHARE_PERMISSION'
+                                                    | 'MODIFY'
+                                                    | 'REFRESH'
+                                                    | 'EXECUTE'
+                                                    | 'READ_FILES'
+                                                    | 'WRITE_FILES'
+                                                    | 'CREATE_TABLE'
+                                                    | 'ALL_PRIVILEGES'
+                                                    | 'CREATE_CONNECTION'
+                                                    | 'USE_CONNECTION'
+                                                    | 'APPLY_TAG'
+                                                    | 'CREATE_FOREIGN_CATALOG'
+                                                    | 'CREATE_FOREIGN_SECURABLE'
+                                                    | 'MANAGE_ALLOWLIST'
+                                                    | 'CREATE_VOLUME'
+                                                    | 'CREATE_EXTERNAL_VOLUME'
+                                                    | 'READ_VOLUME'
+                                                    | 'WRITE_VOLUME'
+                                                    | 'MANAGE'
+                                                    | 'BROWSE'
+                                                    | 'CREATE_CLEAN_ROOM'
+                                                    | 'MODIFY_CLEAN_ROOM'
+                                                    | 'EXECUTE_CLEAN_ROOM_TASK'
+                                                    | 'EXTERNAL_USE_SCHEMA'
+                                                    | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
+                                                  )
+                                                | string
+                                              )[]
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                model_service_id: String;
+                                parent: String;
                               }
                             | string
                             | undefined;
@@ -37543,7 +41764,7 @@ export interface DatabricksAssetBundles {
                                                  * The name of the entity to be served. The entity may be a model in the Databricks Model Registry, a model in the Unity Catalog (UC), or a function of type FEATURE_SPEC in the UC. If it is a UC object, the full name of the object should be given in the form of **catalog_name.schema_name.model_name**.
                                                  */
                                                 entity_name?: string;
-                                                entity_version?: String;
+                                                entity_version?: string;
                                                 /**
                                                  * An object containing a set of optional, user-specified environment variable key-value pairs used for serving this entity. Note: this is an experimental feature and subject to change. Example entity environment variables that refer to Databricks secrets: `{"OPENAI_API_KEY": "{{secrets/my_scope/my_key}}", "DATABRICKS_TOKEN": "{{secrets/my_scope2/my_key2}}"}`
                                                  */
@@ -38029,8 +42250,8 @@ export interface DatabricksAssetBundles {
                                                  * The minimum tokens per second that the endpoint can scale down to.
                                                  */
                                                 min_provisioned_throughput?: number | string;
-                                                model_name: String;
-                                                model_version: String;
+                                                model_name: string;
+                                                model_version: string;
                                                 /**
                                                  * The name of a served entity. It must be unique across an endpoint. A served entity name can consist of alphanumeric characters, dashes, and underscores. If not specified for an external model, this field defaults to external_model.name, with '.' and ':' replaced with '-', and if not specified for other entities, it defaults to entity_name-entity_version.
                                                  */
@@ -38078,7 +42299,7 @@ export interface DatabricksAssetBundles {
                                             routes?:
                                               | (
                                                   | {
-                                                      served_entity_name?: String;
+                                                      served_entity_name?: string;
                                                       /**
                                                        * The name of the served model this route configures traffic for.
                                                        */
@@ -38095,7 +42316,7 @@ export interface DatabricksAssetBundles {
                                         | string;
                                     }
                                   | string;
-                                description?: String;
+                                description?: string;
                                 /**
                                  * Email notification settings.
                                  */
@@ -38893,7 +43114,7 @@ export interface DatabricksAssetBundles {
                                            */
                                           instance_pool_id?: string;
                                           /**
-                                           * A label for the cluster specification, either `default` to configure the default cluster, or `maintenance` to configure the maintenance cluster. This field is optional. The default value is `default`.
+                                           * A label for the cluster specification, either `default` to configure the default cluster settings applied to both the update and maintenance clusters, `updates` to configure the update cluster, or `maintenance` to configure the maintenance cluster. This field is optional. The default value is `default`.
                                            */
                                           label?: string;
                                           /**
@@ -38964,7 +43185,12 @@ export interface DatabricksAssetBundles {
                                     }
                                   | string;
                                 /**
+                                 * @deprecated
                                  * Whether the pipeline is continuous or triggered. This replaces `trigger`.
+                                 *
+                                 * Deprecated: wrap the pipeline in a continuous job instead, which also lets you take advantage
+                                 * of job-level settings such as performance mode. When the pipeline is started by a continuous
+                                 * job, the job's setting takes precedence and this field is ignored.
                                  */
                                 continuous?: boolean | string;
                                 /**
@@ -38987,7 +43213,7 @@ export interface DatabricksAssetBundles {
                                        */
                                       dependencies?: String[] | string;
                                       /**
-                                       * [Beta] The environment version of the serverless Python environment used to execute
+                                       * [Public Preview] The environment version of the serverless Python environment used to execute
                                        * customer Python code. Each environment version includes a specific Python
                                        * version and a curated set of pre-installed libraries with defined versions,
                                        * providing a stable and reproducible execution environment.
@@ -40029,6 +44255,20 @@ export interface DatabricksAssetBundles {
                                                                 }
                                                               | string;
                                                             /**
+                                                             * [Beta] RabbitMQ specific options for ingestion.
+                                                             * Performance tuning options (consumers_per_task, max_messages_per_fetch, etc.)
+                                                             * are intentionally not exposed in the public API. The managed connector uses
+                                                             * sensible defaults internally. These can be added later if user demand arises.
+                                                             */
+                                                            rabbitmq_options?:
+                                                              | {
+                                                                  /**
+                                                                   * [Beta] (Required) RabbitMQ queue name to consume from.
+                                                                   */
+                                                                  queue: string;
+                                                                }
+                                                              | string;
+                                                            /**
                                                              * [Private Preview] Reddit Ads specific options for ingestion
                                                              */
                                                             reddit_ads_options?:
@@ -40414,13 +44654,11 @@ export interface DatabricksAssetBundles {
                                                        */
                                                       source_catalog?: string;
                                                       /**
-                                                       * [Public Preview] Schema name in the source database. Currently required; this field will become optional in
-                                                       * an upcoming release, since some source types (for example streaming / message-bus connectors)
-                                                       * do not use it. When that change ships, this field's type in the generated SDKs and CLI will
-                                                       * change from required to optional (nullable); clients that assume it is always present should
-                                                       * handle its absence.
+                                                       * [Public Preview] Schema name in the source database. Optional: some source types (for example streaming or
+                                                       * message-bus connectors) do not use it, so it may be absent from a pipeline's definition.
+                                                       * Clients that assume it is always present should handle its absence.
                                                        */
-                                                      source_schema: string;
+                                                      source_schema?: string;
                                                       /**
                                                        * [Public Preview] Configuration settings to control the ingestion of tables. These settings are applied to all tables in this schema and override the table_configuration defined in the IngestionPipelineDefinition object.
                                                        */
@@ -41240,6 +45478,20 @@ export interface DatabricksAssetBundles {
                                                                 }
                                                               | string;
                                                             /**
+                                                             * [Beta] RabbitMQ specific options for ingestion.
+                                                             * Performance tuning options (consumers_per_task, max_messages_per_fetch, etc.)
+                                                             * are intentionally not exposed in the public API. The managed connector uses
+                                                             * sensible defaults internally. These can be added later if user demand arises.
+                                                             */
+                                                            rabbitmq_options?:
+                                                              | {
+                                                                  /**
+                                                                   * [Beta] (Required) RabbitMQ queue name to consume from.
+                                                                   */
+                                                                  queue: string;
+                                                                }
+                                                              | string;
+                                                            /**
                                                              * [Private Preview] Reddit Ads specific options for ingestion
                                                              */
                                                             reddit_ads_options?:
@@ -41557,13 +45809,11 @@ export interface DatabricksAssetBundles {
                                                        */
                                                       source_schema?: string;
                                                       /**
-                                                       * [Public Preview] Table name in the source database. Currently required; this field will become optional in
-                                                       * an upcoming release, since some source types (for example streaming / message-bus connectors)
-                                                       * do not use it. When that change ships, this field's type in the generated SDKs and CLI will
-                                                       * change from required to optional (nullable); clients that assume it is always present should
-                                                       * handle its absence.
+                                                       * [Public Preview] Table name in the source database. Optional: some source types (for example streaming or
+                                                       * message-bus connectors) do not use it, so it may be absent from a pipeline's definition.
+                                                       * Clients that assume it is always present should handle its absence.
                                                        */
-                                                      source_table: string;
+                                                      source_table?: string;
                                                       /**
                                                        * [Public Preview] Configuration settings to control the ingestion of tables. These settings override the table_configuration defined in the IngestionPipelineDefinition object and the SchemaSpec.
                                                        */
@@ -42287,8 +46537,8 @@ export interface DatabricksAssetBundles {
                                   | {
                                       cron?:
                                         | {
-                                            quartz_cron_schedule?: String;
-                                            timezone_id?: String;
+                                            quartz_cron_schedule?: string;
+                                            timezone_id?: string;
                                           }
                                         | string;
                                       manual?: {} | string;
@@ -42316,7 +46566,7 @@ export interface DatabricksAssetBundles {
                                 branch_id: string;
                                 /**
                                  * [Beta] Absolute expiration timestamp. When set, the branch will expire at this time.
-                                 * Mutually exclusive with `ttl` and `no_expiry`. When updating, use `spec.expiration` in the update_mask.
+                                 * Mutually exclusive with `ttl` and `no_expiry`.
                                  */
                                 expire_time?: {} | string;
                                 /**
@@ -42337,7 +46587,7 @@ export interface DatabricksAssetBundles {
                                 /**
                                  * [Beta] Explicitly disable expiration. When set to true, the branch will not expire.
                                  * If set to false, the request is invalid; provide either ttl or expire_time instead.
-                                 * Mutually exclusive with `expire_time` and `ttl`. When updating, use `spec.expiration` in the update_mask.
+                                 * Mutually exclusive with `expire_time` and `ttl`.
                                  */
                                 no_expiry?: boolean | string;
                                 /**
@@ -42369,8 +46619,16 @@ export interface DatabricksAssetBundles {
                                  */
                                 source_branch_time?: {} | string;
                                 /**
+                                 * [Private Preview] The snapshot this branch was created from. When set, the branch's data
+                                 * comes from the snapshot rather than a source branch, so source_branch,
+                                 * source_branch_lsn, and source_branch_time must be empty. The snapshot must
+                                 * be AVAILABLE and belong to this branch's project.
+                                 * Format: projects/{project_id}/snapshots/{snapshot_id}
+                                 */
+                                source_snapshot?: string;
+                                /**
                                  * [Beta] Relative time-to-live duration. When set, the branch will expire at creation_time + ttl.
-                                 * Mutually exclusive with `expire_time` and `no_expiry`. When updating, use `spec.expiration` in the update_mask.
+                                 * Mutually exclusive with `expire_time` and `no_expiry`.
                                  */
                                 ttl?: string;
                               }
@@ -42560,7 +46818,7 @@ export interface DatabricksAssetBundles {
                                 /**
                                  * [Beta] When set to true, explicitly disables automatic suspension (never suspend).
                                  * Should be set to true when provided.
-                                 * Mutually exclusive with `suspend_timeout_duration`. When updating, use `spec.suspension` in the update_mask.
+                                 * Mutually exclusive with `suspend_timeout_duration`.
                                  */
                                 no_suspension?: boolean | string;
                                 /**
@@ -42589,7 +46847,7 @@ export interface DatabricksAssetBundles {
                                 /**
                                  * [Beta] Duration of inactivity after which the compute endpoint is automatically suspended.
                                  * If specified should be between 60s and 604800s (1 minute to 1 week).
-                                 * Mutually exclusive with `no_suspension`. When updating, use `spec.suspension` in the update_mask.
+                                 * Mutually exclusive with `no_suspension`.
                                  */
                                 suspend_timeout_duration?: string;
                               }
@@ -42651,7 +46909,7 @@ export interface DatabricksAssetBundles {
                                       /**
                                        * When set to true, explicitly disables automatic suspension (never suspend).
                                        * Should be set to true when provided.
-                                       * Mutually exclusive with `suspend_timeout_duration`. When updating, use `spec.project_default_settings.suspension` in the update_mask.
+                                       * Mutually exclusive with `suspend_timeout_duration`.
                                        */
                                       no_suspension?: boolean | string;
                                       /**
@@ -42665,7 +46923,7 @@ export interface DatabricksAssetBundles {
                                       /**
                                        * Duration of inactivity after which the compute endpoint is automatically suspended.
                                        * If specified should be between 60s and 604800s (1 minute to 1 week).
-                                       * Mutually exclusive with `no_suspension`. When updating, use `spec.project_default_settings.suspension` in the update_mask.
+                                       * Mutually exclusive with `no_suspension`.
                                        */
                                       suspend_timeout_duration?: string;
                                     }
@@ -42824,6 +47082,102 @@ export interface DatabricksAssetBundles {
                                  * The user-specified role ID; becomes the final component of the role's resource name. Must be 4-63 characters, lowercase letters, numbers, and hyphens (RFC 1123).
                                  */
                                 role_id: string;
+                              }
+                            | string
+                            | undefined;
+                        }
+                      | string;
+                    /**
+                     * The Postgres snapshot schedule definitions for the bundle, where each key is the name of the snapshot schedule. Each entry configures the automatic-snapshot cadences for a branch of a Lakebase Autoscaling project.
+                     */
+                    postgres_snapshot_schedules?:
+                      | {
+                          [k: string]:
+                            | {
+                                /**
+                                 * The branch whose automatic-snapshot schedule this manages. Format: projects/{project_id}/branches/{branch_id}
+                                 */
+                                branch: string;
+                                /**
+                                 * Settings that control the deployment lifecycle of the resource, such as preventing it from being destroyed.
+                                 */
+                                lifecycle?:
+                                  | {
+                                      /**
+                                       * Lifecycle setting to prevent the resource from being destroyed.
+                                       */
+                                      prevent_destroy?: boolean | string;
+                                    }
+                                  | string;
+                                /**
+                                 * The cadences at which automatic snapshots are taken. An empty set disables automatic snapshots. When several cadences fire together, one snapshot is taken and retained for the longest of their retentions.
+                                 */
+                                schedule?:
+                                  | (
+                                      | {
+                                          /**
+                                           * [Private Preview] Take a snapshot once per day.
+                                           */
+                                          daily_schedule?:
+                                            | {
+                                                /**
+                                                 * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                                 */
+                                                hour?: number | string;
+                                              }
+                                            | string;
+                                          /**
+                                           * [Private Preview] Take a snapshot once per month.
+                                           */
+                                          monthly_schedule?:
+                                            | {
+                                                /**
+                                                 * [Private Preview] The day of the month on which to take the snapshot, in [1, 31]. In shorter
+                                                 * months the snapshot is taken on the last day instead (day 31 runs on Feb 28
+                                                 * or 29, and on Apr 30), so every month gets exactly one snapshot.
+                                                 */
+                                                day: number | string;
+                                                /**
+                                                 * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                                 */
+                                                hour?: number | string;
+                                              }
+                                            | string;
+                                          /**
+                                           * [Private Preview] How long snapshots from this cadence are kept before automatic deletion.
+                                           * Must be at least 1 hour. Applied when a snapshot is taken; not retroactive,
+                                           * so changing it affects only later snapshots.
+                                           */
+                                          retention: string;
+                                          /**
+                                           * [Private Preview] Take a snapshot once per week.
+                                           */
+                                          weekly_schedule?:
+                                            | {
+                                                /**
+                                                 * [Private Preview] The day of the week on which to take the snapshot.
+                                                 */
+                                                day_of_week:
+                                                  | (
+                                                      | 'MONDAY'
+                                                      | 'TUESDAY'
+                                                      | 'WEDNESDAY'
+                                                      | 'THURSDAY'
+                                                      | 'FRIDAY'
+                                                      | 'SATURDAY'
+                                                      | 'SUNDAY'
+                                                    )
+                                                  | string;
+                                                /**
+                                                 * [Private Preview] The hour of the day, in UTC, at which to take the snapshot, in [0, 23].
+                                                 */
+                                                hour?: number | string;
+                                              }
+                                            | string;
+                                        }
+                                      | string
+                                    )[]
+                                  | string;
                               }
                             | string
                             | undefined;
@@ -43346,6 +47700,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -43485,6 +47840,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -43684,6 +48040,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -43748,7 +48105,7 @@ export interface DatabricksAssetBundles {
                                  */
                                 channel?:
                                   | {
-                                      dbsql_version?: String;
+                                      dbsql_version?: string;
                                       name?:
                                         | (
                                             | 'CHANNEL_NAME_PREVIEW'
@@ -43890,8 +48247,8 @@ export interface DatabricksAssetBundles {
                                       custom_tags?:
                                         | (
                                             | {
-                                                key?: String;
-                                                value?: String;
+                                                key?: string;
+                                                value?: string;
                                               }
                                             | string
                                           )[]
@@ -44313,6 +48670,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]
@@ -44438,6 +48796,7 @@ export interface DatabricksAssetBundles {
                                                     | 'EXECUTE_CLEAN_ROOM_TASK'
                                                     | 'EXTERNAL_USE_SCHEMA'
                                                     | 'READ_METADATA'
+                                                    | 'EXTERNAL_USE_LOCATION'
                                                   )
                                                 | string
                                               )[]

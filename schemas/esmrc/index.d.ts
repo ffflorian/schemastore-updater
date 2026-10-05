@@ -47,6 +47,8 @@ export interface ConfigurationFilesForTheEsmModulePackageInNodeJs {
       };
   /**
    * An array of fields checked when importing a package
+   *
+   * Items: Fields from package.json
    */
   mainFields?: string[];
   /**

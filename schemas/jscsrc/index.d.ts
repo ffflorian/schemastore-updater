@@ -35,8 +35,7 @@ export type Keywords =
     )[]
   | null;
 export type BlockKeywords =
-  | ('catch' | 'do' | 'else' | 'finally' | 'for' | 'function' | 'if' | 'try' | 'while')[]
-  | null;
+  ('catch' | 'do' | 'else' | 'finally' | 'for' | 'function' | 'if' | 'try' | 'while')[] | null;
 export type Keywords2 = Keywords | boolean;
 export type EqualityOperators = ('==' | '===' | '!=' | '!==' | null)[] | boolean | null;
 
@@ -1858,7 +1857,7 @@ export interface JsDoc {
          * Add custom tags with the extra field.  The extra field should contain tags in keys with true, false, or "some" for the values.
          */
         extra?: {
-          [k: string]: (boolean | 'some') | undefined;
+          [k: string]: boolean | 'some' | undefined;
         };
         [k: string]: unknown | undefined;
       }

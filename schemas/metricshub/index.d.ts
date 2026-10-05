@@ -28,6 +28,8 @@ export type Hostname = unknown[] | string;
  * An array of retry intervals (in milliseconds) between request retries.
  *
  * @minItems 1
+ *
+ * Items: A retry interval in milliseconds. Must be a non-negative integer.
  */
 export type RetryIntervals = [number, ...number[]];
 /**
@@ -240,7 +242,7 @@ export type Computes = (
             /**
              * Translation key-value pairs
              */
-            [k: string]: (string | number) | undefined;
+            [k: string]: string | number | undefined;
           };
       [k: string]: unknown | undefined;
     }
@@ -321,6 +323,8 @@ export type StateSetCompression = 'none' | 'suppressZeros';
  * Monitor inclusion or exclusion in data collection. This parameter accepts '+<monitor_name>' for inclusion and '!<monitor_name>' for exclusion.
  *
  * @minItems 1
+ *
+ * Items: Each value can optionally start with '+' or '!' followed by a valid monitor type.
  */
 export type MonitorFilters = [string, ...string[]];
 
@@ -423,7 +427,7 @@ export interface HttpsJsonSchemastoreOrgMetricshubJson {
     /**
      * Additional OpenTelemetry configuration properties.
      */
-    [k: string]: string | undefined;
+    [k: string]: string | 'grpc' | 'http/protobuf' | 'noop' | number | boolean | undefined;
   };
   /**
    * Web configuration loaded by default. Represents key-value pairs used for web-related settings.
@@ -560,7 +564,20 @@ export interface HttpsJsonSchemastoreOrgMetricshubJson {
     /**
      * Web configuration key-value pair.
      */
-    [k: string]: string | undefined;
+    [k: string]:
+      | string
+      | boolean
+      | number
+      | 'HIGH'
+      | 'LOW'
+      | 'MINIMAL'
+      | 'NONE'
+      | 'XHIGH'
+      | 'MEDIUM'
+      | 'CONCISE'
+      | 'DETAILED'
+      | 'AUTO'
+      | undefined;
   };
   /**
    * Top level attributes
@@ -569,7 +586,7 @@ export interface HttpsJsonSchemastoreOrgMetricshubJson {
     /**
      * Attribute key-value pair
      */
-    [k: string]: (string | number) | undefined;
+    [k: string]: string | number | undefined;
   };
   /**
    * Top level metrics
@@ -578,7 +595,7 @@ export interface HttpsJsonSchemastoreOrgMetricshubJson {
     /**
      * Metrics key-value pair
      */
-    [k: string]: (string | number) | undefined;
+    [k: string]: string | number | undefined;
   };
   resources?: Resources;
   /**
@@ -628,7 +645,7 @@ export interface HttpsJsonSchemastoreOrgMetricshubJson {
             /**
              * Attribute key-value pair
              */
-            [k: string]: (string | number | unknown[]) | undefined;
+            [k: string]: string | number | unknown[] | undefined;
           };
           /**
            * Resource group metrics
@@ -637,7 +654,7 @@ export interface HttpsJsonSchemastoreOrgMetricshubJson {
             /**
              * Metrics key-value pair
              */
-            [k: string]: (string | number) | undefined;
+            [k: string]: string | number | undefined;
           };
           resources?: Resources;
           stateSetCompression?: StateSetCompression;
@@ -727,7 +744,7 @@ export interface Resources {
           /**
            * Attribute key-value pair
            */
-          [k: string]: (string | number | unknown[]) | undefined;
+          [k: string]: string | number | unknown[] | undefined;
         };
         /**
          * Resource metrics
@@ -736,7 +753,7 @@ export interface Resources {
           /**
            * Metrics key-value pair
            */
-          [k: string]: (string | number) | undefined;
+          [k: string]: string | number | undefined;
         };
         /**
          * Protocols Used
@@ -1080,25 +1097,27 @@ export interface Resources {
            * This interface was referenced by `undefined`'s JSON-Schema definition
            * via the `patternProperty` "^[a-zA-Z0-9_.-]+$".
            */
-          [k: string]: {
-            /**
-             * Specifies the connector ID to use. Defaults to the key name if not specified.
-             */
-            uses?: string;
-            /**
-             * Key-value pairs for connector-specific variables.
-             */
-            variables?: {
-              /**
-               * Variable key-value pair
-               */
-              [k: string]: string | undefined;
-            };
-            /**
-             * Set to false for auto-detection only, defaults to true if not specified.
-             */
-            force?: boolean;
-          };
+          [k: string]:
+            | {
+                /**
+                 * Specifies the connector ID to use. Defaults to the key name if not specified.
+                 */
+                uses?: string;
+                /**
+                 * Key-value pairs for connector-specific variables.
+                 */
+                variables?: {
+                  /**
+                   * Variable key-value pair
+                   */
+                  [k: string]: string | undefined;
+                };
+                /**
+                 * Set to false for auto-detection only, defaults to true if not specified.
+                 */
+                force?: boolean;
+              }
+            | undefined;
         };
         /**
          * Defines the list of connectors to include, exclude, or force. Each entry is a connector ID or a tag with an optional prefix to control behavior.
@@ -1258,334 +1277,332 @@ export interface Sources {
    * Source Name
    */
   [k: string]:
-    | (
-        | {
-            type?: 'http';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            method?: HttpMethod;
+    | {
+        type?: 'http';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        method?: HttpMethod;
+        /**
+         * HTTP Url
+         */
+        url?: string;
+        /**
+         * HTTP Path
+         */
+        path?: string;
+        /**
+         * HTTP Header
+         */
+        header?: string;
+        /**
+         * HTTP Body
+         */
+        body?: string;
+        /**
+         * HTTP Authentication Token
+         */
+        authenticationToken?: string;
+        resultContent?: ResultContent;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'ipmi';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'commandLine';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * The Command Line to Execute
+         */
+        commandLine?: string;
+        /**
+         * The Command Line Timeout
+         */
+        timeout?: number | string;
+        /**
+         * Command Executed On Local Agent
+         */
+        executeLocally?: boolean;
+        /**
+         * Exclude Lines Matching
+         */
+        exclude?: string;
+        /**
+         * Keep Lines Matching
+         */
+        keep?: string;
+        /**
+         * Begin At Line Number
+         */
+        beginAtLineNumber?: number;
+        /**
+         * End At Line Number
+         */
+        endAtLineNumber?: number;
+        /**
+         * Column Separator
+         */
+        separators?: string;
+        /**
+         * Columns Selected
+         */
+        selectColumns?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'copy';
+        /**
+         * Source Copied
+         */
+        from?: string;
+        computes?: Computes;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'static';
+        /**
+         * Source Value
+         */
+        value?: string;
+        computes?: Computes;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'snmpGet';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * OID Queried
+         */
+        oid?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'snmpTable';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * OID Queried
+         */
+        oid?: string;
+        /**
+         * Columns Selected
+         */
+        selectColumns?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'tableJoin';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        /**
+         * Left Table
+         */
+        leftTable?: string;
+        /**
+         * Right Table
+         */
+        rightTable?: string;
+        /**
+         * Left Key Column
+         */
+        leftKeyColumn?: number;
+        /**
+         * Right Key Column
+         */
+        rightKeyColumn?: number;
+        /**
+         * Line Used If No Matches From Right Table
+         */
+        defaultRightLine?: string;
+        /**
+         * Is WBEM Identifier
+         */
+        isWbemKey?: boolean;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'tableUnion';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        /**
+         * Tables To Be Concatenated
+         */
+        tables?: string[];
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'wbem';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * WBEM Query
+         */
+        query?: string;
+        /**
+         * WBEM Namespace
+         */
+        namespace?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'wmi';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * WMI Query
+         */
+        query?: string;
+        /**
+         * WMI Namespace
+         */
+        namespace?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'internalDbQuery';
+        forceSerialization?: boolean;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * The list of tables to be used in the internal database query (SQL)
+         */
+        tables?: {
+          /**
+           * Source to be used as a table
+           */
+          source?: string;
+          /**
+           * Alias for the table
+           */
+          alias?: string;
+          /**
+           * SQL table columns
+           */
+          columns?: {
             /**
-             * HTTP Url
+             * Column name
              */
-            url?: string;
+            name?: string;
             /**
-             * HTTP Path
+             * SQL column type
              */
-            path?: string;
+            type?: string;
             /**
-             * HTTP Header
+             * Column number in the source
              */
-            header?: string;
-            /**
-             * HTTP Body
-             */
-            body?: string;
-            /**
-             * HTTP Authentication Token
-             */
-            authenticationToken?: string;
-            resultContent?: ResultContent;
+            number?: number;
             [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'ipmi';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'commandLine';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * The Command Line to Execute
-             */
-            commandLine?: string;
-            /**
-             * The Command Line Timeout
-             */
-            timeout?: number | string;
-            /**
-             * Command Executed On Local Agent
-             */
-            executeLocally?: boolean;
-            /**
-             * Exclude Lines Matching
-             */
-            exclude?: string;
-            /**
-             * Keep Lines Matching
-             */
-            keep?: string;
-            /**
-             * Begin At Line Number
-             */
-            beginAtLineNumber?: number;
-            /**
-             * End At Line Number
-             */
-            endAtLineNumber?: number;
-            /**
-             * Column Separator
-             */
-            separators?: string;
-            /**
-             * Columns Selected
-             */
-            selectColumns?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'copy';
-            /**
-             * Source Copied
-             */
-            from?: string;
-            computes?: Computes;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'static';
-            /**
-             * Source Value
-             */
-            value?: string;
-            computes?: Computes;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'snmpGet';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * OID Queried
-             */
-            oid?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'snmpTable';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * OID Queried
-             */
-            oid?: string;
-            /**
-             * Columns Selected
-             */
-            selectColumns?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'tableJoin';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            /**
-             * Left Table
-             */
-            leftTable?: string;
-            /**
-             * Right Table
-             */
-            rightTable?: string;
-            /**
-             * Left Key Column
-             */
-            leftKeyColumn?: number;
-            /**
-             * Right Key Column
-             */
-            rightKeyColumn?: number;
-            /**
-             * Line Used If No Matches From Right Table
-             */
-            defaultRightLine?: string;
-            /**
-             * Is WBEM Identifier
-             */
-            isWbemKey?: boolean;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'tableUnion';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            /**
-             * Tables To Be Concatenated
-             */
-            tables?: string[];
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'wbem';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * WBEM Query
-             */
-            query?: string;
-            /**
-             * WBEM Namespace
-             */
-            namespace?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'wmi';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * WMI Query
-             */
-            query?: string;
-            /**
-             * WMI Namespace
-             */
-            namespace?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'internalDbQuery';
-            forceSerialization?: boolean;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * The list of tables to be used in the internal database query (SQL)
-             */
-            tables?: {
-              /**
-               * Source to be used as a table
-               */
-              source?: string;
-              /**
-               * Alias for the table
-               */
-              alias?: string;
-              /**
-               * SQL table columns
-               */
-              columns?: {
-                /**
-                 * Column name
-                 */
-                name?: string;
-                /**
-                 * SQL column type
-                 */
-                type?: string;
-                /**
-                 * Column number in the source
-                 */
-                number?: number;
-                [k: string]: unknown | undefined;
-              }[];
-              [k: string]: unknown | undefined;
-            }[];
-            computes?: Computes;
-            /**
-             * Internal database SQL Query
-             */
-            query?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'sql';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            /**
-             * SQL Query
-             */
-            query?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'awk';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * The AWK script to be executed for the computation task.
-             */
-            script?: string;
-            /**
-             * The input on which to execute the AWK task.
-             */
-            input?: string;
-            /**
-             * The separators parameter for the AWK task.
-             */
-            separators?: string;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'jmx';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * The ObjectName pattern to query (JMX MBean name).
-             */
-            objectName?: string;
-            /**
-             * The list of attributes to fetch from the MBean.
-             */
-            attributes?: string[];
-            /**
-             * Optional list of key property names (e.g., 'scope', 'name') to include as extra columns.
-             */
-            keyProperties?: string[];
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'eventLog';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * Windows Event Log name
-             */
-            logName?: string;
-            /**
-             * List of event IDs to filter
-             */
-            eventIds?: string[];
-            /**
-             * List of event sources to filter
-             */
-            sources?: string[];
-            /**
-             * List of event log levels to filter. Accepts level names (e.g., 'error', 'warn', 'info', 'success', 'failure') or numeric codes (1-5).
-             */
-            levels?: (string | number)[];
-            /**
-             * Maximum number of events to retrieve per poll (default: 50, -1 for unlimited)
-             */
-            maxEventsPerPoll?: number;
-            [k: string]: unknown | undefined;
-          }
-        | {
-            type?: 'file';
-            forceSerialization?: boolean;
-            computes?: Computes;
-            executeForEachEntryOf?: ExecuteForEachEntryOf;
-            /**
-             * File path patterns to read (e.g., C:\logs\*.log, /var/log/app/*.log). Supports wildcards.
-             */
-            paths?: string[];
-            maxSizePerPoll?: number | string;
-            /**
-             * Processing mode: LOG for incremental reading with cursors, or FLAT for full-file read on each poll (default: LOG).
-             */
-            mode?: 'LOG' | 'FLAT';
-            [k: string]: unknown | undefined;
-          }
-      )
+          }[];
+          [k: string]: unknown | undefined;
+        }[];
+        computes?: Computes;
+        /**
+         * Internal database SQL Query
+         */
+        query?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'sql';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        /**
+         * SQL Query
+         */
+        query?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'awk';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * The AWK script to be executed for the computation task.
+         */
+        script?: string;
+        /**
+         * The input on which to execute the AWK task.
+         */
+        input?: string;
+        /**
+         * The separators parameter for the AWK task.
+         */
+        separators?: string;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'jmx';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * The ObjectName pattern to query (JMX MBean name).
+         */
+        objectName?: string;
+        /**
+         * The list of attributes to fetch from the MBean.
+         */
+        attributes?: string[];
+        /**
+         * Optional list of key property names (e.g., 'scope', 'name') to include as extra columns.
+         */
+        keyProperties?: string[];
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'eventLog';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * Windows Event Log name
+         */
+        logName?: string;
+        /**
+         * List of event IDs to filter
+         */
+        eventIds?: string[];
+        /**
+         * List of event sources to filter
+         */
+        sources?: string[];
+        /**
+         * List of event log levels to filter. Accepts level names (e.g., 'error', 'warn', 'info', 'success', 'failure') or numeric codes (1-5).
+         */
+        levels?: (string | number)[];
+        /**
+         * Maximum number of events to retrieve per poll (default: 50, -1 for unlimited)
+         */
+        maxEventsPerPoll?: number;
+        [k: string]: unknown | undefined;
+      }
+    | {
+        type?: 'file';
+        forceSerialization?: boolean;
+        computes?: Computes;
+        executeForEachEntryOf?: ExecuteForEachEntryOf;
+        /**
+         * File path patterns to read (e.g., C:\logs\*.log, /var/log/app/*.log). Supports wildcards.
+         */
+        paths?: string[];
+        maxSizePerPoll?: number | string;
+        /**
+         * Processing mode: LOG for incremental reading with cursors, or FLAT for full-file read on each poll (default: LOG).
+         */
+        mode?: 'LOG' | 'FLAT';
+        [k: string]: unknown | undefined;
+      }
     | undefined;
 }
 /**

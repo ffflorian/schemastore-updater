@@ -272,13 +272,7 @@ export interface ClangFormatConfig {
    * The function declaration return type breaking style to use.
    */
   AlwaysBreakAfterReturnType?:
-    | 'Automatic'
-    | 'ExceptShortType'
-    | 'None'
-    | 'All'
-    | 'TopLevel'
-    | 'AllDefinitions'
-    | 'TopLevelDefinitions';
+    'Automatic' | 'ExceptShortType' | 'None' | 'All' | 'TopLevel' | 'AllDefinitions' | 'TopLevelDefinitions';
   /**
    * clang-format 3.4
    *
@@ -445,15 +439,7 @@ export interface ClangFormatConfig {
    * The brace breaking style to use.
    */
   BreakBeforeBraces?:
-    | 'Attach'
-    | 'Linux'
-    | 'Mozilla'
-    | 'Stroustrup'
-    | 'Allman'
-    | 'Whitesmiths'
-    | 'GNU'
-    | 'WebKit'
-    | 'Custom';
+    'Attach' | 'Linux' | 'Mozilla' | 'Stroustrup' | 'Allman' | 'Whitesmiths' | 'GNU' | 'WebKit' | 'Custom';
   /**
    * clang-format 12
    *
@@ -1512,13 +1498,7 @@ If Never, lays out Objective-C protocol conformance list items onto individual l
    * The function declaration return type breaking style to use.
    */
   BreakAfterReturnType?:
-    | 'Automatic'
-    | 'ExceptShortType'
-    | 'None'
-    | 'All'
-    | 'TopLevel'
-    | 'AllDefinitions'
-    | 'TopLevelDefinitions';
+    'Automatic' | 'ExceptShortType' | 'None' | 'All' | 'TopLevel' | 'AllDefinitions' | 'TopLevelDefinitions';
   /**
    * clang-format 21
    *

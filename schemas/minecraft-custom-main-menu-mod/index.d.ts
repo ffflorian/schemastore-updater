@@ -96,8 +96,6 @@ export type Button = Rect &
  * The action to be executed when the button is clicked.
  */
 export type ButtonAction = {
-  [k: string]: unknown | undefined;
-} & {
   type?: 'openLink' | 'openGui' | 'connectToServer' | 'loadWorld' | 'openFolder' | 'quit' | 'refresh';
   [k: string]: unknown | undefined;
 };
@@ -146,7 +144,7 @@ export type Label = Size &
 /**
  * A splash text definition. Splash texts are the random text that appears on the main menu.
  */
-export type SplashText = Position1 &
+export type SplashText = Position &
   Alignment & {
     /**
      * The color of the text. Has to be a hexadecimal color value represented as a decimal number.
@@ -196,19 +194,19 @@ export interface MinecraftCustomMainMenuModSchema {
    * A dictionary of image definitions which specify images to be displayed on the current menu.
    */
   images?: {
-    [k: string]: Image;
+    [k: string]: Image | undefined;
   };
   /**
    * A dictionary of button definitions which specify buttons to be displayed on the current menu.
    */
   buttons?: {
-    [k: string]: Button;
+    [k: string]: Button | undefined;
   };
   /**
    * A dictionary of label definitions which specify text labels to be displayed on the current menu.
    */
   labels?: {
-    [k: string]: Label;
+    [k: string]: Label | undefined;
   };
   /**
    * A dictionary of special properties such as splash texts, backgrounds, and panoramas.
@@ -221,8 +219,6 @@ export interface MinecraftCustomMainMenuModSchema {
     [k: string]: unknown | undefined;
   } & {
     panorama?: Panorama;
-    [k: string]: unknown | undefined;
-  } & {
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -306,24 +302,6 @@ export interface Slideshow {
    * Notice that synced only works on a background slideshow, it will have no effect on an image that is a slideshow.
    */
   synced?: boolean;
-  [k: string]: unknown | undefined;
-}
-/**
- * A definition for the position of an element.
- */
-export interface Position1 {
-  /**
-   * The offset on the X-axis of the element on the screen from the alignment position.
-   * For example: if the alignment is set to 'top_center' and the posX is set to 0, the element's left edge will be aligned with the center of the screen.
-   * If posY is also set to 0, the element's top edge will be at the top of the screen.
-   */
-  posX: number;
-  /**
-   * The offset on the Y-axis of the element on the screen from the alignment position.
-   * For example: if the alignment is set to 'top_center' and the posX is set to 0, the element's left edge will be aligned with the center of the screen.
-   * If posY is also set to 0, the element's top edge will be at the top of the screen.
-   */
-  posY: number;
   [k: string]: unknown | undefined;
 }
 /**
