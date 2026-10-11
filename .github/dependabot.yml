@@ -9,6 +9,11 @@ updates:
       exclude:
         - '@ffflorian/*'
     directory: /
+    groups:
+      oxc:
+        patterns:
+          - oxfmt
+          - oxlint
     ignore:
       - dependency-name: '@types/node'
         update-types:
