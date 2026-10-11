@@ -1,3 +1,12 @@
+## [3.8.13](https://github.com/ffflorian/schemastore-updater/compare/v3.8.12...v3.8.13) (2026-10-11)
+
+
+### Bug Fixes
+
+* **deps:** bump handlebars from 4.7.9 to 4.7.10 ([#1692](https://github.com/ffflorian/schemastore-updater/issues/1692)) [ci skip] ([e447a93](https://github.com/ffflorian/schemastore-updater/commit/e447a93d724497b4610ffd84dd2864e718dc955b))
+* **deps:** bump postcss-selector-parser from 7.1.5 to 7.1.6 ([#1693](https://github.com/ffflorian/schemastore-updater/issues/1693)) [ci skip] ([676fd84](https://github.com/ffflorian/schemastore-updater/commit/676fd846e7ab1c75515c377fcdabaac1db0b0236))
+* **deps:** bump source-map-js from 1.2.1 to 1.2.2 ([#1691](https://github.com/ffflorian/schemastore-updater/issues/1691)) ([a0f1227](https://github.com/ffflorian/schemastore-updater/commit/a0f1227cdf6eb0ca92ec51bf7a6afd1f38e9a182))
+
 ## [3.8.12](https://github.com/ffflorian/schemastore-updater/compare/v3.8.11...v3.8.12) (2026-10-05)
 
 
