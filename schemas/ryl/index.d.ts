@@ -13,10 +13,12 @@ export type FixableRuleSelector =
   | 'document-end'
   | 'document-start'
   | 'empty-lines'
+  | 'key-ordering'
   | 'new-line-at-end-of-file'
   | 'new-lines'
   | 'quoted-strings'
-  | 'trailing-spaces';
+  | 'trailing-spaces'
+  | 'truthy';
 /**
  * A fixable rule name accepted by `fix.unfixable`.
  */
@@ -29,18 +31,21 @@ export type FixRuleName =
   | 'document-end'
   | 'document-start'
   | 'empty-lines'
+  | 'key-ordering'
   | 'new-line-at-end-of-file'
   | 'new-lines'
   | 'quoted-strings'
-  | 'trailing-spaces';
+  | 'trailing-spaces'
+  | 'truthy';
 /**
  * A TOML field that accepts either one string or a list of strings.
  */
 export type StringOrVec = string | string[];
 /**
- * A built-in lint rule name.
+ * A rule id, or `ALL` for every rule.
  */
-export type RuleName =
+export type RuleSelector =
+  | 'ALL'
   | 'anchors'
   | 'block-scalar-chomping'
   | 'braces'
@@ -69,22 +74,13 @@ export type RuleName =
   | 'truthy'
   | 'unicode-line-breaks';
 /**
- * A `per-line-ignores` rule selector: a built-in rule name, or `ALL` to suppress
- * every rule on a matching line. Untagged so `"ALL"` and rule names share one list.
+ * Shorthand rule enable/disable syntax.
  */
-export type PerLineRule = AllRulesSelector | RuleName;
-/**
- * The `ALL` keyword accepted in a `per-line-ignores` `rules` list.
- */
-export type AllRulesSelector = 'ALL';
+export type RuleSwitch = 'enable' | 'disable';
 /**
  * Common rule entry shape used by TOML config.
  */
 export type RuleEntryForTomlAnchorsOptions = boolean | RuleSwitch | RuleOptionsForTomlAnchorsOptions;
-/**
- * Shorthand rule enable/disable syntax.
- */
-export type RuleSwitch = 'enable' | 'disable';
 /**
  * Rule severity override.
  */
@@ -110,7 +106,7 @@ export type RuleEntryForCommasOptions = boolean | RuleSwitch | RuleOptionsForCom
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForCommentsOptions = boolean | RuleSwitch | RuleOptionsForCommentsOptions;
+export type RuleEntryForTomlCommentsOptions = boolean | RuleSwitch | RuleOptionsForTomlCommentsOptions;
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -150,7 +146,11 @@ export type RuleEntryForTomlKeyDuplicatesOptions = boolean | RuleSwitch | RuleOp
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForKeyOrderingOptions = boolean | RuleSwitch | RuleOptionsForKeyOrderingOptions;
+export type RuleEntryForTomlKeyOrderingOptions = boolean | RuleSwitch | RuleOptionsForTomlKeyOrderingOptions;
+/**
+ * Where keys missing from `keys` go: sorted after the listed keys, or kept in place.
+ */
+export type Unlisted = 'sort' | 'keep';
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -235,7 +235,7 @@ export interface RylTOMLConfig {
    * Per-file rule ignores.
    */
   'per-file-ignores'?: {
-    [k: string]: RuleName[] | undefined;
+    [k: string]: RuleSelector[] | undefined;
   } | null;
   /**
    * Per-line rule ignores: suppress rules on lines/files matching a pattern.
@@ -334,19 +334,20 @@ export interface OutputDestination {
 export interface PerLineIgnore {
   path?: string | null;
   regex?: string | null;
-  rules: PerLineRule[];
+  rules: RuleSelector[];
 }
 /**
  * Built-in rule table for TOML config.
  */
 export interface RulesTable {
+  ALL?: RuleSwitch | null;
   anchors?: RuleEntryForTomlAnchorsOptions | null;
   'block-scalar-chomping'?: RuleEntryForNoOptions | null;
   braces?: RuleEntryForBraceLikeOptions | null;
   brackets?: RuleEntryForBraceLikeOptions | null;
   colons?: RuleEntryForColonsOptions | null;
   commas?: RuleEntryForCommasOptions | null;
-  comments?: RuleEntryForCommentsOptions | null;
+  comments?: RuleEntryForTomlCommentsOptions | null;
   'comments-indentation'?: RuleEntryForCommentsIndentationOptions | null;
   'document-end'?: RuleEntryForDocumentPresenceOptions | null;
   'document-start'?: RuleEntryForDocumentPresenceOptions | null;
@@ -356,7 +357,7 @@ export interface RulesTable {
   hyphens?: RuleEntryForTomlHyphensOptions | null;
   indentation?: RuleEntryForIndentationOptions | null;
   'key-duplicates'?: RuleEntryForTomlKeyDuplicatesOptions | null;
-  'key-ordering'?: RuleEntryForKeyOrderingOptions | null;
+  'key-ordering'?: RuleEntryForTomlKeyOrderingOptions | null;
   'line-length'?: RuleEntryForLineLengthOptions | null;
   'merge-keys'?: RuleEntryForNoOptions | null;
   'new-line-at-end-of-file'?: RuleEntryForNoOptions | null;
@@ -426,11 +427,12 @@ export interface RuleOptionsForCommasOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForCommentsOptions {
+export interface RuleOptionsForTomlCommentsOptions {
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   'ignore-shebangs'?: boolean | null;
   level?: RuleLevel | null;
+  'max-spaces-from-content'?: number | null;
   'min-spaces-from-content'?: number | null;
   'require-starting-space'?: boolean | null;
 }
@@ -521,11 +523,27 @@ export interface RuleOptionsForTomlKeyDuplicatesOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForKeyOrderingOptions {
+export interface RuleOptionsForTomlKeyOrderingOptions {
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   'ignored-keys'?: string[] | null;
   level?: RuleLevel | null;
+  orders?: KeyOrderEntry[] | null;
+}
+/**
+ * A configured key order for the mappings that both `files` and `path` select.
+ */
+export interface KeyOrderEntry {
+  /**
+   * Globs matched like `per-file-ignores` keys; `!` excludes.
+   */
+  files: string[];
+  keys: string[];
+  /**
+   * `JSONPath` subset: `$`, `.name`, `['name']`, `[*]`, `.*`.
+   */
+  path: string;
+  unlisted?: Unlisted | null;
 }
 /**
  * Common rule fields plus rule-specific options.

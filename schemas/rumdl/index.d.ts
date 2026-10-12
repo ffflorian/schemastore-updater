@@ -105,7 +105,9 @@ export interface GlobalConfig {
    */
   include?: string[];
   /**
-   * Respect .gitignore files when scanning directories
+   * Respect .gitignore, .ignore and git exclude files when scanning
+   * directories. .markdownlintignore applies regardless, and explicitly
+   * named files bypass both.
    */
   'respect-gitignore'?: boolean;
   /**
@@ -263,6 +265,10 @@ export interface LanguageToolConfig {
    * Tools to run in format mode (rumdl check --fix / rumdl fmt)
    */
   format?: string[];
+  /**
+   * How the `format` list is applied: as fallbacks (default) or as a pipeline
+   */
+  'format-mode'?: 'fallback' | 'pipeline';
   /**
    * Override global on-error setting for this language
    */

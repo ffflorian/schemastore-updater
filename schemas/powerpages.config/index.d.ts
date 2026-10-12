@@ -22,6 +22,21 @@ export interface JSONSchemaForThePowerPagesConfigurationFile {
    */
   includeSource?: boolean;
   /**
+   * The web framework and its framework-specific build settings.
+   */
+  framework?: {
+    /**
+     * The framework used to build the site.
+     */
+    name: 'react' | 'angular' | 'vue' | 'astro';
+    /**
+     * Framework-specific build settings. Required when `name` is `astro`; for other frameworks, this may be omitted or specified as an empty object.
+     */
+    options?: {
+      [k: string]: unknown | undefined;
+    };
+  };
+  /**
    * List of glob patterns (strings) identifying source file patterns to be excluded when uploading the site to Power Pages. This is only applicable if `includeSource` is set to `true`.
    */
   sourceExcludePatterns?: string[];
