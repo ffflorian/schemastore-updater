@@ -20,12 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.ref_name }}
 
       - name: Set up Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        uses: actions/setup-node@v7.0.0
         with:
           node-version: 26
           cache: yarn
@@ -61,7 +61,7 @@ jobs:
 
       - name: Create Pull Request for updated schema lock
         if: always()
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1
+        uses: peter-evans/create-pull-request@v8.1.1
         with:
           author: Florian Imdahl <git@ffflorian.de>
           committer: Florian Imdahl <git@ffflorian.de>
@@ -79,7 +79,7 @@ jobs:
 
       - name: Upload publish log
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: publish-errors-log
           path: publish-errors.log
