@@ -53,7 +53,7 @@ export interface Run {
    * The file location specified by each uriBaseId symbol on the machine where the tool originally ran.
    */
   originalUriBaseIds?: {
-    [k: string]: FileLocation;
+    [k: string]: FileLocation | undefined;
   };
   /**
    * An array of file objects relevant to the run.
@@ -86,7 +86,7 @@ export interface Run {
    *
    * @minItems 0
    */
-  aggregateIds?: RunAutomationDetails1[];
+  aggregateIds?: RunAutomationDetails[];
   /**
    * The 'instanceGuid' property of a previous SARIF 'run' that comprises the baseline that was used to compute result 'baselineState' properties for the run.
    */
@@ -262,18 +262,18 @@ export interface Invocation {
    * The process id for the analysis tool run.
    */
   processId?: number;
-  executableLocation?: FileLocation3;
-  workingDirectory?: FileLocation4;
+  executableLocation?: FileLocation;
+  workingDirectory?: FileLocation;
   /**
    * The environment variables associated with the analysis tool process, expressed as key/value pairs.
    */
   environmentVariables?: {
     [k: string]: string | undefined;
   };
-  stdin?: FileLocation5;
-  stdout?: FileLocation6;
-  stderr?: FileLocation7;
-  stdoutStderr?: FileLocation8;
+  stdin?: FileLocation;
+  stdout?: FileLocation;
+  stderr?: FileLocation;
+  stdoutStderr?: FileLocation;
   /**
    * Key/value pairs that provide additional information about the invocation.
    */
@@ -321,7 +321,7 @@ export interface FileLocation {
  */
 export interface Attachment {
   description?: Message;
-  fileLocation: FileLocation1;
+  fileLocation: FileLocation;
   /**
    * An array of regions of interest within the attachment.
    *
@@ -387,35 +387,6 @@ export interface Message {
   };
 }
 /**
- * The location of the attachment.
- */
-export interface FileLocation1 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A region within a file where a result was detected.
  */
 export interface Region {
@@ -452,7 +423,7 @@ export interface Region {
    */
   byteLength?: number;
   snippet?: FileContent;
-  message?: Message1;
+  message?: Message;
   /**
    * Specifies the source language, if any, of the portion of the file specified by the region object.
    */
@@ -496,45 +467,6 @@ export interface FileContent {
   };
 }
 /**
- * A message relevant to the region.
- */
-export interface Message1 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * An area within an image.
  */
 export interface Rectangle {
@@ -554,48 +486,9 @@ export interface Rectangle {
    * The X coordinate of the right edge of the rectangle, measured in the image's natural units.
    */
   right?: number;
-  message?: Message2;
+  message?: Message;
   /**
    * Key/value pairs that provide additional information about the rectangle.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message relevant to the rectangle.
- */
-export interface Message2 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -624,7 +517,7 @@ export interface Notification {
    */
   ruleIndex?: number;
   physicalLocation?: PhysicalLocation;
-  message: Message3;
+  message: Message;
   /**
    * A value specifying the severity level of the notification.
    */
@@ -659,189 +552,11 @@ export interface PhysicalLocation {
    * Value that distinguishes this physical location from all other physical locations in this run object.
    */
   id?: number;
-  fileLocation: FileLocation2;
-  region?: Region1;
-  contextRegion?: Region2;
+  fileLocation: FileLocation;
+  region?: Region;
+  contextRegion?: Region;
   /**
    * Key/value pairs that provide additional information about the physical location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The location of the file.
- */
-export interface FileLocation2 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A region within a file where a result was detected.
- */
-export interface Region1 {
-  /**
-   * The line number of the first character in the region.
-   */
-  startLine?: number;
-  /**
-   * The column number of the first character in the region.
-   */
-  startColumn?: number;
-  /**
-   * The line number of the last character in the region.
-   */
-  endLine?: number;
-  /**
-   * The column number of the character following the end of the region.
-   */
-  endColumn?: number;
-  /**
-   * The zero-based offset from the beginning of the file of the first character in the region.
-   */
-  charOffset?: number;
-  /**
-   * The length of the region in characters.
-   */
-  charLength?: number;
-  /**
-   * The zero-based offset from the beginning of the file of the first byte in the region.
-   */
-  byteOffset?: number;
-  /**
-   * The length of the region in bytes.
-   */
-  byteLength?: number;
-  snippet?: FileContent;
-  message?: Message1;
-  /**
-   * Specifies the source language, if any, of the portion of the file specified by the region object.
-   */
-  sourceLanguage?: string;
-  /**
-   * Key/value pairs that provide additional information about the region.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A region within a file where a result was detected.
- */
-export interface Region2 {
-  /**
-   * The line number of the first character in the region.
-   */
-  startLine?: number;
-  /**
-   * The column number of the first character in the region.
-   */
-  startColumn?: number;
-  /**
-   * The line number of the last character in the region.
-   */
-  endLine?: number;
-  /**
-   * The column number of the character following the end of the region.
-   */
-  endColumn?: number;
-  /**
-   * The zero-based offset from the beginning of the file of the first character in the region.
-   */
-  charOffset?: number;
-  /**
-   * The length of the region in characters.
-   */
-  charLength?: number;
-  /**
-   * The zero-based offset from the beginning of the file of the first byte in the region.
-   */
-  byteOffset?: number;
-  /**
-   * The length of the region in bytes.
-   */
-  byteLength?: number;
-  snippet?: FileContent;
-  message?: Message1;
-  /**
-   * Specifies the source language, if any, of the portion of the file specified by the region object.
-   */
-  sourceLanguage?: string;
-  /**
-   * Key/value pairs that provide additional information about the region.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message that describes the condition that was encountered.
- */
-export interface Message3 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -861,14 +576,14 @@ export interface Exception {
    * A string that identifies the kind of exception, for example, the fully qualified type name of an object that was thrown, or the symbolic name of a signal.
    */
   kind?: string;
-  message?: Message4;
+  message?: Message;
   stack?: Stack;
   /**
    * An array of exception objects each of which is considered a cause of this exception.
    *
    * @minItems 0
    */
-  innerExceptions?: Exception1[];
+  innerExceptions?: Exception[];
   /**
    * Key/value pairs that provide additional information about the exception.
    */
@@ -884,49 +599,10 @@ export interface Exception {
   [k: string]: unknown | undefined;
 }
 /**
- * A message that describes the exception.
- */
-export interface Message4 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * The sequence of function calls leading to the exception.
  */
 export interface Stack {
-  message?: Message5;
+  message?: Message;
   /**
    * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
    *
@@ -935,45 +611,6 @@ export interface Stack {
   frames: StackFrame[];
   /**
    * Key/value pairs that provide additional information about the stack.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message relevant to this call stack.
- */
-export interface Message5 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -1029,7 +666,7 @@ export interface StackFrame {
  * The location to which this stack frame refers.
  */
 export interface Location {
-  physicalLocation?: PhysicalLocation1;
+  physicalLocation?: PhysicalLocation;
   /**
    * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
    */
@@ -1038,7 +675,7 @@ export interface Location {
    * The index within the logical locations array of the logical location associated with the result.
    */
   logicalLocationIndex?: number;
-  message?: Message6;
+  message?: Message;
   /**
    * A set of regions relevant to the location.
    *
@@ -1059,275 +696,11 @@ export interface Location {
   };
 }
 /**
- * Identifies the file and region.
- */
-export interface PhysicalLocation1 {
-  /**
-   * Value that distinguishes this physical location from all other physical locations in this run object.
-   */
-  id?: number;
-  fileLocation: FileLocation2;
-  region?: Region1;
-  contextRegion?: Region2;
-  /**
-   * Key/value pairs that provide additional information about the physical location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message relevant to the location.
- */
-export interface Message6 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-export interface Exception1 {
-  /**
-   * A string that identifies the kind of exception, for example, the fully qualified type name of an object that was thrown, or the symbolic name of a signal.
-   */
-  kind?: string;
-  message?: Message4;
-  stack?: Stack;
-  /**
-   * An array of exception objects each of which is considered a cause of this exception.
-   *
-   * @minItems 0
-   */
-  innerExceptions?: Exception1[];
-  /**
-   * Key/value pairs that provide additional information about the exception.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation3 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation4 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation5 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation6 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation7 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation8 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A conversion object that describes how a converter transformed an analysis tool's native output format into the SARIF format.
  */
 export interface Conversion {
-  tool: Tool1;
-  invocation?: Invocation1;
+  tool: Tool;
+  invocation?: Invocation;
   /**
    * The locations of the analysis tool's per-run log files.
    *
@@ -1336,162 +709,6 @@ export interface Conversion {
   analysisToolLogFiles?: FileLocation[];
   /**
    * Key/value pairs that provide additional information about the conversion.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A tool object that describes the converter.
- */
-export interface Tool1 {
-  /**
-   * The name of the tool.
-   */
-  name: string;
-  /**
-   * The name of the tool along with its version and any other useful identifying information, such as its locale.
-   */
-  fullName?: string;
-  /**
-   * The tool version, in whatever format the tool natively provides.
-   */
-  version?: string;
-  /**
-   * The tool version in the format specified by Semantic Versioning 2.0.
-   */
-  semanticVersion?: string;
-  /**
-   * The binary version of the tool's primary executable file expressed as four non-negative integers separated by a period (for operating systems that express file versions in this way).
-   */
-  dottedQuadFileVersion?: string;
-  /**
-   * The absolute URI from which the tool can be downloaded.
-   */
-  downloadUri?: string;
-  /**
-   * A version that uniquely identifies the SARIF logging component that generated this file, if it is versioned separately from the tool.
-   */
-  sarifLoggerVersion?: string;
-  /**
-   * The tool language (expressed as an ISO 649 two-letter lowercase culture code) and region (expressed as an ISO 3166 two-letter uppercase subculture code associated with a country or region).
-   */
-  language?: string;
-  /**
-   * Key/value pairs that provide additional information about the tool.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * An invocation object that describes the invocation of the converter.
- */
-export interface Invocation1 {
-  /**
-   * The command line used to invoke the tool.
-   */
-  commandLine?: string;
-  /**
-   * An array of strings, containing in order the command line arguments passed to the tool from the operating system.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * The locations of any response files specified on the tool's command line.
-   *
-   * @minItems 0
-   */
-  responseFiles?: FileLocation[];
-  /**
-   * A set of files relevant to the invocation of the tool.
-   *
-   * @minItems 0
-   */
-  attachments?: Attachment[];
-  /**
-   * The Coordinated Universal Time (UTC) date and time at which the run started. See "Date/time properties" in the SARIF spec for the required format.
-   */
-  startTimeUtc?: string;
-  /**
-   * The Coordinated Universal Time (UTC) date and time at which the run ended. See "Date/time properties" in the SARIF spec for the required format.
-   */
-  endTimeUtc?: string;
-  /**
-   * The process exit code.
-   */
-  exitCode?: number;
-  /**
-   * A list of runtime conditions detected by the tool during the analysis.
-   *
-   * @minItems 0
-   */
-  toolNotifications?: Notification[];
-  /**
-   * A list of conditions detected by the tool that are relevant to the tool's configuration.
-   *
-   * @minItems 0
-   */
-  configurationNotifications?: Notification[];
-  /**
-   * The reason for the process exit.
-   */
-  exitCodeDescription?: string;
-  /**
-   * The name of the signal that caused the process to exit.
-   */
-  exitSignalName?: string;
-  /**
-   * The numeric value of the signal that caused the process to exit.
-   */
-  exitSignalNumber?: number;
-  /**
-   * The reason given by the operating system that the process failed to start.
-   */
-  processStartFailureMessage?: string;
-  /**
-   * A value indicating whether the tool's execution completed successfully.
-   */
-  toolExecutionSuccessful?: boolean;
-  /**
-   * The machine that hosted the analysis tool run.
-   */
-  machine?: string;
-  /**
-   * The account that ran the analysis tool.
-   */
-  account?: string;
-  /**
-   * The process id for the analysis tool run.
-   */
-  processId?: number;
-  executableLocation?: FileLocation3;
-  workingDirectory?: FileLocation4;
-  /**
-   * The environment variables associated with the analysis tool process, expressed as key/value pairs.
-   */
-  environmentVariables?: {
-    [k: string]: string | undefined;
-  };
-  stdin?: FileLocation5;
-  stdout?: FileLocation6;
-  stderr?: FileLocation7;
-  stdoutStderr?: FileLocation8;
-  /**
-   * Key/value pairs that provide additional information about the invocation.
    */
   properties?: {
     /**
@@ -1527,38 +744,9 @@ export interface VersionControlDetails {
    * A Coordinated Universal Time (UTC) date and time that can be used to synchronize an enlistment to the state of the repository at that time.
    */
   asOfTimeUtc?: string;
-  mappedTo?: FileLocation9;
+  mappedTo?: FileLocation;
   /**
    * Key/value pairs that provide additional information about the version control details.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation9 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
    */
   properties?: {
     /**
@@ -1574,7 +762,7 @@ export interface FileLocation9 {
  * A single file. In some cases, this file might be nested within another file.
  */
 export interface File {
-  fileLocation?: FileLocation10;
+  fileLocation?: FileLocation;
   /**
    * Identifies the index of the immediate parent of the file, if this file is nested.
    */
@@ -1610,7 +798,7 @@ export interface File {
    * The MIME type (RFC 2045) of the file.
    */
   mimeType?: string;
-  contents?: FileContent1;
+  contents?: FileContent;
   /**
    * Specifies the encoding for a file object that refers to a text file.
    */
@@ -1631,60 +819,6 @@ export interface File {
   lastModifiedTimeUtc?: string;
   /**
    * Key/value pairs that provide additional information about the file.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation10 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The contents of the file.
- */
-export interface FileContent1 {
-  /**
-   * UTF-8-encoded content from a text file.
-   */
-  text?: string;
-  /**
-   * MIME Base64-encoded content from a binary file, or from a text file in its original encoding.
-   */
-  binary?: string;
-  /**
-   * Key/value pairs that provide additional information about the external file.
    */
   properties?: {
     /**
@@ -1741,7 +875,7 @@ export interface Graph {
    * A string that uniquely identifies the graph within a run.graphs or result.graphs array.
    */
   id: string;
-  description?: Message7;
+  description?: Message;
   /**
    * An array of node objects representing the nodes of the graph.
    *
@@ -1768,45 +902,6 @@ export interface Graph {
   };
 }
 /**
- * A description of the graph.
- */
-export interface Message7 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * Represents a node in a graph.
  */
 export interface Node {
@@ -1814,8 +909,8 @@ export interface Node {
    * A string that uniquely identifies the node within its graph.
    */
   id: string;
-  label?: Message8;
-  location?: Location1;
+  label?: Message;
+  location?: Location;
   /**
    * Array of child nodes.
    *
@@ -1836,78 +931,6 @@ export interface Node {
   };
 }
 /**
- * A short description of the node.
- */
-export interface Message8 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A code location associated with the node.
- */
-export interface Location1 {
-  physicalLocation?: PhysicalLocation1;
-  /**
-   * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
-   */
-  fullyQualifiedLogicalName?: string;
-  /**
-   * The index within the logical locations array of the logical location associated with the result.
-   */
-  logicalLocationIndex?: number;
-  message?: Message6;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region[];
-  /**
-   * Key/value pairs that provide additional information about the location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * Represents a directed edge in a graph.
  */
 export interface Edge {
@@ -1915,7 +938,7 @@ export interface Edge {
    * A string that uniquely identifies the edge within its graph.
    */
   id: string;
-  label?: Message9;
+  label?: Message;
   /**
    * Identifies the source node (the node at which the edge starts).
    */
@@ -1926,45 +949,6 @@ export interface Edge {
   targetNodeId: string;
   /**
    * Key/value pairs that provide additional information about the edge.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A short description of the edge.
- */
-export interface Message9 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -1992,14 +976,14 @@ export interface Result {
    * A value specifying the severity level of the result.
    */
   level?: 'notApplicable' | 'pass' | 'note' | 'warning' | 'error' | 'open';
-  message: Message10;
-  analysisTarget?: FileLocation11;
+  message: Message;
+  analysisTarget?: FileLocation;
   /**
    * The set of locations where the result was detected. Specify only one location unless the problem indicated by the result can only be corrected by making a change at every specified location.
    *
    * @minItems 0
    */
-  locations?: Location2[];
+  locations?: Location[];
   /**
    * A stable, unique identifier for the result in the form of a GUID.
    */
@@ -2029,7 +1013,7 @@ export interface Result {
    *
    * @minItems 0
    */
-  stacks?: Stack1[];
+  stacks?: Stack[];
   /**
    * An array of 'codeFlow' objects relevant to the result.
    *
@@ -2053,7 +1037,7 @@ export interface Result {
    *
    * @minItems 0
    */
-  relatedLocations?: Location2[];
+  relatedLocations?: Location[];
   /**
    * A set of flags indicating one or more suppression conditions.
    *
@@ -2105,135 +1089,10 @@ export interface Result {
   };
 }
 /**
- * A message that describes the result. The first sentence of the message only will be displayed when visible space is limited.
- */
-export interface Message10 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation11 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A location within a programming artifact.
- */
-export interface Location2 {
-  physicalLocation?: PhysicalLocation1;
-  /**
-   * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
-   */
-  fullyQualifiedLogicalName?: string;
-  /**
-   * The index within the logical locations array of the logical location associated with the result.
-   */
-  logicalLocationIndex?: number;
-  message?: Message6;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region[];
-  /**
-   * Key/value pairs that provide additional information about the location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A call stack that is relevant to a result.
- */
-export interface Stack1 {
-  message?: Message5;
-  /**
-   * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
-   *
-   * @minItems 0
-   */
-  frames: StackFrame[];
-  /**
-   * Key/value pairs that provide additional information about the stack.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A set of threadFlows which together describe a pattern of code execution relevant to detecting a result.
  */
 export interface CodeFlow {
-  message?: Message11;
+  message?: Message;
   /**
    * An array of one or more unique threadFlow objects, each of which describes the progress of a program through a thread of execution.
    *
@@ -2253,51 +1112,12 @@ export interface CodeFlow {
     [k: string]: unknown | undefined;
   };
 }
-/**
- * A message relevant to the code flow.
- */
-export interface Message11 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
 export interface ThreadFlow {
   /**
    * An string that uniquely identifies the threadFlow within the codeFlow in which it occurs.
    */
   id?: string;
-  message?: Message12;
+  message?: Message;
   /**
    * A temporally ordered array of 'threadFlowLocation' objects, each of which describes a location visited by the tool while producing the result.
    *
@@ -2319,50 +1139,11 @@ export interface ThreadFlow {
   [k: string]: unknown | undefined;
 }
 /**
- * A message relevant to the thread flow.
- */
-export interface Message12 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A location visited by an analysis tool while simulating or monitoring the execution of a program.
  */
 export interface ThreadFlowLocation {
-  location?: Location3;
-  stack?: Stack2;
+  location?: Location;
+  stack?: Stack;
   /**
    * A string describing the type of this location.
    */
@@ -2407,63 +1188,6 @@ export interface ThreadFlowLocation {
   };
 }
 /**
- * The code location.
- */
-export interface Location3 {
-  physicalLocation?: PhysicalLocation1;
-  /**
-   * The human-readable fully qualified name of the logical location. If run.logicalLocations is present, this value matches a property name within that object, from which further information about the logical location can be obtained.
-   */
-  fullyQualifiedLogicalName?: string;
-  /**
-   * The index within the logical locations array of the logical location associated with the result.
-   */
-  logicalLocationIndex?: number;
-  message?: Message6;
-  /**
-   * A set of regions relevant to the location.
-   *
-   * @minItems 0
-   */
-  annotations?: Region[];
-  /**
-   * Key/value pairs that provide additional information about the location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The call stack leading to this location.
- */
-export interface Stack2 {
-  message?: Message5;
-  /**
-   * An array of stack frames that represents a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
-   *
-   * @minItems 0
-   */
-  frames: StackFrame[];
-  /**
-   * Key/value pairs that provide additional information about the stack.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * Represents a path through a graph.
  */
 export interface GraphTraversal {
@@ -2471,7 +1195,7 @@ export interface GraphTraversal {
    * A string that uniquely identifies that graph being traversed.
    */
   graphId: string;
-  description?: Message13;
+  description?: Message;
   /**
    * Values of relevant expressions at the start of the graph traversal.
    */
@@ -2498,45 +1222,6 @@ export interface GraphTraversal {
   };
 }
 /**
- * A description of this graph traversal.
- */
-export interface Message13 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * Represents the traversal of a single edge during a graph traversal.
  */
 export interface EdgeTraversal {
@@ -2544,7 +1229,7 @@ export interface EdgeTraversal {
    * Identifies the edge being traversed.
    */
   edgeId: string;
-  message?: Message14;
+  message?: Message;
   /**
    * The values of relevant expressions after the edge has been traversed.
    */
@@ -2557,45 +1242,6 @@ export interface EdgeTraversal {
   stepOverEdgeCount?: number;
   /**
    * Key/value pairs that provide additional information about the edge traversal.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A message to display to the user as the edge is traversed.
- */
-export interface Message14 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -2636,33 +1282,9 @@ export interface ResultProvenance {
    *
    * @minItems 0
    */
-  conversionSources?: PhysicalLocation2[];
+  conversionSources?: PhysicalLocation[];
   /**
    * Key/value pairs that provide additional information about the result.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A physical location relevant to a result. Specifies a reference to a programming artifact together with a range of bytes or characters within that artifact.
- */
-export interface PhysicalLocation2 {
-  /**
-   * Value that distinguishes this physical location from all other physical locations in this run object.
-   */
-  id?: number;
-  fileLocation: FileLocation2;
-  region?: Region1;
-  contextRegion?: Region2;
-  /**
-   * Key/value pairs that provide additional information about the physical location.
    */
   properties?: {
     /**
@@ -2678,7 +1300,7 @@ export interface PhysicalLocation2 {
  * A proposed fix for the problem represented by a result object. A fix specifies a set of file to modify. For each file, it specifies a set of bytes to remove, and provides a set of new bytes to replace them.
  */
 export interface Fix {
-  description?: Message15;
+  description?: Message;
   /**
    * One or more file changes that comprise a fix for a result.
    *
@@ -2699,49 +1321,10 @@ export interface Fix {
   };
 }
 /**
- * A message that describes the proposed fix, enabling viewers to present the proposed change to an end user.
- */
-export interface Message15 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * A change to a single file.
  */
 export interface FileChange {
-  fileLocation: FileLocation12;
+  fileLocation: FileLocation;
   /**
    * An array of replacement objects, each of which represents the replacement of a single region in a single file specified by 'fileLocation'.
    *
@@ -2762,122 +1345,13 @@ export interface FileChange {
   };
 }
 /**
- * Specifies the location of a file.
- */
-export interface FileLocation12 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * The replacement of a single region of a file.
  */
 export interface Replacement {
-  deletedRegion: Region3;
-  insertedContent?: FileContent2;
+  deletedRegion: Region;
+  insertedContent?: FileContent;
   /**
    * Key/value pairs that provide additional information about the replacement.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A region within a file where a result was detected.
- */
-export interface Region3 {
-  /**
-   * The line number of the first character in the region.
-   */
-  startLine?: number;
-  /**
-   * The column number of the first character in the region.
-   */
-  startColumn?: number;
-  /**
-   * The line number of the last character in the region.
-   */
-  endLine?: number;
-  /**
-   * The column number of the character following the end of the region.
-   */
-  endColumn?: number;
-  /**
-   * The zero-based offset from the beginning of the file of the first character in the region.
-   */
-  charOffset?: number;
-  /**
-   * The length of the region in characters.
-   */
-  charLength?: number;
-  /**
-   * The zero-based offset from the beginning of the file of the first byte in the region.
-   */
-  byteOffset?: number;
-  /**
-   * The length of the region in bytes.
-   */
-  byteLength?: number;
-  snippet?: FileContent;
-  message?: Message1;
-  /**
-   * Specifies the source language, if any, of the portion of the file specified by the region object.
-   */
-  sourceLanguage?: string;
-  /**
-   * Key/value pairs that provide additional information about the region.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * The content to insert at the location specified by the 'deletedRegion' property.
- */
-export interface FileContent2 {
-  /**
-   * UTF-8-encoded content from a text file.
-   */
-  text?: string;
-  /**
-   * MIME Base64-encoded content from a binary file, or from a text file in its original encoding.
-   */
-  binary?: string;
-  /**
-   * Key/value pairs that provide additional information about the external file.
    */
   properties?: {
     /**
@@ -2933,9 +1407,9 @@ export interface Rule {
    * @minItems 0
    */
   deprecatedIds?: string[];
-  name?: Message16;
-  shortDescription?: Message17;
-  fullDescription?: Message18;
+  name?: Message;
+  shortDescription?: Message;
+  fullDescription?: Message;
   /**
    * A set of name/value pairs with arbitrary names. The value within each name/value pair consists of plain text interspersed with placeholders, which can be used to construct a message in combination with an arbitrary number of additional string arguments.
    */
@@ -2953,126 +1427,9 @@ export interface Rule {
    * A URI where the primary documentation for the rule can be found.
    */
   helpUri?: string;
-  help?: Message19;
+  help?: Message;
   /**
    * Key/value pairs that provide additional information about the rule.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A rule identifier that is understandable to an end user.
- */
-export interface Message16 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A concise description of the rule. Should be a single sentence that is understandable when visible space is limited to a single line of text.
- */
-export interface Message17 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A description of the rule. Should, as far as possible, provide details sufficient to enable resolution of any problem indicated by the result.
- */
-export interface Message18 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
    */
   properties?: {
     /**
@@ -3127,118 +1484,10 @@ export interface PropertyBag {
   [k: string]: unknown | undefined;
 }
 /**
- * Provides the primary documentation for the rule, useful when there is no online documentation.
- */
-export interface Message19 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
  * Automation details that describe this run.
  */
 export interface RunAutomationDetails {
-  description?: Message20;
-  /**
-   * A hierarchical string that uniquely identifies this object's containing run object.
-   */
-  instanceId?: string;
-  /**
-   * A stable, unique identifier for this object's containing run object in the form of a GUID.
-   */
-  instanceGuid?: string;
-  /**
-   * A stable, unique identifier for the equivalence class of runs to which this object's containing run object belongs in the form of a GUID.
-   */
-  correlationGuid?: string;
-  /**
-   * Key/value pairs that provide additional information about the run automation details.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * A description of the identity and role played within the engineering system by this object's containing run object.
- */
-export interface Message20 {
-  /**
-   * A plain text message string.
-   */
-  text?: string;
-  /**
-   * The resource id for a plain text message string.
-   */
-  messageId?: string;
-  /**
-   * A rich text message string.
-   */
-  richText?: string;
-  /**
-   * The resource id for a rich text message string.
-   */
-  richMessageId?: string;
-  /**
-   * An array of strings to substitute into the message string.
-   *
-   * @minItems 0
-   */
-  arguments?: string[];
-  /**
-   * Key/value pairs that provide additional information about the message.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * Information that describes a run's identity and role within an engineering system process.
- */
-export interface RunAutomationDetails1 {
-  description?: Message20;
+  description?: Message;
   /**
    * A hierarchical string that uniquely identifies this object's containing run object.
    */
@@ -3269,13 +1518,13 @@ export interface RunAutomationDetails1 {
  */
 export interface ExternalPropertyFiles {
   conversion?: ExternalPropertyFile;
-  graphs?: ExternalPropertyFile1;
-  resources?: ExternalPropertyFile2;
+  graphs?: ExternalPropertyFile;
+  resources?: ExternalPropertyFile;
   /**
    * An external property file containing a run.properties object to be merged with the root log file.
    */
   properties?: {
-    fileLocation?: FileLocation13;
+    fileLocation?: FileLocation;
     /**
      * A stable, unique identifier for the external property file in the form of a GUID.
      */
@@ -3303,138 +1552,31 @@ export interface ExternalPropertyFiles {
    *
    * @minItems 1
    */
-  files?: [ExternalPropertyFile3, ...ExternalPropertyFile3[]];
+  files?: [ExternalPropertyFile, ...ExternalPropertyFile[]];
   /**
    * An array of external property files containing run.invocations arrays to be merged with the root log file.
    *
    * @minItems 1
    */
-  invocations?: [ExternalPropertyFile3, ...ExternalPropertyFile3[]];
+  invocations?: [ExternalPropertyFile, ...ExternalPropertyFile[]];
   /**
    * An array of external property files containing run.logicalLocations arrays to be merged with the root log file.
    *
    * @minItems 1
    */
-  logicalLocations?: [ExternalPropertyFile3, ...ExternalPropertyFile3[]];
+  logicalLocations?: [ExternalPropertyFile, ...ExternalPropertyFile[]];
   /**
    * An array of external property files containing run.results arrays to be merged with the root log file.
    *
    * @minItems 1
    */
-  results?: [ExternalPropertyFile3, ...ExternalPropertyFile3[]];
+  results?: [ExternalPropertyFile, ...ExternalPropertyFile[]];
 }
 /**
  * An external property file containing a run.conversion object to be merged with the root log file.
  */
 export interface ExternalPropertyFile {
-  fileLocation?: FileLocation13;
-  /**
-   * A stable, unique identifier for the external property file in the form of a GUID.
-   */
-  instanceGuid?: string;
-  /**
-   * A non-negative integer specifying the number of items contained in the external property file.
-   */
-  itemCount?: number;
-  /**
-   * Key/value pairs that provide additional information about the external property file.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * Specifies the location of a file.
- */
-export interface FileLocation13 {
-  /**
-   * A string containing a valid relative or absolute URI.
-   */
-  uri: string;
-  /**
-   * A string which indirectly specifies the absolute URI with respect to which a relative URI in the "uri" property is interpreted.
-   */
-  uriBaseId?: string;
-  /**
-   * The index within the run files array of the file object associated with the file location.
-   */
-  fileIndex?: number;
-  /**
-   * Key/value pairs that provide additional information about the file location.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-/**
- * An external property file containing a run.graphs object to be merged with the root log file.
- */
-export interface ExternalPropertyFile1 {
-  fileLocation?: FileLocation13;
-  /**
-   * A stable, unique identifier for the external property file in the form of a GUID.
-   */
-  instanceGuid?: string;
-  /**
-   * A non-negative integer specifying the number of items contained in the external property file.
-   */
-  itemCount?: number;
-  /**
-   * Key/value pairs that provide additional information about the external property file.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-/**
- * An external property file containing a run.resources object to be merged with the root log file.
- */
-export interface ExternalPropertyFile2 {
-  fileLocation?: FileLocation13;
-  /**
-   * A stable, unique identifier for the external property file in the form of a GUID.
-   */
-  instanceGuid?: string;
-  /**
-   * A non-negative integer specifying the number of items contained in the external property file.
-   */
-  itemCount?: number;
-  /**
-   * Key/value pairs that provide additional information about the external property file.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     *
-     * @minItems 0
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-}
-export interface ExternalPropertyFile3 {
-  fileLocation?: FileLocation13;
+  fileLocation?: FileLocation;
   /**
    * A stable, unique identifier for the external property file in the form of a GUID.
    */

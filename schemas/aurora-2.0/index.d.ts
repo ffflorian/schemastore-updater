@@ -1,26 +1,54 @@
 /* eslint-disable */
 
 /**
- * Operations to be excluded from the module
+ * Operations to be excluded from the module. A plain string excludes the operation from every layer; the object form { operation, layers } excludes it only from the listed layers: api (@api controller, resolver and SDL mutation), app (@app handler and service), ui (frontend route, button and mutation document)
  */
 export type ExcludedOperationDefinition = (
-  | 'count'
-  | 'create'
-  | 'createBatch'
-  | 'deleteById'
-  | 'delete'
-  | 'findById'
-  | 'find'
-  | 'get'
-  | 'max'
-  | 'min'
-  | 'paginate'
-  | 'getRaw'
-  | 'sum'
-  | 'updateAndIncrement'
-  | 'updateById'
-  | 'update'
-  | 'upsert'
+  | (
+      | 'count'
+      | 'create'
+      | 'createBatch'
+      | 'deleteById'
+      | 'delete'
+      | 'findById'
+      | 'find'
+      | 'get'
+      | 'max'
+      | 'min'
+      | 'paginate'
+      | 'getRaw'
+      | 'sum'
+      | 'updateAndIncrement'
+      | 'updateById'
+      | 'update'
+      | 'upsert'
+    )
+  | {
+      operation:
+        | 'count'
+        | 'create'
+        | 'createBatch'
+        | 'deleteById'
+        | 'delete'
+        | 'findById'
+        | 'find'
+        | 'get'
+        | 'max'
+        | 'min'
+        | 'paginate'
+        | 'getRaw'
+        | 'sum'
+        | 'updateAndIncrement'
+        | 'updateById'
+        | 'update'
+        | 'upsert';
+      /**
+       * Layers the operation is excluded from
+       *
+       * @minItems 1
+       */
+      layers: ['api' | 'app' | 'ui', ...('api' | 'app' | 'ui')[]];
+    }
 )[];
 /**
  * Fields to display in the grid-select-element widget
@@ -65,6 +93,10 @@ export interface AuroraAgileMetaFramework {
    * Enabled auditing for this module
    */
   hasAuditing?: boolean;
+  /**
+   * Strategy the generator uses to persist translations for properties marked with isI18n. 'embedded' stores per-locale JSON in a <property>_i18n jsonb column alongside a <property>_i18n_search_text column on the same table (best for 1-2 translatable fields); 'table' derives a companion <aggregate>_i18n table with a FK to the parent (best for many translatable fields or fields expected to grow). Ignored when no property sets isI18n.
+   */
+  i18nStrategy?: 'embedded' | 'table';
   /**
    * Description of the module and its function and interaction with the other modules in the package
    */
@@ -139,6 +171,10 @@ export interface FrontDefinition {
    */
   detailMode?: 'view' | 'dialog';
   /**
+   * Width of the create/edit dialog when detailMode is 'dialog'. Named size tokens that map to a definite, responsive width (min(92vw, cap)) so the dialog never resizes with its selected content: sm=28rem, md=42rem, lg=56rem, xl=72rem, full=min(95vw,90rem). Use larger tokens for forms with more fields that need more screen from the start. Ignored when detailMode is 'view'. Defaults to 'md'.
+   */
+  dialogWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  /**
    * When true, the module generates embed-mode artifacts (form-embed component, embed columns config, list mode embed). Required when another module references this one via widget.type: grid-elements-manager. Default: false.
    */
   embedSupport?: boolean;
@@ -181,6 +217,7 @@ export interface PropertyDefinition {
     | 'manyToMany'
     | 'password'
     | 'relationship'
+    | 'secret'
     | 'smallint'
     | 'text'
     | 'timestamp'
@@ -268,9 +305,17 @@ export interface PropertyDefinition {
    */
   autoIncrement?: boolean;
   /**
-   * Set property as read only
+   * The system computes this property's value; the client never writes it, on any operation (create or update). Mutually exclusive with createOnly on the same property.
+   */
+  readOnly?: boolean;
+  /**
+   * Deprecated alias for readOnly. core-back no longer reads it; the CLI loader still accepts it and normalises it to readOnly when loading a YAML schema. Use readOnly instead.
    */
   readonly?: boolean;
+  /**
+   * The client chooses this property's value at creation and it is frozen afterwards: accepted on create, rejected on update. Does NOT belong here: a UI-only lock (use widget instead), a system-computed value (use readOnly instead), or a freeze conditioned on the record's state or a state machine (implement those by hand). Mutually exclusive with readOnly on the same property.
+   */
+  createOnly?: boolean;
   /**
    * Apply timezone to date property, by default is true
    */

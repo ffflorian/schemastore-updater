@@ -49,10 +49,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
      */
     orientation?:
       | unknown[]
-      | ('default' | 'portrait' | 'landscape')
+      | boolean
+      | number
       | {
           [k: string]: unknown | undefined;
         }
+      | ('default' | 'portrait' | 'landscape')
       | null;
     /**
      * Configuration to force the app to always use the light or dark user-interface appearance, such as "dark mode", or make it automatically adapt to the system preferences. If not provided, defaults to `light`.
@@ -91,10 +93,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
        */
       androidMode?:
         | unknown[]
-        | ('default' | 'collapse')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('default' | 'collapse')
         | null;
       /**
        * If `androidMode` is set to `collapse`, this title is used for the collapsed notification message. For example, `'#{unread_notifications} new interactions'`.
@@ -114,10 +118,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
        */
       exponentIconColor?:
         | unknown[]
-        | ('white' | 'blue')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('white' | 'blue')
         | null;
       /**
        * Similar to `exponentIconColor` but instead indicate if it should be grayscale (`1`) or not (`0`).
@@ -240,10 +246,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
        */
       checkAutomatically?:
         | unknown[]
-        | ('ON_ERROR_RECOVERY' | 'ON_LOAD')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('ON_ERROR_RECOVERY' | 'ON_LOAD')
         | null;
       /**
        * How long (in ms) to allow for fetching OTA updates before falling back to a cached version of the app. Defaults to 30000 (30 sec). Must be between 0 and 300000 (5 minutes).
@@ -400,10 +408,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
          */
         resizeMode?:
           | unknown[]
-          | ('cover' | 'contain')
+          | boolean
+          | number
           | {
               [k: string]: unknown | undefined;
             }
+          | ('cover' | 'contain')
           | null;
         /**
          * Local path or remote URL to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
@@ -589,10 +599,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
          */
         resizeMode?:
           | unknown[]
-          | ('cover' | 'contain' | 'native')
+          | boolean
+          | number
           | {
               [k: string]: unknown | undefined;
             }
+          | ('cover' | 'contain' | 'native')
           | null;
         /**
          * Local path or remote URL to an image to fill the background of the loading screen in "cover" mode. Image size and aspect ratio are up to you. [Learn more]( https://developer.android.com/training/multiscreen/screendensities)
@@ -821,10 +833,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
          */
         resizeMode?:
           | unknown[]
-          | ('cover' | 'contain')
+          | boolean
+          | number
           | {
               [k: string]: unknown | undefined;
             }
+          | ('cover' | 'contain')
           | null;
         /**
          * Local path or remote URL to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
@@ -898,10 +912,12 @@ export interface JSONSchemaForExpoSDK40AppManifest {
        */
       resizeMode?:
         | unknown[]
-        | ('cover' | 'contain')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('cover' | 'contain')
         | null;
       /**
        * Local path or remote URL to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.

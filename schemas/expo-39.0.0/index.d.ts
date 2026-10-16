@@ -43,9 +43,7 @@ export interface JSONSchemaForExpoSDK40AppManifest {
     /**
      * If you would like to share the source code of your app on GitHub, enter the URL for the repository here and it will be linked to from your Expo project page.
      */
-    githubUrl?: {
-      [k: string]: unknown | undefined;
-    };
+    githubUrl?: string;
     /**
      * Locks your app to a specific orientation with portrait or landscape. Defaults to no lock. Valid values: `default`, `portrait`, `landscape`
      */
@@ -231,12 +229,10 @@ export interface JSONSchemaForExpoSDK40AppManifest {
      */
     locales?: {
       [k: string]:
-        | (
-            | string
-            | {
-                [k: string]: unknown | undefined;
-              }
-          )
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
         | undefined;
     };
     /**
@@ -276,9 +272,7 @@ export interface JSONSchemaForExpoSDK40AppManifest {
       /**
        * URL to your app on the Apple App Store, if you have deployed it there. This is used to link to your store page from your Expo project page if your app is public.
        */
-      appStoreUrl?: {
-        [k: string]: unknown | undefined;
-      };
+      appStoreUrl?: string;
       /**
        * Note: This property key is not included in the production manifest and will evaluate to `undefined`. It is used internally only in the build process, because it contains API keys that some may want to keep private.
        */
@@ -459,9 +453,7 @@ export interface JSONSchemaForExpoSDK40AppManifest {
       /**
        * URL to your app on the Google Play Store, if you have deployed it there. This is used to link to your store page from your Expo project page if your app is public.
        */
-      playStoreUrl?: {
-        [k: string]: unknown | undefined;
-      };
+      playStoreUrl?: string;
       /**
        * List of permissions used by the standalone app.
        *

@@ -1,47 +1,6 @@
 /* eslint-disable */
 
-/**
- * Defines glob patterns and file path to include for compilation.
- */
-export type Compile = {
-  /**
-   * List of file globbing patterns to be included.
-   */
-  include?: string | string[];
-  /**
-   * List of file globbing patterns to be excluded.
-   */
-  exclude?: string | string[];
-  /**
-   * List of file paths to be included.
-   */
-  includeFiles?: string | string[];
-  /**
-   * List of file paths to be excluded.
-   */
-  excludeFiles?: string | string[];
-  builtIns?:
-    | string
-    | string[]
-    | {
-        /**
-         * List of file globbing patterns to be included.
-         */
-        include?: string | string[];
-        /**
-         * List of file globbing patterns to be included.
-         */
-        exclude?: string | string[];
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
-   */
-  mappings?: {
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-} & (
+export type PublishOptions = (
   | string
   | string[]
   | {
@@ -83,20 +42,12 @@ export type Compile = {
       };
       [k: string]: unknown | undefined;
     }
-);
-export type PublishOptions = Compile & {
+) & {
   [k: string]: unknown | undefined;
 };
 export type LibraryIncludeFlags = LibraryIncludeFlag | LibraryIncludeFlag[];
 export type LibraryIncludeFlag =
-  | 'all'
-  | 'runtime'
-  | 'compile'
-  | 'build'
-  | 'contentFiles'
-  | 'native'
-  | 'analyzers'
-  | 'none';
+  'all' | 'runtime' | 'compile' | 'build' | 'contentFiles' | 'native' | 'analyzers' | 'none';
 /**
  * A command line script or scripts.
 
@@ -281,7 +232,7 @@ export interface JSONSchemaForNETCoreProjectJsonFiles {
   repository?: {
     type?: 'git';
     url?: string;
-    [k: string]: string | undefined;
+    [k: string]: string | 'git' | undefined;
   };
   /**
    * Scripts to execute during the various stages.
@@ -307,13 +258,11 @@ export interface JSONSchemaForNETCoreProjectJsonFiles {
    */
   tools?: {
     [k: string]:
-      | (
-          | string
-          | {
-              version?: string;
-              [k: string]: unknown | undefined;
-            }
-        )
+      | string
+      | {
+          version?: string;
+          [k: string]: unknown | undefined;
+        }
       | undefined;
   };
   /**
@@ -369,11 +318,139 @@ export interface BuildOptions {
   preserveCompilationContext?: boolean;
   outputName?: string;
   compilerName?: string;
-  compile?: Compile;
-  embed?: Compile & {
+  /**
+   * Defines glob patterns and file path to include for compilation.
+   */
+  compile?:
+    | string
+    | string[]
+    | {
+        /**
+         * List of file globbing patterns to be included.
+         */
+        include?: string | string[];
+        /**
+         * List of file globbing patterns to be excluded.
+         */
+        exclude?: string | string[];
+        /**
+         * List of file paths to be included.
+         */
+        includeFiles?: string | string[];
+        /**
+         * List of file paths to be excluded.
+         */
+        excludeFiles?: string | string[];
+        builtIns?:
+          | string
+          | string[]
+          | {
+              /**
+               * List of file globbing patterns to be included.
+               */
+              include?: string | string[];
+              /**
+               * List of file globbing patterns to be included.
+               */
+              exclude?: string | string[];
+              [k: string]: unknown | undefined;
+            };
+        /**
+         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+         */
+        mappings?: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      };
+  embed?: (
+    | string
+    | string[]
+    | {
+        /**
+         * List of file globbing patterns to be included.
+         */
+        include?: string | string[];
+        /**
+         * List of file globbing patterns to be excluded.
+         */
+        exclude?: string | string[];
+        /**
+         * List of file paths to be included.
+         */
+        includeFiles?: string | string[];
+        /**
+         * List of file paths to be excluded.
+         */
+        excludeFiles?: string | string[];
+        builtIns?:
+          | string
+          | string[]
+          | {
+              /**
+               * List of file globbing patterns to be included.
+               */
+              include?: string | string[];
+              /**
+               * List of file globbing patterns to be included.
+               */
+              exclude?: string | string[];
+              [k: string]: unknown | undefined;
+            };
+        /**
+         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+         */
+        mappings?: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+  ) & {
     [k: string]: unknown | undefined;
   };
-  copyToOutput?: Compile & {
+  copyToOutput?: (
+    | string
+    | string[]
+    | {
+        /**
+         * List of file globbing patterns to be included.
+         */
+        include?: string | string[];
+        /**
+         * List of file globbing patterns to be excluded.
+         */
+        exclude?: string | string[];
+        /**
+         * List of file paths to be included.
+         */
+        includeFiles?: string | string[];
+        /**
+         * List of file paths to be excluded.
+         */
+        excludeFiles?: string | string[];
+        builtIns?:
+          | string
+          | string[]
+          | {
+              /**
+               * List of file globbing patterns to be included.
+               */
+              include?: string | string[];
+              /**
+               * List of file globbing patterns to be included.
+               */
+              exclude?: string | string[];
+              [k: string]: unknown | undefined;
+            };
+        /**
+         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+         */
+        mappings?: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+  ) & {
     [k: string]: unknown | undefined;
   };
   xmlDoc?: boolean;
@@ -418,9 +495,51 @@ export interface PackOptions {
   repository?: {
     type?: 'git';
     url?: string;
-    [k: string]: string | undefined;
+    [k: string]: string | 'git' | undefined;
   };
-  files?: Compile & {
+  files?: (
+    | string
+    | string[]
+    | {
+        /**
+         * List of file globbing patterns to be included.
+         */
+        include?: string | string[];
+        /**
+         * List of file globbing patterns to be excluded.
+         */
+        exclude?: string | string[];
+        /**
+         * List of file paths to be included.
+         */
+        includeFiles?: string | string[];
+        /**
+         * List of file paths to be excluded.
+         */
+        excludeFiles?: string | string[];
+        builtIns?:
+          | string
+          | string[]
+          | {
+              /**
+               * List of file globbing patterns to be included.
+               */
+              include?: string | string[];
+              /**
+               * List of file globbing patterns to be included.
+               */
+              exclude?: string | string[];
+              [k: string]: unknown | undefined;
+            };
+        /**
+         * Pairs of destination folders and glob patterns specifying additional files to include/exclude.
+         */
+        mappings?: {
+          [k: string]: unknown | undefined;
+        };
+        [k: string]: unknown | undefined;
+      }
+  ) & {
     [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
@@ -484,21 +603,19 @@ export interface RuntimeOptions {
  */
 export interface Dependencies {
   [k: string]:
-    | (
-        | string
-        | {
-            version?: string;
-            type?: 'default' | 'build' | 'platform';
-            /**
-             * Restrict this dependency to matching only a Project or a Package.
-             */
-            target?: 'project' | 'package';
-            include?: LibraryIncludeFlags;
-            exclude?: LibraryIncludeFlags;
-            suppressParent?: LibraryIncludeFlags;
-            [k: string]: unknown | undefined;
-          }
-      )
+    | string
+    | {
+        version?: string;
+        type?: 'default' | 'build' | 'platform';
+        /**
+         * Restrict this dependency to matching only a Project or a Package.
+         */
+        target?: 'project' | 'package';
+        include?: LibraryIncludeFlags;
+        exclude?: LibraryIncludeFlags;
+        suppressParent?: LibraryIncludeFlags;
+        [k: string]: unknown | undefined;
+      }
     | undefined;
 }
 export interface ConfigType {
