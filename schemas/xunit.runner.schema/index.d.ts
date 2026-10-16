@@ -49,7 +49,7 @@ export interface XUnitNetRunnerConfiguration {
    */
   methodDisplay?: 'method' | 'classAndMethod';
   /**
-   * Configures one or more automatic transformations of test names. Flag names should be combined with a comma (i.e., flag1,flag2). Valid flags are: 'replaceUnderscoreWithSpace', 'useOperatorMonikers', 'useEscapeSequences', 'replacePeriodWithComma'. There are special flags named 'all' and 'none'.
+   * Configures one or more automatic transformations of test names. Flag names should be combined with a comma (i.e., flag1,flag2). Valid flags are: 'replaceUnderscoreWithSpace', 'useOperatorMonikers', 'useEscapeSequences', 'replacePeriodWithComma', 'removeAsyncSuffix'. There are special flags named 'all' and 'none'.
    */
   methodDisplayOptions?: string;
   /**
@@ -64,6 +64,10 @@ export interface XUnitNetRunnerConfiguration {
    * Enables or disables tests inside this assembly from running in parallel against each other. Tests in the same test collection will be run sequentially against each other, but tests in different test collections will be run in parallel against each other.
    */
   parallelizeTestCollections?: boolean;
+  /**
+   * Sets the default intra-test assembly parallelism mode. Valid values are 'off' (no parallelism), 'collections' (parallelize tests collections), and 'all' (parallelize all tests). For more information: https://xunit.net/docs/running-tests-in-parallel#parallelism-in-test-frameworks
+   */
+  parallelMode?: 'off' | 'collections' | 'all';
   /**
    * Enables or disables pre-enumerate of theories so that there is an individual test case for each theory data row. Set this to 'false' to return a single test case for each theory without pre-enumerating the data ahead of time; set this to 'true' to attempt to pre-enumerate each theory row when possible.
    */
@@ -96,6 +100,10 @@ export interface XUnitNetRunnerConfiguration {
    * Enables or disables showing output from ITestOutputHelper live during the test run (in addition to showing them after the test has completed).
    */
   showLiveOutput?: boolean;
+  /**
+   * The number of seconds to wait for foreground threads to shut down before failing the test run. Defaults to 10. Must be a positive integer value greater than 0.
+   */
+  shutdownForegroundThreadWaitSeconds?: number;
   /**
    * Enable or disable stopping running further tests once a failed test has been recorded.
    */

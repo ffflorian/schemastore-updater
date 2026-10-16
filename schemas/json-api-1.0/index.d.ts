@@ -76,7 +76,8 @@ export interface Attributes {
     | {
         [k: string]: unknown | undefined;
       }
-    | string;
+    | string
+    | undefined;
 }
 /**
  * Members of the relationships object ("relationships") represent references from the resource object in which it's defined to other resource objects.
@@ -101,7 +102,8 @@ export interface Relationships {
     | {
         links: Links;
         [k: string]: unknown | undefined;
-      };
+      }
+    | undefined;
 }
 /**
  * The "type" and "id" to non-empty members.

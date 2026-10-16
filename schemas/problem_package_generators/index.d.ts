@@ -1,11 +1,16 @@
 /* eslint-disable */
 
 /**
- * Paths are separated by /,  they may start with (but not end with) /.
- * Paths can both refer to objects like the test group "data/secret/huge" or
- * a program file like "/submissions/accepted/x.cpp"
+ * Paths are /-separated sequences of names, optionally rooted at the package root (a leading
+ * /). #path is the general grammar; #relative_path and #absolute_path specialize it to one or
+ * the other for contexts where only one is legal.
  */
 export type Path = string;
+/**
+ * A named subdivision of `secret`, nested to any depth, such as "secret/group1" or
+ * "secret/group1/sub". Never bare "secret" itself -- secret may only depend on sample
+ * (via the separate "sample" literal in require_pass below), never on itself.
+ */
 export type TestDataGroup = string;
 export type TestCase =
   | Command
@@ -32,7 +37,7 @@ export type TestCase =
       copy?: string;
       count: (number | number[] | string) & number[];
       /**
-       * Create this testcase by invoking a generator, like "generate: gen_tree -n 5"
+       * Create this test case by invoking a generator, like "generate: gen_tree -n 5"
        */
       generate?: string;
       /**
@@ -51,7 +56,7 @@ export type TestCase =
           };
       interaction?: string;
       /**
-       * Check that the generated testcase matches the given regex pattern(s).
+       * Check that the generated test case matches the given regex pattern(s).
        */
       match?:
         | string
@@ -82,21 +87,21 @@ export type TestCase =
     };
 export type Command = string;
 /**
- * Paths are separated by /,  they may start with (but not end with) /.
- * Paths can both refer to objects like the test group "data/secret/huge" or
- * a program file like "/submissions/accepted/x.cpp"
+ * Paths are /-separated sequences of names, optionally rooted at the package root (a leading
+ * /). #path is the general grammar; #relative_path and #absolute_path specialize it to one or
+ * the other for contexts where only one is legal.
  */
 export type RelativePath = string;
 
 export interface ProblemPackageGenerators {
   data: {
     fuzz?: TestGroup;
-    invalid_answer?: TestGroup2;
-    invalid_input?: TestGroup3;
-    invalid_output?: TestGroup4;
-    sample: TestGroup5;
-    secret: TestGroup6;
-    valid_output?: TestGroup7;
+    invalid_answer?: TestGroup;
+    invalid_input?: TestGroup;
+    invalid_output?: TestGroup;
+    sample: TestGroup;
+    secret: TestGroup;
+    valid_output?: TestGroup;
   };
   /**
    * Generators are named like files or test cases, like "tree.py" or "a".
@@ -108,9 +113,7 @@ export interface ProblemPackageGenerators {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,254}$".
      */
-    [k: string]: {
-      [k: string]: unknown | undefined;
-    } & [RelativePath, ...RelativePath[]];
+    [k: string]: [RelativePath, ...RelativePath[]] | undefined;
   };
   /**
    * A string that is be prepended to each command before computing its {seed}.
@@ -157,203 +160,25 @@ export interface DataDict {
    * This interface was referenced by `DataDict`'s JSON-Schema definition
    * via the `patternProperty` "^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,254}$".
    */
-  [k: string]: TestGroup1 | TestCase;
+  [k: string]: TestGroup | TestCase | undefined;
 }
-export interface TestGroup1 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
-}
+/**
+ * Configuration for test_group.yaml (2025-09 format only -- legacy uses testdata.yaml,
+ * #testdata_configuration, with an unrelated set of keys).
+ */
 export interface TestGroupConfiguration {
-  answer_validator_args?:
-    | string[]
-    | {
-        [k: string]: string[] | undefined;
-      };
-  args?: string[];
-  full_feedback?: boolean;
-  input_validator_args?:
-    | string[]
-    | {
-        [k: string]: string[] | undefined;
-      };
-  input_visualizer_args?: string[];
   max_score?: number | 'unbounded';
-  output_validator_args?: string[];
-  output_visualizer_args?: string[];
   require_pass?: 'sample' | TestDataGroup | ('sample' | TestDataGroup)[];
   score_aggregation?: 'pass-fail' | 'sum' | 'min';
   static_validation_score?: number | 'pass-fail';
 }
+/**
+ * Test data configuration
+ */
 export interface TestCaseConfiguration {
-  answer_validator_args?:
-    | string[]
-    | {
-        [k: string]: string[] | undefined;
-      };
-  args?: string[];
   description?: string;
-  full_feedback?: boolean;
   hint?: string;
-  input_validator_args?:
-    | string[]
-    | {
-        [k: string]: string[] | undefined;
-      };
-  input_visualizer_args?: string[];
-  output_validator_args?: string[];
-  output_visualizer_args?: string[];
 }
 export interface DataList {
   [k: string]: unknown | undefined;
-}
-/**
- * Invalid answer files that are used to test answer validation
- */
-export interface TestGroup2 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
-}
-/**
- * Invalid input files that are used to test input validation
- */
-export interface TestGroup3 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
-}
-/**
- * Files that describe invalid outputs for non-interactive problems.
- * They consist of three files. The input file tc.in, which must contain valid input. The output file tc.out
- * must fail output validation with the given answer file tc.ans.
- */
-export interface TestGroup4 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
-}
-/**
- * Test cases that are shared with solvers as part of the problem statement.
- */
-export interface TestGroup5 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
-}
-/**
- * Test cases that are not with solvers.
- */
-export interface TestGroup6 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
-}
-/**
- * Files that describe valid outputs for non-interactive problems. They consist of three files.
- *  The input file tc.in, which must contain valid input. The output file tc.out must pass output
- * validation with the given answer file tc.ans
- */
-export interface TestGroup7 {
-  data?: DataDict | DataList[];
-  include?: Path[];
-  /**
-   * A string that is be prepended to each command before computing its {seed}.
-   * May be used to regenerate all random cases and to prevent predictable seeds.
-   */
-  random_salt?: string;
-  /**
-   * The maximum number of invocation that will be tried if the generator fails.
-   * Each generator invocation uses a different value for {seed}.
-   */
-  retries?: number;
-  /**
-   * A model solution used for generating answer files, like "/submissions/accepted/intended.py"
-   */
-  solution?: string;
-  'test_group.yaml'?: TestGroupConfiguration;
 }

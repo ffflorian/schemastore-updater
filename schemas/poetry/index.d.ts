@@ -44,16 +44,13 @@ export type PoetryPackageFormat = 'sdist' | 'wheel';
  * via the `patternProperty` "^[a-zA-Z-_.0-9]+$".
  */
 export type PoetryDependencyAny =
-  | (
-      | PoetryPep440Version
-      | PoetryLongDependency
-      | PoetryGitDependency
-      | PoetryFileDependency
-      | PoetryPathDependency
-      | PoetryUrlDependency
-      | PoetryMultipleConstraintsDependency
-    )
-  | undefined;
+  | PoetryPep440Version
+  | PoetryLongDependency
+  | PoetryGitDependency
+  | PoetryFileDependency
+  | PoetryPathDependency
+  | PoetryUrlDependency
+  | PoetryMultipleConstraintsDependency;
 /**
  * A version constraint. Validates against the PEP 440's version pattern.
  */
@@ -98,6 +95,9 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
   name?: PoetryName;
   version?: PoetryVersion;
   description?: PoetryDescription;
+  /**
+   * Items: A tag/keyword that this package relates to.
+   */
   keywords?: string[];
   /**
    * Homepage URL for the project.
@@ -124,6 +124,8 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
   classifiers?: string[];
   /**
    * A list of packages to include in the final distribution.
+   *
+   * Items: Information about where the package resides.
    */
   packages?: {
     include: PoetryIncludePath;
@@ -159,7 +161,7 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
      * A version constraint. Validates against the PEP 440's version pattern.
      */
     python?: string;
-    [k: string]: PoetryDependencyAny | undefined;
+    [k: string]: PoetryDependencyAny | string | undefined;
   };
   /**
    * This is a hash of package name (keys) and version constraints (values) that this package requires for developing it (testing tools and such).
@@ -172,7 +174,7 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z-_.0-9]+$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * This represents groups of dependencies
@@ -184,18 +186,20 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z-_.0-9]+$".
      */
-    [k: string]: {
-      /**
-       * Whether the dependency group is optional or not
-       */
-      optional?: boolean;
-      /**
-       * The dependencies of this dependency group
-       */
-      dependencies: {
-        [k: string]: PoetryDependencyAny | undefined;
-      };
-    };
+    [k: string]:
+      | {
+          /**
+           * Whether the dependency group is optional or not
+           */
+          optional?: boolean;
+          /**
+           * The dependencies of this dependency group
+           */
+          dependencies: {
+            [k: string]: PoetryDependencyAny | undefined;
+          };
+        }
+      | undefined;
   };
   build?: PoetryBuildSection;
   /**
@@ -206,12 +210,41 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z-_.0-9]+$".
      */
-    [k: string]: PoetryScriptLegacy | PoetryScriptTable;
+    [k: string]: PoetryScriptLegacy | PoetryScriptTable | undefined;
   };
   /**
    * A hash of hashes representing plugins
    */
-  plugins?: {};
+  plugins?: {
+    /**
+     * Configuration for the poetry-plugin-dotenv
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^dotenv$".
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^[a-zA-Z-_.0-9]+$".
+     */
+    [k: string]:
+      | {
+          /**
+           * Flag that prevents the plugin from loading the dotenv file.
+           */
+          ignore?: string;
+          /**
+           * Path to the dotenv file. It can be both absolute or relative.
+           */
+          location?: string;
+        }
+      | {
+          /**
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` "^[a-zA-Z-_.0-9]+$".
+           */
+          [k: string]: string | undefined;
+        }
+      | undefined;
+  };
   urls?: {
     /**
      * The full url of the custom url.
@@ -219,7 +252,7 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.+$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   source?: (
     | {
@@ -236,9 +269,7 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
         /**
          * The name of the source.
          */
-        name: string & {
-          [k: string]: unknown | undefined;
-        };
+        name: string;
         /**
          * The url of the source.
          */
@@ -252,7 +283,7 @@ export interface HttpsJsonSchemastoreOrgPoetryJson {
   [k: string]: unknown | undefined;
 }
 export interface PoetryLongDependency {
-  version: PoetryPep440Version;
+  version?: PoetryPep440Version;
   /**
    * The python versions for which the dependency should be installed.
    */

@@ -14,7 +14,7 @@ export type CasesToTest = {
   request_body?: RequestBody;
   provider_data?: ProviderDatas;
   set_up?: ReadyData;
-  tear_down?: ReadyData1;
+  tear_down?: ReadyData;
   [k: string]: unknown | undefined;
 }[];
 
@@ -58,11 +58,6 @@ export interface ProviderData {
   [k: string]: unknown | undefined;
 }
 export interface ReadyData {
-  type?: string;
-  content?: string;
-  [k: string]: unknown | undefined;
-}
-export interface ReadyData1 {
   type?: string;
   content?: string;
   [k: string]: unknown | undefined;

@@ -1,578 +1,5 @@
 /* eslint-disable */
 
-export type JSONSchemaForNPMPackageJsonFiles = {
-  [k: string]: unknown | undefined;
-} & {
-  /**
-   * The name of the package.
-   */
-  name?: string;
-  /**
-   * Version must be parsable by node-semver, which is bundled with npm as a dependency.
-   */
-  version?: string;
-  /**
-   * This helps people discover your package, as it's listed in 'npm search'.
-   */
-  description?: string;
-  /**
-   * This helps people discover your package as it's listed in 'npm search'.
-   */
-  keywords?: string[];
-  /**
-   * The url to the project homepage.
-   */
-  homepage?: string;
-  /**
-   * The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.
-   */
-  bugs?:
-    | {
-        /**
-         * The url to your project's issue tracker.
-         */
-        url?: string;
-        /**
-         * The email address to which issues should be reported.
-         */
-        email?: string;
-        [k: string]: unknown | undefined;
-      }
-    | string;
-  /**
-   * You should specify a license for your package so that people know how they are permitted to use it, and any restrictions you're placing on it.
-   */
-  license?:
-    | string
-    | (
-        | 'AGPL-3.0-only'
-        | 'Apache-2.0'
-        | 'BSD-2-Clause'
-        | 'BSD-3-Clause'
-        | 'BSL-1.0'
-        | 'CC0-1.0'
-        | 'CDDL-1.0'
-        | 'CDDL-1.1'
-        | 'EPL-1.0'
-        | 'EPL-2.0'
-        | 'GPL-2.0-only'
-        | 'GPL-3.0-only'
-        | 'ISC'
-        | 'LGPL-2.0-only'
-        | 'LGPL-2.1-only'
-        | 'LGPL-2.1-or-later'
-        | 'LGPL-3.0-only'
-        | 'LGPL-3.0-or-later'
-        | 'MIT'
-        | 'MPL-2.0'
-        | 'MS-PL'
-        | 'UNLICENSED'
-      );
-  /**
-   * DEPRECATED: Instead, use SPDX expressions, like this: { "license": "ISC" } or { "license": "(MIT OR Apache-2.0)" } see: 'https://docs.npmjs.com/files/package.json#license'.
-   */
-  licenses?: {
-    type?: License;
-    url?: string;
-    [k: string]: unknown | undefined;
-  }[];
-  author?: Person;
-  /**
-   * A list of people who contributed to this package.
-   */
-  contributors?: Person[];
-  /**
-   * A list of people who maintains this package.
-   */
-  maintainers?: Person[];
-  /**
-   * The 'files' field is an array of files to include in your project. If you name a folder in the array, then it will also include the files inside that folder.
-   */
-  files?: string[];
-  /**
-   * The main field is a module ID that is the primary entry point to your program.
-   */
-  main?: string;
-  /**
-   * The "exports" field is used to restrict external access to non-exported module files, also enables a module to import itself using "name".
-   */
-  exports?:
-    | (string | null)
-    | {
-        /**
-         * The module path that is resolved when the module specifier matches "name", shadows the "main" field.
-         */
-        '.'?: PackageExportsEntry | PackageExportsFallback;
-        /**
-         * The module path prefix that is resolved when the module specifier starts with "name/", set to "./*" to allow external modules to import any subpath.
-         *
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "^\./.+".
-         */
-        [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
-      }
-    | PackageExportsEntryObject1
-    | PackageExportsFallback;
-  /**
-   * The "imports" field is used to create private mappings that only apply to import specifiers from within the package itself.
-   */
-  imports?: {
-    /**
-     * The module path that is resolved when this environment matches the property name.
-     *
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "^#.+$".
-     */
-    [k: string]: PackageImportsEntry | PackageImportsFallback;
-  };
-  bin?:
-    | string
-    | {
-        [k: string]: string | undefined;
-      };
-  /**
-   * When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
-   */
-  type?: 'commonjs' | 'module';
-  /**
-   * Set the types property to point to your bundled declaration file.
-   */
-  types?: string;
-  /**
-   * Note that the "typings" field is synonymous with "types", and could be used as well.
-   */
-  typings?: string;
-  /**
-   * The "typesVersions" field is used since TypeScript 3.1 to support features that were only made available in newer TypeScript versions.
-   */
-  typesVersions?: {
-    /**
-     * Contains overrides for the TypeScript version that matches the version range matching the property key.
-     */
-    [k: string]:
-      | {
-          /**
-           * Maps all file paths to the file paths specified in the array.
-           */
-          '*'?: string[];
-        }
-      | undefined;
-  };
-  /**
-   * Specify either a single file or an array of filenames to put in place for the man program to find.
-   */
-  man?: string[] | string;
-  directories?: {
-    /**
-     * If you specify a 'bin' directory, then all the files in that folder will be used as the 'bin' hash.
-     */
-    bin?: string;
-    /**
-     * Put markdown files in here. Eventually, these will be displayed nicely, maybe, someday.
-     */
-    doc?: string;
-    /**
-     * Put example scripts in here. Someday, it might be exposed in some clever way.
-     */
-    example?: string;
-    /**
-     * Tell people where the bulk of your library is. Nothing special is done with the lib folder in any way, but it's useful meta info.
-     */
-    lib?: string;
-    /**
-     * A folder that is full of man pages. Sugar to generate a 'man' array by walking the folder.
-     */
-    man?: string;
-    test?: string;
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Specify the place where your code lives. This is helpful for people who want to contribute.
-   */
-  repository?:
-    | {
-        type?: string;
-        url?: string;
-        directory?: string;
-        [k: string]: unknown | undefined;
-      }
-    | string;
-  funding?: FundingUrl | FundingWay | [FundingUrl | FundingWay, ...(FundingUrl | FundingWay)[]];
-  /**
-   * The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.
-   */
-  scripts?: {
-    /**
-     * Run code quality tools, e.g. ESLint, TSLint, etc.
-     */
-    lint?: string;
-    /**
-     * Run BEFORE the package is published (Also run on local npm install without any arguments).
-     */
-    prepublish?: string;
-    /**
-     * Runs BEFORE the package is packed, i.e. during "npm publish" and "npm pack", and on local "npm install" without any arguments. This is run AFTER "prepublish", but BEFORE "prepublishOnly".
-     */
-    prepare?: string;
-    /**
-     * Run BEFORE the package is prepared and packed, ONLY on npm publish.
-     */
-    prepublishOnly?: string;
-    /**
-     * run BEFORE a tarball is packed (on npm pack, npm publish, and when installing git dependencies).
-     */
-    prepack?: string;
-    /**
-     * Run AFTER the tarball has been generated and moved to its final destination.
-     */
-    postpack?: string;
-    /**
-     * Publishes a package to the registry so that it can be installed by name. See https://docs.npmjs.com/cli/v8/commands/npm-publish
-     */
-    publish?: string;
-    postpublish?: ScriptsPublishAfter;
-    /**
-     * Run BEFORE the package is installed.
-     */
-    preinstall?: string;
-    install?: ScriptsInstallAfter;
-    postinstall?: ScriptsInstallAfter;
-    preuninstall?: ScriptsUninstallBefore;
-    uninstall?: ScriptsUninstallBefore;
-    /**
-     * Run AFTER the package is uninstalled.
-     */
-    postuninstall?: string;
-    preversion?: ScriptsVersionBefore;
-    version?: ScriptsVersionBefore;
-    /**
-     * Run AFTER bump the package version.
-     */
-    postversion?: string;
-    pretest?: ScriptsTest;
-    test?: ScriptsTest;
-    posttest?: ScriptsTest;
-    prestop?: ScriptsStop;
-    stop?: ScriptsStop;
-    poststop?: ScriptsStop;
-    prestart?: ScriptsStart;
-    start?: ScriptsStart;
-    poststart?: ScriptsStart;
-    prerestart?: ScriptsRestart;
-    restart?: ScriptsRestart;
-    postrestart?: ScriptsRestart;
-    /**
-     * Start dev server to serve application files
-     */
-    serve?: string;
-    [k: string]: string | undefined | undefined;
-  };
-  /**
-   * A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.
-   */
-  config?: {
-    [k: string]: unknown | undefined;
-  };
-  dependencies?: Dependency;
-  devDependencies?: DevDependency;
-  optionalDependencies?: OptionalDependency;
-  peerDependencies?: PeerDependency;
-  peerDependenciesMeta?: PeerDependencyMeta;
-  /**
-   * Array of package names that will be bundled when publishing the package.
-   */
-  bundleDependencies?: string[] | boolean;
-  /**
-   * DEPRECATED: This field is honored, but "bundleDependencies" is the correct field name.
-   */
-  bundledDependencies?: string[] | boolean;
-  /**
-   * Resolutions is used to support selective version resolutions using yarn, which lets you define custom package versions or ranges inside your dependencies. For npm, use overrides instead. See: https://yarnpkg.com/configuration/manifest#resolutions
-   */
-  resolutions?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Overrides is used to support selective version overrides using npm, which lets you define custom package versions or ranges inside your dependencies. For yarn, use resolutions instead. See: https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides
-   */
-  overrides?: {
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html
-   */
-  packageManager?: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | 'bun'
-  ) &
-    string;
-  engines?: {
-    node?: string;
-    [k: string]: string | undefined;
-  };
-  /**
-   * Defines which tools and versions are expected to be used when Volta is installed.
-   */
-  volta?: {
-    /**
-     * The value of that entry should be a path to another JSON file which also has a "volta" section
-     */
-    extends?: string;
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "(node|npm|pnpm|yarn)".
-     */
-    [k: string]: string | undefined;
-  };
-  engineStrict?: boolean;
-  /**
-   * Specify which operating systems your module will run on.
-   */
-  os?: string[];
-  /**
-   * Specify that your code only runs on certain cpu architectures.
-   */
-  cpu?: string[];
-  /**
-   * Define the runtime and package manager for developing the current project.
-   */
-  devEngines?: {
-    /**
-     * Specifies which operating systems are supported for development
-     */
-    os?: DevEngineDependency | DevEngineDependency[];
-    /**
-     * Specifies which CPU architectures are supported for development
-     */
-    cpu?: DevEngineDependency | DevEngineDependency[];
-    /**
-     * Specifies which C standard libraries are supported for development
-     */
-    libc?: DevEngineDependency | DevEngineDependency[];
-    /**
-     * Specifies which JavaScript runtimes (like Node.js, Deno, Bun) are supported for development. Values should use WinterCG Runtime Keys (see https://runtime-keys.proposal.wintercg.org/)
-     */
-    runtime?: DevEngineDependency | DevEngineDependency[];
-    /**
-     * Specifies which package managers are supported for development
-     */
-    packageManager?: DevEngineDependency | DevEngineDependency[];
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * DEPRECATED: This option used to trigger an npm warning, but it will no longer warn. It is purely there for informational purposes. It is now recommended that you install any binaries as local devDependencies wherever possible.
-   */
-  preferGlobal?: boolean;
-  /**
-   * If set to true, then npm will refuse to publish it.
-   */
-  private?: boolean | ('false' | 'true');
-  publishConfig?: {
-    access?: 'public' | 'restricted';
-    tag?: string;
-    registry?: string;
-    provenance?: boolean;
-    [k: string]: unknown | undefined;
-  };
-  dist?: {
-    shasum?: string;
-    tarball?: string;
-    [k: string]: unknown | undefined;
-  };
-  readme?: string;
-  /**
-   * An ECMAScript module ID that is the primary entry point to your program.
-   */
-  module?: string;
-  /**
-   * A module ID with untranspiled code that is the primary entry point to your program.
-   */
-  esnext?:
-    | string
-    | {
-        main?: string;
-        browser?: string;
-        [k: string]: string | undefined;
-      };
-  /**
-   * Allows packages within a directory to depend on one another using direct linking of local files. Additionally, dependencies within a workspace are hoisted to the workspace root when possible to reduce duplication. Note: It's also a good idea to set "private" to true when using this feature.
-   */
-  workspaces?:
-    | string[]
-    | {
-        /**
-         * Workspace package paths. Glob patterns are supported.
-         */
-        packages?: string[];
-        /**
-         * Packages to block from hoisting to the workspace root. Currently only supported in Yarn only.
-         */
-        nohoist?: string[];
-        [k: string]: unknown | undefined;
-      };
-  jspm?: JSONSchemaForNPMPackageJsonFiles;
-  eslintConfig?: JSONSchemaForESLintConfigurationFiles;
-  prettier?: SchemaForPrettierrc;
-  stylelint?: JSONSchemaForTheStylelintConfigurationFiles;
-  ava?: AVAConfigSchema;
-  release?: SemanticReleaseSchema;
-  jscpd?: HttpsJsonSchemastoreOrgJscpdJson;
-  nodemonConfig?: JSONSchemaForNodemonConfig;
-  /**
-   * Defines pnpm specific configuration.
-   */
-  pnpm?: {
-    /**
-     * Used to override any dependency in the dependency graph.
-     */
-    overrides?: {
-      [k: string]: unknown | undefined;
-    };
-    /**
-     * Used to extend the existing package definitions with additional information.
-     */
-    packageExtensions?: {
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "^.+$".
-       */
-      [k: string]: {
-        dependencies?: Dependency;
-        optionalDependencies?: OptionalDependency;
-        peerDependencies?: PeerDependency;
-        peerDependenciesMeta?: PeerDependencyMeta;
-      };
-    };
-    peerDependencyRules?: {
-      /**
-       * pnpm will not print warnings about missing peer dependencies from this list.
-       */
-      ignoreMissing?: string[];
-      /**
-       * Unmet peer dependency warnings will not be printed for peer dependencies of the specified range.
-       */
-      allowedVersions?: {
-        [k: string]: unknown | undefined;
-      };
-      /**
-       * Any peer dependency matching the pattern will be resolved from any version, regardless of the range specified in "peerDependencies".
-       */
-      allowAny?: string[];
-    };
-    /**
-     * A list of dependencies to run builds for.
-     */
-    neverBuiltDependencies?: string[];
-    /**
-     * A list of package names that are allowed to be executed during installation.
-     */
-    onlyBuiltDependencies?: string[];
-    /**
-     * Specifies a JSON file that lists the only packages permitted to run installation scripts during the pnpm install process.
-     */
-    onlyBuiltDependenciesFile?: string;
-    /**
-     * A list of package names that should not be built during installation.
-     */
-    ignoredBuiltDependencies?: string[];
-    /**
-     * A list of deprecated versions that the warnings are suppressed.
-     */
-    allowedDeprecatedVersions?: {
-      [k: string]: unknown | undefined;
-    };
-    /**
-     * A list of dependencies that are patched.
-     */
-    patchedDependencies?: {
-      [k: string]: unknown | undefined;
-    };
-    /**
-     * When true, installation won't fail if some of the patches from the "patchedDependencies" field were not applied.
-     */
-    allowNonAppliedPatches?: boolean;
-    /**
-     * When true, installation won't fail if some of the patches from the "patchedDependencies" field were not applied.
-     */
-    allowUnusedPatches?: boolean;
-    updateConfig?: {
-      /**
-       * A list of packages that should be ignored when running "pnpm outdated" or "pnpm update --latest".
-       */
-      ignoreDependencies?: string[];
-    };
-    /**
-     * Configurational dependencies are installed before all the other types of dependencies (before 'dependencies', 'devDependencies', 'optionalDependencies').
-     */
-    configDependencies?: {
-      [k: string]: unknown | undefined;
-    };
-    auditConfig?: {
-      /**
-       * A list of CVE IDs that will be ignored by "pnpm audit".
-       */
-      ignoreCves?: string[];
-      /**
-       * A list of GHSA Codes that will be ignored by "pnpm audit".
-       */
-      ignoreGhsas?: string[];
-    };
-    /**
-     * A list of scripts that must exist in each project.
-     */
-    requiredScripts?: string[];
-    /**
-     * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.
-     */
-    supportedArchitectures?: {
-      os?: string[];
-      cpu?: string[];
-      libc?: string[];
-    };
-    /**
-     * A list of optional dependencies that the install should be skipped.
-     */
-    ignoredOptionalDependencies?: string[];
-    executionEnv?: {
-      /**
-       * Specifies which exact Node.js version should be used for the project's runtime.
-       */
-      nodeVersion?: string;
-    };
-  };
-  /**
-   * Defines the StackBlitz configuration for the project.
-   */
-  stackblitz?: {
-    /**
-     * StackBlitz automatically installs npm dependencies when opening a project.
-     */
-    installDependencies?: boolean;
-    /**
-     * A terminal command to be executed when opening the project, after installing npm dependencies.
-     */
-    startCommand?: string | boolean;
-    /**
-     * The compileTrigger option controls how file changes in the editor are written to the WebContainers in-memory filesystem.
-     */
-    compileTrigger?: 'auto' | 'keystroke' | 'save';
-    /**
-     * A map of default environment variables that will be set in each top-level shell process.
-     */
-    env?: {
-      [k: string]: unknown | undefined;
-    };
-  };
-  /**
-   * Any property starting with _ is valid.
-   *
-   * This interface was referenced by `undefined`'s JSON-Schema definition
-   * via the `patternProperty` "^_".
-   */
-  [k: string]: any | undefined;
-};
 export type License =
   | string
   | (
@@ -602,13 +29,7 @@ export type License =
 /**
  * A person who has been involved in creating or maintaining this package.
  */
-export type Person = {
-  name: string;
-  url?: string;
-  email?: string;
-  [k: string]: unknown | undefined;
-} & Person1;
-export type Person1 =
+export type Person =
   | {
       name: string;
       url?: string;
@@ -721,7 +142,11 @@ export type SchemaForPrettierrc = (OptionsDefinition & OverridesDefinition) | st
  * Your configuration can extend an existing configuration(s) (whether your own or a third-party config)
  */
 export type SimpleStringOrArrayStringRule = (string | SimpleArrayStringRule) &
-  (((string | SimpleArrayStringRule) & string) | ((string | SimpleArrayStringRule) & unknown[]));
+  (string | unknown[]);
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema definition
+ * via the `patternProperty` "(em|ex|ch|vw|vh|cm|mm|in|pt|pc|px|rem|vmin|vmax|%)".
+ */
 export type SimpleArrayStringRule = string[];
 export type AllRules = AtRule &
   Block &
@@ -759,26 +184,12 @@ export type AllRules = AtRule &
 export type ArrayStringRule = (
   | (null | string)
   | [
-      (([] | {}) | SimpleArrayStringRule | CoreRule) &
-        (
-          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-          | (([] | {}) | SimpleArrayStringRule | CoreRule)
-        ) &
-        (([] | {}) | SimpleArrayStringRule | CoreRule) &
-        (
+      (([] | {}) | SimpleArrayStringRule | CoreRule) & (
           | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
           | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
           | (([] | {}) | SimpleArrayStringRule | CoreRule)
         ),
-      ...((([] | {}) | SimpleArrayStringRule | CoreRule) &
-        (
-          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-          | (([] | {}) | SimpleArrayStringRule | CoreRule)
-        ) &
-        (([] | {}) | SimpleArrayStringRule | CoreRule) &
-        (
+      ...((([] | {}) | SimpleArrayStringRule | CoreRule) & (
           | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
           | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
           | (([] | {}) | SimpleArrayStringRule | CoreRule)
@@ -786,96 +197,7 @@ export type ArrayStringRule = (
     ]
 ) &
   (
-    | (null &
-        (
-          | (null | string)
-          | [
-              (([] | {}) | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (([] | {}) | SimpleArrayStringRule | CoreRule)
-                ) &
-                (([] | {}) | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (([] | {}) | SimpleArrayStringRule | CoreRule)
-                ),
-              ...((([] | {}) | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (([] | {}) | SimpleArrayStringRule | CoreRule)
-                ) &
-                (([] | {}) | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                  | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (([] | {}) | SimpleArrayStringRule | CoreRule)
-                ))[]
-            ]
-        ))
-    | ((
-        | (null | string)
-        | [
-            (([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ) &
-              (([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ),
-            ...((([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ) &
-              (([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ))[]
-          ]
-      ) &
-        string)
-    | ((
-        | (null | string)
-        | [
-            (([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ) &
-              (([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ),
-            ...((([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ) &
-              (([] | {}) | SimpleArrayStringRule | CoreRule) &
-              (
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
-                | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
-                | (([] | {}) | SimpleArrayStringRule | CoreRule)
-              ))[]
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Specify lowercase or uppercase for at-rules names
@@ -884,62 +206,12 @@ export type LowerUpperRule = (
   | null
   | ('lower' | 'upper' | [])
   | [
-      (('lower' | 'upper' | {}) | CoreRule) &
-        (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-        (('lower' | 'upper' | {}) | CoreRule) &
-        (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-      (('lower' | 'upper' | {}) | CoreRule) &
-        (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-        (('lower' | 'upper' | {}) | CoreRule) &
-        (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
+      (('lower' | 'upper' | {}) | CoreRule) & (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
+      (('lower' | 'upper' | {}) | CoreRule) & (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | ('lower' | 'upper' | [])
-          | [
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-            ]
-        ))
-    | ((
-        | null
-        | ('lower' | 'upper' | [])
-        | [
-            (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-              (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-            (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-              (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | ('lower' | 'upper' | [])
-        | [
-            (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-              (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-            (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-              (('lower' | 'upper' | {}) | CoreRule) &
-              (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Require a newline after at-rule names
@@ -948,110 +220,18 @@ export type AlwaysMultiLineRule = (
   | null
   | ('always' | 'always-multi-line' | [])
   | [
-      (('always' | 'always-multi-line' | {}) | CoreRule) &
-        (
-          | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-          | (('always' | 'always-multi-line' | {}) | CoreRule)
-        ) &
-        (('always' | 'always-multi-line' | {}) | CoreRule) &
-        (
+      (('always' | 'always-multi-line' | {}) | CoreRule) & (
           | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
           | (('always' | 'always-multi-line' | {}) | CoreRule)
         ),
-      (('always' | 'always-multi-line' | {}) | CoreRule) &
-        (
-          | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-          | (('always' | 'always-multi-line' | {}) | CoreRule)
-        ) &
-        (('always' | 'always-multi-line' | {}) | CoreRule) &
-        (
+      (('always' | 'always-multi-line' | {}) | CoreRule) & (
           | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
           | (('always' | 'always-multi-line' | {}) | CoreRule)
         )
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | ('always' | 'always-multi-line' | [])
-          | [
-              (('always' | 'always-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | {}) | CoreRule)
-                ),
-              (('always' | 'always-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | {}) | CoreRule)
-                )
-            ]
-        ))
-    | ((
-        | null
-        | ('always' | 'always-multi-line' | [])
-        | [
-            (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              ),
-            (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              )
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | ('always' | 'always-multi-line' | [])
-        | [
-            (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              ),
-            (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | {}) | CoreRule)
-              )
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Disallow vendor prefixes for at-rules
@@ -1060,62 +240,12 @@ export type BooleanRule = (
   | null
   | boolean
   | [
-      (boolean | CoreRule) &
-        (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-        (boolean | CoreRule) &
-        (((boolean | CoreRule) & boolean) | (boolean | CoreRule)),
-      (boolean | CoreRule) &
-        (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-        (boolean | CoreRule) &
-        (((boolean | CoreRule) & boolean) | (boolean | CoreRule))
+      (boolean | CoreRule) & (((boolean | CoreRule) & boolean) | (boolean | CoreRule)),
+      (boolean | CoreRule) & (((boolean | CoreRule) & boolean) | (boolean | CoreRule))
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | boolean
-          | [
-              (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-                (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule)),
-              (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-                (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule))
-            ]
-        ))
-    | (boolean &
-        (
-          | null
-          | boolean
-          | [
-              (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-                (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule)),
-              (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-                (boolean | CoreRule) &
-                (((boolean | CoreRule) & boolean) | (boolean | CoreRule))
-            ]
-        ))
-    | ((
-        | null
-        | boolean
-        | [
-            (boolean | CoreRule) &
-              (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-              (boolean | CoreRule) &
-              (((boolean | CoreRule) & boolean) | (boolean | CoreRule)),
-            (boolean | CoreRule) &
-              (((boolean | CoreRule) & boolean) | (boolean | CoreRule)) &
-              (boolean | CoreRule) &
-              (((boolean | CoreRule) & boolean) | (boolean | CoreRule))
-          ]
-      ) &
-        unknown[])
+    null | boolean | unknown[]
   );
 /**
  * Require a newline or disallow whitespace after the closing brace of blocks
@@ -1126,516 +256,54 @@ export type NewlineSpaceWithIgnoreRule = (
   | [
       (
         | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-        | CoreRule
-      ) &
-        (
+        | (CoreRule & {
+            ignoreAtRules?: SimpleStringOrArrayStringRule;
+            [k: string]: unknown | undefined;
+          })
+      ) & (
           | ((
               | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
             ) &
               string)
           | (
               | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            )
-        ) &
-        (
-          | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-          | CoreRule
-        ) &
-        (
-          | ((
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            ) &
-              string)
-          | (
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
             )
         ),
       (
         | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-        | CoreRule
-      ) &
-        (
+        | (CoreRule & {
+            ignoreAtRules?: SimpleStringOrArrayStringRule;
+            [k: string]: unknown | undefined;
+          })
+      ) & (
           | ((
               | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
             ) &
               string)
           | (
               | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            )
-        ) &
-        (
-          | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-          | CoreRule
-        ) &
-        (
-          | ((
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            ) &
-              string)
-          | (
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
             )
         )
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | (
-              | 'always'
-              | 'never'
-              | 'always-single-line'
-              | 'never-single-line'
-              | 'always-multi-line'
-              | 'never-multi-line'
-              | []
-            )
-          | [
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ),
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                )
-            ]
-        ))
-    | ((
-        | null
-        | (
-            | 'always'
-            | 'never'
-            | 'always-single-line'
-            | 'never-single-line'
-            | 'always-multi-line'
-            | 'never-multi-line'
-            | []
-          )
-        | [
-            (
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ),
-            (
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              )
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | (
-            | 'always'
-            | 'never'
-            | 'always-single-line'
-            | 'never-single-line'
-            | 'always-multi-line'
-            | 'never-multi-line'
-            | []
-          )
-        | [
-            (
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ),
-            (
-              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              )
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Require a newline or disallow whitespace before the closing brace of blocks
@@ -1644,110 +312,18 @@ export type NewlineRule = (
   | null
   | ('always' | 'always-multi-line' | 'never-multi-line' | [])
   | [
-      (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-        (
-          | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-          | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-        ) &
-        (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-        (
+      (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & (
           | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
           | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
         ),
-      (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-        (
-          | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-          | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-        ) &
-        (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-        (
+      (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & (
           | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
           | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
         )
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | ('always' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ),
-              (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                )
-            ]
-        ))
-    | ((
-        | null
-        | ('always' | 'always-multi-line' | 'never-multi-line' | [])
-        | [
-            (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              ),
-            (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              )
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | ('always' | 'always-multi-line' | 'never-multi-line' | [])
-        | [
-            (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              ),
-            (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-              )
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Require a single space or disallow whitespace after the closing brace of blocks
@@ -1767,47 +343,7 @@ export type NewlineSpaceRule = (
             | {}
           )
         | CoreRule
-      ) &
-        (
-          | ((
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            ) &
-              string)
-          | (
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            )
-        ) &
-        (
-          | (
-              | 'always'
-              | 'never'
-              | 'always-single-line'
-              | 'never-single-line'
-              | 'always-multi-line'
-              | 'never-multi-line'
-              | {}
-            )
-          | CoreRule
-        ) &
-        (
+      ) & (
           | ((
               | (
                   | 'always'
@@ -1845,47 +381,7 @@ export type NewlineSpaceRule = (
             | {}
           )
         | CoreRule
-      ) &
-        (
-          | ((
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            ) &
-              string)
-          | (
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            )
-        ) &
-        (
-          | (
-              | 'always'
-              | 'never'
-              | 'always-single-line'
-              | 'never-single-line'
-              | 'always-multi-line'
-              | 'never-multi-line'
-              | {}
-            )
-          | CoreRule
-        ) &
-        (
+      ) & (
           | ((
               | (
                   | 'always'
@@ -1915,519 +411,7 @@ export type NewlineSpaceRule = (
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | (
-              | 'always'
-              | 'never'
-              | 'always-single-line'
-              | 'never-single-line'
-              | 'always-multi-line'
-              | 'never-multi-line'
-              | []
-            )
-          | [
-              (
-                | (
-                    | 'always'
-                    | 'never'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'never'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ),
-              (
-                | (
-                    | 'always'
-                    | 'never'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'never'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'never'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                )
-            ]
-        ))
-    | ((
-        | null
-        | (
-            | 'always'
-            | 'never'
-            | 'always-single-line'
-            | 'never-single-line'
-            | 'always-multi-line'
-            | 'never-multi-line'
-            | []
-          )
-        | [
-            (
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'never'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ),
-            (
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'never'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              )
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | (
-            | 'always'
-            | 'never'
-            | 'always-single-line'
-            | 'never-single-line'
-            | 'always-multi-line'
-            | 'never-multi-line'
-            | []
-          )
-        | [
-            (
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'never'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ),
-            (
-              | (
-                  | 'always'
-                  | 'never'
-                  | 'always-single-line'
-                  | 'never-single-line'
-                  | 'always-multi-line'
-                  | 'never-multi-line'
-                  | {}
-                )
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'always'
-                    | 'never'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                    string)
-                | (
-                    | (
-                        | 'always'
-                        | 'never'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  )
-              )
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Require or disallow whitespace on the inside of comment markers
@@ -2436,62 +420,12 @@ export type AlwaysNeverRule = (
   | null
   | ('always' | 'never' | [])
   | [
-      (('always' | 'never' | {}) | CoreRule) &
-        (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-        (('always' | 'never' | {}) | CoreRule) &
-        (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-      (('always' | 'never' | {}) | CoreRule) &
-        (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-        (('always' | 'never' | {}) | CoreRule) &
-        (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
+      (('always' | 'never' | {}) | CoreRule) & (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
+      (('always' | 'never' | {}) | CoreRule) & (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ))
-    | ((
-        | null
-        | ('always' | 'never' | [])
-        | [
-            (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-              (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-            (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-              (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | ('always' | 'never' | [])
-        | [
-            (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-              (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-            (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-              (('always' | 'never' | {}) | CoreRule) &
-              (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Specify a pattern for custom media query names
@@ -2499,67 +433,13 @@ export type AlwaysNeverRule = (
 export type StringRule = (
   | (null | string)
   | [
-      (string | CoreRule) &
-        (((string | CoreRule) & string) | (string | CoreRule)) &
-        (string | CoreRule) &
-        (((string | CoreRule) & string) | (string | CoreRule)),
-      (string | CoreRule) &
-        (((string | CoreRule) & string) | (string | CoreRule)) &
-        (string | CoreRule) &
-        (((string | CoreRule) & string) | (string | CoreRule))
+      (string | CoreRule) & (((string | CoreRule) & string) | (string | CoreRule)),
+      (string | CoreRule) & (((string | CoreRule) & string) | (string | CoreRule))
     ]
 ) &
   (
-    | (null &
-        (
-          | (null | string)
-          | [
-              (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)) &
-                (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)),
-              (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)) &
-                (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule))
-            ]
-        ))
-    | ((
-        | (null | string)
-        | [
-            (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule)) &
-              (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule)),
-            (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule)) &
-              (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule))
-          ]
-      ) &
-        string)
-    | ((
-        | (null | string)
-        | [
-            (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule)) &
-              (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule)),
-            (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule)) &
-              (string | CoreRule) &
-              (((string | CoreRule) & string) | (string | CoreRule))
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
-export type SimpleStringOrArrayStringRule1 =
-  | (
-      | (string | SimpleArrayStringRule)
-      | (undefined & (((string | SimpleArrayStringRule) & string) | ((string | SimpleArrayStringRule) & unknown[])))
-      | undefined
-    )
-  | undefined;
 /**
  * Require a single space or disallow whitespace after the semicolons of declaration blocks
  */
@@ -2567,110 +447,18 @@ export type SpaceRule = (
   | null
   | ('always' | 'never' | 'always-single-line' | 'never-single-line' | [])
   | [
-      (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-        (
-          | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-          | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-        ) &
-        (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-        (
+      (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & (
           | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
           | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
         ),
-      (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-        (
-          | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-          | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-        ) &
-        (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-        (
+      (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & (
           | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
           | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
         )
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | ('always' | 'never' | 'always-single-line' | 'never-single-line' | [])
-          | [
-              (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-                )
-            ]
-        ))
-    | ((
-        | null
-        | ('always' | 'never' | 'always-single-line' | 'never-single-line' | [])
-        | [
-            (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              ),
-            (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              )
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | ('always' | 'never' | 'always-single-line' | 'never-single-line' | [])
-        | [
-            (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              ),
-            (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              ) &
-              (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) &
-              (
-                | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
-                | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
-              )
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Limit the number of declaration within a single line declaration block
@@ -2678,59 +466,12 @@ export type SpaceRule = (
 export type IntegerRule = (
   | (null | number)
   | [
-      ({} | CoreRule) &
-        ((({} | CoreRule) & number) | ({} | CoreRule)) &
-        ({} | CoreRule) &
-        ((({} | CoreRule) & number) | ({} | CoreRule)),
-      ({} | CoreRule) &
-        ((({} | CoreRule) & number) | ({} | CoreRule)) &
-        ({} | CoreRule) &
-        ((({} | CoreRule) & number) | ({} | CoreRule))
+      ({} | CoreRule) & ((({} | CoreRule) & number) | ({} | CoreRule)),
+      ({} | CoreRule) & ((({} | CoreRule) & number) | ({} | CoreRule))
     ]
 ) &
   (
-    | (null &
-        (
-          | (null | number)
-          | [
-              ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule)) &
-                ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule)),
-              ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule)) &
-                ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule))
-            ]
-        ))
-    | (number &
-        (
-          | (null | number)
-          | [
-              ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule)) &
-                ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule)),
-              ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule)) &
-                ({} | CoreRule) &
-                ((({} | CoreRule) & number) | ({} | CoreRule))
-            ]
-        ))
-    | ((
-        | (null | number)
-        | [
-            ({} | CoreRule) &
-              ((({} | CoreRule) & number) | ({} | CoreRule)) &
-              ({} | CoreRule) &
-              ((({} | CoreRule) & number) | ({} | CoreRule)),
-            ({} | CoreRule) &
-              ((({} | CoreRule) & number) | ({} | CoreRule)) &
-              ({} | CoreRule) &
-              ((({} | CoreRule) & number) | ({} | CoreRule))
-          ]
-      ) &
-        unknown[])
+    null | number | unknown[]
   );
 /**
  * Specify single or double colon notation for applicable pseudo-elements
@@ -2739,62 +480,12 @@ export type SingleDoubleRule = (
   | null
   | ('single' | 'double' | [])
   | [
-      (('single' | 'double' | {}) | CoreRule) &
-        (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-        (('single' | 'double' | {}) | CoreRule) &
-        (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)),
-      (('single' | 'double' | {}) | CoreRule) &
-        (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-        (('single' | 'double' | {}) | CoreRule) &
-        (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule))
+      (('single' | 'double' | {}) | CoreRule) & (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)),
+      (('single' | 'double' | {}) | CoreRule) & (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule))
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | ('single' | 'double' | [])
-          | [
-              (('single' | 'double' | {}) | CoreRule) &
-                (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-                (('single' | 'double' | {}) | CoreRule) &
-                (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)),
-              (('single' | 'double' | {}) | CoreRule) &
-                (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-                (('single' | 'double' | {}) | CoreRule) &
-                (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule))
-            ]
-        ))
-    | ((
-        | null
-        | ('single' | 'double' | [])
-        | [
-            (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-              (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)),
-            (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-              (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule))
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | ('single' | 'double' | [])
-        | [
-            (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-              (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)),
-            (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)) &
-              (('single' | 'double' | {}) | CoreRule) &
-              (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule))
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * Specify a blacklist of disallowed units
@@ -2932,9 +623,16 @@ export type UnitRule = (
               | 'fr'
             )[]
           ]
-        | CoreRule
-      ) &
-        (
+        | (CoreRule & {
+            /**
+             * Ignore units in the values of declarations with the specified properties
+             */
+            ignoreProperties?: {
+              [k: string]: SimpleArrayStringRule | undefined;
+            };
+            [k: string]: unknown | undefined;
+          })
+      ) & (
           | ((
               | (
                   | 'em'
@@ -3033,7 +731,15 @@ export type UnitRule = (
                     | 'fr'
                   )[]
                 ]
-              | CoreRule
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
             ) &
               string)
           | ((
@@ -3134,7 +840,15 @@ export type UnitRule = (
                     | 'fr'
                   )[]
                 ]
-              | CoreRule
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
             ) &
               unknown[])
           | (
@@ -3235,411 +949,15 @@ export type UnitRule = (
                     | 'fr'
                   )[]
                 ]
-              | CoreRule
-            )
-        ) &
-        (
-          | (
-              | 'em'
-              | 'ex'
-              | 'px'
-              | '%'
-              | 'rem'
-              | 'vw'
-              | 'vh'
-              | 'vm'
-              | 'vmin'
-              | 'vmax'
-              | 'ch'
-              | 'in'
-              | 'cm'
-              | 'mm'
-              | 'q'
-              | 'pt'
-              | 'pc'
-              | 'deg'
-              | 'grad'
-              | 'rad'
-              | 'turn'
-              | 'ms'
-              | 's'
-              | 'Hz'
-              | 'kHz'
-              | 'dpi'
-              | 'dpcm'
-              | 'dppx'
-              | 'fr'
-              | []
-              | {}
-            )
-          | [
-              (
-                | 'em'
-                | 'ex'
-                | 'px'
-                | '%'
-                | 'rem'
-                | 'vw'
-                | 'vh'
-                | 'vm'
-                | 'vmin'
-                | 'vmax'
-                | 'ch'
-                | 'in'
-                | 'cm'
-                | 'mm'
-                | 'q'
-                | 'pt'
-                | 'pc'
-                | 'deg'
-                | 'grad'
-                | 'rad'
-                | 'turn'
-                | 'ms'
-                | 's'
-                | 'Hz'
-                | 'kHz'
-                | 'dpi'
-                | 'dpcm'
-                | 'dppx'
-                | 'fr'
-              ),
-              ...(
-                | 'em'
-                | 'ex'
-                | 'px'
-                | '%'
-                | 'rem'
-                | 'vw'
-                | 'vh'
-                | 'vm'
-                | 'vmin'
-                | 'vmax'
-                | 'ch'
-                | 'in'
-                | 'cm'
-                | 'mm'
-                | 'q'
-                | 'pt'
-                | 'pc'
-                | 'deg'
-                | 'grad'
-                | 'rad'
-                | 'turn'
-                | 'ms'
-                | 's'
-                | 'Hz'
-                | 'kHz'
-                | 'dpi'
-                | 'dpcm'
-                | 'dppx'
-                | 'fr'
-              )[]
-            ]
-          | CoreRule
-        ) &
-        (
-          | ((
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              string)
-          | ((
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              unknown[])
-          | (
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
             )
         ),
       ...((
@@ -3740,9 +1058,16 @@ export type UnitRule = (
               | 'fr'
             )[]
           ]
-        | CoreRule
-      ) &
-        (
+        | (CoreRule & {
+            /**
+             * Ignore units in the values of declarations with the specified properties
+             */
+            ignoreProperties?: {
+              [k: string]: SimpleArrayStringRule | undefined;
+            };
+            [k: string]: unknown | undefined;
+          })
+      ) & (
           | ((
               | (
                   | 'em'
@@ -3841,7 +1166,15 @@ export type UnitRule = (
                     | 'fr'
                   )[]
                 ]
-              | CoreRule
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
             ) &
               string)
           | ((
@@ -3942,7 +1275,15 @@ export type UnitRule = (
                     | 'fr'
                   )[]
                 ]
-              | CoreRule
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
             ) &
               unknown[])
           | (
@@ -4043,5385 +1384,660 @@ export type UnitRule = (
                     | 'fr'
                   )[]
                 ]
-              | CoreRule
-            )
-        ) &
-        (
-          | (
-              | 'em'
-              | 'ex'
-              | 'px'
-              | '%'
-              | 'rem'
-              | 'vw'
-              | 'vh'
-              | 'vm'
-              | 'vmin'
-              | 'vmax'
-              | 'ch'
-              | 'in'
-              | 'cm'
-              | 'mm'
-              | 'q'
-              | 'pt'
-              | 'pc'
-              | 'deg'
-              | 'grad'
-              | 'rad'
-              | 'turn'
-              | 'ms'
-              | 's'
-              | 'Hz'
-              | 'kHz'
-              | 'dpi'
-              | 'dpcm'
-              | 'dppx'
-              | 'fr'
-              | []
-              | {}
-            )
-          | [
-              (
-                | 'em'
-                | 'ex'
-                | 'px'
-                | '%'
-                | 'rem'
-                | 'vw'
-                | 'vh'
-                | 'vm'
-                | 'vmin'
-                | 'vmax'
-                | 'ch'
-                | 'in'
-                | 'cm'
-                | 'mm'
-                | 'q'
-                | 'pt'
-                | 'pc'
-                | 'deg'
-                | 'grad'
-                | 'rad'
-                | 'turn'
-                | 'ms'
-                | 's'
-                | 'Hz'
-                | 'kHz'
-                | 'dpi'
-                | 'dpcm'
-                | 'dppx'
-                | 'fr'
-              ),
-              ...(
-                | 'em'
-                | 'ex'
-                | 'px'
-                | '%'
-                | 'rem'
-                | 'vw'
-                | 'vh'
-                | 'vm'
-                | 'vmin'
-                | 'vmax'
-                | 'ch'
-                | 'in'
-                | 'cm'
-                | 'mm'
-                | 'q'
-                | 'pt'
-                | 'pc'
-                | 'deg'
-                | 'grad'
-                | 'rad'
-                | 'turn'
-                | 'ms'
-                | 's'
-                | 'Hz'
-                | 'kHz'
-                | 'dpi'
-                | 'dpcm'
-                | 'dppx'
-                | 'fr'
-              )[]
-            ]
-          | CoreRule
-        ) &
-        (
-          | ((
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              string)
-          | ((
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              unknown[])
-          | (
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
             )
         ))[]
     ]
 ) &
   (
-    | (null &
-        (
-          | null
-          | (
-              | 'em'
-              | 'ex'
-              | 'px'
-              | '%'
-              | 'rem'
-              | 'vw'
-              | 'vh'
-              | 'vm'
-              | 'vmin'
-              | 'vmax'
-              | 'ch'
-              | 'in'
-              | 'cm'
-              | 'mm'
-              | 'q'
-              | 'pt'
-              | 'pc'
-              | 'deg'
-              | 'grad'
-              | 'rad'
-              | 'turn'
-              | 'ms'
-              | 's'
-              | 'Hz'
-              | 'kHz'
-              | 'dpi'
-              | 'dpcm'
-              | 'dppx'
-              | 'fr'
-              | []
-            )
-          | [
-              (
-                | (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                    | []
-                    | {}
-                  )
-                | [
-                    (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    ),
-                    ...(
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    )[]
-                  ]
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      string)
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      unknown[])
-                  | (
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                      | []
-                      | {}
-                    )
-                  | [
-                      (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                      ),
-                      ...(
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                      )[]
-                    ]
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      string)
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      unknown[])
-                  | (
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    )
-                ),
-              ...((
-                | (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                    | []
-                    | {}
-                  )
-                | [
-                    (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    ),
-                    ...(
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    )[]
-                  ]
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      string)
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      unknown[])
-                  | (
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                      | []
-                      | {}
-                    )
-                  | [
-                      (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                      ),
-                      ...(
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                      )[]
-                    ]
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      string)
-                  | ((
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    ) &
-                      unknown[])
-                  | (
-                      | (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                          | []
-                          | {}
-                        )
-                      | [
-                          (
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          ),
-                          ...(
-                            | 'em'
-                            | 'ex'
-                            | 'px'
-                            | '%'
-                            | 'rem'
-                            | 'vw'
-                            | 'vh'
-                            | 'vm'
-                            | 'vmin'
-                            | 'vmax'
-                            | 'ch'
-                            | 'in'
-                            | 'cm'
-                            | 'mm'
-                            | 'q'
-                            | 'pt'
-                            | 'pc'
-                            | 'deg'
-                            | 'grad'
-                            | 'rad'
-                            | 'turn'
-                            | 'ms'
-                            | 's'
-                            | 'Hz'
-                            | 'kHz'
-                            | 'dpi'
-                            | 'dpcm'
-                            | 'dppx'
-                            | 'fr'
-                          )[]
-                        ]
-                      | CoreRule
-                    )
-                ))[]
-            ]
-        ))
-    | ((
-        | null
-        | (
-            | 'em'
-            | 'ex'
-            | 'px'
-            | '%'
-            | 'rem'
-            | 'vw'
-            | 'vh'
-            | 'vm'
-            | 'vmin'
-            | 'vmax'
-            | 'ch'
-            | 'in'
-            | 'cm'
-            | 'mm'
-            | 'q'
-            | 'pt'
-            | 'pc'
-            | 'deg'
-            | 'grad'
-            | 'rad'
-            | 'turn'
-            | 'ms'
-            | 's'
-            | 'Hz'
-            | 'kHz'
-            | 'dpi'
-            | 'dpcm'
-            | 'dppx'
-            | 'fr'
-            | []
-          )
-        | [
-            (
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                    | []
-                    | {}
-                  )
-                | [
-                    (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    ),
-                    ...(
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    )[]
-                  ]
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ),
-            ...((
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                    | []
-                    | {}
-                  )
-                | [
-                    (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    ),
-                    ...(
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    )[]
-                  ]
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ))[]
-          ]
-      ) &
-        string)
-    | ((
-        | null
-        | (
-            | 'em'
-            | 'ex'
-            | 'px'
-            | '%'
-            | 'rem'
-            | 'vw'
-            | 'vh'
-            | 'vm'
-            | 'vmin'
-            | 'vmax'
-            | 'ch'
-            | 'in'
-            | 'cm'
-            | 'mm'
-            | 'q'
-            | 'pt'
-            | 'pc'
-            | 'deg'
-            | 'grad'
-            | 'rad'
-            | 'turn'
-            | 'ms'
-            | 's'
-            | 'Hz'
-            | 'kHz'
-            | 'dpi'
-            | 'dpcm'
-            | 'dppx'
-            | 'fr'
-            | []
-          )
-        | [
-            (
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                    | []
-                    | {}
-                  )
-                | [
-                    (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    ),
-                    ...(
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    )[]
-                  ]
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ),
-            ...((
-              | (
-                  | 'em'
-                  | 'ex'
-                  | 'px'
-                  | '%'
-                  | 'rem'
-                  | 'vw'
-                  | 'vh'
-                  | 'vm'
-                  | 'vmin'
-                  | 'vmax'
-                  | 'ch'
-                  | 'in'
-                  | 'cm'
-                  | 'mm'
-                  | 'q'
-                  | 'pt'
-                  | 'pc'
-                  | 'deg'
-                  | 'grad'
-                  | 'rad'
-                  | 'turn'
-                  | 'ms'
-                  | 's'
-                  | 'Hz'
-                  | 'kHz'
-                  | 'dpi'
-                  | 'dpcm'
-                  | 'dppx'
-                  | 'fr'
-                  | []
-                  | {}
-                )
-              | [
-                  (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  ),
-                  ...(
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                  )[]
-                ]
-              | CoreRule
-            ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ) &
-              (
-                | (
-                    | 'em'
-                    | 'ex'
-                    | 'px'
-                    | '%'
-                    | 'rem'
-                    | 'vw'
-                    | 'vh'
-                    | 'vm'
-                    | 'vmin'
-                    | 'vmax'
-                    | 'ch'
-                    | 'in'
-                    | 'cm'
-                    | 'mm'
-                    | 'q'
-                    | 'pt'
-                    | 'pc'
-                    | 'deg'
-                    | 'grad'
-                    | 'rad'
-                    | 'turn'
-                    | 'ms'
-                    | 's'
-                    | 'Hz'
-                    | 'kHz'
-                    | 'dpi'
-                    | 'dpcm'
-                    | 'dppx'
-                    | 'fr'
-                    | []
-                    | {}
-                  )
-                | [
-                    (
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    ),
-                    ...(
-                      | 'em'
-                      | 'ex'
-                      | 'px'
-                      | '%'
-                      | 'rem'
-                      | 'vw'
-                      | 'vh'
-                      | 'vm'
-                      | 'vmin'
-                      | 'vmax'
-                      | 'ch'
-                      | 'in'
-                      | 'cm'
-                      | 'mm'
-                      | 'q'
-                      | 'pt'
-                      | 'pc'
-                      | 'deg'
-                      | 'grad'
-                      | 'rad'
-                      | 'turn'
-                      | 'ms'
-                      | 's'
-                      | 'Hz'
-                      | 'kHz'
-                      | 'dpi'
-                      | 'dpcm'
-                      | 'dppx'
-                      | 'fr'
-                    )[]
-                  ]
-                | CoreRule
-              ) &
-              (
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    string)
-                | ((
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  ) &
-                    unknown[])
-                | (
-                    | (
-                        | 'em'
-                        | 'ex'
-                        | 'px'
-                        | '%'
-                        | 'rem'
-                        | 'vw'
-                        | 'vh'
-                        | 'vm'
-                        | 'vmin'
-                        | 'vmax'
-                        | 'ch'
-                        | 'in'
-                        | 'cm'
-                        | 'mm'
-                        | 'q'
-                        | 'pt'
-                        | 'pc'
-                        | 'deg'
-                        | 'grad'
-                        | 'rad'
-                        | 'turn'
-                        | 'ms'
-                        | 's'
-                        | 'Hz'
-                        | 'kHz'
-                        | 'dpi'
-                        | 'dpcm'
-                        | 'dppx'
-                        | 'fr'
-                        | []
-                        | {}
-                      )
-                    | [
-                        (
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        ),
-                        ...(
-                          | 'em'
-                          | 'ex'
-                          | 'px'
-                          | '%'
-                          | 'rem'
-                          | 'vw'
-                          | 'vh'
-                          | 'vm'
-                          | 'vmin'
-                          | 'vmax'
-                          | 'ch'
-                          | 'in'
-                          | 'cm'
-                          | 'mm'
-                          | 'q'
-                          | 'pt'
-                          | 'pc'
-                          | 'deg'
-                          | 'grad'
-                          | 'rad'
-                          | 'turn'
-                          | 'ms'
-                          | 's'
-                          | 'Hz'
-                          | 'kHz'
-                          | 'dpi'
-                          | 'dpcm'
-                          | 'dppx'
-                          | 'fr'
-                        )[]
-                      ]
-                    | CoreRule
-                  )
-              ))[]
-          ]
-      ) &
-        unknown[])
+    null | string | unknown[]
   );
 /**
  * An array of glob patterns to select test files. Files with an underscore prefix are ignored. By default only selects files with `cjs`, `mjs` & `js` extensions, even if the pattern matches other files. Specify `extensions` to allow other file extensions
  */
 export type ArrayOfPaths = string[];
 export type ArrayOfStrings = string[];
+/**
+ * Command string, fallback array, or platform-specific object
+ */
+export type CommandValue = (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
 
+export interface JSONSchemaForNPMPackageJsonFiles {
+  /**
+   * The name of the package.
+   */
+  name?: string;
+  /**
+   * Version must be parsable by node-semver, which is bundled with npm as a dependency.
+   */
+  version?: string;
+  /**
+   * This helps people discover your package, as it's listed in 'npm search'.
+   */
+  description?: string;
+  /**
+   * This helps people discover your package as it's listed in 'npm search'.
+   */
+  keywords?: string[];
+  /**
+   * The url to the project homepage.
+   */
+  homepage?: string;
+  /**
+   * The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.
+   */
+  bugs?:
+    | {
+        /**
+         * The url to your project's issue tracker.
+         */
+        url?: string;
+        /**
+         * The email address to which issues should be reported.
+         */
+        email?: string;
+        [k: string]: unknown | undefined;
+      }
+    | string;
+  /**
+   * You should specify a license for your package so that people know how they are permitted to use it, and any restrictions you're placing on it.
+   */
+  license?:
+    | string
+    | (
+        | 'AGPL-3.0-only'
+        | 'Apache-2.0'
+        | 'BSD-2-Clause'
+        | 'BSD-3-Clause'
+        | 'BSL-1.0'
+        | 'CC0-1.0'
+        | 'CDDL-1.0'
+        | 'CDDL-1.1'
+        | 'EPL-1.0'
+        | 'EPL-2.0'
+        | 'GPL-2.0-only'
+        | 'GPL-3.0-only'
+        | 'ISC'
+        | 'LGPL-2.0-only'
+        | 'LGPL-2.1-only'
+        | 'LGPL-2.1-or-later'
+        | 'LGPL-3.0-only'
+        | 'LGPL-3.0-or-later'
+        | 'MIT'
+        | 'MPL-2.0'
+        | 'MS-PL'
+        | 'UNLICENSED'
+      );
+  /**
+   * DEPRECATED: Instead, use SPDX expressions, like this: { "license": "ISC" } or { "license": "(MIT OR Apache-2.0)" } see: 'https://docs.npmjs.com/files/package.json#license'.
+   */
+  licenses?: {
+    type?: License;
+    url?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  author?: Person;
+  /**
+   * A list of people who contributed to this package.
+   */
+  contributors?: Person[];
+  /**
+   * A list of people who maintains this package.
+   */
+  maintainers?: Person[];
+  /**
+   * The 'files' field is an array of files to include in your project. If you name a folder in the array, then it will also include the files inside that folder.
+   */
+  files?: string[];
+  /**
+   * The main field is a module ID that is the primary entry point to your program.
+   */
+  main?: string;
+  /**
+   * The "exports" field is used to restrict external access to non-exported module files, also enables a module to import itself using "name".
+   */
+  exports?:
+    | (string | null)
+    | {
+        /**
+         * The module path that is resolved when the module specifier matches "name", shadows the "main" field.
+         */
+        '.'?: PackageExportsEntry | PackageExportsFallback;
+        /**
+         * The module path prefix that is resolved when the module specifier starts with "name/", set to "./*" to allow external modules to import any subpath.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^\./.+".
+         */
+        [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
+      }
+    | PackageExportsEntryObject
+    | PackageExportsFallback;
+  /**
+   * The "imports" field is used to create private mappings that only apply to import specifiers from within the package itself.
+   */
+  imports?: {
+    /**
+     * The module path that is resolved when this environment matches the property name.
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^#.+$".
+     */
+    [k: string]: PackageImportsEntry | PackageImportsFallback | undefined;
+  };
+  bin?:
+    | string
+    | {
+        [k: string]: string | undefined;
+      };
+  /**
+   * When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
+   */
+  type?: 'commonjs' | 'module';
+  /**
+   * Set the types property to point to your bundled declaration file.
+   */
+  types?: string;
+  /**
+   * Note that the "typings" field is synonymous with "types", and could be used as well.
+   */
+  typings?: string;
+  /**
+   * The "typesVersions" field is used since TypeScript 3.1 to support features that were only made available in newer TypeScript versions.
+   */
+  typesVersions?: {
+    /**
+     * Contains overrides for the TypeScript version that matches the version range matching the property key.
+     */
+    [k: string]:
+      | {
+          /**
+           * Maps all file paths to the file paths specified in the array.
+           */
+          '*'?: string[];
+          /**
+           * Maps the file path matching the property key to the file paths specified in the array.
+           *
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` "^[^*]+$".
+           *
+           * Maps file paths matching the pattern specified in property key to file paths specified in the array.
+           *
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` "^[^*]*\*[^*]*$".
+           */
+          [k: string]: string[] | undefined;
+        }
+      | undefined;
+  };
+  /**
+   * Specify either a single file or an array of filenames to put in place for the man program to find.
+   */
+  man?: string[] | string;
+  directories?: {
+    /**
+     * If you specify a 'bin' directory, then all the files in that folder will be used as the 'bin' hash.
+     */
+    bin?: string;
+    /**
+     * Put markdown files in here. Eventually, these will be displayed nicely, maybe, someday.
+     */
+    doc?: string;
+    /**
+     * Put example scripts in here. Someday, it might be exposed in some clever way.
+     */
+    example?: string;
+    /**
+     * Tell people where the bulk of your library is. Nothing special is done with the lib folder in any way, but it's useful meta info.
+     */
+    lib?: string;
+    /**
+     * A folder that is full of man pages. Sugar to generate a 'man' array by walking the folder.
+     */
+    man?: string;
+    test?: string;
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Specify the place where your code lives. This is helpful for people who want to contribute.
+   */
+  repository?:
+    | {
+        type?: string;
+        url?: string;
+        directory?: string;
+        [k: string]: unknown | undefined;
+      }
+    | string;
+  funding?: FundingUrl | FundingWay | [FundingUrl | FundingWay, ...(FundingUrl | FundingWay)[]];
+  /**
+   * The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.
+   */
+  scripts?: {
+    /**
+     * Run code quality tools, e.g. ESLint, TSLint, etc.
+     */
+    lint?: string;
+    /**
+     * Run BEFORE the package is published (Also run on local npm install without any arguments).
+     */
+    prepublish?: string;
+    /**
+     * Runs BEFORE the package is packed, i.e. during "npm publish" and "npm pack", and on local "npm install" without any arguments. This is run AFTER "prepublish", but BEFORE "prepublishOnly".
+     */
+    prepare?: string;
+    /**
+     * Run BEFORE the package is prepared and packed, ONLY on npm publish.
+     */
+    prepublishOnly?: string;
+    /**
+     * run BEFORE a tarball is packed (on npm pack, npm publish, and when installing git dependencies).
+     */
+    prepack?: string;
+    /**
+     * Run AFTER the tarball has been generated and moved to its final destination.
+     */
+    postpack?: string;
+    /**
+     * Publishes a package to the registry so that it can be installed by name. See https://docs.npmjs.com/cli/v8/commands/npm-publish
+     */
+    publish?: string;
+    postpublish?: ScriptsPublishAfter;
+    /**
+     * Run BEFORE the package is installed.
+     */
+    preinstall?: string;
+    install?: ScriptsInstallAfter;
+    postinstall?: ScriptsInstallAfter;
+    preuninstall?: ScriptsUninstallBefore;
+    uninstall?: ScriptsUninstallBefore;
+    /**
+     * Run AFTER the package is uninstalled.
+     */
+    postuninstall?: string;
+    preversion?: ScriptsVersionBefore;
+    version?: ScriptsVersionBefore;
+    /**
+     * Run AFTER bump the package version.
+     */
+    postversion?: string;
+    pretest?: ScriptsTest;
+    test?: ScriptsTest;
+    posttest?: ScriptsTest;
+    prestop?: ScriptsStop;
+    stop?: ScriptsStop;
+    poststop?: ScriptsStop;
+    prestart?: ScriptsStart;
+    start?: ScriptsStart;
+    poststart?: ScriptsStart;
+    prerestart?: ScriptsRestart;
+    restart?: ScriptsRestart;
+    postrestart?: ScriptsRestart;
+    /**
+     * Start dev server to serve application files
+     */
+    serve?: string;
+    [k: string]: string | undefined;
+  };
+  /**
+   * A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.
+   */
+  config?: {
+    [k: string]: unknown | undefined;
+  };
+  dependencies?: Dependency;
+  devDependencies?: DevDependency;
+  optionalDependencies?: OptionalDependency;
+  peerDependencies?: PeerDependency;
+  peerDependenciesMeta?: PeerDependencyMeta;
+  /**
+   * Array of package names that will be bundled when publishing the package.
+   */
+  bundleDependencies?: string[] | boolean;
+  /**
+   * DEPRECATED: This field is honored, but "bundleDependencies" is the correct field name. Ignored if "bundleDependencies" is also present.
+   */
+  bundledDependencies?: string[] | boolean;
+  /**
+   * Resolutions is used to support selective version resolutions using yarn, which lets you define custom package versions or ranges inside your dependencies. For npm, use overrides instead. See: https://yarnpkg.com/configuration/manifest#resolutions
+   */
+  resolutions?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Overrides is used to support selective version overrides using npm, which lets you define custom package versions or ranges inside your dependencies. For yarn, use resolutions instead. See: https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides
+   */
+  overrides?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html
+   */
+  packageManager?: (
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'bun'
+  ) &
+    string;
+  engines?: {
+    node?: string;
+    /**
+     * Specifies which JavaScript runtimes (like Node.js, Deno, Bun) are supported. Values should use WinterCG Runtime Keys (see https://runtime-keys.proposal.wintercg.org/).
+     */
+    runtime?: RuntimeEngineDependency | RuntimeEngineDependency[];
+    [k: string]: string | RuntimeEngineDependency | RuntimeEngineDependency[] | undefined;
+  };
+  /**
+   * Defines which tools and versions are expected to be used when Volta is installed.
+   */
+  volta?: {
+    /**
+     * The value of that entry should be a path to another JSON file which also has a "volta" section
+     */
+    extends?: string;
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "(node|npm|pnpm|yarn)".
+     */
+    [k: string]: string | undefined;
+  };
+  engineStrict?: boolean;
+  /**
+   * Specify which operating systems your module will run on.
+   */
+  os?: string[];
+  /**
+   * Specify that your code only runs on certain cpu architectures.
+   */
+  cpu?: string[];
+  /**
+   * Define the runtime and package manager for developing the current project.
+   */
+  devEngines?: {
+    /**
+     * Specifies which operating systems are supported for development
+     */
+    os?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which CPU architectures are supported for development
+     */
+    cpu?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which C standard libraries are supported for development
+     */
+    libc?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which JavaScript runtimes (like Node.js, Deno, Bun) are supported for development. Values should use WinterCG Runtime Keys (see https://runtime-keys.proposal.wintercg.org/)
+     */
+    runtime?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which package managers are supported for development
+     */
+    packageManager?: DevEngineDependency | DevEngineDependency[];
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * DEPRECATED: This option used to trigger an npm warning, but it will no longer warn. It is purely there for informational purposes. It is now recommended that you install any binaries as local devDependencies wherever possible.
+   */
+  preferGlobal?: boolean;
+  /**
+   * If set to true, then npm will refuse to publish it.
+   */
+  private?: boolean | ('false' | 'true');
+  /**
+   * Values applied at publish time. npm: publish-time config values (tag, registry, access, provenance), see https://docs.npmjs.com/cli/v12/configuring-npm/package-json#publishconfig. pnpm: also overrides manifest fields (main, exports, types, etc.) before packing, plus pnpm-specific fields (directory, linkDirectory, executableFiles), see https://pnpm.io/package_json#publishconfig.
+   */
+  publishConfig?: {
+    /**
+     * Access level for scoped packages at publish time (defaults to "restricted"). Supported by npm, honored by pnpm.
+     */
+    access?: 'public' | 'restricted';
+    /**
+     * Distribution tag to publish under (defaults to "latest"). Supported by npm, honored by pnpm.
+     */
+    tag?: string;
+    /**
+     * Registry to publish the package to. Supported by npm, honored by pnpm.
+     */
+    registry?: string;
+    /**
+     * npm only: generate and publish a provenance attestation (requires a supported CI provider).
+     */
+    provenance?: boolean;
+    /**
+     * pnpm only: subdirectory (relative to this package.json) to publish from; it must contain its own package.json.
+     */
+    directory?: string;
+    /**
+     * pnpm only: symlink the project from publishConfig.directory during local development (default: true).
+     */
+    linkDirectory?: boolean;
+    /**
+     * pnpm only: additional files to mark executable (+x) in the package archive.
+     */
+    executableFiles?: string[];
+    [k: string]: unknown | undefined;
+  };
+  dist?: {
+    shasum?: string;
+    tarball?: string;
+    [k: string]: unknown | undefined;
+  };
+  readme?: string;
+  /**
+   * An ECMAScript module ID that is the primary entry point to your program.
+   */
+  module?: string;
+  /**
+   * A module ID with untranspiled code that is the primary entry point to your program.
+   */
+  esnext?:
+    | string
+    | {
+        main?: string;
+        browser?: string;
+        [k: string]: string | undefined;
+      };
+  /**
+   * Allows packages within a directory to depend on one another using direct linking of local files. Additionally, dependencies within a workspace are hoisted to the workspace root when possible to reduce duplication. Note: It's also a good idea to set "private" to true when using this feature.
+   */
+  workspaces?:
+    | string[]
+    | {
+        /**
+         * Workspace package paths. Glob patterns are supported.
+         */
+        packages?: string[];
+        /**
+         * Packages to block from hoisting to the workspace root. Currently only supported in Yarn only.
+         */
+        nohoist?: string[];
+        [k: string]: unknown | undefined;
+      };
+  jspm?: JSONSchemaForNPMPackageJsonFiles;
+  eslintConfig?: JSONSchemaForESLintConfigurationFiles;
+  prettier?: SchemaForPrettierrc;
+  stylelint?: JSONSchemaForTheStylelintConfigurationFiles;
+  ava?: AVAConfigSchema;
+  release?: SemanticReleaseSchema;
+  jscpd?: HttpsJsonSchemastoreOrgJscpdJson;
+  madge?: MadgeConfiguration;
+  nodemonConfig?: JSONSchemaForNodemonConfig;
+  quikrun?: Quikrun;
+  /**
+   * Defines pnpm specific configuration.
+   */
+  pnpm?: {
+    /**
+     * Used to override any dependency in the dependency graph.
+     */
+    overrides?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Used to extend the existing package definitions with additional information.
+     */
+    packageExtensions?: {
+      /**
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` "^.+$".
+       */
+      [k: string]:
+        | {
+            dependencies?: Dependency;
+            optionalDependencies?: OptionalDependency;
+            peerDependencies?: PeerDependency;
+            peerDependenciesMeta?: PeerDependencyMeta;
+          }
+        | undefined;
+    };
+    peerDependencyRules?: {
+      /**
+       * pnpm will not print warnings about missing peer dependencies from this list.
+       */
+      ignoreMissing?: string[];
+      /**
+       * Unmet peer dependency warnings will not be printed for peer dependencies of the specified range.
+       */
+      allowedVersions?: {
+        [k: string]: unknown | undefined;
+      };
+      /**
+       * Any peer dependency matching the pattern will be resolved from any version, regardless of the range specified in "peerDependencies".
+       */
+      allowAny?: string[];
+    };
+    /**
+     * A list of dependencies to run builds for.
+     */
+    neverBuiltDependencies?: string[];
+    /**
+     * A list of package names that are allowed to be executed during installation.
+     */
+    onlyBuiltDependencies?: string[];
+    /**
+     * Specifies a JSON file that lists the only packages permitted to run installation scripts during the pnpm install process.
+     */
+    onlyBuiltDependenciesFile?: string;
+    /**
+     * A list of package names that should not be built during installation.
+     */
+    ignoredBuiltDependencies?: string[];
+    /**
+     * A list of deprecated versions that the warnings are suppressed.
+     */
+    allowedDeprecatedVersions?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * A list of dependencies that are patched.
+     */
+    patchedDependencies?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * When true, installation won't fail if some of the patches from the "patchedDependencies" field were not applied.
+     */
+    allowNonAppliedPatches?: boolean;
+    /**
+     * When true, installation won't fail if some of the patches from the "patchedDependencies" field were not applied.
+     */
+    allowUnusedPatches?: boolean;
+    updateConfig?: {
+      /**
+       * A list of packages that should be ignored when running "pnpm outdated" or "pnpm update --latest".
+       */
+      ignoreDependencies?: string[];
+    };
+    /**
+     * Configurational dependencies are installed before all the other types of dependencies (before 'dependencies', 'devDependencies', 'optionalDependencies').
+     */
+    configDependencies?: {
+      [k: string]: unknown | undefined;
+    };
+    auditConfig?: {
+      /**
+       * A list of CVE IDs that will be ignored by "pnpm audit".
+       */
+      ignoreCves?: string[];
+      /**
+       * A list of GHSA Codes that will be ignored by "pnpm audit".
+       */
+      ignoreGhsas?: string[];
+    };
+    /**
+     * A list of scripts that must exist in each project.
+     */
+    requiredScripts?: string[];
+    /**
+     * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.
+     */
+    supportedArchitectures?: {
+      os?: string[];
+      cpu?: string[];
+      libc?: string[];
+    };
+    /**
+     * A list of optional dependencies that the install should be skipped.
+     */
+    ignoredOptionalDependencies?: string[];
+    executionEnv?: {
+      /**
+       * Specifies which exact Node.js version should be used for the project's runtime.
+       */
+      nodeVersion?: string;
+    };
+  };
+  /**
+   * Defines the StackBlitz configuration for the project.
+   */
+  stackblitz?: {
+    /**
+     * StackBlitz automatically installs npm dependencies when opening a project.
+     */
+    installDependencies?: boolean;
+    /**
+     * A terminal command to be executed when opening the project, after installing npm dependencies.
+     */
+    startCommand?: string | boolean;
+    /**
+     * The compileTrigger option controls how file changes in the editor are written to the WebContainers in-memory filesystem.
+     */
+    compileTrigger?: 'auto' | 'keystroke' | 'save';
+    /**
+     * A map of default environment variables that will be set in each top-level shell process.
+     */
+    env?: {
+      [k: string]: unknown | undefined;
+    };
+  };
+  /**
+   * Records which dependencies are permitted to run install scripts (preinstall, install, postinstall, and prepare for non-registry sources). Maintained via the "npm approve-scripts" command, which enforces a default-deny policy: install scripts for any dependency without a matching entry are silently skipped. Keys are package identifiers — either name-only (e.g. "pkg") or pinned with a version (e.g. "pkg@1.2.3"); by default entries are pinned so approval is version-specific. A value of true allows the dependency's install scripts to run, while false explicitly denies them (existing false entries are never silently overridden).
+   */
+  allowScripts?: {
+    [k: string]: boolean | undefined;
+  };
+  /**
+   * Provides hints to the Webpack compiler, denoting which files in your project are "pure" and therefore safe to prune if unused.
+   */
+  sideEffects?: boolean | string[];
+  /**
+   * Any property starting with _ is valid.
+   *
+   * This interface was referenced by `JSONSchemaForNPMPackageJsonFiles`'s JSON-Schema definition
+   * via the `patternProperty` "^_".
+   */
+  [k: string]: any | undefined;
+}
 /**
  * Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.
  */
@@ -9450,35 +2066,18 @@ export interface PackageExportsEntryObject {
    * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
    */
   types?: PackageExportsEntry | PackageExportsFallback;
-}
-/**
- * The module path that is resolved when the module specifier matches "name", shadows the "main" field.
- */
-export interface PackageExportsEntryObject1 {
   /**
-   * The module path that is resolved when this specifier is imported as a CommonJS module using the `require(...)` function.
-   */
-  require?: PackageExportsEntry | PackageExportsFallback;
-  /**
-   * The module path that is resolved when this specifier is imported as an ECMAScript module using an `import` declaration or the dynamic `import(...)` function.
-   */
-  import?: PackageExportsEntry | PackageExportsFallback;
-  /**
-   * The same as `import`, but can be used with require(esm) in Node 20+. This requires the files to not use any top-level awaits.
-   */
-  'module-sync'?: PackageExportsEntry | PackageExportsFallback;
-  /**
-   * The module path that is resolved when this environment is Node.js.
-   */
-  node?: PackageExportsEntry | PackageExportsFallback;
-  /**
-   * The module path that is resolved when no other export type matches.
-   */
-  default?: PackageExportsEntry | PackageExportsFallback;
-  /**
+   * The module path that is resolved when this environment matches the property name.
+   *
+   * This interface was referenced by `PackageExportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^[^.0-9]+$".
+   *
    * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
+   *
+   * This interface was referenced by `PackageExportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^types@.+$".
    */
-  types?: PackageExportsEntry | PackageExportsFallback;
+  [k: string]: PackageExportsEntry | PackageExportsFallback | undefined;
 }
 /**
  * Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.
@@ -9504,6 +2103,18 @@ export interface PackageImportsEntryObject {
    * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
    */
   types?: PackageImportsEntry | PackageImportsFallback;
+  /**
+   * The module path that is resolved when this environment matches the property name.
+   *
+   * This interface was referenced by `PackageImportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^[^.0-9]+$".
+   *
+   * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
+   *
+   * This interface was referenced by `PackageImportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^types@.+$".
+   */
+  [k: string]: PackageImportsEntry | PackageImportsFallback | undefined;
 }
 /**
  * Used to inform about ways to help fund development of the package.
@@ -9552,6 +2163,24 @@ export interface PeerDependencyMeta {
         [k: string]: unknown | undefined;
       }
     | undefined;
+}
+/**
+ * Specifies a supported JavaScript runtime.
+ */
+export interface RuntimeEngineDependency {
+  /**
+   * The runtime name
+   */
+  name: string;
+  /**
+   * The version range for the runtime
+   */
+  version?: string;
+  /**
+   * What action to take if runtime validation fails
+   */
+  onFail?: 'ignore' | 'warn' | 'error' | 'download';
+  [k: string]: unknown | undefined;
 }
 /**
  * Specifies requirements for development environment components such as operating systems, runtimes, or package managers. Used to ensure consistent development environments across the team.
@@ -9756,7 +2385,7 @@ export interface Env {
  * Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.
  */
 export interface Globals {
-  [k: string]: (('readonly' | 'writable' | 'off') | boolean) | undefined;
+  [k: string]: 'readonly' | 'writable' | 'off' | boolean | undefined;
 }
 /**
  * The JavaScript language options to be supported
@@ -12896,14 +5525,12 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
         {
           patterns?: {
             [k: string]:
-              | (
-                  | string
-                  | {
-                      suggest: string;
-                      fix?: boolean;
-                      message?: string;
-                    }
-                )
+              | string
+              | {
+                  suggest: string;
+                  fix?: boolean;
+                  message?: string;
+                }
               | undefined;
           };
           [k: string]: unknown | undefined;
@@ -13242,11 +5869,13 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^(?:\S+)$".
              */
-            [k: string]: {
-              singleline?: 'always' | 'never' | 'consistent' | 'ignore';
-              multiline?: 'always' | 'never' | 'consistent' | 'ignore';
-              maxEmptyLines?: number;
-            };
+            [k: string]:
+              | {
+                  singleline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  multiline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  maxEmptyLines?: number;
+                }
+              | undefined;
           };
           [k: string]: unknown | undefined;
         }
@@ -13281,7 +5910,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
           /**
            * @minItems 0
            */
-          allow?: [] | [string];
+          allow?: string[];
           [k: string]: unknown | undefined;
         }
       ];
@@ -14149,7 +6778,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^(?:\S+|/.*\/[a-z]*)$".
              */
-            [k: string]: string[];
+            [k: string]: string[] | undefined;
           };
           directives?: string[];
           [k: string]: unknown | undefined;
@@ -16155,9 +8784,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
    * https://typescript-eslint.io/rules/consistent-indexed-object-style
    */
   '@typescript-eslint/consistent-indexed-object-style'?:
-    | number
-    | ('off' | 'warn' | 'error')
-    | [number | ('off' | 'warn' | 'error'), 'record' | 'index-signature'];
+    number | ('off' | 'warn' | 'error') | [number | ('off' | 'warn' | 'error'), 'record' | 'index-signature'];
   /**
    * Require `return` statements to either always or never specify values
    * https://typescript-eslint.io/rules/consistent-return
@@ -16190,9 +8817,7 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
    * https://typescript-eslint.io/rules/consistent-type-definitions
    */
   '@typescript-eslint/consistent-type-definitions'?:
-    | number
-    | ('off' | 'warn' | 'error')
-    | [number | ('off' | 'warn' | 'error'), 'interface' | 'type'];
+    number | ('off' | 'warn' | 'error') | [number | ('off' | 'warn' | 'error'), 'interface' | 'type'];
   /**
    * Enforce consistent usage of type exports
    * https://typescript-eslint.io/rules/consistent-type-exports
@@ -17967,32 +10592,34 @@ export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
         }
       ];
   /**
-   * Enforce the consistent use of either backticks, double, or single quotes
+   * DEPRECATED. Enforce the consistent use of either backticks, double, or single quotes
    * https://typescript-eslint.io/rules/quotes
    */
   '@typescript-eslint/quotes'?:
     | number
     | ('off' | 'warn' | 'error')
-    | [number | ('off' | 'warn' | 'error'), 'double' | 'single' | 'backtick']
-    | [
-        number | ('off' | 'warn' | 'error'),
-        'double' | 'single' | 'backtick',
-        {
-          /**
-           * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
-           */
-          avoidEscape?: boolean;
-          /**
-           * allows strings to use backticks
-           */
-          allowTemplateLiterals?: boolean;
-          /**
-           * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
-           */
-          'avoid-escape'?: boolean;
-          [k: string]: unknown | undefined;
-        }
-      ];
+    | (
+        | [number | ('off' | 'warn' | 'error'), 'double' | 'single' | 'backtick']
+        | [
+            number | ('off' | 'warn' | 'error'),
+            'double' | 'single' | 'backtick',
+            {
+              /**
+               * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
+               */
+              avoidEscape?: boolean;
+              /**
+               * allows strings to use backticks
+               */
+              allowTemplateLiterals?: boolean;
+              /**
+               * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
+               */
+              'avoid-escape'?: boolean;
+              [k: string]: unknown | undefined;
+            }
+          ]
+      );
   /**
    * Require `Array#sort` and `Array#toSorted` calls to always provide a `compareFunction`
    * https://typescript-eslint.io/rules/require-array-sort-compare
@@ -18504,158 +11131,8 @@ export interface OverridesDefinition {
      * Exclude these files from this override.
      */
     excludeFiles?: string | string[];
-    options?: OptionsDefinition1;
+    options?: OptionsDefinition;
   }[];
-  [k: string]: unknown | undefined;
-}
-/**
- * The options to apply for this override.
- */
-export interface OptionsDefinition1 {
-  /**
-   * Include parentheses around a sole arrow function parameter.
-   */
-  arrowParens?: 'always' | 'avoid';
-  /**
-   * Put > of opening tags on the last line instead of on a new line.
-   */
-  bracketSameLine?: boolean;
-  /**
-   * Print spaces between brackets.
-   */
-  bracketSpacing?: boolean;
-  /**
-   * Check whether the file's first docblock comment contains '@noprettier' or '@noformat' to determine if it should be formatted.
-   */
-  checkIgnorePragma?: boolean;
-  /**
-   * Print (to stderr) where a cursor at the given position would move to after formatting.
-   */
-  cursorOffset?: number;
-  /**
-   * Control how Prettier formats quoted code embedded in the file.
-   */
-  embeddedLanguageFormatting?: 'auto' | 'off';
-  /**
-   * Which end of line characters to apply.
-   */
-  endOfLine?: 'lf' | 'crlf' | 'cr' | 'auto';
-  /**
-   * Where to print operators when binary expressions wrap lines.
-   */
-  experimentalOperatorPosition?: 'start' | 'end';
-  /**
-   * Use curious ternaries, with the question mark after the condition.
-   */
-  experimentalTernaries?: boolean;
-  /**
-   * Specify the input filepath. This will be used to do parser inference.
-   */
-  filepath?: string;
-  /**
-   * How to handle whitespaces in HTML.
-   */
-  htmlWhitespaceSensitivity?: 'css' | 'strict' | 'ignore';
-  /**
-   * Insert @format pragma into file's first docblock comment.
-   */
-  insertPragma?: boolean;
-  /**
-   * Use single quotes in JSX.
-   */
-  jsxSingleQuote?: boolean;
-  /**
-   * How to wrap object literals.
-   */
-  objectWrap?: 'preserve' | 'collapse';
-  /**
-   * Which parser to use.
-   */
-  parser?:
-    | 'flow'
-    | 'babel'
-    | 'babel-flow'
-    | 'babel-ts'
-    | 'typescript'
-    | 'acorn'
-    | 'espree'
-    | 'meriyah'
-    | 'css'
-    | 'less'
-    | 'scss'
-    | 'json'
-    | 'json5'
-    | 'jsonc'
-    | 'json-stringify'
-    | 'graphql'
-    | 'markdown'
-    | 'mdx'
-    | 'vue'
-    | 'yaml'
-    | 'glimmer'
-    | 'html'
-    | 'angular'
-    | 'lwc'
-    | 'mjml'
-    | string;
-  /**
-   * Add a plugin. Multiple plugins can be passed as separate `--plugin`s.
-   */
-  plugins?: string[];
-  /**
-   * The line length where Prettier will try wrap.
-   */
-  printWidth?: number;
-  /**
-   * How to wrap prose.
-   */
-  proseWrap?: 'always' | 'never' | 'preserve';
-  /**
-   * Change when properties in objects are quoted.
-   */
-  quoteProps?: 'as-needed' | 'consistent' | 'preserve';
-  /**
-   * Format code ending at a given character offset (exclusive).
-   * The range will extend forwards to the end of the selected statement.
-   */
-  rangeEnd?: number;
-  /**
-   * Format code starting at a given character offset.
-   * The range will extend backwards to the start of the first line containing the selected statement.
-   */
-  rangeStart?: number;
-  /**
-   * Require either '@prettier' or '@format' to be present in the file's first docblock comment in order for it to be formatted.
-   */
-  requirePragma?: boolean;
-  /**
-   * Print semicolons.
-   */
-  semi?: boolean;
-  /**
-   * Enforce single attribute per line in HTML, Vue and JSX.
-   */
-  singleAttributePerLine?: boolean;
-  /**
-   * Use single quotes instead of double quotes.
-   */
-  singleQuote?: boolean;
-  /**
-   * Number of spaces per indentation level.
-   */
-  tabWidth?: number;
-  /**
-   * Print trailing commas wherever possible when multi-line.
-   */
-  trailingComma?: 'all' | 'es5' | 'none';
-  /**
-   * Indent with tabs instead of spaces.
-   */
-  useTabs?: boolean;
-  /**
-   * Indent script and style tags in Vue files.
-   */
-  vueIndentScriptAndStyle?: boolean;
   [k: string]: unknown | undefined;
 }
 export interface JSONSchemaForTheStylelintConfigurationFiles {
@@ -18711,62 +11188,296 @@ export interface AtRule {
     | null
     | ('always' | 'never' | [])
     | [
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                (
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                ),
+                ...(
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                )[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                ),
+                ...(
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                )[]
+              ];
+              ignoreAtRules?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                (
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                ),
+                ...(
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                )[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                ),
+                ...(
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                )[]
+              ];
+              ignoreAtRules?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | [])
-            | [
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'at-rule-name-case'?: LowerUpperRule;
   'at-rule-name-newline-after'?: AlwaysMultiLineRule;
@@ -18777,110 +11488,18 @@ export interface AtRule {
     | null
     | ('always' | 'always-single-line' | [])
     | [
-        (('always' | 'always-single-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-            | (('always' | 'always-single-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'always-single-line' | {}) | CoreRule) &
-          (
+        (('always' | 'always-single-line' | {}) | CoreRule) & (
             | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
             | (('always' | 'always-single-line' | {}) | CoreRule)
           ),
-        (('always' | 'always-single-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-            | (('always' | 'always-single-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'always-single-line' | {}) | CoreRule) &
-          (
+        (('always' | 'always-single-line' | {}) | CoreRule) & (
             | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
             | (('always' | 'always-single-line' | {}) | CoreRule)
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'always-single-line' | [])
-            | [
-                (('always' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'always-single-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'always-single-line' | {}) | CoreRule)
-                  ),
-                (('always' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'always-single-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'always-single-line' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'always-single-line' | [])
-          | [
-              (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                ),
-              (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'always-single-line' | [])
-          | [
-              (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                ),
-              (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'always-single-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   /**
    * Disallow unknown at-rules
@@ -18889,62 +11508,56 @@ export interface AtRule {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'at-rule-no-vendor-prefix'?: BooleanRule;
   /**
@@ -18954,62 +11567,12 @@ export interface AtRule {
     | null
     | ('always' | [])
     | [
-        (('always' | {}) | CoreRule) &
-          (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-          (('always' | {}) | CoreRule) &
-          (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)),
-        (('always' | {}) | CoreRule) &
-          (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-          (('always' | {}) | CoreRule) &
-          (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule))
+        (('always' | {}) | CoreRule) & (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)),
+        (('always' | {}) | CoreRule) & (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule))
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | [])
-            | [
-                (('always' | {}) | CoreRule) &
-                  (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-                  (('always' | {}) | CoreRule) &
-                  (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)),
-                (('always' | {}) | CoreRule) &
-                  (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-                  (('always' | {}) | CoreRule) &
-                  (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | [])
-          | [
-              (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-                (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)),
-              (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-                (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | [])
-          | [
-              (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-                (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)),
-              (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)) &
-                (('always' | {}) | CoreRule) &
-                (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   /**
    * @deprecated
@@ -19043,110 +11606,18 @@ export interface Block {
     | null
     | ('always-multi-line' | 'never' | [])
     | [
-        (('always-multi-line' | 'never' | {}) | CoreRule) &
-          (
-            | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-            | (('always-multi-line' | 'never' | {}) | CoreRule)
-          ) &
-          (('always-multi-line' | 'never' | {}) | CoreRule) &
-          (
+        (('always-multi-line' | 'never' | {}) | CoreRule) & (
             | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
             | (('always-multi-line' | 'never' | {}) | CoreRule)
           ),
-        (('always-multi-line' | 'never' | {}) | CoreRule) &
-          (
-            | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-            | (('always-multi-line' | 'never' | {}) | CoreRule)
-          ) &
-          (('always-multi-line' | 'never' | {}) | CoreRule) &
-          (
+        (('always-multi-line' | 'never' | {}) | CoreRule) & (
             | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
             | (('always-multi-line' | 'never' | {}) | CoreRule)
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always-multi-line' | 'never' | [])
-            | [
-                (('always-multi-line' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                    | (('always-multi-line' | 'never' | {}) | CoreRule)
-                  ) &
-                  (('always-multi-line' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                    | (('always-multi-line' | 'never' | {}) | CoreRule)
-                  ),
-                (('always-multi-line' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                    | (('always-multi-line' | 'never' | {}) | CoreRule)
-                  ) &
-                  (('always-multi-line' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                    | (('always-multi-line' | 'never' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always-multi-line' | 'never' | [])
-          | [
-              (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                ),
-              (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always-multi-line' | 'never' | [])
-          | [
-              (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                ),
-              (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-multi-line' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
-                  | (('always-multi-line' | 'never' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'block-closing-brace-newline-after'?: NewlineSpaceWithIgnoreRule;
   'block-closing-brace-newline-before'?: NewlineRule;
@@ -19165,37 +11636,7 @@ export interface Block {
         (
           | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
           | CoreRule
-        ) &
-          (
-            | ((
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                string)
-            | (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              )
-          ) &
-          (
-            | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-            | CoreRule
-          ) &
-          (
+        ) & (
             | ((
                 | (
                     | 'always'
@@ -19223,37 +11664,7 @@ export interface Block {
         (
           | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
           | CoreRule
-        ) &
-          (
-            | ((
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                string)
-            | (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              )
-          ) &
-          (
-            | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
-            | CoreRule
-          ) &
-          (
+        ) & (
             | ((
                 | (
                     | 'always'
@@ -19281,459 +11692,7 @@ export interface Block {
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | [])
-            | [
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                  (
-                    | ((
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      ) &
-                        string)
-                    | (
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      )
-                  ) &
-                  (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                  (
-                    | ((
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      ) &
-                        string)
-                    | (
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      )
-                  ),
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                  (
-                    | ((
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      ) &
-                        string)
-                    | (
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      )
-                  ) &
-                  (
-                    | (
-                        | 'always'
-                        | 'always-single-line'
-                        | 'never-single-line'
-                        | 'always-multi-line'
-                        | 'never-multi-line'
-                        | {}
-                      )
-                    | CoreRule
-                  ) &
-                  (
-                    | ((
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      ) &
-                        string)
-                    | (
-                        | (
-                            | 'always'
-                            | 'always-single-line'
-                            | 'never-single-line'
-                            | 'always-multi-line'
-                            | 'never-multi-line'
-                            | {}
-                          )
-                        | CoreRule
-                      )
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ),
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ),
-              (
-                | (
-                    | 'always'
-                    | 'always-single-line'
-                    | 'never-single-line'
-                    | 'always-multi-line'
-                    | 'never-multi-line'
-                    | {}
-                  )
-                | CoreRule
-              ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                ) &
-                (
-                  | (
-                      | 'always'
-                      | 'always-single-line'
-                      | 'never-single-line'
-                      | 'always-multi-line'
-                      | 'never-multi-line'
-                      | {}
-                    )
-                  | CoreRule
-                ) &
-                (
-                  | ((
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    ) &
-                      string)
-                  | (
-                      | (
-                          | 'always'
-                          | 'always-single-line'
-                          | 'never-single-line'
-                          | 'always-multi-line'
-                          | 'never-multi-line'
-                          | {}
-                        )
-                      | CoreRule
-                    )
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'block-opening-brace-space-after'?: NewlineSpaceRule;
   'block-opening-brace-space-before'?: NewlineSpaceWithIgnoreRule;
@@ -19748,62 +11707,12 @@ export interface Color {
     | null
     | ('short' | 'long' | [])
     | [
-        (('short' | 'long' | {}) | CoreRule) &
-          (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-          (('short' | 'long' | {}) | CoreRule) &
-          (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)),
-        (('short' | 'long' | {}) | CoreRule) &
-          (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-          (('short' | 'long' | {}) | CoreRule) &
-          (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule))
+        (('short' | 'long' | {}) | CoreRule) & (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)),
+        (('short' | 'long' | {}) | CoreRule) & (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule))
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('short' | 'long' | [])
-            | [
-                (('short' | 'long' | {}) | CoreRule) &
-                  (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-                  (('short' | 'long' | {}) | CoreRule) &
-                  (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)),
-                (('short' | 'long' | {}) | CoreRule) &
-                  (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-                  (('short' | 'long' | {}) | CoreRule) &
-                  (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('short' | 'long' | [])
-          | [
-              (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-                (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)),
-              (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-                (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('short' | 'long' | [])
-          | [
-              (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-                (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)),
-              (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)) &
-                (('short' | 'long' | {}) | CoreRule) &
-                (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   /**
    * Require (where possible) or disallow named colors
@@ -19812,110 +11721,56 @@ export interface Color {
     | null
     | ('always-where-possible' | 'never' | [])
     | [
-        (('always-where-possible' | 'never' | {}) | CoreRule) &
-          (
-            | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-            | (('always-where-possible' | 'never' | {}) | CoreRule)
-          ) &
-          (('always-where-possible' | 'never' | {}) | CoreRule) &
-          (
-            | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-            | (('always-where-possible' | 'never' | {}) | CoreRule)
+        (
+          | ('always-where-possible' | 'never' | {})
+          | (CoreRule & {
+              ignore?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ),
-        (('always-where-possible' | 'never' | {}) | CoreRule) &
-          (
-            | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-            | (('always-where-possible' | 'never' | {}) | CoreRule)
-          ) &
-          (('always-where-possible' | 'never' | {}) | CoreRule) &
-          (
-            | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-            | (('always-where-possible' | 'never' | {}) | CoreRule)
+        (
+          | ('always-where-possible' | 'never' | {})
+          | (CoreRule & {
+              ignore?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always-where-possible' | 'never' | [])
-            | [
-                (('always-where-possible' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                    | (('always-where-possible' | 'never' | {}) | CoreRule)
-                  ) &
-                  (('always-where-possible' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                    | (('always-where-possible' | 'never' | {}) | CoreRule)
-                  ),
-                (('always-where-possible' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                    | (('always-where-possible' | 'never' | {}) | CoreRule)
-                  ) &
-                  (('always-where-possible' | 'never' | {}) | CoreRule) &
-                  (
-                    | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                    | (('always-where-possible' | 'never' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always-where-possible' | 'never' | [])
-          | [
-              (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                ),
-              (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always-where-possible' | 'never' | [])
-          | [
-              (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                ),
-              (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                ) &
-                (('always-where-possible' | 'never' | {}) | CoreRule) &
-                (
-                  | ((('always-where-possible' | 'never' | {}) | CoreRule) & string)
-                  | (('always-where-possible' | 'never' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'color-no-hex'?: BooleanRule;
   'color-no-invalid-hex'?: BooleanRule;
@@ -19929,62 +11784,140 @@ export interface Comment {
     | null
     | ('always' | 'never' | [])
     | [
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for comments that are nested and the first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Don't require an empty line between comments
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for comments that are nested and the first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Don't require an empty line between comments
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | [])
-            | [
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'comment-no-empty'?: BooleanRule;
   'comment-whitespace-inside'?: AlwaysNeverRule;
@@ -20020,83 +11953,166 @@ export interface CustomProperty {
     | null
     | ('always' | 'never' | [])
     | [
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-custom-property' | 'first-nested',
+                ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+              ];
+              /**
+               * Ignore custom properties that are preceded by comments or inside single-line blocks
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'inside-single-line-block',
+                ...('after-comment' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-custom-property' | 'first-nested',
+                ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+              ];
+              /**
+               * Ignore custom properties that are preceded by comments or inside single-line blocks
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'inside-single-line-block',
+                ...('after-comment' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | [])
-            | [
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'custom-property-no-outside-root'?: BooleanRule;
   'custom-property-pattern'?: StringRule;
   /**
    * Disallow unknown custom properties
    */
-  'no-unknown-custom-properties'?: (true | null) | [true | null] | [true | null, CoreRule2];
+  'no-unknown-custom-properties'?: (true | null) | [true | null] | [true | null, CoreRule1];
   [k: string]: unknown | undefined;
-}
-export interface CoreRule2 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
 }
 export interface Declaration {
   'declaration-bang-space-after'?: AlwaysNeverRule;
@@ -20109,110 +12125,18 @@ export interface Declaration {
     | null
     | ('always' | 'never' | 'always-single-line' | [])
     | [
-        (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-          (
+        (('always' | 'never' | 'always-single-line' | {}) | CoreRule) & (
             | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
             | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
           ),
-        (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-          (
+        (('always' | 'never' | 'always-single-line' | {}) | CoreRule) & (
             | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
             | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | 'always-single-line' | [])
-            | [
-                (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                  ),
-                (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | 'always-single-line' | [])
-          | [
-              (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | 'always-single-line' | [])
-          | [
-              (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-single-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'declaration-colon-space-before'?: AlwaysNeverRule;
   /**
@@ -20222,62 +12146,134 @@ export interface Declaration {
     | null
     | ('always' | 'never' | [])
     | [
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-        (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-          (('always' | 'never' | {}) | CoreRule) &
-          (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-declaration' | 'first-nested',
+                ...('after-comment' | 'after-declaration' | 'first-nested')[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-declaration' | 'first-nested',
+                ...('after-comment' | 'after-declaration' | 'first-nested')[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | [])
-            | [
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-                (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                  (('always' | 'never' | {}) | CoreRule) &
-                  (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | [])
-          | [
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
-              (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)) &
-                (('always' | 'never' | {}) | CoreRule) &
-                (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'declaration-no-important'?: BooleanRule;
   /**
@@ -20286,11 +12282,11 @@ export interface Declaration {
   'declaration-property-unit-blacklist'?:
     | null
     | {
-        [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
       }
     | [
         {
-          [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
         },
         CoreRule
       ];
@@ -20300,11 +12296,11 @@ export interface Declaration {
   'declaration-property-unit-whitelist'?:
     | null
     | {
-        [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
       }
     | [
         {
-          [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
         },
         CoreRule
       ];
@@ -20314,29 +12310,58 @@ export interface Declaration {
   'declaration-property-value-blacklist'?:
     | null
     | {
-        [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
       }
     | [
         {
-          [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
         },
         CoreRule
       ];
   /**
    * Disallow unknown values for properties within declarations
    */
-  'declaration-property-value-no-unknown'?: (true | null) | [true | null] | [true | null, CoreRule];
+  'declaration-property-value-no-unknown'?:
+    | (true | null)
+    | [true | null]
+    | [
+        true | null,
+        CoreRule & {
+          ignoreProperties?: {
+            [k: string]:
+              | string
+              | string[]
+              | {
+                  [k: string]: unknown | undefined;
+                }
+              | (
+                  | {
+                      [k: string]: unknown | undefined;
+                    }
+                  | string
+                )[]
+              | undefined;
+          };
+          propertiesSyntax?: {
+            [k: string]: string | string[] | undefined;
+          };
+          typesSyntax?: {
+            [k: string]: string | string[] | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
   /**
    * Specify a whitelist of allowed property and value pairs within declarations
    */
   'declaration-property-value-whitelist'?:
     | null
     | {
-        [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
       }
     | [
         {
-          [k: string]: SimpleStringOrArrayStringRule1 | undefined;
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
         },
         CoreRule
       ];
@@ -20350,62 +12375,158 @@ export interface DeclarationBlock {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                ),
+                ...(
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                )[]
+              ];
+              ignoreProperties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                ),
+                ...(
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                )[]
+              ];
+              ignoreProperties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'declaration-block-no-ignored-properties'?: BooleanRule;
   /**
@@ -20415,62 +12536,56 @@ export interface DeclarationBlock {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreShorthands?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreShorthands?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'declaration-block-no-shorthand-property-overrides'?: BooleanRule;
   /**
@@ -20480,126 +12595,128 @@ export interface DeclarationBlock {
     | null
     | ('alphabetical' | [])
     | [
-        (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-          (
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-            | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-          ) &
-          (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-          (
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-            | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
+        (
+          | ('alphabetical' | [] | {})
+          | string
+          | SimpleArrayStringRule
+          | (CoreRule & {
+              /**
+               * These options only apply if you've defined your own array of properties
+               */
+              unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+              order?: 'strict' | 'flexible';
+              properties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                unknown[])
+            | (
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ),
-        ...((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-          (
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-            | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-          ) &
-          (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-          (
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-            | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-            | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
+        ...((
+          | ('alphabetical' | [] | {})
+          | string
+          | SimpleArrayStringRule
+          | (CoreRule & {
+              /**
+               * These options only apply if you've defined your own array of properties
+               */
+              unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+              order?: 'strict' | 'flexible';
+              properties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                unknown[])
+            | (
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ))[]
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('alphabetical' | [])
-            | [
-                (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                  (
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                    | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                  ) &
-                  (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                  (
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                    | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                  ),
-                ...((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                  (
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                    | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                  ) &
-                  (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                  (
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                    | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                    | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                  ))[]
-              ]
-          ))
-      | ((
-          | null
-          | ('alphabetical' | [])
-          | [
-              (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ) &
-                (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ),
-              ...((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ) &
-                (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ))[]
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('alphabetical' | [])
-          | [
-              (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ) &
-                (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ),
-              ...((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ) &
-                (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) &
-                (
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & string)
-                  | ((('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule) & unknown[])
-                  | (('alphabetical' | [] | {}) | string | SimpleArrayStringRule | CoreRule)
-                ))[]
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'declaration-block-semicolon-newline-after'?: NewlineRule;
   'declaration-block-semicolon-newline-before'?: NewlineRule;
@@ -20617,26 +12734,12 @@ export interface Font {
     | null
     | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | [])
     | [
-        (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-          (
-            | ((('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                string)
-            | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-          ) &
-          (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-          (
+        (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) & (
             | ((('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
                 string)
             | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
           ),
-        (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-          (
-            | ((('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                string)
-            | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-          ) &
-          (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-          (
+        (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) & (
             | ((('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
                 string)
             | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
@@ -20644,135 +12747,7 @@ export interface Font {
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | [])
-            | [
-                (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                  (
-                    | ((
-                        | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                        | CoreRule
-                      ) &
-                        string)
-                    | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                  ) &
-                  (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                  (
-                    | ((
-                        | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                        | CoreRule
-                      ) &
-                        string)
-                    | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                  ),
-                (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                  (
-                    | ((
-                        | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                        | CoreRule
-                      ) &
-                        string)
-                    | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                  ) &
-                  (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                  (
-                    | ((
-                        | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                        | CoreRule
-                      ) &
-                        string)
-                    | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | [])
-          | [
-              (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                ) &
-                (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                ),
-              (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                ) &
-                (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | [])
-          | [
-              (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                ) &
-                (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                ),
-              (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                ) &
-                (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
-                (
-                  | ((
-                      | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {})
-                      | CoreRule
-                    ) &
-                      string)
-                  | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   /**
    * Require numeric or named (where possible) `font-weight` values. Also, when named values are expected, require only valid names
@@ -20781,110 +12756,74 @@ export interface Font {
     | null
     | ('numeric' | 'named-where-possible' | [])
     | [
-        (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-          (
-            | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-            | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-          ) &
-          (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-          (
-            | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-            | (('numeric' | 'named-where-possible' | {}) | CoreRule)
+        (
+          | ('numeric' | 'named-where-possible' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['relative', ...'relative'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ),
-        (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-          (
-            | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-            | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-          ) &
-          (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-          (
-            | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-            | (('numeric' | 'named-where-possible' | {}) | CoreRule)
+        (
+          | ('numeric' | 'named-where-possible' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['relative', ...'relative'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('numeric' | 'named-where-possible' | [])
-            | [
-                (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                  (
-                    | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                    | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                  ) &
-                  (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                  (
-                    | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                    | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                  ),
-                (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                  (
-                    | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                    | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                  ) &
-                  (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                  (
-                    | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                    | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('numeric' | 'named-where-possible' | [])
-          | [
-              (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                ) &
-                (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                ),
-              (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                ) &
-                (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('numeric' | 'named-where-possible' | [])
-          | [
-              (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                ) &
-                (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                ),
-              (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                ) &
-                (('numeric' | 'named-where-possible' | {}) | CoreRule) &
-                (
-                  | ((('numeric' | 'named-where-possible' | {}) | CoreRule) & string)
-                  | (('numeric' | 'named-where-possible' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   [k: string]: unknown | undefined;
 }
@@ -20904,62 +12843,56 @@ export interface Function {
     | null
     | ('lower' | 'upper' | [])
     | [
-        (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-          (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-        (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-          (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreFunctions?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreFunctions?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('lower' | 'upper' | [])
-            | [
-                (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                  (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-                (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                  (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('lower' | 'upper' | [])
-          | [
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('lower' | 'upper' | [])
-          | [
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'function-parentheses-newline-inside'?: NewlineRule;
   'function-parentheses-space-inside'?: SpaceRule;
@@ -20980,161 +12913,200 @@ export interface GeneralSheet {
     | ('tab' | [])
     | [number, ...number[]]
     | [
-        (number | ('tab' | {}) | CoreRule) &
-          (
-            | ((number | ('tab' | {}) | CoreRule) & number)
-            | ((number | ('tab' | {}) | CoreRule) & string)
-            | (number | ('tab' | {}) | CoreRule)
-          ) &
-          (number | ('tab' | {}) | CoreRule) &
-          (
-            | ((number | ('tab' | {}) | CoreRule) & number)
-            | ((number | ('tab' | {}) | CoreRule) & string)
-            | (number | ('tab' | {}) | CoreRule)
+        (
+          | number
+          | ('tab' | {})
+          | (CoreRule & {
+              /**
+               * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+               */
+              indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+              /**
+               * Do not indent for these things
+               *
+               * @minItems 1
+               */
+              except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+              /**
+               * Ignore the indentation inside parentheses
+               *
+               * @minItems 1
+               */
+              ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ),
-        (number | ('tab' | {}) | CoreRule) &
-          (
-            | ((number | ('tab' | {}) | CoreRule) & number)
-            | ((number | ('tab' | {}) | CoreRule) & string)
-            | (number | ('tab' | {}) | CoreRule)
-          ) &
-          (number | ('tab' | {}) | CoreRule) &
-          (
-            | ((number | ('tab' | {}) | CoreRule) & number)
-            | ((number | ('tab' | {}) | CoreRule) & string)
-            | (number | ('tab' | {}) | CoreRule)
+        (
+          | number
+          | ('tab' | {})
+          | (CoreRule & {
+              /**
+               * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+               */
+              indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+              /**
+               * Do not indent for these things
+               *
+               * @minItems 1
+               */
+              except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+              /**
+               * Ignore the indentation inside parentheses
+               *
+               * @minItems 1
+               */
+              ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | (null | number)
-            | ('tab' | [])
-            | [number, ...number[]]
-            | [
-                (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  ) &
-                  (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  ),
-                (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  ) &
-                  (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | (number &
-          (
-            | (null | number)
-            | ('tab' | [])
-            | [number, ...number[]]
-            | [
-                (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  ) &
-                  (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  ),
-                (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  ) &
-                  (number | ('tab' | {}) | CoreRule) &
-                  (
-                    | ((number | ('tab' | {}) | CoreRule) & number)
-                    | ((number | ('tab' | {}) | CoreRule) & string)
-                    | (number | ('tab' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | (null | number)
-          | ('tab' | [])
-          | [number, ...number[]]
-          | [
-              (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                ) &
-                (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                ),
-              (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                ) &
-                (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | (null | number)
-          | ('tab' | [])
-          | [number, ...number[]]
-          | [
-              (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                ) &
-                (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                ),
-              (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                ) &
-                (number | ('tab' | {}) | CoreRule) &
-                (
-                  | ((number | ('tab' | {}) | CoreRule) & number)
-                  | ((number | ('tab' | {}) | CoreRule) & string)
-                  | (number | ('tab' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | number | string | unknown[]
     );
   /**
    * @deprecated
@@ -21150,59 +13122,86 @@ export interface GeneralSheet {
   'max-line-length'?: (
     | (null | number)
     | [
-        (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule)) &
-          (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule)),
-        (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule)) &
-          (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule))
+        (
+          | number
+          | (CoreRule & {
+              ignore?: (
+                ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+              ) &
+                (
+                  string | unknown[]
+                );
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | number
+          | (CoreRule & {
+              ignore?: (
+                ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+              ) &
+                (
+                  string | unknown[]
+                );
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | (null | number)
-            | [
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)),
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule))
-              ]
-          ))
-      | (number &
-          (
-            | (null | number)
-            | [
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)),
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule))
-              ]
-          ))
-      | ((
-          | (null | number)
-          | [
-              (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule)) &
-                (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule)),
-              (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule)) &
-                (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | number | unknown[]
     );
   /**
    * Limit the allowed nesting depth
@@ -21210,59 +13209,98 @@ export interface GeneralSheet {
   'max-nesting-depth'?: (
     | (null | number)
     | [
-        (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule)) &
-          (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule)),
-        (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule)) &
-          (number | CoreRule) &
-          (((number | CoreRule) & number) | (number | CoreRule))
+        (
+          | number
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+              ];
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | number
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+              ];
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | (null | number)
-            | [
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)),
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule))
-              ]
-          ))
-      | (number &
-          (
-            | (null | number)
-            | [
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)),
-                (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule)) &
-                  (number | CoreRule) &
-                  (((number | CoreRule) & number) | (number | CoreRule))
-              ]
-          ))
-      | ((
-          | (null | number)
-          | [
-              (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule)) &
-                (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule)),
-              (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule)) &
-                (number | CoreRule) &
-                (((number | CoreRule) & number) | (number | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | number | unknown[]
     );
   /**
    * Disallow browser hacks that are irrelevant to the browsers you are targeting
@@ -21271,62 +13309,56 @@ export interface GeneralSheet {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'no-descending-specificity'?: BooleanRule;
   'no-duplicate-selectors'?: BooleanRule;
@@ -21345,62 +13377,74 @@ export interface GeneralSheet {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['empty-lines', ...'empty-lines'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['empty-lines', ...'empty-lines'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'no-extra-semicolons'?: BooleanRule;
   /**
@@ -21410,62 +13454,98 @@ export interface GeneralSheet {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              threshold?: number;
+              ignore?: SimpleArrayStringRule;
+              /**
+               * An array of color pairs to ignore. Each pair is an array with two items
+               *
+               * @minItems 1
+               */
+              whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              threshold?: number;
+              ignore?: SimpleArrayStringRule;
+              /**
+               * An array of color pairs to ignore. Each pair is an array with two items
+               *
+               * @minItems 1
+               */
+              whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'no-invalid-double-slash-comments'?: BooleanRule;
   'no-missing-end-of-source-newline'?: BooleanRule;
@@ -21478,62 +13558,62 @@ export interface GeneralSheet {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: string;
+              ignore?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: string;
+              ignore?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   [k: string]: unknown | undefined;
 }
@@ -21552,21 +13632,8 @@ export interface Lightness {
   'lightness-notation'?:
     | (('percentage' | 'number') | null)
     | [('percentage' | 'number') | null]
-    | [('percentage' | 'number') | null, CoreRule3];
+    | [('percentage' | 'number') | null, CoreRule1];
   [k: string]: unknown | undefined;
-}
-export interface CoreRule3 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
 }
 export interface MediaFeature {
   'media-feature-colon-space-after'?: AlwaysNeverRule;
@@ -21579,85 +13646,79 @@ export interface MediaFeature {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreMediaFeatureNames?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreMediaFeatureNames?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   /**
    * Disallow unknown values for media features
    */
-  'media-feature-name-value-no-unknown'?: (true | null) | [true | null] | [true | null, CoreRule4];
+  'media-feature-name-value-no-unknown'?: (true | null) | [true | null] | [true | null, CoreRule1];
   'media-feature-name-no-vendor-prefix'?: BooleanRule;
   /**
    * Specify a list of allowed name and unit pairs within media features
    */
   'media-feature-name-unit-allowed-list'?:
     | ({
-        [k: string]: (string | string[]) | undefined;
+        [k: string]: string | string[] | undefined;
       } | null)
     | [
         {
-          [k: string]: (string | string[]) | undefined;
+          [k: string]: string | string[] | undefined;
         } | null
       ]
     | [
         {
-          [k: string]: (string | string[]) | undefined;
+          [k: string]: string | string[] | undefined;
         } | null,
-        CoreRule5
+        CoreRule1
       ];
   'media-feature-no-missing-punctuation'?: BooleanRule;
   'media-feature-parentheses-space-inside'?: AlwaysNeverRule;
@@ -21665,71 +13726,17 @@ export interface MediaFeature {
    * Specify context or prefix notation for media feature ranges
    */
   'media-feature-range-notation'?:
-    | (('prefix' | 'context') | null)
-    | [('prefix' | 'context') | null]
-    | [('prefix' | 'context') | null, CoreRule6];
+    (('prefix' | 'context') | null) | [('prefix' | 'context') | null] | [('prefix' | 'context') | null, CoreRule1];
   'media-feature-range-operator-space-after'?: AlwaysNeverRule;
   'media-feature-range-operator-space-before'?: AlwaysNeverRule;
   [k: string]: unknown | undefined;
-}
-export interface CoreRule4 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
-}
-export interface CoreRule5 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
-}
-export interface CoreRule6 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
 }
 export interface MediaQuery {
   /**
    * Disallow invalid media queries
    */
-  'media-query-no-invalid'?: (true | null) | [true | null] | [true | null, CoreRule7];
+  'media-query-no-invalid'?: (true | null) | [true | null] | [true | null, CoreRule1];
   [k: string]: unknown | undefined;
-}
-export interface CoreRule7 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
 }
 export interface MediaQueryList {
   'media-query-list-comma-newline-after'?: NewlineRule;
@@ -21754,62 +13761,80 @@ export interface Property {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreProperties?: SimpleArrayStringRule;
+              /**
+               * If `true`, this rule will check vendor-prefixed properties
+               */
+              checkPrefixed?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreProperties?: SimpleArrayStringRule;
+              /**
+               * If `true`, this rule will check vendor-prefixed properties
+               */
+              checkPrefixed?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'property-no-vendor-prefix'?: BooleanRule;
   'property-whitelist'?: ArrayStringRule;
@@ -21827,110 +13852,122 @@ export interface Rule {
     | null
     | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
     | [
-        (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ),
-        (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
-            | [
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  ),
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   /**
    * Require or disallow an empty line before non-nested rules
@@ -21939,110 +13976,122 @@ export interface Rule {
     | null
     | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
     | [
-        (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           ),
-        (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-          ) &
-          (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-          (
-            | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-            | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
-            | [
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  ),
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  ) &
-                  (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                  (
-                    | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                    | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
-          | [
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ),
-              (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                ) &
-                (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) &
-                (
-                  | ((('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
-                  | (('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   [k: string]: unknown | undefined;
 }
@@ -22050,7 +14099,7 @@ export interface Selector {
   /**
    * Disallow unmatchable An+B selectors
    */
-  'selector-anb-no-unmatchable'?: (true | null) | [true | null] | [true | null, CoreRule8];
+  'selector-anb-no-unmatchable'?: (true | null) | [true | null] | [true | null, CoreRule1];
   'selector-attribute-brackets-space-inside'?: AlwaysNeverRule;
   'selector-attribute-operator-blacklist'?: ArrayStringRule;
   'selector-attribute-operator-space-after'?: AlwaysNeverRule;
@@ -22063,59 +14112,74 @@ export interface Selector {
   'selector-class-pattern'?: (
     | (null | string)
     | [
-        (string | CoreRule) &
-          (((string | CoreRule) & string) | (string | CoreRule)) &
-          (string | CoreRule) &
-          (((string | CoreRule) & string) | (string | CoreRule)),
-        (string | CoreRule) &
-          (((string | CoreRule) & string) | (string | CoreRule)) &
-          (string | CoreRule) &
-          (((string | CoreRule) & string) | (string | CoreRule))
+        (
+          | string
+          | (CoreRule & {
+              /**
+               * This option will resolve nested selectors with `&` interpolation
+               */
+              resolveNestedSelectors?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | string
+          | (CoreRule & {
+              /**
+               * This option will resolve nested selectors with `&` interpolation
+               */
+              resolveNestedSelectors?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | (null | string)
-            | [
-                (string | CoreRule) &
-                  (((string | CoreRule) & string) | (string | CoreRule)) &
-                  (string | CoreRule) &
-                  (((string | CoreRule) & string) | (string | CoreRule)),
-                (string | CoreRule) &
-                  (((string | CoreRule) & string) | (string | CoreRule)) &
-                  (string | CoreRule) &
-                  (((string | CoreRule) & string) | (string | CoreRule))
-              ]
-          ))
-      | ((
-          | (null | string)
-          | [
-              (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)) &
-                (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)),
-              (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)) &
-                (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | (null | string)
-          | [
-              (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)) &
-                (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)),
-              (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule)) &
-                (string | CoreRule) &
-                (((string | CoreRule) & string) | (string | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'selector-combinator-space-after'?: AlwaysNeverRule;
   'selector-combinator-space-before'?: AlwaysNeverRule;
@@ -22134,62 +14198,74 @@ export interface Selector {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   /**
    * Disallow type selectors
@@ -22198,62 +14274,80 @@ export interface Selector {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'selector-no-universal'?: BooleanRule;
   'selector-no-vendor-prefix'?: BooleanRule;
@@ -22265,62 +14359,56 @@ export interface Selector {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoClasses?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoClasses?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'selector-pseudo-class-parentheses-space-inside'?: AlwaysNeverRule;
   'selector-pseudo-class-whitelist'?: ArrayStringRule;
@@ -22333,62 +14421,56 @@ export interface Selector {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoElements?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoElements?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'selector-root-no-composition'?: BooleanRule;
   'selector-type-case'?: LowerUpperRule;
@@ -22399,78 +14481,59 @@ export interface Selector {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'selector-max-empty-lines'?: IntegerRule;
   [k: string]: unknown | undefined;
-}
-export interface CoreRule8 {
-  disableFix?: boolean;
-  /**
-   * Custom message that will be used in errors and warnings
-   */
-  message?: string;
-  reportDisables?: boolean;
-  /**
-   * Message status
-   */
-  severity?: 'warning' | 'error';
-  url?: string;
 }
 export interface SelectorList {
   'selector-list-comma-newline-after'?: NewlineRule;
@@ -22496,110 +14559,18 @@ export interface StylelintDisableComment {
     | null
     | ('always-before' | 'always-after' | [])
     | [
-        (('always-before' | 'always-after' | {}) | CoreRule) &
-          (
-            | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-            | (('always-before' | 'always-after' | {}) | CoreRule)
-          ) &
-          (('always-before' | 'always-after' | {}) | CoreRule) &
-          (
+        (('always-before' | 'always-after' | {}) | CoreRule) & (
             | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
             | (('always-before' | 'always-after' | {}) | CoreRule)
           ),
-        (('always-before' | 'always-after' | {}) | CoreRule) &
-          (
-            | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-            | (('always-before' | 'always-after' | {}) | CoreRule)
-          ) &
-          (('always-before' | 'always-after' | {}) | CoreRule) &
-          (
+        (('always-before' | 'always-after' | {}) | CoreRule) & (
             | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
             | (('always-before' | 'always-after' | {}) | CoreRule)
           )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('always-before' | 'always-after' | [])
-            | [
-                (('always-before' | 'always-after' | {}) | CoreRule) &
-                  (
-                    | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                    | (('always-before' | 'always-after' | {}) | CoreRule)
-                  ) &
-                  (('always-before' | 'always-after' | {}) | CoreRule) &
-                  (
-                    | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                    | (('always-before' | 'always-after' | {}) | CoreRule)
-                  ),
-                (('always-before' | 'always-after' | {}) | CoreRule) &
-                  (
-                    | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                    | (('always-before' | 'always-after' | {}) | CoreRule)
-                  ) &
-                  (('always-before' | 'always-after' | {}) | CoreRule) &
-                  (
-                    | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                    | (('always-before' | 'always-after' | {}) | CoreRule)
-                  )
-              ]
-          ))
-      | ((
-          | null
-          | ('always-before' | 'always-after' | [])
-          | [
-              (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                ) &
-                (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                ),
-              (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                ) &
-                (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('always-before' | 'always-after' | [])
-          | [
-              (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                ) &
-                (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                ),
-              (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                ) &
-                (('always-before' | 'always-after' | {}) | CoreRule) &
-                (
-                  | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
-                  | (('always-before' | 'always-after' | {}) | CoreRule)
-                )
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   [k: string]: unknown | undefined;
 }
@@ -22617,62 +14588,56 @@ export interface Unit {
     | null
     | (true | [])
     | [
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-        ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-          ((true | {}) | CoreRule) &
-          ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreUnits?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreUnits?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | (boolean &
-          (
-            | null
-            | (true | [])
-            | [
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-                ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                  ((true | {}) | CoreRule) &
-                  ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | (true | [])
-          | [
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)),
-              ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule)) &
-                ((true | {}) | CoreRule) &
-                ((((true | {}) | CoreRule) & boolean) | ((true | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | boolean | unknown[]
     );
   'unit-whitelist'?: UnitRule;
   [k: string]: unknown | undefined;
@@ -22685,62 +14650,56 @@ export interface Value {
     | null
     | ('lower' | 'upper' | [])
     | [
-        (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-          (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-        (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-          (('lower' | 'upper' | {}) | CoreRule) &
-          (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreKeywords?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreKeywords?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
       ]
   ) &
     (
-      | (null &
-          (
-            | null
-            | ('lower' | 'upper' | [])
-            | [
-                (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                  (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-                (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                  (('lower' | 'upper' | {}) | CoreRule) &
-                  (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-              ]
-          ))
-      | ((
-          | null
-          | ('lower' | 'upper' | [])
-          | [
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-            ]
-        ) &
-          string)
-      | ((
-          | null
-          | ('lower' | 'upper' | [])
-          | [
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
-              (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)) &
-                (('lower' | 'upper' | {}) | CoreRule) &
-                (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
-            ]
-        ) &
-          unknown[])
+      null | string | unknown[]
     );
   'value-no-vendor-prefix'?: BooleanRule;
   [k: string]: unknown | undefined;
@@ -22820,7 +14779,11 @@ export interface EnvironmentVariables {
   [k: string]: string | undefined;
 }
 export interface Extensions {
-  [k: string]: ('commonjs' | 'module') | undefined;
+  /**
+   * This interface was referenced by `Extensions`'s JSON-Schema definition
+   * via the `patternProperty` "^(c|m)?js$".
+   */
+  [k: string]: true | 'commonjs' | 'module' | undefined;
 }
 /**
  * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
@@ -22842,7 +14805,7 @@ export interface Paths {
    * This interface was referenced by `Paths`'s JSON-Schema definition
    * via the `patternProperty` "/$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 export interface SemanticReleaseSchema {
   /**
@@ -22898,7 +14861,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   maxLines?: number;
   /**
-   * maximum size of source file in bytes to check for duplication (e.g.,: 1kb, 1mb, 120kb)
+   * maximum size of source file in bytes to check for duplication (e.g., 102400, 1kb, 1m, 120kb)
    */
   maxSize?: string | number;
   /**
@@ -22910,11 +14873,14 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   threshold?: number;
   /**
-   * custom mapping from formats to file extensions (default: https://github.com/kucherenko/jscpd/blob/master/packages/tokenizer/src/formats.ts); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md
+   * custom mapping from formats to file extensions, as an object or mapping string (e.g. javascript:es,es6;dart:dt); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
    */
-  formatsExts?: {
-    [k: string]: string[] | undefined;
-  };
+  formatsExts?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
   /**
    * path to directory for non-console reports
    */
@@ -22940,180 +14906,493 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   ignore?: string[];
   /**
-   * list of formats for which to detect duplication (default: all); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md
+   * format or list of formats for which to detect duplication (default: all); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
    */
-  format?: (
-    | 'abap'
-    | 'actionscript'
-    | 'ada'
-    | 'apacheconf'
-    | 'apl'
-    | 'applescript'
-    | 'arduino'
-    | 'arff'
-    | 'asciidoc'
-    | 'asm6502'
-    | 'aspnet'
-    | 'autohotkey'
-    | 'autoit'
-    | 'bash'
-    | 'basic'
-    | 'batch'
-    | 'bison'
-    | 'brainfuck'
-    | 'bro'
-    | 'c'
-    | 'c-header'
-    | 'clike'
-    | 'clojure'
-    | 'coffeescript'
-    | 'comments'
-    | 'cpp'
-    | 'cpp-header'
-    | 'crystal'
-    | 'csharp'
-    | 'csp'
-    | 'css-extras'
-    | 'css'
-    | 'd'
-    | 'dart'
-    | 'diff'
-    | 'django'
-    | 'docker'
-    | 'eiffel'
-    | 'elixir'
-    | 'elm'
-    | 'erb'
-    | 'erlang'
-    | 'flow'
-    | 'fortran'
-    | 'fsharp'
-    | 'gedcom'
-    | 'gherkin'
-    | 'git'
-    | 'glsl'
-    | 'go'
-    | 'graphql'
-    | 'groovy'
-    | 'haml'
-    | 'handlebars'
-    | 'haskell'
-    | 'haxe'
-    | 'hpkp'
-    | 'hsts'
-    | 'http'
-    | 'ichigojam'
-    | 'icon'
-    | 'inform7'
-    | 'ini'
-    | 'io'
-    | 'j'
-    | 'java'
-    | 'javascript'
-    | 'jolie'
-    | 'json'
-    | 'jsx'
-    | 'julia'
-    | 'keymap'
-    | 'kotlin'
-    | 'latex'
-    | 'less'
-    | 'liquid'
-    | 'lisp'
-    | 'livescript'
-    | 'lolcode'
-    | 'lua'
-    | 'makefile'
-    | 'markdown'
-    | 'markup'
-    | 'matlab'
-    | 'mel'
-    | 'mizar'
-    | 'monkey'
-    | 'n4js'
-    | 'nasm'
-    | 'nginx'
-    | 'nim'
-    | 'nix'
-    | 'nsis'
-    | 'objectivec'
-    | 'ocaml'
-    | 'opencl'
-    | 'oz'
-    | 'parigp'
-    | 'pascal'
-    | 'perl'
-    | 'php'
-    | 'plsql'
-    | 'powershell'
-    | 'processing'
-    | 'prolog'
-    | 'properties'
-    | 'protobuf'
-    | 'pug'
-    | 'puppet'
-    | 'pure'
-    | 'python'
-    | 'q'
-    | 'qore'
-    | 'r'
-    | 'reason'
-    | 'renpy'
-    | 'rest'
-    | 'rip'
-    | 'roboconf'
-    | 'ruby'
-    | 'rust'
-    | 'sas'
-    | 'sass'
-    | 'scala'
-    | 'scheme'
-    | 'scss'
-    | 'smalltalk'
-    | 'smarty'
-    | 'soy'
-    | 'sql'
-    | 'stylus'
-    | 'swift'
-    | 'tap'
-    | 'tcl'
-    | 'textile'
-    | 'tsx'
-    | 'tt2'
-    | 'twig'
-    | 'typescript'
-    | 'vbnet'
-    | 'velocity'
-    | 'verilog'
-    | 'vhdl'
-    | 'vim'
-    | 'visual-basic'
-    | 'wasm'
-    | 'url'
-    | 'wiki'
-    | 'xeora'
-    | 'xojo'
-    | 'xquery'
-    | 'yaml'
-  )[];
+  format?:
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      )[]
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      );
   /**
-   * store used to collect information about code (default: in-memory store); install @jscpd/leveldb-store and use leveldb for big repositories
+   * store used to collect information about code. v4 supports external stores such as leveldb and redis; v5 reports this config field as migrated to the CLI --store flag.
    */
-  store?: 'leveldb' | 'redis';
+  store?: ('leveldb' | 'redis') | string;
   /**
-   * a list of reporters to use to output information about duplication; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#reporters
+   * a list of reporters to use to output information about duplication; built-ins include console, consoleFull/console-full, json, xml, csv, html, markdown, badge, sarif, ai, xcode, threshold, and silent; third-party reporters are also supported
    */
   reporters?: (
-    | 'xml'
-    | 'json'
-    | 'csv'
-    | 'markdown'
-    | 'consoleFull'
-    | 'html'
-    | 'console'
-    | 'silent'
-    | 'threshold'
-    | 'xcode'
+    | (
+        | 'ai'
+        | 'badge'
+        | 'console'
+        | 'console-full'
+        | 'consoleFull'
+        | 'csv'
+        | 'full'
+        | 'html'
+        | 'json'
+        | 'markdown'
+        | 'sarif'
+        | 'silent'
+        | 'threshold'
+        | 'xcode'
+        | 'xml'
+      )
+    | string
   )[];
   /**
    * get information about authors and dates of duplicated blocks from Git
@@ -23144,7 +15423,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   ignoreCase?: boolean;
   /**
-   * ignore all files from .gitignore file
+   * respect .gitignore files. Enabled by default in current jscpd; set false to opt out in v4 configs.
    */
   gitignore?: boolean;
   reportersOptions?: {
@@ -23190,11 +15469,741 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
        */
       scale?: number;
     };
+    [k: string]: unknown | undefined;
   };
   /**
    * exit code to use when at least one duplicate code block is detected but threshold is not exceeded
    */
   exitCode?: number;
+  /**
+   * custom mapping from formats to exact filenames without relying on extensions (e.g. makefile:Makefile,GNUmakefile); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  formatsNames?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+  /**
+   * v5 alias for format; format or list of formats for which to detect duplication
+   */
+  formats?:
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      )[]
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      );
+  /**
+   * directory used by the v4 store for cache files, useful for isolating parallel LevelDB runs. v5 reports this config field as migrated to the CLI --store-path flag.
+   */
+  storePath?: string;
+  /**
+   * v5 config field matching --no-gitignore; do not respect .gitignore files
+   */
+  noGitignore?: boolean;
+  /**
+   * v5 config field matching --follow-symlinks; follow symbolic links
+   */
+  followSymlinks?: boolean;
+  /**
+   * compatibility alias for noSymlinks with a capital L; prefer noSymlinks or followSymlinks
+   */
+  noSymLinks?: boolean;
+  /**
+   * disable ANSI color output
+   */
+  noColors?: boolean;
+  /**
+   * suppress tips and promotional messages after detection
+   */
+  noTips?: boolean;
+  /**
+   * show debug information and do not run detection in v4; silently ignored by v5 config compatibility handling
+   */
+  debug?: boolean;
+  /**
+   * v5 kebab-case alias for minTokens. minimum size of code block in tokens to check for duplication
+   */
+  'min-tokens'?: number;
+  /**
+   * v5 kebab-case alias for minLines. minimum size of code block in lines to check for duplication
+   */
+  'min-lines'?: number;
+  /**
+   * v5 kebab-case alias for maxLines. maximum size of source file in lines to check for duplication
+   */
+  'max-lines'?: number;
+  /**
+   * v5 kebab-case alias for maxSize. maximum size of source file in bytes to check for duplication (e.g., 102400, 1kb, 1m, 120kb)
+   */
+  'max-size'?: string | number;
+  /**
+   * v5 kebab-case alias for ignorePattern. ignore code blocks matching these regular expressions
+   */
+  'ignore-pattern'?: string[];
+  /**
+   * v5 kebab-case alias for ignoreCase. ignore case of symbols in code (experimental)
+   */
+  'ignore-case'?: boolean;
+  /**
+   * v5 kebab-case alias for noGitignore. v5 config field matching --no-gitignore; do not respect .gitignore files
+   */
+  'no-gitignore'?: boolean;
+  /**
+   * v5 kebab-case alias for followSymlinks. v5 config field matching --follow-symlinks; follow symbolic links
+   */
+  'follow-symlinks'?: boolean;
+  /**
+   * v5 kebab-case alias for skipLocal. skip duplicates within folders; just detect cross-folder duplicates
+   */
+  'skip-local'?: boolean;
+  /**
+   * v5 kebab-case alias for exitCode. exit code to use when at least one duplicate code block is detected but threshold is not exceeded
+   */
+  'exit-code'?: number;
+  /**
+   * v5 kebab-case alias for noColors. disable ANSI color output
+   */
+  'no-colors'?: boolean;
+  /**
+   * v5 kebab-case alias for noTips. suppress tips and promotional messages after detection
+   */
+  'no-tips'?: boolean;
+  /**
+   * v5 kebab-case alias for formatsExts. custom mapping from formats to file extensions, as an object or mapping string (e.g. javascript:es,es6;dart:dt); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  'formats-exts'?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+  /**
+   * v5 kebab-case alias for formatsNames. custom mapping from formats to exact filenames without relying on extensions (e.g. makefile:Makefile,GNUmakefile); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  'formats-names'?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+}
+/**
+ * Configuration for Madge module dependency analysis.
+ * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+ */
+export interface MadgeConfiguration {
+  /**
+   * URI of the JSON Schema used to validate this configuration.
+   * https://json-schema.org/understanding-json-schema/reference/schema.html
+   */
+  $schema?: string;
+  /**
+   * Base directory to use when resolving paths.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  baseDir?: string | null;
+  /**
+   * Whether to include shallow npm dependencies in the graph.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  includeNpm?: boolean;
+  /**
+   * File extensions to analyze, without leading periods.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  fileExtensions?: string[];
+  /**
+   * Regular expression strings used to exclude modules, or false to disable exclusions.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  excludeRegExp?: string[] | false;
+  /**
+   * Path to a RequireJS configuration used to resolve aliased modules.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  requireConfig?: string | null;
+  /**
+   * Path to a webpack configuration used to resolve aliased modules.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  webpackConfig?: string | null;
+  /**
+   * Path to a TypeScript configuration or an embedded TypeScript configuration object.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  tsConfig?:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | null;
+  /**
+   * Graphviz layout engine used to render the graph. Common values are dot, neato, fdp, sfdp, twopi, and circo.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  layout?: string;
+  /**
+   * Graph layout direction. Common Graphviz values are TB, BT, LR, and RL.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  rankdir?: string;
+  /**
+   * Font name used in the graph.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  fontName?: string;
+  /**
+   * Font size used in the graph.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  fontSize?: string;
+  /**
+   * Graph background color in any syntax supported by Graphviz.
+   * https://github.com/pahen/madge/blob/v8.0.0/lib/api.js#L9-L30
+   */
+  backgroundColor?: string;
+  /**
+   * Graphviz shape used for nodes.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  nodeShape?: string;
+  /**
+   * Graphviz style used for nodes.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  nodeStyle?: string;
+  /**
+   * Default node color in any syntax supported by Graphviz.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  nodeColor?: string;
+  /**
+   * Color used for nodes with no dependencies.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  noDependencyColor?: string;
+  /**
+   * Color used for nodes involved in circular dependencies.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  cyclicNodeColor?: string;
+  /**
+   * Color used for graph edges.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  edgeColor?: string;
+  /**
+   * Additional Graphviz graph, edge, and node attributes, or false to use only Madge defaults.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  graphVizOptions?: GraphVizOptions | false;
+  /**
+   * Directory containing the Graphviz executables, or false or null to use executables from PATH.
+   * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L21-L36
+   */
+  graphVizPath?: string | false | null;
+  /**
+   * Parser-specific detective options passed to dependency-tree, or false to use parser defaults.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  detectiveOptions?: DetectiveOptions | false;
+  /**
+   * Disables the programmatic dependency filter. Functions are supported by the JavaScript API but cannot be represented in JSON configuration.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  dependencyFilter?: false;
+  [k: string]: unknown | undefined;
+}
+export interface GraphVizOptions {
+  G?: GraphVizAttributes;
+  E?: GraphVizAttributes;
+  N?: GraphVizAttributes;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Graph-level Graphviz attributes.
+ * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L45-L74
+ */
+export interface GraphVizAttributes {
+  [k: string]: string | number | boolean | undefined;
+}
+export interface DetectiveOptions {
+  es6?: DetectiveParserOptions;
+  ts?: DetectiveParserOptions;
+  tsx?: DetectiveParserOptions;
+  [k: string]: unknown | undefined;
+}
+export interface DetectiveParserOptions {
+  /**
+   * Whether to detect ES module and CommonJS imports in the same file.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#using-mixed-import-syntax-in-the-same-file
+   */
+  mixedImports?: boolean;
+  /**
+   * Whether to ignore type-only imports.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#how-to-ignore-import-type-statements-in-es6--flow
+   */
+  skipTypeImports?: boolean;
+  /**
+   * Whether to ignore dynamic imports.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#how-to-ignore-dynamic-imports-in-typescript
+   */
+  skipAsyncImports?: boolean;
+  [k: string]: unknown | undefined;
 }
 export interface JSONSchemaForNodemonConfig {
   /**
@@ -23308,4 +16317,112 @@ export interface JSONSchemaForNodemonConfig {
           }
       )[];
   [k: string]: unknown | undefined;
+}
+/**
+ * Configuration for quikrun, a CLI tool to run code files instantly without typing complex commands in terminal.
+ */
+export interface Quikrun {
+  /**
+   * Path to the JSON schema
+   */
+  $schema?: string;
+  /**
+   * Custom shell to run commands in
+   */
+  shell?:
+    | string
+    | {
+        /**
+         * Custom shell for Windows
+         */
+        win?: string;
+        /**
+         * Custom shell for Linux
+         */
+        linux?: string;
+        /**
+         * Custom shell for macOS (Darwin)
+         */
+        darwin?: string;
+      };
+  /**
+   * Clear the terminal before executing commands
+   */
+  clear_terminal?: boolean;
+  /**
+   * Show time taken to execute the script
+   */
+  show_time_took?: boolean;
+  /**
+   * Show the actual command that is being run
+   */
+  show_command?: boolean;
+  /**
+   * Show the shell being used for execution
+   */
+  show_shell?: boolean;
+  /**
+   * Show the divider line before command stdout/stderr
+   */
+  show_divider?: boolean;
+  /**
+   * Directory to store temporary execution files
+   */
+  temp_dir?: string | null;
+  /**
+   * Change directory to the folder containing the file before execution
+   */
+  cd_to_file_dir?: boolean;
+  /**
+   * Keep generated binaries or temporary files after execution
+   */
+  keep_artifacts?: boolean;
+  /**
+   * Controls closing behavior after execution
+   */
+  auto_close?: ('always' | 'never' | 'on_success') | number;
+  /**
+   * Command Templates by file extension
+   */
+  commands?: {
+    [k: string]: CommandValue | undefined;
+  };
+}
+export interface CompileRun {
+  /**
+   * Command template to compile the file before running (e.g. 'g++ {file} -o {out}')
+   */
+  compile?: string;
+  /**
+   * Command template to execute the compiled binary (e.g. '{out}')
+   */
+  run?: string;
+}
+export interface ShellFamilySpecific {
+  /**
+   * Command for POSIX shells (bash, zsh, sh, etc.)
+   */
+  posix?: CommandValue | OsSpecific;
+  /**
+   * Command for Windows Command Prompt (cmd.exe)
+   */
+  cmd?: CommandValue | OsSpecific;
+  /**
+   * Command for PowerShell Core (pwsh)
+   */
+  pwsh?: CommandValue | OsSpecific;
+}
+export interface OsSpecific {
+  /**
+   * Command for Linux
+   */
+  linux?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
+  /**
+   * Command for macOS (Darwin)
+   */
+  darwin?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
+  /**
+   * Command for Windows
+   */
+  win?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
 }

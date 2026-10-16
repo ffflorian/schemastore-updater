@@ -15,9 +15,7 @@ export type ClientCertificateMode = 'NoCertificate' | 'AllowCertificate' | 'Requ
 /**
  * Log level threshold.
  */
-export type LogLevelThreshold =
-  | ('Trace' | 'Debug' | 'Information' | 'Warning' | 'Error' | 'Critical' | 'None')
-  | undefined;
+export type LogLevelThreshold = 'Trace' | 'Debug' | 'Information' | 'Warning' | 'Error' | 'Critical' | 'None';
 /**
  * ASP.NET Core host filtering middleware configuration. Allowed hosts is a semicolon-delimited list of host names without port numbers. Requests without a matching host name will be refused. Host names may be prefixed with a '*.' wildcard, or use '*' to allow all hosts.
  */
@@ -77,14 +75,16 @@ export type LogEventsEnriches =
     ]
   | string
   | {
-      [k: string]: (
-        | string
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | null
-      ) &
-        (MethodName | ComplexMethodCallReference);
+      [k: string]:
+        | ((
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | null
+          ) &
+            (MethodName | ComplexMethodCallReference))
+        | undefined;
     };
 /**
  * A name referring to a C# Class method
@@ -114,14 +114,16 @@ export type LogEventsDestructure =
     ]
   | string
   | {
-      [k: string]: (
-        | string
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | null
-      ) &
-        (MethodName | ComplexMethodCallReference);
+      [k: string]:
+        | ((
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | null
+          ) &
+            (MethodName | ComplexMethodCallReference))
+        | undefined;
     };
 /**
  * This section defines filters that will be applied to log events.
@@ -147,14 +149,16 @@ export type LogEventsFilters =
     ]
   | string
   | {
-      [k: string]: (
-        | string
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | null
-      ) &
-        (MethodName | ComplexMethodCallReference);
+      [k: string]:
+        | ((
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | null
+          ) &
+            (MethodName | ComplexMethodCallReference))
+        | undefined;
     };
 /**
  * This section configures the sinks that log events will be emitted to.
@@ -180,14 +184,16 @@ export type ConfigurationForLogDestination =
     ]
   | string
   | {
-      [k: string]: (
-        | string
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | null
-      ) &
-        (MethodName | ComplexMethodCallReference);
+      [k: string]:
+        | ((
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | null
+          ) &
+            (MethodName | ComplexMethodCallReference))
+        | undefined;
     };
 /**
  * This section configures sinks for auditing, instead of regular (safe) logging. Obs: When auditing is used, exceptions from sinks and any intermediate filters propagate back to the caller.
@@ -213,14 +219,16 @@ export type ConfigurationForLogDestinationForAuditing =
     ]
   | string
   | {
-      [k: string]: (
-        | string
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | null
-      ) &
-        (MethodName | ComplexMethodCallReference);
+      [k: string]:
+        | ((
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+            | null
+          ) &
+            (MethodName | ComplexMethodCallReference))
+        | undefined;
     };
 /**
  * This section defines Enriches that will be applied to log events.
@@ -298,7 +306,18 @@ export interface JSONSchemaASPNETCoreSAppsettingsJsonFile {
   Logging?: LoggingOptions;
   AllowedHosts?: AllowedHosts;
   ConnectionStrings?: ConnectionStringOptions;
-  [k: string]: unknown | undefined;
+  [k: string]:
+    | WebOptimizer
+    | CDN
+    | Pwa
+    | ElmahIo
+    | NLogOptions
+    | SerilogAppSettings
+    | Kestrel
+    | LoggingOptions
+    | AllowedHosts
+    | ConnectionStringOptions
+    | undefined;
 }
 /**
  * ASP.NET Core Kestrel server configuration.
@@ -393,7 +412,7 @@ export interface EndpointDefaults {
  * Certificates that Kestrel uses with HTTPS endpoints. Each certificate has a name specified by its JSON property name. The 'Default' certificate is used by HTTPS endpoints that haven't specified a certificate.
  */
 export interface Certificates {
-  [k: string]: Certificate;
+  [k: string]: Certificate | undefined;
 }
 /**
  * Configuration for Microsoft.Extensions.Logging.
@@ -433,7 +452,27 @@ export interface LoggingOptions {
     LogLevel?: LoggingLevelOptions;
     [k: string]: unknown | undefined;
   };
-  [k: string]: ProviderLoggingSettings | undefined;
+  [k: string]:
+    | ProviderLoggingSettings
+    | LoggingLevelOptions
+    | {
+        LogLevel?: LoggingLevelOptions;
+        /**
+         * Name of the log message formatter to use. Defaults to 'simple'.
+         */
+        FormatterName?: string;
+        FormatterOptions?: FormatterOptions;
+        /**
+         * Log level threshold.
+         */
+        LogToStandardErrorThreshold?: 'Trace' | 'Debug' | 'Information' | 'Warning' | 'Error' | 'Critical' | 'None';
+        [k: string]: unknown | undefined;
+      }
+    | {
+        LogLevel?: LoggingLevelOptions;
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 /**
  * Log level configurations used when creating logs. Only logs that exceeds its matching log level will be enabled. Each log level configuration has a category specified by its JSON property name. For more information about configuring log levels, see https://docs.microsoft.com/aspnet/core/fundamentals/logging/#configure-logging.
@@ -653,7 +692,7 @@ export interface Variables {
    * This interface was referenced by `Variables`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: number | string | boolean;
+  [k: string]: number | string | boolean | undefined;
 }
 /**
  * Wrap all defined targets with this custom target wrapper.
@@ -720,7 +759,7 @@ export interface Filter1 {
   [k: string]: unknown | undefined;
 }
 export interface Rules {
-  [k: string]: NLogRuleItem;
+  [k: string]: NLogRuleItem | undefined;
 }
 /**
  * Serilog appSettings Configuration
@@ -732,14 +771,14 @@ export interface SerilogAppSettings {
   $schema?: Schema;
   Using?: ListOfAutoDiscoveryOfConfigurationAssemblies;
   LevelSwitches?: {
-    [k: string]: LogLevel;
+    [k: string]: LogLevel | undefined;
   };
   FilterSwitches?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^(?<SerilogLevelSwitcherName>\${0,1}[A-Za-z]+[A-Za-z0-9]*)$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   MinimumLevel?: MinimumLogLevelThreshold;
   Properties?: LogEventsProperties;
@@ -748,6 +787,32 @@ export interface SerilogAppSettings {
   Filter?: LogEventsFilters;
   WriteTo?: ConfigurationForLogDestination;
   AuditTo?: ConfigurationForLogDestinationForAuditing;
+  [k: string]:
+    | LogEventsEnriches1
+    | LogEventsDestructure1
+    | LogEventsFilters1
+    | ConfigurationForLogDestination1
+    | ConfigurationForLogDestinationForAuditing1
+    | Schema
+    | ListOfAutoDiscoveryOfConfigurationAssemblies
+    | {
+        [k: string]: LogLevel | undefined;
+      }
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^(?<SerilogLevelSwitcherName>\${0,1}[A-Za-z]+[A-Za-z0-9]*)$".
+         */
+        [k: string]: string | undefined;
+      }
+    | MinimumLogLevelThreshold
+    | LogEventsProperties
+    | LogEventsEnriches
+    | LogEventsDestructure
+    | LogEventsFilters
+    | ConfigurationForLogDestination
+    | ConfigurationForLogDestinationForAuditing
+    | undefined;
 }
 /**
  * Detailed Log level threshold object. Allowing set log levels be overridden per logging source.
@@ -761,7 +826,7 @@ export interface DetailedLogLevel {
  * Set the Log level threshold or LevelSwitcher reference per Logging Source.
  */
 export interface LoggingSourceLogLevelObject {
-  [k: string]: LogLevelOrLevelSwitchesName;
+  [k: string]: LogLevelOrLevelSwitchesName | undefined;
 }
 /**
  * This section defines a static list of key-value pairs that will enrich log events.
@@ -776,6 +841,6 @@ export interface ComplexMethodCallReference {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^(?<CSharpMethodArgumentName>[a-zA-Z_]\w*)$".
      */
-    [k: string]: unknown;
+    [k: string]: unknown | undefined;
   };
 }

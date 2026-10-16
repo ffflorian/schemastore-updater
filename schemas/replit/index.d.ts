@@ -168,20 +168,22 @@ export interface ReplItConfigSchemaReplit {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".".
      */
-    [k: string]: {
-      /**
-       * Glob for language files
-       */
-      glob?: string;
-      /**
-       * Language Server Protocol (LSP) configuration
-       */
-      languageServer?: {
-        /**
-         * Command to run server
-         */
-        start?: string;
-      };
-    };
+    [k: string]:
+      | {
+          /**
+           * Glob for language files
+           */
+          glob?: string;
+          /**
+           * Language Server Protocol (LSP) configuration
+           */
+          languageServer?: {
+            /**
+             * Command to run server
+             */
+            start?: string;
+          };
+        }
+      | undefined;
   };
 }

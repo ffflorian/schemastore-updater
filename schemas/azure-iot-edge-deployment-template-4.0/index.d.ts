@@ -43,17 +43,19 @@ export interface ConfigurationForTheEdgeAgentModule {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
        */
-      [k: string]: {
-        version?: string;
-        type: 'docker';
-        status: 'running' | 'stopped';
-        restartPolicy: 'never' | 'on-failure' | 'on-unhealthy' | 'always';
-        env?: Env;
-        settings: ModuleSettings;
-        imagePullPolicy?: 'never' | 'on-create';
-        startupOrder?: number;
-        [k: string]: unknown | undefined;
-      };
+      [k: string]:
+        | {
+            version?: string;
+            type: 'docker';
+            status: 'running' | 'stopped';
+            restartPolicy: 'never' | 'on-failure' | 'on-unhealthy' | 'always';
+            env?: Env;
+            settings: ModuleSettings;
+            imagePullPolicy?: 'never' | 'on-create';
+            startupOrder?: number;
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
     };
     [k: string]: unknown | undefined;
   };
@@ -69,26 +71,30 @@ export interface Runtime {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[^\.\$# ]+$".
        */
-      [k: string]: {
-        username: string;
-        password: string;
-        address: string;
-      };
+      [k: string]:
+        | {
+            username: string;
+            password: string;
+            address: string;
+          }
+        | undefined;
     };
   };
 }
 export interface ModuleSettings {
   image: string;
-  [k: string]: CreateOptions;
+  [k: string]: CreateOptions | string | undefined;
 }
 export interface Env {
   /**
    * This interface was referenced by `Env`'s JSON-Schema definition
    * via the `patternProperty` "^[^\+#$\s\.]+$".
    */
-  [k: string]: {
-    value: number | string | boolean;
-  };
+  [k: string]:
+    | {
+        value: number | string | boolean;
+      }
+    | undefined;
 }
 export interface TheEdgehubSchema {
   type: 'docker';
@@ -114,7 +120,8 @@ export interface ConfigurationForTheEdgeHubModule {
             priority?: number;
             timeToLiveSecs?: number;
           }
-        | string;
+        | string
+        | undefined;
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;

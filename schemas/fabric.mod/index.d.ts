@@ -17,7 +17,7 @@ export type Entrypoint =
       [k: string]: unknown | undefined;
     }
   | string;
-export type VersionRanges = (VersionRange | VersionRange[]) | undefined;
+export type VersionRanges = VersionRange | VersionRange[];
 /**
  * A version range that matches versions. The following variants are supported:
  *
@@ -155,7 +155,7 @@ export interface HttpsJsonSchemastoreOrgFabricModJson {
    * Contributors to this mod
    */
   contributors?: Person[];
-  contact?: ContactInfo1;
+  contact?: ContactInfo;
   /**
    * The license the mod uses
    */
@@ -187,35 +187,6 @@ export interface NestedJar {
  * Contact information for the person
  */
 export interface ContactInfo {
-  /**
-   * Contact e-mail pertaining to the mod
-   */
-  email?: string;
-  /**
-   * IRC channel pertaining to the mod. Must be of a valid URL format
-   */
-  irc?: string;
-  /**
-   * Project or user homepage. Must be a valid HTTP/HTTPS address
-   */
-  homepage?: string;
-  /**
-   * Project issue tracker. Must be a valid HTTP/HTTPS address
-   */
-  issues?: string;
-  /**
-   * Project source code repository. Must be a valid URL
-   */
-  sources?: string;
-  /**
-   * Custom contact or profile information
-   */
-  [k: string]: string | undefined;
-}
-/**
- * Contact information for the mod
- */
-export interface ContactInfo1 {
   /**
    * Contact e-mail pertaining to the mod
    */

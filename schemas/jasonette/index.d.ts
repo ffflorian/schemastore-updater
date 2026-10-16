@@ -84,7 +84,7 @@ export interface $Jason {
          */
         name?: string;
         placeholder?: unknown;
-        action?: Action1;
+        action?: Action;
         style?: {
           /**
            * background color
@@ -95,7 +95,7 @@ export interface $Jason {
         [k: string]: unknown | undefined;
       };
       menu?: unknown;
-      style?: Style | undefined;
+      style?: Style;
       [k: string]: unknown | undefined;
     };
     sections?: unknown;
@@ -157,29 +157,5 @@ export interface TitleWithImage {
 export interface TitleWithLabel {
   type: 'label';
   text: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Action to trigger if defined
- */
-export interface Action1 {
-  type: Custom | Builtins;
-  options?: {
-    [k: string]: unknown | undefined;
-  };
-  success?: {
-    type?: string;
-    options?: {
-      [k: string]: unknown | undefined;
-    };
-    [k: string]: unknown | undefined;
-  };
-  error?: {
-    type?: string;
-    options?: {
-      [k: string]: unknown | undefined;
-    };
-    [k: string]: unknown | undefined;
-  };
   [k: string]: unknown | undefined;
 }

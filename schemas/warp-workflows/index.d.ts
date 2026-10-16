@@ -13,6 +13,9 @@ export type Command = string;
 /**
  * Tags of the current workflow
  * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#tags
+ *
+ * Items: A tag of the current workflow
+ * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#tags
  */
 export type Tags = string[];
 /**
@@ -38,6 +41,9 @@ export type AuthorUrl = string | null;
 /**
  * Shells where the current workflow is valid
  * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#shells
+ *
+ * Items: A shell where the current workflow is valid
+ * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#shells
  */
 export type Shells = ('Zsh' | 'zsh' | 'Bash' | 'bash' | 'Fish' | 'fish')[];
 /**
@@ -47,6 +53,9 @@ export type Shells = ('Zsh' | 'zsh' | 'Bash' | 'bash' | 'Fish' | 'fish')[];
 export type DefaultValue = boolean | number | string | null;
 /**
  * Arguments of the current workflow
+ * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#arguments
+ *
+ * Items: An argument of the current workflow
  * https://github.com/warpdotdev/warp-workflows/blob/main/FORMAT.md#arguments
  */
 export type Arguments = {

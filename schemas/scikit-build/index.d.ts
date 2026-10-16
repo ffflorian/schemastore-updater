@@ -157,11 +157,13 @@ export interface Cmake {
      * via the `patternProperty` ".+".
      */
     [k: string]:
-      | (string | boolean)
+      | string
+      | boolean
       | {
           env: string;
           default?: string | boolean;
-        };
+        }
+      | undefined;
   };
   /**
    * @deprecated
@@ -232,7 +234,7 @@ export interface Wheel {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` ".+".
          */
-        [k: string]: string;
+        [k: string]: string | undefined;
       };
   /**
    * The Python tags. The default (empty string) will use the default Python version. You can also set this to "cp37" to enable the CPython 3.7+ Stable ABI / Limited API (only on CPython and if the version is sufficient, otherwise this has no effect). Or you can set it to "py3" or "py2.py3" to ignore Python ABI compatibility. The ABI tag is inferred from this tag.
@@ -407,6 +409,6 @@ export interface IfOverrides {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string | boolean;
+    [k: string]: string | boolean | undefined;
   };
 }

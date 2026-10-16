@@ -8,7 +8,7 @@ export type PluginArray = (
            * This interface was referenced by `undefined`'s JSON-Schema definition
            * via the `patternProperty` ".*".
            */
-          [k: string]: boolean;
+          [k: string]: boolean | undefined;
         }
     )
   | (
@@ -19,7 +19,7 @@ export type PluginArray = (
                * This interface was referenced by `undefined`'s JSON-Schema definition
                * via the `patternProperty` ".*".
                */
-              [k: string]: boolean;
+              [k: string]: boolean | undefined;
             }
         )
       | string[]

@@ -53,14 +53,16 @@ export interface JSONSchemaForTreefmtConfigurationFiles {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      command?: string;
-      options?: string[];
-      includes?: string[];
-      excludes?: string[];
-      priority?: number;
-      'no-positional-arg-support'?: boolean;
-    };
+    [k: string]:
+      | {
+          command?: string;
+          options?: string[];
+          includes?: string[];
+          excludes?: string[];
+          priority?: number;
+          'no-positional-arg-support'?: boolean;
+        }
+      | undefined;
   };
   [k: string]: unknown | undefined;
 }

@@ -28,6 +28,9 @@ export type Rule1 = string;
 /**
  * Rules
  * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
+ *
+ * Items: A rule
+ * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
  */
 export type Rules = {
   comment?: CommentRuleRegion;
@@ -73,7 +76,48 @@ export type Rules = {
    * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
    */
   include?: string;
-  [k: string]: RuleRegion | undefined;
+  [k: string]:
+    | RuleRegion
+    | CommentRuleRegion
+    | LineCommentRuleRegion
+    | BlockCommentRuleRegion
+    | IdentifierRuleRegion
+    | BuiltinIdentifierRuleRegion
+    | TypeIdentifierRuleRegion
+    | BuiltinTypeIdentifierRuleRegion
+    | CallableIdentifierRuleRegion
+    | BuiltinCallableIdentifierRuleRegion
+    | MacroIdentifierRuleRegion
+    | BuiltinMacroIdentifierRuleRegion
+    | VariableIdentifierRuleRegion
+    | BuiltinVariableIdentifierRuleRegion
+    | ConstantRuleRegion
+    | NullIdentifierRuleRegion
+    | BoolConstantRuleRegion
+    | TrueBoolConstantRuleRegion
+    | FalseBoolConstantRuleRegion
+    | NumberConstantRuleRegion
+    | IntegerNumberConstantRuleRegion
+    | FloatNumberConstantRuleRegion
+    | ComplexNumberConstantRuleRegion
+    | StringConstantRuleRegion
+    | BuiltinStringConstantRuleRegion
+    | UrlStringConstantRuleRegion
+    | EscapeStringConstantRuleRegion
+    | StringFormatSpecifierConstantRuleRegion
+    | StatementRuleRegion
+    | SymbolRuleRegion
+    | BracketSymbolRuleRegion
+    | OperatorSymbolRuleRegion
+    | TagSymbolRuleRegion
+    | PreprocessorRuleRegion
+    | ShebangPreprocessorRuleRegion
+    | TypeRuleRegion
+    | BuiltinTypeRuleRegion
+    | KeywordTypeRuleRegion
+    | TodoRegion
+    | string
+    | undefined;
 }[];
 /**
  * A line comment rule
@@ -974,30 +1018,30 @@ export type TodoRegion =
  * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
  */
 export type RuleRegion =
-  | (
-      | Rule1
-      | {
-          /**
-           * A region start
-           * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
-           */
-          start?: string;
-          /**
-           * A region end
-           * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
-           */
-          end?: string;
-          /**
-           * Ignored region sequences
-           * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
-           */
-          skip?: string;
-          rules?: Rules;
-        }
-    )
-  | undefined;
+  | Rule1
+  | {
+      /**
+       * A region start
+       * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
+       */
+      start?: string;
+      /**
+       * A region end
+       * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
+       */
+      end?: string;
+      /**
+       * Ignored region sequences
+       * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
+       */
+      skip?: string;
+      rules?: Rules;
+    };
 /**
  * Rules
+ * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
+ *
+ * Items: A rule
  * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
  */
 export type Rule = {
@@ -1044,7 +1088,48 @@ export type Rule = {
    * https://github.com/zyedidia/micro/blob/master/runtime/help/colors.md#syntax-rules
    */
   include?: string;
-  [k: string]: RuleRegion | undefined;
+  [k: string]:
+    | RuleRegion
+    | CommentRuleRegion
+    | LineCommentRuleRegion
+    | BlockCommentRuleRegion
+    | IdentifierRuleRegion
+    | BuiltinIdentifierRuleRegion
+    | TypeIdentifierRuleRegion
+    | BuiltinTypeIdentifierRuleRegion
+    | CallableIdentifierRuleRegion
+    | BuiltinCallableIdentifierRuleRegion
+    | MacroIdentifierRuleRegion
+    | BuiltinMacroIdentifierRuleRegion
+    | VariableIdentifierRuleRegion
+    | BuiltinVariableIdentifierRuleRegion
+    | ConstantRuleRegion
+    | NullIdentifierRuleRegion
+    | BoolConstantRuleRegion
+    | TrueBoolConstantRuleRegion
+    | FalseBoolConstantRuleRegion
+    | NumberConstantRuleRegion
+    | IntegerNumberConstantRuleRegion
+    | FloatNumberConstantRuleRegion
+    | ComplexNumberConstantRuleRegion
+    | StringConstantRuleRegion
+    | BuiltinStringConstantRuleRegion
+    | UrlStringConstantRuleRegion
+    | EscapeStringConstantRuleRegion
+    | StringFormatSpecifierConstantRuleRegion
+    | StatementRuleRegion
+    | SymbolRuleRegion
+    | BracketSymbolRuleRegion
+    | OperatorSymbolRuleRegion
+    | TagSymbolRuleRegion
+    | PreprocessorRuleRegion
+    | ShebangPreprocessorRuleRegion
+    | TypeRuleRegion
+    | BuiltinTypeRuleRegion
+    | KeywordTypeRuleRegion
+    | TodoRegion
+    | string
+    | undefined;
 }[];
 
 /**

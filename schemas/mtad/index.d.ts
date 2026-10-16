@@ -30,7 +30,7 @@ export type Hooks = {
     | 'blue-green.application.before-start.live'
   )[];
   parameters?: HooksParameters;
-  'parameters-metadata'?: PropertiesMetadata1;
+  'parameters-metadata'?: PropertiesMetadata;
   /**
    * List of names either matching a resource name or a provided dependency name provided within the same MTA that are required by this hook.
    */
@@ -45,7 +45,7 @@ export type Hooks = {
     parameters?: {
       [k: string]: unknown | undefined;
     };
-    'parameters-metadata'?: PropertiesMetadata2;
+    'parameters-metadata'?: PropertiesMetadata;
     [k: string]: unknown | undefined;
   }[];
   [k: string]: unknown | undefined;
@@ -144,9 +144,9 @@ export type ModuleRequires = {
   properties?: {
     [k: string]: unknown | undefined;
   };
-  'properties-metadata'?: PropertiesMetadata5;
+  'properties-metadata'?: PropertiesMetadata;
   parameters?: ModuleRequiresParameters;
-  'parameters-metadata'?: PropertiesMetadata6;
+  'parameters-metadata'?: PropertiesMetadata;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -167,9 +167,9 @@ export type ModuleProvides = {
   properties?: {
     [k: string]: unknown | undefined;
   };
-  'properties-metadata'?: PropertiesMetadata7;
+  'properties-metadata'?: PropertiesMetadata;
   parameters?: ModuleProvidesParameters;
-  'parameters-metadata'?: PropertiesMetadata8;
+  'parameters-metadata'?: PropertiesMetadata;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -190,14 +190,14 @@ export type ResourceRequires = {
   properties?: {
     [k: string]: unknown | undefined;
   };
-  'properties-metadata'?: PropertiesMetadata11;
+  'properties-metadata'?: PropertiesMetadata;
   /**
    * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the resource at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
    */
   parameters?: {
     [k: string]: unknown | undefined;
   };
-  'parameters-metadata'?: PropertiesMetadata12;
+  'parameters-metadata'?: PropertiesMetadata;
   [k: string]: unknown | undefined;
 }[];
 
@@ -326,9 +326,9 @@ export interface MtadYamlV33 {
     properties?: {
       [k: string]: unknown | undefined;
     };
-    'properties-metadata'?: PropertiesMetadata3;
+    'properties-metadata'?: PropertiesMetadata;
     parameters?: ModuleParameters;
-    'parameters-metadata'?: PropertiesMetadata4;
+    'parameters-metadata'?: PropertiesMetadata;
     hooks?: Hooks;
     requires?: ModuleRequires;
     provides?: ModuleProvides;
@@ -378,9 +378,9 @@ export interface MtadYamlV33 {
     properties?: {
       [k: string]: unknown | undefined;
     };
-    'properties-metadata'?: PropertiesMetadata9;
+    'properties-metadata'?: PropertiesMetadata;
     parameters?: ResourceParameters;
-    'parameters-metadata'?: PropertiesMetadata10;
+    'parameters-metadata'?: PropertiesMetadata;
     hooks?: Hooks;
     requires?: ResourceRequires;
     [k: string]: unknown | undefined;
@@ -403,14 +403,14 @@ export interface MtadYamlV33 {
     properties?: {
       [k: string]: unknown | undefined;
     };
-    'properties-metadata'?: PropertiesMetadata13;
+    'properties-metadata'?: PropertiesMetadata;
     /**
      * Configuration parameters that will be inherited in all modules of this type.
      */
     parameters?: {
       [k: string]: unknown | undefined;
     };
-    'parameters-metadata'?: PropertiesMetadata14;
+    'parameters-metadata'?: PropertiesMetadata;
     [k: string]: unknown | undefined;
   }[];
   /**
@@ -431,14 +431,14 @@ export interface MtadYamlV33 {
     properties?: {
       [k: string]: unknown | undefined;
     };
-    'properties-metadata'?: PropertiesMetadata15;
+    'properties-metadata'?: PropertiesMetadata;
     /**
      * Configuration parameters that will be inherited in all resources of this type.
      */
     parameters?: {
       [k: string]: unknown | undefined;
     };
-    'parameters-metadata'?: PropertiesMetadata16;
+    'parameters-metadata'?: PropertiesMetadata;
     [k: string]: unknown | undefined;
   }[];
   [k: string]: unknown | undefined;
@@ -501,60 +501,6 @@ export interface HooksParameters {
    */
   'disk-quota'?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the hook's parameters.
- */
-export interface PropertiesMetadata1 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the hook's parameters.
- */
-export interface PropertiesMetadata2 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the module's properties.
- */
-export interface PropertiesMetadata3 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }
 export interface ModuleParametersCf {
   'app-features'?: ModuleParametersAppFeatures;
@@ -814,42 +760,6 @@ export interface ModuleParametersCfXsa {
   [k: string]: unknown | undefined;
 }
 /**
- * Additional information about the module's parameters.
- */
-export interface PropertiesMetadata4 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the required dependency's properties.
- */
-export interface PropertiesMetadata5 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
 export interface ModuleRequiresParameters {
@@ -872,42 +782,6 @@ export interface ModuleRequiresParameters {
   [k: string]: unknown | undefined;
 }
 /**
- * Additional information about the required dependency's parameters.
- */
-export interface PropertiesMetadata6 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the provided dependency's properties.
- */
-export interface PropertiesMetadata7 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
 export interface ModuleProvidesParameters {
@@ -928,42 +802,6 @@ export interface ResourceConfigurationTarget {
    */
   space?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the provided dependency's parameters.
- */
-export interface PropertiesMetadata8 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the resource's properties.
- */
-export interface PropertiesMetadata9 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }
 export interface ResourceParametersCf {
   /**
@@ -1087,21 +925,7 @@ export interface ResourceParametersCfXsa {
    * [CF/XSA] The version of the provider MTA.
    */
   version?: string;
-  target?: ResourceConfigurationTarget1;
-  [k: string]: unknown | undefined;
-}
-/**
- * [CF/XSA] The name of the organization and space in which the provider MTA is deployed.
- */
-export interface ResourceConfigurationTarget1 {
-  /**
-   * [CF/XSA] The org in which the configuration will be looked for
-   */
-  org?: string;
-  /**
-   * [CF/XSA] The space in which the configuration will be looked for
-   */
-  space?: string;
+  target?: ResourceConfigurationTarget;
   [k: string]: unknown | undefined;
 }
 export interface ResourceParametersXsa {
@@ -1124,130 +948,4 @@ export interface ResourceParametersXsa {
    */
   siteId?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the resource's parameters.
- */
-export interface PropertiesMetadata10 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the required dependency's properties.
- */
-export interface PropertiesMetadata11 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the required dependency's parameters.
- */
-export interface PropertiesMetadata12 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the module type's properties.
- */
-export interface PropertiesMetadata13 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the module's parameters.
- */
-export interface PropertiesMetadata14 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the resource type's properties.
- */
-export interface PropertiesMetadata15 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
- * Additional information about the resource's parameters.
- */
-export interface PropertiesMetadata16 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }

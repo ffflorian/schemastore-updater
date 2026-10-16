@@ -333,7 +333,7 @@ export interface CacheItem {
  * Defines the stages and steps required to build the project.
  */
 export interface Stages {
-  [k: string]: Stage;
+  [k: string]: Stage | undefined;
 }
 /**
  * This interface was referenced by `Parallel`'s JSON-Schema definition
@@ -357,21 +357,11 @@ export interface ParallelStage {
    * List of stages to be executed in parallel
    */
   parallel: {
-    [k: string]: Stage2;
+    [k: string]: Stage1 | undefined;
   };
 }
-/**
- * Stage name in the Jenkins pipeline
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^\w+( \w+)*$".
- */
-export interface Stage2 {
-  steps: Steps;
-  when?: When;
-}
 export interface Parallel {
-  [k: string]: Stage1;
+  [k: string]: Stage1 | undefined;
 }
 /**
  * Configuration for publishing NPM or Maven packages

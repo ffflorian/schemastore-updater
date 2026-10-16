@@ -4,8 +4,6 @@
  * Used to configure any part of AnyWork automation.
  */
 export type AnyWorkAutomationConfigurationSchema = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * type of configuration, means who will use this configuration.
    */

@@ -76,7 +76,7 @@ export type WorkloadIdentityEntraResource = string;
 
 export interface HttpsJsonSchemastoreOrgSnowflakeConnectionsJson {
   default?: DefaultConnection;
-  [k: string]: SnowflakeConnectionConfiguration | undefined;
+  [k: string]: SnowflakeConnectionConfiguration | DefaultConnection | undefined;
 }
 /**
  * The default connection to use

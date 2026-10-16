@@ -26,7 +26,8 @@ export type FileOrDirectoryThatShouldUseStrictTypeCheckingRules = string;
  */
 export type FilesAndDirectoriesThatShouldUseStrictTypeCheckingRules =
   FileOrDirectoryThatShouldUseStrictTypeCheckingRules[];
-export type ValueOfConstantBooleanOrString = string | boolean;
+export type ValueOfConstantBooleanOrString = string;
+export type ValueOfConstantBooleanOrString1 = boolean;
 /**
  * Specifies the default rule set to use. Some rules can be overridden using additional configuration flags documented below. If set to `off`, all type-checking rules are disabled, but Python syntax and semantic errors are still reported.
  */
@@ -636,7 +637,7 @@ export interface HttpsJsonSchemastoreOrgPartialPyrightJson {
  * Set of identifiers that should be assumed to contain a constant value wherever used within this program. For example, `{ "DEBUG": true }` indicates that pyright should assume that the identifier `DEBUG` will always be equal to `True`. If this identifier is used within a conditional expression (such as `if not DEBUG:`) pyright will use the indicated value to determine whether the guarded block is reachable or not. Member expressions that reference one of these constants (e.g. `my_module.DEBUG`) are also supported.
  */
 export interface IdentifiersThatShouldBeTreatedAsConstants {
-  [k: string]: ValueOfConstantBooleanOrString | undefined;
+  [k: string]: ValueOfConstantBooleanOrString | ValueOfConstantBooleanOrString1 | undefined;
 }
 export interface AnalysisSettingsToUseForSpecifiedSubdirectoriesOfCode1 {
   root: PathToCodeSubdirectoryToWhichTheseSettingsApply;

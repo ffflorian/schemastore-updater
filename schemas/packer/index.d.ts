@@ -14,7 +14,7 @@ export interface HttpsJsonSchemastoreOrgPackerJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "[a-zA-Z0-9_-]".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   builders: (BuilderVagrant | BuilderVirtualboxIso)[];
   provisioners?: Provisioner[];

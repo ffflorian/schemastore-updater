@@ -24,12 +24,14 @@ export interface HttpsJsonSchemastoreOrgChromeExtensionLocalesMessagesJson {
    * This interface was referenced by `HttpsJsonSchemastoreOrgChromeExtensionLocalesMessagesJson`'s JSON-Schema definition
    * via the `patternProperty` "^(?!@@)[\w@]+$".
    */
-  [k: string]: {
-    message: Message;
-    description?: Description;
-    placeholders?: Placeholders;
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        message: Message;
+        description?: Description;
+        placeholders?: Placeholders;
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 /**
  * Optional. Defines one or more substrings to be used within the message.
@@ -41,9 +43,11 @@ export interface Placeholders {
    * This interface was referenced by `Placeholders`'s JSON-Schema definition
    * via the `patternProperty` "^[\w@]+$".
    */
-  [k: string]: {
-    content: Content;
-    example?: Example;
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        content: Content;
+        example?: Example;
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }

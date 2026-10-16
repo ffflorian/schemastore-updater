@@ -232,89 +232,6 @@ export type Duration = number;
  */
 export type Format = string;
 /**
- * An individual human being. nar:subject
- */
-export type Person1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * Symbols used for a finanical instrument linked to the organisation at a specific market place
- */
-export type Symbols1 = {
-  ticker?: Ticker;
-  exchange?: Exchange;
-}[];
-/**
- * An administrative and functional structure which may act as as a business, as a political party or not-for-profit party. nar:subject
- */
-export type Organisation1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-  symbols?: Symbols1;
-}[];
-/**
- * A named location. nar:subject
- */
-export type Place1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-  /**
-   * An object holding geo data of this place. Could be of any relevant geo data JSON object definition.
-   *
-   * This interface was referenced by `undefined`'s JSON-Schema definition
-   * via the `patternProperty` "^geometry_[a-zA-Z0-9_]+".
-   */
-  [k: string]:
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | Name
-    | undefined;
-}[];
-/**
- * A concept with a relationship to the content. nar:subject
- */
-export type Subject1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * Something which happens in a planned or unplanned manner. nar:?
- */
-export type Event1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * Something material, excluding persons. nar:subject
- */
-export type Object1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Scheme;
-  code?: Code;
-}[];
-/**
- * A party (person or organisation) which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content. (Added in version 1.2 according to issue #15.) .    infosource:  nar:infoSource
- */
-export type InfoSource1 = {
-  name?: Name;
-  rel?: Relationship;
-  scheme?: Schema;
-  code?: Code;
-}[];
-/**
  * A free-form textual description of the content of the item. (The string appended to description_ in the property name should reflect the format of the text). nar:description
  *
  * This interface was referenced by `IPTCNinjsNewsInJSONVersion12Approved201910161`'s JSON-Schema definition
@@ -435,13 +352,13 @@ export interface IPTCNinjsNewsInJSONVersion12Approved201910161 {
   usageterms?: UsageTerms;
   ednote?: EditorialNote;
   language?: Language;
-  person?: Person1;
-  organisation?: Organisation1;
-  place?: Place1;
-  subject?: Subject1;
-  event?: Event1;
-  object?: Object1;
-  infosource?: InfoSource1;
+  person?: Person;
+  organisation?: Organisation;
+  place?: Place;
+  subject?: Subject;
+  event?: Event;
+  object?: Object;
+  infosource?: InfoSource;
   title?: Title;
   byline?: Byline;
   headline?: Headline;
@@ -449,7 +366,7 @@ export interface IPTCNinjsNewsInJSONVersion12Approved201910161 {
   located?: Located;
   charcount?: CharacterCount;
   wordcount?: WordCount;
-  renditions?: Renditions1;
+  renditions?: Renditions;
   /**
    * Content of news objects which are associated with this news object. nar:link
    */
@@ -462,39 +379,16 @@ export interface IPTCNinjsNewsInJSONVersion12Approved201910161 {
     | RepresentationType
     | PublicationStatus
     | Urgency
-    | Person1
-    | Organisation1
-    | Place1
-    | Subject1
-    | Event1
-    | Object1
-    | InfoSource1
-    | Renditions1
+    | Person
+    | Organisation
+    | Place
+    | Subject
+    | Event
+    | Object
+    | InfoSource
+    | Renditions
     | {
         [k: string]: IPTCNinjsNewsInJSONVersion12Approved201910161 | undefined;
-      }
-    | undefined;
-}
-/**
- * Wrapper for different renditions of the news object. nar:remoteContent
- */
-export interface Renditions1 {
-  /**
-   * A specific rendition of the content of the news object. (Description changed in version 1.2 according to issue #17.)
-   *
-   * This interface was referenced by `Renditions1`'s JSON-Schema definition
-   * via the `patternProperty` "^[a-zA-Z0-9]+".
-   */
-  [k: string]:
-    | {
-        href?: Href;
-        mimetype?: Mimetype;
-        title?: Title;
-        height?: Height;
-        width?: Width;
-        sizeinbytes?: SizeInBytes;
-        duration?: Duration;
-        format?: Format;
       }
     | undefined;
 }

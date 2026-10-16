@@ -60,41 +60,7 @@ export interface NavNode {
   /**
    * Child nav nodes (groups, dirs, concepts, trailing orphans).
    */
-  children?: NavNode1[];
-  [k: string]: unknown | undefined;
-}
-/**
- * A node in the index-driven navigation tree. Directories are not concepts (reserved index.md).
- */
-export interface NavNode1 {
-  /**
-   * group/orphans are non-routeable grouping headers; dir and concept are navigable.
-   */
-  kind: 'group' | 'dir' | 'concept' | 'orphans';
-  /**
-   * Concept id, or directory path relative to bundle root (empty string for root). Omitted for group and orphans.
-   */
-  id?: string;
-  /**
-   * Display label (index link text, section heading, or derived title).
-   */
-  label?: string;
-  /**
-   * Optional short description from index entry or concept frontmatter.
-   */
-  description?: string;
-  /**
-   * Index markdown for kind=dir (authored after optional root frontmatter strip, or synthetic listing). Parallel to node.body.
-   */
-  body?: string;
-  /**
-   * True when body/children were synthesized because index.md was missing.
-   */
-  synthetic?: boolean;
-  /**
-   * Child nav nodes (groups, dirs, concepts, trailing orphans).
-   */
-  children?: NavNode1[];
+  children?: NavNode[];
   [k: string]: unknown | undefined;
 }
 /**

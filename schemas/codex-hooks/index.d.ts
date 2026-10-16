@@ -7,12 +7,6 @@
  */
 export type MatcherGroups = [MatcherGroup, ...MatcherGroup[]];
 export type HookHandler = CommandHandler | SkippedHandler;
-/**
- * Matcher groups for one Codex hook event.
- *
- * @minItems 1
- */
-export type MatcherGroups10 = [MatcherGroup, ...MatcherGroup[]] | undefined;
 
 /**
  * Configuration for OpenAI Codex lifecycle hooks.
@@ -33,7 +27,19 @@ export interface CodexHooksConfiguration {
     SubagentStart?: MatcherGroups;
     SubagentStop?: MatcherGroups;
     Stop?: MatcherGroups;
-    [k: string]: MatcherGroups10 | undefined;
+    [k: string]:
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | MatcherGroups
+      | undefined;
   };
 }
 /**

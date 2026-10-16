@@ -23,13 +23,13 @@ export interface PlagiarizeConfiguration {
    */
   strings: {
     project: string;
-    [k: string]: (string | number | boolean) | undefined;
+    [k: string]: string | number | boolean | undefined;
   };
   /**
    * Variables available to be used for finding and replacing by variable name. For example `$var_name: hello` would replace string '$var_name' with 'hello' in target project
    */
   vars?: {
-    [k: string]: (string | number | boolean) | undefined;
+    [k: string]: string | number | boolean | undefined;
   };
   [k: string]: unknown | undefined;
 }

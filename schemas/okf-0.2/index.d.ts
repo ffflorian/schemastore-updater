@@ -75,41 +75,7 @@ export interface NavNode {
   /**
    * Child nav nodes (groups, dirs, concepts, trailing orphans).
    */
-  children?: NavNode1[];
-  [k: string]: unknown | undefined;
-}
-/**
- * A node in the index-driven navigation tree. Directories are not concepts (reserved index.md).
- */
-export interface NavNode1 {
-  /**
-   * group/orphans are non-routeable grouping headers; dir and concept are navigable.
-   */
-  kind: 'group' | 'dir' | 'concept' | 'orphans';
-  /**
-   * Concept id, or directory path relative to bundle root (empty string for root). Omitted for group and orphans.
-   */
-  id?: string;
-  /**
-   * Display label (index link text, section heading, or derived title).
-   */
-  label?: string;
-  /**
-   * Optional short description from index entry or concept frontmatter.
-   */
-  description?: string;
-  /**
-   * Index markdown for kind=dir (authored after optional root frontmatter strip, or synthetic listing). Parallel to node.body.
-   */
-  body?: string;
-  /**
-   * True when body/children were synthesized because index.md was missing.
-   */
-  synthetic?: boolean;
-  /**
-   * Child nav nodes (groups, dirs, concepts, trailing orphans).
-   */
-  children?: NavNode1[];
+  children?: NavNode[];
   [k: string]: unknown | undefined;
 }
 /**
@@ -148,16 +114,16 @@ export interface Node {
    * Last meaningful content change: generated.at when present, otherwise the legacy timestamp field.
    */
   timestamp?: string;
-  generated?: ActorEvent1;
+  generated?: ActorEvent;
   /**
    * Normalized list of verification events. A bare mapping in YAML is lifted to a one-element list.
    */
-  verified?: ActorEvent2[];
+  verified?: ActorEvent[];
   /**
    * Provenance sources from frontmatter, or synthesized from a legacy # Citations heading.
    */
   sources?: SourceEntry[];
-  usageWindow?: UsageWindow1;
+  usageWindow?: UsageWindow;
   /**
    * Lifecycle status. Omitted when absent (consumers treat absent as stable).
    */
@@ -220,34 +186,6 @@ export interface Node {
   [k: string]: unknown | undefined;
 }
 /**
- * How the current concept content was produced (frontmatter generated).
- */
-export interface ActorEvent1 {
-  /**
-   * Actor that performed the action.
-   */
-  by?: string;
-  /**
-   * When the action occurred.
-   */
-  at?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * An actor and optional timestamp (generated.by / verified[].by). Actor convention: <producer>/<version>, human:<id>, process:<id>.
- */
-export interface ActorEvent2 {
-  /**
-   * Actor that performed the action.
-   */
-  by?: string;
-  /**
-   * When the action occurred.
-   */
-  at?: string;
-  [k: string]: unknown | undefined;
-}
-/**
  * A provenance source (frontmatter sources[] or a legacy # Citations link).
  */
 export interface SourceEntry {
@@ -264,14 +202,6 @@ export interface SourceEntry {
  * Date range framing usage_count signals.
  */
 export interface UsageWindow {
-  from?: string;
-  to?: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Date range framing usage_count signals.
- */
-export interface UsageWindow1 {
   from?: string;
   to?: string;
   [k: string]: unknown | undefined;

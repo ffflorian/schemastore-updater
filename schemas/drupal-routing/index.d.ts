@@ -15,6 +15,7 @@ export interface JSONSchemaForDrupalRoutingFile {
         methods?: MethodOfTheIncomingRequestToMatchTheRoute;
         options?: AdditionalRouteOptions;
       }
+    | ListOfCallbacksToProvideRoutes
     | undefined;
 }
 export interface DefaultRouteParameters {

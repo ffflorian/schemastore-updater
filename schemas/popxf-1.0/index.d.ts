@@ -4,8 +4,6 @@
  * A detailed specification of all fields in the proposed `POPxf` data format is given below. Each subsection describes the structure, expected data type, and allowed values of the corresponding entries in the `JSON` object. The data type *object* mentioned below refers to a `JSON` object literal and corresponds to a set of key/value pairs representing named subfields. The format is divided into two main components: the `metadata` and `data` fields. An additional `$schema` field is included to specify the version of the `POPxf` `JSON` schema used. All quantities defined in this specification refer to a single datafile. They may be indexed by a superscript $(n)$ with $n \in [1,N]$ to denote quantities in a collection of $N$ datafiles. This is particularly relevant for discussing correlated predictions stored in separate files. Since this specification focuses on the format of a single datafile, we will omit the superscript $(n)$ to keep the notation concise. As a convention, we assume that all dimensionful quantities are given in units of GeV.
  */
 export type SpecificationOfFieldsInThePOPxfJSONFormat = {
-  [k: string]: unknown | undefined;
-} & {
   $schema: $SchemaField;
   metadata: MetadataField;
   data: DataField;
@@ -40,7 +38,7 @@ export type $SchemaField = 'https://json.schemastore.org/popxf-1.0.json';
  *
  *  The `data` field is a `JSON` object with the following subfields:
  */
-export type DataField =
+export type DataField = (
   | {
       observable_central: unknown;
       [k: string]: unknown | undefined;
@@ -48,7 +46,43 @@ export type DataField =
   | {
       polynomial_central: unknown;
       [k: string]: unknown | undefined;
-    };
+    }
+) & {
+  /**
+   * *This field is required to express observables as functions of polynomials. It requires the simultaneous presence of `metadata.polynomial_names` and `metadata.observable_expressions`.*
+   *
+   * An object representing the central values of the polynomial coefficients $\vec{p}_k$ for each named polynomial $P_k$. Each key must be a monomial key as defined above. Each value must be an array of $K$ numbers whose order matches `metadata.polynomial_names`.
+   */
+  polynomial_central?: {
+    /**
+     * @minItems 1
+     */
+    [k: string]: [number, ...number[]] | undefined;
+  };
+  /**
+   * An object representing the central values of the observable coefficients $\vec{o}_m$ for each observable<span>&nbsp;</span>$O_m$. In case the observables are not themselves polynomials, the observable coefficients correspond to the polynomial approximation of the observables obtained from a Taylor expansion of the observable expressions defined in `metadata.observable_expressions`. Each key must be a monomial key as defined above. Each value must be an array of $M$ numbers whose order matches `metadata.observable_names`.
+   */
+  observable_central?: {
+    /**
+     * @minItems 1
+     */
+    [k: string]: [number, ...number[]] | undefined;
+  };
+  /**
+   * An object representing the uncertainties on the observable coefficients $\vec{\sigma}_m$ for each observable<span>&nbsp;</span>$O_m$. In case the observables are not themselves polynomials, the observable coefficients correspond to the polynomial approximation of the observables obtained from a Taylor expansion of the observable expressions defined in `metadata.observable_expressions`. The fields specify the nature of quoted uncertainty. In many cases there may only be a single top-level field, `"total"`, but multiple fields can be used to specify a breakdown into several sources of uncertainty (e.g., statistical, scale, PDF, ...). To avoid mistakes, the names of the top-level fields must not have the format of a monomial key (i.e., stringified tuples as defined above). The value of each top-level field can either be an object or an array of floats. Objects must have the same structure as `observable_central`, arrays must have length $M$. If instead of an object, an array of floats is specified, it is assumed to correspond to the parameter independent uncertainty only (e.g. the uncertainty on the SM prediction). This would be equivalent to specifying an object containing a single element with the monomial key of the constant term (e.g.&nbsp;`"('','')"` for a quadratic polynomial).
+   */
+  observable_uncertainties?: {
+    [k: string]:
+      | {
+          /**
+           * @minItems 1
+           */
+          [k: string]: [number, ...number[]] | undefined;
+        }
+      | [number, ...number[]]
+      | undefined;
+  };
+};
 
 /**
  * The `metadata` field contains all contextual and structural information required to interpret the numerical predictions. It is a `JSON` object with the following subfields:
@@ -69,7 +103,7 @@ export interface MetadataField {
   /**
    * Defines the parameter basis (e.g. an operator basis in an EFT). At least one of the two subfields `wcxf` and `custom` has to be present. If both subfields are present, any element of `parameters` (see above) not belonging to the `wcxf` basis is interpreted as belonging to the `custom` basis. The subfields are defined as follows:
    */
-  basis:
+  basis: (
     | {
         wcxf: unknown;
         [k: string]: unknown | undefined;
@@ -77,7 +111,32 @@ export interface MetadataField {
     | {
         custom: unknown;
         [k: string]: unknown | undefined;
-      };
+      }
+  ) & {
+    /**
+     * Specifies an EFT basis defined by the Wilson Coefficient exchange format (WCxf) [@Aebischer:2017ugx]. This object contains the following fields:
+     */
+    wcxf?: {
+      /**
+       * EFT name defined by WCxf (e.g., `"SMEFT"`)
+       */
+      eft: string;
+      /**
+       * Operator basis name defined by WCxf (e.g., `"Warsaw"`)
+       */
+      basis: string;
+      /**
+       * Array of renormalisation-group-closed sectors of Wilson coefficients containing the Wilson coefficients given in `parameters` (see above). The available sectors for each EFT are defined by WCxf.
+       */
+      sectors?: string[];
+    };
+    /**
+     * Field of any type and substructure to unambiguously specify any parameter basis not defined by WCxf.
+     */
+    custom?: {
+      [k: string]: unknown | undefined;
+    };
+  };
   /**
    * *This field is required to express observables as functions of polynomials. It requires the simultaneous presence of `metadata.observable_expressions` and `data.polynomial_central`.*
    *
@@ -190,54 +249,46 @@ export interface MetadataField {
        */
       inputs?: {
         [k: string]:
-          | (
-              | number
-              | {
-                  /**
-                   * central value / mean; a single number for a single input name, or an array of numbers for a group of input names;
-                   */
-                  mean: number | [number, number, ...number[]];
-                  /**
-                   * uncertainty / standard deviation; a single number for a single input name, or an array of numbers for a group of input names;
-                   */
-                  std?: number | [number, number, ...number[]];
-                  /**
-                   * correlation matrix; must only be used if a group of input names is given and requires the presence of `std`.
-                   *
-                   * @minItems 2
-                   */
-                  corr?: [
-                    [number, number, ...number[]],
-                    [number, number, ...number[]],
-                    ...[number, number, ...number[]][]
-                  ];
-                }
-              | {
-                  /**
-                   * a user-defined name identifying the probability distribution (e.g. `"uniform"`);
-                   */
-                  distribution_type: string;
-                  /**
-                   * an object where each key is a user-defined name of a parameter of the probability distribution, and each value is a single number in the univariate case, or an array of numbers or arrays in the multivariate case (e.g. `{"a":0, "b":1}` for a uniform distribution with boundaries $a$ and $b$).
-                   */
-                  distribution_parameters: {
-                    [k: string]:
-                      | (
-                          | number
-                          | [
-                              number | [number, number, ...number[]],
-                              number | [number, number, ...number[]],
-                              ...(number | [number, number, ...number[]])[]
-                            ]
-                        )
-                      | undefined;
-                  };
-                  /**
-                   * Description of the custom distribution implemented, defining the fields in `distribution_parameters`.
-                   */
-                  distribution_description: string;
-                }
-            )
+          | number
+          | {
+              /**
+               * central value / mean; a single number for a single input name, or an array of numbers for a group of input names;
+               */
+              mean: number | [number, number, ...number[]];
+              /**
+               * uncertainty / standard deviation; a single number for a single input name, or an array of numbers for a group of input names;
+               */
+              std?: number | [number, number, ...number[]];
+              /**
+               * correlation matrix; must only be used if a group of input names is given and requires the presence of `std`.
+               *
+               * @minItems 2
+               */
+              corr?: [[number, number, ...number[]], [number, number, ...number[]], ...[number, number, ...number[]][]];
+            }
+          | {
+              /**
+               * a user-defined name identifying the probability distribution (e.g. `"uniform"`);
+               */
+              distribution_type: string;
+              /**
+               * an object where each key is a user-defined name of a parameter of the probability distribution, and each value is a single number in the univariate case, or an array of numbers or arrays in the multivariate case (e.g. `{"a":0, "b":1}` for a uniform distribution with boundaries $a$ and $b$).
+               */
+              distribution_parameters: {
+                [k: string]:
+                  | number
+                  | [
+                      number | [number, number, ...number[]],
+                      number | [number, number, ...number[]],
+                      ...(number | [number, number, ...number[]])[]
+                    ]
+                  | undefined;
+              };
+              /**
+               * Description of the custom distribution implemented, defining the fields in `distribution_parameters`.
+               */
+              distribution_description: string;
+            }
           | undefined;
       };
       /**
@@ -282,54 +333,46 @@ export interface MetadataField {
        */
       inputs?: {
         [k: string]:
-          | (
-              | number
-              | {
-                  /**
-                   * central value / mean; a single number for a single input name, or an array of numbers for a group of input names;
-                   */
-                  mean: number | [number, number, ...number[]];
-                  /**
-                   * uncertainty / standard deviation; a single number for a single input name, or an array of numbers for a group of input names;
-                   */
-                  std?: number | [number, number, ...number[]];
-                  /**
-                   * correlation matrix; must only be used if a group of input names is given and requires the presence of `std`.
-                   *
-                   * @minItems 2
-                   */
-                  corr?: [
-                    [number, number, ...number[]],
-                    [number, number, ...number[]],
-                    ...[number, number, ...number[]][]
-                  ];
-                }
-              | {
-                  /**
-                   * a user-defined name identifying the probability distribution (e.g. `"uniform"`);
-                   */
-                  distribution_type: string;
-                  /**
-                   * an object where each key is a user-defined name of a parameter of the probability distribution, and each value is a single number in the univariate case, or an array of numbers or arrays in the multivariate case (e.g. `{"a":0, "b":1}` for a uniform distribution with boundaries $a$ and $b$).
-                   */
-                  distribution_parameters: {
-                    [k: string]:
-                      | (
-                          | number
-                          | [
-                              number | [number, number, ...number[]],
-                              number | [number, number, ...number[]],
-                              ...(number | [number, number, ...number[]])[]
-                            ]
-                        )
-                      | undefined;
-                  };
-                  /**
-                   * Description of the custom distribution implemented, defining the fields in `distribution_parameters`.
-                   */
-                  distribution_description: string;
-                }
-            )
+          | number
+          | {
+              /**
+               * central value / mean; a single number for a single input name, or an array of numbers for a group of input names;
+               */
+              mean: number | [number, number, ...number[]];
+              /**
+               * uncertainty / standard deviation; a single number for a single input name, or an array of numbers for a group of input names;
+               */
+              std?: number | [number, number, ...number[]];
+              /**
+               * correlation matrix; must only be used if a group of input names is given and requires the presence of `std`.
+               *
+               * @minItems 2
+               */
+              corr?: [[number, number, ...number[]], [number, number, ...number[]], ...[number, number, ...number[]][]];
+            }
+          | {
+              /**
+               * a user-defined name identifying the probability distribution (e.g. `"uniform"`);
+               */
+              distribution_type: string;
+              /**
+               * an object where each key is a user-defined name of a parameter of the probability distribution, and each value is a single number in the univariate case, or an array of numbers or arrays in the multivariate case (e.g. `{"a":0, "b":1}` for a uniform distribution with boundaries $a$ and $b$).
+               */
+              distribution_parameters: {
+                [k: string]:
+                  | number
+                  | [
+                      number | [number, number, ...number[]],
+                      number | [number, number, ...number[]],
+                      ...(number | [number, number, ...number[]])[]
+                    ]
+                  | undefined;
+              };
+              /**
+               * Description of the custom distribution implemented, defining the fields in `distribution_parameters`.
+               */
+              distribution_description: string;
+            }
           | undefined;
       };
       /**

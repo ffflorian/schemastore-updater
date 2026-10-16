@@ -71,14 +71,6 @@ export type SettingsFile = string;
  */
 export type ToolchainsFile = string;
 /**
- * Specify the required Maven version.
- */
-export type Version2 = string | number;
-/**
- * Specify a list of additional arguments to MSBuild.
- */
-export type Arguments1 = Argument[];
-/**
  * Specify the MSBuild configuration to use, for example, debug or release.
  */
 export type Configuration = string;
@@ -130,10 +122,6 @@ export type RequirementFiles = string[] | boolean;
  * Specify a setup.py file to use to set up the environment, or false for none.
  */
 export type SetupPython = string;
-/**
- * Override the version of the Python interpreter used for setup and extraction.
- */
-export type Version3 = string | number;
 
 /**
  * Configuration file for lgtm, for continuous security analysis.
@@ -247,11 +235,11 @@ export interface Gradle {
 export interface Maven {
   settings_file?: SettingsFile;
   toolchains_file?: ToolchainsFile;
-  version?: Version2;
+  version?: Version1;
   [k: string]: unknown | undefined;
 }
 export interface MSBuild {
-  arguments?: Arguments1;
+  arguments?: Arguments;
   configuration?: Configuration;
   platform?: Platform;
   target?: Target;
@@ -272,6 +260,6 @@ export interface PythonSetup {
   requirements?: Requirements;
   requirements_files?: RequirementFiles;
   setup_py?: SetupPython;
-  version?: Version3;
+  version?: Version1;
   [k: string]: unknown | undefined;
 }

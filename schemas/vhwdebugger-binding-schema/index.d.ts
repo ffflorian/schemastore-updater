@@ -98,7 +98,6 @@ export type PathToTheJLinkARMDllOrJLinkX64Dll = string;
  * List of additional SEGGER J-Link command strings that are executed directly after the device is selected, but before the target interface and speed are selected. See [J-Link Command Strings](https://kb.segger.com/J-Link_Command_Strings) for the full list of supported command strings.
  */
 export type AdditionalSEGGERJLinkCommandStrings = string[];
-export type DebuggerConnectionType5 = 'segger-jlink';
 /**
  * The serial number of the SEGGER J-Link debugger.
  */
@@ -112,24 +111,13 @@ export type SerialNumberOfTheDebugger1 = string;
  */
 export type SerialNumberOfTheDebugger2 = 'auto';
 /**
- * The target interface the SEGGER J-Link will use to connect to the device.
- */
-export type TargetInterface1 = (SWDTargetInterface | JTAGTargetInterface) & string;
-/**
  * The version of the configuration. Controls what features are available
  */
 export type Version1 = '1.1';
-export type DebuggerConnectionType7 = 'isystem';
-export type DebuggerConnectionType8 = 'gdb';
-/**
- * Connecting to the target on measurement start will start execution of the program. Must always be true for GDB
- */
-export type StartExecution8 = true;
 /**
  * The version of the configuration. Controls what features are available
  */
 export type Version2 = '1.0';
-export type DebuggerConnectionType10 = 'isystem';
 
 /**
  * Debugger configuration for the Vector CANoe hardware debugger binding (version 1.2)
@@ -256,7 +244,7 @@ export interface SEGGERJLinkSettings {
  * Debugger Configuration for SEGGER J-Link over USB
  */
 export interface DebuggerConfigurationSEGGERJLinkOverUSB {
-  type: DebuggerConnectionType5;
+  type: DebuggerConnectionType4;
   reset?: TargetReset;
   run?: StartExecution;
   'auto-connect'?: AutoConnect;
@@ -269,7 +257,7 @@ export interface SEGGERJLinkSettings1 {
   'serial-number': SerialNumberOfTheDebugger | SerialNumberOfTheDebugger1 | SerialNumberOfTheDebugger2;
   'path-to-symbol-file': SymbolFile;
   device: Device;
-  'target-interface': TargetInterface1;
+  'target-interface': TargetInterface;
   speed?: TargetInterfaceSpeed;
   'jlink-dll-path'?: PathToTheJLinkARMDllOrJLinkX64Dll;
   'jlink-commands'?: AdditionalSEGGERJLinkCommandStrings;
@@ -291,31 +279,13 @@ export interface DebuggerConfigurations1 {
    * via the `patternProperty` "^[-_a-zA-Z0-9]+$".
    */
   [k: string]:
-    DebuggerConfigurationLauterbach1 | DebuggerConfigurationISYSTEMTASKING | DebuggerConfigurationGDB1 | undefined;
-}
-/**
- * Debugger Configuration for TRACE32 (Lauterbach)
- */
-export interface DebuggerConfigurationLauterbach1 {
-  type: DebuggerConnectionType;
-  reset?: TargetReset;
-  run?: StartExecution;
-  'auto-connect'?: AutoConnect;
-  node: NodeAddress;
-  port: NodePort;
-  lauterbach?: LauterbachTRACE32Settings1;
-}
-/**
- * Debugger specific settings for TRACE32 (Lauterbach)
- */
-export interface LauterbachTRACE32Settings1 {
-  'pack-len'?: TRACE32PackageLength;
+    DebuggerConfigurationLauterbach | DebuggerConfigurationISYSTEMTASKING | DebuggerConfigurationGDB | undefined;
 }
 /**
  * Debugger Configuration for WinIDEA (iSYSTEM / TASKING)
  */
 export interface DebuggerConfigurationISYSTEMTASKING {
-  type: DebuggerConnectionType7;
+  type: DebuggerConnectionType1;
   reset?: TargetReset;
   run?: StartExecution;
   'auto-connect'?: AutoConnect;
@@ -328,25 +298,6 @@ export interface DebuggerConfigurationISYSTEMTASKING {
  */
 export interface ISYSTEMTASKINGWinIDEASettings {
   'disable-winidea-polling'?: DisableWinIDEAGUIPolling;
-}
-/**
- * Debugger Configuration for GDB
- */
-export interface DebuggerConfigurationGDB1 {
-  type: DebuggerConnectionType8;
-  reset?: TargetReset;
-  run: StartExecution8;
-  'auto-connect'?: AutoConnect;
-  node: NodeAddress;
-  port: NodePort;
-  gdb: GDBSettings1;
-}
-/**
- * Debugger specific settings for GDB
- */
-export interface GDBSettings1 {
-  'path-to-gdb-client': GDBClient;
-  'path-to-symbol-file': GDBSymbolFile;
 }
 /**
  * Debugger configuration for the Vector CANoe hardware debugger binding (version 1.0)
@@ -375,28 +326,16 @@ export interface DebuggerConfigurationLauterbach2 {
   run?: StartExecution;
   node: NodeAddress;
   port: NodePort;
-  lauterbach?: LauterbachTRACE32Settings2;
-}
-/**
- * Debugger specific settings for TRACE32 (Lauterbach)
- */
-export interface LauterbachTRACE32Settings2 {
-  'pack-len'?: TRACE32PackageLength;
+  lauterbach?: LauterbachTRACE32Settings;
 }
 /**
  * Debugger Configuration for WinIDEA (iSYSTEM / TASKING)
  */
 export interface DebuggerConfigurationISYSTEM {
-  type: DebuggerConnectionType10;
+  type: DebuggerConnectionType1;
   reset?: TargetReset;
   run?: StartExecution;
   node: NodeAddress;
   port: NodePort;
-  isystem?: ISYSTEMTASKINGWinIDEASettings1;
-}
-/**
- * Debugger specific settings for winIDEA (iSYSTEM / TASKING)
- */
-export interface ISYSTEMTASKINGWinIDEASettings1 {
-  'disable-winidea-polling'?: DisableWinIDEAGUIPolling;
+  isystem?: ISYSTEMTASKINGWinIDEASettings;
 }

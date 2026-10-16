@@ -2,7 +2,7 @@
 
 export type HttpsJsonSchemastoreOrgLintstagedrcSchemaJson = AdvancedConfig | BasicConfig;
 export type $SchemaProperty = string;
-export type Linter = (string | unknown[]) | undefined;
+export type Linter = string | unknown[];
 
 export interface AdvancedConfig {
   $schema?: $SchemaProperty;
@@ -45,5 +45,5 @@ export interface LintersMap {
 }
 export interface BasicConfig {
   $schema?: $SchemaProperty;
-  [k: string]: Linter | undefined;
+  [k: string]: Linter | $SchemaProperty | undefined;
 }
