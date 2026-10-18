@@ -6,7 +6,7 @@ workflows:
     '.github/workflows/force_regenerate_schemas.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.0.0'
-        - 'actions/upload-artifact@v7.0.1'
+        - 'actions/upload-artifact@v7.0.2'
         - 'peter-evans/create-pull-request@v8.1.1'
     '.github/workflows/force_release.yml':
         - 'actions/checkout@v7.0.1'
@@ -19,12 +19,12 @@ workflows:
     '.github/workflows/publish_generated_packages.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.0.0'
-        - 'actions/upload-artifact@v7.0.1'
+        - 'actions/upload-artifact@v7.0.2'
         - 'peter-evans/create-pull-request@v8.1.1'
     '.github/workflows/weekly_schema_update.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.0.0'
-        - 'actions/upload-artifact@v7.0.1'
+        - 'actions/upload-artifact@v7.0.2'
         - 'peter-evans/create-pull-request@v8.1.1'
     '.github/workflows/yarn_update.yml':
         - 'actions/checkout@v7.0.1'
@@ -50,9 +50,9 @@ dependencies:
         commit: 'sha1-820762786026740c76f36085b0efc47a31fe5020'
         owner_id: 44036562
         repo_id: 189476904
-    'actions/upload-artifact@v7.0.1':
-        ref: 'v7.0.1'
-        commit: 'sha1-043fb46d1a93c77aae656e7c1c64a875d1fc6a0a'
+    'actions/upload-artifact@v7.0.2':
+        ref: 'v7.0.2'
+        commit: 'sha1-cf430e030ddbb5b0abf93d22962f4752f3646cd9'
         owner_id: 44036562
         repo_id: 192625955
     'cynicsketch/mirror-action@b1e3c960aead673763e5ccb22007129401a15917':
