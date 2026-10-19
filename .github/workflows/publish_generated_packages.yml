@@ -74,7 +74,7 @@ jobs:
 
       - name: Upload publish log
         if: always()
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: publish-errors-log
           path: publish-errors.log
