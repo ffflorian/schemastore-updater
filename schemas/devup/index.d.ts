@@ -1,29 +1,23 @@
 /* eslint-disable */
 
 export type ColorValue =
-  | (
-      | string
-      | {
-          [k: string]: ColorValue | undefined;
-        }
-    )
-  | undefined;
+  | string
+  | {
+      [k: string]: ColorValue | undefined;
+    };
 /**
  * Typography definition supporting both traditional array format and compact object format
  */
 export type Typographies =
-  | (
-      | (Typography | null)[]
-      | {
-          fontFamily?: string | (string | null)[] | null;
-          fontSize?: string | (string | null)[] | null;
-          fontStyle?: string | (string | null)[] | null;
-          fontWeight?: string | number | (string | number | null)[] | null;
-          letterSpacing?: string | (string | null)[] | null;
-          lineHeight?: string | number | (string | number | null)[] | null;
-        }
-    )
-  | undefined;
+  | (Typography | null)[]
+  | {
+      fontFamily?: string | (string | null)[] | null;
+      fontSize?: string | (string | null)[] | null;
+      fontStyle?: string | (string | null)[] | null;
+      fontWeight?: string | number | (string | number | null)[] | null;
+      letterSpacing?: string | (string | null)[] | null;
+      lineHeight?: string | number | (string | number | null)[] | null;
+    };
 
 /**
  * Root devup.json configuration
@@ -59,12 +53,10 @@ export interface Theme {
  */
 export interface ColorTheme {
   [k: string]:
-    | (
-        | string
-        | {
-            [k: string]: ColorValue | undefined;
-          }
-      )
+    | string
+    | {
+        [k: string]: ColorValue | undefined;
+      }
     | undefined;
 }
 export interface Typography {

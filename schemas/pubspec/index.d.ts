@@ -3,45 +3,44 @@
 /**
  * Version range of the package or SDK to use
  */
-export type VersionConstraint = (('any' | '') | Version | string) | undefined;
+export type VersionConstraint = ('any' | '') | Version | string;
 export type Version = string;
 export type Dependency =
-  | (
-      | (('any' | '') | Version | string)
-      | null
-      | SDKDependency
-      | HostedDependency
-      | {
-          git:
-            | string
-            | {
-                /**
-                 * URI of the repository hosting this package
-                 */
-                url?: string;
-                /**
-                 * Path of this package relative to the Git repo's root
-                 */
-                path?: string;
-                /**
-                 * The branch, tag, or anything else Git allows to identify a commit.
-                 */
-                ref?: string;
-                /**
-                 * Pattern for matching git tags with version placeholders
-                 */
-                tag_pattern?: string;
-                [k: string]: unknown | undefined;
-              };
-          version?: VersionConstraint | undefined;
-        }
-      | {
-          path?: string;
-        }
-    )
-  | undefined;
+  | (('any' | '') | Version | string)
+  | null
+  | SDKDependency
+  | HostedDependency
+  | {
+      git:
+        | string
+        | {
+            /**
+             * URI of the repository hosting this package
+             */
+            url?: string;
+            /**
+             * Path of this package relative to the Git repo's root
+             */
+            path?: string;
+            /**
+             * The branch, tag, or anything else Git allows to identify a commit.
+             */
+            ref?: string;
+            /**
+             * Pattern for matching git tags with version placeholders
+             */
+            tag_pattern?: string;
+            [k: string]: unknown | undefined;
+          };
+      version?: VersionConstraint;
+    }
+  | {
+      path?: string;
+    };
 /**
  * A list of flavors that include the asset. [Learn more.](https://docs.flutter.dev/deployment/flavors#conditionally-bundling-assets-based-on-flavor)
+ *
+ * Items: The name of the flavor
  */
 export type AssetFlavors = string[];
 /**
@@ -109,6 +108,8 @@ export type Fonts = {
 }[];
 /**
  * Shaders, in the form of GLSL files with the .frag extension. The Flutter command-line tool compiles the shader to its appropriate backend format, and generates its necessary runtime metadata. The compiled shader is then included in the application just like an asset. [Learn more](https://docs.flutter.dev/ui/design/graphics/fragment-shaders#adding-shaders-to-an-application)
+ *
+ * Items: Path to a GLSL shader
  */
 export type FragmentShaders = string[];
 
@@ -148,7 +149,7 @@ export interface Pubspec {
    * A package may expose one or more of its scripts as executables that can be run directly from the command line. [Learn more](https://dart.dev/tools/pub/pubspec#executables)
    */
   executables?: {
-    [k: string]: (string | null) | undefined;
+    [k: string]: string | null | undefined;
   };
   /**
    * The platforms field specifies which platforms the package supports. [Learn more](https://dart.dev/tools/pub/pubspec#platforms)
@@ -537,7 +538,7 @@ export interface SDKDependency {
    * The SDK which contains this package
    */
   sdk: string;
-  version?: VersionConstraint | undefined;
+  version?: VersionConstraint;
 }
 export interface HostedDependency {
   hosted:
@@ -550,5 +551,5 @@ export interface HostedDependency {
         url: string;
         [k: string]: unknown | undefined;
       };
-  version?: VersionConstraint | undefined;
+  version?: VersionConstraint;
 }

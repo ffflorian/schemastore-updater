@@ -21,21 +21,109 @@ export type BuildNumber = string;
  */
 export type Channel = string;
 /**
+ * Optional extra dependencies to select for the package
+ */
+export type Extras = string[];
+/**
  * The file name of the package
  */
 export type FileName = string;
+/**
+ * Plain string flags used to select package variants
+ */
+export type Flags = string[];
 /**
  * The git URL to the repo
  */
 export type Git = string;
 /**
+ * If `true` Git LFS objects are fetched during the checkout
+ */
+export type Lfs = boolean;
+/**
  * The license of the package
  */
 export type License = string;
 /**
+ * The license family of the package
+ */
+export type LicenseFamily = string;
+/**
  * The md5 hash of the package
  */
 export type Md5 = string;
+/**
+ * The authors of the project. Can be a list of strings or { workspace = true } to inherit from workspace
+ */
+export type Authors = string[] | WorkspaceInheritance;
+/**
+ * Must be true to inherit from workspace
+ */
+export type Workspace = true;
+/**
+ * The md5 hash of the package
+ */
+export type Md51 = string;
+/**
+ * A short description of the project. Can be a string or { workspace = true } to inherit from workspace
+ */
+export type Description = string | WorkspaceInheritance;
+/**
+ * The URL of the documentation of the project. Can be a URL or { workspace = true } to inherit from workspace
+ */
+export type Documentation = string | WorkspaceInheritance;
+/**
+ * The URL of the homepage of the project. Can be a URL or { workspace = true } to inherit from workspace
+ */
+export type Homepage = string | WorkspaceInheritance;
+/**
+ * `true` uses the default bounds; a table configures them.
+ */
+export type PinCompatible = true | PinTable;
+/**
+ * Pin the exact version and build string. Cannot be combined with the bounds or `build`.
+ */
+export type Exact = boolean;
+/**
+ * Lower bound of the pinned range: a pin expression like `x.x` (number of version segments to keep) or a literal version.
+ */
+export type LowerBound = string;
+/**
+ * Upper bound of the pinned range: a pin expression like `x` (the segment to bump, exclusive) or a literal version.
+ */
+export type UpperBound = string;
+/**
+ * The license of the project; we advise using an [SPDX](https://spdx.org/licenses/) identifier. Can be a string or { workspace = true } to inherit from workspace
+ */
+export type License2 = string | WorkspaceInheritance;
+/**
+ * The path to the license file of the project. Can be a path or { workspace = true } to inherit from workspace
+ */
+export type LicenseFile = string | WorkspaceInheritance;
+/**
+ * The name of the package. Can be a string or { workspace = true } to inherit from workspace
+ */
+export type Name = string | WorkspaceInheritance;
+/**
+ * Whether a workspace-wide `pixi publish` publishes this package. Packages that do not opt in with `publish = true` are left out of the publish set.
+ */
+export type Publish = boolean;
+/**
+ * The path to the readme file of the project. Can be a path or { workspace = true } to inherit from workspace
+ */
+export type Readme = string | WorkspaceInheritance;
+/**
+ * The URL of the repository of the project. Can be a URL or { workspace = true } to inherit from workspace
+ */
+export type Repository = string | WorkspaceInheritance;
+/**
+ * `true` uses the default bounds; a table configures them.
+ */
+export type PinSubpackage = true | PinTable;
+/**
+ * The version of the project; we advise use of [SemVer](https://semver.org). Can be a string or { workspace = true } to inherit from workspace
+ */
+export type Version = string | WorkspaceInheritance;
 /**
  * The path to the package
  */
@@ -61,21 +149,84 @@ export type Subdirectory = string;
  */
 export type Tag = string;
 /**
+ * The track features of the package
+ */
+export type TrackFeatures = string[];
+/**
  * The URL to the package
  */
 export type Url = string;
 /**
  * The version of the package in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
  */
-export type Version = string;
+export type Version1 = string;
+/**
+ * The condition under which this match spec applies. Use a package string, `{ all = [...] }`, `{ any = [...] }`, or `{ package = ..., version = ..., build = ... }`.
+ */
+export type When = string | WhenAll | WhenAny | WhenPackage;
+/**
+ * Conditions to combine with a logical AND
+ *
+ * @minItems 1
+ */
+export type All = [string | WhenAll | WhenAny | WhenPackage, ...(string | WhenAll | WhenAny | WhenPackage)[]];
+/**
+ * Conditions to combine with a logical OR
+ *
+ * @minItems 1
+ */
+export type Any = [string | WhenAll | WhenAny | WhenPackage, ...(string | WhenAll | WhenAny | WhenPackage)[]];
+/**
+ * The package name to match
+ */
+export type Package2 = string;
+/**
+ * Override the workspace-level `exclude-newer` cutoff for this channel only
+ */
+export type ExcludeNewer = string;
+/**
+ * The priority of the channel
+ */
+export type Priority = number;
+/**
+ * The `conda` channels that are used to fetch the build backend from
+ */
+export type Channels = (string | ChannelInlineTable)[];
+/**
+ * The name of the build backend package
+ */
+export type Name1 = string;
+/**
+ * The build number to record in the produced package
+ */
+export type BuildNumber4 = number;
+/**
+ * An optional prefix to prepend to the auto-generated build string
+ */
+export type BuildStringPrefix = string;
+/**
+ * Names of environment variables to expose as secrets to the build script. Values are read from the host environment at build time; only the names live in the manifest. Forwarded to rattler-build's `build.script.secrets`.
+ */
+export type Secrets = string[];
+/**
+ * The sha256 hash of the package
+ */
+export type Sha2561 = string;
 /**
  * The md5 hash of the source package
  */
-export type Md51 = string;
+export type Md52 = string;
 /**
  * The sha256 hash of the source package
  */
-export type Sha2561 = string;
+export type Sha2562 = string;
+/**
+ * The type of channel priority that is used in the solve.
+ * - 'strict': only take the package from the channel it exist in first.
+ * - 'flexible': exhaust the candidates of higher-priority channels before falling back to the next channel, regardless of the version.
+ * - 'disabled': group all dependencies together as if there is no channel difference.
+ */
+export type ChannelPriority = 'disabled' | 'flexible' | 'strict';
 /**
  * The features that define the environment
  */
@@ -84,24 +235,6 @@ export type Features = string[];
  * Whether to add the default feature to this environment
  */
 export type NoDefaultFeature = boolean;
-/**
- * The group name for environments that should be solved together
- */
-export type SolveGroup = string;
-/**
- * The type of channel priority that is used in the solve.
- * - 'strict': only take the package from the channel it exist in first.
- * - 'disabled': group all dependencies together as if there is no channel difference.
- */
-export type ChannelPriority = 'disabled' | 'strict';
-/**
- * The priority of the channel
- */
-export type Priority = number;
-/**
- * The `conda` channels that can be considered when solving environments containing this feature
- */
-export type Channels = (string | ChannelInlineTable)[];
 /**
  * A supported operating system and processor architecture pair.
  */
@@ -127,13 +260,9 @@ export type Platform =
   | 'win-arm64'
   | 'zos-z';
 /**
- * The platforms that the feature supports: a union of all features combined in one environment is used for the environment.
+ * The platforms that this environment supports. Each entry is either a conda subdir or the name of a workspace platform.
  */
-export type Platforms = Platform[];
-/**
- * The [PEP 508 extras](https://peps.python.org/pep-0508/#extras) of the package
- */
-export type Extras = string[];
+export type Platforms = (Platform | string)[];
 /**
  * The index to fetch the package from
  */
@@ -179,44 +308,16 @@ export type PrereleaseMode = 'disallow' | 'allow' | 'if-necessary' | 'explicit' 
  */
 export type SkipWheelFilenameCheck = boolean;
 /**
+ * The group name for environments that should be solved together
+ */
+export type SolveGroup = string;
+/**
  * The strategy that is used in the solve.
  * - 'highest': solve all packages to the highest compatible version.
  * - 'lowest': solve all packages to the lowest compatible version.
  * - 'lowest-direct': solve direct dependencies to the lowest compatible version and transitive ones to the highest compatible version.
  */
 export type SolveStrategy = 'highest' | 'lowest' | 'lowest-direct';
-/**
- * The architecture the project supports
- */
-export type Archspec = string;
-/**
- * The minimum version of CUDA
- */
-export type Cuda = number | string;
-/**
- * The minimum version of `libc`
- */
-export type Libc = LibcFamily | number | string;
-/**
- * The family of the `libc`
- */
-export type Family = string;
-/**
- * The version of `libc`
- */
-export type Version2 = number | string;
-/**
- * The minimum version of the Linux kernel
- */
-export type Linux = number | string;
-/**
- * The minimum version of MacOS
- */
-export type Macos = number | string;
-/**
- * Whether the project supports UNIX
- */
-export type Unix = boolean | string;
 /**
  * The name of the argument
  */
@@ -265,7 +366,7 @@ export type Args1 = (
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[a-zA-Z_][a-zA-Z\d_]*$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     }
 )[];
 /**
@@ -283,7 +384,7 @@ export type DependsOn2 = string[] | string;
 /**
  * A short description of the task
  */
-export type Description = string;
+export type Description1 = string;
 /**
  * A list of `.gitignore`-style glob patterns that should be watched for changes before this command is run. Environment variables _will_ be expanded.
  */
@@ -293,61 +394,37 @@ export type Inputs = string[];
  */
 export type Outputs = string[];
 /**
- * The authors of the project. Can be a list of strings or { workspace = true } to inherit from workspace
+ * The architecture the project supports
  */
-export type Authors = string[] | WorkspaceInheritance;
+export type Archspec = string;
 /**
- * Must be true to inherit from workspace
+ * The minimum version of CUDA
  */
-export type Workspace = true;
+export type Cuda = number | string;
 /**
- * The md5 hash of the package
+ * The minimum version of `libc`
  */
-export type Md52 = string;
+export type Libc = LibcFamily | number | string;
 /**
- * The name of the build backend package
+ * The family of the `libc`
  */
-export type Name = string;
+export type Family = string;
 /**
- * The sha256 hash of the package
+ * The version of `libc`
  */
-export type Sha2562 = string;
+export type Version6 = number | string;
 /**
- * A short description of the project. Can be a string or { workspace = true } to inherit from workspace
+ * The minimum version of the Linux kernel
  */
-export type Description1 = string | WorkspaceInheritance;
+export type Linux = number | string;
 /**
- * The URL of the documentation of the project. Can be a URL or { workspace = true } to inherit from workspace
+ * The minimum version of MacOS
  */
-export type Documentation = string | WorkspaceInheritance;
+export type Macos = number | string;
 /**
- * The URL of the homepage of the project. Can be a URL or { workspace = true } to inherit from workspace
+ * Whether the project supports UNIX
  */
-export type Homepage = string | WorkspaceInheritance;
-/**
- * The license of the project; we advise using an [SPDX](https://spdx.org/licenses/) identifier. Can be a string or { workspace = true } to inherit from workspace
- */
-export type License2 = string | WorkspaceInheritance;
-/**
- * The path to the license file of the project. Can be a path or { workspace = true } to inherit from workspace
- */
-export type LicenseFile = string | WorkspaceInheritance;
-/**
- * The name of the package. Can be a string or { workspace = true } to inherit from workspace
- */
-export type Name1 = string | WorkspaceInheritance;
-/**
- * The path to the readme file of the project. Can be a path or { workspace = true } to inherit from workspace
- */
-export type Readme = string | WorkspaceInheritance;
-/**
- * The URL of the repository of the project. Can be a URL or { workspace = true } to inherit from workspace
- */
-export type Repository = string | WorkspaceInheritance;
-/**
- * The version of the project; we advise use of [SemVer](https://semver.org). Can be a string or { workspace = true } to inherit from workspace
- */
-export type Version4 = string | WorkspaceInheritance;
+export type Unix = boolean | string;
 /**
  * The authors of the project
  */
@@ -357,13 +434,29 @@ export type Authors1 = string[];
  */
 export type BuildVariantsFiles = string[];
 /**
+ * The `conda` to PyPI mapping configuration; `false` disables the mapping entirely
+ */
+export type CondaPypiMap =
+  | {
+      [k: string]: string | false | CondaPypiMapTable | undefined;
+    }
+  | false;
+/**
+ * The URL or path to a mapping file with `conda_name: pypi_name` entries
+ */
+export type Location = string;
+/**
+ * How the project mapping interacts with Pixi's default mapping data: `overlay` (default) applies it on top, `replace` uses it instead
+ */
+export type MappingMode = 'overlay' | 'replace';
+/**
+ * Whether Pixi may assume the conda package name is also the PyPI package name when mapping data has no answer. Defaults to true for conda-forge and false for other channels.
+ */
+export type SameNameHeuristic = boolean;
+/**
  * The URL of the documentation of the project
  */
 export type Documentation1 = string;
-/**
- * Exclude any package newer than this date
- */
-export type ExcludeNewer = string;
 /**
  * The URL of the homepage of the project
  */
@@ -372,6 +465,56 @@ export type Homepage1 = string;
  * The path to the license file of the project
  */
 export type LicenseFile1 = string;
+/**
+ * A workspace platform: a conda subdir plus declared virtual-package
+ * guarantees, identified by a workspace-scoped name.
+ */
+export type WorkspacePlatform = WorkspacePlatform1 & WorkspacePlatform2;
+export type WorkspacePlatform1 =
+  | {
+      name: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      platform: unknown;
+      [k: string]: unknown | undefined;
+    };
+/**
+ * Declare a `__cuda` virtual package at the given version (e.g. `12.0`), or a `{ driver, arch }` table to also declare `__cuda_arch` (GPU compute capability).
+ */
+export type Cuda1 = string | CudaTable;
+/**
+ * The `__cuda_arch` GPU compute capability, e.g. `8.6`. Requires `driver`.
+ */
+export type Arch = string;
+/**
+ * The `__cuda` driver version, e.g. `12.0`.
+ */
+export type Driver = string;
+/**
+ * Declare a `__glibc` virtual package at the given version, e.g. `2.28`.
+ */
+export type Glibc = string;
+/**
+ * Declare a `__linux` virtual package at the given kernel version, e.g. `5.10`.
+ */
+export type Linux1 = string;
+/**
+ * Declare a `__osx` virtual package at the given macOS version, e.g. `14.0`.
+ */
+export type Macos1 = string;
+/**
+ * Alias for `macos`: declare a `__osx` virtual package at the given macOS version, e.g. `14.0`.
+ */
+export type Osx = string;
+/**
+ * Declare a `__win` virtual package at the given Windows version, e.g. `10`.
+ */
+export type Windows = string;
+/**
+ * The platforms that the project supports. Each entry is either a conda subdir, the name of a workspace platform defined elsewhere, or an inline table describing a workspace platform (optional `name`, optional `platform`, plus virtual-package shortcut keys such as `cuda`, `archspec`, `glibc`, `linux`, `macos`/`osx`, `windows`).
+ */
+export type Platforms2 = (Platform | string | WorkspacePlatform)[];
 /**
  * Defines the enabling of preview features of the project
  */
@@ -411,17 +554,19 @@ export interface ToolPixiForPyprojectToml {
   dependencies?: Dependencies;
   dev?: Dev;
   environments?: Environments;
+  'exclude-newer'?: ExcludeNewer1;
   feature?: Feature;
-  'host-dependencies'?: HostDependencies2;
+  'host-dependencies'?: HostDependencies1;
   package?: Package;
-  project?: Workspace1;
-  'pypi-dependencies'?: PypiDependencies2;
-  'pypi-options'?: PyPIOptions2;
-  'system-requirements'?: SystemRequirements1;
-  target?: Target5;
-  tasks?: Tasks2;
+  project?: Workspace3;
+  'pypi-dependencies'?: PypiDependencies;
+  'pypi-exclude-newer'?: PypiExcludeNewer;
+  'pypi-options'?: PyPIOptions;
+  'system-requirements'?: SystemRequirements;
+  target?: Target1;
+  tasks?: Tasks;
   tool?: Tool;
-  workspace?: Workspace2;
+  workspace?: Workspace3;
   [k: string]: unknown | undefined;
 }
 /**
@@ -441,411 +586,64 @@ export interface Env {
  * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
  */
 export interface BuildDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | InheritableMatchspecTable | undefined;
 }
 /**
- * A precise description of a `conda` package version.
+ * A spec that may inherit from `[workspace.dependencies]`.
+ *
+ * Setting `workspace = true` pulls the version (and any other unset fields)
+ * from the matching `[workspace.dependencies]` entry. Members may layer
+ * further attributes on top; restating `version` or the source location
+ * (`path`, `git`, `url`) alongside `workspace = true` is an error.
  */
-export interface MatchspecTable {
+export interface InheritableMatchspecTable {
   branch?: Branch;
   build?: Build;
   'build-number'?: BuildNumber;
   channel?: Channel;
+  extras?: Extras;
   'file-name'?: FileName;
+  flags?: Flags;
   git?: Git;
+  lfs?: Lfs;
   license?: License;
+  'license-family'?: LicenseFamily;
   md5?: Md5;
-  path?: Path;
-  rev?: Rev;
-  sha256?: Sha256;
-  subdir?: Subdir;
-  subdirectory?: Subdirectory;
-  tag?: Tag;
-  url?: Url;
-  version?: Version;
-}
-/**
- * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
- */
-export interface Constraints {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export interface Dependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev {
-  [k: string]: SourceSpecTable | undefined;
-}
-/**
- * A precise description of a source package location.
- */
-export interface SourceSpecTable {
-  branch?: Branch;
-  git?: Git;
-  md5?: Md51;
+  package?: Package;
   path?: Path;
   rev?: Rev;
   sha256?: Sha2561;
+  subdir?: Subdir;
   subdirectory?: Subdirectory;
   tag?: Tag;
+  'track-features'?: TrackFeatures;
   url?: Url;
+  version?: Version1;
+  when?: When;
+  workspace?: Workspace;
 }
 /**
- * The environments of the project, defined as a full object or a list of feature names.
- */
-export interface Environments {
-  /**
-   * This interface was referenced by `Environments`'s JSON-Schema definition
-   * via the `patternProperty` "^[a-z\d\-]+$".
-   */
-  [k: string]: Environment | string[];
-}
-/**
- * A composition of the dependencies of features which can be activated to run tasks or provide a shell
- */
-export interface Environment {
-  features?: Features;
-  'no-default-feature'?: NoDefaultFeature;
-  'solve-group'?: SolveGroup;
-}
-/**
- * The features of the project
- */
-export interface Feature {
-  [k: string]: Feature1 | undefined;
-}
-/**
- * A composable aspect of the project which can contribute dependencies and tasks to an environment
- */
-export interface Feature1 {
-  activation?: Activation1;
-  'build-dependencies'?: BuildDependencies1;
-  'channel-priority'?: ChannelPriority;
-  channels?: Channels;
-  constraints?: Constraints1;
-  dependencies?: Dependencies1;
-  dev?: Dev1;
-  'host-dependencies'?: HostDependencies;
-  platforms?: Platforms;
-  'pypi-dependencies'?: PypiDependencies;
-  'pypi-options'?: PyPIOptions;
-  'solve-strategy'?: SolveStrategy;
-  'system-requirements'?: SystemRequirements;
-  target?: Target;
-  tasks?: Tasks1;
-}
-/**
- * The scripts used on the activation of environments using this feature
- */
-export interface Activation1 {
-  env?: Env;
-  scripts?: Scripts;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * A precise description of a `conda` channel, with an optional priority.
- */
-export interface ChannelInlineTable {
-  channel: Channel;
-  priority?: Priority;
-}
-/**
- * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
- */
-export interface Constraints1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export interface Dependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev1 {
-  [k: string]: SourceSpecTable | undefined;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The PyPI dependencies of this feature
- */
-export interface PypiDependencies {
-  [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
-    | undefined;
-}
-export interface PyPIVersion {
-  extras?: Extras;
-  index?: Index;
-  version?: Version;
-}
-export interface PyPIGitBranchRequirement {
-  branch?: Branch;
-  extras?: Extras;
-  git?: Git;
-  subdirectory?: Subdirectory;
-}
-export interface PyPIGitTagRequirement {
-  extras?: Extras;
-  git?: Git;
-  subdirectory?: Subdirectory;
-  tag?: Tag;
-}
-export interface PyPIGitRevRequirement {
-  extras?: Extras;
-  git?: Git;
-  rev?: Rev;
-  subdirectory?: Subdirectory;
-}
-export interface PyPIPathRequirement {
-  editable?: Editable;
-  extras?: Extras;
-  path?: Path;
-  subdirectory?: Subdirectory;
-}
-export interface PyPIUrlRequirement {
-  extras?: Extras;
-  url?: Url;
-}
-/**
- * Options related to PyPI indexes for this feature
- */
-export interface PyPIOptions {
-  'dependency-overrides'?: DependencyOverrides;
-  'extra-index-urls'?: ExtraIndexUrls;
-  'find-links'?: FindLinks;
-  'index-strategy'?: IndexStrategy;
-  'index-url'?: IndexUrl;
-  'no-binary'?: NoBinary;
-  'no-build'?: NoBuild;
-  'no-build-isolation'?: NoBuildIsolation;
-  'prerelease-mode'?: PrereleaseMode;
-  'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
-}
-/**
- * A list of PyPI dependencies that override the resolved dependencies
- */
-export interface DependencyOverrides {
-  [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
-    | undefined;
-}
-/**
- * The path to the directory containing packages
- */
-export interface FindLinksPath {
-  path?: Path;
-}
-/**
- * The URL to the html file containing href-links to packages
- */
-export interface FindLinksURL {
-  url?: Url;
-}
-/**
- * The system requirements of this feature
- */
-export interface SystemRequirements {
-  archspec?: Archspec;
-  cuda?: Cuda;
-  libc?: Libc;
-  linux?: Linux;
-  macos?: Macos;
-  unix?: Unix;
-}
-export interface LibcFamily {
-  family?: Family;
-  version?: Version2;
-}
-/**
- * Machine-specific aspects of this feature
- */
-export interface Target {
-  [k: string]: Target1 | undefined;
-}
-/**
- * A machine-specific configuration of dependencies and tasks
- */
-export interface Target1 {
-  activation?: Activation2;
-  'build-dependencies'?: BuildDependencies2;
-  constraints?: Constraints2;
-  dependencies?: Dependencies2;
-  dev?: Dev2;
-  'host-dependencies'?: HostDependencies1;
-  'pypi-dependencies'?: PypiDependencies1;
-  tasks?: Tasks;
-}
-/**
- * The scripts used on the activation of the project for this target
- */
-export interface Activation2 {
-  env?: Env;
-  scripts?: Scripts;
-}
-/**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface BuildDependencies2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
- */
-export interface Constraints2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
- */
-export interface Dependencies2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
- */
-export interface Dev2 {
-  [k: string]: SourceSpecTable | undefined;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The PyPI dependencies for this target
- */
-export interface PypiDependencies1 {
-  [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
-    | undefined;
-}
-/**
- * The tasks of the target
- */
-export interface Tasks {
-  /**
-   * This interface was referenced by `Tasks`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string;
-}
-/**
- * A precise definition of a task.
- */
-export interface TaskInlineTable {
-  args?: Args;
-  'clean-env'?: CleanEnv;
-  cmd?: Cmd;
-  cwd?: Cwd;
-  'default-environment'?: DefaultEnvironment;
-  'depends-on'?: DependsOn;
-  depends_on?: DependsOn2;
-  description?: Description;
-  env?: Env1;
-  inputs?: Inputs;
-  outputs?: Outputs;
-}
-/**
- * The arguments of a task.
- */
-export interface TaskArgs {
-  arg: Arg;
-  choices?: Choices;
-  default?: Default;
-}
-/**
- * The dependencies of a task.
- */
-export interface DependsOn1 {
-  args?: Args1;
-  environment?: Environment1;
-  task: Task;
-}
-/**
- * A map of environment variables to values, used in the task, these will be overwritten by the shell.
- */
-export interface Env1 {
-  [k: string]: string | undefined;
-}
-/**
- * The tasks provided by this feature
- */
-export interface Tasks1 {
-  /**
-   * This interface was referenced by `Tasks1`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string;
-}
-/**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
- */
-export interface HostDependencies2 {
-  [k: string]: (string | MatchspecTable) | undefined;
-}
-/**
- * The package's metadata information
+ * An inline package definition for this source dependency, instead of a separate `pixi.toml`. The package name is taken from the dependency key and the source is taken from this spec, so `name` and `build.source` are not set here.
  */
 export interface Package {
   authors?: Authors;
   build: Build1;
-  'build-dependencies'?: BuildDependencies3;
-  description?: Description1;
+  'build-dependencies'?: BuildDependencies1;
+  description?: Description;
   documentation?: Documentation;
+  'extra-dependencies'?: ExtraDependencies;
   homepage?: Homepage;
-  'host-dependencies'?: HostDependencies3;
+  'host-dependencies'?: HostDependencies;
   license?: License2;
   'license-file'?: LicenseFile;
-  name?: Name1;
+  name?: Name;
+  publish?: Publish;
   readme?: Readme;
   repository?: Repository;
+  'run-constraints'?: RunConstraints;
   'run-dependencies'?: RunDependencies;
-  target?: Target3;
-  version?: Version4;
+  'run-exports'?: RunExports;
+  version?: Version;
 }
 /**
  * Indicates that a field should inherit its value from the workspace.
@@ -859,46 +657,290 @@ export interface WorkspaceInheritance {
 export interface Build1 {
   'additional-dependencies'?: AdditionalDependencies;
   backend: BuildBackend;
+  'build-number'?: BuildNumber4;
+  'build-string-prefix'?: BuildStringPrefix;
   channels?: Channels;
   config?: Config;
+  flags?: Flags;
+  secrets?: Secrets;
   source?: SourceLocation;
-  target?: Target2;
+  target?: Target;
 }
 /**
  * Additional dependencies to install alongside the build backend
  */
 export interface AdditionalDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+  [k: string]: string | MatchspecTable | undefined;
+}
+/**
+ * A precise description of a `conda` package version.
+ */
+export interface MatchspecTable {
+  branch?: Branch;
+  build?: Build;
+  'build-number'?: BuildNumber;
+  channel?: Channel;
+  extras?: Extras;
+  'file-name'?: FileName;
+  flags?: Flags;
+  git?: Git;
+  lfs?: Lfs;
+  license?: License;
+  'license-family'?: LicenseFamily;
+  md5?: Md51;
+  package?: Package;
+  path?: Path;
+  rev?: Rev;
+  sha256?: Sha256;
+  subdir?: Subdir;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+  'track-features'?: TrackFeatures;
+  url?: Url;
+  version?: Version1;
+  when?: When;
+}
+/**
+ * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface BuildDependencies1 {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | {
+        [k: string]: string | InheritableMatchspecTable | undefined;
+      }
+    | undefined;
+}
+/**
+ * Extra groups that can be requested through MatchSpec extras. Each group uses the same conda package specification syntax as run-dependencies.
+ */
+export interface ExtraDependencies {
+  /**
+   * This interface was referenced by `ExtraDependencies`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-z0-9._+-]{1,64}$".
+   */
+  [k: string]:
+    | {
+        [k: string]:
+          | string
+          | MatchspecTable
+          | {
+              [k: string]: string | MatchspecTable | undefined;
+            }
+          | undefined;
+      }
+    | undefined;
+}
+/**
+ * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface HostDependencies {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Pin to a version compatible with the one resolved in the previous environment.
+ *
+ * Mirrors rattler-build's `pin_compatible()`: a `pin-compatible` entry in
+ * `run-dependencies` resolves against the host environment, one in
+ * `host-dependencies` against the build environment.
+ */
+export interface PinCompatibleSpec {
+  'pin-compatible': PinCompatible;
+}
+/**
+ * The arguments of a pin, mirroring rattler-build's `pin_compatible`/`pin_subpackage`.
+ *
+ * Bounds that are not given fall back to the defaults: `lower-bound = "x.x.x.x.x.x"`
+ * (pin to the exact resolved version) and `upper-bound = "x"` (next-major exclusive).
+ */
+export interface PinTable {
+  build?: Build;
+  exact?: Exact;
+  'lower-bound'?: LowerBound;
+  'upper-bound'?: UpperBound;
+}
+/**
+ * The `conda` run-time version constraints. These constrain the versions of packages that may be installed in the run environment without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface RunConstraints {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | {
+        [k: string]: string | InheritableMatchspecTable | undefined;
+      }
+    | undefined;
+}
+/**
+ * The `conda` dependencies required at runtime. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface RunDependencies {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * The run-exports this package declares for its consumers, mirroring the conda run-exports mechanism. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface RunExports {
+  noarch?: Noarch;
+  strong?: Strong;
+  'strong-constraints'?: StrongConstraints;
+  weak?: Weak;
+  'weak-constraints'?: WeakConstraints;
+}
+/**
+ * The only run-export bucket applied when the consuming output is `noarch`: added to the run dependencies of noarch consumers that depend on this package in `host-dependencies`.
+ */
+export interface Noarch {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Pin the package itself for its consumers.
+ *
+ * Mirrors rattler-build's `pin_subpackage()`. Only valid in the
+ * `run-exports` tables, on an entry named after the package itself.
+ */
+export interface PinSubpackageSpec {
+  'pin-subpackage': PinSubpackage;
+}
+/**
+ * Added to the run dependencies of consumers that depend on this package in `build-dependencies` or `host-dependencies`.
+ */
+export interface Strong {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Added to the run constraints of consumers that depend on this package in `build-dependencies` or `host-dependencies`. Constraints only restrict versions and cannot be source specs.
+ */
+export interface StrongConstraints {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Added to the run dependencies of consumers that depend on this package in `host-dependencies`.
+ */
+export interface Weak {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * Added to the run constraints of consumers that depend on this package in `host-dependencies`. Constraints only restrict versions and cannot be source specs.
+ */
+export interface WeakConstraints {
+  [k: string]:
+    | string
+    | InheritableMatchspecTable
+    | PinCompatibleSpec
+    | PinSubpackageSpec
+    | {
+        [k: string]: string | InheritableMatchspecTable | PinCompatibleSpec | PinSubpackageSpec | undefined;
+      }
+    | undefined;
+}
+/**
+ * All conditions must apply.
+ */
+export interface WhenAll {
+  all: All;
+}
+/**
+ * Any condition may apply.
+ */
+export interface WhenAny {
+  any: Any;
+}
+/**
+ * Expanded package condition syntax.
+ *
+ * Accepts the same matchspec fields as a regular package dependency except
+ * for `when` itself, `channel`, and source-location fields (`url`, `git`,
+ * `path`, `md5`, `sha256`, ...).
+ */
+export interface WhenPackage {
+  build?: Build;
+  'build-number'?: BuildNumber;
+  extras?: Extras;
+  'file-name'?: FileName;
+  flags?: Flags;
+  license?: License;
+  'license-family'?: LicenseFamily;
+  package: Package2;
+  subdir?: Subdir;
+  'track-features'?: TrackFeatures;
+  version?: Version1;
 }
 /**
  * The build backend to instantiate
  */
 export interface BuildBackend {
-  'additional-dependencies'?: AdditionalDependencies1;
-  branch?: Branch;
+  'additional-dependencies'?: AdditionalDependencies;
   build?: Build;
   'build-number'?: BuildNumber;
   channel?: Channel;
   channels?: Channels;
+  extras?: Extras;
   'file-name'?: FileName;
-  git?: Git;
+  flags?: Flags;
   license?: License;
-  md5?: Md52;
-  name?: Name;
-  path?: Path;
-  rev?: Rev;
-  sha256?: Sha2562;
+  'license-family'?: LicenseFamily;
+  name?: Name1;
   subdir?: Subdir;
-  subdirectory?: Subdirectory;
-  tag?: Tag;
-  url?: Url;
-  version?: Version;
+  'track-features'?: TrackFeatures;
+  version?: Version1;
+  when?: When;
+  workspace?: Workspace;
 }
 /**
- * Additional dependencies to install alongside the build backend
+ * A precise description of a `conda` channel, with an optional priority.
  */
-export interface AdditionalDependencies1 {
-  [k: string]: (string | MatchspecTable) | undefined;
+export interface ChannelInlineTable {
+  channel: Channel;
+  'exclude-newer'?: ExcludeNewer;
+  priority?: Priority;
 }
 /**
  * The configuration of the build backend
@@ -920,89 +962,143 @@ export interface SourceLocation {
 /**
  * Target-specific build configuration for different platforms
  */
-export interface Target2 {
+export interface Target {
   [k: string]: BuildTarget | undefined;
 }
 /**
  * Target-specific build configuration for different platforms
  */
 export interface BuildTarget {
-  config?: Config1;
+  config?: Config;
 }
 /**
- * Target-specific configuration for the build backend
+ * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
  */
-export interface Config1 {
-  [k: string]: unknown | undefined;
+export interface Constraints {
+  [k: string]: string | InheritableMatchspecTable | undefined;
 }
 /**
- * The build `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
  */
-export interface BuildDependencies3 {
-  [k: string]: (string | MatchspecTable) | undefined;
+export interface Dependencies {
+  [k: string]: string | InheritableMatchspecTable | undefined;
 }
 /**
- * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ * Source packages whose dependencies should be installed without building the package itself. Useful for development environments.
  */
-export interface HostDependencies3 {
-  [k: string]: (string | MatchspecTable) | undefined;
+export interface Dev {
+  [k: string]: SourceSpecTable | undefined;
 }
 /**
- * The `conda` dependencies required at runtime. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ * A precise description of a source package location.
  */
-export interface RunDependencies {
-  [k: string]: (string | MatchspecTable) | undefined;
+export interface SourceSpecTable {
+  branch?: Branch;
+  git?: Git;
+  md5?: Md52;
+  path?: Path;
+  rev?: Rev;
+  sha256?: Sha2562;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+  url?: Url;
 }
 /**
- * Machine-specific aspects of the package
+ * The environments of the project, defined as a full object or a list of feature names.
  */
-export interface Target3 {
-  [k: string]: Target1 | undefined;
+export interface Environments {
+  /**
+   * This interface was referenced by `Environments`'s JSON-Schema definition
+   * via the `patternProperty` "^[a-z\d\-]+$".
+   */
+  [k: string]: Environment | string[] | undefined;
 }
 /**
- * The project's metadata information
+ * A composition of the dependencies of features which can be activated to run tasks or provide a shell
  */
-export interface Workspace1 {
-  authors?: Authors1;
-  'build-variants'?: BuildVariants;
-  'build-variants-files'?: BuildVariantsFiles;
+export interface Environment {
+  activation?: Activation;
   'channel-priority'?: ChannelPriority;
-  channels: Channels;
-  'conda-pypi-map'?: CondaPypiMap;
-  description?: Description;
-  documentation?: Documentation1;
-  'exclude-newer'?: ExcludeNewer;
-  homepage?: Homepage1;
-  license?: License;
-  'license-file'?: LicenseFile1;
-  name?: Name;
+  channels?: Channels;
+  constraints?: Constraints1;
+  dependencies?: Dependencies1;
+  dev?: Dev;
+  features?: Features;
+  'no-default-feature'?: NoDefaultFeature;
   platforms?: Platforms;
-  preview?: Preview;
-  'pypi-options'?: PyPIOptions1;
-  readme?: Readme1;
-  repository?: Repository1;
-  'requires-pixi'?: RequiresPixi;
-  's3-options'?: S3Options;
+  'pypi-dependencies'?: PypiDependencies;
+  'pypi-options'?: PyPIOptions;
+  'solve-group'?: SolveGroup;
   'solve-strategy'?: SolveStrategy;
-  target?: Target4;
-  version?: Version;
+  target?: Target1;
+  tasks?: Tasks;
 }
 /**
- * The build variants of the project
+ * The `conda` version constraints. These constrain the versions of packages that may be installed without explicitly requiring them. If the package is installed as a dependency of another package, it must satisfy these constraints.
  */
-export interface BuildVariants {
-  [k: string]: string[] | undefined;
+export interface Constraints1 {
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
- * The `conda` to PyPI mapping configuration
+ * The `conda` dependencies, consisting of a package name and a requirement in [MatchSpec](https://github.com/conda/conda/blob/078e7ee79381060217e1ec7f9b0e9cf80ecc8f3f/conda/models/match_spec.py) format
  */
-export interface CondaPypiMap {
-  [k: string]: string | undefined;
+export interface Dependencies1 {
+  [k: string]: string | MatchspecTable | undefined;
 }
 /**
- * Options related to PyPI indexes for this project
+ * The PyPI dependencies of this environment
  */
-export interface PyPIOptions1 {
+export interface PypiDependencies {
+  [k: string]:
+    | string
+    | PyPIVersion
+    | PyPIGitBranchRequirement
+    | PyPIGitTagRequirement
+    | PyPIGitRevRequirement
+    | PyPIPathRequirement
+    | PyPIUrlRequirement
+    | undefined;
+}
+export interface PyPIVersion {
+  extras?: Extras;
+  index?: Index;
+  version?: Version1;
+}
+export interface PyPIGitBranchRequirement {
+  branch?: Branch;
+  extras?: Extras;
+  git?: Git;
+  lfs?: Lfs;
+  subdirectory?: Subdirectory;
+}
+export interface PyPIGitTagRequirement {
+  extras?: Extras;
+  git?: Git;
+  lfs?: Lfs;
+  subdirectory?: Subdirectory;
+  tag?: Tag;
+}
+export interface PyPIGitRevRequirement {
+  extras?: Extras;
+  git?: Git;
+  lfs?: Lfs;
+  rev?: Rev;
+  subdirectory?: Subdirectory;
+}
+export interface PyPIPathRequirement {
+  editable?: Editable;
+  extras?: Extras;
+  path?: Path;
+  subdirectory?: Subdirectory;
+}
+export interface PyPIUrlRequirement {
+  extras?: Extras;
+  url?: Url;
+}
+/**
+ * Options related to PyPI indexes for this environment
+ */
+export interface PyPIOptions {
   'dependency-overrides'?: DependencyOverrides;
   'extra-index-urls'?: ExtraIndexUrls;
   'find-links'?: FindLinks;
@@ -1013,6 +1109,218 @@ export interface PyPIOptions1 {
   'no-build-isolation'?: NoBuildIsolation;
   'prerelease-mode'?: PrereleaseMode;
   'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
+}
+/**
+ * A list of PyPI dependencies that override the resolved dependencies
+ */
+export interface DependencyOverrides {
+  [k: string]:
+    | string
+    | PyPIVersion
+    | PyPIGitBranchRequirement
+    | PyPIGitTagRequirement
+    | PyPIGitRevRequirement
+    | PyPIPathRequirement
+    | PyPIUrlRequirement
+    | undefined;
+}
+/**
+ * The path to the directory containing packages
+ */
+export interface FindLinksPath {
+  path?: Path;
+}
+/**
+ * The URL to the html file containing href-links to packages
+ */
+export interface FindLinksURL {
+  url?: Url;
+}
+/**
+ * Machine-specific aspects of this environment
+ */
+export interface Target1 {
+  [k: string]: Target2 | undefined;
+}
+/**
+ * A machine-specific configuration of dependencies and tasks
+ */
+export interface Target2 {
+  activation?: Activation;
+  'build-dependencies'?: BuildDependencies;
+  constraints?: Constraints;
+  dependencies?: Dependencies;
+  dev?: Dev;
+  'host-dependencies'?: HostDependencies1;
+  'pypi-dependencies'?: PypiDependencies;
+  tasks?: Tasks;
+}
+/**
+ * The host `conda` dependencies, used in the build process. See https://pixi.sh/latest/build/dependency_types/ for more information.
+ */
+export interface HostDependencies1 {
+  [k: string]: string | InheritableMatchspecTable | undefined;
+}
+/**
+ * The tasks of the target
+ */
+export interface Tasks {
+  /**
+   * This interface was referenced by `Tasks`'s JSON-Schema definition
+   * via the `patternProperty` "^[^\s\$]+$".
+   */
+  [k: string]: TaskInlineTable | DependsOn1[] | string | undefined;
+}
+/**
+ * A precise definition of a task.
+ */
+export interface TaskInlineTable {
+  args?: Args;
+  'clean-env'?: CleanEnv;
+  cmd?: Cmd;
+  cwd?: Cwd;
+  'default-environment'?: DefaultEnvironment;
+  'depends-on'?: DependsOn;
+  depends_on?: DependsOn2;
+  description?: Description1;
+  env?: Env;
+  inputs?: Inputs;
+  outputs?: Outputs;
+}
+/**
+ * The arguments of a task.
+ */
+export interface TaskArgs {
+  arg: Arg;
+  choices?: Choices;
+  default?: Default;
+}
+/**
+ * The dependencies of a task.
+ */
+export interface DependsOn1 {
+  args?: Args1;
+  environment?: Environment1;
+  task: Task;
+}
+/**
+ * Workspace-wide per-package `exclude-newer` overrides for conda packages
+ */
+export interface ExcludeNewer1 {
+  [k: string]: string | undefined;
+}
+/**
+ * The features of the project
+ */
+export interface Feature {
+  [k: string]: Feature1 | undefined;
+}
+/**
+ * A composable aspect of the project which can contribute dependencies and tasks to an environment
+ */
+export interface Feature1 {
+  activation?: Activation;
+  'build-dependencies'?: BuildDependencies;
+  'channel-priority'?: ChannelPriority;
+  channels?: Channels;
+  constraints?: Constraints;
+  dependencies?: Dependencies;
+  dev?: Dev;
+  'host-dependencies'?: HostDependencies1;
+  platforms?: Platforms;
+  'pypi-dependencies'?: PypiDependencies;
+  'pypi-options'?: PyPIOptions;
+  'solve-strategy'?: SolveStrategy;
+  'system-requirements'?: SystemRequirements;
+  target?: Target1;
+  tasks?: Tasks;
+}
+/**
+ * The system requirements of this feature
+ */
+export interface SystemRequirements {
+  archspec?: Archspec;
+  cuda?: Cuda;
+  libc?: Libc;
+  linux?: Linux;
+  macos?: Macos;
+  unix?: Unix;
+}
+export interface LibcFamily {
+  family?: Family;
+  version?: Version6;
+}
+/**
+ * The project's metadata information
+ */
+export interface Workspace3 {
+  authors?: Authors1;
+  'build-variants'?: BuildVariants;
+  'build-variants-files'?: BuildVariantsFiles;
+  'channel-priority'?: ChannelPriority;
+  channels: Channels;
+  'conda-pypi-map'?: CondaPypiMap;
+  dependencies?: Dependencies1;
+  description?: Description1;
+  documentation?: Documentation1;
+  'exclude-newer'?: ExcludeNewer;
+  homepage?: Homepage1;
+  license?: License;
+  'license-file'?: LicenseFile1;
+  name?: Name1;
+  platforms?: Platforms2;
+  preview?: Preview;
+  'pypi-options'?: PyPIOptions;
+  readme?: Readme1;
+  repository?: Repository1;
+  'requires-pixi'?: RequiresPixi;
+  's3-options'?: S3Options;
+  'solve-strategy'?: SolveStrategy;
+  target?: Target4;
+  version?: Version1;
+}
+/**
+ * The build variants of the project
+ */
+export interface BuildVariants {
+  [k: string]: string[] | undefined;
+}
+/**
+ * The mapping configuration for one channel in `conda-pypi-map`.
+ */
+export interface CondaPypiMapTable {
+  location?: Location;
+  mapping?: Mapping;
+  'mapping-mode'?: MappingMode;
+  'same-name-heuristic'?: SameNameHeuristic;
+}
+/**
+ * Inline `conda_name: pypi_name` entries; a list maps one conda package to several PyPI names, `false` marks a package as not available on PyPI. Inline entries override entries from `location`.
+ */
+export interface Mapping {
+  [k: string]: string | string[] | false | undefined;
+}
+export interface WorkspacePlatform2 {
+  archspec?: Archspec;
+  cuda?: Cuda1;
+  glibc?: Glibc;
+  linux?: Linux1;
+  macos?: Macos1;
+  name?: Name1;
+  osx?: Osx;
+  platform?: Platform;
+  windows?: Windows;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The grouped CUDA virtual-package table: `cuda = { driver, arch }`.
+ *
+ * `driver` maps to `__cuda` (equivalent to the bare `cuda = "12.0"` form);
+ * `arch` maps to `__cuda_arch` (GPU compute capability) and requires `driver`.
+ */
+export interface CudaTable {
+  arch?: Arch;
+  driver: Driver;
 }
 /**
  * Options related to S3 for this project
@@ -1038,103 +1346,17 @@ export interface Target4 {
  * Target-specific configuration for a workspace
  */
 export interface WorkspaceTarget {
-  'build-variants'?: BuildVariants1;
+  'build-variants'?: BuildVariants;
 }
 /**
- * The build variants for this workspace target
+ * Workspace-wide per-package `exclude-newer` overrides for PyPI packages
  */
-export interface BuildVariants1 {
-  [k: string]: string[] | undefined;
-}
-/**
- * The PyPI dependencies
- */
-export interface PypiDependencies2 {
-  [k: string]:
-    | (
-        | string
-        | PyPIVersion
-        | PyPIGitBranchRequirement
-        | PyPIGitTagRequirement
-        | PyPIGitRevRequirement
-        | PyPIPathRequirement
-        | PyPIUrlRequirement
-      )
-    | undefined;
-}
-/**
- * Options related to PyPI indexes, on the default feature
- */
-export interface PyPIOptions2 {
-  'dependency-overrides'?: DependencyOverrides;
-  'extra-index-urls'?: ExtraIndexUrls;
-  'find-links'?: FindLinks;
-  'index-strategy'?: IndexStrategy;
-  'index-url'?: IndexUrl;
-  'no-binary'?: NoBinary;
-  'no-build'?: NoBuild;
-  'no-build-isolation'?: NoBuildIsolation;
-  'prerelease-mode'?: PrereleaseMode;
-  'skip-wheel-filename-check'?: SkipWheelFilenameCheck;
-}
-/**
- * The system requirements of the project
- */
-export interface SystemRequirements1 {
-  archspec?: Archspec;
-  cuda?: Cuda;
-  libc?: Libc;
-  linux?: Linux;
-  macos?: Macos;
-  unix?: Unix;
-}
-/**
- * The targets of the project
- */
-export interface Target5 {
-  [k: string]: Target1 | undefined;
-}
-/**
- * The tasks of the project
- */
-export interface Tasks2 {
-  /**
-   * This interface was referenced by `Tasks2`'s JSON-Schema definition
-   * via the `patternProperty` "^[^\s\$]+$".
-   */
-  [k: string]: TaskInlineTable | DependsOn1[] | string;
+export interface PypiExcludeNewer {
+  [k: string]: string | undefined;
 }
 /**
  * Third-party tool configurations, ignored by pixi
  */
 export interface Tool {
   [k: string]: unknown | undefined;
-}
-/**
- * The workspace's metadata information
- */
-export interface Workspace2 {
-  authors?: Authors1;
-  'build-variants'?: BuildVariants;
-  'build-variants-files'?: BuildVariantsFiles;
-  'channel-priority'?: ChannelPriority;
-  channels: Channels;
-  'conda-pypi-map'?: CondaPypiMap;
-  description?: Description;
-  documentation?: Documentation1;
-  'exclude-newer'?: ExcludeNewer;
-  homepage?: Homepage1;
-  license?: License;
-  'license-file'?: LicenseFile1;
-  name?: Name;
-  platforms?: Platforms;
-  preview?: Preview;
-  'pypi-options'?: PyPIOptions1;
-  readme?: Readme1;
-  repository?: Repository1;
-  'requires-pixi'?: RequiresPixi;
-  's3-options'?: S3Options;
-  'solve-strategy'?: SolveStrategy;
-  target?: Target4;
-  version?: Version;
 }

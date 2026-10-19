@@ -226,12 +226,10 @@ export interface JSONSchemaForExpoSDK53AppManifest {
      */
     locales?: {
       [k: string]:
-        | (
-            | string
-            | {
-                [k: string]: unknown | undefined;
-              }
-          )
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
         | undefined;
     };
     /**
@@ -247,9 +245,12 @@ export interface JSONSchemaForExpoSDK53AppManifest {
       | [string]
       | [
           string,
-          {
-            [k: string]: unknown | undefined;
-          }
+          (
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+          )
         ]
     )[];
     /**
